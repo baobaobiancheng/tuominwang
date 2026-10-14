@@ -1,0 +1,160 @@
+{
+  "date": "2026-10-14",
+  "sourceEvidence": [
+    {
+      "file": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "lines": [
+        4363,
+        4372
+      ],
+      "observation": "circle is ellipse inscribed in bbox: centre x+w/2,y+h/2, rx=w/2,ry=h/2; opacity1"
+    },
+    {
+      "file": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "lines": [
+        26778,
+        26782
+      ],
+      "observation": "rect/circle selection and18 native manual entity IDs"
+    },
+    {
+      "file": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "lines": [
+        27225,
+        27259
+      ],
+      "observation": "manual type/text/shape/id and opaque provenance/bboxes metadata"
+    }
+  ],
+  "circle": {
+    "status": "actual_core_three_format_API_and_clean_Node24_Edge_verified",
+    "default": "missing shape remains rect",
+    "coordinates": "canonical bbox; circle is non-square ellipse; cell-intersecting opaque raster mask, no source antialias edge",
+    "textSafety": "existing glyph rectangles always remain fully cleared independent of manual shape",
+    "formats": [
+      "PNG",
+      "PDF raster fresh reopen",
+      "DOCX embedded media"
+    ],
+    "annotationFields": [
+      "id",
+      "entityType original string without dedicated200cap",
+      "optional text",
+      "optional opaque JSON meta",
+      "shape"
+    ],
+    "privacy": "root/C AEAD-seal sensitive entityType/text/meta at rest; no meta authorizes access or opens a host/network path",
+    "apiEvidence": {
+      "log": ".data/research/lawbot-2026-10-14/iteration022/circle-redaction-api.log",
+      "result": "1 real API test passed13.4s acrossPNG/PDF/DOCX; typed metadata save/read/export, ellipse centre black, bbox corner exact source, originals immutable"
+    },
+    "unitEvidence": {
+      "log": ".data/research/lawbot-2026-10-14/iteration022/metadata-circle-unit.log",
+      "result": "circle3 + restoration12 =15 passed"
+    },
+    "edgeEvidence": {
+      "log": ".data/research/lawbot-2026-10-14/iteration022/image-utilities-edge-node24.log",
+      "node": "24.19.0",
+      "result": "clean1PASS18.4s automatic process/service/DB cleanup; no forceexit/manualtermination",
+      "screenshot": ".data/research/lawbot-2026-10-14/iteration022/image-utilities-review.png",
+      "manualMetadataReadback": [
+        {
+          "typeLength": 4,
+          "shape": "circle",
+          "text": "公开合成椭圆",
+          "meta": {
+            "userAdjusted": true,
+            "operationSource": "user"
+          }
+        },
+        {
+          "typeLength": 237,
+          "shape": "circle",
+          "text": "合成自定义原文",
+          "meta": {
+            "userAdjusted": true,
+            "operationSource": "user"
+          }
+        }
+      ]
+    }
+  },
+  "restoration": {
+    "status": "author unit_API_and_independent_workspace_API_verified",
+    "fixed": [
+      "docProps core/app/custom text and attributes previously skipped",
+      "comments author/initials, style attributes and non-story XML text/CDATA",
+      "package relationship target metadata and new email hyperlink relationships coexist",
+      "all original XML fields preflight unknown alias guard; plain【重要】 stays ordinary",
+      "one-pass replacements permit original values themselves containing a known alias without recursively replacing them",
+      "metadata serializes and reparses with per-field expected text comparisons; all output XML reparsed",
+      "metadata restores before run cloning; occurrence queue remains body-first then metadata",
+      "plain user-defined aliases match literally, preserving AB vs A B; flexible whitespace/zeroWidth only wrappers",
+      "normalized wrapper collision with differing originals or occurrence queues fails explicitly",
+      "XML1.0 forbidden characters reject before reporting a successful Word file; Markdown literal bytes are preserved",
+      "restorer serializers translate only OFFICE_XML_VALUE_INVALID into stable RESTORE_XML_VALUE_INVALID; source malformed XML remains separately prevalidated"
+    ],
+    "reviewFindings": [
+      {
+        "id": "WORD-RESTORE-METADATA",
+        "by": "full_inventory_eval",
+        "status": "independent complete workspace API2PASS25s, DOCX/MD wrapper and plain CLIENT-A including all source metadata restored; reviewer full_inventory_eval reported closure"
+      },
+      {
+        "id": "WORD-RESTORE-PLAIN-ALIAS-SPACE",
+        "by": "complete_visual",
+        "status": "closed by independent reviewer C:14units PASS581ms, exactplain/queues/wrappercollision and XMLdomain/sourceprecheck no new qualified finding"
+      }
+    ],
+    "apiEvidence": {
+      "file": "tests/restoration-batch.integration.ts",
+      "log": ".data/research/lawbot-2026-10-14/iteration022/restoration-batch-api.log",
+      "result": "1 real batch API passed1.64s: body/title/commentauthor restore through actualworker -> derivedartifact -> downloadedZIP; no alias residue"
+    },
+    "serializerFollowup": {
+      "tests": "custom2 + restoration12 =14PASS2.72s",
+      "log": ".data/research/lawbot-2026-10-14/iteration022/custom-restoration-final-unit.log",
+      "negative": "4 illegal mapped values and4 illegal source Word XML inputs reject RESTORE_XML_VALUE_INVALID; valid Markdown literal originals unchanged."
+    },
+    "capacityFollowup": {
+      "status": "closed",
+      "report": "restoration-capacity-final-20261014.json",
+      "independent": "C original205fatal andMDvariantcounterexamples closed;19unit/real4APIpassed; CsharedrestoreText same matcher andauthgates."
+    }
+  },
+  "sourceRuntime": "not run without competitor license; source-static observation plus own implementation tests never claim licensed-product complete equivalence",
+  "files": [
+    {
+      "path": "packages/contracts/index.ts",
+      "sha256": "bf55a107da9f270f6e2d6a3c50283bfc4e4290e5573aced07cadba76dfeb8ce1"
+    },
+    {
+      "path": "packages/core/page-redaction.ts",
+      "sha256": "47b164311eab08c4a1d503196b932fcb7cac525cb67b4cf37873b17a14278739"
+    },
+    {
+      "path": "packages/core/image-utilities.ts",
+      "sha256": "4466d223a436e16cbe27462cdfe607546d557098dbe368049fb37a2e276d3d91"
+    },
+    {
+      "path": "apps/api/image-utilities.ts",
+      "sha256": "b7b60909328b60a5cb931a94ab974c5c0d530160cdaf79a5442844c03fe21f32"
+    },
+    {
+      "path": "packages/core/restoration-files.ts",
+      "sha256": "cc695b863b08153cee65c9040dd8b7c19ca58306563978b9862beb30f6eeb6d0"
+    },
+    {
+      "path": "tests/circle-redaction.test.ts",
+      "sha256": "3f0dfb607d36ce8ed2ba899c866076094b534ec110d586833b66e80c564d41f5"
+    },
+    {
+      "path": "tests/circle-redaction.integration.ts",
+      "sha256": "f688109de7f55dba5e3878ea233e4a5acdad1571e6475ed427a9a42c75d27607"
+    },
+    {
+      "path": "tests/restoration-files.test.ts",
+      "sha256": "b8f71950703bca59d63f00ebda213543c8bae1c37b14e285d4619c92b185dd0f"
+    }
+  ]
+}

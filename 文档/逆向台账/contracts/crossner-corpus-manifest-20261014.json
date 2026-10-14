@@ -1,0 +1,145 @@
+{
+  "schema": "crossner-local-corpus-manifest/v1",
+  "date": "2026-10-14",
+  "commit": "2e7ba2a7798c961e3f29fbc51252c5a8d40224bf",
+  "license": {
+    "path": ".data/evals/corpora/crossner-2e7ba2a/LICENSE",
+    "sha256": "9291793d0b49d69642edcd47e730136693722e3a1d398d1412e8d47e2443b71f",
+    "name": "MIT"
+  },
+  "kind_mapping": {
+    "person": "姓名",
+    "researcher": "姓名",
+    "writer": "姓名",
+    "musicalartist": "姓名",
+    "politician": "姓名",
+    "scientist": "姓名",
+    "organisation": "机构",
+    "university": "机构",
+    "band": "机构",
+    "politicalparty": "机构",
+    "location": "地址",
+    "country": "地址"
+  },
+  "all_domains_and_cases": true,
+  "no_reuters_conll_data_used": true,
+  "source_files": [
+    {
+      "domain": "ai",
+      "source": ".data/evals/corpora/crossner-2e7ba2a/ai-test.txt",
+      "sha256": "7595ad386e0a98067100fe47f86811b38867a236011fee97cfaa90f778c37bcf",
+      "bytes": 134455,
+      "sentences": 431,
+      "mapped_entity_counts": {
+        "organisation": 145,
+        "researcher": 160,
+        "country": 44,
+        "location": 39,
+        "person": 67,
+        "university": 28
+      },
+      "download_url": "https://raw.githubusercontent.com/zliucr/CrossNER/2e7ba2a7798c961e3f29fbc51252c5a8d40224bf/ner_data/ai/test.txt"
+    },
+    {
+      "domain": "literature",
+      "source": ".data/evals/corpora/crossner-2e7ba2a/literature-test.txt",
+      "sha256": "77267f8b3e8afe993865c64cfc605f65671f6a0ac9cba65de970f12180fed20e",
+      "bytes": 155256,
+      "sentences": 416,
+      "mapped_entity_counts": {
+        "writer": 567,
+        "person": 175,
+        "organisation": 110,
+        "location": 99,
+        "country": 101
+      },
+      "download_url": "https://raw.githubusercontent.com/zliucr/CrossNER/2e7ba2a7798c961e3f29fbc51252c5a8d40224bf/ner_data/literature/test.txt"
+    },
+    {
+      "domain": "music",
+      "source": ".data/evals/corpora/crossner-2e7ba2a/music-test.txt",
+      "sha256": "c66e345f959ac65593f76c6b1bd8c6d75f2a6f0bc197389b2e6700d101fd094c",
+      "bytes": 208331,
+      "sentences": 465,
+      "mapped_entity_counts": {
+        "band": 462,
+        "musicalartist": 515,
+        "organisation": 208,
+        "country": 160,
+        "person": 80,
+        "location": 343
+      },
+      "download_url": "https://raw.githubusercontent.com/zliucr/CrossNER/2e7ba2a7798c961e3f29fbc51252c5a8d40224bf/ner_data/music/test.txt"
+    },
+    {
+      "domain": "politics",
+      "source": ".data/evals/corpora/crossner-2e7ba2a/politics-test.txt",
+      "sha256": "05cadc5e129d394f7f92b4a052cf4b6ea4c60878d32a833e500cf046c297455f",
+      "bytes": 325917,
+      "sentences": 651,
+      "mapped_entity_counts": {
+        "country": 418,
+        "politician": 485,
+        "person": 354,
+        "organisation": 513,
+        "location": 599,
+        "politicalparty": 953
+      },
+      "download_url": "https://raw.githubusercontent.com/zliucr/CrossNER/2e7ba2a7798c961e3f29fbc51252c5a8d40224bf/ner_data/politics/test.txt"
+    },
+    {
+      "domain": "science",
+      "source": ".data/evals/corpora/crossner-2e7ba2a/science-test.txt",
+      "sha256": "3616d59d4d2b9dbf4c1126f8d8ba47ff97886223c95f93649bfd527343e64ced",
+      "bytes": 220459,
+      "sentences": 543,
+      "mapped_entity_counts": {
+        "organisation": 273,
+        "person": 230,
+        "university": 130,
+        "scientist": 471,
+        "location": 170,
+        "country": 27
+      },
+      "download_url": "https://raw.githubusercontent.com/zliucr/CrossNER/2e7ba2a7798c961e3f29fbc51252c5a8d40224bf/ner_data/science/test.txt"
+    }
+  ],
+  "total_cases": 2506,
+  "total_gold": 7926,
+  "evaluated_language": "English",
+  "annotation_provenance": "CrossNER fully-labeled real text, not model-generated or synthetic fixtures",
+  "limitations": [
+    "不是中文业务/号码/金额/视觉真实准确率",
+    "原始词级BIO句子重建为单空格分隔；偏移在重建文本上评测，不等于原文件偏移",
+    "country/location 映射为地址、person角色映射姓名、organisation子类映射机构；标签领域差异需结合看错例",
+    "未由本项目独立双人复核；已发布标注错误/NER模型训练语料重合不排除",
+    "候选检测评测不等于人工复核和格式清除导出残留"
+  ],
+  "evaluation": {
+    "completedAt": "2026-10-14T09:31:12.664464+00:00",
+    "cases": 2506,
+    "exactTypeSpanMicro": {
+      "completeRules": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 7926,
+        "precision": null,
+        "recall": 0,
+        "f1": 0
+      },
+      "completeRulesNer": {
+        "tp": 3,
+        "fp": 6,
+        "fn": 7923,
+        "precision": 0.3333333333333333,
+        "recall": 0.0003785011355034065,
+        "f1": 0.0007561436672967864
+      }
+    },
+    "report": ".data/evals/crossner-per-org-loc-20261014.json",
+    "reportSha256": "97e455236876c46b897edb82047bbd7c37d87e3f9cd13f244715e0a3cedf4a38",
+    "snapshotManifest": ".data/evals/snapshots/final-frozen-20261014/snapshot-manifest.json",
+    "defaultCurrentEquivalence": ".data/evals/crossner-current-default-equivalence-20261014.json",
+    "scope": "English Wikipedia-like text only; current detection functions match frozen snapshot. No Chinese business or visual accuracy claims."
+  }
+}

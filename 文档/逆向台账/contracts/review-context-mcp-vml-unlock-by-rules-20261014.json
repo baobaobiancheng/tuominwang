@@ -1,0 +1,53 @@
+{
+  "id": "REVIEW-CONTEXT-MCP-VML-UNLOCK-BY-RULES-ITER024",
+  "result": "No findings",
+  "findings": [],
+  "readOnly": true,
+  "scopes": {
+    "mcp": "latest list-pending read-only SQL/permissions/humanTask; consume fullTask/consumedOpen, same project/authorization/epoch UI; protocol session and own cookie logout",
+    "unlock": "known-password immutable original, remove-security output, empty-password reload all page geometry/text, attachments/scripts count, source/derived hash, finally cleanup",
+    "vml": "group coordinates, crop/rotate/flip, controlled textbox DOM, numeric styles, squarewrap/fit; private PNG asset dedup; no untrusted SVG/HTML insertion",
+    "runtime": "worker and OCR share existing NER context callback; authenticated native/OCR glyph and table cells; compatibility sourcecaller and fragment gates; source-provenance masks preview/export"
+  },
+  "verification": [
+    {
+      "command": "pnpm exec vitest run tests/reference-table.test.ts tests/reference-table-adapter.test.ts tests/reference-party.test.ts tests/reference-fragment.test.ts tests/reference-visual-table.test.ts tests/reference-detected-mask.test.ts tests/document-unlock.test.ts tests/docx-vml-preview.test.ts",
+      "result": "8 files39tests pass; source mask fixture expanded after this and separate4mask tests rerun"
+    },
+    {
+      "command": "pnpm exec tsx tests/run-isolated.ts integration tests/contextual-recognition.integration.ts",
+      "result": "2testsPASS; actual DOCX/MD/CSV upload+worker and configuration legacy/fragment enabled→modern disabled readback,8.49sec"
+    },
+    {
+      "command": "pnpm exec tsc --noEmit",
+      "result": "PASS at reviewed snapshot"
+    }
+  ],
+  "closedExamples": [
+    "OOXML empty vMerge owner label and nested tree unit were independently reproed and fixed by author A, review B proof iteration022/table-xml-independent-probes.json",
+    "Withdrawn claim jl skipped judgment: source jl8751 does not consume document type; not a valid defect",
+    "Source USCC/tax same-span winner differs from additive own pending evidence; not an undisclosed selective omission"
+  ],
+  "limits": [
+    "This read-only review does not independently rerun the Edge VML screenshot or latest C full MCP stdio test; those are separate author/parent gates",
+    "Licensed competitor full processing runtime not executed (R0)",
+    "PDF unlock verifies full page text/geometry and attachment/script counts; no claim of original-byte identity for the derived decrypted PDF",
+    "Source title/freeform formulas/gradients/unknown VML objects have explicit preview warnings; this report does not assert arbitrary Word pixel-equivalent layout"
+  ],
+  "pins": {
+    "packages/core/document-unlock.ts": "e98d93a494866d812e85d341d95f0363227b5c0cb9e3aa19d1a122881f39de9e",
+    "tests/document-unlock.test.ts": "3057ee041d8211c2eebfa5015bc01e62fadc1932901583fa17ad043179a9ec4b",
+    "packages/core/docx-vml-preview.ts": "946fd088acaf451cbfae049800e30afc6979729822e317460e7d7d904ce5cae6",
+    "apps/web/docx-vml-preview.ts": "41bd5ef75be3575176aa40d73655dc7d037eeb0ccc25d721695da9d1f70665dd",
+    "packages/core/docx-preview.ts": "4f4ae490cba90f960735f21a604687f526f2ff5c68a11e3df243f5ea8ff6a9df",
+    "packages/contracts/docx-preview.ts": "910b97c5e35b2464cdb73ca7eab5423d343c28c1fc6d9147d0f45bf7a82bb352",
+    "tests/docx-vml-preview.test.ts": "6eb8afbd8a1c8cf0043fafff54bb947978dae8afafc564b3e07d0d9c8332f8b1",
+    "apps/api/mcp.ts": "ade0d6586ffd2070d3babf92e285eb0f4b9f4d62bc1f49efefc02351bf00dce0",
+    "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5",
+    "apps/web/ai-collab.tsx": "dcceab844148c77e18fd743dff5c2d599901ca2347f770d01b02786f640a63b5",
+    "packages/adapters/recognition-context.ts": "f2ca4394181160258138b5113d78bfe6ae266a44695bfe4118433932e34bcfc6",
+    "packages/adapters/ocr-correction.ts": "20a3a98a8ba79cab22238c20a353d60d90e633197889da4198c3e956718ee7c7",
+    "packages/adapters/processing-worker.ts": "cf616ea0f6caf2790891fd9c03d793827c1a6194d9458aa5fa8267923980d2ba",
+    "packages/core/profile-recognition.ts": "5781d71910f96ccd56154aa8a2d9db51f9126d3231deda7359fed6bc893b3843"
+  }
+}

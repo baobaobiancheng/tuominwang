@@ -1,0 +1,99 @@
+{
+  "status": "closed-independent-core-and-real-worker-replay",
+  "scope": "Exact restoration changes and legal capacity, not licensed competitor execution or all external client implementations",
+  "referenceRuntime": "R0",
+  "findings": [
+    {
+      "id": "C-RESTORE-100K-LONG-PLAIN-NATIVE-FATAL",
+      "severity": "P1",
+      "before": "100000 legal205char aliases,~23MB<50MB, parse passed then native V8fatal243159572/exit133",
+      "current": "Compressed radix literal matcher, no new count/length cap; original failing probe now exact output",
+      "logs": [
+        {
+          "path": ".data/evals/restoration-long-plain-capacity.log",
+          "sha256": "2cdf37c81ce7dc286b20e7b231478906b14a3e920fe4de5ba63d16e09815540b"
+        },
+        {
+          "path": ".data/evals/restoration-long-plain-capacity-recheck.log",
+          "sha256": "3ba6b472f0b83eeff47b10733de5ad2c114828c2062245d8bb5b974919f5234b"
+        }
+      ]
+    },
+    {
+      "id": "C-RESTORE-MD-VARIANT-COLLISION",
+      "severity": "P2",
+      "before": "A&B/A&amp;B differing original returned a different result according to JSON insertion order",
+      "current": "MD-only encoded/escaped ambiguity rejects RESTORE_NORMALIZED_TOKEN_COLLISION; Word exact literals remain independent; nonconstant occurrence queue collision also refuses",
+      "logs": [
+        {
+          "path": ".data/evals/restoration-md-variant-collision.log",
+          "sha256": "c78784b39cd4494eef4eea7d974f909443d85313f16cb12941051b5c5f6db617"
+        },
+        {
+          "path": ".data/evals/restoration-md-variant-collision-recheck.log",
+          "sha256": "dcf134a3a0834e4dfd3bf4c94d019f51e3004a759c413343cb205a1689c3bfbf"
+        }
+      ]
+    },
+    {
+      "id": "C-RESTORE-SHARED-TEXT-REGEX-CAPACITY",
+      "severity": "P1",
+      "before": "restoreText still used giant literal RegExp after file restorers fixed",
+      "current": "Same compressed radix matcher; Bend policy.restoreAllowed gates, exact UTF16 offsets, leftmost-longest and one-pass original insertion preserved"
+    }
+  ],
+  "independentTests": {
+    "units": "6files25tests PASS2.23s; capacity/Wordmetadata/plainqueues/literal100smalloracle/sharedgates/facehelpers",
+    "unitLog": {
+      "path": ".data/evals/restoration-capacity-final-independent-unit.log",
+      "sha256": "735818e17b017a48205e2b5918e4241d6fab6e8f5a107cf0c19eb2afd44eee7f"
+    },
+    "actualApi": "4tests PASS7.587s;100k wrapped and205char plain LPM->real512MiB worker->MD/crossrunWord->immutable derived artifact/owner download,300char alias/200000+ choice/prototype-name literal",
+    "apiLog": {
+      "path": ".data/evals/restoration-batch-final-independent-api.log",
+      "sha256": "4211606b99582fc4605af9cdf6d22744ab8622fa00d5ebc057d3266a7e126628"
+    },
+    "typecheck": {
+      "path": ".data/evals/openimages-face/typecheck-final.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "code": [
+    {
+      "path": "packages/core/literal-matcher.ts",
+      "sha256": "9d3e673fdde3138dedc8360ab34d225a9ee17792d52e0457d0e88f66a85872d4"
+    },
+    {
+      "path": "packages/core/restoration-files.ts",
+      "sha256": "cc695b863b08153cee65c9040dd8b7c19ca58306563978b9862beb30f6eeb6d0"
+    },
+    {
+      "path": "packages/core/mappings.ts",
+      "sha256": "94607d78a84090590c723904b43062e86d960e333778d2cad339a38e20b6a3b6"
+    },
+    {
+      "path": "tests/literal-matcher.test.ts",
+      "sha256": "be50dc894c1cbec85c25f9fc7aa160ec27d3a87b047319e095e0fb1621321962"
+    },
+    {
+      "path": "tests/restoration-capacity.test.ts",
+      "sha256": "190fdcc3bf8e8631436db3a3ef59c7bd86849248f881c63ef2f57995b285e812"
+    },
+    {
+      "path": "tests/restoration-large-fixture.ts",
+      "sha256": "aebfd803e59a0ab42809b31724ac7adfaf87e3f5ed93e8b4af97402195d7f0c0"
+    },
+    {
+      "path": "tests/mappings.test.ts",
+      "sha256": "223fe357ab8757970be53dead49c090c18782bbae2396b106b2eacc3d98367d8"
+    },
+    {
+      "path": "tests/restoration-batch.integration.ts",
+      "sha256": "d1294df5a6096c4b8f816d17be8b858691a45eeda45ce8a74f1f16e8eb8de325"
+    }
+  ],
+  "remaining": [
+    "Licensed competitor runtime remains R0.",
+    "This capacity/matcher proof does not claim every protocol method was rerun after the shared file change; prior exact43method runtime evidence remains separately source-bound."
+  ]
+}

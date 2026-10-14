@@ -1,0 +1,233 @@
+{
+  "version": 1,
+  "date": "2026-10-14",
+  "referenceVersion": "mac0.5.9",
+  "referenceRuntime": "R0-no-license-processing-unverified",
+  "source": {
+    "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+    "sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+    "ranges": {
+      "secure": [
+        14846,
+        15145
+      ],
+      "mapping": [
+        15146,
+        15266
+      ],
+      "restore": [
+        18342,
+        18535
+      ],
+      "workspace-open": [
+        22476,
+        22530
+      ],
+      "continue-and-cache": [
+        22647,
+        22684
+      ],
+      "review-profile": [
+        20119,
+        20203
+      ]
+    }
+  },
+  "implementationSha256": {
+    "packages/core/workspace-portable.ts": "3547cc4d08d33d156dda19fe01c66020ec4d1fe3243d6b8fdd650727e4976258",
+    "packages/core/native-portable.ts": "cb831f74edc350e65b8da5dfa0ada917946f2d9f8a9dfb4b9f98b0d40335c5a7",
+    "packages/core/restoration-files.ts": "1b60244a2df98292e902804833833749cec06ed4ce75c9d8cd9e4f2ee5ffb34e",
+    "packages/adapters/portable-draft.ts": "9b7523a935b709ee346c20a992d2345b4b4c4038ad524cb328fd1e0cb3581f97",
+    "apps/api/workspace-portable.ts": "c9be8a65832144beb066303101e47190b128e7ef592b03ace2ecd9bf09ebaf5e",
+    "apps/api/restoration-files.ts": "146b3b0e0ee47fbffb9a03be432ab5575ce9ae09cedf04819aba73a78f2612ad",
+    "apps/web/workspace-portable.tsx": "74626543f46b4a4363ee15363c7fd669fb19e09df66ebfc4f00e37266eeb2ad2",
+    "apps/web/restoration-files.tsx": "c2d821242ae36029bd1bd57a139b69df13769fe36a21a6954e2db37a4cbe0510",
+    "apps/web/portable-draft.tsx": "e363faaacf27660dcd6e344602bc74228af6b3de9de803b6f5d0c09dd617f4fc",
+    "tests/workspace-portable.test.ts": "dd0ba36e3a1e457a908e108c590f22db8104fe36371cf98da197f78064b587fb",
+    "tests/restoration-files.test.ts": "81fe061a34d8e58df13058d57873441495f18e0244860a26c3fe3e13a5d4163e",
+    "tests/portable.integration.ts": "9a690055519bb6ca43530886f778ac195d16aa7f09ea78df2245464187b58273",
+    "tests/run-portable-isolated.ts": "d496962d0479ff242cf11c67c8deb3c218e1d561245db9395ea765a41563ced8"
+  },
+  "branches": [
+    {
+      "id": "P01",
+      "branch": "安全容器头/逐块AAD认证",
+      "status": "implemented-tested",
+      "evidence": "LBTSC001、固定头、DEK、nonce/tag、完整块认证；损坏块/头/长度均拒绝"
+    },
+    {
+      "id": "P02",
+      "branch": "密码 transfer wrap slot",
+      "status": "implemented-tested",
+      "evidence": "自有password包/已知transfer槽；未知local-CMK需要合法DEK，未解锁不猜测"
+    },
+    {
+      "id": "P03",
+      "branch": "TMM V1 schema1/2",
+      "status": "implemented-tested",
+      "evidence": "真实lawbot-tmm manifest/workspace/checksums/source兼容codec，不冒用native工程格式"
+    },
+    {
+      "id": "P04",
+      "branch": "TMM V2 segmented",
+      "status": "implemented-tested",
+      "evidence": "index/profile/rules/project mode/decisions/audit/source/state/OCR JSONL完整读取和生成"
+    },
+    {
+      "id": "P05",
+      "branch": "TMM V3 payload chunks",
+      "status": "implemented-tested",
+      "evidence": "documentText UTF16 logical ranges、canonicalDocument、docxStructuredInput、MDsidecar、hash/size/chunk验证"
+    },
+    {
+      "id": "P06",
+      "branch": "TMM V3 collections",
+      "status": "implemented-tested",
+      "evidence": "10个文档集合、12个project集合、全部segments、mergeSnapshots/fileOverrides重建"
+    },
+    {
+      "id": "P07",
+      "branch": "V3 index/声明/lookup",
+      "status": "implemented-tested",
+      "evidence": "ID/顺序/name/kind/count/size一致；lookup bucket hash校验保留，不具竞品lazy查找执行"
+    },
+    {
+      "id": "P08",
+      "branch": "Markdown source binding",
+      "status": "implemented-tested",
+      "evidence": "sourceSha256/sidecar一致；未复刻完整MarkdownInputAdapter sourceMap语义"
+    },
+    {
+      "id": "P09",
+      "branch": "自有工程 native tmw",
+      "status": "implemented-tested",
+      "evidence": "独立manifest并明确格式名，完整原件/正文/复核草稿/词表/方案/规则/映射/分页/assets/snapshot原始元数据保存"
+    },
+    {
+      "id": "P10",
+      "branch": "完整项目分页",
+      "status": "implemented-api-tested",
+      "evidence": "实际102材料：100小文本+132000字节TXT+真实OCR PNG；导出跨100分页，无截断"
+    },
+    {
+      "id": "P11",
+      "branch": "材料独立方案/batch",
+      "status": "implemented-api-tested",
+      "evidence": "document_policy解密/校验/新AAD重封/revision1，is_batch完整沿用；project模板不覆盖材料方案"
+    },
+    {
+      "id": "P12",
+      "branch": "安全导入新工程",
+      "status": "implemented-api-tested",
+      "evidence": "new project/doc/mapping IDs、current tenant/owner；不导入账号权限成员；fresh worker解析，旧签发副本/snapshot不可信"
+    },
+    {
+      "id": "P13",
+      "branch": "旧native正文/OCR继续",
+      "status": "implemented-api-tested",
+      "evidence": "source hash+fresh预览逐像素/尺寸/旋转/part/完整anchors/UTF16 glyph/全text校验；保留freshpreview，保守重建map；实际0→1改字恢复；migration002仅合法空anchors/coverage/pages TXT严格全文/源一致后规范化fresh anchor并实测恢复"
+    },
+    {
+      "id": "P14",
+      "branch": "旧native标记/alias",
+      "status": "implemented-api-tested",
+      "evidence": "全部pending，alias按token+value+kind检查映射改newID；fresh识别和旧manual合并；当前revision无已验收snapshot；模板禁用类型也不丢旧人工标记，仅fresh自动候选按类型过滤，已实际alias回归"
+    },
+    {
+      "id": "P15",
+      "branch": "旧区域/删除页继续",
+      "status": "implemented-api-tested",
+      "evidence": "所有旧区域/删除页为候选；confirm/discard显式动作、新regionID、revision CAS、project/document锁；实际区域确认通过"
+    },
+    {
+      "id": "P16",
+      "branch": "伪造草稿/预览",
+      "status": "implemented-api-tested",
+      "evidence": "即使archive内部hash正确，预览像素改变仍400 PORTABLE_DRAFT_PREVIEW_MISMATCH；原件及revision不变"
+    },
+    {
+      "id": "P17",
+      "branch": "LPM0.5/0.6与旧表",
+      "status": "implemented-tested",
+      "evidence": "mappings/details/forms/occurrences/entityMap/legacy数组，canonical排序、occurrence队列保留；歧义主动让用户选择"
+    },
+    {
+      "id": "P18",
+      "branch": "Markdown还原",
+      "status": "implemented-tested",
+      "evidence": "raw/转义/HTML三套单次最长token替换；未知token/0替换明确失败，不复制失败原件"
+    },
+    {
+      "id": "P19",
+      "branch": "DOCX全已知story还原",
+      "status": "implemented-tested",
+      "evidence": "body/table/textbox/default-first-even headers/footers/footnotes/endnotes/comments/delText/cross-run；保首run格式"
+    },
+    {
+      "id": "P20",
+      "branch": "DOCX email/URL/same-run",
+      "status": "implemented-tested",
+      "evidence": "重建安全mailto/https关系；同run多w:t所有节点一次修改，序列化文本逐段验真；邮件+姓名/邮件+邮件反例通过"
+    },
+    {
+      "id": "P21",
+      "branch": "token normalize",
+      "status": "implemented-tested",
+      "evidence": "DOCX空白/zero width/FEFF规范化一致；歧义key碰撞拒绝，MD不宽松接受无法替换的变体；inspectRestorationTokens共用到MCP，普通【重要】合法，真实counter、knownfamily malformed/破损wrapper仍硬拒。"
+    },
+    {
+      "id": "P22",
+      "branch": "派生还原API/权限",
+      "status": "implemented-api-tested",
+      "evidence": "restore权限+owner/RLS+new artifact hash；独立derived_restorations，不覆写原件，不进入旧签发artifact；foreign tenant404"
+    },
+    {
+      "id": "P23",
+      "branch": "前端入口",
+      "status": "implemented-await-browser",
+      "evidence": "WorkspacePortable、RestorationFiles、ImportedPortableDraft真实组件/密码输入/选择冲突/下载/恢复确认；root挂main并做真实浏览器验收"
+    },
+    {
+      "id": "G01",
+      "branch": "reference TMM旧review转本产品继续",
+      "status": "open",
+      "evidence": "raw完整保留+fresh识别可用，参考canonical/entities/BBoxes/decisions不同格式尚未逐字段转换；明确PORTABLE_REFERENCE_DRAFT_CONVERSION_REQUIRED，不能宣称完整互通工作流"
+    },
+    {
+      "id": "G02",
+      "branch": "对标本机CMK/native safeStorage",
+      "status": "requires-owned-key",
+      "evidence": "有合法DEK核心可解包；未获取用户CMK不解锁。不是授权绕过，也不是所有真实保护工程都能打开"
+    },
+    {
+      "id": "G03",
+      "branch": "超大工程/磁盘lazy协议",
+      "status": "open",
+      "evidence": "现有50MiB文件/256MiB解包预算内；完整buffer codec不是竞品32GiB磁盘lazy/random-read等价，高成本KDF明确拒绝"
+    },
+    {
+      "id": "G04",
+      "branch": "legacy DOC/WPS转换",
+      "status": "open",
+      "evidence": "还原入口明确支持DOCX/MD/TXT；DOC/WPS需合法可用Office/LibreOffice转换与保真验证，未伪造正常输出"
+    },
+    {
+      "id": "G05",
+      "branch": "外部互通与保真",
+      "status": "requires-licensed-validation",
+      "evidence": "没有合法对标产品生成/回读的真实TMM/LPM处理样本；自合成roundtrip不证明native互通成功；9story合成OOXML不等于所有Word版本版式保真"
+    }
+  ],
+  "verification": {
+    "coreTests": "24 targeted tests across4files passed:6portable+8restore+8morphology+2PDF",
+    "api": "tests/portable.integration.ts actualisolatedDB102documentexport/import/OCRrestore/forgedpreview/ownerdownload/foreign404 passed",
+    "logs": [
+      ".data/research/lawbot-2026-10-14/iteration022/visual-portable-unit.log",
+      ".data/research/lawbot-2026-10-14/iteration022/portable-api-integration.log",
+      ".data/research/lawbot-2026-10-14/iteration022/restoration-tag-regression.log",
+      ".data/research/lawbot-2026-10-14/iteration022/visual-portable-unit-final.log"
+    ],
+    "crossReview": "C2P1+1P2修复并独立复证；后续native草稿/disabledmanual/API/UI复读无新增qualified缺陷；普通正文括号标签、未知序号/破损token与zero-width还原已补回归。",
+    "rulesReview": "review-rules-by-visual-20261014.md independent2P2 fixed/repropassed"
+  }
+}

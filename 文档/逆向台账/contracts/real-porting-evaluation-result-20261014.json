@@ -1,0 +1,163 @@
+{
+  "schema": "real-porting-evaluation-summary/v1",
+  "dataset": "crossner-five-domains-all-test-per-org-loc-2e7ba2a",
+  "origin": "real-human-annotated",
+  "cases": 2506,
+  "gold": 7926,
+  "metrics": {
+    "completeRules": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 7926,
+      "precision": null,
+      "recall": 0,
+      "f1": 0
+    },
+    "completeRulesNer": {
+      "tp": 3,
+      "fp": 6,
+      "fn": 7923,
+      "precision": 0.3333333333333333,
+      "recall": 0.0003785011355034065,
+      "f1": 0.0007561436672967864
+    }
+  },
+  "source": {
+    "completedAt": "2026-10-14T09:31:12.664464+00:00",
+    "cases": 2506,
+    "exactTypeSpanMicro": {
+      "completeRules": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 7926,
+        "precision": null,
+        "recall": 0,
+        "f1": 0
+      },
+      "completeRulesNer": {
+        "tp": 3,
+        "fp": 6,
+        "fn": 7923,
+        "precision": 0.3333333333333333,
+        "recall": 0.0003785011355034065,
+        "f1": 0.0007561436672967864
+      }
+    },
+    "report": ".data/evals/crossner-per-org-loc-20261014.json",
+    "reportSha256": "97e455236876c46b897edb82047bbd7c37d87e3f9cd13f244715e0a3cedf4a38",
+    "snapshotManifest": ".data/evals/snapshots/final-frozen-20261014/snapshot-manifest.json",
+    "defaultCurrentEquivalence": ".data/evals/crossner-current-default-equivalence-20261014.json",
+    "scope": "English Wikipedia-like text only; current detection functions match frozen snapshot. No Chinese business or visual accuracy claims."
+  },
+  "defaultDetectionEquivalentToCurrent": true,
+  "fullProductSourceIdentical": false,
+  "acceptedProductAccuracy": false,
+  "referenceProductRuntime": "R0",
+  "limitations": [
+    "English cross-domain PER/ORG/LOC not Chinese business content",
+    "Chinese character-level model shows almost no English-domain recall; English names/orgs/locations cannot be represented as supported accurate redaction",
+    "No real annotated phone/id/amount/face/seal/signature corpus acquired",
+    "No export/pixel residue or original-layout benchmark in this detection-only evaluation",
+    "No independent double review and possible model-training overlap"
+  ],
+  "allRowsProcessed": true,
+  "chineseOfficialGold": {
+    "result": ".data/evals/uner-chinese-gsd-per-org-loc-20261014.json",
+    "resultSha256": "3cdaa80b44b7143ef2c3560c03c7f81cc08b701ca336180deb01bdee40e16923",
+    "cases": 500,
+    "metrics": {
+      "completeRules": {
+        "tp": 0,
+        "fp": 1,
+        "fn": 767,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0
+      },
+      "completeRulesNer": {
+        "tp": 536,
+        "fp": 211,
+        "fn": 231,
+        "precision": 0.7175368139223561,
+        "recall": 0.6988265971316818,
+        "f1": 0.7080581241743725
+      }
+    },
+    "sourceFrozenManifest": ".data/evals/snapshots/uner-final-frozen-20261014/source-manifest.json",
+    "sourceFrozenManifestSha256": "92e6ee8b293b551794c5837967c176bae0b724812c89a2a51cb88d9b3185a0bf",
+    "sourceHashes": {
+      "recognition-pipeline.ts": "97f4793a6254b4ac9bcfaa64b3dc65423a993364eb99eff7e0e807b5a3ebc4cb",
+      "redaction.ts": "787d7d2a049b843807b6d2d519d2faab2cab90ba2344f96300952ef7d34a50b9",
+      "reference-rules.ts": "d48e976f8722958baf3b98c149051df3158509e365e886e22af3893eba37c6c9",
+      "ner.ts": "dd3927a426fdfe7e953a2f7119a6594f44d594b94a76e806635aec325a70373d",
+      "reference/rule-data.json": "1f11c5d39de1fb78bebd68316809cc5b77ef9ee104930a28cab473bff76646b4",
+      "reference/blacklists.json": "369a14ee5c3f11f0a16a62228bc30b9c55d88a6d035450672011a6d60ab6ef0a"
+    },
+    "model": {
+      "version": "shibing624/bertspan4ner-base-chinese@dc0de59380bcf4d42c1e9a8ff267e19e00f331f9",
+      "weights": "d94a62cfc7dacb1b44c27f8f5afe0484726444c753898061ace16d7ab1918ab9"
+    },
+    "nerRuntimeLockSha256": "c79fbaa6c50a3129fa897f8b04e3a2770039f4de7feb8d246423955fd98c3cfa",
+    "scope": "Traditional Chinese Wikipedia 500-sentence gold, not all Chinese business/product ability"
+  },
+  "englishCurrentSpanEquivalence": {
+    "schema": "current-default-rule-spans/v1",
+    "checkedAt": "2026-10-14T10:09:03.222Z",
+    "datasetSha256": "ef76774e410dcd0d96969aad2683557ed0903b87cbc692e8e6f4fda94db6a6f5",
+    "cases": 2506,
+    "currentSpanHash": "3da0d2391228ab42f15d5930ad52096f436449b4d0c84f1211ae182873f0747c",
+    "snapshotSpanHash": "3da0d2391228ab42f15d5930ad52096f436449b4d0c84f1211ae182873f0747c",
+    "mismatches": [],
+    "nerFilterFunctionEqual": true,
+    "mergeFunctionEqual": true,
+    "kindOptionsEqual": true,
+    "maxMarksEqual": true,
+    "pins": [
+      {
+        "path": "packages/core/reference-rules.ts",
+        "live": "d48e976f8722958baf3b98c149051df3158509e365e886e22af3893eba37c6c9",
+        "snapshot": "d48e976f8722958baf3b98c149051df3158509e365e886e22af3893eba37c6c9",
+        "equal": true
+      },
+      {
+        "path": "packages/core/ner.ts",
+        "live": "dd3927a426fdfe7e953a2f7119a6594f44d594b94a76e806635aec325a70373d",
+        "snapshot": "dd3927a426fdfe7e953a2f7119a6594f44d594b94a76e806635aec325a70373d",
+        "equal": true
+      },
+      {
+        "path": "packages/core/reference-mask.ts",
+        "live": "589d408f723e1fbf758e252d5f211ca5a10881a75c4ac3f6aceffde597a5ab41",
+        "snapshot": "589d408f723e1fbf758e252d5f211ca5a10881a75c4ac3f6aceffde597a5ab41",
+        "equal": true
+      },
+      {
+        "path": "packages/core/reference/rule-data.json",
+        "live": "1f11c5d39de1fb78bebd68316809cc5b77ef9ee104930a28cab473bff76646b4",
+        "snapshot": "1f11c5d39de1fb78bebd68316809cc5b77ef9ee104930a28cab473bff76646b4",
+        "equal": true
+      },
+      {
+        "path": "packages/core/reference/blacklists.json",
+        "live": "369a14ee5c3f11f0a16a62228bc30b9c55d88a6d035450672011a6d60ab6ef0a",
+        "snapshot": "369a14ee5c3f11f0a16a62228bc30b9c55d88a6d035450672011a6d60ab6ef0a",
+        "equal": true
+      },
+      {
+        "path": "packages/core/reference/reference-mask-data.json",
+        "live": "de5bc4255716fe4a2c3ce3ddd5e7bacab9b870503baaeaf05526f3ef1b7850c6",
+        "snapshot": "de5bc4255716fe4a2c3ce3ddd5e7bacab9b870503baaeaf05526f3ef1b7850c6",
+        "equal": true
+      },
+      {
+        "path": "scripts/ner-runtime-lock.json",
+        "live": "c79fbaa6c50a3129fa897f8b04e3a2770039f4de7feb8d246423955fd98c3cfa",
+        "snapshot": "c79fbaa6c50a3129fa897f8b04e3a2770039f4de7feb8d246423955fd98c3cfa",
+        "equal": true
+      }
+    ],
+    "fullProductSourceIdentical": false,
+    "currentDefaultSpanMetricsCarryForward": true,
+    "change": "Reference rule source score=c.confidence now retained; replacementFor clear and schema union/type-only visualCandidates updated. Span merging does not inspect rule scores. No new NER inference is asserted."
+  }
+}

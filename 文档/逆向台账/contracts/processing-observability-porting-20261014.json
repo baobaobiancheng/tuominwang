@@ -1,0 +1,142 @@
+{
+  "id": "PROCESSING-OBSERVABILITY-ITER025",
+  "updatedAt": "2026-10-14T12:53:33.009797+00:00",
+  "sourceVersion": "0.5.9",
+  "licensedRuntime": "R0",
+  "files": {
+    "scripts/018.sql": "3c68d70f9ca2877330bd790f98372400af064be7ee9ce6b47d98e72ca34dfc3e",
+    "packages/core/reference/dictionary-template-data.json": "b9591891108f99e8be46a84c64fa05141a445984870195d508e3c3bb121fa79e",
+    "packages/core/reference-dictionary-workbook.ts": "f331da621ff28af6f34948dc7a8114591a3ce7ff5b06c73322d9c13910cec368",
+    "packages/core/processing-report.ts": "39e3af0a19333887601918eb75562b2b7c52b8ab12546eeba49b8cae5849d491",
+    "packages/core/markdown-export-stats.ts": "eba8270f5c4e584a0e5c9272efca49f5bb4b8a81456f2104a499e3ce9c3dc392",
+    "packages/core/runtime-rule-update.ts": "54c33f597746afdbf96404fc196ee4ca70d96f65084f51ffa9b5b2205d469b35",
+    "packages/core/reference-detected-mask.ts": "48983100188ec3920215958c7baaea9c1e889e59f29cf3351fdbb89445d02540",
+    "packages/adapters/runtime-rule-update.ts": "233f7f95147bf2ef0dcbdfefba23bb69ca2241766311ed4271e3f74699b69197",
+    "packages/adapters/markdown-export-events.ts": "9af8b0fa46ec46d8c9131938de1678079510f5ad2e83b4b5a054f5fc5399c62d",
+    "apps/api/runtime-rules.ts": "cf184e0f10e745cc7054caad06142a5c57f459d939f424281c33b08c49a946f1",
+    "apps/api/processing-observability.ts": "fb8d368ae9d0e4734962908501630c6ed1667153c2275d1f39be7f424427e1cf",
+    "apps/api/reference-dictionary.ts": "44af1feca3005ea1b5fbe69bae1012fced1fc20a01f270631fc3f689181d9431",
+    "apps/web/processing-observability.tsx": "a73a7b88f65bbe8e2136bf035f61b94f681f39e637cda7fb847e41e56310b88a",
+    "apps/web/reference-dictionary.tsx": "6696b701ce69aa66624213e499df36382be136300d545af5573648b6f0c88035",
+    "tests/processing-observability.integration.ts": "acb05a81a1c9105047ff881d22ea500c728a120ba06e3099bd253ae001fe42ea",
+    "tests/runtime-rule-update.test.ts": "89afe971fa0b4fe594ec8845f4af23fa04e4147e48e7fc9206df1f39d662fa23",
+    "tests/processing-report.test.ts": "f82242d0c268b4c5ff21e6aabf1a4d818dd1530421a0d360f6f4170b4f3601da",
+    "tests/reference-dictionary-workbook.test.ts": "213fc83734bf4a64556f594e9c6a7c64284f77c09d793ad9897d5a778d230d2c",
+    "tests/fixtures/reference-markdown-stats-source-golden.json": "5e06213885a3c9f8b6566205aad74a6d5dec0c4db009125c5eb662c201b2e237",
+    "apps/web/entity-labels.ts": "e3bae9a3665c2181875d7efc493f728dc9bfcf3cee103a4fccfbf0aab256f8c9",
+    "scripts/021.sql": "6019d721f9361b62c07358933854d6b8174fc1fffeaea0cd0780ea591f640dda",
+    "packages/core/markdown-manual-draft.ts": "22c0a028b8bc6da67dfdeab1a94491a666411c363ca15a8eac515f47db1937b2",
+    "apps/api/markdown-manual-draft.ts": "69d7be955e633f49dbcf1f96534b98598d2a801a41dab63df218f4c163745f06",
+    "apps/web/markdown-manual-draft.tsx": "bfcf37b2f7fc03b6660ea7efed40290ffe7cfb1949c6143e1bc4dd7500b7337d",
+    "tests/markdown-manual-draft.test.ts": "9ca86bb8fdfc32e3dcca6d47725f6645c7489a436593adbfd0e84a1fa8d36d1a",
+    "tests/markdown-manual-draft.integration.ts": "432bba34b1c96ac2eb021579c38c1bc64e383cb818f9898933d87b09681406ad",
+    "tests/e2e/processing-observability.spec.ts": "c9d998083c28433e7c69989fac794e31319a2b16129fc3a60ed217b6def89135"
+  },
+  "entries": [
+    {
+      "id": "A-025-runtime-rules",
+      "source": "main.js17183-17197,9296,9439-9463",
+      "runtime": "POST /projects/:id/runtime-rules -> per-user file/project AEAD literal store -> old job cancel -> new revision detect -> worker and OCR same runtimeWhitelistCandidates",
+      "status": "runtime-verified-raw-types-lossless",
+      "differences": [
+        "source updates only live native detect-only engine tasks; server queues new revision with appliedToTasks0 truthful receipt",
+        "blacklist deprecated and spot immediateOnly source zero-action responses retained API; active UI only file/project",
+        "force source default computed mask **** for nonorg/address preserved via runtime-whitelist trace",
+        "Arbitrary nonempty wellformed raw labels preserved through C shared identity. Dynamic prefixes remain raw, finite canonical aliases retain compatibility. Exact runtime-mask-org/address/default provenance preserves source org_name/address/address_label/address_inline special masks without inferring from canonical label. No dedicated rule count/type/pattern cap."
+      ],
+      "remaining": [
+        "Licensed source runtime R0"
+      ]
+    },
+    {
+      "id": "A-025-processing-reports",
+      "source": "main.js18044-18086,12728,12734,12841",
+      "runtime": "actual source/content/artifact hash read -> report AEAD owner scoped -> JSON/HTML/Markdown/CSV/ZIP downloads",
+      "status": "runtime-verified",
+      "differences": [
+        "source fabricated zero upload/offline/manual0/OCR fixed thresholds not presented as measured",
+        "includeEntityText defaults false and requires view_mapping on generation and every read",
+        "ruleset hash basis is the actual per-document revision recognition snapshots, not current project policy retroactively attributed to old results"
+      ]
+    },
+    {
+      "id": "A-025-markdown-stats",
+      "source": "main.js15528-15566 Zf",
+      "runtime": "real worker committed Markdown primary/sidecar success, final failure and actual API cancellation plus immutable manual draft save -> AEAD events -> actual owner/project statistics",
+      "status": "runtime-verified-source-480-oracle",
+      "remaining": [
+        "Licensed source runtime R0"
+      ]
+    },
+    {
+      "id": "A-025-resources",
+      "source": "main.js17066 development-only native resource diagnostic",
+      "runtime": "GET project resource diagnostics actual docs bytes/page counts/job aggregates",
+      "status": "web-adapted-runtime-verified",
+      "differences": [
+        "All native development diagnostic field names explicitly represented with unavailable reason for inapplicable native registry/caches; actual authorized server document/page/job metrics separate; no fake native cache counts or server path exposure.",
+        "B owns actual OCR model/hash diagnostic separate endpoint"
+      ]
+    },
+    {
+      "id": "A-025-dictionary-files",
+      "source": "main.js16818 D2/R2,16832 j2,16849 W2,13402 hint",
+      "runtime": "18types/2actions actual XLSX -> preview all row errors -> personal memories import -> explicit migration inactive -> selected project ruleset activated",
+      "status": "runtime-verified",
+      "differences": [
+        "Whitelist forceDetect, blacklist forceSkip; personal legacy entries inactive until ruleset selection",
+        "Source18 families/two actions and original visible3 columns retained. HiddenD raw label extension preserves unknown and exact aliases losslessly; noD source import recognized families/aliases behavior retained.",
+        "Source export maps unknown to other; extension stores exact original raw label in hiddenD with strict visible-family agreement, source-compatible programs can ignore D.",
+        "Formula-looking values written as literal inlineStr; same-file opposite rule errors prevent partial apply"
+      ],
+      "security": [
+        "AEAD user state, shared CAS revision0 valid, second repeated hint globally once, private project permissions"
+      ]
+    },
+    {
+      "id": "A-026-manual-markdown",
+      "source": "main.js17117-17129 save-markdown-draft; renderer31953/37175 failure-export warnings",
+      "runtime": "real original Markdown / actual committed MD artifact / explicit canonical fallback -> editable original content -> dual CAS immutable AEAD draft -> warning-bearing private download and reopen -> exactly one real manual-draft stats event",
+      "status": "runtime-verified",
+      "differences": [
+        "Cloud immutable versions and source/hash/permission/revision barriers replace desktop arbitrary user path write. Manual draft never registers a verified artifact or approves review.",
+        "Current editor dirty load has explicit discard control; save disables local edit until acknowledgment."
+      ],
+      "remaining": [
+        "Licensed source runtime R0"
+      ]
+    }
+  ],
+  "tests": {
+    "unit": "20PASS in5files: runtime6/dictionary5/report5/manualMD2/events2 (20:51)",
+    "markdownStatsPureSourceOracle": {
+      "cases": 480,
+      "differences": 0
+    },
+    "actualAPI": "processing-observability4PASS12.03s including real success/failure/cancel and raw output; manualMarkdown2PASS4.36s source/CAS/permissions/deletion; C independent manualMarkdown2PASS1.633s",
+    "independentFeedbackReview": "tests/feedback.integration.ts1pass0.6733s",
+    "independentWorkspaceRecoveryReview": "tests/workspace-recovery-network.integration.ts2pass1.992s",
+    "typecheck": "pnpm typecheck PASS after022 new modules20:53",
+    "build": "pnpm build PASS150modules, no server Node externalization warning",
+    "edge21": "actual isolated Edge1PASS10.9s all21 loader/runtime/report/resource/pageerrors[]; screenshot iteration025/all21-project-rules-report-edge.png"
+  },
+  "remaining": [
+    "No authorized competitor end-to-end run, R0",
+    "Parent complete gates/current Edge/deployment separate",
+    "Four source event/resource contracts are being completed in next phase; no premature closure"
+  ],
+  "differences": [
+    "Runtime whitelist has no undocumented 1000-rule cap; XLSX rows no undocumented1000-entry cap (source dropdown display range retained)",
+    "Processing report no undocumented100-material cap; all selected references verified; explicit report byte bound fails whole request not subset"
+  ],
+  "defects": [
+    {
+      "priority": "P1",
+      "id": "BROWSER-SERVER-IMPORT",
+      "was": "ProcessingObservability imported core/presets -> office-zip/yauzl -> browser util.inherits failure, login blank",
+      "fix": "Local browser-safe entity-labels.ts pure static labels, no runtime core import; current web core imports type-only",
+      "evidence": "B .data/research/lawbot-2026-10-14/iteration022/restoration-batch-edge.log actual full login/project/batch ZIP/reload1PASS14.8s pageerrors[]",
+      "status": "closed-independent-edge-pass"
+    }
+  ]
+}

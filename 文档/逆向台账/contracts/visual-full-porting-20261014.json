@@ -1,0 +1,322 @@
+{
+  "id": "ITER-022-VISUAL",
+  "competitorVersion": "macOS 0.5.9 extracted static evidence",
+  "runtimeVerification": "R0: no license, no activated competitor processing execution",
+  "claim": "All currently observed public/static visual branches are reconciled in the implementation/evidence matrix. No known selected visual branch is intentionally omitted. Official licensed whole-product execution and real accuracy equivalence are not verified; unavailable commercial gold remains explicit.",
+  "matrix": [
+    {
+      "id": "VIS-HSV",
+      "capability": "彩色HSV与8像素预筛",
+      "evidence": "main.js:8039-8101",
+      "implementation": "ported",
+      "own": "visual-morphology.ts:possibleSealInk/hasPossibleSealInk",
+      "boundary": "与已有全页连通候选合并；无彩色像素仍可执行黑白章检测"
+    },
+    {
+      "id": "VIS-BOTTOM",
+      "capability": "底部35%像素采样/框面积/行列6%/padding",
+      "evidence": "main.js:8102-8169",
+      "implementation": "ported",
+      "own": "visual-morphology.ts:bottomSealCandidates",
+      "boundary": ".65为算法候选分数，不是准确率"
+    },
+    {
+      "id": "VIS-HOUGH-DARWIN",
+      "capability": "darwin Hough直接返回空",
+      "evidence": "main.js:8170-8212",
+      "implementation": "observed-platform-branch",
+      "own": "independent monochrome-outline-v1",
+      "boundary": "macOS包分支没有Hough实际能力"
+    },
+    {
+      "id": "VIS-HOUGH-PYTHON",
+      "capability": "非darwin Windows完整彩色分割/Hough支",
+      "evidence": "official Windows0.5.9 seal_detector.py SHA25650e6193f...; windows-seal-native-porting-20261014.json",
+      "implementation": "implemented_source_algorithm_oracle_verified",
+      "own": "reference-seal.ts / offline official OpenCV.js4.10.0",
+      "boundary": "全部源参数/颜色分割/Hough/环密度/扇区/gap/NMS/碎片合并/徽记过滤；26/26合成数值oracle一致，不是商业印章真实准确率或授权桌面端运行"
+    },
+    {
+      "id": "VIS-PDF-SHAPE",
+      "capability": "PDF嵌图变换/中心/大小/比例",
+      "evidence": "main.js:8220-8256",
+      "implementation": "ported-equivalent-structure",
+      "own": "visual-pdf.ts:detectPdfImageSeals",
+      "boundary": "PDFium代PDF.js；有native图片、nested form、rotation fixtures"
+    },
+    {
+      "id": "VIS-PDF-COLOR",
+      "capability": "裁剪色比例>=.015",
+      "evidence": "main.js:8257-8276",
+      "implementation": "ported-with-explicit-errors",
+      "own": "visual-pdf.ts:detectPdfImageSeals",
+      "boundary": "裁剪错误明确失败；未移植原版错误保留候选/空数组吞错"
+    },
+    {
+      "id": "VIS-CERT",
+      "capability": "图片身份证/营业执照国徽或边缘过滤",
+      "evidence": "main.js:11384-11400",
+      "implementation": "ported",
+      "own": "visual-morphology.ts:filterCertificateSealCandidates",
+      "boundary": "保留excludedCandidates及原因供人工复核；仅图片分支应用"
+    },
+    {
+      "id": "VIS-FACE-INTEGRITY",
+      "capability": "模型普通文件/大小/SHA元数据",
+      "evidence": "main.js:8277-8304",
+      "implementation": "ported",
+      "own": "visual-detection.ts:verifyVisualBundle; scripts/visual-lock.json",
+      "boundary": "官方YuNet固定commit及MIT LICENSE均固定hash"
+    },
+    {
+      "id": "VIS-FACE-PREPROCESS",
+      "capability": "中心letterbox、黑底、BGR CHW0-255",
+      "evidence": "main.js:8330-8380",
+      "implementation": "ported",
+      "own": "visual-detection.ts:detectVisual",
+      "boundary": "居中反变换修复；预览已是正向规范PNG"
+    },
+    {
+      "id": "VIS-FACE-DECODE",
+      "capability": "stride8/16/32、sqrt(cls*obj)、.6、exp框、.05padding",
+      "evidence": "main.js:8381-8401",
+      "implementation": "ported-with-validation",
+      "own": "visual-detection.ts:detectVisual",
+      "boundary": "增加输出长度/finite明确校验，不复制缺输出跳过"
+    },
+    {
+      "id": "VIS-FACE-NMS",
+      "capability": "同类型score降序，IoU>=.3抑制",
+      "evidence": "main.js:8402-8412",
+      "implementation": "ported",
+      "own": "visual-detection.ts:suppressOverlaps",
+      "boundary": "取消200条静默截断；各类型不互抑"
+    },
+    {
+      "id": "VIS-DOCX-FACE",
+      "capability": "word/media PNG/JPEG/GIF/BMP/TIFF全条目全帧",
+      "evidence": "main.js:11364-11383",
+      "implementation": "implemented_actual_media_OCR_face_export_verified",
+      "own": "office-media.ts / office-visual.ts / office-images.ts",
+      "boundary": "binary signature+实际解码确认格式，GIF/TIFF逐帧atlas并逐帧OCR/face，原图字节不改；atlas预览会改变动画/多页首帧布局，不能称原版式等价"
+    },
+    {
+      "id": "VIS-SIGNATURE-FILTER",
+      "capability": "signature/handwriting/handwritten_signature过滤",
+      "evidence": "main.js:14537-14555",
+      "implementation": "source_boundary_observed",
+      "own": "signature-model.ts independent licensed YOLOS",
+      "boundary": "源公开处理分支过滤signature/handwriting/handwritten_signature，未观察到自动签名模型。独立shape-v1真实gold0TP/263FP已失败，已由Apache2离线模型替代；不是竞品算法等价"
+    },
+    {
+      "id": "VIS-BLACK-SEAL",
+      "capability": "黑灰圆/椭圆、断章和有内文方章",
+      "evidence": "independent implementation",
+      "implementation": "implemented-independent",
+      "own": "visual-morphology.ts:monochromeSealCandidates",
+      "boundary": "闭合轮廓/空间碎片合并，未认定印章真假；钟表/图案误报"
+    },
+    {
+      "id": "VIS-SIGNATURE",
+      "capability": "独立离线签名检测模型",
+      "evidence": "signature-model-porting-20261014.json",
+      "implementation": "implemented_real_gold_and_actual_Edge_verified",
+      "own": "signature-model.ts; pinned Apache2 YOLOS ONNX runtime",
+      "boundary": "完整35val/37test真实bbox评估仍有FP/FN，RF100家族训练重叠明示；所有候选待人工确认，不把旧合成13例100%当现实准确率"
+    },
+    {
+      "id": "VIS-COORDS",
+      "capability": "预览像素到canonical页面",
+      "evidence": "own architecture",
+      "implementation": "implemented",
+      "own": "visual-detection.ts:canonicalVisualResult",
+      "boundary": "PDF2×及signature缩放test；face居中模型单图smoke"
+    },
+    {
+      "id": "VIS-REGION",
+      "capability": "候选确认/草稿/保存/导出像素清除",
+      "evidence": "own safe adaptation",
+      "implementation": "implemented_actual_unit_API_and_clean_Edge_verified",
+      "own": "apps/web/visual-suggestions.tsx; tests/e2e/visual-detection.spec.ts",
+      "boundary": "彩章/黑白轮廓/新签名模型3casecleanEdge42.9s；确认前不入区域，确认后实际导出像素验证。sourceHash/revision/canonical绑定且原件不变"
+    },
+    {
+      "id": "VIS-MASK-STYLES",
+      "capability": "black/white/purple/lightGray输出",
+      "evidence": "main.js:14580-14638",
+      "implementation": "implemented_actual_pixel_verified",
+      "own": "page-redaction.ts / visual-replacement.ts / root PageEditor",
+      "boundary": "black/white/purple/lightGray全部；rect/circle真实像素，白色内边框；unit/真实PNG-PDF-DOCX21导出闭环见manual-clear-raster-source-porting-20261014.json"
+    },
+    {
+      "id": "VIS-CIRCLE-TYPED-ANNOTATION",
+      "capability": "椭圆、手绘实体类型/原文/id/meta完整元数据",
+      "evidence": "main4363–4372/renderer26778–27259; circle-metadata-restoration-20261014.json",
+      "implementation": "implemented_actual_API_and_Edge_verified",
+      "own": "contracts region shape/entityType/text/meta; page-redaction.ts; root PageEditor; page-review-storage AEAD",
+      "boundary": "circle为bbox内切ellipse；旧缺shape保持rect；不把metadata当权限/路径/签发状态；私有字段at-rest绑定源/修订"
+    },
+    {
+      "id": "VIS-RASTER-SOURCE-MODE",
+      "capability": "默认遮盖和显式partial/full/custom/alias绘字分支",
+      "evidence": "main6861–6888/14701–14715/17528–17549/17724; raster-caller-source-oracle40cases",
+      "implementation": "implemented_source_matrix_and_actual_pixels_verified",
+      "own": "mark.rasterReplacement; shouldDrawRasterReplacement; profile finalizer/source draft",
+      "boundary": "源真实predicate meta.pseudonym&&masked；默认/overall full视觉归一化不绘；显式source bool优先，usePseudonym不是无条件绘字开关"
+    },
+    {
+      "id": "VIS-MANUAL-CLEAR-FINAL",
+      "capability": "手工清除区最后生效及Markdown真实可见内容",
+      "evidence": "manual-clear-raster-source-porting-20261014.json",
+      "implementation": "implemented_actual_21exports_and_clean_Edge_verified",
+      "own": "visual-replacement finalClear; root profile-export visibleDraw",
+      "boundary": "rect/ellipse和4style，partial/full/两derived区域重叠均测；被局部清除的派生片段保守整体不写入MD，防文字重建"
+    },
+    {
+      "id": "VIS-CUSTOM-BLANK-SPECIAL",
+      "capability": "空/空白/多行/特殊字符及200+自定义替换",
+      "evidence": "custom-raster-values-porting-20261014.json",
+      "implementation": "implemented_actual_18exports_and_clean_Edge_verified",
+      "own": "visual plan no-visible-fragment handling; literal escaped Pango text",
+      "boundary": "空和不可见片段只清除；markup作为文字，XML非法控制明确拒；实际绘字空间超载仍FIT失败而非越界/截断"
+    },
+    {
+      "id": "VIS-OCR-UTILITY",
+      "capability": "区域缓存提取/真实区域OCR/清缓存/完整labels与annotations",
+      "evidence": "image-ocr-batch-workflow-porting-20261014.json",
+      "implementation": "implemented_actual_API_and_Edge_verified",
+      "own": "image-utilities; PageEditor utility actions",
+      "boundary": "全部native/raw OCRmarks和glyph coords、confidence0、source/id/text/shape/meta；unknown类型不加200字符专用cap；bbox近似明确提示且不盲目覆盖canonical不连续文字"
+    },
+    {
+      "id": "VIS-OCR-HEALTH-PAUSE",
+      "capability": "OCR健康/诊断与暂停印章",
+      "evidence": "image-ocr-batch-workflow-porting-20261014.json",
+      "implementation": "implemented_actual_worker_and_Edge_verified",
+      "own": "health/probe/diagnostic; active sealrequest AbortSignal",
+      "boundary": "真实OCR探针和模型hash；不伪造network测量；停止仅印章，诊断不输出私文/keys/宿主路径"
+    },
+    {
+      "id": "VIS-WORD-PAGED-VML",
+      "capability": "Word分页预览/VML嵌图/组变换/裁剪/翻转/旋转/文本框",
+      "evidence": "Word paginated/VML专项报告和真实Edge截图",
+      "implementation": "implemented_safe_offline_renderer_and_actual_Edge_verified",
+      "own": "docx-preview safe package/bindings; canonical fallback; docx0.3.7 dev-only clientbundle",
+      "boundary": "离线CSP sandbox，禁外联/active OLE/altChunk/script；source/hash/revision/view_original；原桌面renderer/未提供字体不可保证Word逐像素分页一致"
+    }
+  ],
+  "verification": {
+    "currentReports": [
+      "windows-seal-native-porting-20261014.json",
+      "signature-model-porting-20261014.json",
+      "image-ocr-batch-workflow-porting-20261014.json",
+      "circle-metadata-restoration-20261014.json",
+      "manual-clear-raster-source-porting-20261014.json",
+      "custom-raster-values-porting-20261014.json",
+      "public-face-validation-20261014.json"
+    ],
+    "numericOracle": "OpenCV Windows26/26 synthetic cases, all actual fields; not real precision/recall",
+    "actualVisualEdge": "3PASS42.9s visual-detection-edge-node24.log",
+    "actualRegionEdge": "image-utilities1PASS18.4s; image-search1PASS16.6s; image-custom1PASS40.4s; all clean auto-exit",
+    "actualFormatExports": "21explicit/default raster PNG/PDF/DOCX;18custom values PNG/PDF/DOCX; immutable originals",
+    "typecheck": "Node24.19.0 tsc --noEmit passed before parent final complete check; full release gate owned by root",
+    "realSignature": "Full35 default IoU.5 TP28 FP27 FN7; fullRF10037test TP45 FP28 FN9; RF100 training-family overlap explicitly prevents unseen-generalization claim",
+    "realFace": "OpenImages official Human face validation full5749; raw5748 inferred +1 over25MP verified-negative rejected(notTN); declared longside<=1024 variant5749 succeeded,5745 identical-input predictions reused+4 actualcalls. IoU.5 TP4149 FP1321 FN1292 P.758501 R.762544 F1.760517; groups153 separately covered142. Dataset general public photographs, no Chinese contract accuracy claim; model training overlap not excluded."
+  },
+  "provenance": [
+    {
+      "path": "packages/core/visual-detection.ts",
+      "sha256": "821af10f7749341a978e6439e748ac7cdc1ddfe433f15e95e2fe9eaf68da3b8f"
+    },
+    {
+      "path": "packages/core/visual-morphology.ts",
+      "sha256": "0e146b6e745d48202876e97e4977783641c2b742236a7ca0f467b1232e510d36"
+    },
+    {
+      "path": "packages/core/visual-pdf.ts",
+      "sha256": "6e724e96cf6739463ab67b772bb42cd9fbc6b89d2f1ef1de263677b9e20b9fe2"
+    },
+    {
+      "path": "apps/api/visual.ts",
+      "sha256": "9ee185c721887458b28a384742f9998775e62006c533f66b6a843bdac6147b67"
+    },
+    {
+      "path": "apps/web/visual-suggestions.tsx",
+      "sha256": "05d3c9adc18b91471c48e0b02aba55ef4b4f3ae6f4286f0691e1977c0c297973"
+    },
+    {
+      "path": "scripts/visual-lock.json",
+      "sha256": "1c9306fe9fd05f97854e2e0d12cee5b49655c8c66683fff8ae16aacab401c33d"
+    },
+    {
+      "path": "tests/visual-detection.test.ts",
+      "sha256": "572e3eacc0dc545a06879782c51d7ca164915e05d0c29cdc3be5f8ca66dbec2b"
+    },
+    {
+      "path": "tests/visual-morphology.test.ts",
+      "sha256": "175dddeba1c9d0d14aae0fd6991a5d191f9b995154001fd8853fd2c0d7cfdec5"
+    },
+    {
+      "path": "tests/visual-pdf.test.ts",
+      "sha256": "fd940950911b98b3ba28a4772f37375984c953292c014777654a189c01b39f48"
+    },
+    {
+      "path": "tests/visual-evaluation.ts",
+      "sha256": "fdfc2502cc7d3a86c902d91e3294ff8a5d942b24a1492f50683018cb95133807"
+    },
+    {
+      "path": "tests/e2e/visual-detection.spec.ts",
+      "sha256": "7cd0e06b9e23fe8f141169c2f5e5b610251724bfe652cbee3c72c14521870338"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/iteration022/visual-evaluation.json",
+      "sha256": "6022ad33e68dad3be1f00c41fd99508ed4b1f3549220ea4dc1ce55230909cef9"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/iteration022/face-centered-smoke.json",
+      "sha256": "af7ebfafbef7954da3c0c86821c59fd8f78603d1947bb0c35289ff3620dd8949"
+    }
+  ],
+  "updatedAt": "2026-10-14T15:03:18.661875+00:00",
+  "historicalVerificationSuperseded": {
+    "description": "Early macOS-only/shape-v1/synthetic evidence; retained as history, not current product accuracy.",
+    "previous": {
+      "unit": "vitest run tests/visual-detection.test.ts tests/visual-morphology.test.ts tests/visual-pdf.test.ts: 3 files,14 tests passed",
+      "evaluationCases": 51,
+      "syntheticMetrics": [
+        {
+          "detector": "seal",
+          "cases": 38,
+          "truePositive": 26,
+          "falsePositive": 11,
+          "falseNegative": 0,
+          "precision": 0.7027027027027027,
+          "recall": 1
+        },
+        {
+          "detector": "signature",
+          "cases": 13,
+          "truePositive": 9,
+          "falsePositive": 0,
+          "falseNegative": 0,
+          "precision": 1,
+          "recall": 1
+        }
+      ],
+      "faceSmoke": "Official public OpenCV messi5 sample: 1 candidate, score .912965; not an accuracy benchmark",
+      "typecheck": "Passed before simultaneous Kind expansion; later unrelated missing frontend Kind colors reported to root. Root final pnpm check required.",
+      "e2e": "3 cases defined, not run by this subagent"
+    }
+  },
+  "goldAndRuntimeBoundaries": {
+    "licensedProduct": "No unauthorized activation or licensed desktop whole-processing execution. Pure standalone pixel source oracle != that execution.",
+    "signature": "AOSSig4000 application/approved password/noncommercial not applied/bypassed; tech4humans contact-consent/file401 not bypassed; Tobacco800 original image license unavailable/direct502 not replaced with mirror code license. Full authorized available35/37 splits evaluated, with true FP/FN.",
+    "blackWhiteSeal": "DKDS historical Japanese seal/character CC-BY-SA4 official OneDrive TLS/access401 attempts recorded, not Chinese commercial grayscale seal gold. No usable complete independently labeled commercial grayscale seal dataset obtained. No claim of real-world precision/recall.",
+    "face": "Full Open Images5749 evaluation now complete in public-face-validation-20261014.json and 文档/评估/OpenImages人脸全量验证20261014; raw1inputrejection and explicit preprocessing variant/cache reuse declared, no fakeTN. WIDERtest labels unavailable remains a separate actual-source observation, not an excuse to omit available OpenImages gold.",
+    "accuracy": "Source branch coverage is not numerical equivalence of OCR Tesseract vs source Paddle, own signature model, unknown real corpus, or Word fonts/pagination."
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "date": "2026-10-14",
+  "reviewer": "complete_visual",
+  "scope": [
+    {
+      "path": "packages/core/document-unlock.ts",
+      "sha256": "e98d93a494866d812e85d341d95f0363227b5c0cb9e3aa19d1a122881f39de9e"
+    },
+    {
+      "path": "tests/document-unlock.test.ts",
+      "sha256": "3057ee041d8211c2eebfa5015bc01e62fadc1932901583fa17ad043179a9ec4b"
+    },
+    {
+      "path": "packages/core/reference-detected-mask.ts",
+      "sha256": "ee0793e9599fc091f2656e0f5b9bea2cc49a10a2854e5ae0141c56619e18f1db"
+    },
+    {
+      "path": "packages/core/reference-party.ts",
+      "sha256": "5234da81ec08c99debd7a460261b60cfe3367dcb252302071992707bfd305150"
+    },
+    {
+      "path": "packages/core/reference-fragment.ts",
+      "sha256": "8e07651fafba6744197b8835b6ff35a202a77644c16800a9c1dad72562b66f22"
+    },
+    {
+      "path": "packages/core/reference-table.ts",
+      "sha256": "1b24bcccbc1134c0b8163b55640b7537abf8e86411094567b2c610f11e09d733"
+    },
+    {
+      "path": "packages/core/reference-vector-table.ts",
+      "sha256": "89bf0685493a40feceda72dadef2d5e4908422bd33be28f47223374af2ff890b"
+    },
+    {
+      "path": "packages/core/reference-visual-table.ts",
+      "sha256": "25f2ecfb0d6117afcc2d6657e521c54e52a4cc8a671ba29595565fbce8061b8a"
+    },
+    {
+      "path": "packages/adapters/reference-pdf-table.ts",
+      "sha256": "e92d7d94d4e9ab5b2844902dcca42b0e78e3e4fa5195efcd3d3a495cde295e4f"
+    },
+    {
+      "path": "packages/adapters/reference-table.ts",
+      "sha256": "d3ad5d920bcae619c9b8c869186beb3010a5394f50fe4b9345cd88fb3953841d"
+    },
+    {
+      "path": "packages/adapters/reference-visual-table.ts",
+      "sha256": "7539bbc5ce6aead94e1847e33fe7e2538e6e777adc3aa1cd603afb13ddc48201"
+    }
+  ],
+  "findings": [],
+  "status": "No findings within reviewed snapshot",
+  "tests": [
+    {
+      "log": ".data/research/lawbot-2026-10-14/iteration022/visual-crossreview-unlock-mask-table.log",
+      "files": 4,
+      "passed": 18
+    },
+    {
+      "log": ".data/research/lawbot-2026-10-14/iteration022/visual-crossreview-party-fragment-pdf.log",
+      "files": 2,
+      "passed": 8
+    }
+  ],
+  "readOnly": true,
+  "limits": [
+    "No licensed competitor processing execution or exhaustive real-corpus accuracy claim.",
+    "No independent proof of PDF form/annotation visual equality; helper save/reopen geometry/text and source immutable checks reviewed.",
+    "No independent full rerun of every source oracle.",
+    "Earlier table XML continuation/nested-context P2 probes remain closed in review-rules-by-visual-20261014.md."
+  ]
+}

@@ -1,0 +1,342 @@
+{
+  "event": "ITER-023",
+  "changes": [
+    {
+      "path": "apps/api/main.ts",
+      "previous": {
+        "sha256": "41fa3ecadb24d13e0c98b754e152f9f9b88266207ef8a702963e7b446fe85c6b",
+        "bytes": 22358
+      },
+      "current": {
+        "sha256": "3376f6c8f46ce20755504ea62abd399a57ae6000b296ef785bb6d485d06f80fe",
+        "bytes": 24883
+      },
+      "archived": ".data/research/lawbot-2026-10-14/iteration022/checkpoint022-code/apps/api/main.ts"
+    },
+    {
+      "path": "apps/web/main.tsx",
+      "previous": {
+        "sha256": "52cf66c782082a431b4cf454dbd1f7c93deb267eb9015debe073245821ed0372",
+        "bytes": 66085
+      },
+      "current": {
+        "sha256": "0501e9a23306b0cedf154366bfd9a47ca01eaf75252d4a7b3f11eea1029032a0",
+        "bytes": 72656
+      },
+      "archived": ".data/research/lawbot-2026-10-14/iteration022/checkpoint022-code/apps/web/main.tsx"
+    },
+    {
+      "path": "apps/web/review-tools.tsx",
+      "previous": {
+        "sha256": "2eed4395a8772bb41bda1430eb4b7d3d465658f9bc106d8d7aeacfd226b0b67a",
+        "bytes": 14426
+      },
+      "current": {
+        "sha256": "186b675b74d9de085ecdce51ee17bb5780c70bed3d437149bc42be1fab34dab2",
+        "bytes": 14516
+      },
+      "archived": ".data/research/lawbot-2026-10-14/iteration022/checkpoint022-code/apps/web/review-tools.tsx"
+    },
+    {
+      "path": "apps/worker/main.ts",
+      "previous": {
+        "sha256": "e2bc409266dd2b0de84c7cdcc873aee0363b84e3b278f1a1289f9f97f752c1c3",
+        "bytes": 9234
+      },
+      "current": {
+        "sha256": "d1bee525b9e11572eef7c14977897dc953726ece811fd13949098afffba69cb4",
+        "bytes": 9970
+      },
+      "archived": ".data/research/lawbot-2026-10-14/iteration022/checkpoint022-code/apps/worker/main.ts"
+    },
+    {
+      "path": "packages/adapters/processing-worker.ts",
+      "previous": {
+        "sha256": "6b02daa1e648b12875b62c688f41a98f16a0e310e910e3ab165354cbbcca00fc",
+        "bytes": 14228
+      },
+      "current": {
+        "sha256": "21afe4ab80af7461434380faaf5ded27f318e4ce54a65404b9a3dc09dbdf04d3",
+        "bytes": 18970
+      },
+      "archived": ".data/research/lawbot-2026-10-14/iteration022/checkpoint022-code/packages/adapters/processing-worker.ts"
+    },
+    {
+      "path": "packages/core/redaction.ts",
+      "previous": {
+        "sha256": "b3729db0f63a19c90289564f528cc16f111739bccc6325c2a6df98017ab31e34",
+        "bytes": 14587
+      },
+      "current": {
+        "sha256": "ec8af969b46f30adf1875854505cfdf9364a591880abf831ee4ed0ffd16e30ec",
+        "bytes": 14845
+      },
+      "archived": ".data/research/lawbot-2026-10-14/iteration022/checkpoint022-code/packages/core/redaction.ts"
+    },
+    {
+      "path": "tests/e2e/entity-workflow.spec.ts",
+      "previous": {
+        "sha256": "f2bcd9edab448b794d3b4d428106f5394f99e318f70085390c1b3127fb3d1438",
+        "bytes": 9068
+      },
+      "current": {
+        "sha256": "41e3597294d8b553da285d3948f800e5d78f4a4c14669d5c513c149646afe89f",
+        "bytes": 9076
+      },
+      "archived": ".data/research/lawbot-2026-10-14/iteration022/checkpoint022-code/tests/e2e/entity-workflow.spec.ts"
+    },
+    {
+      "path": "tests/e2e/review-tools.spec.ts",
+      "previous": {
+        "sha256": "0de98b6db61e68b0fb7660437184701525fbb81d959b06268588b1561b3af9d8",
+        "bytes": 8783
+      },
+      "current": {
+        "sha256": "a8f360e6c01245e8a4aa4b64ba2588650d044b78d34b9f0cf7401658aef11a57",
+        "bytes": 8849
+      },
+      "archived": ".data/research/lawbot-2026-10-14/iteration022/checkpoint022-code/tests/e2e/review-tools.spec.ts"
+    },
+    {
+      "path": "tests/e2e/session-sync.spec.ts",
+      "previous": {
+        "sha256": "630853994cfcd561ded9d2e95d756f1999384db6a0adc775af5e4a40ec5c4c88",
+        "bytes": 6091
+      },
+      "current": {
+        "sha256": "617e5c3c672e937aadf9e3150e55f255f8c41e2936875b6fb135ebeb06a0b616",
+        "bytes": 6157
+      },
+      "archived": ".data/research/lawbot-2026-10-14/iteration022/checkpoint022-code/tests/e2e/session-sync.spec.ts"
+    },
+    {
+      "path": "tests/e2e/review-regressions.spec.ts",
+      "previous": {
+        "sha256": "f97902b9c80edba3d3d21b2d30782449b5ec9a54c9bc686550d0371a51d91de4",
+        "bytes": 13741
+      },
+      "current": {
+        "sha256": "2ee2616e68be3f973ddbbb1fa7b09ac9fd982b45ee47f2310ba72550525613e1",
+        "bytes": 14640
+      },
+      "archived": ".data/research/lawbot-2026-10-14/iteration022/checkpoint022-code/tests/e2e/review-regressions.spec.ts"
+    },
+    {
+      "path": "packages/adapters/page-export.ts",
+      "previous": {
+        "sha256": "e23361be2f07aa4e4bed1292b15eb78ac54eeabdb060a3a4cf2b147b59e5228a",
+        "bytes": 3779
+      },
+      "current": {
+        "sha256": "bbde0eabd42f044ea5dd822a844ff04e63ffc3653cf6ae4099f31ed30393f055",
+        "bytes": 3764
+      },
+      "archived": ".data/research/lawbot-2026-10-14/iteration022/checkpoint022-code/packages/adapters/page-export.ts"
+    },
+    {
+      "path": "apps/api/ocr.ts",
+      "previous": {
+        "sha256": "3eb18147072ddd86d4da9e244a96c64755f61c997dfae90c350c6a69edb4988a",
+        "bytes": 3570
+      },
+      "current": {
+        "sha256": "0818f5661ac0a9b5addc12f5db70d448807e063078d6c6f3f94cbad6901c7e9b",
+        "bytes": 5228
+      },
+      "archived": ".data/research/lawbot-2026-10-14/iteration022/checkpoint022-code/apps/api/ocr.ts"
+    },
+    {
+      "path": "apps/api/visual.ts",
+      "previous": {
+        "sha256": "a47c20cc970de79fef00b4c7103c6ee84cfdbd18c60bc6c1fa4b9ff48a940460",
+        "bytes": 1418
+      },
+      "current": {
+        "sha256": "06ce99e8b665281476f2cf101984288b06f70c82bf7f0d7e7dbe9777be9eae24",
+        "bytes": 2923
+      },
+      "archived": ".data/research/lawbot-2026-10-14/iteration022/checkpoint022-code/apps/api/visual.ts"
+    },
+    {
+      "path": "apps/web/docx-review.css",
+      "previous": {
+        "sha256": "1e4959fa092ba0b6eca9770307099cb5a2bff0b538bbc232a741ab9531adce93",
+        "bytes": 2146
+      },
+      "current": {
+        "sha256": "6e13429b086264d4ba9c274963fa3773c9ff965918428b5b0c99c7db9ee79e2b",
+        "bytes": 2300
+      },
+      "archived": ".data/research/lawbot-2026-10-14/iteration022/checkpoint022-code/apps/web/docx-review.css"
+    },
+    {
+      "path": "apps/web/visual-suggestions.tsx",
+      "previous": {
+        "sha256": "4a82c687ceb37d763cd9f5b66dca01000f8d7e2102264c7e13cf3b1485db5c9e",
+        "bytes": 3847
+      },
+      "current": {
+        "sha256": "fcc6255178c2d52bd0a14a015c6f9b8c41b6eff5abfdf3ff2fd32ec404be509f",
+        "bytes": 4083
+      },
+      "archived": ".data/research/lawbot-2026-10-14/iteration022/checkpoint022-code/apps/web/visual-suggestions.tsx"
+    },
+    {
+      "path": "packages/adapters/docx-layout.ts",
+      "previous": {
+        "sha256": "561f35896c8bf6464cec6bc9a6c20bb0dbf77dd80a6ac7a04ddd7dee9c9e679f",
+        "bytes": 700
+      },
+      "current": {
+        "sha256": "0540a9e2b0a638e5508f74d4e73df81929ef03381382dea38a97fa1e2bc159e6",
+        "bytes": 687
+      },
+      "archived": ".data/research/lawbot-2026-10-14/iteration022/checkpoint022-code/packages/adapters/docx-layout.ts"
+    },
+    {
+      "path": "packages/adapters/ocr-correction.ts",
+      "previous": {
+        "sha256": "234514585d5b450e71ffdb62798b9139458ee89309606f69fd6d125b4bc5dbdd",
+        "bytes": 3852
+      },
+      "current": {
+        "sha256": "6b108e07e08c4bcbd73a3111aa8b54402dd28dc966de143181393962d25b99bd",
+        "bytes": 5929
+      },
+      "archived": ".data/research/lawbot-2026-10-14/iteration022/checkpoint022-code/packages/adapters/ocr-correction.ts"
+    },
+    {
+      "path": "packages/adapters/office-images.ts",
+      "previous": {
+        "sha256": "e6d4a296f27ee679f7faa218488e2f412a83883672d1270ccdf6187dda530054",
+        "bytes": 3231
+      },
+      "current": {
+        "sha256": "4785b5689ba522e25fa286b37ee59703e33bfc4dddd8d70e0ebe75acf706798f",
+        "bytes": 3509
+      },
+      "archived": ".data/research/lawbot-2026-10-14/iteration022/checkpoint022-code/packages/adapters/office-images.ts"
+    },
+    {
+      "path": "packages/adapters/processing.ts",
+      "previous": {
+        "sha256": "efe6c3c2d5ac490b553a48ec015fd90afea28deb0f3dcb0449e15f7d783dfa15",
+        "bytes": 4237
+      },
+      "current": {
+        "sha256": "208a0cc1ac4d95497155096869d4298cb5b11a88d691b2ab03dc416f4de58b5b",
+        "bytes": 4728
+      },
+      "archived": ".data/research/lawbot-2026-10-14/iteration022/checkpoint022-code/packages/adapters/processing.ts"
+    },
+    {
+      "path": "packages/core/docx-layout.ts",
+      "previous": {
+        "sha256": "03ab637dbe842a8affa03646ac44dd66886733f41887ebe39650a59209bff512",
+        "bytes": 13181
+      },
+      "current": {
+        "sha256": "7c32cf9b40cb013743ed679f7aac1401b3fd8e7683b6197ef647b8e2dd190609",
+        "bytes": 13195
+      },
+      "archived": ".data/research/lawbot-2026-10-14/iteration022/checkpoint022-code/packages/core/docx-layout.ts"
+    },
+    {
+      "path": "tests/e2e/docx-layout.spec.ts",
+      "previous": {
+        "sha256": "d5dc526a1c1322d6a51acba2410ae621ac135e2879dd5e6de608bad485f3ccfe",
+        "bytes": 7321
+      },
+      "current": {
+        "sha256": "3c42fef131d532ce36a30ee8574ce03803c178b9e6df0ee18b7b3c6d56af5048",
+        "bytes": 7520
+      },
+      "archived": ".data/research/lawbot-2026-10-14/iteration022/checkpoint022-code/tests/e2e/docx-layout.spec.ts"
+    },
+    {
+      "path": "tests/e2e/files.spec.ts",
+      "previous": {
+        "sha256": "005f1887e6d05c092467ca1bf7b2a51ff16d4821bff528e9e6b8ce70f9236548",
+        "bytes": 17952
+      },
+      "current": {
+        "sha256": "69d70da4bac3ff57592e5a3c82dcfdeba0f679f5404f7fa108fe6f324e4e1425",
+        "bytes": 18142
+      },
+      "archived": ".data/research/lawbot-2026-10-14/iteration022/checkpoint022-code/tests/e2e/files.spec.ts"
+    },
+    {
+      "path": "tests/e2e/ocr-correction.spec.ts",
+      "previous": {
+        "sha256": "6c02fbaf94448f79aa5552afef64086d0ff6ea8470de75e11876262de4438c86",
+        "bytes": 3681
+      },
+      "current": {
+        "sha256": "cd55f41d25872eb12fdeb671464945900af2c03d5e6d095d35598fd4be1704a6",
+        "bytes": 3714
+      },
+      "archived": ".data/research/lawbot-2026-10-14/iteration022/checkpoint022-code/tests/e2e/ocr-correction.spec.ts"
+    },
+    {
+      "path": "tests/e2e/visual-detection.spec.ts",
+      "previous": {
+        "sha256": "df32264c7a55f372204be7bf3c08cb28fc7de1f59e9da412c0d291e619cd056d",
+        "bytes": 4007
+      },
+      "current": {
+        "sha256": "512da413bc177ea7811617b5d639cd4a326a46fb9d214b9544ddfc30fbefd8ba",
+        "bytes": 4040
+      },
+      "archived": ".data/research/lawbot-2026-10-14/iteration022/checkpoint022-code/tests/e2e/visual-detection.spec.ts"
+    },
+    {
+      "path": "tests/ocr.integration.ts",
+      "previous": {
+        "sha256": "8003b93af88f463a082dc4e72c3dfb3d6411f7a73a8b4e4b5c8f6ae6f3e39f41",
+        "bytes": 9096
+      },
+      "current": {
+        "sha256": "5c32e0ee449dec84b4cc3b3c4c45394625c4c989c9d11b9516b969e9afd6836a",
+        "bytes": 14104
+      },
+      "archived": ".data/research/lawbot-2026-10-14/iteration022/checkpoint022-code/tests/ocr.integration.ts"
+    },
+    {
+      "path": "tests/run-isolated.ts",
+      "previous": {
+        "sha256": "a911500339ff2061ec01d43083dd7a1fc6bb98bee96505ad9df27ff9f81f59c7",
+        "bytes": 2467
+      },
+      "current": {
+        "sha256": "d99f9b4dc62ffd4153e80958694808c3fdefc902ae4db4a2d66289501a497b38",
+        "bytes": 3203
+      },
+      "archived": ".data/research/lawbot-2026-10-14/iteration022/checkpoint022-code/tests/run-isolated.ts"
+    },
+    {
+      "path": "文档/逆向台账/contracts/full-porting-inventory-20261014.json",
+      "previous": {
+        "sha256": "2dd319f2d6e429c81bfb81e64655fe426cebf3c7990193e37d1ce190717e7841",
+        "bytes": 4022469
+      },
+      "current": {
+        "sha256": "52ad8a5c315d22112f4df38e7ea52ccc91e8a5d8d4b8a3f1bc7065da40311b9c",
+        "bytes": 5289809
+      },
+      "archived": ".data/research/lawbot-2026-10-14/iteration023/pre-next-edit-code/文档/逆向台账/contracts/full-porting-inventory-20261014.json"
+    },
+    {
+      "path": "文档/逆向台账/contracts/full-porting-inventory-20261014.md",
+      "previous": {
+        "sha256": "0237b0656199801ff2cf5902544afa052412665c4ab7fe78431faf5c65480b4d",
+        "bytes": 89571
+      },
+      "current": {
+        "sha256": "00715968080ecdf82aa176a14dc858f19c04bb5d550b74c09e4cc52e6db8ca4d",
+        "bytes": 100785
+      },
+      "archived": ".data/research/lawbot-2026-10-14/iteration023/pre-next-edit-code/文档/逆向台账/contracts/full-porting-inventory-20261014.md"
+    }
+  ],
+  "note": "Explicit unfinished progress checkpoint, not final acceptance or deployment"
+}

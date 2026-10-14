@@ -1,0 +1,32 @@
+{
+  "scope": "Auxiliary groupBoxesCovered only; all predictions, gold and TP/FP/FN/ignoredGroupPredictions exactly unchanged",
+  "definition": "Union of every GroupOf box whose intersection/predictionArea >=.5 for a prediction not matched to individual gold at that IoU threshold. Overlapping groups each counted once.",
+  "rawInference": ".data/evals/openimages-face/all-image-results.jsonl",
+  "rawInferenceSha256": "501eb4a78152aed6be22dcc874da35159ac9950e6a73f15b314b32dbc6638c96",
+  "derivedResults": ".data/evals/openimages-face/all-image-results-group-corrected.jsonl",
+  "derivedResultsSha256": "9ced6746ba0f04e77d2638d492c92888994c04e07d021ce028b5688cd6c380c4",
+  "deriverCode": "scripts/correct-openimages-group-coverage.py",
+  "deriverSha256": "6d0a0b3af48d4136dcb3af90f78a5c66e76b86220d0e33d0d0b91edd1e806d57",
+  "changedRows": [
+    {
+      "imageId": "36755493e5f0bbb8",
+      "threshold": 0.25,
+      "oldFirstAssigned": 1,
+      "correctedCovered": 2
+    },
+    {
+      "imageId": "36755493e5f0bbb8",
+      "threshold": 0.5,
+      "oldFirstAssigned": 1,
+      "correctedCovered": 2
+    },
+    {
+      "imageId": "36755493e5f0bbb8",
+      "threshold": 0.75,
+      "oldFirstAssigned": 1,
+      "correctedCovered": 2
+    }
+  ],
+  "all5749RowsPreserved": true,
+  "allNonCoverageCountersUnchanged": true
+}

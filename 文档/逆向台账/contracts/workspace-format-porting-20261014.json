@@ -1,0 +1,148 @@
+{
+  "id": "WORKSPACE-FORMAT-ITER027",
+  "sourceVersion": "0.5.9",
+  "referenceRuntime": "R0",
+  "ownLevel": "I2 authenticated runtime adapter",
+  "files": {
+    "packages/core/workspace-compat.ts": "743648d77305a2e0b852c3df1408951e69ee246b16b46659b248d9fff036e797",
+    "packages/core/workspace-portable.ts": "3547cc4d08d33d156dda19fe01c66020ec4d1fe3243d6b8fdd650727e4976258",
+    "packages/core/native-portable.ts": "f8bcdf776a4b298b4cb25f3e0c7f699214cb83d50f9a2805f29ab8ccda6730a4",
+    "packages/core/reference/workspace-review-profile.js": "a867fe4ea6a46fc50f85750a8a02f1490fbe5bb6a601265b67106cb21b4fc1a5",
+    "packages/core/reference/workspace-snapshot-schema.js": "d2d5cd42d2fb3ae51903ce853f69287d5ff1691fe8f88b0cc2a342c1a2cb2c0c",
+    "packages/adapters/reference-portable-draft.ts": "94be394c28d97ac99a2693797e96dbb97eb241f9eebf038535599500b545767c",
+    "packages/adapters/page-review-storage.ts": "ecf0f818a583f9e36c3b2e16cf73dfd55823b87f7ed051ac86db0b9578146966",
+    "packages/adapters/page-review-migration.ts": "778eb505741d83fc538c94ce3648f10a7be82937fa9fe795c7eac3e98c71cab2",
+    "apps/api/workspace-portable.ts": "4798969d1bf1f62d187736eb4312964f3bd8b8ec0743eee148bc6f73eff005e2",
+    "apps/web/workspace-portable.tsx": "3868a02afe3e300e05295c155a5e5610a68c57ce04f05f5958f6b09b0c6cd5d6",
+    "apps/web/tmm-compatibility.tsx": "64b201079b28155b880ca649633a81bb10f7b8d96691755af633642a18349270",
+    "apps/web/portable-draft.tsx": "3c4db5feec62f4a26f36f46461cee5087dcce12e16dc4a6b773631a156fc741b",
+    "packages/contracts/mapping-limits.ts": "d91b27f2e72e1f027db23fa83804d3ed4097dc6ec8b1fc6fd8cf2251ebb49524",
+    "scripts/023.sql": "9f1d3933febf3efa76fdb8290b508a4fe536adffebc47f7fb013100768f4727e",
+    "tests/workspace-compat.test.ts": "ae4d0c1dada9391bd1140cc277dfde54da5c9898136532db538d4a5f43827532",
+    "tests/workspace-compat.integration.ts": "fa41c0210de0874c1cdb08ce2743fbda0dddb4ccedf13a9d59f20fcd1afda461",
+    "tests/page-review-storage.test.ts": "5d7cdf8eae1d17e510ae8b3cd04414311e6d908cefb8307c5668a694e579c3a1",
+    "tests/page-review-storage.integration.ts": "49a0d28316971e8616137b9f2d7c1ee1d1bbb09e7a924150bc571e56ceeb25f3",
+    "tests/mapping-capacity.integration.ts": "c57774958512477ba84a302dd3f440cd83b21b5c41d3b1923f6374404281189c",
+    "tests/image-batch-search.integration.ts": "0958bf32716b052f161e21f647594b677ac712de6b549e63194897f18c5e67b9",
+    "tests/reference-portable-draft.test.ts": "0a449c6b413aaef77f7b4cc55765dd31b8e0714675e2f14a58a5af0aa27935d2"
+  },
+  "entries": [
+    {
+      "id": "IPC-e6a8f1b41825",
+      "source": "workspace:create-transfer",
+      "api": "POST /api/projects/:id/portable/export format=secure-v2|secure-v3",
+      "implementation": "密码传输slot、AEAD整包、原件与完整native资产hash、source V2纯schema验证、三格式重新打开验真",
+      "proof": "tests/workspace-compat.integration.ts case1; tests/page-review-storage.integration.ts"
+    },
+    {
+      "id": "IPC-70e09702200d",
+      "source": "workspace:receive-transfer",
+      "api": "POST /api/portable/import",
+      "implementation": "用户给定传输密码验证后另建项目；新AEAD域与新材料/映射ID，重新识别，旧approval/artifact不信任；native和真正foreign source输入均实际跑通",
+      "proof": "tests/workspace-compat.integration.ts case1/2/3"
+    },
+    {
+      "id": "IPC-f417c3628886",
+      "source": "workspace:migrate-v1-to-v2",
+      "api": "POST /api/portable/migrate",
+      "implementation": "ZIP→V2→V3真实编码转换，全部sources逐bytes、全部snapshot归一后深等价，错密/篡改拒绝",
+      "proof": "tests/workspace-compat.test.ts case2; actual case1"
+    },
+    {
+      "id": "IPC-feb24aa50a4f",
+      "source": "workspace:open",
+      "api": "POST /api/portable/import; GET/POST /documents/:id/portable-draft",
+      "implementation": "旧native、source三格式完整导入；外部旧review按source/hash/新canonical anchor/context/sourceMap绑定恢复pending，歧义原条目完整保留并阻断导出直到逐项人工处理",
+      "proof": "tests/workspace-compat.integration.ts case1/2/3; tests/page-review-storage.integration.ts"
+    },
+    {
+      "id": "IPC-c356082df625",
+      "source": "workspace:save",
+      "api": "POST /api/projects/:id/portable/export",
+      "implementation": "当前工程全材料/原件/预览/字形map/文档策略/marks/raw类型/mapping/forms/源archive/state+历史snapshot完整编码；native extension无损封装源未知字段；.markdown大小写及sourceExtension真实源schema通过",
+      "proof": "tests/workspace-compat.test.ts all; tests/portable.integration.ts existing102docs; new private-region actual"
+    },
+    {
+      "id": "IPC-ff1d1193dc22",
+      "source": "workspace:save-as",
+      "api": "同export浏览器附件另存，native .tmw或source .tmm",
+      "implementation": "真实重新生成、校验、下载完整备份。浏览器另存位置由用户控制，绝不返回伪造宿主绝对路径或覆盖不可变原件",
+      "proof": "actual case1 allformats; core codec roundtrip"
+    },
+    {
+      "id": "IPC-1d575f4ee880",
+      "source": "workspace:read-review-profile",
+      "api": "POST /api/portable/review-profile",
+      "implementation": "直接提取并调用源main20094-20202纯规则ey及全部依赖，完整corrections/pseudonyms/reserved/conflicts；不调用licensed engine",
+      "proof": "tests/workspace-compat.test.ts source profile cases; actual case1"
+    },
+    {
+      "id": "IPC-98cb505df8ea",
+      "source": "workspace:select-review-profile",
+      "api": "POST /api/projects/:id/portable/review-profile",
+      "implementation": "project锁+双权限+CAS；冲突必须选择。真实active规则快照、immutable假名和reserved集合；source raw identity/forms/标准profile/旧路由scope继承；旧文档outdated必须重识别复核",
+      "proof": "actual case1 wrapper/plain × DOCX/MD, source policy unit; mapping-capacity actual"
+    }
+  ],
+  "actualTests": {
+    "workspace": ".data/evals/workspace-compat-api.log:3/3PASS ~46.8s; independent A 3/3PASS46.34s review-workspace-by-rules-20261014.json",
+    "privateMetadata": ".data/evals/page-review-private-api.log:1PASS10.17s; encrypted doc/snapshot+preview/export+native/TMM pendingconfirmation+legacybackfill+issuedlink",
+    "capacity": ".data/evals/mapping-capacity-api.log:1PASS4.21s; 1001st actual alias/1001 actual export-reimport/reserved+highcounter wrap/SQL100000-boundary",
+    "imageSearch": ".data/evals/image-batch-search-api.log:1PASS3.87s; actual2PDFpages/auth/CAS/sourcehash/hiddenmalformedglyph",
+    "sourceMode": ".data/evals/reference-portable-mode-units.log:1PASS28ms; false/full_star, true/custom alias, false/default, unresolved false/custom, selective all actions, native and explicit meta raster predicate"
+  },
+  "boundaries": [
+    "Source licensed document engine remains R0; static schema/oracle and our runtime are separate evidence.",
+    "Local CMK/keychain/biometric workspace slots remain device-bound; user must provide password-transfer container. No key bypass.",
+    "No unsafe automatic coordinate trust: differing render geometry/ambiguous occurrences remain explicit unresolved items with complete original record and export-blocking coverage, user re-marks or explicitly discards.",
+    "Native-only TXT/CSV/XLSX project documents project to inert Markdown for source application; immutable original formats and every native asset are retained in integrity-bound native extension.",
+    "Browser save/open paths use user file selection and downloaded attachments; source local path strings/atomic host replacement are not fabricated.",
+    "Source obsolete party_slots is normalized by source main25946 semantics, not a newly invented party-slot generator.",
+    "Global final check/Edge/deployment and final immutable ledger pins are owned by root."
+  ],
+  "history": [
+    {
+      "stage": "pre-raster-source-predicate",
+      "files": {
+        "packages/core/workspace-compat.ts": "743648d77305a2e0b852c3df1408951e69ee246b16b46659b248d9fff036e797",
+        "packages/core/workspace-portable.ts": "3547cc4d08d33d156dda19fe01c66020ec4d1fe3243d6b8fdd650727e4976258",
+        "packages/core/native-portable.ts": "f8bcdf776a4b298b4cb25f3e0c7f699214cb83d50f9a2805f29ab8ccda6730a4",
+        "packages/core/reference/workspace-review-profile.js": "a867fe4ea6a46fc50f85750a8a02f1490fbe5bb6a601265b67106cb21b4fc1a5",
+        "packages/core/reference/workspace-snapshot-schema.js": "d2d5cd42d2fb3ae51903ce853f69287d5ff1691fe8f88b0cc2a342c1a2cb2c0c",
+        "packages/adapters/reference-portable-draft.ts": "9da291a7a84e6f883392f9cef5e8379da19f1e4101e345b6d4b4b2580754bf64",
+        "packages/adapters/page-review-storage.ts": "ecf0f818a583f9e36c3b2e16cf73dfd55823b87f7ed051ac86db0b9578146966",
+        "packages/adapters/page-review-migration.ts": "778eb505741d83fc538c94ce3648f10a7be82937fa9fe795c7eac3e98c71cab2",
+        "apps/api/workspace-portable.ts": "4798969d1bf1f62d187736eb4312964f3bd8b8ec0743eee148bc6f73eff005e2",
+        "apps/web/workspace-portable.tsx": "3868a02afe3e300e05295c155a5e5610a68c57ce04f05f5958f6b09b0c6cd5d6",
+        "apps/web/tmm-compatibility.tsx": "64b201079b28155b880ca649633a81bb10f7b8d96691755af633642a18349270",
+        "apps/web/portable-draft.tsx": "3c4db5feec62f4a26f36f46461cee5087dcce12e16dc4a6b773631a156fc741b",
+        "packages/contracts/mapping-limits.ts": "d91b27f2e72e1f027db23fa83804d3ed4097dc6ec8b1fc6fd8cf2251ebb49524",
+        "scripts/023.sql": "9f1d3933febf3efa76fdb8290b508a4fe536adffebc47f7fb013100768f4727e",
+        "tests/workspace-compat.test.ts": "ae4d0c1dada9391bd1140cc277dfde54da5c9898136532db538d4a5f43827532",
+        "tests/workspace-compat.integration.ts": "fa41c0210de0874c1cdb08ce2743fbda0dddb4ccedf13a9d59f20fcd1afda461",
+        "tests/page-review-storage.test.ts": "5d7cdf8eae1d17e510ae8b3cd04414311e6d908cefb8307c5668a694e579c3a1",
+        "tests/page-review-storage.integration.ts": "49a0d28316971e8616137b9f2d7c1ee1d1bbb09e7a924150bc571e56ceeb25f3",
+        "tests/mapping-capacity.integration.ts": "c57774958512477ba84a302dd3f440cd83b21b5c41d3b1923f6374404281189c",
+        "tests/image-batch-search.integration.ts": "0958bf32716b052f161e21f647594b677ac712de6b549e63194897f18c5e67b9",
+        "tests/reference-portable-draft.test.ts": "0a449c6b413aaef77f7b4cc55765dd31b8e0714675e2f14a58a5af0aa27935d2"
+      },
+      "actualTests": {
+        "workspace": ".data/evals/workspace-compat-api.log:3/3PASS ~46.8s; independent A 3/3PASS46.34s review-workspace-by-rules-20261014.json",
+        "privateMetadata": ".data/evals/page-review-private-api.log:1PASS10.17s; encrypted doc/snapshot+preview/export+native/TMM pendingconfirmation+legacybackfill+issuedlink",
+        "capacity": ".data/evals/mapping-capacity-api.log:1PASS4.21s; 1001st actual alias/1001 actual export-reimport/reserved+highcounter wrap/SQL100000-boundary",
+        "imageSearch": ".data/evals/image-batch-search-api.log:1PASS3.87s; actual2PDFpages/auth/CAS/sourcehash/hiddenmalformedglyph",
+        "sourceMode": ".data/evals/reference-portable-mode-units.log:1PASS28ms; false/full_star, true/custom alias, false/default, unresolved false/custom, selective all actions, native and explicit meta raster predicate"
+      }
+    }
+  ],
+  "rasterSourceSemantics": {
+    "source": "image main6861–6888/PDF14701–14715/DOCX17724+17754; rendering requires meta.pseudonym && masked",
+    "priority": [
+      "trusted nativeMark.rasterReplacement boolean",
+      "explicit entity.meta.pseudonym boolean",
+      "overall full_star/default_star => false",
+      "selective partial_star/full_star/custom/alias=>true; mask=>false"
+    ],
+    "usePseudonym": "alias choice, not unconditional renderer predicate; unresolved modes remain complete review items"
+  }
+}

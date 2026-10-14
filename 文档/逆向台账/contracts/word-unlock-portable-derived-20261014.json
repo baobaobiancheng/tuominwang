@@ -1,0 +1,53 @@
+{
+  "version": 1,
+  "referenceVersion": "mac0.5.9",
+  "sourceDependency": "officecrypto-tool^0.0.19",
+  "verifiedUpstream": "https://github.com/zurmokeeper/officecrypto-tool",
+  "license": "MIT",
+  "runtimePin": "officecrypto-tool0.0.19; eight pureJS dependency versions+all hashes in runtime lock",
+  "capabilities": [
+    {
+      "id": "UW01",
+      "branch": "ECMA376Agile password slot",
+      "state": "implemented-tested",
+      "details": "Known nonempty wellformedpassword≤4096; AES128/192/256-CBC key/package separate params, SHA1/224/256/384/512/MD5 metadata guards; spin specmax10million, strict salt/hash/block/keyslot fields; keyverifier+full encryptedpackage HMAC authenticator (upstream decrypt omittedHMAC). Multi-password slots searched for same supplied password, no guessing."
+    },
+    {
+      "id": "UW02",
+      "branch": "ECMA376Standard AES",
+      "state": "implemented-tested",
+      "details": "SHA1 50000-roundKDF, AES128/192/256-ECB key binding/provider/flags/verifier; header64bit length/completecipherblock and ZIP CRC/structural validation. Standard spec has noMAC; no claim authenticated encryption."
+    },
+    {
+      "id": "UW03",
+      "branch": "CFB metadata/immutability",
+      "state": "implemented-tested",
+      "details": "sourceBuffer copy, originalHash before/after; FAT/DIFAT/MiniFAT dimensions/chains/cycle; beforeCFB.read raw directory livecount≤10000/rootstreamtype/LRCtarget/uniqueparents/iterative tree/no orphan/depth budget reject malformed tree instead giantstring RangeError."
+    },
+    {
+      "id": "UW04",
+      "branch": "Portable derived document",
+      "state": "implemented-actual-api-tested",
+      "details": "Complete encrypted original and separate derivedentry. Current DATA_KEY domain-separated HMAC originalHash/derivedHash/format authenticates samecryptographicserver-domain export; importnew original+derivedIDs/freshdetect/allpending/no oldapprovedsnapshot. Unknown witness/crossserver/tamperedderived rechecksums cannot trustderived; keeporiginal and reportunlockRequired. Original+derivedquota counted."
+    }
+  ],
+  "evidence": {
+    "knownPasswordUnit": "6 tests passed3.94s; nativeencryptedDOCX/XLSX Agile/Standard, correct/wrongUnicode,300/4096longpassword matchesupstream.decrypt;4097 rejected; HMAC/payload/header/FAT/XML/directorycycle tamper rejected; originals unchanged",
+    "portableActualApi": "1 passed3.05s; exporter/passwordarchive/importer/freshworker original+derived immutablehash, foreignwitness and attackerchangedderived archivewithforged checksums cannotattest",
+    "peerFindingsClosed": "C directorytree P1 and passwordlimit P2 addressed; independent supplied C childprocessprobe returnscanonicalinvalid with timedOut=false",
+    "boundary": "No licensedcompetitor processing chain; corpusformatcoverage notexhaustive. LegacyDOC/XLS conversion required; extensible/nonpasswordcertslots/unsupportedcipher explicitfail. Not applicationlicense or guessed-password bypass."
+  },
+  "hashes": {
+    "packages/core/document-unlock-word.ts": "dcc738b1e7d72efb8f37bdee54f32502d8c3cafaa65168611687c4f151eb5d3b",
+    "packages/adapters/portable-source.ts": "1a4c88ad10a46808157303e70a5270adffe6ee539cbd9544a87932f9a6d0e69d",
+    "apps/api/workspace-portable.ts": "2003ee962cbc1e2b19efd6ed4e1f66832bdb54431fe490a2ecfc4e34aac29b92",
+    "apps/web/workspace-portable.tsx": "2f22d294ee8aec64c05172ce2652b20ff589aa8c28839604dafcc0c8240e99bf",
+    "tests/document-unlock-word.test.ts": "09b9f1da4a5d7d01577a6503c6d03fe3a505f699cb5ba0d9a40fb2dca8dec7c6",
+    "tests/portable-unlocked.integration.ts": "128343586f379b478673b82b0a8a4784381dfcd3249e9cd91b092540e37c31e6",
+    ".data/research/lawbot-2026-10-14/iteration022/word-unlock-unit.log": "aa3879d2b8708b1a8d6aa5f8c45108d585405db0581c8381a658a7b33499c143",
+    ".data/research/lawbot-2026-10-14/iteration022/portable-unlocked-api.log": "53005f620dac9b1cdacb7b83822f69fc2accaa8961b56010239b22e8e49cf9ed",
+    ".data/research/lawbot-2026-10-14/iteration022/word-directory-cycle-independent-probe.json": "d035118bd4dbd29e6a24deac58993f11f94f92f3206481f61a60698dcfed58fa",
+    ".data/research/lawbot-2026-10-14/iteration022/officecrypto-runtime-lock.json": "b73cff013c77640d8814a21215a2d49bd476626fc7b339fa231f502004db796c",
+    ".data/research/lawbot-2026-10-14/iteration022/word-portable-typecheck.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

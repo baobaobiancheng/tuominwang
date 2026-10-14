@@ -1,0 +1,109 @@
+{
+  "date": "2026-10-14",
+  "reviewer": "complete_visual",
+  "method": "defect-first read-only review and independent Node24.19 probes",
+  "findings": [
+    {
+      "id": "WORKSPACE-MARKDOWN-EXTENSION",
+      "priority": "P2",
+      "before": ".markdown source/sidecar retained but exportState.sourceExtension hardcoded.md; own partial codec accepted what exact source validator rejects",
+      "status": "closed",
+      "fix": "C derives extension from source sidecar, normalizes case and now runs actual source workspaceV2 validator for projections",
+      "independentEvidence": "workspace-compat5 + restoration12 =17 tests passed in review-workspace-metadata-unit.log; source schema branch19285 re-read"
+    },
+    {
+      "id": "IMAGE-SEARCH-SUBPIXEL-EDGE",
+      "priority": "P2",
+      "before": "legal glyph x99.7/w.3 onwidth100 rounded tohit x100/w1; UI accepts invalid x100/w0",
+      "status": "closed",
+      "fix": "root clips every emitted bbox to authenticated page and validates all UI candidate boxes atomically",
+      "independentEvidence": "right/bottom/both-boundary three realcanonical probes now inBounds and include originalglyph, review-image-md-probe.json"
+    },
+    {
+      "id": "MARKDOWN-EMPTY-SCAN-REVIEWED-ASSETS",
+      "priority": "P2",
+      "before": "image-only/HTML-only source has scanText0; acknowledged removal yields valid zero-byte output but nonpaged min1 gate rejected",
+      "status": "closed",
+      "fix": "only sourceMD parseVersion2 accepts0 with source/sidecar/hash/anchor/coverage fingerprints intact",
+      "independentEvidence": "B bound pure image/HTML probes PASS incl fake hash/legacy/TXT negatives; A actual source API4PASS17.48s iteration028/markdown-source-api.log, third case authentic ACK image/HTML zero-byte output, original immutable."
+    },
+    {
+      "id": "WORKSPACE-RESUME-EXPLICIT-NONPSEUDONYM",
+      "priority": "P2",
+      "before": "usePseudonym=false and full_star oldexport choice silently restored as alias whenever same-value mapping exists; no unresolved marker",
+      "status": "closed",
+      "independentEvidence": "6 fresh immutable-storage mode probes PASS; review-workspace-use-pseudonym-recheck.json; latest source-draft unit independently rerun in manual-clear-final-unit.log",
+      "fix": "C preserves source mode, explicit no-pseudonym intent and raster draw flags; ambiguous unknown pseudo mode retained unresolved."
+    },
+    {
+      "id": "IMAGE-MANUAL-TYPE-EMPTY-ALTERNATE-ACTIONS",
+      "priority": "P2",
+      "before": "empty manual rawtype disables normaladd only; searchaccept/repeat still create invalid emptyentityType regions",
+      "status": "closed",
+      "independentEvidence": "actual clean Edge16.6s: empty type rejects with no region; valid type accepts and saves metadata AEAD; verifieddownload actual clear pixels.",
+      "fix": "Root validates add/repeat/search-accept atomically with explicit message; no silent other fallback."
+    },
+    {
+      "id": "MANUAL-CLEAR-AFTER-RASTER-TEXT",
+      "priority": "P1",
+      "status": "closed",
+      "before": "Real browser export painted partial derived phone over a manual clear rectangle.",
+      "fix": "B final-clear rendering + root visible Markdown/source raster flags.",
+      "independentEvidence": "21 actual exports86.17s, A18exports independently86.44s, actualEdge16.6s browsercanvas allclearpixelsblack; manual-clear-raster-source-porting-20261014.json"
+    }
+  ],
+  "noNewQualifiedFindings": [
+    "source profile legacy kI/PI defaults and party_slots reset agree exact source main25938–25946",
+    "source ruleset entries match exact source Wd despite legacy matchMode metadata",
+    "image API scopes version/source+map binding and pending visualregions remain intact",
+    "Markdown blocker remove decisions sourceHash/scanHash/IDs bound and artifacts hashed; arbitrary external URL never fetched",
+    "legacy315 replacement cases agree oldrelease; existing issued download URL uses immutable hash without rerunning current policy"
+  ],
+  "legacyEvidence": ".data/research/lawbot-2026-10-14/iteration022/review-legacy-replacement-compat.json",
+  "files": [
+    {
+      "path": "packages/core/workspace-compat.ts",
+      "sha256": "743648d77305a2e0b852c3df1408951e69ee246b16b46659b248d9fff036e797"
+    },
+    {
+      "path": "packages/adapters/reference-portable-draft.ts",
+      "sha256": "94be394c28d97ac99a2693797e96dbb97eb241f9eebf038535599500b545767c"
+    },
+    {
+      "path": "packages/core/image-batch-search.ts",
+      "sha256": "7bf8695659222faa45e2353a9b45f6eced690e849733156bdd059d190327f25a"
+    },
+    {
+      "path": "apps/api/image-batch-search.ts",
+      "sha256": "cf167fec38ae2ae04c91a03b0bdbb2c4eb18e7722f3615830f3eba77bbeba20a"
+    },
+    {
+      "path": "apps/web/image-batch-search.tsx",
+      "sha256": "ec07a30ecd66911ec47793a1e8fc6d6b652088cf716621154dbd0613e0d6809f"
+    },
+    {
+      "path": "apps/web/page-review.tsx",
+      "sha256": "0693e0f2d561a478eb3dea57f0e5b146a0392caa4fd0783dd19a9b1f3c0d14d4"
+    },
+    {
+      "path": "packages/core/export-gate.ts",
+      "sha256": "e3ed1d432d926f83dad67f4a6fe242669ca9ccfa793a44450d992e56359e3139"
+    },
+    {
+      "path": "packages/adapters/markdown-source.ts",
+      "sha256": "8f7f8c5d23a259596c9c7acd951b4f747a5c19d83d3dac29725bdfe24b6d36c8"
+    },
+    {
+      "path": "apps/api/markdown-review.ts",
+      "sha256": "6742c02900670e0328f46725f4817050990cf64d131de5234deac1c03f637c7b"
+    },
+    {
+      "path": "packages/core/reference-markdown.ts",
+      "sha256": "e603ce30c3dcd1acaf499cf30b8aa32a416dad9e193ff24c6402a8c3081e340d"
+    }
+  ],
+  "boundaries": [
+    "No licensed competitor processing execution.",
+    "No remaining qualified open finding from this review; real detection accuracy and unavailable licensed runtime remain separate acceptance boundaries."
+  ]
+}

@@ -1,0 +1,155 @@
+{
+  "updatedAt": "2026-10-14T15:21:15.695201+00:00",
+  "status": "implemented_real_worker_and_independent_original_counterexamples_closed",
+  "source": "main18978 inheritedpseudonym entries100000; same-server own exported mapping is valid input; no source observed5000 independentrestorer cap",
+  "findings": [
+    {
+      "id": "RESTORE-OWN-5000-CAP",
+      "priority": "P2",
+      "status": "closed",
+      "before": "A legal own export with5001+unique aliases was rejected.",
+      "fix": "Shared MAX_MAPPING_ENTRIES100000,5001accepted/100000accepted/100001rejected."
+    },
+    {
+      "id": "RESTORE-WORD-100K-FLEX-REGEX",
+      "priority": "P1",
+      "status": "closed",
+      "before": "100000 wrapped aliases expanded with optional whitespace between each character caused actualV8nativefatal invalidsize252000228.",
+      "beforeEvidence": ".data/research/lawbot-2026-10-14/iteration022/restoration-capacity-before.log",
+      "fix": "Scan balanced wrapper units and Map lookup under the same normalization; exact plain aliases use compressedradix. Keep unknownnumbered/knownfamily/brokenwrapper hard failures and normalized occurrencecollision guard."
+    },
+    {
+      "id": "RESTORE-PLAIN-LONG-100K-REGEX",
+      "priority": "P1",
+      "status": "closed",
+      "before": "C original205char diverseplain100k23MBcounterexample parsed butMD giantliteralRegExp fatalinvalidsize243159572.",
+      "beforeEvidence": ".data/evals/restoration-long-plain-capacity.log",
+      "fix": "MDvariants andWordplain plussharedrestoreText all use pure compressedradix literalMatcher. No character/count cap added, no worker/model/resource gate altered."
+    },
+    {
+      "id": "RESTORE-MD-VARIANT-ORDER",
+      "priority": "P2",
+      "status": "closed",
+      "before": "A&B vsA&amp;B (and escapedhyphen variants) silently selected differentoriginal dependingon JSONkeyorder.",
+      "beforeEvidence": ".data/evals/restoration-md-variant-collision.log",
+      "fix": "MDonly reject representationcollisions differingoriginals or nonconstantoccurrencecursors. Identicalconstantoriginals allowed; Wordstill distinguishes exactliteral aliases."
+    },
+    {
+      "id": "RESTORE-CHOICE-DEDICATED-CAPS",
+      "priority": "P2",
+      "status": "closed",
+      "before": "Valid300charalias or200000plusoriginal could not be selected in ambiguity API.",
+      "fix": "Remove max256/max200000, preserve wellformed/noNUL and existing HTTP/file budget. Core choices read only ownkeys, avoiding prototype-named aliases being mistaken for choices."
+    }
+  ],
+  "semantics": [
+    "Exact leftmost-longest nonoverlapping UTF16 matches, wrapper normalization only where source Word supports it.",
+    "Compressed string edges rather than per-character Mapobjects; no giant literal or whitespace-expanded regex.",
+    "One-pass originalmatches only; originals containing aliases are not recursively substituted.",
+    "Same existing unknown/collision/ambiguity/auth/current-source/hash/owner+restore gates; no guessed original or failed-file original fallback."
+  ],
+  "verification": [
+    {
+      "kind": "author units",
+      "result": "3files19testsPASS2.77s",
+      "evidence": ".data/research/lawbot-2026-10-14/iteration022/restoration-capacity-unit.log",
+      "covers": "100k wrapped andplain lasttokenMD/crossrunWord;205chardiverse;5001/100001; literalprefix/Unicode/duplicates;100fixed-seed smalllegacyoracle sets; MDvariantcollisionpositive/negative; old12restoration cases."
+    },
+    {
+      "kind": "actual API/worker",
+      "result": "4testsPASS7.12s",
+      "evidence": ".data/research/lawbot-2026-10-14/iteration022/restoration-batch-api.log",
+      "covers": "Originalpartial/zero/owner/hash/ZIP1.52s;100kwrappedLPM1.47s; actual23MB100k205plainLPM→unchangedexisting512MiB worker→MDandcrossrunDOCX→persistedhashedownerdownloads2.17s;300charaliaschoice200001plusoriginal/prototypealias/NULrejection0.46s."
+    },
+    {
+      "kind": "independent C originalprobes",
+      "result": "original205×100k fatalprobe nowparse100000→actualMD correct; MDcollision nowRESTORE_NORMALIZED_TOKEN_COLLISION; noqualifiedmatcherfinding",
+      "evidence": "reviewer full_inventory_eval message and restoration-final-independent-unit.log; C finalreviewrows carry own pinnedlogs"
+    },
+    {
+      "kind": "independent C units",
+      "result": "6files25testsPASS4.16s",
+      "scope": "19restorer+literal,4sharedmapping,2facehelpers; sharedrestoreText uses samepureliteralMatcher with authorization/current/ambiguity gates unchanged."
+    }
+  ],
+  "fixture": {
+    "seed": "tuominwang/restoration-capacity/20261014/v1",
+    "entries": 100000,
+    "tokenLength": 205,
+    "bytes": 22788935,
+    "sha256": "4eba6c3eedfa0bb93abd2adbd6d43e9a5ca40ce210847a2e42ad18d0cda93ea6",
+    "generator": "tests/restoration-large-fixture.ts",
+    "generatorSha256": "aebfd803e59a0ab42809b31724ac7adfaf87e3f5ed93e8b4af97402195d7f0c0",
+    "provenance": "Owned synthetic SHA256-derived aliases and fixed synthetic originals; no customer material."
+  },
+  "finalSourceSearch": {
+    "command": "rg -n 'new RegExp|RegExp\\(' packages apps -g '*.ts' -g '*.tsx'",
+    "mappingSizedAlternationEntrypoints": [
+      "restoreMarkdown:closedradix",
+      "restoreDocxwrapped:closednormalizedMap",
+      "restoreDocxplain:closedradix",
+      "sharedmappings.restoreText:closedradixbyC"
+    ],
+    "remainingDynamicRegex": "Fixed source rule/table/form patterns, fixed province/official labels, bounded individual field patterns and published MCP schema.pattern. No remaining mapping/token-list-sized RegExp union found in first-party source. This statement does not claim third-party engines or arbitrary regex rules universally safe."
+  },
+  "files": [
+    {
+      "path": "packages/core/literal-matcher.ts",
+      "sha256": "9d3e673fdde3138dedc8360ab34d225a9ee17792d52e0457d0e88f66a85872d4"
+    },
+    {
+      "path": "packages/core/restoration-files.ts",
+      "sha256": "cc695b863b08153cee65c9040dd8b7c19ca58306563978b9862beb30f6eeb6d0"
+    },
+    {
+      "path": "packages/core/mappings.ts",
+      "sha256": "94607d78a84090590c723904b43062e86d960e333778d2cad339a38e20b6a3b6"
+    },
+    {
+      "path": "apps/api/restoration-files.ts",
+      "sha256": "320c6eb69495882835804df2d09abb4601cb01d6828c2a71b68c168fc127b331"
+    },
+    {
+      "path": "tests/literal-matcher.test.ts",
+      "sha256": "be50dc894c1cbec85c25f9fc7aa160ec27d3a87b047319e095e0fb1621321962"
+    },
+    {
+      "path": "tests/restoration-capacity.test.ts",
+      "sha256": "190fdcc3bf8e8631436db3a3ef59c7bd86849248f881c63ef2f57995b285e812"
+    },
+    {
+      "path": "tests/restoration-large-fixture.ts",
+      "sha256": "aebfd803e59a0ab42809b31724ac7adfaf87e3f5ed93e8b4af97402195d7f0c0"
+    },
+    {
+      "path": "tests/restoration-batch.integration.ts",
+      "sha256": "d1294df5a6096c4b8f816d17be8b858691a45eeda45ce8a74f1f16e8eb8de325"
+    }
+  ],
+  "boundaries": [
+    "No licensed competitor wholeprocessing executed.",
+    "Synthetic capacity/oracle tests are functional/completeness evidence, not real detector accuracy.",
+    "No deployment/host limits or startup-memory changes were introduced for these fixes."
+  ],
+  "independentFinalReview": {
+    "report": "文档/逆向台账/contracts/review-restoration-final-by-inventory-20261014.json",
+    "status": "closed-independent-core-and-real-worker-replay",
+    "tests": {
+      "units": "6files25tests PASS2.23s; capacity/Wordmetadata/plainqueues/literal100smalloracle/sharedgates/facehelpers",
+      "unitLog": {
+        "path": ".data/evals/restoration-capacity-final-independent-unit.log",
+        "sha256": "735818e17b017a48205e2b5918e4241d6fab6e8f5a107cf0c19eb2afd44eee7f"
+      },
+      "actualApi": "4tests PASS7.587s;100k wrapped and205char plain LPM->real512MiB worker->MD/crossrunWord->immutable derived artifact/owner download,300char alias/200000+ choice/prototype-name literal",
+      "apiLog": {
+        "path": ".data/evals/restoration-batch-final-independent-api.log",
+        "sha256": "4211606b99582fc4605af9cdf6d22744ab8622fa00d5ebc057d3266a7e126628"
+      },
+      "typecheck": {
+        "path": ".data/evals/openimages-face/typecheck-final.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "newQualifiedFindings": 0
+  }
+}

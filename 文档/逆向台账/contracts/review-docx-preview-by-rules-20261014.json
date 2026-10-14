@@ -1,0 +1,24 @@
+{
+  "id": "REVIEW-ITER023-DOCX-PREVIEW-BY-RULES",
+  "reviewer": "complete_rules",
+  "skill": "review-agent read-only",
+  "findings": [],
+  "assessment": "No findings. Exact source-run validation, offline safe archive, view_original/hash/revision binding and canonical single-paragraph selection inspected.",
+  "verification": {
+    "docxPreviewUnitTests": 3,
+    "combinedTextSpatialDocxUnitTests": 92,
+    "combinedDurationSeconds": 3.48,
+    "nestedTextboxSynthetic": "outer 甲丙 paragraph plus nested 乙 paragraph prepared successfully with exact source offsets",
+    "browser": "complete_visual owns actual Edge preview/selection E2E; no browser completion claimed by this reviewer"
+  },
+  "residual": [
+    "Browser automatic pagination differs from Word: only explicit breaks/section layout promised",
+    "Real font fidelity and arbitrary complex Office materials require user corpus review"
+  ],
+  "snapshot": {
+    "apps/web/docx-paginated-review.tsx": "745a0cbeb90d164abd9cbdaa10ff6e5217962eceaa1cc91ba1eb455dead40a9f",
+    "packages/core/docx-preview.ts": "e4e43c9073127c287afe34a15eaf65b4215f503026cef3ebb87e1a0e8010edd2",
+    "packages/adapters/docx-preview.ts": "58ce07b74b105c75b2c6a4014829acb753a86109305689955e48b5638c0c5e83",
+    "apps/api/docx-preview.ts": "cdde7e5eccc46020b9200c726130048ae86c73c0bec8896fbfea0fdf7f64bc1f"
+  }
+}

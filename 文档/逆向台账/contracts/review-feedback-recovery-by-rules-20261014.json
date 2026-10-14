@@ -1,0 +1,35 @@
+{
+  "id": "REVIEW-FEEDBACK-RECOVERY-BY-RULES-ITER025",
+  "findings": [],
+  "closed": [
+    {
+      "priority": "P2",
+      "id": "CHINESE-MEMORY-TAXONOMY",
+      "was": "legacyMemoryDictionary Chinese 姓名/机构 became 自定义 and migration other",
+      "fixed": "memoryEntityKind now direct source aliases plus mark kind parser; migration refuses unsupported entirely",
+      "verified": "independent actual API rerun1pass0.6733s, name_cn/org_name and inactive assertions"
+    }
+  ],
+  "files": {
+    "apps/api/feedback.ts": "e1fcb69a1e6adf5826b78ffdd88e722cd80aa3a43a5062c836cab852b866c51b",
+    "packages/core/feedback.ts": "3a3674e4afe42725ac7cec4114528733d66bf37cc966d870fe4b893315e9f8dc",
+    "packages/adapters/feedback-store.ts": "a0f230c28cf5c5a804c22c49261187ba014779539c0625e8e057ac96fe40b381",
+    "packages/contracts/feedback.ts": "7d7825621a3dac66bc814cca05454e890cb40cc424e5d84604da6158f1733ece",
+    "packages/core/user-memory-rules.ts": "1a98ae5edfe336afbc039bc50616a7f778e49a2bf30df471c23e420d6cd294a9",
+    "apps/web/feedback.tsx": "2af84eaf06fbf343e7db757c112523df4b8c71e6fdd4798ba2b8d864c4147fb4",
+    "scripts/017.sql": "316730e412109cae46e39a424f7c9f0639bc9e0ae0a135d08a1a9bc2a935bd05",
+    "apps/api/workspace-recovery.ts": "8e522fa20c18b9202f0d6fdc621190b2e92fe68ef8968f8d194d696260ebe5b6",
+    "scripts/019.sql": "cd30fcc056e53fa6f495474c75c41f71ddc672378db4ed72f48b9f07b1083558",
+    "tests/feedback.integration.ts": "f6529d34423778505e7eaf7066627e5142aaa2a74a84dcdfbfd3fd9bd20e44ac",
+    "tests/workspace-recovery-network.integration.ts": "72d39419c562093a3d0007d3b6539316d703b11047b96bafaaa23b8bffb65042"
+  },
+  "assessment": "No findings at this snapshot. Authenticated project locks, owner/tenant AEAD+RLS, fixed inactive learner responses, no feedback auto training, recovery draft decisions/hash/revision locks inspected.",
+  "tests": [
+    "feedback actual isolated1pass",
+    "workspace recovery/network actual isolated2pass"
+  ],
+  "limits": [
+    "No independent Edge run in this subagent; root UI gates separate",
+    "Native competitor runtime remains R0"
+  ]
+}

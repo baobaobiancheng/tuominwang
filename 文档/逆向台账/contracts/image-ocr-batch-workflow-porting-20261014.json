@@ -1,0 +1,176 @@
+{
+  "date": "2026-10-14",
+  "owner": "complete_visual",
+  "branches": [
+    {
+      "id": "IPC-910347ed48b5",
+      "reference": "image-review:ocr-region",
+      "referenceSource": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "sourceLines": "18273–18308",
+      "ownAPI": "POST /api/documents/:id/pages/:page/ocr-region",
+      "implementation": "源缓存字形中心＋缺字符框的uniform-word fallback；fallback显式approximate，缩放与UTF16完整。新增真实OCR区域重跑作为我方扩展，输出供人工纠正，不覆写原文。",
+      "status": "implemented_unit_API_and_actual_Edge_verified"
+    },
+    {
+      "id": "IPC-47ecc7525dfe",
+      "reference": "image-review:clear-ocr-cache",
+      "referenceSource": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "sourceLines": "18341",
+      "ownAPI": "POST /api/documents/:id/ocr-cache/clear",
+      "implementation": "清理当前用户/项目材料的派生查询缓存，原图、已纠正文字、复核/签发结果保留；cachehit仍重新验源与map。",
+      "status": "implemented_unit_API_and_actual_Edge_verified"
+    },
+    {
+      "id": "IPC-d3864dc80560",
+      "reference": "image:export-labels",
+      "referenceSource": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "sourceLines": "26992–27005",
+      "ownAPI": "POST /api/documents/:id/pages/:page/labels",
+      "implementation": "全部bbox absolute/normalized、type、confidence、source、imageSize、exportedAt/version；imagePath为相对名称，不暴露宿主绝对路径；附我方documentId/revision/sourceHash。源confidence||1丢0，我方保留真实0。",
+      "status": "implemented_unit_API_and_actual_Edge_verified"
+    },
+    {
+      "id": "IPC-5569a4344615",
+      "reference": "image:save-annotations",
+      "referenceSource": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "sourceLines": "26985–26991",
+      "ownAPI": "POST /api/documents/:id/pages/:page/annotations",
+      "implementation": "bboxes/source元数据及savedAt/version完整保存为独立下载；source imageSize空对象，我方真实尺寸；全部OCR marks由真实glyph按行构框，native/raw类型、来源/score及annotations的id/text/shape/absolute span保留，未知raw类型不加200字符专用限制；手绘ellipse/id/text/meta保留，字段AEAD密封存储。",
+      "status": "implemented_unit_API_and_actual_Edge_verified"
+    },
+    {
+      "id": "IPC-e4cf3e6c3c0a",
+      "reference": "desensitization:pause-seals",
+      "referenceSource": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "sourceLines": "17158–17161",
+      "ownAPI": "POST /api/documents/:id/visual-requests/:requestId/pause-seals",
+      "implementation": "限定当前owner/tenant/doc的活跃request，真正AbortSignal中止该seal worker并跳后续seal，不中止face/signature，已结束明确拒绝；原metadata/version保留。",
+      "status": "implemented_unit_API_and_actual_Edge_verified"
+    },
+    {
+      "id": "IPC-f02ad1fa2413",
+      "reference": "ocr:health-check",
+      "referenceSource": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "sourceLines": "18761–18767",
+      "ownAPI": "GET /api/ocr/health",
+      "implementation": "真实模型lock校验、OCR worker初始化及合成TEST123运行探针，不只是硬编码installed。",
+      "status": "implemented_unit_API_and_actual_Edge_verified"
+    },
+    {
+      "id": "IPC-0ecb1de9c806",
+      "reference": "ocr:collect-diagnostic",
+      "referenceSource": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "sourceLines": "18768–18777",
+      "ownAPI": "POST /api/ocr/diagnostic",
+      "implementation": "真实版本/模型lock/架构/探针错误或置信度，私文/keys/宿主路径不输出；不伪造network bytes测量，标not_measured及离线配置。",
+      "status": "implemented_unit_API_and_actual_Edge_verified"
+    },
+    {
+      "id": "IPC-24fe13c4efb6",
+      "reference": "pseudonym:restore-docx-batch",
+      "referenceSource": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "sourceLines": "18427–18487",
+      "ownAPI": "POST /api/projects/:id/restoration/batch/file + batch/download + batch/files",
+      "implementation": "真DOCX跨run/story还原，逐份上传、真实completed/total进度、成功/失败/partial、zero_replacement_files、total_replacements；已成功独立immutable artifact persist/reload/hash/owner+restore检查，流ZIP安全去重名称，失败不回原件。",
+      "status": "implemented_unit_API_and_actual_Edge_verified"
+    },
+    {
+      "id": "IPC-096d3ecc2554",
+      "reference": "pseudonym:restore-markdown-batch",
+      "referenceSource": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "sourceLines": "18511–18548",
+      "ownAPI": "same batch routes",
+      "implementation": "相同批量机制覆盖MD/TXT；未知alias失败保留其他verified输出，原件不变；源Markdown同名可覆盖，我方主动修复避免覆盖。",
+      "status": "implemented_unit_API_and_actual_Edge_verified"
+    }
+  ],
+  "files": [
+    {
+      "path": "packages/core/image-utilities.ts",
+      "sha256": "4466d223a436e16cbe27462cdfe607546d557098dbe368049fb37a2e276d3d91"
+    },
+    {
+      "path": "packages/adapters/image-utilities.ts",
+      "sha256": "90937330ca1e39d5138be6e784903ed1dd8e4d0be33df51b63a6565e1cffcc7c"
+    },
+    {
+      "path": "apps/api/image-utilities.ts",
+      "sha256": "b7b60909328b60a5cb931a94ab974c5c0d530160cdaf79a5442844c03fe21f32"
+    },
+    {
+      "path": "apps/api/visual.ts",
+      "sha256": "9ee185c721887458b28a384742f9998775e62006c533f66b6a843bdac6147b67"
+    },
+    {
+      "path": "apps/web/image-utilities.tsx",
+      "sha256": "c4c768be0f0e7ccd1b2d8a4733a3c8d5a58c51c3c660739afbc25710d9f1fda2"
+    },
+    {
+      "path": "apps/web/visual-suggestions.tsx",
+      "sha256": "05d3c9adc18b91471c48e0b02aba55ef4b4f3ae6f4286f0691e1977c0c297973"
+    },
+    {
+      "path": "packages/core/restoration-batch.ts",
+      "sha256": "b6170c30c3e410e4f5a46bbed14f15622ca2b901e3632a59bb45a85b710dcd5c"
+    },
+    {
+      "path": "apps/api/restoration-batch.ts",
+      "sha256": "24567ecb99cbabead733ec5e7e4f0c263dcc60b6dcf265e7f3eff5fdb2580e1e"
+    },
+    {
+      "path": "apps/web/restoration-batch.tsx",
+      "sha256": "2cc360c9f8d111d05ab452d4b11c1f7174ba24a713127b1b70c099da87156632"
+    },
+    {
+      "path": "tests/image-utilities.test.ts",
+      "sha256": "b334da7936fb229ab9afae7dbc3d21cee403262a416374b254f2d5f3cae08c7b"
+    },
+    {
+      "path": "tests/image-utilities.integration.ts",
+      "sha256": "bf9ea667ce96149ed28b8d6ae49efa0acc3c31d9aa77dee6d2c13bc84bfe1c3f"
+    },
+    {
+      "path": "tests/restoration-batch.test.ts",
+      "sha256": "c57584c1afb755aac11532be84c960c3996bd99cd1833dfceeca1743d4712809"
+    },
+    {
+      "path": "tests/restoration-batch.integration.ts",
+      "sha256": "d77a52acee91fa34ef85fd7d9a374b719ef3dd5a98a8aa7fc693a9829518dad4"
+    },
+    {
+      "path": "tests/image-diagnostic.test.ts",
+      "sha256": "6a8876b7c99e96681724f02b16d8157cebb3a5ebfc514a68d6cb42c970da9dca"
+    },
+    {
+      "path": "apps/web/restoration-error.ts",
+      "sha256": "2b5a19fc7dd6247a6023f006b418e009b8f7f344cc1accfebc01466b514a2235"
+    },
+    {
+      "path": "tests/e2e/image-utilities.spec.ts",
+      "sha256": "a198cde5375cf54a0271562b24d68cb7da4753d1f2985fc6b4d424cd250e90e4"
+    },
+    {
+      "path": "tests/e2e/restoration-batch.spec.ts",
+      "sha256": "1d39d05566abddd5c190dcffbe5bd7932f85f558afd09e95eca23fa577a603d5"
+    }
+  ],
+  "evidence": [
+    ".data/research/lawbot-2026-10-14/iteration022/image-batch-unit.log",
+    ".data/research/lawbot-2026-10-14/iteration022/image-utilities-api.log",
+    ".data/research/lawbot-2026-10-14/iteration022/restoration-batch-api.log",
+    ".data/research/lawbot-2026-10-14/iteration022/image-utilities-edge-node24.log",
+    ".data/research/lawbot-2026-10-14/iteration022/restoration-batch-edge.log",
+    ".data/research/lawbot-2026-10-14/iteration022/image-utilities-review.png",
+    ".data/research/lawbot-2026-10-14/iteration022/ocr-diagnostics-review.png",
+    ".data/research/lawbot-2026-10-14/iteration022/restoration-batch-review.png"
+  ],
+  "limits": [
+    "No licensed competitor processing execution; source static contract validation only.",
+    "Actual Edge passed region OCR/real clipboard/cache/complete labels/annotations/health/diagnostic and four-file partial batch/ZIP/reload; screenshots reviewed.",
+    "OCR source Paddle/ONNX versus our Tesseract runtime not numerical equivalence or real-corpus accuracy.",
+    "Cloud scoped query cache differs from desktop process-wide engine/cache lifetimes; persisted maps stay immutable.",
+    "Batch progress completed files is measured; no invented intra-file percentages.",
+    "No fake filesystem paths/native dialogs; cloud artifact download is explicit adaptation.",
+    "Windows native Hough status lives in separate reference-seal source oracle; 26/26 synthetic numerical oracle does not prove real accuracy."
+  ]
+}

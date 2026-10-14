@@ -1,0 +1,62 @@
+{
+  "date": "2026-10-14",
+  "reviewer": "C full_inventory_eval",
+  "scope": "independent read-only adversarial cross-review",
+  "findings": [],
+  "closedFindings": [
+    {
+      "priority": "P1",
+      "file": "packages/core/document-unlock-word.ts",
+      "defect": "raw CFB directory cycles reached CFB.read path expansion",
+      "fix": "pre-parse live directory graph types/range/unique parent/acyclic/reachable validation",
+      "independentEvidence": "node .data/evals/probe-word-directory-cycle.mjs => timedOut:false DOCUMENT_ENCRYPTION_INVALID"
+    },
+    {
+      "priority": "P2",
+      "file": "packages/core/document-unlock-word.ts",
+      "defect": "255 password cap confused encryption library limit with source decryption allowance",
+      "fix": "source known password wellformed nonempty<=4096",
+      "independentEvidence": ".data/evals/review-word-unlock-final-20261014.log:6tests passed including source and own byte-equal 300/4096 cases"
+    }
+  ],
+  "actualReproductions": {
+    "imageUtilities": ".data/evals/review-image-utilities-20261014.log:actual OCR/cache/mismatch/labels/annotations/health/diagnostic passed5.83s",
+    "restorationBatch": ".data/evals/review-restoration-batch-20261014.log:actual DOCX/MD partial failure/zero-match/streamed ZIP/scoped auth/hash passed2.15s"
+  },
+  "readOnlyChecks": [
+    "image cache hit still worker verifies original/content/map; AEAD cached plaintext per owner; canonical geometry shape and provenance verified before label export",
+    "restoration siblings individually hash bound, failures remain separate, exact owner/project/restore guard, duplicate hashes and ZIP filenames checked",
+    "019 RLS requires own tenant/user plus current view_original/review; recovery open rechecks original/hash/revision/mapping permission; never autoapproves draft"
+  ],
+  "boundaries": [
+    "No finding means no reproducible defect in inspected paths, not exhaustive product proof.",
+    "Actual cache/ZIP tests use synthetic documents and offline local engines.",
+    "Source license processing remains R0.",
+    "Final browser acceptance and late root UI changes are separate gates."
+  ],
+  "sourcePins": {
+    "packages/core/document-unlock-word.ts": "dcc738b1e7d72efb8f37bdee54f32502d8c3cafaa65168611687c4f151eb5d3b",
+    "packages/core/image-utilities.ts": "d701e91b3722aab79b79dfad1fabe28d9fe6d6d4847751e718d9c961ecd25c36",
+    "packages/adapters/image-utilities.ts": "6ea08218907c587fecfc9085dba6dc2a96afbbfb9941464bc13d1f63dd38cfc2",
+    "apps/api/image-utilities.ts": "8df9b7694ebde2b2222ba19c3e21c59d4e14407d3a4e41743249d3995c54965e",
+    "packages/core/restoration-batch.ts": "b6170c30c3e410e4f5a46bbed14f15622ca2b901e3632a59bb45a85b710dcd5c",
+    "apps/api/restoration-batch.ts": "24567ecb99cbabead733ec5e7e4f0c263dcc60b6dcf265e7f3eff5fdb2580e1e",
+    "apps/web/restoration-batch.tsx": "c1b56531b42545f86b9a1e261d3abf6e4668b3a33c4ac6fc65bd9f426c6ddf4a",
+    "apps/api/workspace-recovery.ts": "8e522fa20c18b9202f0d6fdc621190b2e92fe68ef8968f8d194d696260ebe5b6",
+    "scripts/019.sql": "cd30fcc056e53fa6f495474c75c41f71ddc672378db4ed72f48b9f07b1083558"
+  },
+  "postReviewDelta": {
+    "rootNetworkRefresh": {
+      "finding": "P2 old-project manual refresh could overwrite current project values without epoch guard",
+      "status": "fixed_static_recheck_closed",
+      "source": "apps/web/network-policy.tsx",
+      "currentSha256": "eacc0ee44fc4a53edf9efb66426603d800218342e7bc997069dff04cc02b8694"
+    },
+    "rootRecoveryQueue": {
+      "status": "serial pending queue reviewed; last debounced snapshot continues after in-flight save updates CAS revision",
+      "source": "apps/web/workspace-recovery.tsx",
+      "currentSha256": "bf721dfcfdd00bd14583d46e9153341e2c0e4d60aaff56b2446f90115fa3a692",
+      "remaining": "final Edge delayed-save workflow timing test by root"
+    }
+  }
+}

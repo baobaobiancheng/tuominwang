@@ -1,0 +1,43 @@
+{
+  "reviewer": "C full_inventory_eval",
+  "scope": "Read-only source Markdown parser/writer, private sidecar rebuild, old parse-version barrier and unsafe manual-draft API; final global frozen build/runtime gate remains root-owned.",
+  "referenceRuntime": "R0",
+  "findings": [
+    {
+      "id": "C-MD-YAML-UNSCANNED-SYNTAX-ORIGINAL",
+      "severity": "P1",
+      "status": "fixed-and-independently-reproduced-closed",
+      "reproduction": "YAML customer: &张三 张三 / copy:*张三; or customer: 张三 # 张三. Review selected scalar -> custom 合成甲; original source anchor/alias/comment previously remained in serialized output.",
+      "fix": "Product bridge independently inspects uncovered source syntax after decoding and falls back to fenced reviewed canonical text, then verifies again; source pure writer oracle preserves upstream behavior and is not falsely called safe.",
+      "independentClose": "Anchor/alias/comment cases no longer retain selected original; ignored same-value body remains intact. Source canonical coordinates are not weakened."
+    }
+  ],
+  "actualEvidence": [
+    {
+      "path": ".data/evals/review-source-markdown-api.log",
+      "outcome": "Independent C 4/4 actual API PASS19.01s",
+      "coverage": [
+        "BOM/CRLF/tables/links/image/script real detection, AEAD sidecar rebuild+review/export and original unchanged",
+        "Legacy raw MD parse_version requires explicit re-recognition then fresh canonical pending",
+        "Onlyimage/HTML zero-scan requires blockers acknowledgement; no invented textLength",
+        "Crossuser404, partial acknowledgement blocks export, mismatched sidecar409"
+      ]
+    }
+  ],
+  "additionalAuthorEvidence": {
+    "report": "source-markdown-porting-20261014.json",
+    "units": "162unit8filesPASS4.66s",
+    "api": "4actualAPI17.48s",
+    "realNER": "2.36s",
+    "Edge": "18.3s clean Node24/defaultworkflow"
+  },
+  "currentReadOnlyFingerprint": {
+    "packages/core/reference-markdown.ts": "2df51d82d12b2ba096b4ea35b5c404e92306fdb790458be03ccc0ce38079eb7e",
+    "packages/adapters/markdown-source.ts": "8f7f8c5d23a259596c9c7acd951b4f747a5c19d83d3dac29725bdfe24b6d36c8",
+    "apps/api/markdown-manual-draft.ts": "69d7be955e633f49dbcf1f96534b98598d2a801a41dab63df218f4c163745f06",
+    "packages/core/markdown-manual-draft.ts": "22c0a028b8bc6da67dfdeab1a94491a666411c363ca15a8eac515f47db1937b2",
+    "tests/reference-markdown.integration.ts": "4f03248c94a78b36f59b13a6bed91ee34b67cc57359245b397f5d6e65394849c"
+  },
+  "fingerprintBoundary": "Current static readback fingerprint is explicit; independent actual test refers to its saved execution, not an assertion every later unrelated code edit was already executed. Root final full suite binds final release source.",
+  "newQualifiedFindings": []
+}

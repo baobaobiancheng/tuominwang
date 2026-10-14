@@ -1,0 +1,159 @@
+{
+  "id": "SOURCE-MARKDOWN-ITER028",
+  "updatedAt": "2026-10-14T14:28:47.718742+00:00",
+  "sourceVersion": "0.5.9",
+  "licensedRuntime": "R0",
+  "status": "independent_port_with_pure_source_oracle_actual_API_and_Edge_verified",
+  "files": {
+    "packages/core/reference-markdown.ts": "e603ce30c3dcd1acaf499cf30b8aa32a416dad9e193ff24c6402a8c3081e340d",
+    "packages/core/reference-markdown-progress.ts": "afce313dbd0ecf37d795d4449a3829aef16c54ae3174decd838c430bb0818ef0",
+    "packages/core/files.ts": "446935a2e10579b17dbfe1a75cfe29bbf60a86fae956f672fc34cc14e89d657f",
+    "packages/core/ner.ts": "8af70b1159c35ef6ef1c36d3ea4dd6e8b2e762cbb50ee3591cb34704b26d48f9",
+    "packages/core/processing-events.ts": "70f9958d48e07a1800a4d042732a105c7ceca7a228ac7a4609ed70120c84f51b",
+    "packages/core/export-gate.ts": "e3ed1d432d926f83dad67f4a6fe242669ca9ccfa793a44450d992e56359e3139",
+    "packages/adapters/markdown-source.ts": "8f7f8c5d23a259596c9c7acd951b4f747a5c19d83d3dac29725bdfe24b6d36c8",
+    "packages/adapters/reference-table.ts": "4bb59a1dc2b974fb1de9ca7657204d33399c7ff7534ea0afe56965d6953c4153",
+    "packages/adapters/processing-worker.ts": "28ae52195c6375c389d7908eb3cc8bb839ede76e8e1ff2a53780d05d3313541d",
+    "apps/api/markdown-review.ts": "6742c02900670e0328f46725f4817050990cf64d131de5234deac1c03f637c7b",
+    "apps/web/markdown-blockers.tsx": "4ddf906b0649d79c2b324dc131c0a2fbe1249c1bf214dfd80570a90b50ced0ce",
+    "tests/reference-markdown.test.ts": "c0126f6f536f40d9f5c729e79f0eb1b6793fbccd5a48ec94faeeea3540e1624e",
+    "tests/reference-markdown-progress.test.ts": "f08f2d4cca57a9d3713dcbaf59ce142faf381be861e6e10c9f257b7ae8fccc81",
+    "tests/reference-markdown-export-gate.test.ts": "bfaeac58f9c04667171e39a4f685961cd53736ffd88a717627fda25c89ba0b2c",
+    "tests/reference-markdown.integration.ts": "865b172dba9000a7ebd681138ea2d68d753fbf449a74af226985ea8b6eb7774c",
+    "tests/reference-markdown-ner.integration.ts": "264610b8d7adfac0a89ee1af90fe3a58bb5556b6ca03e798954980515186ca58",
+    "tests/e2e/markdown-source.spec.ts": "9e569ceac3c98e1ef0aa7c965ad4f43822d9aecc65bdd4d9878912139af8d2d5",
+    "tests/fixtures/reference-markdown-source-golden.json": "e23615f1be3833dddc7a49526e4129378f5f08b537c2b7484f5e06df91671f42",
+    "tests/fixtures/reference-markdown-writer-source-golden.json": "d59ba03ef065fc4c5b9f89e8fc42f320d917d8e2e764b7f91ac1c32cb52a370d",
+    "apps/web/processing-progress.tsx": "a82489853a2ddd6d4576ada6933b1d72c93df3079963fd01b513a36d4b89a9f1",
+    "packages/core/processing-report.ts": "8a23050d2ebceb3f13054afd2bb0ff8aa6ce8ed2cf2566106a9b88d6d28318f0",
+    "tests/contextual-recognition.integration.ts": "3ecba4400842537b3fcc6939fd7ad382aac6af59e44d760294e00f750ae286e3",
+    "tests/reference-table-adapter.test.ts": "661a923b5d66a02eaa777177f1731bc769b728b59f0705c6e063b63b8bd67aca"
+  },
+  "evidence": {
+    ".data/research/lawbot-2026-10-14/iteration028/markdown-source-api.log": "0ead5edd58f2790e8180fc9efca886b7d2627bc940e73863c7341f7ef7e0fecb",
+    ".data/research/lawbot-2026-10-14/iteration028/markdown-source-edge.log": "6c23c9c5c4274e6dfe5f0186cea02bd9f1f9f372594b7d3b497b7742b37b1dab",
+    ".data/research/lawbot-2026-10-14/iteration028/markdown-source-edge.png": "b1940783dbf4d52b81a385591203ea8c1dfca6bbb85a2505a5a538cfae38df69",
+    ".data/research/lawbot-2026-10-14/iteration028/markdown-ner-progress.log": "4da59e895120abd715dbd4128df15c996129f38eb4a6454b238bbb5affe9b805",
+    ".data/research/lawbot-2026-10-14/iteration028/markdown-final-unit.log": "3a09f3646916d22cd851506276635446b25a80c941097780c76c9cf2b28c2b3c",
+    ".data/research/lawbot-2026-10-14/iteration028/markdown-typecheck.log": "63f1c329d4cfa550758a8803bd37a5a954eef1caaa2f0b8bc757d4806ac14924",
+    ".data/research/lawbot-2026-10-14/iteration028/contextual-markdown-api.log": "b850e146d14ad0e7cd71141a386577b6514e7a5205812455a9fa7f713db45349"
+  },
+  "source": {
+    "parser": "extracted/dist/main/chunks/D9V2C_Ir.js classHi; iteration027 readable3660-3832",
+    "writer": "same chunk $o4341-4483 and exported MarkdownSourceWriter4497",
+    "main": "main17237-17245 source-ready/first25k250msfinal;17795-17807 export writer;19265-19277 known blocker IDs",
+    "renderer": "ReviewModeContainer6041 and getReviewDraft8638; unresolved blocker prevents export"
+  },
+  "coverage": [
+    {
+      "id": "MD-PARSER",
+      "implementation": "parseReferenceMarkdown",
+      "fields": "source bytes/BOM/newlines/GFM AST/YAML/HTML table regions/sourceMap/containers/tablecells/spans/sidecar/hash/anchors",
+      "oracle": {
+        "parserCases": 27,
+        "writerCases": 103,
+        "scope": "full visible pure fields and bytes; not licensed runtime"
+      }
+    },
+    {
+      "id": "MD-RUNTIME",
+      "implementation": "worker parseVersion2 -> private AEAD sidecar pointer -> new snapshot -> reparse original source/hash/scan/anchors/coverage/sidecar before export",
+      "actual": "4 isolated API tests17.48s including zero-scan/partialack/foreignuser/invalidID/staleCAS/corruptedsidecarhash; original immutable"
+    },
+    {
+      "id": "MD-EVENTS",
+      "implementation": "real parser ready; rules actualcompletion; optional real NER window onProgress; contextual actualcompletion; pending provisional candidates; strict sidecar schema and AEAD event owner/version/hash",
+      "actual": "API event fields+sourcehash+masks; separate real NER baseline vs callback identical output, UTF16 monotonic multiwindow2.36s; source timer2 units"
+    },
+    {
+      "id": "MD-BLOCKERS",
+      "implementation": "GET/PUT markdown-blockers owner/project view_original+review; exact IDs + CAS; private reviewpointer merged metadata + saveReview snapshot; visible default review UI",
+      "actual": "Node24 Edge17.1s realupload/confirm2/save/markgroup/review/export/download/reloadack0/pageerrors[]"
+    },
+    {
+      "id": "MD-WRITER",
+      "implementation": "source span edits/GFM and inert HTML table/links stripped/assets removed/deterministic generation; independently derive canonical expected and inspect hidden source syntax",
+      "actual": "103 full purewriter cases and negative alteredcontent/activeHTML/raw hiddenYAML/tamper/strict pending+overlap gates"
+    }
+  ],
+  "securityDifferences": [
+    {
+      "id": "MD-SAFE-SCALARS",
+      "source": "only YAML string scalars scanned",
+      "product": "raw numeric/boolean/null scalar source text also scanned; never Number-round long identifiers; sourceCompatibility mode only pure research oracle and product export rejects it"
+    },
+    {
+      "id": "MD-SAFE-HIDDEN",
+      "source": "YAML comments/anchor/alias identifiers outside scan may retain a selected original after custom replacement",
+      "product": "independent output sourceMap-gap residual check; safe fenced canonical fallback and repeat verification; allows ignored same-value visible occurrence; C independently reproduced and closed P1"
+    },
+    {
+      "id": "MD-SAFE-ACK",
+      "source": "UI confirms remove but Writer itself removes all blockers without consulting decisions",
+      "product": "bound source+scan+all IDs human ACK required, including zero visible text; sourceempty input and old TXT/rawMD nonempty gate retained"
+    },
+    {
+      "id": "MD-SAFE-REVISION",
+      "product": "old raw coordinates explicitly require rerecognition; existing signed old artifacts retain their original verification chain"
+    }
+  ],
+  "acceptance": {
+    "unit": "163 PASS8files3.30s after Markdown same-cell segment fix",
+    "typecheck": "pnpmtypecheck PASS final MD/terminalUI snapshot",
+    "API": "5PASS18.77s after product fence-language fix",
+    "NER": "1actualmodelPASS2.36s",
+    "Edge": "1PASS18.3s cleanexit Node24.19, whole Markdown workflow plus terminal ProcessingProgress=处理已完成",
+    "priorFailedTests": "initial new test omitted explicit project selection and exact material button accessible name; then actual hidden materialtools P2 rootfixed; only final clean run is acceptance; first timeout worker was explicitly terminated, not passed",
+    "contextual": "2actualAPI PASS7.76s across5formats incl GFM/HTML entities and adjacent emphasis segments whole 姓名张三; amount and area exclusions"
+  },
+  "remaining": [
+    "No competitor licensed full processing runtime R0",
+    "Independent public Chinese/English candidate metrics and signature bounding box metrics do not prove full MD product accuracy",
+    "Unselected unknown sensitive strings still require review and authorized business gold; hidden-source gate guarantees selected-original residual prevention, not universal sensitivity detection",
+    "Final whole-repository formal/build/API/browser gates and deployment are root responsibilities"
+  ],
+  "postReview": {
+    "terminalProgress": "B P2 closed: actual succeeded/cancelled/failed status uses true job status/error code; no terminal fake100; Edge18.3 verifies succeeded",
+    "rawReportCounters": "null-prototype map preserves __proto__/constructor/toString raw labels; JSON roundtrip unit passes",
+    "adjacentTableSpans": "Actual GFM 张**三** previously TABLE split 张/三; adapter merges only adjacent verified spans inside same cell, preserves full entity without cross-object joining. 6units + 2actualAPI pass",
+    "fenceLanguageOriginal": {
+      "status": "closed",
+      "unit": "137PASS",
+      "API": "5PASS18.77s",
+      "logs": [
+        "iteration029/markdown-fence-final-unit.log",
+        "iteration029/markdown-fence-final-api.log"
+      ],
+      "description": "Product hidden-source fallback omits code fence info; pure source Writer info=text unchanged; selected text and ignored same value actual API pass"
+    }
+  },
+  "history": [
+    {
+      "updatedAt": "2026-10-14T13:56:15.797046+00:00",
+      "files": {
+        "packages/core/reference-markdown.ts": "2df51d82d12b2ba096b4ea35b5c404e92306fdb790458be03ccc0ce38079eb7e",
+        "packages/core/reference-markdown-progress.ts": "afce313dbd0ecf37d795d4449a3829aef16c54ae3174decd838c430bb0818ef0",
+        "packages/core/files.ts": "446935a2e10579b17dbfe1a75cfe29bbf60a86fae956f672fc34cc14e89d657f",
+        "packages/core/ner.ts": "8af70b1159c35ef6ef1c36d3ea4dd6e8b2e762cbb50ee3591cb34704b26d48f9",
+        "packages/core/processing-events.ts": "70f9958d48e07a1800a4d042732a105c7ceca7a228ac7a4609ed70120c84f51b",
+        "packages/core/export-gate.ts": "e3ed1d432d926f83dad67f4a6fe242669ca9ccfa793a44450d992e56359e3139",
+        "packages/adapters/markdown-source.ts": "8f7f8c5d23a259596c9c7acd951b4f747a5c19d83d3dac29725bdfe24b6d36c8",
+        "packages/adapters/reference-table.ts": "1613c5279e78077434a9a3904bf18abb3c28c2b6fd26409c1f3dc1babedd3da7",
+        "packages/adapters/processing-worker.ts": "28ae52195c6375c389d7908eb3cc8bb839ede76e8e1ff2a53780d05d3313541d",
+        "apps/api/markdown-review.ts": "6742c02900670e0328f46725f4817050990cf64d131de5234deac1c03f637c7b",
+        "apps/web/markdown-blockers.tsx": "4ddf906b0649d79c2b324dc131c0a2fbe1249c1bf214dfd80570a90b50ced0ce",
+        "tests/reference-markdown.test.ts": "322b5fc0898ef0b57cc9fe2e05eca74c5fb033022d69d05c9cbd59d6a428bdfa",
+        "tests/reference-markdown-progress.test.ts": "f08f2d4cca57a9d3713dcbaf59ce142faf381be861e6e10c9f257b7ae8fccc81",
+        "tests/reference-markdown-export-gate.test.ts": "bfaeac58f9c04667171e39a4f685961cd53736ffd88a717627fda25c89ba0b2c",
+        "tests/reference-markdown.integration.ts": "4f03248c94a78b36f59b13a6bed91ee34b67cc57359245b397f5d6e65394849c",
+        "tests/reference-markdown-ner.integration.ts": "264610b8d7adfac0a89ee1af90fe3a58bb5556b6ca03e798954980515186ca58",
+        "tests/e2e/markdown-source.spec.ts": "9e569ceac3c98e1ef0aa7c965ad4f43822d9aecc65bdd4d9878912139af8d2d5",
+        "tests/fixtures/reference-markdown-source-golden.json": "e23615f1be3833dddc7a49526e4129378f5f08b537c2b7484f5e06df91671f42",
+        "tests/fixtures/reference-markdown-writer-source-golden.json": "d59ba03ef065fc4c5b9f89e8fc42f320d917d8e2e764b7f91ac1c32cb52a370d",
+        "apps/web/processing-progress.tsx": "a82489853a2ddd6d4576ada6933b1d72c93df3079963fd01b513a36d4b89a9f1",
+        "packages/core/processing-report.ts": "8a23050d2ebceb3f13054afd2bb0ff8aa6ce8ed2cf2566106a9b88d6d28318f0"
+      },
+      "unit": "162 PASS across8files4.66s; includes related event/table/report/visual regression"
+    }
+  ]
+}

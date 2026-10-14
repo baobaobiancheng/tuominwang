@@ -1,0 +1,1096 @@
+{
+  "id": "EXACT-MCP-METHODS-ITER029",
+  "updatedAt": "2026-10-14T14:10:59.550741+00:00",
+  "status": "43_exact_adapted_methods_actual_runtime_verified",
+  "sourceLicensedRuntime": "R0",
+  "counts": {
+    "aiCollab": 25,
+    "gateway": 14,
+    "connectors": 4,
+    "uniqueIDs": 43
+  },
+  "actual": "3 isolated integration tests PASS18.82s",
+  "rows": [
+    {
+      "id": "IPC-9f9f62ce116e",
+      "name": "ai-collab:authorize",
+      "inputKeys": [
+        "authorization"
+      ],
+      "responseKeys": [
+        "authorization",
+        "caller",
+        "createdAt",
+        "deliveries",
+        "eventLog",
+        "jobId",
+        "options",
+        "projectId",
+        "revision",
+        "rounds",
+        "sources",
+        "state",
+        "updatedAt"
+      ],
+      "responseSha256": "a8c529429962beda722e0b77ab3b3ab7f886abfa0eb5068db9777154290bdd4d",
+      "meaning": "real authorization creates source-selection task",
+      "actualSuccess": true
+    },
+    {
+      "id": "IPC-540edc231d28",
+      "name": "ai-collab:attach-source",
+      "inputKeys": [
+        "documentIds"
+      ],
+      "responseKeys": [
+        "authorization",
+        "caller",
+        "createdAt",
+        "deliveries",
+        "eventLog",
+        "jobId",
+        "options",
+        "projectId",
+        "revision",
+        "rounds",
+        "sources",
+        "state",
+        "updatedAt"
+      ],
+      "responseSha256": "ab4aafb0dd3a5fbac7708c0cf0aa26a8ac7aa0c6c525dfb4f30477ea8061a35f",
+      "meaning": "one uploaded document bound and queued",
+      "actualSuccess": true
+    },
+    {
+      "id": "IPC-77baf8b1932c",
+      "name": "ai-collab:attach-sources",
+      "inputKeys": [
+        "documentIds"
+      ],
+      "responseKeys": [
+        "authorization",
+        "caller",
+        "createdAt",
+        "deliveries",
+        "eventLog",
+        "jobId",
+        "options",
+        "projectId",
+        "revision",
+        "rounds",
+        "sources",
+        "state",
+        "updatedAt"
+      ],
+      "responseSha256": "9d2830dd9e54ad1c07fa5d6884eef9209a01c0c3f96ecda994e73915c75435d5",
+      "meaning": "second uploaded document bound and queued",
+      "actualSuccess": true
+    },
+    {
+      "id": "IPC-03b436a7c1b1",
+      "name": "ai-collab:open-job",
+      "inputKeys": [],
+      "responseKeys": [
+        "authorization",
+        "caller",
+        "createdAt",
+        "deliveries",
+        "eventLog",
+        "jobId",
+        "openRequested",
+        "options",
+        "projectId",
+        "revision",
+        "rounds",
+        "sources",
+        "state",
+        "updatedAt"
+      ],
+      "responseSha256": "a09679a33c6ed689d5df2960ec4b9e2cb01dc393023f17839d50371d33b59a81",
+      "meaning": "openRequested flag persists true",
+      "actualSuccess": true
+    },
+    {
+      "id": "IPC-d0d9bb1ba45b",
+      "name": "ai-collab:open-task",
+      "inputKeys": [],
+      "responseKeys": [
+        "authorization",
+        "caller",
+        "createdAt",
+        "deliveries",
+        "eventLog",
+        "jobId",
+        "openRequested",
+        "options",
+        "projectId",
+        "revision",
+        "rounds",
+        "sources",
+        "state",
+        "updatedAt"
+      ],
+      "responseSha256": "b0a3aba6de54045ce5ef86b7967a0f3ed98990a5f11b5aaa166e8e8c0416d858",
+      "meaning": "openRequested flag persists true",
+      "actualSuccess": true
+    },
+    {
+      "id": "IPC-21f5af67811a",
+      "name": "ai-collab:restore-saved-task",
+      "inputKeys": [],
+      "responseKeys": [
+        "authorization",
+        "caller",
+        "createdAt",
+        "deliveries",
+        "eventLog",
+        "jobId",
+        "openRequested",
+        "options",
+        "projectId",
+        "revision",
+        "rounds",
+        "sources",
+        "state",
+        "updatedAt"
+      ],
+      "responseSha256": "f044da83fdc5bdba1b7620ae18b9a2a9c53240bd4d4b1b0418237a396e6d7a6b",
+      "meaning": "openRequested flag persists true",
+      "actualSuccess": true
+    },
+    {
+      "id": "IPC-0e93232c5223",
+      "name": "ai-collab:consume-open-job",
+      "inputKeys": [],
+      "responseKeys": [
+        "authorization",
+        "caller",
+        "consumedOpen",
+        "createdAt",
+        "deliveries",
+        "eventLog",
+        "jobId",
+        "openRequested",
+        "options",
+        "projectId",
+        "revision",
+        "rounds",
+        "sources",
+        "state",
+        "updatedAt"
+      ],
+      "responseSha256": "2e859441c195179454f26a778d490d981f08dac7e42e63fc1e25930baa77008d",
+      "meaning": "consumes real open flag and returns bound material IDs",
+      "actualSuccess": true
+    },
+    {
+      "id": "IPC-91a4aa41d44c",
+      "name": "ai-collab:diagnostic-event",
+      "inputKeys": [
+        "event",
+        "failureCode"
+      ],
+      "responseKeys": [
+        "authorization",
+        "caller",
+        "createdAt",
+        "deliveries",
+        "eventLog",
+        "jobId",
+        "openRequested",
+        "options",
+        "projectId",
+        "revision",
+        "rounds",
+        "sources",
+        "state",
+        "updatedAt"
+      ],
+      "responseSha256": "2544d1058accba3d4db793894065e0df19730e1524bfbb4a7c0c3047b646b23a",
+      "meaning": "fixed category diagnostic event persisted",
+      "actualSuccess": true
+    },
+    {
+      "id": "IPC-412cb770febe",
+      "name": "ai-collab:report-statistics",
+      "inputKeys": [
+        "statistics"
+      ],
+      "responseKeys": [
+        "authorization",
+        "caller",
+        "createdAt",
+        "deliveries",
+        "eventLog",
+        "jobId",
+        "openRequested",
+        "options",
+        "projectId",
+        "revision",
+        "rounds",
+        "sources",
+        "state",
+        "statistics",
+        "updatedAt"
+      ],
+      "responseSha256": "4a22ae704575778936d16664cf8589249f9a9f2606c91e2a71852a5e8ad1ec0a",
+      "meaning": "integer statistic persisted",
+      "actualSuccess": true
+    },
+    {
+      "id": "IPC-0ee2339f025f",
+      "name": "ai-collab:list-pending",
+      "inputKeys": [],
+      "responseKeys": [
+        "items"
+      ],
+      "responseSha256": "ccf07f322f3fca00e46c15a038ddc16a16ed5ac863aa6604aad769a408941176",
+      "meaning": "read-only current owner pending list returns real task",
+      "actualSuccess": true
+    },
+    {
+      "id": "IPC-121d180be5d8",
+      "name": "ai-collab:repair-task-storage",
+      "inputKeys": [],
+      "responseKeys": [
+        "backupRequired",
+        "checked",
+        "diagnostics",
+        "repairPerformed",
+        "valid"
+      ],
+      "responseSha256": "5ab1a5d8e264d01607119a178bd53330a684d9af401041bfb0635bb719e58b2e",
+      "meaning": "AEAD storage checked, truthful repairPerformed=false when all healthy",
+      "actualSuccess": true
+    },
+    {
+      "id": "IPC-208d016e6972",
+      "name": "ai-collab:prepare-export",
+      "inputKeys": [],
+      "responseKeys": [
+        "authorization",
+        "caller",
+        "createdAt",
+        "deliveries",
+        "eventLog",
+        "exportJobIds",
+        "jobId",
+        "openRequested",
+        "options",
+        "projectId",
+        "revision",
+        "rounds",
+        "sources",
+        "state",
+        "statistics",
+        "updatedAt"
+      ],
+      "responseSha256": "3eb135c35f04d202e815419dc479ee0f0e3a80be2b826dfcaf69d234c0edfc60",
+      "meaning": "queues real verified material export jobs",
+      "actualSuccess": true
+    },
+    {
+      "id": "IPC-2c93659b71ad",
+      "name": "ai-collab:finish-batch-export",
+      "inputKeys": [],
+      "responseKeys": [
+        "allowedTokens",
+        "authorization",
+        "caller",
+        "createdAt",
+        "deliveries",
+        "eventLog",
+        "exportJobIds",
+        "jobId",
+        "openRequested",
+        "options",
+        "projectId",
+        "revision",
+        "rounds",
+        "sources",
+        "state",
+        "statistics",
+        "updatedAt"
+      ],
+      "responseSha256": "ecb8719e2e36e9725122fccb00e4c53b13f3d0c4c5ec3d696080345f17011d6e",
+      "meaning": "publishes both successful verified batch material artifacts",
+      "actualSuccess": true
+    },
+    {
+      "id": "IPC-40128ac5fccf",
+      "name": "ai-collab:release-export",
+      "inputKeys": [],
+      "responseKeys": [
+        "allowedTokens",
+        "authorization",
+        "caller",
+        "createdAt",
+        "deliveries",
+        "eventLog",
+        "exportJobIds",
+        "jobId",
+        "options",
+        "projectId",
+        "revision",
+        "rounds",
+        "sources",
+        "state",
+        "updatedAt"
+      ],
+      "responseSha256": "71e7ac344c7bbf04cba6087d4de2d75dca8851be0812821ec661cbfa9c3ade12",
+      "meaning": "release one real hash-verified document artifact",
+      "actualSuccess": true
+    },
+    {
+      "id": "IPC-3218ff56854c",
+      "name": "ai-collab:fail",
+      "inputKeys": [
+        "failureCode"
+      ],
+      "responseKeys": [
+        "caller",
+        "createdAt",
+        "deliveries",
+        "eventLog",
+        "failureCode",
+        "jobId",
+        "options",
+        "projectId",
+        "revision",
+        "rounds",
+        "sources",
+        "state",
+        "updatedAt"
+      ],
+      "responseSha256": "5cbfbf9d6441fd6551255487fe154741fa53d375178de93198a65f5be7f3c5cd",
+      "meaning": "explicit failure code and failed state persist",
+      "actualSuccess": true
+    },
+    {
+      "id": "IPC-fe44165e30fd",
+      "name": "ai-collab:restart-preparation",
+      "inputKeys": [],
+      "responseKeys": [
+        "caller",
+        "createdAt",
+        "deliveries",
+        "eventLog",
+        "jobId",
+        "options",
+        "projectId",
+        "revision",
+        "rounds",
+        "sources",
+        "state",
+        "updatedAt"
+      ],
+      "responseSha256": "383480921b6f5accc581c75fe5544ad18793ddb931791265b9f2dd55370aca84",
+      "meaning": "clears failure/deliveries and returns human review",
+      "actualSuccess": true
+    },
+    {
+      "id": "IPC-eceef0e6cff3",
+      "name": "ai-collab:retry-authorization",
+      "inputKeys": [],
+      "responseKeys": [
+        "caller",
+        "createdAt",
+        "deliveries",
+        "eventLog",
+        "failureCode",
+        "jobId",
+        "options",
+        "projectId",
+        "revision",
+        "rounds",
+        "sources",
+        "state",
+        "updatedAt"
+      ],
+      "responseSha256": "9342179a5ef95e2814b5b38855335f7ba70dbb4fd4bd512a5b9d9ead0c669f25",
+      "meaning": "failed task returns to fresh authorization",
+      "actualSuccess": true
+    },
+    {
+      "id": "IPC-224e4065477a",
+      "name": "ai-collab:cancel",
+      "inputKeys": [],
+      "responseKeys": [
+        "authorization",
+        "caller",
+        "createdAt",
+        "deliveries",
+        "eventLog",
+        "failureCode",
+        "jobId",
+        "options",
+        "projectId",
+        "revision",
+        "rounds",
+        "sources",
+        "state",
+        "updatedAt"
+      ],
+      "responseSha256": "12c185b74189b9f5d4188255c139531edb450ebfadf21e8293e30c9f6d4e2663",
+      "meaning": "task cancellation persists terminal state",
+      "actualSuccess": true
+    },
+    {
+      "id": "GATEWAY-f21aa5c5dc19",
+      "name": "gateway_ping",
+      "inputKeys": [],
+      "responseKeys": [
+        "protocolVersion",
+        "status"
+      ],
+      "responseSha256": "8e78654d8e3237551e51c2a3d0e937615e6f2a3d79a5c85dbc4edddb5ccda1bc",
+      "meaning": "initialized dsh protocol session reaches real database",
+      "actualSuccess": true
+    },
+    {
+      "id": "GATEWAY-191fc60f0036",
+      "name": "get_configuration_catalog",
+      "inputKeys": [],
+      "responseKeys": [
+        "defaults",
+        "profiles",
+        "ruleSets"
+      ],
+      "responseSha256": "40d710747bc939eff7549472b89fc18f039d9b531e04f2b9b809b09e01845eaa",
+      "meaning": "returns saved profile catalogue",
+      "actualSuccess": true
+    },
+    {
+      "id": "GATEWAY-cbd9ff60189a",
+      "name": "start_secure_review",
+      "inputKeys": [
+        "documentIds",
+        "maskingMode",
+        "outputFormats",
+        "projectId",
+        "request_id",
+        "taskMode"
+      ],
+      "responseKeys": [
+        "authorizationRequired",
+        "callerDisplayName",
+        "createdAt",
+        "jobId",
+        "purpose",
+        "reviewUrl",
+        "revision",
+        "sanitizedExports",
+        "schemaVersion",
+        "scope",
+        "sourceCount",
+        "status",
+        "taskMode",
+        "updatedAt"
+      ],
+      "responseSha256": "28134ec7cbd251061b212a896bbb5c9e1136c3646fb56c7924f966e44a4a85fe",
+      "meaning": "creates persisted source-bound secure review task",
+      "actualSuccess": true
+    },
+    {
+      "id": "IPC-3b4c9f7c2b97",
+      "name": "ai-collab:set-review-intent",
+      "inputKeys": [
+        "intent"
+      ],
+      "responseKeys": [
+        "allowedTokens",
+        "authorization",
+        "caller",
+        "createdAt",
+        "deliveries",
+        "eventLog",
+        "exportJobIds",
+        "intent",
+        "jobId",
+        "options",
+        "projectId",
+        "revision",
+        "rounds",
+        "sources",
+        "state",
+        "updatedAt"
+      ],
+      "responseSha256": "e00a33695df779b124fe569c0751a6004dad3cf292831a0cccd77e89264bd2d7",
+      "meaning": "structured review intent persists",
+      "actualSuccess": true
+    },
+    {
+      "id": "GATEWAY-257145c95a18",
+      "name": "get_review_status",
+      "inputKeys": [
+        "jobId"
+      ],
+      "responseKeys": [
+        "callerDisplayName",
+        "createdAt",
+        "jobId",
+        "purpose",
+        "reviewIntent",
+        "revision",
+        "sanitizedExports",
+        "schemaVersion",
+        "scope",
+        "sourceCount",
+        "status",
+        "taskMode",
+        "timedOut",
+        "updatedAt"
+      ],
+      "responseSha256": "5e908c56947c76607770e60360f774e83dd3e5381e3f36e7ae32b6cead23251d",
+      "meaning": "read-only ready status",
+      "actualSuccess": true
+    },
+    {
+      "id": "GATEWAY-f41647c2a851",
+      "name": "wait_review_delivery",
+      "inputKeys": [
+        "jobId",
+        "waitSeconds"
+      ],
+      "responseKeys": [
+        "callerDisplayName",
+        "createdAt",
+        "jobId",
+        "purpose",
+        "reviewIntent",
+        "revision",
+        "sanitizedExports",
+        "schemaVersion",
+        "scope",
+        "sourceCount",
+        "status",
+        "taskMode",
+        "timedOut",
+        "updatedAt"
+      ],
+      "responseSha256": "5e908c56947c76607770e60360f774e83dd3e5381e3f36e7ae32b6cead23251d",
+      "meaning": "ready delivery wait returns without fake artifact",
+      "actualSuccess": true
+    },
+    {
+      "id": "GATEWAY-678e012848a8",
+      "name": "get_sanitized_artifact",
+      "inputKeys": [
+        "jobId",
+        "outputFormat"
+      ],
+      "responseKeys": [
+        "artifactId",
+        "bytesBase64",
+        "callerDisplayName",
+        "createdAt",
+        "filename",
+        "format",
+        "jobId",
+        "purpose",
+        "reviewIntent",
+        "revision",
+        "sanitizedExports",
+        "schemaVersion",
+        "scope",
+        "sha256",
+        "sourceCount",
+        "status",
+        "taskMode",
+        "updatedAt"
+      ],
+      "responseSha256": "7f2d296f03e73df765bc75013807b4576ac1d757efcecafa6203d61cf6214946",
+      "meaning": "reads real approved bytes without allocating round",
+      "actualSuccess": true
+    },
+    {
+      "id": "GATEWAY-1abec6ed4302",
+      "name": "allocate_result_slot",
+      "inputKeys": [
+        "jobId",
+        "outputFormat"
+      ],
+      "responseKeys": [
+        "artifactId",
+        "callerDisplayName",
+        "createdAt",
+        "filename",
+        "format",
+        "jobId",
+        "purpose",
+        "reviewIntent",
+        "revision",
+        "roundId",
+        "sanitizedExports",
+        "schemaVersion",
+        "scope",
+        "sha256",
+        "slotId",
+        "slotUploadPath",
+        "sourceCount",
+        "status",
+        "taskMode",
+        "updatedAt"
+      ],
+      "responseSha256": "988a2aaf7e0f873f2862829087cb7001d34689907362d8a977ddedf41a6920e2",
+      "meaning": "allocates real return round/slot without source bytes",
+      "actualSuccess": true
+    },
+    {
+      "id": "GATEWAY-9550960e5004",
+      "name": "submit_pseudonymized_result",
+      "inputKeys": [
+        "jobId",
+        "roundId",
+        "sha256",
+        "slotId",
+        "suggestedName"
+      ],
+      "responseKeys": [
+        "callerDisplayName",
+        "createdAt",
+        "jobId",
+        "purpose",
+        "restorationStarted",
+        "reviewIntent",
+        "revision",
+        "roundId",
+        "sanitizedExports",
+        "schemaVersion",
+        "scope",
+        "sourceCount",
+        "status",
+        "taskMode",
+        "updatedAt",
+        "validation"
+      ],
+      "responseSha256": "9bfdb6f97d4ce2731a7437904d67fb430c538cbf89dffd63f0e55a6090d82478",
+      "meaning": "validates real returned slot hash and pseudonym tokens",
+      "actualSuccess": true
+    },
+    {
+      "id": "GATEWAY-269ba55489c6",
+      "name": "request_local_restore",
+      "inputKeys": [
+        "jobId",
+        "roundId"
+      ],
+      "responseKeys": [
+        "callerDisplayName",
+        "createdAt",
+        "jobId",
+        "purpose",
+        "reviewIntent",
+        "reviewUrl",
+        "revision",
+        "roundId",
+        "sanitizedExports",
+        "schemaVersion",
+        "scope",
+        "sourceCount",
+        "status",
+        "taskMode",
+        "updatedAt"
+      ],
+      "responseSha256": "7de9d354c4191abe21f70576db9430f0c1db163918374bf22689e27cbb96106c",
+      "meaning": "opens restore review for existing validated round",
+      "actualSuccess": true
+    },
+    {
+      "id": "IPC-8b4556ee60d4",
+      "name": "ai-collab:restore-failed",
+      "inputKeys": [
+        "roundId"
+      ],
+      "responseKeys": [
+        "allowedTokens",
+        "authorization",
+        "caller",
+        "createdAt",
+        "deliveries",
+        "eventLog",
+        "exportJobIds",
+        "failureCode",
+        "intent",
+        "jobId",
+        "openRequested",
+        "options",
+        "projectId",
+        "revision",
+        "rounds",
+        "sources",
+        "state",
+        "updatedAt"
+      ],
+      "responseSha256": "3ab700743752b9ab770c7c206a474f4a240a7df1abb0805e216cf2a6fff3350c",
+      "meaning": "reports actual server hash-failure state, not a client fabricated failure",
+      "actualSuccess": true
+    },
+    {
+      "id": "IPC-6c981281c999",
+      "name": "ai-collab:retry-confirmation",
+      "inputKeys": [
+        "roundId"
+      ],
+      "responseKeys": [
+        "allowedTokens",
+        "authorization",
+        "caller",
+        "createdAt",
+        "deliveries",
+        "eventLog",
+        "exportJobIds",
+        "failureCode",
+        "intent",
+        "jobId",
+        "openRequested",
+        "options",
+        "projectId",
+        "revision",
+        "rounds",
+        "sources",
+        "state",
+        "updatedAt"
+      ],
+      "responseSha256": "accce6652944c0e10cadb9490dcebda20b13c15bcfb354ee7494661b05a8cc5c",
+      "meaning": "clears prior human approval after actual failure",
+      "actualSuccess": true
+    },
+    {
+      "id": "IPC-b3931f25eb79",
+      "name": "ai-collab:resume-local-restore",
+      "inputKeys": [
+        "roundId"
+      ],
+      "responseKeys": [
+        "allowedTokens",
+        "authorization",
+        "caller",
+        "createdAt",
+        "deliveries",
+        "eventLog",
+        "exportJobIds",
+        "intent",
+        "jobId",
+        "openRequested",
+        "options",
+        "projectId",
+        "revision",
+        "rounds",
+        "sources",
+        "state",
+        "updatedAt"
+      ],
+      "responseSha256": "d56a666499035c35a4213adb989aaaec4e457460382e609a4b6b9859a485ecae",
+      "meaning": "actual restored output after corrected hash and new human review",
+      "actualSuccess": true
+    },
+    {
+      "id": "IPC-0a8de5567b3c",
+      "name": "ai-collab:restore-completed",
+      "inputKeys": [
+        "roundId"
+      ],
+      "responseKeys": [
+        "allowedTokens",
+        "authorization",
+        "caller",
+        "createdAt",
+        "deliveries",
+        "eventLog",
+        "exportJobIds",
+        "intent",
+        "jobId",
+        "openRequested",
+        "options",
+        "projectId",
+        "revision",
+        "rounds",
+        "sources",
+        "state",
+        "updatedAt"
+      ],
+      "responseSha256": "fd9b99118800572767527d7292d112b30082aa4fcadebd27c82cd0aaacd2f3e3",
+      "meaning": "server verifies actual completed artifact instead of trusting client counts",
+      "actualSuccess": true
+    },
+    {
+      "id": "IPC-2f0db8546650",
+      "name": "ai-collab:retry-restore",
+      "inputKeys": [
+        "roundId"
+      ],
+      "responseKeys": [
+        "allowedTokens",
+        "authorization",
+        "caller",
+        "createdAt",
+        "deliveries",
+        "eventLog",
+        "exportJobIds",
+        "intent",
+        "jobId",
+        "openRequested",
+        "options",
+        "projectId",
+        "revision",
+        "rounds",
+        "sources",
+        "state",
+        "updatedAt"
+      ],
+      "responseSha256": "5bc6a05a02ef90c3d8980885dd91e9d3cd3f59351a0cbc242b97afd28c27dc6e",
+      "meaning": "creates another actual immutable restored artifact via retry",
+      "actualSuccess": true
+    },
+    {
+      "id": "GATEWAY-32e1f2fdcacd",
+      "name": "get_completion_status",
+      "inputKeys": [
+        "jobId"
+      ],
+      "responseKeys": [
+        "callerDisplayName",
+        "completion",
+        "createdAt",
+        "jobId",
+        "purpose",
+        "reviewIntent",
+        "revision",
+        "roundId",
+        "sanitizedExports",
+        "schemaVersion",
+        "scope",
+        "sourceCount",
+        "status",
+        "taskMode",
+        "timedOut",
+        "updatedAt"
+      ],
+      "responseSha256": "b990bd397bd1c8cb99db2ea664577f5758a8f6e0e90ebd9b8d5709c8f67c1480",
+      "meaning": "returns real artifact completion counters",
+      "actualSuccess": true
+    },
+    {
+      "id": "GATEWAY-8f9ae82e2106",
+      "name": "wait_restore_completion",
+      "inputKeys": [
+        "jobId",
+        "waitSeconds"
+      ],
+      "responseKeys": [
+        "callerDisplayName",
+        "completion",
+        "createdAt",
+        "jobId",
+        "purpose",
+        "reviewIntent",
+        "revision",
+        "roundId",
+        "sanitizedExports",
+        "schemaVersion",
+        "scope",
+        "sourceCount",
+        "status",
+        "taskMode",
+        "timedOut",
+        "updatedAt"
+      ],
+      "responseSha256": "b990bd397bd1c8cb99db2ea664577f5758a8f6e0e90ebd9b8d5709c8f67c1480",
+      "meaning": "terminal wait observes actual restored round",
+      "actualSuccess": true
+    },
+    {
+      "id": "GATEWAY-c67325f03fc7",
+      "name": "continue_review",
+      "inputKeys": [
+        "jobId"
+      ],
+      "responseKeys": [
+        "callerDisplayName",
+        "completion",
+        "createdAt",
+        "jobId",
+        "purpose",
+        "reviewIntent",
+        "revision",
+        "roundId",
+        "sanitizedExports",
+        "schemaVersion",
+        "scope",
+        "sourceCount",
+        "status",
+        "taskMode",
+        "updatedAt"
+      ],
+      "responseSha256": "a8c688b5b81a4ac248d4d46fc4ca2dd61e4e5353d457a98c9fbb2eb4fbce942c",
+      "meaning": "same persisted task returns to sanitized artifact review",
+      "actualSuccess": true
+    },
+    {
+      "id": "GATEWAY-95f7eda76ec2",
+      "name": "resume_secure_review",
+      "inputKeys": [
+        "jobId"
+      ],
+      "responseKeys": [
+        "authorizationRequired",
+        "callerDisplayName",
+        "completion",
+        "createdAt",
+        "jobId",
+        "purpose",
+        "resumeRequested",
+        "reviewIntent",
+        "revision",
+        "roundId",
+        "sanitizedExports",
+        "schemaVersion",
+        "scope",
+        "sourceCount",
+        "status",
+        "taskMode",
+        "updatedAt"
+      ],
+      "responseSha256": "ceece6904d8145697f95202a40f20919618013aead3b30ad19f74de40bd4a176",
+      "meaning": "resume requires a fresh explicit session authorization",
+      "actualSuccess": true
+    },
+    {
+      "id": "GATEWAY-325df91336a6",
+      "name": "start_local_restore",
+      "inputKeys": [
+        "projectId",
+        "sourcePath"
+      ],
+      "responseKeys": [
+        "authorizationRequired",
+        "callerDisplayName",
+        "createdAt",
+        "jobId",
+        "purpose",
+        "reviewUrl",
+        "revision",
+        "sanitizedExports",
+        "schemaVersion",
+        "scope",
+        "sourceCount",
+        "status",
+        "taskMode",
+        "updatedAt"
+      ],
+      "responseSha256": "6be4f0802833b83a4613945eb20ceabdc06d78512ca6415b35bf209218fe5006",
+      "meaning": "starts standalone restoration of actual sanitized material",
+      "actualSuccess": true
+    },
+    {
+      "id": "IPC-a3eee81b75d4",
+      "name": "ai-collab:standalone-restore-completed",
+      "inputKeys": [
+        "roundId"
+      ],
+      "responseKeys": [
+        "allowedTokens",
+        "authorization",
+        "caller",
+        "createdAt",
+        "deliveries",
+        "eventLog",
+        "jobId",
+        "options",
+        "projectId",
+        "revision",
+        "rounds",
+        "sources",
+        "state",
+        "updatedAt"
+      ],
+      "responseSha256": "2392cb58b8a8266cf0004a2b74a90cc9474499f612f28f9b645cfed39583f233",
+      "meaning": "confirms real standalone artifact with zero residual tokens",
+      "actualSuccess": true
+    },
+    {
+      "id": "IPC-cf6cc425333d",
+      "name": "mcp-connectors:copy-setup",
+      "inputKeys": [],
+      "responseKeys": [
+        "adapterId",
+        "configuration",
+        "installed"
+      ],
+      "responseSha256": "b90eea890612945116283fda507351a52e10019e82edc841c3cdc651368ff8e9",
+      "meaning": "actual initialized session/configuration, no claim OS client installation or reachability",
+      "actualSuccess": true
+    },
+    {
+      "id": "IPC-d70108ef71d7",
+      "name": "mcp-connectors:get-status",
+      "inputKeys": [],
+      "responseKeys": [
+        "activeProtocolSessions",
+        "adapterId",
+        "connectionStatus",
+        "liveClientReachability",
+        "osLaunchSupported",
+        "setupAvailable"
+      ],
+      "responseSha256": "8c52f2ce7221dad1c6363fd19a7606be52f4ce724a1cba794973f6cfffb52d14",
+      "meaning": "actual initialized session/configuration, no claim OS client installation or reachability",
+      "actualSuccess": true
+    },
+    {
+      "id": "IPC-13b1b9cd954f",
+      "name": "mcp-connectors:retry",
+      "inputKeys": [],
+      "responseKeys": [
+        "activeProtocolSessions",
+        "adapterId",
+        "connectionStatus",
+        "liveClientReachability",
+        "osLaunchSupported",
+        "setupAvailable"
+      ],
+      "responseSha256": "8c52f2ce7221dad1c6363fd19a7606be52f4ce724a1cba794973f6cfffb52d14",
+      "meaning": "actual initialized session/configuration, no claim OS client installation or reachability",
+      "actualSuccess": true
+    },
+    {
+      "id": "IPC-7a1832cb9fe9",
+      "name": "mcp-connectors:update-automation",
+      "inputKeys": [
+        "shareRestorePassword"
+      ],
+      "responseKeys": [
+        "shareRestorePassword",
+        "storage"
+      ],
+      "responseSha256": "f60bad4d4adde18888dfcb47e6a215be5fb1cbb5fd4033275342f4d420f4b527",
+      "meaning": "actual initialized session/configuration, no claim OS client installation or reachability",
+      "actualSuccess": true
+    }
+  ],
+  "missing": [],
+  "files": {
+    "tests/mcp-complete-matrix.integration.ts": "b40331d139706e013ac7e998420bccd6e8808ac38dfbdf4a69fd958b57c29944",
+    "apps/api/mcp.ts": "917aff5ea88bfeb0b7244869343efe02afb2c3ecce378320eff0d7fa02c739c8",
+    "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+    ".data/research/lawbot-2026-10-14/iteration029/mcp-exact-method-runtime.log": "e2f1a3ec18210d8269bf3612ec3f51261b4b28b1972875f5a1a4959ffd044cce",
+    ".data/research/lawbot-2026-10-14/iteration029/mcp-exact-method-runtime-A-frozen.json": "1e0e51217c3862887634d6e6d06da6f328c75ca2cdb5bf521c5842171b0be33f",
+    ".data/research/lawbot-2026-10-14/iteration029/mcp-exact-method-runtime-C-frozen.json": "ebeb3c4dc6403b09571c6183e72d48e0c35073bdf02237733036a7d0eeee4311"
+  },
+  "limits": [
+    "Exact method success requires semantic state/response/result assertions, not registration or rejection-only tests",
+    "Gateway accepts authorized uploaded document IDs in place of OS paths; arbitrary host filesystem access remains disallowed",
+    "Connector setup/status/retry uses real protocol session and returns liveClientReachability not_verified; no claim external desktop software installation or launch",
+    "repair-task-storage is truthful healthy AEAD storage diagnosis repairPerformed=false; not competitor on-disk recovery or destructive repair",
+    "Restore failure fixture intentionally changes only isolated synthetic task sha before true server restore; response enters restore_failed, then fresh human confirmation and corrected SHA retry produces actual immutable bytes",
+    "No licensed competitor processing runtime R0"
+  ],
+  "independentReview": {
+    "reviewer": "C",
+    "actual": "3 tests PASS21.419s,43unique IDs/missing0",
+    "log": ".data/evals/mcp-exact-method-independent.log",
+    "sha256": "e56c32f0be604fb33114a7a37266d0a1cc0e090f31c0dabc690fbf3aef616e56",
+    "proof": ".data/research/lawbot-2026-10-14/iteration029/mcp-exact-method-runtime-C-frozen.json"
+  }
+}

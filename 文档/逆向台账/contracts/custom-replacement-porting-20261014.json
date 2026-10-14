@@ -1,0 +1,95 @@
+{
+  "id": "CUSTOM-REPLACEMENT-RUNTIME-029",
+  "updatedAt": "2026-10-14T14:37:09.806167+00:00",
+  "status": "actual_cloud_flow_runtime_verified",
+  "readOnlyProductCode": true,
+  "sourceRuntime": "R0 competitor licensed native processing not executed",
+  "sourceEvidence": {
+    "backend": "main.js19208 rg typeof string;19281 customReplacement rg; no100 cap/markup ban/trim",
+    "UI": "renderer.js5381 maxlength30 in one source UI; source API/TMM not constrained by this field",
+    "markdown": "pure Writer 4172 region escape;4310 NUL invalid-operation"
+  },
+  "sourceOracle": {
+    "cases": 10,
+    "passed": 9,
+    "expectedRejection": {
+      "value": "NUL",
+      "code": "invalid-operation"
+    },
+    "casesInclude": [
+      "empty string",
+      "three spaces",
+      "literal backslash t/n, not real whitespace",
+      "U+0001",
+      "NUL",
+      "200 Han characters",
+      "【label】",
+      "HTML-like string",
+      "real newline/tab",
+      "leading/trailing spaces"
+    ],
+    "json": ".data/research/lawbot-2026-10-14/iteration029/custom-replacement-source-oracle.json",
+    "sha256": "86a555e95abc412936e7af6077f7ac1568c1b1489e8be3316b90ff7a992609f3"
+  },
+  "actualAPI": {
+    "tests": 4,
+    "passed": 4,
+    "durationMs": 107108.175834,
+    "formatCasePairs": 32,
+    "verifiedDownloads": 30,
+    "expectedWordXmlRejections": 2,
+    "NulAndMalformedUnicodeWholeReviewRejections": 8,
+    "formats": [
+      "txt",
+      "md",
+      "docx",
+      "xlsx"
+    ],
+    "cases": [
+      "280 UTF16 characters",
+      "<>【】 markup literals",
+      "empty",
+      "all whitespace/tab",
+      "multiline leading/trailing whitespace",
+      "U+0001",
+      "literal _x0001_ and _x005F_",
+      "CR U+FFFE U+FFFF"
+    ],
+    "assertions": [
+      "Every successful case actually uploads, detects, manually saves review, exports, obtains verify-checked download-link and downloads immutable signed bytes",
+      "TXT exact bytes; Markdown exact whitespace/multiline bytes plus independent reparsed canonical",
+      "Word and Excel reparse actual downloaded Office bytes and preserve full custom string; selected phone removed",
+      "Word XML-invalid values explicitly OFFICE_XML_VALUE_INVALID, noartifact and nodownload",
+      "Excel U+0001/FFFE/FFFF encoded as ST_Xstring; literal _x0001_ gets _x005F_ escape and one-pass decode returns exact literal",
+      "All32 original source bytes and sourceSHA unchanged",
+      "Download_verified audit persisted for signed outputs"
+    ],
+    "firstAttempt": "Own test used nonexistent audit_events table; corrected to audit/event. This was not a product defect, no first-run pass claim.",
+    "log": ".data/research/lawbot-2026-10-14/iteration029/custom-replacement-actual.log",
+    "proof": ".data/research/lawbot-2026-10-14/iteration029/custom-replacement-actual.json"
+  },
+  "typecheck": "pnpmtypecheck exit0; log custom-replacement-typecheck.log",
+  "files": {
+    "tests/custom-replacement.integration.ts": "c9115a0e95aa33071f3fd1521657d300fbcf5ec4c8d81cf1cf96ce9e31ab326e",
+    "packages/contracts/index.ts": "bf55a107da9f270f6e2d6a3c50283bfc4e4290e5573aced07cadba76dfeb8ce1",
+    "packages/core/redaction.ts": "712f8b20652e2d3d15b2df83057e8b01aeede8c5f4dfb57d91f23567a63d9f6d",
+    "packages/core/office-zip.ts": "50c19b691bf4f51cd42e62de3ee471e6e5b353708bad02c0557705d6e2d164b7",
+    "packages/core/ooxml-string.ts": "9b10986e73d98d0db87e5f5ee32bd15c5f1b6965eecb76944681de7a65a36f99",
+    "packages/core/office.ts": "ce08ed32455ec7032712cef517bd7b86e745924045ff38074dc42f16cc3f28a5",
+    "packages/core/reference-markdown.ts": "e603ce30c3dcd1acaf499cf30b8aa32a416dad9e193ff24c6402a8c3081e340d",
+    "apps/api/reviews.ts": "b78cd3e641c00da97af554e7928738ca41cecebe1310114ab41fd2084352eb87",
+    "apps/api/main.ts": "12bbb93b790f89918717b07e5956456681db842c34ebd4d1258264c3aa5eedfe",
+    "packages/adapters/processing-worker.ts": "28ae52195c6375c389d7908eb3cc8bb839ede76e8e1ff2a53780d05d3313541d"
+  },
+  "proofHashes": {
+    ".data/research/lawbot-2026-10-14/iteration029/custom-replacement-actual.log": "fbd4b66327e84abc018646db07c639a2e12acbd175073d1d8e47bb9e9a9ef8b4",
+    ".data/research/lawbot-2026-10-14/iteration029/custom-replacement-actual.json": "93051a70a4754544ae6990051bbf1e0b618efe91f95ed77dfe734f94478b1475",
+    ".data/research/lawbot-2026-10-14/iteration029/custom-replacement-typecheck.log": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+  },
+  "remaining": [
+    "No new qualified product finding",
+    "Root full Edge49/final repository gates and deployment separate",
+    "Source UI30 vs our full API-compatible textarea explicitly distinguished; no licensed UI/native interoperability claim",
+    "Office format validity differs from plain string acceptance by design, without silent character deletion"
+  ]
+}

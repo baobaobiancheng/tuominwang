@@ -1,0 +1,175 @@
+{
+  "updatedAt": "2026-10-14T14:42:38.302843+00:00",
+  "owner": "complete_visual",
+  "status": "implemented_actual_pixel_API_and_clean_Edge_verified",
+  "sourceRuntime": "R0 - no licensed competitor processing execution",
+  "sourceBranches": [
+    {
+      "source": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "lines": "17425,17528-17549",
+      "meaning": "image enablePseudonymization dispatch; default pure bbox masking does not read masked strings"
+    },
+    {
+      "source": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "lines": "6861-6888,14610,14701-14715",
+      "meaning": "image/PDF derived text is drawn only for meta.pseudonym && masked"
+    },
+    {
+      "source": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "lines": "17724,17754",
+      "meaning": "DOCX imageOCR line.pseudonym is assigned only when meta.pseudonym is true"
+    },
+    {
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "lines": "27842,33755,33758",
+      "meaning": "overall visual full_star normalizes to default_star; selective per-type stars still draw"
+    }
+  ],
+  "fixes": [
+    {
+      "id": "MANUAL-CLEAR-AFTER-RASTER-TEXT",
+      "priority": "P1",
+      "before": "Actual image-search export painted the approved partial phone replacement over an explicitly cleared region. HTTP200, file hash and OCR absence of the full original were insufficient.",
+      "after": "Apply all page manual/confirmed regions after all replacement composites. Preserve rect/ellipse and all four mask styles. Original bytes remain immutable."
+    },
+    {
+      "id": "DEFAULT-RASTER-PSEUDONYM-SWITCH",
+      "priority": "P2",
+      "before": "Text replacement content alone caused drawing in raster outputs, conflating default masking with selective/pseudonym rendering.",
+      "after": "Optional source-compatible rasterReplacement flag; explicit flag first, missing/clear no draw, overall full/reference-mask no draw, explicit manual/type/value replacement may draw. Root profile finalizer sets the actual visual marker."
+    },
+    {
+      "id": "MARKDOWN-ERASED-DERIVED-TEXT",
+      "priority": "P2",
+      "after": "Shape-aware intersection suppresses a whole derived fragment if any part is erased, preventing reconstruction of clear-region text. Original glyphs in empty ellipse bounding-box corners remain eligible. This is deliberately conservative and may omit a partially visible derived fragment."
+    }
+  ],
+  "verification": [
+    {
+      "suite": "tests/manual-clear-override.test.ts + visual-replacement + circle + reference-portable-draft",
+      "result": "4 files / 14 tests PASS17.12s",
+      "evidence": ".data/research/lawbot-2026-10-14/iteration022/manual-clear-final-unit.log",
+      "covers": "all4styles x rect/ellipse x partial/full exact inside/outside pixels; rectangle union guard; PDF lossless roundtrip; default/full profiles for PNG/PDF/DOCX; selective3actions; one clear region crossing two independently drawn replacements; C source-mode flags"
+    },
+    {
+      "suite": "tests/manual-clear-override.integration.ts",
+      "result": "1test /21 real exports PASS86.17s",
+      "evidence": ".data/research/lawbot-2026-10-14/iteration022/manual-clear-override-api.log",
+      "covers": "real upload/detect/review/snapshot/export/verified download; PNG/PDF/DOCX x partial/full x baseline/rect/ellipse=18, plus3 actual default profile false-marker outputs; exact clear pixels/unchanged outside/baseline derived foreground/sidecar removal/original immutability"
+    },
+    {
+      "suite": "independent A adversarial rerun",
+      "result": "18 explicit-mode exports PASS86.44s, no qualified findings",
+      "evidence": ".data/research/lawbot-2026-10-14/iteration029/manual-clear-independent.log",
+      "boundary": "Independent run preceded added3 default-profile API probes; A source caller40combination oracle separately agrees rendering matrix."
+    },
+    {
+      "suite": "tests/e2e/image-batch-search.spec.ts",
+      "result": "clean Edge1PASS16.6s",
+      "evidence": ".data/research/lawbot-2026-10-14/iteration022/image-search-edge-node24.log",
+      "covers": "real query/locate/emptytype atomic refusal/validtype acceptance/preview/save/encryptedmetadata/verifieddownload; browsercanvas verifies every pixel in saved clear region black"
+    },
+    {
+      "suite": "tests/e2e/visual-detection.spec.ts",
+      "result": "clean Edge3PASS42.9s",
+      "evidence": ".data/research/lawbot-2026-10-14/iteration022/visual-detection-edge-node24.log",
+      "covers": "actual offline colorstamp/BWcandidate/signaturemodel; pendingconfirmation/exportpixel, project-authored fixed images"
+    },
+    {
+      "suite": "tests/e2e/page-redaction.spec.ts",
+      "result": "clean Edge2PASS39.5s",
+      "evidence": ".data/research/lawbot-2026-10-14/iteration022/page-redaction-edge-node24.log",
+      "covers": "repeat-region/deleteundo/PDFdownload verified by real PDFium childprocess count1/metaempty/textempty; DOCXembeddedJPEG OCR and originalresource removal"
+    }
+  ],
+  "runtime": {
+    "node": "/Users/admin/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "version": "24.19.0",
+    "nativePlaywrightBoundary": "Importing sharp in Playwright IPC worker reproduced teardown hang even on Node24. The completed attempt was preserved with stack sample, not called a clean pass. Tests now use committed own-generated fixtures and browser canvas; PDFium verification runs in an ordinary Node subprocess. No force-exit added.",
+    "sample": ".data/research/lawbot-2026-10-14/iteration022/image-search-sharp-worker-sample.txt"
+  },
+  "screenshots": [
+    ".data/research/lawbot-2026-10-14/iteration022/image-search-results-review.png",
+    ".data/research/lawbot-2026-10-14/iteration022/image-search-preview-review.png",
+    ".data/research/lawbot-2026-10-14/iteration022/image-search-verified-download.png"
+  ],
+  "fixtures": [
+    {
+      "path": "tests/fixtures/visual-seal-synthetic.png",
+      "sha256": "89b75039c12ad94554c7e80b79c7c3cb1f58f89cffce09c334bde67cf073abc7",
+      "provenance": "Project-authored synthetic SVG/raster/PDF content; no third-party customer image."
+    },
+    {
+      "path": "tests/fixtures/visual-monochrome-synthetic.png",
+      "sha256": "377daed42394dcf4b80345b657c3d19a5511e2e6c4895e006d50f9a5aa6ed831",
+      "provenance": "Project-authored synthetic SVG/raster/PDF content; no third-party customer image."
+    },
+    {
+      "path": "tests/fixtures/visual-signature-synthetic.png",
+      "sha256": "e1288a34ba99f75488827126009de641c0f27c8e3f5523cdedcd40527d55e494",
+      "provenance": "Project-authored synthetic SVG/raster/PDF content; no third-party customer image."
+    },
+    {
+      "path": "tests/fixtures/office-image-public-synthetic.jpg",
+      "sha256": "2976f01ba7330a422ff1cb22f1b87b550b980c64ea6186e904c6bdb7fda87273",
+      "provenance": "Project-authored synthetic SVG/raster/PDF content; no third-party customer image."
+    }
+  ],
+  "code": [
+    {
+      "path": "packages/core/visual-replacement.ts",
+      "sha256": "e5df8e46cf609977085b8b39372baeac6bb5ebc6cf9754fdd140e7b158fc2d2d"
+    },
+    {
+      "path": "packages/adapters/visual-replacement.ts",
+      "sha256": "562fe98d63aaca6f4a6dfb8d8862ae81fddfa1e4579279b5a79ec57ac6458a6f"
+    },
+    {
+      "path": "packages/adapters/profile-export.ts",
+      "sha256": "79c6ac3ea151cd7149927c5d3e50ddc3c44278ee7c372655264bd6d77618530a"
+    },
+    {
+      "path": "packages/core/profile-recognition.ts",
+      "sha256": "b0c5cd49a9b9cde0e170014c2123a34c0c4eff858d60bf55025cd17cb4743be5"
+    },
+    {
+      "path": "packages/core/replacement-policies.ts",
+      "sha256": "b4550ddd695a9cdb7f58b4cfd9386aecdc11c331cda26dd589700c5963a1bf2a"
+    },
+    {
+      "path": "packages/contracts/index.ts",
+      "sha256": "bf55a107da9f270f6e2d6a3c50283bfc4e4290e5573aced07cadba76dfeb8ce1"
+    },
+    {
+      "path": "tests/manual-clear-override.test.ts",
+      "sha256": "cf50b1acaf5baf87499658776a997142abd9601a5270fe9696160d250bc4b339"
+    },
+    {
+      "path": "tests/manual-clear-override.integration.ts",
+      "sha256": "3971baa6e81bee2616980922ae648e91bcd3a9514f0ebb85fed0406eab624bb0"
+    },
+    {
+      "path": "tests/e2e/image-batch-search.spec.ts",
+      "sha256": "84378ba53cd1b730017440c69fb295f89122b50af9de3b17cd7e3d4d72ee4d1f"
+    },
+    {
+      "path": "tests/e2e/page-redaction.spec.ts",
+      "sha256": "25c3facfbdfd7e7ecb969a1d0f31f8724e24467ff65148c3d5b290d5f50b8c79"
+    },
+    {
+      "path": "tests/e2e/visual-detection.spec.ts",
+      "sha256": "7cd0e06b9e23fe8f141169c2f5e5b610251724bfe652cbee3c72c14521870338"
+    }
+  ],
+  "boundaries": [
+    "Exact PDF pixel comparisons reopen at the same resolution as the embedded raster, avoiding a false failure due to downsampling ellipse boundaries.",
+    "No raw private data or unlicensed product execution.",
+    "Synthetic UI positives do not establish real-world detection accuracy; signature gold-set FP/FN remain in the independent model report.",
+    "Legacy projects without a profile snapshot remain distinguishable from new UI projects applying the default profile; tests explicitly apply default presets for computed marker checks."
+  ],
+  "typecheck": {
+    "result": "PASS Node24.19.0 tsc --noEmit",
+    "evidence": ".data/research/lawbot-2026-10-14/iteration022/visual-final-typecheck.log"
+  },
+  "followup": "CUSTOM-WHITESPACE-RASTER-EMPTY-TEXT separately fixed and covered by custom-raster-values-porting-20261014.json"
+}

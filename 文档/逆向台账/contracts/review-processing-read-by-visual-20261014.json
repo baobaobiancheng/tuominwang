@@ -1,0 +1,38 @@
+{
+  "reviewer": "complete_visual",
+  "mode": "read-only defect-first",
+  "findings": [],
+  "checks": [
+    "Structured errorcode/status preserved; onlyPROCESSING_BUSY retries, sixreads/2.5secwaitsum.",
+    "Permission/version/sourcehash failure never retried.",
+    "Abortchecks before/afterinflight, waittimer cleared,cleanup boundtoeffect identity/generation.",
+    "Revision/hash/package/CSP/originalpermission andbackendsemaphore remain unchanged.",
+    "Manualretry survives exhaustedautomatic retries; root ownsactualEdgebusy→APIrelease test."
+  ],
+  "independentUnits": {
+    "result": "4PASS",
+    "log": ".data/research/lawbot-2026-10-14/iteration022/processing-read-independent-unit.log"
+  },
+  "files": [
+    {
+      "path": "apps/web/processing-read-retry.ts",
+      "sha256": "70b279bb11c8b11644b2ae811a3b392b40012a9b29944673a59ce5dd5405e137"
+    },
+    {
+      "path": "apps/web/docx-review.tsx",
+      "sha256": "8e8b13f62409b721e8abf212a081c79588ebb3e972628244a8377d42de488543"
+    },
+    {
+      "path": "apps/web/docx-paginated-review.tsx",
+      "sha256": "ddd9c8ed67c4f189d31e95888379d98a329a926feedbe4ce045629cf4063158f"
+    },
+    {
+      "path": "apps/web/main.tsx",
+      "sha256": "47234fb9c5cc7c1c769d119f0634cec0775777174e35b0181827b75ae2e0e5f1"
+    },
+    {
+      "path": "tests/processing-read-retry.test.ts",
+      "sha256": "66eb7c1922a1cdf444d56e1126dce047288dd48ba418cdee8ccdcd6a49a0a508"
+    }
+  ]
+}

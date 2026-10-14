@@ -1,0 +1,21 @@
+{
+  "event": "Evaluation process made no row progress for about4minutes with zero observed CPU; exact pending decoder/inference/I/O phase not instrumented, root cause unproven. Only evaluation process restarted; production unchanged.",
+  "completedRowsBeforeRestart": 3801,
+  "preservedRawSha256": "ff6511b98602ad69862d88532e9a36bae6c0188f6b0eb944620be4f37e59477c",
+  "resumeMode": "Original runId guard verifies evaluator/face semantics/model/annotations, appends only IDs not already present",
+  "time": "2026-10-14T14:45:00.000966+00:00",
+  "oldPid": 18134,
+  "oldLastCompletedImageId": "a828fe14000a7fbc",
+  "exactPendingImageId": "not observed: original frozen evaluator logged only completed rows",
+  "pendingPhase": "unknown; no inference-vs-Sharp-vs-fileIO root-cause assertion",
+  "node": "v26.6.0",
+  "afterSIGTERMObservation": {
+    "oldPidResidualRSSKiB": 33344,
+    "note": "Observed after termination request, not a memory reading at the original wait. Residual process then forcibly ended to guarantee single writer."
+  },
+  "resumedPid": 54252,
+  "resumedObservedRSSKiB": 251296,
+  "firstCompletedAfterResume": "982dc7ae6449ef6d",
+  "preserved3801PrefixExact": true,
+  "resumedProgressObserved": 4413
+}

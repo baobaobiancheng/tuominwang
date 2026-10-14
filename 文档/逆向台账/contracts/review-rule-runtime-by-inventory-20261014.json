@@ -1,0 +1,90 @@
+{
+  "id": "REVIEW-RULE-RUNTIME-BY-INVENTORY-20261014",
+  "reviewer": "independent inventory/evaluation agent",
+  "mode": "read-only source callsite and current matrix review",
+  "scope": {
+    "basic": 41,
+    "amountFamilies": 12,
+    "amountRegex": 17,
+    "scenarioFamilies": 35,
+    "yaml": 108
+  },
+  "options": [
+    {
+      "id": "OPT-ocr",
+      "status": "metadata-only-by-design",
+      "source": "main.js:yt/Ue/ze",
+      "runtime": "worker pages.length>0; OCR correction true forwarded but never read by reference detector",
+      "reason": "Source OCR-tolerant email/digits branches run on all inputs; gating them on this flag would incorrectly reduce coverage",
+      "test": "same OCR-email/phone candidate fixtures without options"
+    },
+    {
+      "id": "OPT-screenshot",
+      "status": "active",
+      "source": "main.js:1118-1173 receipt + source screenshot pipeline",
+      "runtime": "image initial detect flag or explicit screenshot route → receipt precondition",
+      "remaining": "Initial image and OCR correction both pass screenshot; adapter runtime receipt regression passed"
+    },
+    {
+      "id": "OPT-documentType",
+      "status": "active",
+      "source": "main.js:Qe and OfficialDocumentStrategy",
+      "runtime": "full classification by filename/text passed per anchor; official_letter enables official regex families; explicit configured route reruns independent rules",
+      "notes": "Other classified types share pure baseline/form/amount code; classification output is not evidence of distinct algorithm equivalence"
+    },
+    {
+      "id": "OPT-filename",
+      "status": "active",
+      "source": "main.js:475-509",
+      "runtime": "worker source_name unseal + OCR correction filename → classifyReferenceDocumentDetail (40 score patterns/120 golden cases)"
+    },
+    {
+      "id": "OPT-windowOffset",
+      "status": "active",
+      "source": "source contexts metadata windowOffset",
+      "runtime": "detectComplete per canonical anchor start → all candidate positions add exactly one offset"
+    }
+  ],
+  "checkedConsumers": [
+    {
+      "file": "packages/core/recognition-pipeline.ts",
+      "sha256": "97f4793a6254b4ac9bcfaa64b3dc65423a993364eb99eff7e0e807b5a3ebc4cb"
+    },
+    {
+      "file": "packages/core/reference-rules.ts",
+      "sha256": "d48e976f8722958baf3b98c149051df3158509e365e886e22af3893eba37c6c9"
+    },
+    {
+      "file": "packages/core/document-route.ts",
+      "sha256": "79c6bedaaa019addeeabcd640087ea2c0855c7d52f54aa440f7f6c380466cbd6"
+    },
+    {
+      "file": "packages/adapters/processing-worker.ts",
+      "sha256": "e134f7fc5a1d68740e2de6a4db5cee38e0cbd0fbcb119e8973ffd1ce895c491e"
+    },
+    {
+      "file": "packages/adapters/ocr-correction.ts",
+      "sha256": "0b7ce8065a13525d62350effe0f160a7372a47b21aafa53f94aaebbb0778dcfc"
+    },
+    {
+      "file": "packages/adapters/reference-spatial.ts",
+      "sha256": "42e8ce4ac75c55c0d406f23c855f050b6a6d0d405cc6097b5643341dde6cc386"
+    }
+  ],
+  "findings": [],
+  "verified": [
+    "detectComplete classifies whole material with filename once; each canonical anchor calls full reference detector with exactly one windowOffset",
+    "all17 amountSpecs independent of source enable flags; uses normalized exclusions and branch overlap code",
+    "screenshot forwarded initial image and OCR correction; explicit screenshot documentRoute passes same flag",
+    "ocr source flag intentionally metadata-only; tolerant regex branches not falsely disabled when noOCR",
+    "official type actually switches official families; other35classified scenarios cannot be counted as35independentalgorithmvariants",
+    "54nonLitigation getter has no source caller; data retained, not declareddefaultactive",
+    "strictName uses root spatial adapter after both initial detection and correction rather than blanket NERnamefilter",
+    "legacy orgmask explicitAPI, default Nt modern masks retained; 527 saved patterns not 527 active detectors"
+  ],
+  "limits": [
+    "no new source licensed execution, R0 remains",
+    "A source oracle unit results inspected as evidence; review not reexecuting92tests",
+    "real semanticaccuracy limited UNER500/CrossNER2506 candidate gold, no all-rule visual/business gold"
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "date": "2026-10-14",
+  "reviewer": "complete_visual",
+  "readOnly": true,
+  "files": [
+    {
+      "path": "packages/contracts/feedback.ts",
+      "sha256": "7d7825621a3dac66bc814cca05454e890cb40cc424e5d84604da6158f1733ece"
+    },
+    {
+      "path": "packages/core/feedback.ts",
+      "sha256": "3a3674e4afe42725ac7cec4114528733d66bf37cc966d870fe4b893315e9f8dc"
+    },
+    {
+      "path": "packages/adapters/feedback-store.ts",
+      "sha256": "a0f230c28cf5c5a804c22c49261187ba014779539c0625e8e057ac96fe40b381"
+    },
+    {
+      "path": "apps/api/feedback.ts",
+      "sha256": "e1fcb69a1e6adf5826b78ffdd88e722cd80aa3a43a5062c836cab852b866c51b"
+    },
+    {
+      "path": "apps/web/feedback.tsx",
+      "sha256": "1e138fdef2343e5e9724032ac33992a2ee45193d65bf6238e346ca533e5482cc"
+    },
+    {
+      "path": "scripts/017.sql",
+      "sha256": "316730e412109cae46e39a424f7c9f0639bc9e0ae0a135d08a1a9bc2a935bd05"
+    },
+    {
+      "path": "packages/core/user-memory-rules.ts",
+      "sha256": "1a98ae5edfe336afbc039bc50616a7f778e49a2bf30df471c23e420d6cd294a9"
+    },
+    {
+      "path": "packages/core/support.ts",
+      "sha256": "fa07fe460d8fe46060fe9d788aa469aa2abfa95b38f38c28e068c54ad1d84aef"
+    },
+    {
+      "path": "apps/api/support.ts",
+      "sha256": "efa467879ada48e1fe6f70d0205506448e1b80e17f737a175f9509c2e2e795e1"
+    },
+    {
+      "path": "apps/web/support.tsx",
+      "sha256": "37eb7b7dbceb369f6a8ba335d45101deeefd4d9537b192f43dec047a05dcdc4f"
+    },
+    {
+      "path": "scripts/020.sql",
+      "sha256": "a46b29df94913a464055d1202c4ab2c724ed51464c64365b7856a11ac20a369a"
+    }
+  ],
+  "openFindings": [],
+  "closedFindings": [
+    {
+      "priority": "P2",
+      "title": "Count the actual date-filtered audit report records",
+      "location": "packages/core/feedback.ts feedbackExport audit-report",
+      "reproduction": "One synthetic feedback before future startDate: report FP0/no records but prior recordCount1 and API audit export1.",
+      "fix": "Shared selectedAuditRecords applies timeRange and1000 limit to both content/statistics and result.recordCount.",
+      "independentResult": {
+        "reportedCount": 0,
+        "hasZeroFalsePositives": true,
+        "hasSyntheticRecord": false,
+        "closed": true
+      }
+    }
+  ],
+  "tests": {
+    "log": ".data/research/lawbot-2026-10-14/iteration022/visual-crossreview-feedback-support.log",
+    "files": 3,
+    "passed": 11
+  },
+  "pathsChecked": [
+    "owner/tenant RLS, AAD and project-revocation filtering of document feedback",
+    "document revision/hash/exact span binding and CAS",
+    "migration into inactive selected ruleset, no implicit model training/activation",
+    "CSV formula escaping/Markdown literal rendering",
+    "support fixed-event logging drops body/stack/URL/private text; per-user download; immutable synthetic own DOCX; three fixed-name legal drafts",
+    "source-sensitive unknown entity types migration explicitly unsupported rather than silently dropped"
+  ],
+  "limits": [
+    "No actual native competitor licensed processing was run.",
+    "Browser root mounting of these independently audited components remains its own acceptance gate."
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "id": "LEGAL-DOCUMENT-PASSWORD-UNLOCK-20261014",
+  "referenceRuntime": "R0",
+  "implemented": false,
+  "source": {
+    "handler": "desensitization:unlock-source",
+    "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+    "sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+    "lines": [
+      17008,
+      17051
+    ],
+    "parameters": [
+      "sourceRef.id: nonempty source registry ID",
+      "password: nonempty string max4096"
+    ],
+    "formats": [
+      "docx",
+      "pdf",
+      "doc",
+      "wps"
+    ],
+    "branches": {
+      "docx": "officecrypto-tool decrypt(buffer,{password}) then PK signature + byte cap",
+      "pdf": "lp(managedPath,password) -> unlock_protected_pdf.py; PyMuPDF authenticate then bytes with encryption disabled; password stdin",
+      "doc/wps": "officecrypto-tool decrypt -> OLE signature -> authorized legacyOffice conversion toDOCX"
+    },
+    "success": "new managed sourceRef of decrypted bytes, preserve legacy metadata, release old temporary source registry reference",
+    "errors": [
+      "DOCUMENT_PASSWORD_INVALID",
+      "DOCUMENT_UNLOCK_FAILED",
+      "DOCUMENT_ENCRYPTION_UNSUPPORTED"
+    ]
+  },
+  "current": {
+    "pdfReader": "packages/core/pdf-reader.ts FPDF_LoadMemDocument(...,empty password) -> ENCRYPTED_PDF on code4",
+    "passwordUi": false,
+    "documentUnlockApi": false,
+    "originalCiphertextMustRemain": true
+  },
+  "officialSources": [
+    {
+      "url": "https://pdfium.googlesource.com/pdfium/+/refs/heads/main/public/fpdfview.h",
+      "proof": "FPDF_LoadMemDocument accepts password; wrong/required4 unsupportedsecurity5; source buffer must remain alive"
+    },
+    {
+      "url": "https://pdfium.googlesource.com/pdfium/+/refs/heads/main/public/fpdf_save.h",
+      "proof": "FPDF_SaveAsCopy accepts bounded custom writer and REMOVE_SECURITY; installedversion must check bit/deprecated3 flags before implementation"
+    },
+    {
+      "url": "https://msoffcrypto-tool.readthedocs.io/en/latest/",
+      "proof": "OOXML password load_key + verification then in-memory decrypt; format support/encryption modes explicit, WPS nonstandard not guaranteed"
+    },
+    {
+      "url": "https://pypdf.readthedocs.io/en/latest/user/encryption-decryption.html",
+      "proof": "Known-password decrypt before writing; AES requires installed crypto dependency"
+    }
+  ],
+  "installedCapability": {
+    "package": "@embedpdf/pdfium2.15.1",
+    "typeDeclarations": "FPDF_LoadMemDocument [number,number,string], FPDF_SaveAsCopy [number,number,number] present",
+    "status": "symbol/type verified; no encrypted-fixture actual decryption tested yet",
+    "reuse": "use existing pinned PDFium; not copied competitor PyMuPDF runtime/license"
+  },
+  "nextImplementation": {
+    "api": "POST /documents/:id/unlock {revision,password}; view_original+review; project/document lock; no active jobs; tenant RLS",
+    "storage": "immutable ciphertext sourceId/sourceHash retained; new encrypted-at-rest derivedSourceId/derivedSourceHash plus parentCipherHash; no password persisted",
+    "processing": "worker detect uses verified derived bytes; anchor/coverage/glyphsource binding derived hash; export binds both original ciphertext parent and derived source; no old snapshot reused",
+    "compatibility": "existing unencrypted docs and issued links unchanged; previous failed encrypted source can be unlocked with CAS, newrevision clears currentreview; original downloadable ciphertext remains original",
+    "password": "Request memory; root chosen encrypted-at-rest private unlock_secret includes knownpassword/sourceHash/expectedPlainHash for worker/authorized source rereads. Never API response,URL,argv,logs,env or chat. No guessing.",
+    "verification": [
+      "synthetic encrypted PDF correct/wrong/empty/nonASCII passwords -> originalhash unchanged",
+      "decrypted output password-free reload, page/text count match and bounded decode",
+      "encrypted OOXML correct/wrong/unsupported Agile/Standard/RCCrypto modes and ZIP/coverage validate",
+      "real API sourceupload/unlock/recognize/review/export/residual/cross-tenant/revocation/CAS",
+      "portable export/import derived-parent linkage preserving encryptedoriginal",
+      "DOC/WPS support honest parser/converter dependence; unsupported modes fail explicitly"
+    ]
+  },
+  "remaining": [
+    "Independent PDF helper real fixtures verified; user-facing API/worker/portable two-hash chain still root integration pending",
+    "licensed competitor execution unavailable, user-known-password behavior can implement independently",
+    "nonstandard WPS/legacyOffice converters require own compatible engine and permissive dependency license"
+  ],
+  "pdfHelper": {
+    "implemented": true,
+    "source": "packages/core/document-unlock.ts",
+    "sha256": "e98d93a494866d812e85d341d95f0363227b5c0cb9e3aa19d1a122881f39de9e",
+    "interface": "unlockPdfDocument(original,password) -> {bytes,sourceHash,derivedHash,pages,format:pdf}",
+    "actualTests": "tests/document-unlock.test.ts; .data/evals/document-unlock-test-20261014.log;3 pass",
+    "fixtures": [
+      {
+        "path": "tests/fixtures/document-unlock/rc4.pdf",
+        "sha256": "07fe54a6936afae2640820a33fab8c81038bebd1f6fd1deb2cc33c9fb0cf8f10",
+        "origin": "own public synthetic two-page PDF; no private material"
+      },
+      {
+        "path": "tests/fixtures/document-unlock/aes256.pdf",
+        "sha256": "af0947cc23745ab78641be0a3e03dcde8358c4e15b50e5bbd28fec13168d398e",
+        "origin": "own public synthetic two-page PDF; no private material"
+      }
+    ],
+    "verification": "RC4-128/AES-256 Unicode password; wrongpasswordcanonicalfailure; original immutable; reloadwithoutpassword; everypagegeometry/rotation/text +attachment/scriptcount equality",
+    "apiComplete": false,
+    "originalPixelsCompared": false
+  },
+  "current_design": {
+    "passwordPersistence": "none",
+    "original": "immutable ciphertext id/hash",
+    "derived": "separate encrypted-at-rest immutable plaintext object",
+    "binding": "016 unlocked_source_id/hash and unlock_source_hash bind original cipher hash",
+    "subsequentRead": "verify original and derived SHA, no repeated password decryption",
+    "integrationEvidence": "root reports real API PDF/DOCX/XLSX unlock+source guard+export passed; separate from pure PDF helper tests"
+  }
+}

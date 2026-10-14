@@ -1,0 +1,188 @@
+{
+  "id": "REVIEW-ITER022-PRESETS-WORKER-BY-RULES",
+  "reviewer": "complete_rules",
+  "base": "87a5808",
+  "skill": "review-agent read-only",
+  "findings": [],
+  "fixedFindings": [
+    {
+      "id": "PRESET-RULE-TYPE-ALIASES",
+      "priority": "P2",
+      "status": "fixed and reverified",
+      "detail": "ruleKey now resolves name_cn/姓名 to the same actual kind; a contrary promotion yields conflicts rather than accepted, preserving both decisions for user handling."
+    },
+    {
+      "id": "PRESET-DUPLICATE-NAME-LIMIT",
+      "priority": "P2",
+      "status": "fixed and reverified",
+      "detail": "200 UTF16 legal source names now reserve suffix budget without splitting surrogate pairs; profileSchema/checkedRuleset parse before INSERT. Reverified 200 Chinese characters and 100 emoji."
+    },
+    {
+      "priority": "P2",
+      "id": "WORKER-ALIAS-PROJECT-LOCK",
+      "file": "apps/worker/main.ts",
+      "line": 76,
+      "title": "Serialize automatic mapping creation with an exclusive project lock",
+      "scenario": "After heavy-slot release, two worker publication transactions can both hold project FOR SHARE and resolve new aliases using the same observed max ordinal. The second INSERT fails the project/ordinal uniqueness constraint and rolls back an otherwise valid detection.",
+      "verification": "Same real resolvePolicyMappings with two competing project FOR UPDATE transactions produced 姓名_000001 and 姓名_000002, count 2, no SQLSTATE23505; temporary isolated database dropped.",
+      "repair": "Acquire project FOR UPDATE before document lock, preserving project-to-document ordering.",
+      "status": "fixed and independently reverified"
+    },
+    {
+      "priority": "P2",
+      "id": "PROFILE-TYPE-ACTIONS-MODE",
+      "file": "packages/core/profile-recognition.ts",
+      "line": 17,
+      "title": "Limit selective type actions to the source mixed-pseudonym mode",
+      "scenario": "A full-star profile carrying a prior name pseudonym action currently asks for aliases, overriding the chosen full-star mode. Selective mode currently masks unspecified types, whereas source defaults unspecified types to pseudonym.",
+      "verification": "full_star/default_star/custom_pseudonym ignore historical types; selective defaults alias, text mask full, PDF mask clear; explicit visual full_star remains full",
+      "repair": "Gate source type actions on selective_pseudonym; unspecified selective kinds use alias. Preserve explicit visual full_star configuration outside the profile selector.",
+      "status": "fixed and pure-function reverified"
+    },
+    {
+      "priority": "P1",
+      "id": "MCP-MASK-EMPTY-MAPPING",
+      "file": "apps/api/mcp.ts",
+      "line": 91,
+      "title": "Bind mapping collection to actual alias marks, not all bracketed text",
+      "scenario": "Empty mappings are now permitted, but every bracketed string in delivery is treated as an alias. A legal type replacement emits 【姓名】, or public source contains 【重要】. Neither has an entity_mappings record and release still throws DELIVERED_MAPPING_MISSING.",
+      "verification": "pnpm exec tsx tests/run-isolated.ts integration tests/mcp.integration.ts passed 1 full-chain test in 20.734 seconds; explicit type placeholder, public 【重要】, md-only TXT combined batches and noRestore revoked mapping permission cases all passed",
+      "repair": "Derive alias references from verified saved mark replacements; intersect actual delivered occurrences, and allow non-alias labels. Private originals are needed only for an authorized restoration path.",
+      "status": "fixed and independently reverified in actual isolated MCP integration"
+    },
+    {
+      "priority": "P2",
+      "id": "MCP-OUTPUT-FORMAT-DEFAULT",
+      "file": "apps/api/mcp.ts",
+      "line": 84,
+      "title": "Actually deliver Markdown-only output from TXT/Markdown input",
+      "scenario": "Default-format deduplication and TXT md allowance are fixed. However md-only formats skip primary txt/md output because primary is selected only when original is wanted, and the profile exporter does not generate a markdown sidecar for txt/md. REQUESTED_MARKDOWN_NOT_EXPORTED blocks a valid requested output.",
+      "verification": "pnpm exec tsx tests/run-isolated.ts integration tests/mcp.integration.ts passed 1 full-chain test in 20.734 seconds; explicit type placeholder, public 【重要】, md-only TXT combined batches and noRestore revoked mapping permission cases all passed",
+      "repair": "Deliver existing verified textual primary for an md request, or generate and verify a genuine markdown role.",
+      "status": "fixed and independently reverified in actual isolated MCP integration"
+    },
+    {
+      "priority": "P2",
+      "id": "MCP-SANITIZED-MAPPING-PERMISSION",
+      "file": "apps/api/mcp.ts",
+      "line": 92,
+      "title": "Do not require private mapping access for sanitized-only delivery",
+      "scenario": "After an alias artifact has been verified, revoke view_mapping while keeping view_original/review/export and set allowRestorePath=false. Regular verified download remains permitted; MCP release unconditionally requires view_mapping for any delivered token, blocking a sanitized-only task.",
+      "verification": "pnpm exec tsx tests/run-isolated.ts integration tests/mcp.integration.ts passed 1 full-chain test in 20.734 seconds; explicit type placeholder, public 【重要】, md-only TXT combined batches and noRestore revoked mapping permission cases all passed",
+      "repair": "Keep alias-token validation metadata for sanitized-only tasks without reading original values; collect private mappings only with authorized restoration path and permission.",
+      "status": "fixed and independently reverified in actual isolated MCP integration"
+    },
+    {
+      "id": "MAPPING-EXPORT-LPM-NAME",
+      "priority": "P1",
+      "status": "fixed and actual isolated integration reverified",
+      "detail": "safeExportName now accepts .lpm; actual plain and encrypted LPM exported and re-read for restoration"
+    },
+    {
+      "id": "OCR-SCREENSHOT-CONTEXT",
+      "priority": "P2",
+      "status": "fixed and adapter independently reverified",
+      "detail": "correctOcrText passes initial same image screenshot flag; timestamp receipt case without 微信号 produces receipt candidates after edit"
+    },
+    {
+      "id": "OCR-PROFILE-AFTER-CORRECTION",
+      "priority": "P2",
+      "status": "static route fixed; composition test passed; new actual API automatic policy regression remains root-owned",
+      "detail": "apps/api/ocr.ts now resolves current profile under project→document exclusive locks, applies default/type replacement policies and permission-checked aliases, then finalizes source official-name/image-clear branches. Our adapter+pure composition test verifies default_star and pending; it does not claim automatic API policy application proof."
+    }
+  ],
+  "verification": {
+    "command": "pnpm exec vitest run tests/presets.test.ts tests/profile-export.test.ts tests/replacement-policies.test.ts tests/mcp-tools.test.ts",
+    "files": 4,
+    "testsPassed": 25,
+    "durationSeconds": 0.767,
+    "typecheck": "pnpm exec tsc --noEmit passed",
+    "liveBrowserRun": false,
+    "concurrentProof": "/tmp/tuomin-policy-race-review.mts, isolated transient database, SQLSTATE23505 confirmed",
+    "concurrentFixedProof": "/tmp/tuomin-policy-race-fixed-review.mts; real isolated PostgreSQL 2 committed immutable mappings, no conflict",
+    "aliasNamespaceProof": {
+      "script": "/tmp/tuomin-alias-namespace-review.mts",
+      "database": "isolated temporary PostgreSQL; dropped after test",
+      "sharedAcrossDocuments": true,
+      "independentPerDocument": true,
+      "sameDocumentReuses": true,
+      "changedPrefixCreatesNewReference": true,
+      "tokens": [
+        "【姓名_000001】",
+        "【甲方_000002】",
+        "【甲方_000003】",
+        "【乙方_000004】"
+      ],
+      "decisionsUnchanged": [
+        "pending",
+        "ignore"
+      ],
+      "unresolvedAliasRequests": 0
+    },
+    "lastRepeat": "Same 4 files / 25 tests passed in 1.75s after profile-mode repair",
+    "latestMcpRegression": {
+      "command": "pnpm exec tsx tests/run-isolated.ts integration tests/mcp.integration.ts",
+      "passed": 1,
+      "seconds": 20.734,
+      "isolation": "temporary PostgreSQL database and DATA_DIR, both removed by runner"
+    },
+    "latestMappingProfileRegression": {
+      "command": "pnpm exec tsx tests/run-isolated.ts integration tests/replacement-policies.integration.ts",
+      "passed": 3,
+      "seconds": 27.28,
+      "coverage": "actual plain/encrypted LPM restoration roundtrip, XLSX parsed values, auth and stale revision rejection, actual Word verified artifact and Markdown sidecar"
+    }
+  },
+  "checked": [
+    "Personal presets encrypted with user+tenant AAD, FORCE RLS ownership and CAS; project settings copied rather than mutable catalogue pointers",
+    "Policy precedence value > kind > overall; ignored marks and explicit manual replacements retained; alias requests deduplicated and permission-checked; decisions unchanged",
+    "Profile output artifacts regenerated and compared to actual bytes before signing, role validated; Word coverage reparsed after header/footer/media/comments handling",
+    "Markdown sidecars created only from verified redacted Word text or page OCR with every cleared glyph and deleted page removed; no raw original input is used as a sidecar shortcut",
+    "PDF-to-Word uses verified raster images without original text/objects; supports separate role lookup and integrity gate",
+    "Latest root bridge consumes batchMode and initial maskStyle, persists pageReview to document and snapshot",
+    "Read-only independent spatial adapter + canonical page geometry, OCR receipt option and default profile composition verified by new two-unit test"
+  ],
+  "residualRisks": [
+    "Root complete pnpm check, new OCR API automatic profile regression and final Edge deployment acceptance remain separate gates",
+    "Licensed competitor processing chain remains unexecuted; static source oracle and our runtime acceptance do not establish binary interoperability",
+    "Synthetic passing DOCX/PDF sidecars do not prove arbitrary real material OCR accuracy"
+  ],
+  "snapshot": {
+    "packages/core/presets.ts": "e3edb58334f46cbd50e2ad163e25f3a699a8b37390982bd844affda6dc238473",
+    "packages/contracts/presets.ts": "49791e53a0e363d17ef0fb5a213379bb227f33d941ef881f236ed4e529828d3f",
+    "packages/core/profile-recognition.ts": "f214d4e6e70ebc8643a88d13c9ea8ca329b2074a81f6d7dccd4e4656380da62a",
+    "packages/adapters/profile-export.ts": "30390ea3e2f4aaeecbe87e8293dbda467d484b8acbc2a0650623b9db524b4fc8",
+    "packages/core/profile-export.ts": "be674dc006e2ab5c1784282c3dec2abf8114aba93e796020808cd25b3c5a2790",
+    "apps/api/presets.ts": "2c8af1399842e67151f48906bdf983febcd622a5ebdeb334f86d65d4670899fe",
+    "apps/web/presets.tsx": "e9801b5a23ec1988cedbaefb3765d7ff97c5763784f40f9ddccc70597154b9fa",
+    "packages/core/replacement-policies.ts": "4a0a7b65ca3589c05f8d885b9e317f93e491d23feec6d5a2847cf1827f72716b",
+    "packages/contracts/policies.ts": "c5a57ba08f0d80022d1ac374c2fd013f2914e96978c7b640cad350831a0498a0",
+    "apps/api/replacement-policies.ts": "f0b016aee08494b147e53b7d775c6a616c2ec2717badfedee6759499348146c7",
+    "apps/api/mappings.ts": "e76e3687af65334dd0200f9f7898a72c87fc38dd9680a9ae38f6e54a2bf01042",
+    "packages/adapters/processing-worker.ts": "e134f7fc5a1d68740e2de6a4db5cee38e0cbd0fbcb119e8973ffd1ce895c491e",
+    "apps/worker/main.ts": "bbc64123c408abc05d81f2c48f9fe2a2177c4ba8caee3d029592eb9b5d174df1",
+    "apps/api/main.ts": "982609dbd19e5b726f1e35378550a6769e25c7f9af3bd6c1febff51fb339a5d4",
+    "packages/adapters/document-policy.ts": "6de394b57633d5d5c2e4165dfe81f0d8272ad68a0af27648b6368fbc72bee9b8",
+    "apps/api/mcp.ts": "75527ed9f038ef6fdc35bcfca40062ade46cb476072dcd913b1e3e5f345af29e",
+    "apps/api/document-policy.ts": "ec61d319b23377fda24eebf0588a3b2315298e31853c31d122fa19f3c0da862e",
+    "packages/contracts/document-policy.ts": "174ce1aeb275803fbe12f87fe1f03d6a4bd219aa5a80fe4e991973f4e2c78811",
+    "apps/api/ocr.ts": "dd4295bf482f0450718c16522626da50aa2f6aeb6f1ba77e90b738d03594e7f4",
+    "packages/adapters/ocr-correction.ts": "1d51c4b22fa9d951b6627b0dad1125cf0cae4617e31e2ccbb0aa0e5455d2639e",
+    "apps/api/mapping-export.ts": "ea558af45c6f5d8ceec16ac139e9e71b41032c2223893fcabdd53722d5851a45",
+    "packages/core/mapping-export.ts": "4f175374d697cb5b632fee92da58f9571d927fb828544dddaed49283c53b5534",
+    "apps/web/mapping-export.tsx": "14b260ce1cd25872406488b101bf4573122b48052a1eaa553591bba4f34bdc1f",
+    "packages/adapters/reference-spatial.ts": "42e8ce4ac75c55c0d406f23c855f050b6a6d0d405cc6097b5643341dde6cc386",
+    "tests/reference-spatial-adapter.test.ts": "beae40a9c1534168e9db8dc9650c1b9ce5e3bcac39d6565d566d780a642d3097"
+  },
+  "sourceModeEvidence": {
+    "file": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+    "ranges": [
+      "5318-5331",
+      "7130-7133",
+      "7443",
+      "8943-8948"
+    ],
+    "sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+    "licensedUpstreamRuntime": "not run"
+  }
+}

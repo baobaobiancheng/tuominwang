@@ -1,0 +1,41 @@
+{
+  "reviewer": "complete_visual",
+  "date": "2026-10-14",
+  "method": "read-only defect-first cross-review",
+  "scope": [
+    "packages/core/processing-events.ts",
+    "packages/adapters/processing-events.ts",
+    "packages/adapters/processing-resources.ts",
+    "apps/api/processing-events.ts",
+    "apps/api/processing-resources.ts",
+    "scripts/022.sql"
+  ],
+  "hashes": {
+    "packages/core/processing-events.ts": "e68ca97539be8431daa454f833e2ad91e725468f0272ed43ba24cf9ae0655c1d",
+    "packages/adapters/processing-events.ts": "4002aa6650d661342ed57ff5731a397268fba154b8c53ec43fbc8fcdd2b3e99d",
+    "packages/adapters/processing-resources.ts": "7d054cf03e91a54514ec5e25d90dabcc2464c2c84e634d69a2ec8e41f194d95d",
+    "apps/api/processing-events.ts": "a023405d3b17a64e34b54f33549e78ce127cd70bc1c3feb8786b7c292a5cd520",
+    "apps/api/processing-resources.ts": "52528280d1f4289b33a6116fc5c57cfbe8fe17ae77eac8bcbf5c8a43cca4d458",
+    "scripts/022.sql": "c00416c1b269d270a41205c6c519815cbc30d00d3aedff26f74ac92766be7898"
+  },
+  "qualifiedFindings": [],
+  "checked": [
+    "owner + tenant + view_original/project scopes",
+    "source lease session binding and output export permissions",
+    "current revision/source/content and job generation guards",
+    "encrypted payload, stable AAD and plaintext hash checks",
+    "resource UUID paths; no imported path or network fetching",
+    "release/cleanup only disposable copied objects, never immutable originals or final artifacts",
+    "one-time successful output cleanup within 15 minutes; preserveOnCancel disallows cleanup",
+    "worker message events serialized before final publication; stale event and replay conflict rejection"
+  ],
+  "independentTests": {
+    "command": "pnpm exec vitest run tests/processing-events.test.ts tests/restoration-files.test.ts",
+    "result": "12 passed; processing-events 2 + restoration 10",
+    "log": ".data/research/lawbot-2026-10-14/iteration022/review-events-metadata-unit.log"
+  },
+  "limitations": [
+    "Author real DB event and resource tests were inspected; this review did not independently rerun their full DB suite.",
+    "No claim that source runtime behavior was exercised without an official license."
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "date": "2026-10-14",
+  "reviewer": "complete_visual",
+  "mode": "read-only defect-first cross-review",
+  "files": [
+    {
+      "path": "packages/adapters/page-review-storage.ts",
+      "sha256": "ecf0f818a583f9e36c3b2e16cf73dfd55823b87f7ed051ac86db0b9578146966"
+    },
+    {
+      "path": "packages/adapters/page-review-migration.ts",
+      "sha256": "778eb505741d83fc538c94ce3648f10a7be82937fa9fe795c7eac3e98c71cab2"
+    },
+    {
+      "path": "apps/api/reviews.ts",
+      "sha256": "b78cd3e641c00da97af554e7928738ca41cecebe1310114ab41fd2084352eb87"
+    },
+    {
+      "path": "packages/adapters/processing.ts",
+      "sha256": "1909c4e85d2202edbd6498bd52b9ffbf79188e4ba38f11c61f403a5d0b6209ca"
+    },
+    {
+      "path": "apps/api/workspace-portable.ts",
+      "sha256": "1466b9d4c321a3ec71cda9cda0878b4bdf297353649fafc6f25afe62d5a07a4a"
+    },
+    {
+      "path": "apps/api/ocr.ts",
+      "sha256": "e4e3066ae3f03f63adb579228c23bdc4094b733060778cd28759301b5beac2d0"
+    },
+    {
+      "path": "apps/worker/main.ts",
+      "sha256": "77ce2fcc94c119dc45ff78376b40d81eec465321d75696ee3b6ecdc41a9c9bf6"
+    }
+  ],
+  "findings": [
+    {
+      "priority": "P1",
+      "location": "apps/worker/main.ts:91",
+      "reproduction": "real typed ellipse region review succeeds and worker produces artifact, but final lock-held assertExportable passed encrypted privateMetadata into strict PageReview validator, failing COVERAGE_INCOMPLETE",
+      "fix": "root keeps row lock and second export gate, opens both document and snapshot PageReview with their own revision/content context before gate",
+      "status": "independently closed by real three-format ellipse API13.4s"
+    }
+  ],
+  "remainingQualifiedFindings": [],
+  "checks": [
+    "AEAD doc/tenant/project/source/content/region/revision/geometry binding",
+    "plaintext/ciphertext mixed envelope rejected",
+    "opaque metadata never file path or permission input",
+    "migration transaction preserves legacy geometry/revision/approvals; snapshots bind their own content hash",
+    "new saveReview one ciphertext reused in matching doc/snapshot",
+    "OCR content/revision changes rebind rather than copying old AEAD envelope",
+    "portable export opens metadata, import keeps it pending and seals under fresh identity",
+    "worker first validation and final locked publication both decrypt; neither gate removed"
+  ],
+  "independentEvidence": [
+    {
+      "log": ".data/research/lawbot-2026-10-14/iteration022/review-page-review-events-unit.log",
+      "result": "5 units passed:3 page-review-storage +2 processing-events"
+    },
+    {
+      "log": ".data/research/lawbot-2026-10-14/iteration022/circle-redaction-api.log",
+      "result": "realPNG/PDF/DOCX private typed metadata review/read/annotations/export/pixel/sourceimmutability passed13.4s"
+    }
+  ],
+  "limitations": [
+    "Author migration/backfill/old-link/portable real API suite inspected; this review did not independently rerun all of it.",
+    "Frontend clean Edge repeat pending coordinated server window."
+  ]
+}

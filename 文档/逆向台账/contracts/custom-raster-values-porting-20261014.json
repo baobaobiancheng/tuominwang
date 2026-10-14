@@ -1,0 +1,83 @@
+{
+  "updatedAt": "2026-10-14T14:46:36.812855+00:00",
+  "owner": "complete_visual",
+  "finding": {
+    "id": "CUSTOM-WHITESPACE-RASTER-EMPTY-TEXT",
+    "priority": "P2",
+    "before": "Legal custom single-space value passed review and export submission, then Sharp text:no text to render caused PROCESSING_FAILED/queued retry instead of a valid cleared artifact.",
+    "beforeDirect": ".data/research/lawbot-2026-10-14/iteration022/custom-visual-whitespace-probe.json",
+    "beforeAPI": ".data/research/lawbot-2026-10-14/iteration022/custom-visual-api-before.log",
+    "fix": "The visual plan preserves authenticated glyph erasure but skips wholly whitespace/default-ignorable values and wholly invisible fragments after multi-line distribution. Consumed Unicode offsets still advance. No catch/fallback, no original overwritten."
+  },
+  "status": "implemented_unit_actual_API_and_clean_Edge_verified",
+  "checks": [
+    {
+      "kind": "direct actual renderer and Word writer",
+      "result": "Empty/space/whitespace/multiline/special/360-char values succeed; Word values compare exactly. XML SOH/FFFE/FFFF reject OFFICE_XML_VALUE_INVALID; NUL rejects INVALID_REPLACEMENT. No source modification.",
+      "evidence": ".data/research/lawbot-2026-10-14/iteration022/custom-visual-whitespace-after.json"
+    },
+    {
+      "kind": "unit",
+      "result": "3 files12PASS16.35s",
+      "evidence": ".data/research/lawbot-2026-10-14/iteration022/custom-visual-unit.log",
+      "covers": "Whitespace including tab/LF/NBSP/ideographicspace/U200B/ZWJ/wordjoiner; whitespace-only first geometry line; real raster glyph pixels cleared; special escaped text and Word illegal XML negative cases; prior manual override regressions."
+    },
+    {
+      "kind": "actual API/worker",
+      "result": "18 real exports1PASS67.26s",
+      "evidence": ".data/research/lawbot-2026-10-14/iteration022/custom-visual-api.log",
+      "covers": "PNG/PDF/DOCX upload/recognition/review/snapshot/realworker/export/download x empty/single-space/mixed-whitespace/multiline/markupquotes/360-char; blank everyselectedglyphpixelblack, visible replacement has real derived pixels, originals immutable."
+    },
+    {
+      "kind": "typecheck",
+      "result": "PASS Node24.19.0 tsc --noEmit",
+      "evidence": ".data/research/lawbot-2026-10-14/iteration022/visual-final-typecheck.log"
+    },
+    {
+      "kind": "actual Edge UI",
+      "result": "clean1PASS40.4s; automatic process/DB cleanup",
+      "evidence": ".data/research/lawbot-2026-10-14/iteration022/custom-visual-edge-node24.log",
+      "covers": "Textarea exact single-space/empty/361-character two-line special value; real preview200, review save with API exact value, actualexport/download browsercanvas everyselectedglyphpixelblack for empty/space and actualderivedpixels for special; no pageerror/overflow, original unchanged."
+    }
+  ],
+  "code": [
+    {
+      "path": "packages/core/visual-replacement.ts",
+      "sha256": "e5df8e46cf609977085b8b39372baeac6bb5ebc6cf9754fdd140e7b158fc2d2d"
+    },
+    {
+      "path": "tests/custom-visual.test.ts",
+      "sha256": "f345d5fd2642f7a6636cd6de2c900e3b6a23f0b14b6cbc328cfaeae88f9c3174"
+    },
+    {
+      "path": "tests/custom-visual.integration.ts",
+      "sha256": "21ef9da927c833125c8f74eb91d166a8740bac2c6a4bdcd607ad7429fa4e726d"
+    },
+    {
+      "path": "tests/e2e/image-custom.spec.ts",
+      "sha256": "c803b3628381509d3e2f936356ef6d5528ab26244f502b4a35a763b5c609d93e"
+    }
+  ],
+  "boundaries": [
+    "No competitor licensed processing execution; source empty/custom acceptance follows the current source contract documented by root.",
+    "The first dedicated UI used360chars over40explicitlines in a44pixel-high original label. Its genuine VISUAL_TEXT_FIT_FAILED was correct; the fit guard remains intact. Final positive case uses361chars over2explicitlines, without changing product fitting. Failure log custom-visual-edge-too-many-lines.log is preserved.",
+    "A port-ownership startup race before UI execution was auto-cleaned, not counted as product pass/failure. Final accepted UI was started only after explicit root handoff.",
+    "Extremely long/multiline text still must fit the original authenticated drawing bounds; custom-string acceptance does not guarantee unlimited visible raster capacity."
+  ],
+  "screenshots": [
+    ".data/research/lawbot-2026-10-14/iteration022/custom-whitespace-review.png",
+    ".data/research/lawbot-2026-10-14/iteration022/custom-long-special-review.png",
+    ".data/research/lawbot-2026-10-14/iteration022/custom-empty-review.png"
+  ],
+  "downloads": [
+    ".data/research/lawbot-2026-10-14/iteration022/custom-whitespace-verified-download.png",
+    ".data/research/lawbot-2026-10-14/iteration022/custom-long-special-verified-download.png",
+    ".data/research/lawbot-2026-10-14/iteration022/custom-empty-verified-download.png"
+  ],
+  "followupVerification": {
+    "result": "custom2 + restoration12 =14tests PASS2.72s",
+    "log": ".data/research/lawbot-2026-10-14/iteration022/custom-restoration-final-unit.log",
+    "testPerformance": "All selected glyph RGB rows concatenated and compared byte-for-byte against equal-size zero Buffer; no pixels skipped, no timeout extended.",
+    "restorationDomain": "OFFICE_XML_VALUE_INVALID alone translates to RESTORE_XML_VALUE_INVALID at all3restorer serializer calls; other errors propagate unchanged; invalid source XML separately prevalidated."
+  }
+}

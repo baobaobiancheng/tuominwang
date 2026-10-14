@@ -1,0 +1,55 @@
+{
+  "id": "REVIEW-ITER022-VISUAL-BY-RULES",
+  "reviewer": "complete_rules",
+  "base": "87a5808",
+  "skill": "review-agent read-only",
+  "findings": [],
+  "overall": "No findings. Checked complete visual diff and caller path; no actionable introduced defect confirmed. This does not close every product capability or accuracy gate.",
+  "verification": {
+    "command": "pnpm exec vitest run tests/visual-detection.test.ts tests/visual-morphology.test.ts tests/visual-pdf.test.ts",
+    "files": 3,
+    "testsPassed": 14,
+    "liveBrowserRun": false
+  },
+  "checked": [
+    "Model size and hash validation; CPU sessions released; workers terminate on timeout/cancel",
+    "Centered face letterbox decode coordinates",
+    "PDF image native bounds, nested Form transforms, page-to-device rotation and canonical preview scaling",
+    "Monochrome/signature selectors remain explicit pending user candidates",
+    "Image certificate false-positive exclusions wired in current shared worker and recoverable via UI",
+    "No compiler or hidden upstream activation fallback copied"
+  ],
+  "materialGaps": [
+    {
+      "id": "VIS-DOCX-BATCH",
+      "evidence": "main.js:11364-11383; own processing-worker detectVisual only visual-detect",
+      "gap": "Supported Word/media images currently scanned manually per image, not automatic whole-document batch. New phase requested by root."
+    },
+    {
+      "id": "VIS-HOUGH-PYTHON",
+      "evidence": "main.js:8170-8212; visual-full-porting report",
+      "gap": "Non-macOS seal_detector.py source absent in extracted package; independent morphology is not that algorithm."
+    },
+    {
+      "id": "VIS-REAL-ACCURACY",
+      "evidence": "iteration022/visual-evaluation.json",
+      "gap": "Synthetic seal evaluation contains 11 false positives / precision 70.27%; signature synthetic pass is not real-document accuracy."
+    },
+    {
+      "id": "VIS-BROWSER-E2E",
+      "gap": "New black seal/signature scenarios defined but not run by this reviewer; root unified E2E required."
+    }
+  ],
+  "snapshot": {
+    "packages/core/visual-detection.ts": "78c0a37e07c345116581c8cba6c162286487f1cb92ec34c99a796c128606c940",
+    "packages/core/visual-morphology.ts": "0e146b6e745d48202876e97e4977783641c2b742236a7ca0f467b1232e510d36",
+    "packages/core/visual-pdf.ts": "6e724e96cf6739463ab67b772bb42cd9fbc6b89d2f1ef1de263677b9e20b9fe2",
+    "apps/api/visual.ts": "a47c20cc970de79fef00b4c7103c6ee84cfdbd18c60bc6c1fa4b9ff48a940460",
+    "apps/web/visual-suggestions.tsx": "4a82c687ceb37d763cd9f5b66dca01000f8d7e2102264c7e13cf3b1485db5c9e",
+    "packages/adapters/processing-worker.ts": "006ce0205c9636edb1255172e495f432c7a8d8495ec61a69832f774e3425afe3",
+    "tests/visual-detection.test.ts": "572e3eacc0dc545a06879782c51d7ca164915e05d0c29cdc3be5f8ca66dbec2b",
+    "tests/visual-morphology.test.ts": "b4b5cd2805b5115f1c46173866e4d3d046c6cec6fc574943cbf458fcca61f83e",
+    "tests/visual-pdf.test.ts": "fd940950911b98b3ba28a4772f37375984c953292c014777654a189c01b39f48",
+    "tests/e2e/visual-detection.spec.ts": "df32264c7a55f372204be7bf3c08cb28fc7de1f59e9da412c0d291e619cd056d"
+  }
+}

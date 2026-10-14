@@ -1,0 +1,55 @@
+{
+  "id": "REVIEW-WINDOWS-SEAL-BY-RULES-ITER025",
+  "closed": [
+    {
+      "priority": "P2",
+      "id": "OPENCV-EARLY-MAT-LEAK",
+      "evidence": "Independent fault injection cv.cvtColor before fix allocated2/live2; after fix allocated2/live0. All constructor allocations now tracked by enclosing cleanup."
+    },
+    {
+      "priority": "P2",
+      "id": "SOURCE-SEG-FAILURE-HOUGH-BRANCH",
+      "source": "Windows seal_detector.py534-541",
+      "evidence": "Independent cv.morphologyEx failure after fix returns methods[hough],warnings[COLOR_SEGMENTATION_FAILED]. Partial result no longer silently complete at detector/manual API."
+    },
+    {
+      "priority": "P2",
+      "id": "AUTO-VISUAL-WARNING-PERSISTENCE",
+      "path": "packages/adapters/processing-worker.ts:188",
+      "evidence": "Latest root automatic detection stores page/detectors/warnings in recognition.visual, complete is every page warnings empty. Worker publication persists recognition; API DocumentView visualDiagnostics reads it; main renders partial-completion alert. This closure is source-chain inspection; existing detector fault probes remain separate."
+    }
+  ],
+  "open": [],
+  "algorithmReview": [
+    "RGB/BGR conversion equivalent",
+    "HSV red/blue masks exact source gates",
+    "Segmentation morphology/group sizing/ink/ratio/ring-center exclusions",
+    "Hough resized sparse mask/round-even original geometry/radius/density/sectors/gap gates",
+    "NMS crosscolor IoU/samecolor center, comparable-fragment clustering, emblem fill filtering"
+  ],
+  "tests": {
+    "independent": "4files18pass including actualWASM seal6 and newown12",
+    "sourceOracleAuthorEvidence": "26/26 source Python4.10.0.84 vs ownWasm4.10.0 source-only synthetic pure oracle; read evidence, not rerun Python ourselves",
+    "independentFaultProbes": [
+      "/tmp/tuomin-seal-review.mts",
+      "/tmp/tuomin-seal-seg-review.mts"
+    ]
+  },
+  "files": {
+    "packages/core/reference-seal.ts": "e70671036acb127f0f79df19b8f82fc3de30dbe1c87e5d96a6afe37cc2f13b34",
+    "packages/core/opencv-runtime.ts": "7ee92faea1a9d7ab6029fd27caaee5feec226df805238e2091cb7c4851605fc3",
+    "packages/core/visual-detection.ts": "199321eb0528f08243c4b070fd511379c7a9dada13ab1543b6fdf7cf6eb951be",
+    "apps/api/visual.ts": "9ee185c721887458b28a384742f9998775e62006c533f66b6a843bdac6147b67",
+    "tests/reference-seal.test.ts": "d22595ff6e066d777969396948fa39adcb4dcff6711a8536c0a3bc534e5dc185",
+    "scripts/opencv-lock.json": "019659065d13c54ecb143f9892d1c7bbeae8f026f3eb3f6d98f93a699d103909",
+    "packages/adapters/processing-worker.ts": "6293d2219b400117c1d4d906ec898b1fcf199cf5f28556f530235b33a0e18f1f",
+    "apps/api/main.ts": "e0ca6da9bc5f22f922138f0c61ac89029fd35674ec43b971cb4ce9bb9aacb005",
+    "apps/web/main.tsx": "915b1f85503ed5ef67cb5f5daa36f988b5df2f3ab7d7ae5413266e410844ca59"
+  },
+  "licensedRuntime": "R0",
+  "remaining": [
+    "Real document image accuracy remains independent evaluation, no claim from26 synthetic oracle",
+    "Licensed competitor runtime R0"
+  ],
+  "reviewUpdatedAt": "2026-10-14T12:59:13.299604+00:00"
+}

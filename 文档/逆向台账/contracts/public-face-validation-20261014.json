@@ -1,0 +1,424 @@
+{
+  "date": "2026-10-14T14:58:25.516Z",
+  "status": "complete-attempt-with-input-rejection",
+  "referenceRuntime": "R0: competitor licensed processing not executed",
+  "dataset": {
+    "name": "Open Images V7 official validation, Human face /m/0dzct",
+    "source": "https://storage.googleapis.com/openimages/web/download_v7.html",
+    "licenseSource": "https://storage.googleapis.com/openimages/web/factsfigures_v7.html",
+    "mirror": "https://github.com/cvdfoundation/open-images-dataset",
+    "imageLicense": "CC BY 2.0 per each selected official Image IDs metadata row; authors/landing URLs/license retained in local full attribution manifest. Official publisher disclaims individual license warranties; no image redistribution.",
+    "annotationLicense": "Google LLC CC BY 4.0",
+    "selected": 5749,
+    "positive": 3124,
+    "verifiedNegative": 2625,
+    "allBoxes": 5594,
+    "groupBoxes": 153,
+    "individualBoxes": 5441,
+    "selection": "All validation rows for exact Human face class in official human-verified positive and negative labels plus matching bbox rows; no sampling or tuning. Other unverified validation images are not called negative.",
+    "orientation": "CVDF metadata-stripped sensor-coordinate bytes unchanged, no rotation/autoorientation; official rotation announcement says boxes use same sensor orientation.",
+    "orientationSource": "https://storage.googleapis.com/openimages/web/2018-05-17-rotation-information.html",
+    "boundaries": [
+      "General public photography incl depictions; not representative of Chinese contracts/identity documents/scans.",
+      "YuNet training overlap with this dataset is not independently excluded.",
+      "Per-annotation failure/occlusion/rotation remain present; no filtering based on results.",
+      "This is fixed-threshold object localization evaluation, not official Open Images mAP or privacy pixel coverage guarantee."
+    ]
+  },
+  "model": {
+    "model": "opencv/face_detection_yunet_2023mar",
+    "revision": "47534e27c9851bb1128ccc0102f1145e27f23f98",
+    "license": "MIT",
+    "files": {
+      "face.onnx": "8f2383e4dd3cfbb4553ea8718107fc0423210dc964f9f4280604804ed2552fa4",
+      "LICENSE": "c83b8120c50ccbd4c4f96edf53141bdd566ebb8f8e9227e415326aa1b1aba958"
+    },
+    "source": "https://github.com/opencv/opencv_zoo/tree/47534e27c9851bb1128ccc0102f1145e27f23f98/models/face_detection_yunet",
+    "sizes": {
+      "face.onnx": 232589,
+      "LICENSE": 1085
+    },
+    "actualDirectory": "/Users/admin/FDE/脱敏工具/脱敏汪/.data/models/visual",
+    "confidence": 0.6,
+    "nmsIoU": 0.3,
+    "boxExpansion": 1.1,
+    "trainingOrTuningPerformed": false
+  },
+  "protocol": {
+    "ordinary": "Confidence descending one-to-one max-IoU unmatched individual GT; >= threshold counted TP; remaining individual GT FN.",
+    "groupOf": "153 GroupOf boxes excluded from individual FN denominator; only unmatched predictions with intersection/prediction area >=0.5 inside any group are ignored, counted separately. Group coverage reported separately, never treated as number of faces.",
+    "thresholds": [
+      0.25,
+      0.5,
+      0.75
+    ]
+  },
+  "runId": "1c6de504fe6f7bf5d7b061c21101ecfd9b09eda2d70dc764b51ac4e4ca53f902",
+  "sourcePins": [
+    {
+      "path": "packages/core/visual-detection.ts",
+      "sha256": "821af10f7749341a978e6439e748ac7cdc1ddfe433f15e95e2fe9eaf68da3b8f"
+    },
+    {
+      "path": "packages/core/visual-morphology.ts",
+      "sha256": "0e146b6e745d48202876e97e4977783641c2b742236a7ca0f467b1232e510d36"
+    },
+    {
+      "path": "scripts/visual-lock.json",
+      "sha256": "1c9306fe9fd05f97854e2e0d12cee5b49655c8c66683fff8ae16aacab401c33d"
+    },
+    {
+      "path": "scripts/evaluate-openimages-face.ts",
+      "sha256": "0d7c73dc30b0ac03def129a4170edda2bd7d98ed9ca953a2aea3da3de9c17c06"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "sha256": "523530becb4ec6a150783b67626743d0100274fbf615003c429cdad3e4e86497"
+    }
+  ],
+  "faceSemanticHash": "00d8ea916f01fd4a249718b2eb08b2b1e235c3993d152d12cc951c60382fa804",
+  "sameFaceSemantics": true,
+  "finalModuleSha256": "821af10f7749341a978e6439e748ac7cdc1ddfe433f15e95e2fe9eaf68da3b8f",
+  "annotations": [
+    {
+      "path": "validation-annotations-bbox.csv",
+      "sha256": "d8bbd59410af14835d7733165a7bb8a3f0213981b22dd5077b0b9f7878991ff2"
+    },
+    {
+      "path": "validation-annotations-human-imagelabels-boxable.csv",
+      "sha256": "d5ff236d3cdbba36dac1ee6f7fdf9a26934205cbec5b933b0872722e2b6d3417"
+    },
+    {
+      "path": "validation-images-with-rotation.csv",
+      "sha256": "ed93a0e121fe345effdfc7359b848dbc64a1ff6778c8c73563157cb500b33a17"
+    },
+    {
+      "path": "class-descriptions.csv",
+      "sha256": "1839e0e7e84130ae281f7f67413768601b031581c0c42e7fc17527b8e2a99aa9"
+    },
+    {
+      "path": "selected-metadata.json",
+      "sha256": "69735f041ad881114623c24de87db71bf837770ec573561d06340c4cf7a00f13"
+    }
+  ],
+  "processed": 5749,
+  "evaluated": 5748,
+  "failed": [
+    {
+      "imageId": "d3831aa42d49c77f",
+      "status": "failed",
+      "error": "Input image exceeds pixel limit"
+    }
+  ],
+  "metrics": {
+    "0.25": {
+      "tp": 4337,
+      "fp": 1133,
+      "fn": 1104,
+      "ignoredGroupPredictions": 1831,
+      "groupBoxesCovered": 142,
+      "groupBoxes": 153,
+      "precision": 0.7928702010968921,
+      "recall": 0.7970961220363904,
+      "f1": 0.7949775455961874,
+      "rawFirstAssignedGroupBoxesCovered": 141
+    },
+    "0.5": {
+      "tp": 4149,
+      "fp": 1321,
+      "fn": 1292,
+      "ignoredGroupPredictions": 1831,
+      "groupBoxesCovered": 142,
+      "groupBoxes": 153,
+      "precision": 0.7585009140767824,
+      "recall": 0.7625436500643265,
+      "f1": 0.7605169095408304,
+      "rawFirstAssignedGroupBoxesCovered": 141
+    },
+    "0.75": {
+      "tp": 2816,
+      "fp": 2649,
+      "fn": 2625,
+      "ignoredGroupPredictions": 1836,
+      "groupBoxesCovered": 142,
+      "groupBoxes": 153,
+      "precision": 0.5152790484903934,
+      "recall": 0.5175519206028304,
+      "f1": 0.5164129836787089,
+      "rawFirstAssignedGroupBoxesCovered": 141
+    }
+  },
+  "verifiedNegative": {
+    "images": 2624,
+    "imagesWithAnyPrediction": 482,
+    "predictions": 556
+  },
+  "results": {
+    "path": ".data/evals/openimages-face/all-image-results-group-corrected.jsonl",
+    "sha256": "9ced6746ba0f04e77d2638d492c92888994c04e07d021ce028b5688cd6c380c4",
+    "attributionManifest": "/Users/admin/FDE/脱敏工具/脱敏汪/.data/evals/openimages-face/download-manifest.json",
+    "attributionSha256": "602f019de222c3fb691126e06fc4e1888448c732353e8034db7d1b19e497ec52",
+    "rawInferencePath": ".data/evals/openimages-face/all-image-results.jsonl",
+    "rawInferenceSha256": "501eb4a78152aed6be22dcc874da35159ac9950e6a73f15b314b32dbc6638c96"
+  },
+  "inputCoverage": {
+    "attempted": 5749,
+    "inferenceSucceeded": 5748,
+    "inputRejected": 1,
+    "rejectedNotCountedAsTrueNegative": true,
+    "all5441IndividualGoldRemainInEvaluatedImages": true
+  },
+  "groupCoverageCorrection": {
+    "scope": "Auxiliary groupBoxesCovered only; all predictions, gold and TP/FP/FN/ignoredGroupPredictions exactly unchanged",
+    "definition": "Union of every GroupOf box whose intersection/predictionArea >=.5 for a prediction not matched to individual gold at that IoU threshold. Overlapping groups each counted once.",
+    "rawInference": ".data/evals/openimages-face/all-image-results.jsonl",
+    "rawInferenceSha256": "501eb4a78152aed6be22dcc874da35159ac9950e6a73f15b314b32dbc6638c96",
+    "derivedResults": ".data/evals/openimages-face/all-image-results-group-corrected.jsonl",
+    "derivedResultsSha256": "9ced6746ba0f04e77d2638d492c92888994c04e07d021ce028b5688cd6c380c4",
+    "deriverCode": "scripts/correct-openimages-group-coverage.py",
+    "deriverSha256": "6d0a0b3af48d4136dcb3af90f78a5c66e76b86220d0e33d0d0b91edd1e806d57",
+    "changedRows": [
+      {
+        "imageId": "36755493e5f0bbb8",
+        "threshold": 0.25,
+        "oldFirstAssigned": 1,
+        "correctedCovered": 2
+      },
+      {
+        "imageId": "36755493e5f0bbb8",
+        "threshold": 0.5,
+        "oldFirstAssigned": 1,
+        "correctedCovered": 2
+      },
+      {
+        "imageId": "36755493e5f0bbb8",
+        "threshold": 0.75,
+        "oldFirstAssigned": 1,
+        "correctedCovered": 2
+      }
+    ],
+    "all5749RowsPreserved": true,
+    "allNonCoverageCountersUnchanged": true
+  },
+  "fullBindingVerification": {
+    "all5749IdsExactOnce": true,
+    "preRestart3801RowsPreservedByteForByte": true,
+    "checkpointRecoveryPresent": true,
+    "all5749ImageHashesMatchDownloadedImmutableBytes": true,
+    "all5594GroundTruthRowsMatchOfficialSelection": true,
+    "all153GroupOfRetained": true,
+    "all2625HumanVerifiedNegativesRetained": true,
+    "rawNegativeInferenceSuccessful": 2624,
+    "rawNegativeInputRejected": 1,
+    "loadedProductionFacePathMatchesCurrentPrefixPreprocessingDecoderNMSAndModelGuard": true,
+    "publicSourceSnapshotMatchesStartPins": true,
+    "modelHashesMatchLock": true,
+    "node": "v26.6.0",
+    "runId": "1c6de504fe6f7bf5d7b061c21101ecfd9b09eda2d70dc764b51ac4e4ca53f902",
+    "resultsSha256": "9ced6746ba0f04e77d2638d492c92888994c04e07d021ce028b5688cd6c380c4",
+    "attributionSha256": "602f019de222c3fb691126e06fc4e1888448c732353e8034db7d1b19e497ec52"
+  },
+  "normalizedVariant": {
+    "status": "complete-normalized-whole-class-5749",
+    "scope": "Secondary explicitly normalized benchmark; does not claim all raw input dimensions are supported",
+    "policy": "All5749 use same max-longside1024/no-enlargement rule; inputs already <=1024 remain byte-identical. No tuning/omissions.",
+    "processed": 5749,
+    "newInferences": 4,
+    "reusedIdenticalInputPredictions": 5745,
+    "changed": [
+      {
+        "imageId": "0937f20ab730f4bd",
+        "sourceWidth": 5520,
+        "sourceHeight": 3680,
+        "width": 1024,
+        "height": 683,
+        "imageHash": "5a3e7212bebc7c7fd1c2fa16565e831b50de71b42b2cba726ee257d9fbf9f63b",
+        "inputHash": "79736c653dc02776414181ac146a4f0d76a46812ac0705f144e43b24af5b1a0e",
+        "rawStatus": "evaluated",
+        "rawError": null
+      },
+      {
+        "imageId": "4e50705a3aecb1be",
+        "sourceWidth": 4608,
+        "sourceHeight": 3072,
+        "width": 1024,
+        "height": 683,
+        "imageHash": "486ba3406a7d49c554af8493d17068bf0f2bdd3f9ef09f1e42959b530d7802a8",
+        "inputHash": "9d851d90ac27e482273fd076e44612cdd5e58357e54a3030e3a1764a584a6d5b",
+        "rawStatus": "evaluated",
+        "rawError": null
+      },
+      {
+        "imageId": "982dc7ae6449ef6d",
+        "sourceWidth": 4000,
+        "sourceHeight": 3000,
+        "width": 1024,
+        "height": 768,
+        "imageHash": "c3e129f64f35b6b4f252db2e434b5df6b346fc98cc342b707cd7f7ff8c6fd527",
+        "inputHash": "abf89075331850a2970171fb24082029b8a5194802e596ad1ac0bca30007faa5",
+        "rawStatus": "evaluated",
+        "rawError": null
+      },
+      {
+        "imageId": "d3831aa42d49c77f",
+        "sourceWidth": 7360,
+        "sourceHeight": 4912,
+        "width": 1024,
+        "height": 683,
+        "imageHash": "cd0d262573c3f91f2b6fe4ea1fc686b76e7db2c2dcb0924467389a350bf338f7",
+        "inputHash": "b5738cffa00d5a3ddf773e89e985c709cf5926dd6132de1880d07a36d844cded",
+        "rawStatus": "failed",
+        "rawError": "Input image exceeds pixel limit"
+      }
+    ],
+    "metrics": {
+      "0.25": {
+        "tp": 4337,
+        "fp": 1133,
+        "fn": 1104,
+        "ignoredGroupPredictions": 1831,
+        "groupBoxesCovered": 142,
+        "groupBoxes": 153,
+        "precision": 0.7928702010968921,
+        "recall": 0.7970961220363904,
+        "f1": 0.7949775455961874
+      },
+      "0.5": {
+        "tp": 4149,
+        "fp": 1321,
+        "fn": 1292,
+        "ignoredGroupPredictions": 1831,
+        "groupBoxesCovered": 142,
+        "groupBoxes": 153,
+        "precision": 0.7585009140767824,
+        "recall": 0.7625436500643265,
+        "f1": 0.7605169095408304
+      },
+      "0.75": {
+        "tp": 2816,
+        "fp": 2649,
+        "fn": 2625,
+        "ignoredGroupPredictions": 1836,
+        "groupBoxesCovered": 142,
+        "groupBoxes": 153,
+        "precision": 0.5152790484903934,
+        "recall": 0.5175519206028304,
+        "f1": 0.5164129836787089
+      }
+    },
+    "rawInferenceSha256": "501eb4a78152aed6be22dcc874da35159ac9950e6a73f15b314b32dbc6638c96",
+    "sourcePins": [
+      {
+        "path": "scripts/evaluate-openimages-normalized-variant.ts",
+        "sha256": "a05812b5591d660e3d5058b9a02815eb45ec46abd084def3357a043d795f8ed5"
+      },
+      {
+        "path": "scripts/face-box-metrics.ts",
+        "sha256": "56ae4d73a255b3314ff0d8d68a9f6a92aa81ad55dac17051bd32c52ad4b46dc9"
+      },
+      {
+        "path": "packages/core/visual-detection.ts",
+        "sha256": "821af10f7749341a978e6439e748ac7cdc1ddfe433f15e95e2fe9eaf68da3b8f"
+      },
+      {
+        "path": "scripts/visual-lock.json",
+        "sha256": "1c9306fe9fd05f97854e2e0d12cee5b49655c8c66683fff8ae16aacab401c33d"
+      }
+    ],
+    "node": "v26.6.0",
+    "results": {
+      "path": ".data/evals/openimages-face/normalized-1024-all-image-results.jsonl",
+      "sha256": "67b3c388b7cfbbec37619f5e2908e4a12b099c09a64841e9fae58087e47c35e6"
+    },
+    "verifiedNegative": {
+      "images": 2625,
+      "imagesWithAnyPrediction": 482,
+      "predictions": 556
+    }
+  },
+  "packagedArtifacts": [
+    {
+      "path": "文档/评估/OpenImages人脸全量验证20261014/normalized-1024-all-images.jsonl",
+      "sha256": "67b3c388b7cfbbec37619f5e2908e4a12b099c09a64841e9fae58087e47c35e6",
+      "bytes": 7537984
+    },
+    {
+      "path": "文档/评估/OpenImages人脸全量验证20261014/normalized-1024-report.json",
+      "sha256": "cdfac83e695624f88b07bd6f82bcc47ce1884d375a8967b7979c122cb21408f7",
+      "bytes": 3802
+    },
+    {
+      "path": "文档/评估/OpenImages人脸全量验证20261014/all-images.jsonl",
+      "sha256": "9ced6746ba0f04e77d2638d492c92888994c04e07d021ce028b5688cd6c380c4",
+      "bytes": 6968173
+    },
+    {
+      "path": "文档/评估/OpenImages人脸全量验证20261014/raw-inference.jsonl",
+      "sha256": "501eb4a78152aed6be22dcc874da35159ac9950e6a73f15b314b32dbc6638c96",
+      "bytes": 6312577
+    },
+    {
+      "path": "文档/评估/OpenImages人脸全量验证20261014/image-attribution.json",
+      "sha256": "602f019de222c3fb691126e06fc4e1888448c732353e8034db7d1b19e497ec52",
+      "bytes": 5403533
+    },
+    {
+      "path": "文档/评估/OpenImages人脸全量验证20261014/run-manifest.json",
+      "sha256": "b9433b7ae9c15dc31fc9c5a6755376206b9f2c597fab0dd976500dbfb6b3ca11",
+      "bytes": 2261
+    },
+    {
+      "path": "文档/评估/OpenImages人脸全量验证20261014/checkpoint-recovery.json",
+      "sha256": "c49ecd888d2dc0519155dc2ed8854de077843e8b3509e25c4b39965725e67c61",
+      "bytes": 1219
+    },
+    {
+      "path": "文档/评估/OpenImages人脸全量验证20261014/group-coverage-correction.json",
+      "sha256": "dd88a1ae20c416d59b1567b99f0a0fdb0b9a291b75c0b47f95c33b469e35ace8",
+      "bytes": 1317
+    },
+    {
+      "path": "文档/评估/OpenImages人脸全量验证20261014/full-binding-verification.json",
+      "sha256": "9d6d745e5ade85d8e41a6a453277773d301476963720a23197681fbf107c0264",
+      "bytes": 843
+    },
+    {
+      "path": "文档/评估/OpenImages人脸全量验证20261014/annotation-source-manifest.json",
+      "sha256": "e0a99408c29fa80a1f0ca90fd41e3a266e7f5a454ab5b93c260fe78cc9827fc9",
+      "bytes": 1860
+    },
+    {
+      "path": "文档/评估/OpenImages人脸全量验证20261014/raw-evaluator-used.ts.txt",
+      "sha256": "0d7c73dc30b0ac03def129a4170edda2bd7d98ed9ca953a2aea3da3de9c17c06",
+      "bytes": 10636
+    },
+    {
+      "path": "文档/评估/OpenImages人脸全量验证20261014/model-LICENSE.txt",
+      "sha256": "c83b8120c50ccbd4c4f96edf53141bdd566ebb8f8e9227e415326aa1b1aba958",
+      "bytes": 1085
+    }
+  ],
+  "checkpointRecovery": {
+    "event": "Evaluation process made no row progress for about4minutes with zero observed CPU; exact pending decoder/inference/I/O phase not instrumented, root cause unproven. Only evaluation process restarted; production unchanged.",
+    "completedRowsBeforeRestart": 3801,
+    "preservedRawSha256": "ff6511b98602ad69862d88532e9a36bae6c0188f6b0eb944620be4f37e59477c",
+    "resumeMode": "Original runId guard verifies evaluator/face semantics/model/annotations, appends only IDs not already present",
+    "time": "2026-10-14T14:45:00.000966+00:00",
+    "oldPid": 18134,
+    "oldLastCompletedImageId": "a828fe14000a7fbc",
+    "exactPendingImageId": "not observed: original frozen evaluator logged only completed rows",
+    "pendingPhase": "unknown; no inference-vs-Sharp-vs-fileIO root-cause assertion",
+    "node": "v26.6.0",
+    "afterSIGTERMObservation": {
+      "oldPidResidualRSSKiB": 33344,
+      "note": "Observed after termination request, not a memory reading at the original wait. Residual process then forcibly ended to guarantee single writer."
+    },
+    "resumedPid": 54252,
+    "resumedObservedRSSKiB": 251296,
+    "firstCompletedAfterResume": "982dc7ae6449ef6d",
+    "preserved3801PrefixExact": true,
+    "resumedProgressObserved": 4413
+  },
+  "rawEvaluatorSnapshot": "文档/评估/OpenImages人脸全量验证20261014/raw-evaluator-used.ts.txt",
+  "qualityBoundary": "All5749 original inputs attempted:5748 inference succeeded,1 explicit input pixel-limit rejection (verified negative, no GT); rejected input never counted TN. All5441 individual GT remain evaluated. Not a declaration every face is detected, not competitor runtime equivalence or complete pixel masking coverage."
+}

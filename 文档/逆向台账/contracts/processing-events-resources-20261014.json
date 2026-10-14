@@ -1,0 +1,101 @@
+{
+  "id": "PROCESSING-EVENT-RESOURCES-ITER028",
+  "updatedAt": "2026-10-14T13:53:51.888047+00:00",
+  "sourceVersion": "0.5.9",
+  "licensedRuntime": "R0",
+  "files": {
+    "scripts/022.sql": "c00416c1b269d270a41205c6c519815cbc30d00d3aedff26f74ac92766be7898",
+    "packages/core/processing-events.ts": "70f9958d48e07a1800a4d042732a105c7ceca7a228ac7a4609ed70120c84f51b",
+    "packages/adapters/processing-events.ts": "4002aa6650d661342ed57ff5731a397268fba154b8c53ec43fbc8fcdd2b3e99d",
+    "packages/adapters/processing-resources.ts": "7d054cf03e91a54514ec5e25d90dabcc2464c2c84e634d69a2ec8e41f194d95d",
+    "apps/api/processing-events.ts": "a023405d3b17a64e34b54f33549e78ce127cd70bc1c3feb8786b7c292a5cd520",
+    "apps/api/processing-resources.ts": "52528280d1f4289b33a6116fc5c57cfbe8fe17ae77eac8bcbf5c8a43cca4d458",
+    "apps/web/processing-progress.tsx": "a82489853a2ddd6d4576ada6933b1d72c93df3079963fd01b513a36d4b89a9f1",
+    "tests/processing-events.test.ts": "7c1b42612cc99678b0166a08de95d77c0a99372986d52b87188813a27ef2967b",
+    "tests/processing-resources.integration.ts": "3f3097b2c09ef1b152a812e99bc2ecd7a5742a7a224832572c0b61f670457787",
+    "packages/adapters/processing.ts": "1909c4e85d2202edbd6498bd52b9ffbf79188e4ba38f11c61f403a5d0b6209ca",
+    "packages/adapters/page-parser.ts": "6db35aa17682685110c556427f87b7d6ed91f504147e11c8eb4b9e00318d422a",
+    "packages/adapters/office-images.ts": "d69567707e8e3e0e8651f7cee306d4f89abedc2419b6a59a5615e44eda144596",
+    "packages/adapters/processing-worker.ts": "28ae52195c6375c389d7908eb3cc8bb839ede76e8e1ff2a53780d05d3313541d",
+    "apps/worker/main.ts": "b59cf47a7859b0d26edfba22fb922748cc876d698aa4d45d231c863002f7b565"
+  },
+  "entries": [
+    {
+      "id": "A-027-progress",
+      "source": "main17215,17394,17438; five-second heartbeat/monotonic sequence",
+      "runtime": "real ProcessingWorker message separate from terminal response -> await serialized DB writes -> AEAD owner/job/generation/sourcehash/revision bound cursor API -> UI2secondread; real Markdown source-ready full sidecar/sourceMap/blockers; completed regex/NER window/contextual matches first25k250msfinal publisher",
+      "status": "web-adapted-runtime-verified",
+      "tested": "actual PDF processing published before terminal state; positive contiguous sequences/typed heartbeat schema/replay conflict/hash barrier; Markdown actual4API/realNER1/Edge1 and strict2 sourcepublisherunits",
+      "remaining": []
+    },
+    {
+      "id": "A-027-page-processed",
+      "source": "main17274 PDF OCR cache; main17316 Word filteredmatches",
+      "runtime": "parsePages and Word embedded images realonPage OCR callbacks with originalglyphs/hash; exact page-anchor filtered pending matches after all semantic policies; canonical-raster coordinateSpace; true1-basedpage total",
+      "status": "runtime-verified-for-current-canonical-formats",
+      "tested": "actual two-pagePDF OCR1/2 andrecognize1/2 sourcepointfields; jobrunning event visibility; real phonepending",
+      "differences": [
+        "Recognized matches are published after whole-document context filters instead of source per-page engine detection to preserve our table/party/globalrule correctness. OCR pages increment before final completion.",
+        "Word native layout is canonical paragraphs with embedded imagepages; no false claim all Word physical pages auto-paginated."
+      ]
+    },
+    {
+      "id": "A-027-release-sources",
+      "source": "main17047-17059 h2/y2/m2/g2 + source/hash/filename caches",
+      "runtime": "actual verified sourcebuffer -> session/user/project/private token -> AEAD temporary owned object -> read/release onlysame authsession; permanent original remains",
+      "status": "web-adapted-runtime-verified",
+      "differences": [
+        "Native h2/session engine cache replaced by cloud private source lease copy; child-engine caches not persisted: removedEngineCaches=0 truthful, not fabricated.",
+        "Cloud source id is unpredictable resource UUID, never caller path."
+      ]
+    },
+    {
+      "id": "A-027-cleanup-paths",
+      "source": "main17158-17168 successfulsender receipt younger15min,notpreserved,once only",
+      "runtime": "real successfulartifact hashchecked copy -> sessionreceipt -> strictage/preserve/type/owner/oneuse -> delete onlytemporary file",
+      "status": "web-adapted-runtime-verified",
+      "tested": "real copy cleanedonce; expired/preserved/foreignsession/sourcekind/unknown notcleaned; original/artifact stilldownloadable",
+      "differences": [
+        "Caller paths replaced by bounded resource IDs; real permanent artifacts cannot be arbitrary removed.",
+        "Temp objects registered in existingdocument ownership so authorizedmaterialdeletion also purges them."
+      ]
+    }
+  ],
+  "tests": {
+    "pure": "processing-events2pass; combinedA20passedpreooxml6thcase",
+    "actualAPI": "processing-resources.integration3PASS5.56s; includes real PDF2page onEvent before completion",
+    "typecheck": "pnpm typecheck PASS21:04 snapshot",
+    "rawXml": "independent correction8unit + original-controlprobeclosed; separate rawreviewreport"
+  },
+  "remaining": [
+    "Overall fullrootbuild/formal/API/Edge/deploy separate",
+    "No competitor licensed processing runtime,R0"
+  ],
+  "history": [
+    {
+      "id": "PROCESSING-EVENT-RESOURCES-ITER027",
+      "updatedAt": "2026-10-14T13:08:07.364508+00:00",
+      "files": {
+        "scripts/022.sql": "c00416c1b269d270a41205c6c519815cbc30d00d3aedff26f74ac92766be7898",
+        "packages/core/processing-events.ts": "e68ca97539be8431daa454f833e2ad91e725468f0272ed43ba24cf9ae0655c1d",
+        "packages/adapters/processing-events.ts": "4002aa6650d661342ed57ff5731a397268fba154b8c53ec43fbc8fcdd2b3e99d",
+        "packages/adapters/processing-resources.ts": "7d054cf03e91a54514ec5e25d90dabcc2464c2c84e634d69a2ec8e41f194d95d",
+        "apps/api/processing-events.ts": "a023405d3b17a64e34b54f33549e78ce127cd70bc1c3feb8786b7c292a5cd520",
+        "apps/api/processing-resources.ts": "52528280d1f4289b33a6116fc5c57cfbe8fe17ae77eac8bcbf5c8a43cca4d458",
+        "apps/web/processing-progress.tsx": "23019e9c6a9ddcda9c2a2e70332a156d9e35a7007cf168ba19f6cf0a84c9aa30",
+        "tests/processing-events.test.ts": "7c1b42612cc99678b0166a08de95d77c0a99372986d52b87188813a27ef2967b",
+        "tests/processing-resources.integration.ts": "3f3097b2c09ef1b152a812e99bc2ecd7a5742a7a224832572c0b61f670457787",
+        "packages/adapters/processing.ts": "9130ac55a8af3cbd65db9670460edc30d94df136463b3b62389db005539ccc31",
+        "packages/adapters/page-parser.ts": "6db35aa17682685110c556427f87b7d6ed91f504147e11c8eb4b9e00318d422a",
+        "packages/adapters/office-images.ts": "d69567707e8e3e0e8651f7cee306d4f89abedc2419b6a59a5615e44eda144596",
+        "packages/adapters/processing-worker.ts": "676bc6e8ebf3d57d87972907967fc226fbaf11e07aeae91fa5d6ed6a8491c33b",
+        "apps/worker/main.ts": "c5343dbdc3bc9d58d177465976fb749978d095fc7a7fe951b18737a5469a76d2"
+      },
+      "progressStatus": "partial-source-md-event-adaptation-pending"
+    }
+  ],
+  "markdownPhase": "markdown-source-porting-20261014.json",
+  "verification": {
+    "markdownActual": "4API17.48s;162unit8files4.66s;realNER1 2.36s;Edge1 18.3s includes correct terminalstatus"
+  }
+}

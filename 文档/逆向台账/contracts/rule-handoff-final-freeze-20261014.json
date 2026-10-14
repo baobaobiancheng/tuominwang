@@ -1,0 +1,46 @@
+{
+  "id": "RULE-HANDOFF-FINAL-FREEZE-ITER030",
+  "timestamp": "2026-10-14T15:30:23.629148+00:00",
+  "oldHistory": {
+    "path": ".data/research/lawbot-2026-10-14/iteration030/history/文档/脱敏规则完整技术交接-迭代023.md",
+    "bytes": 301670,
+    "sha256": "bd2f702eff04d44ff39b2d63b1bdfc55aa59370392ffa17b9196e18ccf671980",
+    "exactHistoricalPin": true
+  },
+  "newHandoff": {
+    "path": "文档/脱敏规则完整技术交接-迭代023.md",
+    "bytes": 338575,
+    "sha256": "6415708da74c248fc7e2ea33b683581e28cb8a4b7a119d530bc7ed88e04369cb",
+    "lines": 9345
+  },
+  "generator": {
+    "path": "文档/逆向台账/contracts/build-complete-rule-handoff-20261014.py",
+    "sha256": "c5d6db581eb6019ba761fe2adb9ba66b41c4a611162c32e54729baf3fa9810e6"
+  },
+  "fullAppendixReparsedAndDeepCompared": [
+    "rule-data.json",
+    "blacklists.json",
+    "reference-mask-data.json",
+    "table-rule-data.json",
+    "fragment-rule-data.json"
+  ],
+  "categories": 108,
+  "arrayItems": 3012,
+  "basics": 41,
+  "amountFamilies": 12,
+  "amountRegexBranches": 17,
+  "review": "No new qualified restoration matcher/custom visual finding; all final A findings closed; R0/OS/Word native equivalence unclaimed",
+  "independentTests": "26 core units PASS; no product/test changes in this final docs task",
+  "faceGroup": "All5749 rows independently compared,3threshold changes only image36755493e5f0bbb8 group1→2;totals142/153; other counters unchanged",
+  "readOnlyGuideReview": {
+    "latestGuide": "Quality figures/source boundaries correct; not edited",
+    "README": "line52 deployment must configure container resource restriction conflicts potentially with user no-added-restriction preference; reported root only"
+  },
+  "proofs": {
+    ".data/research/lawbot-2026-10-14/iteration030/history/final-rules-independent-unit.log": "eddeee7f4334fee21a06847c9ffeccb7a027ddc5edfbf2bf2e3bbd2908036595",
+    ".data/research/lawbot-2026-10-14/iteration030/history/restoration-old-independent-unit.log": "f36f42781532d25ca4578617474da7d947a778f381da0f2bd113c59d3c586609",
+    ".data/research/lawbot-2026-10-14/iteration030/history/face-correction-independent.json": "a8f5098d25d8098f606a135936bfdf1294b9d79b0d7f879e9f9982c39f4b70b3",
+    ".data/research/lawbot-2026-10-14/iteration030/history/handoff-023-exact-reconstruction.json": "1d5f083be8580417791e37f8ac18dbc51312fc05dbd4e16b52e29197b754fae7"
+  },
+  "rootGates": "Root-reported82files568units/11laws13mutations/build;39API71tests and shared2+3;50Edge6.3m; deployment separate, not claimed by A"
+}

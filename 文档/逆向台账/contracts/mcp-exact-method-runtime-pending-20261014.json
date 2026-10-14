@@ -1,0 +1,4015 @@
+{
+  "status": "historical-pending-now-closed",
+  "currentPendingCount": 0,
+  "scope": "Historical fixed43-method pending fixture, all43 now closed by exact real calls and independent replay; retained rows are history/test coverage inputs, not current outstanding work.",
+  "rows": [
+    {
+      "id": "IPC-540edc231d28",
+      "name": "ai-collab:attach-source",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/tasks/:job/action；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/tasks/:job/action",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "{jobId,sourcePath}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#IPC-540edc231d28"
+      },
+      "protocol": {
+        "id": "IPC-540edc231d28",
+        "kind": "IPC",
+        "name": "ai-collab:attach-source",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1209126,
+            "end": 1209235,
+            "startLine": 1,
+            "startColumn": 1209127,
+            "endLine": 1,
+            "endColumn": 1209236,
+            "sliceSha256": "b031c01ea223485c0ae8e2dcd85b92ba772163e02ded7c8f06b6324938a6cba3"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24449,
+            "end_line": 24449,
+            "slice_sha256": "b5b346eca098dd45a696b7e7e0b591f7fb407851de146f97d09e3aadd72cf3b1",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 23352,
+            "end_line": 23377,
+            "slice_sha256": "40a3d6b04b5ef0bdf1542a00aa3650249f1f1939039a64922358ac4ca49dc2b7",
+            "note": "attachSelectedDocx"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24381,
+            "end_line": 24388,
+            "slice_sha256": "e868f61dd0e8e315d5d33992b25b9eabcb56e766ed8ffbcb1ed235ba10f943b3",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24419,
+            "end_line": 24428,
+            "slice_sha256": "95ae36ceb51a63b83382466cb1eb699925f82c6ff0cfce14b39daf262fe23415",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "{jobId,sourcePath}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/tasks/:job/action",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "IPC-77baf8b1932c",
+      "name": "ai-collab:attach-sources",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/tasks/:job/action；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/tasks/:job/action",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "{jobId,sourcePaths}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#IPC-77baf8b1932c"
+      },
+      "protocol": {
+        "id": "IPC-77baf8b1932c",
+        "kind": "IPC",
+        "name": "ai-collab:attach-sources",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1209236,
+            "end": 1209352,
+            "startLine": 1,
+            "startColumn": 1209237,
+            "endLine": 1,
+            "endColumn": 1209353,
+            "sliceSha256": "ab4d6cd6495067c7205ac0aff6e75ed01cd0286d0bc17af374d7f268dc414850"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24449,
+            "end_line": 24449,
+            "slice_sha256": "b5b346eca098dd45a696b7e7e0b591f7fb407851de146f97d09e3aadd72cf3b1",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 23352,
+            "end_line": 23377,
+            "slice_sha256": "40a3d6b04b5ef0bdf1542a00aa3650249f1f1939039a64922358ac4ca49dc2b7",
+            "note": "attachSelectedDocxPaths"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24381,
+            "end_line": 24388,
+            "slice_sha256": "e868f61dd0e8e315d5d33992b25b9eabcb56e766ed8ffbcb1ed235ba10f943b3",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24419,
+            "end_line": 24428,
+            "slice_sha256": "95ae36ceb51a63b83382466cb1eb699925f82c6ff0cfce14b39daf262fe23415",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "{jobId,sourcePaths}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/tasks/:job/action",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "IPC-9f9f62ce116e",
+      "name": "ai-collab:authorize",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/tasks/:job/authorize；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/tasks/:job/authorize",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "{jobId,authorization:{allowRedactionPath,allowRestorePath,allowSanitizedDelivery,autoEnterReview,createExchangeFolder,autoRestoreAfterValidation,allowSanitizedOutputOverride?,allowRestoredOutputOverride?}}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#IPC-9f9f62ce116e"
+      },
+      "protocol": {
+        "id": "IPC-9f9f62ce116e",
+        "kind": "IPC",
+        "name": "ai-collab:authorize",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1208453,
+            "end": 1208911,
+            "startLine": 1,
+            "startColumn": 1208454,
+            "endLine": 1,
+            "endColumn": 1208912,
+            "sliceSha256": "63290f9493c8e09ded744821dae47216eeed5923f299ab39a8ba256052fa0076"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24440,
+            "end_line": 24440,
+            "slice_sha256": "192721a9f0405aa49fa9d7513adc79ddcc495428a83aa8bdbab1768644eccbf7",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 23219,
+            "end_line": 23245,
+            "slice_sha256": "0c287205fbf4ab19eb099caff1d5daabf373be3be3213d18f5f382df2a4a5277",
+            "note": "authorizeFromRenderer/authorizeOnce"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24381,
+            "end_line": 24388,
+            "slice_sha256": "e868f61dd0e8e315d5d33992b25b9eabcb56e766ed8ffbcb1ed235ba10f943b3",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24419,
+            "end_line": 24428,
+            "slice_sha256": "95ae36ceb51a63b83382466cb1eb699925f82c6ff0cfce14b39daf262fe23415",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "{jobId,authorization:{allowRedactionPath,allowRestorePath,allowSanitizedDelivery,autoEnterReview,createExchangeFolder,autoRestoreAfterValidation,allowSanitizedOutputOverride?,allowRestoredOutputOverride?}}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/tasks/:job/authorize",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "IPC-224e4065477a",
+      "name": "ai-collab:cancel",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/tasks/:job/action；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/tasks/:job/action",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "{jobId}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#IPC-224e4065477a"
+      },
+      "protocol": {
+        "id": "IPC-224e4065477a",
+        "kind": "IPC",
+        "name": "ai-collab:cancel",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1209036,
+            "end": 1209125,
+            "startLine": 1,
+            "startColumn": 1209037,
+            "endLine": 1,
+            "endColumn": 1209126,
+            "sliceSha256": "5e35c4891f6afc8c9d4e1bb8f2653c0b06dbc936a0953b2b655f51dbc4f9de5f"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24449,
+            "end_line": 24449,
+            "slice_sha256": "b5b346eca098dd45a696b7e7e0b591f7fb407851de146f97d09e3aadd72cf3b1",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 23246,
+            "end_line": 23258,
+            "slice_sha256": "8324b25b47542899ccf787ad8cff600beb41714e447ac855ab7b2938bc51c228",
+            "note": "cancelFromRenderer"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24381,
+            "end_line": 24388,
+            "slice_sha256": "e868f61dd0e8e315d5d33992b25b9eabcb56e766ed8ffbcb1ed235ba10f943b3",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24419,
+            "end_line": 24428,
+            "slice_sha256": "95ae36ceb51a63b83382466cb1eb699925f82c6ff0cfce14b39daf262fe23415",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "{jobId}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/tasks/:job/action",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "IPC-0e93232c5223",
+      "name": "ai-collab:consume-open-job",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/tasks/:job/action；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/tasks/:job/action",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "无",
+        "sourceSuccess": "直接job|null，消费后队列清空",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#IPC-0e93232c5223"
+      },
+      "protocol": {
+        "id": "IPC-0e93232c5223",
+        "kind": "IPC",
+        "name": "ai-collab:consume-open-job",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1208354,
+            "end": 1208452,
+            "startLine": 1,
+            "startColumn": 1208355,
+            "endLine": 1,
+            "endColumn": 1208453,
+            "sliceSha256": "c77cb99e32c5216222e537873083a9ad9e078cf98c115999dcc133d33c1c18ba"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24436,
+            "end_line": 24436,
+            "slice_sha256": "bc5902ec93228a36de6c227beba814a7503bfbe1dc3de6fe2e6e91bfdd8d984d",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24436,
+            "end_line": 24439,
+            "slice_sha256": "5b5091a79db6b6f773497161bc653a30731449126805fab98805be2c5d7f934e",
+            "note": "consume queue"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24381,
+            "end_line": 24388,
+            "slice_sha256": "e868f61dd0e8e315d5d33992b25b9eabcb56e766ed8ffbcb1ed235ba10f943b3",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24419,
+            "end_line": 24428,
+            "slice_sha256": "95ae36ceb51a63b83382466cb1eb699925f82c6ff0cfce14b39daf262fe23415",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24379,
+            "end_line": 24388,
+            "slice_sha256": "e1f1b90fb49359afee6568b2ffcd35d362c23fa5625a5169d49c83cd797047e2",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24448,
+            "end_line": 24452,
+            "slice_sha256": "83c26b7a31c52fd95f44a263a3c7407dcf949a1eed82d44c8320a83c42bf2bdd",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "无",
+        "sourceSuccess": "直接job|null，消费后队列清空",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/tasks/:job/action",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "IPC-91a4aa41d44c",
+      "name": "ai-collab:diagnostic-event",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/tasks/:job/action；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/tasks/:job/action",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "{jobId,stage?,outcome?,code?,details?}",
+        "sourceSuccess": "job可能undefined",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#IPC-91a4aa41d44c"
+      },
+      "protocol": {
+        "id": "IPC-91a4aa41d44c",
+        "kind": "IPC",
+        "name": "ai-collab:diagnostic-event",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1209612,
+            "end": 1209719,
+            "startLine": 1,
+            "startColumn": 1209613,
+            "endLine": 1,
+            "endColumn": 1209720,
+            "sliceSha256": "de6a33699e9774f60893aee9d43c7c32d099af14714d6bfa898881d946e8692a"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24449,
+            "end_line": 24449,
+            "slice_sha256": "b5b346eca098dd45a696b7e7e0b591f7fb407851de146f97d09e3aadd72cf3b1",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 22938,
+            "end_line": 22944,
+            "slice_sha256": "337b6cda88c5223b60f38ef9f6a2e90ada39701d62621e4d0e05a029389145bc",
+            "note": "recordRendererDiagnostic"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24381,
+            "end_line": 24388,
+            "slice_sha256": "e868f61dd0e8e315d5d33992b25b9eabcb56e766ed8ffbcb1ed235ba10f943b3",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24419,
+            "end_line": 24428,
+            "slice_sha256": "95ae36ceb51a63b83382466cb1eb699925f82c6ff0cfce14b39daf262fe23415",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "{jobId,stage?,outcome?,code?,details?}",
+        "sourceSuccess": "job可能undefined",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/tasks/:job/action",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "IPC-3218ff56854c",
+      "name": "ai-collab:fail",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/tasks/:job/action；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/tasks/:job/action",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "{jobId,failureCode?}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#IPC-3218ff56854c"
+      },
+      "protocol": {
+        "id": "IPC-3218ff56854c",
+        "kind": "IPC",
+        "name": "ai-collab:fail",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1209720,
+            "end": 1209819,
+            "startLine": 1,
+            "startColumn": 1209721,
+            "endLine": 1,
+            "endColumn": 1209820,
+            "sliceSha256": "253d9123e34cd092d067bccdc0e086258e52c0df3c78c522bc20fa7cb1995c23"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24449,
+            "end_line": 24449,
+            "slice_sha256": "b5b346eca098dd45a696b7e7e0b591f7fb407851de146f97d09e3aadd72cf3b1",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 23422,
+            "end_line": 23430,
+            "slice_sha256": "c0b69d0b99d3f6f82e6d4825501624c0fbfa645ced0e293ba8c497e5d0a928ac",
+            "note": "failFromRenderer"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24381,
+            "end_line": 24388,
+            "slice_sha256": "e868f61dd0e8e315d5d33992b25b9eabcb56e766ed8ffbcb1ed235ba10f943b3",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24419,
+            "end_line": 24428,
+            "slice_sha256": "95ae36ceb51a63b83382466cb1eb699925f82c6ff0cfce14b39daf262fe23415",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "{jobId,failureCode?}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/tasks/:job/action",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "IPC-2c93659b71ad",
+      "name": "ai-collab:finish-batch-export",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/tasks/:job/action；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/tasks/:job/action",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "{jobId,projectMappingPath?}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#IPC-2c93659b71ad"
+      },
+      "protocol": {
+        "id": "IPC-2c93659b71ad",
+        "kind": "IPC",
+        "name": "ai-collab:finish-batch-export",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1209477,
+            "end": 1209611,
+            "startLine": 1,
+            "startColumn": 1209478,
+            "endLine": 1,
+            "endColumn": 1209612,
+            "sliceSha256": "c2758531238854fbae6e4887f770b0b31fcc9a0f21aa51e4ac4b1a22967f383f"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24449,
+            "end_line": 24449,
+            "slice_sha256": "b5b346eca098dd45a696b7e7e0b591f7fb407851de146f97d09e3aadd72cf3b1",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 23378,
+            "end_line": 23430,
+            "slice_sha256": "46565fb108a3288bbb383a5c85ca0660212cd0d92e28a291dbda34efc42ef6f5",
+            "note": "finishBatchExportFromRenderer"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24381,
+            "end_line": 24388,
+            "slice_sha256": "e868f61dd0e8e315d5d33992b25b9eabcb56e766ed8ffbcb1ed235ba10f943b3",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24419,
+            "end_line": 24428,
+            "slice_sha256": "95ae36ceb51a63b83382466cb1eb699925f82c6ff0cfce14b39daf262fe23415",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "{jobId,projectMappingPath?}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/tasks/:job/action",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "IPC-0ee2339f025f",
+      "name": "ai-collab:list-pending",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：GET /api/ai-collab/tasks; action list-pending readonly items；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "GET /api/ai-collab/tasks; action list-pending readonly items",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "无",
+        "sourceSuccess": "直接任务数组，非法sender []",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#IPC-0ee2339f025f"
+      },
+      "protocol": {
+        "id": "IPC-0ee2339f025f",
+        "kind": "IPC",
+        "name": "ai-collab:list-pending",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1208249,
+            "end": 1208353,
+            "startLine": 1,
+            "startColumn": 1208250,
+            "endLine": 1,
+            "endColumn": 1208354,
+            "sliceSha256": "5b8472a89dfaec1833d4279549ae13a9e86ba47903f52eef02d3a2b7e6d2bddb"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24436,
+            "end_line": 24436,
+            "slice_sha256": "bc5902ec93228a36de6c227beba814a7503bfbe1dc3de6fe2e6e91bfdd8d984d",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 23291,
+            "end_line": 23293,
+            "slice_sha256": "586585406aae7f4528de2a0bbc637867e24c6f9bae84ebe45d51e2c4c94130b3",
+            "note": "listPendingForRenderer"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24381,
+            "end_line": 24388,
+            "slice_sha256": "e868f61dd0e8e315d5d33992b25b9eabcb56e766ed8ffbcb1ed235ba10f943b3",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24419,
+            "end_line": 24428,
+            "slice_sha256": "95ae36ceb51a63b83382466cb1eb699925f82c6ff0cfce14b39daf262fe23415",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "无",
+        "sourceSuccess": "直接任务数组，非法sender []",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "GET /api/ai-collab/tasks; action list-pending readonly items",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "IPC-03b436a7c1b1",
+      "name": "ai-collab:open-job",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/tasks/:job/action；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/tasks/:job/action",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "event job",
+        "sourceSuccess": "事件job投影",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#IPC-03b436a7c1b1"
+      },
+      "protocol": {
+        "id": "IPC-03b436a7c1b1",
+        "kind": "IPC",
+        "name": "ai-collab:open-job",
+        "sourceEvidence": [
+          {
+            "evidence": {
+              "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+              "start": 1204871,
+              "end": 1204913,
+              "startLine": 1,
+              "startColumn": 1204872,
+              "endLine": 1,
+              "endColumn": 1204914,
+              "sliceSha256": "7e706ee49499e18038472ff6f9aefebf7939836f0a2804c3e1f93c2b5e6cb0e0"
+            },
+            "receiver": "n.webContents",
+            "operation": "send",
+            "payloadShapes": [
+              {
+                "type": "Identifier",
+                "expression": "t"
+              }
+            ],
+            "transportConfirmed": true
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24386,
+            "end_line": 24386,
+            "slice_sha256": "6cf1cf0b3e3fdd9993e7e018efe0bc78edb85ea937a1bbdc5d0d2ef84a6ef5d8",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24381,
+            "end_line": 24387,
+            "slice_sha256": "b7ffe7825d71db7ca425a6e63675c1612bbb9cb840ce256fffd27b9276640909",
+            "note": "onJobChanged→webContents.send"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24381,
+            "end_line": 24388,
+            "slice_sha256": "e868f61dd0e8e315d5d33992b25b9eabcb56e766ed8ffbcb1ed235ba10f943b3",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24419,
+            "end_line": 24428,
+            "slice_sha256": "95ae36ceb51a63b83382466cb1eb699925f82c6ff0cfce14b39daf262fe23415",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24379,
+            "end_line": 24388,
+            "slice_sha256": "e1f1b90fb49359afee6568b2ffcd35d362c23fa5625a5169d49c83cd797047e2",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24448,
+            "end_line": 24452,
+            "slice_sha256": "83c26b7a31c52fd95f44a263a3c7407dcf949a1eed82d44c8320a83c42bf2bdd",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "event job",
+        "sourceSuccess": "事件job投影",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/tasks/:job/action",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "IPC-d0d9bb1ba45b",
+      "name": "ai-collab:open-task",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/tasks/:job/action；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/tasks/:job/action",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "{jobId}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#IPC-d0d9bb1ba45b"
+      },
+      "protocol": {
+        "id": "IPC-d0d9bb1ba45b",
+        "kind": "IPC",
+        "name": "ai-collab:open-task",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1207033,
+            "end": 1207127,
+            "startLine": 1,
+            "startColumn": 1207034,
+            "endLine": 1,
+            "endColumn": 1207128,
+            "sliceSha256": "4fa6e38695ae4150fde8720465b7d6d9f7357a6d43879b437f0e3c43c71d485a"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24429,
+            "end_line": 24429,
+            "slice_sha256": "a8b0fd7d29e587c895d931def96b572933bc2c3b0021a8f827a232ad91c4a584",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 23300,
+            "end_line": 23304,
+            "slice_sha256": "ec565564fa61b9b6725d2906a7f00b494531499a71ccddf3d437888c74833cea",
+            "note": "openTaskFromRenderer"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24381,
+            "end_line": 24388,
+            "slice_sha256": "e868f61dd0e8e315d5d33992b25b9eabcb56e766ed8ffbcb1ed235ba10f943b3",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24419,
+            "end_line": 24428,
+            "slice_sha256": "95ae36ceb51a63b83382466cb1eb699925f82c6ff0cfce14b39daf262fe23415",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "{jobId}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/tasks/:job/action",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "IPC-208d016e6972",
+      "name": "ai-collab:prepare-export",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/tasks/:job/prepare-export；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/tasks/:job/prepare-export",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "{jobId}",
+        "sourceSuccess": "job:路径集（非普通任务对象）",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#IPC-208d016e6972"
+      },
+      "protocol": {
+        "id": "IPC-208d016e6972",
+        "kind": "IPC",
+        "name": "ai-collab:prepare-export",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1209820,
+            "end": 1209924,
+            "startLine": 1,
+            "startColumn": 1209821,
+            "endLine": 1,
+            "endColumn": 1209925,
+            "sliceSha256": "1f15bd9daa70230d2bf2b593daf26302c026134b9ec5eaecebc42b12d8e71d05"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24449,
+            "end_line": 24449,
+            "slice_sha256": "b5b346eca098dd45a696b7e7e0b591f7fb407851de146f97d09e3aadd72cf3b1",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 23451,
+            "end_line": 23469,
+            "slice_sha256": "eec6b6665818b4ccf4c145cb1dac5e124a4bc4912938d89962d2ed7aff2e478a",
+            "note": "prepareExportFromRenderer"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24381,
+            "end_line": 24388,
+            "slice_sha256": "e868f61dd0e8e315d5d33992b25b9eabcb56e766ed8ffbcb1ed235ba10f943b3",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24419,
+            "end_line": 24428,
+            "slice_sha256": "95ae36ceb51a63b83382466cb1eb699925f82c6ff0cfce14b39daf262fe23415",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "{jobId}",
+        "sourceSuccess": "job:路径集（非普通任务对象）",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/tasks/:job/prepare-export",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "IPC-40128ac5fccf",
+      "name": "ai-collab:release-export",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/tasks/:job/release-export；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/tasks/:job/release-export",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "{jobId,exportPath,mappingPath?,safeName,visualFallback?}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#IPC-40128ac5fccf"
+      },
+      "protocol": {
+        "id": "IPC-40128ac5fccf",
+        "kind": "IPC",
+        "name": "ai-collab:release-export",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1209925,
+            "end": 1210084,
+            "startLine": 1,
+            "startColumn": 1209926,
+            "endLine": 1,
+            "endColumn": 1210085,
+            "sliceSha256": "0aba7b5b1a6c0d95aded2b9fd4df6244ced491718286c8ff1bfd128880e2025e"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24449,
+            "end_line": 24449,
+            "slice_sha256": "b5b346eca098dd45a696b7e7e0b591f7fb407851de146f97d09e3aadd72cf3b1",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 23470,
+            "end_line": 23559,
+            "slice_sha256": "82971ee7e6e480963c3a37ce3591e47e00235c3988af68a22cc2c8820e1ec499",
+            "note": "releaseExportFromRenderer"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24381,
+            "end_line": 24388,
+            "slice_sha256": "e868f61dd0e8e315d5d33992b25b9eabcb56e766ed8ffbcb1ed235ba10f943b3",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24419,
+            "end_line": 24428,
+            "slice_sha256": "95ae36ceb51a63b83382466cb1eb699925f82c6ff0cfce14b39daf262fe23415",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "{jobId,exportPath,mappingPath?,safeName,visualFallback?}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/tasks/:job/release-export",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "IPC-121d180be5d8",
+      "name": "ai-collab:repair-task-storage",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/tasks/:job/action；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/tasks/:job/action",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "无",
+        "sourceSuccess": "job:任务列表",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#IPC-121d180be5d8"
+      },
+      "protocol": {
+        "id": "IPC-121d180be5d8",
+        "kind": "IPC",
+        "name": "ai-collab:repair-task-storage",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1207485,
+            "end": 1207885,
+            "startLine": 1,
+            "startColumn": 1207486,
+            "endLine": 1,
+            "endColumn": 1207886,
+            "sliceSha256": "e89a975ccc870ed24164f175cd119ce9da0bcdb49c5a9ed4d9e5951a36f7acc0"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24429,
+            "end_line": 24429,
+            "slice_sha256": "a8b0fd7d29e587c895d931def96b572933bc2c3b0021a8f827a232ad91c4a584",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 23297,
+            "end_line": 23299,
+            "slice_sha256": "1bd850e84504a8f09b2dd7261110a7ca5f73a36913d16e2dc7508c64f58b6ce4",
+            "note": "repairTaskStorageFromRenderer"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24381,
+            "end_line": 24388,
+            "slice_sha256": "e868f61dd0e8e315d5d33992b25b9eabcb56e766ed8ffbcb1ed235ba10f943b3",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24419,
+            "end_line": 24428,
+            "slice_sha256": "95ae36ceb51a63b83382466cb1eb699925f82c6ff0cfce14b39daf262fe23415",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "无",
+        "sourceSuccess": "job:任务列表",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/tasks/:job/action",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "IPC-412cb770febe",
+      "name": "ai-collab:report-statistics",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/tasks/:job/action；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/tasks/:job/action",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "{jobId,statistics}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#IPC-412cb770febe"
+      },
+      "protocol": {
+        "id": "IPC-412cb770febe",
+        "kind": "IPC",
+        "name": "ai-collab:report-statistics",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1209353,
+            "end": 1209476,
+            "startLine": 1,
+            "startColumn": 1209354,
+            "endLine": 1,
+            "endColumn": 1209477,
+            "sliceSha256": "4003fd44bfa03c2b330175121e34fb592b24b0f154b009404c4a41d5e3936c06"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24449,
+            "end_line": 24449,
+            "slice_sha256": "b5b346eca098dd45a696b7e7e0b591f7fb407851de146f97d09e3aadd72cf3b1",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 23438,
+            "end_line": 23450,
+            "slice_sha256": "83122a6b82423aa85d4876b62e7648266c0a0666e8319ea026cc3fac034b3158",
+            "note": "recordStatisticsFromRenderer"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24381,
+            "end_line": 24388,
+            "slice_sha256": "e868f61dd0e8e315d5d33992b25b9eabcb56e766ed8ffbcb1ed235ba10f943b3",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24419,
+            "end_line": 24428,
+            "slice_sha256": "95ae36ceb51a63b83382466cb1eb699925f82c6ff0cfce14b39daf262fe23415",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "{jobId,statistics}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/tasks/:job/action",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "IPC-fe44165e30fd",
+      "name": "ai-collab:restart-preparation",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/tasks/:job/action；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/tasks/:job/action",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "{jobId}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#IPC-fe44165e30fd"
+      },
+      "protocol": {
+        "id": "IPC-fe44165e30fd",
+        "kind": "IPC",
+        "name": "ai-collab:restart-preparation",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1207240,
+            "end": 1207354,
+            "startLine": 1,
+            "startColumn": 1207241,
+            "endLine": 1,
+            "endColumn": 1207355,
+            "sliceSha256": "ba35c1e80d399a840cc8e06ecc7c6b73da3d1764d79caffef9d4895980c1b775"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24429,
+            "end_line": 24429,
+            "slice_sha256": "a8b0fd7d29e587c895d931def96b572933bc2c3b0021a8f827a232ad91c4a584",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 23312,
+            "end_line": 23321,
+            "slice_sha256": "0fe43126bf0167c8f6d4691440cbb58140b8f2c17e144e2ccf0856629977f9c3",
+            "note": "restartPreparationFromRenderer"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24381,
+            "end_line": 24388,
+            "slice_sha256": "e868f61dd0e8e315d5d33992b25b9eabcb56e766ed8ffbcb1ed235ba10f943b3",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24419,
+            "end_line": 24428,
+            "slice_sha256": "95ae36ceb51a63b83382466cb1eb699925f82c6ff0cfce14b39daf262fe23415",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "{jobId}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/tasks/:job/action",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "IPC-0a8de5567b3c",
+      "name": "ai-collab:restore-completed",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/tasks/:job/action；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/tasks/:job/action",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "{jobId,roundId,replacementCount,residualTokenCount?}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#IPC-0a8de5567b3c"
+      },
+      "protocol": {
+        "id": "IPC-0a8de5567b3c",
+        "kind": "IPC",
+        "name": "ai-collab:restore-completed",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1210204,
+            "end": 1210330,
+            "startLine": 1,
+            "startColumn": 1210205,
+            "endLine": 1,
+            "endColumn": 1210331,
+            "sliceSha256": "14949f34bcce168d40c90d6d4c94a86a0f48dae1101f5b78ea69141fe8e7f1ef"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24449,
+            "end_line": 24449,
+            "slice_sha256": "b5b346eca098dd45a696b7e7e0b591f7fb407851de146f97d09e3aadd72cf3b1",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 23747,
+            "end_line": 23766,
+            "slice_sha256": "15ee23ad38451d22b9596f61ad28e1981824b028316e504198d330753a07d6eb",
+            "note": "markRestoreCompletedFromRenderer"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24381,
+            "end_line": 24388,
+            "slice_sha256": "e868f61dd0e8e315d5d33992b25b9eabcb56e766ed8ffbcb1ed235ba10f943b3",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24419,
+            "end_line": 24428,
+            "slice_sha256": "95ae36ceb51a63b83382466cb1eb699925f82c6ff0cfce14b39daf262fe23415",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "{jobId,roundId,replacementCount,residualTokenCount?}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/tasks/:job/action",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "IPC-8b4556ee60d4",
+      "name": "ai-collab:restore-failed",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/tasks/:job/action；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/tasks/:job/action",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "{jobId,roundId}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#IPC-8b4556ee60d4"
+      },
+      "protocol": {
+        "id": "IPC-8b4556ee60d4",
+        "kind": "IPC",
+        "name": "ai-collab:restore-failed",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1210331,
+            "end": 1210449,
+            "startLine": 1,
+            "startColumn": 1210332,
+            "endLine": 1,
+            "endColumn": 1210450,
+            "sliceSha256": "976da366c5b2d5231d6e49d8d02d178887787da5c056db3db479917f583104d6"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24449,
+            "end_line": 24449,
+            "slice_sha256": "b5b346eca098dd45a696b7e7e0b591f7fb407851de146f97d09e3aadd72cf3b1",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 23726,
+            "end_line": 23733,
+            "slice_sha256": "28146afe7e96cbcf984098fe9188ac9a302eb60a9b746ba2838a4992bc0a7e49",
+            "note": "markRestoreFailedFromRenderer"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24381,
+            "end_line": 24388,
+            "slice_sha256": "e868f61dd0e8e315d5d33992b25b9eabcb56e766ed8ffbcb1ed235ba10f943b3",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24419,
+            "end_line": 24428,
+            "slice_sha256": "95ae36ceb51a63b83382466cb1eb699925f82c6ff0cfce14b39daf262fe23415",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "{jobId,roundId}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/tasks/:job/action",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "IPC-21f5af67811a",
+      "name": "ai-collab:restore-saved-task",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/tasks/:job/action；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/tasks/:job/action",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "{jobId}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#IPC-21f5af67811a"
+      },
+      "protocol": {
+        "id": "IPC-21f5af67811a",
+        "kind": "IPC",
+        "name": "ai-collab:restore-saved-task",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1207128,
+            "end": 1207239,
+            "startLine": 1,
+            "startColumn": 1207129,
+            "endLine": 1,
+            "endColumn": 1207240,
+            "sliceSha256": "a9fd564cf7a53e3a75e1ee40972dbb973203ee871e0571c2d7c8fd409d5418bd"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24429,
+            "end_line": 24429,
+            "slice_sha256": "a8b0fd7d29e587c895d931def96b572933bc2c3b0021a8f827a232ad91c4a584",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 23305,
+            "end_line": 23311,
+            "slice_sha256": "16a8840da645332d198a82f1c8acb0b969b8e51e5fba809c168765fb39a06ed3",
+            "note": "restoreSavedTaskFromRenderer"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24381,
+            "end_line": 24388,
+            "slice_sha256": "e868f61dd0e8e315d5d33992b25b9eabcb56e766ed8ffbcb1ed235ba10f943b3",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24419,
+            "end_line": 24428,
+            "slice_sha256": "95ae36ceb51a63b83382466cb1eb699925f82c6ff0cfce14b39daf262fe23415",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "{jobId}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/tasks/:job/action",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "IPC-b3931f25eb79",
+      "name": "ai-collab:resume-local-restore",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/tasks/:job/action；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/tasks/:job/action",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "{jobId}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#IPC-b3931f25eb79"
+      },
+      "protocol": {
+        "id": "IPC-b3931f25eb79",
+        "kind": "IPC",
+        "name": "ai-collab:resume-local-restore",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1210563,
+            "end": 1210678,
+            "startLine": 1,
+            "startColumn": 1210564,
+            "endLine": 1,
+            "endColumn": 1210679,
+            "sliceSha256": "77d47f0872ad70c3a18c880e76bc584b9bf1cb5a39b3116edb3fbcdfe4066536"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24449,
+            "end_line": 24449,
+            "slice_sha256": "b5b346eca098dd45a696b7e7e0b591f7fb407851de146f97d09e3aadd72cf3b1",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 23343,
+            "end_line": 23351,
+            "slice_sha256": "72dd1c45fc7c36673e91697a325233c68d9683430de6b2dfb4340a678c03d3bb",
+            "note": "resumeLocalRestoreFromRenderer"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24381,
+            "end_line": 24388,
+            "slice_sha256": "e868f61dd0e8e315d5d33992b25b9eabcb56e766ed8ffbcb1ed235ba10f943b3",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24419,
+            "end_line": 24428,
+            "slice_sha256": "95ae36ceb51a63b83382466cb1eb699925f82c6ff0cfce14b39daf262fe23415",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "{jobId}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/tasks/:job/action",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "IPC-eceef0e6cff3",
+      "name": "ai-collab:retry-authorization",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/tasks/:job/action；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/tasks/:job/action",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "{jobId}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#IPC-eceef0e6cff3"
+      },
+      "protocol": {
+        "id": "IPC-eceef0e6cff3",
+        "kind": "IPC",
+        "name": "ai-collab:retry-authorization",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1208912,
+            "end": 1209035,
+            "startLine": 1,
+            "startColumn": 1208913,
+            "endLine": 1,
+            "endColumn": 1209036,
+            "sliceSha256": "0010d58b4aae0a8e73d71e436b64e21ef71d910e0186c6264acff6755bccb2ba"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24449,
+            "end_line": 24449,
+            "slice_sha256": "b5b346eca098dd45a696b7e7e0b591f7fb407851de146f97d09e3aadd72cf3b1",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 23431,
+            "end_line": 23437,
+            "slice_sha256": "b38f91c371772d7d39e7f3bc46d476629f0b394ae02caaea92699576d52b63d1",
+            "note": "rollbackAuthorizationAfterImportFailure"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24381,
+            "end_line": 24388,
+            "slice_sha256": "e868f61dd0e8e315d5d33992b25b9eabcb56e766ed8ffbcb1ed235ba10f943b3",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24419,
+            "end_line": 24428,
+            "slice_sha256": "95ae36ceb51a63b83382466cb1eb699925f82c6ff0cfce14b39daf262fe23415",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "{jobId}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/tasks/:job/action",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "IPC-6c981281c999",
+      "name": "ai-collab:retry-confirmation",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/tasks/:job/action；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/tasks/:job/action",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "{jobId,roundId}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#IPC-6c981281c999"
+      },
+      "protocol": {
+        "id": "IPC-6c981281c999",
+        "kind": "IPC",
+        "name": "ai-collab:retry-confirmation",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1207355,
+            "end": 1207484,
+            "startLine": 1,
+            "startColumn": 1207356,
+            "endLine": 1,
+            "endColumn": 1207485,
+            "sliceSha256": "b4d54793179273429a75c712cd608c9894b1447795712e19d1e3ce1ce6edcb41"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24429,
+            "end_line": 24429,
+            "slice_sha256": "a8b0fd7d29e587c895d931def96b572933bc2c3b0021a8f827a232ad91c4a584",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 23330,
+            "end_line": 23339,
+            "slice_sha256": "e21082f044735a024a7562e365dd63043e33caa6f50479226d046335cd9fba37",
+            "note": "retryRestoreConfirmationFromRenderer"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24381,
+            "end_line": 24388,
+            "slice_sha256": "e868f61dd0e8e315d5d33992b25b9eabcb56e766ed8ffbcb1ed235ba10f943b3",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24419,
+            "end_line": 24428,
+            "slice_sha256": "95ae36ceb51a63b83382466cb1eb699925f82c6ff0cfce14b39daf262fe23415",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "{jobId,roundId}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/tasks/:job/action",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "IPC-2f0db8546650",
+      "name": "ai-collab:retry-restore",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/tasks/:job/action；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/tasks/:job/action",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "{jobId,roundId}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#IPC-2f0db8546650"
+      },
+      "protocol": {
+        "id": "IPC-2f0db8546650",
+        "kind": "IPC",
+        "name": "ai-collab:retry-restore",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1210450,
+            "end": 1210562,
+            "startLine": 1,
+            "startColumn": 1210451,
+            "endLine": 1,
+            "endColumn": 1210563,
+            "sliceSha256": "e6b3ce1fede934bcdb02b35589893ad7975342aebbb860b3231da3c447568848"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24449,
+            "end_line": 24449,
+            "slice_sha256": "b5b346eca098dd45a696b7e7e0b591f7fb407851de146f97d09e3aadd72cf3b1",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 23734,
+            "end_line": 23746,
+            "slice_sha256": "ba23a512229cebc0433e1e8b373e90b34b3e405d2aba72ebd87618c8a0992953",
+            "note": "retryRestoreFromRenderer"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24381,
+            "end_line": 24388,
+            "slice_sha256": "e868f61dd0e8e315d5d33992b25b9eabcb56e766ed8ffbcb1ed235ba10f943b3",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24419,
+            "end_line": 24428,
+            "slice_sha256": "95ae36ceb51a63b83382466cb1eb699925f82c6ff0cfce14b39daf262fe23415",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "{jobId,roundId}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/tasks/:job/action",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "IPC-3b4c9f7c2b97",
+      "name": "ai-collab:set-review-intent",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/tasks/:job/action；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/tasks/:job/action",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "{jobId,intent}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#IPC-3b4c9f7c2b97"
+      },
+      "protocol": {
+        "id": "IPC-3b4c9f7c2b97",
+        "kind": "IPC",
+        "name": "ai-collab:set-review-intent",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1210085,
+            "end": 1210203,
+            "startLine": 1,
+            "startColumn": 1210086,
+            "endLine": 1,
+            "endColumn": 1210204,
+            "sliceSha256": "09d7d84d02441a19afee02f921268b081c9fe008f8aadb5310e1148d93f3457d"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24449,
+            "end_line": 24449,
+            "slice_sha256": "b5b346eca098dd45a696b7e7e0b591f7fb407851de146f97d09e3aadd72cf3b1",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 23259,
+            "end_line": 23274,
+            "slice_sha256": "1b47842cf840da426f4ced2509207ebbcc61d700eff688416b871881a87f5317",
+            "note": "setReviewIntentFromRenderer"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24381,
+            "end_line": 24388,
+            "slice_sha256": "e868f61dd0e8e315d5d33992b25b9eabcb56e766ed8ffbcb1ed235ba10f943b3",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24419,
+            "end_line": 24428,
+            "slice_sha256": "95ae36ceb51a63b83382466cb1eb699925f82c6ff0cfce14b39daf262fe23415",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "{jobId,intent}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/tasks/:job/action",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "IPC-a3eee81b75d4",
+      "name": "ai-collab:standalone-restore-completed",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/tasks/:job/action；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/tasks/:job/action",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "{jobId,replacementCount,residualTokenCount?}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#IPC-a3eee81b75d4"
+      },
+      "protocol": {
+        "id": "IPC-a3eee81b75d4",
+        "kind": "IPC",
+        "name": "ai-collab:standalone-restore-completed",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1210679,
+            "end": 1210816,
+            "startLine": 1,
+            "startColumn": 1210680,
+            "endLine": 1,
+            "endColumn": 1210817,
+            "sliceSha256": "4221a94b38a19719acdcf56969e166314e961fad7676645d4674c2b4dc6bf02a"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24449,
+            "end_line": 24449,
+            "slice_sha256": "b5b346eca098dd45a696b7e7e0b591f7fb407851de146f97d09e3aadd72cf3b1",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 23767,
+            "end_line": 23776,
+            "slice_sha256": "3ddd13475d7667e9fc1132cd87fd6681660502e8bba5ca97028d969e97cd0da3",
+            "note": "markStandaloneRestoreCompletedFromRenderer"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24381,
+            "end_line": 24388,
+            "slice_sha256": "e868f61dd0e8e315d5d33992b25b9eabcb56e766ed8ffbcb1ed235ba10f943b3",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24419,
+            "end_line": 24428,
+            "slice_sha256": "95ae36ceb51a63b83382466cb1eb699925f82c6ff0cfce14b39daf262fe23415",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "{jobId,replacementCount,residualTokenCount?}",
+        "sourceSuccess": "job:服务投影（详细分支见文档第7节）",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/tasks/:job/action",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "IPC-cf6cc425333d",
+      "name": "mcp-connectors:copy-setup",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/connectors/:adapter/:method；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/connectors/:adapter/:method",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "{id}",
+        "sourceSuccess": "snapshot",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#IPC-cf6cc425333d"
+      },
+      "protocol": {
+        "id": "IPC-cf6cc425333d",
+        "kind": "IPC",
+        "name": "mcp-connectors:copy-setup",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1206086,
+            "end": 1206487,
+            "startLine": 1,
+            "startColumn": 1206087,
+            "endLine": 1,
+            "endColumn": 1206488,
+            "sliceSha256": "4ccdd4e0f34b7b893e9b444a3cd9cac97a69e54441c29f26bb5428f35013ba75"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24402,
+            "end_line": 24402,
+            "slice_sha256": "d4b645693afc8fb22cf08a03a408e292c5c12e392decd1ffe9008927d721cb39",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24402,
+            "end_line": 24410,
+            "slice_sha256": "41a8e3f8d603e444ee30aae14d71c1ecf0d580139f34237311c02e43fdae9271",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-dsh/bridge.js",
+            "start_line": 1,
+            "end_line": 172,
+            "slice_sha256": "6538f9c7feeb4666fd74abc730ca292b635c2c195de63f4d8d4b4c3312cf1ca7",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "{id}",
+        "sourceSuccess": "snapshot",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/connectors/:adapter/:method",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "IPC-d70108ef71d7",
+      "name": "mcp-connectors:get-status",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/connectors/:adapter/:method；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/connectors/:adapter/:method",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "无",
+        "sourceSuccess": "snapshot|null",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#IPC-d70108ef71d7"
+      },
+      "protocol": {
+        "id": "IPC-d70108ef71d7",
+        "kind": "IPC",
+        "name": "mcp-connectors:get-status",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1205084,
+            "end": 1205146,
+            "startLine": 1,
+            "startColumn": 1205085,
+            "endLine": 1,
+            "endColumn": 1205147,
+            "sliceSha256": "04acfa782d09a02f9bc4ff92d069aa1a1ed466593cd1c554384af5098b23ea43"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24389,
+            "end_line": 24389,
+            "slice_sha256": "65403a8f3fa83f8fbd24b16f0a1abcb26f2ad5c7f6043f38342e9303a3686dd6",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24381,
+            "end_line": 24389,
+            "slice_sha256": "aab919a01cd310ff568b6c2657640652a627bf43fd82f56c4d4d3c067738c28f",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "无",
+        "sourceSuccess": "snapshot|null",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/connectors/:adapter/:method",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "IPC-13b1b9cd954f",
+      "name": "mcp-connectors:retry",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/connectors/:adapter/:method；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/connectors/:adapter/:method",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "无",
+        "sourceSuccess": "snapshot|null",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#IPC-13b1b9cd954f"
+      },
+      "protocol": {
+        "id": "IPC-13b1b9cd954f",
+        "kind": "IPC",
+        "name": "mcp-connectors:retry",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1205147,
+            "end": 1205228,
+            "startLine": 1,
+            "startColumn": 1205148,
+            "endLine": 1,
+            "endColumn": 1205229,
+            "sliceSha256": "b20a587a9731cac8fd99e05eab7cb81b51df1e7244a8c2eab2289651c7299e8e"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24389,
+            "end_line": 24389,
+            "slice_sha256": "65403a8f3fa83f8fbd24b16f0a1abcb26f2ad5c7f6043f38342e9303a3686dd6",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24389,
+            "end_line": 24389,
+            "slice_sha256": "65403a8f3fa83f8fbd24b16f0a1abcb26f2ad5c7f6043f38342e9303a3686dd6",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "无",
+        "sourceSuccess": "snapshot|null",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/connectors/:adapter/:method",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "IPC-7a1832cb9fe9",
+      "name": "mcp-connectors:update-automation",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/connectors/:adapter/:method；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/connectors/:adapter/:method",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "{sanitizedOutputDir?,restoredOutputDir?,shareRestorePassword?}",
+        "sourceSuccess": "settings",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#IPC-7a1832cb9fe9"
+      },
+      "protocol": {
+        "id": "IPC-7a1832cb9fe9",
+        "kind": "IPC",
+        "name": "mcp-connectors:update-automation",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1205229,
+            "end": 1205487,
+            "startLine": 1,
+            "startColumn": 1205230,
+            "endLine": 1,
+            "endColumn": 1205488,
+            "sliceSha256": "02130522ed461880f1fca1cf54c6196ad98ca49540df02267cc52838a57c6f70"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24389,
+            "end_line": 24389,
+            "slice_sha256": "65403a8f3fa83f8fbd24b16f0a1abcb26f2ad5c7f6043f38342e9303a3686dd6",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24389,
+            "end_line": 24395,
+            "slice_sha256": "68e73283303b8f22202dce915c165e9e6e34c81756bc3603827aeb9b9b481de8",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "{sanitizedOutputDir?,restoredOutputDir?,shareRestorePassword?}",
+        "sourceSuccess": "settings",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/connectors/:adapter/:method",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "GATEWAY-f21aa5c5dc19",
+      "name": "gateway_ping",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/gateway；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/gateway",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "request {id,sessionSecret,caller:{adapterId,displayName,sessionId},method,params}; params逐方法见source-method参数/分支与旧AST契约",
+        "sourceSuccess": "JSON-line {id,ok:true,result}; failure {id,ok:false,error:{code,message}}",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#GATEWAY-f21aa5c5dc19"
+      },
+      "protocol": {
+        "id": "GATEWAY-f21aa5c5dc19",
+        "kind": "GATEWAY",
+        "name": "gateway_ping",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24122,
+            "end_line": 24168,
+            "slice_sha256": "6b93947beb08d2c8be4654dc4039809882cd91ac7dd02909d83d95e84bb3e904",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24371,
+            "end_line": 24375,
+            "slice_sha256": "07f15c4e148db336f6eafcf409efd86006b87eb6fa03d2a32b7e2398dcc933ea",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "request {id,sessionSecret,caller:{adapterId,displayName,sessionId},method,params}; params逐方法见source-method参数/分支与旧AST契约",
+        "sourceSuccess": "JSON-line {id,ok:true,result}; failure {id,ok:false,error:{code,message}}",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/gateway",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "GATEWAY-191fc60f0036",
+      "name": "get_configuration_catalog",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/gateway；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/gateway",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "request {id,sessionSecret,caller:{adapterId,displayName,sessionId},method,params}; params逐方法见source-method参数/分支与旧AST契约",
+        "sourceSuccess": "JSON-line {id,ok:true,result}; failure {id,ok:false,error:{code,message}}",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#GATEWAY-191fc60f0036"
+      },
+      "protocol": {
+        "id": "GATEWAY-191fc60f0036",
+        "kind": "GATEWAY",
+        "name": "get_configuration_catalog",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24122,
+            "end_line": 24168,
+            "slice_sha256": "6b93947beb08d2c8be4654dc4039809882cd91ac7dd02909d83d95e84bb3e904",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24371,
+            "end_line": 24375,
+            "slice_sha256": "07f15c4e148db336f6eafcf409efd86006b87eb6fa03d2a32b7e2398dcc933ea",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "request {id,sessionSecret,caller:{adapterId,displayName,sessionId},method,params}; params逐方法见source-method参数/分支与旧AST契约",
+        "sourceSuccess": "JSON-line {id,ok:true,result}; failure {id,ok:false,error:{code,message}}",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/gateway",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "GATEWAY-cbd9ff60189a",
+      "name": "start_secure_review",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/gateway；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/gateway",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "request {id,sessionSecret,caller:{adapterId,displayName,sessionId},method,params}; params逐方法见source-method参数/分支与旧AST契约",
+        "sourceSuccess": "JSON-line {id,ok:true,result}; failure {id,ok:false,error:{code,message}}",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#GATEWAY-cbd9ff60189a"
+      },
+      "protocol": {
+        "id": "GATEWAY-cbd9ff60189a",
+        "kind": "GATEWAY",
+        "name": "start_secure_review",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24122,
+            "end_line": 24168,
+            "slice_sha256": "6b93947beb08d2c8be4654dc4039809882cd91ac7dd02909d83d95e84bb3e904",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24371,
+            "end_line": 24375,
+            "slice_sha256": "07f15c4e148db336f6eafcf409efd86006b87eb6fa03d2a32b7e2398dcc933ea",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "request {id,sessionSecret,caller:{adapterId,displayName,sessionId},method,params}; params逐方法见source-method参数/分支与旧AST契约",
+        "sourceSuccess": "JSON-line {id,ok:true,result}; failure {id,ok:false,error:{code,message}}",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/gateway",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "GATEWAY-95f7eda76ec2",
+      "name": "resume_secure_review",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/gateway；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/gateway",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "request {id,sessionSecret,caller:{adapterId,displayName,sessionId},method,params}; params逐方法见source-method参数/分支与旧AST契约",
+        "sourceSuccess": "JSON-line {id,ok:true,result}; failure {id,ok:false,error:{code,message}}",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#GATEWAY-95f7eda76ec2"
+      },
+      "protocol": {
+        "id": "GATEWAY-95f7eda76ec2",
+        "kind": "GATEWAY",
+        "name": "resume_secure_review",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24122,
+            "end_line": 24168,
+            "slice_sha256": "6b93947beb08d2c8be4654dc4039809882cd91ac7dd02909d83d95e84bb3e904",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24371,
+            "end_line": 24375,
+            "slice_sha256": "07f15c4e148db336f6eafcf409efd86006b87eb6fa03d2a32b7e2398dcc933ea",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "request {id,sessionSecret,caller:{adapterId,displayName,sessionId},method,params}; params逐方法见source-method参数/分支与旧AST契约",
+        "sourceSuccess": "JSON-line {id,ok:true,result}; failure {id,ok:false,error:{code,message}}",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/gateway",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "GATEWAY-325df91336a6",
+      "name": "start_local_restore",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/gateway；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/gateway",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "request {id,sessionSecret,caller:{adapterId,displayName,sessionId},method,params}; params逐方法见source-method参数/分支与旧AST契约",
+        "sourceSuccess": "JSON-line {id,ok:true,result}; failure {id,ok:false,error:{code,message}}",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#GATEWAY-325df91336a6"
+      },
+      "protocol": {
+        "id": "GATEWAY-325df91336a6",
+        "kind": "GATEWAY",
+        "name": "start_local_restore",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24122,
+            "end_line": 24168,
+            "slice_sha256": "6b93947beb08d2c8be4654dc4039809882cd91ac7dd02909d83d95e84bb3e904",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24371,
+            "end_line": 24375,
+            "slice_sha256": "07f15c4e148db336f6eafcf409efd86006b87eb6fa03d2a32b7e2398dcc933ea",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "request {id,sessionSecret,caller:{adapterId,displayName,sessionId},method,params}; params逐方法见source-method参数/分支与旧AST契约",
+        "sourceSuccess": "JSON-line {id,ok:true,result}; failure {id,ok:false,error:{code,message}}",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/gateway",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "GATEWAY-257145c95a18",
+      "name": "get_review_status",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/gateway；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/gateway",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "request {id,sessionSecret,caller:{adapterId,displayName,sessionId},method,params}; params逐方法见source-method参数/分支与旧AST契约",
+        "sourceSuccess": "JSON-line {id,ok:true,result}; failure {id,ok:false,error:{code,message}}",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#GATEWAY-257145c95a18"
+      },
+      "protocol": {
+        "id": "GATEWAY-257145c95a18",
+        "kind": "GATEWAY",
+        "name": "get_review_status",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24122,
+            "end_line": 24168,
+            "slice_sha256": "6b93947beb08d2c8be4654dc4039809882cd91ac7dd02909d83d95e84bb3e904",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24371,
+            "end_line": 24375,
+            "slice_sha256": "07f15c4e148db336f6eafcf409efd86006b87eb6fa03d2a32b7e2398dcc933ea",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "request {id,sessionSecret,caller:{adapterId,displayName,sessionId},method,params}; params逐方法见source-method参数/分支与旧AST契约",
+        "sourceSuccess": "JSON-line {id,ok:true,result}; failure {id,ok:false,error:{code,message}}",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/gateway",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "GATEWAY-f41647c2a851",
+      "name": "wait_review_delivery",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/gateway；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/gateway",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "request {id,sessionSecret,caller:{adapterId,displayName,sessionId},method,params}; params逐方法见source-method参数/分支与旧AST契约",
+        "sourceSuccess": "JSON-line {id,ok:true,result}; failure {id,ok:false,error:{code,message}}",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#GATEWAY-f41647c2a851"
+      },
+      "protocol": {
+        "id": "GATEWAY-f41647c2a851",
+        "kind": "GATEWAY",
+        "name": "wait_review_delivery",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24122,
+            "end_line": 24168,
+            "slice_sha256": "6b93947beb08d2c8be4654dc4039809882cd91ac7dd02909d83d95e84bb3e904",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24371,
+            "end_line": 24375,
+            "slice_sha256": "07f15c4e148db336f6eafcf409efd86006b87eb6fa03d2a32b7e2398dcc933ea",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "request {id,sessionSecret,caller:{adapterId,displayName,sessionId},method,params}; params逐方法见source-method参数/分支与旧AST契约",
+        "sourceSuccess": "JSON-line {id,ok:true,result}; failure {id,ok:false,error:{code,message}}",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/gateway",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "GATEWAY-678e012848a8",
+      "name": "get_sanitized_artifact",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/gateway；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/gateway",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "request {id,sessionSecret,caller:{adapterId,displayName,sessionId},method,params}; params逐方法见source-method参数/分支与旧AST契约",
+        "sourceSuccess": "JSON-line {id,ok:true,result}; failure {id,ok:false,error:{code,message}}",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#GATEWAY-678e012848a8"
+      },
+      "protocol": {
+        "id": "GATEWAY-678e012848a8",
+        "kind": "GATEWAY",
+        "name": "get_sanitized_artifact",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24122,
+            "end_line": 24168,
+            "slice_sha256": "6b93947beb08d2c8be4654dc4039809882cd91ac7dd02909d83d95e84bb3e904",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24371,
+            "end_line": 24375,
+            "slice_sha256": "07f15c4e148db336f6eafcf409efd86006b87eb6fa03d2a32b7e2398dcc933ea",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "request {id,sessionSecret,caller:{adapterId,displayName,sessionId},method,params}; params逐方法见source-method参数/分支与旧AST契约",
+        "sourceSuccess": "JSON-line {id,ok:true,result}; failure {id,ok:false,error:{code,message}}",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/gateway",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "GATEWAY-1abec6ed4302",
+      "name": "allocate_result_slot",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/gateway；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/gateway",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "request {id,sessionSecret,caller:{adapterId,displayName,sessionId},method,params}; params逐方法见source-method参数/分支与旧AST契约",
+        "sourceSuccess": "JSON-line {id,ok:true,result}; failure {id,ok:false,error:{code,message}}",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#GATEWAY-1abec6ed4302"
+      },
+      "protocol": {
+        "id": "GATEWAY-1abec6ed4302",
+        "kind": "GATEWAY",
+        "name": "allocate_result_slot",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24122,
+            "end_line": 24168,
+            "slice_sha256": "6b93947beb08d2c8be4654dc4039809882cd91ac7dd02909d83d95e84bb3e904",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24371,
+            "end_line": 24375,
+            "slice_sha256": "07f15c4e148db336f6eafcf409efd86006b87eb6fa03d2a32b7e2398dcc933ea",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "request {id,sessionSecret,caller:{adapterId,displayName,sessionId},method,params}; params逐方法见source-method参数/分支与旧AST契约",
+        "sourceSuccess": "JSON-line {id,ok:true,result}; failure {id,ok:false,error:{code,message}}",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/gateway",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "GATEWAY-9550960e5004",
+      "name": "submit_pseudonymized_result",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/gateway；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/gateway",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "request {id,sessionSecret,caller:{adapterId,displayName,sessionId},method,params}; params逐方法见source-method参数/分支与旧AST契约",
+        "sourceSuccess": "JSON-line {id,ok:true,result}; failure {id,ok:false,error:{code,message}}",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#GATEWAY-9550960e5004"
+      },
+      "protocol": {
+        "id": "GATEWAY-9550960e5004",
+        "kind": "GATEWAY",
+        "name": "submit_pseudonymized_result",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24122,
+            "end_line": 24168,
+            "slice_sha256": "6b93947beb08d2c8be4654dc4039809882cd91ac7dd02909d83d95e84bb3e904",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24371,
+            "end_line": 24375,
+            "slice_sha256": "07f15c4e148db336f6eafcf409efd86006b87eb6fa03d2a32b7e2398dcc933ea",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "request {id,sessionSecret,caller:{adapterId,displayName,sessionId},method,params}; params逐方法见source-method参数/分支与旧AST契约",
+        "sourceSuccess": "JSON-line {id,ok:true,result}; failure {id,ok:false,error:{code,message}}",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/gateway",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "GATEWAY-269ba55489c6",
+      "name": "request_local_restore",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/gateway；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/gateway",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "request {id,sessionSecret,caller:{adapterId,displayName,sessionId},method,params}; params逐方法见source-method参数/分支与旧AST契约",
+        "sourceSuccess": "JSON-line {id,ok:true,result}; failure {id,ok:false,error:{code,message}}",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#GATEWAY-269ba55489c6"
+      },
+      "protocol": {
+        "id": "GATEWAY-269ba55489c6",
+        "kind": "GATEWAY",
+        "name": "request_local_restore",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24122,
+            "end_line": 24168,
+            "slice_sha256": "6b93947beb08d2c8be4654dc4039809882cd91ac7dd02909d83d95e84bb3e904",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24371,
+            "end_line": 24375,
+            "slice_sha256": "07f15c4e148db336f6eafcf409efd86006b87eb6fa03d2a32b7e2398dcc933ea",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "request {id,sessionSecret,caller:{adapterId,displayName,sessionId},method,params}; params逐方法见source-method参数/分支与旧AST契约",
+        "sourceSuccess": "JSON-line {id,ok:true,result}; failure {id,ok:false,error:{code,message}}",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/gateway",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "GATEWAY-c67325f03fc7",
+      "name": "continue_review",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/gateway；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/gateway",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "request {id,sessionSecret,caller:{adapterId,displayName,sessionId},method,params}; params逐方法见source-method参数/分支与旧AST契约",
+        "sourceSuccess": "JSON-line {id,ok:true,result}; failure {id,ok:false,error:{code,message}}",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#GATEWAY-c67325f03fc7"
+      },
+      "protocol": {
+        "id": "GATEWAY-c67325f03fc7",
+        "kind": "GATEWAY",
+        "name": "continue_review",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24122,
+            "end_line": 24168,
+            "slice_sha256": "6b93947beb08d2c8be4654dc4039809882cd91ac7dd02909d83d95e84bb3e904",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24371,
+            "end_line": 24375,
+            "slice_sha256": "07f15c4e148db336f6eafcf409efd86006b87eb6fa03d2a32b7e2398dcc933ea",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "request {id,sessionSecret,caller:{adapterId,displayName,sessionId},method,params}; params逐方法见source-method参数/分支与旧AST契约",
+        "sourceSuccess": "JSON-line {id,ok:true,result}; failure {id,ok:false,error:{code,message}}",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/gateway",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "GATEWAY-32e1f2fdcacd",
+      "name": "get_completion_status",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/gateway；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/gateway",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "request {id,sessionSecret,caller:{adapterId,displayName,sessionId},method,params}; params逐方法见source-method参数/分支与旧AST契约",
+        "sourceSuccess": "JSON-line {id,ok:true,result}; failure {id,ok:false,error:{code,message}}",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#GATEWAY-32e1f2fdcacd"
+      },
+      "protocol": {
+        "id": "GATEWAY-32e1f2fdcacd",
+        "kind": "GATEWAY",
+        "name": "get_completion_status",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24122,
+            "end_line": 24168,
+            "slice_sha256": "6b93947beb08d2c8be4654dc4039809882cd91ac7dd02909d83d95e84bb3e904",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24371,
+            "end_line": 24375,
+            "slice_sha256": "07f15c4e148db336f6eafcf409efd86006b87eb6fa03d2a32b7e2398dcc933ea",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "request {id,sessionSecret,caller:{adapterId,displayName,sessionId},method,params}; params逐方法见source-method参数/分支与旧AST契约",
+        "sourceSuccess": "JSON-line {id,ok:true,result}; failure {id,ok:false,error:{code,message}}",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/gateway",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    },
+    {
+      "id": "GATEWAY-8f9ae82e2106",
+      "name": "wait_restore_completion",
+      "current": {
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "sources": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "tests": [
+          "tests/mcp.integration.ts",
+          "tests/mcp-tools.test.ts"
+        ],
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ],
+        "source_sha256": {
+          "packages/core/mcp-tools.ts": "cded20ca6b0433bd35143d5715091263b6ae39a649db141314978d4b91ed4077",
+          "apps/api/mcp.ts": "a0daf3466a5bd160e26d60f1d8f5344e78a8594bf6d636879cecff864a8d4d49",
+          "scripts/mcp-stdio.ts": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5"
+        },
+        "reference_runtime": "R0",
+        "reason": "已定位该入口独立协议实现：/api/ai-collab/gateway；该精确名称的全面异常/恢复矩阵未逐一运行；已登记的共同工作流集成不自动提升本条。",
+        "phase": "ITER027 per-ID prior-protocol reconciliation",
+        "classification": "implemented_protocol_static_proven_runtime_partial",
+        "ownLevel": "I1-exact-static; shared workflow I2 only",
+        "route": "/api/ai-collab/gateway",
+        "exactNameCalledInRealIntegration": false,
+        "sourceInput": "request {id,sessionSecret,caller:{adapterId,displayName,sessionId},method,params}; params逐方法见source-method参数/分支与旧AST契约",
+        "sourceSuccess": "JSON-line {id,ok:true,result}; failure {id,ok:false,error:{code,message}}",
+        "perInterfaceReport": "mcp-ai-collaboration-porting-20261014.json#GATEWAY-8f9ae82e2106"
+      },
+      "protocol": {
+        "id": "GATEWAY-8f9ae82e2106",
+        "kind": "GATEWAY",
+        "name": "wait_restore_completion",
+        "sourceEvidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24122,
+            "end_line": 24168,
+            "slice_sha256": "6b93947beb08d2c8be4654dc4039809882cd91ac7dd02909d83d95e84bb3e904",
+            "range_unit": "inclusive lines retaining original newline"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 24371,
+            "end_line": 24375,
+            "slice_sha256": "07f15c4e148db336f6eafcf409efd86006b87eb6fa03d2a32b7e2398dcc933ea",
+            "range_unit": "inclusive lines retaining original newline"
+          }
+        ],
+        "sourceInput": "request {id,sessionSecret,caller:{adapterId,displayName,sessionId},method,params}; params逐方法见source-method参数/分支与旧AST契约",
+        "sourceSuccess": "JSON-line {id,ok:true,result}; failure {id,ok:false,error:{code,message}}",
+        "status": "implemented_cloud_contract_runtime_matrix_partial",
+        "implementation": [
+          "packages/core/mcp-tools.ts",
+          "apps/api/mcp.ts"
+        ],
+        "endpoint": "/api/ai-collab/gateway",
+        "frontend": [
+          "apps/web/ai-collab.tsx",
+          "apps/web/main.tsx"
+        ],
+        "exactNameCalledInRealIntegration": false,
+        "blocked": null,
+        "remaining": [
+          "Source licensed runtime R0",
+          "Every endpoint failure/cancellation/recovery matrix and browser acceptance not universally completed"
+        ]
+      }
+    }
+  ],
+  "closure": {
+    "allClosed": true,
+    "proof": {
+      "path": ".data/research/lawbot-2026-10-14/iteration029/mcp-exact-method-runtime-C-frozen.json",
+      "sha256": "ebeb3c4dc6403b09571c6183e72d48e0c35073bdf02237733036a7d0eeee4311",
+      "authorLog": ".data/research/lawbot-2026-10-14/iteration029/mcp-exact-method-runtime.log",
+      "independentLog": ".data/evals/mcp-exact-method-independent.log",
+      "independentOutcome": "3testsPASS21.419s; exact43unique IDs missing[]"
+    },
+    "note": "原待办集合完整保留作历史；当前全部43确切名称实际验证，not remaining."
+  }
+}

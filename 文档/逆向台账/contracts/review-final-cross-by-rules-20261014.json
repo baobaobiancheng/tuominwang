@@ -1,0 +1,115 @@
+{
+  "id": "FINAL-CROSS-REVIEW-BY-RULES-029",
+  "updatedAt": "2026-10-14T15:29:37.233845+00:00",
+  "readOnly": true,
+  "authorizedException": "A author fixed product Markdown fallback only; pure source writer info=text remains oracle-compatible",
+  "scopeFiles": {
+    "packages/core/profile-recognition.ts": "b0c5cd49a9b9cde0e170014c2123a34c0c4eff858d60bf55025cd17cb4743be5",
+    "packages/core/replacement-policies.ts": "b4550ddd695a9cdb7f58b4cfd9386aecdc11c331cda26dd589700c5963a1bf2a",
+    "apps/web/main.tsx": "1271950da36d075a65048e2b733d727447f943667b977a7c2f2c8131ffb26143",
+    "packages/core/profile-export.ts": "be674dc006e2ab5c1784282c3dec2abf8114aba93e796020808cd25b3c5a2790",
+    "packages/core/visual-replacement.ts": "ccaf63b18fba75da1b9ba1199387dd2e159e9c6e0bdf916f4bfc0709323af088",
+    "packages/adapters/markdown-source.ts": "8f7f8c5d23a259596c9c7acd951b4f747a5c19d83d3dac29725bdfe24b6d36c8",
+    "packages/core/reference-markdown.ts": "e603ce30c3dcd1acaf499cf30b8aa32a416dad9e193ff24c6402a8c3081e340d",
+    "packages/core/export-gate.ts": "e3ed1d432d926f83dad67f4a6fe242669ca9ccfa793a44450d992e56359e3139",
+    "apps/api/processing-events.ts": "a023405d3b17a64e34b54f33549e78ce127cd70bc1c3feb8786b7c292a5cd520",
+    "apps/web/processing-progress.tsx": "a82489853a2ddd6d4576ada6933b1d72c93df3079963fd01b513a36d4b89a9f1",
+    "scripts/evaluate-openimages-face.ts": "0d7c73dc30b0ac03def129a4170edda2bd7d98ed9ca953a2aea3da3de9c17c06",
+    "scripts/verify-openimages-face.py": "3aeb378abeccac62c70524f30809ecd9cc8ede28e7d4ed77e8cd8a61d088bdd3",
+    "scripts/download-openimages-face.py": "43b9b9813e8f84c93e601286ceb9841169b9e76aadf4273d01b8128714210805"
+  },
+  "findings": [
+    {
+      "id": "A-FINAL-P2-01",
+      "priority": "P2",
+      "title": "OFFICIAL default exception overwrote selective partial-star Nt",
+      "status": "closed_root_fix_independently_verified",
+      "example": "张三丰 selective name_cn partial_star must 张**; prior official-name special incorrectly 张*丰",
+      "fix": "overall plus detected/detected-raster only",
+      "verification": "profile-final-independent.log:2PASS"
+    },
+    {
+      "id": "A-FINAL-P2-02",
+      "priority": "P2",
+      "title": "Product Markdown fallback repeated selected original text as fence language",
+      "status": "closed_author_fix_actual_API_verified",
+      "example": "```text\\ntext and text\\n``` first text redacted, second ignored; old fallback info text failed hidden-source gate",
+      "fix": "Product fallback uses fence with no info string; pure source Writer keeps source-compatible text info",
+      "verification": [
+        "markdown-fence-final-unit.log:137PASS",
+        "markdown-fence-final-api.log:5actualPASS18.77s incl ignore-same-value and zero-scan ACK cases"
+      ]
+    },
+    {
+      "id": "A-FINAL-P2-03",
+      "priority": "P2",
+      "title": "Overlapping face group auxiliary coverage undercounts by first-match assignment",
+      "status": "closed_author_C_union_fix_and_A_independent_all5749_replay",
+      "location": "scripts/evaluate-openimages-face.ts:8",
+      "example": "36755493e5f0bbb8 threshold .25 reports 1/2 groupBoxesCovered though 9 unmatched individual predictions qualify both group boxes",
+      "impact": "Auxiliary groupBoxesCovered only; TP/FP/FN/ignoredGroupPredictions and P/R/F1 unaffected",
+      "ownerPlan": "Keep immutable raw inference and frozen source; derived union correction with old/new metrics and hashes; future matcher regression",
+      "evidence": "face-group-overlap-counterexample.json",
+      "verification": {
+        "rows": 5749,
+        "changedImage": "36755493e5f0bbb8",
+        "thresholds": [
+          ".25",
+          ".5",
+          ".75"
+        ],
+        "groupTotals": "141 to142 of153",
+        "TPFPFNIgnoredUnchanged": true,
+        "proof": ".data/research/lawbot-2026-10-14/iteration030/history/face-correction-independent.json"
+      }
+    }
+  ],
+  "customReplacementSourceAudit": {
+    "sourceEvidence": [
+      "main.js19208 string only",
+      "main.js19281 customReplacement rg",
+      "renderer.js5381 maxlength30 UI only, backend/TMM no100cap",
+      "markdown chunk4310 NUL-only invalid-operation;4172 region-specific markup escape"
+    ],
+    "sourceAccepted": [
+      "empty string",
+      "all whitespace",
+      "multiline/tab",
+      "240+length",
+      "<>【】",
+      "U+0001 for Markdown"
+    ],
+    "sourceRejected": [
+      "NUL"
+    ],
+    "currentProductProbe": "markdown-custom-product.log exact Writer rawbytes preserve whitespace; canonical trailing whitespace normalization follows Markdown parser",
+    "boundaries": [
+      "Empty TMM custom field may mean unset; do not infer deletion across callers",
+      "Office XML-invalid codepoints remain blocked by format-specific safety",
+      "No new HTTP envelope bypass"
+    ]
+  },
+  "otherReviewedNoQualifiedFindings": [
+    "Central type/value/manual policy identity and raster reset",
+    "Manual clear final precedence and ellipse geometry, whole derived-label suppression",
+    "Source/private Markdown encrypted immutable pointer reparse and sidecar/hash/anchors coverage gate",
+    "Legacy raw MD rerecognition barrier and already-signed compatibility",
+    "Progress same-user/project/revision/generation/source-content ownership",
+    "Chinese error rendering does not leak original private bytes",
+    "Face source snapshot postverifier checks full preprocess/decoder/NMS/model path and full5749 image hashes/5594GT/153groups/2625neg"
+  ],
+  "boundaries": [
+    "No competitor licensed processing runtime R0",
+    "No official Open Images mAP claim or representative legal-document accuracy claim",
+    "Root whole-repository final gates/deploy separate from this bounded review"
+  ],
+  "evidence": {
+    ".data/research/lawbot-2026-10-14/iteration029/markdown-fence-final-unit.log": "9f3aabef40ae7725138f85e50ff5e47a23163e4a7b87fb4d652b4773faea42df",
+    ".data/research/lawbot-2026-10-14/iteration029/markdown-fence-final-api.log": "39d5b0d7f309a7f90b1976b22b3f0699e88e034b22cfd6da9ec1bd5a3488c009",
+    ".data/research/lawbot-2026-10-14/iteration029/profile-final-independent.log": "2ab9e8425b19915af70d87d95e1c6b6dbce90268956f629331bfb757e0a5cf9f",
+    ".data/research/lawbot-2026-10-14/iteration029/markdown-custom-product.log": "937b9d1748dd78f6af2d19d38c1f2b55d04aec498abb146251a1da569907f41e",
+    ".data/research/lawbot-2026-10-14/iteration029/custom-replacement-source-oracle.json": "86a555e95abc412936e7af6077f7ac1568c1b1489e8be3316b90ff7a992609f3",
+    ".data/research/lawbot-2026-10-14/iteration029/face-group-overlap-counterexample.json": "446f0b7ee582505d50059c6687eccb641bb9e76e14e55706ff944fc3c8bc07dc"
+  },
+  "lastIndependentUnits": "5files14PASS3.57s plus old Word/restoration12PASS0.354s =26PASS"
+}

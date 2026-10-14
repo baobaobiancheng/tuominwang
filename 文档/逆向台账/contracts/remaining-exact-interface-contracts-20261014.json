@@ -1,0 +1,901 @@
+{
+  "phase": "ITER027 exact13-current",
+  "rows": [
+    {
+      "id": "IPC-fd1ca8c6cb27",
+      "name": "desensitization:cleanup-paths",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "lines": "17158-17168"
+      },
+      "fields": [
+        "paths[]",
+        "success",
+        "cleaned"
+      ],
+      "conditions": [
+        "same sender",
+        "completed success receipt",
+        "not preserveOnCancel",
+        "not already cleaned",
+        "updatedAt younger than15min",
+        "normalized outputPath exact"
+      ],
+      "current_implementation": "real successfulartifact hashchecked copy -> sessionreceipt -> strictage/preserve/type/owner/oneuse -> delete onlytemporary file",
+      "remaining": [
+        "Caller paths replaced by bounded resource IDs; real permanent artifacts cannot be arbitrary removed.",
+        "Temp objects registered in existingdocument ownership so authorizedmaterialdeletion also purges them.",
+        "source licensed runtime R0; actor/integration evidence in processing-events-resources report."
+      ],
+      "reference_runtime": "R0",
+      "current_phase_027": {
+        "phase": "ITER027",
+        "classification": "implemented_adapted_static_proven",
+        "status": "web-adapted-runtime-verified",
+        "ownLevel": "I2-adapted",
+        "reference_runtime": "R0",
+        "route": "/api/projects/:id/processing-resources",
+        "reason": "real successfulartifact hashchecked copy -> sessionreceipt -> strictage/preserve/type/owner/oneuse -> delete onlytemporary file",
+        "sources": [
+          "scripts/022.sql",
+          "packages/core/processing-events.ts",
+          "packages/adapters/processing-events.ts",
+          "packages/adapters/processing-resources.ts",
+          "apps/api/processing-events.ts",
+          "apps/api/processing-resources.ts",
+          "apps/web/processing-progress.tsx",
+          "tests/processing-events.test.ts",
+          "tests/processing-resources.integration.ts",
+          "packages/adapters/processing.ts",
+          "packages/adapters/page-parser.ts",
+          "packages/adapters/office-images.ts",
+          "packages/adapters/processing-worker.ts",
+          "apps/worker/main.ts"
+        ],
+        "frontend": [
+          "apps/web/processing-progress.tsx"
+        ],
+        "tests": [
+          "processing-resources.integration3PASS5.56s; includes real PDF2page onEvent before completion",
+          "tests/processing-resources.integration.ts"
+        ],
+        "remaining": [
+          "Caller paths replaced by bounded resource IDs; real permanent artifacts cannot be arbitrary removed.",
+          "Temp objects registered in existingdocument ownership so authorizedmaterialdeletion also purges them.",
+          "source licensed runtime R0; actor/integration evidence in processing-events-resources report."
+        ]
+      }
+    },
+    {
+      "id": "IPC-d9b14aa97589",
+      "name": "desensitization:release-sources",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "lines": "17047-17059"
+      },
+      "fields": [
+        "sourceIds[]",
+        "released",
+        "removedEngineCaches"
+      ],
+      "conditions": [
+        "release source registry entry",
+        "remove sourceId legacy/conversion caches",
+        "remove OCR caches by exact source hash",
+        "same filename cache only if no remaining source name"
+      ],
+      "current_implementation": "actual verified sourcebuffer -> session/user/project/private token -> AEAD temporary owned object -> read/release onlysame authsession; permanent original remains",
+      "remaining": [
+        "Native h2/session engine cache replaced by cloud private source lease copy; child-engine caches not persisted: removedEngineCaches=0 truthful, not fabricated.",
+        "Cloud source id is unpredictable resource UUID, never caller path.",
+        "source licensed runtime R0; actor/integration evidence in processing-events-resources report."
+      ],
+      "reference_runtime": "R0",
+      "current_phase_027": {
+        "phase": "ITER027",
+        "classification": "implemented_adapted_static_proven",
+        "status": "web-adapted-runtime-verified",
+        "ownLevel": "I2-adapted",
+        "reference_runtime": "R0",
+        "route": "/api/projects/:id/processing-resources",
+        "reason": "actual verified sourcebuffer -> session/user/project/private token -> AEAD temporary owned object -> read/release onlysame authsession; permanent original remains",
+        "sources": [
+          "scripts/022.sql",
+          "packages/core/processing-events.ts",
+          "packages/adapters/processing-events.ts",
+          "packages/adapters/processing-resources.ts",
+          "apps/api/processing-events.ts",
+          "apps/api/processing-resources.ts",
+          "apps/web/processing-progress.tsx",
+          "tests/processing-events.test.ts",
+          "tests/processing-resources.integration.ts",
+          "packages/adapters/processing.ts",
+          "packages/adapters/page-parser.ts",
+          "packages/adapters/office-images.ts",
+          "packages/adapters/processing-worker.ts",
+          "apps/worker/main.ts"
+        ],
+        "frontend": [
+          "apps/web/processing-progress.tsx"
+        ],
+        "tests": [
+          "processing-resources.integration3PASS5.56s; includes real PDF2page onEvent before completion",
+          "tests/processing-resources.integration.ts"
+        ],
+        "remaining": [
+          "Native h2/session engine cache replaced by cloud private source lease copy; child-engine caches not persisted: removedEngineCaches=0 truthful, not fabricated.",
+          "Cloud source id is unpredictable resource UUID, never caller path.",
+          "source licensed runtime R0; actor/integration evidence in processing-events-resources report."
+        ]
+      }
+    },
+    {
+      "id": "IPC-8fc7e5c07051",
+      "name": "desensitization:progress",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "lines": "17215;17394;17438"
+      },
+      "fields": [
+        "requestId",
+        "fileName",
+        "type",
+        "stage",
+        "percent",
+        "message",
+        "sequence",
+        "heartbeatAt"
+      ],
+      "conditions": [
+        "source callback forwarded to same sender",
+        "apply progress sequence monotonic",
+        "terminal cancel distinct"
+      ],
+      "current_implementation": "real ProcessingWorker message separate from terminal response -> await serialized DB writes -> AEAD owner/job/generation/sourcehash/revision bound cursor API -> UI2secondread; real Markdown source-ready full sidecar/sourceMap/blockers; completed regex/NER window/contextual matches first25k250msfinal publisher",
+      "remaining": [
+        "source licensed runtime R0; actor/integration evidence in processing-events-resources report."
+      ],
+      "reference_runtime": "R0",
+      "current_phase_027": {
+        "phase": "ITER027",
+        "classification": "implemented_adapted_static_proven",
+        "status": "web-adapted-runtime-verified",
+        "ownLevel": "I2-adapted",
+        "reference_runtime": "R0",
+        "route": "GET /api/jobs/:id/events",
+        "reason": "real ProcessingWorker message separate from terminal response -> await serialized DB writes -> AEAD owner/job/generation/sourcehash/revision bound cursor API -> UI2secondread; real Markdown source-ready full sidecar/sourceMap/blockers; completed regex/NER window/contextual matches first25k250msfinal publisher",
+        "sources": [
+          "scripts/022.sql",
+          "packages/core/processing-events.ts",
+          "packages/adapters/processing-events.ts",
+          "packages/adapters/processing-resources.ts",
+          "apps/api/processing-events.ts",
+          "apps/api/processing-resources.ts",
+          "apps/web/processing-progress.tsx",
+          "tests/processing-events.test.ts",
+          "tests/processing-resources.integration.ts",
+          "packages/adapters/processing.ts",
+          "packages/adapters/page-parser.ts",
+          "packages/adapters/office-images.ts",
+          "packages/adapters/processing-worker.ts",
+          "apps/worker/main.ts"
+        ],
+        "frontend": [
+          "apps/web/processing-progress.tsx"
+        ],
+        "tests": [
+          "processing-resources.integration3PASS5.56s; includes real PDF2page onEvent before completion",
+          "tests/processing-resources.integration.ts"
+        ],
+        "remaining": [
+          "source licensed runtime R0; actor/integration evidence in processing-events-resources report."
+        ]
+      }
+    },
+    {
+      "id": "IPC-58567733591e",
+      "name": "desensitization:page-processed",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "lines": "17274;17316"
+      },
+      "fields": [
+        "requestId",
+        "fileName",
+        "ocrCompleted",
+        "ocrCachePage",
+        "matches",
+        "page payload"
+      ],
+      "conditions": [
+        "source page callback after real OCR",
+        "apply workspaceCorrections via Hd before emit"
+      ],
+      "current_implementation": "parsePages and Word embedded images realonPage OCR callbacks with originalglyphs/hash; exact page-anchor filtered pending matches after all semantic policies; canonical-raster coordinateSpace; true1-basedpage total",
+      "remaining": [
+        "Recognized matches are published after whole-document context filters instead of source per-page engine detection to preserve our table/party/globalrule correctness. OCR pages increment before final completion.",
+        "Word native layout is canonical paragraphs with embedded imagepages; no false claim all Word physical pages auto-paginated.",
+        "source licensed runtime R0; actor/integration evidence in processing-events-resources report."
+      ],
+      "reference_runtime": "R0",
+      "current_phase_027": {
+        "phase": "ITER027",
+        "classification": "implemented_adapted_static_proven",
+        "status": "runtime-verified-for-current-canonical-formats",
+        "ownLevel": "I2-adapted",
+        "reference_runtime": "R0",
+        "route": "GET /api/jobs/:id/events",
+        "reason": "parsePages and Word embedded images realonPage OCR callbacks with originalglyphs/hash; exact page-anchor filtered pending matches after all semantic policies; canonical-raster coordinateSpace; true1-basedpage total",
+        "sources": [
+          "scripts/022.sql",
+          "packages/core/processing-events.ts",
+          "packages/adapters/processing-events.ts",
+          "packages/adapters/processing-resources.ts",
+          "apps/api/processing-events.ts",
+          "apps/api/processing-resources.ts",
+          "apps/web/processing-progress.tsx",
+          "tests/processing-events.test.ts",
+          "tests/processing-resources.integration.ts",
+          "packages/adapters/processing.ts",
+          "packages/adapters/page-parser.ts",
+          "packages/adapters/office-images.ts",
+          "packages/adapters/processing-worker.ts",
+          "apps/worker/main.ts"
+        ],
+        "frontend": [
+          "apps/web/processing-progress.tsx"
+        ],
+        "tests": [
+          "processing-resources.integration3PASS5.56s; includes real PDF2page onEvent before completion",
+          "tests/processing-resources.integration.ts"
+        ],
+        "remaining": [
+          "Recognized matches are published after whole-document context filters instead of source per-page engine detection to preserve our table/party/globalrule correctness. OCR pages increment before final completion.",
+          "Word native layout is canonical paragraphs with embedded imagepages; no false claim all Word physical pages auto-paginated.",
+          "source licensed runtime R0; actor/integration evidence in processing-events-resources report."
+        ]
+      }
+    },
+    {
+      "id": "IPC-e6a8f1b41825",
+      "name": "workspace:create-transfer",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "lines": "25756-25768;25288-25310"
+      },
+      "fields": [
+        "filePath",
+        "transferPassword",
+        "tmm-transfer",
+        "objectId"
+      ],
+      "conditions": [
+        "cannot overwrite local source",
+        "new random16byte base64url password",
+        "new random32byte DEK",
+        "one transfer slot",
+        "scrypt/AES-GCM authenticated slot and content"
+      ],
+      "current_implementation": "密码传输slot、AEAD整包、原件与完整native资产hash、source V2纯schema验证、三格式重新打开验真",
+      "remaining": [
+        "源许可处理运行R0；设备CMK/keychain不可由云端绕过，需原应用导出密码传输副本。",
+        "源native宿主绝对路径/原地覆盖以浏览器文件选择和下载适配；不虚构OS原路径。"
+      ],
+      "reference_runtime": "R0",
+      "current_phase_027": {
+        "phase": "ITER027",
+        "classification": "implemented_adapted_static_proven",
+        "status": "own_runtime_verified_source_format_adapter",
+        "ownLevel": "I2-adapted",
+        "reference_runtime": "R0",
+        "route": "POST /api/projects/:id/portable/export format=secure-v2|secure-v3",
+        "reason": "密码传输slot、AEAD整包、原件与完整native资产hash、source V2纯schema验证、三格式重新打开验真",
+        "sources": [
+          "packages/core/workspace-compat.ts",
+          "packages/core/workspace-portable.ts",
+          "packages/core/native-portable.ts",
+          "packages/core/reference/workspace-review-profile.js",
+          "packages/core/reference/workspace-snapshot-schema.js",
+          "packages/adapters/reference-portable-draft.ts",
+          "packages/adapters/page-review-storage.ts",
+          "packages/adapters/page-review-migration.ts",
+          "apps/api/workspace-portable.ts",
+          "apps/web/workspace-portable.tsx",
+          "apps/web/tmm-compatibility.tsx",
+          "apps/web/portable-draft.tsx",
+          "packages/contracts/mapping-limits.ts",
+          "scripts/023.sql",
+          "tests/workspace-compat.test.ts",
+          "tests/workspace-compat.integration.ts",
+          "tests/page-review-storage.test.ts",
+          "tests/page-review-storage.integration.ts",
+          "tests/mapping-capacity.integration.ts",
+          "tests/image-batch-search.integration.ts"
+        ],
+        "frontend": [
+          "apps/web/workspace-portable.tsx",
+          "apps/web/tmm-compatibility.tsx",
+          "apps/web/portable-draft.tsx"
+        ],
+        "tests": [
+          "tests/workspace-compat.integration.ts case1; tests/page-review-storage.integration.ts",
+          ".data/evals/workspace-compat-api.log",
+          ".data/evals/workspace-compat-units.log"
+        ],
+        "remaining": [
+          "源许可处理运行R0；设备CMK/keychain不可由云端绕过，需原应用导出密码传输副本。",
+          "源native宿主绝对路径/原地覆盖以浏览器文件选择和下载适配；不虚构OS原路径。"
+        ],
+        "source_pin_policy": "Old source_sha256 remains in historical phase; root final ledger pins current files."
+      }
+    },
+    {
+      "id": "IPC-70e09702200d",
+      "name": "workspace:receive-transfer",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "lines": "25769-25779;25311-25348"
+      },
+      "fields": [
+        "transferPassword",
+        "file snapshot",
+        "registered sourceRefs",
+        "format"
+      ],
+      "conditions": [
+        "required password",
+        "unique transfer slot",
+        "authenticated plaintext",
+        "V2 orV3 reader",
+        "source registry references"
+      ],
+      "current_implementation": "用户给定传输密码验证后另建项目；新AEAD域与新材料/映射ID，重新识别，旧approval/artifact不信任；native和真正foreign source输入均实际跑通",
+      "remaining": [
+        "源许可处理运行R0；设备CMK/keychain不可由云端绕过，需原应用导出密码传输副本。",
+        "源native宿主绝对路径/原地覆盖以浏览器文件选择和下载适配；不虚构OS原路径。"
+      ],
+      "reference_runtime": "R0",
+      "current_phase_027": {
+        "phase": "ITER027",
+        "classification": "implemented_adapted_static_proven",
+        "status": "own_runtime_verified_source_format_adapter",
+        "ownLevel": "I2-adapted",
+        "reference_runtime": "R0",
+        "route": "POST /api/portable/import",
+        "reason": "用户给定传输密码验证后另建项目；新AEAD域与新材料/映射ID，重新识别，旧approval/artifact不信任；native和真正foreign source输入均实际跑通",
+        "sources": [
+          "packages/core/workspace-compat.ts",
+          "packages/core/workspace-portable.ts",
+          "packages/core/native-portable.ts",
+          "packages/core/reference/workspace-review-profile.js",
+          "packages/core/reference/workspace-snapshot-schema.js",
+          "packages/adapters/reference-portable-draft.ts",
+          "packages/adapters/page-review-storage.ts",
+          "packages/adapters/page-review-migration.ts",
+          "apps/api/workspace-portable.ts",
+          "apps/web/workspace-portable.tsx",
+          "apps/web/tmm-compatibility.tsx",
+          "apps/web/portable-draft.tsx",
+          "packages/contracts/mapping-limits.ts",
+          "scripts/023.sql",
+          "tests/workspace-compat.test.ts",
+          "tests/workspace-compat.integration.ts",
+          "tests/page-review-storage.test.ts",
+          "tests/page-review-storage.integration.ts",
+          "tests/mapping-capacity.integration.ts",
+          "tests/image-batch-search.integration.ts"
+        ],
+        "frontend": [
+          "apps/web/workspace-portable.tsx",
+          "apps/web/tmm-compatibility.tsx",
+          "apps/web/portable-draft.tsx"
+        ],
+        "tests": [
+          "tests/workspace-compat.integration.ts case1/2/3",
+          ".data/evals/workspace-compat-api.log",
+          ".data/evals/workspace-compat-units.log"
+        ],
+        "remaining": [
+          "源许可处理运行R0；设备CMK/keychain不可由云端绕过，需原应用导出密码传输副本。",
+          "源native宿主绝对路径/原地覆盖以浏览器文件选择和下载适配；不虚构OS原路径。"
+        ],
+        "source_pin_policy": "Old source_sha256 remains in historical phase; root final ledger pins current files."
+      }
+    },
+    {
+      "id": "IPC-f417c3628886",
+      "name": "workspace:migrate-v1-to-v2",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "lines": "25747-25755;22677-22680"
+      },
+      "fields": [
+        "sourceFilePath",
+        "targetPath",
+        "snapshot",
+        "source streams"
+      ],
+      "conditions": [
+        "required V1 source",
+        "new target",
+        "exact state and original source preservation",
+        "source local-CMK output depends original device"
+      ],
+      "current_implementation": "ZIP→V2→V3真实编码转换，全部sources逐bytes、全部snapshot归一后深等价，错密/篡改拒绝",
+      "remaining": [
+        "源许可处理运行R0；设备CMK/keychain不可由云端绕过，需原应用导出密码传输副本。",
+        "源native宿主绝对路径/原地覆盖以浏览器文件选择和下载适配；不虚构OS原路径。"
+      ],
+      "reference_runtime": "R0",
+      "current_phase_027": {
+        "phase": "ITER027",
+        "classification": "implemented_adapted_static_proven",
+        "status": "own_runtime_verified_source_format_adapter",
+        "ownLevel": "I2-adapted",
+        "reference_runtime": "R0",
+        "route": "POST /api/portable/migrate",
+        "reason": "ZIP→V2→V3真实编码转换，全部sources逐bytes、全部snapshot归一后深等价，错密/篡改拒绝",
+        "sources": [
+          "packages/core/workspace-compat.ts",
+          "packages/core/workspace-portable.ts",
+          "packages/core/native-portable.ts",
+          "packages/core/reference/workspace-review-profile.js",
+          "packages/core/reference/workspace-snapshot-schema.js",
+          "packages/adapters/reference-portable-draft.ts",
+          "packages/adapters/page-review-storage.ts",
+          "packages/adapters/page-review-migration.ts",
+          "apps/api/workspace-portable.ts",
+          "apps/web/workspace-portable.tsx",
+          "apps/web/tmm-compatibility.tsx",
+          "apps/web/portable-draft.tsx",
+          "packages/contracts/mapping-limits.ts",
+          "scripts/023.sql",
+          "tests/workspace-compat.test.ts",
+          "tests/workspace-compat.integration.ts",
+          "tests/page-review-storage.test.ts",
+          "tests/page-review-storage.integration.ts",
+          "tests/mapping-capacity.integration.ts",
+          "tests/image-batch-search.integration.ts"
+        ],
+        "frontend": [
+          "apps/web/workspace-portable.tsx",
+          "apps/web/tmm-compatibility.tsx",
+          "apps/web/portable-draft.tsx"
+        ],
+        "tests": [
+          "tests/workspace-compat.test.ts case2; actual case1",
+          ".data/evals/workspace-compat-api.log",
+          ".data/evals/workspace-compat-units.log"
+        ],
+        "remaining": [
+          "源许可处理运行R0；设备CMK/keychain不可由云端绕过，需原应用导出密码传输副本。",
+          "源native宿主绝对路径/原地覆盖以浏览器文件选择和下载适配；不虚构OS原路径。"
+        ],
+        "source_pin_policy": "Old source_sha256 remains in historical phase; root final ledger pins current files."
+      }
+    },
+    {
+      "id": "IPC-feb24aa50a4f",
+      "name": "workspace:open",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "lines": "25657-25662;22645-22669"
+      },
+      "fields": [
+        "snapshot",
+        "sources",
+        "sourceRefs",
+        "format",
+        "recents"
+      ],
+      "conditions": [
+        "V1 ZIP orV2/V3 secure reader",
+        "register original sources",
+        "restore cached OCR pages",
+        "remember reusable counts/recents"
+      ],
+      "current_implementation": "旧native、source三格式完整导入；外部旧review按source/hash/新canonical anchor/context/sourceMap绑定恢复pending，歧义原条目完整保留并阻断导出直到逐项人工处理",
+      "remaining": [
+        "源许可处理运行R0；设备CMK/keychain不可由云端绕过，需原应用导出密码传输副本。",
+        "源native宿主绝对路径/原地覆盖以浏览器文件选择和下载适配；不虚构OS原路径。"
+      ],
+      "reference_runtime": "R0",
+      "current_phase_027": {
+        "phase": "ITER027",
+        "classification": "implemented_adapted_static_proven",
+        "status": "own_runtime_verified_source_format_adapter",
+        "ownLevel": "I2-adapted",
+        "reference_runtime": "R0",
+        "route": "POST /api/portable/import; GET/POST /documents/:id/portable-draft",
+        "reason": "旧native、source三格式完整导入；外部旧review按source/hash/新canonical anchor/context/sourceMap绑定恢复pending，歧义原条目完整保留并阻断导出直到逐项人工处理",
+        "sources": [
+          "packages/core/workspace-compat.ts",
+          "packages/core/workspace-portable.ts",
+          "packages/core/native-portable.ts",
+          "packages/core/reference/workspace-review-profile.js",
+          "packages/core/reference/workspace-snapshot-schema.js",
+          "packages/adapters/reference-portable-draft.ts",
+          "packages/adapters/page-review-storage.ts",
+          "packages/adapters/page-review-migration.ts",
+          "apps/api/workspace-portable.ts",
+          "apps/web/workspace-portable.tsx",
+          "apps/web/tmm-compatibility.tsx",
+          "apps/web/portable-draft.tsx",
+          "packages/contracts/mapping-limits.ts",
+          "scripts/023.sql",
+          "tests/workspace-compat.test.ts",
+          "tests/workspace-compat.integration.ts",
+          "tests/page-review-storage.test.ts",
+          "tests/page-review-storage.integration.ts",
+          "tests/mapping-capacity.integration.ts",
+          "tests/image-batch-search.integration.ts"
+        ],
+        "frontend": [
+          "apps/web/workspace-portable.tsx",
+          "apps/web/tmm-compatibility.tsx",
+          "apps/web/portable-draft.tsx"
+        ],
+        "tests": [
+          "tests/workspace-compat.integration.ts case1/2/3; tests/page-review-storage.integration.ts",
+          ".data/evals/workspace-compat-api.log",
+          ".data/evals/workspace-compat-units.log"
+        ],
+        "remaining": [
+          "源许可处理运行R0；设备CMK/keychain不可由云端绕过，需原应用导出密码传输副本。",
+          "源native宿主绝对路径/原地覆盖以浏览器文件选择和下载适配；不虚构OS原路径。"
+        ],
+        "source_pin_policy": "Old source_sha256 remains in historical phase; root final ledger pins current files."
+      }
+    },
+    {
+      "id": "IPC-c356082df625",
+      "name": "workspace:save",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "lines": "25677-25705;22627-22645"
+      },
+      "fields": [
+        "requestId",
+        "projectId",
+        "revision",
+        "snapshot.contentRevision",
+        "sourceRefs",
+        "savedRevision",
+        "savedAt",
+        "format"
+      ],
+      "conditions": [
+        "requestId same sender idempotency",
+        "project/revision match",
+        "serial save",
+        "no overwrite V1 whenV2 upgrade",
+        "preserve source stream and new source refs"
+      ],
+      "current_implementation": "当前工程全材料/原件/预览/字形map/文档策略/marks/raw类型/mapping/forms/源archive/state+历史snapshot完整编码；native extension无损封装源未知字段；.markdown大小写及sourceExtension真实源schema通过",
+      "remaining": [
+        "源许可处理运行R0；设备CMK/keychain不可由云端绕过，需原应用导出密码传输副本。",
+        "源native宿主绝对路径/原地覆盖以浏览器文件选择和下载适配；不虚构OS原路径。"
+      ],
+      "reference_runtime": "R0",
+      "current_phase_027": {
+        "phase": "ITER027",
+        "classification": "implemented_adapted_static_proven",
+        "status": "own_runtime_verified_source_format_adapter",
+        "ownLevel": "I2-adapted",
+        "reference_runtime": "R0",
+        "route": "POST /api/projects/:id/portable/export",
+        "reason": "当前工程全材料/原件/预览/字形map/文档策略/marks/raw类型/mapping/forms/源archive/state+历史snapshot完整编码；native extension无损封装源未知字段；.markdown大小写及sourceExtension真实源schema通过",
+        "sources": [
+          "packages/core/workspace-compat.ts",
+          "packages/core/workspace-portable.ts",
+          "packages/core/native-portable.ts",
+          "packages/core/reference/workspace-review-profile.js",
+          "packages/core/reference/workspace-snapshot-schema.js",
+          "packages/adapters/reference-portable-draft.ts",
+          "packages/adapters/page-review-storage.ts",
+          "packages/adapters/page-review-migration.ts",
+          "apps/api/workspace-portable.ts",
+          "apps/web/workspace-portable.tsx",
+          "apps/web/tmm-compatibility.tsx",
+          "apps/web/portable-draft.tsx",
+          "packages/contracts/mapping-limits.ts",
+          "scripts/023.sql",
+          "tests/workspace-compat.test.ts",
+          "tests/workspace-compat.integration.ts",
+          "tests/page-review-storage.test.ts",
+          "tests/page-review-storage.integration.ts",
+          "tests/mapping-capacity.integration.ts",
+          "tests/image-batch-search.integration.ts"
+        ],
+        "frontend": [
+          "apps/web/workspace-portable.tsx",
+          "apps/web/tmm-compatibility.tsx",
+          "apps/web/portable-draft.tsx"
+        ],
+        "tests": [
+          "tests/workspace-compat.test.ts all; tests/portable.integration.ts existing102docs; new private-region actual",
+          ".data/evals/workspace-compat-api.log",
+          ".data/evals/workspace-compat-units.log"
+        ],
+        "remaining": [
+          "源许可处理运行R0；设备CMK/keychain不可由云端绕过，需原应用导出密码传输副本。",
+          "源native宿主绝对路径/原地覆盖以浏览器文件选择和下载适配；不虚构OS原路径。"
+        ],
+        "source_pin_policy": "Old source_sha256 remains in historical phase; root final ledger pins current files."
+      }
+    },
+    {
+      "id": "IPC-ff1d1193dc22",
+      "name": "workspace:save-as",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "lines": "25726-25737;22627-22645"
+      },
+      "fields": [
+        "suggestedName",
+        "targetPath",
+        "snapshot",
+        "sources"
+      ],
+      "conditions": [
+        "cancel returns null",
+        "new destination",
+        "serial save",
+        "format upgrade does not mutate original archive"
+      ],
+      "current_implementation": "真实重新生成、校验、下载完整备份。浏览器另存位置由用户控制，绝不返回伪造宿主绝对路径或覆盖不可变原件",
+      "remaining": [
+        "源许可处理运行R0；设备CMK/keychain不可由云端绕过，需原应用导出密码传输副本。",
+        "源native宿主绝对路径/原地覆盖以浏览器文件选择和下载适配；不虚构OS原路径。"
+      ],
+      "reference_runtime": "R0",
+      "current_phase_027": {
+        "phase": "ITER027",
+        "classification": "implemented_adapted_static_proven",
+        "status": "own_runtime_verified_source_format_adapter",
+        "ownLevel": "I2-adapted",
+        "reference_runtime": "R0",
+        "route": "同export浏览器附件另存，native .tmw或source .tmm",
+        "reason": "真实重新生成、校验、下载完整备份。浏览器另存位置由用户控制，绝不返回伪造宿主绝对路径或覆盖不可变原件",
+        "sources": [
+          "packages/core/workspace-compat.ts",
+          "packages/core/workspace-portable.ts",
+          "packages/core/native-portable.ts",
+          "packages/core/reference/workspace-review-profile.js",
+          "packages/core/reference/workspace-snapshot-schema.js",
+          "packages/adapters/reference-portable-draft.ts",
+          "packages/adapters/page-review-storage.ts",
+          "packages/adapters/page-review-migration.ts",
+          "apps/api/workspace-portable.ts",
+          "apps/web/workspace-portable.tsx",
+          "apps/web/tmm-compatibility.tsx",
+          "apps/web/portable-draft.tsx",
+          "packages/contracts/mapping-limits.ts",
+          "scripts/023.sql",
+          "tests/workspace-compat.test.ts",
+          "tests/workspace-compat.integration.ts",
+          "tests/page-review-storage.test.ts",
+          "tests/page-review-storage.integration.ts",
+          "tests/mapping-capacity.integration.ts",
+          "tests/image-batch-search.integration.ts"
+        ],
+        "frontend": [
+          "apps/web/workspace-portable.tsx",
+          "apps/web/tmm-compatibility.tsx",
+          "apps/web/portable-draft.tsx"
+        ],
+        "tests": [
+          "actual case1 allformats; core codec roundtrip",
+          ".data/evals/workspace-compat-api.log",
+          ".data/evals/workspace-compat-units.log"
+        ],
+        "remaining": [
+          "源许可处理运行R0；设备CMK/keychain不可由云端绕过，需原应用导出密码传输副本。",
+          "源native宿主绝对路径/原地覆盖以浏览器文件选择和下载适配；不虚构OS原路径。"
+        ],
+        "source_pin_policy": "Old source_sha256 remains in historical phase; root final ledger pins current files."
+      }
+    },
+    {
+      "id": "IPC-1d575f4ee880",
+      "name": "workspace:read-review-profile",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "lines": "25648-25653;22565-22583;20119-20202"
+      },
+      "fields": [
+        "sourceName",
+        "sourceWorkspaceId",
+        "format",
+        "corrections",
+        "pseudonyms.entries",
+        "reservedTokens",
+        "conflicts"
+      ],
+      "conditions": [
+        "canonical merges",
+        "explicit/manual bypass high risk filtering",
+        "hiddenByType exclusion",
+        "forceDetect vsforceSkip source precedence",
+        "only enabled corrections",
+        "multiple values reported"
+      ],
+      "current_implementation": "直接提取并调用源main20094-20202纯规则ey及全部依赖，完整corrections/pseudonyms/reserved/conflicts；不调用licensed engine",
+      "remaining": [
+        "源许可处理运行R0；设备CMK/keychain不可由云端绕过，需原应用导出密码传输副本。",
+        "源native宿主绝对路径/原地覆盖以浏览器文件选择和下载适配；不虚构OS原路径。"
+      ],
+      "reference_runtime": "R0",
+      "current_phase_027": {
+        "phase": "ITER027",
+        "classification": "implemented_adapted_static_proven",
+        "status": "own_runtime_verified_source_format_adapter",
+        "ownLevel": "I2-adapted",
+        "reference_runtime": "R0",
+        "route": "POST /api/portable/review-profile",
+        "reason": "直接提取并调用源main20094-20202纯规则ey及全部依赖，完整corrections/pseudonyms/reserved/conflicts；不调用licensed engine",
+        "sources": [
+          "packages/core/workspace-compat.ts",
+          "packages/core/workspace-portable.ts",
+          "packages/core/native-portable.ts",
+          "packages/core/reference/workspace-review-profile.js",
+          "packages/core/reference/workspace-snapshot-schema.js",
+          "packages/adapters/reference-portable-draft.ts",
+          "packages/adapters/page-review-storage.ts",
+          "packages/adapters/page-review-migration.ts",
+          "apps/api/workspace-portable.ts",
+          "apps/web/workspace-portable.tsx",
+          "apps/web/tmm-compatibility.tsx",
+          "apps/web/portable-draft.tsx",
+          "packages/contracts/mapping-limits.ts",
+          "scripts/023.sql",
+          "tests/workspace-compat.test.ts",
+          "tests/workspace-compat.integration.ts",
+          "tests/page-review-storage.test.ts",
+          "tests/page-review-storage.integration.ts",
+          "tests/mapping-capacity.integration.ts",
+          "tests/image-batch-search.integration.ts"
+        ],
+        "frontend": [
+          "apps/web/workspace-portable.tsx",
+          "apps/web/tmm-compatibility.tsx",
+          "apps/web/portable-draft.tsx"
+        ],
+        "tests": [
+          "tests/workspace-compat.test.ts source profile cases; actual case1",
+          ".data/evals/workspace-compat-api.log",
+          ".data/evals/workspace-compat-units.log"
+        ],
+        "remaining": [
+          "源许可处理运行R0；设备CMK/keychain不可由云端绕过，需原应用导出密码传输副本。",
+          "源native宿主绝对路径/原地覆盖以浏览器文件选择和下载适配；不虚构OS原路径。"
+        ],
+        "source_pin_policy": "Old source_sha256 remains in historical phase; root final ledger pins current files."
+      }
+    },
+    {
+      "id": "IPC-98cb505df8ea",
+      "name": "workspace:select-review-profile",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "lines": "25654-25656"
+      },
+      "fields": [
+        "filePath|null"
+      ],
+      "conditions": [
+        ".tmm selection",
+        "cancel yields null"
+      ],
+      "current_implementation": "project锁+双权限+CAS；冲突必须选择。真实active规则快照、immutable假名和reserved集合；source raw identity/forms/标准profile/旧路由scope继承；旧文档outdated必须重识别复核",
+      "remaining": [
+        "源许可处理运行R0；设备CMK/keychain不可由云端绕过，需原应用导出密码传输副本。",
+        "源native宿主绝对路径/原地覆盖以浏览器文件选择和下载适配；不虚构OS原路径。"
+      ],
+      "reference_runtime": "R0",
+      "current_phase_027": {
+        "phase": "ITER027",
+        "classification": "implemented_adapted_static_proven",
+        "status": "own_runtime_verified_source_format_adapter",
+        "ownLevel": "I2-adapted",
+        "reference_runtime": "R0",
+        "route": "POST /api/projects/:id/portable/review-profile",
+        "reason": "project锁+双权限+CAS；冲突必须选择。真实active规则快照、immutable假名和reserved集合；source raw identity/forms/标准profile/旧路由scope继承；旧文档outdated必须重识别复核",
+        "sources": [
+          "packages/core/workspace-compat.ts",
+          "packages/core/workspace-portable.ts",
+          "packages/core/native-portable.ts",
+          "packages/core/reference/workspace-review-profile.js",
+          "packages/core/reference/workspace-snapshot-schema.js",
+          "packages/adapters/reference-portable-draft.ts",
+          "packages/adapters/page-review-storage.ts",
+          "packages/adapters/page-review-migration.ts",
+          "apps/api/workspace-portable.ts",
+          "apps/web/workspace-portable.tsx",
+          "apps/web/tmm-compatibility.tsx",
+          "apps/web/portable-draft.tsx",
+          "packages/contracts/mapping-limits.ts",
+          "scripts/023.sql",
+          "tests/workspace-compat.test.ts",
+          "tests/workspace-compat.integration.ts",
+          "tests/page-review-storage.test.ts",
+          "tests/page-review-storage.integration.ts",
+          "tests/mapping-capacity.integration.ts",
+          "tests/image-batch-search.integration.ts"
+        ],
+        "frontend": [
+          "apps/web/workspace-portable.tsx",
+          "apps/web/tmm-compatibility.tsx",
+          "apps/web/portable-draft.tsx"
+        ],
+        "tests": [
+          "actual case1 wrapper/plain × DOCX/MD, source policy unit; mapping-capacity actual",
+          ".data/evals/workspace-compat-api.log",
+          ".data/evals/workspace-compat-units.log"
+        ],
+        "remaining": [
+          "源许可处理运行R0；设备CMK/keychain不可由云端绕过，需原应用导出密码传输副本。",
+          "源native宿主绝对路径/原地覆盖以浏览器文件选择和下载适配；不虚构OS原路径。"
+        ],
+        "source_pin_policy": "Old source_sha256 remains in historical phase; root final ledger pins current files."
+      }
+    },
+    {
+      "id": "IPC-4dd20e80cae3",
+      "name": "image-review:batch-search",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "lines": "18186-18271;wm16548;xm16551"
+      },
+      "fields": [
+        "fileName",
+        "ocrCacheKey",
+        "searchText",
+        "pageIndex?",
+        "pageNumber",
+        "x/y/width/height",
+        "ocrImageWidth/Height",
+        "matchedLine",
+        "matchedLineSearchStart/End"
+      ],
+      "conditions": [
+        "requires real OCR cache",
+        "optional zero-based page filter",
+        "normalize wm query/text",
+        "prefer charBoxes",
+        "line orword uniform fallback only when charBoxes unavailable",
+        "all nonoverlap hits"
+      ],
+      "current_implementation": "逐页真实原件hash/内容hash/字形maphash认证后，全页或pageIndex、Unicode空白归一、charbox优先/wordfallback、单行和至多4相邻行全部命中与逐box去重。无OCRmap/无效不可见glyph/CAS/sourcehash/跨tenant拒绝。",
+      "remaining": [
+        "竞品许可处理运行仍R0；word-level几何fallback明确非逐字符真实分割。"
+      ],
+      "reference_runtime": "R0",
+      "current_phase_027": {
+        "phase": "ITER027",
+        "classification": "implemented_adapted_static_proven",
+        "status": "own_runtime_verified_source_geometry_search",
+        "ownLevel": "I2-adapted",
+        "reference_runtime": "R0",
+        "route": "POST /api/documents/:id/image-search",
+        "reason": "逐页真实原件hash/内容hash/字形maphash认证后，全页或pageIndex、Unicode空白归一、charbox优先/wordfallback、单行和至多4相邻行全部命中与逐box去重。无OCRmap/无效不可见glyph/CAS/sourcehash/跨tenant拒绝。",
+        "sources": [
+          "apps/api/image-batch-search.ts",
+          "packages/adapters/image-batch-search.ts",
+          "packages/core/image-batch-search.ts"
+        ],
+        "frontend": [
+          "apps/web/page-editor.tsx"
+        ],
+        "tests": [
+          "tests/image-batch-search.integration.ts",
+          ".data/evals/image-batch-search-api.log:1PASS3.87s"
+        ],
+        "remaining": [
+          "竞品许可处理运行仍R0；word-level几何fallback明确非逐字符真实分割。"
+        ]
+      }
+    }
+  ],
+  "sourceOSKeychain": "Platform dependence kept separate from password transfer codecs; no fake native keychain success."
+}

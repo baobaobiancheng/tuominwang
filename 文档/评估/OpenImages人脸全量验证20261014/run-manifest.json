@@ -1,0 +1,64 @@
+{
+  "runId": "1c6de504fe6f7bf5d7b061c21101ecfd9b09eda2d70dc764b51ac4e4ca53f902",
+  "startedAt": "2026-10-14T14:08:31.749Z",
+  "semanticHash": "00d8ea916f01fd4a249718b2eb08b2b1e235c3993d152d12cc951c60382fa804",
+  "sourcePins": [
+    {
+      "path": "packages/core/visual-detection.ts",
+      "sha256": "821af10f7749341a978e6439e748ac7cdc1ddfe433f15e95e2fe9eaf68da3b8f"
+    },
+    {
+      "path": "packages/core/visual-morphology.ts",
+      "sha256": "0e146b6e745d48202876e97e4977783641c2b742236a7ca0f467b1232e510d36"
+    },
+    {
+      "path": "scripts/visual-lock.json",
+      "sha256": "1c9306fe9fd05f97854e2e0d12cee5b49655c8c66683fff8ae16aacab401c33d"
+    },
+    {
+      "path": "scripts/evaluate-openimages-face.ts",
+      "sha256": "0d7c73dc30b0ac03def129a4170edda2bd7d98ed9ca953a2aea3da3de9c17c06"
+    },
+    {
+      "path": "pnpm-lock.yaml",
+      "sha256": "523530becb4ec6a150783b67626743d0100274fbf615003c429cdad3e4e86497"
+    }
+  ],
+  "model": {
+    "model": "opencv/face_detection_yunet_2023mar",
+    "revision": "47534e27c9851bb1128ccc0102f1145e27f23f98",
+    "license": "MIT",
+    "files": {
+      "face.onnx": "8f2383e4dd3cfbb4553ea8718107fc0423210dc964f9f4280604804ed2552fa4",
+      "LICENSE": "c83b8120c50ccbd4c4f96edf53141bdd566ebb8f8e9227e415326aa1b1aba958"
+    },
+    "source": "https://github.com/opencv/opencv_zoo/tree/47534e27c9851bb1128ccc0102f1145e27f23f98/models/face_detection_yunet",
+    "sizes": {
+      "face.onnx": 232589,
+      "LICENSE": 1085
+    }
+  },
+  "annotations": [
+    {
+      "path": "validation-annotations-bbox.csv",
+      "sha256": "d8bbd59410af14835d7733165a7bb8a3f0213981b22dd5077b0b9f7878991ff2"
+    },
+    {
+      "path": "validation-annotations-human-imagelabels-boxable.csv",
+      "sha256": "d5ff236d3cdbba36dac1ee6f7fdf9a26934205cbec5b933b0872722e2b6d3417"
+    },
+    {
+      "path": "validation-images-with-rotation.csv",
+      "sha256": "ed93a0e121fe345effdfc7359b848dbc64a1ff6778c8c73563157cb500b33a17"
+    },
+    {
+      "path": "class-descriptions.csv",
+      "sha256": "1839e0e7e84130ae281f7f67413768601b031581c0c42e7fc17527b8e2a99aa9"
+    },
+    {
+      "path": "selected-metadata.json",
+      "sha256": "69735f041ad881114623c24de87db71bf837770ec573561d06340c4cf7a00f13"
+    }
+  ],
+  "node": "v26.6.0"
+}

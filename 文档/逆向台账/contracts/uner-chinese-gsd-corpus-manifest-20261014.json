@@ -1,0 +1,82 @@
+{
+  "schema": "uner-chinese-gsd-corpus-manifest/v1",
+  "commit": "2a0c196d7a54d41119fd069874e976a58f0d7dad",
+  "canonicalUdCommit": "7e49237502f3040da3d6097b8ba7c4d07ae8e3e1",
+  "officialTestAll": true,
+  "sentences": 500,
+  "gold": {
+    "PER": 206,
+    "ORG": 127,
+    "LOC": 434
+  },
+  "goldTotal": 767,
+  "underlyingCanonicalUdExactTextAll": true,
+  "license": "CC BY-SA 4.0 annotations/text metadata",
+  "textSource": "Traditional Chinese Wikipedia-derived UD; not legal/business documents",
+  "kindMapping": {
+    "PER": "姓名",
+    "ORG": "机构",
+    "LOC": "地址"
+  },
+  "conversion": "original #text retained; token sequential exact alignment, whitespace-only gaps; no simplified/traditional normalization; spans UTF16",
+  "files": {
+    "zh_gsd-ud-test.iob2": "6f6ee9bf4e984bb5bcdaa5b88e88cabe245d750128cc424dcb1a1394e47443a2",
+    "zh_gsd-ud-test.stats": "459d2d90b614cc96e1024430b52564bef7a629a54e8f950f2da19c344551fd37",
+    "ud-README.md": "5c1ab1886cd4e11d948f5a208ca4b2301dd69fe96d35d9f0dae8b60fb61460c6",
+    "ud-original-test.conllu": "38c17d3475d73fe87c29157245440f0d3632d8830ef619055f14ce6ea5dd883b",
+    "README.md": "0c39a4224645ced6a6f3dd2f6c61b6e1ec7c2bc009a8ef80ed231713b9113140",
+    "LICENSE.txt": "76cbab13f5ddb068524dafb0600017c796311cd459def36d3d9d8cd0b8fb49be",
+    "index.json": "17ec6f2acb44c0e20ae28110113628a66e640f4d501df24a440fda0e5c563147",
+    "evaluation.json": "8a54f5692e224d50304b413b0b31a0b931db93073632d2514b8b476248debd08"
+  },
+  "officialSources": [
+    "https://raw.githubusercontent.com/UniversalDependencies/UD_Chinese-GSD/7e49237502f3040da3d6097b8ba7c4d07ae8e3e1/README.md",
+    "https://raw.githubusercontent.com/UniversalNER/UNER_Chinese-GSD/2a0c196d7a54d41119fd069874e976a58f0d7dad/LICENSE.txt",
+    "https://aclanthology.org/2024.naacl-long.243/"
+  ],
+  "limits": [
+    "繁体百科，不代表简体法律/合同业务域",
+    "模型训练重叠未排除",
+    "原作者human gold不等于我方独立双人复核",
+    "仅PER/ORG/LOC；号码/金额/图像无gold，不混入FN",
+    "不包括竞品许可证下处理链运行对照"
+  ],
+  "evaluation": {
+    "result": ".data/evals/uner-chinese-gsd-per-org-loc-20261014.json",
+    "resultSha256": "3cdaa80b44b7143ef2c3560c03c7f81cc08b701ca336180deb01bdee40e16923",
+    "cases": 500,
+    "metrics": {
+      "completeRules": {
+        "tp": 0,
+        "fp": 1,
+        "fn": 767,
+        "precision": 0,
+        "recall": 0,
+        "f1": 0
+      },
+      "completeRulesNer": {
+        "tp": 536,
+        "fp": 211,
+        "fn": 231,
+        "precision": 0.7175368139223561,
+        "recall": 0.6988265971316818,
+        "f1": 0.7080581241743725
+      }
+    },
+    "sourceFrozenManifest": ".data/evals/snapshots/uner-final-frozen-20261014/source-manifest.json",
+    "sourceFrozenManifestSha256": "92e6ee8b293b551794c5837967c176bae0b724812c89a2a51cb88d9b3185a0bf",
+    "sourceHashes": {
+      "recognition-pipeline.ts": "97f4793a6254b4ac9bcfaa64b3dc65423a993364eb99eff7e0e807b5a3ebc4cb",
+      "redaction.ts": "787d7d2a049b843807b6d2d519d2faab2cab90ba2344f96300952ef7d34a50b9",
+      "reference-rules.ts": "d48e976f8722958baf3b98c149051df3158509e365e886e22af3893eba37c6c9",
+      "ner.ts": "dd3927a426fdfe7e953a2f7119a6594f44d594b94a76e806635aec325a70373d",
+      "reference/rule-data.json": "1f11c5d39de1fb78bebd68316809cc5b77ef9ee104930a28cab473bff76646b4",
+      "reference/blacklists.json": "369a14ee5c3f11f0a16a62228bc30b9c55d88a6d035450672011a6d60ab6ef0a"
+    },
+    "model": {
+      "version": "shibing624/bertspan4ner-base-chinese@dc0de59380bcf4d42c1e9a8ff267e19e00f331f9",
+      "weights": "d94a62cfc7dacb1b44c27f8f5afe0484726444c753898061ace16d7ab1918ab9"
+    },
+    "nerRuntimeLockSha256": "c79fbaa6c50a3129fa897f8b04e3a2770039f4de7feb8d246423955fd98c3cfa"
+  }
+}

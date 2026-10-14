@@ -1,0 +1,118 @@
+{
+  "status": "complete-normalized-whole-class-5749",
+  "scope": "Secondary explicitly normalized benchmark; does not claim all raw input dimensions are supported",
+  "policy": "All5749 use same max-longside1024/no-enlargement rule; inputs already <=1024 remain byte-identical. No tuning/omissions.",
+  "processed": 5749,
+  "newInferences": 4,
+  "reusedIdenticalInputPredictions": 5745,
+  "changed": [
+    {
+      "imageId": "0937f20ab730f4bd",
+      "sourceWidth": 5520,
+      "sourceHeight": 3680,
+      "width": 1024,
+      "height": 683,
+      "imageHash": "5a3e7212bebc7c7fd1c2fa16565e831b50de71b42b2cba726ee257d9fbf9f63b",
+      "inputHash": "79736c653dc02776414181ac146a4f0d76a46812ac0705f144e43b24af5b1a0e",
+      "rawStatus": "evaluated",
+      "rawError": null
+    },
+    {
+      "imageId": "4e50705a3aecb1be",
+      "sourceWidth": 4608,
+      "sourceHeight": 3072,
+      "width": 1024,
+      "height": 683,
+      "imageHash": "486ba3406a7d49c554af8493d17068bf0f2bdd3f9ef09f1e42959b530d7802a8",
+      "inputHash": "9d851d90ac27e482273fd076e44612cdd5e58357e54a3030e3a1764a584a6d5b",
+      "rawStatus": "evaluated",
+      "rawError": null
+    },
+    {
+      "imageId": "982dc7ae6449ef6d",
+      "sourceWidth": 4000,
+      "sourceHeight": 3000,
+      "width": 1024,
+      "height": 768,
+      "imageHash": "c3e129f64f35b6b4f252db2e434b5df6b346fc98cc342b707cd7f7ff8c6fd527",
+      "inputHash": "abf89075331850a2970171fb24082029b8a5194802e596ad1ac0bca30007faa5",
+      "rawStatus": "evaluated",
+      "rawError": null
+    },
+    {
+      "imageId": "d3831aa42d49c77f",
+      "sourceWidth": 7360,
+      "sourceHeight": 4912,
+      "width": 1024,
+      "height": 683,
+      "imageHash": "cd0d262573c3f91f2b6fe4ea1fc686b76e7db2c2dcb0924467389a350bf338f7",
+      "inputHash": "b5738cffa00d5a3ddf773e89e985c709cf5926dd6132de1880d07a36d844cded",
+      "rawStatus": "failed",
+      "rawError": "Input image exceeds pixel limit"
+    }
+  ],
+  "metrics": {
+    "0.25": {
+      "tp": 4337,
+      "fp": 1133,
+      "fn": 1104,
+      "ignoredGroupPredictions": 1831,
+      "groupBoxesCovered": 142,
+      "groupBoxes": 153,
+      "precision": 0.7928702010968921,
+      "recall": 0.7970961220363904,
+      "f1": 0.7949775455961874
+    },
+    "0.5": {
+      "tp": 4149,
+      "fp": 1321,
+      "fn": 1292,
+      "ignoredGroupPredictions": 1831,
+      "groupBoxesCovered": 142,
+      "groupBoxes": 153,
+      "precision": 0.7585009140767824,
+      "recall": 0.7625436500643265,
+      "f1": 0.7605169095408304
+    },
+    "0.75": {
+      "tp": 2816,
+      "fp": 2649,
+      "fn": 2625,
+      "ignoredGroupPredictions": 1836,
+      "groupBoxesCovered": 142,
+      "groupBoxes": 153,
+      "precision": 0.5152790484903934,
+      "recall": 0.5175519206028304,
+      "f1": 0.5164129836787089
+    }
+  },
+  "rawInferenceSha256": "501eb4a78152aed6be22dcc874da35159ac9950e6a73f15b314b32dbc6638c96",
+  "sourcePins": [
+    {
+      "path": "scripts/evaluate-openimages-normalized-variant.ts",
+      "sha256": "a05812b5591d660e3d5058b9a02815eb45ec46abd084def3357a043d795f8ed5"
+    },
+    {
+      "path": "scripts/face-box-metrics.ts",
+      "sha256": "56ae4d73a255b3314ff0d8d68a9f6a92aa81ad55dac17051bd32c52ad4b46dc9"
+    },
+    {
+      "path": "packages/core/visual-detection.ts",
+      "sha256": "821af10f7749341a978e6439e748ac7cdc1ddfe433f15e95e2fe9eaf68da3b8f"
+    },
+    {
+      "path": "scripts/visual-lock.json",
+      "sha256": "1c9306fe9fd05f97854e2e0d12cee5b49655c8c66683fff8ae16aacab401c33d"
+    }
+  ],
+  "node": "v26.6.0",
+  "results": {
+    "path": ".data/evals/openimages-face/normalized-1024-all-image-results.jsonl",
+    "sha256": "67b3c388b7cfbbec37619f5e2908e4a12b099c09a64841e9fae58087e47c35e6"
+  },
+  "verifiedNegative": {
+    "images": 2625,
+    "imagesWithAnyPrediction": 482,
+    "predictions": 556
+  }
+}

@@ -1,0 +1,197 @@
+{
+  "date": "2026-10-14",
+  "officialInstaller": {
+    "url": "https://downloading.lawbotai.cn/main/win/stable/Lawbot-RedactCat-Main-0.5.9-Setup.exe",
+    "bytes": 562229104,
+    "sha512": "4N2YmWEaCQuvXsA/iyUAwLcMz4eMiycO/fXyD6aojjUPLPQnNTEJjtRJjk/0auwBaTKbwuWgmwfJY2tOx4pJbA==",
+    "sha256": "67646967be327e13caec32d2c12e1de8db0320a8de61ab826feb510837e1303b",
+    "verifiedOfficialFeed": true
+  },
+  "staticSelected": {
+    "headerLength": 3370999,
+    "base": 3371016,
+    "files": {
+      "dist/main/index.js": {
+        "bytes": 1434470,
+        "sha256": "ce201c4f4ca126369781c312a1e01991925a08c797b8d164794722d1f7ab3bec"
+      },
+      "dist/preload/index.js": {
+        "bytes": 22441,
+        "sha256": "aa1d81c235bd91509b680c26c039b4bd82b19096373604401c2d76455abde64f"
+      },
+      "scripts/ocr/seal_detector.py": {
+        "bytes": 32879,
+        "sha256": "50e6193f5241557ffef606d022dda486bdb4b3ac6303903e53a600ecf85b2628"
+      },
+      "package.json": {
+        "bytes": 1796,
+        "sha256": "eceadc95994024f17a252889ae3d9ec8c50653f99c46b3483f8cbe2e2dd8d161"
+      },
+      "resources/scripts/ocr/seal_detector.py": {
+        "bytes": 32879,
+        "sha256": "50e6193f5241557ffef606d022dda486bdb4b3ac6303903e53a600ecf85b2628"
+      }
+    }
+  },
+  "runtime": {
+    "version": "4.10.0",
+    "sourceUrl": "https://github.com/opencv/opencv/releases/download/4.10.0/opencv-4.10.0-docs.zip",
+    "archiveSize": 124339104,
+    "entry": "4.10.0/opencv.js",
+    "entryOffset": 52610460,
+    "compressedBytes": 3381625,
+    "entryBytes": 10378211,
+    "entryCRC32": "d4a6e63b",
+    "runtimeFile": "vendor/opencv/opencv-4.10.0.cjs",
+    "sha256": "e9aa95159522347410aba2321a72b19a71764de737b29030a341439ab60ea724",
+    "license": "Apache-2.0",
+    "provenance": "Authenticated official GitHub HTTP Range 52610460-55992200; validated Content-Range and official ZIP central/local header filename, size and CRC. Rejected corrupt full archive (SHA256 mismatch); only separately refetched verified entry used."
+  },
+  "thirdPartyLicenses": [
+    {
+      "component": "zlib",
+      "url": "https://raw.githubusercontent.com/opencv/opencv/4.10.0/3rdparty/zlib/README",
+      "file": "licenses/OpenCV-4.10.0-zlib-LICENSE.txt",
+      "bytes": 5317,
+      "sha256": "d106dcdb2a0b3087cb3a2380b9f00a0bbadc7eb835cd80408f94a2d78d69727d"
+    },
+    {
+      "component": "protobuf",
+      "url": "https://raw.githubusercontent.com/opencv/opencv/4.10.0/3rdparty/protobuf/LICENSE",
+      "file": "licenses/OpenCV-4.10.0-protobuf-LICENSE.txt",
+      "bytes": 1732,
+      "sha256": "6e5e117324afd944dcf67f36cf329843bc1a92229a8cd9bb573d7a83130fea7d"
+    },
+    {
+      "component": "flatbuffers",
+      "url": "https://raw.githubusercontent.com/opencv/opencv/4.10.0/3rdparty/flatbuffers/LICENSE.txt",
+      "file": "licenses/OpenCV-4.10.0-flatbuffers-LICENSE.txt",
+      "bytes": 11358,
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30"
+    }
+  ],
+  "branches": [
+    {
+      "id": "WIN-S01",
+      "capability": "官方完整Windows0.5.9静态包",
+      "evidence": "setup SHA512匹配官方latest.yml，32,879字节seal_detector.py ASAR内与resources外同hash；cv2/version.py为4.10.0.84。",
+      "status": "static_verified"
+    },
+    {
+      "id": "WIN-S02",
+      "capability": "HSV红蓝预筛、稀疏Hough降采样",
+      "evidence": "OpenCV实际RGB→HSV；red H≤20或H≥170，blue H95–135，S≥60 V≥70；像素<8返回空；nearest、5x5 Gaussian sigma1.2、短边800(下限480)。",
+      "status": "implemented_oracle_verified"
+    },
+    {
+      "id": "WIN-S03",
+      "capability": "颜色连通路径",
+      "evidence": "实际椭圆close/dilate/8连通域；原closedmask紧框，尺寸/面积/aspect/fill、band/center、实心照片/框线/签名排除；全部门保留，seg异常诊断后继续Hough。",
+      "status": "implemented_oracle_verified"
+    },
+    {
+      "id": "WIN-S04",
+      "capability": "Hough圆路径",
+      "evidence": "实际HoughGradient dp1 minDist2r param1=50/param2=20 minR=.035short/maxR=.22short；源round-even、反缩放、红蓝密度/8扇区/中心盘/.055red蓝.22或.30、large密度.15与gap50°、pad/confidence。",
+      "status": "implemented_oracle_verified"
+    },
+    {
+      "id": "WIN-S05",
+      "capability": "去重、碎片合并、实心徽记过滤",
+      "evidence": "IoU>.3或同色互含中心NMS，大小比≥.5距离≤1.12size聚类，union aspect .55–1.8；原HSV最大连通占框比≥.18过滤。",
+      "status": "implemented_oracle_verified"
+    },
+    {
+      "id": "WIN-S06",
+      "capability": "所有公开参数支",
+      "evidence": "minColorRatio/minSectors/minRRatio/HoughVote/maxShortSide/colorSeg/ringDensityRedBlue/largeDensityGap/segMinArea/emblemFill；programmatic opts，生产默认源值。",
+      "status": "implemented"
+    },
+    {
+      "id": "WIN-S07",
+      "capability": "黑白章/自动签名证据边界",
+      "evidence": "官方完整脚本红蓝预筛即拒绝无彩色页，手写签名仅误报排除；visual-sensitive-v1只有YuNet face模型+metadata。未发现自动黑白/签名模型，不能把我方monochrome/signature候选称竞品算法等价。",
+      "status": "source_boundary_observed"
+    },
+    {
+      "id": "WIN-S08",
+      "capability": "异常与WASM对象生命周期",
+      "evidence": "准备阶段、局部morphology/CC逐个构造均受finally；转换失败/第2/第6/第8/第9对象构造注入live=0；seg失败不跳Hough，warnings/complete经过API聚合+UI提示。",
+      "status": "implemented_fault_injection_verified"
+    }
+  ],
+  "sourceAlgorithmOracle": {
+    "cases": 26,
+    "equal": 26,
+    "different": 0,
+    "sourcePythonOpenCv": "4.10.0.84",
+    "ourWasmOpenCv": "4.10.0",
+    "report": ".data/research/lawbot-2026-10-14/iteration022/reference-seal-source-oracle.json",
+    "scope": "Pure algorithm oracle on isolated synthetic pixels; no licensed desktop processing, activation or real-corpus accuracy claim."
+  },
+  "files": [
+    {
+      "path": "packages/core/opencv-runtime.ts",
+      "bytes": 1228,
+      "sha256": "7ee92faea1a9d7ab6029fd27caaee5feec226df805238e2091cb7c4851605fc3"
+    },
+    {
+      "path": "packages/core/reference-seal.ts",
+      "bytes": 10538,
+      "sha256": "e70671036acb127f0f79df19b8f82fc3de30dbe1c87e5d96a6afe37cc2f13b34"
+    },
+    {
+      "path": "packages/core/visual-detection.ts",
+      "bytes": 10074,
+      "sha256": "821af10f7749341a978e6439e748ac7cdc1ddfe433f15e95e2fe9eaf68da3b8f"
+    },
+    {
+      "path": "apps/api/visual.ts",
+      "bytes": 3349,
+      "sha256": "9ee185c721887458b28a384742f9998775e62006c533f66b6a843bdac6147b67"
+    },
+    {
+      "path": "apps/web/visual-suggestions.tsx",
+      "bytes": 5682,
+      "sha256": "05d3c9adc18b91471c48e0b02aba55ef4b4f3ae6f4286f0691e1977c0c297973"
+    },
+    {
+      "path": "scripts/opencv-lock.json",
+      "bytes": 715,
+      "sha256": "019659065d13c54ecb143f9892d1c7bbeae8f026f3eb3f6d98f93a699d103909"
+    },
+    {
+      "path": "vendor/opencv/opencv-4.10.0.cjs",
+      "bytes": 10378211,
+      "sha256": "e9aa95159522347410aba2321a72b19a71764de737b29030a341439ab60ea724"
+    },
+    {
+      "path": "tests/reference-seal.test.ts",
+      "bytes": 4692,
+      "sha256": "d22595ff6e066d777969396948fa39adcb4dcff6711a8536c0a3bc534e5dc185"
+    },
+    {
+      "path": "tests/reference-seal-oracle.test.ts",
+      "bytes": 982,
+      "sha256": "2295a1e50c288e5dbb438bffe97b329e3d45eef1d1e0b7a453856574829f49ae"
+    },
+    {
+      "path": "tests/fixtures/reference-seal/source-golden.json",
+      "bytes": 13595,
+      "sha256": "ad61a913b35a9b3f7fbef68d44560b110dadd9c3dbe7693906f98bf528b9e3f0"
+    }
+  ],
+  "tests": [
+    ".data/research/lawbot-2026-10-14/iteration022/reference-seal-unit.log",
+    ".data/research/lawbot-2026-10-14/iteration022/reference-seal-visual-unit.log",
+    ".data/research/lawbot-2026-10-14/iteration022/reference-seal-typecheck.log"
+  ],
+  "limits": [
+    "Official desktop license-gated whole processing not executed. Standalone pixel-algorithm oracle is not that execution.",
+    "Synthetic 26-case numerical agreement is not real-corpus precision/recall or comprehensive adversarial accuracy.",
+    "Official Windows source has no observed automatic grayscale/signature model. Monochrome heuristics and separately licensed YOLOS signature model are own extensions requiring confirmation; real precision/recall gaps are recorded in signature-model-porting-20261014.",
+    "First whole OpenCV docs archive failed SHA and is named invalid-sha256; never used as trusted release. Runtime entry independently refetched from authenticated official Range, header/size/CRC verified and SHA pinned; do not claim whole archive SHA matched.",
+    "No competitor copyrighted code/assets/runtime copied into own distribution; only independent implementation, legal OpenCV binary/licenses, synthetic fixtures.",
+    "Actual image utilities/batch Edge workflows passed; logs and screenshots live in image-ocr-batch-workflow-porting-20261014."
+  ]
+}

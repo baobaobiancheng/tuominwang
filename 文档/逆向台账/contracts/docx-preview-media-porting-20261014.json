@@ -1,0 +1,200 @@
+{
+  "version": 1,
+  "scope": "本地合法静态来源Word预览与媒体/VML移植，不是竞品已授权运行全部流程结论",
+  "created": "2026-10-14",
+  "source": {
+    "frontend": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+    "package": ".data/research/lawbot-2026-10-13/extracted/package.json",
+    "frontendSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+    "rendererChunkSha256": "afe1b44a0d92e493c139b8a065d0b8c66defaab82c5c4e8b2ae0684be1c1c00b",
+    "packageSha256": "17581deb268fedf30b77b0d5db7ff5b1d66b10cb104e1f6d79b4aa7a1546db7e",
+    "primaryDocs": [
+      "https://github.com/VolodymyrBaydalka/docxjs",
+      "https://github.com/shaozilee/bmp-js",
+      "https://learn.microsoft.com/en-us/windows/win32/api/wingdi/ns-wingdi-bitmapinfoheader"
+    ]
+  },
+  "implementations": [
+    {
+      "id": "DP01",
+      "capability": "Word分页链",
+      "sourceEvidence": "renderer.js7476/7496 docx-preview^0.3.7",
+      "implementation": "合法Apache-2.0 exact0.3.7 Vite离线bundle；分页符/节/lastRenderedPageBreak、宽高、样式表、页眉页脚、表格、foot/endnotes、comments、tracked changes配置全部接入。",
+      "validation": "2页实际Edge验证；结构回退全原文保留",
+      "status": "implemented-and-scoped-validated"
+    },
+    {
+      "id": "DP02",
+      "capability": "授权与版本绑定",
+      "sourceEvidence": "本工具现有tenant/project/revision/source hash门",
+      "implementation": "view_original+documentScope，revision CAS/只读FOR SHARE、原件和正文hash、包SHA256、私有map/previewhash、no-store；foreign404/review-only403/stale409/篡改原件409。",
+      "validation": "真实隔离API",
+      "status": "implemented-and-scoped-validated"
+    },
+    {
+      "id": "DP03",
+      "capability": "无外联素材与字体",
+      "sourceEvidence": "源输入及本工具权限边界",
+      "implementation": "Separate sanitizedZIP，External/URI/HTML/altChunk/OLE宏/SVG阻断、无原XML HTML执行；verified内嵌SFNT/OTTO+GUIDkey解混淆，字体名白名单；sandbox无scripts/CSPconnectnone。",
+      "validation": "源原件不变；实际external image/link request[]",
+      "status": "implemented-and-scoped-validated"
+    },
+    {
+      "id": "DP04",
+      "capability": "精确原文交互",
+      "sourceEvidence": "源selection/startOffset逻辑",
+      "implementation": "每run原UTF16和原paragraph绑定，文本exact匹配再高亮/点击/选取，同paragraph多run允许，未知生成内容明示回结构化；generation detachedstage防旧render盖新doc。",
+      "validation": "Edge跨runphone和VMLtextbox精确选区验证",
+      "status": "implemented-and-scoped-validated"
+    },
+    {
+      "id": "DP05",
+      "capability": "五种Word媒体",
+      "sourceEvidence": "deep-processing source main.js图片分支 PNG/JPEG/GIF/BMP/TIFF",
+      "implementation": "Word/media扩展仅限五种；可靠signature辨识＋解码metadata一致，mime/path误标兼容，原part全覆盖。顶层upload格式保持现有schema。",
+      "validation": "PNGbytes.jpg、BMP真实OCR与nativeDOCX导出",
+      "status": "implemented-and-scoped-validated"
+    },
+    {
+      "id": "DP06",
+      "capability": "GIF/TIFF全部帧",
+      "sourceEvidence": "源格式支持＋主动补足首帧漏脱敏风险",
+      "implementation": "受控逐帧读取，autoOrient/sRGB白底完整纵向atlas，frame原RGB/hash/sourcehash留存；超过既有预算显式失败，不截首帧。",
+      "validation": "2帧各不同号码真实Tesseract/glyph上下层、去号码nativeDOCX导出、原rawmedia被删除",
+      "status": "implemented-and-scoped-validated"
+    },
+    {
+      "id": "DP07",
+      "capability": "每帧人脸检测",
+      "sourceEvidence": "源图片遍历及canonical坐标要求",
+      "implementation": "从immutable原媒体重建每帧，对完整previewRGB比对，逐frame模型输入，bbox按frame origin回atlas；旧首帧/篡改preview拒绝。",
+      "validation": "mock每帧两调用与偏移；真实YuNet对OpenCV公开图与镜像第二帧GIF/TIFF各帧都返回人脸。此为合成多帧smoke，不是独立真实语料准确率",
+      "status": "implemented-and-scoped-validated"
+    },
+    {
+      "id": "DP08",
+      "capability": "BMP分支",
+      "sourceEvidence": "官方bmp-js/MicrosoftBITMAPINFOHEADER",
+      "implementation": "MITbmp-js0.1.0 pureJS无dependency：bounds/palette校验后使用RGB1/4/8/24；独立checkedRGB16/32/bitfields/alpha/RLE4/RLE8编码与绝对/跳过/终止/CORE12/offset/topdown/containedPNGJPEG。",
+      "validation": "5媒体unit＋负边界和realBMP OCR",
+      "status": "implemented-and-scoped-validated"
+    },
+    {
+      "id": "DP09",
+      "capability": "VML组合图与图片",
+      "sourceEvidence": "renderer.js Ad/Td/Ed/Nd约4917–4995",
+      "implementation": "组合coordsize/coordorigin，relative/absolute宽高与left/top/margin/zindex；rotate/flip；内嵌PNG图crop percent/fixedf/decimal，group递归与完整隐藏像素OCR/导出。独立受控DOM，不依赖上游0.3.7缺失的grouphook。",
+      "validation": "真实EdgeCSSleft24px/cropwidth192px/matrix+离线img",
+      "status": "implemented-and-scoped-validated"
+    },
+    {
+      "id": "DP10",
+      "capability": "VML文本框/基本形状",
+      "sourceEvidence": "renderer Nd imageTextBox分支与上游基本VML",
+      "implementation": "已规范绑定的paragraph/table DOM移入textboxoverlay，原bold/run及选区保留；私有fork的mso-fit形状随文字伸高、squarewrap/side/horizontal选择、left/right/bottom包围距离与height/overflow所有已知分支；图片assets有界去重引用防JSON重复膨胀；rect/roundrect/oval/line受控SVG几何，不载入输入SVG/XMLHTML。",
+      "validation": "WordXMLcanonical强绑定、实际table/2phone高亮、UTF16选择",
+      "status": "implemented-and-scoped-validated"
+    },
+    {
+      "id": "DP11",
+      "capability": "VML原生导出覆盖",
+      "sourceEvidence": "本工具Office完整媒体映射",
+      "implementation": "安全local r:id或o:relid一致、合法imagePart+imageTexts覆盖才complete；external/src/缺missing/conflict/unknownOLE仍blocked；exportOffice统一replace原media为已脱敏PNG，crop隐藏原像素不保留。",
+      "validation": "nativeVML输出ref renamed、原part删除；source保留",
+      "status": "implemented-and-scoped-validated"
+    }
+  ],
+  "tests": {
+    "officeFocusedUnit": "5 files21 passed",
+    "officeRealOcr": "1 passed3.12s",
+    "wordE2e": "17.2s",
+    "oldCanonExportE2e": "20.2s",
+    "vmlE2e": "18.2s",
+    "typecheck": "tsc no diagnostics",
+    "notes": "合成用户/合成数据，隔离数据库，禁止私有原件出站；不是所有产物生产发布结论"
+  },
+  "files": {
+    "packages/core/docx-preview.ts": "4f4ae490cba90f960735f21a604687f526f2ff5c68a11e3df243f5ea8ff6a9df",
+    "packages/core/docx-vml-preview.ts": "946fd088acaf451cbfae049800e30afc6979729822e317460e7d7d904ce5cae6",
+    "packages/core/office-media.ts": "9852c1c96000c72f7b4fdcb9ef4f22e7f58a0ff1a58c85ff1f3a09cfa3b9b2a2",
+    "packages/core/office.ts": "10463d7c664867853b8bde2e572923b3db1ac765006b698241802d097d87b321",
+    "packages/core/docx-layout.ts": "7c32cf9b40cb013743ed679f7aac1401b3fd8e7683b6197ef647b8e2dd190609",
+    "packages/adapters/docx-preview.ts": "7ccd661382d30f039650d09c8453ed6862a81605d0c47adc55aa07d9d4f1f002",
+    "packages/adapters/office-images.ts": "4785b5689ba522e25fa286b37ee59703e33bfc4dddd8d70e0ebe75acf706798f",
+    "packages/adapters/office-visual.ts": "422c1e662d09ddbc4199eb65b63a163f2a2b7e514471b8cc437bc94c7ccd0865",
+    "apps/api/docx-preview.ts": "cdde7e5eccc46020b9200c726130048ae86c73c0bec8896fbfea0fdf7f64bc1f",
+    "apps/web/docx-paginated-review.tsx": "dcc6f3f8d092297e8c266c92877d0e1f4459b984520a0818aebd394423d4bbaa",
+    "apps/web/docx-vml-preview.ts": "41bd5ef75be3575176aa40d73655dc7d037eeb0ccc25d721695da9d1f70665dd",
+    "packages/contracts/docx-preview.ts": "910b97c5e35b2464cdb73ca7eab5423d343c28c1fc6d9147d0f45bf7a82bb352",
+    "tests/docx-preview.test.ts": "8ed3993bfd21d3ead149776a56b02bcfacc237ea5b373a9f8cf2bab209a0ea8b",
+    "tests/docx-preview.integration.ts": "bb455266e19686c660eb26cf5067da2d85da2c600b5693ca16f99130dcee931d",
+    "tests/docx-vml-preview.test.ts": "6eb8afbd8a1c8cf0043fafff54bb947978dae8afafc564b3e07d0d9c8332f8b1",
+    "tests/office-media.test.ts": "4120057cce9e83e781de6d22c28a7d131531a050c0c6d5503573cffcfd6502e1",
+    "tests/office-media.integration.ts": "50cf6a64cd37b4c61ecf4143996524f63c8be936490bb6f93c9e52465997f018",
+    "tests/office-visual.test.ts": "0bdced4ab068c1fc9571c397c05db0810ab90846ffb70e6d4b289f3ccf175408",
+    "tests/e2e/docx-preview.spec.ts": "46a9f0e5f177ef4392e32df52983fa8cf496a55e8e09a50de38c0c521529b50b",
+    "tests/e2e/docx-layout.spec.ts": "3c42fef131d532ce36a30ee8574ce03803c178b9e6df0ee18b7b3c6d56af5048",
+    "tests/e2e/docx-vml.spec.ts": "f06bf4dabb967db812c9d32df1f31c30c539ff00ed56d6ff2471d8bada98236d",
+    "licenses/docx-preview-Apache-2.0.txt": "8668bf4417d161e4eb4d47d6044526e4914d9eb3c748573d9bb7e87708c1253f",
+    "licenses/bmp-js-MIT.txt": "9f165f5bd2b462122cacb8c6dc32028be1abb4d8ad0322e9a332f30b2ebdb833",
+    "scripts/evaluate-office-media.ts": "e9c1a377b3ea3a4a7c973d0d20f215bf3198976b55d664c3dbe74e0c33aa6277"
+  },
+  "evidence": {
+    ".data/research/lawbot-2026-10-14/iteration022/docx-preview-unit.log": "4043aefb539f743fd636718cf036c5022b189b48e5c8e61f0fae1c0de87e6a12",
+    ".data/research/lawbot-2026-10-14/iteration022/docx-preview-api.log": "18dab176e37d8f5ba1ed847d0511bcc29a0ce06fadb78a4adebdd0cf45bf08bd",
+    ".data/research/lawbot-2026-10-14/iteration022/docx-preview-e2e.log": "478f1a43c3e0d6babce042477cda918043746684aad8ee831668dded683858a6",
+    ".data/research/lawbot-2026-10-14/iteration022/docx-layout-e2e-new-renderer.log": "11e3463e5a482be772791f972390742f203fe09d83822c8b96079e2c2e47f319",
+    ".data/research/lawbot-2026-10-14/iteration022/office-vml-unit.log": "315d01159de039433a6f6f610bf3dff3fb26b7656c70e173ee2aca9eec98a66c",
+    ".data/research/lawbot-2026-10-14/iteration022/office-vml-typecheck.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    ".data/research/lawbot-2026-10-14/iteration022/office-media-real-ocr.log": "c4aace3c81a3295e16ad44b5537f5f7df6575d0166ced0b92c9a8d9c1dc312be",
+    ".data/research/lawbot-2026-10-14/iteration022/docx-vml-e2e.log": "e6dd4f366f0497e54ed18d133977c7d3d6249e5376eb43ee45a22a4a12402948",
+    ".data/research/lawbot-2026-10-14/iteration022/word-paginated-review.png": "e632716249c9170b25a8d35a5f1d3c0053c538e32011e380f5f1fde950fa2775",
+    ".data/research/lawbot-2026-10-14/iteration022/word-vml-review.png": "3ffde89231989c80c1c59db003d4af992d9626db74fd8fbec48b79b292a9dac8",
+    ".data/research/lawbot-2026-10-14/iteration022/ocr-retained-independent-probe.json": "deeb0542715d040402990c30a92465808d83fb4893fed73ddd70fae88c68b72c",
+    ".data/research/lawbot-2026-10-14/iteration022/office-media-face-smoke.json": "77ab51fcceba7506818e74bad44329fd3a3169fd093d185cb45dd38102f0d411",
+    ".data/research/lawbot-2026-10-14/iteration022/office-media-face-smoke.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "runtimeDependency": {
+    "bmp-js": "0.1.0",
+    "license": "MIT",
+    "dependencies": {},
+    "decoderSha256": "4e941bb5d1b3ce9c67165fc98adc3dfe1850b0dc92b541c4e50862b6015d7ea5"
+  },
+  "clientDependency": {
+    "docx-preview": "0.3.7",
+    "license": "Apache-2.0",
+    "delivery": "devDependency，Vite动态客户端bundle，不安装prod包"
+  },
+  "openGaps": [
+    {
+      "id": "DG01",
+      "gap": "Word自动换行/自动分页/字体与Word像素一致性",
+      "detail": "docx-preview官方只处理文档已有分页符/节，不保证Word自动分页；未内嵌或不可解混淆字体采用本机回退。无授权竞品Word真材料处理链端到端对比。"
+    },
+    {
+      "id": "DG02",
+      "gap": "VML自由曲线/模板/公式/渐变纹理阴影",
+      "detail": "源Nd对无image交给source渲染器的底层形状；本工具基础几何与textbox已补，复杂freeform path/shapeType/equations、渐变阴影明示warning，未虚称精确绘制。"
+    },
+    {
+      "id": "DG03",
+      "gap": "源大文档虚拟分块/取消耗时渲染",
+      "detail": "源12k正文或2MiB文件触发虚拟段落/45–120s预算、自定义yield/cancel；当前源版本0.3.7全DOM分页，generation禁止旧渲染提交但不具备相同细粒度中止/virtualization。已有source版式size预算避免无界输入，仍需等价性能验收。"
+    },
+    {
+      "id": "DG04",
+      "gap": "罕见位图编码/APNG",
+      "detail": "OS2 Huffman/RLE24、未知BMP子格式及APNG多帧明确拒绝；GIF/TIFF全部帧已实现，未声称全部图像编码规范穷尽。"
+    },
+    {
+      "id": "DG05",
+      "gap": "真实多帧人脸/文字语料准确率",
+      "detail": "完整逐帧工程链通过合成OCR、模拟faceboxes及真实YuNet公开OpenCV图+镜像帧smoke；仍非独立真实各格式准确率/竞品性能等价。"
+    },
+    {
+      "id": "DG06",
+      "gap": "同run混排VML与前后普通文本的flow细节",
+      "detail": "有文字共享VML run时为保证source bookmark exact把VML容器置于该run之前；绝对定位/旋转/组坐标支持，不保证内联picture精确位于文本中间。"
+    }
+  ]
+}

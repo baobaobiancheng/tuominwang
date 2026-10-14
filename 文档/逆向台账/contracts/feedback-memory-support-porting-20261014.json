@@ -1,0 +1,791 @@
+{
+  "phase": "ITER024",
+  "date": "2026-10-14",
+  "reference": "0.5.9 static source, never licensed processing execution",
+  "rows": [
+    {
+      "id": "IPC-d874c25112ba",
+      "sourceName": "feedback:add",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 18092
+      },
+      "ownRoute": "POST /api/feedback",
+      "semantics": "canonical single record; authenticated actor/time; document revision+exact text binding",
+      "sourceState": "active",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/feedback.integration.ts",
+        ".data/evals/feedback-isolated-20261014.log"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "IPC-6ff537a49940",
+      "sourceName": "feedback:add-batch",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 18098
+      },
+      "ownRoute": "POST /api/feedback/batch",
+      "semantics": "source alias normalization, FP-only mapping, atomic transaction",
+      "sourceState": "active",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/feedback.integration.ts",
+        ".data/evals/feedback-isolated-20261014.log"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "IPC-feab6613b5ed",
+      "sourceName": "feedback:query",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 18106
+      },
+      "ownRoute": "GET /api/feedback",
+      "semantics": "case-insensitive exact filename/type and optional scoped project/document",
+      "sourceState": "active",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/feedback.integration.ts",
+        ".data/evals/feedback-isolated-20261014.log"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "IPC-14a3820628e8",
+      "sourceName": "feedback:get-document-stats",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 18121
+      },
+      "ownRoute": "GET /api/feedback/statistics?documentName=",
+      "semantics": "source case-sensitive exact document-name statistics",
+      "sourceState": "active",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/feedback.integration.ts",
+        ".data/evals/feedback-isolated-20261014.log"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "IPC-9bb6c463b31f",
+      "sourceName": "feedback:get-global-stats",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 18128
+      },
+      "ownRoute": "GET /api/feedback/statistics",
+      "semantics": "only owned and still-authorized project records",
+      "sourceState": "active",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/feedback.integration.ts",
+        ".data/evals/feedback-isolated-20261014.log"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "IPC-b2c075e4afde",
+      "sourceName": "feedback:delete-by-document",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 18135
+      },
+      "ownRoute": "POST /api/feedback/delete-by-document",
+      "semantics": "case-sensitive exact name, owner+tenant+project scope, CAS",
+      "sourceState": "active",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/feedback.integration.ts",
+        ".data/evals/feedback-isolated-20261014.log"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "IPC-efc77b9d6c1d",
+      "sourceName": "feedback:delete-by-id",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 18144
+      },
+      "ownRoute": "DELETE /api/feedback/:id",
+      "semantics": "owner+tenant+project scope, CAS",
+      "sourceState": "active",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/feedback.integration.ts",
+        ".data/evals/feedback-isolated-20261014.log"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "IPC-b828b79da058",
+      "sourceName": "feedback:clear-all",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 18150
+      },
+      "ownRoute": "POST /api/feedback/clear-all",
+      "semantics": "explicit confirmation and CAS; clears records/memories/current hints; preserves archives/history/audits",
+      "sourceState": "active",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/feedback.integration.ts",
+        ".data/evals/feedback-isolated-20261014.log"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "IPC-196efa6b695b",
+      "sourceName": "feedback:export-audit-report",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 18156
+      },
+      "ownRoute": "POST /api/feedback/export kind=audit-report",
+      "semantics": "same date-filtered and first1000 subset for Markdown/count/audit; <=50 detailed entries",
+      "sourceState": "active",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/feedback.integration.ts",
+        ".data/evals/feedback-isolated-20261014.log"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "IPC-a05e3b6af8e1",
+      "sourceName": "review:add-feedback",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 18862
+      },
+      "ownRoute": "POST /api/feedback",
+      "semantics": "authenticated encrypted record; cloud canonical fields differ from IPC camelCase adapter",
+      "sourceState": "active",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/feedback.integration.ts",
+        ".data/evals/feedback-isolated-20261014.log"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "IPC-72093dfff7bf",
+      "sourceName": "review:get-feedbacks",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 18868
+      },
+      "ownRoute": "GET /api/feedback",
+      "semantics": "real scoped encrypted records",
+      "sourceState": "active",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/feedback.integration.ts",
+        ".data/evals/feedback-isolated-20261014.log"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "IPC-9dbd84b9715b",
+      "sourceName": "review:get-blacklist",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 18874
+      },
+      "ownRoute": "GET /api/review-memory blacklist",
+      "semantics": "source legacy blacklist means forceSkip, not new frontend blacklist terminology",
+      "sourceState": "active",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/feedback.integration.ts",
+        ".data/evals/feedback-isolated-20261014.log"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "IPC-9a7ac510f8c7",
+      "sourceName": "review:get-whitelist",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 18880
+      },
+      "ownRoute": "GET /api/review-memory whitelist",
+      "semantics": "source legacy whitelist means forceDetect",
+      "sourceState": "active",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/feedback.integration.ts",
+        ".data/evals/feedback-isolated-20261014.log"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "IPC-e024a8242875",
+      "sourceName": "review:export-audit-log",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 18886
+      },
+      "ownRoute": "POST /api/feedback/export kind=audit",
+      "semantics": "actual CSV/JSON/JSONL bytes; CSV escape/formula neutralization",
+      "sourceState": "active",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/feedback.integration.ts",
+        ".data/evals/feedback-isolated-20261014.log"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "IPC-bb6001e11068",
+      "sourceName": "review:export-proof-lite",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 18893
+      },
+      "ownRoute": "POST /api/feedback/export kind=proof-lite",
+      "semantics": "actual metadata+feedback+requested memories/audits JSONL; network count explicitly unmeasured, not fabricated zero",
+      "sourceState": "active",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/feedback.integration.ts",
+        ".data/evals/feedback-isolated-20261014.log"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "IPC-d3e5e1de12d2",
+      "sourceName": "review:export-user-memories",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 18900
+      },
+      "ownRoute": "POST /api/feedback/export kind=user-memories",
+      "semantics": "actual all active memories and pattern lists JSON regardless requested format, matching source branch",
+      "sourceState": "active",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/feedback.integration.ts",
+        ".data/evals/feedback-isolated-20261014.log"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "IPC-b199b300f630",
+      "sourceName": "review:get-statistics",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 18907
+      },
+      "ownRoute": "GET /api/feedback/statistics",
+      "semantics": "actual owned records, no accuracy claim",
+      "sourceState": "active",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/feedback.integration.ts",
+        ".data/evals/feedback-isolated-20261014.log"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "IPC-7d7beed074d0",
+      "sourceName": "review:clear-all",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 18916
+      },
+      "ownRoute": "POST /api/feedback/clear-all",
+      "semantics": "same store as source feedback clear",
+      "sourceState": "active",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/feedback.integration.ts",
+        ".data/evals/feedback-isolated-20261014.log"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "IPC-acbca2a96370",
+      "sourceName": "dictionary:get-entries",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 18536
+      },
+      "ownRoute": "GET /api/review-memory",
+      "semantics": "manual entries present; wrapper additionally includes legacy automatic memories for complete audit",
+      "sourceState": "active",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/feedback.integration.ts",
+        ".data/evals/feedback-isolated-20261014.log"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "IPC-25271d44841c",
+      "sourceName": "dictionary:add-entry",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 18542
+      },
+      "ownRoute": "POST /api/review-memory",
+      "semantics": "exact key/idempotent manual; existing automatic upgraded only by explicit manual add; no feedback learning",
+      "sourceState": "active",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/feedback.integration.ts",
+        ".data/evals/feedback-isolated-20261014.log"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "IPC-80e954e3a669",
+      "sourceName": "dictionary:remove-entry",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 18549
+      },
+      "ownRoute": "DELETE /api/review-memory/:id",
+      "semantics": "manual entries only; CAS",
+      "sourceState": "active",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/feedback.integration.ts",
+        ".data/evals/feedback-isolated-20261014.log"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "IPC-50d02c91469e",
+      "sourceName": "dictionary:import",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 18563
+      },
+      "ownRoute": "POST /api/review-memory/import",
+      "semantics": "new exact keys only; existing automatic not upgraded; CAS",
+      "sourceState": "active",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/feedback.integration.ts",
+        ".data/evals/feedback-isolated-20261014.log"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "IPC-0f2d4d6b6262",
+      "sourceName": "dictionary:export",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 18570
+      },
+      "ownRoute": "POST /api/feedback/export kind=user-memories",
+      "semantics": "cloud JSON contains full preserved memories, not source minimal entries wrapper",
+      "sourceState": "active",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/feedback.integration.ts",
+        ".data/evals/feedback-isolated-20261014.log"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "IPC-d0b393b9e93d",
+      "sourceName": "dictionary:select-import-file",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 18577
+      },
+      "ownRoute": "FeedbackPanel browser file input",
+      "semantics": "explicit browser upload, no arbitrary host path; native chooser adapted",
+      "sourceState": "active",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/feedback.integration.ts",
+        ".data/evals/feedback-isolated-20261014.log"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "BEHAVIOR-dictionary:migrate-legacy",
+      "sourceName": "dictionary:migrate-legacy",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 14346
+      },
+      "ownRoute": "POST /api/review-memory/migrate-ruleset",
+      "semantics": "source migration branch main14346; all entries checked before save, normalized conflict forceSkip wins, source migrated, default inactive, original retained, hint archive once",
+      "sourceState": "active",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/feedback.integration.ts",
+        ".data/evals/feedback-isolated-20261014.log"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "IPC-8018ac372ad7",
+      "sourceName": "learner:get-high-confidence-memory-count",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 18179
+      },
+      "ownRoute": "GET /api/learner/high-confidence-count",
+      "semantics": "source constant count0/total0/lastSnapshot0",
+      "sourceState": "inactive_return_adapter",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/feedback.integration.ts",
+        ".data/evals/feedback-isolated-20261014.log"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "IPC-2c55a1969fb8",
+      "sourceName": "learner:update-rules",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 18179
+      },
+      "ownRoute": "POST /api/learner/update-rules",
+      "semantics": "source constant success,stats=null,rulesetHash empty; deprecated true, no update",
+      "sourceState": "inactive_return_adapter",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/feedback.integration.ts",
+        ".data/evals/feedback-isolated-20261014.log"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "IPC-ca4c19558c55",
+      "sourceName": "learner:get-snapshots",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 18186
+      },
+      "ownRoute": "GET /api/learner/get-snapshots",
+      "semantics": "source constant empty snapshots, no new snapshots",
+      "sourceState": "inactive_return_adapter",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/feedback.integration.ts",
+        ".data/evals/feedback-isolated-20261014.log"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "IPC-caef950fe9a5",
+      "sourceName": "learner:rollback",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 18186
+      },
+      "ownRoute": "POST /api/learner/rollback",
+      "semantics": "source explicit inactive failure, no mutation",
+      "sourceState": "inactive_return_adapter",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/feedback.integration.ts",
+        ".data/evals/feedback-isolated-20261014.log"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "IPC-7fb83198252b",
+      "sourceName": "learner:rollback-previous",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 18186
+      },
+      "ownRoute": "POST /api/learner/rollback-previous",
+      "semantics": "source explicit inactive failure, no mutation",
+      "sourceState": "inactive_return_adapter",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/feedback.integration.ts",
+        ".data/evals/feedback-isolated-20261014.log"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "IPC-43e13058e656",
+      "sourceName": "learner:rollback-to-previous",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 18186
+      },
+      "ownRoute": "POST /api/learner/rollback-to-previous",
+      "semantics": "source explicit inactive failure, no mutation",
+      "sourceState": "inactive_return_adapter",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/feedback.integration.ts",
+        ".data/evals/feedback-isolated-20261014.log"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "IPC-5457cc5660c4",
+      "sourceName": "learner:get-stats",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 18179
+      },
+      "ownRoute": "GET /api/learner/get-stats",
+      "semantics": "source old history current_ruleset_hash only; zero update/application/rollback stats, no learning call",
+      "sourceState": "historical_stats_read_only",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/feedback.integration.ts",
+        ".data/evals/feedback-isolated-20261014.log"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "IPC-7c61ecffef61",
+      "sourceName": "log:renderer-error",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 27014
+      },
+      "ownRoute": "POST /api/support/renderer-error",
+      "semantics": "ignore complete payload; persist only fixed category and server timestamp per user",
+      "sourceState": "active",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/support.test.ts",
+        "tests/support.integration.ts"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "IPC-7f4cfe68e159",
+      "sourceName": "app:export-crash-log",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 27023
+      },
+      "ownRoute": "GET /api/support/crash-log",
+      "semantics": "real per-user sanitized log bytes; absent404, native save-dialog adapted to download",
+      "sourceState": "active",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/support.test.ts",
+        "tests/support.integration.ts"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "IPC-5d7065a40d45",
+      "sourceName": "app:read-legal-doc",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 27071
+      },
+      "ownRoute": "GET /api/support/legal/:name",
+      "semantics": "three exact allowed filenames; own product docs; agreement/privacy explicit unpublished drafts",
+      "sourceState": "active",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/support.test.ts",
+        "tests/support.integration.ts"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    },
+    {
+      "id": "IPC-65f32fe31f76",
+      "sourceName": "app:read-onboarding-sample",
+      "sourceHandler": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "line": 27086
+      },
+      "ownRoute": "GET /api/support/onboarding-sample",
+      "semantics": "actual wholly synthetic own DOCX bytes, not competitor/cust materials",
+      "sourceState": "active",
+      "ownLevel": "I2-adapted",
+      "referenceRuntime": "R0",
+      "ownEvidence": [
+        "tests/support.test.ts",
+        "tests/support.integration.ts"
+      ],
+      "remaining": [
+        "full final Edge browser acceptance by root; reference licensed processing remains R0"
+      ]
+    }
+  ],
+  "sourcePins": {
+    "packages/contracts/feedback.ts": "7d7825621a3dac66bc814cca05454e890cb40cc424e5d84604da6158f1733ece",
+    "packages/core/feedback.ts": "3a3674e4afe42725ac7cec4114528733d66bf37cc966d870fe4b893315e9f8dc",
+    "packages/core/user-memory-rules.ts": "1a98ae5edfe336afbc039bc50616a7f778e49a2bf30df471c23e420d6cd294a9",
+    "packages/adapters/feedback-store.ts": "a0f230c28cf5c5a804c22c49261187ba014779539c0625e8e057ac96fe40b381",
+    "apps/api/feedback.ts": "e1fcb69a1e6adf5826b78ffdd88e722cd80aa3a43a5062c836cab852b866c51b",
+    "apps/web/feedback.tsx": "13e55735f427a30e28058fb9515e4734296c7d2b85d131015b55ec4446b3463c",
+    "scripts/017.sql": "316730e412109cae46e39a424f7c9f0639bc9e0ae0a135d08a1a9bc2a935bd05",
+    "packages/core/support.ts": "fa07fe460d8fe46060fe9d788aa469aa2abfa95b38f38c28e068c54ad1d84aef",
+    "apps/api/support.ts": "efa467879ada48e1fe6f70d0205506448e1b80e17f737a175f9509c2e2e795e1",
+    "apps/web/support.tsx": "37eb7b7dbceb369f6a8ba335d45101deeefd4d9537b192f43dec047a05dcdc4f",
+    "scripts/020.sql": "a46b29df94913a464055d1202c4ab2c724ed51464c64365b7856a11ac20a369a",
+    "tests/feedback.test.ts": "068f4977b5367ebf796f9bc0b2cd105c9e79199f5878610adf3b76c926fec50c",
+    "tests/user-memory-rules.test.ts": "3d5d8e32584a0fac2f165d6f56a661235a907e731c708d2d170ec532456a8ba5",
+    "tests/feedback.integration.ts": "8e4c5158ec3c9d5eea1d72450f2ad9c75d724d61f1c6a0cbaeed030422af0dfe",
+    "tests/support.test.ts": "721b3a8cd75becf626075e3b80bca1436ea2f88decc052c0046696f99f9180c9",
+    "tests/support.integration.ts": "18496f270121d5829e5c24d0c447236c85d43ee1a70e331834d041431e9159fd"
+  },
+  "sourceBranchPins": {
+    "main.js": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba"
+  },
+  "tests": {
+    "units": "12 pass feedback/user-memory-rules/support; .data/evals/feedback-support-units-20261014.log",
+    "feedbackIntegration": ".data/evals/feedback-isolated-20261014.log:2 actual DB/worker tests passed1.83s+0.478s",
+    "supportIntegration": ".data/evals/support-isolated-20261014.log:1 actual DB test passed0.313s"
+  },
+  "adversarialFindings": [
+    {
+      "reviewer": "A",
+      "priority": "P2",
+      "finding": "Chinese memory kind fell back to custom on migration",
+      "fix": "memoryEntityKind full Chinese markSchema + English canonical/legacy aliases",
+      "regression": "actual Chinese name_cn and org_name migrated fields asserted"
+    },
+    {
+      "reviewer": "B",
+      "priority": "P2",
+      "finding": "report receipt counted all rows instead of filtered subset",
+      "fix": "selectedAuditRecords reused for report content and count/audit",
+      "regression": "0/partial/all/cap1000 unit"
+    }
+  ],
+  "scope": [
+    "No automatic feedback learning. Source inactive learner methods not implemented as imaginary algorithms.",
+    "Legacy personal lists preserved and migrate to explicitly selected ruleset, default inactive.",
+    "applyActiveRulesetCandidates applied to fresh automatic marks, not manual review marks; skip exact kind/value, detect nonoverlap with marker bypassing disabled type, object anchor bounds.",
+    "No fake network or accuracy evidence in proof-lite.",
+    "Original material immutable; no external provider/private data invoked."
+  ],
+  "remainingExplicitContracts": [
+    {
+      "id": "UNKNOWN_RULE_ENTITY_TYPE",
+      "source": "main.js Cd14282 requires nonempty entityType string, not enum; migrateLegacyDictionary14346 preserves it",
+      "current": "Personal memory preserves all input entity_type strings; migration to our finite typed RuleSet rejects unknown type atomically with unsupported list",
+      "status": "source_contract_gap",
+      "required": "Preserve raw source entityType through ruleset, Mark, exact forceSkip/forceDetect, frontend and export without collapsing distinct custom types"
+    },
+    {
+      "id": "RULESET_TRACE_SOURCE_BUDGET",
+      "source": "Mark current legal8 sources plus active ruleset trace reaches9",
+      "current": ".data/evals/ruleset-source-budget-probe-20261014.json proves inputValid=true outputValid=false",
+      "status": "shared_schema_fix_pending_root"
+    }
+  ]
+}

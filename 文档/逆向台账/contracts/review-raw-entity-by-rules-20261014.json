@@ -1,0 +1,44 @@
+{
+  "id": "REVIEW-RAW-ENTITY-BY-RULES-20261014",
+  "updatedAt": "2026-10-14T13:04:30.358361+00:00",
+  "readOnly": true,
+  "files": {
+    "packages/core/entity-identity.ts": "3f60a6b85405a0dfa3822d0d8b9a80b33a7eb7418cb775bb944dc1325df2ced2",
+    "packages/core/user-memory-rules.ts": "09cd1bc65a401a34b8ed9768eaf942cbe345ef5ff2968794d0638d4fbd621f26",
+    "packages/core/redaction.ts": "de27b4fea2304425cfd6c3ddd0debe894df4759de3af017f482e9d3ca6228072",
+    "packages/core/mappings.ts": "eb8b453971c5055c49c1408ba681a2b412b8cfc1c78fcbbae9422e8afe19d5d8",
+    "apps/api/mappings.ts": "e58cab7916689837b86249ccf71580b017abebbe06b9cd7f62b9f087bbf347c8",
+    "packages/core/replacement-policies.ts": "616e3535bca81ada1524e04ef1d8aa3db4236e9c087fca0648bea780c0c15a1b",
+    "packages/core/mapping-export.ts": "c1af96ba65baad5753682721002680289bfc6d6f69ad655b83d64733323c69e8",
+    "packages/contracts/index.ts": "aa6a2e515aa3382f8541cf761113cfdb69606ced5dbab7465304368524821a6b",
+    "packages/core/dictionary-workbook.ts": "201584226d79277fd79bf368559174d786c2e2b921788d00ca5f294716ce3ff6",
+    "packages/core/presets.ts": "f75567c3d51894b141f338a438bbf261d9456b4fc14d9381f1253813c2117c02",
+    "tests/entity-identity.integration.ts": "77d5d1c950ae3a62ee77c510f03368ee2a34bae78d80a185ce58f90e778d20f6",
+    "packages/core/ooxml-string.ts": "9b10986e73d98d0db87e5f5ee32bd15c5f1b6965eecb76944681de7a65a36f99",
+    "packages/core/office.ts": "ce08ed32455ec7032712cef517bd7b86e745924045ff38074dc42f16cc3f28a5",
+    "packages/core/reference-dictionary-workbook.ts": "f7aa3da540e2d8c4f0945e5d1436e6c016386088e6031a08f09db012d0d58827"
+  },
+  "confirmed": [
+    "10 same-span raw project dictionary entries remain10; __proto__/name_customA/B/visual literals/one control label exact identities retained",
+    "Type-specific replacement consumes only selected exact raw type, same-value other raw labels unchanged",
+    "9 sources merge/review budget preserved without dropping evidence",
+    "Actual isolated independent API alias namespace -> LPM -> redacted output -> restore -> portable document scope rebind1PASS5.98s"
+  ],
+  "findings": [
+    {
+      "priority": "P2",
+      "id": "RAW-TYPE-XLSX-INVALID-CONTROL",
+      "status": "closed-independent-roundtrip",
+      "evidence": "schema accepts rawEntityType客户\\u0001代码; exportMappingWorkbook returned1586bytes with bare0x01 in sheet1.xml; XML1.0 invalid although internalparser accepted",
+      "repro": "/tmp/tuomin-raw-xlsx-probe.mts",
+      "owner": "C sharedmapping/ruleset/dictionarywriter;Anewpersonalwriter;Crootauthorizedofficecanonicaldecode",
+      "fix": "ST_Xstring lossless escape; literal escape leadingunderscore;decode only once; no deletion/rejection of source valid nonempty raw types",
+      "after": "mapping1589bytes XML barecontrolfalse; personal2568bytes true exactcontrol raw roundtrip; literal_x005F_x0001_ overlappingunderscore escape preserved; own8testsPASS",
+      "proof": "iteration027/raw-xlsx-independent-probe.log; tests/reference-dictionary-workbook.test.ts sixthcase; tests/ooxml-string.test.ts"
+    }
+  ],
+  "scopeBoundary": [
+    "No license bypass or competitor dynamic acceptance; R0",
+    "Full root gates remain separate; this review did not modify author shared implementation"
+  ]
+}

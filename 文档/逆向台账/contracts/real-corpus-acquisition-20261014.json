@@ -1,0 +1,110 @@
+{
+  "schema": "real-redaction-corpus-acquisition/v1",
+  "date": "2026-10-14",
+  "status": "real_business_gold_missing",
+  "real_annotated_samples_acquired": 0,
+  "candidates": [
+    {
+      "id": "CLUENER2020",
+      "url": "https://github.com/CLUEbenchmark/CLUENER2020",
+      "data_source": "Sina News RSS via THUCTC, official README",
+      "annotation": "10 NER classes; person/address/company/government/organization relevant, not amounts/IDs/signatures/seals",
+      "license_status": "not_confirmed_from_author_repository; no LICENSE visible in root listing",
+      "acquisition_status": "not_downloaded",
+      "real_business_redaction_suitable": false,
+      "remaining": "明确取得原始新闻和实体标注的使用许可；全敏感类型及业务文档差异需单独标注"
+    },
+    {
+      "id": "Few-NERD",
+      "url": "https://github.com/thunlp/Few-NERD",
+      "license_url": "https://raw.githubusercontent.com/thunlp/Few-NERD/main/LICENSE",
+      "license_status": "Apache-2.0 present in author repository; downstream source rights still require review",
+      "download_url": "https://cloud.tsinghua.edu.cn/f/c1f71c011d6b461786bc/?dl=1",
+      "acquisition_status": "official download link returned HTML with Link does not exist, not a ZIP",
+      "download_response_sha256": "37d7dbbb7b3b63c05cf19dfe956640fdf4e21e660c24b2b7962098d35274acba",
+      "annotation": "188200 manually annotated English NER sentences, 8 coarse/66 fine categories; no redaction PII completeness guarantee",
+      "real_business_redaction_suitable": false,
+      "remaining": "恢复作者官方下载或获得确切版本及许可；英文领域与中文商务文档不等价"
+    },
+    {
+      "id": "FUNSD",
+      "url": "https://guillaumejaume.github.io/FUNSD/",
+      "author_reference": "https://github.com/crcresearch/FUNSD",
+      "license_status": "non-commercial research and educational restrictions reported; product use permission not confirmed",
+      "annotation": "199 real scanned forms; header/question/answer/other and word boxes, not sensitive information gold",
+      "acquisition_status": "not_downloaded",
+      "real_business_redaction_suitable": false,
+      "remaining": "许可与研究用途明确；敏感跨度、签名/印章/人脸完整人工双人标注，不能把answer全标敏感"
+    },
+    {
+      "id": "existing-recognition-eval",
+      "local_source": "tests/fixtures/recognition-eval.json",
+      "license_status": "project-authored synthetic fixture",
+      "annotation": "developer-authored quotes; humanVerified false in existing report",
+      "acquisition_status": "local_present",
+      "origin": "synthetic",
+      "real_business_redaction_suitable": false,
+      "remaining": "保持合成口径，不作为真实准确率或竞品性能证据"
+    }
+  ],
+  "all_sample_policy": "正式评估对清单全部样本执行，不截取成功例；固定文件hash、代码/model版本和UTF-16真值",
+  "required_business_gold": [
+    "中文合同/法律材料",
+    "交易回单/一般表单",
+    "Word/PDF/XLSX/图片/Markdown隐藏对象",
+    "金额全部12分支及否定上下文",
+    "签名/彩色印章/黑白印章/人脸与非敏感图案",
+    "OCR错字/跨页/倾斜/复杂Word原布局"
+  ],
+  "labels_required": [
+    "原文精准UTF-16 start/end/kind",
+    "独立人工复核和完整类别声明",
+    "视觉像素坐标和类别",
+    "原件hash、格式/页和导出预期清除域",
+    "合法来源与授权依据"
+  ],
+  "not_accepted": [
+    "自动模型预测作为gold",
+    "同一开发者合成数据冒充真实",
+    "未知标签类别当负例",
+    "仅HTTP200或导出成功等同无残留"
+  ],
+  "completedRealEvaluation": {
+    "completedAt": "2026-10-14T09:31:12.664464+00:00",
+    "cases": 2506,
+    "exactTypeSpanMicro": {
+      "completeRules": {
+        "tp": 0,
+        "fp": 0,
+        "fn": 7926,
+        "precision": null,
+        "recall": 0,
+        "f1": 0
+      },
+      "completeRulesNer": {
+        "tp": 3,
+        "fp": 6,
+        "fn": 7923,
+        "precision": 0.3333333333333333,
+        "recall": 0.0003785011355034065,
+        "f1": 0.0007561436672967864
+      }
+    },
+    "report": ".data/evals/crossner-per-org-loc-20261014.json",
+    "reportSha256": "97e455236876c46b897edb82047bbd7c37d87e3f9cd13f244715e0a3cedf4a38",
+    "snapshotManifest": ".data/evals/snapshots/final-frozen-20261014/snapshot-manifest.json",
+    "defaultCurrentEquivalence": ".data/evals/crossner-current-default-equivalence-20261014.json",
+    "scope": "English Wikipedia-like text only; current detection functions match frozen snapshot. No Chinese business or visual accuracy claims."
+  },
+  "realBusinessGoldStillMissing": true,
+  "realVisualGoldStillMissing": true,
+  "chineseOfficialGold": {
+    "acquired": true,
+    "allTestEvaluated": true,
+    "manifest": "uner-chinese-gsd-corpus-manifest-20261014.json",
+    "sentences": 500,
+    "goldEntities": 767,
+    "license": "CC BY-SA4.0",
+    "domain": "Traditional Chinese Wikipedia, not legal/business gold"
+  }
+}

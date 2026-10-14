@@ -1,0 +1,2487 @@
+{
+  "id": "RULE-RUNTIME-ACTIVATION-ITER024",
+  "source": "lawbot0.5.9 readable static main; licensed runtime not executed",
+  "counts": {
+    "baselineGroups": 41,
+    "amountFamilies": 12,
+    "amountRegexBranches": 17,
+    "yamlCategories": 108,
+    "arrayEntries": 3012,
+    "nonEmptyStrings": 3009,
+    "nonStringsIgnoredLikeSource": 3,
+    "distinctStringsAcrossFiles": 2516,
+    "nonLitigationItems": 54,
+    "spatialSourceGolden": 100,
+    "legacyMaskStaticCases": 35,
+    "tableGoldenCases": 168,
+    "tableMissingSourceCandidates": 0,
+    "tableExtraPendingCases": 44,
+    "partyGoldenCases": 96,
+    "fragmentGoldenCases": 240,
+    "layoutGoldenCases": 81,
+    "vectorGoldenCases": 18,
+    "detectedMaskGoldenCases": 253
+  },
+  "options": [
+    {
+      "id": "OPT-ocr",
+      "status": "metadata-only-by-design",
+      "source": "main.js:yt/Ue/ze",
+      "runtime": "worker pages.length>0; OCR correction true forwarded but never read by reference detector",
+      "reason": "Source OCR-tolerant email/digits branches run on all inputs; gating them on this flag would incorrectly reduce coverage",
+      "test": "same OCR-email/phone candidate fixtures without options"
+    },
+    {
+      "id": "OPT-screenshot",
+      "status": "active",
+      "source": "main.js:1118-1173 receipt + source screenshot pipeline",
+      "runtime": "initial detect + document route screenshot; OCR correction detectComplete screenshot and applyDocumentRoute; page hash verified spatial/table helpers consume corrected glyph override",
+      "remaining": "Initial image and OCR correction both pass screenshot; adapter runtime receipt regression passed"
+    },
+    {
+      "id": "OPT-documentType",
+      "status": "active",
+      "source": "main.js:Qe and OfficialDocumentStrategy",
+      "runtime": "full classification by filename/text passed per anchor; official_letter enables official regex families; explicit configured route reruns independent rules",
+      "notes": "Other classified types share pure baseline/form/amount code; classification output is not evidence of distinct algorithm equivalence"
+    },
+    {
+      "id": "OPT-filename",
+      "status": "active",
+      "source": "main.js:475-509",
+      "runtime": "worker source_name unseal + OCR correction filename → classifyReferenceDocumentDetail (40 score patterns/120 golden cases)"
+    },
+    {
+      "id": "OPT-windowOffset",
+      "status": "active",
+      "source": "source contexts metadata windowOffset",
+      "runtime": "detectComplete per canonical anchor start → all candidate positions add exactly one offset"
+    }
+  ],
+  "baseline": [
+    {
+      "id": "REF41-id_card",
+      "source": "main.js:662-668",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-mobile",
+      "source": "main.js:670-683",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-wechat_labeled",
+      "source": "main.js:685-690",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-wechat_wxid",
+      "source": "main.js:692-695",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-bank",
+      "source": "main.js:697-705",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-bank_labeled",
+      "source": "main.js:707-725",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-email",
+      "source": "main.js:727-740",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-uscc",
+      "source": "main.js:764-770",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-tax_labeled",
+      "source": "main.js:774-796",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-landline",
+      "source": "main.js:798-809",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-local_phone",
+      "source": "main.js:811-818",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-contact_name",
+      "source": "main.js:820-829",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-transcript_name",
+      "source": "main.js:831-834",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-officer_names",
+      "source": "main.js:836-843",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-self_name",
+      "source": "main.js:845-848",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-address_labeled_door",
+      "source": "main.js:850-889",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-address_labeled_no_door",
+      "source": "main.js:891-906",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-venue_labeled",
+      "source": "main.js:908-922",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-address_unlabeled",
+      "source": "main.js:924-993",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-garage",
+      "source": "main.js:995-1000",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-property_base",
+      "source": "main.js:1002-1005",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-attached_door",
+      "source": "main.js:1007-1012",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-context_place",
+      "source": "main.js:1014-1024",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-unit_range",
+      "source": "main.js:1026-1031",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-plate",
+      "source": "main.js:1033-1036",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-securities_account",
+      "source": "main.js:1038-1044",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-case_no",
+      "source": "main.js:1046-1049",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-admin_no",
+      "source": "main.js:1051-1054",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-realty_cert",
+      "source": "main.js:1056-1059",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-patent",
+      "source": "main.js:1061-1064",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-patent_labeled",
+      "source": "main.js:1066-1069",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-icp",
+      "source": "main.js:1071-1074",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-filing_beizi",
+      "source": "main.js:1076-1079",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-filing_labeled",
+      "source": "main.js:1081-1084",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-land_cert",
+      "source": "main.js:1086-1089",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-housing_permit",
+      "source": "main.js:1091-1094",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-realty_unit",
+      "source": "main.js:1096-1099",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-certificate_labeled",
+      "source": "main.js:1101-1109",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-parcel",
+      "source": "main.js:1111-1114",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-email_ocr",
+      "source": "main.js:741-747",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "REF41-url",
+      "source": "main.js:748-762",
+      "implementation": "baseline / urlsAndOcrEmail",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "AMOUNT-label",
+      "source": "main.js:1974-2134",
+      "implementation": "detectReferenceAmounts → amountSpecs/amountExcluded",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "AMOUNT-currency",
+      "source": "main.js:1974-2134",
+      "implementation": "detectReferenceAmounts → amountSpecs/amountExcluded",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "AMOUNT-uppercase",
+      "source": "main.js:1974-2134",
+      "implementation": "detectReferenceAmounts → amountSpecs/amountExcluded",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "AMOUNT-standalone",
+      "source": "main.js:1974-2134",
+      "implementation": "detectReferenceAmounts → amountSpecs/amountExcluded",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "AMOUNT-table_summary",
+      "source": "main.js:1974-2134",
+      "implementation": "detectReferenceAmounts → amountSpecs/amountExcluded",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "AMOUNT-labeled_bare_number",
+      "source": "main.js:1974-2134",
+      "implementation": "detectReferenceAmounts → amountSpecs/amountExcluded",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "AMOUNT-post_yuan_bare_number",
+      "source": "main.js:1974-2134",
+      "implementation": "detectReferenceAmounts → amountSpecs/amountExcluded",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "AMOUNT-conversation_payment",
+      "source": "main.js:1974-2134",
+      "implementation": "detectReferenceAmounts → amountSpecs/amountExcluded",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "AMOUNT-standalone_yuan",
+      "source": "main.js:1974-2134",
+      "implementation": "detectReferenceAmounts → amountSpecs/amountExcluded",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "AMOUNT-per_share_price",
+      "source": "main.js:1974-2134",
+      "implementation": "detectReferenceAmounts → amountSpecs/amountExcluded",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "AMOUNT-thousand_sep",
+      "source": "main.js:1974-2134",
+      "implementation": "detectReferenceAmounts → amountSpecs/amountExcluded",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    },
+    {
+      "id": "AMOUNT-standalone_uppercase",
+      "source": "main.js:1974-2134",
+      "implementation": "detectReferenceAmounts → amountSpecs/amountExcluded",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText",
+      "status": "active",
+      "test": "tests/reference-rules.test.ts (41 baseline + 12 amount family examples)"
+    }
+  ],
+  "amountBranches": [
+    {
+      "id": "AMOUNT-REGEX-L2028",
+      "source": "main.js:2028",
+      "implementation": "amountSpecs: migratedPattern(line) + submit + amountExcluded",
+      "activation": "unconditional pure detector on every per-anchor input; no source enable flag",
+      "sourceContext": "windowOffset affects positions; source pageNumber affects metadata only",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "AMOUNT-REGEX-L2037",
+      "source": "main.js:2037",
+      "implementation": "amountSpecs: migratedPattern(line) + submit + amountExcluded",
+      "activation": "unconditional pure detector on every per-anchor input; no source enable flag",
+      "sourceContext": "windowOffset affects positions; source pageNumber affects metadata only",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "AMOUNT-REGEX-L2044",
+      "source": "main.js:2044",
+      "implementation": "amountSpecs: migratedPattern(line) + submit + amountExcluded",
+      "activation": "unconditional pure detector on every per-anchor input; no source enable flag",
+      "sourceContext": "windowOffset affects positions; source pageNumber affects metadata only",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "AMOUNT-REGEX-L2049",
+      "source": "main.js:2049",
+      "implementation": "amountSpecs: migratedPattern(line) + submit + amountExcluded",
+      "activation": "unconditional pure detector on every per-anchor input; no source enable flag",
+      "sourceContext": "windowOffset affects positions; source pageNumber affects metadata only",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "AMOUNT-REGEX-L2054",
+      "source": "main.js:2054",
+      "implementation": "amountSpecs: migratedPattern(line) + submit + amountExcluded",
+      "activation": "unconditional pure detector on every per-anchor input; no source enable flag",
+      "sourceContext": "windowOffset affects positions; source pageNumber affects metadata only",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "AMOUNT-REGEX-L2059",
+      "source": "main.js:2059",
+      "implementation": "amountSpecs: migratedPattern(line) + submit + amountExcluded",
+      "activation": "unconditional pure detector on every per-anchor input; no source enable flag",
+      "sourceContext": "windowOffset affects positions; source pageNumber affects metadata only",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "AMOUNT-REGEX-L2066",
+      "source": "main.js:2066",
+      "implementation": "amountSpecs: migratedPattern(line) + submit + amountExcluded",
+      "activation": "unconditional pure detector on every per-anchor input; no source enable flag",
+      "sourceContext": "windowOffset affects positions; source pageNumber affects metadata only",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "AMOUNT-REGEX-L2071",
+      "source": "main.js:2071",
+      "implementation": "amountSpecs: migratedPattern(line) + submit + amountExcluded",
+      "activation": "unconditional pure detector on every per-anchor input; no source enable flag",
+      "sourceContext": "windowOffset affects positions; source pageNumber affects metadata only",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "AMOUNT-REGEX-L2078",
+      "source": "main.js:2078",
+      "implementation": "amountSpecs: migratedPattern(line) + submit + amountExcluded",
+      "activation": "unconditional pure detector on every per-anchor input; no source enable flag",
+      "sourceContext": "windowOffset affects positions; source pageNumber affects metadata only",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "AMOUNT-REGEX-L2083",
+      "source": "main.js:2083",
+      "implementation": "amountSpecs: migratedPattern(line) + submit + amountExcluded",
+      "activation": "unconditional pure detector on every per-anchor input; no source enable flag",
+      "sourceContext": "windowOffset affects positions; source pageNumber affects metadata only",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "AMOUNT-REGEX-L2089",
+      "source": "main.js:2089",
+      "implementation": "amountSpecs: migratedPattern(line) + submit + amountExcluded",
+      "activation": "unconditional pure detector on every per-anchor input; no source enable flag",
+      "sourceContext": "windowOffset affects positions; source pageNumber affects metadata only",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "AMOUNT-REGEX-L2096",
+      "source": "main.js:2096",
+      "implementation": "amountSpecs: migratedPattern(line) + submit + amountExcluded",
+      "activation": "unconditional pure detector on every per-anchor input; no source enable flag",
+      "sourceContext": "windowOffset affects positions; source pageNumber affects metadata only",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "AMOUNT-REGEX-L2103",
+      "source": "main.js:2103",
+      "implementation": "amountSpecs: migratedPattern(line) + submit + amountExcluded",
+      "activation": "unconditional pure detector on every per-anchor input; no source enable flag",
+      "sourceContext": "windowOffset affects positions; source pageNumber affects metadata only",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "AMOUNT-REGEX-L2111",
+      "source": "main.js:2111",
+      "implementation": "amountSpecs: migratedPattern(line) + submit + amountExcluded",
+      "activation": "unconditional pure detector on every per-anchor input; no source enable flag",
+      "sourceContext": "windowOffset affects positions; source pageNumber affects metadata only",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "AMOUNT-REGEX-L2118",
+      "source": "main.js:2118",
+      "implementation": "amountSpecs: migratedPattern(line) + submit + amountExcluded",
+      "activation": "unconditional pure detector on every per-anchor input; no source enable flag",
+      "sourceContext": "windowOffset affects positions; source pageNumber affects metadata only",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "AMOUNT-REGEX-L2124",
+      "source": "main.js:2124",
+      "implementation": "amountSpecs: migratedPattern(line) + submit + amountExcluded",
+      "activation": "unconditional pure detector on every per-anchor input; no source enable flag",
+      "sourceContext": "windowOffset affects positions; source pageNumber affects metadata only",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "AMOUNT-REGEX-L2129",
+      "source": "main.js:2129",
+      "implementation": "amountSpecs: migratedPattern(line) + submit + amountExcluded",
+      "activation": "unconditional pure detector on every per-anchor input; no source enable flag",
+      "sourceContext": "windowOffset affects positions; source pageNumber affects metadata only",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "INT-ein",
+      "source": "main.js:1299-1348",
+      "implementation": "international",
+      "activation": "all inputs",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "INT-passport",
+      "source": "main.js:1299-1348",
+      "implementation": "international",
+      "activation": "all inputs",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "INT-national-id",
+      "source": "main.js:1305-1348",
+      "implementation": "international",
+      "activation": "label+date/repetition/context guards",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "INT-phone",
+      "source": "main.js:1299-1348",
+      "implementation": "international",
+      "activation": "label/punctuation/mobile guards",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "SCENE-receipt-wechat-pair",
+      "source": "main.js:1118-1173",
+      "implementation": "receipt",
+      "activation": "receipt context + 微信号 or image flag",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "SCENE-receipt-name-pair",
+      "source": "main.js:1118-1173",
+      "implementation": "receipt",
+      "activation": "same",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "SCENE-receipt-timestamp-name",
+      "source": "main.js:1118-1173",
+      "implementation": "receipt",
+      "activation": "same",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "SCENE-receipt-standalone-wechat",
+      "source": "main.js:1118-1173",
+      "implementation": "receipt",
+      "activation": "same",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "SCENE-form-name_cn",
+      "source": "main.js:2526-2617",
+      "implementation": "formAndTransactions",
+      "activation": ">=3 source form labels",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "SCENE-form-org_name",
+      "source": "main.js:2526-2617",
+      "implementation": "formAndTransactions",
+      "activation": ">=3 source form labels",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "SCENE-form-address",
+      "source": "main.js:2526-2617",
+      "implementation": "formAndTransactions",
+      "activation": ">=3 source form labels",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "SCENE-form-id_card",
+      "source": "main.js:2526-2617",
+      "implementation": "formAndTransactions",
+      "activation": ">=3 source form labels",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "SCENE-form-phone",
+      "source": "main.js:2526-2617",
+      "implementation": "formAndTransactions",
+      "activation": ">=3 source form labels",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "SCENE-form-bank_card",
+      "source": "main.js:2526-2617",
+      "implementation": "formAndTransactions",
+      "activation": ">=3 source form labels",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "SCENE-form-uscc",
+      "source": "main.js:2526-2617",
+      "implementation": "formAndTransactions",
+      "activation": ">=3 source form labels",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "SCENE-form-contract_amount",
+      "source": "main.js:2526-2617",
+      "implementation": "formAndTransactions",
+      "activation": ">=3 source form labels",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "SCENE-transaction-merchant",
+      "source": "main.js:2526-2617",
+      "implementation": "formAndTransactions",
+      "activation": "transaction keyword context",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "SCENE-transaction-truncated-company",
+      "source": "main.js:2526-2617",
+      "implementation": "formAndTransactions",
+      "activation": "transaction context + ellipsis",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "SCENE-transaction-name",
+      "source": "main.js:2526-2617",
+      "implementation": "formAndTransactions",
+      "activation": "transaction context",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "SCENE-social-insurance-name",
+      "source": "main.js:2526-2617",
+      "implementation": "formAndTransactions",
+      "activation": "social insurance / transaction context",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "SCENE-social-insurance-number",
+      "source": "main.js:2526-2617",
+      "implementation": "formAndTransactions",
+      "activation": "same",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "SCENE-social-insurance-company",
+      "source": "main.js:2526-2617",
+      "implementation": "formAndTransactions",
+      "activation": "same",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "SCENE-explicit-name",
+      "source": "main.js:2445-2490",
+      "implementation": "explicitAndOfficial",
+      "activation": "all inputs; full name validator",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "SCENE-explicit-org",
+      "source": "main.js:2445-2490",
+      "implementation": "explicitAndOfficial",
+      "activation": "all inputs; org validator",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "OFFICIAL-signer",
+      "source": "main.js:2224-2321",
+      "implementation": "explicitAndOfficial",
+      "activation": "effective type official_letter",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "OFFICIAL-recipient",
+      "source": "main.js:2224-2321",
+      "implementation": "explicitAndOfficial",
+      "activation": "effective type official_letter",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "OFFICIAL-signatory",
+      "source": "main.js:2224-2321",
+      "implementation": "explicitAndOfficial",
+      "activation": "effective type official_letter",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "OFFICIAL-cert-subject",
+      "source": "main.js:2224-2321",
+      "implementation": "explicitAndOfficial",
+      "activation": "effective type official_letter",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "OFFICIAL-header-org",
+      "source": "main.js:2224-2321",
+      "implementation": "explicitAndOfficial",
+      "activation": "effective type official_letter",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "OFFICIAL-footer-org",
+      "source": "main.js:2224-2321",
+      "implementation": "explicitAndOfficial",
+      "activation": "effective type official_letter",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "OFFICIAL-recipient-org",
+      "source": "main.js:2224-2321",
+      "implementation": "explicitAndOfficial",
+      "activation": "effective type official_letter",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "OFFICIAL-staff-name",
+      "source": "main.js:2224-2321",
+      "implementation": "explicitAndOfficial",
+      "activation": "effective type official_letter",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "OFFICIAL-case-person",
+      "source": "main.js:2224-2321",
+      "implementation": "explicitAndOfficial",
+      "activation": "effective type official_letter",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "OFFICIAL-placeholder-org",
+      "source": "main.js:2224-2321",
+      "implementation": "explicitAndOfficial",
+      "activation": "effective type official_letter",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "SCENE-visual-relation-diagram",
+      "source": "main.js:5682-5825/6214/11247",
+      "implementation": "detectReferenceSpatialRelations",
+      "activation": "authenticated page map → root adapter after pure detection, and after OCR correction",
+      "status": "active",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    }
+  ],
+  "filters": [
+    {
+      "id": "FILTER-name-base",
+      "implementation": "validReferenceName / isReferenceBlacklisted name",
+      "source": "un/On + Lt combinedNameBlacklist",
+      "status": "active",
+      "callers": "explicit fields + official signer validation + NER direct postfilter",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "FILTER-name-strict",
+      "implementation": "isReferenceNameBlacklistedStrict → classifyReferenceRelationNode",
+      "source": "main.js:1431-1436/5722; caller5771/5814",
+      "status": "active-new-phase",
+      "callers": "root authenticated spatial adapter after detect and OCR correction",
+      "notes": "This is relation-diagram node geometry, not a blanket table/name filter"
+    },
+    {
+      "id": "FILTER-org-base",
+      "implementation": "validReferenceOrganization + noisyDirectOrganization",
+      "source": "Yn + direct an + Lt.orgNameBlacklist",
+      "status": "active",
+      "callers": "explicit org independent validator; direct NER uses exact blacklist/noise (source same)",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "FILTER-org-non-litigation",
+      "implementation": "isReferenceBlacklisted org true / validReferenceOrganization fourth param true",
+      "source": "main.js:1383-1384/1441-1443",
+      "status": "source-no-caller utility-only",
+      "callers": "none in source full extracted main or current default pipeline",
+      "notes": "54 items are kept independently, not claimed default consumption"
+    },
+    {
+      "id": "FILTER-partylist-dedicated",
+      "implementation": "category retained in combined name blacklist",
+      "source": "main.js:1416-1423/1444-1446",
+      "status": "source-dedicated-method-no-caller",
+      "notes": "All strings used through source-equivalent combined name path; dedicated method does not imply another runtime"
+    },
+    {
+      "id": "FILTER-address",
+      "implementation": "cleanAddress + isReferenceNoisyAddress + anchor-scoped province repair",
+      "source": "source address cleanup + Yt/Zt",
+      "status": "active",
+      "notes": "Short prior-own locations retained uncertain; cross-object widening disallowed",
+      "runtime": "processing-worker detectComplete per canonical anchor → applyDocumentRoute → NER postfilter if enabled → contextualDocumentMarks → enabledProfileMarks; same path after correctOcrText"
+    },
+    {
+      "id": "FILTER-overlap",
+      "implementation": "retain different types/overlapping spans pending; same kind/span combine evidence",
+      "source": "source several suppression routines",
+      "status": "intentional-safety-difference",
+      "notes": "Do not suppress conflicting sensitive evidence silently"
+    }
+  ],
+  "yamlCategories": [
+    {
+      "id": "YAML-name_blacklist-partylist_blacklist",
+      "file": "name_blacklist",
+      "category": "partylist_blacklist",
+      "arrayItems": 280,
+      "nonEmptyStringItems": 280,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": "Included in source combined names; dedicated party-list getter has no source caller"
+    },
+    {
+      "id": "YAML-name_blacklist-procedural_words",
+      "file": "name_blacklist",
+      "category": "procedural_words",
+      "arrayItems": 31,
+      "nonEmptyStringItems": 31,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-position_words",
+      "file": "name_blacklist",
+      "category": "position_words",
+      "arrayItems": 28,
+      "nonEmptyStringItems": 28,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-organization_words",
+      "file": "name_blacklist",
+      "category": "organization_words",
+      "arrayItems": 15,
+      "nonEmptyStringItems": 15,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-modifier_words",
+      "file": "name_blacklist",
+      "category": "modifier_words",
+      "arrayItems": 16,
+      "nonEmptyStringItems": 16,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-verb_words",
+      "file": "name_blacklist",
+      "category": "verb_words",
+      "arrayItems": 23,
+      "nonEmptyStringItems": 23,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-connector_words",
+      "file": "name_blacklist",
+      "category": "connector_words",
+      "arrayItems": 16,
+      "nonEmptyStringItems": 16,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-contract_party_labels",
+      "file": "name_blacklist",
+      "category": "contract_party_labels",
+      "arrayItems": 9,
+      "nonEmptyStringItems": 9,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-contract_role_words",
+      "file": "name_blacklist",
+      "category": "contract_role_words",
+      "arrayItems": 20,
+      "nonEmptyStringItems": 20,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-legal_terms",
+      "file": "name_blacklist",
+      "category": "legal_terms",
+      "arrayItems": 120,
+      "nonEmptyStringItems": 120,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-business_and_action_words",
+      "file": "name_blacklist",
+      "category": "business_and_action_words",
+      "arrayItems": 12,
+      "nonEmptyStringItems": 12,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-product_and_commodity_words",
+      "file": "name_blacklist",
+      "category": "product_and_commodity_words",
+      "arrayItems": 10,
+      "nonEmptyStringItems": 10,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-compound_false_positives",
+      "file": "name_blacklist",
+      "category": "compound_false_positives",
+      "arrayItems": 13,
+      "nonEmptyStringItems": 13,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-narrative_fragments",
+      "file": "name_blacklist",
+      "category": "narrative_fragments",
+      "arrayItems": 45,
+      "nonEmptyStringItems": 45,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-de_prefix_fragments",
+      "file": "name_blacklist",
+      "category": "de_prefix_fragments",
+      "arrayItems": 4,
+      "nonEmptyStringItems": 4,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-short_noise_roots",
+      "file": "name_blacklist",
+      "category": "short_noise_roots",
+      "arrayItems": 68,
+      "nonEmptyStringItems": 68,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-time_ordinal_words",
+      "file": "name_blacklist",
+      "category": "time_ordinal_words",
+      "arrayItems": 11,
+      "nonEmptyStringItems": 11,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-object_words",
+      "file": "name_blacklist",
+      "category": "object_words",
+      "arrayItems": 17,
+      "nonEmptyStringItems": 17,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-phrase_fragments",
+      "file": "name_blacklist",
+      "category": "phrase_fragments",
+      "arrayItems": 175,
+      "nonEmptyStringItems": 175,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-party_list_noise",
+      "file": "name_blacklist",
+      "category": "party_list_noise",
+      "arrayItems": 8,
+      "nonEmptyStringItems": 8,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-company_brand_names",
+      "file": "name_blacklist",
+      "category": "company_brand_names",
+      "arrayItems": 46,
+      "nonEmptyStringItems": 46,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-single_chars",
+      "file": "name_blacklist",
+      "category": "single_chars",
+      "arrayItems": 16,
+      "nonEmptyStringItems": 16,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-construction_terms",
+      "file": "name_blacklist",
+      "category": "construction_terms",
+      "arrayItems": 56,
+      "nonEmptyStringItems": 56,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-financial_terms",
+      "file": "name_blacklist",
+      "category": "financial_terms",
+      "arrayItems": 51,
+      "nonEmptyStringItems": 51,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-real_estate_terms",
+      "file": "name_blacklist",
+      "category": "real_estate_terms",
+      "arrayItems": 54,
+      "nonEmptyStringItems": 54,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-role_descriptors",
+      "file": "name_blacklist",
+      "category": "role_descriptors",
+      "arrayItems": 33,
+      "nonEmptyStringItems": 33,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-commercial_housing_fragments",
+      "file": "name_blacklist",
+      "category": "commercial_housing_fragments",
+      "arrayItems": 47,
+      "nonEmptyStringItems": 47,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-civil_lending_fragments",
+      "file": "name_blacklist",
+      "category": "civil_lending_fragments",
+      "arrayItems": 42,
+      "nonEmptyStringItems": 42,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-second_trial_fragments",
+      "file": "name_blacklist",
+      "category": "second_trial_fragments",
+      "arrayItems": 41,
+      "nonEmptyStringItems": 41,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-location_names",
+      "file": "name_blacklist",
+      "category": "location_names",
+      "arrayItems": 32,
+      "nonEmptyStringItems": 32,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-xinzexuan_high_freq_fp",
+      "file": "name_blacklist",
+      "category": "xinzexuan_high_freq_fp",
+      "arrayItems": 26,
+      "nonEmptyStringItems": 26,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-verb_fragments_xinzexuan",
+      "file": "name_blacklist",
+      "category": "verb_fragments_xinzexuan",
+      "arrayItems": 34,
+      "nonEmptyStringItems": 34,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-ordinal_fragments",
+      "file": "name_blacklist",
+      "category": "ordinal_fragments",
+      "arrayItems": 6,
+      "nonEmptyStringItems": 5,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-document_types",
+      "file": "name_blacklist",
+      "category": "document_types",
+      "arrayItems": 7,
+      "nonEmptyStringItems": 7,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-expense_types",
+      "file": "name_blacklist",
+      "category": "expense_types",
+      "arrayItems": 6,
+      "nonEmptyStringItems": 6,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-short_org_fragments",
+      "file": "name_blacklist",
+      "category": "short_org_fragments",
+      "arrayItems": 4,
+      "nonEmptyStringItems": 4,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-judicial_procedure_fragments",
+      "file": "name_blacklist",
+      "category": "judicial_procedure_fragments",
+      "arrayItems": 69,
+      "nonEmptyStringItems": 69,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-org_name_fragments_zhuw",
+      "file": "name_blacklist",
+      "category": "org_name_fragments_zhuw",
+      "arrayItems": 7,
+      "nonEmptyStringItems": 7,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-document_code_fragments",
+      "file": "name_blacklist",
+      "category": "document_code_fragments",
+      "arrayItems": 6,
+      "nonEmptyStringItems": 6,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-contract_financial_terms",
+      "file": "name_blacklist",
+      "category": "contract_financial_terms",
+      "arrayItems": 24,
+      "nonEmptyStringItems": 24,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-tianjin_guohai_fragments",
+      "file": "name_blacklist",
+      "category": "tianjin_guohai_fragments",
+      "arrayItems": 22,
+      "nonEmptyStringItems": 22,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-ordinal_numbers_without_prefix",
+      "file": "name_blacklist",
+      "category": "ordinal_numbers_without_prefix",
+      "arrayItems": 10,
+      "nonEmptyStringItems": 10,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-shenzhen_guangyun_fragments",
+      "file": "name_blacklist",
+      "category": "shenzhen_guangyun_fragments",
+      "arrayItems": 15,
+      "nonEmptyStringItems": 14,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-tianjin_penghao_fragments",
+      "file": "name_blacklist",
+      "category": "tianjin_penghao_fragments",
+      "arrayItems": 34,
+      "nonEmptyStringItems": 34,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-beijing_heshun_fragments",
+      "file": "name_blacklist",
+      "category": "beijing_heshun_fragments",
+      "arrayItems": 44,
+      "nonEmptyStringItems": 44,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-shandong_hanlu_divorce_terms",
+      "file": "name_blacklist",
+      "category": "shandong_hanlu_divorce_terms",
+      "arrayItems": 45,
+      "nonEmptyStringItems": 44,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-trademark_infringement_angl_terms",
+      "file": "name_blacklist",
+      "category": "trademark_infringement_angl_terms",
+      "arrayItems": 37,
+      "nonEmptyStringItems": 37,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-construction_dongfang_fuli_terms",
+      "file": "name_blacklist",
+      "category": "construction_dongfang_fuli_terms",
+      "arrayItems": 41,
+      "nonEmptyStringItems": 41,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-personal_injury_xuqiaoyun_terms",
+      "file": "name_blacklist",
+      "category": "personal_injury_xuqiaoyun_terms",
+      "arrayItems": 20,
+      "nonEmptyStringItems": 20,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-ner_3char_high_freq_fp",
+      "file": "name_blacklist",
+      "category": "ner_3char_high_freq_fp",
+      "arrayItems": 48,
+      "nonEmptyStringItems": 48,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-layer3_short_fragments",
+      "file": "name_blacklist",
+      "category": "layer3_short_fragments",
+      "arrayItems": 8,
+      "nonEmptyStringItems": 8,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-layer3_prefix_cut",
+      "file": "name_blacklist",
+      "category": "layer3_prefix_cut",
+      "arrayItems": 4,
+      "nonEmptyStringItems": 4,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-layer3_suffix_cut",
+      "file": "name_blacklist",
+      "category": "layer3_suffix_cut",
+      "arrayItems": 6,
+      "nonEmptyStringItems": 6,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-layer3_middle_cut",
+      "file": "name_blacklist",
+      "category": "layer3_middle_cut",
+      "arrayItems": 2,
+      "nonEmptyStringItems": 2,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-layer3_org_fragments",
+      "file": "name_blacklist",
+      "category": "layer3_org_fragments",
+      "arrayItems": 6,
+      "nonEmptyStringItems": 6,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-layer3_name_fragments",
+      "file": "name_blacklist",
+      "category": "layer3_name_fragments",
+      "arrayItems": 1,
+      "nonEmptyStringItems": 1,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-layer3_legal_fragments",
+      "file": "name_blacklist",
+      "category": "layer3_legal_fragments",
+      "arrayItems": 3,
+      "nonEmptyStringItems": 3,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-layer3_address_fragments",
+      "file": "name_blacklist",
+      "category": "layer3_address_fragments",
+      "arrayItems": 4,
+      "nonEmptyStringItems": 4,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-layer3_quantity_fragments",
+      "file": "name_blacklist",
+      "category": "layer3_quantity_fragments",
+      "arrayItems": 1,
+      "nonEmptyStringItems": 1,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-layer3_other_fragments",
+      "file": "name_blacklist",
+      "category": "layer3_other_fragments",
+      "arrayItems": 13,
+      "nonEmptyStringItems": 13,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-layer3_contextual_fp",
+      "file": "name_blacklist",
+      "category": "layer3_contextual_fp",
+      "arrayItems": 9,
+      "nonEmptyStringItems": 9,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-layer3_long_fragments",
+      "file": "name_blacklist",
+      "category": "layer3_long_fragments",
+      "arrayItems": 2,
+      "nonEmptyStringItems": 2,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-legal_roles_high_freq",
+      "file": "name_blacklist",
+      "category": "legal_roles_high_freq",
+      "arrayItems": 12,
+      "nonEmptyStringItems": 12,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-legal_terms_high_freq",
+      "file": "name_blacklist",
+      "category": "legal_terms_high_freq",
+      "arrayItems": 5,
+      "nonEmptyStringItems": 5,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-text_fragments_high_freq",
+      "file": "name_blacklist",
+      "category": "text_fragments_high_freq",
+      "arrayItems": 5,
+      "nonEmptyStringItems": 5,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-org_fragments_high_freq",
+      "file": "name_blacklist",
+      "category": "org_fragments_high_freq",
+      "arrayItems": 3,
+      "nonEmptyStringItems": 3,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-case_2026_02_03_fp",
+      "file": "name_blacklist",
+      "category": "case_2026_02_03_fp",
+      "arrayItems": 16,
+      "nonEmptyStringItems": 16,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-case_2026_02_04_jiafuhua_fp",
+      "file": "name_blacklist",
+      "category": "case_2026_02_04_jiafuhua_fp",
+      "arrayItems": 9,
+      "nonEmptyStringItems": 9,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-case_2026_02_06_angelo_fp",
+      "file": "name_blacklist",
+      "category": "case_2026_02_06_angelo_fp",
+      "arrayItems": 17,
+      "nonEmptyStringItems": 17,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-case_2026_02_06_mayue_fp",
+      "file": "name_blacklist",
+      "category": "case_2026_02_06_mayue_fp",
+      "arrayItems": 5,
+      "nonEmptyStringItems": 5,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-case_2026_02_07_stock_transfer_fp",
+      "file": "name_blacklist",
+      "category": "case_2026_02_07_stock_transfer_fp",
+      "arrayItems": 2,
+      "nonEmptyStringItems": 2,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-case_2026_02_07_supervision_contract_fp",
+      "file": "name_blacklist",
+      "category": "case_2026_02_07_supervision_contract_fp",
+      "arrayItems": 9,
+      "nonEmptyStringItems": 9,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-fragment_recomposer_fixes",
+      "file": "name_blacklist",
+      "category": "fragment_recomposer_fixes",
+      "arrayItems": 9,
+      "nonEmptyStringItems": 9,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-contract_work_items",
+      "file": "name_blacklist",
+      "category": "contract_work_items",
+      "arrayItems": 34,
+      "nonEmptyStringItems": 34,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-contract_field_labels_and_fragments",
+      "file": "name_blacklist",
+      "category": "contract_field_labels_and_fragments",
+      "arrayItems": 14,
+      "nonEmptyStringItems": 14,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-contract_announcement_terms",
+      "file": "name_blacklist",
+      "category": "contract_announcement_terms",
+      "arrayItems": 24,
+      "nonEmptyStringItems": 24,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-ipo_lawyer_report_fps",
+      "file": "name_blacklist",
+      "category": "ipo_lawyer_report_fps",
+      "arrayItems": 45,
+      "nonEmptyStringItems": 45,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-hardcoded_noise_migration",
+      "file": "name_blacklist",
+      "category": "hardcoded_noise_migration",
+      "arrayItems": 242,
+      "nonEmptyStringItems": 242,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-fp_pool_2026_04_30_class_a",
+      "file": "name_blacklist",
+      "category": "fp_pool_2026_04_30_class_a",
+      "arrayItems": 97,
+      "nonEmptyStringItems": 97,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-fp_pool_2026_04_30_class_c",
+      "file": "name_blacklist",
+      "category": "fp_pool_2026_04_30_class_c",
+      "arrayItems": 42,
+      "nonEmptyStringItems": 42,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-procurement_governance_fp",
+      "file": "name_blacklist",
+      "category": "procurement_governance_fp",
+      "arrayItems": 12,
+      "nonEmptyStringItems": 12,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-name_blacklist-hr_governance_fp",
+      "file": "name_blacklist",
+      "category": "hr_governance_fp",
+      "arrayItems": 19,
+      "nonEmptyStringItems": 19,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-ner_fp_blacklist-legal_terms",
+      "file": "ner_fp_blacklist",
+      "category": "legal_terms",
+      "arrayItems": 18,
+      "nonEmptyStringItems": 18,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-ner_fp_blacklist-action_verbs",
+      "file": "ner_fp_blacklist",
+      "category": "action_verbs",
+      "arrayItems": 18,
+      "nonEmptyStringItems": 18,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-ner_fp_blacklist-time_and_numbers",
+      "file": "ner_fp_blacklist",
+      "category": "time_and_numbers",
+      "arrayItems": 12,
+      "nonEmptyStringItems": 12,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-ner_fp_blacklist-contract_clauses",
+      "file": "ner_fp_blacklist",
+      "category": "contract_clauses",
+      "arrayItems": 12,
+      "nonEmptyStringItems": 12,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-ner_fp_blacklist-fragmentation_errors",
+      "file": "ner_fp_blacklist",
+      "category": "fragmentation_errors",
+      "arrayItems": 12,
+      "nonEmptyStringItems": 12,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-ner_fp_blacklist-pdf_high_fp_words",
+      "file": "ner_fp_blacklist",
+      "category": "pdf_high_fp_words",
+      "arrayItems": 16,
+      "nonEmptyStringItems": 16,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-ner_fp_blacklist-contract_field_labels",
+      "file": "ner_fp_blacklist",
+      "category": "contract_field_labels",
+      "arrayItems": 14,
+      "nonEmptyStringItems": 14,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-ner_fp_blacklist-securities_announcement_generic_terms",
+      "file": "ner_fp_blacklist",
+      "category": "securities_announcement_generic_terms",
+      "arrayItems": 7,
+      "nonEmptyStringItems": 7,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": ""
+    },
+    {
+      "id": "YAML-ner_fp_blacklist-regex_patterns",
+      "file": "ner_fp_blacklist",
+      "category": "regex_patterns",
+      "arrayItems": 16,
+      "nonEmptyStringItems": 16,
+      "status": "active-exact-filter",
+      "runtime": "combined nameBlacklist → explicit name validation, direct NER filter; strict name source graph also uses name-only categories",
+      "notes": "Source strings remain literal exact entries; never silently compiled as regex"
+    },
+    {
+      "id": "YAML-org_name_blacklist-legal_documents",
+      "file": "org_name_blacklist",
+      "category": "legal_documents",
+      "arrayItems": 11,
+      "nonEmptyStringItems": 11,
+      "status": "active-exact-filter",
+      "runtime": "orgBlacklist → explicit org validator and direct NER postfilter",
+      "notes": ""
+    },
+    {
+      "id": "YAML-org_name_blacklist-contract_types",
+      "file": "org_name_blacklist",
+      "category": "contract_types",
+      "arrayItems": 10,
+      "nonEmptyStringItems": 10,
+      "status": "active-exact-filter",
+      "runtime": "orgBlacklist → explicit org validator and direct NER postfilter",
+      "notes": ""
+    },
+    {
+      "id": "YAML-org_name_blacklist-legal_procedures",
+      "file": "org_name_blacklist",
+      "category": "legal_procedures",
+      "arrayItems": 8,
+      "nonEmptyStringItems": 8,
+      "status": "active-exact-filter",
+      "runtime": "orgBlacklist → explicit org validator and direct NER postfilter",
+      "notes": ""
+    },
+    {
+      "id": "YAML-org_name_blacklist-evidence_types",
+      "file": "org_name_blacklist",
+      "category": "evidence_types",
+      "arrayItems": 7,
+      "nonEmptyStringItems": 7,
+      "status": "active-exact-filter",
+      "runtime": "orgBlacklist → explicit org validator and direct NER postfilter",
+      "notes": ""
+    },
+    {
+      "id": "YAML-org_name_blacklist-time_terms",
+      "file": "org_name_blacklist",
+      "category": "time_terms",
+      "arrayItems": 6,
+      "nonEmptyStringItems": 6,
+      "status": "active-exact-filter",
+      "runtime": "orgBlacklist → explicit org validator and direct NER postfilter",
+      "notes": ""
+    },
+    {
+      "id": "YAML-org_name_blacklist-other_fp",
+      "file": "org_name_blacklist",
+      "category": "other_fp",
+      "arrayItems": 7,
+      "nonEmptyStringItems": 7,
+      "status": "active-exact-filter",
+      "runtime": "orgBlacklist → explicit org validator and direct NER postfilter",
+      "notes": ""
+    },
+    {
+      "id": "YAML-org_name_blacklist-pattern_fp_fragments",
+      "file": "org_name_blacklist",
+      "category": "pattern_fp_fragments",
+      "arrayItems": 39,
+      "nonEmptyStringItems": 39,
+      "status": "active-exact-filter",
+      "runtime": "orgBlacklist → explicit org validator and direct NER postfilter",
+      "notes": ""
+    },
+    {
+      "id": "YAML-org_name_blacklist-private_fund_generic_terms",
+      "file": "org_name_blacklist",
+      "category": "private_fund_generic_terms",
+      "arrayItems": 11,
+      "nonEmptyStringItems": 11,
+      "status": "active-exact-filter",
+      "runtime": "orgBlacklist → explicit org validator and direct NER postfilter",
+      "notes": ""
+    },
+    {
+      "id": "YAML-org_name_blacklist-insurance_product_names",
+      "file": "org_name_blacklist",
+      "category": "insurance_product_names",
+      "arrayItems": 15,
+      "nonEmptyStringItems": 15,
+      "status": "active-exact-filter",
+      "runtime": "orgBlacklist → explicit org validator and direct NER postfilter",
+      "notes": ""
+    },
+    {
+      "id": "YAML-org_name_blacklist-securities_issuance_generic_institution_types",
+      "file": "org_name_blacklist",
+      "category": "securities_issuance_generic_institution_types",
+      "arrayItems": 7,
+      "nonEmptyStringItems": 7,
+      "status": "active-exact-filter",
+      "runtime": "orgBlacklist → explicit org validator and direct NER postfilter",
+      "notes": ""
+    },
+    {
+      "id": "YAML-org_name_blacklist-contract_announcement_generic_orgs",
+      "file": "org_name_blacklist",
+      "category": "contract_announcement_generic_orgs",
+      "arrayItems": 12,
+      "nonEmptyStringItems": 12,
+      "status": "active-exact-filter",
+      "runtime": "orgBlacklist → explicit org validator and direct NER postfilter",
+      "notes": ""
+    },
+    {
+      "id": "YAML-org_name_blacklist-hardcoded_noise_migration",
+      "file": "org_name_blacklist",
+      "category": "hardcoded_noise_migration",
+      "arrayItems": 157,
+      "nonEmptyStringItems": 157,
+      "status": "active-exact-filter",
+      "runtime": "orgBlacklist → explicit org validator and direct NER postfilter",
+      "notes": ""
+    },
+    {
+      "id": "YAML-org_name_blacklist-governance_bank_category_labels",
+      "file": "org_name_blacklist",
+      "category": "governance_bank_category_labels",
+      "arrayItems": 7,
+      "nonEmptyStringItems": 7,
+      "status": "active-exact-filter",
+      "runtime": "orgBlacklist → explicit org validator and direct NER postfilter",
+      "notes": ""
+    },
+    {
+      "id": "YAML-org_name_blacklist-investment_announcement_noise",
+      "file": "org_name_blacklist",
+      "category": "investment_announcement_noise",
+      "arrayItems": 6,
+      "nonEmptyStringItems": 6,
+      "status": "active-exact-filter",
+      "runtime": "orgBlacklist → explicit org validator and direct NER postfilter",
+      "notes": ""
+    },
+    {
+      "id": "YAML-org_name_blacklist-boundary_fragment_noise",
+      "file": "org_name_blacklist",
+      "category": "boundary_fragment_noise",
+      "arrayItems": 6,
+      "nonEmptyStringItems": 6,
+      "status": "active-exact-filter",
+      "runtime": "orgBlacklist → explicit org validator and direct NER postfilter",
+      "notes": ""
+    },
+    {
+      "id": "YAML-org_name_blacklist-announcement_generic_orgs_round3",
+      "file": "org_name_blacklist",
+      "category": "announcement_generic_orgs_round3",
+      "arrayItems": 34,
+      "nonEmptyStringItems": 34,
+      "status": "source-no-caller utility-only",
+      "runtime": "isReferenceBlacklisted(value,organization,true), public optional API; no default detector caller (source method also has no caller)",
+      "notes": ""
+    },
+    {
+      "id": "YAML-org_name_blacklist-disclosure_legal_opinion_and_charter_generic_orgs",
+      "file": "org_name_blacklist",
+      "category": "disclosure_legal_opinion_and_charter_generic_orgs",
+      "arrayItems": 20,
+      "nonEmptyStringItems": 20,
+      "status": "source-no-caller utility-only",
+      "runtime": "isReferenceBlacklisted(value,organization,true), public optional API; no default detector caller (source method also has no caller)",
+      "notes": ""
+    }
+  ],
+  "masks": [
+    {
+      "id": "MASK-Nt-姓名",
+      "source": "main.js:1224-1308",
+      "implementation": "referencePartialMask + kind/type mapping",
+      "activation": "profile default_star / selective partial_star, replacementFor reference-mask, preview/export same",
+      "status": "active",
+      "runtime": "referencePartialMask for selective partial_star or explicit generic type mask; overall default_star uses source-provenance referenceDetectedMask; full_star uses Unicode referenceFullMask; preview/export share replacementFor"
+    },
+    {
+      "id": "MASK-Nt-机构",
+      "source": "main.js:1224-1308",
+      "implementation": "referencePartialMask + kind/type mapping",
+      "activation": "profile default_star / selective partial_star, replacementFor reference-mask, preview/export same",
+      "status": "active",
+      "runtime": "referencePartialMask for selective partial_star or explicit generic type mask; overall default_star uses source-provenance referenceDetectedMask; full_star uses Unicode referenceFullMask; preview/export share replacementFor"
+    },
+    {
+      "id": "MASK-Nt-地址",
+      "source": "main.js:1224-1308",
+      "implementation": "referencePartialMask + kind/type mapping",
+      "activation": "profile default_star / selective partial_star, replacementFor reference-mask, preview/export same",
+      "status": "active",
+      "runtime": "referencePartialMask for selective partial_star or explicit generic type mask; overall default_star uses source-provenance referenceDetectedMask; full_star uses Unicode referenceFullMask; preview/export share replacementFor"
+    },
+    {
+      "id": "MASK-Nt-身份证号",
+      "source": "main.js:1224-1308",
+      "implementation": "referencePartialMask + kind/type mapping",
+      "activation": "profile default_star / selective partial_star, replacementFor reference-mask, preview/export same",
+      "status": "active",
+      "runtime": "referencePartialMask for selective partial_star or explicit generic type mask; overall default_star uses source-provenance referenceDetectedMask; full_star uses Unicode referenceFullMask; preview/export share replacementFor"
+    },
+    {
+      "id": "MASK-Nt-手机号",
+      "source": "main.js:1224-1308",
+      "implementation": "referencePartialMask + kind/type mapping",
+      "activation": "profile default_star / selective partial_star, replacementFor reference-mask, preview/export same",
+      "status": "active",
+      "runtime": "referencePartialMask for selective partial_star or explicit generic type mask; overall default_star uses source-provenance referenceDetectedMask; full_star uses Unicode referenceFullMask; preview/export share replacementFor"
+    },
+    {
+      "id": "MASK-Nt-固定电话",
+      "source": "main.js:1224-1308",
+      "implementation": "referencePartialMask + kind/type mapping",
+      "activation": "profile default_star / selective partial_star, replacementFor reference-mask, preview/export same",
+      "status": "active",
+      "runtime": "referencePartialMask for selective partial_star or explicit generic type mask; overall default_star uses source-provenance referenceDetectedMask; full_star uses Unicode referenceFullMask; preview/export share replacementFor"
+    },
+    {
+      "id": "MASK-Nt-银行账号",
+      "source": "main.js:1224-1308",
+      "implementation": "referencePartialMask + kind/type mapping",
+      "activation": "profile default_star / selective partial_star, replacementFor reference-mask, preview/export same",
+      "status": "active",
+      "runtime": "referencePartialMask for selective partial_star or explicit generic type mask; overall default_star uses source-provenance referenceDetectedMask; full_star uses Unicode referenceFullMask; preview/export share replacementFor"
+    },
+    {
+      "id": "MASK-Nt-证券/资金账号",
+      "source": "main.js:1224-1308",
+      "implementation": "referencePartialMask + kind/type mapping",
+      "activation": "profile default_star / selective partial_star, replacementFor reference-mask, preview/export same",
+      "status": "active",
+      "runtime": "referencePartialMask for selective partial_star or explicit generic type mask; overall default_star uses source-provenance referenceDetectedMask; full_star uses Unicode referenceFullMask; preview/export share replacementFor"
+    },
+    {
+      "id": "MASK-Nt-信用代码",
+      "source": "main.js:1224-1308",
+      "implementation": "referencePartialMask + kind/type mapping",
+      "activation": "profile default_star / selective partial_star, replacementFor reference-mask, preview/export same",
+      "status": "active",
+      "runtime": "referencePartialMask for selective partial_star or explicit generic type mask; overall default_star uses source-provenance referenceDetectedMask; full_star uses Unicode referenceFullMask; preview/export share replacementFor"
+    },
+    {
+      "id": "MASK-Nt-邮箱",
+      "source": "main.js:1224-1308",
+      "implementation": "referencePartialMask + kind/type mapping",
+      "activation": "profile default_star / selective partial_star, replacementFor reference-mask, preview/export same",
+      "status": "active",
+      "runtime": "referencePartialMask for selective partial_star or explicit generic type mask; overall default_star uses source-provenance referenceDetectedMask; full_star uses Unicode referenceFullMask; preview/export share replacementFor"
+    },
+    {
+      "id": "MASK-Nt-网址",
+      "source": "main.js:1224-1308",
+      "implementation": "referencePartialMask + kind/type mapping",
+      "activation": "profile default_star / selective partial_star, replacementFor reference-mask, preview/export same",
+      "status": "active",
+      "runtime": "referencePartialMask for selective partial_star or explicit generic type mask; overall default_star uses source-provenance referenceDetectedMask; full_star uses Unicode referenceFullMask; preview/export share replacementFor"
+    },
+    {
+      "id": "MASK-Nt-车牌号",
+      "source": "main.js:1224-1308",
+      "implementation": "referencePartialMask + kind/type mapping",
+      "activation": "profile default_star / selective partial_star, replacementFor reference-mask, preview/export same",
+      "status": "active",
+      "runtime": "referencePartialMask for selective partial_star or explicit generic type mask; overall default_star uses source-provenance referenceDetectedMask; full_star uses Unicode referenceFullMask; preview/export share replacementFor"
+    },
+    {
+      "id": "MASK-Nt-案号",
+      "source": "main.js:1224-1308",
+      "implementation": "referencePartialMask + kind/type mapping",
+      "activation": "profile default_star / selective partial_star, replacementFor reference-mask, preview/export same",
+      "status": "active",
+      "runtime": "referencePartialMask for selective partial_star or explicit generic type mask; overall default_star uses source-provenance referenceDetectedMask; full_star uses Unicode referenceFullMask; preview/export share replacementFor"
+    },
+    {
+      "id": "MASK-Nt-公文编号",
+      "source": "main.js:1224-1308",
+      "implementation": "referencePartialMask + kind/type mapping",
+      "activation": "profile default_star / selective partial_star, replacementFor reference-mask, preview/export same",
+      "status": "active",
+      "runtime": "referencePartialMask for selective partial_star or explicit generic type mask; overall default_star uses source-provenance referenceDetectedMask; full_star uses Unicode referenceFullMask; preview/export share replacementFor"
+    },
+    {
+      "id": "MASK-Nt-证照/许可证号",
+      "source": "main.js:1224-1308",
+      "implementation": "referencePartialMask + kind/type mapping",
+      "activation": "profile default_star / selective partial_star, replacementFor reference-mask, preview/export same",
+      "status": "active",
+      "runtime": "referencePartialMask for selective partial_star or explicit generic type mask; overall default_star uses source-provenance referenceDetectedMask; full_star uses Unicode referenceFullMask; preview/export share replacementFor"
+    },
+    {
+      "id": "MASK-Nt-专利号",
+      "source": "main.js:1224-1308",
+      "implementation": "referencePartialMask + kind/type mapping",
+      "activation": "profile default_star / selective partial_star, replacementFor reference-mask, preview/export same",
+      "status": "active",
+      "runtime": "referencePartialMask for selective partial_star or explicit generic type mask; overall default_star uses source-provenance referenceDetectedMask; full_star uses Unicode referenceFullMask; preview/export share replacementFor"
+    },
+    {
+      "id": "MASK-Nt-备案号",
+      "source": "main.js:1224-1308",
+      "implementation": "referencePartialMask + kind/type mapping",
+      "activation": "profile default_star / selective partial_star, replacementFor reference-mask, preview/export same",
+      "status": "active",
+      "runtime": "referencePartialMask for selective partial_star or explicit generic type mask; overall default_star uses source-provenance referenceDetectedMask; full_star uses Unicode referenceFullMask; preview/export share replacementFor"
+    },
+    {
+      "id": "MASK-Nt-护照号",
+      "source": "main.js:1224-1308",
+      "implementation": "referencePartialMask + kind/type mapping",
+      "activation": "profile default_star / selective partial_star, replacementFor reference-mask, preview/export same",
+      "status": "active",
+      "runtime": "referencePartialMask for selective partial_star or explicit generic type mask; overall default_star uses source-provenance referenceDetectedMask; full_star uses Unicode referenceFullMask; preview/export share replacementFor"
+    },
+    {
+      "id": "MASK-Nt-微信号",
+      "source": "main.js:1224-1308",
+      "implementation": "referencePartialMask + kind/type mapping",
+      "activation": "profile default_star / selective partial_star, replacementFor reference-mask, preview/export same",
+      "status": "active",
+      "runtime": "referencePartialMask for selective partial_star or explicit generic type mask; overall default_star uses source-provenance referenceDetectedMask; full_star uses Unicode referenceFullMask; preview/export share replacementFor"
+    },
+    {
+      "id": "MASK-Nt-自定义",
+      "source": "main.js:1224-1308",
+      "implementation": "referencePartialMask + kind/type mapping",
+      "activation": "profile default_star / selective partial_star, replacementFor reference-mask, preview/export same",
+      "status": "active",
+      "runtime": "referencePartialMask for selective partial_star or explicit generic type mask; overall default_star uses source-provenance referenceDetectedMask; full_star uses Unicode referenceFullMask; preview/export share replacementFor"
+    },
+    {
+      "id": "MASK-Nt-商业秘密",
+      "source": "main.js:1224-1308",
+      "implementation": "referencePartialMask + kind/type mapping",
+      "activation": "profile default_star / selective partial_star, replacementFor reference-mask, preview/export same",
+      "status": "active",
+      "runtime": "referencePartialMask for selective partial_star or explicit generic type mask; overall default_star uses source-provenance referenceDetectedMask; full_star uses Unicode referenceFullMask; preview/export share replacementFor"
+    },
+    {
+      "id": "MASK-Nt-金额",
+      "source": "main.js:1224-1308",
+      "implementation": "referencePartialMask + kind/type mapping",
+      "activation": "profile default_star / selective partial_star, replacementFor reference-mask, preview/export same",
+      "status": "active",
+      "runtime": "referencePartialMask for selective partial_star or explicit generic type mask; overall default_star uses source-provenance referenceDetectedMask; full_star uses Unicode referenceFullMask; preview/export share replacementFor"
+    },
+    {
+      "id": "MASK-Nt-税号",
+      "source": "main.js:1224-1308",
+      "implementation": "referencePartialMask + kind/type mapping",
+      "activation": "profile default_star / selective partial_star, replacementFor reference-mask, preview/export same",
+      "status": "active",
+      "runtime": "referencePartialMask for selective partial_star or explicit generic type mask; overall default_star uses source-provenance referenceDetectedMask; full_star uses Unicode referenceFullMask; preview/export share replacementFor"
+    },
+    {
+      "id": "MASK-Nt-雇主识别号",
+      "source": "main.js:1224-1308",
+      "implementation": "referencePartialMask + kind/type mapping",
+      "activation": "profile default_star / selective partial_star, replacementFor reference-mask, preview/export same",
+      "status": "active",
+      "runtime": "referencePartialMask for selective partial_star or explicit generic type mask; overall default_star uses source-provenance referenceDetectedMask; full_star uses Unicode referenceFullMask; preview/export share replacementFor"
+    },
+    {
+      "id": "MASK-Nt-国际身份证号",
+      "source": "main.js:1224-1308",
+      "implementation": "referencePartialMask + kind/type mapping",
+      "activation": "profile default_star / selective partial_star, replacementFor reference-mask, preview/export same",
+      "status": "active",
+      "runtime": "referencePartialMask for selective partial_star or explicit generic type mask; overall default_star uses source-provenance referenceDetectedMask; full_star uses Unicode referenceFullMask; preview/export share replacementFor"
+    },
+    {
+      "id": "MASK-Nt-社保号",
+      "source": "main.js:1224-1308",
+      "implementation": "referencePartialMask + kind/type mapping",
+      "activation": "profile default_star / selective partial_star, replacementFor reference-mask, preview/export same",
+      "status": "active",
+      "runtime": "referencePartialMask for selective partial_star or explicit generic type mask; overall default_star uses source-provenance referenceDetectedMask; full_star uses Unicode referenceFullMask; preview/export share replacementFor"
+    },
+    {
+      "id": "MASK-official-name",
+      "source": "main.js:_n/Sn",
+      "implementation": "referencePartialMask official-name",
+      "activation": "root finalizeProfileReplacements OFFICIAL-* sources, inherited reference-mask only; manual exception retained",
+      "status": "active",
+      "runtime": "referencePartialMask for selective partial_star or explicit generic type mask; overall default_star uses source-provenance referenceDetectedMask; full_star uses Unicode referenceFullMask; preview/export share replacementFor"
+    },
+    {
+      "id": "MASK-full",
+      "source": "source full-star Unicode families",
+      "implementation": "referenceFullMask",
+      "activation": "full_star explicit/overall/type + all preview/export",
+      "status": "active",
+      "runtime": "referencePartialMask for selective partial_star or explicit generic type mask; overall default_star uses source-provenance referenceDetectedMask; full_star uses Unicode referenceFullMask; preview/export share replacementFor"
+    },
+    {
+      "id": "MASK-legacy-An",
+      "source": "main.js:2242-2268; Qn.mask2494 when NER_DIRECT=0",
+      "implementation": "referenceLegacyOrganizationMask Mn101/En179 + all props",
+      "activation": "text/Word sourced org finalizer + TABLE Do + source propagation; source raster ordinary NER retains computed ***",
+      "status": "active-source-finalizer",
+      "runtime": "referencePartialMask for selective partial_star or explicit generic type mask; overall default_star uses source-provenance referenceDetectedMask; full_star uses Unicode referenceFullMask; preview/export share replacementFor"
+    },
+    {
+      "id": "MASK-legacy-Jn",
+      "source": "main.js:2429-2433",
+      "implementation": "referenceLegacyAddressMask uses identical address family",
+      "activation": "text/Word sourced address finalizer + TABLE Do; modern ordinary raster REF keeps branch-specific initial address prefix",
+      "status": "active-source-finalizer",
+      "runtime": "referencePartialMask for selective partial_star or explicit generic type mask; overall default_star uses source-provenance referenceDetectedMask; full_star uses Unicode referenceFullMask; preview/export share replacementFor"
+    }
+  ],
+  "remaining": [
+    "Licensed competitor processing runtime is R0; static pure oracle does not prove authorized end-to-end equivalence or exhaust future/hidden versions",
+    "Real multilingual OCR/NER accuracy is an evaluation gate independent of source rule migration; existing frozen public corpus pins remain unchanged",
+    "54 non-litigation blacklist strings have source method but no extracted caller; keep opt-in API/data, not default fabricated activation",
+    "Compatibility configuration wires known party/fragment alternatives; it does not claim the complete proprietary legacy model/decision engine has been distributed or executed",
+    "Source computes different winners for coincident provenance (e.g. USCC versus tax); our pending evidence remains additive. Runtime/source geometric and encoded-text safety differences are explicit in the context manifest"
+  ],
+  "verification": {
+    "unit": "spatial7 + legacy-mask1 + adapter/OCR2 pass; existing frozen rule/mask/pipeline79 unchanged",
+    "staticSpatialCases": 100,
+    "staticSpatialDifferences": 0,
+    "staticLegacyMaskCases": 35,
+    "staticLegacyMaskDifferences": 0,
+    "oldPins": ".data/research/lawbot-2026-10-14/iteration023/runtime-activation-old/old-file-pins.json",
+    "purePipelineChanged": false,
+    "contextUnit": "6 own files32 tests + author C unlock3 + author B VML4 =8files39 PASS; latest source masks rechecked separately",
+    "tableSourceOracle": "168 cases no missing candidate,44 cases additional pending/visual evidence",
+    "partySourceOracle": "96 zero differences",
+    "fragmentSourceOracle": "240 zero differences",
+    "visualLayoutSourceOracle": "81 zero differences",
+    "vectorSourceOracle": "18 zero differences",
+    "computedMaskSourceOracle": ".data/research/lawbot-2026-10-14/iteration024/table-oracle/detected-mask-comparison.json",
+    "actualApi": "tests/contextual-recognition.integration.ts actual DOCX/MD/CSV worker pass; separately explicit legacy/fragment config re-recognition"
+  },
+  "pins": {
+    "packages/core/reference-rules.ts": "d48e976f8722958baf3b98c149051df3158509e365e886e22af3893eba37c6c9",
+    "packages/core/reference-mask.ts": "589d408f723e1fbf758e252d5f211ca5a10881a75c4ac3f6aceffde597a5ab41",
+    "packages/core/reference-scenario-mask.ts": "c6291bd9b12c4b4007b0dca2ff830cea2e7a06814deaa7aab61cb2a23e0d8048",
+    "packages/core/reference-spatial.ts": "ce75477446f6716cfba412c8398b9aed8851d415dda5adcd48bdb36ec3cf1812",
+    "packages/core/reference/rule-data.json": "1f11c5d39de1fb78bebd68316809cc5b77ef9ee104930a28cab473bff76646b4",
+    "packages/core/reference/blacklists.json": "369a14ee5c3f11f0a16a62228bc30b9c55d88a6d035450672011a6d60ab6ef0a",
+    "packages/adapters/reference-spatial.ts": "42e8ce4ac75c55c0d406f23c855f050b6a6d0d405cc6097b5643341dde6cc386",
+    "packages/core/profile-recognition.ts": "5781d71910f96ccd56154aa8a2d9db51f9126d3231deda7359fed6bc893b3843",
+    "packages/adapters/processing-worker.ts": "cf616ea0f6caf2790891fd9c03d793827c1a6194d9458aa5fa8267923980d2ba",
+    "packages/adapters/ocr-correction.ts": "20a3a98a8ba79cab22238c20a353d60d90e633197889da4198c3e956718ee7c7",
+    "tests/reference-spatial.test.ts": "cb232fe0fea1a9043e2679662efa44121ab84818a19081d8453895c274d48916",
+    "tests/reference-scenario-mask.test.ts": "856f44dfc2ab970b8c2029d65f13cfe9f887e514fba409d16cfab6eb3443bec4",
+    "tests/reference-spatial-adapter.test.ts": "beae40a9c1534168e9db8dc9650c1b9ce5e3bcac39d6565d566d780a642d3097",
+    "tests/fixtures/reference-spatial-golden.json": "1e0235fb48d43ae3e844b6e735db80700552e72434b37da17536d090942d91c3",
+    "packages/core/reference-table.ts": "1b24bcccbc1134c0b8163b55640b7537abf8e86411094567b2c610f11e09d733",
+    "packages/core/reference-visual-table.ts": "25f2ecfb0d6117afcc2d6657e521c54e52a4cc8a671ba29595565fbce8061b8a",
+    "packages/core/reference-vector-table.ts": "89bf0685493a40feceda72dadef2d5e4908422bd33be28f47223374af2ff890b",
+    "packages/core/reference-party.ts": "5234da81ec08c99debd7a460261b60cfe3367dcb252302071992707bfd305150",
+    "packages/core/reference-fragment.ts": "8e07651fafba6744197b8835b6ff35a202a77644c16800a9c1dad72562b66f22",
+    "packages/core/reference-detected-mask.ts": "7311374ba2b03983105cf4deb72e8e5395e49756fdb81141e198bbbfb0e347b0",
+    "packages/core/reference/table-rule-data.json": "30bb8b9f7f3e4c8462e82d4edb60c1c7a2b42e3d4c1076f1b0a5a1ea3a246b42",
+    "packages/core/reference/fragment-rule-data.json": "3ba1a06438e07d2affc7f4368e0effdf83bdf340d36acdbf07f8757d6f3cb614",
+    "packages/adapters/reference-table.ts": "d3ad5d920bcae619c9b8c869186beb3010a5394f50fe4b9345cd88fb3953841d",
+    "packages/adapters/reference-visual-table.ts": "7539bbc5ce6aead94e1847e33fe7e2538e6e777adc3aa1cd603afb13ddc48201",
+    "packages/adapters/reference-pdf-table.ts": "e92d7d94d4e9ab5b2844902dcca42b0e78e3e4fa5195efcd3d3a495cde295e4f",
+    "packages/adapters/recognition-context.ts": "f2ca4394181160258138b5113d78bfe6ae266a44695bfe4118433932e34bcfc6",
+    "packages/core/redaction.ts": "ec8af969b46f30adf1875854505cfdf9364a591880abf831ee4ed0ffd16e30ec",
+    "tests/reference-table.test.ts": "a602e3e459db5033cf843fbef805b5455e25c92e3d2a36eea3bd12752acebdc9",
+    "tests/reference-table-adapter.test.ts": "da3449cb573950fe0f3927947658a04a8a0975d645a630a3450a0d6a8e139a8e",
+    "tests/reference-party.test.ts": "4f46a5e328c194ff790610578759e855aeba3ae7f04d888cb44a206010c75e63",
+    "tests/reference-fragment.test.ts": "5422d198b1f42d4fa38736fd69a97fdc81dfac3d4ee308c526a7b6238747cd9e",
+    "tests/reference-visual-table.test.ts": "7bf7674cb42f31ef10244cb0286f9114508ce52323a9b81e0b2e342da907f2ae",
+    "tests/reference-detected-mask.test.ts": "5d37693abe7f2cd847a4b7973a0843bf6fdd905c7b8a24f0eee10872a52d7f44",
+    "tests/contextual-recognition.integration.ts": "215215638cfdf97303e084df35042e78e69172947cb4f5b6174bea932b45c0b7",
+    "tests/fixtures/reference-table-source-golden.json": "16c5b451559f22911a15c367e98589bb7317d6f72493dc8473a5ded963f94f85",
+    "tests/fixtures/reference-party-source-golden.json": "01b189f62ddf854f05dfbbc88264d69487a24fe1a681c0dd20514d1e90b63974",
+    "tests/fixtures/reference-fragment-source-golden.json": "ec68d4639c148a2e9424b80a0dbf380ab7667673465d12f064f5d226934d0b08",
+    "tests/fixtures/reference-layout-source-golden.json": "e2f55a9ba6b205e415b4f1a456990c9740c4b4f25b19fcd7e6d90aea28b45024",
+    "tests/fixtures/reference-vector-source-golden.json": "a6a2cdbacea874543f0459172422dedfea871bbfda4b01efa5fe292ff67ba5cb",
+    "tests/fixtures/reference-detected-mask-source-golden.json": "17c39fefa2aef46135e60ebb5a3892c50bd32c3c21c6edd0399ea53d90af399d"
+  },
+  "contextualStages": [
+    {
+      "id": "TABLE-typed-structure",
+      "source": "main.js:4809-4845/5411-5656",
+      "implementation": "referenceTableCells real OOXML ordinal/tbl/tr/tc/gridSpan/vMerge; GFM exact raw→decoded map; CSV/XLSX canonical cells",
+      "runtime": "contextualDocumentMarks in worker/OCR; no NER model initialization per cell",
+      "status": "active"
+    },
+    {
+      "id": "TABLE-nested-context",
+      "source": "main.js:4809-4826",
+      "implementation": "scoped tree context snapshots inherit within parent story/cell; never sibling-table unit leakage",
+      "runtime": "actual nested unit and empty merge continuation independently reviewed by visual agent",
+      "status": "active"
+    },
+    {
+      "id": "TABLE-financial-9",
+      "source": "main.js:4847-4995",
+      "implementation": "all9 literal financial categories + numeric/area/count/per-share/unit branches",
+      "runtime": "automatic pure AMOUNT-only exact-span exclusions; manual/project dictionary/NER preserved",
+      "status": "active"
+    },
+    {
+      "id": "TABLE-glossary-signature",
+      "source": "main.js:5411-5656/6213",
+      "implementation": "strict definition/fullname, ASCII aliases, signature fragments, column profiles, strong NER context offsets",
+      "runtime": "wholecandidate pending; distinct actual repeated model offsets retained; source final dedup loss intentionally fixed",
+      "status": "active"
+    },
+    {
+      "id": "TABLE-visual",
+      "source": "main.js:6213; D9V2C_Ir.js reconstructVisualTables",
+      "implementation": "physical PDF character/OCR glyph units, row/column/region/prose gates, continuation/header, explicit legal names/address/patent/cert",
+      "runtime": "documentVisualTableMarks verified map hashes + nativeText prefix + canonical coordinates; PDF/OCR/image/Word media",
+      "status": "active"
+    },
+    {
+      "id": "TABLE-vector",
+      "source": "main.js:3570-3705",
+      "implementation": "closed connected PDF stroked/filled axis paths, nested Form affine transforms, merged grid cells",
+      "runtime": "same PDFium canonical PageToDevice as extraction; read-only PDF source; actual synthetic PDF unit",
+      "status": "active"
+    },
+    {
+      "id": "PARTY-primary",
+      "source": "main.js:8586-8650/9159/10483/10551",
+      "implementation": "judgment party seeds/source checks, roles, name/org consistency",
+      "runtime": "legacy configuration only; text/Word/pdf-summary; image-rescan excludes primary party stage",
+      "status": "active-conditional"
+    },
+    {
+      "id": "PARTY-org",
+      "source": "main.js:8651-8682/10894",
+      "implementation": "org consistency/regulator/title/usage exclusions",
+      "runtime": "modern PDF summary Ll with allowJudgment + legacy four/five-group callers",
+      "status": "active-conditional"
+    },
+    {
+      "id": "PARTY-glossary",
+      "source": "main.js:8683-8716",
+      "implementation": "fulltext glossary alias shape/subsequence/source guards",
+      "runtime": "legacy configuration only; nonjudgment gate",
+      "status": "active-conditional"
+    },
+    {
+      "id": "PARTY-kinship",
+      "source": "main.js:8717-8750",
+      "implementation": "all4 kinship/list/legal-role branches",
+      "runtime": "legacy configuration; source word-flat initial omitBl followed by highConfidenceRescan9076 restores it; final helper includes branch",
+      "status": "active-conditional"
+    },
+    {
+      "id": "PARTY-name",
+      "source": "main.js:8751-8783",
+      "implementation": "NER confidence, 3–4 length, provenance, occurrence protection",
+      "runtime": "modern PDF summary jl + legacy callers; no fabricated judgment skip",
+      "status": "active-conditional"
+    },
+    {
+      "id": "FRAGMENT-recomposer",
+      "source": "main.js:3283-3407/9149/10470/10530",
+      "implementation": "all32 recovered patterns/noise/surnames, source max150/context/overlap",
+      "runtime": "configuration.referenceStrategy legacy + fragmentRecomposer true + resolved documentType != other + txt/md/docx; default disabled",
+      "status": "active-conditional"
+    },
+    {
+      "id": "MASK-detector-computed",
+      "source": "main.js:661-1114/1978/2494/2564-2618/5074/5817; renderer8943-8948",
+      "implementation": "all41 REF families,12 AMOUNT families, SCENE/TABLE/propagation/official + source finalizers",
+      "runtime": "profile overall default_star → detected or detected-raster; selective partial_star stays Nt; UTF16/codepoint/source unchanged-value safety gates",
+      "status": "active"
+    }
+  ],
+  "sourceNoOps": {
+    "range": "main.js:1969-1972/2134-2158",
+    "methods": [
+      "ContractStrategy.applyTypeSpecificRules",
+      "detectConfirmedNameReferences",
+      "detectPartyNames",
+      "detectSignaturePage",
+      "addGlobalAbbrevMapping",
+      "hasGlobalAbbrevValue",
+      "getTitleCandidateLines",
+      "isBlacklisted",
+      "identify"
+    ],
+    "result": "source []/false/no-op; do not claim these stubs supply an omitted algorithm"
+  },
+  "supplementalPhases": [
+    {
+      "id": "ITER025",
+      "manifest": "文档/逆向台账/contracts/processing-observability-porting-20261014.json",
+      "note": "Runtime whitelist detected mask branch added main9457; previous ITER024 manifest is frozen historical snapshot. All root current bridge hashes in ITER024 remain historical; ITER025 current owned files pinned separately. No detector/NER/corpus baseline changes.",
+      "runtimeMaskSource": "runtime-whitelist -> source organization An/address Jn/others****; stable trace persisted to detected mask preview/export",
+      "markdownStats": "480-source-golden passed; real event hooks parent in progress"
+    }
+  ]
+}
