@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-14",
+  "iteration": "ITER019",
+  "reviewer": "ui_closure_a",
+  "reviewType": "pre-execution-readonly-plan-review",
+  "targets": [
+    {
+      "path": "文档/逆向台账/contracts/merge-iteration019-ledger.py",
+      "sha256": "291d0fcda39dc36761bcc6059e90800a777b444aa0464fa6d1d9010b068793bf"
+    },
+    {
+      "path": "文档/逆向台账/递归分析与对抗审查-20261014.md",
+      "sha256": "779b1b5c6a48af33dd9882d2724d1612218defc5dee74d38069df416f6bb537a"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/iteration018-general-report.md",
+      "sha256": "4f183a0d4c837046877af416f1d8fe6010ed1bad3ff456ebe48393882b7eecae"
+    }
+  ],
+  "ledgerBefore": {
+    "lastEvent": "ITER-018",
+    "sha256": "19f6f27a95090e73eb063f8c46442b7b0f0a8e91586cc0aec36d1ed9c8ff8685"
+  },
+  "findings": [],
+  "openFindings": 0,
+  "conclusion": "No findings in the reviewed merge plan and summary. This is not post-merge ledger verification.",
+  "checked": [
+    "完整读取merge脚本及summary；仅解析合并脚本AST，没有执行合并脚本或其写入。",
+    "合并前要求末事件ITER-018、既有backup若存在必须与当前ledger字节一致；写ledger在报告读取/旧pin漂移与不变量断言之后。",
+    "接口本体仅在UI ID追加evidence/dependency_iterations；保留历史events/flows，并显式断言静态、运行、实现状态/说明/证据、next_actions、entry_closure、flow_mapping不变。",
+    "原18 summary已独立验证保留副本与原pin SHA256一致；仅此summary允许pin替换，event.evidence_updates记录旧/新hash与副本路径。",
+    "新增sources/reference/matrix索引不等于提升S3/R1/I4；summary明确258仍S2/R0，47主题不作产品完成率。",
+    "旧summary的Markdown虚拟化措辞已补trim后查询非空，历史18原文仍由副本保留。"
+  ],
+  "limitations": [
+    "计划报告有尚在生成的matrix/draft-producers依赖；本审查不提前认定这些作者稿及独立review已就绪。",
+    "所有新稿最终冻结后应重跑作者/独立review --check，保持review目标hash与当前作者稿相同；合并脚本本身没有代替这些语义/复核门。",
+    "正式执行后仍需独立比较备份与ledger，核验事件追加、258稳定ID和S/R/I/待办/flows不变，维护视图生成/--check与所有pin。",
+    "当前targets为计划时快照，后续脚本/summary改变必须重新审差分；没有修改ledger、业务或服务。"
+  ]
+}

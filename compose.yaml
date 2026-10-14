@@ -1,0 +1,17 @@
+name: tuominwang
+services:
+  db:
+    image: postgres:17.6-alpine@sha256:ef257d85f76e48da1c64832459b59fcaba1a4dac97bf5d7450c77753542eee94
+    environment:
+      POSTGRES_USER: tmw_owner
+      POSTGRES_DB: tuominwang
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Run pnpm setup}
+    ports: ["127.0.0.1:55439:5432"]
+    volumes: ["database:/var/lib/postgresql/data"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U tmw_owner -d tuominwang"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+volumes:
+  database:

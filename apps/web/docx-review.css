@@ -1,0 +1,23 @@
+.docx-review { min-width: 0; }
+.docx-controls { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; padding: 8px 0; }
+.docx-controls label { display: flex; align-items: center; gap: 8px; margin: 0; }
+.docx-controls select { width: auto; }
+.docx-controls > span { color: #64748b; font-size: 12px; margin-left: auto; }
+.docx-warnings { font-size: 12px; color: #475569; margin: 8px 0; }
+.docx-scroll { overflow: auto; max-height: 75vh; background: #e8ecf0; padding: 20px; border: 1px solid #d9e1e8; border-radius: 8px; }
+.docx-paper { box-sizing: border-box; background: white; color: #17202b; margin: 0 auto 20px; box-shadow: 0 2px 8px #10203018; font: 11pt/1.5 "Songti SC", SimSun, serif; text-align: left; }
+.docx-paper .docx-paragraph { min-height: 1em; white-space: pre-wrap; overflow-wrap: anywhere; font-family: inherit; font-size: inherit; color: inherit; }
+.docx-paper .docx-paper-table { width: 100%; table-layout: fixed; border-collapse: collapse; font: inherit; color: inherit; }
+.docx-paper .docx-paper-table td { border: 1px solid #8e9cab; padding: 4pt; text-align: left; vertical-align: top; }
+.docx-mark { border-bottom: 2px solid var(--docx-mark-color); background: color-mix(in srgb, var(--docx-mark-color) 16%, transparent); cursor: pointer; border-radius: 2px; }
+.docx-mark--ignore { border-bottom-style: dotted; background: transparent; }
+.docx-mark--redact { background: color-mix(in srgb, var(--docx-mark-color) 26%, transparent); }
+.docx-mark:focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
+.docx-tab { tab-size: 4; white-space: pre; }
+.docx-inline-image { max-width: 100%; object-fit: contain; vertical-align: baseline; user-select: none; }
+.docx-break-before { border-top: 1px dashed #cbd5e1; padding-top: 20pt; }
+.docx-merge-note { font: 10px system-ui; color: #64748b; user-select: none; }
+.docx-part-title { font: 600 12px system-ui; color: #475569; border-bottom: 1px solid #e2e8f0; padding-bottom: 8px; user-select: none; }
+.docx-selection-note { font-size: 12px; color: #475569; }
+
+.docx-page-break { display: block; border-top: 1px dashed #a8b5c4; margin: 24pt 0; user-select: none; }

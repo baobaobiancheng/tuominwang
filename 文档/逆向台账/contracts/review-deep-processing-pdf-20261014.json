@@ -1,0 +1,194 @@
+{
+  "schema": "lawbot-focused-cross-review/v1",
+  "date": "2026-10-14",
+  "reviewer": "/root/dynamic_closure",
+  "target": {
+    "path": "文档/逆向台账/contracts/deep-processing-pdf-20261014.json",
+    "sha256": "1dd23381feb0bd105854762396be859d6a872622d13447e55963949f54f9a9ad",
+    "markdownSha256": "b655ef40490b2b9f50f20d8c42366b1a315d9f646bf41cb69b52f0680a2f4a24"
+  },
+  "scope": "Focused adversarial reread of PDF/OCR failure, cache, missing geometry, UTF16 and native table-producer risks; NOT a full second audit of all nine sections. Only visible code in public release package.",
+  "runtime": "R0",
+  "checks": [
+    {
+      "id": "RP01",
+      "sections": [
+        "PDF03"
+      ],
+      "result": "supported",
+      "claim": "策略/类型/文本SHA缓存没有运行时规则版本；命中分支复制缓存而跳过applyLearnedWhitelist/ForceSkip/rescan，之后仍cc/sc；部分region失败仍可从y3生成候选。",
+      "evidence": [
+        0
+      ],
+      "limit": "只证明条件和控制流；未验证规则更新真实并发时机或样本影响。"
+    },
+    {
+      "id": "RP02",
+      "sections": [
+        "PDF04"
+      ],
+      "result": "supported",
+      "claim": "required OCR只在recognizeImage抛异常时降级；success:false没有触发fallback，默认OCR_PAGE_FAILED；允许失败环境值1时保留P3原页到S2并continue。压缩PNG字节启发式不等于解码空白页检测。",
+      "evidence": [
+        1
+      ],
+      "limit": "未运行空白误判/失败导出样本。"
+    },
+    {
+      "id": "RP03",
+      "sections": [
+        "PDF05",
+        "PDF08"
+      ],
+      "result": "supported",
+      "claim": "bboxMissing实体仍加入M2；Gl.unmapped仅构造诊断表达式、不抛；旧非detect-only流继续applyMasksToImage。DPS13补读确认该旧helper alpha.95且catch原buffer，与安全新writer应分开。",
+      "evidence": [
+        2,
+        9
+      ],
+      "limit": "本轮未从UI重新追溯每个mode的可达性，不泛化全部导出器。"
+    },
+    {
+      "id": "RP04",
+      "sections": [
+        "PDF07",
+        "PDF09"
+      ],
+      "result": "supported",
+      "claim": "Qi经$i取得UTF16 rawIndexes给Xi，而Xi按展开码点slice；非BMP前缀具索引错位条件。Da同样展开码点，Oa.charCodeAt不可能>=131072，补充平面CJK分支不可达。",
+      "evidence": [
+        3,
+        7,
+        8
+      ],
+      "limit": "只做语言语义和源码核读，未运行vendor helper或图像坐标测试。"
+    },
+    {
+      "id": "RP05",
+      "sections": [
+        "PDF08"
+      ],
+      "result": "supported-after-clarification",
+      "claim": "samePositionBatch并非保证所有缺框拒绝：n4不存在/空数组在进入逐框校验前continue；只有存在bbox且无效/完全越界才throw。作者已按反馈补入当前报告。",
+      "evidence": [
+        4
+      ],
+      "limit": "sh等完整数学分支未在本次交叉审查全部重读；本次重点为缺框分支顺序。"
+    },
+    {
+      "id": "RP06",
+      "sections": [
+        "PDF09"
+      ],
+      "result": "supported-for-read-subset",
+      "claim": "ba的8块门和几何启发；va仅轴向线段、曲线使path无效、细填充矩形<=1.5、长度>2、网格闭合/最小8x7/1.25容差及页边界过滤；无法由名称推断一般曲线/斜线表格支持。",
+      "evidence": [
+        5
+      ],
+      "limit": "本次未重读3699–3780及3835–4132全部consumer。原报告30范围哈希匹配不是这些分支的第二次语义审查。"
+    },
+    {
+      "id": "RP07",
+      "sections": [
+        "PDF06",
+        "PDF07"
+      ],
+      "result": "cross-report-boundary-resolved",
+      "claim": "oi/yt/Ei的本轮可见项目语义已由规则增补DPS01–DPS06、DPS30–DPS33补读，Kt/NER仍引用核心DP03/04；PDF报告可改为已提供证据依赖，而非继续待分析。",
+      "evidence": [],
+      "limit": "仅接入既有独立分工证据；PDF全体9节未由本审查逐字二次重读。"
+    }
+  ],
+  "sourceEvidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 11170,
+      "endLine": 11299,
+      "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "sliceSha256": "e72da29a84eff45d962ff53ccd7fbe321f670ac57b83cbdf361315a7306c6166"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 11556,
+      "endLine": 11695,
+      "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "sliceSha256": "462c0415cdd5f54ced214da158796253bb2c95d0cdfe7a187d4892cc8058d007"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 12198,
+      "endLine": 12330,
+      "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "sliceSha256": "9cf925d9d89c12dc862cad43e99056979a34434c20d7d78b28ec62186be1bd12"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 5965,
+      "endLine": 6074,
+      "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "sliceSha256": "853a17fbd3aedc519c3fdb02a5f48039edf043eab755e1328e8d6649c36f6701"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 14599,
+      "endLine": 14735,
+      "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "sliceSha256": "5bb919c30a7a2ed091751c2b6252df110222003f2c89937bb7c7bb2a3ef365b3"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 3537,
+      "endLine": 3699,
+      "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "sliceSha256": "449ce0678524e6d9344aff9339eec618d04c88b8bb133d58ff9a001d14e40044"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 3780,
+      "endLine": 3835,
+      "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "sliceSha256": "e60aa3e3d12dcbcb8474da9ce110fbd10ef19682d203621d2e8ca335d17e7ca0"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 3738,
+      "endLine": 3755,
+      "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "sliceSha256": "6b680d7aa2478069ded25ec2a55563d95b983779f8be2770dbfea337ffc98fa9"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 5854,
+      "endLine": 5864,
+      "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "sliceSha256": "2890cb050f03442811de37a775676524deab4aae37cf2cb64ba62f15b01e7e5d"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 10161,
+      "endLine": 10211,
+      "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "sliceSha256": "2a3de8bbc716c2037a538889e7da39136ee1e20b6a1f3784a38e3b1a75190dc9"
+    }
+  ],
+  "integrity": {
+    "allTargetEvidenceVerified": 30,
+    "meaning": "File/slice identity, not semantic completeness"
+  },
+  "findings": [
+    {
+      "priority": "P3",
+      "status": "fixed-before-snapshot",
+      "section": "PDF08",
+      "detail": "samePositionBatch无bbox亦continue；当前报告已明确，非全部缺框fail-closed。"
+    }
+  ],
+  "conclusion": "重点风险有源码依据；1处边界措辞已纠正。维持S2/R0，没有全业务闭合或等价认可。",
+  "notReviewed": [
+    "PDF01/02完整child/planner协议",
+    "PDF06 D9全体几何helpers",
+    "PDF05所有局部bbox算法",
+    "PDF09未列sourceEvidence的consumer行",
+    "renderer时间状态与授权运行结果"
+  ]
+}

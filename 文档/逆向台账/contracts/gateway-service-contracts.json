@@ -1,0 +1,3087 @@
+{
+  "source": ".data/research/lawbot-2026-10-13/ipc-static-contracts.json",
+  "note": "13个service方法；第14个gateway_ping直接在ux返回。方法定位并非服务类型绑定或完整链路证明。",
+  "methods": [
+    {
+      "method": "startSecureReview",
+      "candidates": [
+        {
+          "functionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1126818",
+          "evidence": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1126818,
+            "end": 1127345,
+            "startLine": 1,
+            "startColumn": 1126819,
+            "endLine": 1,
+            "endColumn": 1127346,
+            "sliceSha256": "11d76ec5a3744807d46d06fbc818abdb38d5660a33a1067d2760424896408627"
+          },
+          "enclosingClass": "qw"
+        }
+      ],
+      "completeness": "local-method-contract-only; gateway binding manually corroborated",
+      "contracts": [
+        {
+          "id": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1126818",
+          "evidence": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1126818,
+            "end": 1127345,
+            "startLine": 1,
+            "startColumn": 1126819,
+            "endLine": 1,
+            "endColumn": 1127346,
+            "sliceSha256": "11d76ec5a3744807d46d06fbc818abdb38d5660a33a1067d2760424896408627"
+          },
+          "parameters": [
+            {
+              "syntax": "e",
+              "rest": false,
+              "default": null
+            },
+            {
+              "syntax": "t",
+              "rest": false,
+              "default": null
+            }
+          ],
+          "async": true,
+          "returns": [
+            {
+              "shape": {
+                "type": "Identifier",
+                "expression": "s"
+              },
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1127217,
+                "end": 1127226,
+                "startLine": 1,
+                "startColumn": 1127218,
+                "endLine": 1,
+                "endColumn": 1127227,
+                "sliceSha256": "e674bd7de1f94e4ac4c7c1fdc58d12fd5121ca76792306a60dfa3b1d50d8fbc3"
+              },
+              "enclosingConditions": [
+                {
+                  "kind": "if",
+                  "branch": "then",
+                  "expression": "s",
+                  "evidence": {
+                    "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                    "start": 1127215,
+                    "end": 1127216,
+                    "startLine": 1,
+                    "startColumn": 1127216,
+                    "endLine": 1,
+                    "endColumn": 1127217,
+                    "sliceSha256": "043a718774c572bd8a25adbeb1bfcd5c0256ae11cecf9f9c3f925d0e52beaf89"
+                  }
+                }
+              ]
+            },
+            {
+              "shape": {
+                "type": "await",
+                "value": {
+                  "type": "Identifier",
+                  "expression": "o"
+                }
+              },
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1127295,
+                "end": 1127309,
+                "startLine": 1,
+                "startColumn": 1127296,
+                "endLine": 1,
+                "endColumn": 1127310,
+                "sliceSha256": "5b54513808846c9513df2ca3d2f70da77f786c838191aa784337504444d21989"
+              },
+              "enclosingConditions": []
+            }
+          ],
+          "throws": [],
+          "catches": [],
+          "parameterAccesses": [
+            {
+              "expression": "e.adapterId",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1126922,
+                "end": 1126933,
+                "startLine": 1,
+                "startColumn": 1126923,
+                "endLine": 1,
+                "endColumn": 1126934,
+                "sliceSha256": "c29efb2d8d03d9ee22d3a9840a058e2d4901fc953f9a3cbe990e2289bbce5da8"
+              },
+              "required": "not-inferred-from-access"
+            },
+            {
+              "expression": "e.sessionId",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1126937,
+                "end": 1126948,
+                "startLine": 1,
+                "startColumn": 1126938,
+                "endLine": 1,
+                "endColumn": 1126949,
+                "sliceSha256": "e6e9ce9b40aea2673a523cd2594867056cea6d496dc685be7100ee488fcadfc8"
+              },
+              "required": "not-inferred-from-access"
+            }
+          ],
+          "parameterDestructuring": [],
+          "mutations": [],
+          "calls": [
+            {
+              "callee": "n?.sourcePaths?.join",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1126859,
+                "end": 1126884,
+                "startLine": 1,
+                "startColumn": 1126860,
+                "endLine": 1,
+                "endColumn": 1126885,
+                "sliceSha256": "f6c95492139de03a38c10e3e1d39823a075d27075fb4c2faa906d813d947cbb1"
+              },
+              "arguments": [
+                {
+                  "expression": "\"|\"",
+                  "shape": {
+                    "type": "string-literal",
+                    "value": "|",
+                    "truncated": false
+                  }
+                }
+              ],
+              "resolvedFunctionId": null,
+              "resolution": "unresolved-or-external"
+            },
+            {
+              "callee": "JSON.stringify",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1126957,
+                "end": 1127184,
+                "startLine": 1,
+                "startColumn": 1126958,
+                "endLine": 1,
+                "endColumn": 1127185,
+                "sliceSha256": "d6e0536a5c5dd5ae6b3aaf2ca081268298a1121c04af7517ce59960b0279e1de"
+              },
+              "arguments": [
+                {
+                  "expression": "[n?.purpose,n?.taskMode,n?.executionMode,n?.documentType,n?.ruleSet,n?.maskingMode,n?.outputFormats,n?.unifiedPseudonyms,n?.advanced,n?.sanitizedOutputDir,n?.restoredOutputDir,n?.b",
+                  "shape": {
+                    "type": "array",
+                    "elements": [
+                      {
+                        "type": "PropertyAccessExpression",
+                        "expression": "n?.purpose"
+                      },
+                      {
+                        "type": "PropertyAccessExpression",
+                        "expression": "n?.taskMode"
+                      },
+                      {
+                        "type": "PropertyAccessExpression",
+                        "expression": "n?.executionMode"
+                      },
+                      {
+                        "type": "PropertyAccessExpression",
+                        "expression": "n?.documentType"
+                      },
+                      {
+                        "type": "PropertyAccessExpression",
+                        "expression": "n?.ruleSet"
+                      },
+                      {
+                        "type": "PropertyAccessExpression",
+                        "expression": "n?.maskingMode"
+                      },
+                      {
+                        "type": "PropertyAccessExpression",
+                        "expression": "n?.outputFormats"
+                      },
+                      {
+                        "type": "PropertyAccessExpression",
+                        "expression": "n?.unifiedPseudonyms"
+                      },
+                      {
+                        "type": "PropertyAccessExpression",
+                        "expression": "n?.advanced"
+                      },
+                      {
+                        "type": "PropertyAccessExpression",
+                        "expression": "n?.sanitizedOutputDir"
+                      },
+                      {
+                        "type": "PropertyAccessExpression",
+                        "expression": "n?.restoredOutputDir"
+                      },
+                      {
+                        "type": "PropertyAccessExpression",
+                        "expression": "n?.batchResultMode"
+                      },
+                      {
+                        "type": "PropertyAccessExpression",
+                        "expression": "n?.fileSettings"
+                      }
+                    ],
+                    "truncated": false
+                  }
+                }
+              ],
+              "resolvedFunctionId": null,
+              "resolution": "unresolved-or-external"
+            },
+            {
+              "callee": "this.startLocks.get",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1127189,
+                "end": 1127211,
+                "startLine": 1,
+                "startColumn": 1127190,
+                "endLine": 1,
+                "endColumn": 1127212,
+                "sliceSha256": "cc441ce6aa61b5c3b313941a00d17c4a20d0b77d3d51f4fa3a75421d554fc24c"
+              },
+              "arguments": [
+                {
+                  "expression": "a",
+                  "shape": {
+                    "type": "Identifier",
+                    "expression": "a"
+                  }
+                }
+              ],
+              "resolvedFunctionId": null,
+              "resolution": "unresolved-or-external"
+            },
+            {
+              "callee": "this.startSecureReviewOnce",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1127234,
+                "end": 1127265,
+                "startLine": 1,
+                "startColumn": 1127235,
+                "endLine": 1,
+                "endColumn": 1127266,
+                "sliceSha256": "0fd03794b63345991c972fa2a87d28937259443c6b1c7100069aafc0ccaeb98f"
+              },
+              "arguments": [
+                {
+                  "expression": "e",
+                  "shape": {
+                    "type": "Identifier",
+                    "expression": "e"
+                  }
+                },
+                {
+                  "expression": "t",
+                  "shape": {
+                    "type": "Identifier",
+                    "expression": "t"
+                  }
+                }
+              ],
+              "resolvedFunctionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1127345",
+              "resolution": "lexical-declaration"
+            },
+            {
+              "callee": "this.startLocks.set",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1127266,
+                "end": 1127290,
+                "startLine": 1,
+                "startColumn": 1127267,
+                "endLine": 1,
+                "endColumn": 1127291,
+                "sliceSha256": "9c4a3cf4e26bafb0afc7ace45e7a5e930d76f3a78cc550cc43d834159088308e"
+              },
+              "arguments": [
+                {
+                  "expression": "a",
+                  "shape": {
+                    "type": "Identifier",
+                    "expression": "a"
+                  }
+                },
+                {
+                  "expression": "o",
+                  "shape": {
+                    "type": "Identifier",
+                    "expression": "o"
+                  }
+                }
+              ],
+              "resolvedFunctionId": null,
+              "resolution": "unresolved-or-external"
+            },
+            {
+              "callee": "this.startLocks.delete",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1127318,
+                "end": 1127343,
+                "startLine": 1,
+                "startColumn": 1127319,
+                "endLine": 1,
+                "endColumn": 1127344,
+                "sliceSha256": "693d65b68ee0429a28314d7c57b5419beee368782a25a3476cf9525f27211310"
+              },
+              "arguments": [
+                {
+                  "expression": "a",
+                  "shape": {
+                    "type": "Identifier",
+                    "expression": "a"
+                  }
+                }
+              ],
+              "resolvedFunctionId": null,
+              "resolution": "unresolved-or-external"
+            }
+          ],
+          "nestedFunctions": [],
+          "activationSignals": [],
+          "controlConditions": [
+            {
+              "expression": "s",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1127215,
+                "end": 1127216,
+                "startLine": 1,
+                "startColumn": 1127216,
+                "endLine": 1,
+                "endColumn": 1127217,
+                "sliceSha256": "043a718774c572bd8a25adbeb1bfcd5c0256ae11cecf9f9c3f925d0e52beaf89"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "method": "startLocalRestore",
+      "candidates": [
+        {
+          "functionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1130153",
+          "evidence": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1130153,
+            "end": 1130459,
+            "startLine": 1,
+            "startColumn": 1130154,
+            "endLine": 1,
+            "endColumn": 1130460,
+            "sliceSha256": "6ee416cb31c2cd6be5c286f2675fad15903054906bf3924de4655244d755fa38"
+          },
+          "enclosingClass": "qw"
+        }
+      ],
+      "completeness": "local-method-contract-only; gateway binding manually corroborated",
+      "contracts": [
+        {
+          "id": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1130153",
+          "evidence": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1130153,
+            "end": 1130459,
+            "startLine": 1,
+            "startColumn": 1130154,
+            "endLine": 1,
+            "endColumn": 1130460,
+            "sliceSha256": "6ee416cb31c2cd6be5c286f2675fad15903054906bf3924de4655244d755fa38"
+          },
+          "parameters": [
+            {
+              "syntax": "e",
+              "rest": false,
+              "default": null
+            },
+            {
+              "syntax": "t",
+              "rest": false,
+              "default": null
+            }
+          ],
+          "async": true,
+          "returns": [
+            {
+              "shape": {
+                "type": "Identifier",
+                "expression": "a"
+              },
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1130331,
+                "end": 1130340,
+                "startLine": 1,
+                "startColumn": 1130332,
+                "endLine": 1,
+                "endColumn": 1130341,
+                "sliceSha256": "77ebfa40fb40b89d5037787a8ca080fd2afdaa9f3c46b4d541774f2a4ccf39cf"
+              },
+              "enclosingConditions": [
+                {
+                  "kind": "if",
+                  "branch": "then",
+                  "expression": "a",
+                  "evidence": {
+                    "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                    "start": 1130329,
+                    "end": 1130330,
+                    "startLine": 1,
+                    "startColumn": 1130330,
+                    "endLine": 1,
+                    "endColumn": 1130331,
+                    "sliceSha256": "ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb"
+                  }
+                }
+              ]
+            },
+            {
+              "shape": {
+                "type": "await",
+                "value": {
+                  "type": "Identifier",
+                  "expression": "s"
+                }
+              },
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1130409,
+                "end": 1130423,
+                "startLine": 1,
+                "startColumn": 1130410,
+                "endLine": 1,
+                "endColumn": 1130424,
+                "sliceSha256": "58e0185ef5bbc26c6064e5bf61b50c4d230f2fe91fda4b0c6d6bc623e283250e"
+              },
+              "enclosingConditions": []
+            }
+          ],
+          "throws": [],
+          "catches": [],
+          "parameterAccesses": [
+            {
+              "expression": "e.adapterId",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1130220,
+                "end": 1130231,
+                "startLine": 1,
+                "startColumn": 1130221,
+                "endLine": 1,
+                "endColumn": 1130232,
+                "sliceSha256": "c29efb2d8d03d9ee22d3a9840a058e2d4901fc953f9a3cbe990e2289bbce5da8"
+              },
+              "required": "not-inferred-from-access"
+            },
+            {
+              "expression": "e.sessionId",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1130232,
+                "end": 1130243,
+                "startLine": 1,
+                "startColumn": 1130233,
+                "endLine": 1,
+                "endColumn": 1130244,
+                "sliceSha256": "e6e9ce9b40aea2673a523cd2594867056cea6d496dc685be7100ee488fcadfc8"
+              },
+              "required": "not-inferred-from-access"
+            }
+          ],
+          "parameterDestructuring": [],
+          "mutations": [],
+          "calls": [
+            {
+              "callee": "JSON.stringify",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1130194,
+                "end": 1130300,
+                "startLine": 1,
+                "startColumn": 1130195,
+                "endLine": 1,
+                "endColumn": 1130301,
+                "sliceSha256": "7ffffd6ce900882c8d36aa49eda6795425f78c491af36879c4063043303eae56"
+              },
+              "arguments": [
+                {
+                  "expression": "[\"restore\",e.adapterId,e.sessionId,n?.jobId,n?.roundId,n?.sourcePath,n?.restoredOutputDir]",
+                  "shape": {
+                    "type": "array",
+                    "elements": [
+                      {
+                        "type": "string-literal",
+                        "value": "restore",
+                        "truncated": false
+                      },
+                      {
+                        "type": "PropertyAccessExpression",
+                        "expression": "e.adapterId"
+                      },
+                      {
+                        "type": "PropertyAccessExpression",
+                        "expression": "e.sessionId"
+                      },
+                      {
+                        "type": "PropertyAccessExpression",
+                        "expression": "n?.jobId"
+                      },
+                      {
+                        "type": "PropertyAccessExpression",
+                        "expression": "n?.roundId"
+                      },
+                      {
+                        "type": "PropertyAccessExpression",
+                        "expression": "n?.sourcePath"
+                      },
+                      {
+                        "type": "PropertyAccessExpression",
+                        "expression": "n?.restoredOutputDir"
+                      }
+                    ],
+                    "truncated": false
+                  }
+                }
+              ],
+              "resolvedFunctionId": null,
+              "resolution": "unresolved-or-external"
+            },
+            {
+              "callee": "this.startLocks.get",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1130303,
+                "end": 1130325,
+                "startLine": 1,
+                "startColumn": 1130304,
+                "endLine": 1,
+                "endColumn": 1130326,
+                "sliceSha256": "b8ddeee1b11312817d9111b5fcf714b773b3b3fe37be673b1242e6972f978628"
+              },
+              "arguments": [
+                {
+                  "expression": "r",
+                  "shape": {
+                    "type": "Identifier",
+                    "expression": "r"
+                  }
+                }
+              ],
+              "resolvedFunctionId": null,
+              "resolution": "unresolved-or-external"
+            },
+            {
+              "callee": "this.startLocalRestoreOnce",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1130348,
+                "end": 1130379,
+                "startLine": 1,
+                "startColumn": 1130349,
+                "endLine": 1,
+                "endColumn": 1130380,
+                "sliceSha256": "13940760df09d777285f0033fc8c559df6b16d3823ee86c1b43dc8650ec27be8"
+              },
+              "arguments": [
+                {
+                  "expression": "e",
+                  "shape": {
+                    "type": "Identifier",
+                    "expression": "e"
+                  }
+                },
+                {
+                  "expression": "t",
+                  "shape": {
+                    "type": "Identifier",
+                    "expression": "t"
+                  }
+                }
+              ],
+              "resolvedFunctionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1130459",
+              "resolution": "lexical-declaration"
+            },
+            {
+              "callee": "this.startLocks.set",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1130380,
+                "end": 1130404,
+                "startLine": 1,
+                "startColumn": 1130381,
+                "endLine": 1,
+                "endColumn": 1130405,
+                "sliceSha256": "9f61484d21750d617a6d3ebf048881bcbbfc60a01003a40d2c63373f5a85a8f8"
+              },
+              "arguments": [
+                {
+                  "expression": "r",
+                  "shape": {
+                    "type": "Identifier",
+                    "expression": "r"
+                  }
+                },
+                {
+                  "expression": "s",
+                  "shape": {
+                    "type": "Identifier",
+                    "expression": "s"
+                  }
+                }
+              ],
+              "resolvedFunctionId": null,
+              "resolution": "unresolved-or-external"
+            },
+            {
+              "callee": "this.startLocks.delete",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1130432,
+                "end": 1130457,
+                "startLine": 1,
+                "startColumn": 1130433,
+                "endLine": 1,
+                "endColumn": 1130458,
+                "sliceSha256": "ebc0c2131b0f012676241a4468a12a8cf0a24c44e89e20d790ec962beee7e059"
+              },
+              "arguments": [
+                {
+                  "expression": "r",
+                  "shape": {
+                    "type": "Identifier",
+                    "expression": "r"
+                  }
+                }
+              ],
+              "resolvedFunctionId": null,
+              "resolution": "unresolved-or-external"
+            }
+          ],
+          "nestedFunctions": [],
+          "activationSignals": [],
+          "controlConditions": [
+            {
+              "expression": "a",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1130329,
+                "end": 1130330,
+                "startLine": 1,
+                "startColumn": 1130330,
+                "endLine": 1,
+                "endColumn": 1130331,
+                "sliceSha256": "ca978112ca1bbdcafac231b39a23dc4da786eff8147c4e72b9807785afee48bb"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "method": "getReviewStatus",
+      "candidates": [
+        {
+          "functionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1136499",
+          "evidence": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1136499,
+            "end": 1136582,
+            "startLine": 1,
+            "startColumn": 1136500,
+            "endLine": 1,
+            "endColumn": 1136583,
+            "sliceSha256": "1a50747761b2c99663bc626dcb3831656b064525164a2afefa5ca23b8a1a2cca"
+          },
+          "enclosingClass": "qw"
+        }
+      ],
+      "completeness": "local-method-contract-only; gateway binding manually corroborated",
+      "contracts": [
+        {
+          "id": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1136499",
+          "evidence": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1136499,
+            "end": 1136582,
+            "startLine": 1,
+            "startColumn": 1136500,
+            "endLine": 1,
+            "endColumn": 1136583,
+            "sliceSha256": "1a50747761b2c99663bc626dcb3831656b064525164a2afefa5ca23b8a1a2cca"
+          },
+          "parameters": [
+            {
+              "syntax": "e",
+              "rest": false,
+              "default": null
+            },
+            {
+              "syntax": "t",
+              "rest": false,
+              "default": null
+            }
+          ],
+          "async": true,
+          "returns": [
+            {
+              "shape": {
+                "type": "CallExpression",
+                "expression": "this.projectWithDocuments(await this.owned(e,t))"
+              },
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1136526,
+                "end": 1136581,
+                "startLine": 1,
+                "startColumn": 1136527,
+                "endLine": 1,
+                "endColumn": 1136582,
+                "sliceSha256": "81e0fbffd6700ea61f8e763c28fdd6607ba0474f6511d76228e3f9813894d844"
+              },
+              "enclosingConditions": []
+            }
+          ],
+          "throws": [],
+          "catches": [],
+          "parameterAccesses": [],
+          "parameterDestructuring": [],
+          "mutations": [],
+          "calls": [
+            {
+              "callee": "this.projectWithDocuments",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1136533,
+                "end": 1136581,
+                "startLine": 1,
+                "startColumn": 1136534,
+                "endLine": 1,
+                "endColumn": 1136582,
+                "sliceSha256": "297fd438903a440e9237f6f62f3cbb51146aeb0b2a1781ffdc6122d2187d5da9"
+              },
+              "arguments": [
+                {
+                  "expression": "await this.owned(e,t)",
+                  "shape": {
+                    "type": "await",
+                    "value": {
+                      "type": "CallExpression",
+                      "expression": "this.owned(e,t)"
+                    }
+                  }
+                }
+              ],
+              "resolvedFunctionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1120827",
+              "resolution": "lexical-declaration"
+            },
+            {
+              "callee": "this.owned",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1136565,
+                "end": 1136580,
+                "startLine": 1,
+                "startColumn": 1136566,
+                "endLine": 1,
+                "endColumn": 1136581,
+                "sliceSha256": "1bf5df060f5a6a67a6aa45ae565ecef96f310e1be1939bc81252372c57af23b3"
+              },
+              "arguments": [
+                {
+                  "expression": "e",
+                  "shape": {
+                    "type": "Identifier",
+                    "expression": "e"
+                  }
+                },
+                {
+                  "expression": "t",
+                  "shape": {
+                    "type": "Identifier",
+                    "expression": "t"
+                  }
+                }
+              ],
+              "resolvedFunctionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1115175",
+              "resolution": "lexical-declaration"
+            }
+          ],
+          "nestedFunctions": [],
+          "activationSignals": [],
+          "controlConditions": []
+        }
+      ]
+    },
+    {
+      "method": "requestSessionResume",
+      "candidates": [
+        {
+          "functionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1116110",
+          "evidence": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1116110,
+            "end": 1116245,
+            "startLine": 1,
+            "startColumn": 1116111,
+            "endLine": 1,
+            "endColumn": 1116246,
+            "sliceSha256": "c10574c32d800d6a8b537261c4f1912f1771958ee5cc10cedce7e85f2ff174d5"
+          },
+          "enclosingClass": "qw"
+        }
+      ],
+      "completeness": "local-method-contract-only; gateway binding manually corroborated",
+      "contracts": [
+        {
+          "id": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1116110",
+          "evidence": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1116110,
+            "end": 1116245,
+            "startLine": 1,
+            "startColumn": 1116111,
+            "endLine": 1,
+            "endColumn": 1116246,
+            "sliceSha256": "c10574c32d800d6a8b537261c4f1912f1771958ee5cc10cedce7e85f2ff174d5"
+          },
+          "parameters": [
+            {
+              "syntax": "e",
+              "rest": false,
+              "default": null
+            },
+            {
+              "syntax": "t",
+              "rest": false,
+              "default": null
+            }
+          ],
+          "async": true,
+          "returns": [
+            {
+              "shape": {
+                "type": "CallExpression",
+                "expression": "this.withJobLock(`resume:${e.adapterId}:${e.sessionId}`,()=>this.requestSessionResumeOnce(e,t))"
+              },
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1116142,
+                "end": 1116244,
+                "startLine": 1,
+                "startColumn": 1116143,
+                "endLine": 1,
+                "endColumn": 1116245,
+                "sliceSha256": "55514c0d6330b01753ba3e9d9d1b2363bd20388f37ef3d7cad0e96afdf16f105"
+              },
+              "enclosingConditions": []
+            }
+          ],
+          "throws": [],
+          "catches": [],
+          "parameterAccesses": [
+            {
+              "expression": "e.adapterId",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1116176,
+                "end": 1116187,
+                "startLine": 1,
+                "startColumn": 1116177,
+                "endLine": 1,
+                "endColumn": 1116188,
+                "sliceSha256": "c29efb2d8d03d9ee22d3a9840a058e2d4901fc953f9a3cbe990e2289bbce5da8"
+              },
+              "required": "not-inferred-from-access"
+            },
+            {
+              "expression": "e.sessionId",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1116191,
+                "end": 1116202,
+                "startLine": 1,
+                "startColumn": 1116192,
+                "endLine": 1,
+                "endColumn": 1116203,
+                "sliceSha256": "e6e9ce9b40aea2673a523cd2594867056cea6d496dc685be7100ee488fcadfc8"
+              },
+              "required": "not-inferred-from-access"
+            }
+          ],
+          "parameterDestructuring": [],
+          "mutations": [],
+          "calls": [
+            {
+              "callee": "this.withJobLock",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1116149,
+                "end": 1116244,
+                "startLine": 1,
+                "startColumn": 1116150,
+                "endLine": 1,
+                "endColumn": 1116245,
+                "sliceSha256": "fb7dd79dd1fc7e8a385f038c02cf5b9b7361d3365562547de571a8923625f2a8"
+              },
+              "arguments": [
+                {
+                  "expression": "`resume:${e.adapterId}:${e.sessionId}`",
+                  "shape": {
+                    "type": "TemplateExpression",
+                    "expression": "`resume:${e.adapterId}:${e.sessionId}`"
+                  }
+                },
+                {
+                  "expression": "()=>this.requestSessionResumeOnce(e,t)",
+                  "shape": {
+                    "type": "ArrowFunction",
+                    "expression": "()=>this.requestSessionResumeOnce(e,t)"
+                  }
+                }
+              ],
+              "resolvedFunctionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1114704",
+              "resolution": "lexical-declaration"
+            }
+          ],
+          "nestedFunctions": [
+            {
+              "functionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1116205",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1116205,
+                "end": 1116243,
+                "startLine": 1,
+                "startColumn": 1116206,
+                "endLine": 1,
+                "endColumn": 1116244,
+                "sliceSha256": "d33a62b53e4927b1537ca227f2cbe288d56693001f6166e8a37824d42fedb199"
+              },
+              "execution": "callback-or-nested-declaration; invocation-not-assumed"
+            }
+          ],
+          "activationSignals": [],
+          "controlConditions": []
+        }
+      ]
+    },
+    {
+      "method": "getConfigurationCatalog",
+      "candidates": [
+        {
+          "functionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1136582",
+          "evidence": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1136582,
+            "end": 1136975,
+            "startLine": 1,
+            "startColumn": 1136583,
+            "endLine": 1,
+            "endColumn": 1136976,
+            "sliceSha256": "42e73514e8a10a5b51158ee331cd58a42122f5f7a4785abea19545c11b17dace"
+          },
+          "enclosingClass": "qw"
+        }
+      ],
+      "completeness": "local-method-contract-only; gateway binding manually corroborated",
+      "contracts": [
+        {
+          "id": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1136582",
+          "evidence": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1136582,
+            "end": 1136975,
+            "startLine": 1,
+            "startColumn": 1136583,
+            "endLine": 1,
+            "endColumn": 1136976,
+            "sliceSha256": "42e73514e8a10a5b51158ee331cd58a42122f5f7a4785abea19545c11b17dace"
+          },
+          "parameters": [],
+          "async": true,
+          "returns": [
+            {
+              "shape": {
+                "type": "object",
+                "properties": [
+                  {
+                    "key": "profiles",
+                    "shape": {
+                      "type": "CallExpression",
+                      "expression": "t(e.profiles)"
+                    }
+                  },
+                  {
+                    "key": "ruleSets",
+                    "shape": {
+                      "type": "CallExpression",
+                      "expression": "t(e.ruleSets)"
+                    }
+                  },
+                  {
+                    "key": "instructions",
+                    "shape": {
+                      "type": "string-literal",
+                      "value": "仅提供已保存设置的标识和名称，不提供黑白名单内容、文件路径或密码。使用用户指定的准确名称或标识；找不到时告知用户，不得猜测替代。",
+                      "truncated": false
+                    }
+                  }
+                ]
+              },
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1136841,
+                "end": 1136974,
+                "startLine": 1,
+                "startColumn": 1136842,
+                "endLine": 1,
+                "endColumn": 1136975,
+                "sliceSha256": "d531b451309b60c1114ef07ea4d8a009f7d9b9f90a18dab255e1ff9d767acbe1"
+              },
+              "enclosingConditions": []
+            }
+          ],
+          "throws": [],
+          "catches": [],
+          "parameterAccesses": [],
+          "parameterDestructuring": [],
+          "mutations": [],
+          "calls": [
+            {
+              "callee": "this.dependencies.getConfigurationCatalog",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1136628,
+                "end": 1136673,
+                "startLine": 1,
+                "startColumn": 1136629,
+                "endLine": 1,
+                "endColumn": 1136674,
+                "sliceSha256": "63f21748fd9592aabe3fcb541ef793800a49e5ad66e630ddbe2006757d498efa"
+              },
+              "arguments": [],
+              "resolvedFunctionId": null,
+              "resolution": "unresolved-or-external"
+            },
+            {
+              "callee": "t",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1136857,
+                "end": 1136870,
+                "startLine": 1,
+                "startColumn": 1136858,
+                "endLine": 1,
+                "endColumn": 1136871,
+                "sliceSha256": "748ee0d493102bf6fcb9351a1736ffa737b1692d00d77f7719b6651d67922bfc"
+              },
+              "arguments": [
+                {
+                  "expression": "e.profiles",
+                  "shape": {
+                    "type": "PropertyAccessExpression",
+                    "expression": "e.profiles"
+                  }
+                }
+              ],
+              "resolvedFunctionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1136704",
+              "resolution": "lexical-declaration"
+            },
+            {
+              "callee": "t",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1136880,
+                "end": 1136893,
+                "startLine": 1,
+                "startColumn": 1136881,
+                "endLine": 1,
+                "endColumn": 1136894,
+                "sliceSha256": "ead7b4fc2bed7b3eed952dc2e7cefe5a7e2af70d16a708ac19d7bffee4bfd1dc"
+              },
+              "arguments": [
+                {
+                  "expression": "e.ruleSets",
+                  "shape": {
+                    "type": "PropertyAccessExpression",
+                    "expression": "e.ruleSets"
+                  }
+                }
+              ],
+              "resolvedFunctionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1136704",
+              "resolution": "lexical-declaration"
+            }
+          ],
+          "nestedFunctions": [
+            {
+              "functionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1136704",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1136704,
+                "end": 1136840,
+                "startLine": 1,
+                "startColumn": 1136705,
+                "endLine": 1,
+                "endColumn": 1136841,
+                "sliceSha256": "e8d9e4a9dbbaea54e3e0783fdc08c22b1320f91d975e8a9cd654b03d34120360"
+              },
+              "execution": "callback-or-nested-declaration; invocation-not-assumed"
+            }
+          ],
+          "activationSignals": [],
+          "controlConditions": []
+        }
+      ]
+    },
+    {
+      "method": "waitForReviewDelivery",
+      "candidates": [
+        {
+          "functionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1136975",
+          "evidence": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1136975,
+            "end": 1139594,
+            "startLine": 1,
+            "startColumn": 1136976,
+            "endLine": 1,
+            "endColumn": 1139595,
+            "sliceSha256": "e1dfb91e5c7a92ebaba3fc7908cb6f0ebeec13d7863b3c28277cf9f362e59763"
+          },
+          "enclosingClass": "qw"
+        }
+      ],
+      "completeness": "local-method-contract-only; gateway binding manually corroborated",
+      "contracts": [
+        {
+          "id": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1136975",
+          "evidence": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1136975,
+            "end": 1139594,
+            "startLine": 1,
+            "startColumn": 1136976,
+            "endLine": 1,
+            "endColumn": 1139595,
+            "sliceSha256": "e1dfb91e5c7a92ebaba3fc7908cb6f0ebeec13d7863b3c28277cf9f362e59763"
+          },
+          "parameters": [
+            {
+              "syntax": "e",
+              "rest": false,
+              "default": null
+            },
+            {
+              "syntax": "t",
+              "rest": false,
+              "default": null
+            }
+          ],
+          "async": true,
+          "returns": [
+            {
+              "shape": {
+                "type": "CallExpression",
+                "expression": "s({...await this.projectWithDocuments(n),wait:{timedOut:!1,retry:!0}},n)"
+              },
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1139177,
+                "end": 1139257,
+                "startLine": 1,
+                "startColumn": 1139178,
+                "endLine": 1,
+                "endColumn": 1139258,
+                "sliceSha256": "bd30c7c9bf174b56c74f9b1c66abf598335ee6ad40610128fd524b7a86e5889d"
+              },
+              "enclosingConditions": [
+                {
+                  "kind": "if",
+                  "branch": "then",
+                  "expression": "\"waiting_for_human_review\"===n.state&&n.statistics&&t?.afterUpdatedAt!==n.updatedAt",
+                  "evidence": {
+                    "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                    "start": 1139093,
+                    "end": 1139176,
+                    "startLine": 1,
+                    "startColumn": 1139094,
+                    "endLine": 1,
+                    "endColumn": 1139177,
+                    "sliceSha256": "290948966e456360b9d42930aa6cdcbbd294a26c663c83f51b8c4804b3e36174"
+                  }
+                }
+              ]
+            },
+            {
+              "shape": {
+                "type": "CallExpression",
+                "expression": "s({...o,...await this.projectWithDocuments(i)},i)"
+              },
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1139537,
+                "end": 1139593,
+                "startLine": 1,
+                "startColumn": 1139538,
+                "endLine": 1,
+                "endColumn": 1139594,
+                "sliceSha256": "9f0df7421da8788d2e97260cefb38723257564bec4b66570fa606c6ab9d74bd8"
+              },
+              "enclosingConditions": []
+            }
+          ],
+          "throws": [],
+          "catches": [],
+          "parameterAccesses": [
+            {
+              "expression": "t?.jobId",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1137035,
+                "end": 1137043,
+                "startLine": 1,
+                "startColumn": 1137036,
+                "endLine": 1,
+                "endColumn": 1137044,
+                "sliceSha256": "de027210806741f07d3875903ea142091bc920a3eb8222edd4f4e5b8f1e978af"
+              },
+              "required": "not-inferred-from-access"
+            },
+            {
+              "expression": "t?.afterUpdatedAt",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1139145,
+                "end": 1139162,
+                "startLine": 1,
+                "startColumn": 1139146,
+                "endLine": 1,
+                "endColumn": 1139163,
+                "sliceSha256": "aa28ad1e0af1c50d0313ab8f4f82e378ceffab16f4f4e40599e6c7d3368a26a3"
+              },
+              "required": "not-inferred-from-access"
+            },
+            {
+              "expression": "t?.waitSeconds",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1139301,
+                "end": 1139315,
+                "startLine": 1,
+                "startColumn": 1139302,
+                "endLine": 1,
+                "endColumn": 1139316,
+                "sliceSha256": "b6156551caa522dd1dd75e1ab37c087823db495a5c333c11c2d9132cf81b716b"
+              },
+              "required": "not-inferred-from-access"
+            }
+          ],
+          "parameterDestructuring": [],
+          "mutations": [],
+          "calls": [
+            {
+              "callee": "this.owned",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1137022,
+                "end": 1137044,
+                "startLine": 1,
+                "startColumn": 1137023,
+                "endLine": 1,
+                "endColumn": 1137045,
+                "sliceSha256": "02977de605b03d4784bd1663120a2a5897e71881c520795e9680e7a626d45623"
+              },
+              "arguments": [
+                {
+                  "expression": "e",
+                  "shape": {
+                    "type": "Identifier",
+                    "expression": "e"
+                  }
+                },
+                {
+                  "expression": "t?.jobId",
+                  "shape": {
+                    "type": "PropertyAccessExpression",
+                    "expression": "t?.jobId"
+                  }
+                }
+              ],
+              "resolvedFunctionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1115175",
+              "resolution": "lexical-declaration"
+            },
+            {
+              "callee": "s",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1139184,
+                "end": 1139256,
+                "startLine": 1,
+                "startColumn": 1139185,
+                "endLine": 1,
+                "endColumn": 1139257,
+                "sliceSha256": "0dae3d967cb088eb33c5061a18c2d3e5b5c8a16e250da7ee58643933ea0ad023"
+              },
+              "arguments": [
+                {
+                  "expression": "{...await this.projectWithDocuments(n),wait:{timedOut:!1,retry:!0}}",
+                  "shape": {
+                    "type": "object",
+                    "properties": [
+                      {
+                        "key": null,
+                        "shape": {
+                          "type": "spread",
+                          "expression": "...await this.projectWithDocuments(n)"
+                        }
+                      },
+                      {
+                        "key": "wait",
+                        "shape": {
+                          "type": "object",
+                          "properties": [
+                            {
+                              "key": "timedOut",
+                              "shape": {
+                                "type": "PrefixUnaryExpression",
+                                "expression": "!1"
+                              }
+                            },
+                            {
+                              "key": "retry",
+                              "shape": {
+                                "type": "PrefixUnaryExpression",
+                                "expression": "!0"
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "expression": "n",
+                  "shape": {
+                    "type": "Identifier",
+                    "expression": "n"
+                  }
+                }
+              ],
+              "resolvedFunctionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1137562",
+              "resolution": "lexical-declaration"
+            },
+            {
+              "callee": "this.projectWithDocuments",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1139196,
+                "end": 1139224,
+                "startLine": 1,
+                "startColumn": 1139197,
+                "endLine": 1,
+                "endColumn": 1139225,
+                "sliceSha256": "7367461e9764b5d1610f463c1c968e6dd0bbeb375dbb50a6b66159859a725016"
+              },
+              "arguments": [
+                {
+                  "expression": "n",
+                  "shape": {
+                    "type": "Identifier",
+                    "expression": "n"
+                  }
+                }
+              ],
+              "resolvedFunctionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1120827",
+              "resolution": "lexical-declaration"
+            },
+            {
+              "callee": "this.waitForStates",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1139271,
+                "end": 1139505,
+                "startLine": 1,
+                "startColumn": 1139272,
+                "endLine": 1,
+                "endColumn": 1139506,
+                "sliceSha256": "21d5fff81c720230108d39f9896cecaf97ad1ee2c30708f446ae9e44a99c498c"
+              },
+              "arguments": [
+                {
+                  "expression": "e",
+                  "shape": {
+                    "type": "Identifier",
+                    "expression": "e"
+                  }
+                },
+                {
+                  "expression": "t?.jobId",
+                  "shape": {
+                    "type": "PropertyAccessExpression",
+                    "expression": "t?.jobId"
+                  }
+                },
+                {
+                  "expression": "t?.waitSeconds",
+                  "shape": {
+                    "type": "PropertyAccessExpression",
+                    "expression": "t?.waitSeconds"
+                  }
+                },
+                {
+                  "expression": "[\"sanitized_artifact_ready\",\"analyzing_by_ai\",\"validating_ai_result\",\"restoring\",\"round_completed\"]",
+                  "shape": {
+                    "type": "array",
+                    "elements": [
+                      {
+                        "type": "string-literal",
+                        "value": "sanitized_artifact_ready",
+                        "truncated": false
+                      },
+                      {
+                        "type": "string-literal",
+                        "value": "analyzing_by_ai",
+                        "truncated": false
+                      },
+                      {
+                        "type": "string-literal",
+                        "value": "validating_ai_result",
+                        "truncated": false
+                      },
+                      {
+                        "type": "string-literal",
+                        "value": "restoring",
+                        "truncated": false
+                      },
+                      {
+                        "type": "string-literal",
+                        "value": "round_completed",
+                        "truncated": false
+                      }
+                    ],
+                    "truncated": false
+                  }
+                },
+                {
+                  "expression": "e=>\"waiting_for_human_review\"===e.state&&!!e.statistics&&t?.afterUpdatedAt!==e.updatedAt",
+                  "shape": {
+                    "type": "ArrowFunction",
+                    "expression": "e=>\"waiting_for_human_review\"===e.state&&!!e.statistics&&t?.afterUpdatedAt!==e.updatedAt"
+                  }
+                }
+              ],
+              "resolvedFunctionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1121436",
+              "resolution": "lexical-declaration"
+            },
+            {
+              "callee": "this.owned",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1139514,
+                "end": 1139536,
+                "startLine": 1,
+                "startColumn": 1139515,
+                "endLine": 1,
+                "endColumn": 1139537,
+                "sliceSha256": "02977de605b03d4784bd1663120a2a5897e71881c520795e9680e7a626d45623"
+              },
+              "arguments": [
+                {
+                  "expression": "e",
+                  "shape": {
+                    "type": "Identifier",
+                    "expression": "e"
+                  }
+                },
+                {
+                  "expression": "t?.jobId",
+                  "shape": {
+                    "type": "PropertyAccessExpression",
+                    "expression": "t?.jobId"
+                  }
+                }
+              ],
+              "resolvedFunctionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1115175",
+              "resolution": "lexical-declaration"
+            },
+            {
+              "callee": "s",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1139544,
+                "end": 1139593,
+                "startLine": 1,
+                "startColumn": 1139545,
+                "endLine": 1,
+                "endColumn": 1139594,
+                "sliceSha256": "e17b84a9a12e85a41d72d9a7f02cb85845019abc24e895a4d36121b59a06b24d"
+              },
+              "arguments": [
+                {
+                  "expression": "{...o,...await this.projectWithDocuments(i)}",
+                  "shape": {
+                    "type": "object",
+                    "properties": [
+                      {
+                        "key": null,
+                        "shape": {
+                          "type": "spread",
+                          "expression": "...o"
+                        }
+                      },
+                      {
+                        "key": null,
+                        "shape": {
+                          "type": "spread",
+                          "expression": "...await this.projectWithDocuments(i)"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "expression": "i",
+                  "shape": {
+                    "type": "Identifier",
+                    "expression": "i"
+                  }
+                }
+              ],
+              "resolvedFunctionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1137562",
+              "resolution": "lexical-declaration"
+            },
+            {
+              "callee": "this.projectWithDocuments",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1139561,
+                "end": 1139589,
+                "startLine": 1,
+                "startColumn": 1139562,
+                "endLine": 1,
+                "endColumn": 1139590,
+                "sliceSha256": "92f392d0a7bcf106c90b68edb4d60603ecbefcfa479059af8604c538998bf9c6"
+              },
+              "arguments": [
+                {
+                  "expression": "i",
+                  "shape": {
+                    "type": "Identifier",
+                    "expression": "i"
+                  }
+                }
+              ],
+              "resolvedFunctionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1120827",
+              "resolution": "lexical-declaration"
+            }
+          ],
+          "nestedFunctions": [
+            {
+              "functionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1137047",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1137047,
+                "end": 1137481,
+                "startLine": 1,
+                "startColumn": 1137048,
+                "endLine": 1,
+                "endColumn": 1137482,
+                "sliceSha256": "c2160f97288e2920e5bf712e4e934d556c1adb34a0a1cff5ba56fbd7890d6a4e"
+              },
+              "execution": "callback-or-nested-declaration; invocation-not-assumed"
+            },
+            {
+              "functionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1137484",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1137484,
+                "end": 1137559,
+                "startLine": 1,
+                "startColumn": 1137485,
+                "endLine": 1,
+                "endColumn": 1137560,
+                "sliceSha256": "0a664ee73d9918d3d9746d284b31dd758c9756003783b07172eeb93351f938d4"
+              },
+              "execution": "callback-or-nested-declaration; invocation-not-assumed"
+            },
+            {
+              "functionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1137562",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1137562,
+                "end": 1139089,
+                "startLine": 1,
+                "startColumn": 1137563,
+                "endLine": 1,
+                "endColumn": 1139090,
+                "sliceSha256": "be6b25c918a7036ba0fd7dded41d77e26861fabd4408324b8bb3296dbe6d1c0c"
+              },
+              "execution": "callback-or-nested-declaration; invocation-not-assumed"
+            },
+            {
+              "functionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1139416",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1139416,
+                "end": 1139504,
+                "startLine": 1,
+                "startColumn": 1139417,
+                "endLine": 1,
+                "endColumn": 1139505,
+                "sliceSha256": "aa9b67779370588aedbedbfd61729f84b8b74532a5fff97d79f9af924c9a6699"
+              },
+              "execution": "callback-or-nested-declaration; invocation-not-assumed"
+            }
+          ],
+          "activationSignals": [],
+          "controlConditions": [
+            {
+              "expression": "\"waiting_for_human_review\"===n.state&&n.statistics&&t?.afterUpdatedAt!==n.updatedAt",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1139093,
+                "end": 1139176,
+                "startLine": 1,
+                "startColumn": 1139094,
+                "endLine": 1,
+                "endColumn": 1139177,
+                "sliceSha256": "290948966e456360b9d42930aa6cdcbbd294a26c663c83f51b8c4804b3e36174"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "method": "getArtifact",
+      "candidates": [
+        {
+          "functionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1159342",
+          "evidence": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1159342,
+            "end": 1162219,
+            "startLine": 1,
+            "startColumn": 1159343,
+            "endLine": 1,
+            "endColumn": 1162220,
+            "sliceSha256": "f8a1184e95b37d0c42b4d658b58307d5cdb2fd2eb732a5df8a1f814760589e1e"
+          },
+          "enclosingClass": "qw"
+        }
+      ],
+      "completeness": "local-method-contract-only; gateway binding manually corroborated",
+      "contracts": [
+        {
+          "id": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1159342",
+          "evidence": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1159342,
+            "end": 1162219,
+            "startLine": 1,
+            "startColumn": 1159343,
+            "endLine": 1,
+            "endColumn": 1162220,
+            "sliceSha256": "f8a1184e95b37d0c42b4d658b58307d5cdb2fd2eb732a5df8a1f814760589e1e"
+          },
+          "parameters": [
+            {
+              "syntax": "e",
+              "rest": false,
+              "default": null
+            },
+            {
+              "syntax": "t",
+              "rest": false,
+              "default": null
+            }
+          ],
+          "async": true,
+          "returns": [
+            {
+              "shape": {
+                "type": "CallExpression",
+                "expression": "this.withJobLock(n.jobId,async()=>{const n=await this.owned(e,t?.jobId);if(n.reportSources&&!t?.artifactId&&\"derived_report\"===t?.resultKind){if((await Promise.all(n.reportSources."
+              },
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1159402,
+                "end": 1162218,
+                "startLine": 1,
+                "startColumn": 1159403,
+                "endLine": 1,
+                "endColumn": 1162219,
+                "sliceSha256": "fe46e7704a939bafdc0ce178b096e839d397b93a90b99b0c0eceb3318b1fdb14"
+              },
+              "enclosingConditions": []
+            }
+          ],
+          "throws": [],
+          "catches": [],
+          "parameterAccesses": [
+            {
+              "expression": "t?.jobId",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1159392,
+                "end": 1159400,
+                "startLine": 1,
+                "startColumn": 1159393,
+                "endLine": 1,
+                "endColumn": 1159401,
+                "sliceSha256": "de027210806741f07d3875903ea142091bc920a3eb8222edd4f4e5b8f1e978af"
+              },
+              "required": "not-inferred-from-access"
+            }
+          ],
+          "parameterDestructuring": [],
+          "mutations": [],
+          "calls": [
+            {
+              "callee": "this.owned",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1159379,
+                "end": 1159401,
+                "startLine": 1,
+                "startColumn": 1159380,
+                "endLine": 1,
+                "endColumn": 1159402,
+                "sliceSha256": "02977de605b03d4784bd1663120a2a5897e71881c520795e9680e7a626d45623"
+              },
+              "arguments": [
+                {
+                  "expression": "e",
+                  "shape": {
+                    "type": "Identifier",
+                    "expression": "e"
+                  }
+                },
+                {
+                  "expression": "t?.jobId",
+                  "shape": {
+                    "type": "PropertyAccessExpression",
+                    "expression": "t?.jobId"
+                  }
+                }
+              ],
+              "resolvedFunctionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1115175",
+              "resolution": "lexical-declaration"
+            },
+            {
+              "callee": "this.withJobLock",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1159409,
+                "end": 1162218,
+                "startLine": 1,
+                "startColumn": 1159410,
+                "endLine": 1,
+                "endColumn": 1162219,
+                "sliceSha256": "0e623e193cef9177a79c29f7c4690c78e5402195308c64fc8de28bfc4ef8358d"
+              },
+              "arguments": [
+                {
+                  "expression": "n.jobId",
+                  "shape": {
+                    "type": "PropertyAccessExpression",
+                    "expression": "n.jobId"
+                  }
+                },
+                {
+                  "expression": "async()=>{const n=await this.owned(e,t?.jobId);if(n.reportSources&&!t?.artifactId&&\"derived_report\"===t?.resultKind){if((await Promise.all(n.reportSources.map(t=>this.owned(e,t.job",
+                  "shape": {
+                    "type": "ArrowFunction",
+                    "expression": "async()=>{const n=await this.owned(e,t?.jobId);if(n.reportSources&&!t?.artifactId&&\"derived_report\"===t?.resultKind){if((await Promise.all(n.reportSources.map(t=>this.owned(e,t.job"
+                  }
+                }
+              ],
+              "resolvedFunctionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1114704",
+              "resolution": "lexical-declaration"
+            }
+          ],
+          "nestedFunctions": [
+            {
+              "functionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1159434",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1159434,
+                "end": 1162217,
+                "startLine": 1,
+                "startColumn": 1159435,
+                "endLine": 1,
+                "endColumn": 1162218,
+                "sliceSha256": "3f5ae30d6140ce031ff4a70eb6c6df83848c2fe2588e982a96ad936ab4caffdf"
+              },
+              "execution": "callback-or-nested-declaration; invocation-not-assumed"
+            }
+          ],
+          "activationSignals": [],
+          "controlConditions": []
+        }
+      ]
+    },
+    {
+      "method": "allocateSlot",
+      "candidates": [
+        {
+          "functionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1162219",
+          "evidence": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1162219,
+            "end": 1162344,
+            "startLine": 1,
+            "startColumn": 1162220,
+            "endLine": 1,
+            "endColumn": 1162345,
+            "sliceSha256": "3f8158d7f7223e9dfe623bcf3181e832814ed78143fde46360ffd36843fa997a"
+          },
+          "enclosingClass": "qw"
+        }
+      ],
+      "completeness": "local-method-contract-only; gateway binding manually corroborated",
+      "contracts": [
+        {
+          "id": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1162219",
+          "evidence": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1162219,
+            "end": 1162344,
+            "startLine": 1,
+            "startColumn": 1162220,
+            "endLine": 1,
+            "endColumn": 1162345,
+            "sliceSha256": "3f8158d7f7223e9dfe623bcf3181e832814ed78143fde46360ffd36843fa997a"
+          },
+          "parameters": [
+            {
+              "syntax": "e",
+              "rest": false,
+              "default": null
+            },
+            {
+              "syntax": "t",
+              "rest": false,
+              "default": null
+            }
+          ],
+          "async": true,
+          "returns": [
+            {
+              "shape": {
+                "type": "CallExpression",
+                "expression": "this.withJobLock(n.jobId,()=>this.allocateSlotOnce(e,t))"
+              },
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1162280,
+                "end": 1162343,
+                "startLine": 1,
+                "startColumn": 1162281,
+                "endLine": 1,
+                "endColumn": 1162344,
+                "sliceSha256": "7c5da646d1d12a677e1d3433d723a0f1c8b36f00c5a947304592c8b77ea263d3"
+              },
+              "enclosingConditions": []
+            }
+          ],
+          "throws": [],
+          "catches": [],
+          "parameterAccesses": [
+            {
+              "expression": "t?.jobId",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1162270,
+                "end": 1162278,
+                "startLine": 1,
+                "startColumn": 1162271,
+                "endLine": 1,
+                "endColumn": 1162279,
+                "sliceSha256": "de027210806741f07d3875903ea142091bc920a3eb8222edd4f4e5b8f1e978af"
+              },
+              "required": "not-inferred-from-access"
+            }
+          ],
+          "parameterDestructuring": [],
+          "mutations": [],
+          "calls": [
+            {
+              "callee": "this.owned",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1162257,
+                "end": 1162279,
+                "startLine": 1,
+                "startColumn": 1162258,
+                "endLine": 1,
+                "endColumn": 1162280,
+                "sliceSha256": "02977de605b03d4784bd1663120a2a5897e71881c520795e9680e7a626d45623"
+              },
+              "arguments": [
+                {
+                  "expression": "e",
+                  "shape": {
+                    "type": "Identifier",
+                    "expression": "e"
+                  }
+                },
+                {
+                  "expression": "t?.jobId",
+                  "shape": {
+                    "type": "PropertyAccessExpression",
+                    "expression": "t?.jobId"
+                  }
+                }
+              ],
+              "resolvedFunctionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1115175",
+              "resolution": "lexical-declaration"
+            },
+            {
+              "callee": "this.withJobLock",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1162287,
+                "end": 1162343,
+                "startLine": 1,
+                "startColumn": 1162288,
+                "endLine": 1,
+                "endColumn": 1162344,
+                "sliceSha256": "71dc2662e6f53f76f4fb8d559624b43e7c9dc0c67cb8745d0e0a417bcfee634e"
+              },
+              "arguments": [
+                {
+                  "expression": "n.jobId",
+                  "shape": {
+                    "type": "PropertyAccessExpression",
+                    "expression": "n.jobId"
+                  }
+                },
+                {
+                  "expression": "()=>this.allocateSlotOnce(e,t)",
+                  "shape": {
+                    "type": "ArrowFunction",
+                    "expression": "()=>this.allocateSlotOnce(e,t)"
+                  }
+                }
+              ],
+              "resolvedFunctionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1114704",
+              "resolution": "lexical-declaration"
+            }
+          ],
+          "nestedFunctions": [
+            {
+              "functionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1162312",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1162312,
+                "end": 1162342,
+                "startLine": 1,
+                "startColumn": 1162313,
+                "endLine": 1,
+                "endColumn": 1162343,
+                "sliceSha256": "fe0535b9f96c4343327ab7946ff944c385dd50ab69a3fb9a46a22e8f0a122264"
+              },
+              "execution": "callback-or-nested-declaration; invocation-not-assumed"
+            }
+          ],
+          "activationSignals": [],
+          "controlConditions": []
+        }
+      ]
+    },
+    {
+      "method": "submitResult",
+      "candidates": [
+        {
+          "functionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1165725",
+          "evidence": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1165725,
+            "end": 1165850,
+            "startLine": 1,
+            "startColumn": 1165726,
+            "endLine": 1,
+            "endColumn": 1165851,
+            "sliceSha256": "2e373b1f73743386beb79505e380bfbeeffc52e09680ad74a9aa0c3753281bf1"
+          },
+          "enclosingClass": "qw"
+        }
+      ],
+      "completeness": "local-method-contract-only; gateway binding manually corroborated",
+      "contracts": [
+        {
+          "id": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1165725",
+          "evidence": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1165725,
+            "end": 1165850,
+            "startLine": 1,
+            "startColumn": 1165726,
+            "endLine": 1,
+            "endColumn": 1165851,
+            "sliceSha256": "2e373b1f73743386beb79505e380bfbeeffc52e09680ad74a9aa0c3753281bf1"
+          },
+          "parameters": [
+            {
+              "syntax": "e",
+              "rest": false,
+              "default": null
+            },
+            {
+              "syntax": "t",
+              "rest": false,
+              "default": null
+            }
+          ],
+          "async": true,
+          "returns": [
+            {
+              "shape": {
+                "type": "CallExpression",
+                "expression": "this.withJobLock(n.jobId,()=>this.submitResultOnce(e,t))"
+              },
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1165786,
+                "end": 1165849,
+                "startLine": 1,
+                "startColumn": 1165787,
+                "endLine": 1,
+                "endColumn": 1165850,
+                "sliceSha256": "4c65097b7706680ba4ddd09d134f224a28215a60e737dde81a19d294457eb645"
+              },
+              "enclosingConditions": []
+            }
+          ],
+          "throws": [],
+          "catches": [],
+          "parameterAccesses": [
+            {
+              "expression": "t?.jobId",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1165776,
+                "end": 1165784,
+                "startLine": 1,
+                "startColumn": 1165777,
+                "endLine": 1,
+                "endColumn": 1165785,
+                "sliceSha256": "de027210806741f07d3875903ea142091bc920a3eb8222edd4f4e5b8f1e978af"
+              },
+              "required": "not-inferred-from-access"
+            }
+          ],
+          "parameterDestructuring": [],
+          "mutations": [],
+          "calls": [
+            {
+              "callee": "this.owned",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1165763,
+                "end": 1165785,
+                "startLine": 1,
+                "startColumn": 1165764,
+                "endLine": 1,
+                "endColumn": 1165786,
+                "sliceSha256": "02977de605b03d4784bd1663120a2a5897e71881c520795e9680e7a626d45623"
+              },
+              "arguments": [
+                {
+                  "expression": "e",
+                  "shape": {
+                    "type": "Identifier",
+                    "expression": "e"
+                  }
+                },
+                {
+                  "expression": "t?.jobId",
+                  "shape": {
+                    "type": "PropertyAccessExpression",
+                    "expression": "t?.jobId"
+                  }
+                }
+              ],
+              "resolvedFunctionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1115175",
+              "resolution": "lexical-declaration"
+            },
+            {
+              "callee": "this.withJobLock",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1165793,
+                "end": 1165849,
+                "startLine": 1,
+                "startColumn": 1165794,
+                "endLine": 1,
+                "endColumn": 1165850,
+                "sliceSha256": "7436254b2e6b19a7099455d8b575e4276c4674faa2889fa4f39a6c6309ca3089"
+              },
+              "arguments": [
+                {
+                  "expression": "n.jobId",
+                  "shape": {
+                    "type": "PropertyAccessExpression",
+                    "expression": "n.jobId"
+                  }
+                },
+                {
+                  "expression": "()=>this.submitResultOnce(e,t)",
+                  "shape": {
+                    "type": "ArrowFunction",
+                    "expression": "()=>this.submitResultOnce(e,t)"
+                  }
+                }
+              ],
+              "resolvedFunctionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1114704",
+              "resolution": "lexical-declaration"
+            }
+          ],
+          "nestedFunctions": [
+            {
+              "functionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1165818",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1165818,
+                "end": 1165848,
+                "startLine": 1,
+                "startColumn": 1165819,
+                "endLine": 1,
+                "endColumn": 1165849,
+                "sliceSha256": "6ace2f3648b7421321dc1a968a808ee46270440a99cf09ed355bbbd43fe0ee6a"
+              },
+              "execution": "callback-or-nested-declaration; invocation-not-assumed"
+            }
+          ],
+          "activationSignals": [],
+          "controlConditions": []
+        }
+      ]
+    },
+    {
+      "method": "requestRestore",
+      "candidates": [
+        {
+          "functionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1172559",
+          "evidence": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1172559,
+            "end": 1172688,
+            "startLine": 1,
+            "startColumn": 1172560,
+            "endLine": 1,
+            "endColumn": 1172689,
+            "sliceSha256": "ff096cb730ac3be3c07aac4831d1244a8a6b84d738dd1f4e4cb1da6efac9ee7c"
+          },
+          "enclosingClass": "qw"
+        }
+      ],
+      "completeness": "local-method-contract-only; gateway binding manually corroborated",
+      "contracts": [
+        {
+          "id": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1172559",
+          "evidence": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1172559,
+            "end": 1172688,
+            "startLine": 1,
+            "startColumn": 1172560,
+            "endLine": 1,
+            "endColumn": 1172689,
+            "sliceSha256": "ff096cb730ac3be3c07aac4831d1244a8a6b84d738dd1f4e4cb1da6efac9ee7c"
+          },
+          "parameters": [
+            {
+              "syntax": "e",
+              "rest": false,
+              "default": null
+            },
+            {
+              "syntax": "t",
+              "rest": false,
+              "default": null
+            }
+          ],
+          "async": true,
+          "returns": [
+            {
+              "shape": {
+                "type": "CallExpression",
+                "expression": "this.withJobLock(n.jobId,()=>this.requestRestoreOnce(e,t))"
+              },
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1172622,
+                "end": 1172687,
+                "startLine": 1,
+                "startColumn": 1172623,
+                "endLine": 1,
+                "endColumn": 1172688,
+                "sliceSha256": "bcfa3520294bbd4eae807dae1907a1fe1b85e698ebb5b8a100a83651137c8765"
+              },
+              "enclosingConditions": []
+            }
+          ],
+          "throws": [],
+          "catches": [],
+          "parameterAccesses": [
+            {
+              "expression": "t?.jobId",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1172612,
+                "end": 1172620,
+                "startLine": 1,
+                "startColumn": 1172613,
+                "endLine": 1,
+                "endColumn": 1172621,
+                "sliceSha256": "de027210806741f07d3875903ea142091bc920a3eb8222edd4f4e5b8f1e978af"
+              },
+              "required": "not-inferred-from-access"
+            }
+          ],
+          "parameterDestructuring": [],
+          "mutations": [],
+          "calls": [
+            {
+              "callee": "this.owned",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1172599,
+                "end": 1172621,
+                "startLine": 1,
+                "startColumn": 1172600,
+                "endLine": 1,
+                "endColumn": 1172622,
+                "sliceSha256": "02977de605b03d4784bd1663120a2a5897e71881c520795e9680e7a626d45623"
+              },
+              "arguments": [
+                {
+                  "expression": "e",
+                  "shape": {
+                    "type": "Identifier",
+                    "expression": "e"
+                  }
+                },
+                {
+                  "expression": "t?.jobId",
+                  "shape": {
+                    "type": "PropertyAccessExpression",
+                    "expression": "t?.jobId"
+                  }
+                }
+              ],
+              "resolvedFunctionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1115175",
+              "resolution": "lexical-declaration"
+            },
+            {
+              "callee": "this.withJobLock",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1172629,
+                "end": 1172687,
+                "startLine": 1,
+                "startColumn": 1172630,
+                "endLine": 1,
+                "endColumn": 1172688,
+                "sliceSha256": "3b97784d8fbca653742927f9cb45f05816bae23bb668f2fe9a068f5c68b5b678"
+              },
+              "arguments": [
+                {
+                  "expression": "n.jobId",
+                  "shape": {
+                    "type": "PropertyAccessExpression",
+                    "expression": "n.jobId"
+                  }
+                },
+                {
+                  "expression": "()=>this.requestRestoreOnce(e,t)",
+                  "shape": {
+                    "type": "ArrowFunction",
+                    "expression": "()=>this.requestRestoreOnce(e,t)"
+                  }
+                }
+              ],
+              "resolvedFunctionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1114704",
+              "resolution": "lexical-declaration"
+            }
+          ],
+          "nestedFunctions": [
+            {
+              "functionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1172654",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1172654,
+                "end": 1172686,
+                "startLine": 1,
+                "startColumn": 1172655,
+                "endLine": 1,
+                "endColumn": 1172687,
+                "sliceSha256": "92cbc371c0678864d7325669ce7fd44f4f60c0d1d6bb1f9ff37cd2cf30fa6fb8"
+              },
+              "execution": "callback-or-nested-declaration; invocation-not-assumed"
+            }
+          ],
+          "activationSignals": [],
+          "controlConditions": []
+        }
+      ]
+    },
+    {
+      "method": "continueReview",
+      "candidates": [
+        {
+          "functionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1178085",
+          "evidence": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1178085,
+            "end": 1178214,
+            "startLine": 1,
+            "startColumn": 1178086,
+            "endLine": 1,
+            "endColumn": 1178215,
+            "sliceSha256": "e839d1688300550ab743db23abef961f87e55722a6af0d480e6e6b54df9e871c"
+          },
+          "enclosingClass": "qw"
+        }
+      ],
+      "completeness": "local-method-contract-only; gateway binding manually corroborated",
+      "contracts": [
+        {
+          "id": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1178085",
+          "evidence": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1178085,
+            "end": 1178214,
+            "startLine": 1,
+            "startColumn": 1178086,
+            "endLine": 1,
+            "endColumn": 1178215,
+            "sliceSha256": "e839d1688300550ab743db23abef961f87e55722a6af0d480e6e6b54df9e871c"
+          },
+          "parameters": [
+            {
+              "syntax": "e",
+              "rest": false,
+              "default": null
+            },
+            {
+              "syntax": "t",
+              "rest": false,
+              "default": null
+            }
+          ],
+          "async": true,
+          "returns": [
+            {
+              "shape": {
+                "type": "CallExpression",
+                "expression": "this.withJobLock(n.jobId,()=>this.continueReviewOnce(e,t))"
+              },
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1178148,
+                "end": 1178213,
+                "startLine": 1,
+                "startColumn": 1178149,
+                "endLine": 1,
+                "endColumn": 1178214,
+                "sliceSha256": "e5c49bc76613bc425268c96bba373a8649602a9740b0f99e2659a9e9e90659a0"
+              },
+              "enclosingConditions": []
+            }
+          ],
+          "throws": [],
+          "catches": [],
+          "parameterAccesses": [
+            {
+              "expression": "t?.jobId",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1178138,
+                "end": 1178146,
+                "startLine": 1,
+                "startColumn": 1178139,
+                "endLine": 1,
+                "endColumn": 1178147,
+                "sliceSha256": "de027210806741f07d3875903ea142091bc920a3eb8222edd4f4e5b8f1e978af"
+              },
+              "required": "not-inferred-from-access"
+            }
+          ],
+          "parameterDestructuring": [],
+          "mutations": [],
+          "calls": [
+            {
+              "callee": "this.owned",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1178125,
+                "end": 1178147,
+                "startLine": 1,
+                "startColumn": 1178126,
+                "endLine": 1,
+                "endColumn": 1178148,
+                "sliceSha256": "02977de605b03d4784bd1663120a2a5897e71881c520795e9680e7a626d45623"
+              },
+              "arguments": [
+                {
+                  "expression": "e",
+                  "shape": {
+                    "type": "Identifier",
+                    "expression": "e"
+                  }
+                },
+                {
+                  "expression": "t?.jobId",
+                  "shape": {
+                    "type": "PropertyAccessExpression",
+                    "expression": "t?.jobId"
+                  }
+                }
+              ],
+              "resolvedFunctionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1115175",
+              "resolution": "lexical-declaration"
+            },
+            {
+              "callee": "this.withJobLock",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1178155,
+                "end": 1178213,
+                "startLine": 1,
+                "startColumn": 1178156,
+                "endLine": 1,
+                "endColumn": 1178214,
+                "sliceSha256": "e45bbd4da20ab251759fdba24f6ec6096f9a4ae9bfd27071a2e317a3d9ebe092"
+              },
+              "arguments": [
+                {
+                  "expression": "n.jobId",
+                  "shape": {
+                    "type": "PropertyAccessExpression",
+                    "expression": "n.jobId"
+                  }
+                },
+                {
+                  "expression": "()=>this.continueReviewOnce(e,t)",
+                  "shape": {
+                    "type": "ArrowFunction",
+                    "expression": "()=>this.continueReviewOnce(e,t)"
+                  }
+                }
+              ],
+              "resolvedFunctionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1114704",
+              "resolution": "lexical-declaration"
+            }
+          ],
+          "nestedFunctions": [
+            {
+              "functionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1178180",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1178180,
+                "end": 1178212,
+                "startLine": 1,
+                "startColumn": 1178181,
+                "endLine": 1,
+                "endColumn": 1178213,
+                "sliceSha256": "8ac0eb49629375e447471a41c7bab7d3ed5236d8f9af610988957a0493bfe5b2"
+              },
+              "execution": "callback-or-nested-declaration; invocation-not-assumed"
+            }
+          ],
+          "activationSignals": [],
+          "controlConditions": []
+        }
+      ]
+    },
+    {
+      "method": "completion",
+      "candidates": [
+        {
+          "functionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1178572",
+          "evidence": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1178572,
+            "end": 1178687,
+            "startLine": 1,
+            "startColumn": 1178573,
+            "endLine": 1,
+            "endColumn": 1178688,
+            "sliceSha256": "8eadb586e846a8e6642406830008c71d010a4ec1f5f1ff912a68fdcf74500495"
+          },
+          "enclosingClass": "qw"
+        }
+      ],
+      "completeness": "local-method-contract-only; gateway binding manually corroborated",
+      "contracts": [
+        {
+          "id": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1178572",
+          "evidence": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1178572,
+            "end": 1178687,
+            "startLine": 1,
+            "startColumn": 1178573,
+            "endLine": 1,
+            "endColumn": 1178688,
+            "sliceSha256": "8eadb586e846a8e6642406830008c71d010a4ec1f5f1ff912a68fdcf74500495"
+          },
+          "parameters": [
+            {
+              "syntax": "e",
+              "rest": false,
+              "default": null
+            },
+            {
+              "syntax": "t",
+              "rest": false,
+              "default": null
+            }
+          ],
+          "async": true,
+          "returns": [
+            {
+              "shape": {
+                "type": "BinaryExpression",
+                "expression": "Rw(n).completion||{jobId:n.jobId,status:n.state}"
+              },
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1178631,
+                "end": 1178686,
+                "startLine": 1,
+                "startColumn": 1178632,
+                "endLine": 1,
+                "endColumn": 1178687,
+                "sliceSha256": "56a87802553ab431dd517a2e9f9fc032fb8ab3f17aed6dbe677dd8c99d4fd70f"
+              },
+              "enclosingConditions": []
+            }
+          ],
+          "throws": [],
+          "catches": [],
+          "parameterAccesses": [
+            {
+              "expression": "t?.jobId",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1178621,
+                "end": 1178629,
+                "startLine": 1,
+                "startColumn": 1178622,
+                "endLine": 1,
+                "endColumn": 1178630,
+                "sliceSha256": "de027210806741f07d3875903ea142091bc920a3eb8222edd4f4e5b8f1e978af"
+              },
+              "required": "not-inferred-from-access"
+            }
+          ],
+          "parameterDestructuring": [],
+          "mutations": [],
+          "calls": [
+            {
+              "callee": "this.owned",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1178608,
+                "end": 1178630,
+                "startLine": 1,
+                "startColumn": 1178609,
+                "endLine": 1,
+                "endColumn": 1178631,
+                "sliceSha256": "02977de605b03d4784bd1663120a2a5897e71881c520795e9680e7a626d45623"
+              },
+              "arguments": [
+                {
+                  "expression": "e",
+                  "shape": {
+                    "type": "Identifier",
+                    "expression": "e"
+                  }
+                },
+                {
+                  "expression": "t?.jobId",
+                  "shape": {
+                    "type": "PropertyAccessExpression",
+                    "expression": "t?.jobId"
+                  }
+                }
+              ],
+              "resolvedFunctionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1115175",
+              "resolution": "lexical-declaration"
+            },
+            {
+              "callee": "Rw",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1178638,
+                "end": 1178643,
+                "startLine": 1,
+                "startColumn": 1178639,
+                "endLine": 1,
+                "endColumn": 1178644,
+                "sliceSha256": "e0b95e66a24b52954f7daa9fa3d391b10115646b23e212398680c2d846768d10"
+              },
+              "arguments": [
+                {
+                  "expression": "n",
+                  "shape": {
+                    "type": "Identifier",
+                    "expression": "n"
+                  }
+                }
+              ],
+              "resolvedFunctionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1103781",
+              "resolution": "lexical-declaration"
+            }
+          ],
+          "nestedFunctions": [],
+          "activationSignals": [],
+          "controlConditions": []
+        }
+      ]
+    },
+    {
+      "method": "waitForRestoreCompletion",
+      "candidates": [
+        {
+          "functionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1139594",
+          "evidence": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1139594,
+            "end": 1140275,
+            "startLine": 1,
+            "startColumn": 1139595,
+            "endLine": 1,
+            "endColumn": 1140276,
+            "sliceSha256": "9ef93c29ba0224a4a2b4317d4c761751fe8156f6bafd58ff94e4e5854ef35f6d"
+          },
+          "enclosingClass": "qw"
+        }
+      ],
+      "completeness": "local-method-contract-only; gateway binding manually corroborated",
+      "contracts": [
+        {
+          "id": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1139594",
+          "evidence": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+            "start": 1139594,
+            "end": 1140275,
+            "startLine": 1,
+            "startColumn": 1139595,
+            "endLine": 1,
+            "endColumn": 1140276,
+            "sliceSha256": "9ef93c29ba0224a4a2b4317d4c761751fe8156f6bafd58ff94e4e5854ef35f6d"
+          },
+          "parameters": [
+            {
+              "syntax": "e",
+              "rest": false,
+              "default": null
+            },
+            {
+              "syntax": "t",
+              "rest": false,
+              "default": null
+            }
+          ],
+          "async": true,
+          "returns": [
+            {
+              "shape": {
+                "type": "object",
+                "properties": [
+                  {
+                    "key": null,
+                    "shape": {
+                      "type": "spread",
+                      "expression": "...r"
+                    }
+                  },
+                  {
+                    "key": null,
+                    "shape": {
+                      "type": "spread",
+                      "expression": "...await this.projectWithDocuments(a)"
+                    }
+                  },
+                  {
+                    "key": null,
+                    "shape": {
+                      "type": "spread",
+                      "expression": "...\"restore_failed\"===r.status?{nextAction:s?\"retry_confirmation_locally_in_lawbot\":\"retry_locally_in_lawbot\",retry:!1,instructions:s?\"文件已生成，只有完成确认尚未保存。请提示用户在脱敏猫点击重试完成确认，不要再次生成或回填文"
+                    }
+                  }
+                ]
+              },
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1139934,
+                "end": 1140274,
+                "startLine": 1,
+                "startColumn": 1139935,
+                "endLine": 1,
+                "endColumn": 1140275,
+                "sliceSha256": "e7a7617c121c278f7b1f765a44d9adc576de8b2cddc9cc5fb11c878157abce69"
+              },
+              "enclosingConditions": []
+            }
+          ],
+          "throws": [
+            {
+              "expression": "new $w(\"SLOT_NOT_AVAILABLE\",\"还原轮次已变化，请使用当前轮次查询\")",
+              "shape": {
+                "type": "NewExpression",
+                "expression": "new $w(\"SLOT_NOT_AVAILABLE\",\"还原轮次已变化，请使用当前轮次查询\")"
+              },
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1139719,
+                "end": 1139774,
+                "startLine": 1,
+                "startColumn": 1139720,
+                "endLine": 1,
+                "endColumn": 1139775,
+                "sliceSha256": "af66ca559ee0041b9d01c34e49251fd6357ef9c3a388f78bd332ae8f07cb69d2"
+              },
+              "enclosingConditions": [
+                {
+                  "kind": "if",
+                  "branch": "then",
+                  "expression": "t?.roundId&&n.rounds.at(-1)?.roundId!==t.roundId",
+                  "evidence": {
+                    "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                    "start": 1139670,
+                    "end": 1139718,
+                    "startLine": 1,
+                    "startColumn": 1139671,
+                    "endLine": 1,
+                    "endColumn": 1139719,
+                    "sliceSha256": "3ab1f1138986765d96d7339d69f81a4668cdeca6860ffdecf8f03a57bb724bf5"
+                  }
+                }
+              ]
+            }
+          ],
+          "catches": [],
+          "parameterAccesses": [
+            {
+              "expression": "t?.jobId",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1139657,
+                "end": 1139665,
+                "startLine": 1,
+                "startColumn": 1139658,
+                "endLine": 1,
+                "endColumn": 1139666,
+                "sliceSha256": "de027210806741f07d3875903ea142091bc920a3eb8222edd4f4e5b8f1e978af"
+              },
+              "required": "not-inferred-from-access"
+            },
+            {
+              "expression": "t?.roundId",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1139670,
+                "end": 1139680,
+                "startLine": 1,
+                "startColumn": 1139671,
+                "endLine": 1,
+                "endColumn": 1139681,
+                "sliceSha256": "3c2591a36ab6850fc792564479081e83b6a9f84f721e466539a0a578b8c6b70a"
+              },
+              "required": "not-inferred-from-access"
+            },
+            {
+              "expression": "t.roundId",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1139709,
+                "end": 1139718,
+                "startLine": 1,
+                "startColumn": 1139710,
+                "endLine": 1,
+                "endColumn": 1139719,
+                "sliceSha256": "2b6a3ad9cf18fc174c9882eb4101aaa4e26e1c71e550fe22d8c48df1ca3c34bf"
+              },
+              "required": "not-inferred-from-access"
+            },
+            {
+              "expression": "t?.waitSeconds",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1139818,
+                "end": 1139832,
+                "startLine": 1,
+                "startColumn": 1139819,
+                "endLine": 1,
+                "endColumn": 1139833,
+                "sliceSha256": "b6156551caa522dd1dd75e1ab37c087823db495a5c333c11c2d9132cf81b716b"
+              },
+              "required": "not-inferred-from-access"
+            }
+          ],
+          "parameterDestructuring": [],
+          "mutations": [],
+          "calls": [
+            {
+              "callee": "this.owned",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1139644,
+                "end": 1139666,
+                "startLine": 1,
+                "startColumn": 1139645,
+                "endLine": 1,
+                "endColumn": 1139667,
+                "sliceSha256": "02977de605b03d4784bd1663120a2a5897e71881c520795e9680e7a626d45623"
+              },
+              "arguments": [
+                {
+                  "expression": "e",
+                  "shape": {
+                    "type": "Identifier",
+                    "expression": "e"
+                  }
+                },
+                {
+                  "expression": "t?.jobId",
+                  "shape": {
+                    "type": "PropertyAccessExpression",
+                    "expression": "t?.jobId"
+                  }
+                }
+              ],
+              "resolvedFunctionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1115175",
+              "resolution": "lexical-declaration"
+            },
+            {
+              "callee": "n.rounds.at",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1139682,
+                "end": 1139697,
+                "startLine": 1,
+                "startColumn": 1139683,
+                "endLine": 1,
+                "endColumn": 1139698,
+                "sliceSha256": "ef6a214966c0ff8410224178fb3e3f2f772202979a6960c44d2912beb1fa6049"
+              },
+              "arguments": [
+                {
+                  "expression": "-1",
+                  "shape": {
+                    "type": "PrefixUnaryExpression",
+                    "expression": "-1"
+                  }
+                }
+              ],
+              "resolvedFunctionId": null,
+              "resolution": "unresolved-or-external"
+            },
+            {
+              "callee": "$w",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1139725,
+                "end": 1139773,
+                "startLine": 1,
+                "startColumn": 1139726,
+                "endLine": 1,
+                "endColumn": 1139774,
+                "sliceSha256": "0915f813955b8aceeea7a240b4296bc99cbadd0dfa5e71d04046325669f9f767"
+              },
+              "arguments": [
+                {
+                  "expression": "\"SLOT_NOT_AVAILABLE\"",
+                  "shape": {
+                    "type": "string-literal",
+                    "value": "SLOT_NOT_AVAILABLE",
+                    "truncated": false
+                  }
+                },
+                {
+                  "expression": "\"还原轮次已变化，请使用当前轮次查询\"",
+                  "shape": {
+                    "type": "string-literal",
+                    "value": "还原轮次已变化，请使用当前轮次查询",
+                    "truncated": false
+                  }
+                }
+              ],
+              "resolvedFunctionId": null,
+              "resolution": "unresolved-or-external"
+            },
+            {
+              "callee": "this.waitForStates",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1139788,
+                "end": 1139853,
+                "startLine": 1,
+                "startColumn": 1139789,
+                "endLine": 1,
+                "endColumn": 1139854,
+                "sliceSha256": "e6d45ec404d0892756509332b95d6b584742b04d7c8acec2f93a00faee90b797"
+              },
+              "arguments": [
+                {
+                  "expression": "e",
+                  "shape": {
+                    "type": "Identifier",
+                    "expression": "e"
+                  }
+                },
+                {
+                  "expression": "t?.jobId",
+                  "shape": {
+                    "type": "PropertyAccessExpression",
+                    "expression": "t?.jobId"
+                  }
+                },
+                {
+                  "expression": "t?.waitSeconds",
+                  "shape": {
+                    "type": "PropertyAccessExpression",
+                    "expression": "t?.waitSeconds"
+                  }
+                },
+                {
+                  "expression": "[\"round_completed\"]",
+                  "shape": {
+                    "type": "array",
+                    "elements": [
+                      {
+                        "type": "string-literal",
+                        "value": "round_completed",
+                        "truncated": false
+                      }
+                    ],
+                    "truncated": false
+                  }
+                }
+              ],
+              "resolvedFunctionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1121436",
+              "resolution": "lexical-declaration"
+            },
+            {
+              "callee": "this.owned",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1139862,
+                "end": 1139884,
+                "startLine": 1,
+                "startColumn": 1139863,
+                "endLine": 1,
+                "endColumn": 1139885,
+                "sliceSha256": "02977de605b03d4784bd1663120a2a5897e71881c520795e9680e7a626d45623"
+              },
+              "arguments": [
+                {
+                  "expression": "e",
+                  "shape": {
+                    "type": "Identifier",
+                    "expression": "e"
+                  }
+                },
+                {
+                  "expression": "t?.jobId",
+                  "shape": {
+                    "type": "PropertyAccessExpression",
+                    "expression": "t?.jobId"
+                  }
+                }
+              ],
+              "resolvedFunctionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1115175",
+              "resolution": "lexical-declaration"
+            },
+            {
+              "callee": "a.rounds.at",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1139892,
+                "end": 1139907,
+                "startLine": 1,
+                "startColumn": 1139893,
+                "endLine": 1,
+                "endColumn": 1139908,
+                "sliceSha256": "a26a0058828859ef987f687a9ddaeca5e2feb47f41df76d2389c4b857d90df07"
+              },
+              "arguments": [
+                {
+                  "expression": "-1",
+                  "shape": {
+                    "type": "PrefixUnaryExpression",
+                    "expression": "-1"
+                  }
+                }
+              ],
+              "resolvedFunctionId": null,
+              "resolution": "unresolved-or-external"
+            },
+            {
+              "callee": "this.projectWithDocuments",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1139955,
+                "end": 1139983,
+                "startLine": 1,
+                "startColumn": 1139956,
+                "endLine": 1,
+                "endColumn": 1139984,
+                "sliceSha256": "e534f5377d77ba1982a2c3624d7339961ec378980755fb977d3b0474b19231a6"
+              },
+              "arguments": [
+                {
+                  "expression": "a",
+                  "shape": {
+                    "type": "Identifier",
+                    "expression": "a"
+                  }
+                }
+              ],
+              "resolvedFunctionId": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js:1120827",
+              "resolution": "lexical-declaration"
+            }
+          ],
+          "nestedFunctions": [],
+          "activationSignals": [],
+          "controlConditions": [
+            {
+              "expression": "t?.roundId&&n.rounds.at(-1)?.roundId!==t.roundId",
+              "evidence": {
+                "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+                "start": 1139670,
+                "end": 1139718,
+                "startLine": 1,
+                "startColumn": 1139671,
+                "endLine": 1,
+                "endColumn": 1139719,
+                "sliceSha256": "3ab1f1138986765d96d7339d69f81a4668cdeca6860ffdecf8f03a57bb724bf5"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

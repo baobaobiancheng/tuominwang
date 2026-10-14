@@ -1,0 +1,266 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "文档脱敏 · 功能全景",
+    "locale": "zh-CN",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1320,
+      750
+    ]
+  },
+  "components": [
+    {
+      "id": "import",
+      "type": "frontend",
+      "label": "01 材料导入",
+      "sublabel": "单文件 · 多文件 · 目录 · 粘贴",
+      "pos": [
+        40,
+        100
+      ],
+      "size": [
+        230,
+        86
+      ],
+      "tag": "R1"
+    },
+    {
+      "id": "extract",
+      "type": "backend",
+      "label": "02 解析与定位",
+      "sublabel": "正文 / 表格 / OCR / 隐藏内容",
+      "pos": [
+        370,
+        100
+      ],
+      "size": [
+        230,
+        86
+      ],
+      "tag": "R1"
+    },
+    {
+      "id": "identify",
+      "type": "backend",
+      "label": "03 三层敏感识别",
+      "sublabel": "正则与名单 · 中文 NER · AI 秘密",
+      "pos": [
+        700,
+        100
+      ],
+      "size": [
+        230,
+        86
+      ],
+      "tag": "R1"
+    },
+    {
+      "id": "review",
+      "type": "frontend",
+      "label": "04 人工复核",
+      "sublabel": "高亮定位 · 查漏补标 · OCR 改字",
+      "pos": [
+        1030,
+        100
+      ],
+      "size": [
+        230,
+        86
+      ],
+      "tag": "R1"
+    },
+    {
+      "id": "manage",
+      "type": "backend",
+      "label": "项目管理",
+      "sublabel": "保存续接 · 补文件 · 进度 · 撤销",
+      "pos": [
+        40,
+        325
+      ],
+      "size": [
+        230,
+        86
+      ],
+      "tag": "R1"
+    },
+    {
+      "id": "restore",
+      "type": "security",
+      "label": "07 授权还原",
+      "sublabel": "按项目代号回填｜不恢复真删除",
+      "pos": [
+        370,
+        325
+      ],
+      "size": [
+        230,
+        86
+      ],
+      "tag": "R1"
+    },
+    {
+      "id": "deliver",
+      "type": "backend",
+      "label": "06 安全导出",
+      "sublabel": "原格式 / MD / TXT · 下载前复查",
+      "pos": [
+        700,
+        325
+      ],
+      "size": [
+        230,
+        86
+      ],
+      "tag": "R1"
+    },
+    {
+      "id": "mask",
+      "type": "backend",
+      "label": "05 脱敏策略",
+      "sublabel": "一致假名 · 部分遮盖 · 真删除",
+      "pos": [
+        1030,
+        325
+      ],
+      "size": [
+        230,
+        86
+      ],
+      "tag": "R1"
+    },
+    {
+      "id": "security",
+      "type": "security",
+      "label": "权限与私有化",
+      "sublabel": "成员角色 · 审计 · 配额 · 离线包",
+      "pos": [
+        40,
+        550
+      ],
+      "size": [
+        230,
+        86
+      ],
+      "tag": "R1"
+    },
+    {
+      "id": "pending",
+      "type": "external",
+      "label": "待确认｜备份与恢复",
+      "sublabel": "一期保留还是暂缓：尚未确认",
+      "pos": [
+        370,
+        550
+      ],
+      "size": [
+        230,
+        86
+      ],
+      "tag": "待确认"
+    },
+    {
+      "id": "profile",
+      "type": "external",
+      "label": "R2｜安全画像与背景补充",
+      "sublabel": "实体属性 · 证据来源 · 反推风险",
+      "pos": [
+        700,
+        550
+      ],
+      "size": [
+        230,
+        86
+      ],
+      "tag": "R2"
+    },
+    {
+      "id": "enterprise",
+      "type": "external",
+      "label": "R3｜企业运营增强",
+      "sublabel": "SSO · 席位 · 集中分发 · 英文评测",
+      "pos": [
+        1030,
+        550
+      ],
+      "size": [
+        230,
+        86
+      ],
+      "tag": "R3"
+    }
+  ],
+  "connections": [
+    {
+      "from": "import",
+      "to": "extract",
+      "variant": "emphasis"
+    },
+    {
+      "from": "extract",
+      "to": "identify",
+      "variant": "emphasis"
+    },
+    {
+      "from": "identify",
+      "to": "review",
+      "variant": "emphasis"
+    },
+    {
+      "from": "review",
+      "to": "mask",
+      "variant": "emphasis"
+    },
+    {
+      "from": "mask",
+      "to": "deliver",
+      "variant": "emphasis"
+    },
+    {
+      "from": "deliver",
+      "to": "restore",
+      "label": "独立授权",
+      "variant": "security"
+    },
+    {
+      "from": "import",
+      "to": "manage",
+      "label": "归入项目",
+      "labelDy": 70
+    },
+    {
+      "from": "manage",
+      "to": "security",
+      "label": "权限与留痕",
+      "labelDy": 70
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "一期格式与处理范围",
+      "items": [
+        "DOCX、文本/扫描 PDF、图片、Markdown、XLSX、CSV、粘贴文本。",
+        "Excel 为值快照；图片区域可框选，印章/人脸不做人脸身份识别。"
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "一期完成标准",
+      "items": [
+        "导入 → 识别 → 复核 → 导出 → 核验；覆盖不全或残留则阻断。",
+        "项目内跨文件代号一致；原件不覆盖，档案保存至用户删除。"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "阶段与范围",
+      "items": [
+        "R0 先验证格式与模型；R1 为规划范围，尚未实现。",
+        "音视频、邮件/聊天连接器、CRM/ERP 接入不在一期。"
+      ]
+    }
+  ]
+}

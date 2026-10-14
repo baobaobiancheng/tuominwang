@@ -1,0 +1,125 @@
+import { readFile } from "node:fs/promises";
+import { test, expect } from "./fixture.ts";
+
+test("same-value groups review every occurrence across mark pages and text windows, preserve exceptions and export the real result", async ({ page }) => {
+  test.setTimeout(120000);
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  const phone = "13800138000";
+  const text = phone + "|" + "x".repeat(40000) + "|" + Array(59).fill(phone).join("|");
+  await page.goto("/");
+  await page.getByLabel("账号", { exact: true }).fill(process.env.E2E_USERNAME!);
+  await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
+  await page.getByRole("button", { name: "登录工作台", exact: true }).click();
+  await page.locator("summary").click();
+  await page.getByLabel("项目名称", { exact: true }).fill("合成实体操作项目");
+  await page.getByRole("button", { name: "新建项目", exact: true }).click();
+  await page.getByRole("button", { name: "导入材料", exact: true }).click();
+  await page.getByLabel("待处理文本", { exact: true }).fill(text);
+  await page.getByRole("button", { name: "提交并识别", exact: true }).click();
+
+  const groups = page.getByRole("region", { name: "实体分组", exact: true });
+  const group = groups.locator(".entity-group-card");
+  await expect(group).toHaveCount(1, { timeout: 30000 });
+  await expect(group).toContainText("60 处");
+  await expect(group.getByText("待确认 60", { exact: true })).toBeVisible();
+  await group.getByRole("checkbox").check();
+  await expect(groups.getByRole("status")).toHaveText("已选 1 组 · 60 处");
+  await groups.getByRole("button", { name: "所选组脱敏", exact: true }).click();
+  await expect(group.getByText("脱敏 60", { exact: true })).toBeVisible();
+  await page.getByRole("button", { name: "撤销修改", exact: true }).click();
+  await expect(group.getByText("待确认 60", { exact: true })).toBeVisible();
+  await page.getByRole("button", { name: "重做修改", exact: true }).click();
+  await expect(group.getByText("脱敏 60", { exact: true })).toBeVisible();
+
+  // This includes the 51st result and loads a real document window beyond 32K.
+  await page.getByRole("button", { name: "全文查找", exact: true }).click();
+  await page.getByLabel("全文查找", { exact: true }).fill(phone);
+  await page.getByLabel("查找范围", { exact: true }).selectOption("inside");
+  await page.getByRole("button", { name: "查找", exact: true }).click();
+  const results = page.getByLabel("查找结果", { exact: true });
+  await expect(results.locator("button.quote")).toHaveCount(50);
+  await results.getByRole("button", { name: "下一组结果", exact: true }).click();
+  await expect(results.getByRole("status")).toContainText("第 2 组，本组 10 处");
+  await expect(page.getByLabel("原文分段", { exact: true })).toContainText(/文本位置 40\d+/);
+  const original = page.getByLabel("原文", { exact: true });
+  await expect.poll(() => original.evaluate((el: HTMLTextAreaElement) => el.value.slice(el.selectionStart, el.selectionEnd))).toBe(phone);
+  await results.getByRole("button", { name: "上一处", exact: true }).click();
+  await expect(results.getByRole("status")).toContainText("第 1 组，本组 50 处");
+  await expect(results.getByRole("status")).toContainText("当前第 50 处");
+  await results.getByRole("button", { name: "下一处", exact: true }).click();
+  await expect(results.getByRole("status")).toContainText("第 2 组，本组 10 处");
+
+  await page.getByRole("button", { name: "敏感标记", exact: true }).click();
+  await group.getByRole("button", { name: phone, exact: true }).click();
+  await group.getByRole("button", { name: "下一处", exact: true }).click();
+  await expect(group).toContainText("第 2 / 60 处");
+  await expect.poll(() => original.evaluate((el: HTMLTextAreaElement) => el.value.slice(el.selectionStart, el.selectionEnd))).toBe(phone);
+  await group.getByRole("button", { name: "上一处", exact: true }).click();
+  await group.getByRole("button", { name: "编辑此处", exact: true }).click();
+  await expect(page.getByRole("button", { name: "逐条复核", exact: true })).toHaveAttribute("aria-pressed", "true");
+  await page.getByLabel("标记 1 处理决定", { exact: true }).selectOption("ignore");
+  await expect(page.getByLabel("标记 2 处理决定", { exact: true })).toHaveValue("redact");
+  await page.getByRole("button", { name: "按实体", exact: true }).click();
+  await expect(group.getByText("脱敏 59", { exact: true })).toBeVisible();
+  await expect(group.getByText("保留 1", { exact: true })).toBeVisible();
+  await expect(group).toContainText("处理决定不一致");
+
+  // Previously computed scope results must disappear when the draft changes.
+  await page.getByRole("button", { name: "全文查找", exact: true }).click();
+  await expect(results).toHaveCount(0);
+  await page.getByLabel("查找范围", { exact: true }).selectOption("outside");
+  await page.getByRole("button", { name: "查找", exact: true }).click();
+  await expect(results.locator("button.quote")).toHaveCount(1);
+  await expect(results.getByRole("status")).toContainText("本组 1 处，已到末尾");
+  await expect(results.locator("button.quote")).toContainText("位置 1");
+  await page.getByRole("button", { name: "敏感标记", exact: true }).click();
+  await page.getByRole("button", { name: "保存复核", exact: true }).click();
+  await expect(page.getByText("复核已保存", { exact: true })).toBeVisible();
+  await page.getByRole("button", { name: "返回材料列表", exact: true }).click();
+  await page.getByRole("button", { name: /文本 1/ }).click();
+  await expect(page.getByRole("button", { name: "按实体", exact: true })).toHaveAttribute("aria-pressed", "true");
+  await expect(group.getByText("脱敏 59", { exact: true })).toBeVisible();
+  await expect(group.getByText("保留 1", { exact: true })).toBeVisible();
+
+  await group.getByRole("checkbox").check();
+  await groups.getByRole("button", { name: "所选组脱敏", exact: true }).click();
+  await group.getByRole("button", { name: phone, exact: true }).click();
+  const visibleOriginal = await original.inputValue();
+  await page.getByRole("button", { name: "刷新处理预览", exact: true }).click();
+  await expect(page.getByRole("textbox", { name: "处理预览", exact: true })).toHaveValue(visibleOriginal.replaceAll(phone, "【手机号】"));
+  await expect(original).toBeHidden();
+  await page.getByRole("button", { name: "原文审查", exact: true }).click();
+  await expect(original).toHaveValue(visibleOriginal);
+  await page.screenshot({ path: "test-results/entity-workflow-desktop.png", fullPage: true });
+  await page.getByRole("button", { name: "保存复核", exact: true }).click();
+  await expect(page.getByText("复核已保存", { exact: true })).toBeVisible();
+  await page.getByRole("button", { name: "导出已选标记的处理副本", exact: true }).click();
+  const downloadButton = page.getByRole("button", { name: "核验并下载 TXT", exact: true });
+  await expect(downloadButton).toBeEnabled({ timeout: 30000 });
+  const pendingDownload = page.waitForEvent("download");
+  await downloadButton.click();
+  const file = await (await pendingDownload).path();
+  expect(await readFile(file!, "utf8")).toBe(text.replaceAll(phone, "【手机号】"));
+
+  // Selection is UI state, not a dirty draft, and must never migrate to another document.
+  await page.getByRole("button", { name: "提交新文本", exact: true }).click();
+  await page.getByLabel("待处理文本", { exact: true }).fill("同值第二份材料|" + phone);
+  await page.getByRole("button", { name: "提交并识别", exact: true }).click();
+  await expect(group.getByText("待确认 1", { exact: true })).toBeVisible({ timeout: 30000 });
+  const documentNavigation = page.getByRole("navigation", { name: "材料导航", exact: true });
+  await documentNavigation.getByRole("button", { name: "文本 1", exact: true }).click();
+  await expect(group.getByText("脱敏 60", { exact: true })).toBeVisible();
+  await group.getByRole("checkbox").check();
+  await expect(groups.getByRole("status")).toHaveText("已选 1 组 · 60 处");
+  await expect(page.getByRole("button", { name: "保存复核", exact: true })).toBeDisabled();
+  let unexpectedDialogs = 0;
+  page.once("dialog", async dialog => { unexpectedDialogs++; await dialog.dismiss(); });
+  await documentNavigation.getByRole("button", { name: "文本 2", exact: true }).click();
+  await expect(original).toHaveValue("同值第二份材料|" + phone);
+  await expect(group.getByText("待确认 1", { exact: true })).toBeVisible();
+  await expect(group.getByRole("checkbox")).not.toBeChecked();
+  await expect(groups.getByRole("status")).toHaveText("已选 0 组 · 0 处");
+  await expect(groups.getByRole("button", { name: "所选组脱敏", exact: true })).toBeDisabled();
+  await expect(page.getByRole("alertdialog", { name: "操作确认" })).toHaveCount(0);
+  expect(unexpectedDialogs).toBe(0);
+});

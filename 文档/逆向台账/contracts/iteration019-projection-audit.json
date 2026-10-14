@@ -1,0 +1,536 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-14",
+  "iteration": "ITER-019",
+  "staticDepth": "S2",
+  "runtime": "R0",
+  "scope": "DEP27/31命名主体和连接补证，全部赋值仅定位索引，未宣称完整产品等价",
+  "sections": [
+    {
+      "id": "PA01",
+      "title": "实体上游、正文与侧栏投影",
+      "dependencyIds": [
+        "DEP27"
+      ],
+      "observations": [
+        "S2来自de2经_2过滤：deleted、v2无效实体、Markdown非If实体排除；manual_input且具imagePath/imageBbox的实体豁免v2中的Mf与_2中的Af/Ef集合排除，普通实体才必须不在Af/Ef集合。k2仅接受meta.renderState resolved/conflict-only。",
+        "Ms2优先非空有效initialReviewDraft，否则规范化detectedEntities；已有id/startOffset对象可以原样复用。As2按al2去重，重复时非deleted替代deleted；DOCX再$o2重定位、Xl2清理。识别watch同buffer用Md→mc合并保留既有审查，换buffer重新Ms2。",
+        "Ao2排除image_ocr，Markdown非exact仅table例外；按start排序，只同最后已选实体比较重叠，Ol2优先级2，否则1，同优先级保留end更长者。仅检查负起点、超文长、end<=start，不能据此推断已作整数/finite完整验证。",
+        "Eo2的DOCX侧栏使用S2.filter(k2)，Markdown用To2；类型精确相等，搜索lowercase+trim，score乘100四舍五入后区间筛选。侧栏数量因此不是所有原检测数量。"
+      ],
+      "remaining": [
+        "Af/Ef/Md/mc/$o2在PA08本轮继续实读；实际DOM匹配及完整来回恢复仍R0。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 6103,
+          "endLine": 6142,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "369846bf0709722685eef465916cca4d53493b966f24aefe47fe9999db2353d6"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 6194,
+          "endLine": 6194,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "d1352715db005bbaf20c7711f61303762095f51984f309ca24fcf254c04f09c9"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 8481,
+          "endLine": 8567,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "8f0ae6fe785d91ddbc7d355d1888bbb2a1b46b2f5b2614863eb1c8a00e5118de"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 8796,
+          "endLine": 8832,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "cbbb78ae5b31ed8df4655e044308331463903dd7efd3ace6363264cdda063750"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 10153,
+          "endLine": 10178,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "9a9e27df73fac1dc2be262c4345748c6db078214070eb0b03647142a348fa914"
+        }
+      ]
+    },
+    {
+      "id": "PA02",
+      "title": "长DOCX分块可见集",
+      "dependencyIds": [
+        "DEP27",
+        "DEP29"
+      ],
+      "observations": [
+        "zy常量5000，Lo2按UTF16字符串每5000个code units切段。长度>=50000且xs2非空时To2仅保留完整包含在某一可见字符段的实体；跨段实体不会因两段同时可见而被合并接纳。xs2为空则返回Ao2全量。",
+        "挂载500ms后全局查询.document-text p/div，以floor(DOM序号/10)设置chunk-id，而非按实际累计字符位置。IntersectionObserver根为视口、margin200px、threshold0.01。DOM十元素分组与5000字符分段不是同一计算，不能由代码推出对应关系。",
+        "卸载disconnect并置空ks2，但该500ms timer未保存/清除；延迟回调仍可设置匹配DOM的属性，ks2?.observe因空值不执行。此为静态条件，不是已复现跨文档故障。"
+      ],
+      "remaining": [
+        "真实DOCX DOM结构和滚动显示需要合法运行；第三方docx渲染器另列外部边界。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 6041,
+          "endLine": 6041,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "3f5bcdcac97668d9ce19af4ff8fb833f7b47dc401c6a49d85702801a46b8e9d7"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 8810,
+          "endLine": 8819,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "dfb85e444dbd9e3bd814bfc0644dbf75e7e32ae3e30b78e6815ac848428b3845"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 8931,
+          "endLine": 8936,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "042a8f557cb3e208e99d6e3e5eaaf50c7374b06fc4354a1e59d39cf09cbfe275"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 10309,
+          "endLine": 10341,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "670ef3deec7fcce59ffcf0aabc2abc2e23bcc54f7bc92378f2cc021d64351fd7"
+        }
+      ]
+    },
+    {
+      "id": "PA03",
+      "title": "正文删除、树删除和发出的状态事件",
+      "dependencyIds": [
+        "DEP27"
+      ],
+      "observations": [
+        "Xl2实际从de2物理移除被Af/Ef/Cf归为覆盖的实体并清selection；Ql2单处删除按同规范化type/text且span重叠扩大ID集，标deleted/rejected，累加FP并发feedback。",
+        "eu2树删除会对d2人工条目直接移除；其他条目复制并标deleted，typeHidden走_c且不记FP/feedback。FP增量扣除直接移除人工条目、FN相应减少；反馈按类型+规范化文字聚合。",
+        "tu2 group通过type/text索引再按region限制；右键au2批量则使用严格type/text相等，不加region条件。它们不是完全相同的批量集合。",
+        "Ql2/eu2均发review-entities-deleted和review-state-change。此组件ce2是空async函数，调用本身不写服务器。父组件持久化必须经既有父级报告所列事件/快照/恢复路径。"
+      ],
+      "remaining": [
+        "父级保存证据见deep-ui-parents、ui-remaining；本节没有把事件发出当保存成功。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 9602,
+          "endLine": 9702,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "b1645f570cf42a134ed28854bd6e932f56aa153bb2f7e90ba3e049f6fe9c0f73"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 6192,
+          "endLine": 6193,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "f9a50a6b24d5280265edc2c7e45ce1e69287ca743945ba69c2740b52da7ee9c8"
+        }
+      ]
+    },
+    {
+      "id": "PA04",
+      "title": "gf2草稿选择与四格式子组件同步",
+      "dependencyIds": [
+        "DEP31"
+      ],
+      "observations": [
+        "gf2直接选Image detectedBBoxes、PDF detectedEntities；DOCX/Markdown优先Gh2合法reviewDraft.entities。Gh2对DOCX优先比detectRequestId，任一非空即要求两者非空相等；否则比sessionId。DOCX已检测非空但草稿空或全Mf时回退；其他格式不作该request/session门。",
+        "Mm2从当前子组件收集草稿：Markdown直接Cm2；Image优先draft.activeBBoxes及reviewState；PDF可skipPdfEntities，写rotations/deletedPageNumbers及投影；DOCX经Zh2标记当前request/session。Sm2用JSON.stringify相等判断，无深拷贝保证。",
+        "Um2仅flush统一假名同步。Vm2按ready文件及dirty集合重建pseudonymEntries，更新reviewDraft，当前子组件apply；finally清busy。这个函数没有调用磁盘保存。其await成功不等于恢复文件已保存。"
+      ],
+      "remaining": [
+        "全部reviewDraft赋值位置另附机械索引；索引本身不提升各分支语义深度。快照与保存路径跨报告复用，运行保存结果仍R0。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 34744,
+          "endLine": 34749,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "2a44d5fd76a99b83b9723293bc8407b0a680faa55ee6ecf6ad5886f0d9b56715"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 33617,
+          "endLine": 33630,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "dea73c6bf79bfd9f30b3ae503c04d5265c32bd0e303e803e125fb880bc3a58bd"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 33663,
+          "endLine": 33689,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "128037a6078928e6151fd60a984114389c6adf7b206647e28b87387aea536e77"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 34008,
+          "endLine": 34070,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "b3ec8f3a2d3e480d2acd744531e4dfab2bd043631da36b0cd2ec28c5b09b485d"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 34466,
+          "endLine": 34526,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "3a09ddb4b215c66b86ec2a40db0420ce3b6e91456cbcb1cd0f03b4b37703a337"
+        }
+      ]
+    },
+    {
+      "id": "PA05",
+      "title": "审计命中来源与覆盖判断",
+      "dependencyIds": [
+        "DEP31"
+      ],
+      "observations": [
+        "Tf2文本要求有效实体、规范化识别文字含查询、span相交；同type/text还须覆盖完整hit，异类允许相交。DOCX图片要求imagePath及OCR行/occurrence相等，手工框改以交集/较小面积>0.4。PDF/Image先按同页几何匹配，按面积排序；无几何候选时按occurrence索引回退同类/异类，最后优先same。",
+        "Pf2 DOCX正文ev和图片nv/uf2分别生成hit；Markdown直接搜source；PDF文字通过vf2，scanned/hybrid加batch-search；hybrid即ocrOnly也读文字层。PDF OCR checked pages只用于缺页提示，结果追加处没有据pdfDeletedPageNumbers排除命中。",
+        "图片batch-search若返回success=false且不throw，没有该分支的失败提示；PDF相同失败有提示。PDF OCR与文字层交集>0.4则删OCR重复，最终按source/file/span/page/四舍五入首框坐标/图片行occurrence键去重。",
+        "Rf2先Mm2，仅ready文件参与，顺序await各文件，统计same/other/uncovered/skipped；本函数无请求代际检查。"
+      ],
+      "remaining": [
+        "vf2真实PDF字体/几何及OCR缓存内容须运行；此前报告已有nonBMP索引单位不一致条件，不据此断言每次都错。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 34744,
+          "endLine": 34926,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "872498febc62031eeed674f8d46fa273143a29589f71bf797303dd9aeec4db0d"
+        }
+      ]
+    },
+    {
+      "id": "PA06",
+      "title": "OCR修正、补录与删除后添加",
+      "dependencyIds": [
+        "DEP31"
+      ],
+      "observations": [
+        "jf2缓存key含规范化recognizedText、trim correctedText、type、source、文件名/entityID，不含sourceAnchor或文档revision。构建时仅ready，跨文件收集目标及未覆盖/补充命中；apply原地修改实体后更新对应草稿，随后统一映射flush。",
+        "jf2补录分派仅docx/pdf/image；修正已有实体赋值分支虽含Markdown，但Of2目标筛选先排除Markdown，本路径不能据此认定支持Markdown OCR修正。不能把OCR修正当全部格式通用补录。",
+        "Vf2替换异类时Image物理删除框；DOCX/PDF等调用er2拒绝实体。av2先Vf2后Wf2/qf2/Gf2，后续添加false不回滚先前删除；有replaceOther即使新增0也触发映射flush。",
+        "Wf2 Markdown新增需Qf精确映射；DOCX图片按imagePath/行/occurrence或手工框判重；新增默认confirmed、score1。qf2/Gf2依据文字类型及框重叠去重。完成后刷新当前组件；跨文件没有统一回滚事务。"
+      ],
+      "remaining": [
+        "Um2是映射flush而非保存，保存由父级事件/快照链负责；缓存时序/失败恢复仍R0。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 34928,
+          "endLine": 35148,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "b24c9d904453f0d29db7fca6cd0cd93dd07289a4981fb1900a8571bd5e8c49cd"
+        }
+      ]
+    },
+    {
+      "id": "PA07",
+      "title": "持久化出口的明确边界",
+      "dependencyIds": [
+        "DEP27",
+        "DEP31"
+      ],
+      "observations": [
+        "Du2先Mm2再Nu2逐材料组装snapshot；changedDocumentIds可以复用已有文档，Nu2返回空则跳过；没有任何可用document返回false。",
+        "lc2仅snapshot存在且dirty才设置2s timer调用Ec2；Ec2无dirty直接true，否则await saveRecovery结果，成功Fc2。不能把子组件状态改变、Um2成功、timer已设置中的任何一个当磁盘写入成功。"
+      ],
+      "remaining": [
+        "Nu2/workspace saveRecovery/main容器写入已在UI剩余与格式专项；这里只补齐审计和投影到其交界，不提升运行状态。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 32610,
+          "endLine": 32629,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "a936e33494dfc55d43e8022616bd14b8f8ab9ef996750de938dba53922267b48"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 32802,
+          "endLine": 32808,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "9b3d23fe76df2f258f055c942ea201e4a24d765cf7d8fb75e4006591ad9e063a"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 32842,
+          "endLine": 32845,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "0251a7318b8fd5ea0314c860f0962e398e2aa9d14cede76bda78df3ba38f380c"
+        }
+      ]
+    },
+    {
+      "id": "PA08",
+      "title": "投影依赖的具体归并与重定位",
+      "dependencyIds": [
+        "DEP27",
+        "DEP31"
+      ],
+      "observations": [
+        "Md清理两端Unicode空白；显式start/end存在时不按trim再移位，position来源才扣空白；Sd接受Number可转且有限的值，未要求整数。Cd按规范化类型/文字/span/region去重。kd通过行首人工标记识别脚注、尾注、页眉页脚和图片OCR，并非解析真实OOXML结构。",
+        "mc按hc规范化occurrence键合并；完成模式用新检测替换非人工旧条目并保留旧ID，人工/确认/拒绝仍保留；已人工移动的原键阻止检测回填。ID碰撞时以offset/type生成唯一后缀，不保证原检测ID跨所有输入恒定。",
+        "Af先按start/end/Markdown exact+link优先级/id排序；同span同规范文字直接移除后项，此分支不要求type相同。包含关系按同类相对位置/组织别名/金额去重；Sf优先人工，随后表格上下文，其余保留第二参数。Ef仅异类包含且至少一项synthetic时消除synthetic或较短项。",
+        "$o2在首图片OCR实体offset或图片OCR标记前搜索正文；按region/type/text分组，人工项固定，自动项先匹配原span再按起止距离最近分配。无法匹配标invalid；剩余位置会复制syntheticOccurrence，但contract_amount不扩展，同region/type/text组内rejected条目的span阻止synthetic扩展（c2状态门）；Oo2人工fixed分组是另一独立门。Do2用兼容全半角标点和字符间空白的全局正则，非重叠命中，UTF16组装。",
+        "Xd2/Jd2/Qd2明确构造默认草稿：未预览、未选中，按profile/exportMode决定pseudonym/full-star，DOCX清理项读profile，Markdown创建schema2、blocker空和初始viewport。不是用户已复核的证据。"
+      ],
+      "remaining": [
+        "组织别名af/sf及策略表复用renderer-policy具体章节；真实重定位、自动扩展和误报率仍R0。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 4211,
+          "endLine": 4243,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "9401edd8c9434a8c95fa6cc4afa0df82c6123204c92bf9f7f19458d718b5c9b2"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 4868,
+          "endLine": 4912,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "405a2f2d7362b9fb764c8d7b1ea19789226b8ec545bb271a093d7f10340c3c94"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 5560,
+          "endLine": 5694,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "781ce0c46172bf05d7cf995213f49fdd4242cc9ebc53006793924241ec6fc5f8"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 8833,
+          "endLine": 8930,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "b9f804610f058849392c630abf97b3524098f5fdeeaef01129404fa6fb63d96f"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 6050,
+          "endLine": 6087,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "36f467abc1e81845f4d2ef9b03526798e018d8b6d972b4bd17fdf5570a1dda48"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 33424,
+          "endLine": 33435,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "a19d73ebd33675d052b5726c1192868ae36e135511991309f1b0ae047743b1c6"
+        }
+      ]
+    },
+    {
+      "id": "PA09",
+      "title": "布局冲突与行框叶子",
+      "dependencyIds": [
+        "DEP27",
+        "DEP28",
+        "DEP29",
+        "DEP32"
+      ],
+      "observations": [
+        "qh先过滤正面积rect并按top/left排序；按纵向严格超过1px交叠加入首个相交行组，扩大行组top/bottom，再按left合并相邻距离<=参数（默认2px）的rect。不是按文字基线或所有组传递闭包聚类。",
+        "df对可解析纯数字格式做邻界检查：相邻数字拒绝；形状像18位身份证/手机/12至30位长数字时在该门直接允许，普通金额遇邻接[.,，]，或后8字符切片以空格/tab/NBSP/全角空格后紧接百分号开头时拒绝。不作身份证校验位或手机号有效性验证。",
+        "Nf先排除Mf、Af、Ef后枚举span交叠；相同span直接跳过，同类型包含也不列冲突，其余返回contain/overlap和长短实体ID/交集span。If在该版本是Boolean(entity)，不是Markdown坐标完整性校验。"
+      ],
+      "remaining": [
+        "PDF框抑制wb/yb/gb/Qy及所有局部策略已由同轮state-policy SP15提供具体证据；实际排版仍R0。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 5026,
+          "endLine": 5039,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "3d3bf8f5b801bd0c6891101774f653a349c17a8b6ee1fa6c30e1757784ea8a2a"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 5550,
+          "endLine": 5559,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "b4b6bc5af34fb2818daae2eb9563ad5f956f1716c7359a9eb7eec3894a54ac08"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 5696,
+          "endLine": 5714,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "42c1aeae3b24c2f07ac9fc2924c4b27129be5ae8e3828f15e3b71dba405ee75b"
+        }
+      ]
+    }
+  ],
+  "reviewDraftAssignmentCensus": {
+    "method": "literal reviewDraft = on fixed renderer bytes",
+    "count": 36,
+    "meaning": "定位清单；不是每项语义闭合证据",
+    "locations": [
+      {
+        "line": 31370,
+        "snippet": "s3 = tn2(i4, t3), n3.detectedEntities = bb(Gt2(i4, e4)), o3 = tn2(n3.detectedEntities, t3), l3 = n3.detectedEntities, n3.reviewDraft && (n3.reviewDraft = { ...n3.reviewDraft, entities: n3.detectedEntities }), n3.sensitiveCount = ap2(n3);"
+      },
+      {
+        "line": 31379,
+        "snippet": "n3.reviewDraft = Zh2(n3, h3), n3.sensitiveCount = d3.filter((e5) => Zi2(e5)).length, n3.exportMode = vp2(n3.reviewDraft, n3), \"markdown\" === n3.fileKind ? jo2.value?.applyReviewDraft?.(n3.reviewDraft) : zo2.value?.applyReviewDraft?.(n3.reviewDraft);"
+      },
+      {
+        "line": 31827,
+        "snippet": "o3.detectedEntities = n4, o3.sensitiveCount = n4.filter((e5) => Zi2(e5)).length, t4 && (o3.reviewDraft = { ...t4, entities: n4 });"
+      },
+      {
+        "line": 32719,
+        "snippet": "t3.reviewDraft = i3, t3.sensitiveCount = ap2(t3), t3.exportMode = vp2(i3, t3), ks2.value++;"
+      },
+      {
+        "line": 32725,
+        "snippet": "e4.reviewDraft = t4.draft, e4.sensitiveCount = ap2(e4), e4.exportMode = vp2(e4.reviewDraft, e4), t4.changed && (zo2.value?.applyReviewDraft?.(e4.reviewDraft), await Yt(), await zo2.value?.forceRefreshReviewHighlights?.()), Ku2() && lc2();"
+      },
+      {
+        "line": 33362,
+        "snippet": "e3.reviewDraft = { ...e3.reviewDraft, enablePseudonymization: n3.pseudonym, pseudonymStyle: \"selective_pseudonym\" === e3.exportMode ? \"selective\" : \"custom\", exportMaskingMode: n3.fullStar ? \"full\" : \"partial\", ...\"markdown\" === e3.fileKind ? { exportMode: e3.exportMode } : {} };"
+      },
+      {
+        "line": 33376,
+        "snippet": "for (const t3 of co2.value) \"ready\" === t3.detectStatus && (t3.exportMode = dp2(t3), t3.reviewDraft && (t3.reviewDraft = { ...t3.reviewDraft, enablePseudonymization: false, pseudonymEntries: [] }));"
+      },
+      {
+        "line": 33450,
+        "snippet": "t4 && (e3.reviewDraft = Zh2(e3, t4));"
+      },
+      {
+        "line": 33463,
+        "snippet": "e3.reviewDraft = Zh2(e3, { ...a3, entities: r3, hasVisitedPreview: true, enablePseudonymization: true, pseudonymStyle: \"selective\" === a3.pseudonymStyle ? \"selective\" : \"custom\", pseudonymEntries: i3 }), e3.exportMode = vp2(e3.reviewDraft, e3), e3.sensitiveCount = ap2(e3);"
+      },
+      {
+        "line": 33586,
+        "snippet": "})(t3) || !e3.documentText.trim() && 0 === e3.detectedEntities.length) && (e3.detectStatus = \"ready\", e3.detectError = t3 instanceof Error ? t3.message : String(t3?.message || t3 || \"\"), e3.manualSealReviewRequired = true, e3.streamStage = \"warning\", e3.streamMessage = \"\\u5370\\u7AE0\\u81EA\\u52A8\\u68C0\\u67E5\\u672A\\u5B8C\\u6210\\uFF0C\\u8BF7\\u4EBA\\u5DE5\\u68C0\\u67E5\\u5E76\\u624B\\u52A8\\u6807\\u6CE8\\u9057\\u6F0F\\u5370\\u7AE0\\uFF1B\\u786E\\u8BA4\\u540E\\u53EF\\u6B63\\u5E38\\u5BFC\\u51FA\", e3.reviewDraft || (e3.reviewDraft = Xd2(e3, op2(e3))), e3.sensitiveCount = ap2(e3), true);"
+      },
+      {
+        "line": 33689,
+        "snippet": "\"pdf\" === e3.fileKind && e3.reviewDraft && (e3.reviewDraft = { ...e3.reviewDraft, entities: Array.isArray(e3.detectedEntities) ? e3.detectedEntities : [] });"
+      },
+      {
+        "line": 34017,
+        "snippet": "})(e3.reviewDraft, t3) && (e3.reviewDraft = t3, true);"
+      },
+      {
+        "line": 34032,
+        "snippet": "return t3.reviewDraft = Cm2(t3, n4), t3.sensitiveCount = ap2(t3), e3?.preserveExportMode || (t3.exportMode = n4.exportMode || vp2(t3.reviewDraft, t3)), t3.pseudonymTableName = String(n4.pseudonymTableName || t3.pseudonymTableName), void (t3.exportMd = true);"
+      },
+      {
+        "line": 34137,
+        "snippet": "e4.detectStatus = \"queued\", e4.detectError = \"\", e4.documentText = \"\", e4.detectedEntities = [], e4.detectedBBoxes = [], e4.reviewDraft = null, e4.tempDocxPath = null, e4.ocrImageInfos = [], e4.imageDataUrl = \"\", e4.imageWidth = 0, e4.imageHeight = 0, e4.sensitiveCount = 0, e4.exportMode = dp2(e4), e4.streamProcessedPages = 0, e4.streamTotalPages = null, e4.streamStage = \"\", e4.streamMessage = \"\", e4.pdfOcrCompletedPages = [], e4.pdfOcrCachePages = [];"
+      },
+      {
+        "line": 34145,
+        "snippet": "\"markdown\" !== e3.fileKind || e3.reviewDraft || (e3.reviewDraft = Xd2(e3, op2(e3))), _2(e3) && await (async function(e4) {"
+      },
+      {
+        "line": 34321,
+        "snippet": "e3.detectedEntities = mc(Md(T3, e3.documentText), t4?.entities || e3.detectedEntities, true), t4 && (e3.reviewDraft = { ...t4, entities: e3.detectedEntities });"
+      },
+      {
+        "line": 34335,
+        "snippet": "e3.reviewDraft = P3 ? Zh2(e3, { ...I3, ...P3, entities: N3 }) : I3, \"image\" === e3.fileKind && await rp2(e3, i3), e3.sensitiveCount = \"pdf\" === e3.fileKind ? e3.detectedEntities.filter((e4) => Zi2(e4)).length : ap2(e3), \"pdf\" === e3.fileKind && (e3.pdfOcrTargetPages = [.../* @__PURE__ */ new Set([...e3.pdfOcrTargetPages, ...S3.pdfOcrOutcome?.targetPageNumbers || []])], e3.pdfOcrCompletedPages = yc(e3.pdfOcrCompletedPages, e3.pdfOcrTargetPages, S3.pdfOcrOutcome)), e3.detectError = \"pdf\" === e3.fileKind ? bc(e3.pdfOcrCompletedPages, e3.pdfOcrTargetPages, S3.pdfOcrOutcome) : \"\", e3.streamStage = "
+      },
+      {
+        "line": 34342,
+        "snippet": "e3.reviewDraft = Zh2(e3, { ...i4, entities: t4, selectedEntityId: null, isPreviewMode: false, hasVisitedPreview: false, enablePseudonymization: true, pseudonymStyle: \"selective_pseudonym\" === r4 ? \"selective\" : \"custom\", pseudonymEntries: Jh2(i4.pseudonymEntries, a4), exportMaskingMode: sO(r4).fullStar ? \"full\" : \"partial\", removeHeaderFooter: e3.hasHeaderFooter, removeComments: _g2(e3.docxStructuredInput), commentHandlingMode: _g2(e3.docxStructuredInput) ? \"remove\" : \"keep\", maskStyle: Yh2(e3) }), e3.exportMode = vp2(e3.reviewDraft, e3), n4.changed && Km2({ dirtyKeys: n4.changedKeys, dirtyFil"
+      },
+      {
+        "line": 34377,
+        "snippet": "\"user-pause\" !== i3 && \"priority-preempt\" !== i3 || !kO(n3.fileKind, n3.pdfOcrControlState) ? \"priority-preempt\" === i3 ? (n3.detectStatus = \"queued\", n3.detectError = \"\", n3.streamStage = \"queued\", n3.streamMessage = \"\\u5DF2\\u6682\\u65F6\\u6682\\u505C\\uFF0C\\u7A0D\\u540E\\u81EA\\u52A8\\u91CD\\u65B0\\u5F00\\u59CB\\u8BC6\\u522B\") : \"user-cancel\" === i3 ? (n3.detectStatus = \"canceled\", n3.detectError = \"\", n3.streamMessage = \"\\u672C\\u6B21\\u8BC6\\u522B\\u5DF2\\u53D6\\u6D88\", Du2() && lc2(), Bg2(\"info\", `${n3.file.name} \\u672C\\u6B21\\u8BC6\\u522B\\u5DF2\\u53D6\\u6D88`)) : (n3.detectStatus = \"error\", n3.detectError = \"u"
+      },
+      {
+        "line": 34485,
+        "snippet": "if (e4.reviewDraft = Zh2(e4, { ...r3, entities: s3, hasVisitedPreview: true, pseudonymStyle: \"selective\" === r3.pseudonymStyle ? \"selective\" : \"custom\", pseudonymEntries: o3 }), \"docx\" === e4.fileKind && 0 === e4.detectedEntities.length && s3.length > 0 && (e4.detectedEntities = s3), e4.id === fo2.value) {"
+      },
+      {
+        "line": 34537,
+        "snippet": "i3.reviewDraft = Zh2(i3, { ...t4, hasVisitedPreview: true, enablePseudonymization: true, pseudonymStyle: r3 ? \"selective\" : \"custom\" }), i3.exportMode = r3 ? \"selective_pseudonym\" : \"custom_pseudonym\";"
+      },
+      {
+        "line": 35018,
+        "snippet": "a4.reviewDraft = Zh2(a4, { ...e6 || Xd2(a4, i4), entities: i4 }), \"markdown\" === a4.fileKind && (a4.detectedEntities = i4);"
+      },
+      {
+        "line": 35063,
+        "snippet": "return r3 && (e3.reviewDraft = Zh2(e3, { ...a3 || Xd2(e3, i3), entities: i3 }), \"pdf\" === e3.fileKind && (e3.detectedEntities = e3.detectedEntities.map((e4, t4) => kf2(e4, t4) === n3.entityKey || String(e4?.id || \"\") === String(n3.entityId || \"\") ? er2(e4, \"\\u9879\\u76EE\\u5168\\u6587\\u5BA1\\u8BA1\\uFF1A\\u66FF\\u6362\\u4E3A\\u76EE\\u6807\\u7C7B\\u578B\") : e4), ip2(e3), e3.id === fo2.value && Ko2.value?.refreshEntities?.())), r3;"
+      },
+      {
+        "line": 35093,
+        "snippet": "return e3.reviewDraft = Zh2(e3, { ...r3 || Xd2(e3, s3), entities: np2(s3, \"\\u9879\\u76EE\\u5168\\u6587\\u5BA1\\u8BA1\\u8865\\u5F55\\u540E\\u81EA\\u52A8\\u79FB\\u9664\\u540C\\u7C7B\\u578B\\u77ED\\u5B9E\\u4F53\") }), e3.sensitiveCount = ap2(e3), e3.id === fo2.value && (\"markdown\" === e3.fileKind ? jo2.value?.applyReviewDraft?.(e3.reviewDraft) : \"docx\" === e3.fileKind && zo2.value?.applyReviewDraft?.(e3.reviewDraft)), true;"
+      },
+      {
+        "line": 35381,
+        "snippet": "s3.reviewDraft = Zh2(s3, { ...o3 || Xd2(s3, c3), entities: np2(c3, \"\\u9879\\u76EE\\u8865\\u5F55\\u540E\\u81EA\\u52A8\\u79FB\\u9664\\u540C\\u7C7B\\u578B\\u77ED\\u5B9E\\u4F53\") }), s3.sensitiveCount = ap2(s3), e4 && (\"markdown\" === s3.fileKind ? jo2.value?.applyReviewDraft?.(s3.reviewDraft) : zo2.value?.applyReviewDraft?.(s3.reviewDraft), await Yt(), \"docx\" === s3.fileKind && await zo2.value?.forceRefreshReviewHighlights?.());"
+      },
+      {
+        "line": 35413,
+        "snippet": "a4 && (e4.reviewDraft = Zh2(e4, { ...t4 || Xd2(e4, n4), entities: n4 }), e4.sensitiveCount = ap2(e4), e4.id === fo2.value && zo2.value && \"docx\" === e4.fileKind ? zo2.value.applyReviewDraft(e4.reviewDraft) : e4.id === fo2.value && \"markdown\" === e4.fileKind && jo2.value?.applyReviewDraft?.(e4.reviewDraft));"
+      },
+      {
+        "line": 35546,
+        "snippet": "e3.detectedEntities = Pv2(e3.detectedEntities, r3), s3 && (e3.reviewDraft = { ...s3, entities: Pv2(s3.entities, r3) }), e3.ocrImageInfos = Array.isArray(i3.ocrImageInfos) ? i3.ocrImageInfos : [], e3.docxStructuredInput = i3.docxStructuredInput || e3.docxStructuredInput, e3.canonicalDocument = i3.canonicalDocument || e3.canonicalDocument, e3.canonicalDocumentDebug = i3.canonicalDocumentDebug || e3.canonicalDocumentDebug, e3.docxImageScan = Mn2(i3.docxImageScan || e3.docxImageScan, true), e3.sensitiveCount = ap2(e3), mg2(r3.length > 0 ? `\\u56FE\\u7247\\u6587\\u5B57\\u8BC6\\u522B\\u5B8C\\u6210\\uFF0C\\u5D"
+      },
+      {
+        "line": 35556,
+        "snippet": "await Ee2.open({ title: \"\\u5207\\u6362\\u6587\\u6863\\u7C7B\\u578B\\u5C06\\u91CD\\u65B0\\u8BC6\\u522B\", description: \"\\u5F53\\u524D\\u6587\\u6863\\u7684\\u5BA1\\u67E5\\u7ED3\\u679C\\u5C06\\u88AB\\u6E05\\u7A7A\\u5E76\\u6309\\u65B0\\u7C7B\\u578B\\u91CD\\u65B0\\u8BC6\\u522B\\u3002\", confirmText: \"\\u786E\\u8BA4\\u5207\\u6362\", cancelText: \"\\u8FD4\\u56DE\", variant: \"danger\", icon: \"warning\", details: [{ label: \"\\u6587\\u6863\", value: t3.file.name }, { label: \"\\u65B0\\u7C7B\\u578B\", value: um2(e3) }] }) && (Ne2.isUnifiedMode && Bd2(), t3.selectedRouteKey = e3, t3.detectStatus = \"queued\", t3.detectError = \"\", t3.documentText = \"\", t3.dete"
+      },
+      {
+        "line": 35621,
+        "snippet": "t3.detectedEntities = d3, t3.reviewDraft = t3.reviewDraft ? { ...t3.reviewDraft, entities: d3 } : null, t3.sensitiveCount = ap2(t3);"
+      },
+      {
+        "line": 35690,
+        "snippet": "t3 && \"pdf\" === t3.fileKind && ((e3?.ignoredConflictCount || 0) > 0 && (Oo2.value = true, Bg2(\"info\", `${t3.file.name} \\u5DF2\\u6309\\u5BA1\\u67E5\\u6700\\u7EC8\\u6001\\u81EA\\u52A8\\u7EC4\\u5408 ${e3.ignoredConflictCount} \\u5904\\u4EA4\\u53C9\\u51B2\\u7A81`)), t3.pdfEntityExportKeys = new Map(t3.detectedEntities.map((e4, t4) => [e4, Xy(e4, t4)])), t3.detectedEntities = bb(t3.detectedEntities), t3.approvedPdfConflicts = Array.isArray(e3?.approvedConflicts) ? e3.approvedConflicts.map((e4) => ({ ...e4, operationIds: [...e4.operationIds] })) : [], t3.pdfDeletedPageNumbers = yC(e3?.deletedPageNumbers), t3.revie"
+      },
+      {
+        "line": 35697,
+        "snippet": "s3.reviewDraft = { entities: o3, selectedEntityId: null, isPreviewMode: true, hasVisitedPreview: true, enablePseudonymization: t3, pseudonymStyle: \"selective\" === a3 ? \"selective\" : \"custom\", pseudonymEntries: Array.isArray(i3) ? i3.map((e4) => ({ ...e4 })) : [], pseudonymTypeActions: Vp(r3), exportMaskingMode: \"partial\", removeHeaderFooter: false, removeComments: false, maskStyle: n3 }, s3.exportMode = vp2(s3.reviewDraft, s3), s3.sensitiveCount = ap2(s3), Ev2(), gh2();"
+      },
+      {
+        "line": 35724,
+        "snippet": "}), 0 !== r3 && (t3.detectedEntities = bb(n3), t3.reviewDraft && (t3.reviewDraft = Zh2(t3, { ...t3.reviewDraft, entities: t3.detectedEntities })), Zd2(t3), t3.sensitiveCount = ap2(t3), Yd2());"
+      },
+      {
+        "line": 35730,
+        "snippet": "0 !== a3.changedIndices.length && (n3.detectedEntities = t3 ? a3.entities.map((e4, t4) => a3.changedIndices.includes(t4) ? _c(e4) : e4) : a3.entities, n3.reviewDraft && (n3.reviewDraft = Zh2(n3, { ...n3.reviewDraft, entities: n3.detectedEntities })), Zd2(n3), n3.sensitiveCount = ap2(n3), Yd2());"
+      },
+      {
+        "line": 36082,
+        "snippet": "return e4.reviewDraft = Zh2(e4, r3), e4.sensitiveCount = i3.filter((e5) => Zi2(e5)).length, e4.exportMode = vp2(e4.reviewDraft, e4), void (\"markdown\" === e4.fileKind ? jo2.value?.applyReviewDraft?.(e4.reviewDraft) : zo2.value?.applyReviewDraft?.(e4.reviewDraft));"
+      },
+      {
+        "line": 36375,
+        "snippet": "Jn2.value = Math.round(t4 / a3.length * 100), Qn2.value = `\\u6B63\\u5728\\u8BC6\\u522B\\u6587\\u6863\\u7C7B\\u578B: ${n5.file.name}`, await zg2(n5, e4.get(n5.id)), n5.detectStatus = \"idle\", n5.detectError = \"\", n5.documentText = \"\", n5.detectedEntities = [], n5.detectedBBoxes = [], n5.reviewDraft = null, n5.tempDocxPath = null, n5.ocrImageInfos = [], n5.imageDataUrl = \"\", n5.imageWidth = 0, n5.imageHeight = 0, n5.sensitiveCount = 0, n5.exportMode = dp2(n5);"
+      },
+      {
+        "line": 36753,
+        "snippet": "e3.reviewDraft = Zh2(e3, { ...i3, entities: Array.isArray(i3.entities) && i3.entities.length > 0 ? i3.entities : a3, enablePseudonymization: n3.pseudonym, pseudonymStyle: \"selective_pseudonym\" === e3.exportMode ? \"selective\" : \"custom\", pseudonymEntries: r3, exportMaskingMode: n3.fullStar ? \"full\" : \"partial\" }), n3.pseudonym && !String(e3.pseudonymTableName || \"\").trim() && (e3.pseudonymTableName = ty2(e3.file.name));"
+      }
+    ]
+  },
+  "executedVendor": false
+}

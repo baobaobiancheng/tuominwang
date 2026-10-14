@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-14",
+  "reviewer": "adversarial_review",
+  "phase": "final ITER017 actual output reviewed",
+  "mode": "read-only except review artifacts",
+  "initialArtifacts": [
+    {
+      "path": "文档/逆向台账/contracts/merge-deep-ledger-20261014.py",
+      "sha256": "50bd33467e6d1c467dc932c94585c6ceb629f54fdf0976f03769f949f2055caa"
+    },
+    {
+      "path": "文档/逆向台账/ledger.json",
+      "sha256": "93935c9f37c99718642c85c5676bd571c4718eb228a0025b389b1f161b2f36a2"
+    }
+  ],
+  "findings": [
+    {
+      "id": "R017-01",
+      "priority": "P2",
+      "status": "resolved; verified in script and final ITER017 output",
+      "title": "Do not promote six literal handlers to complete static chains",
+      "lines": [
+        87,
+        93
+      ],
+      "evidence": [
+        "deep-formats has literal-handler-closed but completeBusinessContract=false.",
+        "Existing review accepts narrow constant candidates only.",
+        "main18179-18186 proves handlers; Om registration lifecycle starts16633 and is not linked as a closed chain.",
+        "get-high-confidence renderer evidence only8770 omits So2 result/error8771-8777 and triggers8787/10306."
+      ],
+      "requestedChange": "Retain S2 and the narrow literal-handler fact until registration/bridge/caller consumption/failure chains are documented."
+    },
+    {
+      "id": "R017-02",
+      "priority": "P2",
+      "status": "resolved; verified in script and final ITER017 output",
+      "title": "Preserve prior next actions and their reconciliation status",
+      "lines": [
+        100,
+        107
+      ],
+      "evidence": [
+        "All interface and flow next_actions are overwritten; only previous_static_summary is saved.",
+        "GATEWAY-f41647c2a851 has specific old RPC JSON-line consumer/error and GatewayClient startup/discovery/timeout/identity gaps, replaced by generic remaining_unknown."
+      ],
+      "requestedChange": "Preserve prior interface/flow actions with explicit resolved evidence or unreconciled status."
+    },
+    {
+      "id": "R017-03",
+      "priority": "P2",
+      "status": "resolved; verified in script and final ITER017 output",
+      "title": "Distinguish inherited contracts from new semantic reading",
+      "lines": [
+        83,
+        86
+      ],
+      "evidence": [
+        "19 processing interfaces have empty sectionIds; fallback states fresh paragraph-by-paragraph analysis.",
+        "flow.reviewed_entries counts all members regardless of actual semantic review."
+      ],
+      "requestedChange": "Label inherited-only and associated supplemental sections separately; count inventory associations rather than reviewed chains."
+    }
+  ],
+  "checks": {
+    "ledgerLastEvent": "ITER-017",
+    "executedMerge": false,
+    "competitorRuntimeExecuted": false,
+    "oldEventsExactPrefix": 16,
+    "currentEvents": 17,
+    "interfaceStableIdSetUnchanged": 258,
+    "flowStableIdSetUnchanged": 37,
+    "oldInterfaceNextActionsExactCopyAndSubset": 258,
+    "oldFlowNextActionsExactCopyAndSubset": 37,
+    "previousStaticSummaryExactCopy": 258,
+    "implementationStatusNoteEvidenceUnchanged": 258,
+    "runtimeStatusAndNoteUnchanged": 258,
+    "flowRuntimeImplementationAcceptanceUnchanged": 37,
+    "entryClosureAndFlowMappingUnchanged": true,
+    "groupSetsExactDisjointUnion": {
+      "system": 53,
+      "formats": 88,
+      "collaboration": 67,
+      "processing": 44,
+      "ui": 6
+    },
+    "allStaticDepth": "258 S2",
+    "allRuntimeStatus": "258 R0",
+    "constantHandlersRetainedS2": 6,
+    "primaryProcessingRowsWithoutNewSection": 19,
+    "thoseRowsHaveExplicitRulesSupplementAssociations": 19,
+    "flowCountsUseInventoryEntriesAssociated": true,
+    "constantS3Count": 0,
+    "completeBusinessContracts": 0,
+    "historicalEvidencePinChanges": [
+      "文档/逆向台账/maintain.py"
+    ],
+    "historicalPinChangeDeclaredInITER017": true,
+    "evidenceFilesVerified": 357,
+    "missingEvidenceFiles": 0,
+    "hashOrByteCountDrifts": 0,
+    "maintainCheck": {
+      "command": "python3 文档/逆向台账/maintain.py --check",
+      "exitCode": 0,
+      "evidenceReferences": 3430,
+      "evidenceFiles": 357,
+      "errors": 0
+    },
+    "scriptSyntax": "ast.parse passed; merge not executed by reviewer"
+  },
+  "boundaries": [
+    "This is an independent review of merge logic, ledger invariants, coverage wording and selected semantic evidence. It is not a second paragraph-by-paragraph audit of all 258 endpoints.",
+    "Six learner handler bodies are narrow constant facts only; lifecycle/renderer chains remain incomplete and S2.",
+    "The 19 processing entries without main-report sectionIds now link explicit rules-supplement sections. The generated wording describes associated supplementary reading, not complete endpoint closure.",
+    "All previous next actions remain available for later reconciliation; their retention does not mean all are still factually open, nor are they automatically resolved by a linked report.",
+    "No competitor processing runtime, activation, app change or end-to-end equivalence was performed.",
+    "The processing verifier had changed after the previous review to add fixed44 scope and section/evidence validation. Updated verifier was read; the primary report remained unchanged.",
+    "This final review artifact is intentionally not pinned into ITER017; root may associate it in ITER018."
+  ],
+  "scriptReadback": {
+    "path": "文档/逆向台账/contracts/merge-deep-ledger-20261014.py",
+    "sha256": "c657d5d271dae0d8af128366971e7f969d5302186532701353be1a6aac36eb3f",
+    "syntax": "passed without execution",
+    "allS2": true,
+    "priorActionsPreserved": true,
+    "inheritedOnlySeparated": true,
+    "flowInventoryLabel": true
+  },
+  "result": "No open findings; three initial P2 findings resolved in script and generated ledger",
+  "finalArtifacts": [
+    {
+      "path": ".data/research/lawbot-2026-10-14/ledger-before-deep-analysis.json",
+      "sha256": "93935c9f37c99718642c85c5676bd571c4718eb228a0025b389b1f161b2f36a2",
+      "bytes": 3273968
+    },
+    {
+      "path": "文档/逆向台账/ledger.json",
+      "sha256": "3e622d16858a1f7e20f7e568df750b44e27e4bf11831af255784b8e92d7f7915",
+      "bytes": 4456389
+    },
+    {
+      "path": "文档/逆向台账/contracts/merge-deep-ledger-20261014.py",
+      "sha256": "c657d5d271dae0d8af128366971e7f969d5302186532701353be1a6aac36eb3f",
+      "bytes": 16678
+    },
+    {
+      "path": "文档/逆向台账/maintain.py",
+      "sha256": "8fa6b48e101944f67559599e44a0cb031e724727d98c8c4819884bf63d02dd71",
+      "bytes": 17869
+    }
+  ]
+}

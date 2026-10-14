@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-14",
+  "reviewer": "ui_closure_a",
+  "kind": "independent-static-review",
+  "reviewedArtifacts": {
+    "文档/逆向台账/contracts/small-open-dependencies-20261014.json": "5b9bdbf2b6e95865979fe436144457bfaca8eda2ca3f1505f9c65fbaac7713a9",
+    "文档/逆向台账/contracts/small-open-dependencies-20261014.md": "668cae18fcc7f667ed025a4941f1813a4794095693b8ccda34e53db87c4cf3d7"
+  },
+  "reviewedBuilder": {
+    "path": "文档/逆向台账/contracts/build-small-open-dependencies-20261014.py",
+    "sha256": "9d97dc0ade3b2654cfdc75eb61a5c6f61d37f2939b6cfce21575bafd0e92cc97"
+  },
+  "summary": {
+    "sectionsIndependentlyRead": 5,
+    "evidenceRangesIndependentlyReadAndHashed": 8,
+    "resolvedP3": 4,
+    "openFindings": 0,
+    "staticDepth": "S2",
+    "runtime": "R0"
+  },
+  "method": [
+    "逐节读完8个精确源码范围及整个builder；复算完整文件及切片hash；运行的是我方纯文档校验builder，不执行竞品代码。",
+    "尾日志精确2MiB、Windows/Mac fallback仅异常、legacy review仅V1边界均按条件核对。",
+    "未生成授权凭证、未执行硬件命令、未运行Python探测或受许可流程。"
+  ],
+  "findings": [
+    {
+      "id": "SD-R01",
+      "priority": "P3",
+      "status": "resolved-readback",
+      "issue": "builder固定输出10范围，实际8范围。",
+      "resolution": "改为对sections evidence动态求和，--check实测8。"
+    },
+    {
+      "id": "SD-R02",
+      "priority": "P3",
+      "status": "resolved-readback",
+      "issue": "10秒内成功表述误将timeout配置当硬截止。",
+      "resolution": "现明确timeout配置、close时判成功及不保证硬截止。",
+      "evidence": "main12932–12937,13104–13118"
+    },
+    {
+      "id": "SD-R03",
+      "priority": "P3",
+      "status": "resolved-readback",
+      "issue": "截断时并非检测后只丢不完整首行。",
+      "resolution": "现明确偏移>0无条件shift，行首边界也会丢完整行。",
+      "evidence": "main17105–17117"
+    },
+    {
+      "id": "SD-R04",
+      "priority": "P3",
+      "status": "resolved-readback",
+      "issue": "recovered要求候选失败数组非空。",
+      "resolution": "已补非空条件。",
+      "evidence": "main15545–15546"
+    }
+  ],
+  "sectionVerdicts": [
+    {
+      "id": "SD01",
+      "verdict": "所列静态结论有据；下述边界继续保留",
+      "remaining": [
+        "charBoxes 上游索引单位、真实复杂版式定位与多处同文匹配质量需要运行核验；本节不证明所有规则优先级或全文几何准确性。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line_start": 14069,
+          "line_end": 14158,
+          "sha256": "a6dc6503206d4b5986f310e1127d61d1b03a78e54ffaa5c9648100b1510323ed",
+          "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line_start": 14460,
+          "line_end": 14504,
+          "sha256": "8dcda404b600ee0f8ca01303d72813773a49ba015b87f69b6c97428e47c97359",
+          "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba"
+        }
+      ]
+    },
+    {
+      "id": "SD02",
+      "verdict": "所列静态结论有据；下述边界继续保留",
+      "remaining": [
+        "实际 Python/lxml/docx 环境、平台命令输出及转换质量未运行验证；第三方库语义不因探测包装已读而闭合。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line_start": 12932,
+          "line_end": 13142,
+          "sha256": "27e3b7f89efe2a4524da321ad5cc3d0ccbb1f4bc8a6bbcee9fc30fe378f5efa1",
+          "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba"
+        }
+      ]
+    },
+    {
+      "id": "SD03",
+      "verdict": "所列静态结论有据；下述边界继续保留",
+      "remaining": [
+        "真实 Windows/macOS 输出、硬件变化稳定性、服务端设备绑定及许可证运行行为未核验；私有服务实现不在发布包内。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line_start": 13486,
+          "line_end": 13671,
+          "sha256": "a4ad5672ebfdaad9e9faafed253aaee2e84be6a3dbe17d260ab65bb93d93ff1d",
+          "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba"
+        }
+      ]
+    },
+    {
+      "id": "SD04",
+      "verdict": "所列静态结论有据；下述边界继续保留",
+      "remaining": [
+        "日志不构成完整审计或导出安全证明；实际落盘、截断编码和并发追加未运行验证。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line_start": 15528,
+          "line_end": 15559,
+          "sha256": "d638e43f428a45367252c491196d34620bdc21534099b08f2d5c2e19ebe3b26d",
+          "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line_start": 16268,
+          "line_end": 16295,
+          "sha256": "1919554fe7358f6893fdd1e1dfde6c93096f95334234640c2a07da53a5f8250f",
+          "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line_start": 17105,
+          "line_end": 17137,
+          "sha256": "bfbad2653226468d31d7c37f3171d687952a7e728cde9e726f0bba2acbe7d564",
+          "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba"
+        }
+      ]
+    },
+    {
+      "id": "SD05",
+      "verdict": "所列静态结论有据；下述边界继续保留",
+      "remaining": [
+        "后续版本格式、导入调用上下文与第三方解压解析仍以 formats 专项为准；本节不作完整V1/V2/V3互操作或恶意归档测试结论。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line_start": 18974,
+          "line_end": 19155,
+          "sha256": "fab172fe72cb6b4681574609a427f1acc1048ca991f2586b13c23588f6acf04e",
+          "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba"
+        }
+      ]
+    }
+  ],
+  "clarifications": [
+    "Sd/Id非重叠精确匹配；Ed在occurrence无页时使用所有未使用候选，按顺序回退并非拒绝歧义。",
+    "Zm totalPages严格允许null或正整数，undefined不等同null。",
+    "Wm只做非null非数组object检查，不检查prototype；通常JSON调用上下文另论。",
+    "legacy eg拒绝markdown不可外推为后续V2拒绝Markdown。"
+  ],
+  "verdict": "4项P3修正已独立回读；0未解决问题。保留S2/R0，不能据8范围推成完整接口、第三方依赖或运行闭合。"
+}

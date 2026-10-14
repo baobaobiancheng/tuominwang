@@ -1,0 +1,80 @@
+{
+  "note": "仅文件结构和解析核验；非浏览器实操记录。",
+  "checks": {
+    "合成合同.docx": {
+      "parse": "passed",
+      "textLength": 143,
+      "coverage": [
+        {
+          "id": "package",
+          "status": "complete",
+          "objects": [
+            "[Content_Types].xml",
+            "_rels/.rels",
+            "word/document.xml"
+          ]
+        },
+        {
+          "id": "_rels/.rels",
+          "status": "complete"
+        },
+        {
+          "id": "[Content_Types].xml",
+          "status": "complete"
+        },
+        {
+          "id": "word/document.xml",
+          "status": "complete"
+        }
+      ]
+    },
+    "合成通讯录.xlsx": {
+      "parse": "passed",
+      "textLength": 90,
+      "coverage": [
+        {
+          "id": "package",
+          "status": "complete",
+          "objects": [
+            "[Content_Types].xml",
+            "_rels/.rels",
+            "xl/_rels/workbook.xml.rels",
+            "xl/workbook.xml",
+            "xl/worksheets/sheet1.xml"
+          ]
+        },
+        {
+          "id": "_rels/.rels",
+          "status": "complete"
+        },
+        {
+          "id": "[Content_Types].xml",
+          "status": "complete"
+        },
+        {
+          "id": "xl/_rels/workbook.xml.rels",
+          "status": "complete"
+        },
+        {
+          "id": "xl/workbook.xml",
+          "status": "complete"
+        },
+        {
+          "id": "xl/worksheets/sheet1.xml",
+          "status": "complete"
+        }
+      ]
+    },
+    "合成黑白名单.xlsx": {
+      "entries": 3
+    },
+    "合成双页.pdf": {
+      "pages": 2,
+      "text": "SYNTHETIC ONLY: Phone 13800138000"
+    },
+    "合成截图.png": {
+      "width": 1200,
+      "height": 400
+    }
+  }
+}

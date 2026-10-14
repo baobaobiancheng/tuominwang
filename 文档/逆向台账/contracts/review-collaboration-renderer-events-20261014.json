@@ -1,0 +1,72 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-14",
+  "reviewer": "ui_closure_a",
+  "target": "文档/逆向台账/contracts/supplement-collaboration-renderer-events-20261014.json",
+  "targetSha256": "2080efb59976be9e7993a3dce90cfeae0c20e5e40d446f64d760d6d934f2f22a",
+  "markdownSha256": "b294bc81d55f468181e2e344628ad059b08daa10db2dbe0f6b457be57a8d61e4",
+  "verdict": "pass-with-explicit-static-boundaries",
+  "status": "S2",
+  "runtime": "R0",
+  "executedVendor": false,
+  "sourceEvidenceHashChecks": 47,
+  "semanticReview": "逐节回读47个所列范围的可见分支；重点反证队列、回调/监听和缓存identity；只对这些范围的结论负责。未审作者生成器。",
+  "checks": [
+    {
+      "section": "CE01",
+      "title": "单槽不清与消费异步边界",
+      "result": "supported",
+      "reason": "c2覆盖s2、send不清，consume取出清空；Dashboard回调未return le2所以catch不覆盖其reject；第二列表消费者无代际。支持有条件旧/重复快照风险，不保证每次必重复。"
+    },
+    {
+      "section": "CE02",
+      "title": "同job无串行",
+      "result": "supported",
+      "reason": "AF只延后busy且当前不同job；Kc同key直接true；le2在await refresh/import前后无统一任务身份复核。A2仅还原enabled等局部，不能称完整恢复全部设置。"
+    },
+    {
+      "section": "CE03",
+      "title": "停放、导入、授权及恢复回执",
+      "result": "supported",
+      "reason": "B2/P2/O2先登记与清理条件、Zg2未await、ue2授权固定字段、de2同job+round门、he2 transport冒泡均与源码一致。此结论不证明Kg2/Zg2/xy2/Nv2内部。"
+    },
+    {
+      "section": "CE04",
+      "title": "诊断文本/落盘/健康超时",
+      "result": "supported",
+      "reason": "darwin Vision摘要无filePath；Paddle路径和stderr进入summary，剪贴板另造摘要未复制路径；write前赋path及吞异常不能保证落盘。spawn availability无timeout，renderer 5秒race不停止探针，timeout不赋re2。"
+    },
+    {
+      "section": "CE05",
+      "title": "progress身份与解绑",
+      "result": "supported",
+      "reason": "两应用注册通过独立rg排除PDF.js；seal保存局部解绑，Dashboard共享ya2卸载释放。apply严格request+sequence，detect严格非空request；main apply最终字段覆盖上游，detect是上游覆盖request。旧PDF发送无request所以Ra2拒绝。"
+    },
+    {
+      "section": "CE06",
+      "title": "page监听和共享槽",
+      "result": "supported",
+      "reason": "三注册皆允许无request，batch/single的docx_progress在filename检查前返回；resume finally全局ba2无身份保护，batch/single finally有各自request/代际门。静态支持重入误解绑条件，未证明实际重入必可达。"
+    },
+    {
+      "section": "CE07",
+      "title": "64/16缓存标识与分层释放",
+      "result": "supported",
+      "reason": "无路径buffer登记64hex，release返回原对象（额外核读main15885–15896），handler仅传bufferHashes；engine calculateBufferHash16hex原样set，无法相等。支持该路径removedEngineCaches=0条件；不扩大为所有源/所有缓存释放失败。engine超大单项能留，source缓存可自淘汰。"
+    }
+  ],
+  "findings": [],
+  "openFindingCount": 0,
+  "additionalEvidence": {
+    "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+    "startLine": 15885,
+    "endLine": 15896,
+    "purpose": "确认release返回原登记对象而非另算/截断hash"
+  },
+  "limits": [
+    "没有执行竞品、授权工作流、OCR探针或诊断硬件命令。",
+    "未验证实际消息竞态/重入可达性；文中风险是条件性静态推导。",
+    "未将UI事件、缓存层或7节覆盖外推为全部第三方资源释放/格式导出闭合。",
+    "target快照变化后需要重新核验hash与语义差异。"
+  ]
+}

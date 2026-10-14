@@ -1,0 +1,258 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "文档脱敏 · 整体技术架构",
+    "locale": "zh-CN",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1320,
+      750
+    ]
+  },
+  "components": [
+    {
+      "id": "web",
+      "type": "frontend",
+      "label": "网页工作台",
+      "sublabel": "React + Vite｜上传 · 复核 · 下载",
+      "pos": [
+        40,
+        90
+      ],
+      "size": [
+        230,
+        86
+      ]
+    },
+    {
+      "id": "api",
+      "type": "backend",
+      "label": "模块化业务 API",
+      "sublabel": "Fastify｜鉴权 · 项目 · 策略",
+      "pos": [
+        370,
+        90
+      ],
+      "size": [
+        230,
+        86
+      ]
+    },
+    {
+      "id": "pg",
+      "type": "database",
+      "label": "PostgreSQL",
+      "sublabel": "Drizzle｜任务 · 版本 · 映射 · 审计",
+      "pos": [
+        700,
+        90
+      ],
+      "size": [
+        230,
+        86
+      ]
+    },
+    {
+      "id": "worker",
+      "type": "backend",
+      "label": "独立 TS 任务进程",
+      "sublabel": "领取任务 · 续期 · 有限重试",
+      "pos": [
+        1030,
+        90
+      ],
+      "size": [
+        230,
+        86
+      ]
+    },
+    {
+      "id": "parse",
+      "type": "backend",
+      "label": "文件解析与 OCR",
+      "sublabel": "覆盖清单 · 原文锚点 · 隐藏内容",
+      "pos": [
+        1030,
+        295
+      ],
+      "size": [
+        230,
+        86
+      ],
+      "tag": "引擎待 R0 验证"
+    },
+    {
+      "id": "detect",
+      "type": "backend",
+      "label": "三层候选识别",
+      "sublabel": "L1 规则 / L2 中文 NER / L3 AI",
+      "pos": [
+        700,
+        295
+      ],
+      "size": [
+        230,
+        86
+      ]
+    },
+    {
+      "id": "decide",
+      "type": "security",
+      "label": "统一裁决与人工复核",
+      "sublabel": "同一文本版本 · 冲突与高风险复核",
+      "pos": [
+        370,
+        295
+      ],
+      "size": [
+        230,
+        86
+      ]
+    },
+    {
+      "id": "export",
+      "type": "backend",
+      "label": "导出与下载前核验",
+      "sublabel": "生成副本 · 实际产物残留检查",
+      "pos": [
+        40,
+        295
+      ],
+      "size": [
+        230,
+        86
+      ]
+    },
+    {
+      "id": "files",
+      "type": "database",
+      "label": "私有文件存储",
+      "sublabel": "原件 · 中间版本 · 不可变导出件",
+      "pos": [
+        40,
+        525
+      ],
+      "size": [
+        230,
+        86
+      ]
+    },
+    {
+      "id": "private",
+      "type": "backend",
+      "label": "私有模型适配器",
+      "sublabel": "Ollama 等候选｜权重与效果待验证",
+      "pos": [
+        700,
+        525
+      ],
+      "size": [
+        230,
+        86
+      ]
+    },
+    {
+      "id": "codex",
+      "type": "external",
+      "label": "Codex CLI 测试",
+      "sublabel": "ChatGPT 账号额度｜云端推理",
+      "pos": [
+        1030,
+        525
+      ],
+      "size": [
+        230,
+        86
+      ],
+      "tag": "仅开发授权样本"
+    }
+  ],
+  "connections": [
+    {
+      "from": "web",
+      "to": "api",
+      "label": "HTTPS",
+      "variant": "emphasis"
+    },
+    {
+      "from": "api",
+      "to": "pg",
+      "label": "事务 / 入队"
+    },
+    {
+      "from": "pg",
+      "to": "worker",
+      "label": "任务领取",
+      "variant": "dashed"
+    },
+    {
+      "from": "worker",
+      "to": "parse",
+      "label": "隔离执行",
+      "labelDy": 62
+    },
+    {
+      "from": "parse",
+      "to": "detect",
+      "label": "文本 + 锚点",
+      "variant": "emphasis"
+    },
+    {
+      "from": "detect",
+      "to": "decide",
+      "label": "候选与证据",
+      "variant": "emphasis"
+    },
+    {
+      "from": "decide",
+      "to": "export",
+      "label": "已复核快照",
+      "variant": "emphasis"
+    },
+    {
+      "from": "export",
+      "to": "files",
+      "label": "保存 / 核验",
+      "labelDy": 70
+    },
+    {
+      "from": "detect",
+      "to": "private",
+      "label": "私有推理",
+      "labelDy": 70
+    },
+    {
+      "from": "private",
+      "to": "codex",
+      "label": "开发对照",
+      "variant": "dashed"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "架构边界",
+      "items": [
+        "自研业务全 TS；允许现成非 TS 引擎。无 Redis，不拆微服务。",
+        "Linux 容器部署；私有化先验收，SaaS 共用代码。"
+      ]
+    },
+    {
+      "dot": "rose",
+      "title": "已确认的处理边界",
+      "items": [
+        "三层只产生候选，不依次破坏原文；文件内容不是指令。",
+        "下载前核验；旧链接到期前仍有效；重试可能重复消耗额度。"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "方案图，不是运行现状",
+      "items": [
+        "备份恢复、资源上限等尚待确认；不画成已上线能力。",
+        "PDF 真删除、OCR、中文 NER 与私有 L3 必须通过 R0。"
+      ]
+    }
+  ]
+}

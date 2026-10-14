@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-14",
+  "target": {
+    "path": "文档/逆向台账/contracts/ui-leaf-dependencies-20261014.json",
+    "sha256": "b1ac0bd5795c2c95c8b4224cabee6340d0e4f57bde84774abce01aded53bcb33",
+    "markdownSha256": "27da7e852f48feeae867561e835c205f81e8381abcd56d9ad341dbcda7da9f34"
+  },
+  "reviewer": "dynamic_closure",
+  "method": "独立只读人工重点范围；不执行竞品。全部证据hash校验不等于全量语义重审。",
+  "staticDepth": "S2",
+  "runtime": "R0",
+  "checks": {
+    "evidenceHashesVerified": 14,
+    "humanRanges": 10,
+    "completeBusinessContracts": 0
+  },
+  "conclusions": [
+    "UL01取源缓存优先/30秒await、pC页边阈值/不走fC、af2宽高不验证finite、合框首页码/非IoU均已读。",
+    "UL02 WU固定字段、sourceChain.map(String)、未约束offset、qU固定score1均成立；UU/HU尺寸有限但可为0，不能与af2规则混同。",
+    "UL03 oV普通非人工非deleted实体回pending，即使原confirmed；lV恢复***、confidence1、offset0/0属于恢复默认值，不是原识别真值。",
+    "UL04 bV的exact与可允许Markdown符号gap、wV非有限confidence未拒绝、xV按hash/length复用sidecar成立；本节未验证第三方parser的所有sourceMap生产。",
+    "UL05 xl2/kl2逐命中+1保留重叠，nv前进query.length非重叠；qf全query spread而source分块的差异成立。",
+    "nv/Xf的UTF16 offset实际经caller34830–34843进入uf2码点映射，非BMP条件索引差异有具体调用支持。",
+    "所有14证据hash校验；人工10个集中范围，未把oc/dv/hv/mv/Vp全部另行二审。"
+  ],
+  "findings": [
+    {
+      "id": "RUL01",
+      "priority": "P3",
+      "status": "fixed",
+      "detail": "lf2数列条件length>=4，作者已修至少4项取前4项并回读。"
+    }
+  ],
+  "humanEvidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 22259,
+      "endLine": 22275,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "a3953a1d35926e629ac776d173675f94ed49d9d824f47f67814ec308df1736dd"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 34071,
+      "endLine": 34096,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "24fa6a6526f943f02368f48d9a4f3bac191554f45d7f2e6f496f00bdbda934cb"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 34593,
+      "endLine": 34654,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "5249b7a681d4d4699d8ab22435c67b59d0fc33b4d35af5179d1a4f200d1bb993"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 30448,
+      "endLine": 30500,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "c2af0b3af3e0c8c69af1bb049e4c4899529ec3188db9be8609ef0084ee52d2b8"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 30561,
+      "endLine": 30617,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "aebed6ec2187ba165beea39f47e70d623d7b7c746dc93f86c0bc9c50871372c3"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 30625,
+      "endLine": 30704,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "b0634708ba6fdd698a41cac688f168bf53a9528e633635e59e1888b71fdbb115"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 5867,
+      "endLine": 5892,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "82a5623ff931b162ddc7df7e3b2659ca3075e2f35e8b01d2d9dc325894eddc12"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 5961,
+      "endLine": 5972,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "1eeb77c4e8a1356e4fe7a3c2155d36ac94e4a35630606a6cd56697a6b73ebe1f"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 9352,
+      "endLine": 9386,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "3d71df54bb36de6f7a5f77751071632c920875b01297b2c2339c6e93fec4e8d4"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 34830,
+      "endLine": 34843,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "230e44cf3a5acfa6bd326ec09bd05a6c28ce3542fce6653d481300fc139c0f63"
+    }
+  ],
+  "remaining": [
+    "条件可达性、授权后操作、文件系统故障、真实竞态和界面效果未运行。",
+    "未复读的其他辅助函数不得被此独立审查声称二审完成。"
+  ]
+}

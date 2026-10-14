@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-14",
+  "kind": "independent-ledger-merge-review",
+  "phase": "final-actual-diff",
+  "result": "Historical preservation checks passed; one P3 wording finding deferred to ITER019",
+  "executionByReviewer": false,
+  "targets": [
+    {
+      "path": "文档/逆向台账/contracts/merge-dependency-ledger-20261014.py",
+      "sha256": "75f998d01014ee4665ba18a5ec4740a0014e44cab9ddbba1b896304731dd9f6b"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/ledger-before-iteration018.json",
+      "sha256": "3e622d16858a1f7e20f7e568df750b44e27e4bf11831af255784b8e92d7f7915"
+    },
+    {
+      "path": "文档/逆向台账/ledger.json",
+      "sha256": "19f6f27a95090e73eb063f8c46442b7b0f0a8e91586cc0aec36d1ed9c8ff8685"
+    },
+    {
+      "path": "文档/逆向台账/递归分析与对抗审查-20261014.md",
+      "sha256": "4f183a0d4c837046877af416f1d8fe6010ed1bad3ff456ebe48393882b7eecae"
+    },
+    {
+      "path": "文档/逆向台账/contracts/remaining-dependencies-20261014.json",
+      "sha256": "c8adcab2c037f26a1beae8ade6ede1fcf072c61269fb6f3540a0648b3df7d0ba"
+    }
+  ],
+  "actual": {
+    "oldEvents": 17,
+    "newEvents": 18,
+    "interfaces": 258,
+    "flows": 37,
+    "changedInterfaceFields": {
+      "evidence": 12,
+      "dependency_iterations": 6
+    },
+    "oldPins": 357,
+    "newPins": 400,
+    "addedPins": 43,
+    "changedOldPins": [
+      "文档/逆向台账/递归分析与对抗审查-20261014.md"
+    ],
+    "eventEvidence": 74,
+    "historicalPinUpdates": [
+      {
+        "path": "文档/逆向台账/递归分析与对抗审查-20261014.md",
+        "previous_sha256": "edc92da4d997feb4f8d7dff76144a178cc7b837bcb2be27bbf0618f5ecaa7059",
+        "current_sha256": "4f183a0d4c837046877af416f1d8fe6010ed1bad3ff456ebe48393882b7eecae",
+        "previous_bytes": 8194,
+        "current_bytes": 10903,
+        "previous_snapshot": ".data/research/lawbot-2026-10-14/iteration017-general-report.md"
+      }
+    ],
+    "static": {
+      "S2": 258
+    },
+    "runtime": {
+      "R0": 258
+    },
+    "dependencyThemes": {
+      "items": 47,
+      "byStatus": {
+        "cross-report-evidence": 30,
+        "project-readable-open": 11,
+        "external/unavailable": 5,
+        "runtime": 1
+      },
+      "formatComplexInterfaces": 33,
+      "evidenceRanges": 427,
+      "allBusinessClosed": false,
+      "runtime": "R0"
+    }
+  },
+  "checks": [
+    "All 17 historical events preserved byte-equivalent as parsed JSON and exact prefix of 18 events.",
+    "All stable IDs, interface ordering and 37 flows preserved. Only evidence on 12 interfaces and dependency_iterations on 6 changed; every other field, including all old next_actions and I/R states, identical with key presence.",
+    "All 400 current file pins independently checked for raw byte length and SHA256. Exactly 43 added; exactly one historical pin changed with valid old snapshot and explicit event update.",
+    "All 74 ITER018 event evidence references match final pins. No ledger self pin or current final-review self pin.",
+    "Actual theme status counts match 47/30/11/5/1; matrix allBusinessClosed=false, all interfaces remain S2/R0. No complete reverse-analysis or implementation equivalence claim.",
+    "Independent maintain.py --check returned exit0 passed, 3460 references/400 files/errors0. Reviewer did not run merge or generation."
+  ],
+  "openFindings": [
+    {
+      "id": "RL18-01",
+      "priority": "P3",
+      "status": "open-deferred-to-ITER019",
+      "path": "文档/逆向台账/递归分析与对抗审查-20261014.md",
+      "startLine": 70,
+      "endLine": 70,
+      "detail": "摘要应限定trim后非空查询才关闭虚拟化。纯空白输入不关闭；UIR06已修，摘要仍缺限定。",
+      "evidence": {
+        "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+        "startLine": 6142,
+        "endLine": 6169
+      },
+      "resolution": "Parent requests preserving ITER018 pinned history. Correct summary in ITER019 and record old/new hash then close this finding."
+    }
+  ],
+  "reportedExecutionHistory": [
+    "Parent reports initial guard KeyError on absent entry_closure before ledger write; repaired to key-presence plus .get equality and rerun. Final script independently confirms that guard. The failed run itself was not witnessed by reviewer."
+  ],
+  "boundaries": [
+    "Full historical/state preservation is verified; semantic correctness of every linked report is not implied.",
+    "P3 wording finding is preserved as open until separately tracked ITER019 correction.",
+    "This audit remains outside ITER018 evidence pins to avoid final-ledger self hash dependency.",
+    "No competitor code/runtime/activation bypass and no application changes by reviewer."
+  ]
+}

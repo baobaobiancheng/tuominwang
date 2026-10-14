@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>脱敏工作台 · 设计线框</title>
+<style>body{font:15px/1.65 system-ui,sans-serif;color:#222;margin:32px auto;padding:0 24px;max-width:1200px}h1{font-size:25px}h2{font-size:20px}section{border:1px solid #999;padding:20px;margin:24px 0}table{width:100%;border-collapse:collapse}td,th{border-bottom:1px solid #bbb;padding:12px;text-align:left}.review{display:grid;grid-template-columns:180px 1fr 300px;gap:18px}.panel{border:1px solid #bbb;padding:16px}.note{color:#555}.blocked{border:2px solid #444;padding:12px}.fake-button{display:inline-block;border:1px solid #777;padding:5px 14px;margin:5px 8px 5px 0}mark{background:#ddd;color:#111}footer{margin:25px 0}@media(max-width:800px){.review{grid-template-columns:1fr}body{padding:0 12px;margin:18px auto}}</style>
+<h1>文档脱敏工作台</h1><p class="note">静态线框，所有名称与内容均为虚构示例；没有上传、识别或导出功能。用于确认信息布局，不是产品实现。</p>
+<!-- 三个状态展示一个完整任务；不加入与复核无关的仪表盘。 -->
+<section><h2>1．项目与导入</h2><p>示例项目：采购审查　｜　私有模型　｜　外发：禁止</p><span class="fake-button">导入文件／目录</span><span class="fake-button">粘贴文本</span><span class="fake-button">查看处理策略</span>
+<table><tr><th>材料</th><th>覆盖状态</th><th>待处理事项</th></tr><tr><td>采购合同.docx</td><td>解析完成，待复核</td><td>2 项实体歧义</td></tr><tr><td>附件扫描.pdf</td><td>9 / 10 页已识别</td><td>第 7 页 OCR 失败，阻断导出</td></tr><tr><td>报价表.xlsx</td><td>等待处理</td><td>输出采用值快照，不保留公式</td></tr></table></section>
+<section><h2>2．复核</h2><p class="blocked">未达到导出条件：1 页未处理，2 项待确认。没有命中不代表没有敏感信息。</p><div class="review">
+<aside class="panel">材料列表<hr>采购合同.docx<br>附件扫描.pdf<br>报价表.xlsx<hr>当前文档版本：3<br>规则版本：示例 v1</aside>
+<article class="panel"><h3>原文定位／处理预览</h3><p>采购方：<mark>示例甲科技有限公司</mark></p><p>本合同中简称“甲方”。</p><p>内部备忘：<mark>即使对方不让步，也必须在月底前完成交易。</mark></p><hr><p>预计处理：采购方 → ORG_001；内部谈判压力 → 待人工确认。</p></article>
+<aside class="panel"><h3>待复核项</h3><p>机构名称<br>来源：NER＋简称规则<br>建议：与“甲方”归并</p><span class="fake-button">确认归并</span><span class="fake-button">保持独立</span><hr><p>业务秘密<br>来源：AI 语义识别<br>依据：可能暴露交易时间压力</p><span class="fake-button">确认隐藏</span><span class="fake-button">保留并说明</span><p class="note">可手工补录、选择作用范围并撤销。</p></aside></div></section>
+<section><h2>3．导出与还原</h2><p>导出格式：原格式副本／Markdown／TXT　｜　策略：假名＋不可逆遮盖</p><p>检查：原文残留、隐藏内容、图片、属性、文件名、覆盖完整性。</p><span class="fake-button">通过复核后：生成并检查</span><span class="fake-button">通过产物检查后：下载</span><hr><p>授权还原为独立操作：选择项目和映射版本 → 检查代号 → 预览 → 确认生成含真实信息文件。不会自动发送至外部 AI。</p></section>
+<footer>需要确认的是三区布局、阻断提示和导出流程；颜色、品牌及完整交互留待设计评审。</footer></html>

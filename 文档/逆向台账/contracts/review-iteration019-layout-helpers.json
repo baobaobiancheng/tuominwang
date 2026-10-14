@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-14",
+  "iteration": "ITER019",
+  "reviewer": "dynamic_closure",
+  "author": "adversarial_review",
+  "staticDepth": "S2",
+  "runtime": "R0",
+  "executedVendor": false,
+  "target": {
+    "path": "文档/逆向台账/contracts/iteration019-layout-helpers.json",
+    "sha256": "dc591472b2ca008a8657ecc2c580cd95996409c49ad4243950d028b89197f583",
+    "markdownSha256": "01003ea6b39ec29a8b7dbfb4318a3832b0082534f19a9e291504cf1ba3b9cd68"
+  },
+  "hashVerifiedRanges": 13,
+  "manualReadRanges": [
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 4913,
+      "endLine": 4984,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "2b8108880ffde76daf32e4200457d6b3006fc1321f8865a75fcb6e51b3897056"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 10683,
+      "endLine": 10694,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "0a55471fd68923c9b5981ca418cf88bc24ea5c136c1eb06817576a3e66b813df"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 23610,
+      "endLine": 23626,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "7e29051ee3e64da8403109c07d80f86395fc0db5c66dee2f8a439baf85f78ecd"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 24019,
+      "endLine": 24031,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "ef835e011e9e750bd9001283298a334502c85241042089f8e14c54fa3ae7d9f0"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 24217,
+      "endLine": 24327,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "c75933523e8472a5b8d5cbf7f9d394789a7bf885313d1844f2fdbb09253d9105"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 25333,
+      "endLine": 25549,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "e2e7c428bc11e081c3960591e49fc4e2e7811cd7f18a79ddfd28e98001014581"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 25627,
+      "endLine": 25649,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "5cacf2e9d49bacc370a21856c4e2811743c4afff0a4bf2588f6003032e140997"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 25735,
+      "endLine": 25799,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "0bf224d81a30c3b697cab96577f03c1cacda1bb2a08bf3ef44960381f2a06946"
+    }
+  ],
+  "reviewScope": "独立重点复读6节关键函数及调用门，共8个人工范围；未重复所有周边computed/Xi2/Qi2声明，沿作者引用及既有审核范围，不宣称13范围全部二次人工逐行读。",
+  "findings": [
+    {
+      "id": "LH-R01",
+      "severity": "P3",
+      "status": "fixed",
+      "detail": "No2证据原止24324遗漏循环退出和return[]；作者已延至24327，完整失败返回现有精确证据。"
+    }
+  ],
+  "confirmed": [
+    "Bb按批读offsetWidth再写scaleX；只批首取消、比例严格边界，caller等待后另核代际成立。batchSize夹取并不额外校验NaN，调用者传固定数字；不拓展成任意输入健壮性。",
+    "Ir2每行稀疏采样alpha/RGB，异常false；lo2按showText类operator统计mode3/7，不处理save/restore模式栈，不是逐字可见性证明。报告已限定数量启发式。",
+    "To2排deleted/user/多框/OCR尺寸与手工调整；24像素候选区、字体ascent clamp、宽/y拒绝门和bbox原地修改均支持；不自动同步多框或持久化。",
+    "Eo2/No2去空白及首次命中、最多20次扩展和失败空数组成立；ku2等UTF16字符宽按行合并和union，不是精确字形度量。",
+    "_u2 OCR优先分支及最后指定页LCS无deleted过滤，只有原生主循环过滤；LCS>=0.7且差2候选按y距离，返回单框。函数缺局部代际/timeout属静态条件，不是复现错误。",
+    "Nd/Ad/Td/Ed为应用包装，group正尺寸、裁剪剩余宽高>0、允许负crop，loadImage/decode登记waitFor且无局部取消门；外部资源与宿主超时分开描述准确。"
+  ],
+  "remaining": [
+    "合法运行字体/DOM/canvas/PDF.js与第三方解析器，取消/切文档/保存重开实测保持R0。",
+    "静态辅助体已读不证明全部格式业务等价；报告跨引用PA/SP应在矩阵单独核对。"
+  ],
+  "summary": {
+    "openP1": 0,
+    "openP2": 0,
+    "openP3": 0,
+    "fixedP3": 1
+  }
+}

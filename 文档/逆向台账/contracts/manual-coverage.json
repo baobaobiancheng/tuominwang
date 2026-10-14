@@ -1,0 +1,289 @@
+{
+  "schemaVersion": 1,
+  "passed": true,
+  "scope": "manual IPC observation coverage only",
+  "knownIpcChannels": 217,
+  "manualIpcChannels": 217,
+  "sources": {
+    "workflow": {
+      "path": "文档/逆向台账/contracts/manual-workflow-contracts.json",
+      "count": 63,
+      "sha256": "99bf95a017be75d88114dcb80556d16cf2a006998f163a7f73a3d14380d1ed47"
+    },
+    "collaboration": {
+      "path": "文档/逆向台账/contracts/manual-collaboration-contracts.json",
+      "count": 101,
+      "sha256": "20971f28ec1f2868f5fd9351ef0572bd6ab004a5573d32f096d6f25daf3a3f34"
+    },
+    "system": {
+      "path": "文档/逆向台账/contracts/manual-system-contracts.json",
+      "count": 53,
+      "sha256": "9d0891cb237656c98c41de82a6148d78234f5502dfa57faad831ffa6b2d96ab5"
+    }
+  },
+  "missing": [],
+  "duplicates": [],
+  "staticDepthCounts": {
+    "S2": 217
+  },
+  "runtimeCounts": {
+    "R0": 217
+  },
+  "completeBusinessContracts": 0,
+  "implementationUpgrades": 0,
+  "uiLocated": 102,
+  "uiNotLocated": 115,
+  "namespaceCounts": {
+    "ai-collab": 26,
+    "app": 12,
+    "auth": 15,
+    "debug": 1,
+    "desensitization": 35,
+    "dictionary": 12,
+    "electron": 1,
+    "feedback": 9,
+    "get-pdfjs-worker-path": 1,
+    "image": 2,
+    "image-review": 4,
+    "learner": 7,
+    "license": 5,
+    "log": 1,
+    "mcp-connectors": 6,
+    "net": 3,
+    "ocr": 2,
+    "preference": 2,
+    "profile": 6,
+    "pseudonym": 14,
+    "review": 9,
+    "ruleset": 10,
+    "software-update": 7,
+    "task-power": 2,
+    "window": 6,
+    "workspace": 19
+  },
+  "canonicalSha256": "aad19d4515ddec1bde646de1644083a776f10078a403dc6c60c5fde5e5ce3824",
+  "sourceSnapshots": [
+    {
+      "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/chunks/D9V2C_Ir.js",
+      "sha256": "8f67c6cacca517411e66daf6f6708cf1d6f8fea02cc7f95937064a4ebf229133"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+      "sha256": "621dbee5f25f5cb0755f156488739e6bdde436e23ef3d3fef942c9e76695f691"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+      "sha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/batchDelivery.js",
+      "sha256": "51182d01e4c75f72102726e10cf5b0ddd8fd2d2ec155c98af6c5977b5392f12f"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/gatewayClient.js",
+      "sha256": "7e2e7d58677bed23f931da4fa7f9fa9c9b4c27c0b317abd062f81e2d37a445f9"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/server.js",
+      "sha256": "0a70abbb40d004527de5f81b555ba04a2369f8aef749e8b4c97633034ca412a1"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js",
+      "sha256": "131149b238b19b4a37df3947a9958aa88d4ba0bfbbfc50a4376d1d5beb6491bf"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/ipc-static-contracts.json",
+      "sha256": "58881d1857b0d92cd0cfcbb5212188214b189004cc78a59a9ca6bbb46f785e60"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/manual-collaboration-evidence/Cw24Yh6r.js",
+      "sha256": "c04fa6e76eae5885cafc5e1431053dff3beb797d3277e0927075cd4ff6ab01ce"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/manual-collaboration-evidence/DK2pJCiu.js",
+      "sha256": "8fde47caf6588c90558780b03887b605b314861b68477c35e7f43dbbc89acb8d"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc"
+    }
+  ],
+  "verifiedUniqueSourceRanges": 2554,
+  "negativeProbes": [
+    {
+      "probe": "workflow:delete-entry",
+      "rejected": true,
+      "reason": "workflow: deleted/added manual entry"
+    },
+    {
+      "probe": "workflow:duplicate-entry",
+      "rejected": true,
+      "reason": "duplicate channel: desensitization:select-files"
+    },
+    {
+      "probe": "workflow:slice-hash",
+      "rejected": true,
+      "reason": "slice hash mismatch: .data/research/lawbot-2026-10-13/readable/main.js:15718-15912"
+    },
+    {
+      "probe": "workflow:S3",
+      "rejected": true,
+      "reason": "state escalation: desensitization:select-files"
+    },
+    {
+      "probe": "workflow:R2",
+      "rejected": true,
+      "reason": "state escalation: desensitization:select-files"
+    },
+    {
+      "probe": "workflow:complete-true",
+      "rejected": true,
+      "reason": "state escalation: desensitization:select-files"
+    },
+    {
+      "probe": "workflow:implementation-upgrade",
+      "rejected": true,
+      "reason": "implementation upgrade: desensitization:select-files"
+    },
+    {
+      "probe": "workflow:wrong-preload-association",
+      "rejected": true,
+      "reason": "preload association drift: desensitization:select-files"
+    },
+    {
+      "probe": "workflow:missing-manual-slice-hash",
+      "rejected": true,
+      "reason": "missing/invalid slice hash: .data/research/lawbot-2026-10-13/readable/main.js"
+    },
+    {
+      "probe": "collaboration:delete-entry",
+      "rejected": true,
+      "reason": "collaboration: deleted/added manual entry"
+    },
+    {
+      "probe": "collaboration:duplicate-entry",
+      "rejected": true,
+      "reason": "duplicate channel: ai-collab:attach-source"
+    },
+    {
+      "probe": "collaboration:slice-hash",
+      "rejected": true,
+      "reason": "slice hash mismatch: .data/research/lawbot-2026-10-13/readable/main.js:18931-18973"
+    },
+    {
+      "probe": "collaboration:S3",
+      "rejected": true,
+      "reason": "state escalation: ai-collab:attach-source"
+    },
+    {
+      "probe": "collaboration:R2",
+      "rejected": true,
+      "reason": "state escalation: ai-collab:attach-source"
+    },
+    {
+      "probe": "collaboration:complete-true",
+      "rejected": true,
+      "reason": "state escalation: ai-collab:attach-source"
+    },
+    {
+      "probe": "collaboration:implementation-upgrade",
+      "rejected": true,
+      "reason": "implementation upgrade: ai-collab:attach-source"
+    },
+    {
+      "probe": "collaboration:wrong-preload-association",
+      "rejected": true,
+      "reason": "preload association drift: ai-collab:attach-source"
+    },
+    {
+      "probe": "collaboration:missing-manual-slice-hash",
+      "rejected": true,
+      "reason": "missing/invalid slice hash: .data/research/lawbot-2026-10-13/readable/main.js"
+    },
+    {
+      "probe": "system:delete-entry",
+      "rejected": true,
+      "reason": "system: deleted/added manual entry"
+    },
+    {
+      "probe": "system:duplicate-entry",
+      "rejected": true,
+      "reason": "duplicate channel: auth:get-capabilities"
+    },
+    {
+      "probe": "system:slice-hash",
+      "rejected": true,
+      "reason": "slice hash mismatch: .data/research/lawbot-2026-10-13/extracted/dist/main/index.js:899567-899997"
+    },
+    {
+      "probe": "system:S3",
+      "rejected": true,
+      "reason": "state escalation: auth:get-capabilities"
+    },
+    {
+      "probe": "system:R2",
+      "rejected": true,
+      "reason": "state escalation: auth:get-capabilities"
+    },
+    {
+      "probe": "system:complete-true",
+      "rejected": true,
+      "reason": "state escalation: auth:get-capabilities"
+    },
+    {
+      "probe": "system:implementation-upgrade",
+      "rejected": true,
+      "reason": "implementation upgrade: auth:get-capabilities"
+    },
+    {
+      "probe": "system:wrong-preload-association",
+      "rejected": true,
+      "reason": "preload association drift: auth:get-capabilities"
+    },
+    {
+      "probe": "system:missing-manual-slice-hash",
+      "rejected": true,
+      "reason": "missing/invalid slice hash: .data/research/lawbot-2026-10-13/readable/main.js"
+    },
+    {
+      "probe": "fake-renderer-missing-hash",
+      "rejected": true,
+      "reason": "missing/invalid slice hash: nonexistent-renderer.js"
+    },
+    {
+      "probe": "fake-renderer-valid-shaped-hash",
+      "rejected": true,
+      "reason": "evidence file missing: nonexistent-renderer.js"
+    },
+    {
+      "probe": "renderer-out-of-range",
+      "rejected": true,
+      "reason": "bad line range: .data/research/lawbot-2026-10-13/readable/renderer.js"
+    },
+    {
+      "probe": "UI-path-only",
+      "rejected": true,
+      "reason": "missing/invalid slice hash: .data/research/lawbot-2026-10-13/readable/renderer.js"
+    },
+    {
+      "probe": "UI-nonrenderer-valid-evidence",
+      "rejected": true,
+      "reason": "UI evidence is not a known renderer source: ai-collab:attach-source"
+    }
+  ],
+  "recommendations": {
+    "path": ".data/research/lawbot-2026-10-13/manual-ledger-recommendations.json",
+    "sha256": "9aa25d5cd9a0fb7d83f3af6f69662e1b2d2d1f6fa5ec1333ba4a35c1a8d5552c"
+  },
+  "limitations": [
+    "覆盖率只表示217个已知IPC都有人工记录，动态字符串桥不是封闭全集",
+    "哈希验证证据未漂移，不自动证明人工语义正确",
+    "注册→preload关联逐项校验；UI→服务→依赖→存储全链未闭合",
+    "没有执行竞品、激活或联网私有接口；没有完整S3/R2结论",
+    "源码快照哈希是当前核验基线，不能证明更早时刻文件内容"
+  ]
+}

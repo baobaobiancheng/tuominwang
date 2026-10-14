@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "iteration": "ITER-019",
+  "reviewer": "root",
+  "author": "adversarial_review",
+  "target": {
+    "path": "文档/逆向台账/contracts/iteration019-draft-producers.json",
+    "sha256": "670b575e92805687dbc28e068a4d916c40f30d9dce196cb049523ce82ee9121c",
+    "markdownSha256": "c5af674c0fa62d8ef7df4f3bea4a89d0c45f7f2618265b7d06dceae9e0b9889a"
+  },
+  "hashVerifiedRanges": 35,
+  "manualReadRanges": [
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 31092,
+      "endLine": 31130,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "37eb2f51c8944b3897580454e8b3c127b546d809e5dbe4d6dc31ea29a014a512"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 31167,
+      "endLine": 31233,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "a2e3eecd2b70fa5fdb633004dd6519afdae73e8b22180ecedf8367222890a737"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 31349,
+      "endLine": 31393,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "4c5b5749738f016db2aaa55b39edd8451030490776e439fef46c0248a808a6ff"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 33366,
+      "endLine": 33466,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "ed5f79eb03efd33a3503e38b60f7d802f3e4ee5d3002cf53e9d29176e10551f0"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 35199,
+      "endLine": 35223,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "85459f244cf16a53e7a180604371206f7e08d9d099878cc0b7f4041cf34c797a"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 35331,
+      "endLine": 35419,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "b0fd1acfe1d153297dca3a357d2732d73ca6b3e9f18c9bae3e9fca33355764dc"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 35513,
+      "endLine": 35589,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "7e8341b12bba53cb57edf4ac406aef387c191fbed9a5e1728e3af4ff589bd808"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 35609,
+      "endLine": 35629,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "97cd429bab6a7afb9d56a0985ccc239724384875ab06dfa85e37bc7a59d2f688"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 35688,
+      "endLine": 35731,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "4763f35940b1217d13c682a6a17fcd575a686d52a587043a63f32e7938af7be9"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 36063,
+      "endLine": 36102,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "6c8beb015123efd3dfd236b739aecb3634c16640321525ecb1379b9c4d834c16"
+    }
+  ],
+  "scope": "通读8节结论，35范围哈希校验；10个合并范围重点人工复读，不声称独立重新展开全部直属依赖。",
+  "findings": [
+    {
+      "id": "DR-REVIEW-01",
+      "severity": "P3",
+      "status": "fixed",
+      "detail": "Hv2身份门仅限制组件完成/失败回调和Mm2；成功与失败mg2通知无条件，已修正并回读。"
+    }
+  ],
+  "openFindings": [],
+  "staticDepth": "S2",
+  "runtime": "R0",
+  "executedVendor": false,
+  "confirmed": [
+    "rn2两个await后的当前对象检查，与内部revision检查不同",
+    "Ov2异步回执使用当前DOCX子组件、捕获旧材料，条件竞态证据成立",
+    "Bv2确认后清草稿并排队，Bd2未await；Hv2无revision门",
+    "跨文件补录删除无整体回滚，预统计不等于提交数",
+    "PDF新增按几何键去重且不含text，确认草稿不等于完成导出",
+    "按ID删除分格式实现，无直接磁盘保存"
+  ],
+  "limitations": [
+    "36赋值定位点不能替代全链语义证明",
+    "未执行竞品，条件竞态未运行重现",
+    "我方实现与线上验收状态未改变"
+  ]
+}

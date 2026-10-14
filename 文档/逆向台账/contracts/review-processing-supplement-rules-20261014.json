@@ -1,0 +1,191 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-14",
+  "reviewer": "ui_closure_a",
+  "target": "deep-processing-supplement-rules-20261014",
+  "reviewedArtifactHashes": {
+    "deep-processing-supplement-rules-20261014.json": "e7e2e75cc540f4e80dff21977b770866e518ac1e0478c812082fbddb169c368b",
+    "deep-processing-supplement-rules-20261014.md": "1b472431f55a6ad47fdb498e668217976e79b869492b28773b17460b8e78c8ee"
+  },
+  "scope": {
+    "semantic": "Read all 24 section statements; independently reread all 19 auxiliary handlers and selected key helper chains: DPS10/12/13/15/31/32/33, selected DPS30 and overlaps with PDF/canonical. Not a second exhaustive traversal of all 41 regex groups or entire legacy platform conversion.",
+    "integrity": "All 114 file/slice references checked; 19 IDs match core unassociated helper set; 41 rule inventory orders contiguous; one actual face model compared with on-disk metadata.",
+    "excluded": "No vendor execution, license flow, model inference, own-product change or full UI producer lifecycle review."
+  },
+  "findings": [
+    {
+      "id": "RS-A01",
+      "priority": "P2",
+      "title": "人脸元数据精确键与非空校验",
+      "status": "resolved-readback",
+      "before": "DPS12写models.face；生成器同样使用错误键，modelIntegrity为空数组。",
+      "after": "已改models[\"face_yunet.onnx\"].fileSizeBytes，并固定要求1条。独立直接读取模型文件及metadata，232589字节与8f2383e4…2552fa4一致；这仅完整性，不是模型精度。",
+      "evidence": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 8277,
+        "endLine": 8303,
+        "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+        "sliceSha256": "3f013c0ec34c044152cede6479b82bbd7ae6327c8e78d9514b9fae0b2266c442"
+      }
+    },
+    {
+      "id": "RS-A02",
+      "priority": "P2",
+      "title": "前文提示160不是所有锚点回退的硬窗口",
+      "status": "resolved-readback",
+      "before": "DPS32将前文提示简写160，容易误认为后续定位也受该范围限制。",
+      "after": "限定lastIndexOf近游标分支；随后indexOf提示→original回退无160距离限制。",
+      "evidence": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 5611,
+        "endLine": 5629,
+        "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+        "sliceSha256": "2c3050b12f80ecf202f05c742841d7b9e9c90c0dec656e1ccfc5fb4b362bc45a"
+      }
+    },
+    {
+      "id": "RS-A03",
+      "priority": "P3",
+      "title": "ci不存在全局回退",
+      "status": "resolved-readback",
+      "before": "DPS33称顺序/全局锚。",
+      "after": "ci仅indexOf(cellText,cursor)，失败continue；与oi或xi其他定位函数区分。",
+      "evidence": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 5656,
+        "endLine": 5677,
+        "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+        "sliceSha256": "7da80eca005427bd3390d02c0deb33849f85adbc5454cad8dfa012f90a741229"
+      }
+    },
+    {
+      "id": "RS-A04",
+      "priority": "P3",
+      "title": "Ei按包含标点过滤",
+      "status": "resolved-readback",
+      "before": "DPS33称纯标点过滤。",
+      "after": "/[，。；：！？]/对任一这些中文标点命中即删除候选，不要求整个字符串纯标点。",
+      "evidence": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 5808,
+        "endLine": 5827,
+        "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+        "sliceSha256": "6d85d4612bb27ad4f15bbf6436ca2d14445360aa432d7e0c34a6e6c22c870ef3"
+      }
+    },
+    {
+      "id": "RS-A05",
+      "priority": "P3",
+      "title": "buffer与path注册的哈希时序不同",
+      "status": "resolved-readback",
+      "before": "DPS15 hash延后未明确适用分支。",
+      "after": "path分支懒算hash；无path的buffer分支注册时立即算SHA256。",
+      "evidence": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 15759,
+        "endLine": 15789,
+        "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+        "sliceSha256": "f0b9afa0b4313e323d55125eca8d876447221770f533ac0d29146cec5c5c0ec2"
+      }
+    },
+    {
+      "id": "RS-A06",
+      "priority": "P3",
+      "title": "表格NER并发范围与分片阈值",
+      "status": "resolved-readback",
+      "before": "两个并发predict与420上限容易推广全部预测。",
+      "after": "420阈值遇单大cell不截断；两个并发只主contexts，跨行地址预测后续串行。",
+      "evidence": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 5136,
+        "endLine": 5240,
+        "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+        "sliceSha256": "921b3159c24c9807b3291b624cfe46d59dda605d382813fcefcc840e92321894"
+      }
+    }
+  ],
+  "confirmed": [
+    {
+      "section": "DPS13",
+      "conclusion": "旧su图像遮盖alpha.95，异常返回原buffer；跨类型相同框可在第二遍互相包含删除；不能泛化到Sc当前导出。",
+      "evidence": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 10161,
+        "endLine": 10211,
+        "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+        "sliceSha256": "2a3de8bbc716c2037a538889e7da39136ee1e20b6a1f3784a38e3b1a75190dc9"
+      }
+    },
+    {
+      "section": "DPS12",
+      "conclusion": "BGR CHW float32 0–255；三stride、sqrt分数、反letterbox与IoU严格小于阈值；无推理中取消。",
+      "evidence": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 8320,
+        "endLine": 8411,
+        "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+        "sliceSha256": "e582c398af7a99e691be7e5a02f46be8ef1327cac5c18c9d265e9814f05a7971"
+      }
+    },
+    {
+      "section": "DPS15",
+      "conclusion": "旧path注册复用、ENOENT恢复不校原hash、resolve沿用hash、release先移map后await close均成立。",
+      "evidence": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 15759,
+        "endLine": 15908,
+        "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+        "sliceSha256": "262f3c077e25f31080c1842c79dde23e99b76cef4fae14aa070f6e3bbf34967d"
+      }
+    },
+    {
+      "section": "DPS10",
+      "conclusion": "zero_upload_guarantee字面true及部分meta缺省0/unknown，没有实际隐私保障测量。",
+      "evidence": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 12728,
+        "endLine": 12742,
+        "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+        "sliceSha256": "691304fefd59a4aa03e4bf1571c7a1195796090b6714dd2696f8fdebb5ca0e29"
+      }
+    },
+    {
+      "section": "DPS31/32",
+      "conclusion": "NER实体须落单cell span，严格释义可独立保留；无通用置信阈值；锚点最终可全文首命中。",
+      "evidence": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 5100,
+        "endLine": 5655,
+        "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+        "sliceSha256": "5d45f80f1ea197018a1ff55544221a7f77544c196f55efc1ee6ca3c761741854"
+      }
+    },
+    {
+      "section": "DPS33",
+      "conclusion": "关系图启发式而非连线模型；同框同文可保留bbox-only，冲突框无可靠文本锚才整体删。",
+      "evidence": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 5690,
+        "endLine": 5827,
+        "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+        "sliceSha256": "8fca36780b4b47807d2c8717eef686cc0971ca38c6103744276c0dfbe3bcbeb3"
+      }
+    }
+  ],
+  "summary": {
+    "openP1": 0,
+    "openP2": 0,
+    "resolvedAccuracyIssues": 6,
+    "integrityReferences": 114,
+    "auxiliaryHandlersIndependentlyRead": 19,
+    "auxiliarySetMatches": true,
+    "faceModelIntegrityVerified": true,
+    "runtimeExecutions": 0,
+    "supportsS3Promotion": false
+  },
+  "remaining": [
+    "Third-party PDF/Office/ONNX/Sharp runtime semantics and missing Windows/seal Python assets remain explicit boundaries.",
+    "All renderer lifecycle and lawful end-to-end behavior remain R0; successful hash checks do not establish semantic completeness.",
+    "41 regex inventory counted and ordered; this review does not claim independently retesting or semantically proving every regex branch."
+  ]
+}

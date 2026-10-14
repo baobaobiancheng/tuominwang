@@ -1,0 +1,229 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-14",
+  "reviewer": "ui_closure_a",
+  "mode": "read-only independent static semantic review",
+  "scope": {
+    "target": "deep-collaboration-20261014.json/.md",
+    "reviewed": "Two S3 proposals and selected new findings COL01/02/06/08/11/12/19, with producer/consumer and wrapper readback. Not an exhaustive second traversal of 67 endpoints.",
+    "nativeIntegrity": "Reassigned by root to dynamic_closure; not reviewed here. Filename retained from original assignment."
+  },
+  "reviewedArtifactHashes": {
+    "deep-collaboration-20261014.json": "0de86260e465f179d57443a1063e992c8a01ef068ca8543892fa0374d1084ae7",
+    "deep-collaboration-20261014.md": "5324b6b0987f1d5ad0228204de26c74e9ccb8994319116a0cbba2f21b409dafb",
+    "deep-collaboration-source-index.json": "51553a2be01a043597bea45eb48e5e1b1be57530a45d47dc9095d9f2c201279f"
+  },
+  "findings": [
+    {
+      "id": "COL-REVIEW-01",
+      "priority": "P2-completeness",
+      "target": "IPC-0e93232c5223",
+      "title": "单槽handler闭合尚不足完整接口S3",
+      "description": "报告candidate=true但remaining_unknown明确数据生产服务另有合同。主进程只返回同进程最后onJobCreated快照，完整入口还包括preload与renderer consume后的le2业务处理；报告未把这些生产/消费契约整体闭合。建议保留handlerBoundaryReviewed并撤回接口S3，不能通过缩小scope消除台账的完整链要求。",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 24381,
+          "endLine": 24388,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "e868f61dd0e8e315d5d33992b25b9eabcb56e766ed8ffbcb1ed235ba10f943b3"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 24436,
+          "endLine": 24439,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "5b5091a79db6b6f773497161bc653a30731449126805fab98805be2c5d7f934e"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "startLine": 36,
+          "endLine": 36,
+          "fileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+          "sliceSha256": "666e2596b8ceadd3d5ba96e396ec8249297e5ee76145cca584779510f07e0acf"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 32859,
+          "endLine": 32875,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "e5101b3391ce43518ceb9e5465682027215d3e37e056b76918ba832673adef12"
+        }
+      ],
+      "requestedChange": "S3候选撤回或真正补齐生产/消费链，不修改运行状态。",
+      "status": "resolved-readback",
+      "resolution": "2026-10-14作者撤回consume-open-job S3候选，保留S2并明确preload→renderer le2/服务生产链未全闭合。"
+    },
+    {
+      "id": "COL-REVIEW-02",
+      "priority": "P3-clarity",
+      "target": "IPC-0e93232c5223",
+      "title": "消息事件和窗口关闭都不清单槽",
+      "description": "c2先写s2再通知；成功send不清s2，closed只删sender注册及pe，s2不清。因此本地重建窗口的consume可能重新收到上次快照，不能把窗口销毁当队列销毁。报告应明确生命周期，避免“生产/销毁穷尽”被误读。",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 24381,
+          "endLine": 24388,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "e868f61dd0e8e315d5d33992b25b9eabcb56e766ed8ffbcb1ed235ba10f943b3"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 24448,
+          "endLine": 24455,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "c1f9b13a903f477c1d62222c29f9787d19d45e788554006184c39db89b3bb62c"
+        }
+      ],
+      "requestedChange": "增加事件发送、窗口关闭与槽值保留的区别；不要求修竞品。",
+      "status": "resolved-readback",
+      "resolution": "2026-10-14作者在COL-19及open/consume observations明确send/closed保留s2；仅consume清空或新c2覆盖。审查者重新读取main24379–24388、24436–24452确认。"
+    }
+  ],
+  "candidateReview": [
+    {
+      "id": "IPC-0e93232c5223",
+      "decision": "withdrawal confirmed; handler only S2",
+      "handlerSemanticsConfirmed": true
+    },
+    {
+      "id": "MCP-8fb696cd0f36",
+      "decision": "bounded declaration endpoint supported; parent decides ledger classification",
+      "reason": "tools.js206–218纯常量；callTool200–203可包runTool；gatewayClient72–102诊断/AsyncLocalStorage与构造env身份要求；server工具调用封装isError。这足以限定为能力声明端点，不涉及被声明算法实现、无效环境下服务可启动或真实MCP host运行。",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js",
+          "startLine": 200,
+          "endLine": 218,
+          "fileSha256": "131149b238b19b4a37df3947a9958aa88d4ba0bfbbfc50a4376d1d5beb6491bf",
+          "sliceSha256": "8d6d33ee7391325aadb0d8ee80a572fdbe3f24dd39046d23500848aec9060248"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/gatewayClient.js",
+          "startLine": 11,
+          "endLine": 18,
+          "fileSha256": "7e2e7d58677bed23f931da4fa7f9fa9c9b4c27c0b317abd062f81e2d37a445f9",
+          "sliceSha256": "79dfb063fcf7a8c40a62b2eb474ddb7bcd182188b32a052c6944913cb8c2848c"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/gatewayClient.js",
+          "startLine": 72,
+          "endLine": 104,
+          "fileSha256": "7e2e7d58677bed23f931da4fa7f9fa9c9b4c27c0b317abd062f81e2d37a445f9",
+          "sliceSha256": "34a3f320c2fb124d3a1b3477cc1a1603ad8b01d97783e1a6c30dbf86f874a72a"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/server.js",
+          "startLine": 1,
+          "endLine": 89,
+          "fileSha256": "0a70abbb40d004527de5f81b555ba04a2369f8aef749e8b4c97633034ca412a1",
+          "sliceSha256": "0a70abbb40d004527de5f81b555ba04a2369f8aef749e8b4c97633034ca412a1"
+        }
+      ]
+    }
+  ],
+  "confirmedFindings": [
+    {
+      "id": "COL01",
+      "result": "Map key/pathHash/byteHash和512上限成立，非完整识别证明。",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 50,
+          "endLine": 59,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "ff8da934d56b4af806ebef90bb7761864b746143dfe18d47c3291fd999bb3585"
+        }
+      ]
+    },
+    {
+      "id": "COL02",
+      "result": "读取后capture(path,bytes)，dp.register有路径分支重复stat/copy且同路径复用旧sourceRef；确实非已读bytes的原子快照。",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 23019,
+          "endLine": 23031,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "948808ddeaa26f56d9d7126542108d01c557f05035f048c6772ce2473ec565a2"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 15759,
+          "endLine": 15787,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "358f63b464d59ed9ca20906b5e597dfdc1454edff63e8794cb7874abad3c9ab7"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 27002,
+          "endLine": 27008,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "1168494406804a422bc8922a8ca98a571359ffe8c81a68caa0073798948e3f84"
+        }
+      ]
+    },
+    {
+      "id": "COL06",
+      "result": "提交validation.valid=true及四个计数0固定赋值；重试提供hash可以不重读slot。",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 23627,
+          "endLine": 23667,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "48edd84ff29f62b31b86810369d735745fdeb69d856ed386fc79af75d2366188"
+        }
+      ]
+    },
+    {
+      "id": "COL08",
+      "result": "restore-completed的residual固定0，重新交换的是冻结假名输入；secure两段保存catch与standalone差异成立。",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 23726,
+          "endLine": 23776,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "279cf4de7d53f931ed10f6201ea007712adc94af8a78ec4c776c0fee08f53f28"
+        }
+      ]
+    },
+    {
+      "id": "COL11/12",
+      "result": "客户端重试同requestId不构成服务幂等；stdio没有schema总校验/notifications取消，超过1MiB只是exitCode而未立刻退出。",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/gatewayClient.js",
+          "startLine": 104,
+          "endLine": 150,
+          "fileSha256": "7e2e7d58677bed23f931da4fa7f9fa9c9b4c27c0b317abd062f81e2d37a445f9",
+          "sliceSha256": "1926b991d2a5e3926a741a8603185f66c54a6a5c4668995fb32df606ed68f8e2"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/server.js",
+          "startLine": 1,
+          "endLine": 89,
+          "fileSha256": "0a70abbb40d004527de5f81b555ba04a2369f8aef749e8b4c97633034ca412a1",
+          "sliceSha256": "0a70abbb40d004527de5f81b555ba04a2369f8aef749e8b4c97633034ca412a1"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "actionableCompletenessFindings": 0,
+    "clarifications": 0,
+    "vendorRuntimeExecutions": 0,
+    "businessCodeChanges": 0,
+    "nativeReviewed": false,
+    "full67Reaudit": false,
+    "resolvedFindings": 2,
+    "remainingNarrowCandidates": 1
+  },
+  "initialReviewedArtifactHashes": {
+    "deep-collaboration-20261014.json": "7e14f9454473ef1e94fafe10ca5e86df990944e5c2f9b9aef27102e4f4288f38",
+    "deep-collaboration-20261014.md": "a453e83d07ca20798bbd63312eb5674f1c0827e3f7f6473bb14e317bceeebea2",
+    "deep-collaboration-source-index.json": "51553a2be01a043597bea45eb48e5e1b1be57530a45d47dc9095d9f2c201279f"
+  }
+}

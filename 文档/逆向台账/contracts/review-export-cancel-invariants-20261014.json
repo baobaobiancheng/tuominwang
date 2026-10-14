@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-14",
+  "target": {
+    "path": "文档/逆向台账/contracts/export-cancel-invariants-20261014.json",
+    "sha256": "619a0cfd16e175a9804348cec7f5810ac10bbcef050911b07215e78e813dce32",
+    "markdownSha256": "20c6d1819ccca5e5a6fa1fd30b4e066e98c382a1d4c4dae3da1341f241d92471"
+  },
+  "reviewer": "dynamic_closure",
+  "method": "独立只读人工重点范围；不执行竞品。全部证据hash校验不等于全量语义重审。",
+  "staticDepth": "S2",
+  "runtime": "R0",
+  "checks": {
+    "evidenceHashesVerified": 9,
+    "humanRanges": 7,
+    "completeBusinessContracts": 0
+  },
+  "conclusions": [
+    "EC02条件反例成立：显式目标未统一拒绝同源，A2默认覆盖，成功后v2登记再Gp；finally仅看abort逐路径rm，没有源路径保护判断。未声称正常UI每条路径都能选择同源。",
+    "EC03/06区分正确：成功receipt preserveOnCancel只约束后续cleanup-paths；末尾await日志/读文件可让abort晚到，receipt已记success而finally仍删除，receipt不证明文件仍存在。",
+    "EC04 Markdown替换目标ue2/me2排除清理，非交互拒绝既有目标；原Markdown提交后无相同Gp，不同writer取消点不能归为同一保证。",
+    "EC05异常时部分文件不保证回滚，cancel handler没有同sender判断；getApplyResult/cleanup-paths有独立sender检查，不能互相替代。",
+    "本审查发现非Markdown Ee2.success=false早退绕过completed写入；作者已将EC06与范围17784修正，当前回读通过。",
+    "前端Xp2/Pp2、tm2和四次查询语义支持EC07；没有全批次事务保证。"
+  ],
+  "findings": [
+    {
+      "id": "REC01",
+      "priority": "P2",
+      "status": "fixed",
+      "detail": "非Markdown失败早退留下running回执，已补EC06并前移证据起点17784；不是自动把r2置completed。"
+    }
+  ],
+  "humanEvidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 16750,
+      "endLine": 16787,
+      "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "sliceSha256": "bcd2a56e4103d5f028331b36862ba08259ce1c8464e78ef2bb04cdf33cb9a294"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 17154,
+      "endLine": 17182,
+      "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "sliceSha256": "7aed101fa3725fa47ffe9a517ddd1adcd44071af56fb9e93964e82d7848e95ef"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 17409,
+      "endLine": 17513,
+      "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "sliceSha256": "158ee924dc3101fea37692523bdd0c134b46a3953ca4121b1254ba0afa3269cb"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 17784,
+      "endLine": 17935,
+      "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "sliceSha256": "aea93987159f29065bede350afaffb47e49c9d1781f6beb440f031b1ea9a3987"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 31626,
+      "endLine": 31641,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "20efb2641fa05cfaa71cf20efbb65c268a771e9ede0e50baec85bc7bbdf3cffe"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 32063,
+      "endLine": 32082,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "0a7dbf94874dfc8b93644fbb71e4f0a2d8b21217533cb7f8c5afeb34e4b8f9e2"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 33795,
+      "endLine": 33909,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "c82b399bf49e9354dc423d071c4ae31a52ff2507a9669a7ace575c627bb22725"
+    }
+  ],
+  "remaining": [
+    "条件可达性、授权后操作、文件系统故障、真实竞态和界面效果未运行。",
+    "未复读的其他辅助函数不得被此独立审查声称二审完成。"
+  ]
+}

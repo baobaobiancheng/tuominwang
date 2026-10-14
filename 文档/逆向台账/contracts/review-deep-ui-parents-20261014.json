@@ -1,0 +1,251 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-14",
+  "kind": "independent-static-review",
+  "reviewer": "ui_closure_a",
+  "target": "文档/逆向台账/contracts/deep-ui-parents-20261014.json",
+  "reviewedArtifactHashes": {
+    "json": "b4a9529e9740c06116e36da34934d29dfc89a675d5b5fca4e9dee72b4a130bd0",
+    "md": "2b76ae6070b049e4102d67b42b38e9358ccfd284bf180a0f69faa899f30f8d58"
+  },
+  "summary": {
+    "stableIds": 6,
+    "targetEvidenceHashesChecked": 59,
+    "independentlyReadRangeRecords": 19,
+    "resolvedP3": 2,
+    "openP1P2": 0,
+    "openFindings": 0,
+    "runtimeExecuted": false,
+    "s3Recommended": false
+  },
+  "method": [
+    "59范围逐条复算来源全文件与切片SHA；固定6项ID独立常量校验。",
+    "六项结论及剩余边界已读；对关键并发/失败/缓存/持久化/删除分支做独立源码复核，以下19条可重叠范围记录不是全部59范围的重新语义证明。",
+    "全文词法核对groupCountByKey与Wd2引用数量，仅用于辅助直接分支阅读，不单独证明业务闭合。",
+    "不运行竞品代码，不请求其私有接口，不绕过许可证；没有改原作者报告或ledger。"
+  ],
+  "findings": [
+    {
+      "id": "UIP-REV-01",
+      "priority": "P3",
+      "status": "resolved-readback",
+      "claim": "Qo2 ready/partial 门禁须限于批量 mo2 分支；单文档直接调用 child.setPreviewMode。",
+      "sourceRange": [
+        32363,
+        32372
+      ],
+      "resolution": "作者已限定批量分支并明确单文档分支；当前快照回读一致。"
+    },
+    {
+      "id": "UIP-REV-02",
+      "priority": "P3",
+      "status": "resolved-readback",
+      "claim": "Rs2 的30秒是每页循环开始的已耗时检查，不是打断 await Es2 的总超时。",
+      "sourceRange": [
+        23751,
+        23781
+      ],
+      "resolution": "作者已改为循环开始检查且不打断await；独立额外读 Es2 23702–23725，内部3秒Promise.race也不证明底层工作已取消。"
+    }
+  ],
+  "confirmed": [
+    {
+      "id": "UI-2c1712d35460",
+      "conclusion": "groupCountByKey 全文仅声明和读取，三个侧栏callsite未传；Image U2为空async。Co2先登记去重key再await反馈，catch为空，失败不自动回退key。",
+      "boundary": "不据此判定所有删除入口、投影、持久化反馈均闭合。"
+    },
+    {
+      "id": "UI-3f01047e6b59",
+      "conclusion": "Image Ee2及watcher无请求序号/查询身份校验，旧响应可能覆盖新结果；PDF Vn2有序号/query复核。PDF码点数组与UTF16 indexOf索引并用，存在特定Unicode输入坐标风险。",
+      "boundary": "静态可达风险，未运行竞品验证；不宣称所有Unicode输入失败。"
+    },
+    {
+      "id": "UI-339d8e53408d",
+      "conclusion": "jm2失败重排dirty并保存错误，dispose不取消正在运行Promise；Vm2逐份草稿写入后调用child，缺跨文件事务回滚；saveRecovery串行队列及缺源补登记重试一次有源码支持。",
+      "boundary": "renderer回执不证明主进程原子保存、加密、重开恢复与卸载取消已完成。"
+    },
+    {
+      "id": "UI-ad41d13c4a2d",
+      "conclusion": "已读project entry生成优先级与重置分支支持报告；store mutation后异步统一同步失败无整体回滚。",
+      "boundary": "没有把预览优先级外推为全部导出/LPM消费者优先级；jc/UK仍待递归。"
+    },
+    {
+      "id": "UI-67e30cf66ad0",
+      "conclusion": "Pf2 image success:false/非数组不加skipped；PDF deleted-page过滤checkedPageNumbers但不同时过滤results。av2先Vf2删除再Wf2，后者可因缺Markdown映射返回false，旧实体无恢复分支。",
+      "boundary": "未复核所有候选几何和draft版本门；部分修改可达性不等于竞品运行复现。"
+    },
+    {
+      "id": "UI-32ce2fb60c5f",
+      "conclusion": "Df2键缺sourceAnchor、材料集合、revision；Wd2只有初始化/读取/赋值/成功尾部清空四处，不随草稿修改主动失效。manual当前框先插入、后project apply。Rs2有循环取消、时间预算、覆盖检查，提交前再验序号。",
+      "boundary": "父控制流不证明旋转、裁切、坐标转换正确；Es2额外只审等待控制，不宣称全部geometry闭合。"
+    }
+  ],
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "start_line": 34400,
+      "end_line": 34528,
+      "file_sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "slice_sha256": "d168234a33a81235764637dcea19486fa94d52784fbc7871d253689104b976bc"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "start_line": 34928,
+      "end_line": 35035,
+      "file_sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "slice_sha256": "ba8a401c8fc2055d1bb97da131a9f3d7c7e8e32e101944c42b6a55bcf531c0cd"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "start_line": 26335,
+      "end_line": 26380,
+      "file_sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "slice_sha256": "12962c57c8ada1be0428361d845019ab0acffc60ecc2049aff7e706ebf8b0133"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "start_line": 26648,
+      "end_line": 26669,
+      "file_sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "slice_sha256": "b3211e3991327f904dc3405c2b6a52fdf00cd259c8ae7f5c358cd7f6c4c60b54"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "start_line": 26265,
+      "end_line": 26283,
+      "file_sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "slice_sha256": "7f460a35b813aa45dab6442c2ba551f0b76bbd286262eb0e8bf02535e039018a"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "start_line": 34828,
+      "end_line": 34928,
+      "file_sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "slice_sha256": "7f4117475ae56683f2ef220dfc3fcc93db57c44a5ef572e3c4406a397527f599"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "start_line": 32675,
+      "end_line": 32743,
+      "file_sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "slice_sha256": "7fd5e053e4f3b84c4946d24125379e307e0455387517766a0af96f65de3d2012"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "start_line": 3888,
+      "end_line": 3924,
+      "file_sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "slice_sha256": "a7e93f3732754294001b614deead6c3dd0a0a7e9eacc237ec17e0c153d63f50a"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "start_line": 30029,
+      "end_line": 30061,
+      "file_sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "slice_sha256": "4afca9166e2e67396979d4b165aaa4a4215394f47c8a45fac40666cff20cf439"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "start_line": 23725,
+      "end_line": 23794,
+      "file_sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "slice_sha256": "5da3ca4e2e0532ad235e9c7cc71384c437c9d6993b4c39802089a70c619b8503"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "start_line": 23702,
+      "end_line": 23725,
+      "file_sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "slice_sha256": "8eb66156891452a516855738630780dca934a4305e136978f8390e001090028e"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "start_line": 32342,
+      "end_line": 32375,
+      "file_sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "slice_sha256": "b073a9148d53d9d3cca9289b568cdf70a67f564fe2bdc49c5876e2a06bcacc9e"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "start_line": 22718,
+      "end_line": 22833,
+      "file_sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "slice_sha256": "ec596a578a41a91c74b16848d4a9b0f00f73deabf9c876b041eaefee3f5c7e3b"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "start_line": 24735,
+      "end_line": 24778,
+      "file_sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "slice_sha256": "b1da174af6f3edec2acbf2e59f71b3340f9791f259e48c5f61074d987bf8f52f"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "start_line": 26520,
+      "end_line": 26588,
+      "file_sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "slice_sha256": "e6250a7df92ca8cb931ddbce93a090fa543867b07eadcf7c303c0465cfc7f002"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "start_line": 8779,
+      "end_line": 8818,
+      "file_sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "slice_sha256": "f7d9965f25cb41f817246f083f988ba770d21577a02a9ea3dc8a48df0cf45122"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "start_line": 35047,
+      "end_line": 35147,
+      "file_sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "slice_sha256": "50034a5b0232e32f0e3d6b9dedfc76cff7529729630abacb2bdf3e539c48ca6b"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "start_line": 8620,
+      "end_line": 8720,
+      "file_sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "slice_sha256": "3c3649e290823d17ccccd20b93016f96e24bb4d7f418470e52643cb94f24499b"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "start_line": 35310,
+      "end_line": 35420,
+      "file_sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "slice_sha256": "d49231342da6ece82c1caa069af7d72971b867de99e5afba4beb36d01c77faea"
+    }
+  ],
+  "remainingByStableId": {
+    "UI-2c1712d35460": [
+      "未展开 DOCX Eo2 投影/惰性列表完整性（renderer:8820起）、Markdown St2 虚拟窗口定位（6333起）、Image Pa2 投影（26935附近）及 PDF Il2 完整滚动链。已读callsite不证明各格式侧栏显示全部实体。",
+      "未展开 zf/_c/er2 的所有调用者及 feedback.addBatch 主进程持久化；本项只读指定删除分支。"
+    ],
+    "UI-3f01047e6b59": [
+      "未展开 Markdown虚拟窗口完整搜索 producer/窗口加载 St2(6333起) 和其他全文索引，只确认共享DOM搜索与scope消费者。",
+      "PDF xa2/ka2 已读直接坐标组合；nr2(23449起)、Ji2/ar2/sl2/Ar2/rl2 全部旋转坐标转换尚未递归闭合。未读 pdf.js 的 getTextContent 实现，未运行Unicode/字体/分页用例。"
+    ],
+    "UI-339d8e53408d": [
+      "未展开 Nu2(32622调用)各格式snapshot序列化、workspace save/recovery preload及主进程加密/原子落盘/重开恢复；恢复正确性仍未动态验证。",
+      "child内 gs2/zu2/forceRefreshReviewHighlights 等渲染算法和DOCX文档大型异步加载的所有取消/卸载路径尚未闭合。"
+    ],
+    "UI-ad41d13c4a2d": [
+      "jc完整 inherited-profile/canonicalKey/tokenFor/apply实现（4418起）及UK规范化/机构简称关系（29843起）未递归展开；完整alias碰撞等价性仍未闭合。",
+      "未从这些entry逐一追到DOCX/PDF/Image/Markdown导出mask选择器、LPM生成及还原消费；不得把预览qp结果等同导出成品。"
+    ],
+    "UI-67e30cf66ad0": [
+      "vf2 PDF native全文抽取（34679起）、ff2/pf2/xv2候选几何转换（34673/34660/35294起）尚未递归展开；uf2与cf2直接算法已读，不等于整条geometry闭合。",
+      "未读所有gf2上游draft生成和重新识别并发版本门；需要动态覆盖删除页OCR、sourceMap缺口、失败返回与审计切换。"
+    ],
+    "UI-32ce2fb60c5f": [
+      "PDF Es2/Pb/Ib/As2/Ts2/Is2完整相对坐标转换及DOCX同图批量路径未展开；本节只读PDF Rs2父控制流。",
+      "DOCX sn2(6455起)所有本地匹配、PDF so2与Image Xe2搜索包装、manual hs2/Ul2/yi2建实体实现尚未完整递归闭合。",
+      "未动态验证关窗、切换文件、预览期间重新识别/删除实体、异步错误后重复apply、保存重开和导出；仍R0。"
+    ]
+  },
+  "excluded": [
+    "协作 open/consume 的 renderer le2 生产消费未在本轮展开。",
+    "各格式 saveDraft/close 的全部生命周期，以及preload→主进程保存→重开恢复尚未全链闭合。",
+    "legacy snapshot review schema 子验证器不是本轮范围。"
+  ],
+  "verdict": "所审关键静态结论与来源一致，两项措辞问题已修正。六项仍维持S2/R0，不据此升级全链或全产品完成。"
+}

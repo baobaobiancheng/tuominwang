@@ -1,0 +1,546 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-14",
+  "iteration": "ITER-019",
+  "scope": [
+    "DEP37"
+  ],
+  "staticDepth": "S2",
+  "runtime": "R0",
+  "executedVendor": false,
+  "candidateS3": 0,
+  "completeBusinessContracts": 0,
+  "sourceProvenance": {
+    "manifest": ".data/research/lawbot-2026-10-14/updater-dependencies/extraction.json",
+    "manifestSha256": "5bc28f188370dd21b6de27780a254b74f9c5c9d84be9cc82cdeb7aa6578a51c1",
+    "archive": ".data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/app.asar",
+    "archiveSha256": "3a6ed78d23959ab310e56b83e412f0616e1d402767dcdbf910270a4c1aa3c9ae",
+    "archiveSize": 154754075,
+    "newExtractedFiles": 13,
+    "existingSourceReadbacks": 2,
+    "method": "existing local ASAR exact header+offset bytes; no network/npm/vendor execution"
+  },
+  "sections": [
+    {
+      "id": "UD01",
+      "title": "调用适用性：当前Mac完整下载，差分仅包内条件路径",
+      "dependencyIds": [
+        "DEP37"
+      ],
+      "staticDepth": "S2",
+      "runtime": "R0",
+      "completeBusinessContract": false,
+      "applicability": "current-full-download-or-shared",
+      "observations": [
+        "HI仅darwin supported；有配置时显式设置disableDifferentialDownload为process.platform===darwin，并注册download-progress。应用downloadUpdate不传取消token；available且有release才调用库，ready直接返回；应用和库各有downloadPromise去重。",
+        "库缺updateInfoAndProvider先dispatchError再拒绝；已有downloadPromise直接复用，后续调用的token不会替换活动下载token。新调用把requestHeaders/token/disableDifferentialDownload传MacUpdater，非CancellationError派发error，finally清promise。",
+        "MacUpdater读取sysctl/uname（失败只日志），结合process.arch/Rosetta交给既有arch filter；选zip，缺失抛ERR_UPDATER_ZIP_FILE_NOT_FOUND。仅存在旧update.zip且未禁差分时进入差分，差分返回true才完整下载。当前应用配置会走完整下载，已有cache命中除外。",
+        "应用以update-downloaded事件写ready/pendingUpdate；await库返回后以snapshot.phase===ready判success。该事件和返回不是OS安装完成证明。"
+      ],
+      "conditionalRisks": [
+        "差分节为随发布包可见的条件逻辑，未声称当前Mac运行过；未为此改变配置或调用竞品。既有feed/provider/arch filter/native updateDownloaded链引用旧报告，不重报成本轮逐行重审。"
+      ],
+      "evidenceIds": [
+        "app-config",
+        "app-download-events",
+        "updater-download",
+        "mac-download"
+      ]
+    },
+    {
+      "id": "UD02",
+      "title": "临时文件、提交顺序与缓存输出",
+      "dependencyIds": [
+        "DEP37"
+      ],
+      "staticDepth": "S2",
+      "runtime": "R0",
+      "completeBusinessContract": false,
+      "applicability": "current-full-download-or-shared",
+      "observations": [
+        "executeDownload从URL pathname解码后按扩展名选basename，否则从metadata url取basename；建立pending目录。validateDownloadedPath命中直接done(false)，不下载。task输出临时文件后rename最终文件；仅Error且message以EBUSY:开头时最多追加60次、间隔500ms。",
+        "retry在catch检查shouldRetry和自己的token后等待；调用rename retry没有传下载token，等待后递归task前无再次取消检查。createTempUpdateFile最多三次unlink尝试；ENOENT即采用该名，其他失败加编号，返回路径而非独占创建。",
+        "done先setDownloadedFile（可写update-info.json），再taskOptions.done，最后如存在pending/current.blockmap就复制到cache，再返回[updateFile]或[updateFile,packageFile]。task/rename catch清pending和unlink final，清理错误吞掉；CancellationError另发update-cancelled。",
+        "done(false/true)都位于task/rename的try/catch之外。cache写入、task.done或末尾blockmap复制失败可以在文件已经rename、甚至task.done已经通知后使调用拒绝；该catch不会回滚这些后置操作。"
+      ],
+      "conditionalRisks": [
+        "新下载basename限制不能推广到磁盘cache记录；task.done交接native更新流程沿用COL-17/系统报告边界。重试最多61次task尝试并非固定30秒总时限。"
+      ],
+      "evidenceIds": [
+        "execute-download",
+        "temp-file",
+        "rename-retry",
+        "mac-download"
+      ]
+    },
+    {
+      "id": "UD03",
+      "title": "完整HTTP下载、重定向与缓存session",
+      "dependencyIds": [
+        "DEP37"
+      ],
+      "staticDepth": "S2",
+      "runtime": "R0",
+      "completeBusinessContract": false,
+      "applicability": "current-full-download-or-shared",
+      "observations": [
+        "ElectronHttpExecutor用electron-updater partition且cache:false，复用session；createRequest遇Host header移到options.host并删除header，可绑定proxy login callback。download通过token.createPromise包装，manual redirect，成功resolve目标路径。",
+        "doDownload拒绝HTTP>=400，监听response error；否则交configurePipes或responseHandler。request装error/aborted及socket timeout；默认60秒是socket事件设置的超时，超时abort，不是整个下载总预算或已验证Electron socket行为。",
+        "Electron redirect事件先abort旧request再调用prepareRedirectUrlOptions。该helper按主机/协议/端口剥离登记的敏感header，同主机标准端口http→https例外；普通非敏感header保留。",
+        "doDownload两处递归传redirectCount++，下层收到旧值；API重定向同样传原redirectCount。虽有maxRedirects=10及比较，不能据此声称可靠递增的重定向次数上限。"
+      ],
+      "conditionalRisks": [
+        "只能确认可见JS的header策略；Electron网络策略、代理、TLS、CDN真实重定向和超时行为未运行。差分直接followRedirect路径并不调用同一个敏感header helper，不把两条路径混为同一保障。"
+      ],
+      "evidenceIds": [
+        "electron-executor",
+        "http-download",
+        "http-api-cancel",
+        "http-redirect",
+        "http-url",
+        "http-config",
+        "http-sensitive-headers",
+        "diff-stream"
+      ]
+    },
+    {
+      "id": "UD04",
+      "title": "取消协议与进度：Promise拒绝不等于底层停止",
+      "dependencyIds": [
+        "DEP37"
+      ],
+      "staticDepth": "S2",
+      "runtime": "R0",
+      "completeBusinessContract": false,
+      "applicability": "current-full-download-or-shared",
+      "observations": [
+        "CancellationToken支持parent传播，已取消createPromise立即拒绝；活动token取消时先执行可选onCancel回调，finally以CancellationError拒绝，结算后移除listener。dispose解绑并清listeners。",
+        "API doApiRequest把onCancel连接request.abort；完整文件download与downloadToBuffer把onCancel传给doDownload，但doDownload没有使用该字段，也未连接abort。token可拒绝包装Promise，不能从这些函数保证网络/写盘即时停止。",
+        "完整下载只有onProgress存在且响应content-length非null时装ProgressCallbackTransform；transform在chunk/flush检查cancelled并报普通Error。configurePipes stream error会close fileOut，但token已取消时不再callback该error。没有progress或content-length时没有这条流级取消检查。",
+        "应用已经注册download-progress，因此onProgress在正常配置下存在；content-length仍由响应决定。HI本次调用未传token，也未从这些入口观察到用户取消按钮协议，不能把库条件取消风险说成已复现用户操作。",
+        "差分只有单range模式且onProgress存在时装取消感知transform；多range的DataSplitter无token，差分函数没有token.createPromise或取消abort。progress统计远程字节不含COPY；100%进度发生在digest/最终提交完成之前，非验证完成证明。"
+      ],
+      "conditionalRisks": [
+        "库取消条件、底层请求继续写入、竞态清理均为源码条件，不是动态缺陷复现。Node流/Electron调度结果仍R0。"
+      ],
+      "evidenceIds": [
+        "cancel-token",
+        "http-api-cancel",
+        "electron-executor",
+        "http-download",
+        "http-digest-pipes",
+        "full-progress",
+        "diff-progress",
+        "diff-stream",
+        "multi-range",
+        "splitter-copy",
+        "app-download-events"
+      ]
+    },
+    {
+      "id": "UD05",
+      "title": "完整性校验与跨启动缓存",
+      "dependencyIds": [
+        "DEP37"
+      ],
+      "staticDepth": "S2",
+      "runtime": "R0",
+      "completeBusinessContract": false,
+      "applicability": "current-full-download-or-shared",
+      "observations": [
+        "configurePipes优先sha512；长度128且不含+/Z/=时按hex，否则base64；没有sha512而有sha2则SHA256 hex。DigestTransform逐chunk计算，flush得到actual并严格比expected，缺结果或不一致报错。X-Checksum-Sha2只在响应取到该键且双方非null时比较；safeGetHeader直接按传入键索引，不自行规范大小写。",
+        "完整流错误close fileOut并在token未取消时callback；finish后close callback决定完成。无digest metadata时该函数不自行要求必须有摘要，此前Provider的metadata门槛见COL-17。",
+        "同进程cache要求同path、versionInfo/fileInfo.info深相等且文件存在，不重新hash。跨启动读update-info.json：读取/解析异常按ENOENT区别清pending；metadata sha512相等、文件存在且整文件sha512 base64一致才采用。",
+        "磁盘cache fileName只判!==null，不验证字符串/undefined/basename；cachedInfo为null、无filename或非字符串在后续属性/path操作可能抛，含路径成分也未在此归一。这个读取门不能继承新下载文件名basename保护。setDownloadedFile先写内存再可选JSON，clear不复位_downloadedFileInfo，emptyDir失败吞掉。"
+      ],
+      "conditionalRisks": [
+        "摘要相等只证明与提供metadata的一致性，不证明发行者身份/签名信任、OS安装或密码学实现正确。cache篡改需有实际本地写入前提，未宣称远端可利用或已运行。"
+      ],
+      "evidenceIds": [
+        "http-digest-pipes",
+        "cache",
+        "execute-download"
+      ]
+    },
+    {
+      "id": "UD06",
+      "title": "差分blockmap取得、缓存及失败回退",
+      "dependencyIds": [
+        "DEP37"
+      ],
+      "staticDepth": "S2",
+      "runtime": "R0",
+      "completeBusinessContract": false,
+      "applicability": "bundled-conditional-differential-disabled-in-current-mac-config",
+      "observations": [
+        "从provider取得旧/新blockmap URL；先下载新blockmap，经非空检查、gunzip+JSON.parse，再gzip写pending/current.blockmap。旧图优先cache，读取/解析失败日志后再远程下载。",
+        "downloadToBuffer用token Promise、收集chunk并Buffer.concat；单次receivedLength>524288000会callback错误，不直接abort，后续end仍callback(null)，Promise只认首次结算。每个回调超过限制的chunk不push，但网络不因此自动终止。",
+        "GenericDifferentialDownloader薄封装doDownload；差分成功返回false（无需fallback）。任何差分错误通常日志后返回true，包括取消引发错误；testOnlyOptions存在时抛。完整fallback仍接收原token，若已取消会立即拒绝，但此前网络未必停止。"
+      ],
+      "conditionalRisks": [
+        "blockmap只JSON解析及后续结构使用，没有在这些函数中完整schema验证；单个压缩响应500MB限制不等于解压大小限制。该差分路径当前Mac配置禁用。"
+      ],
+      "evidenceIds": [
+        "diff-fallback",
+        "http-download",
+        "generic-diff",
+        "mac-download"
+      ]
+    },
+    {
+      "id": "UD07",
+      "title": "差分计划、重建文件与最终摘要",
+      "dependencyIds": [
+        "DEP37"
+      ],
+      "staticDepth": "S2",
+      "runtime": "R0",
+      "completeBusinessContract": false,
+      "applicability": "bundled-conditional-differential-disabled-in-current-mac-config",
+      "observations": [
+        "computeOperations用新blockmap.files[0]，按filename寻找旧表；旧checksum→offset/size保留首次出现，重复不覆盖。新块只有checksum及size均匹配才COPY，否则DOWNLOAD；相邻连续同kind区间合并，end为不含端点。",
+        "可选DIFFERENTIAL_DOWNLOAD_PLAN_BUILDER_VALIDATE_RANGES仅在环境变量为true时运行有限同类相邻范围检查，不是完整blockmap schema/范围验证。doDownload要求版本一致，计划download+copy+metadata字节总量严格等于目标size。",
+        "打开旧文件r、新文件w，COPY按start到end-1读旧fd并pipe；远程和本地字节统一经过SHA512 DigestTransform。差分关闭自动flush验证，fileOut finish→close回调后显式validate，失败reject；fdList在成功或异常清理，close失败只日志。",
+        "单range逐任务下载，response error/aborted及HTTP>=400拒绝；>=400后没有return，仍接pipe/end逻辑。该直接分支不要求206或Accept-Ranges；每100次下载任务延迟1秒。重定向更新URL后followRedirect，没有本地count递增限制。最终digest用于发现输出不一致。"
+      ],
+      "conditionalRisks": [
+        "计划总大小等于目标不保证每个实际响应范围正确；COPY不逐块重新计算block checksum，依靠最终摘要。关闭fileOut回调未检查传入close错误；文件系统真实故障未运行。"
+      ],
+      "evidenceIds": [
+        "plan",
+        "diff-plan-fds",
+        "diff-stream",
+        "splitter-copy",
+        "http-digest-pipes"
+      ]
+    },
+    {
+      "id": "UD08",
+      "title": "多range请求与multipart重组",
+      "dependencyIds": [
+        "DEP37"
+      ],
+      "staticDepth": "S2",
+      "runtime": "R0",
+      "completeBusinessContract": false,
+      "applicability": "bundled-conditional-differential-disabled-in-current-mac-config",
+      "observations": [
+        "任务每1000条一组；组内远程块<=1时依序COPY/单Range，否则发合并Range并要求multipart content-type可解析boundary。checkIsRangesSupported拒绝>=400；非206仅在accept-ranges缺失或等于none时拒绝，不能称严格要求206。",
+        "DataSplitter按预期partIndex→task、预期块长度重组，间隙只允许COPY；错序/缺task/块长不符报错。boundary按长度跳过，header正文忽略，并不据每part Content-Range独立核对范围；写出处理backpressure。",
+        "searchHeaderListEnd只在当前chunk查CRLFCRLF；找不到时保存/拼接headerListBuffer，却不在拼接buffer搜索。若分隔符跨chunk拆开且之后没有完整分隔符，会继续等header而不能正常识别该次边界。此为分块条件推断，无网络复现。",
+        "multipart响应end无条件设10秒计时器abort并reject，成功回调没有清理该timer。若外层Promise已成功，晚reject不改该Promise结果，但不能说成功时timer被取消；若外层仍处理其他组，晚reject仍可能影响未结算下载。"
+      ],
+      "conditionalRisks": [
+        "multipart分支只给dicer装error，未在本段给response装error/aborted；实际Node/Electron错误传播未验证。_write已finished时忽略尾数据且不callback，也仅为包内静态边界。当前Mac禁用差分。"
+      ],
+      "evidenceIds": [
+        "multi-range",
+        "splitter-copy",
+        "splitter-state",
+        "splitter-header-body"
+      ]
+    },
+    {
+      "id": "UD09",
+      "title": "嵌入blockmap兄弟类及远程字节辅助边界",
+      "dependencyIds": [
+        "DEP37"
+      ],
+      "staticDepth": "S2",
+      "runtime": "R0",
+      "completeBusinessContract": false,
+      "applicability": "bundled-sibling-not-current-mac-caller",
+      "observations": [
+        "FileWithEmbeddedBlockMapDifferentialDownloader按fileSize-(blockMapSize+4)读取末尾，inflateRaw+JSON.parse新图；旧文件尾4字节BE长度决定分配/读取，再进入相同doDownload，metadata尾附回输出。try/catch均close旧fd。",
+        "readRemoteBytes按请求长度分配并逐块copy，end后检查position===buffer.length；request要求checkIsRangesSupported，error/aborted拒绝，沿用默认request timeout；无token abort绑定。",
+        "本轮Mac调用明确为GenericDifferentialDownloader，未发现本次链调用嵌入类；读取该兄弟类是为了辨明readRemoteBytes调用者，不能将其算作当前Mac应用入口。"
+      ],
+      "conditionalRisks": [
+        "不扩展NSIS/AppImage/其他平台安装器；压缩器、Buffer实现和恶意尺寸输入运行表现未审为完整算法。"
+      ],
+      "evidenceIds": [
+        "embedded-diff",
+        "diff-remote",
+        "generic-diff",
+        "diff-fallback"
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "id": "app-config",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 26143,
+      "endLine": 26188,
+      "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "rangeSha256": "27c2a69c89bf8a08f4171e45a2a9c4620eb368a64e34ea45dd2dbed90b9fd7b7"
+    },
+    {
+      "id": "app-download-events",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 26224,
+      "endLine": 26267,
+      "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "rangeSha256": "9b3f58c20f240bbab5a1712a9861e82f57b88cb48f99a1d25fc5daa7cfd5fe24"
+    },
+    {
+      "id": "updater-download",
+      "path": ".data/research/lawbot-2026-10-13/static-updater/node_modules/electron-updater/out/AppUpdater.js",
+      "startLine": 435,
+      "endLine": 480,
+      "fileSha256": "99921022d181fbd0637878fdebc74177be167d4d56a92c9a87d828f89ab67344",
+      "rangeSha256": "759e04595059f984ed4de48545bba38d2f6f4127a2962ab36f0093764c663bc4"
+    },
+    {
+      "id": "execute-download",
+      "path": ".data/research/lawbot-2026-10-13/static-updater/node_modules/electron-updater/out/AppUpdater.js",
+      "startLine": 559,
+      "endLine": 642,
+      "fileSha256": "99921022d181fbd0637878fdebc74177be167d4d56a92c9a87d828f89ab67344",
+      "rangeSha256": "1fec2b132963a94269fb5cd28977d537d2b2c7e04481d158308e5b6469b56262"
+    },
+    {
+      "id": "diff-fallback",
+      "path": ".data/research/lawbot-2026-10-13/static-updater/node_modules/electron-updater/out/AppUpdater.js",
+      "startLine": 643,
+      "endLine": 712,
+      "fileSha256": "99921022d181fbd0637878fdebc74177be167d4d56a92c9a87d828f89ab67344",
+      "rangeSha256": "99f615efe780bb71847fc5486596d5e160826cb34028503938c4e5676b829215"
+    },
+    {
+      "id": "mac-download",
+      "path": ".data/research/lawbot-2026-10-13/static-updater/node_modules/electron-updater/out/MacUpdater.js",
+      "startLine": 52,
+      "endLine": 122,
+      "fileSha256": "4824eb5d8c600f61ae69f14221f5252470b46da5be049645fa5ec10a42a5214b",
+      "rangeSha256": "cca212e9aadb19ae419790d28248cc35ce576fa35403adc0d3cb78d01929974f"
+    },
+    {
+      "id": "electron-executor",
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/electronHttpExecutor.js",
+      "startLine": 1,
+      "endLine": 78,
+      "fileSha256": "907bc7f2c71c1f964fe83f71337a520073e753f3f35ea00076f5676aebaa6404",
+      "rangeSha256": "2701e686fc5123bef489aa0d57894257fe8a7337ba537d042e18bb6ea6e22569"
+    },
+    {
+      "id": "http-api-cancel",
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/node_modules/builder-util-runtime/out/httpExecutor.js",
+      "startLine": 92,
+      "endLine": 203,
+      "fileSha256": "13050c5e047556326a2a17bc991dcf1e0f58b20409e0476486a6fd0ed6c577f6",
+      "rangeSha256": "fca33520942024105819a376446400443c5efb45326d61a474ac4a6f34bd5b9f"
+    },
+    {
+      "id": "http-download",
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/node_modules/builder-util-runtime/out/httpExecutor.js",
+      "startLine": 204,
+      "endLine": 281,
+      "fileSha256": "13050c5e047556326a2a17bc991dcf1e0f58b20409e0476486a6fd0ed6c577f6",
+      "rangeSha256": "32d322d4399cb256593e56cac2be1bae553b3d8076ec07eadf0ef01f6abe5c5a"
+    },
+    {
+      "id": "http-redirect",
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/node_modules/builder-util-runtime/out/httpExecutor.js",
+      "startLine": 282,
+      "endLine": 345,
+      "fileSha256": "13050c5e047556326a2a17bc991dcf1e0f58b20409e0476486a6fd0ed6c577f6",
+      "rangeSha256": "372a165be88dd9e8045b2a32ea723c64a3b3dd00bd041a43fce87aee405ef521"
+    },
+    {
+      "id": "http-url",
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/node_modules/builder-util-runtime/out/httpExecutor.js",
+      "startLine": 366,
+      "endLine": 392,
+      "fileSha256": "13050c5e047556326a2a17bc991dcf1e0f58b20409e0476486a6fd0ed6c577f6",
+      "rangeSha256": "eb51b7e52019dfba9c4365d1d42c487e8edecc9e144723f4ae33ab5d1f6e5d4d"
+    },
+    {
+      "id": "http-digest-pipes",
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/node_modules/builder-util-runtime/out/httpExecutor.js",
+      "startLine": 393,
+      "endLine": 499,
+      "fileSha256": "13050c5e047556326a2a17bc991dcf1e0f58b20409e0476486a6fd0ed6c577f6",
+      "rangeSha256": "30b9ecc528aa17e4b5789a7507a55cc121fb6cb438854286c14e1d69cf553fa0"
+    },
+    {
+      "id": "http-config",
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/node_modules/builder-util-runtime/out/httpExecutor.js",
+      "startLine": 500,
+      "endLine": 513,
+      "fileSha256": "13050c5e047556326a2a17bc991dcf1e0f58b20409e0476486a6fd0ed6c577f6",
+      "rangeSha256": "beba0dd5d470eccf6fdc467588f745195dded3ff19d9e04a83ea3036c3c641e1"
+    },
+    {
+      "id": "http-sensitive-headers",
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/node_modules/builder-util-runtime/out/httpExecutor.js",
+      "startLine": 24,
+      "endLine": 50,
+      "fileSha256": "13050c5e047556326a2a17bc991dcf1e0f58b20409e0476486a6fd0ed6c577f6",
+      "rangeSha256": "b881f44013280a54a193874b8498317cbe50194197307426a5e5bdf89dbe9eb3"
+    },
+    {
+      "id": "cancel-token",
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/node_modules/builder-util-runtime/out/CancellationToken.js",
+      "startLine": 5,
+      "endLine": 107,
+      "fileSha256": "054512fdee2fe810ef46d5ce7fdc2c39d3582ee8c3d463a4ee6c954bca8ec7d5",
+      "rangeSha256": "b051fe393f6eb9312b4e3bdfb4fca969c0a7f422a47c2f21030cc1126e086d8e"
+    },
+    {
+      "id": "full-progress",
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/node_modules/builder-util-runtime/out/ProgressCallbackTransform.js",
+      "startLine": 5,
+      "endLine": 53,
+      "fileSha256": "35503895f7e7dd4329b94dd69eb48674ac55d9d6646d0ea42eada5378d433d32",
+      "rangeSha256": "c8e674cd4395ede4e075055b3e8976544c89aa8505e938a8e2a6f016c764332e"
+    },
+    {
+      "id": "diff-progress",
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/differentialDownloader/ProgressDifferentialDownloadCallbackTransform.js",
+      "startLine": 5,
+      "endLine": 89,
+      "fileSha256": "d4b62c2f8eec10bb8edcc0227cde609734ef344bd3e727a48cdb806ea3608ef4",
+      "rangeSha256": "ad360223aa60e69cfeb9dddc80cd2ec338b9773d168505646ef3181522676fa4"
+    },
+    {
+      "id": "rename-retry",
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/node_modules/builder-util-runtime/out/retry.js",
+      "startLine": 5,
+      "endLine": 20,
+      "fileSha256": "f89a0e871d04334725d54112c101475b423ea93ae4db2878b6cc2404791b5b40",
+      "rangeSha256": "9a5136c81a8400854fe80decc18e9f26d1e5d36de5297bf5078ca365fd550e02"
+    },
+    {
+      "id": "cache",
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/DownloadedUpdateHelper.js",
+      "startLine": 12,
+      "endLine": 149,
+      "fileSha256": "81d816fdfddf4711218f78c7625e22122b2159ec7c83209613dfb9e71a552e4d",
+      "rangeSha256": "a34b291918104462491286133ea9eb36462d1ce5bb9f47f08d5999ccf92f2d65"
+    },
+    {
+      "id": "temp-file",
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/DownloadedUpdateHelper.js",
+      "startLine": 150,
+      "endLine": 168,
+      "fileSha256": "81d816fdfddf4711218f78c7625e22122b2159ec7c83209613dfb9e71a552e4d",
+      "rangeSha256": "66d7db124a4fdafa190f0b232fc0c208f9b94a51614e8ccb3ce3b0d225a9c921"
+    },
+    {
+      "id": "generic-diff",
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/differentialDownloader/GenericDifferentialDownloader.js",
+      "startLine": 1,
+      "endLine": 10,
+      "fileSha256": "62ca9a1d3ca12deca41ad902a24d8fec34ec150cdc194478d5b4fc987a66921b",
+      "rangeSha256": "d7aeb6e82dfe4830cfb4eeeebad515b9a4a2055ae5bb3c46e03a2804c524a3a2"
+    },
+    {
+      "id": "plan",
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/differentialDownloader/downloadPlanBuilder.js",
+      "startLine": 1,
+      "endLine": 112,
+      "fileSha256": "4ee0506c1431e86c6e693a5d118c2909f7638cc27000e3c7569cd43da08bfbf4",
+      "rangeSha256": "9bcd210c05b67bf4a16df3eb94f84e795fcce2010ae8fd044b70de05c570e23f"
+    },
+    {
+      "id": "diff-plan-fds",
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/differentialDownloader/DifferentialDownloader.js",
+      "startLine": 1,
+      "endLine": 94,
+      "fileSha256": "428ada90afe644da1a7517670ba07aa8cc307f36587e00f2f748f8f6dbc992bd",
+      "rangeSha256": "b3d105910627af9a1dc1dcca6da387be4a43f254edb62cfff4ec30859edcb848"
+    },
+    {
+      "id": "diff-stream",
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/differentialDownloader/DifferentialDownloader.js",
+      "startLine": 95,
+      "endLine": 226,
+      "fileSha256": "428ada90afe644da1a7517670ba07aa8cc307f36587e00f2f748f8f6dbc992bd",
+      "rangeSha256": "5ccb2bab946031e2360b7137e1287d0725caaaa0d22df817898169731439e166"
+    },
+    {
+      "id": "diff-remote",
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/differentialDownloader/DifferentialDownloader.js",
+      "startLine": 227,
+      "endLine": 267,
+      "fileSha256": "428ada90afe644da1a7517670ba07aa8cc307f36587e00f2f748f8f6dbc992bd",
+      "rangeSha256": "0cb44206f9742a83606e7323998c4b46fe20cf51bcf98501c0ef22900201a3d1"
+    },
+    {
+      "id": "multi-range",
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/differentialDownloader/multipleRangeDownloader.js",
+      "startLine": 1,
+      "endLine": 113,
+      "fileSha256": "acb4cc89c273776d5bfc0409e032f234a4aafd1f02cc442734d6c4a5db4be4cc",
+      "rangeSha256": "7d7bc1790367dab937aed92dd36bdb61f2c8ff260ad94d7399a8a4bf9dad3524"
+    },
+    {
+      "id": "splitter-copy",
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/differentialDownloader/DataSplitter.js",
+      "startLine": 1,
+      "endLine": 83,
+      "fileSha256": "a1d74dc923cc779b1cc8b8bd6bce24879b7266b8d6f659f09f53d5e5275e9ab4",
+      "rangeSha256": "7f10574bb76d69c3b26c677e8e1c37a242991f8cc5b32728a29ab23a9b9388e5"
+    },
+    {
+      "id": "splitter-state",
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/differentialDownloader/DataSplitter.js",
+      "startLine": 84,
+      "endLine": 180,
+      "fileSha256": "a1d74dc923cc779b1cc8b8bd6bce24879b7266b8d6f659f09f53d5e5275e9ab4",
+      "rangeSha256": "5d7fb53fa9dc37b9934c57ccb246d4516976be0a5c564c00a806c3b096936fe3"
+    },
+    {
+      "id": "splitter-header-body",
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/differentialDownloader/DataSplitter.js",
+      "startLine": 181,
+      "endLine": 228,
+      "fileSha256": "a1d74dc923cc779b1cc8b8bd6bce24879b7266b8d6f659f09f53d5e5275e9ab4",
+      "rangeSha256": "e07ad981d8cf5958cd0cfb99e4de9af46aee1fada47e3c791f584dc62d6bb1cf"
+    },
+    {
+      "id": "embedded-diff",
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/differentialDownloader/FileWithEmbeddedBlockMapDifferentialDownloader.js",
+      "startLine": 1,
+      "endLine": 36,
+      "fileSha256": "8f3c12c0d7e6e0284b9c9af068a0c6caa56f691997c763bb5850b8fa98c19650",
+      "rangeSha256": "58c77166d6752dd7c7ea2c6f43ed8181cad31b366838626b3d3f20dfe04c2502"
+    }
+  ],
+  "evidenceCount": 30,
+  "crossReportConnections": [
+    {
+      "report": "deep-system-20261014.json",
+      "ids": [
+        "IPC-4e269deca69e",
+        "IPC-a73b27802b39",
+        "IPC-6099fda9db85",
+        "IPC-1e8858b1ed43"
+      ],
+      "meaning": "HI controls/feed/native lifecycle previously read; this report adds actual executor sources, not per-interface full-chain closure"
+    },
+    {
+      "report": "deep-collaboration-20261014.json",
+      "ids": [
+        "COL-17"
+      ],
+      "meaning": "GenericProvider/Provider and Mac native handoff prior scope; mutual see-other-group TODO superseded only for explicitly read executor/differential/cache code"
+    }
+  ],
+  "remaining": [
+    {
+      "kind": "external-runtime",
+      "detail": "Electron net/session/TLS/proxy/CDN live metadata and archives, OS permissions/file errors, signature verification and native Squirrel install completion remain unverified."
+    },
+    {
+      "kind": "third-party-algorithm-not-audit",
+      "detail": "Node crypto/hash, zlib compression, streams/fs-extra/URL/lodash internals are external library primitives; reading their call sites does not claim algorithm correctness."
+    },
+    {
+      "kind": "bounded-source-scope",
+      "detail": "Listed executor, differential, multipart, cancellation, progress, cache and retry function bodies are read; not an audit of every updater provider/platform/install implementation. Embedded class is sibling-only; current Mac config disables differential. No additional named readable function body in this bounded executor chain remains deferred."
+    }
+  ],
+  "verificationMeaning": "--check pins exact ASAR/file/range bytes and deterministic output only; semantic review is independent and runtime stays R0."
+}

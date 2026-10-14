@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "iteration": "ITER-019",
+  "reviewer": "root",
+  "author": "adversarial_review",
+  "target": {
+    "path": "文档/逆向台账/contracts/iteration019-updater-dependencies.json",
+    "sha256": "7a400cd1c31f2b3813a83497d76ea8650a1fac4fa01694df3aaa4bba512716fe",
+    "markdownSha256": "f3a847f77b39e5bcfb944b8a15ed95630ea96e805a6241bce839484b22ba4d63"
+  },
+  "hashVerifiedRanges": 30,
+  "asarFilesIndependentlyMatched": 13,
+  "extraction": {
+    "path": ".data/research/lawbot-2026-10-14/updater-dependencies/extraction.json",
+    "sha256": "5bc28f188370dd21b6de27780a254b74f9c5c9d84be9cc82cdeb7aa6578a51c1"
+  },
+  "manualReadRanges": [
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 26140,
+      "endLine": 26282,
+      "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "sliceSha256": "b853656045e4df812c509824844683f2ed8b9a21030d0a3c8fe462b694898431"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/static-updater/node_modules/electron-updater/out/AppUpdater.js",
+      "startLine": 435,
+      "endLine": 480,
+      "fileSha256": "99921022d181fbd0637878fdebc74177be167d4d56a92c9a87d828f89ab67344",
+      "sliceSha256": "759e04595059f984ed4de48545bba38d2f6f4127a2962ab36f0093764c663bc4"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/static-updater/node_modules/electron-updater/out/AppUpdater.js",
+      "startLine": 559,
+      "endLine": 715,
+      "fileSha256": "99921022d181fbd0637878fdebc74177be167d4d56a92c9a87d828f89ab67344",
+      "sliceSha256": "9c828722ba05df7bb20363a20f856e03c5c1dcd0a2b299ff8d6e509b02cabe6f"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/static-updater/node_modules/electron-updater/out/MacUpdater.js",
+      "startLine": 20,
+      "endLine": 148,
+      "fileSha256": "4824eb5d8c600f61ae69f14221f5252470b46da5be049645fa5ec10a42a5214b",
+      "sliceSha256": "d730a67bc04265c245e6207930ebb301eca335f59bc99246d5440b76b6c5b3d1"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/electronHttpExecutor.js",
+      "startLine": 1,
+      "endLine": 78,
+      "fileSha256": "907bc7f2c71c1f964fe83f71337a520073e753f3f35ea00076f5676aebaa6404",
+      "sliceSha256": "2701e686fc5123bef489aa0d57894257fe8a7337ba537d042e18bb6ea6e22569"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/DownloadedUpdateHelper.js",
+      "startLine": 1,
+      "endLine": 168,
+      "fileSha256": "81d816fdfddf4711218f78c7625e22122b2159ec7c83209613dfb9e71a552e4d",
+      "sliceSha256": "7e400545b5fbcb55fceba5bfb7443d9c91ca928cffddc6aecfa464854572aeaa"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/differentialDownloader/DifferentialDownloader.js",
+      "startLine": 1,
+      "endLine": 267,
+      "fileSha256": "428ada90afe644da1a7517670ba07aa8cc307f36587e00f2f748f8f6dbc992bd",
+      "sliceSha256": "261c7a416ec7c0bba601fa6f103c1fdcccd536b710462e9c0d557ff55b970990"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/node_modules/builder-util-runtime/out/CancellationToken.js",
+      "startLine": 1,
+      "endLine": 110,
+      "fileSha256": "054512fdee2fe810ef46d5ce7fdc2c39d3582ee8c3d463a4ee6c954bca8ec7d5",
+      "sliceSha256": "054512fdee2fe810ef46d5ce7fdc2c39d3582ee8c3d463a4ee6c954bca8ec7d5"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/node_modules/builder-util-runtime/out/httpExecutor.js",
+      "startLine": 92,
+      "endLine": 148,
+      "fileSha256": "13050c5e047556326a2a17bc991dcf1e0f58b20409e0476486a6fd0ed6c577f6",
+      "sliceSha256": "99641cf7d19e55549d5499d504180903758a38c0af64043f0366b9c2e710ca39"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/node_modules/builder-util-runtime/out/httpExecutor.js",
+      "startLine": 203,
+      "endLine": 345,
+      "fileSha256": "13050c5e047556326a2a17bc991dcf1e0f58b20409e0476486a6fd0ed6c577f6",
+      "sliceSha256": "8cb8c4dfcb04039edfdbed621ab8be95beabe3af7f95a030169b4e57a42424cb"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/node_modules/builder-util-runtime/out/httpExecutor.js",
+      "startLine": 393,
+      "endLine": 499,
+      "fileSha256": "13050c5e047556326a2a17bc991dcf1e0f58b20409e0476486a6fd0ed6c577f6",
+      "sliceSha256": "30b9ecc528aa17e4b5789a7507a55cc121fb6cb438854286c14e1d69cf553fa0"
+    }
+  ],
+  "scope": "通读9节结论，独立重点回读当前Mac下载、executor、缓存、取消和差分主干；未独立全文复读multipart splitter和plan算法，保留作者证据。",
+  "findings": [],
+  "openFindings": [],
+  "staticDepth": "S2",
+  "runtime": "R0",
+  "executedVendor": false,
+  "confirmed": [
+    "当前darwin配置禁差分，不能把包内差分读码当默认运行链",
+    "同进程缓存仅存在检查，跨启动缓存摘要验证与fileName有限检查不同",
+    "完整下载Promise取消未接网络abort，API请求取消则有abort",
+    "redirectCount++递归旧值不证明可靠次数上限",
+    "task.done和blockmap复制在提交try之外，下载/通知/安装不能混同",
+    "差分最终摘要校验不代表所有中间range和取消行为正确"
+  ],
+  "limitations": [
+    "重点独审非全库独立语义复证",
+    "未执行下载或安装，无真实网络/文件故障测试",
+    "OS安装、私有服务、密码学和我方实现验收不随此关闭"
+  ]
+}

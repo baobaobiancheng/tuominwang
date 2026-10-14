@@ -1,0 +1,33 @@
+{
+  "result": "passed",
+  "method": "所有源码字节改动/台账状态变更均仅在内存中模拟，Path.write_text已拦截；未改专有原文件，未升级真实台账状态。",
+  "cases": [
+    {
+      "name": "等长篡改证据字节在内存中被拒绝",
+      "exit_code": 1,
+      "passed": true,
+      "errors": [
+        "IPC-540edc231d28: 证据内容与快照不符 .data/research/lawbot-2026-10-13/extracted/dist/main/index.js"
+      ],
+      "unique_source_read_count": 1
+    },
+    {
+      "name": "遗漏引用文件哈希基线被拒绝",
+      "exit_code": 1,
+      "passed": true,
+      "errors": [
+        "IPC-540edc231d28: 证据缺少哈希基线 .data/research/lawbot-2026-10-13/extracted/dist/main/index.js"
+      ],
+      "unique_source_read_count": 1
+    },
+    {
+      "name": "假设状态升级仅在内存中验证动态汇总",
+      "exit_code": 0,
+      "passed": true,
+      "errors": 0,
+      "unique_source_read_count": 1
+    }
+  ],
+  "unchanged_source_sha256": "621dbee5f25f5cb0755f156488739e6bdde436e23ef3d3fef942c9e76695f691",
+  "status_simulation_note": "模拟运行证据仅用于检验汇总生成，不作为真实R2/I4证据；真实台账全部竞品入口仍为R0。"
+}

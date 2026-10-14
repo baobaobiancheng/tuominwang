@@ -1,0 +1,58 @@
+import { test, expect } from "./fixture.ts";
+import { randomUUID } from "node:crypto";
+
+test("desktop organization accounts, independent project grants and read-only review", async ({ page, browser }) => {
+  test.setTimeout(90000);
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/");
+  await page.getByLabel("账号", { exact: true }).fill(process.env.E2E_USERNAME!);
+  await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
+  await page.getByRole("button", { name: "登录工作台" }).click();
+  await page.getByRole("button", { name: "组织管理", exact: true }).click();
+  const dialog = page.getByRole("dialog"), username = "viewer-" + randomUUID().slice(0, 8), password = randomUUID();
+  await dialog.getByLabel("成员账号", { exact: true }).fill(username);
+  await dialog.getByLabel("初始密码", { exact: true }).fill(password);
+  await dialog.getByRole("button", { name: "创建成员账号" }).click();
+  await expect(dialog.getByRole("cell", { name: username, exact: true })).toBeVisible();
+  await expect(dialog.getByLabel("初始密码", { exact: true })).toHaveValue("");
+  await page.screenshot({ path: "test-results/organization-desktop.png", fullPage: true });
+  await dialog.getByRole("button", { name: "关闭组织管理" }).click();
+  const projectName = "权限项目-" + randomUUID().slice(0, 8);
+  await page.locator("summary").click(); await page.getByLabel("项目名称").fill(projectName);
+  await page.getByRole("button", { name: "新建项目", exact: true }).click();
+  await page.getByRole("button", { name: "导入材料", exact: true }).click();
+  await page.getByLabel("待处理文本").fill("公开测试 电话13800138000");
+  await page.getByRole("button", { name: "提交并识别" }).click();
+  await page.getByRole("button", { name: "逐条复核", exact: true }).click();
+  await expect(page.getByLabel("标记 1 处理决定")).toBeVisible();
+  await page.getByRole("button", { name: "返回材料列表", exact: true }).click();
+  await page.getByRole("button", { name: "项目成员", exact: true }).click();
+  await page.getByLabel("选择项目成员").selectOption({ label: username });
+  await page.getByRole("checkbox", { name: "查看原件", exact: true }).check();
+   await page.getByRole("button", { name: "保存成员权限" }).click();
+  await page.getByRole("alertdialog", { name: "操作确认" }).getByRole("button", { name: "确认执行", exact: true }).click();
+  await expect(page.getByRole("button", { name: "保存成员权限" })).toBeDisabled();
+  await expect(page.getByLabel("选择项目成员")).toBeEnabled();
+  await expect(page.getByRole("checkbox", { name: "查看原件", exact: true })).toBeChecked();
+  await page.screenshot({ path: "test-results/project-members-desktop.png", fullPage: true });
+  await page.getByRole("button", { name: "操作记录", exact: true }).click();
+  await expect(page.getByRole("cell", { name: /修改项目权限/ }).first()).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  const context = await browser.newContext({ baseURL: process.env.APP_ORIGIN, viewport: { width: 1440, height: 1000 } }), viewer = await context.newPage();
+  try {
+    await viewer.goto("/"); await viewer.getByLabel("账号", { exact: true }).fill(username); await viewer.getByLabel("密码", { exact: true }).fill(password);
+    await viewer.getByRole("button", { name: "登录工作台" }).click(); await viewer.getByRole("button", { name: projectName, exact: true }).click();
+    await expect(viewer.getByRole("button", { name: "导入材料", exact: true })).toHaveCount(0);
+    await expect(viewer.getByRole("button", { name: "项目成员", exact: true })).toHaveCount(0);
+    await viewer.locator(".material-row").click();
+    await expect(viewer.getByLabel("原文", { exact: true })).toHaveValue("公开测试 电话13800138000");
+    await viewer.getByRole("button", { name: "逐条复核", exact: true }).click();
+    await expect(viewer.getByLabel("标记 1 处理决定")).toBeDisabled();
+    await viewer.getByRole("button", { name: "批量复核", exact: true }).click();
+    await expect(viewer.getByRole("button", { name: "批量脱敏", exact: true })).toBeDisabled();
+    await expect(viewer.getByRole("button", { name: "保存复核", exact: true })).toBeDisabled();
+    await expect(viewer.getByRole("button", { name: "导出已选标记的处理副本", exact: true })).toBeDisabled();
+    await expect(viewer.getByRole("button", { name: "还原假名", exact: true })).toHaveCount(0);
+    expect(await viewer.locator("body").innerText()).not.toMatch(/浏览器验收|工程评审|开发进度|技术取舍|完整一期/);
+  } finally { await context.close(); }
+});

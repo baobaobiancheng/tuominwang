@@ -1,0 +1,37 @@
+import { test, expect } from "./fixture.ts";
+
+test("desktop project dictionary changes invalidate review and drive a new candidate run", async ({ page }) => {
+  await page.goto("/");
+  await page.getByLabel("账号", { exact: true }).fill(process.env.E2E_USERNAME!);
+  await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
+  await page.getByRole("button", { name: "登录工作台" }).click();
+  await page.locator("summary").click();
+  await page.getByLabel("项目名称").fill("合成词表项目");
+  await page.getByRole("button", { name: "新建项目", exact: true }).click();
+  await page.getByRole("button", { name: "导入材料", exact: true }).click();
+  await page.getByLabel("待处理文本").fill("北京甲乙科技有限公司与上海丙丁贸易有限公司签订合同。联系13800138000");
+  await page.getByRole("button", { name: "提交并识别", exact: true }).click();
+  await page.getByRole("button", { name: "逐条复核", exact: true }).click();
+  await expect(page.getByLabel("标记 1 处理决定")).toBeVisible();
+  await page.getByRole("button", { name: "返回材料列表", exact: true }).click();
+  await page.getByRole("button", { name: "项目词表", exact: true }).click();
+  await page.getByLabel("名称或代号", { exact: true }).fill("北京甲乙科技有限公司");
+  await page.getByRole("button", { name: "添加词条", exact: true }).click();
+  await page.getByRole("button", { name: "保存词表", exact: true }).click();
+  await page.getByRole("alertdialog", { name: "操作确认" }).getByRole("button", { name: "确认执行", exact: true }).click();
+  await expect(page.getByText("需重新识别", { exact: true })).toBeVisible();
+  await page.getByRole("button", { name: /文本 1/ }).click();
+  await expect(page.getByText("项目词表已更新，请重新识别后复核。原有复核记录仍保留。", { exact: true })).toBeVisible();
+  await expect(page.getByRole("button", { name: "导出已选标记的处理副本", exact: true })).toBeDisabled();
+  await page.getByRole("button", { name: "重新识别", exact: true }).click();
+  await page.getByRole("alertdialog", { name: "操作确认" }).getByRole("button", { name: "确认执行", exact: true }).click();
+  await page.getByRole("button", { name: "逐条复核", exact: true }).click();
+  await expect(page.getByLabel("标记 2 处理决定")).toBeVisible();
+  await expect(page.getByRole("button", { name: "北京甲乙科技有限公司", exact: true })).toBeVisible();
+  await expect(page.getByLabel("标记 1 处理决定")).toHaveValue("pending");
+  await page.getByRole("button", { name: "识别实体候选", exact: true }).click();
+  await page.getByRole("alertdialog", { name: "操作确认" }).getByRole("button", { name: "确认执行", exact: true }).click();
+  await expect(page.getByText("实体候选已识别，请结合上下文复核。", { exact: true })).toBeVisible();
+  await expect(page.getByText(/规则匹配、实体识别/)).toBeVisible();
+  await page.screenshot({ path: "test-results/project-dictionary-desktop.png", fullPage: true });
+});

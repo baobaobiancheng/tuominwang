@@ -1,0 +1,939 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-14",
+  "mode": "all native mutations in memory; no execution/no original writes; only normalize function AST loaded from our verification helper",
+  "reviewed_sources": [
+    {
+      "path": ".data/research/lawbot-2026-10-14/native-integrity/verify-native.py",
+      "sha256": "f8023ecc2f52397a14fc7b937e95db40f7cb50d8d6d5994e0b956fd2d30fe43f"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/native-integrity/native-integrity-comparison.json",
+      "sha256": "056823a9def4f529102fdc29214aa4c5f4264bb7e297eddd1bc80541fa19b36d"
+    }
+  ],
+  "summary": {
+    "baselines": 7,
+    "probes": 93,
+    "rejected": 72,
+    "accepted_opaque_signature_probes": 21,
+    "unexpected_results": 0,
+    "original_files_unchanged": true
+  },
+  "baselines": [
+    {
+      "member": "node_modules/@img/sharp-darwin-arm64/lib/sharp-darwin-arm64.node",
+      "upstream_sha256": "ba8c8e37f9bc463d7369c03fae0b213db3ecca00d6db3db46ef156b00ffe65c0",
+      "observed_sha256": "93c61260d26e5f07224f21292ec129653b3b7b783a275c98459ef673907be8c4",
+      "normalization_matches": true,
+      "signatureOffset": 260128,
+      "signatureLength": 18928,
+      "alignmentPaddingBytes": 0
+    },
+    {
+      "member": "node_modules/@img/sharp-libvips-darwin-arm64/lib/libvips-cpp.8.17.2.dylib",
+      "upstream_sha256": "51aec2278070b7fdd08a0774fb1e1cd55e6b55e4e3d7745af9e6058bb45b596d",
+      "observed_sha256": "2cc0aff1a959c80adb0d06da2ca4b340aff75d88246d78f41fe57cc1d742d047",
+      "normalization_matches": true,
+      "signatureOffset": 15945984,
+      "signatureLength": 49568,
+      "alignmentPaddingBytes": 0
+    },
+    {
+      "member": "node_modules/@napi-rs/canvas-darwin-arm64/skia.darwin-arm64.node",
+      "upstream_sha256": "b6b2f5cc20d4d536c1b5768ba41ef6c83fcd289f4cc435d9aac5e2185e0b655c",
+      "observed_sha256": "779a282ef247b20bb941a753e5335b1510581f9791c4f12f0d5c3328de4e8d3a",
+      "normalization_matches": true,
+      "signatureOffset": 24267648,
+      "signatureLength": 65840,
+      "alignmentPaddingBytes": 0
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/arm64/libonnxruntime.1.23.2.dylib",
+      "upstream_sha256": "7d5ac8528f16a5d157c53eadb4c766bc23f0dbf02c994fb900303e27806e372c",
+      "observed_sha256": "e67748c3f0fbdd5fc566873519c26d505a5812735fc7a1fc887b3874d9271838",
+      "normalization_matches": true,
+      "signatureOffset": 35438416,
+      "signatureLength": 87616,
+      "alignmentPaddingBytes": 0
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/arm64/onnxruntime_binding.node",
+      "upstream_sha256": "29c18bc05a0c9577fde8856432f29cdcccf0e5c92440a69f196ac37505ad8b35",
+      "observed_sha256": "45ef47e7eeeee07ac267e814d58efda6bb8b4915765324e209860ae0a33091af",
+      "normalization_matches": true,
+      "signatureOffset": 236880,
+      "signatureLength": 18896,
+      "alignmentPaddingBytes": 0
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/x64/libonnxruntime.1.23.2.dylib",
+      "upstream_sha256": "0576e3f8dd16833c291fddd037444672ae20cdc6797db00928cc7527541c5a4a",
+      "observed_sha256": "b2cb2d398af41162032e982b0edc8949bf004102142371b201f215cd573a64c5",
+      "normalization_matches": true,
+      "signatureOffset": 40009968,
+      "signatureLength": 331008,
+      "alignmentPaddingBytes": 0
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/x64/onnxruntime_binding.node",
+      "upstream_sha256": "b9f2fad0f4c81fc79a1e990e47efbffe6275db72e6d8cabdb620e70e2bdff720",
+      "observed_sha256": "d21386df3d80939943e7c2f766f8382494c8afd4762560ecbe6d0207f189e120",
+      "normalization_matches": true,
+      "signatureOffset": 226416,
+      "signatureLength": 20208,
+      "alignmentPaddingBytes": 8
+    }
+  ],
+  "probes": [
+    {
+      "member": "node_modules/@img/sharp-darwin-arm64/lib/sharp-darwin-arm64.node",
+      "name": "flip_non_signature_code_byte",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "de9064458c0dc3626f7f086a961422cd1f06b26333f6a63aa0c845dff39682ef",
+      "error": "AssertionError: non-signature content mismatch"
+    },
+    {
+      "member": "node_modules/@img/sharp-darwin-arm64/lib/sharp-darwin-arm64.node",
+      "name": "flip_last_non_signature_byte",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "3deba291232bf31ecdfca398cc96e44b9b6edac900579301f07fd70c2cbb9bf4",
+      "error": "AssertionError: non-signature content mismatch"
+    },
+    {
+      "member": "node_modules/@img/sharp-darwin-arm64/lib/sharp-darwin-arm64.node",
+      "name": "wrong_ncmds",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "3d0a381a257b52d279e1af1cd05fa20818910c879dbfe3e26d189c2d7d3857fa",
+      "error": "AssertionError: "
+    },
+    {
+      "member": "node_modules/@img/sharp-darwin-arm64/lib/sharp-darwin-arm64.node",
+      "name": "signature_command_not_last_declared_LC",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "749acac08385fadb55c38aa47089642f6cb3fcfdac90822b5ab68ee684b11c62",
+      "error": "AssertionError: Signature command must be final load command"
+    },
+    {
+      "member": "node_modules/@img/sharp-darwin-arm64/lib/sharp-darwin-arm64.node",
+      "name": "append_unaccounted_eof_byte",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "256884655958c896ab929e4fc35876484a97356b9f866aa6d6beb2e5cd2bf79b",
+      "error": "AssertionError: Signature must be final byte range"
+    },
+    {
+      "member": "node_modules/@img/sharp-darwin-arm64/lib/sharp-darwin-arm64.node",
+      "name": "signature_length_off_by_one",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "fe5c5c868d01a7a84d2fc7ebcb8ef8b85bbd58fff5740e9b7c7008cc41734731",
+      "error": "AssertionError: Signature must be final byte range"
+    },
+    {
+      "member": "node_modules/@img/sharp-darwin-arm64/lib/sharp-darwin-arm64.node",
+      "name": "signature_shift_into_content",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "764c18eb7a7fb44f5c78d8cfe327e9c28c65277eb69d0e5f08fe3f170ff6e3a9",
+      "error": "AssertionError: signed offset anchored to upstream"
+    },
+    {
+      "member": "node_modules/@img/sharp-darwin-arm64/lib/sharp-darwin-arm64.node",
+      "name": "linkedit_filesize_off_by_one",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "d274f6fc18e8978f19617ecc5de80139fda18af71acb06113d5f5308a839c86d",
+      "error": "AssertionError: LINKEDIT must end at EOF"
+    },
+    {
+      "member": "node_modules/@img/sharp-darwin-arm64/lib/sharp-darwin-arm64.node",
+      "name": "linkedit_vmsize_unaligned",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "6610d8d041ebe3694258e18ce42a09c7891d689edae34efff1a947f2de347c5d",
+      "error": "AssertionError: LINKEDIT vmsize must equal 4KiB/16KiB rounded file size"
+    },
+    {
+      "member": "node_modules/@img/sharp-darwin-arm64/lib/sharp-darwin-arm64.node",
+      "name": "linkedit_fileoff_tamper",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "09351542c7f9079195ab755338f97bd7a9fa39da0012d0979e5452cf44d3227c",
+      "error": "AssertionError: non-signature content mismatch"
+    },
+    {
+      "member": "node_modules/@img/sharp-darwin-arm64/lib/sharp-darwin-arm64.node",
+      "name": "signature_blob_magic_flip_opaque",
+      "expected": "accepted",
+      "result": "accepted",
+      "passed": true,
+      "mutated_sha256": "e52117f61f07f31d6102a1f6b0ae809fd83349222f3003bc1250efaffc37be73",
+      "error": null
+    },
+    {
+      "member": "node_modules/@img/sharp-darwin-arm64/lib/sharp-darwin-arm64.node",
+      "name": "opaque_signature_trailing_data_with_consistent_sizes",
+      "expected": "accepted",
+      "result": "accepted",
+      "passed": true,
+      "mutated_sha256": "5998c6ef8086fdeb41ccf206369ca80c17052c0771078af97b6cdea8f2730405",
+      "error": null
+    },
+    {
+      "member": "node_modules/@img/sharp-darwin-arm64/lib/sharp-darwin-arm64.node",
+      "name": "zero_length_signature_with_consistent_sizes",
+      "expected": "accepted",
+      "result": "accepted",
+      "passed": true,
+      "mutated_sha256": "e49e459f526791cc7c91adeb626af00277c4a53d344926c2f55c946fe8b3a114",
+      "error": null
+    },
+    {
+      "member": "node_modules/@img/sharp-libvips-darwin-arm64/lib/libvips-cpp.8.17.2.dylib",
+      "name": "flip_non_signature_code_byte",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "b700e2d4f1c5b0c572de3b5ea61d0070c4e8fdb6a26a24b360e859958c0d0e5a",
+      "error": "AssertionError: non-signature content mismatch"
+    },
+    {
+      "member": "node_modules/@img/sharp-libvips-darwin-arm64/lib/libvips-cpp.8.17.2.dylib",
+      "name": "flip_last_non_signature_byte",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "fe4ed2b368ddd336c98bf9065178952ccd2e755ab81f393768764252b2c8de72",
+      "error": "AssertionError: non-signature content mismatch"
+    },
+    {
+      "member": "node_modules/@img/sharp-libvips-darwin-arm64/lib/libvips-cpp.8.17.2.dylib",
+      "name": "wrong_ncmds",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "95ec8997f21e0e0dd3624c70fedc1ff9f18317de1f7f47323337e476f3e9cedd",
+      "error": "AssertionError: "
+    },
+    {
+      "member": "node_modules/@img/sharp-libvips-darwin-arm64/lib/libvips-cpp.8.17.2.dylib",
+      "name": "signature_command_not_last_declared_LC",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "85d9146193ae04f21e85db30ab2753a758946e8f3f1d0b63eb4ff6b27d5d4caf",
+      "error": "AssertionError: Signature command must be final load command"
+    },
+    {
+      "member": "node_modules/@img/sharp-libvips-darwin-arm64/lib/libvips-cpp.8.17.2.dylib",
+      "name": "append_unaccounted_eof_byte",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "0aca30764d0ce292a40f0101da4d1f2865bc5559cac3cf1cae1e70df7c86d2dc",
+      "error": "AssertionError: Signature must be final byte range"
+    },
+    {
+      "member": "node_modules/@img/sharp-libvips-darwin-arm64/lib/libvips-cpp.8.17.2.dylib",
+      "name": "signature_length_off_by_one",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "6a5934c0bf135d7f8c87d299f52e386a4ab51a4a8f50e305f39dc285828496a3",
+      "error": "AssertionError: Signature must be final byte range"
+    },
+    {
+      "member": "node_modules/@img/sharp-libvips-darwin-arm64/lib/libvips-cpp.8.17.2.dylib",
+      "name": "signature_shift_into_content",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "aa7ccc7ee8f4bf0a94062e7a8fb20afd351d198885cd79b9451a7669435f88d3",
+      "error": "AssertionError: signed offset anchored to upstream"
+    },
+    {
+      "member": "node_modules/@img/sharp-libvips-darwin-arm64/lib/libvips-cpp.8.17.2.dylib",
+      "name": "linkedit_filesize_off_by_one",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "fdcc02206091d9f10640feadb832de8dc444920b5aa4f03fbc41479aa8035db7",
+      "error": "AssertionError: LINKEDIT must end at EOF"
+    },
+    {
+      "member": "node_modules/@img/sharp-libvips-darwin-arm64/lib/libvips-cpp.8.17.2.dylib",
+      "name": "linkedit_vmsize_unaligned",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "e063039cee9d9cdc753834baee1a97fe73361b6dbe63d46ddb7886e8e30dda62",
+      "error": "AssertionError: LINKEDIT vmsize must equal 4KiB/16KiB rounded file size"
+    },
+    {
+      "member": "node_modules/@img/sharp-libvips-darwin-arm64/lib/libvips-cpp.8.17.2.dylib",
+      "name": "linkedit_fileoff_tamper",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "ef79e404df2ba09fb42ce1334c7cc93b3c2ed2c0b40d42a5cc25bc74b0458530",
+      "error": "AssertionError: non-signature content mismatch"
+    },
+    {
+      "member": "node_modules/@img/sharp-libvips-darwin-arm64/lib/libvips-cpp.8.17.2.dylib",
+      "name": "signature_blob_magic_flip_opaque",
+      "expected": "accepted",
+      "result": "accepted",
+      "passed": true,
+      "mutated_sha256": "72efd57587acd58bfaf0d3fcaad1ec0214e4d94497554e92796b0bbacfe4172d",
+      "error": null
+    },
+    {
+      "member": "node_modules/@img/sharp-libvips-darwin-arm64/lib/libvips-cpp.8.17.2.dylib",
+      "name": "opaque_signature_trailing_data_with_consistent_sizes",
+      "expected": "accepted",
+      "result": "accepted",
+      "passed": true,
+      "mutated_sha256": "81816fa00d5617648c31674762ba48341512babe6799e474deefdaf68a12b9b7",
+      "error": null
+    },
+    {
+      "member": "node_modules/@img/sharp-libvips-darwin-arm64/lib/libvips-cpp.8.17.2.dylib",
+      "name": "zero_length_signature_with_consistent_sizes",
+      "expected": "accepted",
+      "result": "accepted",
+      "passed": true,
+      "mutated_sha256": "9b42009cdf705bf8acc5986db9b807184d06fc8c7383ea78df259fe2e5ec5c73",
+      "error": null
+    },
+    {
+      "member": "node_modules/@napi-rs/canvas-darwin-arm64/skia.darwin-arm64.node",
+      "name": "flip_non_signature_code_byte",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "462c3f16152f97159f10084530886743f0d4e6761598cc530e8a4be46a032b79",
+      "error": "AssertionError: non-signature content mismatch"
+    },
+    {
+      "member": "node_modules/@napi-rs/canvas-darwin-arm64/skia.darwin-arm64.node",
+      "name": "flip_last_non_signature_byte",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "0749a78e9362ffaf9797462a1c2437826a386de6547ca4eb644247e035680f4f",
+      "error": "AssertionError: non-signature content mismatch"
+    },
+    {
+      "member": "node_modules/@napi-rs/canvas-darwin-arm64/skia.darwin-arm64.node",
+      "name": "wrong_ncmds",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "5b0f249b8b5b2702cbec2becdc9c704454b0d3e8c087c92f969e02af6ee9aeeb",
+      "error": "AssertionError: "
+    },
+    {
+      "member": "node_modules/@napi-rs/canvas-darwin-arm64/skia.darwin-arm64.node",
+      "name": "signature_command_not_last_declared_LC",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "fc6b2c20e4efe376c81a4f13325a54d1c09ba84e98ca775fbd173c27b224c7df",
+      "error": "AssertionError: Signature command must be final load command"
+    },
+    {
+      "member": "node_modules/@napi-rs/canvas-darwin-arm64/skia.darwin-arm64.node",
+      "name": "append_unaccounted_eof_byte",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "51616d5ad466ebcedb160b27bb25346d6068a56030a31accb4471bcd7a2cb944",
+      "error": "AssertionError: Signature must be final byte range"
+    },
+    {
+      "member": "node_modules/@napi-rs/canvas-darwin-arm64/skia.darwin-arm64.node",
+      "name": "signature_length_off_by_one",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "daee37300190d0907e3c5484bec885996b64327efc1226260c55e4e55c07394b",
+      "error": "AssertionError: Signature must be final byte range"
+    },
+    {
+      "member": "node_modules/@napi-rs/canvas-darwin-arm64/skia.darwin-arm64.node",
+      "name": "signature_shift_into_content",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "ad604bc99c7c94e9da88b16e4c7c9d8c8611568211e3e52326e3115e867b34e7",
+      "error": "AssertionError: signed offset anchored to upstream"
+    },
+    {
+      "member": "node_modules/@napi-rs/canvas-darwin-arm64/skia.darwin-arm64.node",
+      "name": "linkedit_filesize_off_by_one",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "79f94cd0fc65ed0fb75ff61f7d42cf969e3695535ed7f4357f95e73dfc512679",
+      "error": "AssertionError: LINKEDIT must end at EOF"
+    },
+    {
+      "member": "node_modules/@napi-rs/canvas-darwin-arm64/skia.darwin-arm64.node",
+      "name": "linkedit_vmsize_unaligned",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "78bf3e2f4090549c7041b847c66a8a6421107c87be7d57f2b18fb92163c4e8e7",
+      "error": "AssertionError: LINKEDIT vmsize must equal 4KiB/16KiB rounded file size"
+    },
+    {
+      "member": "node_modules/@napi-rs/canvas-darwin-arm64/skia.darwin-arm64.node",
+      "name": "linkedit_fileoff_tamper",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "02413dc50254243e70bd60ee3187d2423882c1ca9baea4730e11561ac5b16d39",
+      "error": "AssertionError: non-signature content mismatch"
+    },
+    {
+      "member": "node_modules/@napi-rs/canvas-darwin-arm64/skia.darwin-arm64.node",
+      "name": "signature_blob_magic_flip_opaque",
+      "expected": "accepted",
+      "result": "accepted",
+      "passed": true,
+      "mutated_sha256": "5f211024127cebe65a16723c0e744d26488e85a8a2a18d2705f2960581d85165",
+      "error": null
+    },
+    {
+      "member": "node_modules/@napi-rs/canvas-darwin-arm64/skia.darwin-arm64.node",
+      "name": "opaque_signature_trailing_data_with_consistent_sizes",
+      "expected": "accepted",
+      "result": "accepted",
+      "passed": true,
+      "mutated_sha256": "adf46aa82f331bd165fb36b1660e234836327fe8f53df65e7d86645adde2c281",
+      "error": null
+    },
+    {
+      "member": "node_modules/@napi-rs/canvas-darwin-arm64/skia.darwin-arm64.node",
+      "name": "zero_length_signature_with_consistent_sizes",
+      "expected": "accepted",
+      "result": "accepted",
+      "passed": true,
+      "mutated_sha256": "30c40d3db2c10709802fb712bbe81402fecc8e772bee42d7878ec858bdbda7a6",
+      "error": null
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/arm64/libonnxruntime.1.23.2.dylib",
+      "name": "flip_non_signature_code_byte",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "779fdea134727173e331a63370ea08caf62b69ae89111320fdd57f5eb3c19d26",
+      "error": "AssertionError: non-signature content mismatch"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/arm64/libonnxruntime.1.23.2.dylib",
+      "name": "flip_last_non_signature_byte",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "17ffd9652227b69bae29b0898cdb93c45031f7bff3cad09dd75326291c554426",
+      "error": "AssertionError: non-signature content mismatch"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/arm64/libonnxruntime.1.23.2.dylib",
+      "name": "wrong_ncmds",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "709304e4cc05582151651c601d34f2317609d4e4dea5515608c63ab5555a8a08",
+      "error": "AssertionError: "
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/arm64/libonnxruntime.1.23.2.dylib",
+      "name": "signature_command_not_last_declared_LC",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "3d7db916b77f9dfb161ac0e68be7d59f72f3881112c1f4692d66f139ac9a68ec",
+      "error": "AssertionError: Signature command must be final load command"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/arm64/libonnxruntime.1.23.2.dylib",
+      "name": "append_unaccounted_eof_byte",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "2772fab6b12be2e7d1eadf5f3074bf3b89f47960ef0711f13a4a99dd3ee9260d",
+      "error": "AssertionError: Signature must be final byte range"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/arm64/libonnxruntime.1.23.2.dylib",
+      "name": "signature_length_off_by_one",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "8928dbc686fcccd49c877b5778a44d08208c90d59e9c86c53069170a0a838f11",
+      "error": "AssertionError: Signature must be final byte range"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/arm64/libonnxruntime.1.23.2.dylib",
+      "name": "signature_shift_into_content",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "e978bc11590e8b9ef9e6cfa12af9356814678cce6913bee65e0adf7189b45ce6",
+      "error": "AssertionError: signed offset anchored to upstream"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/arm64/libonnxruntime.1.23.2.dylib",
+      "name": "linkedit_filesize_off_by_one",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "8134249bd03158d772b433b805016287bac048bdd204fc85e8258eb3db991350",
+      "error": "AssertionError: LINKEDIT must end at EOF"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/arm64/libonnxruntime.1.23.2.dylib",
+      "name": "linkedit_vmsize_unaligned",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "b24f4951f51b2deeb4e222d9d5e7361558522a1f44ff1ae2f1e69c2e07bdd56a",
+      "error": "AssertionError: LINKEDIT vmsize must equal 4KiB/16KiB rounded file size"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/arm64/libonnxruntime.1.23.2.dylib",
+      "name": "linkedit_fileoff_tamper",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "f6e3245feccd039105a6ae1f0410b3542145e4471f232bca4d091a6415a25891",
+      "error": "AssertionError: non-signature content mismatch"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/arm64/libonnxruntime.1.23.2.dylib",
+      "name": "signature_blob_magic_flip_opaque",
+      "expected": "accepted",
+      "result": "accepted",
+      "passed": true,
+      "mutated_sha256": "c56bc01de2c27612e588e5f24da343e1cfd9f2c93c54189ac33ecd6ce7cbdfb1",
+      "error": null
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/arm64/libonnxruntime.1.23.2.dylib",
+      "name": "opaque_signature_trailing_data_with_consistent_sizes",
+      "expected": "accepted",
+      "result": "accepted",
+      "passed": true,
+      "mutated_sha256": "4828f3894a0f720242435e7304489d3652dcb2d9c2fb5b9f2e893750a7d33c8a",
+      "error": null
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/arm64/libonnxruntime.1.23.2.dylib",
+      "name": "zero_length_signature_with_consistent_sizes",
+      "expected": "accepted",
+      "result": "accepted",
+      "passed": true,
+      "mutated_sha256": "0df682efe13342546c5849a8e1a2150bdf2ac50a568a338914a3ae1987dc28de",
+      "error": null
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/arm64/onnxruntime_binding.node",
+      "name": "flip_non_signature_code_byte",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "e0b7f78cac9f5c9d665549d8111e3f72c1fc23c632ca28ea2bc94f9fca1404be",
+      "error": "AssertionError: non-signature content mismatch"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/arm64/onnxruntime_binding.node",
+      "name": "flip_last_non_signature_byte",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "11b8daa6126ec05276c06562cb85ff5779e71933fa37b33db7e974e0c2f76fa6",
+      "error": "AssertionError: non-signature content mismatch"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/arm64/onnxruntime_binding.node",
+      "name": "wrong_ncmds",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "263b26414867c99126dd8eadb0e9c6f30598a9fd064753959924dbdc671b1124",
+      "error": "AssertionError: "
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/arm64/onnxruntime_binding.node",
+      "name": "signature_command_not_last_declared_LC",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "9666e5767dcb02fd8c8360f96737b587e931c7a39dfc1154a4464dad1bf9daac",
+      "error": "AssertionError: Signature command must be final load command"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/arm64/onnxruntime_binding.node",
+      "name": "append_unaccounted_eof_byte",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "5bdd1f065c6a95eaa0fbdcd3e216f3533f889d95d072430ec6a80e1c7144ad30",
+      "error": "AssertionError: Signature must be final byte range"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/arm64/onnxruntime_binding.node",
+      "name": "signature_length_off_by_one",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "90df98bbca1ebe30ee6d918790b1b5b2bc5218e7e9c85fa1d7b74ffb14438082",
+      "error": "AssertionError: Signature must be final byte range"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/arm64/onnxruntime_binding.node",
+      "name": "signature_shift_into_content",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "26eec639af34847dd3c1b9f49555c692efc9eb11e880c1eb8606de94ba7a60e0",
+      "error": "AssertionError: signed offset anchored to upstream"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/arm64/onnxruntime_binding.node",
+      "name": "linkedit_filesize_off_by_one",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "2649dabc8bb43085d3eba53bec9481094502941484ad2fc9067ca363624a5326",
+      "error": "AssertionError: LINKEDIT must end at EOF"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/arm64/onnxruntime_binding.node",
+      "name": "linkedit_vmsize_unaligned",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "59e9c73d20e61c4de553e52fbec9b28566537b16f1e3268002ba443179902a02",
+      "error": "AssertionError: LINKEDIT vmsize must equal 4KiB/16KiB rounded file size"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/arm64/onnxruntime_binding.node",
+      "name": "linkedit_fileoff_tamper",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "df995dfdfe0985d2b76138dc7db10fc43869e990205f34b11497c459ec397b3a",
+      "error": "AssertionError: non-signature content mismatch"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/arm64/onnxruntime_binding.node",
+      "name": "signature_blob_magic_flip_opaque",
+      "expected": "accepted",
+      "result": "accepted",
+      "passed": true,
+      "mutated_sha256": "8ed4fd525c929ea9734bfb3927f734ac32ec66bbe743e57f8fe4e0627611dbe1",
+      "error": null
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/arm64/onnxruntime_binding.node",
+      "name": "opaque_signature_trailing_data_with_consistent_sizes",
+      "expected": "accepted",
+      "result": "accepted",
+      "passed": true,
+      "mutated_sha256": "8a5b089e07c631da21f35eebc3570a98d1628667b79a19ea7a46f5e63b071800",
+      "error": null
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/arm64/onnxruntime_binding.node",
+      "name": "zero_length_signature_with_consistent_sizes",
+      "expected": "accepted",
+      "result": "accepted",
+      "passed": true,
+      "mutated_sha256": "2ae0e06bc32f733a86806b584e3630fe4f78df2933012080f78dcdd54d0048bb",
+      "error": null
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/x64/libonnxruntime.1.23.2.dylib",
+      "name": "flip_non_signature_code_byte",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "84c42cc49147da8380f8668f8610f1bb4d23254c326b182cca2afd4c0d677834",
+      "error": "AssertionError: non-signature content mismatch"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/x64/libonnxruntime.1.23.2.dylib",
+      "name": "flip_last_non_signature_byte",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "79ab5fa20528c56a1cdc271670e3d518c4cb5070ac8361a28dd6c0a1732a0eeb",
+      "error": "AssertionError: non-signature content mismatch"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/x64/libonnxruntime.1.23.2.dylib",
+      "name": "wrong_ncmds",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "b98e76146668add1f9e795458549aa3040a0900b8d487325854a5158d9c0333f",
+      "error": "AssertionError: "
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/x64/libonnxruntime.1.23.2.dylib",
+      "name": "signature_command_not_last_declared_LC",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "3d655b3fcccdedd52a0416e0fb69c90f2330dc2d6b389f061b1703c457e1578d",
+      "error": "AssertionError: Signature command must be final load command"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/x64/libonnxruntime.1.23.2.dylib",
+      "name": "append_unaccounted_eof_byte",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "eacc58c5a5a1a30fbf09aafa1dc29c1fd39a6926ab903782399b3a509939e04e",
+      "error": "AssertionError: Signature must be final byte range"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/x64/libonnxruntime.1.23.2.dylib",
+      "name": "signature_length_off_by_one",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "c5532379a0a4fd65d23ef9069261381dcd4412e75b6660dd3f3bb7401c62dcdd",
+      "error": "AssertionError: Signature must be final byte range"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/x64/libonnxruntime.1.23.2.dylib",
+      "name": "signature_shift_into_content",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "e33dd6a5d95874b30d78f60241ea1f10934170afca13d81ce9ed4234bb94e32a",
+      "error": "AssertionError: unsigned signature offset alignment"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/x64/libonnxruntime.1.23.2.dylib",
+      "name": "linkedit_filesize_off_by_one",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "2f12d8e438b9081ae52dae7f236d38416ae4827a5628f81ea29d8f39ffd0fdc9",
+      "error": "AssertionError: LINKEDIT must end at EOF"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/x64/libonnxruntime.1.23.2.dylib",
+      "name": "linkedit_vmsize_unaligned",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "c449ddaa31273a48a529cb4a83d9a341196b270e9927aa987d278c127cfd3f46",
+      "error": "AssertionError: LINKEDIT vmsize must equal 4KiB/16KiB rounded file size"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/x64/libonnxruntime.1.23.2.dylib",
+      "name": "linkedit_fileoff_tamper",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "fa350d6f8728dcd38753f9ee58c5c13835b58ecaa8b015556c71b7c238bc3c6c",
+      "error": "AssertionError: non-signature content mismatch"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/x64/libonnxruntime.1.23.2.dylib",
+      "name": "signature_blob_magic_flip_opaque",
+      "expected": "accepted",
+      "result": "accepted",
+      "passed": true,
+      "mutated_sha256": "df9cf0709ec65113cf303ec0287d389e673a524ab6ad59710eccd5e087b39b05",
+      "error": null
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/x64/libonnxruntime.1.23.2.dylib",
+      "name": "opaque_signature_trailing_data_with_consistent_sizes",
+      "expected": "accepted",
+      "result": "accepted",
+      "passed": true,
+      "mutated_sha256": "254f403f9475be20cb3437c9855808cb9d92c497101d8162a0d952d9057b06e6",
+      "error": null
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/x64/libonnxruntime.1.23.2.dylib",
+      "name": "zero_length_signature_with_consistent_sizes",
+      "expected": "accepted",
+      "result": "accepted",
+      "passed": true,
+      "mutated_sha256": "37426006eaba7df8f059a1ec8be35b4b6192b0ee2778f834e541df26a0bc6d74",
+      "error": null
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/x64/onnxruntime_binding.node",
+      "name": "flip_non_signature_code_byte",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "39d5357d1dac9dae15340a07b2130c84936e16a65037feef18002c459ec63170",
+      "error": "AssertionError: non-signature content mismatch"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/x64/onnxruntime_binding.node",
+      "name": "flip_last_non_signature_byte",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "2b154e64e8b624f64224832fac30da88bcbc66ada34d1703d2ae0b2dff88240c",
+      "error": "AssertionError: unsigned zero padding constraint"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/x64/onnxruntime_binding.node",
+      "name": "wrong_ncmds",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "6ed203a5147bb9f2cff8ba2f4e0366297149a3df4620a4512e1420bd096adcf7",
+      "error": "AssertionError: "
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/x64/onnxruntime_binding.node",
+      "name": "signature_command_not_last_declared_LC",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "c50bebab2409eb2dae9ee3f5c18802b6980572e8e7f103d1aded997c9f4b5e21",
+      "error": "AssertionError: Signature command must be final load command"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/x64/onnxruntime_binding.node",
+      "name": "append_unaccounted_eof_byte",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "32fad056439b18cef42a23c6ce516635756252785ca0e3afeadc72cde598dc49",
+      "error": "AssertionError: Signature must be final byte range"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/x64/onnxruntime_binding.node",
+      "name": "signature_length_off_by_one",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "38a918ff286d552a17e47308a241ae45439b77f7917ce738f2aa79a7bfcd101f",
+      "error": "AssertionError: Signature must be final byte range"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/x64/onnxruntime_binding.node",
+      "name": "signature_shift_into_content",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "2e17036ab90916bfb231757dfaff3a9e6dbf43faaeb4d5d927fe3831818b46a8",
+      "error": "AssertionError: unsigned signature offset alignment"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/x64/onnxruntime_binding.node",
+      "name": "linkedit_filesize_off_by_one",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "03d53c72a6a34a6532d7df4a5acd751e999402e8daf6d38d4458bc23a2a25e44",
+      "error": "AssertionError: LINKEDIT must end at EOF"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/x64/onnxruntime_binding.node",
+      "name": "linkedit_vmsize_unaligned",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "00dcbe49ee05495eec6b34c8a676b242f4221e5dcd6670c5d9af84f40bddf53a",
+      "error": "AssertionError: LINKEDIT vmsize must equal 4KiB/16KiB rounded file size"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/x64/onnxruntime_binding.node",
+      "name": "linkedit_fileoff_tamper",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "8f3620480ffe97532cff6581537668190afbadf9307552301367761ef1153da2",
+      "error": "AssertionError: non-signature content mismatch"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/x64/onnxruntime_binding.node",
+      "name": "signature_blob_magic_flip_opaque",
+      "expected": "accepted",
+      "result": "accepted",
+      "passed": true,
+      "mutated_sha256": "50c6e6627121321cd5d3826213c61f37951042eb092841fc99c750b4e31323e7",
+      "error": null
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/x64/onnxruntime_binding.node",
+      "name": "opaque_signature_trailing_data_with_consistent_sizes",
+      "expected": "accepted",
+      "result": "accepted",
+      "passed": true,
+      "mutated_sha256": "74ee910cfc3b78a58dd2f2704d768498ccbd3d9b3b39258248f0b1f8c65e11b3",
+      "error": null
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/x64/onnxruntime_binding.node",
+      "name": "zero_length_signature_with_consistent_sizes",
+      "expected": "accepted",
+      "result": "accepted",
+      "passed": true,
+      "mutated_sha256": "c58c7691e08997bfe20c20b320aecb332f11beebfcce7a4b13c1d7f22db0ffd5",
+      "error": null
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/x64/onnxruntime_binding.node",
+      "name": "nonzero_added_alignment_padding",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "b64bb893cf6f34e5977ce8947ce0fcb2c34f90539d33d404cb1cddf164b03945",
+      "error": "AssertionError: unsigned zero padding constraint"
+    },
+    {
+      "member": "node_modules/onnxruntime-node/bin/napi-v6/darwin/x64/onnxruntime_binding.node",
+      "name": "extra_16_byte_padding_rejected",
+      "expected": "rejected",
+      "result": "rejected",
+      "passed": true,
+      "mutated_sha256": "1f40bfa71a0316c3c81cae5c941826948d56b2839d9cb9401feacc4fd7b54e5f",
+      "error": "AssertionError: unsigned signature offset alignment"
+    }
+  ],
+  "conclusions": [
+    "7份现存发布原件与已验证npm制品的非签名前缀比对成立，ASAR原始SHA256不一致仍保留。",
+    "代码字节/签名前最后字节、LC计数/末尾范围、签名起点、EOF、LINKEDIT大小/任意vmsize修改均被拒绝；8字节补齐样本非零补齐与多16字节补齐均拒绝。",
+    "x64允许4KiB或16KiB精确上取整，仅对LINKEDIT.vmsize字段放宽；任意其他值失败，该有限例外不掩盖代码字节。",
+    "签名blob不透明：损坏magic、尾部附加任意数据以及零长度blob可通过normalize。该函数仅定位差异，不证明签名有效。",
+    "父线程已增加codesign verify/display非零拒绝产报告与allCodesignVerified；当前7原件记录均为0。未为内存变异调用codesign，不把其预期失败冒称实测。"
+  ],
+  "residual_limits": [
+    "normalize未独立核Mach-O所有load-command结构（例如唯一LINKEDIT/最终遍历offset、完整签名SuperBlob结构）；固定可信上游逐字节比较与系统验签共同约束当前7对，不是通用恶意Mach-O验证器。",
+    "codesign证明磁盘签名有效，不证明第三方算法正确、软件运行安全、签名历史流程或ASAR重打包步骤。"
+  ],
+  "verdict": "pass-for-current-seven-byte-difference-closure-with-separate-codesign-gate; not algorithm/runtime closure"
+}

@@ -1,0 +1,135 @@
+import { test, expect } from "./fixture.ts";
+import { randomUUID } from "node:crypto";
+
+test("three-pane review keeps text highlights aligned and guards navigation at desktop widths", async ({ page }) => {
+  await page.goto("/");
+  await page.getByLabel("账号", { exact: true }).fill(process.env.E2E_USERNAME!);
+  await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
+  await page.getByRole("button", { name: "登录工作台" }).click();
+  await expect(page.getByRole("heading", { name: "我的项目", exact: true })).toBeVisible();
+  const headers = { origin: new URL(page.url()).origin };
+  const project = await (await page.request.post("/api/projects", { headers, data: { name: "合成布局检查" } })).json();
+  const text = Array.from({ length: 65 }, (_, i) => `合成段落 ${i}：😀联系电话13800138000；仅用于界面验证。`).join("\n") + "\n";
+  const created = await page.request.post(`/api/projects/${project.id}/documents`, { headers, data: { text, requestId: randomUUID() } });
+  expect(created.ok()).toBeTruthy();
+  const second = await page.request.post(`/api/projects/${project.id}/documents`, { headers, data: { text: "另一个合成文档", requestId: randomUUID() } });
+  expect(second.ok()).toBeTruthy();
+  await page.reload();
+  await page.getByRole("button", { name: "合成布局检查", exact: true }).click();
+  await page.getByRole("button", { name: /文本 1/ }).click();
+  await page.getByRole("button", { name: "逐条复核", exact: true }).click();
+  await expect(page.getByLabel("标记 1 处理决定")).toBeVisible();
+  for (const width of [1024, 1440, 1920]) {
+    await page.setViewportSize({ width, height: 900 });
+    const geometry = await page.evaluate(() => {
+      const text = document.querySelector<HTMLTextAreaElement>('textarea[aria-label="原文"]')!;
+      const layer = document.querySelector<HTMLElement>(".highlight-layer")!;
+      const inspector = document.querySelector<HTMLElement>(".inspector-pane")!;
+      return { pageWidth: document.documentElement.scrollWidth, textRight: text.getBoundingClientRect().right, inspectorLeft: inspector.getBoundingClientRect().left, textWidth: text.clientWidth, layerWidth: layer.clientWidth, textHeight: text.scrollHeight, layerHeight: layer.scrollHeight };
+    });
+    expect(geometry.pageWidth).toBeLessThanOrEqual(width);
+    expect(geometry.textRight).toBeLessThan(geometry.inspectorLeft);
+    expect(geometry.textWidth).toBe(geometry.layerWidth);
+    expect(Math.abs(geometry.textHeight - geometry.layerHeight)).toBeLessThanOrEqual(1);
+    const actions = await page.getByRole("region", { name: "保存与导出", exact: true }).boundingBox();
+    const navigation = await page.getByRole("complementary", { name: "项目导航", exact: true }).boundingBox();
+    expect(actions!.x).toBeGreaterThanOrEqual(navigation!.x);
+    expect(actions!.x + actions!.width).toBeLessThanOrEqual(navigation!.x + navigation!.width);
+    expect(actions!.y + actions!.height).toBeLessThanOrEqual(900);
+    await page.getByLabel("原文", { exact: true }).evaluate((element: HTMLTextAreaElement) => { element.scrollTop = element.scrollHeight; element.dispatchEvent(new Event("scroll", { bubbles: true })); });
+    await expect.poll(() => page.evaluate(() => document.querySelector<HTMLTextAreaElement>('textarea[aria-label="原文"]')!.scrollTop - document.querySelector<HTMLElement>(".highlight-layer")!.scrollTop)).toBe(0);
+    await page.screenshot({ path: `test-results/frontend-alignment-${width}.png` });
+  }
+  await page.setViewportSize({ width: 1440, height: 720 });
+  const shortActions = page.getByRole("region", { name: "保存与导出", exact: true });
+  await expect(shortActions).toBeVisible();
+  const shortBox = await shortActions.boundingBox();
+  expect(shortBox!.y).toBeGreaterThanOrEqual(44);
+  expect(shortBox!.y + shortBox!.height).toBeLessThanOrEqual(720);
+  await shortActions.getByText("副本说明", { exact: true }).click();
+  await expect(shortActions).toContainText("原件保持不变");
+  await shortActions.getByText("副本说明", { exact: true }).click();
+  // Tools belong to the document toolbar; searching does not replace the entity list.
+  await page.getByRole("button", { name: "按实体", exact: true }).click();
+  await page.getByRole("button", { name: "收起手机号实体", exact: true }).click();
+  await expect(page.locator(".entity-group-card").first()).toBeHidden();
+  await page.getByRole("button", { name: "展开手机号实体", exact: true }).click();
+  await expect(page.locator(".entity-group-card").first()).toBeVisible();
+  await page.getByRole("button", { name: "全文查找", exact: true }).click();
+  await expect(page.locator(".document-pane").getByLabel("全文查找", { exact: true })).toBeVisible();
+  await expect(page.getByRole("region", { name: "实体分组", exact: true })).toBeVisible();
+  await page.getByLabel("全文查找", { exact: true }).fill("13800138000");
+  await page.getByRole("button", { name: "查找", exact: true }).click();
+  await expect(page.getByLabel("查找结果", { exact: true })).toBeVisible();
+  await page.getByRole("button", { name: "敏感标记", exact: true }).click();
+  await page.getByRole("button", { name: "全文查找", exact: true }).click();
+  await expect(page.getByLabel("全文查找", { exact: true })).toHaveValue("13800138000");
+  await expect(page.getByLabel("查找结果", { exact: true })).toBeVisible();
+  // Draft invalidation is covered by entity-workflow's cross-window search case.
+  await page.getByRole("button", { name: "漏标检查", exact: true }).click();
+  await expect(page.getByRole("dialog", { name: "漏标检查", exact: true })).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(page.getByRole("dialog", { name: "漏标检查", exact: true })).toBeHidden();
+  await expect(page.getByRole("button", { name: "漏标检查", exact: true })).toBeFocused();
+  await page.getByRole("button", { name: "逐条复核", exact: true }).click();
+  await page.getByRole("button", { name: "组织管理", exact: true }).click();
+  await expect(page.getByRole("button", { name: "关闭组织管理", exact: true })).toBeEnabled();
+  const contrasts = await page.evaluate(() => {
+    const luminance = (color: string) => {
+      const channels = color.match(/[\d.]+/g)!.slice(0, 3).map(Number).map(v => { const s = v / 255; return s <= .04045 ? s / 12.92 : ((s + .055) / 1.055) ** 2.4; });
+      return channels[0] * .2126 + channels[1] * .7152 + channels[2] * .0722;
+    };
+    return [...document.querySelectorAll(".create-project summary, .organization-dialog h2, .organization-dialog button.quiet")].filter(el => !el.matches(":disabled") && el.getClientRects().length).map(el => 1.05 / (luminance(getComputedStyle(el).color) + .05));
+  });
+  expect(Math.min(...contrasts)).toBeGreaterThanOrEqual(4.5);
+  await page.screenshot({ path: "test-results/frontend-organization-review.png" });
+  await page.getByRole("button", { name: "关闭组织管理", exact: true }).click();
+  await page.getByLabel("标记 1 处理决定").selectOption("redact");
+  await page.getByRole("navigation", { name: "材料导航" }).getByRole("button", { name: "文本 2", exact: true }).click();
+  await page.getByRole("alertdialog", { name: "操作确认" }).getByRole("button", { name: "取消", exact: true }).click();
+  await expect(page.getByLabel("原文", { exact: true })).toHaveValue(text);
+  await expect(page.getByLabel("标记 1 处理决定")).toHaveValue("redact");
+  await page.getByRole("button", { name: "收起侧栏", exact: true }).click();
+  await expect(page.getByRole("button", { name: "展开侧栏", exact: true })).toBeVisible();
+  await expect(page.getByRole("region", { name: "保存与导出", exact: true })).toBeVisible();
+  await page.getByRole("button", { name: "展开侧栏", exact: true }).click();
+});
+
+test("review-only members cannot add alias-linked missing marks into an unsavable draft", async ({ page, browser }) => {
+  await page.goto("/");
+  await page.getByLabel("账号", { exact: true }).fill(process.env.E2E_USERNAME!);
+  await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
+  await page.getByRole("button", { name: "登录工作台" }).click();
+  await expect(page.getByRole("heading", { name: "我的项目", exact: true })).toBeVisible();
+  const headers = { origin: new URL(page.url()).origin }, name = "合成权限检查";
+  const project = await (await page.request.post("/api/projects", { headers, data: { name } })).json();
+  const created = await (await page.request.post(`/api/projects/${project.id}/documents`, { headers, data: { text: "合成甲公司|合成甲公司", requestId: randomUUID() } })).json();
+  const url = `/api/documents/${created.id}`;
+  await expect.poll(async () => (await (await page.request.get(url)).json()).state).toBe("review");
+  const aliasResponse = await page.request.post(url + "/mappings", { headers, data: { revision: 0, start: 0, end: 5, kind: "机构", requestId: randomUUID() } });
+  expect(aliasResponse.ok()).toBeTruthy();
+  const marks = [{ start: 0, end: 5, kind: "机构", decision: "redact", replacement: await aliasResponse.json() }];
+  expect((await page.request.put(url + "/review", { headers, data: { revision: 0, marks } })).ok()).toBeTruthy();
+  const username = "reviewer-" + randomUUID().slice(0, 8), password = randomUUID();
+  const member = await (await page.request.post("/api/organization/members", { headers, data: { username, password } })).json();
+  expect((await page.request.put(`/api/projects/${project.id}/members/${member.id}`, { headers, data: { revision: null, permissions: ["view_original", "review"] } })).ok()).toBeTruthy();
+  const context = await browser.newContext(), viewer = await context.newPage();
+  try {
+    await viewer.goto(headers.origin);
+    await viewer.getByLabel("账号", { exact: true }).fill(username);
+    await viewer.getByLabel("密码", { exact: true }).fill(password);
+    await viewer.getByRole("button", { name: "登录工作台" }).click();
+    await viewer.getByRole("button", { name, exact: true }).click();
+    await viewer.locator(".material-row").click();
+    await viewer.getByRole("button", { name: "漏标检查", exact: true }).click();
+    await viewer.getByRole("button", { name: "检查全文漏标", exact: true }).click();
+    await expect(viewer.getByText(/你没有假名映射权限/)).toBeVisible();
+    await expect(viewer.getByRole("button", { name: "补录全部漏标到草稿", exact: true })).toBeDisabled();
+    await viewer.getByRole("dialog", { name: "漏标检查", exact: true }).getByRole("button", { name: "返回敏感标记", exact: true }).click();
+    await viewer.getByRole("button", { name: "逐条复核", exact: true }).click();
+    await viewer.getByLabel("标记 1 处理决定").selectOption("ignore");
+    await viewer.getByRole("button", { name: "保存复核", exact: true }).click();
+    await expect(viewer.getByText("复核已保存", { exact: true })).toBeVisible();
+    await expect(viewer.getByLabel("标记 2 处理决定")).toHaveCount(0);
+  } finally { await context.close(); }
+});

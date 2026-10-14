@@ -1,0 +1,199 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-14",
+  "scope": "补读UI报告中明确列出的叶子helper，不提升全部业务链状态",
+  "staticDepth": "S2",
+  "runtime": "R0",
+  "sections": [
+    {
+      "id": "UL01",
+      "title": "审计取源、页边过滤与框合并",
+      "dependencyIds": [
+        "DEP31"
+      ],
+      "observations": [
+        "Am2依次使用originalBuffer、file.fileBuffer（移入originalBuffer并清fileBuffer）、In2登记后readSource；readSource等待30秒，失败抛错。Markdown缺source字符串时fatal UTF8解码。这里不会每次重读或重新比较来源hash，缓存优先。Tm2同样优先当前nh2缓存，再文件buffer，再readSource。",
+        "mC直接使用pC页边启发式：矩形中心距上下边不足6.5%一律判header-footer；6.5%到15%之间对页码正则或靠中间的1–5位数字判页码。它不是文本异常模型，也没有调用fC的邻近正文消歧。",
+        "af2只检查x/y有限、width/height>0，未要求宽高有限。rf2从bboxes或外层几何取框、默认页1再过滤；of2跨输入取联合矩形并使用首框页码，没有验证所有框同页。",
+        "lf2接受矩形对象、至少4项的数值数组或多边形；数值数组取前4项优先解释xywh，宽高不正才试xyxy。uf2按去空白的码点记录charBoxes索引，用normalizedStart/End切片合框，否则回整行框。cf2使用交集面积/较小框面积，不是IoU。DOCX审计34838–34840确实将nv结果传给uf2：前者以UTF16位置、后者按码点索引映射charBoxes，非BMP位于命中之前时存在位置单位不一致条件，未经运行复现。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 22259,
+          "endLine": 22275,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "a3953a1d35926e629ac776d173675f94ed49d9d824f47f67814ec308df1736dd"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 34071,
+          "endLine": 34096,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "24fa6a6526f943f02368f48d9a4f3bac191554f45d7f2e6f496f00bdbda934cb"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 34593,
+          "endLine": 34670,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "d6d17c6313a2cd1a634ace719911485da5e10096459603fdb7e00a1e08af09ad"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 34830,
+          "endLine": 34843,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "230e44cf3a5acfa6bd326ec09bd05a6c28ce3542fce6653d481300fc139c0f63"
+        }
+      ],
+      "remaining": [
+        "In2/readSource跨进程来源生命周期复用source专项；PDF.js字体/真实几何、在途读取与切换仍R0。"
+      ]
+    },
+    {
+      "id": "UL02",
+      "title": "DOCX审查序列化与恢复",
+      "dependencyIds": [
+        "DEP18",
+        "DEP29"
+      ],
+      "observations": [
+        "WU按固定字段组装schema1草稿，masked空值回退wd；源链数组map(String)，会把对象转为字符串。start/end用Number||0，不保证整数、有限或顺序；region将header_footer归header；UU仅保留选定图片/notes字段。HU允许零尺寸；UU对index/note字段取floor。",
+        "VU将user-added转user_added；已知confirmed/rejected/pending优先，否则由deleted/confirmed推断。qU恢复时score固定1，header/footer统一回header_footer，pseudonym条目补occurrences0和autoUpgradedfalse。序列化是有损投影，不是全部实体meta原样保留。",
+        "oc把userAdded、manual来源/操作、project-panel、manual_input等视为人工；dv只保留同时非空的recognized/correctedText及选定字段。hv优先识别前文字，mv按pdfType与来源字段推textSource。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 30435,
+          "endLine": 30501,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "e84f822eaada44f5127404e271d26787368ab9d35fe8f14fa7df8688a72afb56"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 4188,
+          "endLine": 4191,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "c7c5e7fbf86c7273fe13cab96776883473a56ad6fc18a70e8e9fda066bad1b73"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 6005,
+          "endLine": 6024,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "857b2169d13b9d59b72ce0cd28011a9fc54590716b01d4acc089fd007203f7ab"
+        }
+      ],
+      "remaining": [
+        "与所有child本地状态的完整来回等价及真实恢复结果仍未运行；cc/wd规则依赖参照policy报告。"
+      ]
+    },
+    {
+      "id": "UL03",
+      "title": "PDF/Image序列化及恢复",
+      "dependencyIds": [
+        "DEP18",
+        "DEP29"
+      ],
+      "observations": [
+        "rV只从meta.bboxes/meta.bbox取几何，Number||0并过滤宽高>0，没有保留任意顶层bbox；iV规范化选定假名字段。PDF oV保存selected fields，普通非人工非deleted实体reviewState统一pending，即使输入confirmed也不沿用。text PDF使用hv原识别文字，去OCR校正状态。",
+        "lV恢复PDF实体时masked固定***、confidence1、position0/0；selected meta回填，text PDF删除OCR校正。不能把这些固定恢复值当原识别精度或原始offset。",
+        "uV保存image active/deleted框及选定meta；aV仅多框数量>1时保留数组。cV将userAdded恢复为manual/system来源，无法恢复所有原meta。Vp按四个action枚举与cc归一type；key归一碰撞按遍历后值覆盖。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 30561,
+          "endLine": 30619,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "d92216301bc197005318757def2b9282e72fba4a8c2ecb67107114687673d76d"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 5318,
+          "endLine": 5323,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "09bc200c105c6e06cdb255a76c54a2f8fadbd00492cecaac1f22b4fde8f92906"
+        }
+      ],
+      "remaining": [
+        "PDF OCR进度eV另有校验，与main legacy Jm同族但这里不声称逐字段差分一致；DOM恢复和视觉输出仍R0。"
+      ]
+    },
+    {
+      "id": "UL04",
+      "title": "Markdown草稿实体与模式同步",
+      "dependencyIds": [
+        "DEP18",
+        "DEP29"
+      ],
+      "observations": [
+        "gV把default_pseudonym规范为custom_pseudonym，再同步exportState和review的mode/pseudonym/fullMask/style/tableName；vV是跨字段一致性谓词。",
+        "wV实体offset按优先字段取Number并max边界；source位置可退到覆盖scan span的region。deleted/rejected优先，人工则user_added，其余pending；masked默认按UTF16长度星号；confidence用Number但此处不检查有限范围。sourceExact只接受true。",
+        "bV先尝试sourceMap精确等长片段、覆盖连续且scan文字相等；否则沿给定scan span检查exact/连续性与允许的无换行Markdown符号gap，返回sourceExact条件值。返回false并非自动丢弃该实体。",
+        "xV只在sourceSha/scanSha/sourceLength都匹配时复用persisted sidecar，否则JSON clone。blocker decisions只保存remove项；是否执行这些决定须按writer报告核对。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 30625,
+          "endLine": 30711,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "5ae6776cac4afdd653b1f71b90108dd336b230dab4566501e0d9977226a1e7d9"
+        }
+      ],
+      "remaining": [
+        "输入sourceMap来源来自已读Markdown parser；实际编码、损坏sidecar及跨版本互操作仍R0。"
+      ]
+    },
+    {
+      "id": "UL05",
+      "title": "文件后缀与重叠匹配小函数",
+      "dependencyIds": [
+        "DEP42",
+        "DEP32"
+      ],
+      "observations": [
+        "BU仅jpg/jpeg/png；FU标准化路径分隔符取basename末尾后缀并lowercase，点必须不在首字符。$U支持docx/doc/wps/pdf/上述图片/md/markdown，其余unsupported。它是后缀分类，不验证内容。",
+        "xl2逐字indexOf后仅前进1，因此保留重叠；kl2对UTF16 code units去Uf空白/零宽并统一Hf破折号，保留normalizedToSource回映射，同样逐命中前进1并返回源span。仅当前documentText缓存该index。",
+        "nv用Xf去空白/转全角括号后找非重叠匹配，前进整个query.length；Xf不做lowercase。qf把整个规范化查询一次spread给String.fromCharCode，源文本index则按32768分块，不能从源分块推断超长query同样分块。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 30435,
+          "endLine": 30447,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "4863fb83e889a3e3f56e5d7e1c77dc6be8e9ddc5c8a3bb67548d2bddc5e79026"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 5867,
+          "endLine": 5892,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "82a5623ff931b162ddc7df7e3b2659ca3075e2f35e8b01d2d9dc325894eddc12"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 5961,
+          "endLine": 5972,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "1eeb77c4e8a1356e4fe7a3c2155d36ac94e4a35630606a6cd56697a6b73ebe1f"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 9352,
+          "endLine": 9386,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "3d71df54bb36de6f7a5f77751071632c920875b01297b2c2339c6e93fec4e8d4"
+        }
+      ],
+      "remaining": [
+        "这些匹配函数索引规则已列出；上层同图/跨页匹配策略与真实时序仍按UI报告剩余链处理。"
+      ]
+    }
+  ],
+  "executedVendor": false
+}

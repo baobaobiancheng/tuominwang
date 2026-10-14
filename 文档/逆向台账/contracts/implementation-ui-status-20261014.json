@@ -1,0 +1,340 @@
+{
+  "id": "implementation-ui-status-20261014",
+  "date": "2026-10-14",
+  "scope": "Read-only current web/API entry review plus unauthenticated public GET asset identity and health. Not an exhaustive API-to-UI mapping or new functional acceptance.",
+  "conclusion": {
+    "allExistingFeaturesShown": "不能认定，至少版本历史API缺少前端入口",
+    "fullCompetitorParity": "不能认定；存在明确功能与格式差异，258已知入口仍S2/R0，我方实现状态独立",
+    "serverUpdate": "公网当前JS/CSS与现有local dist一致，无资产落后证据。ITER017–019只增研究不改应用，单为这些研究成果无需部署。后续补UI或功能需构建验收再发布；本次不证明服务器后端等于全部当前源码。"
+  },
+  "livePublicObservation": {
+    "observedAtUtc": "2026-10-14T05:41:23.376344+00:00",
+    "homepage": {
+      "url": "https://182.92.172.59/tuomin/",
+      "httpStatus": 200,
+      "sha256": "63635b2e838fdccf5a9cf3d5bc3581d4b064e8aa4b5a1a1815ae4ef3f33ae334"
+    },
+    "assets": [
+      {
+        "url": "https://182.92.172.59/tuomin/assets/index-D4_TZQM_.js",
+        "status": 200,
+        "sha256": "2f8a97cbcff7cbe98cc42fda84fade01179bb586622ba6e824a46c83022ea40f",
+        "bytes": 356409,
+        "local": {
+          "path": "dist/web/assets/index-D4_TZQM_.js",
+          "sha256": "2f8a97cbcff7cbe98cc42fda84fade01179bb586622ba6e824a46c83022ea40f",
+          "bytes": 356409
+        },
+        "sameBytes": true
+      },
+      {
+        "url": "https://182.92.172.59/tuomin/assets/index-C942O2iY.css",
+        "status": 200,
+        "sha256": "7957871850eb69a0a951670939af7c47be45fd0f26dc5884c28e52b83a004971",
+        "bytes": 33602,
+        "local": {
+          "path": "dist/web/assets/index-C942O2iY.css",
+          "sha256": "7957871850eb69a0a951670939af7c47be45fd0f26dc5884c28e52b83a004971",
+          "bytes": 33602
+        },
+        "sameBytes": true
+      }
+    ],
+    "health": {
+      "url": "https://182.92.172.59/tuomin/api/health",
+      "httpStatus": 200,
+      "body": {
+        "status": "ok",
+        "milestone": "text-rules",
+        "layers": {
+          "rules": "ready",
+          "ner": "ready",
+          "ai": "not_configured"
+        }
+      }
+    },
+    "tlsCertificateValidation": false,
+    "tlsBoundary": "当前IP证书请求关闭了证书校验；结果用于内容/连通性核对，不构成TLS证书身份与信任链验收。",
+    "authenticated": false,
+    "mutations": false
+  },
+  "featureMatrix": [
+    {
+      "feature": "项目/材料导入",
+      "staticObservation": "有条件入口",
+      "evidence": {
+        "path": "apps/web/main.tsx",
+        "sha256": "15996ec91108e32c5360524b9c6bc2d279601e337e4633ba5c28776bd79b8a56",
+        "bytes": 61559,
+        "startLine": 555,
+        "endLine": 607,
+        "rangeSha256": "e9fcab000668c80c7df8e991058393274cf6440248358bc30d1008d8b71f396c"
+      },
+      "runtimeThisReview": "未执行此UI流程"
+    },
+    {
+      "feature": "词表、映射、跨材料批量、项目成员、审计",
+      "staticObservation": "项目与权限门控制显示，非所有账号始终可见",
+      "evidence": {
+        "path": "apps/web/main.tsx",
+        "sha256": "15996ec91108e32c5360524b9c6bc2d279601e337e4633ba5c28776bd79b8a56",
+        "bytes": 61559,
+        "startLine": 671,
+        "endLine": 678,
+        "rangeSha256": "f69969639daa710b4cc52261197140799481f6dde635e829dd35eb87335de622"
+      },
+      "runtimeThisReview": "未执行此UI流程"
+    },
+    {
+      "feature": "重新识别与NER",
+      "staticObservation": "NER入口还要求canRunNer、复核及模型管理权限",
+      "evidence": {
+        "path": "apps/web/main.tsx",
+        "sha256": "15996ec91108e32c5360524b9c6bc2d279601e337e4633ba5c28776bd79b8a56",
+        "bytes": 61559,
+        "startLine": 745,
+        "endLine": 762,
+        "rangeSha256": "2f5a8e4942904f01d6fa0b0907cc9667544524e0fca81fb7bae6d4e57dfd97ba"
+      },
+      "runtimeThisReview": "未执行此UI流程"
+    },
+    {
+      "feature": "任务重试/取消",
+      "staticObservation": "依任务状态、所需权限、草稿和冲突状态",
+      "evidence": {
+        "path": "apps/web/main.tsx",
+        "sha256": "15996ec91108e32c5360524b9c6bc2d279601e337e4633ba5c28776bd79b8a56",
+        "bytes": 61559,
+        "startLine": 764,
+        "endLine": 797,
+        "rangeSha256": "d6f67f04fe4bc33c210610d483b2e8e5b74eb8a917fb890bd4c5e9df16619ae3"
+      },
+      "runtimeThisReview": "未执行此UI流程"
+    },
+    {
+      "feature": "原文、查找、漏标、预览、手工标注",
+      "staticObservation": "当前审查工具可达；不是全部竞品能力",
+      "evidence": {
+        "path": "apps/web/main.tsx",
+        "sha256": "15996ec91108e32c5360524b9c6bc2d279601e337e4633ba5c28776bd79b8a56",
+        "bytes": 61559,
+        "startLine": 800,
+        "endLine": 846,
+        "rangeSha256": "55d2fbecbc2c14c3f0065878d9852ce61554809dedc6dc67e694be27799020ef"
+      },
+      "runtimeThisReview": "未执行此UI流程"
+    },
+    {
+      "feature": "实体分组与逐条复核",
+      "staticObservation": "现有标记分组和逐条表单",
+      "evidence": {
+        "path": "apps/web/main.tsx",
+        "sha256": "15996ec91108e32c5360524b9c6bc2d279601e337e4633ba5c28776bd79b8a56",
+        "bytes": 61559,
+        "startLine": 884,
+        "endLine": 958,
+        "rangeSha256": "1a1b221bb6492603e7fd51aef4020bfce1be1789834a87f49d1b9a5d8462741c"
+      },
+      "runtimeThisReview": "未执行此UI流程"
+    },
+    {
+      "feature": "保存/导出/核验下载",
+      "staticObservation": "权限与保存、决定状态等门禁，入口已接API",
+      "evidence": {
+        "path": "apps/web/main.tsx",
+        "sha256": "15996ec91108e32c5360524b9c6bc2d279601e337e4633ba5c28776bd79b8a56",
+        "bytes": 61559,
+        "startLine": 444,
+        "endLine": 518,
+        "rangeSha256": "4519850f503b19f087ce983d8363aff0497d211a4c63358c594f412f32cad869"
+      },
+      "runtimeThisReview": "未执行此UI流程"
+    },
+    {
+      "feature": "组织成员/名称/配额/审计",
+      "staticObservation": "组织管理组件已接API",
+      "evidence": {
+        "path": "apps/web/members.tsx",
+        "sha256": "ff9d21de1db641a531b4d84040840afff48aded60d06272bb4a9222019d19692",
+        "bytes": 14304,
+        "startLine": 1,
+        "endLine": 81,
+        "rangeSha256": "ff9d21de1db641a531b4d84040840afff48aded60d06272bb4a9222019d19692"
+      },
+      "runtimeThisReview": "未执行此UI流程"
+    },
+    {
+      "feature": "假名还原",
+      "staticObservation": "粘贴文本并导出restored.txt，非DOCX/PDF文件还原",
+      "evidence": {
+        "path": "apps/web/mappings.tsx",
+        "sha256": "9e18ae98732a99da317668e73c71897906a57fe011fbbff4335450607703ca16",
+        "bytes": 6544,
+        "startLine": 37,
+        "endLine": 70,
+        "rangeSha256": "46a84a3be844846fecefbffbcb9b42ce20d5b55bfae4754ec1aa0c82731780ae"
+      },
+      "runtimeThisReview": "未执行此UI流程"
+    },
+    {
+      "feature": "页面/图片区域",
+      "staticObservation": "页面和DOCX内嵌图片编辑器；手工标签不等于自动检测",
+      "evidence": {
+        "path": "apps/web/page-review.tsx",
+        "sha256": "ac4ec62f624661d68176a7b1954ae66ac39185ebbb118264270025e4a840bd4a",
+        "bytes": 8798,
+        "startLine": 1,
+        "endLine": 57,
+        "rangeSha256": "ac4ec62f624661d68176a7b1954ae66ac39185ebbb118264270025e4a840bd4a"
+      },
+      "runtimeThisReview": "未执行此UI流程"
+    }
+  ],
+  "gaps": [
+    {
+      "id": "G01",
+      "category": "已有API未展示",
+      "finding": "后端GET /api/documents/:id/revisions读取review_snapshots历史元数据；apps/web全集未找到revisions引用，未发现历史版本列表入口。当前撤销为保存前10步内存草稿，不等同持久版本浏览。",
+      "evidence": [
+        {
+          "path": "apps/api/files.ts",
+          "sha256": "432041e9fae0cb3c8a7a83d92cefc9aea01c29dfc62b66123480cd0fedba1917",
+          "bytes": 9275,
+          "startLine": 111,
+          "endLine": 114,
+          "rangeSha256": "8480cdb71b55ba7516251acf25b0f4af921fcd5fdee6548c388566e55000fc6a"
+        },
+        {
+          "path": "apps/web/main.tsx",
+          "sha256": "15996ec91108e32c5360524b9c6bc2d279601e337e4633ba5c28776bd79b8a56",
+          "bytes": 61559,
+          "startLine": 355,
+          "endLine": 369,
+          "rangeSha256": "7788617e72a6ae57f498fc8b80f3b57fb536e70cbd81566a8cf64c4d7125eb19"
+        },
+        {
+          "path": "apps/web/main.tsx",
+          "sha256": "15996ec91108e32c5360524b9c6bc2d279601e337e4633ba5c28776bd79b8a56",
+          "bytes": 61559,
+          "startLine": 800,
+          "endLine": 800,
+          "rangeSha256": "633dab9f094f0f03664321b908eb8d4f91766eb6e795eaa50a26b35b83cbc065"
+        }
+      ],
+      "negativeSearch": "rg -n revisions apps/web returns no matches",
+      "certainty": "当前代码静态证据；未声称缺少所有历史数据或可回滚API"
+    },
+    {
+      "id": "G02",
+      "category": "真实对齐差异",
+      "finding": "假名还原当前只接收文本，UI下载restored.txt；不能描述成DOCX/PDF文件还原或.lpm互操作。",
+      "evidence": [
+        {
+          "path": "apps/web/mappings.tsx",
+          "sha256": "9e18ae98732a99da317668e73c71897906a57fe011fbbff4335450607703ca16",
+          "bytes": 6544,
+          "startLine": 37,
+          "endLine": 70,
+          "rangeSha256": "46a84a3be844846fecefbffbcb9b42ce20d5b55bfae4754ec1aa0c82731780ae"
+        },
+        {
+          "path": "apps/api/mappings.ts",
+          "sha256": "e5fb55effe673cd53d390058c1eb19daeeb98502be1061a5898be12e0b5db266",
+          "bytes": 6977,
+          "startLine": 75,
+          "endLine": 90,
+          "rangeSha256": "7344a4b457c1991e26964f9116dd4759dc3f7933a99cdf54e53da3e3c027c187"
+        }
+      ]
+    },
+    {
+      "id": "G03",
+      "category": "真实对齐差异",
+      "finding": "现有指南明确无OCR原文校正、Word原版式逐页编辑、自动人脸/印章识别、旋转、DOC/WPS、项目加密包导入导出、模型网关、自助密码修改入口。此次核读页面框选/模型入口与此一致；未逐项重新做浏览器负向穷举。",
+      "evidence": [
+        {
+          "path": "文档/使用指南/功能核对清单.md",
+          "sha256": "9e25943f41d32f9860028d40ab9de70844f3ca1ca8a5b65c77f2ee92d9f50ca8",
+          "bytes": 20924,
+          "startLine": 148,
+          "endLine": 152,
+          "rangeSha256": "94274b6116bba64a3c8a6a686a4f99337f36fc45789743ca7d6dc32e1aab87da"
+        },
+        {
+          "path": "apps/web/page-review.tsx",
+          "sha256": "ac4ec62f624661d68176a7b1954ae66ac39185ebbb118264270025e4a840bd4a",
+          "bytes": 8798,
+          "startLine": 1,
+          "endLine": 57,
+          "rangeSha256": "ac4ec62f624661d68176a7b1954ae66ac39185ebbb118264270025e4a840bd4a"
+        },
+        {
+          "path": "apps/web/main.tsx",
+          "sha256": "15996ec91108e32c5360524b9c6bc2d279601e337e4633ba5c28776bd79b8a56",
+          "bytes": 61559,
+          "startLine": 757,
+          "endLine": 762,
+          "rangeSha256": "330733053dff1535d62536530dfeb6faaf01e027d0b5a8ca2c04fc49746709df"
+        }
+      ]
+    },
+    {
+      "id": "G04",
+      "category": "格式语义差异",
+      "finding": "XLSX输出为值快照，不保留公式、超链接、条件格式、数据验证；DOCX移除超链接与动态域指令。PDF为图片型副本，图像文字不提供假名/部分遮盖。",
+      "evidence": [
+        {
+          "path": "apps/web/main.tsx",
+          "sha256": "15996ec91108e32c5360524b9c6bc2d279601e337e4633ba5c28776bd79b8a56",
+          "bytes": 61559,
+          "startLine": 449,
+          "endLine": 453,
+          "rangeSha256": "636b5f2a4cbbf43084ef9f70b84ff365fffc88f5d929e88cd33495bf213b2733"
+        },
+        {
+          "path": "文档/使用指南/功能核对清单.md",
+          "sha256": "9e25943f41d32f9860028d40ab9de70844f3ca1ca8a5b65c77f2ee92d9f50ca8",
+          "bytes": 20924,
+          "startLine": 74,
+          "endLine": 92,
+          "rangeSha256": "5fff109c1740d63fb22ce41fac308ce0b2897aca78cfdf9c28018abfee84f36e"
+        }
+      ]
+    },
+    {
+      "id": "G05",
+      "category": "配置与验收边界",
+      "finding": "新GET健康响应ai=not_configured；rules/ner ready仅服务就绪，本次没有执行识别或导出。",
+      "evidence": [
+        {
+          "path": "apps/api/main.ts",
+          "sha256": "d43e66f1a7ddd4472fc83d9ad6530ca96906d83269f78653338e989da203c43c",
+          "bytes": 20248,
+          "startLine": 133,
+          "endLine": 139,
+          "rangeSha256": "47ced6388cf267444cbdb1b874aff858762a53c1e5ff19b52b1f2af9bf71953e"
+        }
+      ]
+    }
+  ],
+  "historicalEvidence": [
+    {
+      "path": "deploy/aliyun/部署状态.md",
+      "lines": "19–25",
+      "meaning": "2026-10-13 web会话同步部署及当时容器状态，不是本次重查容器"
+    },
+    {
+      "path": "文档/使用指南/线上项目报错修复与入口核验-20261013.md",
+      "lines": "19–29,75–86",
+      "meaning": "历史两项目打开/已生成TXT下载以及35独立用例通过记录；本次未登录、未复跑E2E或云端OCR/NER"
+    }
+  ],
+  "notPerformed": [
+    "未登录浏览器",
+    "未操作服务器或重启容器",
+    "未读取认证数据",
+    "未复跑E2E、识别、导出",
+    "未新增竞品逆向或运行竞品"
+  ],
+  "sourceInterpretation": "源码可达、历史验收、新GET观察分别记录；权限门隐藏不自动视作缺项；健康接口不是功能完成证明。"
+}

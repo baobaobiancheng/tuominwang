@@ -1,0 +1,287 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-14",
+  "reviewer": "/root/adversarial_review",
+  "mode": "independent-static-read-only",
+  "targets": [
+    {
+      "path": "文档/逆向台账/contracts/iteration019-projection-audit.json",
+      "sha256": "9feded81f92ba0996a90af2dfb9d55c68ffd14d2bcbd9d70c2b8e4dca522a7b7"
+    },
+    {
+      "path": "文档/逆向台账/contracts/iteration019-projection-audit.md",
+      "sha256": "72730efadd2003ec15f8136313112c2274ec744855e1d161a1afc5d2516cf24d"
+    },
+    {
+      "path": "文档/逆向台账/contracts/build-iteration019-projection-audit.py",
+      "sha256": "766931902b5a28eb121bc46031cb3fefe11c6cf341b07bb20bd80205ec0f470d"
+    }
+  ],
+  "coverage": {
+    "sections": [
+      "PA01",
+      "PA02",
+      "PA03",
+      "PA04",
+      "PA05",
+      "PA06",
+      "PA07",
+      "PA08",
+      "PA09"
+    ],
+    "allRangeHashChecks": 30,
+    "literalAssignmentLocations": 36,
+    "semantics": "人工核读9节全部核心结论与新增PA09；并非36赋值各条调用链全审，也不证明每个外部child/runtime。",
+    "sourceRanges": [
+      {
+        "section": "PA01",
+        "ranges": [
+          [
+            6103,
+            6142
+          ],
+          [
+            6194,
+            6194
+          ],
+          [
+            8481,
+            8567
+          ],
+          [
+            8796,
+            8832
+          ],
+          [
+            10153,
+            10178
+          ]
+        ]
+      },
+      {
+        "section": "PA02",
+        "ranges": [
+          [
+            6041,
+            6041
+          ],
+          [
+            8810,
+            8819
+          ],
+          [
+            8931,
+            8936
+          ],
+          [
+            10309,
+            10341
+          ]
+        ]
+      },
+      {
+        "section": "PA03",
+        "ranges": [
+          [
+            9602,
+            9702
+          ],
+          [
+            6192,
+            6193
+          ]
+        ]
+      },
+      {
+        "section": "PA04",
+        "ranges": [
+          [
+            34744,
+            34749
+          ],
+          [
+            33617,
+            33630
+          ],
+          [
+            33663,
+            33689
+          ],
+          [
+            34008,
+            34070
+          ],
+          [
+            34466,
+            34526
+          ]
+        ]
+      },
+      {
+        "section": "PA05",
+        "ranges": [
+          [
+            34744,
+            34926
+          ]
+        ]
+      },
+      {
+        "section": "PA06",
+        "ranges": [
+          [
+            34928,
+            35148
+          ]
+        ]
+      },
+      {
+        "section": "PA07",
+        "ranges": [
+          [
+            32610,
+            32629
+          ],
+          [
+            32802,
+            32808
+          ],
+          [
+            32842,
+            32845
+          ]
+        ]
+      },
+      {
+        "section": "PA08",
+        "ranges": [
+          [
+            4211,
+            4243
+          ],
+          [
+            4868,
+            4912
+          ],
+          [
+            5560,
+            5694
+          ],
+          [
+            8833,
+            8930
+          ],
+          [
+            6050,
+            6087
+          ],
+          [
+            33424,
+            33435
+          ]
+        ]
+      },
+      {
+        "section": "PA09",
+        "ranges": [
+          [
+            5026,
+            5039
+          ],
+          [
+            5550,
+            5559
+          ],
+          [
+            5696,
+            5714
+          ]
+        ]
+      }
+    ]
+  },
+  "issues": [
+    {
+      "id": "RPA19-01",
+      "priority": 2,
+      "title": "S2手工图片框豁免条件被反写",
+      "sourceRange": [
+        6107,
+        6139
+      ],
+      "reportSection": "PA01",
+      "original": "manual_input且imagePath/imageBbox实体还排除Af/Ef集合",
+      "corrected": "这类框绕过Af/Ef集合及v2的Mf检查；普通实体才须不在集合。仍保留deleted等外层门。",
+      "status": "resolved-readback"
+    },
+    {
+      "id": "RPA19-02",
+      "priority": 3,
+      "title": "ce2空函数定义缺少精确证据",
+      "sourceRange": [
+        6192,
+        6193
+      ],
+      "reportSection": "PA03",
+      "original": "原范围只有调用与下一const",
+      "corrected": "作者已加入6192–6193定义范围；gf2也在PA04直接关联。",
+      "status": "resolved-readback"
+    },
+    {
+      "id": "RPA19-03",
+      "priority": 3,
+      "title": "Markdown赋值语法不等于可达OCR修正",
+      "sourceRange": [
+        34931,
+        34933
+      ],
+      "reportSection": "PA06",
+      "original": "虽修正已有实体分支包含Markdown",
+      "corrected": "明确Of2先排除Markdown，实体目标筛选不进入该分支。",
+      "status": "resolved-readback"
+    },
+    {
+      "id": "RPA19-04",
+      "priority": 2,
+      "title": "$o2抑制扩展集合误称人工已占位置",
+      "sourceRange": [
+        6085,
+        6087,
+        8871,
+        8924
+      ],
+      "reportSection": "PA08",
+      "original": "人工已占span跳过",
+      "corrected": "同region/type/text组rejected位置跳过；Oo2人工fixed为另一门。已补o2/c2定义。",
+      "status": "resolved-readback"
+    },
+    {
+      "id": "RPA19-05",
+      "priority": 3,
+      "title": "df标点百分号条件过宽",
+      "sourceRange": [
+        5550,
+        5559
+      ],
+      "reportSection": "PA09",
+      "original": "邻接标点或后8字符中的百分号",
+      "corrected": "邻接仅[.,，]；后8字符必须以允许空白后紧接%/％开头。",
+      "status": "resolved-readback"
+    }
+  ],
+  "openFindings": [],
+  "resolvedFindings": 5,
+  "conclusion": "No unresolved findings in reviewed claims after readback. S2/R0 unchanged.",
+  "confirmed": [
+    "Um2/Hm2/Vm2是映射同步，不能当磁盘保存；Ec2 saveRecovery结果才是该出口回执。",
+    "PDF OCR results追加不排删除页；图片success=false无throw静默分支与PDF失败提示不同。",
+    "5000 UTF16段与DOM10元素组不等价；跨段实体不满足单段完整包含。",
+    "Af同span同normalized文字跨type去重；$o2拒绝状态span门与人工fixed分开。",
+    "OCR修正缓存缺sourceAnchor/revision；删除后添加无统一回滚。"
+  ],
+  "boundaries": [
+    "未执行竞品/绕激活。",
+    "30范围hash与36定位计数是结构核验，不能替代真实保存、导出、几何和race运行。",
+    "仅审当前报告，不把应用本身标成通过验收。"
+  ]
+}

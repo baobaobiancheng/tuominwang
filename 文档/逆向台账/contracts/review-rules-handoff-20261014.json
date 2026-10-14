@@ -1,0 +1,934 @@
+{
+  "review": "脱敏规则技术交接有限范围独立审查",
+  "reviewer": "ui_closure_a",
+  "date": "2026-10-14",
+  "target": {
+    "path": "文档/脱敏规则技术交接-20261014.md",
+    "sha256": "3e87441692c2a0e9ccb01bc24af579ffec9e65bbd083b6c4661c92fcf0c1e696",
+    "bytes": 146645
+  },
+  "conclusion": "通过；4项表述问题修正并回读，0open。",
+  "openFindings": 0,
+  "findings": [
+    {
+      "id": "RH01",
+      "priority": "P3",
+      "line": 320,
+      "before": "任何结果包含完整原文会被拒绝",
+      "correction": "明确type/缺省直接返回不走局部includes；alias/mask/custom局部检查，最终verify另行残留拒绝。",
+      "evidence": "packages/core/redaction.ts:149–191",
+      "status": "resolved-readback"
+    },
+    {
+      "id": "RH02",
+      "priority": "P2",
+      "line": 392,
+      "before": "换模型/策略后不能继续签发旧结果",
+      "correction": "明确snapshot只比文档已存状态，不读取当前部署模型/RULES_VERSION；仅更换runtime不自动使旧复核失效，需实际变更revision/state/recognition流程。",
+      "evidence": "packages/core/export-gate.ts:82–96; apps/api/recognition.ts:46–76",
+      "status": "resolved-readback"
+    },
+    {
+      "id": "RH03",
+      "priority": "P3",
+      "line": 381,
+      "before": "删除页去重",
+      "correction": "删除页重复索引直接拒绝，不自动去重。",
+      "evidence": "packages/core/page-redaction.ts:12–22",
+      "status": "resolved-readback"
+    },
+    {
+      "id": "RH04",
+      "priority": "P3",
+      "line": 333,
+      "before": "同值不同类型/替换策略一律conflict",
+      "correction": "完整单侧marked/retained覆盖优先；seed ambiguous只阻止未覆盖位置补录，不强制改写已完整单侧覆盖状态。",
+      "evidence": "packages/core/review-tools.ts:12–71",
+      "status": "resolved-readback"
+    }
+  ],
+  "manualScope": [
+    {
+      "path": "packages/core/redaction.ts",
+      "range": "34–191",
+      "scope": "规则目录、字段/表头/词表、合并来源、替换与残留"
+    },
+    {
+      "path": "packages/core/mappings.ts",
+      "range": "1–28",
+      "scope": "映射匹配/还原"
+    },
+    {
+      "path": "apps/api/mappings.ts",
+      "range": "11–90",
+      "scope": "proposal、创建、持久化、restore gate"
+    },
+    {
+      "path": "packages/core/export-gate.ts",
+      "range": "1–96",
+      "scope": "coverage与snapshot条件"
+    },
+    {
+      "path": "apps/api/recognition.ts",
+      "range": "46–76",
+      "scope": "词表更新/显式重识别版本失效"
+    },
+    {
+      "path": "packages/core/ner.ts",
+      "range": "1–70",
+      "scope": "字符token/窗口/输出/候选"
+    },
+    {
+      "path": "packages/core/ocr.ts",
+      "range": "1–38",
+      "scope": "本地锁定/输出字框"
+    },
+    {
+      "path": "packages/core/ai-candidates.ts",
+      "range": "1–25",
+      "scope": "唯一quote/样本与候选schema"
+    },
+    {
+      "path": "packages/core/review-tools.ts",
+      "range": "12–71",
+      "scope": "漏标优先级与预算"
+    },
+    {
+      "path": "packages/core/files.ts",
+      "range": "1–94",
+      "scope": "CSV/MD解析导出验证"
+    },
+    {
+      "path": "packages/core/office.ts",
+      "range": "86–127;205–268",
+      "scope": "DOCX跨run及导出清理/残留重点；不是此文件全部独立语义重审"
+    },
+    {
+      "path": "packages/core/page-redaction.ts",
+      "range": "12–89",
+      "scope": "页面schema/框与像素/PDF写器重点"
+    },
+    {
+      "path": "packages/adapters/page-export.ts",
+      "range": "1–62",
+      "scope": "重读/OCR残留/PDF校验"
+    },
+    {
+      "path": "packages/adapters/processing-worker.ts",
+      "range": "76–129",
+      "scope": "detect NER/AI及最终gate/verify消费"
+    }
+  ],
+  "documentScope": "前6节重点语义复核；第7–10、12节仅检查竞品/我方/移植建议与未执行边界；第11节全量文件/片段hash独立复算。",
+  "hashVerificationCounts": {
+    "ownFullFiles": 24,
+    "vendorFullFiles": 13,
+    "vendorRanges": 96
+  },
+  "verifiedHashReceipts": [
+    {
+      "category": "ownFullFiles",
+      "reference": "packages/contracts/index.ts:1–95",
+      "sha256": "8af905ab790172de6bddc3c1b4bd49eb7b7cab4fb65c74bf49d8b53a6337e5b4",
+      "verified": true
+    },
+    {
+      "category": "ownFullFiles",
+      "reference": "packages/core/redaction.ts:1–191",
+      "sha256": "58b0db92d38f30b4e089398d0b858d567524d98a08b2a6571eb9596a133a75b5",
+      "verified": true
+    },
+    {
+      "category": "ownFullFiles",
+      "reference": "packages/core/mappings.ts:1–28",
+      "sha256": "c176537a5b55bff19e73dfa05e2ed8d2da3a148fa8e3b232e358fb98960844a0",
+      "verified": true
+    },
+    {
+      "category": "ownFullFiles",
+      "reference": "packages/core/review-tools.ts:1–111",
+      "sha256": "c85f404f79ca8f780434c41448afc5cfb81d5a36f8c9ba7b77a7fa069099c857",
+      "verified": true
+    },
+    {
+      "category": "ownFullFiles",
+      "reference": "packages/core/ner.ts:1–70",
+      "sha256": "dd3927a426fdfe7e953a2f7119a6594f44d594b94a76e806635aec325a70373d",
+      "verified": true
+    },
+    {
+      "category": "ownFullFiles",
+      "reference": "packages/core/ocr.ts:1–38",
+      "sha256": "028b581372437dcf88dbec259be9d8f99bd70d27644d01e20802bb05e2443e10",
+      "verified": true
+    },
+    {
+      "category": "ownFullFiles",
+      "reference": "packages/core/ai-candidates.ts:1–25",
+      "sha256": "45d9ed97d0408a344a84fa55a7e5619dae773cfe516b04808182908795c59d06",
+      "verified": true
+    },
+    {
+      "category": "ownFullFiles",
+      "reference": "packages/core/files.ts:1–94",
+      "sha256": "0bd833b3197d18323207e7f25bc40324f6c5264a89f4dda6f05e47685ba15d37",
+      "verified": true
+    },
+    {
+      "category": "ownFullFiles",
+      "reference": "packages/core/office.ts:1–268",
+      "sha256": "96fc2166fbd4fb6f9fe0de268d8917b694ed487cad5a893f562ef85f8c1feb50",
+      "verified": true
+    },
+    {
+      "category": "ownFullFiles",
+      "reference": "packages/core/page-redaction.ts:1–89",
+      "sha256": "493aaea212e47322683a12b73d049842e39fb63cc8d2f927cdb03e133caf09f8",
+      "verified": true
+    },
+    {
+      "category": "ownFullFiles",
+      "reference": "packages/core/pdf-reader.ts:1–71",
+      "sha256": "b119581cdd8e3a65808a6dbb86b7adaffdf36a90e8ecd4e1d4ea495fd73dc9c5",
+      "verified": true
+    },
+    {
+      "category": "ownFullFiles",
+      "reference": "packages/core/export-gate.ts:1–96",
+      "sha256": "4e79d457c8b77140c6ecb7c645a95abd2e672518353b924613d61c478dd450a2",
+      "verified": true
+    },
+    {
+      "category": "ownFullFiles",
+      "reference": "packages/core/export-policy.bend:1–10",
+      "sha256": "50306ffa9d364e1ceb2fdb6b16adaf7d145a3fc685053c5c499c7fd68c52dfd0",
+      "verified": true
+    },
+    {
+      "category": "ownFullFiles",
+      "reference": "packages/core/text-window.ts:1–9",
+      "sha256": "3adfc8feb168d911ad61fdbaeec5fbfda383a42d5e7c205807c337692ae86fdb",
+      "verified": true
+    },
+    {
+      "category": "ownFullFiles",
+      "reference": "packages/adapters/processing-worker.ts:1–137",
+      "sha256": "4c520c9f9af8979bc6810e85b318aee991307abf0c6babb6b19cdfac9ed6b2d4",
+      "verified": true
+    },
+    {
+      "category": "ownFullFiles",
+      "reference": "packages/adapters/page-parser.ts:1–58",
+      "sha256": "9a03eab1c37083e14d0323c0401dc1513615c94e21c01fb0872eb8873c0dd0da",
+      "verified": true
+    },
+    {
+      "category": "ownFullFiles",
+      "reference": "packages/adapters/page-export.ts:1–62",
+      "sha256": "203eaf260d8021380fbf06ef3b96f5eecf3dce9b976186192868c6b46f19453f",
+      "verified": true
+    },
+    {
+      "category": "ownFullFiles",
+      "reference": "apps/api/mappings.ts:1–92",
+      "sha256": "e5fb55effe673cd53d390058c1eb19daeeb98502be1061a5898be12e0b5db266",
+      "verified": true
+    },
+    {
+      "category": "ownFullFiles",
+      "reference": "scripts/ner-runtime-lock.json:1–14",
+      "sha256": "c79fbaa6c50a3129fa897f8b04e3a2770039f4de7feb8d246423955fd98c3cfa",
+      "verified": true
+    },
+    {
+      "category": "ownFullFiles",
+      "reference": "scripts/ocr-lock.json:1–10",
+      "sha256": "a816cbc7c9a70738373cef27ebe3c3ba61970a904f865d74d0343fec00236c79",
+      "verified": true
+    },
+    {
+      "category": "ownFullFiles",
+      "reference": "tests/core.test.ts:1–90",
+      "sha256": "52f5531b7c6f93717e512f25fce8a3fa586fa699df59abd1eb4468d018a239f1",
+      "verified": true
+    },
+    {
+      "category": "ownFullFiles",
+      "reference": "tests/recognition.test.ts:1–95",
+      "sha256": "a7db0bf298577ef8eceab6805c6253102d7c80c484d1bd94794d3dcc87266ad1",
+      "verified": true
+    },
+    {
+      "category": "ownFullFiles",
+      "reference": "tests/mappings.test.ts:1–34",
+      "sha256": "c27aae25788514c21801de7008d8052252948e50827a2bf0b2a770aeda640951",
+      "verified": true
+    },
+    {
+      "category": "ownFullFiles",
+      "reference": "tests/review-tools.test.ts:1–116",
+      "sha256": "d0d9c50f1e8606477d00b202e38829600190dff08b53bbb0f763c324d8729bf2",
+      "verified": true
+    },
+    {
+      "category": "vendorFullFiles",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "verified": true
+    },
+    {
+      "category": "vendorFullFiles",
+      "reference": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "verified": true
+    },
+    {
+      "category": "vendorFullFiles",
+      "reference": ".data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/support/models/ner-cn-v3/config.json",
+      "sha256": "374e4c6ef295a02cdbde90b7c9e94fd27c517899f17f261d6a589bb4726d51b4",
+      "verified": true
+    },
+    {
+      "category": "vendorFullFiles",
+      "reference": ".data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/support/models/ner_base_bert/config.json",
+      "sha256": "48e38323071c96fdce44081898baf843f3057f592d1b8f19398c5e54cb904c7f",
+      "verified": true
+    },
+    {
+      "category": "vendorFullFiles",
+      "reference": ".data/research/lawbot-2026-10-14/rules-supplement/name_blacklist.yaml",
+      "sha256": "1588569109e33ef8603f0a5a8d3585f72c3ed725b4378a790f0facdd337f5de4",
+      "verified": true
+    },
+    {
+      "category": "vendorFullFiles",
+      "reference": ".data/research/lawbot-2026-10-14/rules-supplement/name_blacklist.yaml.json",
+      "sha256": "c1863b28534235f8f5b7f4a2ebed2a61dc3a91b159199e722e087980fcfa62ea",
+      "verified": true
+    },
+    {
+      "category": "vendorFullFiles",
+      "reference": ".data/research/lawbot-2026-10-14/rules-supplement/ner_fp_blacklist.yaml",
+      "sha256": "249b35487e45647d9eb8d42c3780ad15743320553fd023b81de9692cd3ec51fc",
+      "verified": true
+    },
+    {
+      "category": "vendorFullFiles",
+      "reference": ".data/research/lawbot-2026-10-14/rules-supplement/ner_fp_blacklist.yaml.json",
+      "sha256": "9716a0c0e8537af9dc094ed4f999618bfecfcde14b848253ca15c21d2c56b628",
+      "verified": true
+    },
+    {
+      "category": "vendorFullFiles",
+      "reference": ".data/research/lawbot-2026-10-14/rules-supplement/org_name_blacklist.yaml",
+      "sha256": "afc2d6873a36d9f1b5897a93c9e7865eb567c3788f1b601fcbb34cafb41f2f4b",
+      "verified": true
+    },
+    {
+      "category": "vendorFullFiles",
+      "reference": ".data/research/lawbot-2026-10-14/rules-supplement/org_name_blacklist.yaml.json",
+      "sha256": "c8190116a72443cd87f0423ecde6b225cbd87dff7eb8d7fd320e750925b8d9fe",
+      "verified": true
+    },
+    {
+      "category": "vendorFullFiles",
+      "reference": "文档/逆向台账/contracts/deep-processing-20261014.json",
+      "sha256": "33b0e8530a6ac05225345976a8181b18c34dab19545912fc5ae3b4ebf70deb00",
+      "verified": true
+    },
+    {
+      "category": "vendorFullFiles",
+      "reference": "文档/逆向台账/contracts/deep-processing-supplement-rules-20261014.json",
+      "sha256": "e7e2e75cc540f4e80dff21977b770866e518ac1e0478c812082fbddb169c368b",
+      "verified": true
+    },
+    {
+      "category": "vendorFullFiles",
+      "reference": "文档/逆向台账/contracts/renderer-policy-dependencies-20261014.json",
+      "sha256": "e6fc594ba87768708578f7e985fa829f104a0fb7cc35e9ed1821b5083dea1613",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:660–668",
+      "sha256": "4da505944e3343a41fa64c5f18ed8ee55bb3f76abf62fbf9100da238ab2bc6f5",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:669–683",
+      "sha256": "45ff2630127fd9544b24dfa19a43db8b53df15b8b02f34406050f5439ab3aaef",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:684–690",
+      "sha256": "103b4d4c939eefa39398be87522928a750ca18a03e35b84bafa60c29137283b7",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:691–695",
+      "sha256": "10e6b7ee6acda2a668044d43b8adf6bcfb31ede85de837dfc8a8159b4d9f1e66",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:696–705",
+      "sha256": "9ef42493380078b2db8ffe310a671081ad559481df29c82c322bbee35198f5c3",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:706–725",
+      "sha256": "429aa7cf70936f851bb93096decc89be8b590f29accc1c8ae1cf127c1bcdb07d",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:726–740",
+      "sha256": "b2af004428ce78247da23fed60ced3bdf89ba24acdc779715f3a9aa107e06ac4",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:741–747",
+      "sha256": "30985e81529a569ed55e4edecbff2fea781e26db495be4e86ee34d8e9d291084",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:748–762",
+      "sha256": "767346d86c223f86501594f7ddfa6aafa7378afa398e59b69d1def72ed18dba8",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:763–770",
+      "sha256": "395a7817ef3ff07409f64bef2ec43039f7258a216170bb2167c525ad785324fe",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:771–796",
+      "sha256": "0838917f3d471baada353353740b151381c07fce1cb0d15bb515e08e6ce9c436",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:797–809",
+      "sha256": "468819c3d13a389da5b318826569cd838e9bb87584137ee985b18284e2711081",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:810–818",
+      "sha256": "907b5861d9fa26cd89d7a5d497a4593be6e90c0ba5a70520994413152e99c328",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:819–829",
+      "sha256": "76a45402fcc317ed3fc995a8dbd50b861a4bb1249c5406bdd650da07b4ab0fd4",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:830–834",
+      "sha256": "f81f0ee1f21b3d4a92eb7ac3c5651716867d1aebaf5aade796d2a9b9405a25b1",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:835–843",
+      "sha256": "14b1024de1625640cf3efc5b9545e65f964db7f142be66e6e2e6881bdf3f9392",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:844–848",
+      "sha256": "dbbf9c56718353f9abb327a52a4ca23e393c0fecdc6a2c9f6e6b81119cae844c",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:849–889",
+      "sha256": "50354e6690bd2d35f02d7dcfe5d7b4226d85071928dca6c67dd1a5b47ec38741",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:890–906",
+      "sha256": "e8fb8b40fb8441ebd066240918a72b5c436d60c2e76cfe9ff6b488d7999dd0c9",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:907–922",
+      "sha256": "26f5919b7d4de3a517b82acdb8d0ecdaa8a49bd3935e516d759147da02d6a61c",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:923–993",
+      "sha256": "acd04f7855ed3aa3990bad573fbc39f6dd3dc91eb068a6b54cc50c73149166e5",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:994–1000",
+      "sha256": "06d260b04e6bdfdca395c70d711b341356c04702c8e887598d9a792a7b156aff",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:1001–1005",
+      "sha256": "823c508ba644893f07fca71f5bd377b541724db337bad202697c999516103a80",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:1006–1012",
+      "sha256": "3f814cb6e48c5b40ee07c766174a04282346d77e516e08abfce43e41b2e82342",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:1013–1024",
+      "sha256": "2b867dad88dee9c62fc074ed6a0568925c269bd4a09d81c81e4a136e7dc19e2d",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:1025–1031",
+      "sha256": "5d56c107b1d48e2299c4e0dc10c0814a4663ce41275e2eef53a24ac2e25beb16",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:1032–1036",
+      "sha256": "790ed52b59f851d00c9636373540d56527a8c982f6aa1fb94aa7aecb56406388",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:1037–1044",
+      "sha256": "1da4be676d143e2aa5b51368c788c8b87807d134b4d614885695ebb85ef969d1",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:1045–1049",
+      "sha256": "aa0e78834d080d8ea27605b35d4a3bc0e710ef49103279f290722c79c1327488",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:1050–1054",
+      "sha256": "77dd823100d2c69886739a21dd032a65e9a51b6f163ea77ed517083344727f86",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:1055–1059",
+      "sha256": "a5c561aa4b0109b9e762ec54339c1616041b58dbf485963a7cb6d7415c1325dc",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:1060–1064",
+      "sha256": "ab6f504c841fafd4131304dbbd39d4a4ffe23356c4e556156dac86add768d63a",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:1065–1069",
+      "sha256": "52f1f6c44203801b0030e09c50a50659828857b134b5f7e360b085a5f47a2c38",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:1070–1074",
+      "sha256": "62d1432747a3a9a88b9d3193f38ebfad01634f355bf0d06ccc969267c8aa410a",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:1075–1079",
+      "sha256": "e4b53386035e708809f59f6c62e0fdb4e959eefbb6e360b2cd9df82061d9126a",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:1080–1084",
+      "sha256": "900136d568d57f8fd8a48db974b2d888d9b18cbd41f0545904b149fe6df90423",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:1085–1089",
+      "sha256": "576fa048cf93a37c084fcc726284e3529d0e12dc10202e2010832b714ed48ff4",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:1090–1094",
+      "sha256": "beaee395194325656877981e3d882567d4d9a92448627280d85cf2996b623662",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:1095–1099",
+      "sha256": "3a25d7fcc72f304b6a3f3a8738da9bbe214f7840d0ad8aeef5b8bac20c0d89bd",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:1100–1109",
+      "sha256": "3724702d864d3bdded8cefdcc483c7ee9d4c829efe738f447387d9df7002afe5",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:1110–1114",
+      "sha256": "f3db4fc4a9de04a61d9827e2e1937ef913074ba54e98fb48d3901cda284280f6",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:567–659",
+      "sha256": "12727ab325ea410c87299bb018e65a29b99db7789b1f0640173c33a7a47b66fd",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:1115–1174",
+      "sha256": "1c094e64704a86f74f8b0daf0c20e8d6acbbf1719bc42dc58669f575a821386f",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:1175–1363",
+      "sha256": "24f0d03fe60bcfa373a5d8a0191bb045927ca7016d396af8936ad460528d1a88",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:390–399",
+      "sha256": "474b9b762d47c4af2813020ad6d1ed4dd1e400d9ff90485a6476e9d3898b2ab4",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:1364–1463",
+      "sha256": "05d1a55d0db1bbeed4895c69c59d2b94a4ba3d57515583c753d469af52eafa3f",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:1742–1749",
+      "sha256": "227ac568a00e88b7e785ac05c2746b39c94b68c11f0121e975c5e334d9899c7c",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:1799–1919",
+      "sha256": "6ae085c74c0491f757d45808217b114ac82d15b1d04769cbdeb2fd05d809290b",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:1920–1973",
+      "sha256": "ddf8ac5669b7dd94f373abade9f59f4f8ac93aa581b03214aad89fe5a299315c",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:2135–2433",
+      "sha256": "339ea6adbd15d920ac4f0f3e470c1aa00fb904ca4bf2db8a9d158942b5665769",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:1974–2134",
+      "sha256": "8ee26efd44bdae273247582e895d81c4907a3017d34b82be0de6264b1a95868f",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:2434–2655",
+      "sha256": "2ec903b2ce2c6815a40494b621e5bfffd520791b080f4a665b5cb57cc0ab0209",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:2656–2921",
+      "sha256": "f871bd253379d621b9c4df43de83f60e439e489a314ea45986207243d3c5ee68",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:2923–3192",
+      "sha256": "ac17861bb776d20c417f32d768ecf4548900ca7e333db5169e020f861a42d77e",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:12481–12727",
+      "sha256": "ee59df429b7180900a1157f331e6a680b3225780236b52c4dade51808a917e2a",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:8489–8492",
+      "sha256": "80ebfa9bef35f16666ab910e066246f8df0f4e36d3f452ae73462cb576577f69",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:8035–8276",
+      "sha256": "d3b9da22e7f189e44bf2b47f5b16fc929a3f6185589a19a10d1590fc5d032001",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:10957–11021",
+      "sha256": "39192915a0541de21399056a87b2a806e8a0f41a7c102c62144a4c4f25cbd7aa",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:12250–12305",
+      "sha256": "f8439eb0023ca199098937200aeef93289a509cc2ac49626f98683f74f570f91",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:12420–12480",
+      "sha256": "90fa745696859043765c99b3581f7f2d3419a4a0ae098c7b72ea33f0d770fec7",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:8277–8412",
+      "sha256": "40a0a88b4772df02d76625ebe528143cbe3ffd34d5b2e7485e249a3c7b0ff6e6",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:10365–10384",
+      "sha256": "1921b16f08d8f47c344699eb6c87fd1dc3e74d529a33afd44d63cbcbf7b8d1fe",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:11364–11385",
+      "sha256": "35bb4cb622d599493b6740c8df58c3e1776e36f463261bd4c252e92958f4987a",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:10161–10211",
+      "sha256": "2a3de8bbc716c2037a538889e7da39136ee1e20b6a1f3784a38e3b1a75190dc9",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:4260–4484",
+      "sha256": "fe16a5c68a2283bca595db53848f51c1b13bce39be3cb96328c5e3f453baf8e9",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-14/rules-supplement/name_blacklist.yaml:1–2979",
+      "sha256": "1588569109e33ef8603f0a5a8d3585f72c3ed725b4378a790f0facdd337f5de4",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-14/rules-supplement/name_blacklist.yaml.json:1–2692",
+      "sha256": "c1863b28534235f8f5b7f4a2ebed2a61dc3a91b159199e722e087980fcfa62ea",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-14/rules-supplement/ner_fp_blacklist.yaml:1–157",
+      "sha256": "249b35487e45647d9eb8d42c3780ad15743320553fd023b81de9692cd3ec51fc",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-14/rules-supplement/ner_fp_blacklist.yaml.json:1–145",
+      "sha256": "9716a0c0e8537af9dc094ed4f999618bfecfcde14b848253ca15c21d2c56b628",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-14/rules-supplement/org_name_blacklist.yaml:1–478",
+      "sha256": "afc2d6873a36d9f1b5897a93c9e7865eb567c3788f1b601fcbb34cafb41f2f4b",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-14/rules-supplement/org_name_blacklist.yaml.json:1–399",
+      "sha256": "c8190116a72443cd87f0423ecde6b225cbd87dff7eb8d7fd320e750925b8d9fe",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:17183–17195",
+      "sha256": "36aa6de88e6de22a9d85df600284f75cc4e1d560097ac0a7c30903c07ab1d59f",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:9286–9304",
+      "sha256": "a9deb11a110fafe9fb3ba57ef735d06d3f87ef6222594456389adc7bc7de092d",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:9439–9464",
+      "sha256": "49615652aabda0e05b42026dca62087cf0fb75e84ac5725d66dd00af4d1b1401",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:475–566",
+      "sha256": "18d5d575557c0664d6a9e46ed632b963fc1dff58942be4c9fa3edd33eb1be79a",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:9368–9386",
+      "sha256": "9118b94934f8ca50feb046be67d9329457d87c3c323caf07f7d9dce43ccd3182",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:3193–3202",
+      "sha256": "376af1cf269aff60ececeedd22604ed1a0a50a787ac598f1c2c603297a750f7e",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:10569–10598",
+      "sha256": "2cfa90979bfa221e6165e531a8ea840b2067e56ebf64e0b654e3c05b3e5e3b37",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:3464–3540",
+      "sha256": "458bc3a336c8c7060bab950f39a96bc64cb6a72c70e18441e708d1cc32717af3",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:1464–1750",
+      "sha256": "df988e86505b77511f00e341cdcf2a5d4ee2ea8e3f3c0813777324a1792b77f1",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:1799–1906",
+      "sha256": "fdce7c1f283083122f954d07a964a0c151e36723ec9534888d9804e016b54b35",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:2444–2495",
+      "sha256": "ec3142bd7e007e36734da83c0fb51bb4a3b4a93bc59126f1d8cafb21a61cb8bb",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/support/models/ner-cn-v3/config.json:1–51",
+      "sha256": "374e4c6ef295a02cdbde90b7c9e94fd27c517899f17f261d6a589bb4726d51b4",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/support/models/ner_base_bert/config.json:1–141",
+      "sha256": "48e38323071c96fdce44081898baf843f3057f592d1b8f19398c5e54cb904c7f",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/renderer.js:4204–4207",
+      "sha256": "ec97314e9c0374d6d7d826bfa38127e5afb60bf81154b3b41b4980f3224ecadc",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/renderer.js:4404–4417",
+      "sha256": "f9e432e0464533342589a3128f889735fe7414c6ecb19d6b7e9da1e5b5164c15",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/renderer.js:29836–29859",
+      "sha256": "2e649db82d0cefba4ea1595a9f6b31f22dfc34c55417b4368e34de690a380fe6",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:2922–3036",
+      "sha256": "66d8c7d1be3e9d1427b9bd52868d791c0ea791a640532f8279725459d8b35d72",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:2922–3105",
+      "sha256": "f948b254922fb71a9a3218b488ab075bfce371e29836c9584e2ece2ac00aed83",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:3123–3192",
+      "sha256": "3baf2932c988d0876f050cf87511936dd2c5ffa0ed62e4c776edfc9035073551",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:16523–16631",
+      "sha256": "4b753713e34fe34bcafd83dac63f3b832ac97a279758542f98b5b3ceb7d50969",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:14199–14228",
+      "sha256": "ad8c2406bafe6b6d804ab522fdc0df13fb15c3a36bf04237b007b36c3c3bef8e",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:15147–15263",
+      "sha256": "b69e3db0303a95fb04327a39d6b99ddaf9841418a29b7fab659cc1d90f15213e",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:14159–14198",
+      "sha256": "eeb7cc5e9280450821fb2d66ac306214f5433e34c9715ec09ec6ae247bb05282",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:18384–18427",
+      "sha256": "761f2dc0f648f3cd48429bb9cc42ca9bd7c825436e4c148ac96078f661df7a8b",
+      "verified": true
+    },
+    {
+      "category": "vendorRanges",
+      "reference": ".data/research/lawbot-2026-10-13/readable/main.js:18473–18493",
+      "sha256": "c9184fce587a1a099b8fed2809841448be81afa83365a270d18ac8329764d6e2",
+      "verified": true
+    }
+  ],
+  "boundaries": [
+    "没有独立重新证明全部41竞品规则或全部108配置类别运行语义。",
+    "源码存在不等于服务启用/真实识别/线上验收；AI主detect未接入、自动人脸/印章与文件还原缺项仍明确。",
+    "34个合成样例及26既有测试执行由root另行记录；本审查未运行测试、不借用测试结果作自己的新实测。",
+    "未改作者正文、业务代码或ledger；未执行竞品、未部署。"
+  ]
+}

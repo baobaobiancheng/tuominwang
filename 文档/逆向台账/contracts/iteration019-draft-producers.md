@@ -1,0 +1,163 @@
+# ITER019 草稿生产者补读
+
+8节、35范围；补充14个指定赋值位置及相邻Qv2。S2/R0，未执行竞品。
+
+## DR01 rn2补充类型识别与恢复
+
+指定赋值行：[31370, 31379]。
+
+- rn2仅batch当前ready材料；Vt2限定已知UI类型，Zt2按xc隐藏类型计算恢复集合，余类型才Jt2 detectOnly。Am2读取原件前后与识别回执后各有wh2.value===捕获对象及mo2检查，避免在这两个await边界换当前材料后合并。
+- en2只对hiddenByType/对应note条目调用Sc，恢复为pending或原user-added；并非把全部rejected恢复。Jt2传sourceRef、rules、route、纠正/规则快照，成功后仅保留所请求类型且非aO。
+- PDF en2→Gt2→bb，已有draft才回填entities；DOCX/Markdown Wt2按type/start/end/text去重并保留相同键rejected阻止重插，再Zh2/apply；图片恢复隐藏框并sp2拆分候选bbox。最后更新类型勾选和展示计数。
+- Gt2先bO按规范type/page/text及几何或span与旧rejected匹配抑制，再qt2精确bbox键去重。Ht2清原文端部空白并调position，OU将视觉表格框裁到tableCellBBox并同步meta/top-level bbox。
+
+条件风险：
+- rn2检查当前对象不等于锁定该对象内部revision；局部catch提示保留修改但没有回滚已经完成的同步mutation。此函数没有直接调用saveRecovery。
+
+证据：
+- renderer.js:31092–31130 `types-rules` SHA256 `37eb2f51c8944b3897580454e8b3c127b546d809e5dbe4d6dc31ea29a014a512`。
+- renderer.js:31167–31233 `incremental-helpers` SHA256 `a2e3eecd2b70fa5fdb633004dd6519afdae73e8b22180ecedf8367222890a737`。
+- renderer.js:4270–4286 `hidden-state` SHA256 `737ddaea04d3f943292533bc5ebaf211e80e2e27a049d2df8b1c0accc06645ed`。
+- renderer.js:31281–31299 `restore-types` SHA256 `b442560a0f0814de31093c465d0a2736ee913034a5199ffbe6919818b59729bd`。
+- renderer.js:31349–31393 `batch-incremental` SHA256 `4c5b5749738f016db2aaa55b39edd8451030490776e439fef46c0248a808a6ff`。
+- renderer.js:27856–27927 `rejected-detection` SHA256 `3540e33cd3acbac10f9fe6d97bdb9e7bc7c82566c29c127ac7100d2a2294f8cc`。
+- renderer.js:30417–30434 `visual-table-box` SHA256 `850880c752907c2b15dbf8370c19e596fd71918e4cff469ff754785cb93a7030`。
+- renderer.js:34071–34081 `buffer-read` SHA256 `0cade931f7533663b080a8593465ba6b9039a17c914693df47ec42bde5fd2637`。
+- renderer.js:31567–31579 `source-reference` SHA256 `90a4ffc5c9bf408eb57e689e44bee2510f5b107c9efcb973124de2448d4fe5aa`。
+- renderer.js:33700–33713 `image-shape-projection` SHA256 `da3e7697e1aab35185f7d5fd2014bfa375c70692177968aa94105c95a221d0ad`。
+
+## DR02 统一假名关闭与Zd2草稿重建
+
+指定赋值行：[33376, 33450, 33463]。
+
+- Bd2首先Ne2.reset、关闭面板；ready文件恢复dp2默认导出mode，有draft时仅覆盖enablePseudonymization=false和pseudonymEntries=[]。只直接apply当前DOCX或Markdown子组件；PDF/Image未在该函数直接apply。
+- Fd2关闭统一模式如有合并/拆分设置先确认，开启则Mm2保留exportMode、注册ready文件、seedCustomTokens、iy2策略后Um2。Bd2/Vm2等映射状态变更不能当作恢复文件保存。
+- Zd2要求ready且统一模式；当前Image读子框，当前DOCX/Markdown采集子draft，经op2注册并重建假名。DOCX把旧draft中Qi2 rejected条目按tp2键补回，重建entities；hasVisitedPreview=true与enablePseudonymization=true可由该同步函数设置，不代表人已经查看预览。
+- Yd2在非jd2时提升ks2并可调用Zd2；profile cp2受jc.enabled、格式默认和统一模式影响，draft/exportMode不是单一字段。
+
+条件风险：
+- Bd2 exportMode可能仍为pseudonym profile默认，而draft启用位被关闭，需按后续vp2/组件apply路径解释，不能单凭exportMode展示认定已启用。
+
+证据：
+- renderer.js:33374–33403 `unified-disable` SHA256 `65fd1b674540a8ed5d6115560c8b212355d461b24709a7f1c1cb76dfc08c4701`。
+- renderer.js:33413–33423 `mapping-sync` SHA256 `0ca8cc837bc7e6864410d81c77f46aa4f8d406f5421ecb870a5df1129161d59b`。
+- renderer.js:33437–33464 `mapping-draft` SHA256 `3ee3d5b16af41c8302e760e1c18a5c5eb7537fff7c6bdc85036236bec1d739c7`。
+- renderer.js:33700–33713 `image-shape-projection` SHA256 `da3e7697e1aab35185f7d5fd2014bfa375c70692177968aa94105c95a221d0ad`。
+- renderer.js:33714–33732 `profile-mode` SHA256 `5294a52186ba31b71f22548260f565b29490fa071cbd4ea2fffab3d036351e91`。
+- renderer.js:33754–33765 `mode-mapping` SHA256 `ce54db93946b022c49c99bc09f36019588e67ecb02c5216f3f06d660b196a9b6`。
+- renderer.js:32124–32157 `review-status` SHA256 `4cafe47351cc2a091e8f33955d1dd99d907ae2da564a0f6a17ce4b093525abac`。
+
+## DR03 项目跨材料补录Sv2与计数/插入
+
+指定赋值行：[35381]。
+
+- Sv2要求统一模式及非空text，先Mm2；非panel来源先顺序统计ready文件可新增数，>1才确认；panel来源跳过这个预统计/确认。随后再次遍历ready文件，当前PDF/Image调用子组件addProjectTextEntity并读回，非当前PDF先wv2文本后kv2 OCR，Image走kv2。
+- DOCX正文用tv+ev，Markdown必须Qf映射成功；按有效同type/text及Jf span去重。DOCX另mv2枚举图片OCR行/occurrence，新offset按documentText.length+1+序号合成，默认confirmed/score1/user-added。mv2图片判重按规范文字、path、行、occurrence，不要求已有实体type相同。
+- 新draft经np2去覆盖项，当前组件apply并DOCX刷新；逐文件完成后register ready实体并Um2统一映射。wv2捕获文本读取失败并false；kv2和yv2 batch-search success=false返回false/0，invoke reject会外抛。
+- 视觉判重主要同type/text且同页（PDF）交面积/较小面积>0.4；文字/OCR计数用临时数组去重，预统计不是实际提交数量或保存回执。
+
+条件风险：
+- 跨文件循环没有统一事务：较后文件异常可保留较早文件更改且跳过尾部Um2。两次遍历之间没有项目revision检查；对当前子组件的await后读回也不捕获其实例身份。
+
+证据：
+- renderer.js:35331–35385 `project-add` SHA256 `92f9fd8356b8101dbf14f2dc910b9502c9ede21d47672e6f53a38c3404cea984`。
+- renderer.js:35150–35198 `audit-count-docx-md` SHA256 `3514f6755e7e79ddf07de2f603a08fa6f51c9247274a856c713e602094af2050`。
+- renderer.js:35199–35223 `docx-image-insert` SHA256 `85459f244cf16a53e7a180604371206f7e08d9d099878cc0b7f4041cf34c797a`。
+- renderer.js:35224–35271 `audit-count-visual` SHA256 `a3e97a4db754dc543c7ba02eb85ae84ad1b4fce8d9b3e8d18993139453c6dad5`。
+- renderer.js:35272–35327 `project-insert-visual` SHA256 `d188e89963ea5fc62d46ff4799c823356d722e666655cf61fa13602a9beb3692`。
+- renderer.js:34591–34678 `audit-boxes` SHA256 `dab50bffeae48ee332ee1e1a72d20b2bbb06905988dba07402e05e7ff59bebaa`。
+
+## DR04 项目跨文件删除Cv2
+
+指定赋值行：[35413]。
+
+- Cv2合并显式keys及规范type:去空白全半角括号text键；Mm2后按op2有效实体统计确认。确认后重新遍历所有ready文件，Image物理过滤detectedBBoxes，其他格式原地er2设deleted与user rejected后写Zh2草稿。
+- 当前DOCX/Markdown可apply；PDF没有该处显式detectedEntities整体替换，实际以被选draft/检测数组引用及随后Um2为准。最后register ready实体并Um2；无局部saveRecovery。
+
+条件风险：
+- 确认前的计数不是锁定ID集合；确认后用当前ready集合重算命中。异常无整体回滚；不据此断言全部PDF删除路径都丢失，因为数组可能共享。
+
+证据：
+- renderer.js:35386–35418 `project-delete` SHA256 `5ea8bf60585152e52f8b340f94105e1a0b1d8b17ced68acbb09b7e88ca34e362`。
+- renderer.js:32124–32157 `review-status` SHA256 `4cafe47351cc2a091e8f33955d1dd99d907ae2da564a0f6a17ce4b093525abac`。
+- renderer.js:33700–33713 `image-shape-projection` SHA256 `da3e7697e1aab35185f7d5fd2014bfa375c70692177968aa94105c95a221d0ad`。
+
+## DR05 DOCX图片辅助识别回执
+
+指定赋值行：[35546]。
+
+- Ov2仅当前Wh2材料；如running则请求zn2取消并立即本地canceled，否则Mm2、生成requestId、设置scan running。In2后调用recognizeDocxImages，传原session或request、sourceRef、route/rules/corrections和tempDocxPath。
+- canceled回执直接标canceled；失败抛后catch标error。成功可更新documentText，Iv2/Ht2/Kt2规范候选并给id；Pv2按type/original-or-text/scan-or-position-or-offset/region键仅追加，已有重复项（包括rejected）先占键。
+- 成功直接zo2.value.appendDetectedEntities/getReviewDraft，再把草稿与捕获材料e3的检测结果合并；更新OCR/结构数据及scan状态。await Yt后Du2()&&lc2()仅安排恢复保存；finally只在pa2===request时清pa2。
+
+条件风险：
+- 成功回执写入前无wh2===e3、scan.requestId===request或go2代际门。若await期间当前DOCX实例变化，可向新子组件append并把其草稿带回捕获旧材料；这是源码条件，未验证UI是否允许这一时序。取消回执也依赖main返回canceled，局部未以已改scan状态拒绝迟到success。
+
+证据：
+- renderer.js:35530–35552 `docx-image-recognize` SHA256 `11b18d808979ac9e34fcb7fbfd255dd929f2d1fc9c9565bbea2edace1e90ed7c`。
+- renderer.js:35489–35503 `docx-ocr-merge` SHA256 `e771b78d7f5a6ccb24b4468b62d51b123a05ef517c31b923ccfc2e94666fd469`。
+- renderer.js:31167–31233 `incremental-helpers` SHA256 `a2e3eecd2b70fa5fdb633004dd6519afdae73e8b22180ecedf8367222890a737`。
+- renderer.js:31567–31579 `source-reference` SHA256 `90a4ffc5c9bf408eb57e689e44bee2510f5b107c9efcb973124de2448d4fe5aa`。
+
+## DR06 切路由重识别与旋转页回执
+
+指定赋值行：[35556, 35621]。
+
+- Bv2确认后捕获t3的route改变并清documentText/entities/boxes/scan/draft和图像尺寸，queued后Om2(go2)。统一模式先调用Bd2但没有await它；不单独在此等待保存或取消当前材料任务。
+- Om2已有yo2或xo2时返回；队列只在go2匹配且未stop时取queued/可续接项，实际Dm2与取消分类复用state-policy报告；finally重新判断队列、收尾并可Du2/lc2。Bv2是启动边界，不把queued当detectOnly成功。
+- Hv2对指定PDF页调用detectOnly；Fv2规范与过滤候选，jv2保留其他页及指定页Qi2 rejected，按qt2排除与rejected相同键的新候选，再bb。更新捕获材料entities；已有draft才替换entities，无draft仍null。
+- 旋转回执仅以fo2===捕获id限制当前组件markRotationRedetectComplete/markRotationRedetectFailed及Mm2；成功和失败mg2通知不受该ID门限制；捕获对象写入没有requestId/revision门。$v2只接正整数页和finite角度，四舍五入90度并只保留90/180/270。
+
+条件风险：
+- 局部多个同材料旋转请求若并发，晚回执可覆写前回执；材料卸载后仍能写捕获对象。没有合法运行证明竞态可被UI触发。路由reset是已确认的破坏性审查重置，不是保留旧草稿重检测。
+
+证据：
+- renderer.js:35553–35557 `batch-route-reset` SHA256 `5ed739d551f9b0c838d235c2af23d315a9dcbec6a99712f96d776d7652e9212a`。
+- renderer.js:33374–33403 `unified-disable` SHA256 `65fd1b674540a8ed5d6115560c8b212355d461b24709a7f1c1cb76dfc08c4701`。
+- renderer.js:33985–33997 `queue-selector` SHA256 `643f039a7a062d6e6a35cf35d516cbdef3c845343b79e4b13ce87453bcf6a294`。
+- renderer.js:34353–34400 `queue-runner` SHA256 `92959bf04bec85b8eb16e42737a9a1c2962af1e32d5a063651b9942022c4280d`。
+- renderer.js:35558–35589 `rotation-helpers` SHA256 `e3e20bf0b47679ca65e9a63fec62daad1945d83bd0978391ea7d8e16c961420f`。
+- renderer.js:35609–35629 `rotation-redetect` SHA256 `97cd429bab6a7afb9d56a0985ccc239724384875ab06dfa85e37bc7a59d2f688`。
+- renderer.js:31167–31233 `incremental-helpers` SHA256 `a2e3eecd2b70fa5fdb633004dd6519afdae73e8b22180ecedf8367222890a737`。
+- renderer.js:32124–32157 `review-status` SHA256 `4cafe47351cc2a091e8f33955d1dd99d907ae2da564a0f6a17ce4b093525abac`。
+
+## DR07 PDF/Image确认与PDF增删
+
+指定赋值行：[35690, 35697, 35724]。
+
+- qv2生成PDF导出key映射，bb实体、复制approvedConflicts operationIds及规范deleted页，再以新对象替换reviewDraft（预览/假名/mask/删除页字段）；Gv2浅拷贝Image框并构造新draft。均更新exportMode/count，经Ev2并gh2打开导出选择。
+- gh2仅取ready文件ID，为每份vh2 JSON.stringify状态指纹，So2=true。没有执行导出或saveRecovery；draft对象被替换也不代表其他独立材料字段已全部删除。
+- Jv2的Yv2键由page/type/框列表组成，默认不含source且不含text；同键active则跳过，同键rejected则tr2恢复，否则加confirmed user-added实体，再bb、已有draft回填、Zd2和Yd2。
+- 相邻Qv2用zf changedIndices执行删除，typeHidden时_c标隐藏，然后draft回填、Zd2/count/Yd2；此赋值也作为邻接证据记录，未伪称其在原14点清单。
+
+条件风险：
+- 同type同几何但不同text可被Jv2视同一键；确认调用只是配置导出选择，不能称最终文件已导出或已持久化。
+
+证据：
+- renderer.js:35688–35698 `review-confirm` SHA256 `605e4b039449d7c995ee821d9adad4dd43be7f5b08090d58c2392cb5f54e41b9`。
+- renderer.js:35699–35731 `pdf-add-delete` SHA256 `bbc0926483cda08b44464e609ea35ca687877309a14b734ab61ae4f21678e5c4`。
+- renderer.js:33487–33495 `export-confirm-fingerprint` SHA256 `54896c7995b470bca5b271bae9b12a37c158b1d6ce474939be8bb1628a399d03`。
+- renderer.js:35448–35450 `export-mode-refresh` SHA256 `1bec7883a55856b7f5206ac909f3c28d1cf4e182587725e3c7f4c64b60a2fb67`。
+- renderer.js:32124–32157 `review-status` SHA256 `4cafe47351cc2a091e8f33955d1dd99d907ae2da564a0f6a17ce4b093525abac`。
+- renderer.js:4270–4286 `hidden-state` SHA256 `737ddaea04d3f943292533bc5ebaf211e80e2e27a049d2df8b1c0accc06645ed`。
+
+## DR08 ng2按实体ID删除
+
+指定赋值行：[36082]。
+
+- ng2将输入ID转String Set。batch Image物理删除并setReviewBBoxes；PDF map经Zi2→er2写detectedEntities/count后返回，未在该分支直接改reviewDraft；DOCX/Markdown优先当前子draft、再Gh2/default，map拒绝匹配ID、清被删selectedEntityId、复制pseudonymEntries并Zh2/apply。
+- 非batch分支对ih2及Lr2命中且尚非Qi2条目Object.assign er2，再浅拷贝数组触发响应；无直接磁盘写入。reviewDraft仅是此路径一部分状态，后续Mm2/快照绑定按PA/UIremaining继续承担。
+
+条件风险：
+- 不同格式删除不是统一操作：Image移除、PDF保留rejected记录、DOCX/Markdown重建draft。该函数本体没有更新统一映射或await保存，不能把删除返回当持久化完成。
+
+证据：
+- renderer.js:36063–36102 `reject-by-id` SHA256 `6c8beb015123efd3dfd236b739aecb3634c16640321525ecb1379b9c4d834c16`。
+- renderer.js:32124–32157 `review-status` SHA256 `4cafe47351cc2a091e8f33955d1dd99d907ae2da564a0f6a17ce4b093525abac`。
+
+## 剩余与复用边界
+
+- cross-report：Dm2完整识别队列/失败分类、Ne2统一映射store、ev/nv/Qf文本匹配、子组件addProjectTextEntity与zf删除规则使用既有PA/SP/parents证据；本稿没有无限重复展开或提升为全链。
+- runtime-external：OCR/NER IPC真实输出、取消/切换竞态、DOCX渲染器对象生命周期、磁盘保存重开和最终导出，仍需合法竞品运行。
+
+14点切片覆盖不等于原36点全业务调用链闭合；结构check不替代独立审查。

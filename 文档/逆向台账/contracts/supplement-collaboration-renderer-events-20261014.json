@@ -1,0 +1,447 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-14",
+  "scope": "只读公开发布包中的可见代码；补DEP34/41的renderer协作调度、诊断、事件解绑与缓存身份；不执行竞品",
+  "staticDepth": "S2",
+  "runtime": "R0",
+  "executedVendor": false,
+  "sections": [
+    {
+      "id": "CE01",
+      "title": "open-job生产、单槽及两个renderer消费者",
+      "observations": [
+        "主进程c2先覆盖s2单槽；找绑定主窗口并restore/show/focus；loading时once did-finish-load，否则立即send。发送不清s2；consume仅认可主frame且绑定窗口后取出清槽。closed仅删r2/pe。窗口重建或consume与event交错可收到旧/重复快照，未有事件序号去重。",
+        "preload回调转发job并返回精确listener的removeListener；Dashboard mount先发consume异步请求，再装onOpenJob。两个回调都调用le2但不return/await，因此consume promise的catch不覆盖le2异步reject。卸载try调用Oc2并置null；已开始的le2没有unmount abort。",
+        "第二消费者协作任务列表mount listPending，openJob再刷新，unmount取消监听；i2自己catch错误但无请求版本，晚返回列表可覆盖新列表。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 24358,
+          "endLine": 24388,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "8975c8b913b284bdd729c9db2acec0c350cdbcd9461d6609a00739c27b8cdb5a"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 24436,
+          "endLine": 24452,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "40a9c10d858a33ef57c89fae8a93fb0573fa2590787ffc589f2060a6a9bc51b0"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "startLine": 28,
+          "endLine": 41,
+          "fileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+          "sliceSha256": "c0929227b5847b8aaa20a72a29006b88b7d15d869bd764e68e85a9bb7cc9dca6"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 32858,
+          "endLine": 32876,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "65f979faecf2ac8514665c6928faf91d746a27a62c5094d673f5617804f47f28"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 33134,
+          "endLine": 33152,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "76c3d8ed44f396e9ef937556134ac2a43f1f36381886e96c89d72b0473381942"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 28405,
+          "endLine": 28422,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "ed84c3e1e1cc3eb41b519e3145b1b061cd613b47e4902c5ac79da3ad02dce4b1"
+        }
+      ],
+      "remaining": []
+    },
+    {
+      "id": "CE02",
+      "title": "AF/Kc两队列与le2状态变更",
+      "observations": [
+        "AF只在busy且当前job存在且不同job时延后；同job不串行。Map按job更新值保留插入顺序；completed/round_completed/cancelled会删waiting项。take取最早项。Kc按job:round/standalone管理active，另一key入Map；同key立即接受；finish只匹配active后取下一项，discard仅删waiting。均非互斥锁。",
+        "le2 defer先于diagnostic；diagnostic调用fire-and-forget且catch空。restore相关状态先offer；round_completed在活跃restore面板时直接忽略；cancelled/completed执行A2恢复enabled备份、清y2/b2/w2再K2。A2仅还原We2、清x2/k2，未恢复Ne2.isUnifiedMode等全部设置。",
+        "waiting_human_review首次应用profile/ruleset(大小写无关id/name)、entityTypes、batch统一假名。w2在成功后登记；失败toast后await fail，fail transport rejection可外冒。异步refresh/import之后不统一复核当前job，也未全面序列化le2。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 4483,
+          "endLine": 4507,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "c5a48989207b5fea6dca03347ed0e0f74ee8f00f32ac2071fd7ba7c6041cc01f"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 28424,
+          "endLine": 28433,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "9d62e09a9bc15a32bfed1f7ed65a56d8b2843326ca9da4ad3eba5fca88466d41"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 30775,
+          "endLine": 30810,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "8854c6a4878b5771ce91e1b4f8c4fe2a02f09b45bf2c6a92b9b6de40ba027f30"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 30829,
+          "endLine": 30873,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "535e202bb2a0e895608b96dc7b19cee081184a8666476cee35ee7ec24d56b49d"
+        }
+      ],
+      "remaining": []
+    },
+    {
+      "id": "CE03",
+      "title": "le2材料导入/停放审查/还原通知",
+      "observations": [
+        "还原key首次先B2.add，再尝试Jc2→saveTo/Ec2；保存失败仅warning，仍parkReview并打开还原面板。B2意味着该轮不会自动再次停放。",
+        "有sourceRequest.paths且waiting_human_review首次P2.add，映射文件后Kg2(replace)，验证每个路径在Qe2中存在sourceRef.id；失败P2.delete并U2逐子/父fail，U2吞transport错误。autoEnterReview调用Zg2不await，其异步失败不在此import catch内。",
+        "授权ue2设置T2 finally复位，固定allowRedactionPath/RestorePath/SanitizedDelivery/autoEnterReview/createExchangeFolder=true，自动还原限secure_review；override是UI两开关。拒绝ce2成功恢复设置/清当前，不直接K2。",
+        "统计qc计总数、未知分数(非有限/超0..1)、低分<0.8；ready文档按文档N.docx安全名。自动导出O2先add再xy2/Nv2；本函数没有失败时删O2，U2删。",
+        "de2区分round/standalone回执；transport失败提示重试确认而非再次还原。round_completed仅当前job+round匹配才关面板/finish下一项；旧回执discard等待项。he2没有本地transport catch；pe2要restoreFailed确认为失败后才关并推进队列。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 30814,
+          "endLine": 30828,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "2771f886f3c0959e382768af4f8d4660a8e25b4e2ce6e824929761a22a305c55"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 30874,
+          "endLine": 30982,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "c9784e91bf6d5133a4fc7f5e7ed11ff80e52e95130a4c35350156e423a389939"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 4521,
+          "endLine": 4530,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "b631d8d53a66ecc1092fe5060f7712caf11b5c01a3ce3c43d5d4e08f3cf3b99d"
+        }
+      ],
+      "remaining": [
+        "Kg2、Zg2和逐格式xy2/Nv2的完整导出生命周期仍需相应UI/导入报告；此节读的是协作调度分支，不代替全部格式实现。"
+      ]
+    },
+    {
+      "id": "CE04",
+      "title": "OCR诊断真实输出及健康检查",
+      "observations": [
+        "cs按平台一次缓存adapter：darwin Vision仅reason/engine/available/version/platform/arch摘要，不写诊断文件也不返回filePath；Paddle委托processor。IPC直接返回summary/filePath；无字段脱敏层。",
+        "Paddle摘要含python/script/model/fallback绝对路径、版本stdout、错误状态，版本错误stderr限500/message300，import paddleocr stderr全文，传入原stderr全文；Windows检查5 DLL/4 pyd。execSync分别10s/30s timeout。",
+        "Paddle写userData/ocr_diagnostics/ocr_diagnostic_ISO.log，fallback APPDATA或相对lawbot-redaction-cat。mkdir/write失败吞掉；filePath在write前赋值，返回路径不证明文件写成功。",
+        "checkAvailability spawn import探针未配置timeout，stdout累积；primary失败再fallback；全失败触发不await诊断，checkAvailabilityWithDiagnostic又收集一次。renderer mount Promise.race 5秒超时分支直接return，未杀后台探针，re2可保持undefined，不等于available已确认。",
+        "复制按钮只把四个路径存在布尔、收集状态、受限errorCode、mode和时间写clipboard，不复制原始摘要/路径。Vision摘要不匹配Paddle正则因而显示未确认。3秒idle计时器无局部unmount取消。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 4599,
+          "endLine": 4661,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "ffc0d128a7564883958b9de5d22e1f5c684af57959cb410b3e690bac61d15edb"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 7954,
+          "endLine": 8034,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "3d1543795439d0116deb624e113f36baf4879f188d7227f9a724fc588f13c60d"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 18761,
+          "endLine": 18776,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "cde31061cd080181257b3346b588735b35a495ff3921b90f24a28e4cc5343f2d"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 29298,
+          "endLine": 29329,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "e936754483982e5680bd8d85ad2e0dccd0ceb5f1b05fe043a7cf9be1126d3b22"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 31982,
+          "endLine": 31993,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "279dd426a8e2c6bdaa15db65674482ff40219b245319eca58cfa58f88e4b305c"
+        }
+      ],
+      "remaining": []
+    },
+    {
+      "id": "CE05",
+      "title": "两处应用progress监听与生产端",
+      "observations": [
+        "应用IPC onProgress静态调用点两处：seal补检31261和Dashboard Ra2 31804；PDF.js onProgress不属该IPC。seal要求eu2及payload.requestId都匹配，finally局部d3解绑，再匹配request清busy。",
+        "Ra2只装一次ya2，卸载ya2/ba2并wa2；apply要求活跃Sp2与requestId=_p2，有限sequence<=旧序号则忽略，其余刷新heartbeatAt并阶段；detect必须非空requestId=pa2，可选fileName匹配。markdown-source-ready/matches、PDF阶段/百分比、image bbox分别更新。",
+        "main detect/docx-image payload先requestId再spread上游对象，若上游有同名可覆盖；apply反过来最终写requestId/递增sequence/heartbeatAt，5秒heartbeat并finally clearInterval。取消发canceled进度。旧单文件PDF处理取第一个BrowserWindow发送，无requestId，故Ra2将忽略旧式progress。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "startLine": 174,
+          "endLine": 189,
+          "fileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+          "sliceSha256": "47ce068e818e49a5e2bd3b1d20a6d959306b74681060d6f77037fefa3d9b3bdc"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 31249,
+          "endLine": 31284,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "cd046d7f01b3baa4661d867a7dfc42745383c55efd4d865e8301627061c962f1"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 31803,
+          "endLine": 31887,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "b94914f4add48dbb51c41c2c66cc9692f44a3862a916b7dc5cb6dfe7f700d4bd"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 17154,
+          "endLine": 17181,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "ebd19f67a06d5c71b10cc14ecb4bdf9d5de941b2fecac42afec2f81e13902a45"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 17198,
+          "endLine": 17221,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "d885601badfd55d1f922fca570f288c9739fab270152dfb64d9e1f454e788af4"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 17389,
+          "endLine": 17401,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "757f6d6c923557a2880f7bd63b42d0a688f587475f046ea1e2086f1bcf1c2f97"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 17435,
+          "endLine": 17444,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "ec9fbddfee452143c2e441242904f5c0d21c85c46a3c2cb52ebc171f74d68624"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 17917,
+          "endLine": 17931,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "faee20b3e0cec4be464e5535cb6d2c90ba96deb295ea52f79208380874553980"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 17991,
+          "endLine": 18007,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "3fc3a2f1a7f4bb1a36d150446e7d46029ee458c6ff58dac41cdf69db015ef8d5"
+        }
+      ],
+      "remaining": []
+    },
+    {
+      "id": "CE06",
+      "title": "三处page监听：身份、旧事件及解绑",
+      "observations": [
+        "preload onPageProcessed只传(_event,result)，三处应用注册33068/34203/35818。三处都接受缺requestId的旧payload；提供requestId时才比较。resume比pa2和可选fileName后处理；batch先go2 session/文档仍在/pa2，再可选request；single先eh2代际/pa2，再可选request。",
+        "batch/single的docx_progress分支在fileName检查之前return；故缺requestId的旧DOCX progress并不由filename隔离。PDF旧处理向首窗口发fileName且无requestId，文件名相同的旧事件不能由这些可选守卫保证排除。没有宣称所有事件按request隔离。",
+        "resume先解绑旧ba2，finally无条件解绑当时全局ba2并清Gn2（pa2仅同id才清）；batch finally仅pa2相同才清共享ba2；single finally仅eh2代际相同才清。均把解绑当时保存的函数或全局函数调用，未给事件队列做序号去重。",
+        "成功、暂停、打开workspace、退出审查及组件卸载各有显式解绑；卸载不是后端任务自动取消证明。resume finally无条件共享槽解绑存在重入时误解绑后一个监听的静态条件，未运行复现。",
+        "page消息分text_ready/plan/table/control/OCR，维护有序page文本、去重实体、完成页/目标页/cache；完成状态由target coverage和最终failures回执修正，不以最后page号等同全部OCR成功。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "startLine": 182,
+          "endLine": 189,
+          "fileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+          "sliceSha256": "1154abed44284775c22d356874c533509b8fed19521b4971d07cb9ca90d1c751"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 33054,
+          "endLine": 33131,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "f00ff5a42f6e6305da255ca2eea941641d49da0eaba0ee5c12405f3827b3e153"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 34175,
+          "endLine": 34281,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "b4f9200120dc87a25f316b59c979353d71380fa3b0de178a322f53586d8016fd"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 35755,
+          "endLine": 35927,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "0dd02b54248ab1179b7f685e261ce525c020244e3635e59becf1683ba965fe71"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 35972,
+          "endLine": 36016,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "3d8d52294593dfa3925dc7420ff77d1253f475feadf562e0e996fc1b4f8df055"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 33260,
+          "endLine": 33271,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "165bb6efa6d31cc7595ce38bed9069cc0781c752c87f3c6d7d5e2bc4b928790c"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 36136,
+          "endLine": 36148,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "2e27011ed2a011f6f671bb17d14e51a9911e340e8c6ba19dbaf66c8d26232121"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 37326,
+          "endLine": 37341,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "9e3af501cd12a85bdf1ec2d7a2f3b08ccf9f8cb86ffb829aaabd49c25bb22561"
+        }
+      ],
+      "remaining": [
+        "事件union上游全部嵌套数据字段/第三方模型输出未穷尽；真实时序与重入可达性R0。"
+      ]
+    },
+    {
+      "id": "CE07",
+      "title": "缓存三层与release键不一致",
+      "observations": [
+        "engine su cache key是SHA256前16hex，key生成原样返回；get刷新Map顺序，lookup不刷新；max10和128MiB估算。set先驱逐旧项，若单条>128MiB且缓存已空仍会插入，非硬内存上限。clear按bufferHash或fileName相等匹配；传空对象不等于清空。",
+        "main _f/If源缓存key source:id或filename，Nf写入后按>50或>128MiB循环淘汰，可把超大新项自身淘汰；Af页号只finite Number，并非正整数限制。vf读不刷新顺序。Tf/Of仅结构转换，无bbox强校验。",
+        "renderer xu2需正整数page，Number||0转换尺寸/bbox但不限制负/Infinity；cache页覆盖同页排序，无本层数量/字节上限；single Fr2、batch pdfOcrCachePages分别维护。",
+        "sourceRegistry无路径buffer登记立即完整64hex SHA256；source release按其完整bufferHash调用su.clearOcrCache且未传fileNames。已观察engine正常set输入来自16hex calculateBufferHash，因此这种源登记/识别路径释放时64hex!=16hex，removedEngineCaches可为0而engine项保留待淘汰。source _f缓存仍被删。未运行vendor，不能说所有源在所有识别路径都命中此条件。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 9039,
+          "endLine": 9064,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "723888a94b3edbd5ba1a3be72baa6e3e079f3067e38449e7e496464c5a718ded"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 9400,
+          "endLine": 9405,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "5edfba6945a97527efb9126f28eb60766d386f08c0b227b5f8fb5e679a60a113"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 9421,
+          "endLine": 9438,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "c2057e6ebd3b269fdd2087fd44c8ef9f4a885a12b88625e20e15628c216b0cde"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 15335,
+          "endLine": 15382,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "8bc53eea9b906d3e91d2499115d811e67beb92a1bda246cfa714880ed2823f37"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 15762,
+          "endLine": 15774,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "23d8cabd24f0499139b6f171f1484ef85c4d0e00ab685ae58823f284f0f7f42b"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 17047,
+          "endLine": 17064,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "50701555c0938e1f7a7e73cddf3f422dde16d7c2917d9272f20f45ebb752602d"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 11060,
+          "endLine": 11065,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "ae45738c8b5ce7c2604276473610984f21f04942baa55054bcfb23aa5e490676"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 11591,
+          "endLine": 11597,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "f4e27f8a9308a9b47660809831f6e49e739a1855f0f54c7ba1a8b84829bb9704"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 11285,
+          "endLine": 11292,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "4b4e40425f505e1d1e10dae449fb3ed1c50fe059beb7aa0176c72f253aa6f019"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 12311,
+          "endLine": 12318,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "6305713a5d0fb69540bee9a58efdbd1d8af1cf03a3132c2537f7e24d0e6179a6"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 12449,
+          "endLine": 12456,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "a76600ce4b33fe695481c2f09fb39b1ec3a7d1b253cfbf12ee24dbc82a795c10"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 32526,
+          "endLine": 32539,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "bff12afd16d84874526887790b249f71afa75785b7f4f98e99fe8eb942de516c"
+        }
+      ],
+      "remaining": [
+        "模型缓存之外的GPU/native/第三方对象释放、所有sourceRef重开恢复消费者不在本节；不证明进程内全部文本缓存清零。"
+      ]
+    }
+  ],
+  "summary": {
+    "sections": 7,
+    "evidenceRanges": 47,
+    "applicationProgressCallsites": 2,
+    "applicationPageCallsites": 3,
+    "openJobConsumers": 2
+  },
+  "remaining": [
+    "协作调度已读，但逐格式import/review/save/export/restore与远端服务不由调度节点代替。",
+    "运行验证、事件真实交错、诊断文件写入、模型内存/准确性均R0。"
+  ]
+}

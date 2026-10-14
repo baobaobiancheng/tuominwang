@@ -1,0 +1,5545 @@
+{
+  "review": "ITER019 actual ledger merge independent review",
+  "date": "2026-10-14",
+  "reviewer": "ui_closure_a",
+  "status": "passed",
+  "findings": [],
+  "openFindings": 0,
+  "scope": "Actual before/after ledger data, source-reference append operations, all current content pins, documented summary replacement and final summary wording. No new competitor execution or functional tests.",
+  "targets": {
+    ".data/research/lawbot-2026-10-14/ledger-before-iteration019.json": {
+      "sha256": "19f6f27a95090e73eb063f8c46442b7b0f0a8e91586cc0aec36d1ed9c8ff8685",
+      "bytes": 4495466
+    },
+    "文档/逆向台账/ledger.json": {
+      "sha256": "c53a868fb77fa1677509578d698a982e2d77983a3fc2c1ccb6e72fe8a6e246cb",
+      "bytes": 4544301
+    },
+    "文档/逆向台账/递归分析与对抗审查-20261014.md": {
+      "sha256": "86a6d868f0fb5193063bbfc06d23bc43bd1598870b57f7d7749d8d1ff71397b5",
+      "bytes": 14086
+    },
+    ".data/research/lawbot-2026-10-14/iteration018-general-report.md": {
+      "sha256": "4f183a0d4c837046877af416f1d8fe6010ed1bad3ff456ebe48393882b7eecae",
+      "bytes": 10903
+    },
+    "文档/逆向台账/contracts/merge-iteration019-ledger.py": {
+      "sha256": "b24715122039672dd607f1c05aef0a1f932fc17407df2c8a04fcae36e0b94d44",
+      "bytes": 5304
+    }
+  },
+  "counts": {
+    "historicalEventsPreserved": 18,
+    "newEvents": 1,
+    "flowsPreserved": 37,
+    "interfacesPreserved": 258,
+    "uiInterfacesWithAppendOnlyEvidence": 6,
+    "appendedInterfaceEvidence": 18,
+    "newSourceAliases": 17,
+    "eventEvidenceFiles": 108,
+    "priorPins": 400,
+    "currentPins": 467,
+    "newPins": 67,
+    "unchangedOldPins": 399,
+    "updatedOldPins": 1,
+    "verifiedChecks": 778
+  },
+  "changedTopLevelFields": [
+    "reference",
+    "sources",
+    "interfaces",
+    "events",
+    "evidence_snapshot"
+  ],
+  "changedInterfaceFields": {
+    "dependency_iterations": 6,
+    "evidence": 6
+  },
+  "stateCounts": {
+    "static_depth": {
+      "S2": 258
+    },
+    "runtime_status": {
+      "R0": 258
+    },
+    "implementation_status": {
+      "I0": 206,
+      "I1": 15,
+      "I2": 28,
+      "I3": 9
+    },
+    "flow_mapping": {
+      "本发布包无前端调用，局部服务关系已核": 71,
+      "已追踪局部关系": 169,
+      "局部调用已追踪": 18
+    }
+  },
+  "summaryReadback": [
+    "ITER019 summary reports 47 topics = 41 cross-report evidence + 5 external + 1 runtime; original 11 known readable application dependencies supplemented.",
+    "Summary explicitly denies full product reverse-analysis or implementation equivalence; all 258 entries remain S2/R0.",
+    "Updater description distinguishes current macOS differential-download-disabled configuration from packaged conditional paths.",
+    "ITER018 original summary bytes preserved; updated general summary qualifies Markdown virtualization condition as trim-nonempty query."
+  ],
+  "checks": [
+    {
+      "check": "Top-level keys unchanged",
+      "passed": true
+    },
+    {
+      "check": "Only authorized top-level fields differ",
+      "passed": true
+    },
+    {
+      "check": "All 18 historical events preserved as exact value prefix",
+      "passed": true
+    },
+    {
+      "check": "Exactly ITER019 appended",
+      "passed": true
+    },
+    {
+      "check": "37 flows byte-equivalent after JSON value serialization",
+      "passed": true
+    },
+    {
+      "check": "258 interface identities and order preserved",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-540edc231d28",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-77baf8b1932c",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-9f9f62ce116e",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-224e4065477a",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-7bc84b77bbab",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-0e93232c5223",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-91a4aa41d44c",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-3218ff56854c",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-2c93659b71ad",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-0ee2339f025f",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-03b436a7c1b1",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-d0d9bb1ba45b",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-208d016e6972",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-40128ac5fccf",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-121d180be5d8",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-412cb770febe",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-fe44165e30fd",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-0a8de5567b3c",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-8b4556ee60d4",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-21f5af67811a",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-b3931f25eb79",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-eceef0e6cff3",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-6c981281c999",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-2f0db8546650",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-3b4c9f7c2b97",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-a3eee81b75d4",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-b67938c0cb2f",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-7f4cfe68e159",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-f5725b5e0d8a",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-a26e3c125cb6",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-611ab311c5f6",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-499bd8d4596b",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-a11af873aa1a",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-5d7065a40d45",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-65f32fe31f76",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-2e9ce1df9fec",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-e25810712ab1",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-28d93302bd32",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-243bf096202b",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-69f3f32b9683",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-4567d2cc2f1d",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-3484537f3350",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-8f0322abb8b8",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-ba48a535d0b1",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-5f5d0e7e7171",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-2a09a00cba17",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-9ac7b5cfa48e",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-1a2923d565e2",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-5634886c31f2",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-82ace6842a00",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-34a47a0ff8e1",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-f96c39b98bc8",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-251d99e85000",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-73870d051b3f",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-5a998529649c",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-88cd1d915682",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-fd1ca8c6cb27",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-e8dcb4d0e8b3",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-7d7d2d58da91",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-42a70f50df5f",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-85f474cad97a",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-8c5afeb517e6",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-9a8232e44fb9",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-a09f09579955",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-7b3e67a5a715",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-3211d99d0f20",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-58567733591e",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-e4cf3e6c3c0a",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-c1cec3199992",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-27dd16394cd6",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-8fc7e5c07051",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-a07c3fdcbe45",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-f071ce7c965b",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-81f79eee361a",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-8f1caa190dda",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-d9b14aa97589",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-3bea45842355",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-f1f713df2b98",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-629ace0aecd1",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-9577d3a9d6d0",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-e29b03465bc3",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-95d4f752bfb1",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-523337153cab",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-102f9010076c",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-7f07e8bd74ee",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-d7d18b241f88",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-0ea3b09c375b",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-96ccc7c0ce76",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-e84cabdffc27",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-25271d44841c",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-3f0d71fadee4",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-0f2d4d6b6262",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-22c459a29cd7",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-acbca2a96370",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-50d02c91469e",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-c19a241811ac",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-80e954e3a669",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-9b9d5a0f489e",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-7de3f60b8ed5",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-8a12674fee54",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-d0b393b9e93d",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-429f13ae0835",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-d874c25112ba",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-6ff537a49940",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-b828b79da058",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-b2c075e4afde",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-efc77b9d6c1d",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-196efa6b695b",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-14a3820628e8",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-9bb6c463b31f",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-feab6613b5ed",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-a982d6d137ce",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-47ecc7525dfe",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-d3864dc80560",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-5569a4344615",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-8018ac372ad7",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-ca4c19558c55",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-5457cc5660c4",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-caef950fe9a5",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-7fb83198252b",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-43e13058e656",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-2c55a1969fb8",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-d79e3892b954",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-a70191351664",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-0dcec6bac9d5",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-765d8b00f827",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-527f74c7a029",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-7c61ecffef61",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-29896d043df3",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-cf6cc425333d",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-d70108ef71d7",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-1c4d31759888",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-13b1b9cd954f",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-7a1832cb9fe9",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-f8d8e4c7c379",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-539465a49a9b",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-978012face0b",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-0ecb1de9c806",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-f02ad1fa2413",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-7b3025225249",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-3d307eb4bc00",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-0b6b223f384f",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-7e8602707608",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-271b4728636e",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-ddc5ff507c75",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-92e8c95a136b",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-59456f319530",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-bd4779635d5d",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-420bf82d10ca",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-32941c143267",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-1d272ba10a6c",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-24fe13c4efb6",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-5c2a14961699",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-096d3ecc2554",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-0fa110b8534b",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-6f749dcd2e0f",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-37a279488720",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-f69ef883aa33",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-7fe81107ae4d",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-6dcdb71fa095",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-93ba5dca8357",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-a05e3b6af8e1",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-7d7beed074d0",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-e024a8242875",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-bb6001e11068",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-d3e5e1de12d2",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-9dbd84b9715b",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-72093dfff7bf",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-b199b300f630",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-9a7ac510f8c7",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-18da1e923824",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-620a9576690e",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-7754362b9148",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-337d01816990",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-8bfb6ec9fcd8",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-c17682083b52",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-c04013aa6e1b",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-2bdb599038fb",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-2187e949f831",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-9a6a89a8fb10",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-1abcdf6d1a56",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-6099fda9db85",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-1e8858b1ed43",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-4e269deca69e",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-67a324d00c09",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-a73b27802b39",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-6cb1afcdadfc",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-6f5f29f520a1",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-cfbe72c62d81",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-ce03744a77ef",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-3a73e0100026",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-ed495037f8dc",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-e436786bb1f7",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-1e94f610b0e1",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-b148b8418b82",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-e6a8f1b41825",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-f53f8972c1a5",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-3c8789ad9a8f",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-7e55b9d273b1",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-be30d4526c26",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-a80eb991f683",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-f417c3628886",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-feb24aa50a4f",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-86a65aa5ca0e",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-8ed0acbb4144",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-1d575f4ee880",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-70e09702200d",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-d78ef82e46d5",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-c356082df625",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-ff1d1193dc22",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-9be2a0784913",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-1ad8e879614a",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-98cb505df8ea",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-8b8d74411dc8",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved MCP-104bba767f9b",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved MCP-125a85961c76",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved MCP-08b4aa88f5db",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved MCP-c498f8766b24",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved MCP-7b2d5f82cf39",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved MCP-9a4e24e9a1c0",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved MCP-dc810d5ca01a",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved MCP-1e302c2392c3",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved MCP-a3d4f76a1a28",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved MCP-8e8e605f0d93",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved MCP-8fb696cd0f36",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved MCP-924f29e7e21d",
+      "passed": true
+    },
+    {
+      "check": "UI append-only fields UI-2c1712d35460",
+      "passed": true
+    },
+    {
+      "check": "Preserved old list UI-2c1712d35460 dependency_iterations",
+      "passed": true
+    },
+    {
+      "check": "Preserved old list UI-2c1712d35460 evidence",
+      "passed": true
+    },
+    {
+      "check": "Exactly 3 pinned new evidence references UI-2c1712d35460",
+      "passed": true
+    },
+    {
+      "check": "Exactly ITER019 dependency iteration UI-2c1712d35460",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved UI-2c1712d35460",
+      "passed": true
+    },
+    {
+      "check": "UI append-only fields UI-3f01047e6b59",
+      "passed": true
+    },
+    {
+      "check": "Preserved old list UI-3f01047e6b59 dependency_iterations",
+      "passed": true
+    },
+    {
+      "check": "Preserved old list UI-3f01047e6b59 evidence",
+      "passed": true
+    },
+    {
+      "check": "Exactly 3 pinned new evidence references UI-3f01047e6b59",
+      "passed": true
+    },
+    {
+      "check": "Exactly ITER019 dependency iteration UI-3f01047e6b59",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved UI-3f01047e6b59",
+      "passed": true
+    },
+    {
+      "check": "UI append-only fields UI-339d8e53408d",
+      "passed": true
+    },
+    {
+      "check": "Preserved old list UI-339d8e53408d dependency_iterations",
+      "passed": true
+    },
+    {
+      "check": "Preserved old list UI-339d8e53408d evidence",
+      "passed": true
+    },
+    {
+      "check": "Exactly 3 pinned new evidence references UI-339d8e53408d",
+      "passed": true
+    },
+    {
+      "check": "Exactly ITER019 dependency iteration UI-339d8e53408d",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved UI-339d8e53408d",
+      "passed": true
+    },
+    {
+      "check": "UI append-only fields UI-ad41d13c4a2d",
+      "passed": true
+    },
+    {
+      "check": "Preserved old list UI-ad41d13c4a2d dependency_iterations",
+      "passed": true
+    },
+    {
+      "check": "Preserved old list UI-ad41d13c4a2d evidence",
+      "passed": true
+    },
+    {
+      "check": "Exactly 3 pinned new evidence references UI-ad41d13c4a2d",
+      "passed": true
+    },
+    {
+      "check": "Exactly ITER019 dependency iteration UI-ad41d13c4a2d",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved UI-ad41d13c4a2d",
+      "passed": true
+    },
+    {
+      "check": "UI append-only fields UI-67e30cf66ad0",
+      "passed": true
+    },
+    {
+      "check": "Preserved old list UI-67e30cf66ad0 dependency_iterations",
+      "passed": true
+    },
+    {
+      "check": "Preserved old list UI-67e30cf66ad0 evidence",
+      "passed": true
+    },
+    {
+      "check": "Exactly 3 pinned new evidence references UI-67e30cf66ad0",
+      "passed": true
+    },
+    {
+      "check": "Exactly ITER019 dependency iteration UI-67e30cf66ad0",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved UI-67e30cf66ad0",
+      "passed": true
+    },
+    {
+      "check": "UI append-only fields UI-32ce2fb60c5f",
+      "passed": true
+    },
+    {
+      "check": "Preserved old list UI-32ce2fb60c5f dependency_iterations",
+      "passed": true
+    },
+    {
+      "check": "Preserved old list UI-32ce2fb60c5f evidence",
+      "passed": true
+    },
+    {
+      "check": "Exactly 3 pinned new evidence references UI-32ce2fb60c5f",
+      "passed": true
+    },
+    {
+      "check": "Exactly ITER019 dependency iteration UI-32ce2fb60c5f",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved UI-32ce2fb60c5f",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved HTTP-39c99fc0f49b",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved HTTP-5b15967de5d7",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved HTTP-c7b17225ac88",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved HTTP-d01c26128e34",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved HTTP-5b5f45240232",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-4dd20e80cae3",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-ba07bb14e3df",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved IPC-910347ed48b5",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved GATEWAY-f21aa5c5dc19",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved GATEWAY-191fc60f0036",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved GATEWAY-cbd9ff60189a",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved GATEWAY-95f7eda76ec2",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved GATEWAY-325df91336a6",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved GATEWAY-257145c95a18",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved GATEWAY-f41647c2a851",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved GATEWAY-678e012848a8",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved GATEWAY-1abec6ed4302",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved GATEWAY-9550960e5004",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved GATEWAY-269ba55489c6",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved GATEWAY-c67325f03fc7",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved GATEWAY-32e1f2fdcacd",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved GATEWAY-8f9ae82e2106",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved HTTP-a71a256b3205",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved HTTP-6d3c7c84fc7d",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved LOCAL_HTTP-74413f3c6e71",
+      "passed": true
+    },
+    {
+      "check": "All other interface fields preserved LOCAL_HTTP-c7d0bee37342",
+      "passed": true
+    },
+    {
+      "check": "Exactly six UI IDs equal event affected list",
+      "passed": true
+    },
+    {
+      "check": "Source mapping is append-only",
+      "passed": true
+    },
+    {
+      "check": "All 17 new source references pinned",
+      "passed": true
+    },
+    {
+      "check": "Reference changes restricted to dependency_reconciliation",
+      "passed": true
+    },
+    {
+      "check": "New reference retains S2/R0 and pinned matrix",
+      "passed": true
+    },
+    {
+      "check": "Snapshot metadata unchanged",
+      "passed": true
+    },
+    {
+      "check": "No old evidence pin removed",
+      "passed": true
+    },
+    {
+      "check": "Only general summary existing pin changed",
+      "passed": true
+    },
+    {
+      "check": "Old summary exact hash and size retained in snapshot",
+      "passed": true
+    },
+    {
+      "check": "Single summary evidence update has exact before/after receipt",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/frontend-reference-notes.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/rea/ipc-contracts.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/rea/mcp-contracts.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/readable/main.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/readable/renderer.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/runtime-qa/activation-required.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/website/home-1.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/workflow-qa/verification.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content apps/api/main.ts",
+      "passed": true
+    },
+    {
+      "check": "Pin content apps/api/review-tools.ts",
+      "passed": true
+    },
+    {
+      "check": "Pin content apps/web/entity-groups.tsx",
+      "passed": true
+    },
+    {
+      "check": "Pin content apps/web/main.tsx",
+      "passed": true
+    },
+    {
+      "check": "Pin content apps/web/review-tools.tsx",
+      "passed": true
+    },
+    {
+      "check": "Pin content apps/web/uploads.tsx",
+      "passed": true
+    },
+    {
+      "check": "Pin content apps/worker/main.ts",
+      "passed": true
+    },
+    {
+      "check": "Pin content packages/adapters/processing-worker.ts",
+      "passed": true
+    },
+    {
+      "check": "Pin content packages/core/redaction.ts",
+      "passed": true
+    },
+    {
+      "check": "Pin content tests/e2e/entity-workflow.spec.ts",
+      "passed": true
+    },
+    {
+      "check": "Pin content tests/e2e/review-tools.spec.ts",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/脱敏猫IPC接口清单.csv",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/脱敏猫REA分析与开发对齐.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/脱敏猫工作流对齐.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/台账校验回归.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/按钮确认交互修复与验收.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/导出核验.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/核验导出.mts",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/33-repeat-direct.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/34-batch-scope.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/35-inline-confirm.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/36-batch-saved.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/37-batch-undo.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/示例材料/合成通讯录.xlsx",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/示例材料/合成通讯录-处理结果.xlsx",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/示例材料/合成通讯录.csv",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/示例材料/合成通讯录-处理结果.csv",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/示例材料/合成说明.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/示例材料/合成说明-处理结果.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/示例材料/合成黑白名单.xlsx",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/示例材料/项目词表-导出结果.xlsx",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/示例材料/合成说明-词表处理结果.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/45-dictionary-rerun.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/46-dictionary-result.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/示例材料/合成合同.docx",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/示例材料/合成合同-实体识别处理结果.docx",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/52-ner-candidates.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/53-ner-export.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/frontend-evidence-iteration/check-final.log",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/frontend-evidence-iteration/comparison.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/frontend-evidence-iteration/e2e-alignment-rerun.log",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/frontend-evidence-iteration/e2e-tools-rerun.log",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/frontend-evidence-iteration/e2e.log",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/integration-latest.log",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/ipc-static-contracts.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/static-updater/README.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/static-updater/hashmanifest.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/static-updater/node_modules/electron-updater/out/MacUpdater.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/static-updater/node_modules/electron-updater/out/providers/GenericProvider.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/static-updater/node_modules/electron-updater/out/providers/Provider.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content apps/web/review-tool-dialog.tsx",
+      "passed": true
+    },
+    {
+      "check": "Pin content apps/web/style.css",
+      "passed": true
+    },
+    {
+      "check": "Pin content deploy/README.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content tests/e2e/frontend-alignment.spec.ts",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/IPC逐项概览.csv",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/README.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/expand-mcp-schemas.mjs",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/extract-ipc.mjs",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/gateway-service-contracts.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/ipc-contract-index.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/ledger-recommendations.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/mcp-expanded-schemas.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/summarize-contracts.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/verification.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/verify-contracts.mjs",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/补充契约说明.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/对抗审查-20261013.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/extracted/dist/main/chunks/D9V2C_Ir.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/extracted/lawbot-mcp/batchDelivery.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/extracted/lawbot-mcp/gatewayClient.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/extracted/lawbot-mcp/server.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/manual-collaboration-evidence/Cw24Yh6r.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/manual-collaboration-evidence/DK2pJCiu.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/manual-collaboration-evidence/hashmanifest.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/manual-ledger-iteration/merge-manual-ledger.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/manual-ledger-recommendations.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/build-manual-system.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/build-manual-workflows.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/manual-collaboration-contracts.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/manual-collaboration-contracts.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/manual-coverage.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/manual-system-contracts.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/manual-system-contracts.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/manual-workflow-contracts.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/manual-workflow-contracts.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/manual-workflow-supplement.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/verify-manual-contracts.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/人工契约核验器交叉审查-20261013.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/deploy/aliyun-20261013/before/api-main.ts",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/deploy/aliyun-20261013/before/check-runtime.ts",
+      "passed": true
+    },
+    {
+      "check": "Pin content .dockerignore",
+      "passed": true
+    },
+    {
+      "check": "Pin content Dockerfile",
+      "passed": true
+    },
+    {
+      "check": "Pin content apps/web/dictionary.tsx",
+      "passed": true
+    },
+    {
+      "check": "Pin content apps/web/page-review.tsx",
+      "passed": true
+    },
+    {
+      "check": "Pin content apps/web/urls.ts",
+      "passed": true
+    },
+    {
+      "check": "Pin content apps/web/vite.config.ts",
+      "passed": true
+    },
+    {
+      "check": "Pin content deploy/aliyun/apply-ingress.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content deploy/aliyun/bootstrap-account.ts",
+      "passed": true
+    },
+    {
+      "check": "Pin content deploy/aliyun/compose.yaml",
+      "passed": true
+    },
+    {
+      "check": "Pin content deploy/aliyun/ingress-location.conf",
+      "passed": true
+    },
+    {
+      "check": "Pin content deploy/aliyun/web-nginx.conf",
+      "passed": true
+    },
+    {
+      "check": "Pin content scripts/check-runtime.ts",
+      "passed": true
+    },
+    {
+      "check": "Pin content tests/web-urls.test.ts",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/build-result.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/build_manual.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/manual.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/导出核验-v2.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/01-login.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/03-project-home.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/04-import-text.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/19-restore-result.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/21-upload-selected.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/43-dictionary-confirm.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/44-dictionary-saved.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/47-mapping-list.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/48-project-members.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/49-project-audit.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/50-organization-quota.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/manifest.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/v2-55-workspace.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/v2-56-search.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/v2-57-known-dialog.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/v2-58-strategy.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/v2-59-docx-review.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/v2-60-docx-pending-draft.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/v2-61-docx-preview.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/v2-62-pdf-region.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/v2-63-pdf-preview.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/v2-64-pdf-download.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/v2-65-png-review.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/v2-66-png-preview.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/v2-67-xlsx-download.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/v2-68-csv-download.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/v2-69-md-review.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/v2-70-dictionary-pending.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/v2-71-md-preview.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/截图/v2-72-delete-cancel.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-1.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-10.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-11.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-12.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-13.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-14.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-15.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-16.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-17.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-18.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-19.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-2.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-20.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-21.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-22.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-23.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-24.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-25.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-26.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-27.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-28.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-29.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-3.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-30.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-31.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-32.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-33.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-34.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-35.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-4.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-5.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-6.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-7.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-8.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/page-9.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/排版核验-v2界面/脱敏汪使用指南.pdf",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/核验图-v2/PDF处理结果第1页.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/核验图-v2/PDF处理结果第2页.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/核验导出-v2.mts",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/界面更新替换清单.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/示例材料/v2-合成双页-处理结果.pdf",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/示例材料/v2-合成截图-处理结果.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/示例材料/v2-合成说明-词表处理结果.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/示例材料/v2-合成通讯录-处理结果.csv",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/示例材料/v2-合成通讯录-处理结果.xlsx",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/示例材料/合成双页.pdf",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/示例材料/合成截图.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/脱敏汪使用指南.docx",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/脱敏汪使用指南.html",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/脱敏汪使用指南.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/部署子路径审查-20261013.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content deploy/aliyun/部署状态.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content deploy/aliyun/容量核验-20261013.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/deploy/aliyun-20261013/normal-deployment-result.txt",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/deploy/aliyun-20261013/normal-deployment-result.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/extracted/dist/main/chunks/B0BOSa-Z.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/extracted/dist/main/chunks/Cw24Yh6r.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/extracted/dist/main/chunks/D8m12X1O.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/extracted/dist/main/chunks/DDGA_tgi.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/extracted/dist/main/chunks/DK2pJCiu.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/extracted/dist/main/chunks/MEQs05af.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/extracted/dist/main/markdown-worker.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/extracted/dist/main/pdf-render-worker.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/extracted/dist/renderer/assets/BMcdb0OZ.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/extracted/dist/renderer/assets/CpyDD6WX.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/extracted/dist/renderer/assets/EEsElJ1r.mjs",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/extracted/dist/renderer/index.html",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/extracted/dist/renderer/pdfjs-wasm/openjpeg_nowasm_fallback.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/build-ui-closure-a.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/build-ui-closure-b.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/cross-review-entry-closure.mjs",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/dynamic-closure.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/dynamic-closure.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/entry-closure-cross-review.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/entry-closure-review-baseline.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/merge-entry-closure-ledger.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/scan-ui-closure-a.mjs",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/scan-ui-closure-b.mjs",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/ui-closure-a-census.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/ui-closure-a.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/ui-closure-a.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/ui-closure-b-scan.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/ui-closure-b.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/ui-closure-b.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/verify-dynamic-closure.mjs",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/verify-dynamic-ui-cross-check.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/verify-ui-closure-b.mjs",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/maintain.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/入口闭合交叉审查-20261013.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content tests/e2e/session-sync.spec.ts",
+      "passed": true
+    },
+    {
+      "check": "Pin content tests/e2e/review-regressions.spec.ts",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/功能核对清单.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/使用指南/线上项目报错修复与入口核验-20261013.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/deploy/session-sync-20261013/reported-error-before.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/deploy/session-sync-20261013/project-1-after.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/deploy/session-sync-20261013/project-2-after.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/deploy/session-sync-20261013/admin-session-after.png",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/deploy/session-sync-20261013/download-verification.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/deploy/session-sync-20261013/public-asset-verification.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/deploy/session-sync-20261013/release-result.txt",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/deploy/session-sync-20261013/release-verified.txt",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/deploy/session-sync-20261013/release-verify.sh",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/deploy/session-sync-20261013/release-1.sh",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/deploy/session-sync-20261013/release-2.sh",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/deploy/session-sync-20261013/release-3.sh",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/deploy/session-sync-20261013/prepare-release.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/deploy/session-sync-20261013/web-patch.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/deploy/session-sync-20261013/web-patch.b64",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/deploy/session-sync-20261013/check-final.log",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/deploy/session-sync-20261013/typecheck-final.log",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/deploy/session-sync-20261013/integration.log",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/deploy/session-sync-20261013/e2e-final.log",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/deploy/session-sync-20261013/e2e-expiry-final.log",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/deploy/session-sync-20261013/regression-before.log",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/deploy/session-sync-20261013/regression-after.log",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/deploy/session-sync-20261013/closure-check-0.log",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/deploy/session-sync-20261013/closure-check-1.log",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/deploy/session-sync-20261013/closure-check-2.log",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/extracted/lawbot-dsh/bridge.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/extracted/lawbot-dsh/index.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/extracted/lawbot-dsh/schema.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/extracted/lawbot-mcp/aiDiagnostics.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/pdf-render-runtime/pdf-render-worker.cjs",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/scripts/docx/redact_docx_inplace.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/scripts/docx/restore_pseudonym_docx.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/scripts/markdown/convert_markitdown.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/scripts/ocr/unlock_protected_pdf.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/scripts/ocr/vision_ocr.swift",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/support/models/ner-cn-v3/config.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/support/models/ner_base_bert/config.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/support/models/visual-sensitive-v1/face_yunet.onnx",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/support/models/visual-sensitive-v1/model_metadata.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/deep-processing/D9V2C_Ir.readable.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/deep-processing/markdown-worker.readable.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/deep-system/build.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/maintain-before-iter017.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/native-integrity/fetch-upstream.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/native-integrity/img-sharp-darwin-arm64.metadata.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/native-integrity/img-sharp-libvips-darwin-arm64.metadata.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/native-integrity/napi-rs-canvas-darwin-arm64.metadata.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/native-integrity/native-integrity-comparison.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/native-integrity/onnxruntime-node.metadata.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/native-integrity/upstream-manifest.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/native-integrity/verify-native.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/rules-supplement/build-report.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/rules-supplement/extraction.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/rules-supplement/name_blacklist.yaml",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/rules-supplement/name_blacklist.yaml.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/rules-supplement/ner_fp_blacklist.yaml",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/rules-supplement/ner_fp_blacklist.yaml.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/rules-supplement/org_name_blacklist.yaml",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/rules-supplement/org_name_blacklist.yaml.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/rules-supplement/review-pdf.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/rules-supplement/verify-report.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content packages/adapters/page-export.ts",
+      "passed": true
+    },
+    {
+      "check": "Pin content packages/core/ner.ts",
+      "passed": true
+    },
+    {
+      "check": "Pin content packages/core/ocr.ts",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/71项无前端调用说明-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/build-deep-collaboration.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/build-deep-formats-20261014.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/build-deep-processing-20261014.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/build-deep-processing-pdf-20261014.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/build-deep-ui-20261014.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/build-processing-supplement-formats-20261014.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/build-review-processing-rules-20261014.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/deep-collaboration-20261014.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/deep-collaboration-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/deep-collaboration-index.mjs",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/deep-collaboration-source-index.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/deep-formats-20261014.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/deep-formats-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/deep-processing-20261014.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/deep-processing-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/deep-processing-pdf-20261014.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/deep-processing-pdf-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/deep-processing-supplement-formats-20261014.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/deep-processing-supplement-formats-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/deep-processing-supplement-rules-20261014.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/deep-processing-supplement-rules-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/deep-system-20261014.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/deep-system-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/deep-ui-20261014.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/deep-ui-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/merge-deep-ledger-20261014.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/prepare-deep-processing-20261014.cjs",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/prepare-markdown-worker-20261014.cjs",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-deep-collaboration-native-20261014.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-deep-collaboration-native-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-deep-formats-20261014.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-deep-formats-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-deep-processing-pdf-20261014.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-deep-processing-pdf-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-deep-processing-ui-20261014.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-deep-processing-ui-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-deep-system-20261014.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-deep-system-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-native-20261014.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-native-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-native-probes.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-processing-supplement-formats-20261014.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-processing-supplement-formats-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-processing-supplement-rules-20261014.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-processing-supplement-rules-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/verify-deep-formats-20261014.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/verify-deep-processing-20261014.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/原生文件签名差异核验-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/维护规则.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/递归分析与对抗审查-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/iteration017-general-report.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/ledger-before-deep-analysis.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/rules-supplement/build-collab-events.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/rules-supplement/build-remaining.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/build-export-cancel-invariants-20261014.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/build-renderer-policy-dependencies-20261014.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/build-review-deep-ui-parents-20261014.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/build-small-open-dependencies-20261014.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/build-ui-leaf-dependencies-20261014.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/build-ui-remaining-dependencies-20261014.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/deep-ui-parents-20261014.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/deep-ui-parents-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/export-cancel-invariants-20261014.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/export-cancel-invariants-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/merge-dependency-ledger-20261014.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/remaining-dependencies-20261014.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/remaining-dependencies-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/renderer-policy-dependencies-20261014.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/renderer-policy-dependencies-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-collaboration-renderer-events-20261014.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-collaboration-renderer-events-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-deep-ui-parents-20261014.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-deep-ui-parents-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-export-cancel-invariants-20261014.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-export-cancel-invariants-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-ledger-iteration017-20261014.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-ledger-iteration017-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-renderer-policy-dependencies-20261014.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-renderer-policy-dependencies-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-small-open-dependencies-20261014.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-small-open-dependencies-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-ui-leaf-dependencies-20261014.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-ui-leaf-dependencies-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-ui-remaining-dependencies-20261014.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-ui-remaining-dependencies-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/small-open-dependencies-20261014.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/small-open-dependencies-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/supplement-collaboration-renderer-events-20261014.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/supplement-collaboration-renderer-events-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/ui-leaf-dependencies-20261014.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/ui-leaf-dependencies-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/ui-remaining-dependencies-20261014.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/ui-remaining-dependencies-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-13/static-updater/node_modules/electron-updater/out/AppUpdater.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/iteration018-general-report.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/iteration019/build-remaining.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/iteration019/build-system-collab.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/iteration019/review-layout-helpers.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/iteration019/review-layout.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/ledger-before-iteration018.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/updater-dependencies/extraction.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/node_modules/builder-util-runtime/out/CancellationToken.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/node_modules/builder-util-runtime/out/ProgressCallbackTransform.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/node_modules/builder-util-runtime/out/httpExecutor.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/node_modules/builder-util-runtime/out/retry.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/DownloadedUpdateHelper.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/differentialDownloader/DataSplitter.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/differentialDownloader/DifferentialDownloader.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/differentialDownloader/FileWithEmbeddedBlockMapDifferentialDownloader.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/differentialDownloader/GenericDifferentialDownloader.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/differentialDownloader/ProgressDifferentialDownloadCallbackTransform.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/differentialDownloader/downloadPlanBuilder.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/differentialDownloader/multipleRangeDownloader.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content .data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/electronHttpExecutor.js",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/build-iteration019-draft-producers.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/build-iteration019-layout-helpers.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/build-iteration019-layout-manual.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/build-iteration019-projection-audit.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/build-iteration019-state-policy.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/build-iteration019-updater-dependencies.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/build-review-iteration019-draft-producers.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/build-review-iteration019-remaining-dependencies.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/build-review-iteration019-state-policy.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/build-review-iteration019-system-collab.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/build-review-iteration019-updater-dependencies.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/iteration019-draft-producers.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/iteration019-draft-producers.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/iteration019-layout-helpers.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/iteration019-layout-helpers.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/iteration019-layout-manual.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/iteration019-layout-manual.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/iteration019-projection-audit.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/iteration019-projection-audit.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/iteration019-state-policy.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/iteration019-state-policy.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/iteration019-system-collab.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/iteration019-system-collab.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/iteration019-updater-dependencies.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/iteration019-updater-dependencies.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/merge-iteration019-ledger.py",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/remaining-dependencies-iteration019.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/remaining-dependencies-iteration019.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-iteration019-draft-producers.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-iteration019-draft-producers.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-iteration019-layout-helpers.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-iteration019-layout-helpers.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-iteration019-layout-manual.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-iteration019-layout-manual.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-iteration019-projection-audit.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-iteration019-projection-audit.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-iteration019-remaining-dependencies.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-iteration019-remaining-dependencies.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-iteration019-state-policy.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-iteration019-state-policy.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-iteration019-system-collab.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-iteration019-system-collab.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-iteration019-updater-dependencies.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-iteration019-updater-dependencies.md",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-ledger-iteration018-20261014.json",
+      "passed": true
+    },
+    {
+      "check": "Pin content 文档/逆向台账/contracts/review-ledger-iteration018-20261014.md",
+      "passed": true
+    },
+    {
+      "check": "467 pins / 67 new / 399 untouched old",
+      "passed": true
+    },
+    {
+      "check": "108 unique event evidence paths",
+      "passed": true
+    },
+    {
+      "check": "All event content receipts equal baseline",
+      "passed": true
+    },
+    {
+      "check": "Every new pin and changed summary covered by event",
+      "passed": true
+    },
+    {
+      "check": "All newly added aliases and UI references included in event",
+      "passed": true
+    },
+    {
+      "check": "Generated validation matches exact ledger and has zero errors",
+      "passed": true
+    },
+    {
+      "check": "Final review deliberately excluded from merged ledger pins",
+      "passed": true
+    }
+  ],
+  "verifiedEvidencePins": [
+    {
+      "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+      "sha256": "621dbee5f25f5cb0755f156488739e6bdde436e23ef3d3fef942c9e76695f691",
+      "bytes": 1461845
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+      "sha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+      "bytes": 22688
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js",
+      "sha256": "131149b238b19b4a37df3947a9958aa88d4ba0bfbbfc50a4376d1d5beb6491bf",
+      "bytes": 38745
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/frontend-reference-notes.md",
+      "sha256": "1f8edda1cc06510d0c342a58a2483b0db4131f13eb12e942bb556d88e3e8fb83",
+      "bytes": 6039
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/rea/ipc-contracts.json",
+      "sha256": "ac65335d365700ac1fc5e60e879b0ce307b47e6912a5203150b5998c2045a041",
+      "bytes": 210453
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/rea/mcp-contracts.json",
+      "sha256": "82905986544296aaec5e4532e47d01a080e2da83e67920771892485b5a3708f5",
+      "bytes": 3521
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "bytes": 1996358
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "bytes": 2771447
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/runtime-qa/activation-required.png",
+      "sha256": "8876ba9836832700c6b3641c0f26bf49e8ae7c1e85b32194921561f4b8d2d664",
+      "bytes": 177838
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/website/home-1.js",
+      "sha256": "ca1ef73e6aa5870a448ca9e1b1d4391f608a16f66acba95d011e708568951556",
+      "bytes": 45818
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/workflow-qa/verification.json",
+      "sha256": "f50b6d7e84c551a2c381bb2cd8e037088368dd4cdcf9582942419cd802836bd1",
+      "bytes": 1099
+    },
+    {
+      "path": "apps/api/main.ts",
+      "sha256": "d43e66f1a7ddd4472fc83d9ad6530ca96906d83269f78653338e989da203c43c",
+      "bytes": 20248
+    },
+    {
+      "path": "apps/api/review-tools.ts",
+      "sha256": "4153c5ebaece31c1ac5347c904e1b41fc882bd3933e237092076a85e874620c5",
+      "bytes": 6773
+    },
+    {
+      "path": "apps/web/entity-groups.tsx",
+      "sha256": "e76c4897996433450d5d6c339d60774b3c3d377c7610f5fa556a5244c32c0c2b",
+      "bytes": 11309
+    },
+    {
+      "path": "apps/web/main.tsx",
+      "sha256": "15996ec91108e32c5360524b9c6bc2d279601e337e4633ba5c28776bd79b8a56",
+      "bytes": 61559
+    },
+    {
+      "path": "apps/web/review-tools.tsx",
+      "sha256": "517bda74757cab4b52c3de4de36968bb31bc0413196642857d80f46f19bb1042",
+      "bytes": 13943
+    },
+    {
+      "path": "apps/web/uploads.tsx",
+      "sha256": "803d47358f5f61c57a733e5b7585b001f86134b2940d60cfeff8a7aa0ccdb62b",
+      "bytes": 12240
+    },
+    {
+      "path": "apps/worker/main.ts",
+      "sha256": "7a8da2dbe310e7d36e9831e25f33e778cde4585154b563911e41302577367c6b",
+      "bytes": 7778
+    },
+    {
+      "path": "packages/adapters/processing-worker.ts",
+      "sha256": "4c520c9f9af8979bc6810e85b318aee991307abf0c6babb6b19cdfac9ed6b2d4",
+      "bytes": 9525
+    },
+    {
+      "path": "packages/core/redaction.ts",
+      "sha256": "58b0db92d38f30b4e089398d0b858d567524d98a08b2a6571eb9596a133a75b5",
+      "bytes": 14076
+    },
+    {
+      "path": "tests/e2e/entity-workflow.spec.ts",
+      "sha256": "f2bcd9edab448b794d3b4d428106f5394f99e318f70085390c1b3127fb3d1438",
+      "bytes": 9068
+    },
+    {
+      "path": "tests/e2e/review-tools.spec.ts",
+      "sha256": "0de98b6db61e68b0fb7660437184701525fbb81d959b06268588b1561b3af9d8",
+      "bytes": 8783
+    },
+    {
+      "path": "文档/脱敏猫IPC接口清单.csv",
+      "sha256": "a46acdc040e2716d8082fa46746307856f4fb1fc0a7c0aeb8a26d9888b8ac798",
+      "bytes": 33642
+    },
+    {
+      "path": "文档/脱敏猫REA分析与开发对齐.md",
+      "sha256": "bbc90753af20708f973cd18bc84eaf8bf1b0791a68f08e9aab5b8e36848b190f",
+      "bytes": 30609
+    },
+    {
+      "path": "文档/脱敏猫工作流对齐.md",
+      "sha256": "54b0cf4ed1809a7e222864649017a76b43ba7e7d8c168b858e19b50f93e5882d",
+      "bytes": 4351
+    },
+    {
+      "path": "文档/逆向台账/台账校验回归.json",
+      "sha256": "85ec2c188feba6fce5df55cdbd9c28a2bfe3e41465d741a09f9c665b4ac597c5",
+      "bytes": 1230
+    },
+    {
+      "path": "文档/按钮确认交互修复与验收.md",
+      "sha256": "4fe5499fd6fedd505e0350e49c27f7fc4dc266230c9f34a76d4ba36af89e9769",
+      "bytes": 7413
+    },
+    {
+      "path": "文档/使用指南/导出核验.json",
+      "sha256": "400f26ce609e62dbe3209d05de16d84baab4b20d7a73ae1e087cce37d97bc3f8",
+      "bytes": 17986
+    },
+    {
+      "path": "文档/使用指南/核验导出.mts",
+      "sha256": "184e93dbb316dfecffb00f7e453cdeeb6ab09a4a5f000993d8fdbe30aa4444aa",
+      "bytes": 20185
+    },
+    {
+      "path": "文档/使用指南/截图/33-repeat-direct.png",
+      "sha256": "2e1d0bcd16f8948fc9281e6b99980af50fc9d3a38a16399d2c5d2609c745c8bc",
+      "bytes": 173342
+    },
+    {
+      "path": "文档/使用指南/截图/34-batch-scope.png",
+      "sha256": "fa797b38540b9ae5c437b7a8a89174212ea3a99c111670d655db8c3b45679894",
+      "bytes": 108150
+    },
+    {
+      "path": "文档/使用指南/截图/35-inline-confirm.png",
+      "sha256": "d5d9431237a73f4fa57490b44bd08bc6e1dcfd5756caf744fc0cde344a704377",
+      "bytes": 98871
+    },
+    {
+      "path": "文档/使用指南/截图/36-batch-saved.png",
+      "sha256": "e59cbf5b9ab79356b11f14ba476e4f2084c3d52f3ab02871fcf95926c9542d6b",
+      "bytes": 98315
+    },
+    {
+      "path": "文档/使用指南/截图/37-batch-undo.png",
+      "sha256": "fb30190c9943a2da5d1deb5028f740efa47112a3bdf16d20bbbf8f9c9bdb54e5",
+      "bytes": 97260
+    },
+    {
+      "path": "文档/使用指南/示例材料/合成通讯录.xlsx",
+      "sha256": "3492381f362b376e8f82e1e99faf782a70b0f9cd6567ad3fc4a4295b1946e110",
+      "bytes": 1612
+    },
+    {
+      "path": "文档/使用指南/示例材料/合成通讯录-处理结果.xlsx",
+      "sha256": "4fe3825e23866c222ac079ee1706180d8907cf93ad580f301b844d328a015816",
+      "bytes": 1624
+    },
+    {
+      "path": "文档/使用指南/示例材料/合成通讯录.csv",
+      "sha256": "b8187c97c6567e4c140f6f25b784ea1d17b44ddb9596cb14dea9d5c1b562af14",
+      "bytes": 151
+    },
+    {
+      "path": "文档/使用指南/示例材料/合成通讯录-处理结果.csv",
+      "sha256": "bfd3f1655ee8a2997c882c8ecd92fbefe3a1de7af7c4ec0e094e13aa4142f658",
+      "bytes": 171
+    },
+    {
+      "path": "文档/使用指南/示例材料/合成说明.md",
+      "sha256": "76976bbc2ce50876523076f71d2a0232329f9928dced736d3dafbeaf79bee040",
+      "bytes": 323
+    },
+    {
+      "path": "文档/使用指南/示例材料/合成说明-处理结果.md",
+      "sha256": "b535e41c3875f278b0fe4420b4aa08dd83911364a06084284d72da06570401b0",
+      "bytes": 327
+    },
+    {
+      "path": "文档/使用指南/示例材料/合成黑白名单.xlsx",
+      "sha256": "87560c455143062d5958a078a97b7cdacd4ef50ffcba0306fe4b50dfc446d2d4",
+      "bytes": 1607
+    },
+    {
+      "path": "文档/使用指南/示例材料/项目词表-导出结果.xlsx",
+      "sha256": "99c21af88be1349aeeba343a34601ddec58f278139afe4d19c55a87bc5ac76d9",
+      "bytes": 1611
+    },
+    {
+      "path": "文档/使用指南/示例材料/合成说明-词表处理结果.md",
+      "sha256": "eb41f14e372d4446aef2e038673f4e9d4aadf6707f009ee57ec2ce14d5a31671",
+      "bytes": 321
+    },
+    {
+      "path": "文档/使用指南/截图/45-dictionary-rerun.png",
+      "sha256": "4e75c2b0bff028c4e7a878ed525c35f1364405a0c3457263f869331eb56ef5d6",
+      "bytes": 152566
+    },
+    {
+      "path": "文档/使用指南/截图/46-dictionary-result.png",
+      "sha256": "a7cf8a16dfe194f900057963d294a42fa2b7a4bc0f47d82c77713e21315de684",
+      "bytes": 138922
+    },
+    {
+      "path": "文档/使用指南/示例材料/合成合同.docx",
+      "sha256": "6402efb61166567a3d2c15d3e7bc63814814d8b52438fa691f878d2bf8668077",
+      "bytes": 1095
+    },
+    {
+      "path": "文档/使用指南/示例材料/合成合同-实体识别处理结果.docx",
+      "sha256": "fce5909dbe86c72480d1b47575ee014c7fed054302815bd0c168ac35ea86c6d5",
+      "bytes": 1121
+    },
+    {
+      "path": "文档/使用指南/截图/52-ner-candidates.png",
+      "sha256": "c41998d4c7754bbb4c0c97775f95b6ce2e4f111043cb212ac8fe8a687137e32a",
+      "bytes": 156641
+    },
+    {
+      "path": "文档/使用指南/截图/53-ner-export.png",
+      "sha256": "8f3c778fe002d96cb20feb63f2da53cbdae9d29d83c7a323d45ae49f64c1b9a6",
+      "bytes": 159766
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/frontend-evidence-iteration/check-final.log",
+      "sha256": "a3cd97eda1775418feff7e8b2fdfb890e63099cc9f170b9c66b3f5f9eb3f8980",
+      "bytes": 956
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/frontend-evidence-iteration/comparison.md",
+      "sha256": "963666f66bf127ad0c0f7a4809f07bacb8027c100faeb3c924c29e80b51150db",
+      "bytes": 8723
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/frontend-evidence-iteration/e2e-alignment-rerun.log",
+      "sha256": "58aad45f82c652ec561c7ed5606a6be54c3cc02cf9b4bdb3b75040d0156c752d",
+      "bytes": 1900
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/frontend-evidence-iteration/e2e-tools-rerun.log",
+      "sha256": "194aeb164f67dc1b73273b3cd7b4e3e06ac2016f402ee9ead10029c332b4ede8",
+      "bytes": 1894
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/frontend-evidence-iteration/e2e.log",
+      "sha256": "c23f522c5a1ef21d2008ceeda2c117f1a055985013b784cee8ef0f9ba15e0856",
+      "bytes": 9138
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/integration-latest.log",
+      "sha256": "c56267177952a02be7c0ad6bfcf293ba32dd27275133cd927c28e2f00c0a0f8b",
+      "bytes": 2209
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/ipc-static-contracts.json",
+      "sha256": "58881d1857b0d92cd0cfcbb5212188214b189004cc78a59a9ca6bbb46f785e60",
+      "bytes": 41359366
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/static-updater/README.md",
+      "sha256": "1622b64a4eb5d158eabde03d168a6d69b8b3a9ee6f0fcc8442031e13f3417222",
+      "bytes": 2295
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/static-updater/hashmanifest.json",
+      "sha256": "db936f1e5fdb1e217e4bb3e2ba72d9df0d496a43cc249b12edf9fb089547ef91",
+      "bytes": 3338
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/static-updater/node_modules/electron-updater/out/MacUpdater.js",
+      "sha256": "4824eb5d8c600f61ae69f14221f5252470b46da5be049645fa5ec10a42a5214b",
+      "bytes": 12866
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/static-updater/node_modules/electron-updater/out/providers/GenericProvider.js",
+      "sha256": "c0d1f1aed62d7418e4d292118b3e079f9680914c554fe7604786b73771297d8a",
+      "bytes": 2252
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/static-updater/node_modules/electron-updater/out/providers/Provider.js",
+      "sha256": "48601c5ceb7aaaeec096b84186a1155964128e64bbe8c009dd2d9cb9afccda37",
+      "bytes": 6002
+    },
+    {
+      "path": "apps/web/review-tool-dialog.tsx",
+      "sha256": "92b4138b20a413950be8ec04eca2fb934e5f69e3ef144089f2a6db8267e30c0b",
+      "bytes": 994
+    },
+    {
+      "path": "apps/web/style.css",
+      "sha256": "f22dde09297baa7ff716e77c736a708a824579afd347f4c1d10d165dd2c4c8f5",
+      "bytes": 38527
+    },
+    {
+      "path": "deploy/README.md",
+      "sha256": "dc2a0f08a3b3134550a3cfa85cd7473a7a1dfd37aa7f53b9ab134f28ba884af5",
+      "bytes": 7314
+    },
+    {
+      "path": "tests/e2e/frontend-alignment.spec.ts",
+      "sha256": "1cfa75ac90259349af8dbb2ddc02e29bf20b0328c92669ee8052787b8657affc",
+      "bytes": 11177
+    },
+    {
+      "path": "文档/逆向台账/contracts/IPC逐项概览.csv",
+      "sha256": "eeb5ab5edd302186239836529070c8196bfe0f1880dcc696825eb7a038e2834f",
+      "bytes": 21330
+    },
+    {
+      "path": "文档/逆向台账/contracts/README.md",
+      "sha256": "47408e4d40ea83b5518b1c2a398aa5e5a6a3f3cb242da781e03f678f166ae84f",
+      "bytes": 12046
+    },
+    {
+      "path": "文档/逆向台账/contracts/expand-mcp-schemas.mjs",
+      "sha256": "7793e47eb95cf6a320546980e902ecabfba2f7399a166f59161abe8fdf7d4953",
+      "bytes": 4971
+    },
+    {
+      "path": "文档/逆向台账/contracts/extract-ipc.mjs",
+      "sha256": "777862e5a2243e1a7d99cdc89ff39b489ec3af69bc185cc22026380b0db66aa1",
+      "bytes": 18353
+    },
+    {
+      "path": "文档/逆向台账/contracts/gateway-service-contracts.json",
+      "sha256": "2b93f055534324b22e8cec4909a651c4e75f4ed65fce78fdc7be45e5a918a8b3",
+      "bytes": 114291
+    },
+    {
+      "path": "文档/逆向台账/contracts/ipc-contract-index.json",
+      "sha256": "aad19d4515ddec1bde646de1644083a776f10078a403dc6c60c5fde5e5ce3824",
+      "bytes": 2119883
+    },
+    {
+      "path": "文档/逆向台账/contracts/ledger-recommendations.json",
+      "sha256": "6dc876d5d754c117816243135bd2a87db7e25576922e809e2aae31b76b51bc40",
+      "bytes": 346667
+    },
+    {
+      "path": "文档/逆向台账/contracts/mcp-expanded-schemas.json",
+      "sha256": "4509042fb226cee7c4aab1efa5151e0ee90fba790928780070fa3c9bddfd6293",
+      "bytes": 51176
+    },
+    {
+      "path": "文档/逆向台账/contracts/summarize-contracts.py",
+      "sha256": "6e95781e366c976c73f07794e1ce4f24dc64a6e2791a707a0b25d36eff2a6cf3",
+      "bytes": 5325
+    },
+    {
+      "path": "文档/逆向台账/contracts/verification.json",
+      "sha256": "17c59d0ae4199a9de745e4bdb999063ed3a3503d6a58957592abd0640f69374f",
+      "bytes": 2577
+    },
+    {
+      "path": "文档/逆向台账/contracts/verify-contracts.mjs",
+      "sha256": "4729ac5010b444004e5f7b439447f6b663feccbae650826940c2dfb08c22c82c",
+      "bytes": 8370
+    },
+    {
+      "path": "文档/逆向台账/contracts/补充契约说明.md",
+      "sha256": "6e0cbe27a5f2316236237a6f10cbbad955490d82299e1a1941aed627d5b54e91",
+      "bytes": 8834
+    },
+    {
+      "path": "文档/逆向台账/对抗审查-20261013.md",
+      "sha256": "43013e3fff7ce787173abb57b33f3ce039e59f66922fff7013d0d152c236fb33",
+      "bytes": 21435
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/chunks/D9V2C_Ir.js",
+      "sha256": "8f67c6cacca517411e66daf6f6708cf1d6f8fea02cc7f95937064a4ebf229133",
+      "bytes": 199490
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/batchDelivery.js",
+      "sha256": "51182d01e4c75f72102726e10cf5b0ddd8fd2d2ec155c98af6c5977b5392f12f",
+      "bytes": 1841
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/gatewayClient.js",
+      "sha256": "7e2e7d58677bed23f931da4fa7f9fa9c9b4c27c0b317abd062f81e2d37a445f9",
+      "bytes": 11936
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/server.js",
+      "sha256": "0a70abbb40d004527de5f81b555ba04a2369f8aef749e8b4c97633034ca412a1",
+      "bytes": 3873
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/manual-collaboration-evidence/Cw24Yh6r.js",
+      "sha256": "c04fa6e76eae5885cafc5e1431053dff3beb797d3277e0927075cd4ff6ab01ce",
+      "bytes": 7701
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/manual-collaboration-evidence/DK2pJCiu.js",
+      "sha256": "8fde47caf6588c90558780b03887b605b314861b68477c35e7f43dbbc89acb8d",
+      "bytes": 4662
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/manual-collaboration-evidence/hashmanifest.json",
+      "sha256": "b045cf5e536e5a3630895d4ea70b566d0330e6373c9349cc803bbb2d974a6f7f",
+      "bytes": 1250
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/manual-ledger-iteration/merge-manual-ledger.py",
+      "sha256": "e6cb6553e7590888e7bd6f6e9b1d56ef2563c7f1f963b9c7aa5e5147539f9121",
+      "bytes": 15207
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/manual-ledger-recommendations.json",
+      "sha256": "9aa25d5cd9a0fb7d83f3af6f69662e1b2d2d1f6fa5ec1333ba4a35c1a8d5552c",
+      "bytes": 1235570
+    },
+    {
+      "path": "文档/逆向台账/contracts/build-manual-system.py",
+      "sha256": "a015ba6e2cf4cfd0e5572987788d7eef72ba40ad941eacd2c322b107b2af50e4",
+      "bytes": 30802
+    },
+    {
+      "path": "文档/逆向台账/contracts/build-manual-workflows.py",
+      "sha256": "dd9d09dfe9d8f313b314a2683345cf89b02c3941b4b286919430415d85fc6138",
+      "bytes": 39418
+    },
+    {
+      "path": "文档/逆向台账/contracts/manual-collaboration-contracts.json",
+      "sha256": "20971f28ec1f2868f5fd9351ef0572bd6ab004a5573d32f096d6f25daf3a3f34",
+      "bytes": 376852
+    },
+    {
+      "path": "文档/逆向台账/contracts/manual-collaboration-contracts.md",
+      "sha256": "2c02ce0dcbce79f78ac1ada82f92b5502a6bfc93924086d45a1f951abf330485",
+      "bytes": 36673
+    },
+    {
+      "path": "文档/逆向台账/contracts/manual-coverage.json",
+      "sha256": "3347e127b569d75950a6fc80ae2631cdc487bdaa735f1be6fef6501f3d1ebc58",
+      "bytes": 9401
+    },
+    {
+      "path": "文档/逆向台账/contracts/manual-system-contracts.json",
+      "sha256": "9d0891cb237656c98c41de82a6148d78234f5502dfa57faad831ffa6b2d96ab5",
+      "bytes": 306827
+    },
+    {
+      "path": "文档/逆向台账/contracts/manual-system-contracts.md",
+      "sha256": "f127a656746ee1179abe6e9acd8f78e0dc334828385fdf7a1a7417957b14248e",
+      "bytes": 117009
+    },
+    {
+      "path": "文档/逆向台账/contracts/manual-workflow-contracts.json",
+      "sha256": "99bf95a017be75d88114dcb80556d16cf2a006998f163a7f73a3d14380d1ed47",
+      "bytes": 248583
+    },
+    {
+      "path": "文档/逆向台账/contracts/manual-workflow-contracts.md",
+      "sha256": "75f9ba9bfe658cae28f4f1d3386ff1fafa257bee1bcdffc1e1c5ab5e53cf4fa9",
+      "bytes": 80552
+    },
+    {
+      "path": "文档/逆向台账/contracts/manual-workflow-supplement.py",
+      "sha256": "f130ceaa30eac05cbe00b1b8ab483978556f19eaa571794ef0d5b7b8e913f2ea",
+      "bytes": 22520
+    },
+    {
+      "path": "文档/逆向台账/contracts/verify-manual-contracts.py",
+      "sha256": "c1418fb806c0ed789ba72a45b7e571af7315b6be4c606dc04f2c0cdfafdd9aa2",
+      "bytes": 22915
+    },
+    {
+      "path": "文档/逆向台账/人工契约核验器交叉审查-20261013.md",
+      "sha256": "686a71d2eb42877863f7cdccb12b9752bdbea1602b55a8b9c5f7ce8047ba2623",
+      "bytes": 3993
+    },
+    {
+      "path": ".data/deploy/aliyun-20261013/before/api-main.ts",
+      "sha256": "407f5d0b16b0a03b7d4d43db9a72b692e2b0d671262907793ade5838f559a016",
+      "bytes": 19947
+    },
+    {
+      "path": ".data/deploy/aliyun-20261013/before/check-runtime.ts",
+      "sha256": "9c3fa29e875d250d3a31a3363da760e9e7d1c4a264debb7779af727edf811bcc",
+      "bytes": 3001
+    },
+    {
+      "path": ".dockerignore",
+      "sha256": "59df9b03430248faa476958d45963401dd77fbe890db757e11a093ac4dde11a5",
+      "bytes": 466
+    },
+    {
+      "path": "Dockerfile",
+      "sha256": "1d0f1086f7b2c717e5354e98a129e1e2c45c189c60a506f89407a2584a9c2277",
+      "bytes": 1882
+    },
+    {
+      "path": "apps/web/dictionary.tsx",
+      "sha256": "6619c8aacd984c6e643cb59134a94cc60cbb4ea7ecb56c2b571f317ea968a36f",
+      "bytes": 6447
+    },
+    {
+      "path": "apps/web/page-review.tsx",
+      "sha256": "ac4ec62f624661d68176a7b1954ae66ac39185ebbb118264270025e4a840bd4a",
+      "bytes": 8798
+    },
+    {
+      "path": "apps/web/urls.ts",
+      "sha256": "cb42685cd926c44708d5de80ce8c2badebf3fcb75b93594f850b04b50accd3a5",
+      "bytes": 1018
+    },
+    {
+      "path": "apps/web/vite.config.ts",
+      "sha256": "238d7581dca092b0e8ab7994b176bd6e9e924ebe0e25dbe3ad59facaddb3410f",
+      "bytes": 713
+    },
+    {
+      "path": "deploy/aliyun/apply-ingress.py",
+      "sha256": "0b51ac84971625b82947390b09d2fa9e886d7cfcd976d2bdcbde7923d2c7207d",
+      "bytes": 1830
+    },
+    {
+      "path": "deploy/aliyun/bootstrap-account.ts",
+      "sha256": "36d1e585e5803e7dd6e00100a2fbfa71965c6a16ef437e9eb0978caead872fb4",
+      "bytes": 818
+    },
+    {
+      "path": "deploy/aliyun/compose.yaml",
+      "sha256": "ea23ec2dd7160179fff922365b932568f749801167bbed0581c9b668d6b03275",
+      "bytes": 2914
+    },
+    {
+      "path": "deploy/aliyun/ingress-location.conf",
+      "sha256": "d2c1830b6d41fa7257992fd1588cc50df187b463ae44ea9fccc908e5f1634c8d",
+      "bytes": 695
+    },
+    {
+      "path": "deploy/aliyun/web-nginx.conf",
+      "sha256": "75a50af9aa8d26b58810f50c260bdfd3fc98619ced18207e5ca6f5b321a0c322",
+      "bytes": 1504
+    },
+    {
+      "path": "scripts/check-runtime.ts",
+      "sha256": "8fc0961c93d06cc08378a2b61c56a5ccd1c6d47f6a5cd545bdbc099fde2fbf30",
+      "bytes": 3118
+    },
+    {
+      "path": "tests/web-urls.test.ts",
+      "sha256": "208d464be5fd82af0e3bdfb0cf182ec22ae6d7d3eb9a9d2b11b6d98a6be55591",
+      "bytes": 2336
+    },
+    {
+      "path": "文档/使用指南/build-result.json",
+      "sha256": "456f55ce43489a53c60e7a0289ba56891957bcabe17b631c3eb5787aea639d8e",
+      "bytes": 8668
+    },
+    {
+      "path": "文档/使用指南/build_manual.py",
+      "sha256": "2d528b48b37f6412593aca32310b137ede733ebc7cccbb7bef6d38f5e0369347",
+      "bytes": 13883
+    },
+    {
+      "path": "文档/使用指南/manual.json",
+      "sha256": "14e555ef5a84ac803600108977a6ff249446c7d42bf846be351679c48d655c9e",
+      "bytes": 31181
+    },
+    {
+      "path": "文档/使用指南/导出核验-v2.json",
+      "sha256": "352049fc34add5e49ba71e280633b2e2723c4990574a7b82af4bb85472290291",
+      "bytes": 9089
+    },
+    {
+      "path": "文档/使用指南/截图/01-login.png",
+      "sha256": "1e82ea4265b2be215d99ce061e861b79e853fa1c440606442e2f387841453aea",
+      "bytes": 43240
+    },
+    {
+      "path": "文档/使用指南/截图/03-project-home.png",
+      "sha256": "80754bb193f7d80bfef0966865f6644e50c7898320d8bed56f4ca0bc3f296ddf",
+      "bytes": 36626
+    },
+    {
+      "path": "文档/使用指南/截图/04-import-text.png",
+      "sha256": "b565e5140b5e36ba4eb43f3741beb2c04dcc7091e6c860d839e8061936aa56dc",
+      "bytes": 77813
+    },
+    {
+      "path": "文档/使用指南/截图/19-restore-result.png",
+      "sha256": "f0a6de816aba4a1ea506fe38814942e782bac4d9d1c774814fe4c4136caf2993",
+      "bytes": 48071
+    },
+    {
+      "path": "文档/使用指南/截图/21-upload-selected.png",
+      "sha256": "bc107ad7eb5b199d1389cd922709f10a3403eec6ed608cdd6dd7e34e8626ad93",
+      "bytes": 83890
+    },
+    {
+      "path": "文档/使用指南/截图/43-dictionary-confirm.png",
+      "sha256": "e5e2ea6c0ddb9e0efca46a85ee5398e08bca1042e098f76b036d67f471a683d4",
+      "bytes": 96863
+    },
+    {
+      "path": "文档/使用指南/截图/44-dictionary-saved.png",
+      "sha256": "9ebadbd4780e6d2b1c6bfe727b11cfe6ebe65917477b174fb75d4e4dcf8265b9",
+      "bytes": 100845
+    },
+    {
+      "path": "文档/使用指南/截图/47-mapping-list.png",
+      "sha256": "9a1ca43eb32aec5359bd1cb0ad9e1ea7ce8591f947480f5a3b71504f5160267d",
+      "bytes": 83121
+    },
+    {
+      "path": "文档/使用指南/截图/48-project-members.png",
+      "sha256": "a8a0ab29a91d5dd7040b216a933624c72fc624252c7ec78efc13ab2e4a4649c8",
+      "bytes": 102642
+    },
+    {
+      "path": "文档/使用指南/截图/49-project-audit.png",
+      "sha256": "ca1e3cd6203f7d48f3cf64ea903d5b0828fa1340a32e35b8c2227bbf03bc7d90",
+      "bytes": 148832
+    },
+    {
+      "path": "文档/使用指南/截图/50-organization-quota.png",
+      "sha256": "3f5422865d0384e2eacdf781b636cc0b2f7b5589b404fcee20ebefdded7088f1",
+      "bytes": 128536
+    },
+    {
+      "path": "文档/使用指南/截图/manifest.json",
+      "sha256": "d895243b2d906366757f4b641ce80598958e389d161c364637c075f2836c3694",
+      "bytes": 8688
+    },
+    {
+      "path": "文档/使用指南/截图/v2-55-workspace.png",
+      "sha256": "2c18a5969e3766266a40272dd847269a0027b3e1356cfc30edb0a3fbb521477e",
+      "bytes": 83420
+    },
+    {
+      "path": "文档/使用指南/截图/v2-56-search.png",
+      "sha256": "b8722a133ec8071e09ee52e51bbbb4953ba82b2d185bcf3f1d66d1c014d317ae",
+      "bytes": 102968
+    },
+    {
+      "path": "文档/使用指南/截图/v2-57-known-dialog.png",
+      "sha256": "f1f5033119d092b3b22174001b7058e45a49838f0b9a1e4f8bfd1aa195c93a59",
+      "bytes": 76241
+    },
+    {
+      "path": "文档/使用指南/截图/v2-58-strategy.png",
+      "sha256": "de98d9df5ccd25243e110e2183064075f64e75eee235d552d55db51f02d29fbd",
+      "bytes": 82589
+    },
+    {
+      "path": "文档/使用指南/截图/v2-59-docx-review.png",
+      "sha256": "4b952e3c844c0b6ee3a472b89335bc1c197bcdce3eafae864242b7ab3376dd24",
+      "bytes": 90517
+    },
+    {
+      "path": "文档/使用指南/截图/v2-60-docx-pending-draft.png",
+      "sha256": "69ccb59a8596d2780258dc094cbb0329780f8228d393789aa4dcf0e9d5baa446",
+      "bytes": 89917
+    },
+    {
+      "path": "文档/使用指南/截图/v2-61-docx-preview.png",
+      "sha256": "3cc47cb24ff3bc5368baae13771775bac8423b06b65654ea8ca24ac2d362478f",
+      "bytes": 90078
+    },
+    {
+      "path": "文档/使用指南/截图/v2-62-pdf-region.png",
+      "sha256": "68341d2fd3d0162c9cb3a68ccb91f595ae2bec7ccf19be46eed20785375ff0ea",
+      "bytes": 87135
+    },
+    {
+      "path": "文档/使用指南/截图/v2-63-pdf-preview.png",
+      "sha256": "6bc9a2030e051ab731a415defb516b53da52d02cfc83728204cb07e7fbdea85f",
+      "bytes": 64124
+    },
+    {
+      "path": "文档/使用指南/截图/v2-64-pdf-download.png",
+      "sha256": "9dedbb9871a7c109dad022d55ffa515f34f9a4ea542e096c7cdd0ae70023b705",
+      "bytes": 85862
+    },
+    {
+      "path": "文档/使用指南/截图/v2-65-png-review.png",
+      "sha256": "d9e3f6e6c1430da53eb917980a226429b1ee5de564753043ece7365e2b4c00f5",
+      "bytes": 78329
+    },
+    {
+      "path": "文档/使用指南/截图/v2-66-png-preview.png",
+      "sha256": "35ba6fc8dac5d7826b147beffdac95805b3dc6964e5359619ce0f2b37bfb0bae",
+      "bytes": 79907
+    },
+    {
+      "path": "文档/使用指南/截图/v2-67-xlsx-download.png",
+      "sha256": "d13b138cb94a25057463bbeb54e45679ae847adc03a1198a7671e3a1935358a8",
+      "bytes": 80168
+    },
+    {
+      "path": "文档/使用指南/截图/v2-68-csv-download.png",
+      "sha256": "d39e630e5e954464cced72192e66c59c7eef254158533251792b99507376cae5",
+      "bytes": 79701
+    },
+    {
+      "path": "文档/使用指南/截图/v2-69-md-review.png",
+      "sha256": "990a4ab6765d6d27f5f2cd767ea895f53850a4b969f0b5aad5312c44bf0bf3fe",
+      "bytes": 87803
+    },
+    {
+      "path": "文档/使用指南/截图/v2-70-dictionary-pending.png",
+      "sha256": "5929880a963fa6fa1a3e7fef82106e7b9120518a285c4a42fe2a4b997d038f16",
+      "bytes": 87564
+    },
+    {
+      "path": "文档/使用指南/截图/v2-71-md-preview.png",
+      "sha256": "9d3e9d1e8ab6cabb8e1cfbe41fd6114e13cffbdc9ee836325de40f51c04b8c01",
+      "bytes": 89586
+    },
+    {
+      "path": "文档/使用指南/截图/v2-72-delete-cancel.png",
+      "sha256": "c1fd5cba1a03a8df8cf928bcf4237f13fb1e1e34d7ee4d5d8415f80c90bb542e",
+      "bytes": 79624
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2.json",
+      "sha256": "472c529a60b979ade3a1aeb24673ef67b2338c9568c32966dfbb9784686336f2",
+      "bytes": 1969
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-1.png",
+      "sha256": "d959d20d2bfc33c552b566fe3aec2079178638da74bf4cce174a3b6db1cd8fa8",
+      "bytes": 402396
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-10.png",
+      "sha256": "80952260bc372df1fc17caeeb06cd3b1e1586124dcd305078fc1724d92d27de4",
+      "bytes": 196086
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-11.png",
+      "sha256": "cd4168f2e198d0a4dbf39764b24574b4224adf5bff1a260686cd71bdae84ffd5",
+      "bytes": 299899
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-12.png",
+      "sha256": "b0973b594c0502549a68dd1748afac6ee61ef21efde7459c15a0f6b9e1d1dec7",
+      "bytes": 326029
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-13.png",
+      "sha256": "48ca7ada185002ca3fcbece47ba8c2fdd53a7b7e1606e6a76c57939f4ac737de",
+      "bytes": 390161
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-14.png",
+      "sha256": "2a4cb1f78571312d012c858b62651dbcf3439275889d85c7f5a4a112f39e998a",
+      "bytes": 316945
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-15.png",
+      "sha256": "5cf7c67afaedfe84d6608b632e1508da7bfd003d9cb30652f2974d81c61dc37c",
+      "bytes": 474523
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-16.png",
+      "sha256": "97a1a2177cce5a577b374bd71af7670fb5d23a914d9c79f91084f267abd8d2ae",
+      "bytes": 403613
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-17.png",
+      "sha256": "6fb227e81fb1d00d22d30067e9a9ca6f5ed1ebf0636fbe5fd355ed3920cee4e8",
+      "bytes": 303452
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-18.png",
+      "sha256": "bbbd14dc5fabbc0376cbc5109f63539eef1a099e311847d82a8025d4dfe116c4",
+      "bytes": 461319
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-19.png",
+      "sha256": "6d6e71f482a39cee30f68b1340ebb3397ac8ec802b9cc2f295ffa5f2bb8b0f7c",
+      "bytes": 265181
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-2.png",
+      "sha256": "92667b4a0d8161db7d129b8730590c72d08ebdec9aab33acea519eaf78af2256",
+      "bytes": 141384
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-20.png",
+      "sha256": "7cd834826210bf454dab3d5283a00bd011abb4fe6833fa2933aba06b603c06aa",
+      "bytes": 321461
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-21.png",
+      "sha256": "1eefa9deb078b95afd83ea28b063d6a3b7e01a70e57ba2cf19ab2fa68adc7ce8",
+      "bytes": 164396
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-22.png",
+      "sha256": "8e720ee2bd66f9f507119c9e3b2bd8c920c422c9624505aeaf62cef0079f2ff8",
+      "bytes": 478157
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-23.png",
+      "sha256": "8521069462e36e4bc475f50254ce77718ee80ba10d3b308aa78ba5bade63e902",
+      "bytes": 271932
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-24.png",
+      "sha256": "0e2651af40ab3e655b0b97877d87fbd3638ee55a056e6b4adbdcc3e782ae9613",
+      "bytes": 414541
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-25.png",
+      "sha256": "2e95f76ee3d5d4e9ad80ff83cc65754cb7702160204cee86ea686b83249697de",
+      "bytes": 346263
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-26.png",
+      "sha256": "6c6c9c32da1b00701a8ce822bee3cec9af4cbf848efb1b17d2438d9b77061c31",
+      "bytes": 135195
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-27.png",
+      "sha256": "a78bd98c8638dc8c5d9d36e7c5ec95c5e438310b50d9a3d08d383e4afad013ea",
+      "bytes": 486385
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-28.png",
+      "sha256": "54a7eadfd6cb22d6579d430a68197612d3e610bcdfae6aefe19154f3c555fd48",
+      "bytes": 313693
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-29.png",
+      "sha256": "e044326ede8642f587d38df57368e06e618eb8ccb1eee8f8e6e9a2d83ed5bc3b",
+      "bytes": 482467
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-3.png",
+      "sha256": "ce18e1d16790d665c97b769f21c48d1db3784fb5e3336a5dc48535571ca887fe",
+      "bytes": 117805
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-30.png",
+      "sha256": "8f61293c43d7b30337bf7927a91b4741003d5973cf08b9ae612fc08a7971d2c5",
+      "bytes": 316607
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-31.png",
+      "sha256": "e466f685ca9fefed2031c877e8b6219ab785bd0836584dbeb06d6e6ae88bf124",
+      "bytes": 268296
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-32.png",
+      "sha256": "e017f6ee5f3423ac66eb2d90e8998460bb6d17410f68ac3876fa08e8bf7b6175",
+      "bytes": 292246
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-33.png",
+      "sha256": "c22b857cf518df594f16b887d541daff18b297e4d044e3423f9e12d21f22af83",
+      "bytes": 183787
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-34.png",
+      "sha256": "fb6de6a1ad5ee540bfd8298a24fa3be18a038ea8a995d54ad9522bb833a7d9a9",
+      "bytes": 404491
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-35.png",
+      "sha256": "07ecede783c31e817eb8203c7b025d5347aa47d56914d981e27834c3f2088b6b",
+      "bytes": 359293
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-4.png",
+      "sha256": "d4521cae761e303d2bcd3d0d072d0840a220a8cbfa1db68b2d6c3a386a631fb0",
+      "bytes": 289277
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-5.png",
+      "sha256": "86ab7080d0bd12c9904ea4ad794216a6eff9d72e356ecd20c693c0c531734be4",
+      "bytes": 409543
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-6.png",
+      "sha256": "bf8236bb9e4f17b93fbc1b2a754a52e993ca99b56a12e5c0ed47ec4489302b47",
+      "bytes": 198845
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-7.png",
+      "sha256": "73c296a168e1450b4f1ee3b2e831c3915fa0d9d4edee8082d04075ca9ccd9dda",
+      "bytes": 438609
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-8.png",
+      "sha256": "675da2b73f0e2ed5961db0b7b64c68a2d40d28471480780cea4a9263bc9ae5de",
+      "bytes": 464215
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/page-9.png",
+      "sha256": "5deb060a44ad5303e87e3c2d833c1486a29b44823eb12d2da8b16d9d22bc0b71",
+      "bytes": 468407
+    },
+    {
+      "path": "文档/使用指南/排版核验-v2界面/脱敏汪使用指南.pdf",
+      "sha256": "c5201a79b65390c49aaafa2b85666de9fce839e0ea0c6ddbb79e02068d146dc0",
+      "bytes": 3620386
+    },
+    {
+      "path": "文档/使用指南/核验图-v2/PDF处理结果第1页.png",
+      "sha256": "8f24b1169ef278cb78321df3b6889f87571a5e6ec389bb1afaf02ccf70c553da",
+      "bytes": 18876
+    },
+    {
+      "path": "文档/使用指南/核验图-v2/PDF处理结果第2页.png",
+      "sha256": "8f24b1169ef278cb78321df3b6889f87571a5e6ec389bb1afaf02ccf70c553da",
+      "bytes": 18876
+    },
+    {
+      "path": "文档/使用指南/核验导出-v2.mts",
+      "sha256": "333d72f08e21334580b31d82cfe594ca6bd4359453adcecd84b9f0708c42d2f1",
+      "bytes": 11319
+    },
+    {
+      "path": "文档/使用指南/界面更新替换清单.json",
+      "sha256": "16d5809920ba7f83d59f47cafd9851b11d59cc7aacbf37130484c7da714d4fa3",
+      "bytes": 1826
+    },
+    {
+      "path": "文档/使用指南/示例材料/v2-合成双页-处理结果.pdf",
+      "sha256": "da1b6c6af64aba9a63fe0497bed304019e1b257a7d3c685468ccd8aff5db443f",
+      "bytes": 30308
+    },
+    {
+      "path": "文档/使用指南/示例材料/v2-合成截图-处理结果.png",
+      "sha256": "173cbc0f0ca7585debf47a7510d591b6624569171c413d57fae4af745e444233",
+      "bytes": 18962
+    },
+    {
+      "path": "文档/使用指南/示例材料/v2-合成说明-词表处理结果.md",
+      "sha256": "eb41f14e372d4446aef2e038673f4e9d4aadf6707f009ee57ec2ce14d5a31671",
+      "bytes": 321
+    },
+    {
+      "path": "文档/使用指南/示例材料/v2-合成通讯录-处理结果.csv",
+      "sha256": "bfd3f1655ee8a2997c882c8ecd92fbefe3a1de7af7c4ec0e094e13aa4142f658",
+      "bytes": 171
+    },
+    {
+      "path": "文档/使用指南/示例材料/v2-合成通讯录-处理结果.xlsx",
+      "sha256": "4fe3825e23866c222ac079ee1706180d8907cf93ad580f301b844d328a015816",
+      "bytes": 1624
+    },
+    {
+      "path": "文档/使用指南/示例材料/合成双页.pdf",
+      "sha256": "f15430eb459a619e0d5805ffa23c42caee5867a682b312dfdd1fecc04399a814",
+      "bytes": 1018
+    },
+    {
+      "path": "文档/使用指南/示例材料/合成截图.png",
+      "sha256": "0b3791076d81805eb525163bd2711680e37513d5e02866575cee15f0df733359",
+      "bytes": 31827
+    },
+    {
+      "path": "文档/使用指南/脱敏汪使用指南.docx",
+      "sha256": "165a2e7d8fc8650deb9d008a49c20c38497a3c29a65f3fabfc1b42321935e317",
+      "bytes": 1966216
+    },
+    {
+      "path": "文档/使用指南/脱敏汪使用指南.html",
+      "sha256": "b00f7fc359df125760907a267a0e3456776c6154068ce9ef4a8f2b9cbcfd6365",
+      "bytes": 3685065
+    },
+    {
+      "path": "文档/使用指南/脱敏汪使用指南.md",
+      "sha256": "f04bdae0524b3e34b4e1a9cffc70e78aa0bf5dc670210d8d08e09d8694e407dd",
+      "bytes": 26467
+    },
+    {
+      "path": "文档/逆向台账/部署子路径审查-20261013.md",
+      "sha256": "ecc7c12df792d360851ac8dff34f698c6d6f1c9af07d66d254547d869e6f5d1e",
+      "bytes": 10413
+    },
+    {
+      "path": "deploy/aliyun/部署状态.md",
+      "sha256": "eaae5d7475d92f99eadf818ebf5e0560e5dab6be53a6c7826d67e3d40d998a67",
+      "bytes": 3571
+    },
+    {
+      "path": "deploy/aliyun/容量核验-20261013.md",
+      "sha256": "53f76cf87037478074609076865b4d24c33ad4f9c3141b02777af246addb288a",
+      "bytes": 3711
+    },
+    {
+      "path": ".data/deploy/aliyun-20261013/normal-deployment-result.txt",
+      "sha256": "453ea3c47f42d5db919c19f14c353c3a7af8be5c7509379ef23e95dfabce9f9e",
+      "bytes": 1860
+    },
+    {
+      "path": ".data/deploy/aliyun-20261013/normal-deployment-result.png",
+      "sha256": "8bd52d4ed0bf9a7f92c6c9e878c24dcd9589b87d11dfe1ab39a746505615b658",
+      "bytes": 176390
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/chunks/B0BOSa-Z.js",
+      "sha256": "3e51a8093d59b6f1f748be4ecd1098c3fea41c130a97ceffe94d21a17d0789f7",
+      "bytes": 2030
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/chunks/Cw24Yh6r.js",
+      "sha256": "5d1a4f455c425dd34ada73b0383b2830ccd1501a97c58b961f51e1b3612e243b",
+      "bytes": 6189
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/chunks/D8m12X1O.js",
+      "sha256": "52675e1569c4d54f1aa9a8b03b3c6bc42e53bd190217eddf93bf997b69688c60",
+      "bytes": 18790
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/chunks/DDGA_tgi.js",
+      "sha256": "07acbcf8c25e59ca8b0135d6ccde756dcd38ebafac96d938685bb64dd760a618",
+      "bytes": 2363
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/chunks/DK2pJCiu.js",
+      "sha256": "5be272cbacf0eb63fb020a5bb6dffbdeb7989f456824173fb2bdcd6b911602de",
+      "bytes": 4022
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/chunks/MEQs05af.js",
+      "sha256": "983358ccad0f30c9273e4d1ae38921acf71fcaff28c7cf71d3d1c93167932b02",
+      "bytes": 3114
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/markdown-worker.js",
+      "sha256": "36d2f97ffec8fb3c432e9885ca1ac2848f610a7d044e3d1046adec45ac0bfae7",
+      "bytes": 99148
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/pdf-render-worker.js",
+      "sha256": "58d3bde2a7f7687346036e9da66bac663a55820c2826f556a96d7af1b64ea8d7",
+      "bytes": 2313
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/extracted/dist/renderer/assets/BMcdb0OZ.js",
+      "sha256": "18166b66d4d1923eeb6bbd85f670171f45240b2065d88f96a8d584013fe3cb88",
+      "bytes": 2015664
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/extracted/dist/renderer/assets/CpyDD6WX.js",
+      "sha256": "afe1b44a0d92e493c139b8a065d0b8c66defaab82c5c4e8b2ae0684be1c1c00b",
+      "bytes": 175550
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/extracted/dist/renderer/assets/EEsElJ1r.mjs",
+      "sha256": "044d2faff688e8502bdfa8e91222dc2420443f9a35f5d9a8ed06d9de6c39bb28",
+      "bytes": 2076112
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/extracted/dist/renderer/index.html",
+      "sha256": "2a0f9ab0c56fc153d705a643bef083a81e514c12fb049f49305f530ba49e40b1",
+      "bytes": 561
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/extracted/dist/renderer/pdfjs-wasm/openjpeg_nowasm_fallback.js",
+      "sha256": "07c3c3361827308741bc31c561b59e705ebb4d1e8efb84e4d24884e230dbb894",
+      "bytes": 451777
+    },
+    {
+      "path": "文档/逆向台账/contracts/build-ui-closure-a.py",
+      "sha256": "d77911fdfadbb8a6f317da50a9cea7a010e617a78e5fe7f117d3b0b1e3cd29ee",
+      "bytes": 20046
+    },
+    {
+      "path": "文档/逆向台账/contracts/build-ui-closure-b.py",
+      "sha256": "c2f3e32ddc0e3974733c8bb8dd8340c0a46389911e70f69654d87afc6bd1b29c",
+      "bytes": 13080
+    },
+    {
+      "path": "文档/逆向台账/contracts/cross-review-entry-closure.mjs",
+      "sha256": "a667e9f239b21a8214f4e1644c42f327b8c83b5599d93cbbac60cda04f3b7236",
+      "bytes": 6266
+    },
+    {
+      "path": "文档/逆向台账/contracts/dynamic-closure.json",
+      "sha256": "c13d548f44a19535eaeeb98576c0c68f63807d869f6785414f06336653433492",
+      "bytes": 129251
+    },
+    {
+      "path": "文档/逆向台账/contracts/dynamic-closure.md",
+      "sha256": "8ba79c66f95af538db5dfd740aded292f99a6ce49bb2f0c1727b60d1548e3084",
+      "bytes": 8483
+    },
+    {
+      "path": "文档/逆向台账/contracts/entry-closure-cross-review.json",
+      "sha256": "66a170a810c0fcc8344b9bc0e79f28f553a470a84c1509c4418a8cd341474ee8",
+      "bytes": 1249
+    },
+    {
+      "path": "文档/逆向台账/contracts/entry-closure-review-baseline.json",
+      "sha256": "09d884a8fe58f53244406aeb6ef46dea2534fba03fbf70f364302f7be74072ad",
+      "bytes": 2778
+    },
+    {
+      "path": "文档/逆向台账/contracts/merge-entry-closure-ledger.py",
+      "sha256": "19234d61ddbe60775cec2949a5f6c20b724514094bac1b828bb4fdbe4071d9f1",
+      "bytes": 12162
+    },
+    {
+      "path": "文档/逆向台账/contracts/scan-ui-closure-a.mjs",
+      "sha256": "75b7b44791ba47cdd87c052e65182f67f9b72dd1f3f7895cdae5864e1ba3aa9c",
+      "bytes": 4242
+    },
+    {
+      "path": "文档/逆向台账/contracts/scan-ui-closure-b.mjs",
+      "sha256": "0c7b7f41d8a905656c35f34d6644924c1f1c441d084b01834ab06af0186b834f",
+      "bytes": 4646
+    },
+    {
+      "path": "文档/逆向台账/contracts/ui-closure-a-census.json",
+      "sha256": "42c66a45b049af4c75d51975d0c9d625dbfbb8389e157f38f81792db3ad400a3",
+      "bytes": 151684
+    },
+    {
+      "path": "文档/逆向台账/contracts/ui-closure-a.json",
+      "sha256": "ceeb614cfeeb7e895346c7c286885e58437725b9cf024322843f4508ecceac7e",
+      "bytes": 342501
+    },
+    {
+      "path": "文档/逆向台账/contracts/ui-closure-a.md",
+      "sha256": "6f865fa438f1b8f19feac1197e1569675c5d4b3011c5a766cc04d243fc645bfe",
+      "bytes": 16670
+    },
+    {
+      "path": "文档/逆向台账/contracts/ui-closure-b-scan.json",
+      "sha256": "b0cd69f483cef626a2acf357a6fe34a9cf868ca5afe370593805c465cce95656",
+      "bytes": 1326661
+    },
+    {
+      "path": "文档/逆向台账/contracts/ui-closure-b.json",
+      "sha256": "e699277a0f18c6ecf12ec1dafb2b16f01c20d13af0629aaf7e095f0af69696c5",
+      "bytes": 353161
+    },
+    {
+      "path": "文档/逆向台账/contracts/ui-closure-b.md",
+      "sha256": "c741f805b99564abf5da2b0734e002a3c415f735db37731c789c06aadb5766fe",
+      "bytes": 60068
+    },
+    {
+      "path": "文档/逆向台账/contracts/verify-dynamic-closure.mjs",
+      "sha256": "7f1f3d1c4065bb22581b7de2f321f125ad5046956d260aa8d5d501f3bbe68ac3",
+      "bytes": 15043
+    },
+    {
+      "path": "文档/逆向台账/contracts/verify-dynamic-ui-cross-check.py",
+      "sha256": "004e5dbd30478f8fe05b60e402a9fcd6dbbf423670addc753e279250f304bf13",
+      "bytes": 983
+    },
+    {
+      "path": "文档/逆向台账/contracts/verify-ui-closure-b.mjs",
+      "sha256": "85dde049ba3c174ac8f37aa1044de77ac7fbd9e6a9341fef235b66602f376acc",
+      "bytes": 2115
+    },
+    {
+      "path": "文档/逆向台账/maintain.py",
+      "sha256": "8fa6b48e101944f67559599e44a0cb031e724727d98c8c4819884bf63d02dd71",
+      "bytes": 17869
+    },
+    {
+      "path": "文档/逆向台账/入口闭合交叉审查-20261013.md",
+      "sha256": "59fcaa563c95b3794c2a7a55829b7fd8bbf5218b2fd0bea442ae7b7b2a8c0c31",
+      "bytes": 4024
+    },
+    {
+      "path": "tests/e2e/session-sync.spec.ts",
+      "sha256": "630853994cfcd561ded9d2e95d756f1999384db6a0adc775af5e4a40ec5c4c88",
+      "bytes": 6091
+    },
+    {
+      "path": "tests/e2e/review-regressions.spec.ts",
+      "sha256": "f97902b9c80edba3d3d21b2d30782449b5ec9a54c9bc686550d0371a51d91de4",
+      "bytes": 13741
+    },
+    {
+      "path": "文档/使用指南/功能核对清单.md",
+      "sha256": "9e25943f41d32f9860028d40ab9de70844f3ca1ca8a5b65c77f2ee92d9f50ca8",
+      "bytes": 20924
+    },
+    {
+      "path": "文档/使用指南/线上项目报错修复与入口核验-20261013.md",
+      "sha256": "02b628aebed924d87fd6a9a25faa9ecd9a52d08507359460dc8676eebab47571",
+      "bytes": 7717
+    },
+    {
+      "path": ".data/deploy/session-sync-20261013/reported-error-before.png",
+      "sha256": "de331532e957f27781ff77a5c7832d66bf32d41cdc2a3af1022676cfe9f875e8",
+      "bytes": 83065
+    },
+    {
+      "path": ".data/deploy/session-sync-20261013/project-1-after.png",
+      "sha256": "c550b20ba2e5d799f8b9b26b019f504a1f40650acea7c7c3ed776453118bbf30",
+      "bytes": 135680
+    },
+    {
+      "path": ".data/deploy/session-sync-20261013/project-2-after.png",
+      "sha256": "59f39ac827ba6cb7780e9358bba97d8ee0461516ca1976306396ec8c5607a127",
+      "bytes": 138329
+    },
+    {
+      "path": ".data/deploy/session-sync-20261013/admin-session-after.png",
+      "sha256": "a5ba8b255a93790cc5e72955e739688f0f139dd9895bac6db6653168dd020172",
+      "bytes": 51815
+    },
+    {
+      "path": ".data/deploy/session-sync-20261013/download-verification.json",
+      "sha256": "80b3784808bd3c56b7037ccb2b1499011d300ab716b1986a0f7d72e10e0ab322",
+      "bytes": 355
+    },
+    {
+      "path": ".data/deploy/session-sync-20261013/public-asset-verification.json",
+      "sha256": "473678cddb99cbf4ad0433ef9f16367325da3c6d8d71d918568c8d97ac8d0eee",
+      "bytes": 198
+    },
+    {
+      "path": ".data/deploy/session-sync-20261013/release-result.txt",
+      "sha256": "0b601682f0e5fc93219b7e57423ba8cd97cb32fbfdb279875e5e39d5c726057f",
+      "bytes": 2129
+    },
+    {
+      "path": ".data/deploy/session-sync-20261013/release-verified.txt",
+      "sha256": "94a26e88fa0466a65c528065760f3da8d47febd9b72095860b3a677f83309314",
+      "bytes": 680
+    },
+    {
+      "path": ".data/deploy/session-sync-20261013/release-verify.sh",
+      "sha256": "1becc90b2d002035d6363454bc735db2dbb827b9de9b829f76c6984a05c81008",
+      "bytes": 814
+    },
+    {
+      "path": ".data/deploy/session-sync-20261013/release-1.sh",
+      "sha256": "12a0006712b0d57566ee565c8c924ea39513037b70e2ae0cf9abbb17736a777d",
+      "bytes": 15106
+    },
+    {
+      "path": ".data/deploy/session-sync-20261013/release-2.sh",
+      "sha256": "57c7e75af91fe81d2c1c2f9bf59008edea1d5bcf53fd2eb475db9297dea67299",
+      "bytes": 14661
+    },
+    {
+      "path": ".data/deploy/session-sync-20261013/release-3.sh",
+      "sha256": "727635bfec5e69d04a9dc3b62260e1be262407792d8b1d693e0d393dfe9fc75d",
+      "bytes": 3573
+    },
+    {
+      "path": ".data/deploy/session-sync-20261013/prepare-release.py",
+      "sha256": "480618b33d6823f512b9754554a79fb748f8278a3c3c27e7e7ab8140aa42c733",
+      "bytes": 4055
+    },
+    {
+      "path": ".data/deploy/session-sync-20261013/web-patch.json",
+      "sha256": "310c57fb630dd1332f2ac1577d669fdd7e66ba50a5e98f9abcc58276e32b08d6",
+      "bytes": 887
+    },
+    {
+      "path": ".data/deploy/session-sync-20261013/web-patch.b64",
+      "sha256": "51ea677da4a69dcc0eac0ec88f6f1857c0f7a760716f443543cf2cbae45999f7",
+      "bytes": 29048
+    },
+    {
+      "path": ".data/deploy/session-sync-20261013/check-final.log",
+      "sha256": "880fefedcfabe8f0f9ff25324a7b97dc2b19ca0d997dcda8d8d5fca95570f0cb",
+      "bytes": 956
+    },
+    {
+      "path": ".data/deploy/session-sync-20261013/typecheck-final.log",
+      "sha256": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92",
+      "bytes": 15
+    },
+    {
+      "path": ".data/deploy/session-sync-20261013/integration.log",
+      "sha256": "39b4d9881fcc5447d57571b35440b9a01948e3287860ecb8fa680c25387b5d5c",
+      "bytes": 2206
+    },
+    {
+      "path": ".data/deploy/session-sync-20261013/e2e-final.log",
+      "sha256": "fe1267cd150f689ba60f50e0702971068955368e4cd929954b9dc164b32b4442",
+      "bytes": 4826
+    },
+    {
+      "path": ".data/deploy/session-sync-20261013/e2e-expiry-final.log",
+      "sha256": "41215664194d4b94d25868599c3b96f6cc5ae5736d9ffebdbe640ad66418b7bb",
+      "bytes": 1912
+    },
+    {
+      "path": ".data/deploy/session-sync-20261013/regression-before.log",
+      "sha256": "0842821ed45ed0e0a2264522a8198551b5c825de78587905b91383f463c14ae9",
+      "bytes": 4096
+    },
+    {
+      "path": ".data/deploy/session-sync-20261013/regression-after.log",
+      "sha256": "29168846db14364fd025079683d85dc5c5e97efd2e32edc6248fc16e2e375fe4",
+      "bytes": 1828
+    },
+    {
+      "path": ".data/deploy/session-sync-20261013/closure-check-0.log",
+      "sha256": "11853b21db68a72bb6402d0b918a08931c4e001e98317642a2d563d5a7f89872",
+      "bytes": 119
+    },
+    {
+      "path": ".data/deploy/session-sync-20261013/closure-check-1.log",
+      "sha256": "0b2efcd1301e56c6169b24c197fd443f74a5a57a9942fdb32e6711e6d64057ef",
+      "bytes": 973
+    },
+    {
+      "path": ".data/deploy/session-sync-20261013/closure-check-2.log",
+      "sha256": "4d072679da7ab1a9b1926c6fdba92c970bc0deccbb5afdec415fbdb19920b7c6",
+      "bytes": 381
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-dsh/bridge.js",
+      "sha256": "6538f9c7feeb4666fd74abc730ca292b635c2c195de63f4d8d4b4c3312cf1ca7",
+      "bytes": 9733
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-dsh/index.js",
+      "sha256": "560397cf06542b165323ee4b206fb86523622e120a9842761e1bfabe0734338b",
+      "bytes": 197
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-dsh/schema.js",
+      "sha256": "2bf39768afdc55345956ec601bc6ce92c53c6357e784d65cd3d9ab1deaff1e11",
+      "bytes": 2273
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/aiDiagnostics.js",
+      "sha256": "495481d4819ad9fa18710cfee009ad63fd580269b6abc0c8e0251d5726573107",
+      "bytes": 28619
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/pdf-render-runtime/pdf-render-worker.cjs",
+      "sha256": "c98b834e2d3eb93a87f40073d3bdf161de6d7e3d4d9380592e522e1ae1f598cc",
+      "bytes": 16346
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/scripts/docx/redact_docx_inplace.py",
+      "sha256": "3237b3f457cc89be2e2373f2e63ef401df6288d952f3ea51cb7b2e074ef5d6d2",
+      "bytes": 109992
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/scripts/docx/restore_pseudonym_docx.py",
+      "sha256": "e496c9a3583f25fb94689250779e59db0838878ec4773124e0977b8a9276376a",
+      "bytes": 38157
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/scripts/markdown/convert_markitdown.py",
+      "sha256": "ae9d5153f5557970d3f5e01c188037627f865b44a271b7dc423c86a96f306017",
+      "bytes": 3608
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/scripts/ocr/unlock_protected_pdf.py",
+      "sha256": "e6cfa591f9a8ee12d47393247f7bcf7df59ebc894847f80b70b22ca64baa0080",
+      "bytes": 1506
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/scripts/ocr/vision_ocr.swift",
+      "sha256": "e9a47bdf4f793012703a85f8be48bde735a7458e4ccb7f3713be810be15b2a25",
+      "bytes": 5004
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/support/models/ner-cn-v3/config.json",
+      "sha256": "374e4c6ef295a02cdbde90b7c9e94fd27c517899f17f261d6a589bb4726d51b4",
+      "bytes": 1193
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/support/models/ner_base_bert/config.json",
+      "sha256": "48e38323071c96fdce44081898baf843f3057f592d1b8f19398c5e54cb904c7f",
+      "bytes": 3342
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/support/models/visual-sensitive-v1/face_yunet.onnx",
+      "sha256": "8f2383e4dd3cfbb4553ea8718107fc0423210dc964f9f4280604804ed2552fa4",
+      "bytes": 232589
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/support/models/visual-sensitive-v1/model_metadata.json",
+      "sha256": "bc2826bb3327431a1d1c6ab73464f588772185af36dfd5346222975839fd9b74",
+      "bytes": 2277
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/deep-processing/D9V2C_Ir.readable.js",
+      "sha256": "a9ec44eada3b0fb4d9ef17eeed078db2d1d237fa0200325c5a9c0d42ce8fea8d",
+      "bytes": 251414
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/deep-processing/markdown-worker.readable.js",
+      "sha256": "49c9a31f48ed49b1a514bf75ebade2156537881710b427549c55cb1b439d1775",
+      "bytes": 122366
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/deep-system/build.py",
+      "sha256": "6bff871a5ad5e4b8bc3defa1d8acaf239b4f48e7e45cbf5b2dba1e098a8f08d9",
+      "bytes": 14562
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/maintain-before-iter017.py",
+      "sha256": "1b5d16e78f94344766a41e45d7318505cf573129e7261942a3f2338806106f66",
+      "bytes": 17673
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/native-integrity/fetch-upstream.py",
+      "sha256": "9aef2f26176ca294ea39a6deee87a2f4b5a0287368eb6ac00136cb1c1c574382",
+      "bytes": 1221
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/native-integrity/img-sharp-darwin-arm64.metadata.json",
+      "sha256": "fb09ab0f78cdee415bc61476c81f14b0878d1eb41336fc3daa43900c69faea85",
+      "bytes": 1993
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/native-integrity/img-sharp-libvips-darwin-arm64.metadata.json",
+      "sha256": "2cff6ce3568f58dc4cddcc2a097d82432780fc9a4ff4238cc9e9f945e6515f92",
+      "bytes": 1979
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/native-integrity/napi-rs-canvas-darwin-arm64.metadata.json",
+      "sha256": "09b5463ba7f0813fcc80342428f6a02abf470dccd3be9117db4af3aa4483e2c0",
+      "bytes": 1903
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/native-integrity/native-integrity-comparison.json",
+      "sha256": "056823a9def4f529102fdc29214aa4c5f4264bb7e297eddd1bc80541fa19b36d",
+      "bytes": 31820
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/native-integrity/onnxruntime-node.metadata.json",
+      "sha256": "24acacc63b1b2c2381d65e38bf04eb7e3fc29e82247b8b5fa416083d4c786103",
+      "bytes": 2653
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/native-integrity/upstream-manifest.json",
+      "sha256": "73b7b78c38048704fb15f1aed604bce3d078577b1a3055a25d537713260f050a",
+      "bytes": 1960
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/native-integrity/verify-native.py",
+      "sha256": "f8023ecc2f52397a14fc7b937e95db40f7cb50d8d6d5994e0b956fd2d30fe43f",
+      "bytes": 6525
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/rules-supplement/build-report.py",
+      "sha256": "81d4d11aa5efeb9a6de6bc22d5b7aa35a2ca5ade1e24efb5c0ead04ce45a7e6c",
+      "bytes": 44656
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/rules-supplement/extraction.json",
+      "sha256": "37702d8aa8291be4b60d30eab7b459e53c2a413a57e06c75eefef927c624f73a",
+      "bytes": 995
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/rules-supplement/name_blacklist.yaml",
+      "sha256": "1588569109e33ef8603f0a5a8d3585f72c3ed725b4378a790f0facdd337f5de4",
+      "bytes": 73650
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/rules-supplement/name_blacklist.yaml.json",
+      "sha256": "c1863b28534235f8f5b7f4a2ebed2a61dc3a91b159199e722e087980fcfa62ea",
+      "bytes": 46353
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/rules-supplement/ner_fp_blacklist.yaml",
+      "sha256": "249b35487e45647d9eb8d42c3780ad15743320553fd023b81de9692cd3ec51fc",
+      "bytes": 4112
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/rules-supplement/ner_fp_blacklist.yaml.json",
+      "sha256": "9716a0c0e8537af9dc094ed4f999618bfecfcde14b848253ca15c21d2c56b628",
+      "bytes": 2886
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/rules-supplement/org_name_blacklist.yaml",
+      "sha256": "afc2d6873a36d9f1b5897a93c9e7865eb567c3788f1b601fcbb34cafb41f2f4b",
+      "bytes": 19260
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/rules-supplement/org_name_blacklist.yaml.json",
+      "sha256": "c8190116a72443cd87f0423ecde6b225cbd87dff7eb8d7fd320e750925b8d9fe",
+      "bytes": 9080
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/rules-supplement/review-pdf.py",
+      "sha256": "50130445e72aa5e78b26aae1c706acd429dbfe728df6806eee7a4f090644b20b",
+      "bytes": 5467
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/rules-supplement/verify-report.py",
+      "sha256": "e0c8d37b75afb302228fd0af5684d67dc70c7f73e406e47fc760ab6947da6fbc",
+      "bytes": 3056
+    },
+    {
+      "path": "packages/adapters/page-export.ts",
+      "sha256": "203eaf260d8021380fbf06ef3b96f5eecf3dce9b976186192868c6b46f19453f",
+      "bytes": 3863
+    },
+    {
+      "path": "packages/core/ner.ts",
+      "sha256": "dd3927a426fdfe7e953a2f7119a6594f44d594b94a76e806635aec325a70373d",
+      "bytes": 4851
+    },
+    {
+      "path": "packages/core/ocr.ts",
+      "sha256": "028b581372437dcf88dbec259be9d8f99bd70d27644d01e20802bb05e2443e10",
+      "bytes": 2314
+    },
+    {
+      "path": "文档/逆向台账/71项无前端调用说明-20261014.md",
+      "sha256": "40fee0a9876c6db1b86930c1a8da364d33d217d04d30e0bbb881e7edfdd44086",
+      "bytes": 8959
+    },
+    {
+      "path": "文档/逆向台账/contracts/build-deep-collaboration.py",
+      "sha256": "6b0262b01782067e7043ed04a56344b84457843cf6b87ede05c5052546ebe204",
+      "bytes": 35657
+    },
+    {
+      "path": "文档/逆向台账/contracts/build-deep-formats-20261014.py",
+      "sha256": "f3ee9f9dc8d23e9f78419dd58ae45139982cec7f03c48a52f55d29ab513b6fcb",
+      "bytes": 26503
+    },
+    {
+      "path": "文档/逆向台账/contracts/build-deep-processing-20261014.py",
+      "sha256": "67c6b6c365e0e98e8807b88d335ab8108d5e6691f42dc1bdd92d0162611a9143",
+      "bytes": 43013
+    },
+    {
+      "path": "文档/逆向台账/contracts/build-deep-processing-pdf-20261014.py",
+      "sha256": "48f158563276bb2872dbdf0fae7a5eefe36ed547164cbb477a8ab2b7f7a5590d",
+      "bytes": 20513
+    },
+    {
+      "path": "文档/逆向台账/contracts/build-deep-ui-20261014.py",
+      "sha256": "98389d3142c126cbb2138c9e1556e2380558c5773bef1ae941edafb3039f93fb",
+      "bytes": 11578
+    },
+    {
+      "path": "文档/逆向台账/contracts/build-processing-supplement-formats-20261014.py",
+      "sha256": "c8123b2b6f3491667bffd775a046a0debfbb2807d43d910a3e85e79225657c05",
+      "bytes": 13200
+    },
+    {
+      "path": "文档/逆向台账/contracts/build-review-processing-rules-20261014.py",
+      "sha256": "c5946b2cc6365f52d8313b09c5a25a55234dca2d64ccf9b755618dedf47ba0ea",
+      "bytes": 7015
+    },
+    {
+      "path": "文档/逆向台账/contracts/deep-collaboration-20261014.json",
+      "sha256": "0de86260e465f179d57443a1063e992c8a01ef068ca8543892fa0374d1084ae7",
+      "bytes": 848909
+    },
+    {
+      "path": "文档/逆向台账/contracts/deep-collaboration-20261014.md",
+      "sha256": "5324b6b0987f1d5ad0228204de26c74e9ccb8994319116a0cbba2f21b409dafb",
+      "bytes": 32902
+    },
+    {
+      "path": "文档/逆向台账/contracts/deep-collaboration-index.mjs",
+      "sha256": "b867c5f3b414d72a409d8a88082ca264c867e96be30616014e24c7a3eeb10a13",
+      "bytes": 2803
+    },
+    {
+      "path": "文档/逆向台账/contracts/deep-collaboration-source-index.json",
+      "sha256": "51553a2be01a043597bea45eb48e5e1b1be57530a45d47dc9095d9f2c201279f",
+      "bytes": 1708661
+    },
+    {
+      "path": "文档/逆向台账/contracts/deep-formats-20261014.json",
+      "sha256": "41f811b5ad5fd30344c8945e0b39d805edd8cd560322234647a254b7073e28bd",
+      "bytes": 285943
+    },
+    {
+      "path": "文档/逆向台账/contracts/deep-formats-20261014.md",
+      "sha256": "dea2bb876a7017e9edf1a4429618ace18920ea6f9fd17e4297898b73595aebd6",
+      "bytes": 36428
+    },
+    {
+      "path": "文档/逆向台账/contracts/deep-processing-20261014.json",
+      "sha256": "33b0e8530a6ac05225345976a8181b18c34dab19545912fc5ae3b4ebf70deb00",
+      "bytes": 230076
+    },
+    {
+      "path": "文档/逆向台账/contracts/deep-processing-20261014.md",
+      "sha256": "73e8826c040aa9a093a00b142f2e089b9d18a7473ad04cfc4932c033f5291452",
+      "bytes": 52708
+    },
+    {
+      "path": "文档/逆向台账/contracts/deep-processing-pdf-20261014.json",
+      "sha256": "1dd23381feb0bd105854762396be859d6a872622d13447e55963949f54f9a9ad",
+      "bytes": 31225
+    },
+    {
+      "path": "文档/逆向台账/contracts/deep-processing-pdf-20261014.md",
+      "sha256": "b655ef40490b2b9f50f20d8c42366b1a315d9f646bf41cb69b52f0680a2f4a24",
+      "bytes": 18893
+    },
+    {
+      "path": "文档/逆向台账/contracts/deep-processing-supplement-formats-20261014.json",
+      "sha256": "0b31926d5e2890146cacba08a822841063c2bbfb527d08dd3112b76668825761",
+      "bytes": 23144
+    },
+    {
+      "path": "文档/逆向台账/contracts/deep-processing-supplement-formats-20261014.md",
+      "sha256": "368fa3cff08601654f3db13452ff29627d56cb380b082b72fbe684e46ac72dbd",
+      "bytes": 12346
+    },
+    {
+      "path": "文档/逆向台账/contracts/deep-processing-supplement-rules-20261014.json",
+      "sha256": "e7e2e75cc540f4e80dff21977b770866e518ac1e0478c812082fbddb169c368b",
+      "bytes": 134971
+    },
+    {
+      "path": "文档/逆向台账/contracts/deep-processing-supplement-rules-20261014.md",
+      "sha256": "1b472431f55a6ad47fdb498e668217976e79b869492b28773b17460b8e78c8ee",
+      "bytes": 40671
+    },
+    {
+      "path": "文档/逆向台账/contracts/deep-system-20261014.json",
+      "sha256": "cbfb93b4155769c3de73517acaf774540e989e555b195365943e4e6fb87b6e7e",
+      "bytes": 231204
+    },
+    {
+      "path": "文档/逆向台账/contracts/deep-system-20261014.md",
+      "sha256": "d0469fa0fab5034fd7db69b8983c52f09555140f720e449bb8a809edc4e06be5",
+      "bytes": 76995
+    },
+    {
+      "path": "文档/逆向台账/contracts/deep-ui-20261014.json",
+      "sha256": "4df180ba9f4377b48777e7ddedf87a2d3158ddabf55e62bd1c4dc13b78467a06",
+      "bytes": 20432
+    },
+    {
+      "path": "文档/逆向台账/contracts/deep-ui-20261014.md",
+      "sha256": "d6647670d136c0b0d68216ccfa9ce9319bdfcd3e856d2680fc52788730d24a5f",
+      "bytes": 11423
+    },
+    {
+      "path": "文档/逆向台账/contracts/merge-deep-ledger-20261014.py",
+      "sha256": "c657d5d271dae0d8af128366971e7f969d5302186532701353be1a6aac36eb3f",
+      "bytes": 16678
+    },
+    {
+      "path": "文档/逆向台账/contracts/prepare-deep-processing-20261014.cjs",
+      "sha256": "406a0ff7fde1a50d58d276d93d35b5c439f3ac538610f07552e381b7d1b39396",
+      "bytes": 1103
+    },
+    {
+      "path": "文档/逆向台账/contracts/prepare-markdown-worker-20261014.cjs",
+      "sha256": "588c26da0ef60f3cf143acd90df028daa292d9c485d57b17dbed6eb010aab5f5",
+      "bytes": 1110
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-deep-collaboration-native-20261014.json",
+      "sha256": "4dc0cfb40bf16f6d4e1cdcd5d0076d18111ad1771ab79b86c57790ad35c9c32b",
+      "bytes": 11015
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-deep-collaboration-native-20261014.md",
+      "sha256": "2c1da237b6a7ca3b87cde1fbc5d68dc227f38f58db12299020512963010799d2",
+      "bytes": 2012
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-deep-formats-20261014.json",
+      "sha256": "4c5cecdeaca4b71d5e93d8c2a88b8dfc6b3a5004fdfd60b480ededd33297472c",
+      "bytes": 45980
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-deep-formats-20261014.md",
+      "sha256": "4ab6130a06d5881d8d642598caa940af59873f7eb65fc265801553edff3393ae",
+      "bytes": 4943
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-deep-processing-pdf-20261014.json",
+      "sha256": "de0270d0a272832530d03225300c90382678bfc96dd784559a6132d749cdaa52",
+      "bytes": 7858
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-deep-processing-pdf-20261014.md",
+      "sha256": "c02c659700163da24e31554f48af443366a02ee762e46683b06d1762ce89832c",
+      "bytes": 3019
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-deep-processing-ui-20261014.json",
+      "sha256": "e5cc8507b3b01b5c7a0c6e906ee9e0f518323342e742da04569ad40df1a47db6",
+      "bytes": 16691
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-deep-processing-ui-20261014.md",
+      "sha256": "0ac1cc31ea5d0109130ea8cf8b0b50680f02d729c20a687c9800befd79a15645",
+      "bytes": 5241
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-deep-system-20261014.json",
+      "sha256": "ec5a0d22192ba034c9dc2935fa63c6fea11fc0537973032d7f8e936407b9a9d1",
+      "bytes": 161717
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-deep-system-20261014.md",
+      "sha256": "39773fb9b17eba4d20536d35bb8c9fea8ea5015d5d97b1e595b46d2eb0c53b30",
+      "bytes": 17990
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-native-20261014.json",
+      "sha256": "c61812eabfd4a225a2ae49aef66c71d8b085d56a9b6253802db58be3312954c6",
+      "bytes": 40784
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-native-20261014.md",
+      "sha256": "9c2abc55047ae55bd1a3c59fa5b73c13467d5d8fc415f96326050d630aefe56d",
+      "bytes": 1758
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-native-probes.py",
+      "sha256": "3595365873ad121c39faa1fa4663050213bc126b5eb57ba11791d52067427075",
+      "bytes": 9064
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-processing-supplement-formats-20261014.json",
+      "sha256": "9f8882762508319b3fd7081bbb3456d0dbacc778f867fea74ff74c19935e7ff2",
+      "bytes": 8589
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-processing-supplement-formats-20261014.md",
+      "sha256": "8f38b27a209f184ef451687ff12ab1443ca2ac91580b3cc15b2dc48ff59cc79a",
+      "bytes": 3936
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-processing-supplement-rules-20261014.json",
+      "sha256": "b96d1679b8ea3317ebeba45daff5a0995edca6a9c1421c04ba6697cf5aa369dd",
+      "bytes": 8942
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-processing-supplement-rules-20261014.md",
+      "sha256": "2914a1057cbb671f5868f194131368b907ad2f71c271934a56744ef51c6ddce6",
+      "bytes": 3829
+    },
+    {
+      "path": "文档/逆向台账/contracts/verify-deep-formats-20261014.py",
+      "sha256": "6e02cb1c42b992719bf0fbff8f6d5b224a2f7ac0d02085748ad41cfe4d732b43",
+      "bytes": 4063
+    },
+    {
+      "path": "文档/逆向台账/contracts/verify-deep-processing-20261014.py",
+      "sha256": "f2d12d1f314b7eb072053d246925b6d61fc487a3a2b212197c157be29062f465",
+      "bytes": 3024
+    },
+    {
+      "path": "文档/逆向台账/原生文件签名差异核验-20261014.md",
+      "sha256": "9d35ca829bacd8d43a3941949539a0da1b6e8c2cf9dcff12df19d97ef77be83f",
+      "bytes": 2333
+    },
+    {
+      "path": "文档/逆向台账/维护规则.md",
+      "sha256": "dd8da350720b95688d4b2a1992b6010d58f0005fdb2f638d61c9d8afd33ece2d",
+      "bytes": 4869
+    },
+    {
+      "path": "文档/逆向台账/递归分析与对抗审查-20261014.md",
+      "sha256": "86a6d868f0fb5193063bbfc06d23bc43bd1598870b57f7d7749d8d1ff71397b5",
+      "bytes": 14086
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/iteration017-general-report.md",
+      "sha256": "edc92da4d997feb4f8d7dff76144a178cc7b837bcb2be27bbf0618f5ecaa7059",
+      "bytes": 8194
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/ledger-before-deep-analysis.json",
+      "sha256": "93935c9f37c99718642c85c5676bd571c4718eb228a0025b389b1f161b2f36a2",
+      "bytes": 3273968
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/rules-supplement/build-collab-events.py",
+      "sha256": "a8124d01aa8bd3164b110bc569836149bb1ea4d1794b10385a1ff88afa2fe7d0",
+      "bytes": 11072
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/rules-supplement/build-remaining.py",
+      "sha256": "f3fc57371082dae82ddcfd4d0ebdae402dec402d9ed2f062bf8be6ba70cef6cc",
+      "bytes": 38751
+    },
+    {
+      "path": "文档/逆向台账/contracts/build-export-cancel-invariants-20261014.py",
+      "sha256": "a61c8daa4101d4f7447b58782a59f88e1ab6753c89f9d5fa3a3dc791945adf57",
+      "bytes": 5024
+    },
+    {
+      "path": "文档/逆向台账/contracts/build-renderer-policy-dependencies-20261014.py",
+      "sha256": "8222c663eb2646c17fe286817a5b083b7c63ae1938db956556c7443dda74ddd7",
+      "bytes": 15634
+    },
+    {
+      "path": "文档/逆向台账/contracts/build-review-deep-ui-parents-20261014.py",
+      "sha256": "86d7e7c936ea6468e8e05b47dc9eb188fe8645dcd2a3e46c26d27788d0ca1487",
+      "bytes": 7206
+    },
+    {
+      "path": "文档/逆向台账/contracts/build-small-open-dependencies-20261014.py",
+      "sha256": "9d97dc0ade3b2654cfdc75eb61a5c6f61d37f2939b6cfce21575bafd0e92cc97",
+      "bytes": 8709
+    },
+    {
+      "path": "文档/逆向台账/contracts/build-ui-leaf-dependencies-20261014.py",
+      "sha256": "1e82a89dbcf4ffe9e73aed7c8755e411b222087213d13edefb8e5e95958b0e14",
+      "bytes": 7002
+    },
+    {
+      "path": "文档/逆向台账/contracts/build-ui-remaining-dependencies-20261014.py",
+      "sha256": "35105039062dd98fa271b29d217889fcc34cd090df05f274c5772e59e93d9ed1",
+      "bytes": 23055
+    },
+    {
+      "path": "文档/逆向台账/contracts/deep-ui-parents-20261014.json",
+      "sha256": "b4a9529e9740c06116e36da34934d29dfc89a675d5b5fca4e9dee72b4a130bd0",
+      "bytes": 40888
+    },
+    {
+      "path": "文档/逆向台账/contracts/deep-ui-parents-20261014.md",
+      "sha256": "2b76ae6070b049e4102d67b42b38e9358ccfd284bf180a0f69faa899f30f8d58",
+      "bytes": 27554
+    },
+    {
+      "path": "文档/逆向台账/contracts/export-cancel-invariants-20261014.json",
+      "sha256": "619a0cfd16e175a9804348cec7f5810ac10bbcef050911b07215e78e813dce32",
+      "bytes": 6948
+    },
+    {
+      "path": "文档/逆向台账/contracts/export-cancel-invariants-20261014.md",
+      "sha256": "20c6d1819ccca5e5a6fa1fd30b4e066e98c382a1d4c4dae3da1341f241d92471",
+      "bytes": 3617
+    },
+    {
+      "path": "文档/逆向台账/contracts/merge-dependency-ledger-20261014.py",
+      "sha256": "75f998d01014ee4665ba18a5ec4740a0014e44cab9ddbba1b896304731dd9f6b",
+      "bytes": 6720
+    },
+    {
+      "path": "文档/逆向台账/contracts/remaining-dependencies-20261014.json",
+      "sha256": "c8adcab2c037f26a1beae8ade6ede1fcf072c61269fb6f3540a0648b3df7d0ba",
+      "bytes": 557231
+    },
+    {
+      "path": "文档/逆向台账/contracts/remaining-dependencies-20261014.md",
+      "sha256": "75a72e7f42f9de3dcfb94abb3084d014c889e648b9b614db9a7784a8d77fb736",
+      "bytes": 16750
+    },
+    {
+      "path": "文档/逆向台账/contracts/renderer-policy-dependencies-20261014.json",
+      "sha256": "e6fc594ba87768708578f7e985fa829f104a0fb7cc35e9ed1821b5083dea1613",
+      "bytes": 44143
+    },
+    {
+      "path": "文档/逆向台账/contracts/renderer-policy-dependencies-20261014.md",
+      "sha256": "4f3c92a12f15f5cfae7d3b142c0b234f078a3a0820a6106420d907168f71a6ce",
+      "bytes": 16517
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-collaboration-renderer-events-20261014.json",
+      "sha256": "26017bd65aebee45f602cf90eac1518b0f065e895c3f989ccddb8f1a8d7f8c7d",
+      "bytes": 3912
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-collaboration-renderer-events-20261014.md",
+      "sha256": "4e800c66681dfd105a3164b23f33bdeeebd1cbd1e6dac85d54b218eea74d51a1",
+      "bytes": 2699
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-deep-ui-parents-20261014.json",
+      "sha256": "d60c122893366ee2d9ac9bf4640df0ea40b2231fde33f312672adcd9f312edb7",
+      "bytes": 13146
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-deep-ui-parents-20261014.md",
+      "sha256": "86202e49747b762b40aef6d1902a820e009627f59d8eac5558cfee4472c5f57b",
+      "bytes": 5709
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-export-cancel-invariants-20261014.json",
+      "sha256": "533cb2b69810ab28e816f6366cd0d20c08e10a5eb20c0f3bf767bdd0b33fa718",
+      "bytes": 4273
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-export-cancel-invariants-20261014.md",
+      "sha256": "7a2e1f923a79fe972a7e6fd42dde82ae4297c9e7a9264cdf945e1e1e36a71e7d",
+      "bytes": 1931
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-ledger-iteration017-20261014.json",
+      "sha256": "cfc99880955a3104ccc24644bd852296eade443e5711800d9cdf0300cd87f247",
+      "bytes": 6633
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-ledger-iteration017-20261014.md",
+      "sha256": "1c8d94a04d4399c43f7550f038c80d3f6b25be8dbf62d7670a4d6a9223a8dfa2",
+      "bytes": 3210
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-renderer-policy-dependencies-20261014.json",
+      "sha256": "3e116843b479dba7960fc64238fbc814af3c6c103e832560c67588534e5fea58",
+      "bytes": 11081
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-renderer-policy-dependencies-20261014.md",
+      "sha256": "9db317ddbbcc94bea104cef629ab7474f9046c1a074bc3f685befca1ae79e622",
+      "bytes": 4137
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-small-open-dependencies-20261014.json",
+      "sha256": "6dc8c30fb57baa73aa461604da898c831bebb5268a59fc5ae0cf6418ac4e2057",
+      "bytes": 7140
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-small-open-dependencies-20261014.md",
+      "sha256": "c13732296356fdbef435649608fe3a73b4b44d18c04ecb27aef79c10de55fb9e",
+      "bytes": 2084
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-ui-leaf-dependencies-20261014.json",
+      "sha256": "ea90046515d76e6a6c2128ecf50c684641fed0a1ac3ecddaf5102128b76ad583",
+      "bytes": 5161
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-ui-leaf-dependencies-20261014.md",
+      "sha256": "3648f9031ec2d39cb9c266ebfce1f1743dfd0e8d946e9a039db466dbee6d3ac7",
+      "bytes": 2094
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-ui-remaining-dependencies-20261014.json",
+      "sha256": "0222ddb46b4bf71f299cda082f4d193660bb54cfb53589289524e5bb8ba42736",
+      "bytes": 6532
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-ui-remaining-dependencies-20261014.md",
+      "sha256": "108ce4cdfb32bf8584c240effb80fc766ad80b3b90eba6778e3831a801ddf09e",
+      "bytes": 2740
+    },
+    {
+      "path": "文档/逆向台账/contracts/small-open-dependencies-20261014.json",
+      "sha256": "5b9bdbf2b6e95865979fe436144457bfaca8eda2ca3f1505f9c65fbaac7713a9",
+      "bytes": 10946
+    },
+    {
+      "path": "文档/逆向台账/contracts/small-open-dependencies-20261014.md",
+      "sha256": "668cae18fcc7f667ed025a4941f1813a4794095693b8ccda34e53db87c4cf3d7",
+      "bytes": 7626
+    },
+    {
+      "path": "文档/逆向台账/contracts/supplement-collaboration-renderer-events-20261014.json",
+      "sha256": "2080efb59976be9e7993a3dce90cfeae0c20e5e40d446f64d760d6d934f2f22a",
+      "bytes": 25840
+    },
+    {
+      "path": "文档/逆向台账/contracts/supplement-collaboration-renderer-events-20261014.md",
+      "sha256": "b294bc81d55f468181e2e344628ad059b08daa10db2dbe0f6b457be57a8d61e4",
+      "bytes": 11722
+    },
+    {
+      "path": "文档/逆向台账/contracts/ui-leaf-dependencies-20261014.json",
+      "sha256": "b1ac0bd5795c2c95c8b4224cabee6340d0e4f57bde84774abce01aded53bcb33",
+      "bytes": 11349
+    },
+    {
+      "path": "文档/逆向台账/contracts/ui-leaf-dependencies-20261014.md",
+      "sha256": "27da7e852f48feeae867561e835c205f81e8381abcd56d9ad341dbcda7da9f34",
+      "bytes": 5442
+    },
+    {
+      "path": "文档/逆向台账/contracts/ui-remaining-dependencies-20261014.json",
+      "sha256": "f01948ad9c0091c8fd6eeea85d2f8414dc47d821029fc53c2e8f9060d36066c7",
+      "bytes": 42737
+    },
+    {
+      "path": "文档/逆向台账/contracts/ui-remaining-dependencies-20261014.md",
+      "sha256": "bc53d50ebe4102becebb65066f21ee3c080fa0ebe9b1034ffbae438e2a0ebfdf",
+      "bytes": 24416
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/static-updater/node_modules/electron-updater/out/AppUpdater.js",
+      "sha256": "99921022d181fbd0637878fdebc74177be167d4d56a92c9a87d828f89ab67344",
+      "bytes": 33190
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/iteration018-general-report.md",
+      "sha256": "4f183a0d4c837046877af416f1d8fe6010ed1bad3ff456ebe48393882b7eecae",
+      "bytes": 10903
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/iteration019/build-remaining.py",
+      "sha256": "85eeabe7ed13ce8769424dc71998b31508f2c2e1ae3ce91a7386f00473960339",
+      "bytes": 16795
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/iteration019/build-system-collab.py",
+      "sha256": "10bf16986f70da40be4649be901c3da90a0a9f3b8368c7c7ed7ffd114bb32bd4",
+      "bytes": 23531
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/iteration019/review-layout-helpers.py",
+      "sha256": "7fec0b9bc3aebbcdcf6ba34b75d3ffe72247a26a4fb32040ab36e77dad7dab72",
+      "bytes": 3623
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/iteration019/review-layout.py",
+      "sha256": "04ab5ce7d621d4f58f80fc4526e7b2e0bf6c6262fa5bc69ec0250197c1806c0b",
+      "bytes": 3709
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/ledger-before-iteration018.json",
+      "sha256": "3e622d16858a1f7e20f7e568df750b44e27e4bf11831af255784b8e92d7f7915",
+      "bytes": 4456389
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/extraction.json",
+      "sha256": "5bc28f188370dd21b6de27780a254b74f9c5c9d84be9cc82cdeb7aa6578a51c1",
+      "bytes": 6636
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/node_modules/builder-util-runtime/out/CancellationToken.js",
+      "sha256": "054512fdee2fe810ef46d5ce7fdc2c39d3582ee8c3d463a4ee6c954bca8ec7d5",
+      "bytes": 3199
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/node_modules/builder-util-runtime/out/ProgressCallbackTransform.js",
+      "sha256": "35503895f7e7dd4329b94dd69eb48674ac55d9d6646d0ea42eada5378d433d32",
+      "bytes": 1949
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/node_modules/builder-util-runtime/out/httpExecutor.js",
+      "sha256": "13050c5e047556326a2a17bc991dcf1e0f58b20409e0476486a6fd0ed6c577f6",
+      "bytes": 23064
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/node_modules/builder-util-runtime/out/retry.js",
+      "sha256": "f89a0e871d04334725d54112c101475b423ea93ae4db2878b6cc2404791b5b40",
+      "bytes": 941
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/DownloadedUpdateHelper.js",
+      "sha256": "81d816fdfddf4711218f78c7625e22122b2159ec7c83209613dfb9e71a552e4d",
+      "bytes": 6907
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/differentialDownloader/DataSplitter.js",
+      "sha256": "a1d74dc923cc779b1cc8b8bd6bce24879b7266b8d6f659f09f53d5e5275e9ab4",
+      "bytes": 9396
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/differentialDownloader/DifferentialDownloader.js",
+      "sha256": "428ada90afe644da1a7517670ba07aa8cc307f36587e00f2f748f8f6dbc992bd",
+      "bytes": 12517
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/differentialDownloader/FileWithEmbeddedBlockMapDifferentialDownloader.js",
+      "sha256": "8f3c12c0d7e6e0284b9c9af068a0c6caa56f691997c763bb5850b8fa98c19650",
+      "bytes": 1861
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/differentialDownloader/GenericDifferentialDownloader.js",
+      "sha256": "62ca9a1d3ca12deca41ad902a24d8fec34ec150cdc194478d5b4fc987a66921b",
+      "bytes": 524
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/differentialDownloader/ProgressDifferentialDownloadCallbackTransform.js",
+      "sha256": "d4b62c2f8eec10bb8edcc0227cde609734ef344bd3e727a48cdb806ea3608ef4",
+      "bytes": 3824
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/differentialDownloader/downloadPlanBuilder.js",
+      "sha256": "4ee0506c1431e86c6e693a5d118c2909f7638cc27000e3c7569cd43da08bfbf4",
+      "bytes": 5517
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/differentialDownloader/multipleRangeDownloader.js",
+      "sha256": "acb4cc89c273776d5bfc0409e032f234a4aafd1f02cc442734d6c4a5db4be4cc",
+      "bytes": 5066
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/updater-dependencies/node_modules/electron-updater/out/electronHttpExecutor.js",
+      "sha256": "907bc7f2c71c1f964fe83f71337a520073e753f3f35ea00076f5676aebaa6404",
+      "bytes": 3258
+    },
+    {
+      "path": "文档/逆向台账/contracts/build-iteration019-draft-producers.py",
+      "sha256": "3edae87f804274f93666f742fa8e51a85e93b95d169a3c5fa8042c55565e8d06",
+      "bytes": 14744
+    },
+    {
+      "path": "文档/逆向台账/contracts/build-iteration019-layout-helpers.py",
+      "sha256": "dee5c43e3a49b8f6fd41dc93e54cbad4c5bc67ed615622017b7195a077ed7508",
+      "bytes": 9463
+    },
+    {
+      "path": "文档/逆向台账/contracts/build-iteration019-layout-manual.py",
+      "sha256": "6587d4856bc61f5e8bb88f2b1bbeebea5779e379b6c7e758d294e4ee24c9a92d",
+      "bytes": 20509
+    },
+    {
+      "path": "文档/逆向台账/contracts/build-iteration019-projection-audit.py",
+      "sha256": "766931902b5a28eb121bc46031cb3fefe11c6cf341b07bb20bd80205ec0f470d",
+      "bytes": 12167
+    },
+    {
+      "path": "文档/逆向台账/contracts/build-iteration019-state-policy.py",
+      "sha256": "abfcc1a8c4cf31603411d2e5652887d3528010f1428b4c4317b3858209036137",
+      "bytes": 27894
+    },
+    {
+      "path": "文档/逆向台账/contracts/build-iteration019-updater-dependencies.py",
+      "sha256": "258c812fe77f6f87ad06aed8163508886a3c51b7d5f8842ca1d753432a02a692",
+      "bytes": 19672
+    },
+    {
+      "path": "文档/逆向台账/contracts/build-review-iteration019-draft-producers.py",
+      "sha256": "4542fc57f5e59839afa0912290ef30439279aa8c6f2c734b47b778a594b3932f",
+      "bytes": 2975
+    },
+    {
+      "path": "文档/逆向台账/contracts/build-review-iteration019-remaining-dependencies.py",
+      "sha256": "efdf07ec4f952baec7e0b0b552489cb05ce60192e269fcaff06d91903b5a295b",
+      "bytes": 8041
+    },
+    {
+      "path": "文档/逆向台账/contracts/build-review-iteration019-state-policy.py",
+      "sha256": "b59335590203180ab3cb0c5a9285e923600f12c334d577ca000230395e17732f",
+      "bytes": 4021
+    },
+    {
+      "path": "文档/逆向台账/contracts/build-review-iteration019-system-collab.py",
+      "sha256": "0e098bde95e1720bbc4c292c2e95ffd53bb61e044be56f51326c7d2c941aba18",
+      "bytes": 5836
+    },
+    {
+      "path": "文档/逆向台账/contracts/build-review-iteration019-updater-dependencies.py",
+      "sha256": "45842fc541329383f088e7b5d7488f6563cbfcd8e1981aee09d5bc7bfe30e5ed",
+      "bytes": 4054
+    },
+    {
+      "path": "文档/逆向台账/contracts/iteration019-draft-producers.json",
+      "sha256": "670b575e92805687dbc28e068a4d916c40f30d9dce196cb049523ce82ee9121c",
+      "bytes": 26810
+    },
+    {
+      "path": "文档/逆向台账/contracts/iteration019-draft-producers.md",
+      "sha256": "c5af674c0fa62d8ef7df4f3bea4a89d0c45f7f2618265b7d06dceae9e0b9889a",
+      "bytes": 15326
+    },
+    {
+      "path": "文档/逆向台账/contracts/iteration019-layout-helpers.json",
+      "sha256": "dc591472b2ca008a8657ecc2c580cd95996409c49ad4243950d028b89197f583",
+      "bytes": 14011
+    },
+    {
+      "path": "文档/逆向台账/contracts/iteration019-layout-helpers.md",
+      "sha256": "01003ea6b39ec29a8b7dbfb4318a3832b0082534f19a9e291504cf1ba3b9cd68",
+      "bytes": 8796
+    },
+    {
+      "path": "文档/逆向台账/contracts/iteration019-layout-manual.json",
+      "sha256": "83d59eed53cbcb2c80594e226277d8dcd5fd308da4a2e84464a85992b1fbba53",
+      "bytes": 35666
+    },
+    {
+      "path": "文档/逆向台账/contracts/iteration019-layout-manual.md",
+      "sha256": "65e63d906e2246f21921af5d4193497baba8e77200f9c4ee4b3b1bc5b25ec70b",
+      "bytes": 22641
+    },
+    {
+      "path": "文档/逆向台账/contracts/iteration019-projection-audit.json",
+      "sha256": "9feded81f92ba0996a90af2dfb9d55c68ffd14d2bcbd9d70c2b8e4dca522a7b7",
+      "bytes": 36455
+    },
+    {
+      "path": "文档/逆向台账/contracts/iteration019-projection-audit.md",
+      "sha256": "72730efadd2003ec15f8136313112c2274ec744855e1d161a1afc5d2516cf24d",
+      "bytes": 9869
+    },
+    {
+      "path": "文档/逆向台账/contracts/iteration019-state-policy.json",
+      "sha256": "7fbc8d438542aecaad89c7f51bc5f540a64c965cf9467225ba3ec0a5140a4d3e",
+      "bytes": 53409
+    },
+    {
+      "path": "文档/逆向台账/contracts/iteration019-state-policy.md",
+      "sha256": "82c05c9e6dc0764a230f7317f328799e352d47dbaa28daef027c2365ec70dc4f",
+      "bytes": 32036
+    },
+    {
+      "path": "文档/逆向台账/contracts/iteration019-system-collab.json",
+      "sha256": "a24835c7a5e36bcfbc8c5f30c28402f7bcb771d8ddaf75616e91687d46edfe2f",
+      "bytes": 226722
+    },
+    {
+      "path": "文档/逆向台账/contracts/iteration019-system-collab.md",
+      "sha256": "100a1d60024bd9cecbad64e0e511ef834e754568698b91e00c2a519733126ae4",
+      "bytes": 26981
+    },
+    {
+      "path": "文档/逆向台账/contracts/iteration019-updater-dependencies.json",
+      "sha256": "7a400cd1c31f2b3813a83497d76ea8650a1fac4fa01694df3aaa4bba512716fe",
+      "bytes": 31005
+    },
+    {
+      "path": "文档/逆向台账/contracts/iteration019-updater-dependencies.md",
+      "sha256": "f3a847f77b39e5bcfb944b8a15ed95630ea96e805a6241bce839484b22ba4d63",
+      "bytes": 24873
+    },
+    {
+      "path": "文档/逆向台账/contracts/merge-iteration019-ledger.py",
+      "sha256": "b24715122039672dd607f1c05aef0a1f932fc17407df2c8a04fcae36e0b94d44",
+      "bytes": 5304
+    },
+    {
+      "path": "文档/逆向台账/contracts/remaining-dependencies-iteration019.json",
+      "sha256": "f2156d71721785897a505c6a56806e6cbb23cbb942a2283ff87da41ccc2b2796",
+      "bytes": 740483
+    },
+    {
+      "path": "文档/逆向台账/contracts/remaining-dependencies-iteration019.md",
+      "sha256": "1549e63e62da6d3e608b91ff72063ea94ab48dbdaab6c0dd29eebdbc22462d32",
+      "bytes": 20157
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-iteration019-draft-producers.json",
+      "sha256": "9e692e127287f30759ccd320048293f9a359e772d6e1a738a29a129ec51367e3",
+      "bytes": 4669
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-iteration019-draft-producers.md",
+      "sha256": "2ba12985f18926e42f43101cbc358728eca4584e9e987f32b136b4b3358bd78a",
+      "bytes": 433
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-iteration019-layout-helpers.json",
+      "sha256": "59a313e1969bf65c7a31cf3d6de41b0b324082bca83b1a8c0333ed44385f0e12",
+      "bytes": 4991
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-iteration019-layout-helpers.md",
+      "sha256": "315f26888efd6b267129bd57b279e66027e88acf60a51707bf681ada9603fbf6",
+      "bytes": 1769
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-iteration019-layout-manual.json",
+      "sha256": "97596cfc7dae43e72a3db74acc3b4356087eec49fb00bbf97ec4c70198d51049",
+      "bytes": 6444
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-iteration019-layout-manual.md",
+      "sha256": "df71b46f1081658990d4268385e912f4c7b01bc4725b101cba0d37723f7a2a63",
+      "bytes": 1795
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-iteration019-projection-audit.json",
+      "sha256": "ab5a19c2bdd19e048a96f2f769ece06f09a072af440361dadd630f4a1b1f9c8a",
+      "bytes": 6570
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-iteration019-projection-audit.md",
+      "sha256": "d9f3783db36d8cde5912444b3d0aa784e6d57a36eec2e00935a44c294cf49273",
+      "bytes": 1841
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-iteration019-remaining-dependencies.json",
+      "sha256": "76c373d26f539d8b51deb15dcbedc5bd58feb9210f1fa25071719631acedbb60",
+      "bytes": 23188
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-iteration019-remaining-dependencies.md",
+      "sha256": "ba4f5a15242a4d8ccafb63711ee1e78fcfa184d1503b63b6a72d9f27efb2e10d",
+      "bytes": 3578
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-iteration019-state-policy.json",
+      "sha256": "96e0084eaa6185605869ffae460d736b94cc0e3bcb5ce64a2bfd31f0f42910ac",
+      "bytes": 12948
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-iteration019-state-policy.md",
+      "sha256": "7d6a2431ac2e29518f852d31e4655464fb2c86ff521f0ac74742451e2d703478",
+      "bytes": 485
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-iteration019-system-collab.json",
+      "sha256": "f00fc118df723e073a97147cdea19a052fcdff1633d5a31d2886b39fd988bd5f",
+      "bytes": 10697
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-iteration019-system-collab.md",
+      "sha256": "bca73cd7730ed9445108e96bd2a443f01b718125e89529060e71cd89e3788b33",
+      "bytes": 2905
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-iteration019-updater-dependencies.json",
+      "sha256": "0a4172019b3b81931e75e6db8c28ad8fcf244e45f9c80201ab1142c1c412d512",
+      "bytes": 5714
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-iteration019-updater-dependencies.md",
+      "sha256": "9030611bd03ec4293db56193cc51fcd35b85dc8f51ce155c392513c1a09af59d",
+      "bytes": 429
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-ledger-iteration018-20261014.json",
+      "sha256": "b93f03ed63df01bf65fec366d989300ea8c7991d2eb218ced0b677951e73442e",
+      "bytes": 4775
+    },
+    {
+      "path": "文档/逆向台账/contracts/review-ledger-iteration018-20261014.md",
+      "sha256": "b8d50d9e5c7e82f97e804430d9031463c1b9a4bad7b7cf782a444bdcee34337e",
+      "bytes": 1913
+    }
+  ],
+  "boundaries": [
+    "Value equality verifies historical event and flow content/order; original raw JSON formatting is not asserted unchanged.",
+    "Hash agreement establishes file identity at this snapshot; it does not independently prove all research semantics or runtime equivalence.",
+    "This final review and builder are deliberately not added to the audited ledger, avoiding circular evidence."
+  ],
+  "maintenanceCheck": {
+    "command": "python3 文档/逆向台账/maintain.py --check",
+    "exitCode": 0,
+    "errors": 0,
+    "warningsAreExistingBoundaryNotes": true
+  }
+}

@@ -1,0 +1,68 @@
+import { expect, test } from "vitest";
+import { buildEntityGroups } from "../apps/web/entity-groups.tsx";
+import type { Mark } from "../packages/contracts/index.ts";
+
+function mark(start: number, end: number, extra: Partial<Mark> = {}): Mark {
+  return { start, end, kind: "姓名", decision: "pending", ...extra };
+}
+
+test("exact same values across text windows and more than 50 groups retain every occurrence", () => {
+  const marks = [mark(0, 2), ...Array.from({ length: 60 }, (_, i) => mark(100 + i * 2, 102 + i * 2)), mark(40000, 40002)];
+  const markTexts = Object.fromEntries(marks.map((item, index) => [`${item.start}:${item.end}`, index === 0 || index === marks.length - 1 ? "张三" : String(index).padStart(2, "0")]));
+  const groups = buildEntityGroups({ text: "张三", textOffset: 40000, markTexts }, marks);
+  expect(groups).toHaveLength(61);
+  expect(groups.find(group => group.value === "张三")?.indices).toEqual([0, 61]);
+  expect(groups.reduce((sum, group) => sum + group.indices.length, 0)).toBe(62);
+  expect(buildEntityGroups({ text: "张三", markTexts }, marks).map(group => group.id)).toEqual(groups.map(group => group.id));
+});
+
+test("truncated long values with the same prefix never merge or match a short exact value", () => {
+  const prefix = "甲".repeat(120);
+  const marks = [mark(0, 121), mark(200, 321), mark(400, 520), mark(600, 721)];
+  const groups = buildEntityGroups({ text: prefix + "乙", markTexts: { "200:321": prefix + "…", "400:520": prefix, "600:721": prefix } }, marks);
+  expect(groups).toHaveLength(4);
+  expect(groups.map(group => group.exact)).toEqual([false, false, true, false]);
+  expect(groups.map(group => group.indices)).toEqual([[0], [1], [2], [3]]);
+  expect(buildEntityGroups({ text: "甲".repeat(4002) }, [mark(0, 2001), mark(2001, 4002)]).every(group => !group.exact)).toBe(true);
+});
+
+test("different kinds and whitespace remain distinct while UTF-16 spans group exactly", () => {
+  const groups = buildEntityGroups({ text: "😀甲😀甲 甲 甲" }, [mark(0, 3), mark(3, 6), mark(0, 3, { kind: "自定义" }), mark(6, 8), mark(9, 10)]);
+  expect(groups).toHaveLength(4);
+  expect(groups.find(group => group.value === "😀甲" && group.kind === "姓名")?.indices).toEqual([0, 1]);
+  expect(groups.filter(group => group.value === "😀甲")).toHaveLength(2);
+  expect(groups.filter(group => group.value === " 甲" || group.value === "甲")).toHaveLength(2);
+  const cached = buildEntityGroups({ text: "", textOffset: 100, markTexts: { "0:3": "😀甲", "3:6": "😀甲" } }, [mark(0, 3), mark(3, 6)]);
+  expect(cached).toHaveLength(1);
+});
+
+test("mixed decisions and replacement policies are reported without changing marks", () => {
+  const marks = [mark(0, 1), mark(1, 2, { decision: "ignore", replacement: { mode: "type" } }), mark(2, 3, { decision: "redact", replacement: { mode: "custom", value: "客户甲" } })];
+  const original = structuredClone(marks);
+  const [group] = buildEntityGroups({ text: "甲甲甲" }, marks);
+  expect(group.counts).toEqual({ pending: 1, redact: 1, ignore: 1 });
+  expect(group.mixedDecisions).toBe(true);
+  expect(group.mixedReplacements).toBe(true);
+  expect(marks).toEqual(original);
+  expect(buildEntityGroups({ text: "甲甲" }, marks.slice(0, 2))[0].mixedReplacements).toBe(false);
+});
+
+test("missing previews and overlong fully visible values stay independent", () => {
+  const marks = [mark(40000, 40001), mark(40002, 40003)];
+  const groups = buildEntityGroups({ text: "" }, marks);
+  expect(groups).toHaveLength(2);
+  expect(groups.every(group => !group.exact)).toBe(true);
+  const long = "甲".repeat(2001);
+  expect(buildEntityGroups({ text: long + long }, [mark(0, 2001), mark(2001, 4002)])).toHaveLength(2);
+});
+
+
+test("long-value selection stays on its original position when the text window moves", () => {
+  const value = "甲".repeat(121);
+  const marks = [mark(0, 121), mark(40000, 40121)];
+  const markTexts = { "0:121": value.slice(0, 120) + "…", "40000:40121": value.slice(0, 120) + "…" };
+  const before = buildEntityGroups({ text: value, textOffset: 0, markTexts }, marks);
+  const after = buildEntityGroups({ text: value, textOffset: 40000, markTexts }, marks);
+  expect(after.map(group => group.id)).toEqual(before.map(group => group.id));
+  expect(after.find(group => group.id === before[0].id)?.indices).toEqual([0]);
+});

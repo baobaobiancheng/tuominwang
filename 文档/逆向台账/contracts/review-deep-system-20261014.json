@@ -1,0 +1,3870 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-14",
+  "reviewer": "ui_closure_b",
+  "scope": "系统53项；22个原S3候选重点人工复核，其余31项核对接口范围、依赖与明确缺口。只读静态审查。",
+  "target": {
+    "path": "文档/逆向台账/contracts/deep-system-20261014.json",
+    "sha256": "cbfb93b4155769c3de73517acaf774540e989e555b195365943e4e6fb87b6e7e"
+  },
+  "summary": {
+    "contracts": 53,
+    "originalS3Candidates": 22,
+    "acceptedS3": 0,
+    "retainedS2": 53,
+    "runtimeR0": 53,
+    "uniqueEvidenceRanges": 149,
+    "resolvedFindings": 4,
+    "openWordingFindings": 0
+  },
+  "findings": [
+    {
+      "id": "SYS-R1",
+      "priority": "P1",
+      "status": "fixed",
+      "finding": "22项仅展开接口本体至Node/Electron边界，却被列为S3候选；原定义要求完整静态链逐段闭合。22项未有renderer证据或无调用调查的显式整合。",
+      "repair": "全部改S2；handlerBoundaryReviewed单独记录本体阅读；未升级ledger。",
+      "evidence": [
+        {
+          "path": "文档/逆向台账/维护规则.md",
+          "start_line": 28,
+          "end_line": 28,
+          "slice_sha256": "40ce876c25cd577aa8fb4d339f485d35b89cb692be33a584d7e84454a3dd0c9f",
+          "file_sha256": "a4fdd91cfc8feb5f7d63956165ba3a2f4be7b0115f557d7f40d5bcdbb4424ef1"
+        }
+      ]
+    },
+    {
+      "id": "SYS-R2",
+      "priority": "P1",
+      "status": "fixed",
+      "finding": "原生成器对候选执行gaps=[]，按名单删除已有依赖缺口，不能证明缺口已解决。",
+      "repair": "取消清空；53项均保留非空静态缺口。",
+      "evidence": []
+    },
+    {
+      "id": "SYS-R3",
+      "priority": "P2",
+      "status": "fixed",
+      "finding": "task-power:state原称resume扣睡眠时长；实际suspend扣已运行时间，resume只累计睡眠并以remainingMs重新arm。",
+      "repair": "已修正文案，休眠不消耗定时器预算。",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-14/deep-processing/D9V2C_Ir.readable.js",
+          "start_line": 3,
+          "end_line": 18,
+          "slice_sha256": "eb2350de3d28baabb2067cbf8c44d999d47337e1da760f55337e809158ebb2c1",
+          "file_sha256": "a9ec44eada3b0fb4d9ef17eeed078db2d1d237fa0200325c5a9c0d42ce8fea8d"
+        }
+      ]
+    },
+    {
+      "id": "SYS-R4",
+      "priority": "P3",
+      "status": "fixed",
+      "finding": "app:get-env称移除控制字符；源码replace(control,\" \")是替换成空格后trim，再按码点截5。内部控制字符会留下空格，例a\\nb变a b。",
+      "repair": "已改为控制字符替换空格后trim并截5码点。",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26323,
+          "end_line": 26323,
+          "slice_sha256": "76c94c4e06c119ce49cea2f5624dc1595d98e07edd41e89c320331f3edb8cb0e",
+          "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba"
+        }
+      ]
+    }
+  ],
+  "verification": {
+    "scopeMatchesOriginal53": true,
+    "evidenceRangesAndHashes": true,
+    "notExecutedCompetitor": true,
+    "ledgerNotModified": true,
+    "boundary": "通过表示此报告对当前S2边界不虚增；不是所有算法、操作系统、许可证后端或用户业务全链独立完成证明。"
+  },
+  "contracts": [
+    {
+      "id": "IPC-ba48a535d0b1",
+      "channel": "auth:get-capabilities",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": false,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "auth.getCapabilities",
+        "handler": "M:18665–18671",
+        "directService": "Promise.all(wf(),Nh())→Mac helper capabilities与Fg.status"
+      },
+      "review": "已核对接口范围与组依赖；保留原S2及下列缺口，不宣称本轮独立重做整个外部/原生依赖实现。",
+      "remaining": [
+        "lawbot_auth_helper为原生二进制，其LAContext实现未逐指令分析；系统认证结果未运行。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 18665,
+          "end_line": 18671,
+          "slice_sha256": "4886c7bbd35f82f69ec2d3a2b5860183428503d31d18c80b26d658b133db9b0c",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 14788,
+          "end_line": 14845,
+          "slice_sha256": "23f8e2e243f46d71b92e2378a0373b6c0189be17efa19fa2f1641a9a8c44323d",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 15265,
+          "end_line": 15335,
+          "slice_sha256": "b1dea40a4601432a5ddb486990e7997c8232e3256785a63bd0c53ff1cca5e99f",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 19650,
+          "end_line": 19697,
+          "slice_sha256": "a67fcb53dc59f777ec8176f7b97660759b49ee482306ff0844726801feab9621",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26849,
+          "end_line": 26853,
+          "slice_sha256": "c58382dfa110d9b47f2c327f19cb58d66b2cf1550290992f6a8d73d16a053f60",
+          "note": "实际注入Fg与auth/key-hierarchy.v1.json及restore_pwd.enc路径"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 283,
+          "end_line": 283,
+          "slice_sha256": "7dc9d4d0e0fb6c9a584df747481fa822b38b92b9e3eafab7f3a5d81427d5c52b",
+          "note": "专用preload桥/事件订阅"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 15264,
+          "end_line": 15334,
+          "slice_sha256": "371cd619b9b8892863d5351d59b4f733a3aca88c8c24d1a0f0352cd87bf96844",
+          "note": "system-auth"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 18665,
+          "end_line": 18699,
+          "slice_sha256": "2b984c935a81c94dbde25ed3bc740a158ab0abb8b55e78890df7af6e7bf2567b",
+          "note": "system-auth"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 19733,
+          "end_line": 19742,
+          "slice_sha256": "6d73f0c282a4e42685aa278c035f8fe9a9b4ce44bd524448dec8bfa13d2a97cc",
+          "note": "system-auth"
+        }
+      ]
+    },
+    {
+      "id": "IPC-5634886c31f2",
+      "channel": "auth:request-system-grant",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": false,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "auth.requestSystemGrant",
+        "handler": "M:18672–18699",
+        "directService": "bf认证helper→hierarchy.status/unlockWithDeviceProtection→de/he"
+      },
+      "review": "已核对接口范围与组依赖；保留原S2及下列缺口，不宣称本轮独立重做整个外部/原生依赖实现。",
+      "remaining": [
+        "lawbot_auth_helper为原生二进制，其LAContext实现未逐指令分析；系统认证结果未运行。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 18672,
+          "end_line": 18699,
+          "slice_sha256": "287b6a911562a1e36269d6326d18dbdac21e46c32d8dae76adfa0d205bd9f903",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 29,
+          "end_line": 48,
+          "slice_sha256": "57c916abd85501e2f5c2c55f551499576b139d87c35fc6e66dcf4f67b751fa12",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 15265,
+          "end_line": 15335,
+          "slice_sha256": "b1dea40a4601432a5ddb486990e7997c8232e3256785a63bd0c53ff1cca5e99f",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 19733,
+          "end_line": 19742,
+          "slice_sha256": "6d73f0c282a4e42685aa278c035f8fe9a9b4ce44bd524448dec8bfa13d2a97cc",
+          "note": "system-auth"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26849,
+          "end_line": 26853,
+          "slice_sha256": "c58382dfa110d9b47f2c327f19cb58d66b2cf1550290992f6a8d73d16a053f60",
+          "note": "实际注入Fg与auth/key-hierarchy.v1.json及restore_pwd.enc路径"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 284,
+          "end_line": 284,
+          "slice_sha256": "ecc995b1c78c2ab1d59306b753e415bc008f9060d519a1f1de7623a99c3d7ee3",
+          "note": "专用preload桥/事件订阅"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 15264,
+          "end_line": 15334,
+          "slice_sha256": "371cd619b9b8892863d5351d59b4f733a3aca88c8c24d1a0f0352cd87bf96844",
+          "note": "system-auth"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 18665,
+          "end_line": 18699,
+          "slice_sha256": "2b984c935a81c94dbde25ed3bc740a158ab0abb8b55e78890df7af6e7bf2567b",
+          "note": "system-auth"
+        }
+      ]
+    },
+    {
+      "id": "IPC-f96c39b98bc8",
+      "channel": "auth:set-password",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": false,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "auth.setPassword",
+        "handler": "M:18700–18709",
+        "directService": "Nh→Fg.setup→km().migrateLegacy→de"
+      },
+      "review": "已核对接口范围与组依赖；保留原S2及下列缺口，不宣称本轮独立重做整个外部/原生依赖实现。",
+      "remaining": [
+        "set/verify/migrate还调用mf.migrateLegacy，完整映射存储链见格式报告；此报告不独立替代该链。",
+        "OS safeStorage/Node crypto的实际运行及磁盘故障组合未验证。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 18700,
+          "end_line": 18709,
+          "slice_sha256": "ed0e3f634c0a635ae3146f69d377fbddbf1ae770c03765d9dedb2eb0d4883366",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 14788,
+          "end_line": 14845,
+          "slice_sha256": "23f8e2e243f46d71b92e2378a0373b6c0189be17efa19fa2f1641a9a8c44323d",
+          "note": "password"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 19567,
+          "end_line": 19603,
+          "slice_sha256": "7ebbc73db89f1a4ebe5a7bcd0405022d8bf3931151a6ed3150ee2d5e8dfc8902",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 19650,
+          "end_line": 19717,
+          "slice_sha256": "cd4b5ed28c04c48e847e1fb6b63c37b5bdab0e141da4a2cff73efd616cc51481",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 29,
+          "end_line": 48,
+          "slice_sha256": "57c916abd85501e2f5c2c55f551499576b139d87c35fc6e66dcf4f67b751fa12",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26849,
+          "end_line": 26853,
+          "slice_sha256": "c58382dfa110d9b47f2c327f19cb58d66b2cf1550290992f6a8d73d16a053f60",
+          "note": "实际注入Fg与auth/key-hierarchy.v1.json及restore_pwd.enc路径"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 16623,
+          "end_line": 16626,
+          "slice_sha256": "936970368949999b3c7dd7697c81f8b02c27e2e8f828354661f32d7d81e9c6f1",
+          "note": "km映射仓库构造"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 15152,
+          "end_line": 15263,
+          "slice_sha256": "abc171f5e09233ca89bb04fc7f83edbc77a35c8d02ad9a0f30d2ff4c9eb6691d",
+          "note": "mf映射存储及migrateLegacy直接服务"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 285,
+          "end_line": 285,
+          "slice_sha256": "212b016d63391f57a9195891de1f5125ed043079b3fffebdfbe13f4d9aa598d5",
+          "note": "专用preload桥/事件订阅"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 29,
+          "end_line": 49,
+          "slice_sha256": "ea6fe9834de455633dee791e82747675bd148fc4862850e634d33a6f773ea664",
+          "note": "password"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 19567,
+          "end_line": 19887,
+          "slice_sha256": "31a252f47331342d6a839e167aba8bcf4a59bcf918abe12718e0e46f2264e7b0",
+          "note": "password"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26849,
+          "end_line": 26864,
+          "slice_sha256": "f61f2995e2b3bfc5d6cbcbffa4925d9ef1c9fc985c766635b3b7b814fa0d3c25",
+          "note": "password"
+        }
+      ]
+    },
+    {
+      "id": "IPC-5f5d0e7e7171",
+      "channel": "auth:has-password",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": false,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "auth.hasPassword",
+        "handler": "M:18710–18716",
+        "directService": "Nh→Fg.status/旧密码stat"
+      },
+      "review": "已核对接口范围与组依赖；保留原S2及下列缺口，不宣称本轮独立重做整个外部/原生依赖实现。",
+      "remaining": [
+        "set/verify/migrate还调用mf.migrateLegacy，完整映射存储链见格式报告；此报告不独立替代该链。",
+        "OS safeStorage/Node crypto的实际运行及磁盘故障组合未验证。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 18710,
+          "end_line": 18716,
+          "slice_sha256": "46e35e128d0023de660b30733a04d097c2ab88245aae8b22f3669a2367d6048a",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 14788,
+          "end_line": 14845,
+          "slice_sha256": "23f8e2e243f46d71b92e2378a0373b6c0189be17efa19fa2f1641a9a8c44323d",
+          "note": "password"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 19650,
+          "end_line": 19697,
+          "slice_sha256": "a67fcb53dc59f777ec8176f7b97660759b49ee482306ff0844726801feab9621",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26849,
+          "end_line": 26853,
+          "slice_sha256": "c58382dfa110d9b47f2c327f19cb58d66b2cf1550290992f6a8d73d16a053f60",
+          "note": "实际注入Fg与auth/key-hierarchy.v1.json及restore_pwd.enc路径"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 286,
+          "end_line": 286,
+          "slice_sha256": "71b5cbed03aa309fea703c46ed6a74eab7c5e4ed4b78ea419db7ac100d00f72f",
+          "note": "专用preload桥/事件订阅"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 29,
+          "end_line": 49,
+          "slice_sha256": "ea6fe9834de455633dee791e82747675bd148fc4862850e634d33a6f773ea664",
+          "note": "password"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 19567,
+          "end_line": 19887,
+          "slice_sha256": "31a252f47331342d6a839e167aba8bcf4a59bcf918abe12718e0e46f2264e7b0",
+          "note": "password"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26849,
+          "end_line": 26864,
+          "slice_sha256": "f61f2995e2b3bfc5d6cbcbffa4925d9ef1c9fc985c766635b3b7b814fa0d3c25",
+          "note": "password"
+        }
+      ]
+    },
+    {
+      "id": "IPC-251d99e85000",
+      "channel": "auth:verify-password",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": false,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "auth.verifyPassword",
+        "handler": "M:18717–18724",
+        "directService": "Ah→Fg.unlock或Eh旧密码比对→km.migrateLegacy→de/he"
+      },
+      "review": "已核对接口范围与组依赖；保留原S2及下列缺口，不宣称本轮独立重做整个外部/原生依赖实现。",
+      "remaining": [
+        "set/verify/migrate还调用mf.migrateLegacy，完整映射存储链见格式报告；此报告不独立替代该链。",
+        "OS safeStorage/Node crypto的实际运行及磁盘故障组合未验证。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 18717,
+          "end_line": 18724,
+          "slice_sha256": "f25840794c45db86255320005f53d5790aad371b6ca0f746f9874cfea9ac8801",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 14788,
+          "end_line": 14845,
+          "slice_sha256": "23f8e2e243f46d71b92e2378a0373b6c0189be17efa19fa2f1641a9a8c44323d",
+          "note": "password"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 19567,
+          "end_line": 19603,
+          "slice_sha256": "7ebbc73db89f1a4ebe5a7bcd0405022d8bf3931151a6ed3150ee2d5e8dfc8902",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 19718,
+          "end_line": 19732,
+          "slice_sha256": "aaebdeea840ed1a1d3c423517798acaf0612f463c1a5a6068fb29598acc54e5c",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 29,
+          "end_line": 48,
+          "slice_sha256": "57c916abd85501e2f5c2c55f551499576b139d87c35fc6e66dcf4f67b751fa12",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26849,
+          "end_line": 26853,
+          "slice_sha256": "c58382dfa110d9b47f2c327f19cb58d66b2cf1550290992f6a8d73d16a053f60",
+          "note": "实际注入Fg与auth/key-hierarchy.v1.json及restore_pwd.enc路径"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 16623,
+          "end_line": 16626,
+          "slice_sha256": "936970368949999b3c7dd7697c81f8b02c27e2e8f828354661f32d7d81e9c6f1",
+          "note": "km映射仓库构造"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 15152,
+          "end_line": 15263,
+          "slice_sha256": "abc171f5e09233ca89bb04fc7f83edbc77a35c8d02ad9a0f30d2ff4c9eb6691d",
+          "note": "mf映射存储及migrateLegacy直接服务"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 287,
+          "end_line": 287,
+          "slice_sha256": "6bca3188a001964fc4d8adc5b3ba883da930afe7d4eab746dd71d0d3ca5623d4",
+          "note": "专用preload桥/事件订阅"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 29,
+          "end_line": 49,
+          "slice_sha256": "ea6fe9834de455633dee791e82747675bd148fc4862850e634d33a6f773ea664",
+          "note": "password"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 19567,
+          "end_line": 19887,
+          "slice_sha256": "31a252f47331342d6a839e167aba8bcf4a59bcf918abe12718e0e46f2264e7b0",
+          "note": "password"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26849,
+          "end_line": 26864,
+          "slice_sha256": "f61f2995e2b3bfc5d6cbcbffa4925d9ef1c9fc985c766635b3b7b814fa0d3c25",
+          "note": "password"
+        }
+      ]
+    },
+    {
+      "id": "IPC-4567d2cc2f1d",
+      "channel": "auth:check-password",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": false,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "auth.checkPassword",
+        "handler": "M:18725–18731",
+        "directService": "Ah→Fg.unlock或Eh→de"
+      },
+      "review": "已核对接口范围与组依赖；保留原S2及下列缺口，不宣称本轮独立重做整个外部/原生依赖实现。",
+      "remaining": [
+        "set/verify/migrate还调用mf.migrateLegacy，完整映射存储链见格式报告；此报告不独立替代该链。",
+        "OS safeStorage/Node crypto的实际运行及磁盘故障组合未验证。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 18725,
+          "end_line": 18731,
+          "slice_sha256": "787263b14aca02ec23c198d926f6bb91e4fc266281332389f61b25798baf3269",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 14788,
+          "end_line": 14845,
+          "slice_sha256": "23f8e2e243f46d71b92e2378a0373b6c0189be17efa19fa2f1641a9a8c44323d",
+          "note": "password"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 19567,
+          "end_line": 19603,
+          "slice_sha256": "7ebbc73db89f1a4ebe5a7bcd0405022d8bf3931151a6ed3150ee2d5e8dfc8902",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 19718,
+          "end_line": 19732,
+          "slice_sha256": "aaebdeea840ed1a1d3c423517798acaf0612f463c1a5a6068fb29598acc54e5c",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 29,
+          "end_line": 48,
+          "slice_sha256": "57c916abd85501e2f5c2c55f551499576b139d87c35fc6e66dcf4f67b751fa12",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26849,
+          "end_line": 26853,
+          "slice_sha256": "c58382dfa110d9b47f2c327f19cb58d66b2cf1550290992f6a8d73d16a053f60",
+          "note": "实际注入Fg与auth/key-hierarchy.v1.json及restore_pwd.enc路径"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 289,
+          "end_line": 289,
+          "slice_sha256": "e786654d25a50739be157e4586a7dee323fbc7585e356110164abd1c3a89f8dc",
+          "note": "专用preload桥/事件订阅"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 29,
+          "end_line": 49,
+          "slice_sha256": "ea6fe9834de455633dee791e82747675bd148fc4862850e634d33a6f773ea664",
+          "note": "password"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 19567,
+          "end_line": 19887,
+          "slice_sha256": "31a252f47331342d6a839e167aba8bcf4a59bcf918abe12718e0e46f2264e7b0",
+          "note": "password"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26849,
+          "end_line": 26864,
+          "slice_sha256": "f61f2995e2b3bfc5d6cbcbffa4925d9ef1c9fc985c766635b3b7b814fa0d3c25",
+          "note": "password"
+        }
+      ]
+    },
+    {
+      "id": "IPC-1a2923d565e2",
+      "channel": "auth:migrate-legacy-password",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": false,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "auth.migrateLegacyPassword",
+        "handler": "M:18732–18741",
+        "directService": "Nh→Eh→vh→Fg.setup→km.migrateLegacy→de/he"
+      },
+      "review": "已核对接口范围与组依赖；保留原S2及下列缺口，不宣称本轮独立重做整个外部/原生依赖实现。",
+      "remaining": [
+        "set/verify/migrate还调用mf.migrateLegacy，完整映射存储链见格式报告；此报告不独立替代该链。",
+        "OS safeStorage/Node crypto的实际运行及磁盘故障组合未验证。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 18732,
+          "end_line": 18741,
+          "slice_sha256": "c7bb9030f7c487584813a94015a78b2eb309ce33401d6f5118f443c3d37f3fe7",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 14788,
+          "end_line": 14845,
+          "slice_sha256": "23f8e2e243f46d71b92e2378a0373b6c0189be17efa19fa2f1641a9a8c44323d",
+          "note": "password"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 19567,
+          "end_line": 19603,
+          "slice_sha256": "7ebbc73db89f1a4ebe5a7bcd0405022d8bf3931151a6ed3150ee2d5e8dfc8902",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 19698,
+          "end_line": 19717,
+          "slice_sha256": "80fc6d1da2d40507e4d4c1a87c4195814aaa5ad06fd810a6f83c52aa2f0129f5",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 29,
+          "end_line": 48,
+          "slice_sha256": "57c916abd85501e2f5c2c55f551499576b139d87c35fc6e66dcf4f67b751fa12",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26849,
+          "end_line": 26853,
+          "slice_sha256": "c58382dfa110d9b47f2c327f19cb58d66b2cf1550290992f6a8d73d16a053f60",
+          "note": "实际注入Fg与auth/key-hierarchy.v1.json及restore_pwd.enc路径"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 16623,
+          "end_line": 16626,
+          "slice_sha256": "936970368949999b3c7dd7697c81f8b02c27e2e8f828354661f32d7d81e9c6f1",
+          "note": "km映射仓库构造"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 15152,
+          "end_line": 15263,
+          "slice_sha256": "abc171f5e09233ca89bb04fc7f83edbc77a35c8d02ad9a0f30d2ff4c9eb6691d",
+          "note": "mf映射存储及migrateLegacy直接服务"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 290,
+          "end_line": 290,
+          "slice_sha256": "a3eb647a9e59e8f98f189ecfc0c92ad1271d08c0681a35e4e73c7b67e1091efe",
+          "note": "专用preload桥/事件订阅"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 29,
+          "end_line": 49,
+          "slice_sha256": "ea6fe9834de455633dee791e82747675bd148fc4862850e634d33a6f773ea664",
+          "note": "password"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 19567,
+          "end_line": 19887,
+          "slice_sha256": "31a252f47331342d6a839e167aba8bcf4a59bcf918abe12718e0e46f2264e7b0",
+          "note": "password"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26849,
+          "end_line": 26864,
+          "slice_sha256": "f61f2995e2b3bfc5d6cbcbffa4925d9ef1c9fc985c766635b3b7b814fa0d3c25",
+          "note": "password"
+        }
+      ]
+    },
+    {
+      "id": "IPC-69f3f32b9683",
+      "channel": "auth:change-password",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": false,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "auth.changePassword",
+        "handler": "M:18742–18750",
+        "directService": "Fg.changePassword→me→de"
+      },
+      "review": "已核对接口范围与组依赖；保留原S2及下列缺口，不宣称本轮独立重做整个外部/原生依赖实现。",
+      "remaining": [
+        "set/verify/migrate还调用mf.migrateLegacy，完整映射存储链见格式报告；此报告不独立替代该链。",
+        "OS safeStorage/Node crypto的实际运行及磁盘故障组合未验证。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 18742,
+          "end_line": 18750,
+          "slice_sha256": "fa73776e435bd3e446ed338d87683f9e64ca730c1dddeb109c77c70a8165a6c9",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 19567,
+          "end_line": 19603,
+          "slice_sha256": "7ebbc73db89f1a4ebe5a7bcd0405022d8bf3931151a6ed3150ee2d5e8dfc8902",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 19743,
+          "end_line": 19760,
+          "slice_sha256": "773044cd31f8225abdc3c359e734ce4acd9e13e6bbe07894c163d595604bd5c2",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 29,
+          "end_line": 48,
+          "slice_sha256": "57c916abd85501e2f5c2c55f551499576b139d87c35fc6e66dcf4f67b751fa12",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26849,
+          "end_line": 26853,
+          "slice_sha256": "c58382dfa110d9b47f2c327f19cb58d66b2cf1550290992f6a8d73d16a053f60",
+          "note": "实际注入Fg与auth/key-hierarchy.v1.json及restore_pwd.enc路径"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 291,
+          "end_line": 291,
+          "slice_sha256": "a5faa0956a2248cd6a2840032d06f6606d8222cb7d0775b3dfa28b71d7364f4c",
+          "note": "专用preload桥/事件订阅"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 29,
+          "end_line": 49,
+          "slice_sha256": "ea6fe9834de455633dee791e82747675bd148fc4862850e634d33a6f773ea664",
+          "note": "password"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 14788,
+          "end_line": 14845,
+          "slice_sha256": "23f8e2e243f46d71b92e2378a0373b6c0189be17efa19fa2f1641a9a8c44323d",
+          "note": "password"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 19567,
+          "end_line": 19887,
+          "slice_sha256": "31a252f47331342d6a839e167aba8bcf4a59bcf918abe12718e0e46f2264e7b0",
+          "note": "password"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26849,
+          "end_line": 26864,
+          "slice_sha256": "f61f2995e2b3bfc5d6cbcbffa4925d9ef1c9fc985c766635b3b7b814fa0d3c25",
+          "note": "password"
+        }
+      ]
+    },
+    {
+      "id": "IPC-9ac7b5cfa48e",
+      "channel": "auth:lock",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": true,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "auth.lock",
+        "handler": "M:18751–18751",
+        "directService": "kh→Fg.lock；me"
+      },
+      "review": "kh只清零当前CMK；me清grant/token。没有发布renderer调用（ui-closure-b）。与OS锁屏直接kh的行为不同；待把无UI入口证据、初始化及调用边界显式接入。",
+      "remaining": [
+        "set/verify/migrate还调用mf.migrateLegacy，完整映射存储链见格式报告；此报告不独立替代该链。",
+        "OS safeStorage/Node crypto的实际运行及磁盘故障组合未验证。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 18751,
+          "end_line": 18751,
+          "slice_sha256": "e6e84866c29d1fba0be36bc513c67f8b479c5f4af04a4805d00cb7ef03ce94b1",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 14843,
+          "end_line": 14845,
+          "slice_sha256": "9bea8c09d106254f1ef4ce2199a9b17f090ab340e06624b28285b861561a02e5",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 19788,
+          "end_line": 19790,
+          "slice_sha256": "e0fa8c14589e6c26d8df9ea0174de001addc4ae71de17ec0964b6065f66c8b27",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 29,
+          "end_line": 48,
+          "slice_sha256": "57c916abd85501e2f5c2c55f551499576b139d87c35fc6e66dcf4f67b751fa12",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26849,
+          "end_line": 26853,
+          "slice_sha256": "c58382dfa110d9b47f2c327f19cb58d66b2cf1550290992f6a8d73d16a053f60",
+          "note": "实际注入Fg与auth/key-hierarchy.v1.json及restore_pwd.enc路径"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 292,
+          "end_line": 292,
+          "slice_sha256": "37efd24716cc26d5838bf435f19900ba70d7ea421b64954605737523fa748db8",
+          "note": "专用preload桥/事件订阅"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 29,
+          "end_line": 49,
+          "slice_sha256": "ea6fe9834de455633dee791e82747675bd148fc4862850e634d33a6f773ea664",
+          "note": "password"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 14788,
+          "end_line": 14845,
+          "slice_sha256": "23f8e2e243f46d71b92e2378a0373b6c0189be17efa19fa2f1641a9a8c44323d",
+          "note": "password"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 19567,
+          "end_line": 19887,
+          "slice_sha256": "31a252f47331342d6a839e167aba8bcf4a59bcf918abe12718e0e46f2264e7b0",
+          "note": "password"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26849,
+          "end_line": 26864,
+          "slice_sha256": "f61f2995e2b3bfc5d6cbcbffa4925d9ef1c9fc985c766635b3b7b814fa0d3c25",
+          "note": "password"
+        }
+      ]
+    },
+    {
+      "id": "IPC-82ace6842a00",
+      "channel": "auth:restore-session-token",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": false,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "auth.restoreSessionToken",
+        "handler": "M:18751–18760",
+        "directService": "主frame检查→Nh→ue集合→he"
+      },
+      "review": "已核对接口范围与组依赖；保留原S2及下列缺口，不宣称本轮独立重做整个外部/原生依赖实现。",
+      "remaining": [
+        "set/verify/migrate还调用mf.migrateLegacy，完整映射存储链见格式报告；此报告不独立替代该链。",
+        "OS safeStorage/Node crypto的实际运行及磁盘故障组合未验证。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 18751,
+          "end_line": 18760,
+          "slice_sha256": "bac79397a296ebc4bc0ce8b05a2d21afeb405edb773b330e6b0b3e191901c15c",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 29,
+          "end_line": 48,
+          "slice_sha256": "57c916abd85501e2f5c2c55f551499576b139d87c35fc6e66dcf4f67b751fa12",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 14831,
+          "end_line": 14845,
+          "slice_sha256": "2903467ec5187400773f28d1248e6df3a51c139b2e6224b26024d1cdc4e3f089",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 19694,
+          "end_line": 19697,
+          "slice_sha256": "7e4630522a4e591197dcd3e93df446597b70613e65566466f0eca9bd3bc90619",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26849,
+          "end_line": 26853,
+          "slice_sha256": "c58382dfa110d9b47f2c327f19cb58d66b2cf1550290992f6a8d73d16a053f60",
+          "note": "实际注入Fg与auth/key-hierarchy.v1.json及restore_pwd.enc路径"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 288,
+          "end_line": 288,
+          "slice_sha256": "8026c7719ed162a16fd410e3c3b3668ed448caa93df397a25111de716d436a08",
+          "note": "专用preload桥/事件订阅"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 29,
+          "end_line": 49,
+          "slice_sha256": "ea6fe9834de455633dee791e82747675bd148fc4862850e634d33a6f773ea664",
+          "note": "password"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 14788,
+          "end_line": 14845,
+          "slice_sha256": "23f8e2e243f46d71b92e2378a0373b6c0189be17efa19fa2f1641a9a8c44323d",
+          "note": "password"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 19567,
+          "end_line": 19887,
+          "slice_sha256": "31a252f47331342d6a839e167aba8bcf4a59bcf918abe12718e0e46f2264e7b0",
+          "note": "password"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26849,
+          "end_line": 26864,
+          "slice_sha256": "f61f2995e2b3bfc5d6cbcbffa4925d9ef1c9fc985c766635b3b7b814fa0d3c25",
+          "note": "password"
+        }
+      ]
+    },
+    {
+      "id": "IPC-8f0322abb8b8",
+      "channel": "auth:create-recovery-request",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": false,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "auth.createRecoveryRequest",
+        "handler": "M:25539–25547",
+        "directService": "c2恢复pending→q_.resumeRequest/createRequest→X_.write"
+      },
+      "review": "已核对接口范围与组依赖；保留原S2及下列缺口，不宣称本轮独立重做整个外部/原生依赖实现。",
+      "remaining": [
+        "官方恢复凭证签发端不在发布包；其发放/撤销服务逻辑不可从客户端证明。",
+        "当前无许可证，未验证官方签发与合法恢复端到端。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 25539,
+          "end_line": 25547,
+          "slice_sha256": "93b5bda8f17267129d17e430d0329e679794ef552e62a7a23ac3215abb9ee706",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 25347,
+          "end_line": 25443,
+          "slice_sha256": "0db555d04cc4eb8461d6aed25632578ae42e0549cd18d1cd9bb8bdf015e783c5",
+          "note": "recovery"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 25446,
+          "end_line": 25538,
+          "slice_sha256": "c6b2d0bb84f08a7a8620f3b2e897e59897c38ce68b4d6d34069def4d5e19d30c",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 19761,
+          "end_line": 19790,
+          "slice_sha256": "ec8589f641b5f515b3aff5a74cf8f6af1a5be3d640bb0036942770c87a341145",
+          "note": "recovery"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26849,
+          "end_line": 26853,
+          "slice_sha256": "c58382dfa110d9b47f2c327f19cb58d66b2cf1550290992f6a8d73d16a053f60",
+          "note": "实际注入Fg与auth/key-hierarchy.v1.json及restore_pwd.enc路径"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 293,
+          "end_line": 293,
+          "slice_sha256": "80a8e38f5e1a46fd7828980325e3a914006a28740545749b22c68b5908d8e3bf",
+          "note": "专用preload桥/事件订阅"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 25446,
+          "end_line": 25584,
+          "slice_sha256": "f9df5fecff8ffc679f13930da775a01e2f2ad2211c52c3c0b5f09b38029b7607",
+          "note": "recovery"
+        }
+      ]
+    },
+    {
+      "id": "IPC-34a47a0ff8e1",
+      "channel": "auth:save-recovery-request",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": false,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "auth.saveRecoveryRequest",
+        "handler": "M:25548–25564",
+        "directService": "c2→q_.getActiveRequest→saveDialog→原子写→X_.write"
+      },
+      "review": "已核对接口范围与组依赖；保留原S2及下列缺口，不宣称本轮独立重做整个外部/原生依赖实现。",
+      "remaining": [
+        "官方恢复凭证签发端不在发布包；其发放/撤销服务逻辑不可从客户端证明。",
+        "当前无许可证，未验证官方签发与合法恢复端到端。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 25548,
+          "end_line": 25564,
+          "slice_sha256": "4890f9c4ee3c7435248eb41e8cbd00668da65ef7992099d830d948d4f46e7fb6",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 25347,
+          "end_line": 25443,
+          "slice_sha256": "0db555d04cc4eb8461d6aed25632578ae42e0549cd18d1cd9bb8bdf015e783c5",
+          "note": "recovery"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 25446,
+          "end_line": 25538,
+          "slice_sha256": "c6b2d0bb84f08a7a8620f3b2e897e59897c38ce68b4d6d34069def4d5e19d30c",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 19761,
+          "end_line": 19790,
+          "slice_sha256": "ec8589f641b5f515b3aff5a74cf8f6af1a5be3d640bb0036942770c87a341145",
+          "note": "recovery"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26849,
+          "end_line": 26853,
+          "slice_sha256": "c58382dfa110d9b47f2c327f19cb58d66b2cf1550290992f6a8d73d16a053f60",
+          "note": "实际注入Fg与auth/key-hierarchy.v1.json及restore_pwd.enc路径"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 294,
+          "end_line": 294,
+          "slice_sha256": "c092c617c2db90856acc89fbfe90cfa78b1bd06fdf7502bcd6a03fb4e062088e",
+          "note": "专用preload桥/事件订阅"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 25446,
+          "end_line": 25584,
+          "slice_sha256": "f9df5fecff8ffc679f13930da775a01e2f2ad2211c52c3c0b5f09b38029b7607",
+          "note": "recovery"
+        }
+      ]
+    },
+    {
+      "id": "IPC-243bf096202b",
+      "channel": "auth:cancel-recovery",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": false,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "auth.cancelRecovery",
+        "handler": "M:25565–25565",
+        "directService": "q_.cancel→X_.clear"
+      },
+      "review": "已核对接口范围与组依赖；保留原S2及下列缺口，不宣称本轮独立重做整个外部/原生依赖实现。",
+      "remaining": [
+        "官方恢复凭证签发端不在发布包；其发放/撤销服务逻辑不可从客户端证明。",
+        "当前无许可证，未验证官方签发与合法恢复端到端。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 25565,
+          "end_line": 25565,
+          "slice_sha256": "3dc02db32371c95f172f74b6f7683904e0329f62a9f8de3f55ee560473fb35f0",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 25347,
+          "end_line": 25443,
+          "slice_sha256": "0db555d04cc4eb8461d6aed25632578ae42e0549cd18d1cd9bb8bdf015e783c5",
+          "note": "recovery"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 25446,
+          "end_line": 25538,
+          "slice_sha256": "c6b2d0bb84f08a7a8620f3b2e897e59897c38ce68b4d6d34069def4d5e19d30c",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 19761,
+          "end_line": 19790,
+          "slice_sha256": "ec8589f641b5f515b3aff5a74cf8f6af1a5be3d640bb0036942770c87a341145",
+          "note": "recovery"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26849,
+          "end_line": 26853,
+          "slice_sha256": "c58382dfa110d9b47f2c327f19cb58d66b2cf1550290992f6a8d73d16a053f60",
+          "note": "实际注入Fg与auth/key-hierarchy.v1.json及restore_pwd.enc路径"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 296,
+          "end_line": 296,
+          "slice_sha256": "ad53b7ad9ea4d5963e045feeb1b14beca6718c16c71c1b30dd339624a3ce1ac9",
+          "note": "专用preload桥/事件订阅"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 25446,
+          "end_line": 25584,
+          "slice_sha256": "f9df5fecff8ffc679f13930da775a01e2f2ad2211c52c3c0b5f09b38029b7607",
+          "note": "recovery"
+        }
+      ]
+    },
+    {
+      "id": "IPC-2a09a00cba17",
+      "channel": "auth:import-recovery-file",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": false,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "auth.importRecoveryFile",
+        "handler": "M:25565–25577",
+        "directService": "c2→openDialog→stat/read/JSON→q_.prepare/verifyToken"
+      },
+      "review": "已核对接口范围与组依赖；保留原S2及下列缺口，不宣称本轮独立重做整个外部/原生依赖实现。",
+      "remaining": [
+        "官方恢复凭证签发端不在发布包；其发放/撤销服务逻辑不可从客户端证明。",
+        "当前无许可证，未验证官方签发与合法恢复端到端。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 25565,
+          "end_line": 25577,
+          "slice_sha256": "6f45df0ef58ba51dd9f0548bfe02969d470fb3c9a06d02d9a15dcce88ac8cf3b",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 25347,
+          "end_line": 25443,
+          "slice_sha256": "0db555d04cc4eb8461d6aed25632578ae42e0549cd18d1cd9bb8bdf015e783c5",
+          "note": "recovery"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 25446,
+          "end_line": 25538,
+          "slice_sha256": "c6b2d0bb84f08a7a8620f3b2e897e59897c38ce68b4d6d34069def4d5e19d30c",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 19761,
+          "end_line": 19790,
+          "slice_sha256": "ec8589f641b5f515b3aff5a74cf8f6af1a5be3d640bb0036942770c87a341145",
+          "note": "recovery"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26849,
+          "end_line": 26853,
+          "slice_sha256": "c58382dfa110d9b47f2c327f19cb58d66b2cf1550290992f6a8d73d16a053f60",
+          "note": "实际注入Fg与auth/key-hierarchy.v1.json及restore_pwd.enc路径"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 295,
+          "end_line": 295,
+          "slice_sha256": "135f3f8c0197f604f2485eb6279ff2b938bbbc5a385efa57e715cf78bc84f3d3",
+          "note": "专用preload桥/事件订阅"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 25446,
+          "end_line": 25584,
+          "slice_sha256": "f9df5fecff8ffc679f13930da775a01e2f2ad2211c52c3c0b5f09b38029b7607",
+          "note": "recovery"
+        }
+      ]
+    },
+    {
+      "id": "IPC-3484537f3350",
+      "channel": "auth:complete-recovery",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": false,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "auth.completeRecovery",
+        "handler": "M:25578–25584",
+        "directService": "q_.completePrepared→verifyToken→redeemer→Fg.recoverPasswordFromDeviceSlot→X_.clear"
+      },
+      "review": "已核对接口范围与组依赖；保留原S2及下列缺口，不宣称本轮独立重做整个外部/原生依赖实现。",
+      "remaining": [
+        "官方恢复凭证签发端不在发布包；其发放/撤销服务逻辑不可从客户端证明。",
+        "当前无许可证，未验证官方签发与合法恢复端到端。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 25578,
+          "end_line": 25584,
+          "slice_sha256": "4a46dac84f6aea302f45dd98ca84cf68b4a3fb49b3a8ea7af7d364c1f6aa071f",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 25347,
+          "end_line": 25443,
+          "slice_sha256": "0db555d04cc4eb8461d6aed25632578ae42e0549cd18d1cd9bb8bdf015e783c5",
+          "note": "recovery"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 25446,
+          "end_line": 25538,
+          "slice_sha256": "c6b2d0bb84f08a7a8620f3b2e897e59897c38ce68b4d6d34069def4d5e19d30c",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 19761,
+          "end_line": 19790,
+          "slice_sha256": "ec8589f641b5f515b3aff5a74cf8f6af1a5be3d640bb0036942770c87a341145",
+          "note": "recovery"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 25496,
+          "end_line": 25500,
+          "slice_sha256": "3852c869c3f88c968f40ca78391ee5412a8eb77c8fc35d1e70f5d01bc91b8044",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 19567,
+          "end_line": 19603,
+          "slice_sha256": "7ebbc73db89f1a4ebe5a7bcd0405022d8bf3931151a6ed3150ee2d5e8dfc8902",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26849,
+          "end_line": 26853,
+          "slice_sha256": "c58382dfa110d9b47f2c327f19cb58d66b2cf1550290992f6a8d73d16a053f60",
+          "note": "实际注入Fg与auth/key-hierarchy.v1.json及restore_pwd.enc路径"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 297,
+          "end_line": 297,
+          "slice_sha256": "42b461c992b144550f17f97d50f8acec2f6bd80563950e530716c423a1e19c91",
+          "note": "专用preload桥/事件订阅"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 25446,
+          "end_line": 25584,
+          "slice_sha256": "f9df5fecff8ffc679f13930da775a01e2f2ad2211c52c3c0b5f09b38029b7607",
+          "note": "recovery"
+        }
+      ]
+    },
+    {
+      "id": "IPC-b67938c0cb2f",
+      "channel": "app:consume-open-path",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": false,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "appRuntime.consumeOpenPath",
+        "handler": "M:27057–27061",
+        "directService": "dS一次读取清空"
+      },
+      "review": "已核对接口范围与组依赖；保留原S2及下列缺口，不宣称本轮独立重做整个外部/原生依赖实现。",
+      "remaining": [
+        "入口与renderer后续处理/生命周期完整业务链仍需逐段交叉核对；本体已读不提升S3。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 27057,
+          "end_line": 27061,
+          "slice_sha256": "56e82dc184b0ace85a3846cb03932a48b398097a06c437edb9e5e4bf4915296d",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26740,
+          "end_line": 26772,
+          "slice_sha256": "8031763279c1819581d48686e1414d3558fca9f0397fa8b404bc0e0c1b243aee",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 20,
+          "end_line": 20,
+          "slice_sha256": "2ab37d83850633a6803737554aa7101d4493786a2e9dcaa582e228786f0f4570",
+          "note": "专用preload桥/事件订阅"
+        }
+      ]
+    },
+    {
+      "id": "IPC-a11af873aa1a",
+      "channel": "app:open-path",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": false,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "appRuntime.onOpenPath; appRuntime.onOpenPath",
+        "handler": "M:26740–26772",
+        "directService": "open-file/second-instance→hS/fS→webContents.send"
+      },
+      "review": "已核对接口范围与组依赖；保留原S2及下列缺口，不宣称本轮独立重做整个外部/原生依赖实现。",
+      "remaining": [
+        "入口与renderer后续处理/生命周期完整业务链仍需逐段交叉核对；本体已读不提升S3。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26740,
+          "end_line": 26772,
+          "slice_sha256": "8031763279c1819581d48686e1414d3558fca9f0397fa8b404bc0e0c1b243aee",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 27057,
+          "end_line": 27061,
+          "slice_sha256": "56e82dc184b0ace85a3846cb03932a48b398097a06c437edb9e5e4bf4915296d",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 23,
+          "end_line": 23,
+          "slice_sha256": "cebc92c8abc758152f6670685bcb3f08fda03acf062f296f0f0836dac0dc855e",
+          "note": "专用preload桥/事件订阅"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 24,
+          "end_line": 24,
+          "slice_sha256": "ffb03badb8deeb88c78643bf59385ea3fa9f6ec85721c0abd8a3e2af47f4b313",
+          "note": "专用preload桥/事件订阅"
+        }
+      ]
+    },
+    {
+      "id": "IPC-28d93302bd32",
+      "channel": "app:write-clipboard-text",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": true,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "clipboard.writeText",
+        "handler": "M:26773–26781",
+        "directService": "electron.clipboard.writeText/readText"
+      },
+      "review": "本体长度校验、写后读、异常已读；UI复制分支及失败呈现未并入此报告。",
+      "remaining": [
+        "入口与renderer后续处理/生命周期完整业务链仍需逐段交叉核对；本体已读不提升S3。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26773,
+          "end_line": 26781,
+          "slice_sha256": "1fa033a3c34968678ac39c815b80b0e1569c2c7d1e26552180a0ac4f6c72e826",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 16,
+          "end_line": 16,
+          "slice_sha256": "42fa184be9fc104ad0ec906678407a2be40d080fcfbd1f54130ced8b23064731",
+          "note": "专用preload桥/事件订阅"
+        }
+      ]
+    },
+    {
+      "id": "IPC-a26e3c125cb6",
+      "channel": "app:get-env",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": true,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "getEnv",
+        "handler": "M:27071–27071",
+        "directService": "app.isPackaged/process.versions/GI"
+      },
+      "review": "固定版本/环境/开发标题本体已读；标题控制字符实际替换空格，UI消费未并入。",
+      "remaining": [
+        "入口与renderer后续处理/生命周期完整业务链仍需逐段交叉核对；本体已读不提升S3。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 27071,
+          "end_line": 27071,
+          "slice_sha256": "aa7ded630b980474ebae1bb3b09c31c47bda8107b110dfec890f30e32fdd4432",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26323,
+          "end_line": 26329,
+          "slice_sha256": "ab4f258ba44c4321ee71f147f52a159793c76a137c5d4980beb047b742053a13",
+          "note": "开发标题来源"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 13,
+          "end_line": 13,
+          "slice_sha256": "477596a34ce26505203f1329680ea45eff3a44319b826f5acf43a31b5aca9f9f",
+          "note": "专用preload桥/事件订阅"
+        }
+      ]
+    },
+    {
+      "id": "IPC-611ab311c5f6",
+      "channel": "app:get-version",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": true,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "没有专用preload方法；通用window.ipc.invoke / window.electron.ipcRenderer.invoke转发（P307–315），并不等于UI已定位",
+        "handler": "M:27101–27107",
+        "directService": "fs.readFile package.json→JSON.parse"
+      },
+      "review": "本体read/JSON/缺version/失败已读；generic invoke入口调查未并入。",
+      "remaining": [
+        "入口与renderer后续处理/生命周期完整业务链仍需逐段交叉核对；本体已读不提升S3。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 27101,
+          "end_line": 27107,
+          "slice_sha256": "5a762341ce05e1075cd1fd5fb63a71492101e65276920ad9e702a32244a4e58d",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        }
+      ]
+    },
+    {
+      "id": "IPC-5d7065a40d45",
+      "channel": "app:read-legal-doc",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": true,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "readLegalDoc",
+        "handler": "M:27071–27085",
+        "directService": "白名单→候选路径access→readFile"
+      },
+      "review": "白名单、候选路径顺序、access/read分支已读；文档弹窗加载/失败/渲染依赖未并入。",
+      "remaining": [
+        "入口与renderer后续处理/生命周期完整业务链仍需逐段交叉核对；本体已读不提升S3。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 27071,
+          "end_line": 27085,
+          "slice_sha256": "0d0fb0327d717b2896dac56be7a120c0cfc6d0fb302d5f7b72360e38002bb585",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 68,
+          "end_line": 68,
+          "slice_sha256": "729e5f39f267b350a1763913c8a2c006644f73d6ca51ec7694533135aa08e7b1",
+          "note": "专用preload桥/事件订阅"
+        }
+      ]
+    },
+    {
+      "id": "IPC-65f32fe31f76",
+      "channel": "app:read-onboarding-sample",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": true,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "readOnboardingSample",
+        "handler": "M:27086–27098",
+        "directService": "固定样例候选路径→readFile→Uint8Array"
+      },
+      "review": "固定样例的候选读取与失败已读；后续File构建、导入/识别链不在本体。",
+      "remaining": [
+        "入口与renderer后续处理/生命周期完整业务链仍需逐段交叉核对；本体已读不提升S3。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 27086,
+          "end_line": 27098,
+          "slice_sha256": "ea0dce1d627e1765379fb13d68abf90a4c817bbf33c38e7e8521435465780f2b",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 69,
+          "end_line": 69,
+          "slice_sha256": "cbb0a9b7032d7e26f426c6dea521937fd86f65f006aa0cf54d0b9d9a00679362",
+          "note": "专用preload桥/事件订阅"
+        }
+      ]
+    },
+    {
+      "id": "IPC-499bd8d4596b",
+      "channel": "app:open-external",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": true,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "openExternal",
+        "handler": "M:27099–27100",
+        "directService": "ipcMain.on→shell.openExternal"
+      },
+      "review": "send/on无业务响应，truthy直接调用shell；UI合法链接构建/错误呈现未并入；Promise拒绝未捕获。",
+      "remaining": [
+        "入口与renderer后续处理/生命周期完整业务链仍需逐段交叉核对；本体已读不提升S3。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 27099,
+          "end_line": 27100,
+          "slice_sha256": "862c5dabdc850e0f7dcda4a1a0ed3b1261de13d707587159d66371f0e3ccddf3",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 14,
+          "end_line": 14,
+          "slice_sha256": "2a2c36936281ca3cface68c9df45c34e120a014e47e590298331d4fcea9cc818",
+          "note": "专用preload桥/事件订阅"
+        }
+      ]
+    },
+    {
+      "id": "IPC-7f4cfe68e159",
+      "channel": "app:export-crash-log",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": true,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "docxSafeMode.exportCrashLog",
+        "handler": "M:27023–27031",
+        "directService": "exists→showSaveDialog→copyFileSync"
+      },
+      "review": "缺失/取消/copy失败四分支已读；上游日志生产与错误弹窗结果处理未并入。",
+      "remaining": [
+        "入口与renderer后续处理/生命周期完整业务链仍需逐段交叉核对；本体已读不提升S3。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 27023,
+          "end_line": 27031,
+          "slice_sha256": "5ea62e09fb84c0f99a283acb310b1c9e3ce50574efa76f9937345ed4283e8a58",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 232,
+          "end_line": 232,
+          "slice_sha256": "a3c14cbbd3c81e719ed5b12bf66b2fbb910b4c0d0fe8e6ef386d875eeaec5f26",
+          "note": "专用preload桥/事件订阅"
+        }
+      ]
+    },
+    {
+      "id": "IPC-f5725b5e0d8a",
+      "channel": "app:get-docx-safe-mode",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": true,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "docxSafeMode.get",
+        "handler": "M:27032–27041",
+        "directService": "exists/readFileSync .docx-preview-crash"
+      },
+      "review": "标志读取失败返回false已读；preview消费该状态与回退流程未闭合。",
+      "remaining": [
+        "入口与renderer后续处理/生命周期完整业务链仍需逐段交叉核对；本体已读不提升S3。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 27032,
+          "end_line": 27041,
+          "slice_sha256": "de7374f995165008dec3d046f8f4467ac482f18036b4f7632d44479149507965",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 226,
+          "end_line": 226,
+          "slice_sha256": "bc8237a95188d6f1434baa9eafe58fc34c59c7e6270a2fec9ba97d7cbba92d30",
+          "note": "专用preload桥/事件订阅"
+        }
+      ]
+    },
+    {
+      "id": "IPC-2e9ce1df9fec",
+      "channel": "app:reset-docx-safe-mode",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": true,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "docxSafeMode.reset",
+        "handler": "M:27042–27048",
+        "directService": "exists→unlinkSync .docx-preview-crash"
+      },
+      "review": "unlink失败返回ok:false已读；UI重试渲染与标志重新创建链未闭合。",
+      "remaining": [
+        "入口与renderer后续处理/生命周期完整业务链仍需逐段交叉核对；本体已读不提升S3。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 27042,
+          "end_line": 27048,
+          "slice_sha256": "7a22aaa0a22104cc5eee485d945118abb0e4d650df3e952e3df3059701e58c59",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 228,
+          "end_line": 228,
+          "slice_sha256": "d529a557398dc1672a0d28661d7eaf0143f8ff14cd0faa1dc61fa3567636c9d7",
+          "note": "专用preload桥/事件订阅"
+        }
+      ]
+    },
+    {
+      "id": "IPC-e25810712ab1",
+      "channel": "app:set-docx-safe-mode",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": true,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "docxSafeMode.set",
+        "handler": "M:27049–27056",
+        "directService": "writeFileSync .docx-preview-crash"
+      },
+      "review": "reason JSON直接写、失败留部分文件风险已读；native crash和JS失败标志生产/渲染回退未闭合。",
+      "remaining": [
+        "入口与renderer后续处理/生命周期完整业务链仍需逐段交叉核对；本体已读不提升S3。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 27049,
+          "end_line": 27056,
+          "slice_sha256": "4cfbe847dfcaac41e77621ef7b87a4fcc704a863e6d392e9d1680276d309cc8a",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 230,
+          "end_line": 230,
+          "slice_sha256": "04849dee0fd500642a26bd48959a2136948592e343e37bc1ab35d19b53ca4813",
+          "note": "专用preload桥/事件订阅"
+        }
+      ]
+    },
+    {
+      "id": "IPC-a70191351664",
+      "channel": "license:get-machine-id",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": false,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "没有专用preload方法；通用window.ipc.invoke / window.electron.ipcRenderer.invoke转发（P307–315），并不等于UI已定位",
+        "handler": "M:26932–26937",
+        "directService": "nd.getStatus→getMachineIdCached/Ku"
+      },
+      "review": "已核对接口范围与组依赖；保留原S2及下列缺口，不宣称本轮独立重做整个外部/原生依赖实现。",
+      "remaining": [
+        "Windows WMI/PowerShell等辅助路径尚未逐段纳入本轮；Mac机器标识边界已阅读。",
+        "许可证签发私有服务未提供，激活成功链无运行证据；不修改或绕过验签。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26932,
+          "end_line": 26937,
+          "slice_sha256": "1e2577b520f4cd8959768def7d21d8ba9c2148790efc4211227f44b0e5521a47",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13793,
+          "end_line": 13870,
+          "slice_sha256": "a443bcd02bab2d9463a15a64e2f680920b04086a6ea37d9164f8ed658b21183a",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13867,
+          "end_line": 13928,
+          "slice_sha256": "856a918077d7927bfefcb776efce25bfde8e35bc726442c298dcc5ddf2b5a79c",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13929,
+          "end_line": 13984,
+          "slice_sha256": "11441dd6d604bf458a9d3732b007e73857318f9ddee1c0777c9f0b3f21e9516a",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13670,
+          "end_line": 13695,
+          "slice_sha256": "d467646b0f95f96824e938d0a0943c094da89fa12fd970c3e0ef80a9824d0e78",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 18924,
+          "end_line": 18926,
+          "slice_sha256": "401e9f9f4b42156d7bab5d1cefb02e1377af494a7e7767c20608d45aa74b49fb",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13591,
+          "end_line": 13669,
+          "slice_sha256": "abd4569bc743865af592926640b382c7eae1ba4d29adca4567d47ce28caa36f1",
+          "note": "Ku设备指纹读取/探测/缓存直接服务"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13696,
+          "end_line": 13791,
+          "slice_sha256": "70d7ec1b480eb0cbf1678fc4b58fdc535d93d21b6446d123f1ba336e5350800c",
+          "note": "最大版本与时钟记录服务；未复制撤销名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13591,
+          "end_line": 13668,
+          "slice_sha256": "af8d91b4b19c725b0c1ce46dfd16160d345ae446f675ae06fc68e32b754ec42c",
+          "note": "license"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13672,
+          "end_line": 13791,
+          "slice_sha256": "1dd4006764e4d925e1b2191871970c976ab8249b7eafc401df6807095a31382d",
+          "note": "license"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13793,
+          "end_line": 13984,
+          "slice_sha256": "81adf0e98ac94e95979b8d00e4060a2b6a9a995c82f337bd7b56018237cf657c",
+          "note": "license"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26932,
+          "end_line": 26965,
+          "slice_sha256": "3be8985826ebde8c9497dc809c44ca9ea6bb18017e36f437defd091d35687fc6",
+          "note": "license"
+        }
+      ]
+    },
+    {
+      "id": "IPC-0dcec6bac9d5",
+      "channel": "license:get-status",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": false,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "没有专用preload方法；通用window.ipc.invoke / window.electron.ipcRenderer.invoke转发（P307–315），并不等于UI已定位",
+        "handler": "M:26938–26944",
+        "directService": "nd.getStatus→validateLicense"
+      },
+      "review": "已核对接口范围与组依赖；保留原S2及下列缺口，不宣称本轮独立重做整个外部/原生依赖实现。",
+      "remaining": [
+        "Windows WMI/PowerShell等辅助路径尚未逐段纳入本轮；Mac机器标识边界已阅读。",
+        "许可证签发私有服务未提供，激活成功链无运行证据；不修改或绕过验签。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26938,
+          "end_line": 26944,
+          "slice_sha256": "71698b23867604c9b4b8460abacb3112257a5cfd73a6a44f0b541d9dadc9850d",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13793,
+          "end_line": 13870,
+          "slice_sha256": "a443bcd02bab2d9463a15a64e2f680920b04086a6ea37d9164f8ed658b21183a",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13867,
+          "end_line": 13928,
+          "slice_sha256": "856a918077d7927bfefcb776efce25bfde8e35bc726442c298dcc5ddf2b5a79c",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13929,
+          "end_line": 13984,
+          "slice_sha256": "11441dd6d604bf458a9d3732b007e73857318f9ddee1c0777c9f0b3f21e9516a",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13670,
+          "end_line": 13695,
+          "slice_sha256": "d467646b0f95f96824e938d0a0943c094da89fa12fd970c3e0ef80a9824d0e78",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 18924,
+          "end_line": 18926,
+          "slice_sha256": "401e9f9f4b42156d7bab5d1cefb02e1377af494a7e7767c20608d45aa74b49fb",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13591,
+          "end_line": 13669,
+          "slice_sha256": "abd4569bc743865af592926640b382c7eae1ba4d29adca4567d47ce28caa36f1",
+          "note": "Ku设备指纹读取/探测/缓存直接服务"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13696,
+          "end_line": 13791,
+          "slice_sha256": "70d7ec1b480eb0cbf1678fc4b58fdc535d93d21b6446d123f1ba336e5350800c",
+          "note": "最大版本与时钟记录服务；未复制撤销名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13591,
+          "end_line": 13668,
+          "slice_sha256": "af8d91b4b19c725b0c1ce46dfd16160d345ae446f675ae06fc68e32b754ec42c",
+          "note": "license"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13672,
+          "end_line": 13791,
+          "slice_sha256": "1dd4006764e4d925e1b2191871970c976ab8249b7eafc401df6807095a31382d",
+          "note": "license"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13793,
+          "end_line": 13984,
+          "slice_sha256": "81adf0e98ac94e95979b8d00e4060a2b6a9a995c82f337bd7b56018237cf657c",
+          "note": "license"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26932,
+          "end_line": 26965,
+          "slice_sha256": "3be8985826ebde8c9497dc809c44ca9ea6bb18017e36f437defd091d35687fc6",
+          "note": "license"
+        }
+      ]
+    },
+    {
+      "id": "IPC-d79e3892b954",
+      "channel": "license:activate",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": false,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "没有专用preload方法；通用window.ipc.invoke / window.electron.ipcRenderer.invoke转发（P307–315），并不等于UI已定位",
+        "handler": "M:26945–26952",
+        "directService": "nd.activate→Gu签名解码→设备/撤销/版本/期限→write license.dat"
+      },
+      "review": "已核对接口范围与组依赖；保留原S2及下列缺口，不宣称本轮独立重做整个外部/原生依赖实现。",
+      "remaining": [
+        "Windows WMI/PowerShell等辅助路径尚未逐段纳入本轮；Mac机器标识边界已阅读。",
+        "许可证签发私有服务未提供，激活成功链无运行证据；不修改或绕过验签。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26945,
+          "end_line": 26952,
+          "slice_sha256": "8874453a46955c635f006c74715b343d89979e7406f8d37ab2280268ff9dc5f5",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13793,
+          "end_line": 13870,
+          "slice_sha256": "a443bcd02bab2d9463a15a64e2f680920b04086a6ea37d9164f8ed658b21183a",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13867,
+          "end_line": 13928,
+          "slice_sha256": "856a918077d7927bfefcb776efce25bfde8e35bc726442c298dcc5ddf2b5a79c",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13929,
+          "end_line": 13984,
+          "slice_sha256": "11441dd6d604bf458a9d3732b007e73857318f9ddee1c0777c9f0b3f21e9516a",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13670,
+          "end_line": 13695,
+          "slice_sha256": "d467646b0f95f96824e938d0a0943c094da89fa12fd970c3e0ef80a9824d0e78",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 18924,
+          "end_line": 18926,
+          "slice_sha256": "401e9f9f4b42156d7bab5d1cefb02e1377af494a7e7767c20608d45aa74b49fb",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13591,
+          "end_line": 13669,
+          "slice_sha256": "abd4569bc743865af592926640b382c7eae1ba4d29adca4567d47ce28caa36f1",
+          "note": "Ku设备指纹读取/探测/缓存直接服务"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13696,
+          "end_line": 13791,
+          "slice_sha256": "70d7ec1b480eb0cbf1678fc4b58fdc535d93d21b6446d123f1ba336e5350800c",
+          "note": "最大版本与时钟记录服务；未复制撤销名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13591,
+          "end_line": 13668,
+          "slice_sha256": "af8d91b4b19c725b0c1ce46dfd16160d345ae446f675ae06fc68e32b754ec42c",
+          "note": "license"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13672,
+          "end_line": 13791,
+          "slice_sha256": "1dd4006764e4d925e1b2191871970c976ab8249b7eafc401df6807095a31382d",
+          "note": "license"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13793,
+          "end_line": 13984,
+          "slice_sha256": "81adf0e98ac94e95979b8d00e4060a2b6a9a995c82f337bd7b56018237cf657c",
+          "note": "license"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26932,
+          "end_line": 26965,
+          "slice_sha256": "3be8985826ebde8c9497dc809c44ca9ea6bb18017e36f437defd091d35687fc6",
+          "note": "license"
+        }
+      ]
+    },
+    {
+      "id": "IPC-527f74c7a029",
+      "channel": "license:refresh",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": false,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "没有专用preload方法；通用window.ipc.invoke / window.electron.ipcRenderer.invoke转发（P307–315），并不等于UI已定位",
+        "handler": "M:26953–26959",
+        "directService": "nd.refresh→cachedStatus=null→getStatus"
+      },
+      "review": "已核对接口范围与组依赖；保留原S2及下列缺口，不宣称本轮独立重做整个外部/原生依赖实现。",
+      "remaining": [
+        "Windows WMI/PowerShell等辅助路径尚未逐段纳入本轮；Mac机器标识边界已阅读。",
+        "许可证签发私有服务未提供，激活成功链无运行证据；不修改或绕过验签。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26953,
+          "end_line": 26959,
+          "slice_sha256": "13f66b2b6aadff605466a7079b4cae094f5b1606abaf01867b130bc19e64d55e",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13793,
+          "end_line": 13870,
+          "slice_sha256": "a443bcd02bab2d9463a15a64e2f680920b04086a6ea37d9164f8ed658b21183a",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13867,
+          "end_line": 13928,
+          "slice_sha256": "856a918077d7927bfefcb776efce25bfde8e35bc726442c298dcc5ddf2b5a79c",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13929,
+          "end_line": 13984,
+          "slice_sha256": "11441dd6d604bf458a9d3732b007e73857318f9ddee1c0777c9f0b3f21e9516a",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13670,
+          "end_line": 13695,
+          "slice_sha256": "d467646b0f95f96824e938d0a0943c094da89fa12fd970c3e0ef80a9824d0e78",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 18924,
+          "end_line": 18926,
+          "slice_sha256": "401e9f9f4b42156d7bab5d1cefb02e1377af494a7e7767c20608d45aa74b49fb",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13591,
+          "end_line": 13669,
+          "slice_sha256": "abd4569bc743865af592926640b382c7eae1ba4d29adca4567d47ce28caa36f1",
+          "note": "Ku设备指纹读取/探测/缓存直接服务"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13696,
+          "end_line": 13791,
+          "slice_sha256": "70d7ec1b480eb0cbf1678fc4b58fdc535d93d21b6446d123f1ba336e5350800c",
+          "note": "最大版本与时钟记录服务；未复制撤销名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13591,
+          "end_line": 13668,
+          "slice_sha256": "af8d91b4b19c725b0c1ce46dfd16160d345ae446f675ae06fc68e32b754ec42c",
+          "note": "license"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13672,
+          "end_line": 13791,
+          "slice_sha256": "1dd4006764e4d925e1b2191871970c976ab8249b7eafc401df6807095a31382d",
+          "note": "license"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13793,
+          "end_line": 13984,
+          "slice_sha256": "81adf0e98ac94e95979b8d00e4060a2b6a9a995c82f337bd7b56018237cf657c",
+          "note": "license"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26932,
+          "end_line": 26965,
+          "slice_sha256": "3be8985826ebde8c9497dc809c44ca9ea6bb18017e36f437defd091d35687fc6",
+          "note": "license"
+        }
+      ]
+    },
+    {
+      "id": "IPC-765d8b00f827",
+      "channel": "license:get-summary",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": false,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "没有专用preload方法；通用window.ipc.invoke / window.electron.ipcRenderer.invoke转发（P307–315），并不等于UI已定位",
+        "handler": "M:26960–26965",
+        "directService": "nd.getSummary→getStatus"
+      },
+      "review": "已核对接口范围与组依赖；保留原S2及下列缺口，不宣称本轮独立重做整个外部/原生依赖实现。",
+      "remaining": [
+        "Windows WMI/PowerShell等辅助路径尚未逐段纳入本轮；Mac机器标识边界已阅读。",
+        "许可证签发私有服务未提供，激活成功链无运行证据；不修改或绕过验签。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26960,
+          "end_line": 26965,
+          "slice_sha256": "a392df969fb703fa799071b333776e7b681ea62bd3321ddc4be11a4919fc71dd",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13793,
+          "end_line": 13870,
+          "slice_sha256": "a443bcd02bab2d9463a15a64e2f680920b04086a6ea37d9164f8ed658b21183a",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13867,
+          "end_line": 13928,
+          "slice_sha256": "856a918077d7927bfefcb776efce25bfde8e35bc726442c298dcc5ddf2b5a79c",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13929,
+          "end_line": 13984,
+          "slice_sha256": "11441dd6d604bf458a9d3732b007e73857318f9ddee1c0777c9f0b3f21e9516a",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13670,
+          "end_line": 13695,
+          "slice_sha256": "d467646b0f95f96824e938d0a0943c094da89fa12fd970c3e0ef80a9824d0e78",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 18924,
+          "end_line": 18926,
+          "slice_sha256": "401e9f9f4b42156d7bab5d1cefb02e1377af494a7e7767c20608d45aa74b49fb",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13591,
+          "end_line": 13669,
+          "slice_sha256": "abd4569bc743865af592926640b382c7eae1ba4d29adca4567d47ce28caa36f1",
+          "note": "Ku设备指纹读取/探测/缓存直接服务"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13696,
+          "end_line": 13791,
+          "slice_sha256": "70d7ec1b480eb0cbf1678fc4b58fdc535d93d21b6446d123f1ba336e5350800c",
+          "note": "最大版本与时钟记录服务；未复制撤销名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13591,
+          "end_line": 13668,
+          "slice_sha256": "af8d91b4b19c725b0c1ce46dfd16160d345ae446f675ae06fc68e32b754ec42c",
+          "note": "license"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13672,
+          "end_line": 13791,
+          "slice_sha256": "1dd4006764e4d925e1b2191871970c976ab8249b7eafc401df6807095a31382d",
+          "note": "license"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13793,
+          "end_line": 13984,
+          "slice_sha256": "81adf0e98ac94e95979b8d00e4060a2b6a9a995c82f337bd7b56018237cf657c",
+          "note": "license"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26932,
+          "end_line": 26965,
+          "slice_sha256": "3be8985826ebde8c9497dc809c44ca9ea6bb18017e36f437defd091d35687fc6",
+          "note": "license"
+        }
+      ]
+    },
+    {
+      "id": "IPC-e436786bb1f7",
+      "channel": "window:minimize",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": true,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "没有专用preload方法；通用window.ipc.invoke / window.electron.ipcRenderer.invoke转发（P307–315），并不等于UI已定位",
+        "handler": "M:26428–26430",
+        "directService": "BrowserWindow.fromWebContents→minimize"
+      },
+      "review": "fromWebContents与minimize调用已读；无窗口false、异常透传；UI窗口控制引用调查未并入。",
+      "remaining": [
+        "入口与renderer后续处理/生命周期完整业务链仍需逐段交叉核对；本体已读不提升S3。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26428,
+          "end_line": 26430,
+          "slice_sha256": "2927c857d350e4979cbffacae7fc0c1853362139cca8a4ba1d624d459d906bcc",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26441,
+          "end_line": 26466,
+          "slice_sha256": "f13daa7a140b5cd29b9e445a4a17f969d3e13e3696c92f08c53a32627b13e4e7",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 25783,
+          "end_line": 25802,
+          "slice_sha256": "3aac2ecb1e9cf59cca6fce8df694f30554637c936f692785525b72865811a7e2",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        }
+      ]
+    },
+    {
+      "id": "IPC-b148b8418b82",
+      "channel": "window:toggle-maximize",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": true,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "没有专用preload方法；通用window.ipc.invoke / window.electron.ipcRenderer.invoke转发（P307–315），并不等于UI已定位",
+        "handler": "M:26431–26433",
+        "directService": "fromWebContents→isMaximized→unmaximize/maximize"
+      },
+      "review": "最大化状态分支与API调用已读；调用true不证明状态变化，UI刷新未并入。",
+      "remaining": [
+        "入口与renderer后续处理/生命周期完整业务链仍需逐段交叉核对；本体已读不提升S3。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26431,
+          "end_line": 26433,
+          "slice_sha256": "c2d1099b40efcb7a2fe07292ce88ac978b6ef4e550b44ec1a971a1274ca98312",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26441,
+          "end_line": 26466,
+          "slice_sha256": "f13daa7a140b5cd29b9e445a4a17f969d3e13e3696c92f08c53a32627b13e4e7",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 25783,
+          "end_line": 25802,
+          "slice_sha256": "3aac2ecb1e9cf59cca6fce8df694f30554637c936f692785525b72865811a7e2",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        }
+      ]
+    },
+    {
+      "id": "IPC-ed495037f8dc",
+      "channel": "window:is-maximized",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": true,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "没有专用preload方法；通用window.ipc.invoke / window.electron.ipcRenderer.invoke转发（P307–315），并不等于UI已定位",
+        "handler": "M:26434–26436",
+        "directService": "fromWebContents→isMaximized"
+      },
+      "review": "getter无窗口false已读；状态消费与resize事件关联未并入。",
+      "remaining": [
+        "入口与renderer后续处理/生命周期完整业务链仍需逐段交叉核对；本体已读不提升S3。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26434,
+          "end_line": 26436,
+          "slice_sha256": "171272e39cb152996071c8e14f500644774598307b0d8a3609c3990d37e24b55",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26441,
+          "end_line": 26466,
+          "slice_sha256": "f13daa7a140b5cd29b9e445a4a17f969d3e13e3696c92f08c53a32627b13e4e7",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 25783,
+          "end_line": 25802,
+          "slice_sha256": "3aac2ecb1e9cf59cca6fce8df694f30554637c936f692785525b72865811a7e2",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        }
+      ]
+    },
+    {
+      "id": "IPC-3a73e0100026",
+      "channel": "window:close",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": false,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "没有专用preload方法；通用window.ipc.invoke / window.electron.ipcRenderer.invoke转发（P307–315），并不等于UI已定位",
+        "handler": "M:26437–26440",
+        "directService": "fromWebContents→close→hI.onCloseAttempt"
+      },
+      "review": "已核对接口范围与组依赖；保留原S2及下列缺口，不宣称本轮独立重做整个外部/原生依赖实现。",
+      "remaining": [
+        "关闭前renderer保存/工作区恢复及Vp处理任务取消全链由处理/格式报告覆盖，不能仅以hI状态机声明整个退出流程完成。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26437,
+          "end_line": 26440,
+          "slice_sha256": "28c8f85b458e2ffb57bd35f77fcc909f8fd3a8c97c3f5f4dbd1f341a68753cd5",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26441,
+          "end_line": 26466,
+          "slice_sha256": "f13daa7a140b5cd29b9e445a4a17f969d3e13e3696c92f08c53a32627b13e4e7",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 25783,
+          "end_line": 25802,
+          "slice_sha256": "3aac2ecb1e9cf59cca6fce8df694f30554637c936f692785525b72865811a7e2",
+          "note": "window-close"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26428,
+          "end_line": 26466,
+          "slice_sha256": "acb325ffe8f8cf563bd304e7b4b43ee7d8c851ace8915cf604e407175aae90d6",
+          "note": "window-close"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26702,
+          "end_line": 26714,
+          "slice_sha256": "d3098dbbddbe1414e52c413ca51f7a0b79a4b2aea571dd957e959b4154f0e3c5",
+          "note": "window-close"
+        }
+      ]
+    },
+    {
+      "id": "IPC-ce03744a77ef",
+      "channel": "window:before-close",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": false,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "windowLifecycle.onBeforeClose; windowLifecycle.onBeforeClose",
+        "handler": "M:26449–26466",
+        "directService": "close event→hI.onCloseAttempt→send"
+      },
+      "review": "已核对接口范围与组依赖；保留原S2及下列缺口，不宣称本轮独立重做整个外部/原生依赖实现。",
+      "remaining": [
+        "关闭前renderer保存/工作区恢复及Vp处理任务取消全链由处理/格式报告覆盖，不能仅以hI状态机声明整个退出流程完成。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26449,
+          "end_line": 26466,
+          "slice_sha256": "4b04b9f7121fd495bc003002cc03bedd59dbfde4d04511e0a0f25301782e6fa0",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 25783,
+          "end_line": 25802,
+          "slice_sha256": "3aac2ecb1e9cf59cca6fce8df694f30554637c936f692785525b72865811a7e2",
+          "note": "window-close"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26702,
+          "end_line": 26714,
+          "slice_sha256": "d3098dbbddbe1414e52c413ca51f7a0b79a4b2aea571dd957e959b4154f0e3c5",
+          "note": "window-close"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 116,
+          "end_line": 116,
+          "slice_sha256": "bee30e66f20dcd62ca682d49b9a6e0b4d3c7e426bd08eabef2bf2b1e8e537ed0",
+          "note": "专用preload桥/事件订阅"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 117,
+          "end_line": 117,
+          "slice_sha256": "61e35ef3868d85476e015ca4baef0f291f7d8ba1a5b3779b543c1bbcab6a237a",
+          "note": "专用preload桥/事件订阅"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26428,
+          "end_line": 26466,
+          "slice_sha256": "acb325ffe8f8cf563bd304e7b4b43ee7d8c851ace8915cf604e407175aae90d6",
+          "note": "window-close"
+        }
+      ]
+    },
+    {
+      "id": "IPC-1e94f610b0e1",
+      "channel": "window:resolve-close",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": false,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "windowLifecycle.resolveClose",
+        "handler": "M:26702–26714",
+        "directService": "fromWebContents→sS.get→hI.resolve→markSessionClean→close"
+      },
+      "review": "已核对接口范围与组依赖；保留原S2及下列缺口，不宣称本轮独立重做整个外部/原生依赖实现。",
+      "remaining": [
+        "关闭前renderer保存/工作区恢复及Vp处理任务取消全链由处理/格式报告覆盖，不能仅以hI状态机声明整个退出流程完成。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26702,
+          "end_line": 26714,
+          "slice_sha256": "d3098dbbddbe1414e52c413ca51f7a0b79a4b2aea571dd957e959b4154f0e3c5",
+          "note": "window-close"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 25783,
+          "end_line": 25802,
+          "slice_sha256": "3aac2ecb1e9cf59cca6fce8df694f30554637c936f692785525b72865811a7e2",
+          "note": "window-close"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26449,
+          "end_line": 26466,
+          "slice_sha256": "4b04b9f7121fd495bc003002cc03bedd59dbfde4d04511e0a0f25301782e6fa0",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 119,
+          "end_line": 119,
+          "slice_sha256": "c289c99b482975ceb673c4792ebdc633766d8d1cd158b8bc4856732eb14253d7",
+          "note": "专用preload桥/事件订阅"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26428,
+          "end_line": 26466,
+          "slice_sha256": "acb325ffe8f8cf563bd304e7b4b43ee7d8c851ace8915cf604e407175aae90d6",
+          "note": "window-close"
+        }
+      ]
+    },
+    {
+      "id": "IPC-978012face0b",
+      "channel": "net:set-offline",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": true,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "net.setOffline",
+        "handler": "M:26426–26428",
+        "directService": "Boolean→iu→cu"
+      },
+      "review": "Boolean赋值与defaultSession拦截已读；依赖HI.allowsNetworkRequest及其活动状态生产，不能证明全进程离线。",
+      "remaining": [
+        "整个进程所有网络出入口的封闭性不由这三个UI统计接口保证；逐出口见HTTP报告。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26426,
+          "end_line": 26428,
+          "slice_sha256": "95a1d1366124184399dad1f191c3480724e1c9ce2cfa08d9046c80b5c6098e7b",
+          "note": "network"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 12924,
+          "end_line": 12931,
+          "slice_sha256": "19020185f632c01c80ddfd0b97a1b03983722c4619d146aeff76b10af79de9d0",
+          "note": "network"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26663,
+          "end_line": 26700,
+          "slice_sha256": "dc565e230e3bbb4056caa74910430b6e0294a5bff3305f2142f6567089294b93",
+          "note": "network"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 135,
+          "end_line": 135,
+          "slice_sha256": "abead830cced26a78e74709039071f3143ce84392b4d3652598007e176f846cf",
+          "note": "专用preload桥/事件订阅"
+        }
+      ]
+    },
+    {
+      "id": "IPC-f8d8e4c7c379",
+      "channel": "net:get-stats",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": true,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "net.getStats",
+        "handler": "M:26428–26428",
+        "directService": "cu复制ou并加offline"
+      },
+      "review": "快照与计数生产已读；仅requests/blocked增加，byte始终0；UI消费与全部出口非此契约。",
+      "remaining": [
+        "整个进程所有网络出入口的封闭性不由这三个UI统计接口保证；逐出口见HTTP报告。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26428,
+          "end_line": 26428,
+          "slice_sha256": "ad97d5fbf860a7c6360ab9ddff292d3f43c062aa28f6f8179c3057a43cac8858",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 12924,
+          "end_line": 12931,
+          "slice_sha256": "19020185f632c01c80ddfd0b97a1b03983722c4619d146aeff76b10af79de9d0",
+          "note": "network"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26663,
+          "end_line": 26700,
+          "slice_sha256": "dc565e230e3bbb4056caa74910430b6e0294a5bff3305f2142f6567089294b93",
+          "note": "network"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 136,
+          "end_line": 136,
+          "slice_sha256": "0156fb0563d851c1ebb171d8ed7e9674459e745883736c9bfaa6e1f31fe7dad6",
+          "note": "专用preload桥/事件订阅"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26426,
+          "end_line": 26428,
+          "slice_sha256": "95a1d1366124184399dad1f191c3480724e1c9ce2cfa08d9046c80b5c6098e7b",
+          "note": "network"
+        }
+      ]
+    },
+    {
+      "id": "IPC-539465a49a9b",
+      "channel": "net:reset-stats",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": true,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "net.resetStats",
+        "handler": "M:26428–26428",
+        "directService": "清零ou四字段"
+      },
+      "review": "4字段清零已读，不改offline；UI刷新时序未并入。",
+      "remaining": [
+        "整个进程所有网络出入口的封闭性不由这三个UI统计接口保证；逐出口见HTTP报告。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26428,
+          "end_line": 26428,
+          "slice_sha256": "ad97d5fbf860a7c6360ab9ddff292d3f43c062aa28f6f8179c3057a43cac8858",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 12924,
+          "end_line": 12931,
+          "slice_sha256": "19020185f632c01c80ddfd0b97a1b03983722c4619d146aeff76b10af79de9d0",
+          "note": "network"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26663,
+          "end_line": 26700,
+          "slice_sha256": "dc565e230e3bbb4056caa74910430b6e0294a5bff3305f2142f6567089294b93",
+          "note": "network"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 137,
+          "end_line": 137,
+          "slice_sha256": "dcccb43fd8a87dd69b56c00e2d2a8d421e196431e6295ebec3f6c6389bddcfc7",
+          "note": "专用preload桥/事件订阅"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26426,
+          "end_line": 26428,
+          "slice_sha256": "95a1d1366124184399dad1f191c3480724e1c9ce2cfa08d9046c80b5c6098e7b",
+          "note": "network"
+        }
+      ]
+    },
+    {
+      "id": "IPC-4e269deca69e",
+      "channel": "software-update:get-state",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": true,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "softwareUpdate.getState",
+        "handler": "M:26966–26966",
+        "directService": "HI.snapshot"
+      },
+      "review": "JSON深拷贝本体已读；值来源横跨initialize/persisted/entitlement/updater事件，不能因getter短而关闭整个状态链。",
+      "remaining": [
+        "electron-updater下载/签名校验/安装依赖另见协作HTTP报告；未完成跨平台安装或真实授权更新运行。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26966,
+          "end_line": 26966,
+          "slice_sha256": "83cbde1cc1aec7ba591a76b354300cf9390e39fe92808ded5b15ffcc15acd8f8",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26082,
+          "end_line": 26108,
+          "slice_sha256": "15cd74a4077dceb2b8c8e67ce8b45720d976c29d141e409c44b5ad21cd96b805",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26143,
+          "end_line": 26322,
+          "slice_sha256": "8b0ceb1422e549e25f027751938f192b166da1fa2dabcb504d259e4772e7359f",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26966,
+          "end_line": 26985,
+          "slice_sha256": "bd4b45145c814493f19d41669afedadc3cd3ce2e44515a1ff54c5174f2ad6ee0",
+          "note": "updater"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 122,
+          "end_line": 122,
+          "slice_sha256": "a9bdcb365a253f66236bf975454bf90c31fed4dab568f9b7ca73ff1d363296a2",
+          "note": "专用preload桥/事件订阅"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26082,
+          "end_line": 26322,
+          "slice_sha256": "084b8784d378bbbcbbcf05bed5cd940df9857425a49a57cde32000787188e240",
+          "note": "updater"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26449,
+          "end_line": 26466,
+          "slice_sha256": "4b04b9f7121fd495bc003002cc03bedd59dbfde4d04511e0a0f25301782e6fa0",
+          "note": "updater"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26702,
+          "end_line": 26714,
+          "slice_sha256": "d3098dbbddbe1414e52c413ca51f7a0b79a4b2aea571dd957e959b4154f0e3c5",
+          "note": "updater"
+        }
+      ]
+    },
+    {
+      "id": "IPC-a73b27802b39",
+      "channel": "software-update:set-preferences",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": false,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "softwareUpdate.setPreferences",
+        "handler": "M:26966–26966",
+        "directService": "HI.setPreferences→$I→writePersistedState/scheduleCheck"
+      },
+      "review": "已核对接口范围与组依赖；保留原S2及下列缺口，不宣称本轮独立重做整个外部/原生依赖实现。",
+      "remaining": [
+        "electron-updater下载/签名校验/安装依赖另见协作HTTP报告；未完成跨平台安装或真实授权更新运行。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26966,
+          "end_line": 26966,
+          "slice_sha256": "83cbde1cc1aec7ba591a76b354300cf9390e39fe92808ded5b15ffcc15acd8f8",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26082,
+          "end_line": 26108,
+          "slice_sha256": "15cd74a4077dceb2b8c8e67ce8b45720d976c29d141e409c44b5ad21cd96b805",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26143,
+          "end_line": 26322,
+          "slice_sha256": "8b0ceb1422e549e25f027751938f192b166da1fa2dabcb504d259e4772e7359f",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26966,
+          "end_line": 26985,
+          "slice_sha256": "bd4b45145c814493f19d41669afedadc3cd3ce2e44515a1ff54c5174f2ad6ee0",
+          "note": "updater"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 123,
+          "end_line": 123,
+          "slice_sha256": "0a533a33912dafc09c3013f81fc55ad73599f6f5d41c96ed00b5c33d15e8ddc4",
+          "note": "专用preload桥/事件订阅"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26082,
+          "end_line": 26322,
+          "slice_sha256": "084b8784d378bbbcbbcf05bed5cd940df9857425a49a57cde32000787188e240",
+          "note": "updater"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26449,
+          "end_line": 26466,
+          "slice_sha256": "4b04b9f7121fd495bc003002cc03bedd59dbfde4d04511e0a0f25301782e6fa0",
+          "note": "updater"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26702,
+          "end_line": 26714,
+          "slice_sha256": "d3098dbbddbe1414e52c413ca51f7a0b79a4b2aea571dd957e959b4154f0e3c5",
+          "note": "updater"
+        }
+      ]
+    },
+    {
+      "id": "IPC-6099fda9db85",
+      "channel": "software-update:check",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": false,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "softwareUpdate.check",
+        "handler": "M:26966–26966",
+        "directService": "HI.checkForUpdates→preflight→electron-updater→entitlementProvider"
+      },
+      "review": "已核对接口范围与组依赖；保留原S2及下列缺口，不宣称本轮独立重做整个外部/原生依赖实现。",
+      "remaining": [
+        "electron-updater下载/签名校验/安装依赖另见协作HTTP报告；未完成跨平台安装或真实授权更新运行。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26966,
+          "end_line": 26966,
+          "slice_sha256": "83cbde1cc1aec7ba591a76b354300cf9390e39fe92808ded5b15ffcc15acd8f8",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26082,
+          "end_line": 26108,
+          "slice_sha256": "15cd74a4077dceb2b8c8e67ce8b45720d976c29d141e409c44b5ad21cd96b805",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26143,
+          "end_line": 26322,
+          "slice_sha256": "8b0ceb1422e549e25f027751938f192b166da1fa2dabcb504d259e4772e7359f",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26966,
+          "end_line": 26985,
+          "slice_sha256": "bd4b45145c814493f19d41669afedadc3cd3ce2e44515a1ff54c5174f2ad6ee0",
+          "note": "updater"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 124,
+          "end_line": 124,
+          "slice_sha256": "1d6e5375649efa72da7131807541fa639364831b58a030b3124d6a167c3f98b9",
+          "note": "专用preload桥/事件订阅"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26082,
+          "end_line": 26322,
+          "slice_sha256": "084b8784d378bbbcbbcf05bed5cd940df9857425a49a57cde32000787188e240",
+          "note": "updater"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26449,
+          "end_line": 26466,
+          "slice_sha256": "4b04b9f7121fd495bc003002cc03bedd59dbfde4d04511e0a0f25301782e6fa0",
+          "note": "updater"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26702,
+          "end_line": 26714,
+          "slice_sha256": "d3098dbbddbe1414e52c413ca51f7a0b79a4b2aea571dd957e959b4154f0e3c5",
+          "note": "updater"
+        }
+      ]
+    },
+    {
+      "id": "IPC-1e8858b1ed43",
+      "channel": "software-update:download",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": false,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "softwareUpdate.download",
+        "handler": "M:26966–26966",
+        "directService": "HI.downloadUpdate→preflight→electron-updater.downloadUpdate"
+      },
+      "review": "已核对接口范围与组依赖；保留原S2及下列缺口，不宣称本轮独立重做整个外部/原生依赖实现。",
+      "remaining": [
+        "electron-updater下载/签名校验/安装依赖另见协作HTTP报告；未完成跨平台安装或真实授权更新运行。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26966,
+          "end_line": 26966,
+          "slice_sha256": "83cbde1cc1aec7ba591a76b354300cf9390e39fe92808ded5b15ffcc15acd8f8",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26082,
+          "end_line": 26108,
+          "slice_sha256": "15cd74a4077dceb2b8c8e67ce8b45720d976c29d141e409c44b5ad21cd96b805",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26143,
+          "end_line": 26322,
+          "slice_sha256": "8b0ceb1422e549e25f027751938f192b166da1fa2dabcb504d259e4772e7359f",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26966,
+          "end_line": 26985,
+          "slice_sha256": "bd4b45145c814493f19d41669afedadc3cd3ce2e44515a1ff54c5174f2ad6ee0",
+          "note": "updater"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 125,
+          "end_line": 125,
+          "slice_sha256": "b3e14388bea5fea7750de05e3e85c19b273dcba22efc23cd44543325b3020a59",
+          "note": "专用preload桥/事件订阅"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26082,
+          "end_line": 26322,
+          "slice_sha256": "084b8784d378bbbcbbcf05bed5cd940df9857425a49a57cde32000787188e240",
+          "note": "updater"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26449,
+          "end_line": 26466,
+          "slice_sha256": "4b04b9f7121fd495bc003002cc03bedd59dbfde4d04511e0a0f25301782e6fa0",
+          "note": "updater"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26702,
+          "end_line": 26714,
+          "slice_sha256": "d3098dbbddbe1414e52c413ca51f7a0b79a4b2aea571dd957e959b4154f0e3c5",
+          "note": "updater"
+        }
+      ]
+    },
+    {
+      "id": "IPC-1abcdf6d1a56",
+      "channel": "software-update:acknowledge-whats-new",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": false,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "softwareUpdate.acknowledgeWhatsNew",
+        "handler": "M:26966–26966",
+        "directService": "HI.acknowledgeWhatsNew"
+      },
+      "review": "已核对接口范围与组依赖；保留原S2及下列缺口，不宣称本轮独立重做整个外部/原生依赖实现。",
+      "remaining": [
+        "electron-updater下载/签名校验/安装依赖另见协作HTTP报告；未完成跨平台安装或真实授权更新运行。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26966,
+          "end_line": 26966,
+          "slice_sha256": "83cbde1cc1aec7ba591a76b354300cf9390e39fe92808ded5b15ffcc15acd8f8",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26082,
+          "end_line": 26108,
+          "slice_sha256": "15cd74a4077dceb2b8c8e67ce8b45720d976c29d141e409c44b5ad21cd96b805",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26143,
+          "end_line": 26322,
+          "slice_sha256": "8b0ceb1422e549e25f027751938f192b166da1fa2dabcb504d259e4772e7359f",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26966,
+          "end_line": 26985,
+          "slice_sha256": "bd4b45145c814493f19d41669afedadc3cd3ce2e44515a1ff54c5174f2ad6ee0",
+          "note": "updater"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 127,
+          "end_line": 127,
+          "slice_sha256": "58db12fcd9131a4220fa645f6c00b158033e74c4c9aaf3f52e2ea822990802f0",
+          "note": "专用preload桥/事件订阅"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26082,
+          "end_line": 26322,
+          "slice_sha256": "084b8784d378bbbcbbcf05bed5cd940df9857425a49a57cde32000787188e240",
+          "note": "updater"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26449,
+          "end_line": 26466,
+          "slice_sha256": "4b04b9f7121fd495bc003002cc03bedd59dbfde4d04511e0a0f25301782e6fa0",
+          "note": "updater"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26702,
+          "end_line": 26714,
+          "slice_sha256": "d3098dbbddbe1414e52c413ca51f7a0b79a4b2aea571dd957e959b4154f0e3c5",
+          "note": "updater"
+        }
+      ]
+    },
+    {
+      "id": "IPC-67a324d00c09",
+      "channel": "software-update:restart-and-install",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": false,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "softwareUpdate.restartAndInstall",
+        "handler": "M:26966–26969",
+        "directService": "sender窗口→HI.isReadyToInstall→KI.add→close→HI.quitAndInstall"
+      },
+      "review": "已核对接口范围与组依赖；保留原S2及下列缺口，不宣称本轮独立重做整个外部/原生依赖实现。",
+      "remaining": [
+        "electron-updater下载/签名校验/安装依赖另见协作HTTP报告；未完成跨平台安装或真实授权更新运行。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26966,
+          "end_line": 26969,
+          "slice_sha256": "7d3d7fb860481adead7bdcaaf08b9c008143f2eadd5ca356bd26041dc56aa511",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26082,
+          "end_line": 26108,
+          "slice_sha256": "15cd74a4077dceb2b8c8e67ce8b45720d976c29d141e409c44b5ad21cd96b805",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26143,
+          "end_line": 26322,
+          "slice_sha256": "8b0ceb1422e549e25f027751938f192b166da1fa2dabcb504d259e4772e7359f",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26966,
+          "end_line": 26985,
+          "slice_sha256": "bd4b45145c814493f19d41669afedadc3cd3ce2e44515a1ff54c5174f2ad6ee0",
+          "note": "updater"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26449,
+          "end_line": 26466,
+          "slice_sha256": "4b04b9f7121fd495bc003002cc03bedd59dbfde4d04511e0a0f25301782e6fa0",
+          "note": "updater"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26702,
+          "end_line": 26714,
+          "slice_sha256": "d3098dbbddbe1414e52c413ca51f7a0b79a4b2aea571dd957e959b4154f0e3c5",
+          "note": "updater"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 126,
+          "end_line": 126,
+          "slice_sha256": "a469fd744ff09acd6426a717d95ecc4706ea412b9410519415b5da7ceedba787",
+          "note": "专用preload桥/事件订阅"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26082,
+          "end_line": 26322,
+          "slice_sha256": "084b8784d378bbbcbbcf05bed5cd940df9857425a49a57cde32000787188e240",
+          "note": "updater"
+        }
+      ]
+    },
+    {
+      "id": "IPC-6cb1afcdadfc",
+      "channel": "software-update:state",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": false,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "softwareUpdate.onState; softwareUpdate.onState",
+        "handler": "M:26318–26321",
+        "directService": "HI.emitState→所有存活BrowserWindow.send"
+      },
+      "review": "已核对接口范围与组依赖；保留原S2及下列缺口，不宣称本轮独立重做整个外部/原生依赖实现。",
+      "remaining": [
+        "electron-updater下载/签名校验/安装依赖另见协作HTTP报告；未完成跨平台安装或真实授权更新运行。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26318,
+          "end_line": 26321,
+          "slice_sha256": "8f6cbbf4f9551b193e4a09121416fd1e956f43d29ea2d34475a50710ac696953",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26082,
+          "end_line": 26108,
+          "slice_sha256": "15cd74a4077dceb2b8c8e67ce8b45720d976c29d141e409c44b5ad21cd96b805",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26143,
+          "end_line": 26322,
+          "slice_sha256": "8b0ceb1422e549e25f027751938f192b166da1fa2dabcb504d259e4772e7359f",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26966,
+          "end_line": 26985,
+          "slice_sha256": "bd4b45145c814493f19d41669afedadc3cd3ce2e44515a1ff54c5174f2ad6ee0",
+          "note": "updater"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 130,
+          "end_line": 130,
+          "slice_sha256": "eae4ca2ac20e5d835b035c62fefef614a9cdb3901d798291c13a8c3a9cd6bed8",
+          "note": "专用preload桥/事件订阅"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 131,
+          "end_line": 131,
+          "slice_sha256": "3ab94c7a54ab4eb0cb2046fc11803d4a342fc5c66107eceec87c5f7d6bf879b6",
+          "note": "专用preload桥/事件订阅"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26082,
+          "end_line": 26322,
+          "slice_sha256": "084b8784d378bbbcbbcf05bed5cd940df9857425a49a57cde32000787188e240",
+          "note": "updater"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26449,
+          "end_line": 26466,
+          "slice_sha256": "4b04b9f7121fd495bc003002cc03bedd59dbfde4d04511e0a0f25301782e6fa0",
+          "note": "updater"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26702,
+          "end_line": 26714,
+          "slice_sha256": "d3098dbbddbe1414e52c413ca51f7a0b79a4b2aea571dd957e959b4154f0e3c5",
+          "note": "updater"
+        }
+      ]
+    },
+    {
+      "id": "IPC-6f5f29f520a1",
+      "channel": "task-power:get-state",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": true,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "taskPower.getState",
+        "handler": "M:26866–26875",
+        "directService": "a.taskPowerState.snapshot（chunk D9V2C_Ir）"
+      },
+      "review": "快照本体已读；renderer 32807–32819取初值，状态update相关消费尚未递归闭合。",
+      "remaining": [
+        "入口与renderer后续处理/生命周期完整业务链仍需逐段交叉核对；本体已读不提升S3。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26866,
+          "end_line": 26875,
+          "slice_sha256": "8d7bd184f1cc5801cbdff12c885eea64f2f75c5e150e0444bff32dd99af7f617",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 6,
+          "end_line": 6,
+          "slice_sha256": "ea1f7f2ef70233a935eaf9b6866e61c1b0b3f0e052749ca042a2ec0860e4472a",
+          "note": "专用preload桥/事件订阅"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/chunks/D9V2C_Ir.js",
+          "start_line": 1,
+          "end_line": 1,
+          "slice_sha256": "8f67c6cacca517411e66daf6f6708cf1d6f8fea02cc7f95937064a4ebf229133",
+          "note": "压缩chunk原文件第1行；taskPowerState=c，paths使用Oe/Pe，全文文件哈希同时登记"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-14/deep-processing/D9V2C_Ir.readable.js",
+          "start_line": 3,
+          "end_line": 18,
+          "slice_sha256": "eb2350de3d28baabb2067cbf8c44d999d47337e1da760f55337e809158ebb2c1",
+          "note": "完整电源状态与timer辅助"
+        }
+      ]
+    },
+    {
+      "id": "IPC-cfbe72c62d81",
+      "channel": "task-power:state",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": true,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "taskPower.onState; taskPower.onState",
+        "handler": "M:26866–26875",
+        "directService": "powerMonitor suspend/resume→taskPowerState→send"
+      },
+      "review": "主进程suspend/resume→onState→Vn2.update→uc2→oc2/Yt/Du2/Ou2/Ec2依赖未逐段闭合；本报告遗漏renderer范围。",
+      "remaining": [
+        "入口与renderer后续处理/生命周期完整业务链仍需逐段交叉核对；本体已读不提升S3。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26866,
+          "end_line": 26875,
+          "slice_sha256": "8d7bd184f1cc5801cbdff12c885eea64f2f75c5e150e0444bff32dd99af7f617",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 9,
+          "end_line": 9,
+          "slice_sha256": "b63d72af2e2b72cc15b093907c303097ae77971d1bd3a45e8fc5667b2c8d3daa",
+          "note": "专用preload桥/事件订阅"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 10,
+          "end_line": 10,
+          "slice_sha256": "27a8de55425285b5040e47e0fb5758a204808961e119d1675465fefafc45a9cf",
+          "note": "专用preload桥/事件订阅"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/chunks/D9V2C_Ir.js",
+          "start_line": 1,
+          "end_line": 1,
+          "slice_sha256": "8f67c6cacca517411e66daf6f6708cf1d6f8fea02cc7f95937064a4ebf229133",
+          "note": "压缩chunk原文件第1行；taskPowerState=c，paths使用Oe/Pe，全文文件哈希同时登记"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-14/deep-processing/D9V2C_Ir.readable.js",
+          "start_line": 3,
+          "end_line": 18,
+          "slice_sha256": "eb2350de3d28baabb2067cbf8c44d999d47337e1da760f55337e809158ebb2c1",
+          "note": "完整电源状态与timer辅助"
+        }
+      ]
+    },
+    {
+      "id": "IPC-73870d051b3f",
+      "channel": "debug:get-paths",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": true,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "debug.getPaths",
+        "handler": "M:27108–27110",
+        "directService": "动态加载D9V2C_Ir.paths→getFeedbackPath/getSnapshotPath"
+      },
+      "review": "路径helper完整已读；fallback会更新Le内存缓存，无建目录；无发布UI调用证据应接入。",
+      "remaining": [
+        "入口与renderer后续处理/生命周期完整业务链仍需逐段交叉核对；本体已读不提升S3。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 27108,
+          "end_line": 27110,
+          "slice_sha256": "dfb6bd8597a7baa36355dac87fb3ecedc605052d3530c33fec9af0163e06adeb",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26849,
+          "end_line": 26851,
+          "slice_sha256": "729d57212af1a9af1666de461728556870abd5d2165adb72e42d35900b9566d6",
+          "note": "启动时paths.setUserDataPath注入Electron userData"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 236,
+          "end_line": 236,
+          "slice_sha256": "c8a018a5165d10c4629da73d7edff3858ede0faa4c2eb07040418a997f017474",
+          "note": "专用preload桥/事件订阅"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/chunks/D9V2C_Ir.js",
+          "start_line": 1,
+          "end_line": 1,
+          "slice_sha256": "8f67c6cacca517411e66daf6f6708cf1d6f8fea02cc7f95937064a4ebf229133",
+          "note": "压缩chunk原文件第1行；taskPowerState=c，paths使用Oe/Pe，全文文件哈希同时登记"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-14/deep-processing/D9V2C_Ir.readable.js",
+          "start_line": 663,
+          "end_line": 691,
+          "slice_sha256": "2dd08117eed7ddf9d1478d6d7d8790beab79d64c629107eb725c3962aa736f80",
+          "note": "paths完整项目辅助"
+        }
+      ]
+    },
+    {
+      "id": "IPC-429f13ae0835",
+      "channel": "electron:save-pdf-to-desensitized",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": true,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "savePdfToDesensitized",
+        "handler": "M:27111–27121",
+        "directService": "mkdirSync→Buffer.from→writeFileSync"
+      },
+      "review": "四业务参数；第五handler参数含event计数是originalFilePath且未用。写任意buffer，不验证PDF/filename范围，不生成证明；无renderer调用见A组。",
+      "remaining": [
+        "入口与renderer后续处理/生命周期完整业务链仍需逐段交叉核对；本体已读不提升S3。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 27111,
+          "end_line": 27121,
+          "slice_sha256": "1b2518a05cbe506e228098e91e85b98ba3c8bbe5aa017240986305d5e2286750",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 312,
+          "end_line": 312,
+          "slice_sha256": "92e83080ee47e0d2057dd8ae571ded13d025613bdbc1c7fd1776ab0823572716",
+          "note": "专用preload桥/事件订阅"
+        }
+      ]
+    },
+    {
+      "id": "IPC-7c61ecffef61",
+      "channel": "log:renderer-error",
+      "reviewedDepth": "S2",
+      "runtime": "R0",
+      "handlerBoundaryReviewed": false,
+      "reviewDecision": "retain-S2",
+      "chain": {
+        "preload": "preload异常兜底; preload异常兜底",
+        "handler": "M:27014–27022",
+        "directService": "ipcMain.handle→appendFileSync crash.log"
+      },
+      "review": "已核对接口范围与组依赖；保留原S2及下列缺口，不宣称本轮独立重做整个外部/原生依赖实现。",
+      "remaining": [
+        "入口与renderer后续处理/生命周期完整业务链仍需逐段交叉核对；本体已读不提升S3。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 27014,
+          "end_line": 27022,
+          "slice_sha256": "f53ebf9b030264d6549eb9ba270733ece8ff6048ec27b17eb8197da9ab5219b2",
+          "note": "handler或事件发射/生命周期注册"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26782,
+          "end_line": 26790,
+          "slice_sha256": "6ecddcc2ab458a9a5826a9e01559f20606892ccf0a451ccb18ef1ab29e536c58",
+          "note": "直接服务及共享控制逻辑"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 307,
+          "end_line": 315,
+          "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+          "note": "通用invoke桥；无通道白名单"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 320,
+          "end_line": 324,
+          "slice_sha256": "a936fdca41e385d77bb460d1b2e4a0c0513fbcd6d23cef0533e0de2c9e71a2d8",
+          "note": "专用preload桥/事件订阅"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "start_line": 331,
+          "end_line": 335,
+          "slice_sha256": "28241c81bd03afa0f41fcac942caaca916e04057c73f72ae9cb3a4f781f714a1",
+          "note": "专用preload桥/事件订阅"
+        }
+      ]
+    }
+  ]
+}

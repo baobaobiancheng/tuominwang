@@ -1,0 +1,49 @@
+{
+  "date": "2026-10-13",
+  "status": "passed",
+  "method": "Independent TS receiver/lexical-alias traversal; original pending set comparison; cross-artifact inventory and hash verification; in-memory mutation probes.",
+  "result": {
+    "interfaces": 115,
+    "positive": 44,
+    "absent": 71,
+    "dynamicOverlapWithAbsent": 0,
+    "rendererFiles": 5,
+    "invokeCalls": 39,
+    "literalChannels": 14
+  },
+  "negative": [
+    {
+      "name": "remove-one-interface",
+      "rejected": true
+    },
+    {
+      "name": "duplicate-interface",
+      "rejected": true
+    },
+    {
+      "name": "forge-ui-classification",
+      "rejected": true
+    },
+    {
+      "name": "drop-dynamic-channel",
+      "rejected": true
+    },
+    {
+      "name": "forge-source-hash",
+      "rejected": true
+    },
+    {
+      "name": "upgrade-runtime",
+      "rejected": true
+    },
+    {
+      "name": "omit-fallback-source",
+      "rejected": true
+    }
+  ],
+  "artifactHashes": {
+    "ui-closure-a.json": "ceeb614cfeeb7e895346c7c286885e58437725b9cf024322843f4508ecceac7e",
+    "ui-closure-b.json": "e699277a0f18c6ecf12ec1dafb2b16f01c20d13af0629aaf7e095f0af69696c5",
+    "dynamic-closure.json": "c13d548f44a19535eaeeb98576c0c68f63807d869f6785414f06336653433492"
+  }
+}

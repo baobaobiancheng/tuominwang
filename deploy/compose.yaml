@@ -1,0 +1,74 @@
+name: tuominwang-private
+x-runtime: &runtime
+  image: tuominwang-runtime:local
+  build: { context: .., target: runtime }
+  restart: unless-stopped
+  read_only: true
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges:true]
+  tmpfs: ["/tmp:size=256m,mode=1777"]
+  volumes: [materials:/data, "${MODEL_BUNDLE_DIR:?Set model bundle path}:/models:ro"]
+  networks: [private]
+  environment: &runtime-env
+    DATABASE_URL: postgresql://tmw_app:${APP_DB_PASSWORD:?Set app DB password}@db:5432/tuominwang
+    DATA_KEY: ${DATA_KEY:?Set data key}
+    SESSION_KEY: ${SESSION_KEY:?Set session key}
+    APP_ORIGIN: ${APP_ORIGIN:?Set browser origin}
+    DOWNLOAD_TTL_SECONDS: ${DOWNLOAD_TTL_SECONDS:-300}
+    NER_ENABLED: "1"
+    TRUST_PROXY: "1"
+  depends_on: { db: { condition: service_healthy } }
+services:
+  db:
+    image: postgres:17.6-alpine@sha256:ef257d85f76e48da1c64832459b59fcaba1a4dac97bf5d7450c77753542eee94
+    restart: unless-stopped
+    environment: { POSTGRES_USER: tmw_owner, POSTGRES_DB: tuominwang, POSTGRES_PASSWORD: "${POSTGRES_PASSWORD:?Set database owner password}" }
+    volumes: [database:/var/lib/postgresql/data]
+    networks: [private]
+    healthcheck: { test: [CMD-SHELL, "pg_isready -U tmw_owner -d tuominwang"], interval: 3s, timeout: 3s, retries: 20 }
+  api:
+    <<: *runtime
+    mem_limit: 2g
+    command: [node, scripts/check-runtime.ts, api]
+    healthcheck: { test: [CMD, node, -e, "fetch('http://127.0.0.1:4318/api/health').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"], interval: 10s, timeout: 5s, retries: 20 }
+  worker:
+    <<: *runtime
+    mem_limit: 3g
+    cpus: 2
+    command: [node, scripts/check-runtime.ts, worker]
+  web:
+    image: tuominwang-web:local
+    build: { context: .., target: web }
+    restart: unless-stopped
+    mem_limit: 256m
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    tmpfs: ["/tmp:size=256m,mode=1777"]
+    ports: ["127.0.0.1:${WEB_PORT:-5188}:8080"]
+    networks: [private, ingress]
+    depends_on: { api: { condition: service_healthy } }
+    healthcheck: { test: [CMD, wget, -q, --spider, "http://127.0.0.1:8080/"], interval: 5s, timeout: 3s, retries: 10 }
+  migrate:
+    <<: *runtime
+    profiles: [maintenance]
+    restart: "no"
+    command: [node, scripts/migrate.ts]
+    environment:
+      MIGRATION_DATABASE_URL: postgresql://tmw_owner:${POSTGRES_PASSWORD}@db:5432/tuominwang
+      APP_DB_PASSWORD: ${APP_DB_PASSWORD}
+  admin:
+    <<: *runtime
+    profiles: [maintenance]
+    restart: "no"
+    command: [node, scripts/admin.ts]
+    environment:
+      MIGRATION_DATABASE_URL: postgresql://tmw_owner:${POSTGRES_PASSWORD}@db:5432/tuominwang
+      ADMIN_USERNAME: ${ADMIN_USERNAME:?Set initial account name}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?Set initial account password}
+networks:
+  private: { internal: true }
+  ingress:
+volumes:
+  database:
+  materials:

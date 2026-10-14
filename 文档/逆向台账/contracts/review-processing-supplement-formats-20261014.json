@@ -1,0 +1,193 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-14",
+  "reviewer": "adversarial_review",
+  "mode": "read-only static review; writes restricted to review artifacts",
+  "verdict": "No open findings after correction; retain S2/R0.",
+  "reviewedArtifacts": [
+    {
+      "path": "文档/逆向台账/contracts/deep-processing-supplement-formats-20261014.json",
+      "sha256": "0b31926d5e2890146cacba08a822841063c2bbfb527d08dd3112b76668825761"
+    },
+    {
+      "path": "文档/逆向台账/contracts/deep-processing-supplement-formats-20261014.md",
+      "sha256": "368fa3cff08601654f3db13452ff29627d56cb380b082b72fbe684e46ac72dbd"
+    },
+    {
+      "path": "文档/逆向台账/contracts/build-processing-supplement-formats-20261014.py",
+      "sha256": "c8123b2b6f3491667bffd775a046a0debfbb2807d43d910a3e85e79225657c05"
+    },
+    {
+      "path": "文档/逆向台账/contracts/prepare-markdown-worker-20261014.cjs",
+      "sha256": "588c26da0ef60f3cf143acd90df028daa292d9c485d57b17dbed6eb010aab5f5"
+    }
+  ],
+  "scope": {
+    "sections": 11,
+    "evidenceRanges": 21,
+    "completeBusinessContracts": 0,
+    "semanticReview": "all section descriptions read; focused independent trace of reported key branches and evidence correspondence; not recursive proof of all dependencies"
+  },
+  "checks": {
+    "exactFullFileAndRawByteSliceHashes": "passed",
+    "evidenceRangesValid": true,
+    "sourceTransform": {
+      "method": "TypeScript AST parse and printer only; no module evaluation",
+      "typescriptVersion": "5.9.3",
+      "rawPath": ".data/research/lawbot-2026-10-13/extracted/dist/main/markdown-worker.js",
+      "rawSha256": "36d2f97ffec8fb3c432e9885ca1ac2848f610a7d044e3d1046adec45ac0bfae7",
+      "readablePath": ".data/research/lawbot-2026-10-14/deep-processing/markdown-worker.readable.js",
+      "readableSha256": "49c9a31f48ed49b1a514bf75ebade2156537881710b427549c55cb1b439d1775",
+      "checkPassed": true
+    }
+  },
+  "findings": [],
+  "resolvedFindings": [
+    {
+      "id": "RPSF-01",
+      "priority": "P2",
+      "status": "resolved-after-independent-readback",
+      "affected": [
+        "PSF08"
+      ],
+      "title": "把文件保存证据指向真实fo/Io实现",
+      "problem": "原1834–1862是canonical辅助函数，1905–1944仅覆盖Io尾部且混入搜索算法；遗漏预检、wx/fsync、hardlink与COPYFILE_EXCL、冲突和后缀主要分支。",
+      "resolution": "已改1805–1830（含probe finally close/unlink）、1863–1926、2173–2177。",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-14/deep-processing/D9V2C_Ir.readable.js",
+          "startLine": 1805,
+          "endLine": 1830,
+          "fileSha256": "a9ec44eada3b0fb4d9ef17eeed078db2d1d237fa0200325c5a9c0d42ce8fea8d",
+          "sliceSha256": "2b07643516a7b989087bd716f25d28ed6988ee24a7c72805509fe51f2fb60cc5"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-14/deep-processing/D9V2C_Ir.readable.js",
+          "startLine": 1863,
+          "endLine": 1926,
+          "fileSha256": "a9ec44eada3b0fb4d9ef17eeed078db2d1d237fa0200325c5a9c0d42ce8fea8d",
+          "sliceSha256": "12f0100f7833b07d0a2216763101e4db54f4d70cbf4bd3655a7b161317828d7c"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-14/deep-processing/D9V2C_Ir.readable.js",
+          "startLine": 2173,
+          "endLine": 2177,
+          "fileSha256": "a9ec44eada3b0fb4d9ef17eeed078db2d1d237fa0200325c5a9c0d42ce8fea8d",
+          "sliceSha256": "b92414410f96414f44287b42582b94c4d5a2b3e90a6ed5907d9b0e52b2df07c2"
+        }
+      ]
+    },
+    {
+      "id": "RPSF-02",
+      "priority": "P2",
+      "status": "resolved-after-independent-readback",
+      "affected": [
+        "PSF06"
+      ],
+      "title": "给重叠合组结论引用lo主体",
+      "problem": "原1823–1833不含lo，不能支撑重叠union/同型包含去重/fullStar码点结论。",
+      "resolution": "已替换为1798–1804。",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-14/deep-processing/D9V2C_Ir.readable.js",
+          "startLine": 1798,
+          "endLine": 1804,
+          "fileSha256": "a9ec44eada3b0fb4d9ef17eeed078db2d1d237fa0200325c5a9c0d42ce8fea8d",
+          "sliceSha256": "66e293b710fa4919c5e49bc428ab16a42d9c4d6d2b56664b6c34bf41e7648832"
+        }
+      ]
+    },
+    {
+      "id": "RPSF-03",
+      "priority": "P2",
+      "status": "resolved-after-independent-readback",
+      "affected": [
+        "PSF09"
+      ],
+      "title": "给默认路由选择引用export入口",
+      "problem": "原1141–1147不含环境变量选择器；默认anchor-first及显式legacy开关发生于1105。",
+      "resolution": "已引用1105–1109，覆盖normalize和最终writer。",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-14/deep-processing/markdown-worker.readable.js",
+          "startLine": 1105,
+          "endLine": 1109,
+          "fileSha256": "49c9a31f48ed49b1a514bf75ebade2156537881710b427549c55cb1b439d1775",
+          "sliceSha256": "db77e3b72b3d0daba2e3b05043ab1a59d34beacfe344cba7c4c9c5fa2b8a8029"
+        }
+      ]
+    },
+    {
+      "id": "RPSF-04",
+      "priority": "P2",
+      "status": "resolved-after-independent-readback",
+      "affected": [
+        "PSF11"
+      ],
+      "title": "准确记录超时按每额外1MiB增长",
+      "problem": "原“每超5MiB增加3秒”可能按5MiB步长实现；Pe计算max(0,ceil(bytes/1048576)-5)，每单位增加3000ms。",
+      "resolution": "已写为60秒基线，超过5MiB部分每额外1MiB（向上取整）加3秒，180秒上限。",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-14/deep-processing/markdown-worker.readable.js",
+          "startLine": 351,
+          "endLine": 351,
+          "fileSha256": "49c9a31f48ed49b1a514bf75ebade2156537881710b427549c55cb1b439d1775",
+          "sliceSha256": "ec712d5027c516aa0ed36f0116d87c794a5f220fe47545f62f92430ad9b77573"
+        }
+      ]
+    }
+  ],
+  "verifiedKeyConclusions": [
+    {
+      "contracts": [
+        "PSF01",
+        "PSF02",
+        "PSF03",
+        "PSF04"
+      ],
+      "conclusion": "预处理按部件warn/continue；未知包部件保留并非元数据全清；notes传整个note使w:t拼接可跨段，精确range去重不等于拒绝部分重叠；包层图片清理仅所列类型。",
+      "boundary": "没有执行Python/lxml/python-docx或Office验收；上游冲突条件独立。"
+    },
+    {
+      "contracts": [
+        "PSF05",
+        "PSF06",
+        "PSF07"
+      ],
+      "conclusion": "$o自行构造blocker全集，未读取blockerDecisions；sidecar已列blocker生成删除补丁，HTML表格独立重建。无敏感操作也处理link_destination。invalid-operation失败，其它映射问题可纯文本降级清issue，仍需重解析/文本一致/残留等门槛。",
+      "boundary": "不扩大为所有未知HTML/资产必被枚举；不能将降级成功或预期原值次数比较称全部敏感内容清零。"
+    },
+    {
+      "contracts": [
+        "PSF08"
+      ],
+      "conclusion": "文件提交器预检、临时同步、排他创建、显式冲突处理、最终清理的源码与修后范围吻合。",
+      "boundary": "stat与rename之间不构成外部写入互斥；未实际验证断电和文件系统。"
+    },
+    {
+      "contracts": [
+        "PSF09",
+        "PSF10"
+      ],
+      "conclusion": "默认anchor-first；legacy三次映射；anchor-first单候选hash与最终writer三次重写是不同阶段。残留循环检查相应归一化后JS length<2，严格为UTF16长度。",
+      "boundary": "不是外部MarkItDown运行三次；单码点非BMP字符length为2，不被该条件一概跳过。仅重点分支语义检查，非全部候选算法递归闭合。"
+    },
+    {
+      "contracts": [
+        "PSF11"
+      ],
+      "conclusion": "FIFO任务、共享取消、3秒强制收尾、Python本地转换/进程内socket拦截、内存与超时条件均有静态来源。",
+      "boundary": "socket monkey patch与offline环境变量不是系统网络隔离；未运行第三方转换。"
+    }
+  ],
+  "clarifications": [
+    "PSF06已限定sidecar已列出blockers并区分HTML表格。",
+    "PSF10已限定归一化后的JS UTF16 length<2。"
+  ],
+  "limitations": [
+    "只读竞品源码；未执行竞品模块、Python/Swift或受许可流程；没有绕过激活。",
+    "未修改应用或台账，root负责维护ledger。",
+    "不存在S3或R2升级依据；修复证据范围不意味着已读完第三方依赖。"
+  ]
+}

@@ -1,0 +1,52 @@
+import { readFile } from "node:fs/promises";
+import { test, expect } from "./fixture.ts";
+import { exportDictionary, importDictionary } from "../../packages/core/dictionary-workbook.ts";
+
+test("desktop XLSX lists remain drafts until saved; project whitelist review and undo touch only confirmed scope", async ({ page }) => {
+  await page.goto("/");
+  await page.getByLabel("账号", { exact: true }).fill(process.env.E2E_USERNAME!);
+  await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
+  await page.getByRole("button", { name: "登录工作台" }).click();
+  await page.locator("summary").click();
+  await page.getByLabel("项目名称").fill("合成批量项目");
+  await page.getByRole("button", { name: "新建项目", exact: true }).click();
+  await page.getByRole("button", { name: "项目词表", exact: true }).click();
+  const entries = [{ value: "13800138000", kind: "手机号" as const, action: "exclude" as const }, { value: "甲乙公司", kind: "机构" as const }];
+  await page.getByLabel("导入名单 XLSX", { exact: true }).setInputFiles({ name: "名单.xlsx", mimeType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", buffer: await exportDictionary(entries) });
+  await expect(page.getByText("2 / 1000 条 · 未保存", { exact: true })).toBeVisible();
+  await page.getByRole("button", { name: "保存词表", exact: true }).click();
+  await page.getByRole("alertdialog", { name: "操作确认" }).getByRole("button", { name: "确认执行", exact: true }).click();
+  await expect(page.getByRole("button", { name: "保存词表", exact: true })).toBeDisabled();
+  const download = page.waitForEvent("download");
+  await page.getByRole("button", { name: "导出名单 XLSX", exact: true }).click();
+  expect(await importDictionary(await readFile((await (await download).path())!))).toEqual(entries);
+  for (let i = 0; i < 2; i++) {
+    await page.getByRole("button", { name: "导入材料", exact: true }).click();
+    await page.getByLabel("待处理文本").fill("甲乙公司 联系13800138000");
+    await page.getByRole("button", { name: "提交并识别", exact: true }).click();
+    await page.getByRole("button", { name: "逐条复核", exact: true }).click();
+    await expect(page.getByLabel("标记 2 处理决定")).toHaveValue("pending");
+    await expect(page.getByText(/白名单建议/)).toBeVisible();
+    await page.getByRole("button", { name: "返回材料列表", exact: true }).click();
+  }
+  await page.getByRole("button", { name: "项目批量复核", exact: true }).click();
+  await page.getByLabel("批量选择 文本 1", { exact: true }).check();
+  await page.getByLabel("批量选择 文本 2", { exact: true }).check();
+  await page.getByLabel("仅白名单建议", { exact: true }).check();
+  await page.getByLabel("批量处理决定", { exact: true }).selectOption("ignore");
+  await page.getByRole("button", { name: "核对批量范围", exact: true }).click();
+  await expect(page.getByText("文本 1 · 版本 0 · 1 项", { exact: true })).toBeVisible();
+  await expect(page.getByText("文本 2 · 版本 0 · 1 项", { exact: true })).toBeVisible();
+  await page.getByRole("button", { name: "确认批量保存", exact: true }).click();
+  await page.getByRole("alertdialog", { name: "操作确认" }).getByRole("button", { name: "确认执行", exact: true }).click();
+  await expect(page.getByText("批量复核已保存", { exact: true })).toBeVisible();
+  await page.getByRole("button", { name: "撤销本次批量复核", exact: true }).click();
+  await page.getByRole("alertdialog", { name: "操作确认" }).getByRole("button", { name: "确认执行", exact: true }).click();
+  await expect(page.getByText("已撤销本次批量复核", { exact: true })).toBeVisible();
+  await page.screenshot({ path: "test-results/batch-review-desktop.png", fullPage: true });
+  await page.getByRole("button", { name: /文本 1\s+可复核/ }).click();
+  await page.getByRole("button", { name: "逐条复核", exact: true }).click();
+  await expect(page.getByLabel("标记 1 处理决定")).toHaveValue("pending");
+  await expect(page.getByLabel("标记 2 处理决定")).toHaveValue("pending");
+  await expect(page.getByText("复核版本 2", { exact: true })).toBeVisible();
+});

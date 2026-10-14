@@ -1,0 +1,1479 @@
+{
+  "schemaVersion": 1,
+  "method": "Allowlisted AST literal/constant/spread interpretation; no eval, import or execution of target source.",
+  "sourceFiles": [
+    {
+      "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js",
+      "sha256": "131149b238b19b4a37df3947a9958aa88d4ba0bfbbfc50a4376d1d5beb6491bf",
+      "bytes": 38745
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/aiDiagnostics.js",
+      "sha256": "495481d4819ad9fa18710cfee009ad63fd580269b6abc0c8e0251d5726573107",
+      "bytes": 28619
+    }
+  ],
+  "tools": [
+    {
+      "name": "resume_lawbot_task",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "job_id": {
+            "type": "string",
+            "pattern": "^lbj_[a-f0-9]{32}$"
+          }
+        }
+      },
+      "evidence": {
+        "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js",
+        "start": 17813,
+        "end": 17891,
+        "line": 103,
+        "column": 22,
+        "sliceSha256": "d73681a1ca952dc7340bfca5ed17728c7d7edda8d0efbffc65ce95ca3807bac7"
+      },
+      "status": "static-schema-fully-expanded; runtime-validation-not-proven"
+    },
+    {
+      "name": "list_lawbot_saved_settings",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {}
+      },
+      "evidence": {
+        "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js",
+        "start": 18361,
+        "end": 18424,
+        "line": 109,
+        "column": 22,
+        "sliceSha256": "28c612632bcefe7a83d8eb03cb50d4e62f7e109accd13bcf3fb9ad40e864a320"
+      },
+      "status": "static-schema-fully-expanded; runtime-validation-not-proven"
+    },
+    {
+      "name": "start_lawbot_redaction",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "task_summary": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "Privacy-safe declared task goals. Supply categories only; NEVER include names, paths, document text, chat titles or user prompt text. This records AI understanding, not user authorization.",
+            "properties": {
+              "goals": {
+                "type": "array",
+                "maxItems": 10,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "contract_review",
+                    "document_comparison",
+                    "proofreading",
+                    "summary",
+                    "clause_revision",
+                    "relation_extraction",
+                    "timeline",
+                    "redaction",
+                    "restoration",
+                    "other"
+                  ]
+                }
+              },
+              "perspective": {
+                "type": "string",
+                "enum": [
+                  "party_a",
+                  "party_b",
+                  "neutral"
+                ]
+              },
+              "outputKinds": {
+                "type": "array",
+                "maxItems": 8,
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "redline",
+                    "comments",
+                    "risk_report",
+                    "negotiation_notes",
+                    "structured_data",
+                    "clean_copy",
+                    "summary",
+                    "comparison"
+                  ]
+                }
+              },
+              "outputFormat": {
+                "type": "string",
+                "enum": [
+                  "docx",
+                  "md"
+                ]
+              },
+              "restorationRequested": {
+                "type": "boolean"
+              }
+            }
+          },
+          "purpose": {
+            "type": "string",
+            "enum": [
+              "contract_review",
+              "general_analysis"
+            ],
+            "default": "contract_review"
+          },
+          "task_mode": {
+            "type": "string",
+            "enum": [
+              "redact_only",
+              "ai_process",
+              "ai_process_restore"
+            ],
+            "default": "ai_process_restore",
+            "description": "Infer from user intent: only redact -> redact_only; AI processing without requested restoration -> ai_process; process and restore -> ai_process_restore. Star masks and overlays cannot be restored."
+          },
+          "source_path": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1024,
+            "description": "Opaque local file OR folder path supplied by the user. A folder must be forwarded unchanged in one tool call; never enumerate it or start one task per contained file."
+          },
+          "source_paths": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 100,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1024
+            },
+            "description": "All explicitly supplied input files in one batch call. Never split this array into multiple redaction tasks."
+          },
+          "document_type": {
+            "type": "string",
+            "enum": [
+              "auto",
+              "general",
+              "contract",
+              "disclosure",
+              "judgment",
+              "pleading",
+              "official_letter",
+              "screenshot"
+            ],
+            "default": "auto"
+          },
+          "rule_set": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "advanced": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "profile": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120,
+                "description": "Exact saved Lawbot profile name or ID; unknown profiles fail instead of silently falling back."
+              },
+              "pseudonymRules": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 18,
+                "description": "Type-level custom token prefixes or selective pseudonym/mask actions. No original text. Masked categories cannot be restored. Use custom_pseudonym or selective_pseudonym exportMode respectively.",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "entityType": {
+                      "type": "string",
+                      "enum": [
+                        "name_cn",
+                        "org_name",
+                        "id_card",
+                        "phone",
+                        "bank_card",
+                        "address",
+                        "email",
+                        "website_url",
+                        "uscc",
+                        "wechat_id",
+                        "plate_cn",
+                        "securities_account",
+                        "case_number",
+                        "patent_no",
+                        "filing_no",
+                        "contract_amount",
+                        "seal",
+                        "face"
+                      ]
+                    },
+                    "prefix": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 20
+                    },
+                    "action": {
+                      "type": "string",
+                      "enum": [
+                        "pseudonym",
+                        "mask"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "entityType"
+                  ]
+                }
+              },
+              "entityTypes": {
+                "type": "array",
+                "maxItems": 18,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "name_cn",
+                    "org_name",
+                    "id_card",
+                    "phone",
+                    "bank_card",
+                    "address",
+                    "email",
+                    "website_url",
+                    "uscc",
+                    "wechat_id",
+                    "plate_cn",
+                    "securities_account",
+                    "case_number",
+                    "patent_no",
+                    "filing_no",
+                    "contract_amount",
+                    "seal",
+                    "face"
+                  ]
+                }
+              },
+              "exportMode": {
+                "type": "string",
+                "enum": [
+                  "default_star",
+                  "full_star",
+                  "default_pseudonym",
+                  "custom_pseudonym",
+                  "selective_pseudonym"
+                ]
+              },
+              "maskStyle": {
+                "type": "string",
+                "enum": [
+                  "black",
+                  "white",
+                  "purple",
+                  "lightGray"
+                ]
+              },
+              "removeImages": {
+                "type": "boolean"
+              },
+              "removeHeaderFooter": {
+                "type": "boolean"
+              },
+              "commentHandlingMode": {
+                "type": "string",
+                "enum": [
+                  "remove",
+                  "anonymize",
+                  "keep"
+                ]
+              }
+            }
+          },
+          "masking_mode": {
+            "type": "string",
+            "enum": [
+              "pseudonym",
+              "default_mask",
+              "full_star",
+              "purple_overlay"
+            ],
+            "default": "pseudonym"
+          },
+          "output_formats": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 2,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "enum": [
+                "original",
+                "md"
+              ]
+            },
+            "default": [
+              "original",
+              "md"
+            ]
+          },
+          "unified_pseudonyms": {
+            "type": "boolean",
+            "default": true,
+            "description": "Batch default is true so all outputs and derived reports share one restorable project mapping. Pass false only when the user explicitly requests independent mappings."
+          },
+          "batch_result_mode": {
+            "type": "string",
+            "enum": [
+              "individual",
+              "combined"
+            ],
+            "default": "individual",
+            "description": "Use combined only when the user requests one merged result. It requires unified pseudonyms; the software assembles approved sanitized MD only. Receive the parent artifact once rather than process each child separately."
+          },
+          "sanitized_output_dir": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1024,
+            "description": "Optional ONLY when the user explicitly requested this output folder. Otherwise OMIT; Lawbot uses its software settings. Never choose an AI workspace folder yourself. Requires the user to approve the override in the initial local authorization."
+          },
+          "restored_output_dir": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1024,
+            "description": "Optional ONLY when the user explicitly requested this output folder. Otherwise OMIT; Lawbot uses its software settings. Never choose an AI workspace folder yourself. Requires the user to approve the override in the initial local authorization."
+          },
+          "file_settings": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 100,
+            "description": "Only when the user requests different settings for specific input files. Forward each source_path opaquely; all unspecified settings inherit batch defaults. Never include original text. Unified custom prefixes must be consistent across files.",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_path"
+              ],
+              "properties": {
+                "source_path": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1024
+                },
+                "document_type": {
+                  "type": "string",
+                  "enum": [
+                    "auto",
+                    "general",
+                    "contract",
+                    "disclosure",
+                    "judgment",
+                    "pleading",
+                    "official_letter",
+                    "screenshot"
+                  ],
+                  "default": "auto"
+                },
+                "rule_set": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 120
+                },
+                "masking_mode": {
+                  "type": "string",
+                  "enum": [
+                    "pseudonym",
+                    "default_mask",
+                    "full_star",
+                    "purple_overlay"
+                  ],
+                  "default": "pseudonym"
+                },
+                "output_formats": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 2,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "original",
+                      "md"
+                    ]
+                  },
+                  "default": [
+                    "original",
+                    "md"
+                  ]
+                },
+                "advanced": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "profile": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 120,
+                      "description": "Exact saved Lawbot profile name or ID; unknown profiles fail instead of silently falling back."
+                    },
+                    "pseudonymRules": {
+                      "type": "array",
+                      "minItems": 1,
+                      "maxItems": 18,
+                      "description": "Type-level custom token prefixes or selective pseudonym/mask actions. No original text. Masked categories cannot be restored. Use custom_pseudonym or selective_pseudonym exportMode respectively.",
+                      "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "entityType": {
+                            "type": "string",
+                            "enum": [
+                              "name_cn",
+                              "org_name",
+                              "id_card",
+                              "phone",
+                              "bank_card",
+                              "address",
+                              "email",
+                              "website_url",
+                              "uscc",
+                              "wechat_id",
+                              "plate_cn",
+                              "securities_account",
+                              "case_number",
+                              "patent_no",
+                              "filing_no",
+                              "contract_amount",
+                              "seal",
+                              "face"
+                            ]
+                          },
+                          "prefix": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 20
+                          },
+                          "action": {
+                            "type": "string",
+                            "enum": [
+                              "pseudonym",
+                              "mask"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "entityType"
+                        ]
+                      }
+                    },
+                    "entityTypes": {
+                      "type": "array",
+                      "maxItems": 18,
+                      "uniqueItems": true,
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "name_cn",
+                          "org_name",
+                          "id_card",
+                          "phone",
+                          "bank_card",
+                          "address",
+                          "email",
+                          "website_url",
+                          "uscc",
+                          "wechat_id",
+                          "plate_cn",
+                          "securities_account",
+                          "case_number",
+                          "patent_no",
+                          "filing_no",
+                          "contract_amount",
+                          "seal",
+                          "face"
+                        ]
+                      }
+                    },
+                    "exportMode": {
+                      "type": "string",
+                      "enum": [
+                        "default_star",
+                        "full_star",
+                        "default_pseudonym",
+                        "custom_pseudonym",
+                        "selective_pseudonym"
+                      ]
+                    },
+                    "maskStyle": {
+                      "type": "string",
+                      "enum": [
+                        "black",
+                        "white",
+                        "purple",
+                        "lightGray"
+                      ]
+                    },
+                    "removeImages": {
+                      "type": "boolean"
+                    },
+                    "removeHeaderFooter": {
+                      "type": "boolean"
+                    },
+                    "commentHandlingMode": {
+                      "type": "string",
+                      "enum": [
+                        "remove",
+                        "anonymize",
+                        "keep"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "evidence": {
+        "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js",
+        "start": 19140,
+        "end": 19258,
+        "line": 115,
+        "column": 22,
+        "sliceSha256": "ce29563b0b04e8e761ee371ea86869cd236e6eeadf4e4245e2595c33d4cfa8f1"
+      },
+      "status": "static-schema-fully-expanded; runtime-validation-not-proven"
+    },
+    {
+      "name": "start_lawbot_redaction_for_user_manual_review",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "task_summary": {
+            "type": "object",
+            "additionalProperties": false,
+            "description": "Privacy-safe declared task goals. Supply categories only; NEVER include names, paths, document text, chat titles or user prompt text. This records AI understanding, not user authorization.",
+            "properties": {
+              "goals": {
+                "type": "array",
+                "maxItems": 10,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "contract_review",
+                    "document_comparison",
+                    "proofreading",
+                    "summary",
+                    "clause_revision",
+                    "relation_extraction",
+                    "timeline",
+                    "redaction",
+                    "restoration",
+                    "other"
+                  ]
+                }
+              },
+              "perspective": {
+                "type": "string",
+                "enum": [
+                  "party_a",
+                  "party_b",
+                  "neutral"
+                ]
+              },
+              "outputKinds": {
+                "type": "array",
+                "maxItems": 8,
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "redline",
+                    "comments",
+                    "risk_report",
+                    "negotiation_notes",
+                    "structured_data",
+                    "clean_copy",
+                    "summary",
+                    "comparison"
+                  ]
+                }
+              },
+              "outputFormat": {
+                "type": "string",
+                "enum": [
+                  "docx",
+                  "md"
+                ]
+              },
+              "restorationRequested": {
+                "type": "boolean"
+              }
+            }
+          },
+          "purpose": {
+            "type": "string",
+            "enum": [
+              "contract_review",
+              "general_analysis"
+            ],
+            "default": "contract_review"
+          },
+          "task_mode": {
+            "type": "string",
+            "enum": [
+              "redact_only",
+              "ai_process",
+              "ai_process_restore"
+            ],
+            "default": "ai_process_restore",
+            "description": "Infer from user intent: only redact -> redact_only; AI processing without requested restoration -> ai_process; process and restore -> ai_process_restore. Star masks and overlays cannot be restored."
+          },
+          "source_path": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1024,
+            "description": "Opaque local file OR folder path supplied by the user. A folder must be forwarded unchanged in one tool call; never enumerate it or start one task per contained file."
+          },
+          "source_paths": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 100,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 1024
+            },
+            "description": "All explicitly supplied input files in one batch call. Never split this array into multiple redaction tasks."
+          },
+          "document_type": {
+            "type": "string",
+            "enum": [
+              "auto",
+              "general",
+              "contract",
+              "disclosure",
+              "judgment",
+              "pleading",
+              "official_letter",
+              "screenshot"
+            ],
+            "default": "auto"
+          },
+          "rule_set": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          },
+          "advanced": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "profile": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 120,
+                "description": "Exact saved Lawbot profile name or ID; unknown profiles fail instead of silently falling back."
+              },
+              "pseudonymRules": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 18,
+                "description": "Type-level custom token prefixes or selective pseudonym/mask actions. No original text. Masked categories cannot be restored. Use custom_pseudonym or selective_pseudonym exportMode respectively.",
+                "items": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "entityType": {
+                      "type": "string",
+                      "enum": [
+                        "name_cn",
+                        "org_name",
+                        "id_card",
+                        "phone",
+                        "bank_card",
+                        "address",
+                        "email",
+                        "website_url",
+                        "uscc",
+                        "wechat_id",
+                        "plate_cn",
+                        "securities_account",
+                        "case_number",
+                        "patent_no",
+                        "filing_no",
+                        "contract_amount",
+                        "seal",
+                        "face"
+                      ]
+                    },
+                    "prefix": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 20
+                    },
+                    "action": {
+                      "type": "string",
+                      "enum": [
+                        "pseudonym",
+                        "mask"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "entityType"
+                  ]
+                }
+              },
+              "entityTypes": {
+                "type": "array",
+                "maxItems": 18,
+                "uniqueItems": true,
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "name_cn",
+                    "org_name",
+                    "id_card",
+                    "phone",
+                    "bank_card",
+                    "address",
+                    "email",
+                    "website_url",
+                    "uscc",
+                    "wechat_id",
+                    "plate_cn",
+                    "securities_account",
+                    "case_number",
+                    "patent_no",
+                    "filing_no",
+                    "contract_amount",
+                    "seal",
+                    "face"
+                  ]
+                }
+              },
+              "exportMode": {
+                "type": "string",
+                "enum": [
+                  "default_star",
+                  "full_star",
+                  "default_pseudonym",
+                  "custom_pseudonym",
+                  "selective_pseudonym"
+                ]
+              },
+              "maskStyle": {
+                "type": "string",
+                "enum": [
+                  "black",
+                  "white",
+                  "purple",
+                  "lightGray"
+                ]
+              },
+              "removeImages": {
+                "type": "boolean"
+              },
+              "removeHeaderFooter": {
+                "type": "boolean"
+              },
+              "commentHandlingMode": {
+                "type": "string",
+                "enum": [
+                  "remove",
+                  "anonymize",
+                  "keep"
+                ]
+              }
+            }
+          },
+          "masking_mode": {
+            "type": "string",
+            "enum": [
+              "pseudonym",
+              "default_mask",
+              "full_star",
+              "purple_overlay"
+            ],
+            "default": "pseudonym"
+          },
+          "output_formats": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 2,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "enum": [
+                "original",
+                "md"
+              ]
+            },
+            "default": [
+              "original",
+              "md"
+            ]
+          },
+          "unified_pseudonyms": {
+            "type": "boolean",
+            "default": true,
+            "description": "Batch default is true so all outputs and derived reports share one restorable project mapping. Pass false only when the user explicitly requests independent mappings."
+          },
+          "batch_result_mode": {
+            "type": "string",
+            "enum": [
+              "individual",
+              "combined"
+            ],
+            "default": "individual",
+            "description": "Use combined only when the user requests one merged result. It requires unified pseudonyms; the software assembles approved sanitized MD only. Receive the parent artifact once rather than process each child separately."
+          },
+          "sanitized_output_dir": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1024,
+            "description": "Optional ONLY when the user explicitly requested this output folder. Otherwise OMIT; Lawbot uses its software settings. Never choose an AI workspace folder yourself. Requires the user to approve the override in the initial local authorization."
+          },
+          "restored_output_dir": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1024,
+            "description": "Optional ONLY when the user explicitly requested this output folder. Otherwise OMIT; Lawbot uses its software settings. Never choose an AI workspace folder yourself. Requires the user to approve the override in the initial local authorization."
+          },
+          "file_settings": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 100,
+            "description": "Only when the user requests different settings for specific input files. Forward each source_path opaquely; all unspecified settings inherit batch defaults. Never include original text. Unified custom prefixes must be consistent across files.",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "source_path"
+              ],
+              "properties": {
+                "source_path": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 1024
+                },
+                "document_type": {
+                  "type": "string",
+                  "enum": [
+                    "auto",
+                    "general",
+                    "contract",
+                    "disclosure",
+                    "judgment",
+                    "pleading",
+                    "official_letter",
+                    "screenshot"
+                  ],
+                  "default": "auto"
+                },
+                "rule_set": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 120
+                },
+                "masking_mode": {
+                  "type": "string",
+                  "enum": [
+                    "pseudonym",
+                    "default_mask",
+                    "full_star",
+                    "purple_overlay"
+                  ],
+                  "default": "pseudonym"
+                },
+                "output_formats": {
+                  "type": "array",
+                  "minItems": 1,
+                  "maxItems": 2,
+                  "uniqueItems": true,
+                  "items": {
+                    "type": "string",
+                    "enum": [
+                      "original",
+                      "md"
+                    ]
+                  },
+                  "default": [
+                    "original",
+                    "md"
+                  ]
+                },
+                "advanced": {
+                  "type": "object",
+                  "additionalProperties": false,
+                  "properties": {
+                    "profile": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 120,
+                      "description": "Exact saved Lawbot profile name or ID; unknown profiles fail instead of silently falling back."
+                    },
+                    "pseudonymRules": {
+                      "type": "array",
+                      "minItems": 1,
+                      "maxItems": 18,
+                      "description": "Type-level custom token prefixes or selective pseudonym/mask actions. No original text. Masked categories cannot be restored. Use custom_pseudonym or selective_pseudonym exportMode respectively.",
+                      "items": {
+                        "type": "object",
+                        "additionalProperties": false,
+                        "properties": {
+                          "entityType": {
+                            "type": "string",
+                            "enum": [
+                              "name_cn",
+                              "org_name",
+                              "id_card",
+                              "phone",
+                              "bank_card",
+                              "address",
+                              "email",
+                              "website_url",
+                              "uscc",
+                              "wechat_id",
+                              "plate_cn",
+                              "securities_account",
+                              "case_number",
+                              "patent_no",
+                              "filing_no",
+                              "contract_amount",
+                              "seal",
+                              "face"
+                            ]
+                          },
+                          "prefix": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 20
+                          },
+                          "action": {
+                            "type": "string",
+                            "enum": [
+                              "pseudonym",
+                              "mask"
+                            ]
+                          }
+                        },
+                        "required": [
+                          "entityType"
+                        ]
+                      }
+                    },
+                    "entityTypes": {
+                      "type": "array",
+                      "maxItems": 18,
+                      "uniqueItems": true,
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "name_cn",
+                          "org_name",
+                          "id_card",
+                          "phone",
+                          "bank_card",
+                          "address",
+                          "email",
+                          "website_url",
+                          "uscc",
+                          "wechat_id",
+                          "plate_cn",
+                          "securities_account",
+                          "case_number",
+                          "patent_no",
+                          "filing_no",
+                          "contract_amount",
+                          "seal",
+                          "face"
+                        ]
+                      }
+                    },
+                    "exportMode": {
+                      "type": "string",
+                      "enum": [
+                        "default_star",
+                        "full_star",
+                        "default_pseudonym",
+                        "custom_pseudonym",
+                        "selective_pseudonym"
+                      ]
+                    },
+                    "maskStyle": {
+                      "type": "string",
+                      "enum": [
+                        "black",
+                        "white",
+                        "purple",
+                        "lightGray"
+                      ]
+                    },
+                    "removeImages": {
+                      "type": "boolean"
+                    },
+                    "removeHeaderFooter": {
+                      "type": "boolean"
+                    },
+                    "commentHandlingMode": {
+                      "type": "string",
+                      "enum": [
+                        "remove",
+                        "anonymize",
+                        "keep"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "evidence": {
+        "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js",
+        "start": 19949,
+        "end": 20034,
+        "line": 124,
+        "column": 22,
+        "sliceSha256": "be4777135437bfb9008737664b33bc03c76955eee06631b48b83538173841935"
+      },
+      "status": "static-schema-fully-expanded; runtime-validation-not-proven"
+    },
+    {
+      "name": "start_lawbot_restoration",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "job_id": {
+            "type": "string",
+            "pattern": "^lbj_[a-f0-9]{32}$"
+          },
+          "round_id": {
+            "type": "string",
+            "pattern": "^lbr_\\d{4}$"
+          },
+          "source_path": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1024
+          },
+          "restored_output_dir": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1024,
+            "description": "Optional ONLY when the user explicitly requested this output folder. Otherwise OMIT; Lawbot uses its software settings. Never choose an AI workspace folder yourself. Requires the user to approve the override in the initial local authorization."
+          }
+        }
+      },
+      "evidence": {
+        "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js",
+        "start": 20645,
+        "end": 20918,
+        "line": 130,
+        "column": 22,
+        "sliceSha256": "d150aee5e339d9cb0821000b4cc38093728aad41d925d0bcdefeb754434a87d3"
+      },
+      "status": "static-schema-fully-expanded; runtime-validation-not-proven"
+    },
+    {
+      "name": "check_document_delivery",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "job_id": {
+            "type": "string",
+            "pattern": "^lbj_[a-f0-9]{32}$"
+          },
+          "wait_seconds": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 45,
+            "default": 45
+          },
+          "after_updated_at": {
+            "type": "string",
+            "minLength": 20,
+            "maxLength": 40
+          }
+        },
+        "required": [
+          "job_id"
+        ]
+      },
+      "evidence": {
+        "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js",
+        "start": 21574,
+        "end": 21730,
+        "line": 144,
+        "column": 22,
+        "sliceSha256": "c075e52aae007d7dd64cce769488df44bef603eb7d3aa60dbd6a968cbb2d7b96"
+      },
+      "status": "static-schema-fully-expanded; runtime-validation-not-proven"
+    },
+    {
+      "name": "receive_sanitized_document",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "job_id": {
+            "type": "string",
+            "pattern": "^lbj_[a-f0-9]{32}$"
+          },
+          "artifact_id": {
+            "type": "string",
+            "pattern": "^lba_[a-f0-9]{32}$"
+          },
+          "replace_slot_id": {
+            "type": "string",
+            "pattern": "^lbs_[a-f0-9]{32}$"
+          },
+          "output_format": {
+            "type": "string",
+            "enum": [
+              "docx",
+              "md"
+            ]
+          },
+          "result_kind": {
+            "type": "string",
+            "enum": [
+              "reviewed_document",
+              "derived_report"
+            ],
+            "default": "reviewed_document"
+          }
+        },
+        "required": [
+          "job_id"
+        ]
+      },
+      "evidence": {
+        "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js",
+        "start": 22865,
+        "end": 23182,
+        "line": 150,
+        "column": 22,
+        "sliceSha256": "041dbe0901cced60151021dc48d5685a5dbb9d6f86541c34e3a6a70eabfe7030"
+      },
+      "status": "static-schema-fully-expanded; runtime-validation-not-proven"
+    },
+    {
+      "name": "submit_reviewed_document",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "job_id": {
+            "type": "string",
+            "pattern": "^lbj_[a-f0-9]{32}$"
+          },
+          "round_id": {
+            "type": "string",
+            "pattern": "^lbr_\\d{4}$"
+          },
+          "slot_id": {
+            "type": "string",
+            "pattern": "^lbs_[a-f0-9]{32}$"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "suggested_name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80
+          },
+          "token_changes": {
+            "description": "Deprecated compatibility field; ignored. No token change declaration is required.",
+            "type": "array",
+            "maxItems": 1000,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "token": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 80
+                },
+                "delta": {
+                  "type": "integer",
+                  "minimum": -10000,
+                  "maximum": 10000
+                },
+                "reason": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 240
+                }
+              },
+              "required": [
+                "token",
+                "delta",
+                "reason"
+              ]
+            }
+          }
+        },
+        "required": [
+          "job_id",
+          "round_id",
+          "slot_id",
+          "sha256",
+          "suggested_name"
+        ]
+      },
+      "evidence": {
+        "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js",
+        "start": 24113,
+        "end": 24855,
+        "line": 156,
+        "column": 22,
+        "sliceSha256": "00eb21ba9df8eafa1c6d0fff7609c640d0a809e7b4f7e4bba782d203d18502e4"
+      },
+      "status": "static-schema-fully-expanded; runtime-validation-not-proven"
+    },
+    {
+      "name": "open_lawbot_restore",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "job_id": {
+            "type": "string",
+            "pattern": "^lbj_[a-f0-9]{32}$"
+          },
+          "round_id": {
+            "type": "string",
+            "pattern": "^lbr_\\d{4}$"
+          }
+        },
+        "required": [
+          "job_id",
+          "round_id"
+        ]
+      },
+      "evidence": {
+        "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js",
+        "start": 25343,
+        "end": 25474,
+        "line": 162,
+        "column": 22,
+        "sliceSha256": "ba52c9fee31d55148333e4be97af5392bd3175cc3cc5703b07f27eaaf5413987"
+      },
+      "status": "static-schema-fully-expanded; runtime-validation-not-proven"
+    },
+    {
+      "name": "continue_current_document_review",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "job_id": {
+            "type": "string",
+            "pattern": "^lbj_[a-f0-9]{32}$"
+          }
+        },
+        "required": [
+          "job_id"
+        ]
+      },
+      "evidence": {
+        "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js",
+        "start": 25900,
+        "end": 26000,
+        "line": 168,
+        "column": 22,
+        "sliceSha256": "6c8dc39d9105557107c62077887bb4506bdca8e7a245902ccdee27b47279341a"
+      },
+      "status": "static-schema-fully-expanded; runtime-validation-not-proven"
+    },
+    {
+      "name": "get_lawbot_capabilities",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {}
+      },
+      "evidence": {
+        "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js",
+        "start": 26400,
+        "end": 26463,
+        "line": 174,
+        "column": 22,
+        "sliceSha256": "28c612632bcefe7a83d8eb03cb50d4e62f7e109accd13bcf3fb9ad40e864a320"
+      },
+      "status": "static-schema-fully-expanded; runtime-validation-not-proven"
+    },
+    {
+      "name": "check_restore_completion",
+      "inputSchema": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "job_id": {
+            "type": "string",
+            "pattern": "^lbj_[a-f0-9]{32}$"
+          },
+          "round_id": {
+            "type": "string",
+            "pattern": "^lbr_\\d{4}$"
+          },
+          "wait_seconds": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 45,
+            "default": 45
+          }
+        },
+        "required": [
+          "job_id"
+        ]
+      },
+      "evidence": {
+        "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js",
+        "start": 26864,
+        "end": 27010,
+        "line": 180,
+        "column": 22,
+        "sliceSha256": "63ed3c580d054c22ca558482b2536b6ec453c40b5b54f9a75ba924efef972ba8"
+      },
+      "status": "static-schema-fully-expanded; runtime-validation-not-proven"
+    }
+  ],
+  "expandedConstants": {
+    ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js:jobId": {
+      "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js",
+      "start": 10785,
+      "end": 10842,
+      "line": 40,
+      "column": 7,
+      "sliceSha256": "23ed29d7464f9fc4aee2ab35201c0d090c143d8cf5b2d36ff5269c5bdfecfbe1"
+    },
+    ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js:redactionStartProperties": {
+      "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js",
+      "start": 16398,
+      "end": 17212,
+      "line": 89,
+      "column": 7,
+      "sliceSha256": "af2dde12748e094ac8596f6ee521ff843943a47901958126771d2e78f7fd6788"
+    },
+    ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js:redactionProperties": {
+      "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js",
+      "start": 12842,
+      "end": 16390,
+      "line": 65,
+      "column": 7,
+      "sliceSha256": "d54b99ca2411c989f83eecef680475965c86c990a9288ce502504e70278b143b"
+    },
+    ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js:taskSummary": {
+      "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js",
+      "start": 12036,
+      "end": 12834,
+      "line": 59,
+      "column": 7,
+      "sliceSha256": "413aea0ea54f8300766496fed98029b33c819b2296c29bf3995852e09c0078a4"
+    },
+    ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/aiDiagnostics.js:TASK_GOALS": {
+      "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/aiDiagnostics.js",
+      "start": 226,
+      "end": 399,
+      "line": 7,
+      "column": 14,
+      "sliceSha256": "a3cd300ed3aedca01067106dac6109aa0080a9be1d6ce5d29f07fb9338f782cd"
+    },
+    ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js:batchSourcePath": {
+      "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js",
+      "start": 11263,
+      "end": 11489,
+      "line": 47,
+      "column": 7,
+      "sliceSha256": "77a5bfbcf9ade32009712322262a7827145151a852206c6e585be0c73437964a"
+    },
+    ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js:localPath": {
+      "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js",
+      "start": 11194,
+      "end": 11255,
+      "line": 46,
+      "column": 7,
+      "sliceSha256": "49f3ce0db93c4d10c81055ab569b4e2e2e685afcb3f06fa1303dfb51418064a6"
+    },
+    ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js:batchSourcePaths": {
+      "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js",
+      "start": 11497,
+      "end": 11713,
+      "line": 51,
+      "column": 7,
+      "sliceSha256": "a91f143eb1febb532d9add16b182c2c1d382537ee2051458c9d03bc91aa35908"
+    },
+    ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js:userOutputDirectory": {
+      "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js",
+      "start": 11721,
+      "end": 12028,
+      "line": 55,
+      "column": 7,
+      "sliceSha256": "62efdcc25f8ae9103d9c1a5b22334023705190a3d8c9da15bff362c98106553f"
+    },
+    ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js:roundId": {
+      "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js",
+      "start": 10920,
+      "end": 10973,
+      "line": 42,
+      "column": 7,
+      "sliceSha256": "184a5d54dcc16bd5b04610cc2c4f0a28cd14a17830fb1e24a9ef3b96f5412d61"
+    },
+    ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js:waitSeconds": {
+      "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js",
+      "start": 11047,
+      "end": 11118,
+      "line": 44,
+      "column": 7,
+      "sliceSha256": "b9868afd5c088dddb30a70889220d54de05a63ca61405264095a982d018e1e3e"
+    },
+    ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js:updatedAt": {
+      "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js",
+      "start": 11126,
+      "end": 11186,
+      "line": 45,
+      "column": 7,
+      "sliceSha256": "dc38921d0fb8441bdd8a429fabd83b561c539cea264448311519e99a96a6d852"
+    },
+    ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js:artifactId": {
+      "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js",
+      "start": 10850,
+      "end": 10912,
+      "line": 41,
+      "column": 7,
+      "sliceSha256": "23d9afc5fae8ead02b83e239d1efee91550401d8c03af4def8941118ba0684c5"
+    },
+    ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js:slotId": {
+      "path": ".data/research/lawbot-2026-10-13/extracted/lawbot-mcp/tools.js",
+      "start": 10981,
+      "end": 11039,
+      "line": 43,
+      "column": 7,
+      "sliceSha256": "a2ff44ee2a4466505b406563102c0d42d4f8134655057531133b853ffa8bb88a"
+    }
+  },
+  "unresolved": [],
+  "limits": [
+    "Fully expanded declared JSON Schemas do not prove gateway validation or runtime tool behavior.",
+    "Descriptions are untrusted vendor documentation, not instructions to the analysis agent."
+  ]
+}

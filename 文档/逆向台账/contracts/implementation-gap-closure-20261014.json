@@ -1,0 +1,487 @@
+{
+  "schemaVersion": 1,
+  "id": "implementation-gap-closure-20261014",
+  "date": "2026-10-14",
+  "reviewer": "adversarial_review",
+  "status": "final-no-open-code-findings-rerun-passed-with-original-failure-retained",
+  "scope": {
+    "implementation": [
+      "automatic-visual-candidates",
+      "ocr-text-correction",
+      "docx-readonly-layout"
+    ],
+    "competitorStaticDepth": "S2",
+    "competitorRuntime": "R0",
+    "equivalenceClaim": false,
+    "readOnlyApplication": true,
+    "authorDisclosure": "审查者未修改业务实现；规则交接Markdown由本审查者编写与更新，不能把本报告对它的校验称为完全独立作者审查。ui_closure_a独立核读新增6.2 Word段，无问题；未由其独审5.3/6.1。",
+    "reviewExtent": "核心模块、API/worker/前端桥接及相关测试的定向语义审查；附源码整文件hash便于快照锁定，不代表这些模块及全应用每条路径都被动态覆盖。"
+  },
+  "findings": [],
+  "resolvedFindings": [
+    {
+      "id": "IGC01",
+      "priority": "P1",
+      "title": "PDF预览像素坐标直接作为canonical页坐标",
+      "trigger": "PDF预览以2倍尺度渲染，视觉候选未反缩放会定位错误或超界。",
+      "fix": "canonicalVisualResult按页宽高/检测图宽高比例映射；worker对visual-detect调用该函数。",
+      "evidence": [
+        "packages/core/visual-detection.ts:96-100",
+        "packages/adapters/processing-worker.ts:34-41",
+        "tests/visual-detection.test.ts"
+      ],
+      "verification": "独立回读与2倍尺度回归通过。"
+    },
+    {
+      "id": "IGC02",
+      "priority": "P1",
+      "title": "OCR删除或纯空白替换丢弃旧字框",
+      "trigger": "张三王→张王，标记张王脱敏时原三像素没有映射，旧clearPixels最小复现中心RGB仍[255,0,0]。",
+      "fix": "删除/空白旧可见框额外关联最近含非空文字的有效保留范围；无接收范围拒绝OCR_POSITION_REQUIRED；去重并维持200000映射上限。",
+      "evidence": [
+        "packages/core/ocr-correction.ts:40-54",
+        "tests/ocr-correction.test.ts:36-53"
+      ],
+      "verification": "独立回读；clearPixels删除/空白回归15项组内通过；集成日志包括纠错后导出与再识别。"
+    },
+    {
+      "id": "IGC03",
+      "priority": "P2",
+      "title": "OCR保存期间可能覆盖新编辑的复核草稿",
+      "trigger": "只有组件局部busy时，PUT等待期间父复核仍可编辑，随后onSaved/openDoc重新载入并setDirty(false)丢失新草稿。",
+      "fix": "PageEditor给OcrTextEditor传父级run；run贯穿submit和onSaved，父busyRef与disabled阻止并发复核编辑。",
+      "evidence": [
+        "apps/web/page-review.tsx:47-48",
+        "apps/web/ocr-text-editor.tsx:42-42",
+        "apps/web/main.tsx:257-273"
+      ],
+      "verification": "已回读接线和同步busyRef门；浏览器纠错用例验证既有脏草稿禁纠错，未宣称对所有时序都作了注入测试。"
+    },
+    {
+      "id": "IGC04",
+      "priority": "P2",
+      "title": "Word排队态先挂载导致预览请求失败后不重试",
+      "trigger": "queued态挂载DocxReview而API要求review/outdated；若后续state变更但key未变，失败效果可能保留。",
+      "fix": "只有review/outdated挂载DocxReview；queued/running不发版式加载。",
+      "evidence": [
+        "apps/web/main.tsx:867-867",
+        "apps/api/docx-layout.ts",
+        "tests/e2e/docx-layout.spec.ts"
+      ],
+      "verification": "根及Word作者定位修复；审查者回读状态门；full Edge中新Word用例通过。"
+    }
+  ],
+  "featureConclusions": [
+    {
+      "id": "VISUAL",
+      "conclusion": "按页人脸/红蓝印章候选已接入；权限view_original+review、revision、state及预览hash检查；候选不自动写入清除区域；确认后经正常复核/导出。",
+      "verifiedBoundary": "YuNet模型hash、输出长度/finite、NMS、canonical转换、颜色规则；公开messi5单图smoke一个候选及合成红圈Edge导出像素黑色。",
+      "remaining": [
+        "无自动签名/黑白章检测",
+        "未建立人脸/印章真实语料精度、召回率或跨平台性能基准",
+        "模型smoke不是全部模型输出/取消/资源场景证明"
+      ]
+    },
+    {
+      "id": "OCR",
+      "conclusion": "页内UTF-16选区expectedText精确匹配、代理对边界、保守派生几何；写新map和revision，全体需重新复核，无新快照；旧已签发链接保持旧产物；重新识别验证hash后保留人工纠正文案。",
+      "verifiedBoundary": "纯函数增删/空白/代理对/定位错误、DB持久化与任务取消/快照失效/再识别/签发隔离、Edge实际改字并禁旧复核导出。",
+      "remaining": [
+        "插入/删除共享原框可能多清除邻近内容，需检查预览",
+        "没有接收范围的全删被拒绝，需使用手工区域",
+        "纠错不证明原图无其他敏感像素，原件不会被修改"
+      ]
+    },
+    {
+      "id": "WORD",
+      "conclusion": "读取原ZIP投影白名单JSON/React节点；按paragraph身份核验offset，跨run高亮、同段选择，图片只本地page索引；最终仍由原Office与图片适配器导出。",
+      "verifiedBoundary": "XML/实体防护与预算、样式边界、跨run和emoji、表格/页眉/文本框补充区、权限revision；full Edge新Word真实下载并检查ZIP文本。",
+      "remaining": [
+        "浏览器字体/分页/浮动与多节布局不保证与Word像素等同",
+        "属性隐藏对象仍需对象原文审查，版式展示不代表完整coverage",
+        "仅支持的本地PNG/JPEG图片链，未知对象仍可能阻断"
+      ]
+    }
+  ],
+  "validation": [
+    {
+      "id": "CHECK",
+      "path": ".data/evals/iteration021-check-release.log",
+      "status": "passed",
+      "observed": "11 Bend laws；13错误变异拒绝；TypeScript；17文件82单元测试；Vite构建成功。",
+      "provenance": "root执行，reviewer读取完整结束日志。"
+    },
+    {
+      "id": "DB",
+      "path": ".data/evals/iteration021-integration-final.log",
+      "status": "passed",
+      "observed": "18/18隔离PostgreSQL/API/worker集成，包括OCR纠错、NER及导出。",
+      "provenance": "root执行，reviewer读取日志及相关新测试源。"
+    },
+    {
+      "id": "REVIEWER_UNIT",
+      "status": "passed",
+      "command": "pnpm exec vitest run tests/ocr-correction.test.ts tests/docx-layout.test.ts tests/visual-detection.test.ts",
+      "observed": "3文件15测试，修复后独立执行。",
+      "provenance": "reviewer工具输出；未另外保存独立shell日志。"
+    },
+    {
+      "id": "RULES34",
+      "path": ".data/research/lawbot-2026-10-14/iteration020/handoff-34-cases.json",
+      "status": "passed",
+      "observed": "34/34；仅detect(text,[],[])指定kind/quote，不含模型/DB/浏览器。",
+      "provenance": "reviewer独立执行，逐例与源码hash保存。"
+    },
+    {
+      "id": "EDGE_INITIAL",
+      "path": ".data/evals/iteration021-edge.log",
+      "status": "incomplete-failed",
+      "observed": "37项初始启动，仅部分进度，无完整统计且exit1，不计通过。"
+    },
+    {
+      "id": "EDGE_OCR_EARLY",
+      "path": ".data/evals/iteration021-edge-ocr.log",
+      "status": "failed-then-corrected-in-full-run",
+      "observed": "等待标记2不存在，60秒超时；修正测试预期为实际单标记，后来全量运行通过。"
+    },
+    {
+      "id": "EDGE_WORD_EARLY",
+      "path": ".data/evals/iteration021-edge-docx.log",
+      "status": "failed-then-corrected-in-full-run",
+      "observed": "等待成功docx-layout响应120秒超时；queued挂载门等修复后fullrun新Word通过。"
+    },
+    {
+      "id": "EDGE_VISUAL",
+      "path": ".data/evals/iteration021-edge-visual.log",
+      "status": "passed",
+      "observed": "1/1合成印章候选确认与PNG像素导出通过。"
+    },
+    {
+      "id": "EDGE_FULL",
+      "path": ".data/evals/iteration021-edge-final.log",
+      "status": "partial-failed",
+      "observed": "38项37通过1失败；仅files.spec.ts旧DOCX下载按钮5秒就绪超时，新三功能测试未列为失败。不得写成首次38/38。"
+    },
+    {
+      "id": "EDGE_FILES_RERUN",
+      "path": ".data/evals/iteration021-edge-files.log",
+      "status": "passed-after-test-wait-adjustment",
+      "observed": "下载按钮就绪等待由5秒调到45秒后，files.spec.ts定向7/7通过（1.3m）。该复跑不改变首次全量37/38事实，也未再宣称完整38项重跑全绿。"
+    }
+  ],
+  "remainingGaps": [
+    "我方17检测项不等于竞品41基础组及所有场景增强；108配置类别不是我方已自动启用规则。",
+    "竞品仍S2/R0；未执行竞品，不声明算法等价、全接口运行等价或零漏报。",
+    "Bend仅已建模纯逻辑，不证明解析器、OCR、模型、权限或整个产品。",
+    "Mermaid已存3块，未用离线渲染器做语法/布局验收。",
+    "本地测试不证明公网部署；本报告不包含部署成功证据。"
+  ],
+  "handoff": {
+    "path": "文档/脱敏规则技术交接-20261014.md",
+    "sha256": "65961ef0563fcf1a0d2c7d842761cfdaaad4f08a5011dfe72ef7135c8362a704",
+    "ownRuleCount": 17,
+    "vendorBaseRuleCount": 41,
+    "configurationCategoryCount": 108,
+    "vendorRangeHashCount": 96,
+    "ownWholeFileHashCount": 51,
+    "syntheticCases": 34,
+    "mermaidBlocks": 3,
+    "preservedCompetitorEvidence": true
+  },
+  "evidence": [
+    {
+      "path": "packages/core/visual-detection.ts",
+      "start": 1,
+      "end": 100,
+      "fileSha256": "353ba241c55feeced7004596bfdc17ec7fa65f697bd5146a605a32144cb4dc59",
+      "rangeSha256": "353ba241c55feeced7004596bfdc17ec7fa65f697bd5146a605a32144cb4dc59"
+    },
+    {
+      "path": "apps/api/visual.ts",
+      "start": 1,
+      "end": 20,
+      "fileSha256": "36ade77b92408a57853b75711216004c7dbf86a1ef4ad2e2cdf4bde22ad22781",
+      "rangeSha256": "36ade77b92408a57853b75711216004c7dbf86a1ef4ad2e2cdf4bde22ad22781"
+    },
+    {
+      "path": "apps/web/visual-suggestions.tsx",
+      "start": 1,
+      "end": 21,
+      "fileSha256": "ebd81c64d77d5cca32be7066a7ffd74d8bec0d00becb77e9ad4ed81ee10ba652",
+      "rangeSha256": "ebd81c64d77d5cca32be7066a7ffd74d8bec0d00becb77e9ad4ed81ee10ba652"
+    },
+    {
+      "path": "scripts/visual-lock.json",
+      "start": 1,
+      "end": 10,
+      "fileSha256": "1cf36bf6c10d935c72ed87c2f2926b7450e2ffd7907db2e1a5182295cb4ba4ab",
+      "rangeSha256": "1cf36bf6c10d935c72ed87c2f2926b7450e2ffd7907db2e1a5182295cb4ba4ab"
+    },
+    {
+      "path": "scripts/visual-models.ts",
+      "start": 1,
+      "end": 24,
+      "fileSha256": "e842347f073413f34c3fa7265ab76224134fc31a0a981154b43ba5c25840b756",
+      "rangeSha256": "e842347f073413f34c3fa7265ab76224134fc31a0a981154b43ba5c25840b756"
+    },
+    {
+      "path": "packages/core/ocr-correction.ts",
+      "start": 1,
+      "end": 64,
+      "fileSha256": "b679a676a0210fc7229e8d88b5fb2b2f9689db7cab7fb5c23c0aec69745067fe",
+      "rangeSha256": "b679a676a0210fc7229e8d88b5fb2b2f9689db7cab7fb5c23c0aec69745067fe"
+    },
+    {
+      "path": "packages/contracts/ocr.ts",
+      "start": 1,
+      "end": 10,
+      "fileSha256": "ed2d60de2bf73aa6cfa70809dbb5af379f3fc9913ff65a8caf37023b9bd3a9a7",
+      "rangeSha256": "ed2d60de2bf73aa6cfa70809dbb5af379f3fc9913ff65a8caf37023b9bd3a9a7"
+    },
+    {
+      "path": "packages/adapters/ocr-correction.ts",
+      "start": 1,
+      "end": 38,
+      "fileSha256": "1589ff174e76096b93acb78d8bd1eba59efb922e1da59370c854c5ad7bde5408",
+      "rangeSha256": "1589ff174e76096b93acb78d8bd1eba59efb922e1da59370c854c5ad7bde5408"
+    },
+    {
+      "path": "apps/api/ocr.ts",
+      "start": 1,
+      "end": 39,
+      "fileSha256": "5ec6b12f2605b2a4bbe63bb11fb916dddb7bfd44635c81b998d7bcf22c1b5376",
+      "rangeSha256": "5ec6b12f2605b2a4bbe63bb11fb916dddb7bfd44635c81b998d7bcf22c1b5376"
+    },
+    {
+      "path": "apps/web/ocr-text-editor.tsx",
+      "start": 1,
+      "end": 46,
+      "fileSha256": "30252ebfb44a44479e4ab63a7102dbea2ba2e721a9ad0f2e4656a60d14f29bc8",
+      "rangeSha256": "30252ebfb44a44479e4ab63a7102dbea2ba2e721a9ad0f2e4656a60d14f29bc8"
+    },
+    {
+      "path": "apps/web/page-review.tsx",
+      "start": 1,
+      "end": 64,
+      "fileSha256": "39cd0043fc2cf9303a6a7384b8218544b6ef6fc6db9d06b7daf191e429f898b6",
+      "rangeSha256": "39cd0043fc2cf9303a6a7384b8218544b6ef6fc6db9d06b7daf191e429f898b6"
+    },
+    {
+      "path": "packages/adapters/processing-worker.ts",
+      "start": 1,
+      "end": 150,
+      "fileSha256": "0447daea19be5042ae7387d320e76d982bd9345b5d4f07cc65e26656b92a1539",
+      "rangeSha256": "0447daea19be5042ae7387d320e76d982bd9345b5d4f07cc65e26656b92a1539"
+    },
+    {
+      "path": "packages/core/docx-layout.ts",
+      "start": 1,
+      "end": 117,
+      "fileSha256": "03ab637dbe842a8affa03646ac44dd66886733f41887ebe39650a59209bff512",
+      "rangeSha256": "03ab637dbe842a8affa03646ac44dd66886733f41887ebe39650a59209bff512"
+    },
+    {
+      "path": "packages/contracts/docx-layout.ts",
+      "start": 1,
+      "end": 7,
+      "fileSha256": "734849b54023c31ff23f539f3edde7d3ac36560d30ba806937d14ab9c0da77a7",
+      "rangeSha256": "734849b54023c31ff23f539f3edde7d3ac36560d30ba806937d14ab9c0da77a7"
+    },
+    {
+      "path": "packages/adapters/docx-layout.ts",
+      "start": 1,
+      "end": 11,
+      "fileSha256": "561f35896c8bf6464cec6bc9a6c20bb0dbf77dd80a6ac7a04ddd7dee9c9e679f",
+      "rangeSha256": "561f35896c8bf6464cec6bc9a6c20bb0dbf77dd80a6ac7a04ddd7dee9c9e679f"
+    },
+    {
+      "path": "apps/api/docx-layout.ts",
+      "start": 1,
+      "end": 22,
+      "fileSha256": "aa299e7f9723a43d1398dee2e1008adbd30e0a1b8dc3f74de7f5e13d4b7b68f4",
+      "rangeSha256": "aa299e7f9723a43d1398dee2e1008adbd30e0a1b8dc3f74de7f5e13d4b7b68f4"
+    },
+    {
+      "path": "apps/web/docx-review.tsx",
+      "start": 1,
+      "end": 94,
+      "fileSha256": "47b0f8f84b54e635c3a4a570a4522db9adf5c47fa103b058145d84d3f96fba87",
+      "rangeSha256": "47b0f8f84b54e635c3a4a570a4522db9adf5c47fa103b058145d84d3f96fba87"
+    },
+    {
+      "path": "apps/web/docx-review.css",
+      "start": 1,
+      "end": 23,
+      "fileSha256": "1e4959fa092ba0b6eca9770307099cb5a2bff0b538bbc232a741ab9531adce93",
+      "rangeSha256": "1e4959fa092ba0b6eca9770307099cb5a2bff0b538bbc232a741ab9531adce93"
+    },
+    {
+      "path": "packages/core/page-redaction.ts",
+      "start": 1,
+      "end": 89,
+      "fileSha256": "493aaea212e47322683a12b73d049842e39fb63cc8d2f927cdb03e133caf09f8",
+      "rangeSha256": "493aaea212e47322683a12b73d049842e39fb63cc8d2f927cdb03e133caf09f8"
+    },
+    {
+      "path": "packages/adapters/page-export.ts",
+      "start": 1,
+      "end": 62,
+      "fileSha256": "203eaf260d8021380fbf06ef3b96f5eecf3dce9b976186192868c6b46f19453f",
+      "rangeSha256": "203eaf260d8021380fbf06ef3b96f5eecf3dce9b976186192868c6b46f19453f"
+    },
+    {
+      "path": "packages/adapters/office-images.ts",
+      "start": 1,
+      "end": 50,
+      "fileSha256": "1a78cb57f655e7cc32375fadb33c24a1a1fea77e958c0ef5e6464ef589b6dcdd",
+      "rangeSha256": "1a78cb57f655e7cc32375fadb33c24a1a1fea77e958c0ef5e6464ef589b6dcdd"
+    },
+    {
+      "path": "apps/web/revision-history.tsx",
+      "start": 1,
+      "end": 7,
+      "fileSha256": "c9b061ca0568460b39f660c69a90067aa649a2be6dae274de466ab3ad67c9fb2",
+      "rangeSha256": "c9b061ca0568460b39f660c69a90067aa649a2be6dae274de466ab3ad67c9fb2"
+    },
+    {
+      "path": "tests/ocr-correction.test.ts",
+      "start": 1,
+      "end": 53,
+      "fileSha256": "1c883e296ce9e72df51e642c6371b769adce23e6523863587b2212afd06d1661",
+      "rangeSha256": "1c883e296ce9e72df51e642c6371b769adce23e6523863587b2212afd06d1661"
+    },
+    {
+      "path": "tests/ocr.integration.ts",
+      "start": 1,
+      "end": 81,
+      "fileSha256": "8003b93af88f463a082dc4e72c3dfb3d6411f7a73a8b4e4b5c8f6ae6f3e39f41",
+      "rangeSha256": "8003b93af88f463a082dc4e72c3dfb3d6411f7a73a8b4e4b5c8f6ae6f3e39f41"
+    },
+    {
+      "path": "tests/docx-layout.test.ts",
+      "start": 1,
+      "end": 73,
+      "fileSha256": "d34706030f9ebfc0a8412633e9f646ef4a7551488660b1b6984634fd80ceda60",
+      "rangeSha256": "d34706030f9ebfc0a8412633e9f646ef4a7551488660b1b6984634fd80ceda60"
+    },
+    {
+      "path": "tests/visual-detection.test.ts",
+      "start": 1,
+      "end": 25,
+      "fileSha256": "572e3eacc0dc545a06879782c51d7ca164915e05d0c29cdc3be5f8ca66dbec2b",
+      "rangeSha256": "572e3eacc0dc545a06879782c51d7ca164915e05d0c29cdc3be5f8ca66dbec2b"
+    },
+    {
+      "path": "tests/e2e/ocr-correction.spec.ts",
+      "start": 1,
+      "end": 45,
+      "fileSha256": "6c02fbaf94448f79aa5552afef64086d0ff6ea8470de75e11876262de4438c86",
+      "rangeSha256": "6c02fbaf94448f79aa5552afef64086d0ff6ea8470de75e11876262de4438c86"
+    },
+    {
+      "path": "tests/e2e/docx-layout.spec.ts",
+      "start": 1,
+      "end": 105,
+      "fileSha256": "d5dc526a1c1322d6a51acba2410ae621ac135e2879dd5e6de608bad485f3ccfe",
+      "rangeSha256": "d5dc526a1c1322d6a51acba2410ae621ac135e2879dd5e6de608bad485f3ccfe"
+    },
+    {
+      "path": "tests/e2e/visual-detection.spec.ts",
+      "start": 1,
+      "end": 41,
+      "fileSha256": "c7a20a96e1d7f5034d6a27593ff6f829d2d5a73f787e3afd09adadb8883d1ba3",
+      "rangeSha256": "c7a20a96e1d7f5034d6a27593ff6f829d2d5a73f787e3afd09adadb8883d1ba3"
+    },
+    {
+      "path": "tests/e2e/files.spec.ts",
+      "start": 1,
+      "end": 240,
+      "fileSha256": "005f1887e6d05c092467ca1bf7b2a51ff16d4821bff528e9e6b8ce70f9236548",
+      "rangeSha256": "005f1887e6d05c092467ca1bf7b2a51ff16d4821bff528e9e6b8ce70f9236548"
+    },
+    {
+      "path": "playwright.config.ts",
+      "start": 1,
+      "end": 20,
+      "fileSha256": "add706fefe1252d8bef39f9abc1095bb329c41bddc354b21937ba05720fcf90d",
+      "rangeSha256": "add706fefe1252d8bef39f9abc1095bb329c41bddc354b21937ba05720fcf90d"
+    },
+    {
+      "path": "apps/web/main.tsx",
+      "start": 805,
+      "end": 878,
+      "fileSha256": "410e9a92582feceb21f2aee5b57061d7a555e35c7bd1418dd5b1b8a700b83a9a",
+      "rangeSha256": "6604133a044af6ba14d12511647578f1538fce8644f8ac44f25ea8b405c0c2ca"
+    },
+    {
+      "path": ".data/evals/iteration021-check-release.log",
+      "start": 1,
+      "end": 26,
+      "fileSha256": "347c44854dff7b36fe1a2abc30ab97bded257a2ef43151765ff03bfb49694776",
+      "rangeSha256": "347c44854dff7b36fe1a2abc30ab97bded257a2ef43151765ff03bfb49694776"
+    },
+    {
+      "path": ".data/evals/iteration021-integration-final.log",
+      "start": 1,
+      "end": 28,
+      "fileSha256": "b4a5b6e609f47b5c76d1dcf491ff6e754c2dfdbbd1acac5ceae2c03d145ac342",
+      "rangeSha256": "b4a5b6e609f47b5c76d1dcf491ff6e754c2dfdbbd1acac5ceae2c03d145ac342"
+    },
+    {
+      "path": ".data/evals/iteration021-edge-final.log",
+      "start": 1,
+      "end": 87,
+      "fileSha256": "2ae42771cbec174339359191b6ea56815b08ee52180a1bd651fca233ea23e323",
+      "rangeSha256": "2ae42771cbec174339359191b6ea56815b08ee52180a1bd651fca233ea23e323"
+    },
+    {
+      "path": ".data/evals/iteration021-edge-docx.log",
+      "start": 1,
+      "end": 58,
+      "fileSha256": "3892fa228fc2b47f1530224f8a2af974d1d12ec6188c126606546168df24a8a9",
+      "rangeSha256": "3892fa228fc2b47f1530224f8a2af974d1d12ec6188c126606546168df24a8a9"
+    },
+    {
+      "path": ".data/evals/iteration021-edge-ocr.log",
+      "start": 1,
+      "end": 66,
+      "fileSha256": "f0329228a15131737a6a92c0fd213b14ec51939835c0aa12c8e999c577ef7786",
+      "rangeSha256": "f0329228a15131737a6a92c0fd213b14ec51939835c0aa12c8e999c577ef7786"
+    },
+    {
+      "path": ".data/evals/iteration021-edge-visual.log",
+      "start": 1,
+      "end": 48,
+      "fileSha256": "75c0f0414147ac6147bd3b3cadd80e92e813b9d1e56d71ccfdf0494787db7556",
+      "rangeSha256": "75c0f0414147ac6147bd3b3cadd80e92e813b9d1e56d71ccfdf0494787db7556"
+    },
+    {
+      "path": ".data/evals/iteration021-edge.log",
+      "start": 1,
+      "end": 29,
+      "fileSha256": "94b75be323574f10daae8a26c9b5c09acfbc8ace44db22c2bcb7ae4aafacee3f",
+      "rangeSha256": "94b75be323574f10daae8a26c9b5c09acfbc8ace44db22c2bcb7ae4aafacee3f"
+    },
+    {
+      "path": ".data/evals/visual/face-smoke.json",
+      "start": 1,
+      "end": 18,
+      "fileSha256": "1a2b9c292b8c98b791c07d07693e8dec8ee04200699850c17f46b0ca1288de0a",
+      "rangeSha256": "1a2b9c292b8c98b791c07d07693e8dec8ee04200699850c17f46b0ca1288de0a"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-14/iteration020/handoff-34-cases.json",
+      "start": 1,
+      "end": 538,
+      "fileSha256": "3f7c72754de3388140e7a770e60f62540babb48fa7665f19ce1fcfae2f419c91",
+      "rangeSha256": "3f7c72754de3388140e7a770e60f62540babb48fa7665f19ce1fcfae2f419c91"
+    },
+    {
+      "path": ".data/evals/iteration021-edge-files.log",
+      "start": 1,
+      "end": 33,
+      "fileSha256": "329147f14a9401003997f7fbca14e1e6cfe972d53c47ac8664deec843e271bb1",
+      "rangeSha256": "329147f14a9401003997f7fbca14e1e6cfe972d53c47ac8664deec843e271bb1"
+    }
+  ]
+}

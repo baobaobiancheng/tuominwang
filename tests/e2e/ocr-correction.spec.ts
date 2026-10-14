@@ -1,0 +1,45 @@
+import { test, expect } from "./fixture.ts";
+import { randomUUID } from "node:crypto";
+import { pdfFixture } from "../pdf-fixtures.ts";
+
+test("OCR correction saves page text and requires fresh review while retaining the original preview", async ({ page }) => {
+  test.setTimeout(120000);
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/");
+  await page.getByLabel("账号", { exact: true }).fill(process.env.E2E_USERNAME!);
+  await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
+  await page.getByRole("button", { name: "登录工作台" }).click();
+  await page.locator("summary").click();
+  await page.getByLabel("项目名称").fill("OCR纠错-" + randomUUID().slice(0, 8));
+  await page.getByRole("button", { name: "新建项目", exact: true }).click();
+  await page.getByRole("button", { name: "导入材料", exact: true }).click();
+  await page.getByLabel("选择文件", { exact: true }).setInputFiles({ name: "公开OCR纠错样本.pdf", mimeType: "application/pdf", buffer: pdfFixture() });
+  await page.getByRole("button", { name: "上传文件", exact: true }).click();
+  await expect(page.getByText("已保存", { exact: true })).toBeVisible();
+  await page.getByRole("button", { name: "返回材料列表", exact: true }).click();
+  await page.getByRole("button", { name: /公开OCR纠错样本.pdf/ }).click();
+  await page.getByRole("button", { name: "逐条复核", exact: true }).click();
+  await expect(page.getByLabel("标记 1 处理决定")).toBeVisible({ timeout: 60000 });
+  expect(await page.getByLabel("原文", { exact: true }).inputValue()).toContain("13800138000");
+  await page.getByLabel("标记 1 处理决定").selectOption("ignore");
+  await expect(page.getByRole("button", { name: "纠正识别文字", exact: true })).toBeDisabled(); // unsaved review is protected
+  await page.getByRole("checkbox", { name: "转换为不可选字的图片型 PDF 副本" }).check();
+  await page.getByRole("button", { name: "保存复核", exact: true }).click();
+  await expect(page.getByText("复核已保存", { exact: true })).toBeVisible();
+  await page.getByRole("button", { name: "纠正识别文字", exact: true }).click();
+  const original = page.getByLabel("本页识别文字", { exact: true }); await expect(original).toBeVisible();
+  const text = await original.inputValue(); expect(text).toContain("13800138000");
+  const previewSrc = await page.getByRole("img", { name: "原件第 1 页", exact: true }).getAttribute("src");
+  await original.focus(); await original.press("ControlOrMeta+A");
+  const corrected = text.replace("13800138000", "13800138001");
+  const editor = page.getByLabel("纠正后的文字", { exact: true }); await expect(editor).toBeEnabled(); await editor.fill(corrected);
+  await page.getByRole("button", { name: "保存文字并重新复核", exact: true }).click();
+  await expect(page.getByText("识别文字已更新，请重新确认敏感标记并保存复核。", { exact: true })).toBeVisible();
+  await expect(page.getByLabel("标记 1 处理决定")).toHaveValue("pending");
+  await expect(page.getByRole("button", { name: "导出已选标记的处理副本", exact: true })).toBeDisabled();
+  await page.getByRole("button", { name: "纠正识别文字", exact: true }).click();
+  await expect(page.getByLabel("本页识别文字", { exact: true })).toHaveValue(corrected);
+  const afterSrc = await page.getByRole("img", { name: "原件第 1 页", exact: true }).getAttribute("src");
+  expect(afterSrc?.split("?")[0]).toBe(previewSrc?.split("?")[0]);
+  await page.screenshot({ path: "test-results/ocr-correction-desktop.png", fullPage: true });
+});

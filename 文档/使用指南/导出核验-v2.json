@@ -1,0 +1,283 @@
+{
+  "verifiedAt": "2026-10-13T08:30:52.757Z",
+  "provenance": "处理结果文件由子代理从Edge实际下载，主代理按文件哈希留存并核验。此脚本只读取这些文件，未生成、替换或改写下载产物；输入fixture单独记录。",
+  "scope": "仅核验下面列出的实际产物及指定原敏感值，不代表所有业务内容均已脱敏，也不代表整个产品已完成验收。",
+  "pdf": {
+    "inputFixture": {
+      "path": "/Users/admin/FDE/脱敏工具/脱敏汪/文档/使用指南/示例材料/合成双页.pdf",
+      "sha256": "f15430eb459a619e0d5805ffa23c42caee5867a682b312dfdd1fecc04399a814",
+      "bytes": 1018
+    },
+    "downloadedArtifact": {
+      "path": "/Users/admin/FDE/脱敏工具/脱敏汪/文档/使用指南/示例材料/v2-合成双页-处理结果.pdf",
+      "sha256": "da1b6c6af64aba9a63fe0497bed304019e1b257a7d3c685468ccd8aff5db443f",
+      "bytes": 30308
+    },
+    "sourcePageCount": 2,
+    "outputPageCount": 2,
+    "expectedTwoPages": true,
+    "metadata": {},
+    "attachments": 0,
+    "scripts": 0,
+    "pages": [
+      {
+        "page": 1,
+        "sourcePhoneOccurrences": 1,
+        "selectableText": "",
+        "glyphCount": 0,
+        "objectTypes": [
+          3
+        ],
+        "imageObjectsOnly": true,
+        "annotations": 0,
+        "originalPhonePixelBox": {
+          "left": 581,
+          "top": 117,
+          "right": 817,
+          "bottom": 143
+        },
+        "blackPixelRatioInPhoneBox": 0.9915254237288136,
+        "renderPath": "/Users/admin/FDE/脱敏工具/脱敏汪/文档/使用指南/核验图-v2/PDF处理结果第1页.png"
+      },
+      {
+        "page": 2,
+        "sourcePhoneOccurrences": 1,
+        "selectableText": "",
+        "glyphCount": 0,
+        "objectTypes": [
+          3
+        ],
+        "imageObjectsOnly": true,
+        "annotations": 0,
+        "originalPhonePixelBox": {
+          "left": 581,
+          "top": 117,
+          "right": 817,
+          "bottom": 143
+        },
+        "blackPixelRatioInPhoneBox": 0.9915254237288136,
+        "renderPath": "/Users/admin/FDE/脱敏工具/脱敏汪/文档/使用指南/核验图-v2/PDF处理结果第2页.png"
+      }
+    ],
+    "limitation": "核验了下载PDF本体的图片对象、空文字层、附件/脚本/注释和原手机号区域像素；不把仅删除文字层当作完成像素脱敏。"
+  },
+  "png": {
+    "status": "verified_download",
+    "inputFixture": {
+      "path": "/Users/admin/FDE/脱敏工具/脱敏汪/文档/使用指南/示例材料/合成截图.png",
+      "sha256": "0b3791076d81805eb525163bd2711680e37513d5e02866575cee15f0df733359",
+      "bytes": 31827
+    },
+    "downloadedArtifact": {
+      "path": "/Users/admin/FDE/脱敏工具/脱敏汪/文档/使用指南/示例材料/v2-合成截图-处理结果.png",
+      "sha256": "173cbc0f0ca7585debf47a7510d591b6624569171c413d57fae4af745e444233",
+      "bytes": 18962
+    },
+    "dimensionsPreserved": true,
+    "dimensions": {
+      "width": 1200,
+      "height": 400
+    },
+    "metadata": {
+      "exif": false,
+      "icc": false,
+      "iptc": false,
+      "xmp": false
+    },
+    "sourceOcrText": "PUBLIC SYNTHETIC DEMO - NO CUSTOMER DATA\nPhone: 13800138000\nEmail: demo@example.com\n",
+    "outputOcrText": "PUBLIC SYNTHETIC DEMO - NO CUSTOMER DATA\nPhone: |\nEmail: men gi\n",
+    "sensitiveRegions": [
+      {
+        "value": "13800138000",
+        "sourceOcrContainsValue": true,
+        "outputOcrContainsValue": false,
+        "sourceGlyphCount": 11,
+        "checkedPixels": 10172,
+        "blackPixelRatioInSourceGlyphs": 1
+      },
+      {
+        "value": "demo@example.com",
+        "sourceOcrContainsValue": true,
+        "outputOcrContainsValue": false,
+        "sourceGlyphCount": 16,
+        "checkedPixels": 10966,
+        "blackPixelRatioInSourceGlyphs": 1
+      }
+    ],
+    "visualReview": "已查看实际下载PNG：电话和邮箱字形位置被黑色清除，标题及Phone/Email标签保留。",
+    "limitation": "OCR复测不能单独证明无残留，因此另按输入OCR字形坐标核验输出像素；此结论仅覆盖样例中的指定手机号与邮箱。"
+  },
+  "xlsx": {
+    "inputFixture": {
+      "path": "/Users/admin/FDE/脱敏工具/脱敏汪/文档/使用指南/示例材料/合成通讯录.xlsx",
+      "sha256": "3492381f362b376e8f82e1e99faf782a70b0f9cd6567ad3fc4a4295b1946e110",
+      "bytes": 1612
+    },
+    "downloadedArtifact": {
+      "path": "/Users/admin/FDE/脱敏工具/脱敏汪/文档/使用指南/示例材料/v2-合成通讯录-处理结果.xlsx",
+      "sha256": "4fe3825e23866c222ac079ee1706180d8907cf93ad580f301b844d328a015816",
+      "bytes": 1624
+    },
+    "zipCrcPassed": true,
+    "parserCoverageComplete": true,
+    "exactExpectedCellsAndCoordinates": true,
+    "sheetCount": 1,
+    "cellCount": 9,
+    "outputCells": [
+      {
+        "part": "xl/worksheets/sheet1.xml",
+        "row": 1,
+        "column": 1,
+        "value": "姓名"
+      },
+      {
+        "part": "xl/worksheets/sheet1.xml",
+        "row": 1,
+        "column": 2,
+        "value": "手机号"
+      },
+      {
+        "part": "xl/worksheets/sheet1.xml",
+        "row": 1,
+        "column": 3,
+        "value": "说明"
+      },
+      {
+        "part": "xl/worksheets/sheet1.xml",
+        "row": 2,
+        "column": 1,
+        "value": "【姓名】"
+      },
+      {
+        "part": "xl/worksheets/sheet1.xml",
+        "row": 2,
+        "column": 2,
+        "value": "【手机号】"
+      },
+      {
+        "part": "xl/worksheets/sheet1.xml",
+        "row": 2,
+        "column": 3,
+        "value": "公开合成材料，非真实客户"
+      },
+      {
+        "part": "xl/worksheets/sheet1.xml",
+        "row": 3,
+        "column": 1,
+        "value": "【姓名】"
+      },
+      {
+        "part": "xl/worksheets/sheet1.xml",
+        "row": 3,
+        "column": 2,
+        "value": "【手机号】"
+      },
+      {
+        "part": "xl/worksheets/sheet1.xml",
+        "row": 3,
+        "column": 3,
+        "value": "仅用于演示，不含业务数据"
+      }
+    ],
+    "originalValues": [
+      {
+        "value": "合成客户甲",
+        "inputOccurrences": 1,
+        "outputOccurrences": 0,
+        "matchingPackageParts": []
+      },
+      {
+        "value": "合成客户乙",
+        "inputOccurrences": 1,
+        "outputOccurrences": 0,
+        "matchingPackageParts": []
+      },
+      {
+        "value": "13800138000",
+        "inputOccurrences": 1,
+        "outputOccurrences": 0,
+        "matchingPackageParts": []
+      },
+      {
+        "value": "13900139000",
+        "inputOccurrences": 1,
+        "outputOccurrences": 0,
+        "matchingPackageParts": []
+      }
+    ],
+    "replacements": {
+      "names": 2,
+      "phones": 2
+    },
+    "limitation": "单张表9个单元格的位置、表头和说明文字保留；两个人名和两处手机号替换。核验ZIP与OOXML，不代表在Microsoft Excel内验证了视觉版式。"
+  },
+  "csv": {
+    "inputFixture": {
+      "path": "/Users/admin/FDE/脱敏工具/脱敏汪/文档/使用指南/示例材料/合成通讯录.csv",
+      "sha256": "b8187c97c6567e4c140f6f25b784ea1d17b44ddb9596cb14dea9d5c1b562af14",
+      "bytes": 151
+    },
+    "downloadedArtifact": {
+      "path": "/Users/admin/FDE/脱敏工具/脱敏汪/文档/使用指南/示例材料/v2-合成通讯录-处理结果.csv",
+      "sha256": "bfd3f1655ee8a2997c882c8ecd92fbefe3a1de7af7c4ec0e094e13aa4142f658",
+      "bytes": 171
+    },
+    "exactExpectedRows": true,
+    "rowCountIncludingHeader": 3,
+    "columnCounts": [
+      3,
+      3,
+      3
+    ],
+    "outputRows": [
+      [
+        "姓名",
+        "手机号",
+        "说明"
+      ],
+      [
+        "【姓名】",
+        "【手机号】",
+        "公开合成材料非真实客户"
+      ],
+      [
+        "【姓名】",
+        "【手机号】",
+        "仅用于演示不含业务数据"
+      ]
+    ],
+    "originalValues": [
+      {
+        "value": "合成客户甲",
+        "inputOccurrences": 1,
+        "outputOccurrences": 0
+      },
+      {
+        "value": "合成客户乙",
+        "inputOccurrences": 1,
+        "outputOccurrences": 0
+      },
+      {
+        "value": "13800138000",
+        "inputOccurrences": 1,
+        "outputOccurrences": 0
+      },
+      {
+        "value": "13900139000",
+        "inputOccurrences": 1,
+        "outputOccurrences": 0
+      }
+    ],
+    "limitation": "比较解析后的3行3列，允许导出CSV增加标准引号；表头及合成说明原样保留，仅姓名和手机号替换。"
+  },
+  "markdown": {
+    "downloadedArtifact": {
+      "path": "/Users/admin/FDE/脱敏工具/脱敏汪/文档/使用指南/示例材料/v2-合成说明-词表处理结果.md",
+      "sha256": "eb41f14e372d4446aef2e038673f4e9d4aadf6707f009ee57ec2ce14d5a31671",
+      "bytes": 321
+    },
+    "identicalToPreviouslyVerifiedDictionaryOutput": true,
+    "limitation": "本轮文件字节与此前独立验证的词表处理结果一致；不将旧UI操作冒充本轮操作。"
+  },
+  "status": "passed"
+}

@@ -1,0 +1,1121 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-14",
+  "reviewer": "dynamic_closure",
+  "mode": "independent static adversarial review; no vendor execution/private requests",
+  "reviewed_artifacts": [
+    {
+      "path": "文档/逆向台账/contracts/deep-formats-20261014.json",
+      "sha256": "41f811b5ad5fd30344c8945e0b39d805edd8cd560322234647a254b7073e28bd"
+    },
+    {
+      "path": "文档/逆向台账/contracts/deep-formats-20261014.md",
+      "sha256": "dea2bb876a7017e9edf1a4429618ace18920ea6f9fd17e4297898b73595aebd6"
+    },
+    {
+      "path": "文档/逆向台账/contracts/build-deep-formats-20261014.py",
+      "sha256": "f3ee9f9dc8d23e9f78419dd58ae45139982cec7f03c48a52f55d29ab513b6fcb"
+    },
+    {
+      "path": "文档/逆向台账/contracts/verify-deep-formats-20261014.py",
+      "sha256": "6e02cb1c42b992719bf0fbff8f6d5b224a2f7ac0d02085748ad41cfe4d732b43"
+    }
+  ],
+  "scope": {
+    "inventory_ids": 88,
+    "constant_handlers_semantically_confirmed": 6,
+    "application_boundary_candidates_held": 49,
+    "open_project_dependencies_held": 33
+  },
+  "semantic_review_limit": "逐条核查6常量handler并对规则/方案/反馈/审核/容器/索引/来源8组关键结论核源码；不把另外82条的集合/hash通过称作82条全链语义证明。",
+  "verdict": "6窄常量候选可接受；49及33不得整体升S3；补证项完成后仍按每端点决定。",
+  "findings": [
+    {
+      "id": "REV-FMT-01",
+      "priority": "P2",
+      "title": "完整枚举和公共错误映射不在模块精确引用范围中",
+      "status": "resolved-after-independent-readback",
+      "affected_ids": [
+        "IPC-7b3025225249",
+        "IPC-3d307eb4bc00",
+        "IPC-0b6b223f384f",
+        "IPC-7e8602707608",
+        "IPC-271b4728636e",
+        "IPC-ddc5ff507c75",
+        "IPC-92e8c95a136b",
+        "IPC-59456f319530",
+        "IPC-bd4779635d5d",
+        "IPC-420bf82d10ca",
+        "IPC-32941c143267",
+        "IPC-1d272ba10a6c",
+        "IPC-24fe13c4efb6",
+        "IPC-5c2a14961699",
+        "IPC-096d3ecc2554",
+        "IPC-0fa110b8534b",
+        "IPC-6f749dcd2e0f",
+        "IPC-37a279488720",
+        "IPC-f69ef883aa33",
+        "IPC-7fe81107ae4d",
+        "IPC-6dcdb71fa095",
+        "IPC-93ba5dca8357",
+        "IPC-e6a8f1b41825",
+        "IPC-f53f8972c1a5",
+        "IPC-3c8789ad9a8f",
+        "IPC-7e55b9d273b1",
+        "IPC-be30d4526c26",
+        "IPC-a80eb991f683",
+        "IPC-f417c3628886",
+        "IPC-feb24aa50a4f",
+        "IPC-86a65aa5ca0e",
+        "IPC-8ed0acbb4144",
+        "IPC-1d575f4ee880",
+        "IPC-70e09702200d",
+        "IPC-d78ef82e46d5",
+        "IPC-c356082df625",
+        "IPC-ff1d1193dc22",
+        "IPC-9be2a0784913",
+        "IPC-1ad8e879614a",
+        "IPC-98cb505df8ea",
+        "IPC-8b8d74411dc8"
+      ],
+      "observation": "profile实施范围18931起，遗漏18928的$m/Lm/Fm/Bm/jm常量及18929–18931 Vm对象检查；26078结束只含DI声明，遗漏26079–26081错误映射体。secure范围14847起遗漏14846的magic、chunkSize、头大小、对象类型、V2容量限制。完整文件hash能固定源文件，不能代替这些引用范围中的参数和值已被审查。",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 18928,
+          "end_line": 18932,
+          "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "slice_sha256": "7da1db25b1e9205ea2075fd90281566016fcf5ce25e210558c68da32d4eb8867"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26078,
+          "end_line": 26081,
+          "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "slice_sha256": "237f4931595a601f54e54ead3b1e97f19bedba84f64d90ae2d6fec730bef8c58"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 14846,
+          "end_line": 14847,
+          "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "slice_sha256": "54a6e57340f00614942136444421ac8859d795749d2e7576915a96d93b0ea435"
+        }
+      ],
+      "requested_change": "作者已补secure14846、profile18928及26081，独立readback与build/verify通过；本项已关闭。"
+    },
+    {
+      "id": "REV-FMT-02",
+      "priority": "P2",
+      "title": "49项候选由命名空间分配，不能整体升S3",
+      "status": "promotion-blocked",
+      "affected_ids": [
+        "IPC-25271d44841c",
+        "IPC-3f0d71fadee4",
+        "IPC-0f2d4d6b6262",
+        "IPC-22c459a29cd7",
+        "IPC-acbca2a96370",
+        "IPC-50d02c91469e",
+        "IPC-c19a241811ac",
+        "IPC-80e954e3a669",
+        "IPC-9b9d5a0f489e",
+        "IPC-7de3f60b8ed5",
+        "IPC-8a12674fee54",
+        "IPC-d0b393b9e93d",
+        "IPC-d874c25112ba",
+        "IPC-6ff537a49940",
+        "IPC-b828b79da058",
+        "IPC-b2c075e4afde",
+        "IPC-efc77b9d6c1d",
+        "IPC-196efa6b695b",
+        "IPC-14a3820628e8",
+        "IPC-9bb6c463b31f",
+        "IPC-feab6613b5ed",
+        "IPC-5457cc5660c4",
+        "IPC-7b3025225249",
+        "IPC-3d307eb4bc00",
+        "IPC-0b6b223f384f",
+        "IPC-7e8602707608",
+        "IPC-271b4728636e",
+        "IPC-ddc5ff507c75",
+        "IPC-92e8c95a136b",
+        "IPC-59456f319530",
+        "IPC-a05e3b6af8e1",
+        "IPC-7d7beed074d0",
+        "IPC-e024a8242875",
+        "IPC-bb6001e11068",
+        "IPC-d3e5e1de12d2",
+        "IPC-9dbd84b9715b",
+        "IPC-72093dfff7bf",
+        "IPC-b199b300f630",
+        "IPC-9a7ac510f8c7",
+        "IPC-18da1e923824",
+        "IPC-620a9576690e",
+        "IPC-7754362b9148",
+        "IPC-337d01816990",
+        "IPC-8bfb6ec9fcd8",
+        "IPC-c17682083b52",
+        "IPC-c04013aa6e1b",
+        "IPC-2bdb599038fb",
+        "IPC-2187e949f831",
+        "IPC-9a6a89a8fb10"
+      ],
+      "observation": "build脚本仅以dictionary/feedback/review/ruleset/profile/preference/learner namespace为条件生成49候选。此分类不证明每端点所有项目内函数闭合。例如review导出外层ce→TaskPowerLeases，ruleset.initialize→feedbackStore迁移，dictionary导出命名→license.getStatus/getUserDataPath，原报告仍须链接并核验实际实现；作者已补ce/TaskPowerLeases范围，公共wrapper异常边界仍须保留。报告正文已明确候选不是S3，审查支持保留该措辞，不支持一键将49条提升。",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 17,
+          "end_line": 26,
+          "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "slice_sha256": "5053e60a775f9c6f563a8c998092214d4c1296f32a6d22864b86fe97f695c6d3"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 14346,
+          "end_line": 14357,
+          "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "slice_sha256": "4237215331fdcd2110123755d47fc6e8dcf279e0549d10ee4297cd45d9bc6628"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 16792,
+          "end_line": 16804,
+          "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "slice_sha256": "3e6893a1f84f8afc1e18984942b015ffa1f2a261071fd902f98e96490c8d1270"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 18886,
+          "end_line": 18906,
+          "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "slice_sha256": "ef8d9265e0489ad4ee28feb8993008efcc328a2b2384c356e34f856af72e4bca"
+        }
+      ],
+      "requested_change": "每ID建立已闭合调用边及明确外部终止边；公共模块证据可引用系统/引擎专项；须逐ID审核后提升，标准Node/Electron API运行R0可独立保留。"
+    },
+    {
+      "id": "REV-FMT-03",
+      "priority": "P2",
+      "title": "校验器只保证部分分类与证据完整性，不能验语义",
+      "status": "classification-guard-fixed-semantic-boundary-retained",
+      "affected_ids": [],
+      "observation": "既有校验88 ID/121证据/6负向探针通过。首版独立内存变异把workspace行改为reviewed-application-boundary-candidate仍通过；作者现已补三分类集合/汇总校验与新增3探针，修复后该变异被拒绝。将review模块network_out_bytes固定0文字改为真实测量仍通过。后者是语义审查边界，不要求用字符串断言伪装语义测试；前者可以加强分类/summary一致性检测。",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 18814,
+          "end_line": 18829,
+          "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "slice_sha256": "e309c1f510124d05583ba037f882e8ff043a212a432d5dc6708f77b3924cf237"
+        }
+      ],
+      "requested_change": "分类枚举/集合/summary校验已修复；仍仅称结构/hash探针通过，语义结论依赖人工源码核读。"
+    }
+  ],
+  "confirmed_claims": [
+    {
+      "claim": "6 learner常量是真常量，get-stats另有chunk调用",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 18179,
+          "end_line": 18186,
+          "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "slice_sha256": "380f20eedfdcdff48eab7ddcc0d6c1f3a09e3d48e60fb6583f3aac828ae92d87"
+        }
+      ],
+      "decision": "允许6个端点窄S3候选；固定停用/空值并不实现学习功能，R0不变"
+    },
+    {
+      "claim": "review外层filePath实为整个服务结果对象，outer success可吞内层失败；network_out_bytes=0固定",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 18789,
+          "end_line": 18841,
+          "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "slice_sha256": "8db79be518d56e18e52339d1c14ea13437fe648ab7bde3ef2066882442138941"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 18886,
+          "end_line": 18906,
+          "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "slice_sha256": "ef8d9265e0489ad4ee28feb8993008efcc328a2b2384c356e34f856af72e4bca"
+        }
+      ],
+      "decision": "报告正确，不能实现对齐时继承其成功假象"
+    },
+    {
+      "claim": "rules保存强制all/exact/description空，迁移forceSkip优先；多文件写无统一事务",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 14330,
+          "end_line": 14421,
+          "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "slice_sha256": "fab014cc43d16eb3a3a7ff338c7cb8ac40c4f693f9ecb4e89a14fa5b005edc98"
+        }
+      ],
+      "decision": "报告正确；revision仅乐观比较，不是锁/跨进程原子CAS"
+    },
+    {
+      "claim": "profile迁移与writeJsonAtomic失败删除旧目标后再rename；recordSuccessfulExport只是写声明",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 25938,
+          "end_line": 25950,
+          "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "slice_sha256": "d742122e7f2eb6d733115b4ed00c221ebd12769f8166eded96d9cc2b7b2cfc95"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 25990,
+          "end_line": 26006,
+          "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "slice_sha256": "f64a65abb03789f3008b96b1f4adbda00614e5f2705d6f9b705322754d402279"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 26038,
+          "end_line": 26075,
+          "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "slice_sha256": "b3c7e121eef1298d556776d4a2ace31d175e79dd97cd0887a7ca34dbda513839"
+        }
+      ],
+      "decision": "报告正确；初始化迁移有副作用，get/list也非总纯读"
+    },
+    {
+      "claim": "Mu默认encrypt:true但无key明文，key路径循环XOR；batch审计在save之后",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13341,
+          "end_line": 13354,
+          "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "slice_sha256": "968ecdcecd819329c6a389d323db2aa3e07558eaaa1f3722587adbd6e5af1016"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 13470,
+          "end_line": 13483,
+          "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "slice_sha256": "799fd3ed9cd4f7d9ce5f7681044bd9073e4ade88bdce51089043d9445954b3b3"
+        }
+      ],
+      "decision": "报告正确；XOR不是安全容器"
+    },
+    {
+      "claim": "容器写后只读取首/尾范围验证，文件sync但无目录fsync",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 14933,
+          "end_line": 14995,
+          "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "slice_sha256": "679c10b0e88fbee1ec12a9f51545838d77a54b81775bb5e7ef7ac2008bb00d0a"
+        }
+      ],
+      "decision": "报告正确，不能等同全payload写后校验"
+    },
+    {
+      "claim": "approvedTokens只从meta索引读取，强制1–5000且<=256",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 15208,
+          "end_line": 15227,
+          "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "slice_sha256": "cc2eeb1ab693a55882247e4bf7b4ad66d745ab2fed37560791ee4841f2de525b"
+        }
+      ],
+      "decision": "报告正确，与协作COL-03交叉支持"
+    },
+    {
+      "claim": "源registry具体实现仍需从workspace生命周期连接",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "start_line": 15718,
+          "end_line": 15787,
+          "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "slice_sha256": "337bf23ecac98a3c424b3b1d02db2dc0400244ef222f77d10f692b59026be684"
+        }
+      ],
+      "decision": "协作COL-02已展开dp有路径忽略buffer/同路径复用；可补作formats跨报告引用，不能仍笼统遗留未知"
+    }
+  ],
+  "s3_decisions": [
+    {
+      "id": "IPC-25271d44841c",
+      "channel": "dictionary:add-entry",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-3f0d71fadee4",
+      "channel": "dictionary:download-excel-template",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-0f2d4d6b6262",
+      "channel": "dictionary:export",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-22c459a29cd7",
+      "channel": "dictionary:export-excel",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-acbca2a96370",
+      "channel": "dictionary:get-entries",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-50d02c91469e",
+      "channel": "dictionary:import",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-c19a241811ac",
+      "channel": "dictionary:record-hint-action",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-80e954e3a669",
+      "channel": "dictionary:remove-entry",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-9b9d5a0f489e",
+      "channel": "dictionary:save-export-file",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-7de3f60b8ed5",
+      "channel": "dictionary:select-excel-import-file",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-8a12674fee54",
+      "channel": "dictionary:select-export-path",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-d0b393b9e93d",
+      "channel": "dictionary:select-import-file",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-d874c25112ba",
+      "channel": "feedback:add",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-6ff537a49940",
+      "channel": "feedback:add-batch",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-b828b79da058",
+      "channel": "feedback:clear-all",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-b2c075e4afde",
+      "channel": "feedback:delete-by-document",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-efc77b9d6c1d",
+      "channel": "feedback:delete-by-id",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-196efa6b695b",
+      "channel": "feedback:export-audit-report",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-14a3820628e8",
+      "channel": "feedback:get-document-stats",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-9bb6c463b31f",
+      "channel": "feedback:get-global-stats",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-feab6613b5ed",
+      "channel": "feedback:query",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-8018ac372ad7",
+      "channel": "learner:get-high-confidence-memory-count",
+      "s3_candidate": true,
+      "reason": "参数无关常量叶子，注册与返回对象已读，条件为当前主进程已注册该handler。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-ca4c19558c55",
+      "channel": "learner:get-snapshots",
+      "s3_candidate": true,
+      "reason": "参数无关常量叶子，注册与返回对象已读，条件为当前主进程已注册该handler。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-5457cc5660c4",
+      "channel": "learner:get-stats",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-caef950fe9a5",
+      "channel": "learner:rollback",
+      "s3_candidate": true,
+      "reason": "参数无关常量叶子，注册与返回对象已读，条件为当前主进程已注册该handler。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-7fb83198252b",
+      "channel": "learner:rollback-previous",
+      "s3_candidate": true,
+      "reason": "参数无关常量叶子，注册与返回对象已读，条件为当前主进程已注册该handler。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-43e13058e656",
+      "channel": "learner:rollback-to-previous",
+      "s3_candidate": true,
+      "reason": "参数无关常量叶子，注册与返回对象已读，条件为当前主进程已注册该handler。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-2c55a1969fb8",
+      "channel": "learner:update-rules",
+      "s3_candidate": true,
+      "reason": "参数无关常量叶子，注册与返回对象已读，条件为当前主进程已注册该handler。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-7b3025225249",
+      "channel": "preference:record-successful-export",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-3d307eb4bc00",
+      "channel": "preference:set-default-profile",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-0b6b223f384f",
+      "channel": "profile:create",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-7e8602707608",
+      "channel": "profile:delete",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-271b4728636e",
+      "channel": "profile:duplicate",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-ddc5ff507c75",
+      "channel": "profile:get",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-92e8c95a136b",
+      "channel": "profile:list",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-59456f319530",
+      "channel": "profile:update",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-bd4779635d5d",
+      "channel": "pseudonym:inspect-restore-mapping",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-420bf82d10ca",
+      "channel": "pseudonym:list-mappings",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-32941c143267",
+      "channel": "pseudonym:open-output-folder",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-1d272ba10a6c",
+      "channel": "pseudonym:restore-docx",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-24fe13c4efb6",
+      "channel": "pseudonym:restore-docx-batch",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-5c2a14961699",
+      "channel": "pseudonym:restore-markdown",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-096d3ecc2554",
+      "channel": "pseudonym:restore-markdown-batch",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-0fa110b8534b",
+      "channel": "pseudonym:restore-progress",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-6f749dcd2e0f",
+      "channel": "pseudonym:save-mapping",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-37a279488720",
+      "channel": "pseudonym:select-input-docx",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-f69ef883aa33",
+      "channel": "pseudonym:select-input-docx-batch",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-7fe81107ae4d",
+      "channel": "pseudonym:select-input-files",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-6dcdb71fa095",
+      "channel": "pseudonym:select-input-markdown",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-93ba5dca8357",
+      "channel": "pseudonym:select-input-markdown-batch",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-a05e3b6af8e1",
+      "channel": "review:add-feedback",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-7d7beed074d0",
+      "channel": "review:clear-all",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-e024a8242875",
+      "channel": "review:export-audit-log",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-bb6001e11068",
+      "channel": "review:export-proof-lite",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-d3e5e1de12d2",
+      "channel": "review:export-user-memories",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-9dbd84b9715b",
+      "channel": "review:get-blacklist",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-72093dfff7bf",
+      "channel": "review:get-feedbacks",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-b199b300f630",
+      "channel": "review:get-statistics",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-9a7ac510f8c7",
+      "channel": "review:get-whitelist",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-18da1e923824",
+      "channel": "ruleset:create",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-620a9576690e",
+      "channel": "ruleset:delete",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-7754362b9148",
+      "channel": "ruleset:download-excel-template",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-337d01816990",
+      "channel": "ruleset:export-excel",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-8bfb6ec9fcd8",
+      "channel": "ruleset:get",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-c17682083b52",
+      "channel": "ruleset:import-excel",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-c04013aa6e1b",
+      "channel": "ruleset:list",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-2bdb599038fb",
+      "channel": "ruleset:preview-workspace-promotion",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-2187e949f831",
+      "channel": "ruleset:set-active",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-9a6a89a8fb10",
+      "channel": "ruleset:update",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-e6a8f1b41825",
+      "channel": "workspace:create-transfer",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-f53f8972c1a5",
+      "channel": "workspace:discard-recovery",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-3c8789ad9a8f",
+      "channel": "workspace:forget-recent",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-7e55b9d273b1",
+      "channel": "workspace:list-recent",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-be30d4526c26",
+      "channel": "workspace:list-recoveries",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-a80eb991f683",
+      "channel": "workspace:list-recovery-prompts",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-f417c3628886",
+      "channel": "workspace:migrate-v1-to-v2",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-feb24aa50a4f",
+      "channel": "workspace:open",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-86a65aa5ca0e",
+      "channel": "workspace:open-dialog",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-8ed0acbb4144",
+      "channel": "workspace:open-recovery",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-1d575f4ee880",
+      "channel": "workspace:read-review-profile",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-70e09702200d",
+      "channel": "workspace:receive-transfer",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-d78ef82e46d5",
+      "channel": "workspace:reveal",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-c356082df625",
+      "channel": "workspace:save",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-ff1d1193dc22",
+      "channel": "workspace:save-as",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-9be2a0784913",
+      "channel": "workspace:save-recovery",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-1ad8e879614a",
+      "channel": "workspace:save-result",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-98cb505df8ea",
+      "channel": "workspace:select-review-profile",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    },
+    {
+      "id": "IPC-8b8d74411dc8",
+      "channel": "workspace:select-save-path",
+      "s3_candidate": false,
+      "reason": "本报告未证明此ID完整静态链，保留S2；已有深层发现是有效补证而非全链证明。",
+      "runtime_status": "R0"
+    }
+  ],
+  "verification": {
+    "existing_checker": {
+      "interfaces": 88,
+      "evidenceRefsVerified": 123,
+      "negativeProbesRejected": 9
+    },
+    "independent_semantic_review": [
+      {
+        "claim": "6 learner常量是真常量，get-stats另有chunk调用",
+        "evidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 18179,
+            "end_line": 18186,
+            "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "slice_sha256": "380f20eedfdcdff48eab7ddcc0d6c1f3a09e3d48e60fb6583f3aac828ae92d87"
+          }
+        ],
+        "decision": "允许6个端点窄S3候选；固定停用/空值并不实现学习功能，R0不变"
+      },
+      {
+        "claim": "review外层filePath实为整个服务结果对象，outer success可吞内层失败；network_out_bytes=0固定",
+        "evidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 18789,
+            "end_line": 18841,
+            "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "slice_sha256": "8db79be518d56e18e52339d1c14ea13437fe648ab7bde3ef2066882442138941"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 18886,
+            "end_line": 18906,
+            "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "slice_sha256": "ef8d9265e0489ad4ee28feb8993008efcc328a2b2384c356e34f856af72e4bca"
+          }
+        ],
+        "decision": "报告正确，不能实现对齐时继承其成功假象"
+      },
+      {
+        "claim": "rules保存强制all/exact/description空，迁移forceSkip优先；多文件写无统一事务",
+        "evidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 14330,
+            "end_line": 14421,
+            "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "slice_sha256": "fab014cc43d16eb3a3a7ff338c7cb8ac40c4f693f9ecb4e89a14fa5b005edc98"
+          }
+        ],
+        "decision": "报告正确；revision仅乐观比较，不是锁/跨进程原子CAS"
+      },
+      {
+        "claim": "profile迁移与writeJsonAtomic失败删除旧目标后再rename；recordSuccessfulExport只是写声明",
+        "evidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 25938,
+            "end_line": 25950,
+            "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "slice_sha256": "d742122e7f2eb6d733115b4ed00c221ebd12769f8166eded96d9cc2b7b2cfc95"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 25990,
+            "end_line": 26006,
+            "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "slice_sha256": "f64a65abb03789f3008b96b1f4adbda00614e5f2705d6f9b705322754d402279"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 26038,
+            "end_line": 26075,
+            "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "slice_sha256": "b3c7e121eef1298d556776d4a2ace31d175e79dd97cd0887a7ca34dbda513839"
+          }
+        ],
+        "decision": "报告正确；初始化迁移有副作用，get/list也非总纯读"
+      },
+      {
+        "claim": "Mu默认encrypt:true但无key明文，key路径循环XOR；batch审计在save之后",
+        "evidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 13341,
+            "end_line": 13354,
+            "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "slice_sha256": "968ecdcecd819329c6a389d323db2aa3e07558eaaa1f3722587adbd6e5af1016"
+          },
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 13470,
+            "end_line": 13483,
+            "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "slice_sha256": "799fd3ed9cd4f7d9ce5f7681044bd9073e4ade88bdce51089043d9445954b3b3"
+          }
+        ],
+        "decision": "报告正确；XOR不是安全容器"
+      },
+      {
+        "claim": "容器写后只读取首/尾范围验证，文件sync但无目录fsync",
+        "evidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 14933,
+            "end_line": 14995,
+            "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "slice_sha256": "679c10b0e88fbee1ec12a9f51545838d77a54b81775bb5e7ef7ac2008bb00d0a"
+          }
+        ],
+        "decision": "报告正确，不能等同全payload写后校验"
+      },
+      {
+        "claim": "approvedTokens只从meta索引读取，强制1–5000且<=256",
+        "evidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 15208,
+            "end_line": 15227,
+            "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "slice_sha256": "cc2eeb1ab693a55882247e4bf7b4ad66d745ab2fed37560791ee4841f2de525b"
+          }
+        ],
+        "decision": "报告正确，与协作COL-03交叉支持"
+      },
+      {
+        "claim": "源registry具体实现仍需从workspace生命周期连接",
+        "evidence": [
+          {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 15718,
+            "end_line": 15787,
+            "file_sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "slice_sha256": "337bf23ecac98a3c424b3b1d02db2dc0400244ef222f77d10f692b59026be684"
+          }
+        ],
+        "decision": "协作COL-02已展开dp有路径忽略buffer/同路径复用；可补作formats跨报告引用，不能仍笼统遗留未知"
+      }
+    ],
+    "additional_in_memory_probes": [
+      {
+        "name": "workspace promotion to application boundary",
+        "accepted": false,
+        "previously_accepted": true,
+        "meaning": "分类一致性保护现已补齐"
+      },
+      {
+        "name": "replace fixed network_out_bytes prose with measured claim",
+        "accepted": true,
+        "meaning": "hash不能证明语义断言"
+      }
+    ]
+  }
+}

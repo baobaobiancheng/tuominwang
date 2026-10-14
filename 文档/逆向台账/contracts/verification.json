@@ -1,0 +1,80 @@
+{
+  "status": "passed",
+  "sourceFiles": 4,
+  "rangeReferences": 59704,
+  "uniqueRanges": 32445,
+  "channels": 217,
+  "handlers": 209,
+  "functionContracts": 3123,
+  "fullyExpandedMcpSchemas": 12,
+  "sourceDeterminismChecks": [
+    "extract-ipc --check",
+    "expand-mcp-schemas --check"
+  ],
+  "derivedDeterminismCheck": "summarize-contracts --check",
+  "ledgerContractRefsChecked": 217,
+  "ledgerKindsMatched": [
+    "IPC",
+    "MCP",
+    "GATEWAY"
+  ],
+  "artifactHashes": [
+    {
+      "path": ".data/research/lawbot-2026-10-13/ipc-static-contracts.json",
+      "sha256": "58881d1857b0d92cd0cfcbb5212188214b189004cc78a59a9ca6bbb46f785e60"
+    },
+    {
+      "path": "文档/逆向台账/contracts/mcp-expanded-schemas.json",
+      "sha256": "4509042fb226cee7c4aab1efa5151e0ee90fba790928780070fa3c9bddfd6293"
+    },
+    {
+      "path": "文档/逆向台账/contracts/IPC逐项概览.csv",
+      "sha256": "eeb5ab5edd302186239836529070c8196bfe0f1880dcc696825eb7a038e2834f"
+    },
+    {
+      "path": "文档/逆向台账/contracts/ipc-contract-index.json",
+      "sha256": "aad19d4515ddec1bde646de1644083a776f10078a403dc6c60c5fde5e5ce3824"
+    },
+    {
+      "path": "文档/逆向台账/contracts/gateway-service-contracts.json",
+      "sha256": "2b93f055534324b22e8cec4909a651c4e75f4ed65fce78fdc7be45e5a918a8b3"
+    },
+    {
+      "path": "文档/逆向台账/contracts/ledger-recommendations.json",
+      "sha256": "6dc876d5d754c117816243135bd2a87db7e25576922e809e2aae31b76b51bc40"
+    }
+  ],
+  "negativeProbes": [
+    {
+      "name": "range-content-hash",
+      "rejected": true,
+      "mode": "in-memory-only; no-source-mutation"
+    },
+    {
+      "name": "range-offset",
+      "rejected": true,
+      "mode": "in-memory-only; no-source-mutation"
+    },
+    {
+      "name": "deleted-ipc-channel",
+      "rejected": true,
+      "mode": "in-memory-only; authoritative source comparison; no-file-mutation"
+    },
+    {
+      "name": "deleted-mcp-tool",
+      "rejected": true,
+      "mode": "in-memory-only; authoritative source comparison; no-file-mutation"
+    },
+    {
+      "name": "changed-mcp-input-schema",
+      "rejected": true,
+      "mode": "in-memory-only; authoritative source comparison; no-file-mutation"
+    },
+    {
+      "name": "missing-ledger-contract-ref",
+      "rejected": true,
+      "mode": "in-memory-only; no-file-mutation"
+    }
+  ],
+  "limits": "Verifies source-derived artifact structure/content, derived files, ledger contract_ref sets, provenance and graph consistency; does not verify semantic completeness or execute proprietary code."
+}

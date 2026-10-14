@@ -1,0 +1,399 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-14",
+  "scope": "补读DOCX OOXML/helpers与Markdown应用解析/写入/worker控制链；不是全依赖或全业务闭合",
+  "method": "原包只读与TypeScript AST重新排版，不import/eval/执行竞品代码",
+  "staticDepth": "S2",
+  "runtime": "R0",
+  "contracts": [
+    {
+      "id": "PSF01",
+      "name": "DOCX接受修订、内容控件与批注",
+      "staticDepth": "S2",
+      "runtime": "R0",
+      "completeBusinessContract": false,
+      "branchesAndOutputs": [
+        "先递归处理子节点：ins/moveTo解包保留子内容，del/moveFrom和段落/run/表格/节属性Change节点删除；sdt只提取sdtContent子节点。",
+        "clear_comments删除四个指定comments部件、对应关系及Content_Types项，并从正文/页眉页脚/脚注尾注清除批注位置标记；people.xml不在四项删除列表。",
+        "anonymize在comments.xml替换author/initials，在people.xml替换author/userId/email，不是清除所有OOXML元数据。",
+        "预处理重打zip到临时文件；若无变化则删临时文件返回原路径。单部件XML/关系/匿名化错误可警告后继续；外层异常才清临时并抛出。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/scripts/docx/redact_docx_inplace.py",
+          "startLine": 270,
+          "endLine": 554,
+          "fileSha256": "3237b3f457cc89be2e2373f2e63ef401df6288d952f3ea51cb7b2e074ef5d6d2",
+          "sliceSha256": "c2ea626e93eb32c44f697ca02e8f6a5c303cac354dad302469f056c3dc57cd6b",
+          "coordinates": "1-based inclusive lines, original UTF-8 bytes"
+        }
+      ],
+      "remainingUnknown": [
+        "lxml与python-docx库行为及损坏ZIP/XML的实际输出未运行；此段预处理不是全部导出链。"
+      ]
+    },
+    {
+      "id": "PSF02",
+      "name": "DOCX保留包部件和悬空页眉页脚关系",
+      "staticDepth": "S2",
+      "runtime": "R0",
+      "completeBusinessContract": false,
+      "branchesAndOutputs": [
+        "先用python-docx生成内存ZIP，再挑选document.xml、变更的word关系、已有页眉页脚及变化的已有media等内容；其它原始部件优先保留。",
+        "自动新增但原包不存在的header/footer XML不写入；计算最终部件集合，找出指向缺失story部件的非External关系，删除对应关系与document header/footerReference。",
+        "关系XML解析失败会跳过；lxml不可用时修复helper不能保证清除悬空引用。该helper直接写目标ZIP，独立边界内未提供原子替换。",
+        "保真函数保留未知原包部件，不等于做过所有元数据脱敏；是否上游另有处理须按导出分支核对。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/scripts/docx/redact_docx_inplace.py",
+          "startLine": 1491,
+          "endLine": 1683,
+          "fileSha256": "3237b3f457cc89be2e2373f2e63ef401df6288d952f3ea51cb7b2e074ef5d6d2",
+          "sliceSha256": "2b6446570934e27dc88701cb815315349081037b4d0925dd5a69a7bddae34517",
+          "coordinates": "1-based inclusive lines, original UTF-8 bytes"
+        }
+      ],
+      "remainingUnknown": [
+        "ZIP/python-docx序列化兼容性与Office打开效果仍R0；不能由保留部件推断全链有/无元数据泄露。"
+      ]
+    },
+    {
+      "id": "PSF03",
+      "name": "脚注尾注匹配与超链接处理",
+      "staticDepth": "S2",
+      "runtime": "R0",
+      "completeBusinessContract": false,
+      "branchesAndOutputs": [
+        "只处理footnotes/endnotes；region为空或匹配才纳入，separator/continuationSeparator及负ID跳过，ID解析失败默认1。可用noteId与noteOccurrenceIndex限制落点。",
+        "传入替换helper的是整个note元素，连接其所有w:t，因此扫描可跨段落；使用归一化文本映射原run，在受影响run写替换。",
+        "计划只按完全相同(start,end)去重，再按start倒序处理；该helper没有拒绝部分重叠计划。上游是否排除冲突是独立条件。",
+        "解包触及的超链接，收集关系ID，仅删本note部件已无引用的关系；通过.notes.tmp写入后替换，helper无通用finally清理临时文件。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/scripts/docx/redact_docx_inplace.py",
+          "startLine": 1684,
+          "endLine": 1923,
+          "fileSha256": "3237b3f457cc89be2e2373f2e63ef401df6288d952f3ea51cb7b2e074ef5d6d2",
+          "sliceSha256": "980aa07c439f7c1d7b9b6e33c9f8503a97dbb9744cb9efbfbc35ee9222f70b29",
+          "coordinates": "1-based inclusive lines, original UTF-8 bytes"
+        }
+      ],
+      "remainingUnknown": [
+        "含跨段与重叠实体时的实际Word结构、上游冲突约束仍需合法运行验证；不将静态路径推断成已发生损坏。"
+      ]
+    },
+    {
+      "id": "PSF04",
+      "name": "删除图片的对象层和包层",
+      "staticDepth": "S2",
+      "runtime": "R0",
+      "completeBusinessContract": false,
+      "branchesAndOutputs": [
+        "对象层对正文及已有页眉页脚删除包含blip/imagedata的drawing/pict/object；访问页眉页脚失败可跳过。",
+        "包层删除word/media和docProps/thumbnail文件，XML发现blip/imagedata时向上删除最近drawing/pict/object或该标记；关系层删除image/metadata/thumbnail类型。",
+        "XML解析失败仅在原字节含特定图片标记时抛错，否则保留；关系同样按字节标记判断。不能概括为扫描所有任意嵌入二进制。",
+        "包层.strip-images.tmp替换有finally清理；此函数未同步重建所有Content_Types项目。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/scripts/docx/redact_docx_inplace.py",
+          "startLine": 1924,
+          "endLine": 2038,
+          "fileSha256": "3237b3f457cc89be2e2373f2e63ef401df6288d952f3ea51cb7b2e074ef5d6d2",
+          "sliceSha256": "5de347c470af55f20b0345a7b15446809f5a32b7107b8545d2e25c6d5d1499d0",
+          "coordinates": "1-based inclusive lines, original UTF-8 bytes"
+        }
+      ],
+      "remainingUnknown": [
+        "全部嵌入资源格式和Office兼容性未运行；对象层、包层及调用开关需结合主导出契约。"
+      ]
+    },
+    {
+      "id": "PSF05",
+      "name": "Markdown输入约束与节点扫描",
+      "staticDepth": "S2",
+      "runtime": "R0",
+      "completeBusinessContract": false,
+      "branchesAndOutputs": [
+        "只接受.md/.markdown，最多10MiB；UTF-8 fatal解码、记录/去除BOM、拒绝NUL。sidecar记录UTF16 code-unit坐标、原字节SHA、scanText SHA、换行与尾换行。",
+        "遍历GFM/YAML AST：普通文本/代码/链接标签与目标、表格单元格以及有效YAML字符串标量；无效YAML记录错误但原frontmatter仍纳入扫描。",
+        "image/imageReference变成blocker并扫描alt；非表格原始HTML成为blocker。HTML表格只重建已识别行列/caption，危险标签不收文本，rowspan/colspan正整数上限1000。",
+        "精确唯一原文优先；转义/CRLF映射可建立逐段坐标；无法唯一匹配时保留整个源区间并标exact=false。不是把任何扫描坐标当作可直接回填。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-14/deep-processing/D9V2C_Ir.readable.js",
+          "startLine": 1504,
+          "endLine": 1731,
+          "fileSha256": "a9ec44eada3b0fb4d9ef17eeed078db2d1d237fa0200325c5a9c0d42ce8fea8d",
+          "sliceSha256": "40b332abff3512abad40291673b1bb44ffac1c937680b2c0d5f08b5d71c17bc3",
+          "coordinates": "1-based inclusive lines, original UTF-8 bytes"
+        }
+      ],
+      "remainingUnknown": [
+        "micromark/GFM、YAML、entities、parse5外部内部语义和所有畸形语法未穷举；应用节点处理已读，库实现不是自动闭合。"
+      ]
+    },
+    {
+      "id": "PSF06",
+      "name": "Markdown补丁、链接和图片行为",
+      "staticDepth": "S2",
+      "runtime": "R0",
+      "completeBusinessContract": false,
+      "branchesAndOutputs": [
+        "先核sourceBuffer SHA及source长度；每项要求整数scan范围、原文字面相等、非空ID及original、替换不含NUL。重复ID加后缀；重叠实体按lo合组，同类型包含子实体可省重复替换，fullStar按码点计数。",
+        "$o的blocker集合由sidecar全部blocker IDs自建，迭代时has检查恒成立；该实现没有读取blockerDecisions。sidecar已列出的图片/rawHTML blocker均产生删除补丁；可解析HTML表格走独立重建逻辑。",
+        "所有link_destination均进入去链接分支，不要求有敏感命中。引用式链接移除definition并保留处理后的标签；自动链接以code形式保护标签，避免再自动变链接。",
+        "HTML表格重建为安全HTML；跨单元格实体给mapping-missing。其它实体按精确坐标、转义映射、唯一原文字面回退；不能安全跨节点则报mapping-missing，补丁部分重叠报冲突。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-14/deep-processing/D9V2C_Ir.readable.js",
+          "startLine": 1798,
+          "endLine": 1804,
+          "fileSha256": "a9ec44eada3b0fb4d9ef17eeed078db2d1d237fa0200325c5a9c0d42ce8fea8d",
+          "sliceSha256": "66e293b710fa4919c5e49bc428ab16a42d9c4d6d2b56664b6c34bf41e7648832",
+          "coordinates": "1-based inclusive lines, original UTF-8 bytes"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-14/deep-processing/D9V2C_Ir.readable.js",
+          "startLine": 1960,
+          "endLine": 2153,
+          "fileSha256": "a9ec44eada3b0fb4d9ef17eeed078db2d1d237fa0200325c5a9c0d42ce8fea8d",
+          "sliceSha256": "99ba9bf9bd3b4d858e46a1b76c00ff4916bc8e448dc26d71e03e8ad77748af6c",
+          "coordinates": "1-based inclusive lines, original UTF-8 bytes"
+        }
+      ],
+      "remainingUnknown": [
+        "这些是该写入器的保守产品行为，不表示保持所有原文排版/外链；UI是否提示全部移除需另追renderer。"
+      ]
+    },
+    {
+      "id": "PSF07",
+      "name": "Markdown降级与验证的真实含义",
+      "staticDepth": "S2",
+      "runtime": "R0",
+      "completeBusinessContract": false,
+      "branchesAndOutputs": [
+        "invalid-operation直接失败；其它映射/补丁错误可退化为已审查scanText的fenced纯文本，清issue并把所有有效操作记为applied。",
+        "重新解析输出，比去空白scanText与预期已审查文本；残留blocker、frontmatter变坏或文本不同可再次降级。若降级重新解析一致则清错。",
+        "残留校验比较输出与预期已审查文本的原值出现数；允许未选择的原值仍在，不能表述成文档所有敏感原值清零。链接目标另查。",
+        "write运行$o三次并比较哈希，同时要求applied数量等于operations数量；返回format=plain-text或preserved、removedAssetCount为原blockers长度。三次写入器一致不等于三次外部转换。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-14/deep-processing/D9V2C_Ir.readable.js",
+          "startLine": 2140,
+          "endLine": 2177,
+          "fileSha256": "a9ec44eada3b0fb4d9ef17eeed078db2d1d237fa0200325c5a9c0d42ce8fea8d",
+          "sliceSha256": "d94bb5b9809206b86c67eb17bc1a4c958eb61561b4482dd96522daeb92fc1670",
+          "coordinates": "1-based inclusive lines, original UTF-8 bytes"
+        }
+      ],
+      "remainingUnknown": [
+        "仅应用层静态契约；Unicode/复杂Markdown回填和格式退化的实际样本结果未运行。"
+      ]
+    },
+    {
+      "id": "PSF08",
+      "name": "Markdown文件保存与冲突",
+      "staticDepth": "S2",
+      "runtime": "R0",
+      "completeBusinessContract": false,
+      "branchesAndOutputs": [
+        "先mkdir/statfs至少需求字节、wx probe+sync；正式wx临时文件write+sync后优先hardlink，部分系统错误改COPYFILE_EXCL。",
+        "存在目标时可stable-suffix重试，或await onConflict；replace仅在stat的mtime/size/inode未变后rename，变化则循环重新确认。取消抛MARKDOWN_SAVE_CANCELLED。",
+        "错误可onWriteError改路径重试；finally尽力清临时。writeFile要求保留原扩展名。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-14/deep-processing/D9V2C_Ir.readable.js",
+          "startLine": 1805,
+          "endLine": 1830,
+          "fileSha256": "a9ec44eada3b0fb4d9ef17eeed078db2d1d237fa0200325c5a9c0d42ce8fea8d",
+          "sliceSha256": "2b07643516a7b989087bd716f25d28ed6988ee24a7c72805509fe51f2fb60cc5",
+          "coordinates": "1-based inclusive lines, original UTF-8 bytes"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-14/deep-processing/D9V2C_Ir.readable.js",
+          "startLine": 1863,
+          "endLine": 1926,
+          "fileSha256": "a9ec44eada3b0fb4d9ef17eeed078db2d1d237fa0200325c5a9c0d42ce8fea8d",
+          "sliceSha256": "12f0100f7833b07d0a2216763101e4db54f4d70cbf4bd3655a7b161317828d7c",
+          "coordinates": "1-based inclusive lines, original UTF-8 bytes"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-14/deep-processing/D9V2C_Ir.readable.js",
+          "startLine": 2173,
+          "endLine": 2177,
+          "fileSha256": "a9ec44eada3b0fb4d9ef17eeed078db2d1d237fa0200325c5a9c0d42ce8fea8d",
+          "sliceSha256": "b92414410f96414f44287b42582b94c4d5a2b3e90a6ed5907d9b0e52b2df07c2",
+          "coordinates": "1-based inclusive lines, original UTF-8 bytes"
+        }
+      ],
+      "remainingUnknown": [
+        "跨文件系统copy可见性及电源中断持久性未实际验证；stat后rename仍不是外部写者互斥锁。"
+      ]
+    },
+    {
+      "id": "PSF09",
+      "name": "多页Markdown导出的锚点策略",
+      "staticDepth": "S2",
+      "runtime": "R0",
+      "completeBusinessContract": false,
+      "branchesAndOutputs": [
+        "默认anchor-first，只有LAWBOT_MARKDOWN_LEGACY_ROUTER=1走legacy候选；PDF坐标先normalizeReviewedMatchCoordinates。",
+        "bt剔除seal/signature_seal/no_text_replace及无原值/替换的实体；同类型同位置同替换去重、同类型包含关系省子操作。",
+        "canonical覆盖低于0.98时可用originalText单页构造；定位按source-offset、bbox、页文本、全文顺序，重复候选用上下文独胜或组数=出现数的顺序匹配；保守扩展需allowExpandedRedaction。",
+        "锚点编辑按unit倒序合组，记录unresolved/not-present/visual-only等账目；允许扩展时最多3轮残留scrub。complete以操作覆盖数量及无unresolved判断。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-14/deep-processing/markdown-worker.readable.js",
+          "startLine": 541,
+          "endLine": 575,
+          "fileSha256": "49c9a31f48ed49b1a514bf75ebade2156537881710b427549c55cb1b439d1775",
+          "sliceSha256": "a263d532e900e56f9ccbec859a64d0f6f17ef33ef52fdb0ee2e610cd08036f49",
+          "coordinates": "1-based inclusive lines, original UTF-8 bytes"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-14/deep-processing/markdown-worker.readable.js",
+          "startLine": 649,
+          "endLine": 850,
+          "fileSha256": "49c9a31f48ed49b1a514bf75ebade2156537881710b427549c55cb1b439d1775",
+          "sliceSha256": "20a9394605635bc554f02cf847814ea5d14d74d9324aa2065877fe4f74bf60a8",
+          "coordinates": "1-based inclusive lines, original UTF-8 bytes"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-14/deep-processing/markdown-worker.readable.js",
+          "startLine": 1105,
+          "endLine": 1109,
+          "fileSha256": "49c9a31f48ed49b1a514bf75ebade2156537881710b427549c55cb1b439d1775",
+          "sliceSha256": "db77e3b72b3d0daba2e3b05043ab1a59d34beacfe344cba7c4c9c5fa2b8a8029",
+          "coordinates": "1-based inclusive lines, original UTF-8 bytes"
+        }
+      ],
+      "remainingUnknown": [
+        "0.98 canonical覆盖度由启发式canonicalDocumentTextCoverage计算，不是字符级证明；ONNX/OCR生成的上游units是否正确另见核心/几何专项。"
+      ]
+    },
+    {
+      "id": "PSF10",
+      "name": "候选评分、页覆盖与降级",
+      "staticDepth": "S2",
+      "runtime": "R0",
+      "completeBusinessContract": false,
+      "branchesAndOutputs": [
+        "legacy对同一候选做3次映射，选通过安全门槛后结构分最高者。anchor-first优先canonical及可用DOCX已脱敏buffer，失败块可改literal code块。",
+        "安全门槛包含空输出、标题壳、内容覆盖、操作覆盖、missing/ambiguous/conflict、链接目标、残留和页范围；相应归一化后JS字符串length<2（UTF-16单位）的原值跳过这两处残留循环，不能说所有单字符原值都检查。",
+        "anchor模式deterministicSha256仅当前一个候选hash；最后MarkdownSourceWriter再做3次重写哈希，不是外部MarkItDown三次转换。",
+        "safe-flat可以从视觉重建退回reviewed units code块；PDF按页重新构造source回退要求页/offset/原文严格一致。失败可带draftMarkdown和需扩展审查提示，草稿不是成功输出。",
+        "结构评分同时关注正文单元、标题、表格、列表与假标题/硬换行/独立页码等扣分；通过脱敏门槛仍可能format简化或plain-text。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-14/deep-processing/markdown-worker.readable.js",
+          "startLine": 411,
+          "endLine": 539,
+          "fileSha256": "49c9a31f48ed49b1a514bf75ebade2156537881710b427549c55cb1b439d1775",
+          "sliceSha256": "66d77fcc43d419eb63cade902d25f2b65411cb618dc8be0a498f5f407087a01a",
+          "coordinates": "1-based inclusive lines, original UTF-8 bytes"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-14/deep-processing/markdown-worker.readable.js",
+          "startLine": 851,
+          "endLine": 930,
+          "fileSha256": "49c9a31f48ed49b1a514bf75ebade2156537881710b427549c55cb1b439d1775",
+          "sliceSha256": "383df21ec2b7a6efcbf1e05e2405406afb2b2dd2bfbf96c7c252e93951cd5bbd",
+          "coordinates": "1-based inclusive lines, original UTF-8 bytes"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-14/deep-processing/markdown-worker.readable.js",
+          "startLine": 943,
+          "endLine": 1147,
+          "fileSha256": "49c9a31f48ed49b1a514bf75ebade2156537881710b427549c55cb1b439d1775",
+          "sliceSha256": "7dd149329db2b2886f996848f5ecb61b6442e73220d72200c7929d7e8aa3e6aa",
+          "coordinates": "1-based inclusive lines, original UTF-8 bytes"
+        }
+      ],
+      "remainingUnknown": [
+        "视觉布局helper由PDF/OCR补充单独分析；有限启发式分数和字符串出现数不能证明与竞品所有版式等价。"
+      ]
+    },
+    {
+      "id": "PSF11",
+      "name": "worker与MarkItDown桥的超时、取消和离线边界",
+      "staticDepth": "S2",
+      "runtime": "R0",
+      "completeBusinessContract": false,
+      "branchesAndOutputs": [
+        "Gf串行FIFO排队；等待时可abort移出。每任务安全temp、SharedArrayBuffer取消标志，500ms发送电源状态，abort3秒后杀登记子进程并terminate，finally删temp并释放队列。",
+        "转换bridge使用shell=false的Python本地输入；DOCX/PDF限定、MarkItDown(enable_plugins=False)。超时60秒；超过5MiB的部分每额外1MiB（向上取整）增加3秒，上限180秒，输出64MiB、内存250MiB。",
+        "Windows父进程tasklist每100ms采样；Python有psutil时每50ms累计自己及递归子进程RSS，超额os._exit(137)；非Windows缺psutil直接失败。",
+        "Python替换socket.create_connection/socket.socket.connect并设置offline环境；这是Python进程内连接拦截及配置，不能称系统防火墙级隔离。",
+        "worker捕获未处理异常只上报TASK_CANCELLED或MARKDOWN_WORKER_FAILED，父进程直到exit再决算；第三方转换内存/耗时仍未合法运行测量。"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 15416,
+          "endLine": 15518,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "cdf5b06b0667b241feadbabb45a4dc0daab142afabeaf5a985d94bcedb7cc92e",
+          "coordinates": "1-based inclusive lines, original UTF-8 bytes"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-14/deep-processing/markdown-worker.readable.js",
+          "startLine": 350,
+          "endLine": 374,
+          "fileSha256": "49c9a31f48ed49b1a514bf75ebade2156537881710b427549c55cb1b439d1775",
+          "sliceSha256": "153eb7be55af314beb567a2772d4531c3f760460208c2597c5219a485c7e8a84",
+          "coordinates": "1-based inclusive lines, original UTF-8 bytes"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-14/deep-processing/markdown-worker.readable.js",
+          "startLine": 1100,
+          "endLine": 1175,
+          "fileSha256": "49c9a31f48ed49b1a514bf75ebade2156537881710b427549c55cb1b439d1775",
+          "sliceSha256": "a079ec07e68c92522ac66fee0843f472c2940e05f84b5a0a88bb5c28d25fc6a4",
+          "coordinates": "1-based inclusive lines, original UTF-8 bytes"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/scripts/markdown/convert_markitdown.py",
+          "startLine": 1,
+          "endLine": 104,
+          "fileSha256": "ae9d5153f5557970d3f5e01c188037627f865b44a271b7dc423c86a96f306017",
+          "sliceSha256": "80d844bc6da126fc36a54ee2c40529ebb350cf99d720bea5c0995d4beb94322f",
+          "coordinates": "1-based inclusive lines, original UTF-8 bytes"
+        }
+      ],
+      "remainingUnknown": [
+        "MarkItDown 0.1.6以及PDF/DOCX第三方转换依赖内部实现未全部展开；没有许可运行证据，R0。"
+      ]
+    }
+  ],
+  "summary": {
+    "sections": 11,
+    "evidenceRanges": 21,
+    "completeBusinessContracts": 0
+  },
+  "remaining": [
+    {
+      "area": "第三方解析/渲染与模型数值",
+      "kind": "external-dependency",
+      "status": "not-fully-reviewed"
+    },
+    {
+      "area": "各格式renderer父组件生产/消费与异常恢复",
+      "kind": "project-readable",
+      "status": "specific-follow-up-required"
+    },
+    {
+      "area": "合法竞品E2E与我方逐项等价",
+      "kind": "runtime-and-implementation",
+      "status": "R0/I-not-promoted"
+    }
+  ]
+}

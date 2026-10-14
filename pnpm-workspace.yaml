@@ -1,0 +1,12 @@
+packages:
+  - apps/*
+  - packages/*
+allowBuilds:
+  esbuild: true
+  tesseract.js: false
+  # CPU libraries are bundled; do not download optional CUDA/provider binaries.
+  onnxruntime-node: false
+minimumReleaseAgeExclude:
+  - tsx@4.23.15
+overrides:
+  esbuild: 0.28.1
