@@ -19,9 +19,9 @@ test("browser submission, review, durable reload and verified TXT download", asy
     .getByLabel("密码", { exact: true })
     .fill(process.env.E2E_PASSWORD ?? credentials.password);
   await page.getByRole("button", { name: "登录工作台" }).click();
-  await page.locator("summary").click();
+  await page.locator(".create-project summary").click();
   await page
-    .getByLabel("项目名称")
+    .getByLabel("项目名称", { exact: true })
     .fill("浏览器验收-" + randomUUID().slice(0, 6));
   await page.getByRole("button", { name: "新建项目", exact: true }).click();
   await page.getByRole("button", { name: "导入材料", exact: true }).click();
@@ -63,7 +63,7 @@ test("browser submission, review, durable reload and verified TXT download", asy
     .click();
   const file = await downloaded;
   expect(await readFile((await file.path())!, "utf8")).toBe(
-    "😀【自定义】电话【手机号】；邮箱【邮箱】",
+    "😀【自定义】电话138****8000；邮箱de***@e***.com",
   );
   await page.screenshot({
     path: "test-results/workbench-desktop.png",

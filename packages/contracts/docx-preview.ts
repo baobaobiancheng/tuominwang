@@ -1,0 +1,4 @@
+export type DocxPreviewRun = { id: string; part: string; paragraph: string; start: number; end: number; text: string };
+export type DocxPreviewPackage = { version: 1; documentId: string; revision: number; sourceHash: string; contentHash: string; packageHash: string; archiveBase64: string; runs: DocxPreviewRun[]; warnings: string[]; embeddedFonts: number; vml?: DocxVmlPreview[]; vmlImages?: Record<string,string> };
+export type DocxVmlNode = {kind:'group'|'shape'|'rect'|'roundrect'|'oval'|'line';style:string;flip:string;coordsize?:[number,number];coordorigin?:[number,number];fill?:string;stroke?:string;strokeWidth?:string;from?:[number,number];to?:[number,number];imageKey?:string;title?:string;crop?:[number,number,number,number];children:DocxVmlNode[];wrapType?:string;wrapSide?:string;textBlocks:{id:string;kind:'p'|'tbl'}[]};
+export type DocxVmlPreview={part:string;marker:string;nodes:DocxVmlNode[]};

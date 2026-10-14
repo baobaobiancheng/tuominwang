@@ -7,8 +7,8 @@ test("desktop XLSX lists remain drafts until saved; project whitelist review and
   await page.getByLabel("账号", { exact: true }).fill(process.env.E2E_USERNAME!);
   await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
   await page.getByRole("button", { name: "登录工作台" }).click();
-  await page.locator("summary").click();
-  await page.getByLabel("项目名称").fill("合成批量项目");
+  await page.locator(".create-project summary").click();
+  await page.getByLabel("项目名称", { exact: true }).fill("合成批量项目");
   await page.getByRole("button", { name: "新建项目", exact: true }).click();
   await page.getByRole("button", { name: "项目词表", exact: true }).click();
   const entries = [{ value: "13800138000", kind: "手机号" as const, action: "exclude" as const }, { value: "甲乙公司", kind: "机构" as const }];

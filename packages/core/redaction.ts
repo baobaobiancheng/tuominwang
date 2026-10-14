@@ -1,3 +1,7 @@
+import {validAliasToken} from "../contracts/alias-token.ts";
+import {entityIdentity,entityLabel,entitySpanKey} from './entity-identity.ts';
+import { referencePartialMask, referenceFullMask } from "./reference-mask.ts";
+import { referenceDetectedMask } from "./reference-detected-mask.ts";
 import { MAX_MARKS, type Mark, type Anchor, type DictionaryEntry } from "../contracts/index.ts";
 export const RULES_VERSION = "cn-rules-3";
 export function validId(value: string) {
@@ -101,7 +105,7 @@ export function detect(text: string, anchors: Anchor[] = [], dictionary: Diction
     // ponytail: at most 1,000 literal entries; use a trie if measured large-file scans hit the worker timeout.
     if (!entry.value || entry.value.length > 200) throw new Error("INVALID_DICTIONARY");
     let from = 0, found: number;
-    while ((found = text.indexOf(entry.value, from)) !== -1) { add(found, found + entry.value.length, entry.kind, entry.action === "exclude" ? "project-whitelist" : "project-dictionary"); from = found + 1; }
+    while ((found = text.indexOf(entry.value, from)) !== -1) { add(found, found + entry.value.length, entry.kind, entry.action === "exclude" ? "project-whitelist" : "project-dictionary"); if(entry.rawEntityType!==undefined)marks.at(-1)!.rawEntityType=entry.rawEntityType; from = found + 1; }
   }
   return mergeCandidates(text, marks);
 }
@@ -110,18 +114,17 @@ export function mergeCandidates(text: string, ...groups: Mark[][]): Mark[] {
   const merged = new Map<string, Mark>();
   for (const group of groups) for (const mark of group) {
     validateMarks(text, [{ ...mark, decision: "pending" }]);
-    const key = `${mark.start}:${mark.end}:${mark.kind}`, previous = merged.get(key);
+    const key = entitySpanKey(mark), previous = merged.get(key);
     const sources = [...previous?.sources ?? [], ...mark.sources ?? []];
     const unique = [...new Map(sources.map(source => [`${source.layer}:${source.code}`, source])).values()];
-    if (unique.length > 8) throw new Error("CANDIDATE_SOURCE_LIMIT");
     merged.set(key, { ...mark, decision: "pending", ...(unique.length ? { sources: unique } : {}) });
     if (merged.size > MAX_MARKS) throw new Error("MARK_LIMIT");
   }
-  return [...merged.values()].sort((a, b) => a.start - b.start || a.end - b.end || a.kind.localeCompare(b.kind, "zh"));
+  return [...merged.values()].sort((a, b) => a.start - b.start || a.end - b.end || entityIdentity(a).localeCompare(entityIdentity(b), "zh"));
 }
 export function reviewMarks(previous: Mark[], incoming: Mark[]) {
-  const known = new Map(previous.map(m => [`${m.start}:${m.end}:${m.kind}`, m.sources]));
-  return incoming.map(({ sources: _, ...mark }) => ({ ...mark, sources: known.get(`${mark.start}:${mark.end}:${mark.kind}`) ?? [{ layer: "manual" as const, code: "human-mark" }] }));
+  const known = new Map(previous.map(m => [entitySpanKey(m), m.sources]));
+  return incoming.map(({ sources: _, ...mark }) => ({ ...mark, sources: known.get(entitySpanKey(mark)) ?? [{ layer: "manual" as const, code: "human-mark" }] }));
 }
 const boundary = (text: string, n: number) =>
   !(
@@ -131,7 +134,8 @@ const boundary = (text: string, n: number) =>
     /[\uDC00-\uDFFF]/.test(text[n])
   );
 export function validateMarks(text: string, marks: Mark[], final = false) {
-  for (const m of marks)
+  for (const m of marks) {
+    entityIdentity(m);
     if (
       m.start >= m.end ||
       m.end > text.length ||
@@ -140,6 +144,7 @@ export function validateMarks(text: string, marks: Mark[], final = false) {
       (final && m.decision === "pending")
     )
       throw new Error("INVALID_MARKS");
+  }
   const selected = marks
     .filter((m) => m.decision === "redact")
     .sort((a, b) => a.start - b.start);
@@ -151,9 +156,19 @@ export function validateMarks(text: string, marks: Mark[], final = false) {
 // All exporters and previews use the same replacement. Counts are Unicode code points, not UTF-16 units.
 export function replacementFor(text: string, mark: Mark) {
   const value = text.slice(mark.start, mark.end), policy = mark.replacement;
-  if (!policy || policy.mode === "type") return `【${mark.kind}】`;
+  if (!policy || policy.mode === "type") return `【${entityLabel(mark)}】`;
+  if (policy.mode === "full" || policy.mode === "clear") {
+    const output = referenceFullMask(value);
+    if (!output || output.includes(value)) throw new Error("INVALID_REPLACEMENT");
+    return output;
+  }
+  if (policy.mode === "reference-mask") {
+    const output = policy.variant === "detected" || policy.variant === "detected-raster" ? referenceDetectedMask(text, mark, {stage:policy.variant==='detected-raster'?'raster-final':'text-final'}) : referencePartialMask(value, mark.kind, policy.variant);
+    if (!output || output.includes(value) || !output.isWellFormed()) throw new Error("INVALID_REPLACEMENT");
+    return output;
+  }
   if (policy.mode === "alias") {
-    if (policy.version !== 1 || !/^【(?:姓名|机构|地址|敏感项)_\d{6}】$/u.test(policy.token) || policy.token.includes(value)) throw new Error("INVALID_REPLACEMENT");
+    if (policy.version !== 1 || !validAliasToken(policy.token) || policy.token.includes(value)) throw new Error("INVALID_REPLACEMENT");
     return policy.token;
   }
   let output: string;
@@ -166,7 +181,7 @@ export function replacementFor(text: string, mark: Mark) {
     const first = [...value.slice(0, 202)], last = [...value.slice(-202)];
     output = first.slice(0, policy.prefix).join("") + "***" + (policy.suffix ? last.slice(-policy.suffix).join("") : "");
   } else {
-    if (policy.mode !== "custom" || !policy.value.trim() || policy.value.length > 100 || !policy.value.isWellFormed() || /[\x00-\x1f\x7f<>【】]/u.test(policy.value)) throw new Error("INVALID_REPLACEMENT");
+    if (policy.mode !== "custom" || !policy.value.isWellFormed() || policy.value.includes("\0")) throw new Error("INVALID_REPLACEMENT");
     output = policy.value;
   }
   if (output.includes(value)) throw new Error("INVALID_REPLACEMENT");

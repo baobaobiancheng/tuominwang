@@ -1,3 +1,4 @@
+import {validAliasToken} from "./alias-token.ts";
 import { z } from "zod";
 export const id = z.uuid();
 export const permissionSchema = z.enum(["view_original", "review", "export", "view_mapping", "restore", "manage_models", "manage_members", "upload", "manage_dictionary", "delete_material"]);
@@ -15,7 +16,8 @@ export type Coverage = { id: string; status: "complete" | "blocked"; reason?: st
 export type ParsedPage = { index: number; width: number; height: number; rotation: number; confidence: number; previewId: string; previewHash: string; mapId: string; mapHash: string; part?: string };
 export const pageReviewSchema = z.object({
   mode: z.enum(["unselected", "raster"]),
-  regions: z.array(z.object({ id, page: z.number().int().min(0).max(299), x: z.number().finite().nonnegative(), y: z.number().finite().nonnegative(), width: z.number().finite().positive(), height: z.number().finite().positive(), reason: z.enum(["敏感区域", "印章", "签名", "人脸"]) }).strict()).max(3000),
+  maskStyle: z.enum(["black", "white", "purple", "lightGray"]).optional(),
+  regions: z.array(z.object({ id, page: z.number().int().min(0).max(299), x: z.number().finite().nonnegative(), y: z.number().finite().nonnegative(), width: z.number().finite().positive(), height: z.number().finite().positive(), shape:z.enum(["rect","circle"]).optional(), entityType:z.string().min(1).refine(v=>v.isWellFormed()&&!v.includes("\0")).optional(),text:z.string().refine(v=>v.isWellFormed()&&!v.includes("\0")).optional(),meta:z.record(z.string(),z.json()).optional(), reason: z.enum(["敏感区域", "印章", "签名", "人脸"]) }).strict()).max(3000),
   deletedPages: z.array(z.number().int().min(0).max(299)).max(299),
 }).strict();
 export type PageReview = z.infer<typeof pageReviewSchema>;
@@ -35,20 +37,26 @@ export const REVIEW_BODY_BYTES = MAX_MARKS * 1536 + 1024;
 export const revisionSchema = z.object({ revision: z.number().int().nonnegative() });
 export const replacementSchema = z.discriminatedUnion("mode", [
   z.object({ mode: z.literal("type") }).strict(),
+  z.object({ mode: z.literal("full") }).strict(),
   z.object({ mode: z.literal("mask"), prefix: z.number().int().min(0).max(100), suffix: z.number().int().min(0).max(100) }).strict(),
-  z.object({ mode: z.literal("custom"), value: z.string().trim().min(1).max(100).regex(/^[^\x00-\x1f\x7f<>【】]+$/u) }).strict(),
-  z.object({ mode: z.literal("alias"), mappingId: id, version: z.literal(1), token: z.string().regex(/^【(?:姓名|机构|地址|敏感项)_\d{6}】$/u) }).strict(),
+  z.object({ mode: z.literal("custom"), value: z.string().refine(v=>v.isWellFormed()&&!v.includes("\0")) }).strict(),
+  z.object({ mode: z.literal("reference-mask"), variant: z.enum(["default", "official-name", "detected", "detected-raster"]).default("default") }).strict(),
+  z.object({ mode: z.literal("clear") }).strict(),
+  z.object({ mode: z.literal("alias"), mappingId: id, version: z.literal(1), token: z.string().refine(validAliasToken) }).strict(),
 ]);
 export const markSchema = z.object({
   start: z.number().int().nonnegative(),
   end: z.number().int().positive(),
-  kind: z.enum(["手机号", "固定电话", "邮箱", "身份证号", "银行账号", "信用代码", "案号", "护照号", "姓名", "机构", "地址", "金额", "商业秘密", "自定义", "证券/资金账号", "车牌号", "微信号", "网址", "专利号", "备案号", "证照/许可证号"]),
+  kind: z.enum(["手机号", "固定电话", "邮箱", "身份证号", "银行账号", "信用代码", "案号", "护照号", "姓名", "机构", "地址", "金额", "商业秘密", "自定义", "证券/资金账号", "车牌号", "微信号", "网址", "专利号", "备案号", "证照/许可证号", "税号", "雇主识别号", "国际身份证号", "社保号", "公文编号"]),
+  rawEntityType:z.string().min(1).refine(v=>v.isWellFormed()&&!v.includes('\0')).optional(),
   decision: z.enum(["pending", "redact", "ignore"]),
   replacement: replacementSchema.optional(),
-  sources: z.array(z.object({ layer: z.enum(["rules", "ner", "ai", "manual"]), code: z.string().regex(/^[A-Za-z0-9._:-]{1,80}$/), score: z.number().min(0).max(1).optional(), uncertain: z.boolean().optional() })).max(8).optional(),
-});
+  replacementOrigin: z.enum(["manual", "overall", "type", "value"]).optional(),
+  rasterReplacement: z.boolean().optional(),
+  sources: z.array(z.object({ layer: z.enum(["rules", "ner", "ai", "manual"]), code: z.string().regex(/^[A-Za-z0-9._:-]{1,80}$/), score: z.number().min(0).max(1).optional(), uncertain: z.boolean().optional() })).optional(),
+}).refine(m=>m.rawEntityType===undefined||m.kind==='自定义',{message:'INVALID_ENTITY_TYPE'});
 export type Mark = z.infer<typeof markSchema>;
-export const dictionarySchema = z.object({ revision: z.number().int().nonnegative(), entries: z.array(z.object({ value: z.string().trim().min(1).max(200).refine(v => v.isWellFormed() && !/[\x00-\x08\x0b\x0c\x0e-\x1f]/u.test(v)), kind: markSchema.shape.kind, action: z.enum(["include", "exclude"]).optional() })).max(1000) });
+export const dictionarySchema = z.object({ revision: z.number().int().nonnegative(), entries: z.array(z.object({ value: z.string().trim().min(1).max(200).refine(v => v.isWellFormed() && !/[\x00-\x08\x0b\x0c\x0e-\x1f]/u.test(v)), kind: markSchema.shape.kind,rawEntityType:markSchema.shape.rawEntityType, action: z.enum(["include", "exclude"]).optional() }).refine(m=>m.rawEntityType===undefined||m.kind==="自定义")).max(1000) });
 export type DictionaryEntry = z.infer<typeof dictionarySchema>["entries"][number];
 export const textSchema = z.object({ text: z.string().min(1), requestId: id });
 export const reviewSchema = z.object({
@@ -88,8 +96,11 @@ export type DocumentView = {
     status: string;
     error_code: string | null;
     required_permissions?: Permission[];
+    canObserveEvents?: boolean;
   };
   canRunNer?: boolean;
   nerEnabled?: boolean;
+  visualDiagnostics?:{complete:boolean;pages:{page:number;detectors:string[];warnings:string[]}[]}|null;
+  visualCandidates?: {page:number;x:number;y:number;width:number;height:number;reason:"人脸"|"印章"|"签名";score:number;detector:string}[];
   layers: { rules: string; ner: "not_configured" | "not_requested" | "pending" | "completed"; ai: "not_configured" };
 };

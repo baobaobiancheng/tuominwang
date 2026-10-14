@@ -1,3 +1,4 @@
+import {sameEntity,entityIdentity} from './entity-identity.ts';
 import { isDeepStrictEqual } from "node:util";
 import { MAX_MARKS, type Anchor, type Mark, type SourceFormat } from "../contracts/index.ts";
 import { replacementFor, validateMarks } from "./redaction.ts";
@@ -5,22 +6,32 @@ import { validateFileMarks } from "./files.ts";
 import { textWindow } from "./text-window.ts";
 
 export type KnownEntityCheck = {
-  entities: { value: string; kind: Mark["kind"]; ambiguous: boolean; matches: { start: number; end: number; status: "marked" | "retained" | "missing" | "conflict" }[] }[];
+  entities: { value: string; kind: Mark["kind"];rawEntityType?:string; ambiguous: boolean; matches: { start: number; end: number; status: "marked" | "retained" | "missing" | "conflict" }[] }[];
   additions: Mark[];
 };
 
-export function checkKnownEntities(text: string, marks: Mark[], format: SourceFormat, anchors: Anchor[]): KnownEntityCheck {
+export type KnownEntitySeed = {value:string;kind:Mark["kind"];rawEntityType?:string;replacement?:Mark["replacement"]};
+export function checkKnownEntities(text: string, marks: Mark[], format: SourceFormat, anchors: Anchor[], seeds: KnownEntitySeed[] = []): KnownEntityCheck {
   validateFileMarks(text, marks, format, anchors);
   const retained = (mark: Mark) => mark.decision === "ignore" || mark.decision === "pending" && !!mark.sources?.some(s => s.code === "project-whitelist");
-  const known = new Map<string, { mark: Mark; ambiguous: boolean }>();
+  const known = new Map<string, { mark: Mark; value:string; ambiguous: boolean }>();
   for (const mark of marks) {
     if (retained(mark)) continue;
     if (mark.end - mark.start > 2000) throw new Error("KNOWN_ENTITY_VALUE_LIMIT");
     replacementFor(text, mark);
-    const value = text.slice(mark.start, mark.end), previous = known.get(value);
-    if (previous) previous.ambiguous ||= previous.mark.kind !== mark.kind || !isDeepStrictEqual(previous.mark.replacement ?? { mode: "type" }, mark.replacement ?? { mode: "type" });
-    else known.set(value, { mark, ambiguous: false });
+    const value = text.slice(mark.start, mark.end), previous = known.get(mark.rawEntityType===undefined?`value:${value}`:JSON.stringify([entityIdentity(mark),value]));
+    if (previous) previous.ambiguous ||= !sameEntity(previous.mark,mark) || !isDeepStrictEqual(previous.mark.replacement ?? { mode: "type" }, mark.replacement ?? { mode: "type" });
+    else known.set(mark.rawEntityType===undefined?`value:${value}`:JSON.stringify([entityIdentity(mark),value]), { mark,value, ambiguous: false });
     // Each distinct value scans the whole text. Reject the workload before scanning, never sample it.
+    if (text.length * known.size > 100_000_000) throw new Error("KNOWN_ENTITY_SCAN_LIMIT");
+  }
+  for (const seed of seeds) {
+    if (!seed.value || seed.value.length > 2000 || !seed.value.isWellFormed()) throw new Error("KNOWN_ENTITY_VALUE_LIMIT");
+    const mark: Mark = {start:0,end:seed.value.length,kind:seed.kind,...seed.rawEntityType!==undefined?{rawEntityType:seed.rawEntityType}:{},decision:"pending",replacement:seed.replacement};
+    replacementFor(seed.value, mark);
+    const previous = known.get(mark.rawEntityType===undefined?`value:${seed.value}`:JSON.stringify([entityIdentity(mark),seed.value]));
+    if (previous) previous.ambiguous ||= !sameEntity(previous.mark,mark) || !isDeepStrictEqual(previous.mark.replacement ?? {mode:"type"}, mark.replacement ?? {mode:"type"});
+    else known.set(mark.rawEntityType===undefined?`value:${seed.value}`:JSON.stringify([entityIdentity(mark),seed.value]), {mark,value:seed.value,ambiguous:false});
     if (text.length * known.size > 100_000_000) throw new Error("KNOWN_ENTITY_SCAN_LIMIT");
   }
   function intervals(list: Mark[]) {
@@ -36,8 +47,9 @@ export function checkKnownEntities(text: string, marks: Mark[], format: SourceFo
   const marked = intervals(marks.filter(m => !retained(m))), preserved = intervals(marks.filter(retained));
   const entities: KnownEntityCheck["entities"] = [], candidates: { match: KnownEntityCheck["entities"][number]["matches"][number]; mark: Mark }[] = [];
   let count = 0;
-  for (const [value, seed] of known) {
-    const entity: KnownEntityCheck["entities"][number] = { value, kind: seed.mark.kind, ambiguous: seed.ambiguous, matches: [] };
+  for (const seed of known.values()) {
+    const value=seed.value, sameMarks=seed.mark.rawEntityType===undefined?null:marks.filter(m=>sameEntity(m,seed.mark)),seedMarked=sameMarks?intervals(sameMarks.filter(m=>!retained(m))):marked,seedPreserved=sameMarks?intervals(sameMarks.filter(retained)):preserved;
+    const entity: KnownEntityCheck["entities"][number] = { value, kind: seed.mark.kind,...seed.mark.rawEntityType!==undefined?{rawEntityType:seed.mark.rawEntityType}:{}, ambiguous: seed.ambiguous, matches: [] };
     let from = 0;
     while (true) {
       const start = text.indexOf(value, from);
@@ -45,10 +57,10 @@ export function checkKnownEntities(text: string, marks: Mark[], format: SourceFo
       if (++count > MAX_MARKS) throw new Error("MARK_LIMIT");
       const end = start + value.length, markOverlap = marked.overlaps(start, end), retainedOverlap = preserved.overlaps(start, end);
       const match: typeof entity.matches[number] = { start, end, status: "missing" };
-      if (marked.contains(start, end) && !retainedOverlap) match.status = "marked";
-      else if (preserved.contains(start, end) && !markOverlap) match.status = "retained";
+      if (seedMarked.contains(start, end) && !retainedOverlap) match.status = "marked";
+      else if (seedPreserved.contains(start, end) && !markOverlap) match.status = "retained";
       else if (markOverlap || retainedOverlap || seed.ambiguous) match.status = "conflict";
-      const candidate: Mark = { start, end, kind: seed.mark.kind, decision: "pending", ...(seed.mark.replacement && { replacement: seed.mark.replacement }), sources: [{ layer: "manual", code: "known-entity-check" }] };
+      const candidate: Mark = { start, end, kind: seed.mark.kind,...seed.mark.rawEntityType!==undefined?{rawEntityType:seed.mark.rawEntityType}:{}, decision: "pending", ...(seed.mark.replacement && { replacement: seed.mark.replacement }), sources: [{ layer: "manual", code: "known-entity-check" }] };
       if (!markOverlap && !retainedOverlap) {
         try { validateFileMarks(text, [candidate], format, anchors); }
         catch (error) { if (["CROSS_CELL_MARK", "CROSS_OBJECT_MARK"].includes((error as Error).message)) match.status = "conflict"; else throw error; }

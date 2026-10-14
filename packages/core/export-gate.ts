@@ -1,3 +1,4 @@
+import {createHash} from 'node:crypto';
 import { z } from "zod";
 import { MAX_MARKS, markSchema } from "../contracts/index.ts";
 import policy from "./export-policy.generated.js";
@@ -7,7 +8,7 @@ import type { ParsedPage } from "../contracts/index.ts";
 
 type Document = {
   id: string; tenant_id: string; project_id: string; revision: number; state: string;
-  source_id: string | null; source_format: string; parse_version: number; content_hash: string;
+  source_id: string | null; source_hash?:string|null; source_format: string; parse_version: number; content_hash: string;
   marks: unknown; anchors: unknown; coverage: unknown; recognition?: unknown; page_review?: unknown; page_data?: ParsedPage[];
 };
 type Snapshot = {
@@ -25,7 +26,7 @@ const coverageSchema = z.array(z.object({ id: z.string().min(1), status: z.liter
 // The TS bridge is tested separately: Bend proves the Boolean policy, not parser correctness.
 export function coverageComplete(d: Document, textLength: number) {
   const paged = PAGED_FORMATS.includes(d.source_format);
-  if (!["txt", "md", "csv", "docx", "xlsx", ...PAGED_FORMATS].includes(d.source_format) || !Number.isSafeInteger(textLength) || textLength < (paged ? 0 : 1)) return false;
+  if (!["txt", "md", "csv", "docx", "xlsx", ...PAGED_FORMATS].includes(d.source_format) || !Number.isSafeInteger(textLength) || textLength < (paged || d.source_format === "md" && d.parse_version === 2 ? 0 : 1)) return false;
   const coverage = coverageSchema.safeParse(d.coverage), anchors = anchorsSchema.safeParse(d.anchors);
   if (!coverage.success || !anchors.success) return false;
   const seen = new Set(coverage.data.map(item => item.id));
@@ -60,6 +61,14 @@ export function coverageComplete(d: Document, textLength: number) {
       if (imageAnchors.length !== pages.length || new Set(pages.map(p => p.part)).size !== pages.length || pages.some(p => !p.part || !imageAnchors.some(a => a.part === p.part))) return false;
     }
     return end === textLength;
+  }
+  if(d.source_format==='md'&&d.parse_version>=2){
+    const metadata=z.object({version:z.literal('markdown-source-2'),parseVersion:z.literal(2),sourceSha256:z.string().regex(/^[a-f0-9]{64}$/u),scanTextSha256:z.string().regex(/^[a-f0-9]{64}$/u),scanTextLength:z.number().int().nonnegative(),sidecarId:z.uuid(),sidecarHash:z.string().regex(/^[a-f0-9]{64}$/u),anchorsHash:z.string().regex(/^[a-f0-9]{64}$/u),coverageHash:z.string().regex(/^[a-f0-9]{64}$/u),blockerReviewId:z.uuid().optional(),blockerReviewHash:z.string().regex(/^[a-f0-9]{64}$/u).optional()}).strict().safeParse((d.recognition as any)?.markdown);
+    if(!metadata.success||!!metadata.data.blockerReviewId!==!!metadata.data.blockerReviewHash||d.parse_version!==2||!d.source_id||metadata.data.sourceSha256!==d.source_hash||metadata.data.scanTextSha256!==d.content_hash||metadata.data.scanTextLength!==textLength||coverage.data.length!==1||!seen.has('markdown-source'))return false;
+    const inventory=coverage.data[0].objects;if(!inventory||inventory.length!==anchors.data.length||new Set(inventory).size!==inventory.length)return false;
+    let end=0;for(const [i,a]of anchors.data.entries()){if(a.kind!=='object'||a.part!=='markdown'||a.object!==`markdown-block:${i+1}`||inventory[i]!==a.object||a.start<end||a.start>end+1||i===0&&a.start!==0||a.end<=a.start||a.end>textLength||a.row!==undefined||a.column!==undefined||a.page!==undefined)return false;end=a.end;}
+    const sha=(s:string)=>createHash('sha256').update(s).digest('hex'),anchorHash=sha(JSON.stringify(anchors.data.map(a=>[a.kind,a.start,a.end,a.part??null,a.object??null]))),coverageHash=sha(JSON.stringify(coverage.data.map(c=>[c.id,c.status,c.objects??null])));
+    return end===textLength&&metadata.data.anchorsHash===anchorHash&&metadata.data.coverageHash===coverageHash;
   }
   // Migration 002 predates anchors for existing pasted text. Only this explicit legacy case is permitted.
   if (d.source_id === null && d.source_format === "txt" && !anchors.data.length && !coverage.data.length) return true;

@@ -1,0 +1,4971 @@
+[
+  {
+    "id": "plain",
+    "source": "# 标题\n张三 手机 13800138000\n",
+    "scanText": "标题\n张三 手机 13800138000",
+    "sidecar": {
+      "schemaId": "markdown-source",
+      "schemaVersion": 1,
+      "offsetEncoding": "utf16-code-unit",
+      "encoding": "utf8",
+      "hasBom": false,
+      "newline": "lf",
+      "trailingNewline": true,
+      "originalExtension": ".md",
+      "sourceSha256": "ae7a7b2ba3562bf96c1dd670adde5c0332450e55cfb6c1b928bb78f3e97dc662",
+      "sourceLength": 23,
+      "scanTextSha256": "883ea938669c921f9c80f3dc774f1713c8888c00b9740fb887c372d8c270341d",
+      "regions": [
+        {
+          "id": "md-region-1",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 0,
+          "scanEnd": 2,
+          "sourceStart": 2,
+          "sourceEnd": 4,
+          "sourceMap": [
+            {
+              "scanStart": 0,
+              "scanEnd": 2,
+              "sourceStart": 2,
+              "sourceEnd": 4,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-2",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 3,
+          "scanEnd": 20,
+          "sourceStart": 5,
+          "sourceEnd": 22,
+          "sourceMap": [
+            {
+              "scanStart": 3,
+              "scanEnd": 20,
+              "sourceStart": 5,
+              "sourceEnd": 22,
+              "exact": true
+            }
+          ]
+        }
+      ],
+      "sourceMap": [
+        {
+          "scanStart": 0,
+          "scanEnd": 2,
+          "sourceStart": 2,
+          "sourceEnd": 4,
+          "exact": true
+        },
+        {
+          "scanStart": 3,
+          "scanEnd": 20,
+          "sourceStart": 5,
+          "sourceEnd": 22,
+          "exact": true
+        }
+      ],
+      "syntaxContainers": [],
+      "tables": [],
+      "blockers": [],
+      "frontmatter": {
+        "present": false,
+        "valid": true,
+        "errors": []
+      }
+    }
+  },
+  {
+    "id": "inline",
+    "source": "**张三** 与 *李四* 和 ~~王五~~，`代码张三`。\n",
+    "scanText": "张三 与 李四 和 王五，代码张三。",
+    "sidecar": {
+      "schemaId": "markdown-source",
+      "schemaVersion": 1,
+      "offsetEncoding": "utf16-code-unit",
+      "encoding": "utf8",
+      "hasBom": false,
+      "newline": "lf",
+      "trailingNewline": true,
+      "originalExtension": ".md",
+      "sourceSha256": "53c29b9506e404351e7a44c157363a3332274eed5bd090997afa2f23b19a444e",
+      "sourceLength": 31,
+      "scanTextSha256": "29d0a4355e97db4bba84312808397539b829eaf42e5f7ff0992de9ba6dfca9e4",
+      "regions": [
+        {
+          "id": "md-region-1",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 0,
+          "scanEnd": 2,
+          "sourceStart": 2,
+          "sourceEnd": 4,
+          "sourceMap": [
+            {
+              "scanStart": 0,
+              "scanEnd": 2,
+              "sourceStart": 2,
+              "sourceEnd": 4,
+              "exact": true,
+              "containerIds": [
+                "md-container-0-6-strong"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "md-region-2",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 2,
+          "scanEnd": 5,
+          "sourceStart": 6,
+          "sourceEnd": 9,
+          "sourceMap": [
+            {
+              "scanStart": 2,
+              "scanEnd": 5,
+              "sourceStart": 6,
+              "sourceEnd": 9,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-3",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 5,
+          "scanEnd": 7,
+          "sourceStart": 10,
+          "sourceEnd": 12,
+          "sourceMap": [
+            {
+              "scanStart": 5,
+              "scanEnd": 7,
+              "sourceStart": 10,
+              "sourceEnd": 12,
+              "exact": true,
+              "containerIds": [
+                "md-container-9-13-emphasis"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "md-region-4",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 7,
+          "scanEnd": 10,
+          "sourceStart": 13,
+          "sourceEnd": 16,
+          "sourceMap": [
+            {
+              "scanStart": 7,
+              "scanEnd": 10,
+              "sourceStart": 13,
+              "sourceEnd": 16,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-5",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 10,
+          "scanEnd": 12,
+          "sourceStart": 18,
+          "sourceEnd": 20,
+          "sourceMap": [
+            {
+              "scanStart": 10,
+              "scanEnd": 12,
+              "sourceStart": 18,
+              "sourceEnd": 20,
+              "exact": true,
+              "containerIds": [
+                "md-container-16-22-delete"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "md-region-6",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 12,
+          "scanEnd": 13,
+          "sourceStart": 22,
+          "sourceEnd": 23,
+          "sourceMap": [
+            {
+              "scanStart": 12,
+              "scanEnd": 13,
+              "sourceStart": 22,
+              "sourceEnd": 23,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-7",
+          "kind": "code",
+          "nodeType": "inlineCode",
+          "scanStart": 13,
+          "scanEnd": 17,
+          "sourceStart": 24,
+          "sourceEnd": 28,
+          "sourceMap": [
+            {
+              "scanStart": 13,
+              "scanEnd": 17,
+              "sourceStart": 24,
+              "sourceEnd": 28,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-8",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 17,
+          "scanEnd": 18,
+          "sourceStart": 29,
+          "sourceEnd": 30,
+          "sourceMap": [
+            {
+              "scanStart": 17,
+              "scanEnd": 18,
+              "sourceStart": 29,
+              "sourceEnd": 30,
+              "exact": true
+            }
+          ]
+        }
+      ],
+      "sourceMap": [
+        {
+          "scanStart": 0,
+          "scanEnd": 2,
+          "sourceStart": 2,
+          "sourceEnd": 4,
+          "exact": true,
+          "containerIds": [
+            "md-container-0-6-strong"
+          ]
+        },
+        {
+          "scanStart": 2,
+          "scanEnd": 5,
+          "sourceStart": 6,
+          "sourceEnd": 9,
+          "exact": true
+        },
+        {
+          "scanStart": 5,
+          "scanEnd": 7,
+          "sourceStart": 10,
+          "sourceEnd": 12,
+          "exact": true,
+          "containerIds": [
+            "md-container-9-13-emphasis"
+          ]
+        },
+        {
+          "scanStart": 7,
+          "scanEnd": 10,
+          "sourceStart": 13,
+          "sourceEnd": 16,
+          "exact": true
+        },
+        {
+          "scanStart": 10,
+          "scanEnd": 12,
+          "sourceStart": 18,
+          "sourceEnd": 20,
+          "exact": true,
+          "containerIds": [
+            "md-container-16-22-delete"
+          ]
+        },
+        {
+          "scanStart": 12,
+          "scanEnd": 13,
+          "sourceStart": 22,
+          "sourceEnd": 23,
+          "exact": true
+        },
+        {
+          "scanStart": 13,
+          "scanEnd": 17,
+          "sourceStart": 24,
+          "sourceEnd": 28,
+          "exact": true
+        },
+        {
+          "scanStart": 17,
+          "scanEnd": 18,
+          "sourceStart": 29,
+          "sourceEnd": 30,
+          "exact": true
+        }
+      ],
+      "syntaxContainers": [
+        {
+          "id": "md-container-0-6-strong",
+          "nodeType": "strong",
+          "sourceStart": 0,
+          "sourceEnd": 6,
+          "scanStart": 0,
+          "scanEnd": 2
+        },
+        {
+          "id": "md-container-9-13-emphasis",
+          "nodeType": "emphasis",
+          "sourceStart": 9,
+          "sourceEnd": 13,
+          "scanStart": 5,
+          "scanEnd": 7
+        },
+        {
+          "id": "md-container-16-22-delete",
+          "nodeType": "delete",
+          "sourceStart": 16,
+          "sourceEnd": 22,
+          "scanStart": 10,
+          "scanEnd": 12
+        }
+      ],
+      "tables": [],
+      "blockers": [],
+      "frontmatter": {
+        "present": false,
+        "valid": true,
+        "errors": []
+      }
+    }
+  },
+  {
+    "id": "links",
+    "source": "[张三](https://example.com/张三 \"标题\") <https://example.com> test@example.com\n[甲][foo]\n\n[foo]: https://example.org\n",
+    "scanText": "张三\nhttps://example.com/张三 https://example.com\nhttps://example.com test@example.com\nmailto:test@example.com\n甲\nhttps://example.org",
+    "sidecar": {
+      "schemaId": "markdown-source",
+      "schemaVersion": 1,
+      "offsetEncoding": "utf16-code-unit",
+      "encoding": "utf8",
+      "hasBom": false,
+      "newline": "lf",
+      "trailingNewline": true,
+      "originalExtension": ".md",
+      "sourceSha256": "04058b304872d259b38c6e783e2366c03e28aad5499d6a9e3865ad3015a31978",
+      "sourceLength": 110,
+      "scanTextSha256": "aa3cb88b882acdc559fd4ed1a7a8bbdfc981bcfc732239f064552f7568e591fb",
+      "regions": [
+        {
+          "id": "md-region-1",
+          "kind": "link_label",
+          "nodeType": "text",
+          "scanStart": 0,
+          "scanEnd": 2,
+          "sourceStart": 1,
+          "sourceEnd": 3,
+          "sourceMap": [
+            {
+              "scanStart": 0,
+              "scanEnd": 2,
+              "sourceStart": 1,
+              "sourceEnd": 3,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-2",
+          "kind": "link_destination",
+          "nodeType": "link",
+          "scanStart": 3,
+          "scanEnd": 25,
+          "sourceStart": 5,
+          "sourceEnd": 27,
+          "sourceMap": [
+            {
+              "scanStart": 3,
+              "scanEnd": 25,
+              "sourceStart": 5,
+              "sourceEnd": 27,
+              "exact": true
+            }
+          ],
+          "containerSourceStart": 0,
+          "containerSourceEnd": 33,
+          "fallbackText": "张三"
+        },
+        {
+          "id": "md-region-3",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 25,
+          "scanEnd": 26,
+          "sourceStart": 33,
+          "sourceEnd": 34,
+          "sourceMap": [
+            {
+              "scanStart": 25,
+              "scanEnd": 26,
+              "sourceStart": 33,
+              "sourceEnd": 34,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-4",
+          "kind": "link_label",
+          "nodeType": "text",
+          "scanStart": 26,
+          "scanEnd": 45,
+          "sourceStart": 35,
+          "sourceEnd": 54,
+          "sourceMap": [
+            {
+              "scanStart": 26,
+              "scanEnd": 45,
+              "sourceStart": 35,
+              "sourceEnd": 54,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-5",
+          "kind": "link_destination",
+          "nodeType": "link",
+          "scanStart": 46,
+          "scanEnd": 65,
+          "sourceStart": 35,
+          "sourceEnd": 54,
+          "sourceMap": [
+            {
+              "scanStart": 46,
+              "scanEnd": 65,
+              "sourceStart": 35,
+              "sourceEnd": 54,
+              "exact": true
+            }
+          ],
+          "containerSourceStart": 34,
+          "containerSourceEnd": 55,
+          "fallbackText": "https://example.com"
+        },
+        {
+          "id": "md-region-6",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 65,
+          "scanEnd": 66,
+          "sourceStart": 55,
+          "sourceEnd": 56,
+          "sourceMap": [
+            {
+              "scanStart": 65,
+              "scanEnd": 66,
+              "sourceStart": 55,
+              "sourceEnd": 56,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-7",
+          "kind": "link_label",
+          "nodeType": "text",
+          "scanStart": 66,
+          "scanEnd": 82,
+          "sourceStart": 56,
+          "sourceEnd": 72,
+          "sourceMap": [
+            {
+              "scanStart": 66,
+              "scanEnd": 82,
+              "sourceStart": 56,
+              "sourceEnd": 72,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-8",
+          "kind": "link_destination",
+          "nodeType": "link",
+          "scanStart": 83,
+          "scanEnd": 106,
+          "sourceStart": 56,
+          "sourceEnd": 72,
+          "sourceMap": [
+            {
+              "scanStart": 83,
+              "scanEnd": 106,
+              "sourceStart": 56,
+              "sourceEnd": 72,
+              "exact": false
+            }
+          ],
+          "containerSourceStart": 56,
+          "containerSourceEnd": 72,
+          "fallbackText": "test@example.com"
+        },
+        {
+          "id": "md-region-9",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 106,
+          "scanEnd": 107,
+          "sourceStart": 72,
+          "sourceEnd": 73,
+          "sourceMap": [
+            {
+              "scanStart": 106,
+              "scanEnd": 107,
+              "sourceStart": 72,
+              "sourceEnd": 73,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-10",
+          "kind": "link_label",
+          "nodeType": "text",
+          "scanStart": 107,
+          "scanEnd": 108,
+          "sourceStart": 74,
+          "sourceEnd": 75,
+          "sourceMap": [
+            {
+              "scanStart": 107,
+              "scanEnd": 108,
+              "sourceStart": 74,
+              "sourceEnd": 75,
+              "exact": true
+            }
+          ],
+          "containerSourceStart": 73,
+          "containerSourceEnd": 81,
+          "fallbackText": "甲",
+          "referenceIdentifier": "foo"
+        },
+        {
+          "id": "md-region-11",
+          "kind": "link_destination",
+          "nodeType": "definition",
+          "scanStart": 109,
+          "scanEnd": 128,
+          "sourceStart": 90,
+          "sourceEnd": 109,
+          "sourceMap": [
+            {
+              "scanStart": 109,
+              "scanEnd": 128,
+              "sourceStart": 90,
+              "sourceEnd": 109,
+              "exact": true
+            }
+          ],
+          "containerSourceStart": 83,
+          "containerSourceEnd": 109,
+          "fallbackText": "",
+          "referenceIdentifier": "foo"
+        }
+      ],
+      "sourceMap": [
+        {
+          "scanStart": 0,
+          "scanEnd": 2,
+          "sourceStart": 1,
+          "sourceEnd": 3,
+          "exact": true
+        },
+        {
+          "scanStart": 3,
+          "scanEnd": 25,
+          "sourceStart": 5,
+          "sourceEnd": 27,
+          "exact": true
+        },
+        {
+          "scanStart": 25,
+          "scanEnd": 26,
+          "sourceStart": 33,
+          "sourceEnd": 34,
+          "exact": true
+        },
+        {
+          "scanStart": 26,
+          "scanEnd": 45,
+          "sourceStart": 35,
+          "sourceEnd": 54,
+          "exact": true
+        },
+        {
+          "scanStart": 46,
+          "scanEnd": 65,
+          "sourceStart": 35,
+          "sourceEnd": 54,
+          "exact": true
+        },
+        {
+          "scanStart": 65,
+          "scanEnd": 66,
+          "sourceStart": 55,
+          "sourceEnd": 56,
+          "exact": true
+        },
+        {
+          "scanStart": 66,
+          "scanEnd": 82,
+          "sourceStart": 56,
+          "sourceEnd": 72,
+          "exact": true
+        },
+        {
+          "scanStart": 83,
+          "scanEnd": 106,
+          "sourceStart": 56,
+          "sourceEnd": 72,
+          "exact": false
+        },
+        {
+          "scanStart": 106,
+          "scanEnd": 107,
+          "sourceStart": 72,
+          "sourceEnd": 73,
+          "exact": true
+        },
+        {
+          "scanStart": 107,
+          "scanEnd": 108,
+          "sourceStart": 74,
+          "sourceEnd": 75,
+          "exact": true
+        },
+        {
+          "scanStart": 109,
+          "scanEnd": 128,
+          "sourceStart": 90,
+          "sourceEnd": 109,
+          "exact": true
+        }
+      ],
+      "syntaxContainers": [],
+      "tables": [],
+      "blockers": [],
+      "frontmatter": {
+        "present": false,
+        "valid": true,
+        "errors": []
+      }
+    }
+  },
+  {
+    "id": "code",
+    "source": "```js\n张三\n```\n\n    李四\n",
+    "scanText": "张三\n李四",
+    "sidecar": {
+      "schemaId": "markdown-source",
+      "schemaVersion": 1,
+      "offsetEncoding": "utf16-code-unit",
+      "encoding": "utf8",
+      "hasBom": false,
+      "newline": "lf",
+      "trailingNewline": true,
+      "originalExtension": ".md",
+      "sourceSha256": "d641565d9dc1568f648afd7456573542dd062bb46353061a0e76e0145c985da8",
+      "sourceLength": 21,
+      "scanTextSha256": "d8819f4b3ebcb78a82f882731ba9c8100f3934f388b26834277db928f9aa37b6",
+      "regions": [
+        {
+          "id": "md-region-1",
+          "kind": "code",
+          "nodeType": "code",
+          "scanStart": 0,
+          "scanEnd": 2,
+          "sourceStart": 6,
+          "sourceEnd": 8,
+          "sourceMap": [
+            {
+              "scanStart": 0,
+              "scanEnd": 2,
+              "sourceStart": 6,
+              "sourceEnd": 8,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-2",
+          "kind": "code",
+          "nodeType": "code",
+          "scanStart": 3,
+          "scanEnd": 5,
+          "sourceStart": 18,
+          "sourceEnd": 20,
+          "sourceMap": [
+            {
+              "scanStart": 3,
+              "scanEnd": 5,
+              "sourceStart": 18,
+              "sourceEnd": 20,
+              "exact": true
+            }
+          ]
+        }
+      ],
+      "sourceMap": [
+        {
+          "scanStart": 0,
+          "scanEnd": 2,
+          "sourceStart": 6,
+          "sourceEnd": 8,
+          "exact": true
+        },
+        {
+          "scanStart": 3,
+          "scanEnd": 5,
+          "sourceStart": 18,
+          "sourceEnd": 20,
+          "exact": true
+        }
+      ],
+      "syntaxContainers": [],
+      "tables": [],
+      "blockers": [],
+      "frontmatter": {
+        "present": false,
+        "valid": true,
+        "errors": []
+      }
+    }
+  },
+  {
+    "id": "image",
+    "source": "![张三](photo.png) 与 <div>敏感HTML</div>\n",
+    "scanText": "张三 与 敏感HTML",
+    "sidecar": {
+      "schemaId": "markdown-source",
+      "schemaVersion": 1,
+      "offsetEncoding": "utf16-code-unit",
+      "encoding": "utf8",
+      "hasBom": false,
+      "newline": "lf",
+      "trailingNewline": true,
+      "originalExtension": ".md",
+      "sourceSha256": "43913b4484342c5e0b4bb106df733f7e9cf2ba15432434fb6d393f36dc602a0e",
+      "sourceLength": 37,
+      "scanTextSha256": "72b0e98566ee4d5584c4d66a9c9af34e339d3883b630d2b9aa6fd41cd8ff25d0",
+      "regions": [
+        {
+          "id": "md-region-1",
+          "kind": "image_alt",
+          "nodeType": "image",
+          "scanStart": 0,
+          "scanEnd": 2,
+          "sourceStart": 2,
+          "sourceEnd": 4,
+          "sourceMap": [
+            {
+              "scanStart": 0,
+              "scanEnd": 2,
+              "sourceStart": 2,
+              "sourceEnd": 4,
+              "exact": true
+            }
+          ],
+          "containerSourceStart": 0,
+          "containerSourceEnd": 16
+        },
+        {
+          "id": "md-region-2",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 2,
+          "scanEnd": 5,
+          "sourceStart": 16,
+          "sourceEnd": 19,
+          "sourceMap": [
+            {
+              "scanStart": 2,
+              "scanEnd": 5,
+              "sourceStart": 16,
+              "sourceEnd": 19,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-3",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 5,
+          "scanEnd": 11,
+          "sourceStart": 24,
+          "sourceEnd": 30,
+          "sourceMap": [
+            {
+              "scanStart": 5,
+              "scanEnd": 11,
+              "sourceStart": 24,
+              "sourceEnd": 30,
+              "exact": true
+            }
+          ]
+        }
+      ],
+      "sourceMap": [
+        {
+          "scanStart": 0,
+          "scanEnd": 2,
+          "sourceStart": 2,
+          "sourceEnd": 4,
+          "exact": true
+        },
+        {
+          "scanStart": 2,
+          "scanEnd": 5,
+          "sourceStart": 16,
+          "sourceEnd": 19,
+          "exact": true
+        },
+        {
+          "scanStart": 5,
+          "scanEnd": 11,
+          "sourceStart": 24,
+          "sourceEnd": 30,
+          "exact": true
+        }
+      ],
+      "syntaxContainers": [],
+      "tables": [],
+      "blockers": [
+        {
+          "id": "md-blocker-1",
+          "kind": "image",
+          "nodeType": "image",
+          "sourceStart": 0,
+          "sourceEnd": 16,
+          "line": 1,
+          "altText": "张三",
+          "altScanStart": 0,
+          "altScanEnd": 2
+        },
+        {
+          "id": "md-blocker-2",
+          "kind": "html",
+          "nodeType": "html",
+          "sourceStart": 19,
+          "sourceEnd": 24,
+          "line": 1
+        },
+        {
+          "id": "md-blocker-3",
+          "kind": "html",
+          "nodeType": "html",
+          "sourceStart": 30,
+          "sourceEnd": 36,
+          "line": 1
+        }
+      ],
+      "frontmatter": {
+        "present": false,
+        "valid": true,
+        "errors": []
+      }
+    }
+  },
+  {
+    "id": "yaml",
+    "source": "---\nname: 张三\n金额: 100\nlist: [李四, 王五]\n---\n\n正文\n",
+    "scanText": "name\n张三\n金额\nlist\n李四\n王五\n正文",
+    "sidecar": {
+      "schemaId": "markdown-source",
+      "schemaVersion": 1,
+      "offsetEncoding": "utf16-code-unit",
+      "encoding": "utf8",
+      "hasBom": false,
+      "newline": "lf",
+      "trailingNewline": true,
+      "originalExtension": ".md",
+      "sourceSha256": "cfc46c6bdf7e94eadd39a08f019ad41c91ddbef56d9ad02b1a605bce1b0cd968",
+      "sourceLength": 44,
+      "scanTextSha256": "cfcb3d9bc439b6a786ad59d21a0a609b1cdff86dad5e8f80f5ab099d0d9f2c45",
+      "regions": [
+        {
+          "id": "md-region-1",
+          "kind": "frontmatter",
+          "nodeType": "yamlScalar",
+          "scanStart": 0,
+          "scanEnd": 4,
+          "sourceStart": 4,
+          "sourceEnd": 8,
+          "sourceMap": [
+            {
+              "scanStart": 0,
+              "scanEnd": 4,
+              "sourceStart": 4,
+              "sourceEnd": 8,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-2",
+          "kind": "frontmatter",
+          "nodeType": "yamlScalar",
+          "scanStart": 5,
+          "scanEnd": 7,
+          "sourceStart": 10,
+          "sourceEnd": 12,
+          "sourceMap": [
+            {
+              "scanStart": 5,
+              "scanEnd": 7,
+              "sourceStart": 10,
+              "sourceEnd": 12,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-3",
+          "kind": "frontmatter",
+          "nodeType": "yamlScalar",
+          "scanStart": 8,
+          "scanEnd": 10,
+          "sourceStart": 13,
+          "sourceEnd": 15,
+          "sourceMap": [
+            {
+              "scanStart": 8,
+              "scanEnd": 10,
+              "sourceStart": 13,
+              "sourceEnd": 15,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-4",
+          "kind": "frontmatter",
+          "nodeType": "yamlScalar",
+          "scanStart": 11,
+          "scanEnd": 15,
+          "sourceStart": 21,
+          "sourceEnd": 25,
+          "sourceMap": [
+            {
+              "scanStart": 11,
+              "scanEnd": 15,
+              "sourceStart": 21,
+              "sourceEnd": 25,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-5",
+          "kind": "frontmatter",
+          "nodeType": "yamlScalar",
+          "scanStart": 16,
+          "scanEnd": 18,
+          "sourceStart": 28,
+          "sourceEnd": 30,
+          "sourceMap": [
+            {
+              "scanStart": 16,
+              "scanEnd": 18,
+              "sourceStart": 28,
+              "sourceEnd": 30,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-6",
+          "kind": "frontmatter",
+          "nodeType": "yamlScalar",
+          "scanStart": 19,
+          "scanEnd": 21,
+          "sourceStart": 32,
+          "sourceEnd": 34,
+          "sourceMap": [
+            {
+              "scanStart": 19,
+              "scanEnd": 21,
+              "sourceStart": 32,
+              "sourceEnd": 34,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-7",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 22,
+          "scanEnd": 24,
+          "sourceStart": 41,
+          "sourceEnd": 43,
+          "sourceMap": [
+            {
+              "scanStart": 22,
+              "scanEnd": 24,
+              "sourceStart": 41,
+              "sourceEnd": 43,
+              "exact": true
+            }
+          ]
+        }
+      ],
+      "sourceMap": [
+        {
+          "scanStart": 0,
+          "scanEnd": 4,
+          "sourceStart": 4,
+          "sourceEnd": 8,
+          "exact": true
+        },
+        {
+          "scanStart": 5,
+          "scanEnd": 7,
+          "sourceStart": 10,
+          "sourceEnd": 12,
+          "exact": true
+        },
+        {
+          "scanStart": 8,
+          "scanEnd": 10,
+          "sourceStart": 13,
+          "sourceEnd": 15,
+          "exact": true
+        },
+        {
+          "scanStart": 11,
+          "scanEnd": 15,
+          "sourceStart": 21,
+          "sourceEnd": 25,
+          "exact": true
+        },
+        {
+          "scanStart": 16,
+          "scanEnd": 18,
+          "sourceStart": 28,
+          "sourceEnd": 30,
+          "exact": true
+        },
+        {
+          "scanStart": 19,
+          "scanEnd": 21,
+          "sourceStart": 32,
+          "sourceEnd": 34,
+          "exact": true
+        },
+        {
+          "scanStart": 22,
+          "scanEnd": 24,
+          "sourceStart": 41,
+          "sourceEnd": 43,
+          "exact": true
+        }
+      ],
+      "syntaxContainers": [],
+      "tables": [],
+      "blockers": [],
+      "frontmatter": {
+        "present": true,
+        "valid": true,
+        "errors": []
+      }
+    }
+  },
+  {
+    "id": "yaml-invalid",
+    "source": "---\nname: [张三\n---\n正文",
+    "scanText": "name: [张三\n正文",
+    "sidecar": {
+      "schemaId": "markdown-source",
+      "schemaVersion": 1,
+      "offsetEncoding": "utf16-code-unit",
+      "encoding": "utf8",
+      "hasBom": false,
+      "newline": "lf",
+      "trailingNewline": false,
+      "originalExtension": ".md",
+      "sourceSha256": "acb1c7a3f5b934f425604786a0fc0778e3e2dfc3eb9993c67cb8a360ddcfe168",
+      "sourceLength": 20,
+      "scanTextSha256": "5e9e2619cf165a6f4c756ff3e153b0d43c0489908b28e5993faab019264b9b56",
+      "regions": [
+        {
+          "id": "md-region-1",
+          "kind": "frontmatter",
+          "nodeType": "yaml",
+          "scanStart": 0,
+          "scanEnd": 9,
+          "sourceStart": 4,
+          "sourceEnd": 13,
+          "sourceMap": [
+            {
+              "scanStart": 0,
+              "scanEnd": 9,
+              "sourceStart": 4,
+              "sourceEnd": 13,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-2",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 10,
+          "scanEnd": 12,
+          "sourceStart": 18,
+          "sourceEnd": 20,
+          "sourceMap": [
+            {
+              "scanStart": 10,
+              "scanEnd": 12,
+              "sourceStart": 18,
+              "sourceEnd": 20,
+              "exact": true
+            }
+          ]
+        }
+      ],
+      "sourceMap": [
+        {
+          "scanStart": 0,
+          "scanEnd": 9,
+          "sourceStart": 4,
+          "sourceEnd": 13,
+          "exact": true
+        },
+        {
+          "scanStart": 10,
+          "scanEnd": 12,
+          "sourceStart": 18,
+          "sourceEnd": 20,
+          "exact": true
+        }
+      ],
+      "syntaxContainers": [],
+      "tables": [],
+      "blockers": [],
+      "frontmatter": {
+        "present": true,
+        "valid": false,
+        "errors": [
+          "Flow sequence in block collection must be sufficiently indented and end with a ] at line 1, column 10:\n\nname: [张三\n         ^\n"
+        ]
+      }
+    }
+  },
+  {
+    "id": "table",
+    "source": "| 姓名 | 金额 |\n| --- | --- |\n| **张三** | 100 万元 |\n| 李\\|四 | `200` |\n",
+    "scanText": "姓名\n金额\n张三\n100 万元\n李|四\n200",
+    "sidecar": {
+      "schemaId": "markdown-source",
+      "schemaVersion": 1,
+      "offsetEncoding": "utf16-code-unit",
+      "encoding": "utf8",
+      "hasBom": false,
+      "newline": "lf",
+      "trailingNewline": true,
+      "originalExtension": ".md",
+      "sourceSha256": "60f10c9793df522591b2013e6bead8f261f53fda53bb518828398a577d2c14d2",
+      "sourceLength": 63,
+      "scanTextSha256": "00c86c2e80e556df846025cea231d6f2cf5441a9612e2747d0fa8a7ba53a6c0c",
+      "regions": [
+        {
+          "id": "md-region-1",
+          "kind": "table",
+          "nodeType": "text",
+          "scanStart": 0,
+          "scanEnd": 2,
+          "sourceStart": 2,
+          "sourceEnd": 4,
+          "sourceMap": [
+            {
+              "scanStart": 0,
+              "scanEnd": 2,
+              "sourceStart": 2,
+              "sourceEnd": 4,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-2",
+          "kind": "table",
+          "nodeType": "text",
+          "scanStart": 3,
+          "scanEnd": 5,
+          "sourceStart": 7,
+          "sourceEnd": 9,
+          "sourceMap": [
+            {
+              "scanStart": 3,
+              "scanEnd": 5,
+              "sourceStart": 7,
+              "sourceEnd": 9,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-3",
+          "kind": "table",
+          "nodeType": "text",
+          "scanStart": 6,
+          "scanEnd": 8,
+          "sourceStart": 30,
+          "sourceEnd": 32,
+          "sourceMap": [
+            {
+              "scanStart": 6,
+              "scanEnd": 8,
+              "sourceStart": 30,
+              "sourceEnd": 32,
+              "exact": true,
+              "containerIds": [
+                "md-container-28-34-strong"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "md-region-4",
+          "kind": "table",
+          "nodeType": "text",
+          "scanStart": 9,
+          "scanEnd": 15,
+          "sourceStart": 37,
+          "sourceEnd": 43,
+          "sourceMap": [
+            {
+              "scanStart": 9,
+              "scanEnd": 15,
+              "sourceStart": 37,
+              "sourceEnd": 43,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-5",
+          "kind": "table",
+          "nodeType": "text",
+          "scanStart": 16,
+          "scanEnd": 19,
+          "sourceStart": 48,
+          "sourceEnd": 52,
+          "sourceMap": [
+            {
+              "scanStart": 16,
+              "scanEnd": 17,
+              "sourceStart": 48,
+              "sourceEnd": 49,
+              "exact": true
+            },
+            {
+              "scanStart": 17,
+              "scanEnd": 19,
+              "sourceStart": 50,
+              "sourceEnd": 52,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-6",
+          "kind": "code",
+          "nodeType": "inlineCode",
+          "scanStart": 20,
+          "scanEnd": 23,
+          "sourceStart": 56,
+          "sourceEnd": 59,
+          "sourceMap": [
+            {
+              "scanStart": 20,
+              "scanEnd": 23,
+              "sourceStart": 56,
+              "sourceEnd": 59,
+              "exact": true
+            }
+          ]
+        }
+      ],
+      "sourceMap": [
+        {
+          "scanStart": 0,
+          "scanEnd": 2,
+          "sourceStart": 2,
+          "sourceEnd": 4,
+          "exact": true
+        },
+        {
+          "scanStart": 3,
+          "scanEnd": 5,
+          "sourceStart": 7,
+          "sourceEnd": 9,
+          "exact": true
+        },
+        {
+          "scanStart": 6,
+          "scanEnd": 8,
+          "sourceStart": 30,
+          "sourceEnd": 32,
+          "exact": true,
+          "containerIds": [
+            "md-container-28-34-strong"
+          ]
+        },
+        {
+          "scanStart": 9,
+          "scanEnd": 15,
+          "sourceStart": 37,
+          "sourceEnd": 43,
+          "exact": true
+        },
+        {
+          "scanStart": 16,
+          "scanEnd": 17,
+          "sourceStart": 48,
+          "sourceEnd": 49,
+          "exact": true
+        },
+        {
+          "scanStart": 17,
+          "scanEnd": 19,
+          "sourceStart": 50,
+          "sourceEnd": 52,
+          "exact": true
+        },
+        {
+          "scanStart": 20,
+          "scanEnd": 23,
+          "sourceStart": 56,
+          "sourceEnd": 59,
+          "exact": true
+        }
+      ],
+      "syntaxContainers": [
+        {
+          "id": "md-container-28-34-strong",
+          "nodeType": "strong",
+          "sourceStart": 28,
+          "sourceEnd": 34,
+          "scanStart": 6,
+          "scanEnd": 8
+        }
+      ],
+      "tables": [
+        {
+          "id": "markdown-table-0",
+          "tableId": 0,
+          "format": "gfm",
+          "sourceStart": 0,
+          "sourceEnd": 62,
+          "rowCount": 3,
+          "colCount": 2,
+          "cells": [
+            {
+              "text": "姓名",
+              "sourceStart": 0,
+              "sourceEnd": 5,
+              "scanStart": 0,
+              "scanEnd": 2,
+              "segments": [
+                {
+                  "value": "姓名",
+                  "sourceStart": 2,
+                  "sourceEnd": 4,
+                  "scanStart": 0,
+                  "scanEnd": 2,
+                  "exact": true
+                }
+              ],
+              "id": "markdown-table-0-cell-0-0",
+              "tableId": 0,
+              "rowIndex": 0,
+              "colIndex": 0,
+              "rowSpan": 1,
+              "colSpan": 1,
+              "header": true,
+              "section": "head"
+            },
+            {
+              "text": "金额",
+              "sourceStart": 5,
+              "sourceEnd": 11,
+              "scanStart": 3,
+              "scanEnd": 5,
+              "segments": [
+                {
+                  "value": "金额",
+                  "sourceStart": 7,
+                  "sourceEnd": 9,
+                  "scanStart": 3,
+                  "scanEnd": 5,
+                  "exact": true
+                }
+              ],
+              "id": "markdown-table-0-cell-0-1",
+              "tableId": 0,
+              "rowIndex": 0,
+              "colIndex": 1,
+              "rowSpan": 1,
+              "colSpan": 1,
+              "header": true,
+              "section": "head"
+            },
+            {
+              "text": "张三",
+              "sourceStart": 26,
+              "sourceEnd": 35,
+              "scanStart": 6,
+              "scanEnd": 8,
+              "segments": [
+                {
+                  "value": "张三",
+                  "sourceStart": 30,
+                  "sourceEnd": 32,
+                  "scanStart": 6,
+                  "scanEnd": 8,
+                  "exact": true
+                }
+              ],
+              "id": "markdown-table-0-cell-1-0",
+              "tableId": 0,
+              "rowIndex": 1,
+              "colIndex": 0,
+              "rowSpan": 1,
+              "colSpan": 1,
+              "header": false,
+              "section": "body"
+            },
+            {
+              "text": "100 万元",
+              "sourceStart": 35,
+              "sourceEnd": 45,
+              "scanStart": 9,
+              "scanEnd": 15,
+              "segments": [
+                {
+                  "value": "100 万元",
+                  "sourceStart": 37,
+                  "sourceEnd": 43,
+                  "scanStart": 9,
+                  "scanEnd": 15,
+                  "exact": true
+                }
+              ],
+              "id": "markdown-table-0-cell-1-1",
+              "tableId": 0,
+              "rowIndex": 1,
+              "colIndex": 1,
+              "rowSpan": 1,
+              "colSpan": 1,
+              "header": false,
+              "section": "body"
+            },
+            {
+              "text": "李|四",
+              "sourceStart": 46,
+              "sourceEnd": 53,
+              "scanStart": 16,
+              "scanEnd": 19,
+              "segments": [
+                {
+                  "value": "李|四",
+                  "sourceStart": 48,
+                  "sourceEnd": 52,
+                  "scanStart": 16,
+                  "scanEnd": 19,
+                  "exact": false
+                }
+              ],
+              "id": "markdown-table-0-cell-2-0",
+              "tableId": 0,
+              "rowIndex": 2,
+              "colIndex": 0,
+              "rowSpan": 1,
+              "colSpan": 1,
+              "header": false,
+              "section": "body"
+            },
+            {
+              "text": "200",
+              "sourceStart": 53,
+              "sourceEnd": 62,
+              "scanStart": 20,
+              "scanEnd": 23,
+              "segments": [
+                {
+                  "value": "200",
+                  "sourceStart": 56,
+                  "sourceEnd": 59,
+                  "scanStart": 20,
+                  "scanEnd": 23,
+                  "exact": true
+                }
+              ],
+              "id": "markdown-table-0-cell-2-1",
+              "tableId": 0,
+              "rowIndex": 2,
+              "colIndex": 1,
+              "rowSpan": 1,
+              "colSpan": 1,
+              "header": false,
+              "section": "body"
+            }
+          ]
+        }
+      ],
+      "blockers": [],
+      "frontmatter": {
+        "present": false,
+        "valid": true,
+        "errors": []
+      }
+    }
+  },
+  {
+    "id": "html-table",
+    "source": "<table><caption>合同</caption><thead><tr><th>姓名</th><th>金额</th></tr></thead><tbody><tr><td rowspan=\"2\">张三&amp;甲<br>乙</td><td>100万元</td></tr><tr><td>200</td></tr></tbody></table>\n",
+    "scanText": "合同\n姓名\n金额\n张三&甲\n乙\n100万元\n200",
+    "sidecar": {
+      "schemaId": "markdown-source",
+      "schemaVersion": 1,
+      "offsetEncoding": "utf16-code-unit",
+      "encoding": "utf8",
+      "hasBom": false,
+      "newline": "lf",
+      "trailingNewline": true,
+      "originalExtension": ".md",
+      "sourceSha256": "c94df723af33235b88468f70c38ea0dca513cd6c5805fbca36e55401ec9decfe",
+      "sourceLength": 176,
+      "scanTextSha256": "9e0417d7c54a24b3239feafd754389b028f3db0a17cacd5dc3b18dba5f7f220f",
+      "regions": [
+        {
+          "id": "md-region-1",
+          "kind": "table",
+          "nodeType": "htmlText",
+          "scanStart": 0,
+          "scanEnd": 2,
+          "sourceStart": 16,
+          "sourceEnd": 18,
+          "sourceMap": [
+            {
+              "scanStart": 0,
+              "scanEnd": 2,
+              "sourceStart": 16,
+              "sourceEnd": 18,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-2",
+          "kind": "table",
+          "nodeType": "htmlText",
+          "scanStart": 3,
+          "scanEnd": 5,
+          "sourceStart": 43,
+          "sourceEnd": 45,
+          "sourceMap": [
+            {
+              "scanStart": 3,
+              "scanEnd": 5,
+              "sourceStart": 43,
+              "sourceEnd": 45,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-3",
+          "kind": "table",
+          "nodeType": "htmlText",
+          "scanStart": 6,
+          "scanEnd": 8,
+          "sourceStart": 54,
+          "sourceEnd": 56,
+          "sourceMap": [
+            {
+              "scanStart": 6,
+              "scanEnd": 8,
+              "sourceStart": 54,
+              "sourceEnd": 56,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-4",
+          "kind": "table",
+          "nodeType": "htmlText",
+          "scanStart": 9,
+          "scanEnd": 13,
+          "sourceStart": 101,
+          "sourceEnd": 109,
+          "sourceMap": [
+            {
+              "scanStart": 9,
+              "scanEnd": 13,
+              "sourceStart": 101,
+              "sourceEnd": 109,
+              "exact": false
+            }
+          ]
+        },
+        {
+          "id": "md-region-5",
+          "kind": "table",
+          "nodeType": "htmlText",
+          "scanStart": 13,
+          "scanEnd": 14,
+          "sourceStart": 109,
+          "sourceEnd": 113,
+          "sourceMap": [
+            {
+              "scanStart": 13,
+              "scanEnd": 14,
+              "sourceStart": 109,
+              "sourceEnd": 113,
+              "exact": false
+            }
+          ]
+        },
+        {
+          "id": "md-region-6",
+          "kind": "table",
+          "nodeType": "htmlText",
+          "scanStart": 14,
+          "scanEnd": 15,
+          "sourceStart": 113,
+          "sourceEnd": 114,
+          "sourceMap": [
+            {
+              "scanStart": 14,
+              "scanEnd": 15,
+              "sourceStart": 113,
+              "sourceEnd": 114,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-7",
+          "kind": "table",
+          "nodeType": "htmlText",
+          "scanStart": 16,
+          "scanEnd": 21,
+          "sourceStart": 123,
+          "sourceEnd": 128,
+          "sourceMap": [
+            {
+              "scanStart": 16,
+              "scanEnd": 21,
+              "sourceStart": 123,
+              "sourceEnd": 128,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-8",
+          "kind": "table",
+          "nodeType": "htmlText",
+          "scanStart": 22,
+          "scanEnd": 25,
+          "sourceStart": 146,
+          "sourceEnd": 149,
+          "sourceMap": [
+            {
+              "scanStart": 22,
+              "scanEnd": 25,
+              "sourceStart": 146,
+              "sourceEnd": 149,
+              "exact": true
+            }
+          ]
+        }
+      ],
+      "sourceMap": [
+        {
+          "scanStart": 0,
+          "scanEnd": 2,
+          "sourceStart": 16,
+          "sourceEnd": 18,
+          "exact": true
+        },
+        {
+          "scanStart": 3,
+          "scanEnd": 5,
+          "sourceStart": 43,
+          "sourceEnd": 45,
+          "exact": true
+        },
+        {
+          "scanStart": 6,
+          "scanEnd": 8,
+          "sourceStart": 54,
+          "sourceEnd": 56,
+          "exact": true
+        },
+        {
+          "scanStart": 9,
+          "scanEnd": 13,
+          "sourceStart": 101,
+          "sourceEnd": 109,
+          "exact": false
+        },
+        {
+          "scanStart": 13,
+          "scanEnd": 14,
+          "sourceStart": 109,
+          "sourceEnd": 113,
+          "exact": false
+        },
+        {
+          "scanStart": 14,
+          "scanEnd": 15,
+          "sourceStart": 113,
+          "sourceEnd": 114,
+          "exact": true
+        },
+        {
+          "scanStart": 16,
+          "scanEnd": 21,
+          "sourceStart": 123,
+          "sourceEnd": 128,
+          "exact": true
+        },
+        {
+          "scanStart": 22,
+          "scanEnd": 25,
+          "sourceStart": 146,
+          "sourceEnd": 149,
+          "exact": true
+        }
+      ],
+      "syntaxContainers": [],
+      "tables": [
+        {
+          "id": "markdown-table-0",
+          "tableId": 0,
+          "format": "html",
+          "sourceStart": 0,
+          "sourceEnd": 175,
+          "rowCount": 3,
+          "colCount": 2,
+          "cells": [
+            {
+              "text": "姓名",
+              "sourceStart": 39,
+              "sourceEnd": 50,
+              "scanStart": 3,
+              "scanEnd": 5,
+              "segments": [
+                {
+                  "value": "姓名",
+                  "sourceStart": 43,
+                  "sourceEnd": 45,
+                  "scanStart": 3,
+                  "scanEnd": 5,
+                  "exact": true
+                }
+              ],
+              "id": "markdown-table-0-cell-0-0",
+              "tableId": 0,
+              "rowIndex": 0,
+              "colIndex": 0,
+              "rowSpan": 1,
+              "colSpan": 1,
+              "header": true,
+              "section": "head"
+            },
+            {
+              "text": "金额",
+              "sourceStart": 50,
+              "sourceEnd": 61,
+              "scanStart": 6,
+              "scanEnd": 8,
+              "segments": [
+                {
+                  "value": "金额",
+                  "sourceStart": 54,
+                  "sourceEnd": 56,
+                  "scanStart": 6,
+                  "scanEnd": 8,
+                  "exact": true
+                }
+              ],
+              "id": "markdown-table-0-cell-0-1",
+              "tableId": 0,
+              "rowIndex": 0,
+              "colIndex": 1,
+              "rowSpan": 1,
+              "colSpan": 1,
+              "header": true,
+              "section": "head"
+            },
+            {
+              "text": "张三&甲\n乙",
+              "sourceStart": 85,
+              "sourceEnd": 119,
+              "scanStart": 9,
+              "scanEnd": 15,
+              "segments": [
+                {
+                  "value": "张三&甲",
+                  "sourceStart": 101,
+                  "sourceEnd": 109,
+                  "scanStart": 9,
+                  "scanEnd": 13,
+                  "exact": false
+                },
+                {
+                  "value": "\n",
+                  "sourceStart": 109,
+                  "sourceEnd": 113,
+                  "scanStart": 13,
+                  "scanEnd": 14,
+                  "exact": false
+                },
+                {
+                  "value": "乙",
+                  "sourceStart": 113,
+                  "sourceEnd": 114,
+                  "scanStart": 14,
+                  "scanEnd": 15,
+                  "exact": true
+                }
+              ],
+              "id": "markdown-table-0-cell-1-0",
+              "tableId": 0,
+              "rowIndex": 1,
+              "colIndex": 0,
+              "rowSpan": 2,
+              "colSpan": 1,
+              "header": false,
+              "section": "body"
+            },
+            {
+              "text": "100万元",
+              "sourceStart": 119,
+              "sourceEnd": 133,
+              "scanStart": 16,
+              "scanEnd": 21,
+              "segments": [
+                {
+                  "value": "100万元",
+                  "sourceStart": 123,
+                  "sourceEnd": 128,
+                  "scanStart": 16,
+                  "scanEnd": 21,
+                  "exact": true
+                }
+              ],
+              "id": "markdown-table-0-cell-1-1",
+              "tableId": 0,
+              "rowIndex": 1,
+              "colIndex": 1,
+              "rowSpan": 1,
+              "colSpan": 1,
+              "header": false,
+              "section": "body"
+            },
+            {
+              "text": "200",
+              "sourceStart": 142,
+              "sourceEnd": 154,
+              "scanStart": 22,
+              "scanEnd": 25,
+              "segments": [
+                {
+                  "value": "200",
+                  "sourceStart": 146,
+                  "sourceEnd": 149,
+                  "scanStart": 22,
+                  "scanEnd": 25,
+                  "exact": true
+                }
+              ],
+              "id": "markdown-table-0-cell-2-1",
+              "tableId": 0,
+              "rowIndex": 2,
+              "colIndex": 1,
+              "rowSpan": 1,
+              "colSpan": 1,
+              "header": false,
+              "section": "body"
+            }
+          ],
+          "caption": {
+            "text": "合同",
+            "sourceStart": 7,
+            "sourceEnd": 28,
+            "scanStart": 0,
+            "scanEnd": 2,
+            "segments": [
+              {
+                "value": "合同",
+                "sourceStart": 16,
+                "sourceEnd": 18,
+                "scanStart": 0,
+                "scanEnd": 2,
+                "exact": true
+              }
+            ]
+          }
+        }
+      ],
+      "blockers": [],
+      "frontmatter": {
+        "present": false,
+        "valid": true,
+        "errors": []
+      }
+    }
+  },
+  {
+    "id": "footnote",
+    "source": "张三[^a]。\n\n[^a]: 李四 **王五**\n",
+    "scanText": "张三。\n李四 王五",
+    "sidecar": {
+      "schemaId": "markdown-source",
+      "schemaVersion": 1,
+      "offsetEncoding": "utf16-code-unit",
+      "encoding": "utf8",
+      "hasBom": false,
+      "newline": "lf",
+      "trailingNewline": true,
+      "originalExtension": ".md",
+      "sourceSha256": "d7764d9529030e4fed26f4b1fdcbace7c7442a57f19690ad791784b3997abfd2",
+      "sourceLength": 25,
+      "scanTextSha256": "9166a634c16ed62fb56ed70e5c9a37b8142b4df0db08965c35a05118d43f8736",
+      "regions": [
+        {
+          "id": "md-region-1",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 0,
+          "scanEnd": 2,
+          "sourceStart": 0,
+          "sourceEnd": 2,
+          "sourceMap": [
+            {
+              "scanStart": 0,
+              "scanEnd": 2,
+              "sourceStart": 0,
+              "sourceEnd": 2,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-2",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 2,
+          "scanEnd": 3,
+          "sourceStart": 6,
+          "sourceEnd": 7,
+          "sourceMap": [
+            {
+              "scanStart": 2,
+              "scanEnd": 3,
+              "sourceStart": 6,
+              "sourceEnd": 7,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-3",
+          "kind": "footnote",
+          "nodeType": "text",
+          "scanStart": 4,
+          "scanEnd": 7,
+          "sourceStart": 15,
+          "sourceEnd": 18,
+          "sourceMap": [
+            {
+              "scanStart": 4,
+              "scanEnd": 7,
+              "sourceStart": 15,
+              "sourceEnd": 18,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-4",
+          "kind": "footnote",
+          "nodeType": "text",
+          "scanStart": 7,
+          "scanEnd": 9,
+          "sourceStart": 20,
+          "sourceEnd": 22,
+          "sourceMap": [
+            {
+              "scanStart": 7,
+              "scanEnd": 9,
+              "sourceStart": 20,
+              "sourceEnd": 22,
+              "exact": true,
+              "containerIds": [
+                "md-container-18-24-strong"
+              ]
+            }
+          ]
+        }
+      ],
+      "sourceMap": [
+        {
+          "scanStart": 0,
+          "scanEnd": 2,
+          "sourceStart": 0,
+          "sourceEnd": 2,
+          "exact": true
+        },
+        {
+          "scanStart": 2,
+          "scanEnd": 3,
+          "sourceStart": 6,
+          "sourceEnd": 7,
+          "exact": true
+        },
+        {
+          "scanStart": 4,
+          "scanEnd": 7,
+          "sourceStart": 15,
+          "sourceEnd": 18,
+          "exact": true
+        },
+        {
+          "scanStart": 7,
+          "scanEnd": 9,
+          "sourceStart": 20,
+          "sourceEnd": 22,
+          "exact": true,
+          "containerIds": [
+            "md-container-18-24-strong"
+          ]
+        }
+      ],
+      "syntaxContainers": [
+        {
+          "id": "md-container-18-24-strong",
+          "nodeType": "strong",
+          "sourceStart": 18,
+          "sourceEnd": 24,
+          "scanStart": 7,
+          "scanEnd": 9
+        }
+      ],
+      "tables": [],
+      "blockers": [],
+      "frontmatter": {
+        "present": false,
+        "valid": true,
+        "errors": []
+      }
+    }
+  },
+  {
+    "id": "entities",
+    "source": "张&amp;三 A\\*B &copy; 😀\r\n下一行\r\n",
+    "scanText": "张&三 A*B © 😀\r\n下一行",
+    "sidecar": {
+      "schemaId": "markdown-source",
+      "schemaVersion": 1,
+      "offsetEncoding": "utf16-code-unit",
+      "encoding": "utf8",
+      "hasBom": false,
+      "newline": "crlf",
+      "trailingNewline": true,
+      "originalExtension": ".md",
+      "sourceSha256": "9a961c5f583bae13384d54d99e7634d7a8253b57c15cc444e9e2a0502294e0da",
+      "sourceLength": 29,
+      "scanTextSha256": "aa147860cf1718d09389f10a3e957747f2d50b40cda076d76d6c4518d64464fa",
+      "regions": [
+        {
+          "id": "md-region-1",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 0,
+          "scanEnd": 17,
+          "sourceStart": 0,
+          "sourceEnd": 27,
+          "sourceMap": [
+            {
+              "scanStart": 0,
+              "scanEnd": 17,
+              "sourceStart": 0,
+              "sourceEnd": 27,
+              "exact": false
+            }
+          ]
+        }
+      ],
+      "sourceMap": [
+        {
+          "scanStart": 0,
+          "scanEnd": 17,
+          "sourceStart": 0,
+          "sourceEnd": 27,
+          "exact": false
+        }
+      ],
+      "syntaxContainers": [],
+      "tables": [],
+      "blockers": [],
+      "frontmatter": {
+        "present": false,
+        "valid": true,
+        "errors": []
+      }
+    }
+  },
+  {
+    "id": "bom",
+    "source": "﻿# 张三\r\n正文\n",
+    "scanText": "张三\n正文",
+    "sidecar": {
+      "schemaId": "markdown-source",
+      "schemaVersion": 1,
+      "offsetEncoding": "utf16-code-unit",
+      "encoding": "utf8",
+      "hasBom": true,
+      "newline": "mixed",
+      "trailingNewline": true,
+      "originalExtension": ".md",
+      "sourceSha256": "11c283f32314692bb7b6123a589f32d4e217867db97e717d07e94ba0d10fe6db",
+      "sourceLength": 9,
+      "scanTextSha256": "ad5a3e5716bccf484829d58ca451daead140671ce58ab102a2f6322c5fd935ad",
+      "regions": [
+        {
+          "id": "md-region-1",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 0,
+          "scanEnd": 2,
+          "sourceStart": 2,
+          "sourceEnd": 4,
+          "sourceMap": [
+            {
+              "scanStart": 0,
+              "scanEnd": 2,
+              "sourceStart": 2,
+              "sourceEnd": 4,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-2",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 3,
+          "scanEnd": 5,
+          "sourceStart": 6,
+          "sourceEnd": 8,
+          "sourceMap": [
+            {
+              "scanStart": 3,
+              "scanEnd": 5,
+              "sourceStart": 6,
+              "sourceEnd": 8,
+              "exact": true
+            }
+          ]
+        }
+      ],
+      "sourceMap": [
+        {
+          "scanStart": 0,
+          "scanEnd": 2,
+          "sourceStart": 2,
+          "sourceEnd": 4,
+          "exact": true
+        },
+        {
+          "scanStart": 3,
+          "scanEnd": 5,
+          "sourceStart": 6,
+          "sourceEnd": 8,
+          "exact": true
+        }
+      ],
+      "syntaxContainers": [],
+      "tables": [],
+      "blockers": [],
+      "frontmatter": {
+        "present": false,
+        "valid": true,
+        "errors": []
+      }
+    }
+  },
+  {
+    "id": "deep",
+    "source": "> ## 张**三**\n> - [x] 李四\n>   - 王五  \n>     下一行\n\n---\n",
+    "scanText": "张三\n李四\n王五下一行",
+    "sidecar": {
+      "schemaId": "markdown-source",
+      "schemaVersion": 1,
+      "offsetEncoding": "utf16-code-unit",
+      "encoding": "utf8",
+      "hasBom": false,
+      "newline": "lf",
+      "trailingNewline": true,
+      "originalExtension": ".md",
+      "sourceSha256": "cfd80314115224ca21c8bd2082786f5d415a383e4a6f46ab48d9e69f08e0036b",
+      "sourceLength": 49,
+      "scanTextSha256": "efc8944335c7a3b8cc0ace1597bdd7dec37d06224c4fc47b8249937d335ab73c",
+      "regions": [
+        {
+          "id": "md-region-1",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 0,
+          "scanEnd": 1,
+          "sourceStart": 5,
+          "sourceEnd": 6,
+          "sourceMap": [
+            {
+              "scanStart": 0,
+              "scanEnd": 1,
+              "sourceStart": 5,
+              "sourceEnd": 6,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-2",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 1,
+          "scanEnd": 2,
+          "sourceStart": 8,
+          "sourceEnd": 9,
+          "sourceMap": [
+            {
+              "scanStart": 1,
+              "scanEnd": 2,
+              "sourceStart": 8,
+              "sourceEnd": 9,
+              "exact": true,
+              "containerIds": [
+                "md-container-6-11-strong"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "md-region-3",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 3,
+          "scanEnd": 5,
+          "sourceStart": 20,
+          "sourceEnd": 22,
+          "sourceMap": [
+            {
+              "scanStart": 3,
+              "scanEnd": 5,
+              "sourceStart": 20,
+              "sourceEnd": 22,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-4",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 6,
+          "scanEnd": 8,
+          "sourceStart": 29,
+          "sourceEnd": 31,
+          "sourceMap": [
+            {
+              "scanStart": 6,
+              "scanEnd": 8,
+              "sourceStart": 29,
+              "sourceEnd": 31,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-5",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 8,
+          "scanEnd": 11,
+          "sourceStart": 40,
+          "sourceEnd": 43,
+          "sourceMap": [
+            {
+              "scanStart": 8,
+              "scanEnd": 11,
+              "sourceStart": 40,
+              "sourceEnd": 43,
+              "exact": true
+            }
+          ]
+        }
+      ],
+      "sourceMap": [
+        {
+          "scanStart": 0,
+          "scanEnd": 1,
+          "sourceStart": 5,
+          "sourceEnd": 6,
+          "exact": true
+        },
+        {
+          "scanStart": 1,
+          "scanEnd": 2,
+          "sourceStart": 8,
+          "sourceEnd": 9,
+          "exact": true,
+          "containerIds": [
+            "md-container-6-11-strong"
+          ]
+        },
+        {
+          "scanStart": 3,
+          "scanEnd": 5,
+          "sourceStart": 20,
+          "sourceEnd": 22,
+          "exact": true
+        },
+        {
+          "scanStart": 6,
+          "scanEnd": 8,
+          "sourceStart": 29,
+          "sourceEnd": 31,
+          "exact": true
+        },
+        {
+          "scanStart": 8,
+          "scanEnd": 11,
+          "sourceStart": 40,
+          "sourceEnd": 43,
+          "exact": true
+        }
+      ],
+      "syntaxContainers": [
+        {
+          "id": "md-container-6-11-strong",
+          "nodeType": "strong",
+          "sourceStart": 6,
+          "sourceEnd": 11,
+          "scanStart": 1,
+          "scanEnd": 2
+        }
+      ],
+      "tables": [],
+      "blockers": [],
+      "frontmatter": {
+        "present": false,
+        "valid": true,
+        "errors": []
+      }
+    }
+  },
+  {
+    "id": "escapes",
+    "source": "a\\*b a&#38;b a&copy;b ` a  b ` `a\nb`\n",
+    "scanText": "a*b a&b a©b a  b a\nb",
+    "sidecar": {
+      "schemaId": "markdown-source",
+      "schemaVersion": 1,
+      "offsetEncoding": "utf16-code-unit",
+      "encoding": "utf8",
+      "hasBom": false,
+      "newline": "lf",
+      "trailingNewline": true,
+      "originalExtension": ".md",
+      "sourceSha256": "ed3400c1b796d5bceddfc093bf3e724caa3977de4d679461dab2e55c601311be",
+      "sourceLength": 37,
+      "scanTextSha256": "59b2f211f211e0cd36d16984fd7da1848f4eff03a7206d864db07456daa0a95b",
+      "regions": [
+        {
+          "id": "md-region-1",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 0,
+          "scanEnd": 12,
+          "sourceStart": 0,
+          "sourceEnd": 22,
+          "sourceMap": [
+            {
+              "scanStart": 0,
+              "scanEnd": 12,
+              "sourceStart": 0,
+              "sourceEnd": 22,
+              "exact": false
+            }
+          ]
+        },
+        {
+          "id": "md-region-2",
+          "kind": "code",
+          "nodeType": "inlineCode",
+          "scanStart": 12,
+          "scanEnd": 16,
+          "sourceStart": 24,
+          "sourceEnd": 28,
+          "sourceMap": [
+            {
+              "scanStart": 12,
+              "scanEnd": 16,
+              "sourceStart": 24,
+              "sourceEnd": 28,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-3",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 16,
+          "scanEnd": 17,
+          "sourceStart": 30,
+          "sourceEnd": 31,
+          "sourceMap": [
+            {
+              "scanStart": 16,
+              "scanEnd": 17,
+              "sourceStart": 30,
+              "sourceEnd": 31,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-4",
+          "kind": "code",
+          "nodeType": "inlineCode",
+          "scanStart": 17,
+          "scanEnd": 20,
+          "sourceStart": 32,
+          "sourceEnd": 35,
+          "sourceMap": [
+            {
+              "scanStart": 17,
+              "scanEnd": 20,
+              "sourceStart": 32,
+              "sourceEnd": 35,
+              "exact": true
+            }
+          ]
+        }
+      ],
+      "sourceMap": [
+        {
+          "scanStart": 0,
+          "scanEnd": 12,
+          "sourceStart": 0,
+          "sourceEnd": 22,
+          "exact": false
+        },
+        {
+          "scanStart": 12,
+          "scanEnd": 16,
+          "sourceStart": 24,
+          "sourceEnd": 28,
+          "exact": true
+        },
+        {
+          "scanStart": 16,
+          "scanEnd": 17,
+          "sourceStart": 30,
+          "sourceEnd": 31,
+          "exact": true
+        },
+        {
+          "scanStart": 17,
+          "scanEnd": 20,
+          "sourceStart": 32,
+          "sourceEnd": 35,
+          "exact": true
+        }
+      ],
+      "syntaxContainers": [],
+      "tables": [],
+      "blockers": [],
+      "frontmatter": {
+        "present": false,
+        "valid": true,
+        "errors": []
+      }
+    }
+  },
+  {
+    "id": "ref",
+    "source": "[张**三**][id] 与 [李四][] 及 [王五]\n\n[id]: <https://example.com/甲> \"title\"\n[李四]: https://example.org\n[王五]: mailto:demo@example.com\n",
+    "scanText": "张三 与 李四 及 王五\nhttps://example.com/甲\nhttps://example.org\nmailto:demo@example.com",
+    "sidecar": {
+      "schemaId": "markdown-source",
+      "schemaVersion": 1,
+      "offsetEncoding": "utf16-code-unit",
+      "encoding": "utf8",
+      "hasBom": false,
+      "newline": "lf",
+      "trailingNewline": true,
+      "originalExtension": ".md",
+      "sourceSha256": "a7ec5e26c4a202bb66ff2670a4523df42ccf2d74c21e2bdc516eb5ccb5b2c087",
+      "sourceLength": 124,
+      "scanTextSha256": "a9d4ddfbde68dd440802c979ebf3905db57d77621960a5e915f705a8974eb85a",
+      "regions": [
+        {
+          "id": "md-region-1",
+          "kind": "link_label",
+          "nodeType": "text",
+          "scanStart": 0,
+          "scanEnd": 1,
+          "sourceStart": 1,
+          "sourceEnd": 2,
+          "sourceMap": [
+            {
+              "scanStart": 0,
+              "scanEnd": 1,
+              "sourceStart": 1,
+              "sourceEnd": 2,
+              "exact": true
+            }
+          ],
+          "containerSourceStart": 0,
+          "containerSourceEnd": 12,
+          "fallbackText": "张三",
+          "referenceIdentifier": "id"
+        },
+        {
+          "id": "md-region-2",
+          "kind": "link_label",
+          "nodeType": "text",
+          "scanStart": 1,
+          "scanEnd": 2,
+          "sourceStart": 4,
+          "sourceEnd": 5,
+          "sourceMap": [
+            {
+              "scanStart": 1,
+              "scanEnd": 2,
+              "sourceStart": 4,
+              "sourceEnd": 5,
+              "exact": true,
+              "containerIds": [
+                "md-container-2-7-strong"
+              ]
+            }
+          ],
+          "containerSourceStart": 0,
+          "containerSourceEnd": 12,
+          "fallbackText": "张三",
+          "referenceIdentifier": "id"
+        },
+        {
+          "id": "md-region-3",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 2,
+          "scanEnd": 5,
+          "sourceStart": 12,
+          "sourceEnd": 15,
+          "sourceMap": [
+            {
+              "scanStart": 2,
+              "scanEnd": 5,
+              "sourceStart": 12,
+              "sourceEnd": 15,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-4",
+          "kind": "link_label",
+          "nodeType": "text",
+          "scanStart": 5,
+          "scanEnd": 7,
+          "sourceStart": 16,
+          "sourceEnd": 18,
+          "sourceMap": [
+            {
+              "scanStart": 5,
+              "scanEnd": 7,
+              "sourceStart": 16,
+              "sourceEnd": 18,
+              "exact": true
+            }
+          ],
+          "containerSourceStart": 15,
+          "containerSourceEnd": 21,
+          "fallbackText": "李四",
+          "referenceIdentifier": "李四"
+        },
+        {
+          "id": "md-region-5",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 7,
+          "scanEnd": 10,
+          "sourceStart": 21,
+          "sourceEnd": 24,
+          "sourceMap": [
+            {
+              "scanStart": 7,
+              "scanEnd": 10,
+              "sourceStart": 21,
+              "sourceEnd": 24,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-6",
+          "kind": "link_label",
+          "nodeType": "text",
+          "scanStart": 10,
+          "scanEnd": 12,
+          "sourceStart": 25,
+          "sourceEnd": 27,
+          "sourceMap": [
+            {
+              "scanStart": 10,
+              "scanEnd": 12,
+              "sourceStart": 25,
+              "sourceEnd": 27,
+              "exact": true
+            }
+          ],
+          "containerSourceStart": 24,
+          "containerSourceEnd": 28,
+          "fallbackText": "王五",
+          "referenceIdentifier": "王五"
+        },
+        {
+          "id": "md-region-7",
+          "kind": "link_destination",
+          "nodeType": "definition",
+          "scanStart": 13,
+          "scanEnd": 34,
+          "sourceStart": 37,
+          "sourceEnd": 58,
+          "sourceMap": [
+            {
+              "scanStart": 13,
+              "scanEnd": 34,
+              "sourceStart": 37,
+              "sourceEnd": 58,
+              "exact": true
+            }
+          ],
+          "containerSourceStart": 30,
+          "containerSourceEnd": 67,
+          "fallbackText": "",
+          "referenceIdentifier": "id"
+        },
+        {
+          "id": "md-region-8",
+          "kind": "link_destination",
+          "nodeType": "definition",
+          "scanStart": 35,
+          "scanEnd": 54,
+          "sourceStart": 74,
+          "sourceEnd": 93,
+          "sourceMap": [
+            {
+              "scanStart": 35,
+              "scanEnd": 54,
+              "sourceStart": 74,
+              "sourceEnd": 93,
+              "exact": true
+            }
+          ],
+          "containerSourceStart": 68,
+          "containerSourceEnd": 93,
+          "fallbackText": "",
+          "referenceIdentifier": "李四"
+        },
+        {
+          "id": "md-region-9",
+          "kind": "link_destination",
+          "nodeType": "definition",
+          "scanStart": 55,
+          "scanEnd": 78,
+          "sourceStart": 100,
+          "sourceEnd": 123,
+          "sourceMap": [
+            {
+              "scanStart": 55,
+              "scanEnd": 78,
+              "sourceStart": 100,
+              "sourceEnd": 123,
+              "exact": true
+            }
+          ],
+          "containerSourceStart": 94,
+          "containerSourceEnd": 123,
+          "fallbackText": "",
+          "referenceIdentifier": "王五"
+        }
+      ],
+      "sourceMap": [
+        {
+          "scanStart": 0,
+          "scanEnd": 1,
+          "sourceStart": 1,
+          "sourceEnd": 2,
+          "exact": true
+        },
+        {
+          "scanStart": 1,
+          "scanEnd": 2,
+          "sourceStart": 4,
+          "sourceEnd": 5,
+          "exact": true,
+          "containerIds": [
+            "md-container-2-7-strong"
+          ]
+        },
+        {
+          "scanStart": 2,
+          "scanEnd": 5,
+          "sourceStart": 12,
+          "sourceEnd": 15,
+          "exact": true
+        },
+        {
+          "scanStart": 5,
+          "scanEnd": 7,
+          "sourceStart": 16,
+          "sourceEnd": 18,
+          "exact": true
+        },
+        {
+          "scanStart": 7,
+          "scanEnd": 10,
+          "sourceStart": 21,
+          "sourceEnd": 24,
+          "exact": true
+        },
+        {
+          "scanStart": 10,
+          "scanEnd": 12,
+          "sourceStart": 25,
+          "sourceEnd": 27,
+          "exact": true
+        },
+        {
+          "scanStart": 13,
+          "scanEnd": 34,
+          "sourceStart": 37,
+          "sourceEnd": 58,
+          "exact": true
+        },
+        {
+          "scanStart": 35,
+          "scanEnd": 54,
+          "sourceStart": 74,
+          "sourceEnd": 93,
+          "exact": true
+        },
+        {
+          "scanStart": 55,
+          "scanEnd": 78,
+          "sourceStart": 100,
+          "sourceEnd": 123,
+          "exact": true
+        }
+      ],
+      "syntaxContainers": [
+        {
+          "id": "md-container-2-7-strong",
+          "nodeType": "strong",
+          "sourceStart": 2,
+          "sourceEnd": 7,
+          "scanStart": 1,
+          "scanEnd": 2
+        }
+      ],
+      "tables": [],
+      "blockers": [],
+      "frontmatter": {
+        "present": false,
+        "valid": true,
+        "errors": []
+      }
+    }
+  },
+  {
+    "id": "autolink",
+    "source": "www.example.com/path user@example.com <a@b.com> <https://example.org>\n",
+    "scanText": "www.example.com/path\nhttp://www.example.com/path user@example.com\nmailto:user@example.com a@b.com\nmailto:a@b.com https://example.org\nhttps://example.org",
+    "sidecar": {
+      "schemaId": "markdown-source",
+      "schemaVersion": 1,
+      "offsetEncoding": "utf16-code-unit",
+      "encoding": "utf8",
+      "hasBom": false,
+      "newline": "lf",
+      "trailingNewline": true,
+      "originalExtension": ".md",
+      "sourceSha256": "59e6cf8f71a2a1fb4af643658a292736503a05b70dc4e947272aede773492511",
+      "sourceLength": 70,
+      "scanTextSha256": "fcd878bef6c12c5953e7ff331c8c3d7ff1f05684e0f434a92bb12a54be0a9dd5",
+      "regions": [
+        {
+          "id": "md-region-1",
+          "kind": "link_label",
+          "nodeType": "text",
+          "scanStart": 0,
+          "scanEnd": 20,
+          "sourceStart": 0,
+          "sourceEnd": 20,
+          "sourceMap": [
+            {
+              "scanStart": 0,
+              "scanEnd": 20,
+              "sourceStart": 0,
+              "sourceEnd": 20,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-2",
+          "kind": "link_destination",
+          "nodeType": "link",
+          "scanStart": 21,
+          "scanEnd": 48,
+          "sourceStart": 0,
+          "sourceEnd": 20,
+          "sourceMap": [
+            {
+              "scanStart": 21,
+              "scanEnd": 48,
+              "sourceStart": 0,
+              "sourceEnd": 20,
+              "exact": false
+            }
+          ],
+          "containerSourceStart": 0,
+          "containerSourceEnd": 20,
+          "fallbackText": "www.example.com/path"
+        },
+        {
+          "id": "md-region-3",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 48,
+          "scanEnd": 49,
+          "sourceStart": 20,
+          "sourceEnd": 21,
+          "sourceMap": [
+            {
+              "scanStart": 48,
+              "scanEnd": 49,
+              "sourceStart": 20,
+              "sourceEnd": 21,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-4",
+          "kind": "link_label",
+          "nodeType": "text",
+          "scanStart": 49,
+          "scanEnd": 65,
+          "sourceStart": 21,
+          "sourceEnd": 37,
+          "sourceMap": [
+            {
+              "scanStart": 49,
+              "scanEnd": 65,
+              "sourceStart": 21,
+              "sourceEnd": 37,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-5",
+          "kind": "link_destination",
+          "nodeType": "link",
+          "scanStart": 66,
+          "scanEnd": 89,
+          "sourceStart": 21,
+          "sourceEnd": 37,
+          "sourceMap": [
+            {
+              "scanStart": 66,
+              "scanEnd": 89,
+              "sourceStart": 21,
+              "sourceEnd": 37,
+              "exact": false
+            }
+          ],
+          "containerSourceStart": 21,
+          "containerSourceEnd": 37,
+          "fallbackText": "user@example.com"
+        },
+        {
+          "id": "md-region-6",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 89,
+          "scanEnd": 90,
+          "sourceStart": 37,
+          "sourceEnd": 38,
+          "sourceMap": [
+            {
+              "scanStart": 89,
+              "scanEnd": 90,
+              "sourceStart": 37,
+              "sourceEnd": 38,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-7",
+          "kind": "link_label",
+          "nodeType": "text",
+          "scanStart": 90,
+          "scanEnd": 97,
+          "sourceStart": 39,
+          "sourceEnd": 46,
+          "sourceMap": [
+            {
+              "scanStart": 90,
+              "scanEnd": 97,
+              "sourceStart": 39,
+              "sourceEnd": 46,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-8",
+          "kind": "link_destination",
+          "nodeType": "link",
+          "scanStart": 98,
+          "scanEnd": 112,
+          "sourceStart": 38,
+          "sourceEnd": 47,
+          "sourceMap": [
+            {
+              "scanStart": 98,
+              "scanEnd": 112,
+              "sourceStart": 38,
+              "sourceEnd": 47,
+              "exact": false
+            }
+          ],
+          "containerSourceStart": 38,
+          "containerSourceEnd": 47,
+          "fallbackText": "a@b.com"
+        },
+        {
+          "id": "md-region-9",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 112,
+          "scanEnd": 113,
+          "sourceStart": 47,
+          "sourceEnd": 48,
+          "sourceMap": [
+            {
+              "scanStart": 112,
+              "scanEnd": 113,
+              "sourceStart": 47,
+              "sourceEnd": 48,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-10",
+          "kind": "link_label",
+          "nodeType": "text",
+          "scanStart": 113,
+          "scanEnd": 132,
+          "sourceStart": 49,
+          "sourceEnd": 68,
+          "sourceMap": [
+            {
+              "scanStart": 113,
+              "scanEnd": 132,
+              "sourceStart": 49,
+              "sourceEnd": 68,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-11",
+          "kind": "link_destination",
+          "nodeType": "link",
+          "scanStart": 133,
+          "scanEnd": 152,
+          "sourceStart": 49,
+          "sourceEnd": 68,
+          "sourceMap": [
+            {
+              "scanStart": 133,
+              "scanEnd": 152,
+              "sourceStart": 49,
+              "sourceEnd": 68,
+              "exact": true
+            }
+          ],
+          "containerSourceStart": 48,
+          "containerSourceEnd": 69,
+          "fallbackText": "https://example.org"
+        }
+      ],
+      "sourceMap": [
+        {
+          "scanStart": 0,
+          "scanEnd": 20,
+          "sourceStart": 0,
+          "sourceEnd": 20,
+          "exact": true
+        },
+        {
+          "scanStart": 21,
+          "scanEnd": 48,
+          "sourceStart": 0,
+          "sourceEnd": 20,
+          "exact": false
+        },
+        {
+          "scanStart": 48,
+          "scanEnd": 49,
+          "sourceStart": 20,
+          "sourceEnd": 21,
+          "exact": true
+        },
+        {
+          "scanStart": 49,
+          "scanEnd": 65,
+          "sourceStart": 21,
+          "sourceEnd": 37,
+          "exact": true
+        },
+        {
+          "scanStart": 66,
+          "scanEnd": 89,
+          "sourceStart": 21,
+          "sourceEnd": 37,
+          "exact": false
+        },
+        {
+          "scanStart": 89,
+          "scanEnd": 90,
+          "sourceStart": 37,
+          "sourceEnd": 38,
+          "exact": true
+        },
+        {
+          "scanStart": 90,
+          "scanEnd": 97,
+          "sourceStart": 39,
+          "sourceEnd": 46,
+          "exact": true
+        },
+        {
+          "scanStart": 98,
+          "scanEnd": 112,
+          "sourceStart": 38,
+          "sourceEnd": 47,
+          "exact": false
+        },
+        {
+          "scanStart": 112,
+          "scanEnd": 113,
+          "sourceStart": 47,
+          "sourceEnd": 48,
+          "exact": true
+        },
+        {
+          "scanStart": 113,
+          "scanEnd": 132,
+          "sourceStart": 49,
+          "sourceEnd": 68,
+          "exact": true
+        },
+        {
+          "scanStart": 133,
+          "scanEnd": 152,
+          "sourceStart": 49,
+          "sourceEnd": 68,
+          "exact": true
+        }
+      ],
+      "syntaxContainers": [],
+      "tables": [],
+      "blockers": [],
+      "frontmatter": {
+        "present": false,
+        "valid": true,
+        "errors": []
+      }
+    }
+  },
+  {
+    "id": "yaml-complex",
+    "source": "---\n\"张三\": |\n  李四\n  王五\nlist:\n - key: \"张\\u4e09\"\n - yes: true\n - amount: 123\n - alias: &a 李四\n - again: *a\n---\n正文\n",
+    "scanText": "张三\n李四\n王五\nlist\nkey\n张三\nyes\namount\nalias\n李四\nagain\n正文",
+    "sidecar": {
+      "schemaId": "markdown-source",
+      "schemaVersion": 1,
+      "offsetEncoding": "utf16-code-unit",
+      "encoding": "utf8",
+      "hasBom": false,
+      "newline": "lf",
+      "trailingNewline": true,
+      "originalExtension": ".md",
+      "sourceSha256": "23df0d0b82a57d8ce67abd19a0ccbfa770e6a16486829486d0b1f140244852d3",
+      "sourceLength": 110,
+      "scanTextSha256": "066697aa11a791b6667330a07f99adf33045d05663c0841a05b75a06554ea29d",
+      "regions": [
+        {
+          "id": "md-region-1",
+          "kind": "frontmatter",
+          "nodeType": "yamlScalar",
+          "scanStart": 0,
+          "scanEnd": 2,
+          "sourceStart": 5,
+          "sourceEnd": 7,
+          "sourceMap": [
+            {
+              "scanStart": 0,
+              "scanEnd": 2,
+              "sourceStart": 5,
+              "sourceEnd": 7,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-2",
+          "kind": "frontmatter",
+          "nodeType": "yamlScalar",
+          "scanStart": 3,
+          "scanEnd": 9,
+          "sourceStart": 10,
+          "sourceEnd": 22,
+          "sourceMap": [
+            {
+              "scanStart": 3,
+              "scanEnd": 9,
+              "sourceStart": 10,
+              "sourceEnd": 22,
+              "exact": false
+            }
+          ]
+        },
+        {
+          "id": "md-region-3",
+          "kind": "frontmatter",
+          "nodeType": "yamlScalar",
+          "scanStart": 9,
+          "scanEnd": 13,
+          "sourceStart": 22,
+          "sourceEnd": 26,
+          "sourceMap": [
+            {
+              "scanStart": 9,
+              "scanEnd": 13,
+              "sourceStart": 22,
+              "sourceEnd": 26,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-4",
+          "kind": "frontmatter",
+          "nodeType": "yamlScalar",
+          "scanStart": 14,
+          "scanEnd": 17,
+          "sourceStart": 31,
+          "sourceEnd": 34,
+          "sourceMap": [
+            {
+              "scanStart": 14,
+              "scanEnd": 17,
+              "sourceStart": 31,
+              "sourceEnd": 34,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-5",
+          "kind": "frontmatter",
+          "nodeType": "yamlScalar",
+          "scanStart": 18,
+          "scanEnd": 20,
+          "sourceStart": 36,
+          "sourceEnd": 45,
+          "sourceMap": [
+            {
+              "scanStart": 18,
+              "scanEnd": 20,
+              "sourceStart": 36,
+              "sourceEnd": 45,
+              "exact": false
+            }
+          ]
+        },
+        {
+          "id": "md-region-6",
+          "kind": "frontmatter",
+          "nodeType": "yamlScalar",
+          "scanStart": 21,
+          "scanEnd": 24,
+          "sourceStart": 49,
+          "sourceEnd": 52,
+          "sourceMap": [
+            {
+              "scanStart": 21,
+              "scanEnd": 24,
+              "sourceStart": 49,
+              "sourceEnd": 52,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-7",
+          "kind": "frontmatter",
+          "nodeType": "yamlScalar",
+          "scanStart": 25,
+          "scanEnd": 31,
+          "sourceStart": 62,
+          "sourceEnd": 68,
+          "sourceMap": [
+            {
+              "scanStart": 25,
+              "scanEnd": 31,
+              "sourceStart": 62,
+              "sourceEnd": 68,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-8",
+          "kind": "frontmatter",
+          "nodeType": "yamlScalar",
+          "scanStart": 32,
+          "scanEnd": 37,
+          "sourceStart": 77,
+          "sourceEnd": 82,
+          "sourceMap": [
+            {
+              "scanStart": 32,
+              "scanEnd": 37,
+              "sourceStart": 77,
+              "sourceEnd": 82,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-9",
+          "kind": "frontmatter",
+          "nodeType": "yamlScalar",
+          "scanStart": 38,
+          "scanEnd": 40,
+          "sourceStart": 87,
+          "sourceEnd": 89,
+          "sourceMap": [
+            {
+              "scanStart": 38,
+              "scanEnd": 40,
+              "sourceStart": 87,
+              "sourceEnd": 89,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-10",
+          "kind": "frontmatter",
+          "nodeType": "yamlScalar",
+          "scanStart": 41,
+          "scanEnd": 46,
+          "sourceStart": 93,
+          "sourceEnd": 98,
+          "sourceMap": [
+            {
+              "scanStart": 41,
+              "scanEnd": 46,
+              "sourceStart": 93,
+              "sourceEnd": 98,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-11",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 47,
+          "scanEnd": 49,
+          "sourceStart": 107,
+          "sourceEnd": 109,
+          "sourceMap": [
+            {
+              "scanStart": 47,
+              "scanEnd": 49,
+              "sourceStart": 107,
+              "sourceEnd": 109,
+              "exact": true
+            }
+          ]
+        }
+      ],
+      "sourceMap": [
+        {
+          "scanStart": 0,
+          "scanEnd": 2,
+          "sourceStart": 5,
+          "sourceEnd": 7,
+          "exact": true
+        },
+        {
+          "scanStart": 3,
+          "scanEnd": 9,
+          "sourceStart": 10,
+          "sourceEnd": 22,
+          "exact": false
+        },
+        {
+          "scanStart": 9,
+          "scanEnd": 13,
+          "sourceStart": 22,
+          "sourceEnd": 26,
+          "exact": true
+        },
+        {
+          "scanStart": 14,
+          "scanEnd": 17,
+          "sourceStart": 31,
+          "sourceEnd": 34,
+          "exact": true
+        },
+        {
+          "scanStart": 18,
+          "scanEnd": 20,
+          "sourceStart": 36,
+          "sourceEnd": 45,
+          "exact": false
+        },
+        {
+          "scanStart": 21,
+          "scanEnd": 24,
+          "sourceStart": 49,
+          "sourceEnd": 52,
+          "exact": true
+        },
+        {
+          "scanStart": 25,
+          "scanEnd": 31,
+          "sourceStart": 62,
+          "sourceEnd": 68,
+          "exact": true
+        },
+        {
+          "scanStart": 32,
+          "scanEnd": 37,
+          "sourceStart": 77,
+          "sourceEnd": 82,
+          "exact": true
+        },
+        {
+          "scanStart": 38,
+          "scanEnd": 40,
+          "sourceStart": 87,
+          "sourceEnd": 89,
+          "exact": true
+        },
+        {
+          "scanStart": 41,
+          "scanEnd": 46,
+          "sourceStart": 93,
+          "sourceEnd": 98,
+          "exact": true
+        },
+        {
+          "scanStart": 47,
+          "scanEnd": 49,
+          "sourceStart": 107,
+          "sourceEnd": 109,
+          "exact": true
+        }
+      ],
+      "syntaxContainers": [],
+      "tables": [],
+      "blockers": [],
+      "frontmatter": {
+        "present": true,
+        "valid": true,
+        "errors": []
+      }
+    }
+  },
+  {
+    "id": "html-wrap",
+    "source": "<div><table><tr><td>A&amp;B&#x1F600;C</td><td>张三</td></tr></table></div>\n",
+    "scanText": "A&B😀C\n张三",
+    "sidecar": {
+      "schemaId": "markdown-source",
+      "schemaVersion": 1,
+      "offsetEncoding": "utf16-code-unit",
+      "encoding": "utf8",
+      "hasBom": false,
+      "newline": "lf",
+      "trailingNewline": true,
+      "originalExtension": ".md",
+      "sourceSha256": "b30dda9a05223b957d90d51dda32fb5b832a5d7af62b962b5f79745beefb26d9",
+      "sourceLength": 73,
+      "scanTextSha256": "dcdca0688592b511ac2272226f3dfa8a64908a21658fff5ca6ae85620cb6ad1a",
+      "regions": [
+        {
+          "id": "md-region-1",
+          "kind": "table",
+          "nodeType": "htmlText",
+          "scanStart": 0,
+          "scanEnd": 6,
+          "sourceStart": 20,
+          "sourceEnd": 37,
+          "sourceMap": [
+            {
+              "scanStart": 0,
+              "scanEnd": 6,
+              "sourceStart": 20,
+              "sourceEnd": 37,
+              "exact": false
+            }
+          ]
+        },
+        {
+          "id": "md-region-2",
+          "kind": "table",
+          "nodeType": "htmlText",
+          "scanStart": 7,
+          "scanEnd": 9,
+          "sourceStart": 46,
+          "sourceEnd": 48,
+          "sourceMap": [
+            {
+              "scanStart": 7,
+              "scanEnd": 9,
+              "sourceStart": 46,
+              "sourceEnd": 48,
+              "exact": true
+            }
+          ]
+        }
+      ],
+      "sourceMap": [
+        {
+          "scanStart": 0,
+          "scanEnd": 6,
+          "sourceStart": 20,
+          "sourceEnd": 37,
+          "exact": false
+        },
+        {
+          "scanStart": 7,
+          "scanEnd": 9,
+          "sourceStart": 46,
+          "sourceEnd": 48,
+          "exact": true
+        }
+      ],
+      "syntaxContainers": [],
+      "tables": [
+        {
+          "id": "markdown-table-0",
+          "tableId": 0,
+          "format": "html",
+          "sourceStart": 5,
+          "sourceEnd": 66,
+          "rowCount": 1,
+          "colCount": 2,
+          "cells": [
+            {
+              "text": "A&B😀C",
+              "sourceStart": 16,
+              "sourceEnd": 42,
+              "scanStart": 0,
+              "scanEnd": 6,
+              "segments": [
+                {
+                  "value": "A&B😀C",
+                  "sourceStart": 20,
+                  "sourceEnd": 37,
+                  "scanStart": 0,
+                  "scanEnd": 6,
+                  "exact": false
+                }
+              ],
+              "id": "markdown-table-0-cell-0-0",
+              "tableId": 0,
+              "rowIndex": 0,
+              "colIndex": 0,
+              "rowSpan": 1,
+              "colSpan": 1,
+              "header": false,
+              "section": "body"
+            },
+            {
+              "text": "张三",
+              "sourceStart": 42,
+              "sourceEnd": 53,
+              "scanStart": 7,
+              "scanEnd": 9,
+              "segments": [
+                {
+                  "value": "张三",
+                  "sourceStart": 46,
+                  "sourceEnd": 48,
+                  "scanStart": 7,
+                  "scanEnd": 9,
+                  "exact": true
+                }
+              ],
+              "id": "markdown-table-0-cell-0-1",
+              "tableId": 0,
+              "rowIndex": 0,
+              "colIndex": 1,
+              "rowSpan": 1,
+              "colSpan": 1,
+              "header": false,
+              "section": "body"
+            }
+          ]
+        }
+      ],
+      "blockers": [
+        {
+          "id": "md-blocker-1",
+          "kind": "html",
+          "nodeType": "html",
+          "sourceStart": 0,
+          "sourceEnd": 5,
+          "line": 1
+        },
+        {
+          "id": "md-blocker-2",
+          "kind": "html",
+          "nodeType": "html",
+          "sourceStart": 66,
+          "sourceEnd": 72,
+          "line": 1
+        }
+      ],
+      "frontmatter": {
+        "present": false,
+        "valid": true,
+        "errors": []
+      }
+    }
+  },
+  {
+    "id": "html-nested",
+    "source": "<table><tr><td colspan=\"2\"><b>张三</b><table><tr><td>李四</td></tr></table></td></tr></table>\n",
+    "scanText": "张三李四",
+    "sidecar": {
+      "schemaId": "markdown-source",
+      "schemaVersion": 1,
+      "offsetEncoding": "utf16-code-unit",
+      "encoding": "utf8",
+      "hasBom": false,
+      "newline": "lf",
+      "trailingNewline": true,
+      "originalExtension": ".md",
+      "sourceSha256": "1c1f9afbe58f31cb28d14da73fb385f06398dcaa0650c5c95c328beeb75e78d4",
+      "sourceLength": 90,
+      "scanTextSha256": "58cf0172f1d43b91ebb96a7631a1a3b3a0b4b23566602b4b1ae24f1089d1acf3",
+      "regions": [
+        {
+          "id": "md-region-1",
+          "kind": "table",
+          "nodeType": "htmlText",
+          "scanStart": 0,
+          "scanEnd": 2,
+          "sourceStart": 30,
+          "sourceEnd": 32,
+          "sourceMap": [
+            {
+              "scanStart": 0,
+              "scanEnd": 2,
+              "sourceStart": 30,
+              "sourceEnd": 32,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-2",
+          "kind": "table",
+          "nodeType": "htmlText",
+          "scanStart": 2,
+          "scanEnd": 4,
+          "sourceStart": 51,
+          "sourceEnd": 53,
+          "sourceMap": [
+            {
+              "scanStart": 2,
+              "scanEnd": 4,
+              "sourceStart": 51,
+              "sourceEnd": 53,
+              "exact": true
+            }
+          ]
+        }
+      ],
+      "sourceMap": [
+        {
+          "scanStart": 0,
+          "scanEnd": 2,
+          "sourceStart": 30,
+          "sourceEnd": 32,
+          "exact": true
+        },
+        {
+          "scanStart": 2,
+          "scanEnd": 4,
+          "sourceStart": 51,
+          "sourceEnd": 53,
+          "exact": true
+        }
+      ],
+      "syntaxContainers": [],
+      "tables": [
+        {
+          "id": "markdown-table-0",
+          "tableId": 0,
+          "format": "html",
+          "sourceStart": 0,
+          "sourceEnd": 89,
+          "rowCount": 1,
+          "colCount": 2,
+          "cells": [
+            {
+              "text": "张三李四",
+              "sourceStart": 11,
+              "sourceEnd": 76,
+              "scanStart": 0,
+              "scanEnd": 4,
+              "segments": [
+                {
+                  "value": "张三",
+                  "sourceStart": 30,
+                  "sourceEnd": 32,
+                  "scanStart": 0,
+                  "scanEnd": 2,
+                  "exact": true
+                },
+                {
+                  "value": "李四",
+                  "sourceStart": 51,
+                  "sourceEnd": 53,
+                  "scanStart": 2,
+                  "scanEnd": 4,
+                  "exact": true
+                }
+              ],
+              "id": "markdown-table-0-cell-0-0",
+              "tableId": 0,
+              "rowIndex": 0,
+              "colIndex": 0,
+              "rowSpan": 1,
+              "colSpan": 2,
+              "header": false,
+              "section": "body"
+            }
+          ]
+        }
+      ],
+      "blockers": [],
+      "frontmatter": {
+        "present": false,
+        "valid": true,
+        "errors": []
+      }
+    }
+  },
+  {
+    "id": "html-blacklist",
+    "source": "<table><caption>张三</caption><tr><th>A</th><td><script>不能看见</script><svg>不读</svg>李四<img src=\"secret\">王五</td></tr><tr><td rowspan=\"2000\">甲</td><td>乙</td></tr></table>\n",
+    "scanText": "张三\nA\n李四王五\n甲\n乙",
+    "sidecar": {
+      "schemaId": "markdown-source",
+      "schemaVersion": 1,
+      "offsetEncoding": "utf16-code-unit",
+      "encoding": "utf8",
+      "hasBom": false,
+      "newline": "lf",
+      "trailingNewline": true,
+      "originalExtension": ".md",
+      "sourceSha256": "87a08a8334fe35aaa208c7ea6f978ba1f3b78521b024b00c43723fe27b96bbbf",
+      "sourceLength": 165,
+      "scanTextSha256": "280327b98aaa269d6ef1d69de536630dfadef7b2793e9f0434275ddc0261eaff",
+      "regions": [
+        {
+          "id": "md-region-1",
+          "kind": "table",
+          "nodeType": "htmlText",
+          "scanStart": 0,
+          "scanEnd": 2,
+          "sourceStart": 16,
+          "sourceEnd": 18,
+          "sourceMap": [
+            {
+              "scanStart": 0,
+              "scanEnd": 2,
+              "sourceStart": 16,
+              "sourceEnd": 18,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-2",
+          "kind": "table",
+          "nodeType": "htmlText",
+          "scanStart": 3,
+          "scanEnd": 4,
+          "sourceStart": 36,
+          "sourceEnd": 37,
+          "sourceMap": [
+            {
+              "scanStart": 3,
+              "scanEnd": 4,
+              "sourceStart": 36,
+              "sourceEnd": 37,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-3",
+          "kind": "table",
+          "nodeType": "htmlText",
+          "scanStart": 5,
+          "scanEnd": 7,
+          "sourceStart": 80,
+          "sourceEnd": 82,
+          "sourceMap": [
+            {
+              "scanStart": 5,
+              "scanEnd": 7,
+              "sourceStart": 80,
+              "sourceEnd": 82,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-4",
+          "kind": "table",
+          "nodeType": "htmlText",
+          "scanStart": 7,
+          "scanEnd": 9,
+          "sourceStart": 100,
+          "sourceEnd": 102,
+          "sourceMap": [
+            {
+              "scanStart": 7,
+              "scanEnd": 9,
+              "sourceStart": 100,
+              "sourceEnd": 102,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-5",
+          "kind": "table",
+          "nodeType": "htmlText",
+          "scanStart": 10,
+          "scanEnd": 11,
+          "sourceStart": 135,
+          "sourceEnd": 136,
+          "sourceMap": [
+            {
+              "scanStart": 10,
+              "scanEnd": 11,
+              "sourceStart": 135,
+              "sourceEnd": 136,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-6",
+          "kind": "table",
+          "nodeType": "htmlText",
+          "scanStart": 12,
+          "scanEnd": 13,
+          "sourceStart": 145,
+          "sourceEnd": 146,
+          "sourceMap": [
+            {
+              "scanStart": 12,
+              "scanEnd": 13,
+              "sourceStart": 145,
+              "sourceEnd": 146,
+              "exact": true
+            }
+          ]
+        }
+      ],
+      "sourceMap": [
+        {
+          "scanStart": 0,
+          "scanEnd": 2,
+          "sourceStart": 16,
+          "sourceEnd": 18,
+          "exact": true
+        },
+        {
+          "scanStart": 3,
+          "scanEnd": 4,
+          "sourceStart": 36,
+          "sourceEnd": 37,
+          "exact": true
+        },
+        {
+          "scanStart": 5,
+          "scanEnd": 7,
+          "sourceStart": 80,
+          "sourceEnd": 82,
+          "exact": true
+        },
+        {
+          "scanStart": 7,
+          "scanEnd": 9,
+          "sourceStart": 100,
+          "sourceEnd": 102,
+          "exact": true
+        },
+        {
+          "scanStart": 10,
+          "scanEnd": 11,
+          "sourceStart": 135,
+          "sourceEnd": 136,
+          "exact": true
+        },
+        {
+          "scanStart": 12,
+          "scanEnd": 13,
+          "sourceStart": 145,
+          "sourceEnd": 146,
+          "exact": true
+        }
+      ],
+      "syntaxContainers": [],
+      "tables": [
+        {
+          "id": "markdown-table-0",
+          "tableId": 0,
+          "format": "html",
+          "sourceStart": 0,
+          "sourceEnd": 164,
+          "rowCount": 1001,
+          "colCount": 2,
+          "cells": [
+            {
+              "text": "A",
+              "sourceStart": 32,
+              "sourceEnd": 42,
+              "scanStart": 3,
+              "scanEnd": 4,
+              "segments": [
+                {
+                  "value": "A",
+                  "sourceStart": 36,
+                  "sourceEnd": 37,
+                  "scanStart": 3,
+                  "scanEnd": 4,
+                  "exact": true
+                }
+              ],
+              "id": "markdown-table-0-cell-0-0",
+              "tableId": 0,
+              "rowIndex": 0,
+              "colIndex": 0,
+              "rowSpan": 1,
+              "colSpan": 1,
+              "header": true,
+              "section": "body"
+            },
+            {
+              "text": "李四王五",
+              "sourceStart": 42,
+              "sourceEnd": 107,
+              "scanStart": 5,
+              "scanEnd": 9,
+              "segments": [
+                {
+                  "value": "李四",
+                  "sourceStart": 80,
+                  "sourceEnd": 82,
+                  "scanStart": 5,
+                  "scanEnd": 7,
+                  "exact": true
+                },
+                {
+                  "value": "王五",
+                  "sourceStart": 100,
+                  "sourceEnd": 102,
+                  "scanStart": 7,
+                  "scanEnd": 9,
+                  "exact": true
+                }
+              ],
+              "id": "markdown-table-0-cell-0-1",
+              "tableId": 0,
+              "rowIndex": 0,
+              "colIndex": 1,
+              "rowSpan": 1,
+              "colSpan": 1,
+              "header": false,
+              "section": "body"
+            },
+            {
+              "text": "甲",
+              "sourceStart": 116,
+              "sourceEnd": 141,
+              "scanStart": 10,
+              "scanEnd": 11,
+              "segments": [
+                {
+                  "value": "甲",
+                  "sourceStart": 135,
+                  "sourceEnd": 136,
+                  "scanStart": 10,
+                  "scanEnd": 11,
+                  "exact": true
+                }
+              ],
+              "id": "markdown-table-0-cell-1-0",
+              "tableId": 0,
+              "rowIndex": 1,
+              "colIndex": 0,
+              "rowSpan": 1000,
+              "colSpan": 1,
+              "header": false,
+              "section": "body"
+            },
+            {
+              "text": "乙",
+              "sourceStart": 141,
+              "sourceEnd": 151,
+              "scanStart": 12,
+              "scanEnd": 13,
+              "segments": [
+                {
+                  "value": "乙",
+                  "sourceStart": 145,
+                  "sourceEnd": 146,
+                  "scanStart": 12,
+                  "scanEnd": 13,
+                  "exact": true
+                }
+              ],
+              "id": "markdown-table-0-cell-1-1",
+              "tableId": 0,
+              "rowIndex": 1,
+              "colIndex": 1,
+              "rowSpan": 1,
+              "colSpan": 1,
+              "header": false,
+              "section": "body"
+            }
+          ],
+          "caption": {
+            "text": "张三",
+            "sourceStart": 7,
+            "sourceEnd": 28,
+            "scanStart": 0,
+            "scanEnd": 2,
+            "segments": [
+              {
+                "value": "张三",
+                "sourceStart": 16,
+                "sourceEnd": 18,
+                "scanStart": 0,
+                "scanEnd": 2,
+                "exact": true
+              }
+            ]
+          }
+        }
+      ],
+      "blockers": [],
+      "frontmatter": {
+        "present": false,
+        "valid": true,
+        "errors": []
+      }
+    }
+  },
+  {
+    "id": "gfm-mixed",
+    "source": "| 姓名 | 金额 |\n| :-- | --: |\n| 张**三** | 100<br>200 |\n| ![甲](img) | A\\|B |\n",
+    "scanText": "姓名\n金额\n张三\n100\n200\n甲\nA|B",
+    "sidecar": {
+      "schemaId": "markdown-source",
+      "schemaVersion": 1,
+      "offsetEncoding": "utf16-code-unit",
+      "encoding": "utf8",
+      "hasBom": false,
+      "newline": "lf",
+      "trailingNewline": true,
+      "originalExtension": ".md",
+      "sourceSha256": "0af6cdd67ae5fa3dd951fdf5f24a3707fbb3642ce5f3e3935fed10ea5940bf77",
+      "sourceLength": 71,
+      "scanTextSha256": "074357880029e873e777bd060feace6d78b2b25de0fd25a6b8a14546e55d2a48",
+      "regions": [
+        {
+          "id": "md-region-1",
+          "kind": "table",
+          "nodeType": "text",
+          "scanStart": 0,
+          "scanEnd": 2,
+          "sourceStart": 2,
+          "sourceEnd": 4,
+          "sourceMap": [
+            {
+              "scanStart": 0,
+              "scanEnd": 2,
+              "sourceStart": 2,
+              "sourceEnd": 4,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-2",
+          "kind": "table",
+          "nodeType": "text",
+          "scanStart": 3,
+          "scanEnd": 5,
+          "sourceStart": 7,
+          "sourceEnd": 9,
+          "sourceMap": [
+            {
+              "scanStart": 3,
+              "scanEnd": 5,
+              "sourceStart": 7,
+              "sourceEnd": 9,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-3",
+          "kind": "table",
+          "nodeType": "text",
+          "scanStart": 6,
+          "scanEnd": 7,
+          "sourceStart": 28,
+          "sourceEnd": 29,
+          "sourceMap": [
+            {
+              "scanStart": 6,
+              "scanEnd": 7,
+              "sourceStart": 28,
+              "sourceEnd": 29,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-4",
+          "kind": "table",
+          "nodeType": "text",
+          "scanStart": 7,
+          "scanEnd": 8,
+          "sourceStart": 31,
+          "sourceEnd": 32,
+          "sourceMap": [
+            {
+              "scanStart": 7,
+              "scanEnd": 8,
+              "sourceStart": 31,
+              "sourceEnd": 32,
+              "exact": true,
+              "containerIds": [
+                "md-container-29-34-strong"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "md-region-5",
+          "kind": "table",
+          "nodeType": "text",
+          "scanStart": 9,
+          "scanEnd": 12,
+          "sourceStart": 37,
+          "sourceEnd": 40,
+          "sourceMap": [
+            {
+              "scanStart": 9,
+              "scanEnd": 12,
+              "sourceStart": 37,
+              "sourceEnd": 40,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-6",
+          "kind": "table",
+          "nodeType": "htmlBreak",
+          "scanStart": 12,
+          "scanEnd": 13,
+          "sourceStart": 40,
+          "sourceEnd": 44,
+          "sourceMap": [
+            {
+              "scanStart": 12,
+              "scanEnd": 13,
+              "sourceStart": 40,
+              "sourceEnd": 44,
+              "exact": false
+            }
+          ]
+        },
+        {
+          "id": "md-region-7",
+          "kind": "table",
+          "nodeType": "text",
+          "scanStart": 13,
+          "scanEnd": 16,
+          "sourceStart": 44,
+          "sourceEnd": 47,
+          "sourceMap": [
+            {
+              "scanStart": 13,
+              "scanEnd": 16,
+              "sourceStart": 44,
+              "sourceEnd": 47,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-8",
+          "kind": "image_alt",
+          "nodeType": "image",
+          "scanStart": 17,
+          "scanEnd": 18,
+          "sourceStart": 54,
+          "sourceEnd": 55,
+          "sourceMap": [
+            {
+              "scanStart": 17,
+              "scanEnd": 18,
+              "sourceStart": 54,
+              "sourceEnd": 55,
+              "exact": true
+            }
+          ],
+          "containerSourceStart": 52,
+          "containerSourceEnd": 61
+        },
+        {
+          "id": "md-region-9",
+          "kind": "table",
+          "nodeType": "text",
+          "scanStart": 19,
+          "scanEnd": 22,
+          "sourceStart": 64,
+          "sourceEnd": 68,
+          "sourceMap": [
+            {
+              "scanStart": 19,
+              "scanEnd": 20,
+              "sourceStart": 64,
+              "sourceEnd": 65,
+              "exact": true
+            },
+            {
+              "scanStart": 20,
+              "scanEnd": 22,
+              "sourceStart": 66,
+              "sourceEnd": 68,
+              "exact": true
+            }
+          ]
+        }
+      ],
+      "sourceMap": [
+        {
+          "scanStart": 0,
+          "scanEnd": 2,
+          "sourceStart": 2,
+          "sourceEnd": 4,
+          "exact": true
+        },
+        {
+          "scanStart": 3,
+          "scanEnd": 5,
+          "sourceStart": 7,
+          "sourceEnd": 9,
+          "exact": true
+        },
+        {
+          "scanStart": 6,
+          "scanEnd": 7,
+          "sourceStart": 28,
+          "sourceEnd": 29,
+          "exact": true
+        },
+        {
+          "scanStart": 7,
+          "scanEnd": 8,
+          "sourceStart": 31,
+          "sourceEnd": 32,
+          "exact": true,
+          "containerIds": [
+            "md-container-29-34-strong"
+          ]
+        },
+        {
+          "scanStart": 9,
+          "scanEnd": 12,
+          "sourceStart": 37,
+          "sourceEnd": 40,
+          "exact": true
+        },
+        {
+          "scanStart": 12,
+          "scanEnd": 13,
+          "sourceStart": 40,
+          "sourceEnd": 44,
+          "exact": false
+        },
+        {
+          "scanStart": 13,
+          "scanEnd": 16,
+          "sourceStart": 44,
+          "sourceEnd": 47,
+          "exact": true
+        },
+        {
+          "scanStart": 17,
+          "scanEnd": 18,
+          "sourceStart": 54,
+          "sourceEnd": 55,
+          "exact": true
+        },
+        {
+          "scanStart": 19,
+          "scanEnd": 20,
+          "sourceStart": 64,
+          "sourceEnd": 65,
+          "exact": true
+        },
+        {
+          "scanStart": 20,
+          "scanEnd": 22,
+          "sourceStart": 66,
+          "sourceEnd": 68,
+          "exact": true
+        }
+      ],
+      "syntaxContainers": [
+        {
+          "id": "md-container-29-34-strong",
+          "nodeType": "strong",
+          "sourceStart": 29,
+          "sourceEnd": 34,
+          "scanStart": 7,
+          "scanEnd": 8
+        }
+      ],
+      "tables": [
+        {
+          "id": "markdown-table-0",
+          "tableId": 0,
+          "format": "gfm",
+          "sourceStart": 0,
+          "sourceEnd": 70,
+          "rowCount": 3,
+          "colCount": 2,
+          "cells": [
+            {
+              "text": "姓名",
+              "sourceStart": 0,
+              "sourceEnd": 5,
+              "scanStart": 0,
+              "scanEnd": 2,
+              "segments": [
+                {
+                  "value": "姓名",
+                  "sourceStart": 2,
+                  "sourceEnd": 4,
+                  "scanStart": 0,
+                  "scanEnd": 2,
+                  "exact": true
+                }
+              ],
+              "id": "markdown-table-0-cell-0-0",
+              "tableId": 0,
+              "rowIndex": 0,
+              "colIndex": 0,
+              "rowSpan": 1,
+              "colSpan": 1,
+              "header": true,
+              "section": "head"
+            },
+            {
+              "text": "金额",
+              "sourceStart": 5,
+              "sourceEnd": 11,
+              "scanStart": 3,
+              "scanEnd": 5,
+              "segments": [
+                {
+                  "value": "金额",
+                  "sourceStart": 7,
+                  "sourceEnd": 9,
+                  "scanStart": 3,
+                  "scanEnd": 5,
+                  "exact": true
+                }
+              ],
+              "id": "markdown-table-0-cell-0-1",
+              "tableId": 0,
+              "rowIndex": 0,
+              "colIndex": 1,
+              "rowSpan": 1,
+              "colSpan": 1,
+              "header": true,
+              "section": "head"
+            },
+            {
+              "text": "张三",
+              "sourceStart": 26,
+              "sourceEnd": 35,
+              "scanStart": 6,
+              "scanEnd": 8,
+              "segments": [
+                {
+                  "value": "张",
+                  "sourceStart": 28,
+                  "sourceEnd": 29,
+                  "scanStart": 6,
+                  "scanEnd": 7,
+                  "exact": true
+                },
+                {
+                  "value": "三",
+                  "sourceStart": 31,
+                  "sourceEnd": 32,
+                  "scanStart": 7,
+                  "scanEnd": 8,
+                  "exact": true
+                }
+              ],
+              "id": "markdown-table-0-cell-1-0",
+              "tableId": 0,
+              "rowIndex": 1,
+              "colIndex": 0,
+              "rowSpan": 1,
+              "colSpan": 1,
+              "header": false,
+              "section": "body"
+            },
+            {
+              "text": "100\n200",
+              "sourceStart": 35,
+              "sourceEnd": 49,
+              "scanStart": 9,
+              "scanEnd": 16,
+              "segments": [
+                {
+                  "value": "100",
+                  "sourceStart": 37,
+                  "sourceEnd": 40,
+                  "scanStart": 9,
+                  "scanEnd": 12,
+                  "exact": true
+                },
+                {
+                  "value": "\n",
+                  "sourceStart": 40,
+                  "sourceEnd": 44,
+                  "scanStart": 12,
+                  "scanEnd": 13,
+                  "exact": false
+                },
+                {
+                  "value": "200",
+                  "sourceStart": 44,
+                  "sourceEnd": 47,
+                  "scanStart": 13,
+                  "scanEnd": 16,
+                  "exact": true
+                }
+              ],
+              "id": "markdown-table-0-cell-1-1",
+              "tableId": 0,
+              "rowIndex": 1,
+              "colIndex": 1,
+              "rowSpan": 1,
+              "colSpan": 1,
+              "header": false,
+              "section": "body"
+            },
+            {
+              "text": "",
+              "sourceStart": 50,
+              "sourceEnd": 62,
+              "scanStart": -1,
+              "scanEnd": -1,
+              "segments": [],
+              "id": "markdown-table-0-cell-2-0",
+              "tableId": 0,
+              "rowIndex": 2,
+              "colIndex": 0,
+              "rowSpan": 1,
+              "colSpan": 1,
+              "header": false,
+              "section": "body"
+            },
+            {
+              "text": "A|B",
+              "sourceStart": 62,
+              "sourceEnd": 70,
+              "scanStart": 19,
+              "scanEnd": 22,
+              "segments": [
+                {
+                  "value": "A|B",
+                  "sourceStart": 64,
+                  "sourceEnd": 68,
+                  "scanStart": 19,
+                  "scanEnd": 22,
+                  "exact": false
+                }
+              ],
+              "id": "markdown-table-0-cell-2-1",
+              "tableId": 0,
+              "rowIndex": 2,
+              "colIndex": 1,
+              "rowSpan": 1,
+              "colSpan": 1,
+              "header": false,
+              "section": "body"
+            }
+          ]
+        }
+      ],
+      "blockers": [
+        {
+          "id": "md-blocker-1",
+          "kind": "image",
+          "nodeType": "image",
+          "sourceStart": 52,
+          "sourceEnd": 61,
+          "line": 4,
+          "altText": "甲",
+          "altScanStart": 17,
+          "altScanEnd": 18
+        }
+      ],
+      "frontmatter": {
+        "present": false,
+        "valid": true,
+        "errors": []
+      }
+    }
+  },
+  {
+    "id": "newline",
+    "source": "张三\r\n李四\n\n王五\r\n",
+    "scanText": "张三\r\n李四\n王五",
+    "sidecar": {
+      "schemaId": "markdown-source",
+      "schemaVersion": 1,
+      "offsetEncoding": "utf16-code-unit",
+      "encoding": "utf8",
+      "hasBom": false,
+      "newline": "mixed",
+      "trailingNewline": true,
+      "originalExtension": ".md",
+      "sourceSha256": "f8cea71d645dad275b33495adfebfcfdb49ca897fd3f3fde946d8a6b5c5c5ea9",
+      "sourceLength": 12,
+      "scanTextSha256": "e20803d664d5d70865c6fb00a65acc6ce2e9bb0247b19903f3250f7baf7fd821",
+      "regions": [
+        {
+          "id": "md-region-1",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 0,
+          "scanEnd": 6,
+          "sourceStart": 0,
+          "sourceEnd": 6,
+          "sourceMap": [
+            {
+              "scanStart": 0,
+              "scanEnd": 6,
+              "sourceStart": 0,
+              "sourceEnd": 6,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-2",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 7,
+          "scanEnd": 9,
+          "sourceStart": 8,
+          "sourceEnd": 10,
+          "sourceMap": [
+            {
+              "scanStart": 7,
+              "scanEnd": 9,
+              "sourceStart": 8,
+              "sourceEnd": 10,
+              "exact": true
+            }
+          ]
+        }
+      ],
+      "sourceMap": [
+        {
+          "scanStart": 0,
+          "scanEnd": 6,
+          "sourceStart": 0,
+          "sourceEnd": 6,
+          "exact": true
+        },
+        {
+          "scanStart": 7,
+          "scanEnd": 9,
+          "sourceStart": 8,
+          "sourceEnd": 10,
+          "exact": true
+        }
+      ],
+      "syntaxContainers": [],
+      "tables": [],
+      "blockers": [],
+      "frontmatter": {
+        "present": false,
+        "valid": true,
+        "errors": []
+      }
+    }
+  },
+  {
+    "id": "inline-space",
+    "source": "` 张三 ` 与 ``张`三``\n",
+    "scanText": "张三 与 张`三",
+    "sidecar": {
+      "schemaId": "markdown-source",
+      "schemaVersion": 1,
+      "offsetEncoding": "utf16-code-unit",
+      "encoding": "utf8",
+      "hasBom": false,
+      "newline": "lf",
+      "trailingNewline": true,
+      "originalExtension": ".md",
+      "sourceSha256": "b7f66eb33dc71621e4db8ad28999c988ecbc92a5146e44c48d66ec45f9658800",
+      "sourceLength": 17,
+      "scanTextSha256": "da9e8920f2d1897bbddf9351916ed91c382693ac6bbf1cca93ec9cd1b54fb3c5",
+      "regions": [
+        {
+          "id": "md-region-1",
+          "kind": "code",
+          "nodeType": "inlineCode",
+          "scanStart": 0,
+          "scanEnd": 2,
+          "sourceStart": 2,
+          "sourceEnd": 4,
+          "sourceMap": [
+            {
+              "scanStart": 0,
+              "scanEnd": 2,
+              "sourceStart": 2,
+              "sourceEnd": 4,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-2",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 2,
+          "scanEnd": 5,
+          "sourceStart": 6,
+          "sourceEnd": 9,
+          "sourceMap": [
+            {
+              "scanStart": 2,
+              "scanEnd": 5,
+              "sourceStart": 6,
+              "sourceEnd": 9,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-3",
+          "kind": "code",
+          "nodeType": "inlineCode",
+          "scanStart": 5,
+          "scanEnd": 8,
+          "sourceStart": 11,
+          "sourceEnd": 14,
+          "sourceMap": [
+            {
+              "scanStart": 5,
+              "scanEnd": 8,
+              "sourceStart": 11,
+              "sourceEnd": 14,
+              "exact": true
+            }
+          ]
+        }
+      ],
+      "sourceMap": [
+        {
+          "scanStart": 0,
+          "scanEnd": 2,
+          "sourceStart": 2,
+          "sourceEnd": 4,
+          "exact": true
+        },
+        {
+          "scanStart": 2,
+          "scanEnd": 5,
+          "sourceStart": 6,
+          "sourceEnd": 9,
+          "exact": true
+        },
+        {
+          "scanStart": 5,
+          "scanEnd": 8,
+          "sourceStart": 11,
+          "sourceEnd": 14,
+          "exact": true
+        }
+      ],
+      "syntaxContainers": [],
+      "tables": [],
+      "blockers": [],
+      "frontmatter": {
+        "present": false,
+        "valid": true,
+        "errors": []
+      }
+    }
+  },
+  {
+    "id": "escaping-repeat",
+    "source": "a\\*b a*b a\\*b\n",
+    "scanText": "a*b a*b a*b",
+    "sidecar": {
+      "schemaId": "markdown-source",
+      "schemaVersion": 1,
+      "offsetEncoding": "utf16-code-unit",
+      "encoding": "utf8",
+      "hasBom": false,
+      "newline": "lf",
+      "trailingNewline": true,
+      "originalExtension": ".md",
+      "sourceSha256": "42237f4f6d1095622eb5fc16c77ff5e441a54e2c8138313af112fccfd67d9005",
+      "sourceLength": 14,
+      "scanTextSha256": "069fd81425754f3347e50f4ab26e8e9ffaa70456999816646019d1836cefc6bc",
+      "regions": [
+        {
+          "id": "md-region-1",
+          "kind": "text",
+          "nodeType": "text",
+          "scanStart": 0,
+          "scanEnd": 11,
+          "sourceStart": 0,
+          "sourceEnd": 13,
+          "sourceMap": [
+            {
+              "scanStart": 0,
+              "scanEnd": 1,
+              "sourceStart": 0,
+              "sourceEnd": 1,
+              "exact": true
+            },
+            {
+              "scanStart": 1,
+              "scanEnd": 9,
+              "sourceStart": 2,
+              "sourceEnd": 10,
+              "exact": true
+            },
+            {
+              "scanStart": 9,
+              "scanEnd": 11,
+              "sourceStart": 11,
+              "sourceEnd": 13,
+              "exact": true
+            }
+          ]
+        }
+      ],
+      "sourceMap": [
+        {
+          "scanStart": 0,
+          "scanEnd": 1,
+          "sourceStart": 0,
+          "sourceEnd": 1,
+          "exact": true
+        },
+        {
+          "scanStart": 1,
+          "scanEnd": 9,
+          "sourceStart": 2,
+          "sourceEnd": 10,
+          "exact": true
+        },
+        {
+          "scanStart": 9,
+          "scanEnd": 11,
+          "sourceStart": 11,
+          "sourceEnd": 13,
+          "exact": true
+        }
+      ],
+      "syntaxContainers": [],
+      "tables": [],
+      "blockers": [],
+      "frontmatter": {
+        "present": false,
+        "valid": true,
+        "errors": []
+      }
+    }
+  },
+  {
+    "id": "no-text",
+    "source": "![甲](secret)\n",
+    "scanText": "甲",
+    "sidecar": {
+      "schemaId": "markdown-source",
+      "schemaVersion": 1,
+      "offsetEncoding": "utf16-code-unit",
+      "encoding": "utf8",
+      "hasBom": false,
+      "newline": "lf",
+      "trailingNewline": true,
+      "originalExtension": ".md",
+      "sourceSha256": "1b0775fe590a8a7246c77d3c9330ceacffd648debc13fc1d721881a71258f42c",
+      "sourceLength": 13,
+      "scanTextSha256": "33e3580c093111e1c4cac922872c40371f7896bb3fa4e23be5840bd1834fc622",
+      "regions": [
+        {
+          "id": "md-region-1",
+          "kind": "image_alt",
+          "nodeType": "image",
+          "scanStart": 0,
+          "scanEnd": 1,
+          "sourceStart": 2,
+          "sourceEnd": 3,
+          "sourceMap": [
+            {
+              "scanStart": 0,
+              "scanEnd": 1,
+              "sourceStart": 2,
+              "sourceEnd": 3,
+              "exact": true
+            }
+          ],
+          "containerSourceStart": 0,
+          "containerSourceEnd": 12
+        }
+      ],
+      "sourceMap": [
+        {
+          "scanStart": 0,
+          "scanEnd": 1,
+          "sourceStart": 2,
+          "sourceEnd": 3,
+          "exact": true
+        }
+      ],
+      "syntaxContainers": [],
+      "tables": [],
+      "blockers": [
+        {
+          "id": "md-blocker-1",
+          "kind": "image",
+          "nodeType": "image",
+          "sourceStart": 0,
+          "sourceEnd": 12,
+          "line": 1,
+          "altText": "甲",
+          "altScanStart": 0,
+          "altScanEnd": 1
+        }
+      ],
+      "frontmatter": {
+        "present": false,
+        "valid": true,
+        "errors": []
+      }
+    }
+  },
+  {
+    "id": "empty",
+    "source": "",
+    "scanText": "",
+    "sidecar": {
+      "schemaId": "markdown-source",
+      "schemaVersion": 1,
+      "offsetEncoding": "utf16-code-unit",
+      "encoding": "utf8",
+      "hasBom": false,
+      "newline": "none",
+      "trailingNewline": false,
+      "originalExtension": ".md",
+      "sourceSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sourceLength": 0,
+      "scanTextSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "regions": [],
+      "sourceMap": [],
+      "syntaxContainers": [],
+      "tables": [],
+      "blockers": [],
+      "frontmatter": {
+        "present": false,
+        "valid": true,
+        "errors": []
+      }
+    }
+  },
+  {
+    "id": "yaml-only",
+    "source": "---\nname: 张三\n---\n",
+    "scanText": "name\n张三",
+    "sidecar": {
+      "schemaId": "markdown-source",
+      "schemaVersion": 1,
+      "offsetEncoding": "utf16-code-unit",
+      "encoding": "utf8",
+      "hasBom": false,
+      "newline": "lf",
+      "trailingNewline": true,
+      "originalExtension": ".md",
+      "sourceSha256": "6bd6fe62a9b167beddfd7c2bbc15f66013c6601dad175437f4d0deec203de94e",
+      "sourceLength": 17,
+      "scanTextSha256": "8c4ed211f33f0d35167c3503064ce74d541e96ed7a899bc13dcd2896d09db5ed",
+      "regions": [
+        {
+          "id": "md-region-1",
+          "kind": "frontmatter",
+          "nodeType": "yamlScalar",
+          "scanStart": 0,
+          "scanEnd": 4,
+          "sourceStart": 4,
+          "sourceEnd": 8,
+          "sourceMap": [
+            {
+              "scanStart": 0,
+              "scanEnd": 4,
+              "sourceStart": 4,
+              "sourceEnd": 8,
+              "exact": true
+            }
+          ]
+        },
+        {
+          "id": "md-region-2",
+          "kind": "frontmatter",
+          "nodeType": "yamlScalar",
+          "scanStart": 5,
+          "scanEnd": 7,
+          "sourceStart": 10,
+          "sourceEnd": 12,
+          "sourceMap": [
+            {
+              "scanStart": 5,
+              "scanEnd": 7,
+              "sourceStart": 10,
+              "sourceEnd": 12,
+              "exact": true
+            }
+          ]
+        }
+      ],
+      "sourceMap": [
+        {
+          "scanStart": 0,
+          "scanEnd": 4,
+          "sourceStart": 4,
+          "sourceEnd": 8,
+          "exact": true
+        },
+        {
+          "scanStart": 5,
+          "scanEnd": 7,
+          "sourceStart": 10,
+          "sourceEnd": 12,
+          "exact": true
+        }
+      ],
+      "syntaxContainers": [],
+      "tables": [],
+      "blockers": [],
+      "frontmatter": {
+        "present": true,
+        "valid": true,
+        "errors": []
+      }
+    }
+  }
+]

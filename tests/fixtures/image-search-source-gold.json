@@ -1,0 +1,1677 @@
+{
+  "source": {
+    "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+    "sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+    "handlerLines": [
+      18186,
+      18271
+    ],
+    "helperLines": [
+      16547,
+      16553,
+      14030,
+      14039
+    ],
+    "runtime": "pure-provided-cache-only-product-R0"
+  },
+  "records": [
+    {
+      "id": "character-single",
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pageWidth": 200,
+          "pageHeight": 150,
+          "lines": [
+            {
+              "text": "ABC",
+              "bbox": {
+                "x": 0,
+                "y": 0,
+                "width": 30,
+                "height": 10
+              },
+              "charBoxes": [
+                {
+                  "char": "A",
+                  "bbox": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      10,
+                      0
+                    ],
+                    [
+                      10,
+                      10
+                    ],
+                    [
+                      0,
+                      10
+                    ]
+                  ]
+                },
+                {
+                  "char": "B",
+                  "bbox": [
+                    [
+                      10,
+                      0
+                    ],
+                    [
+                      20,
+                      0
+                    ],
+                    [
+                      20,
+                      10
+                    ],
+                    [
+                      10,
+                      10
+                    ]
+                  ]
+                },
+                {
+                  "char": "C",
+                  "bbox": [
+                    [
+                      20,
+                      0
+                    ],
+                    [
+                      30,
+                      0
+                    ],
+                    [
+                      30,
+                      10
+                    ],
+                    [
+                      20,
+                      10
+                    ]
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "query": "B",
+      "expected": {
+        "success": true,
+        "results": [
+          {
+            "pageNumber": 1,
+            "x": 10,
+            "y": 0,
+            "width": 10,
+            "height": 10,
+            "ocrImageWidth": 200,
+            "ocrImageHeight": 150,
+            "matchedLine": "ABC",
+            "matchedLineSearchStart": 1,
+            "matchedLineSearchEnd": 2
+          }
+        ],
+        "checkedPageNumbers": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "repeat-nonoverlap",
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pageWidth": 200,
+          "pageHeight": 150,
+          "lines": [
+            {
+              "text": "aaaa",
+              "bbox": {
+                "x": 0,
+                "y": 0,
+                "width": 40,
+                "height": 10
+              },
+              "charBoxes": [
+                {
+                  "char": "a",
+                  "bbox": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      10,
+                      0
+                    ],
+                    [
+                      10,
+                      10
+                    ],
+                    [
+                      0,
+                      10
+                    ]
+                  ]
+                },
+                {
+                  "char": "a",
+                  "bbox": [
+                    [
+                      10,
+                      0
+                    ],
+                    [
+                      20,
+                      0
+                    ],
+                    [
+                      20,
+                      10
+                    ],
+                    [
+                      10,
+                      10
+                    ]
+                  ]
+                },
+                {
+                  "char": "a",
+                  "bbox": [
+                    [
+                      20,
+                      0
+                    ],
+                    [
+                      30,
+                      0
+                    ],
+                    [
+                      30,
+                      10
+                    ],
+                    [
+                      20,
+                      10
+                    ]
+                  ]
+                },
+                {
+                  "char": "a",
+                  "bbox": [
+                    [
+                      30,
+                      0
+                    ],
+                    [
+                      40,
+                      0
+                    ],
+                    [
+                      40,
+                      10
+                    ],
+                    [
+                      30,
+                      10
+                    ]
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "query": "aa",
+      "expected": {
+        "success": true,
+        "results": [
+          {
+            "pageNumber": 1,
+            "x": 0,
+            "y": 0,
+            "width": 20,
+            "height": 10,
+            "ocrImageWidth": 200,
+            "ocrImageHeight": 150,
+            "matchedLine": "aaaa",
+            "matchedLineSearchStart": 0,
+            "matchedLineSearchEnd": 2
+          },
+          {
+            "pageNumber": 1,
+            "x": 20,
+            "y": 0,
+            "width": 20,
+            "height": 10,
+            "ocrImageWidth": 200,
+            "ocrImageHeight": 150,
+            "matchedLine": "aaaa",
+            "matchedLineSearchStart": 2,
+            "matchedLineSearchEnd": 4
+          }
+        ],
+        "checkedPageNumbers": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "spacing-zero-width",
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pageWidth": 200,
+          "pageHeight": 150,
+          "lines": [
+            {
+              "text": "张 ​三",
+              "bbox": {
+                "x": 0,
+                "y": 0,
+                "width": 40,
+                "height": 10
+              },
+              "charBoxes": [
+                {
+                  "char": "张",
+                  "bbox": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      10,
+                      0
+                    ],
+                    [
+                      10,
+                      10
+                    ],
+                    [
+                      0,
+                      10
+                    ]
+                  ]
+                },
+                {
+                  "char": " ",
+                  "bbox": [
+                    [
+                      10,
+                      0
+                    ],
+                    [
+                      20,
+                      0
+                    ],
+                    [
+                      20,
+                      10
+                    ],
+                    [
+                      10,
+                      10
+                    ]
+                  ]
+                },
+                {
+                  "char": "​",
+                  "bbox": [
+                    [
+                      20,
+                      0
+                    ],
+                    [
+                      30,
+                      0
+                    ],
+                    [
+                      30,
+                      10
+                    ],
+                    [
+                      20,
+                      10
+                    ]
+                  ]
+                },
+                {
+                  "char": "三",
+                  "bbox": [
+                    [
+                      30,
+                      0
+                    ],
+                    [
+                      40,
+                      0
+                    ],
+                    [
+                      40,
+                      10
+                    ],
+                    [
+                      30,
+                      10
+                    ]
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "query": "张三",
+      "expected": {
+        "success": true,
+        "results": [
+          {
+            "pageNumber": 1,
+            "x": 0,
+            "y": 0,
+            "width": 40,
+            "height": 10,
+            "ocrImageWidth": 200,
+            "ocrImageHeight": 150,
+            "matchedLine": "张 ​三",
+            "matchedLineSearchStart": 0,
+            "matchedLineSearchEnd": 2
+          }
+        ],
+        "checkedPageNumbers": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "punctuation-preserved",
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pageWidth": 200,
+          "pageHeight": 150,
+          "lines": [
+            {
+              "text": "张,三",
+              "bbox": {
+                "x": 0,
+                "y": 0,
+                "width": 30,
+                "height": 10
+              },
+              "charBoxes": [
+                {
+                  "char": "张",
+                  "bbox": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      10,
+                      0
+                    ],
+                    [
+                      10,
+                      10
+                    ],
+                    [
+                      0,
+                      10
+                    ]
+                  ]
+                },
+                {
+                  "char": ",",
+                  "bbox": [
+                    [
+                      10,
+                      0
+                    ],
+                    [
+                      20,
+                      0
+                    ],
+                    [
+                      20,
+                      10
+                    ],
+                    [
+                      10,
+                      10
+                    ]
+                  ]
+                },
+                {
+                  "char": "三",
+                  "bbox": [
+                    [
+                      20,
+                      0
+                    ],
+                    [
+                      30,
+                      0
+                    ],
+                    [
+                      30,
+                      10
+                    ],
+                    [
+                      20,
+                      10
+                    ]
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "query": "张三",
+      "expected": {
+        "success": true,
+        "results": [],
+        "checkedPageNumbers": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "exact-word",
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pageWidth": 200,
+          "pageHeight": 150,
+          "lines": [
+            {
+              "text": "NAME",
+              "bbox": {
+                "x": 0,
+                "y": 0,
+                "width": 40,
+                "height": 10
+              }
+            }
+          ]
+        }
+      ],
+      "query": "NAME",
+      "expected": {
+        "success": true,
+        "results": [
+          {
+            "pageNumber": 1,
+            "x": 0,
+            "y": 0,
+            "width": 40,
+            "height": 10,
+            "ocrImageWidth": 200,
+            "ocrImageHeight": 150,
+            "matchedLine": "NAME",
+            "matchedLineSearchStart": 0,
+            "matchedLineSearchEnd": 4
+          }
+        ],
+        "checkedPageNumbers": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "word-part",
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pageWidth": 200,
+          "pageHeight": 150,
+          "lines": [
+            {
+              "text": "NAME",
+              "bbox": {
+                "x": 0,
+                "y": 0,
+                "width": 40,
+                "height": 10
+              }
+            }
+          ]
+        }
+      ],
+      "query": "AM",
+      "expected": {
+        "success": true,
+        "results": [
+          {
+            "pageNumber": 1,
+            "x": 10,
+            "y": 0,
+            "width": 20,
+            "height": 10,
+            "ocrImageWidth": 200,
+            "ocrImageHeight": 150,
+            "matchedLine": "NAME",
+            "matchedLineSearchStart": 1,
+            "matchedLineSearchEnd": 3
+          }
+        ],
+        "checkedPageNumbers": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "word-array-preferred",
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pageWidth": 200,
+          "pageHeight": 150,
+          "lines": [
+            {
+              "text": "XX",
+              "bbox": {
+                "x": 0,
+                "y": 0,
+                "width": 20,
+                "height": 10
+              }
+            }
+          ],
+          "words": [
+            {
+              "text": "NAME",
+              "bbox": {
+                "x": 0,
+                "y": 20,
+                "width": 40,
+                "height": 10
+              }
+            }
+          ]
+        }
+      ],
+      "query": "AM",
+      "expected": {
+        "success": true,
+        "results": [
+          {
+            "pageNumber": 1,
+            "x": 10,
+            "y": 20,
+            "width": 20,
+            "height": 10,
+            "ocrImageWidth": 200,
+            "ocrImageHeight": 150,
+            "matchedLine": "NAME",
+            "matchedLineSearchStart": 1,
+            "matchedLineSearchEnd": 3
+          }
+        ],
+        "checkedPageNumbers": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "cross-two-lines",
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pageWidth": 200,
+          "pageHeight": 150,
+          "lines": [
+            {
+              "text": "张",
+              "bbox": {
+                "x": 0,
+                "y": 0,
+                "width": 10,
+                "height": 10
+              },
+              "charBoxes": [
+                {
+                  "char": "张",
+                  "bbox": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      10,
+                      0
+                    ],
+                    [
+                      10,
+                      10
+                    ],
+                    [
+                      0,
+                      10
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "text": "三",
+              "bbox": {
+                "x": 0,
+                "y": 15,
+                "width": 10,
+                "height": 10
+              },
+              "charBoxes": [
+                {
+                  "char": "三",
+                  "bbox": [
+                    [
+                      0,
+                      15
+                    ],
+                    [
+                      10,
+                      15
+                    ],
+                    [
+                      10,
+                      25
+                    ],
+                    [
+                      0,
+                      25
+                    ]
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "query": "张三",
+      "expected": {
+        "success": true,
+        "results": [
+          {
+            "pageNumber": 1,
+            "bboxes": [
+              {
+                "x": 0,
+                "y": 0,
+                "width": 10,
+                "height": 10
+              },
+              {
+                "x": 0,
+                "y": 15,
+                "width": 10,
+                "height": 10
+              }
+            ],
+            "x": 0,
+            "y": 0,
+            "width": 10,
+            "height": 10,
+            "ocrImageWidth": 200,
+            "ocrImageHeight": 150,
+            "matchedLine": "张三",
+            "matchedLineSearchStart": 0,
+            "matchedLineSearchEnd": 2
+          }
+        ],
+        "checkedPageNumbers": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "cross-four-lines",
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pageWidth": 200,
+          "pageHeight": 150,
+          "lines": [
+            {
+              "text": "A",
+              "bbox": {
+                "x": 0,
+                "y": 0,
+                "width": 10,
+                "height": 10
+              },
+              "charBoxes": [
+                {
+                  "char": "A",
+                  "bbox": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      10,
+                      0
+                    ],
+                    [
+                      10,
+                      10
+                    ],
+                    [
+                      0,
+                      10
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "text": "B",
+              "bbox": {
+                "x": 0,
+                "y": 15,
+                "width": 10,
+                "height": 10
+              },
+              "charBoxes": [
+                {
+                  "char": "B",
+                  "bbox": [
+                    [
+                      0,
+                      15
+                    ],
+                    [
+                      10,
+                      15
+                    ],
+                    [
+                      10,
+                      25
+                    ],
+                    [
+                      0,
+                      25
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "text": "C",
+              "bbox": {
+                "x": 0,
+                "y": 30,
+                "width": 10,
+                "height": 10
+              },
+              "charBoxes": [
+                {
+                  "char": "C",
+                  "bbox": [
+                    [
+                      0,
+                      30
+                    ],
+                    [
+                      10,
+                      30
+                    ],
+                    [
+                      10,
+                      40
+                    ],
+                    [
+                      0,
+                      40
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "text": "D",
+              "bbox": {
+                "x": 0,
+                "y": 45,
+                "width": 10,
+                "height": 10
+              },
+              "charBoxes": [
+                {
+                  "char": "D",
+                  "bbox": [
+                    [
+                      0,
+                      45
+                    ],
+                    [
+                      10,
+                      45
+                    ],
+                    [
+                      10,
+                      55
+                    ],
+                    [
+                      0,
+                      55
+                    ]
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "query": "ABCD",
+      "expected": {
+        "success": true,
+        "results": [
+          {
+            "pageNumber": 1,
+            "bboxes": [
+              {
+                "x": 0,
+                "y": 0,
+                "width": 10,
+                "height": 10
+              },
+              {
+                "x": 0,
+                "y": 15,
+                "width": 10,
+                "height": 10
+              },
+              {
+                "x": 0,
+                "y": 30,
+                "width": 10,
+                "height": 10
+              },
+              {
+                "x": 0,
+                "y": 45,
+                "width": 10,
+                "height": 10
+              }
+            ],
+            "x": 0,
+            "y": 0,
+            "width": 10,
+            "height": 10,
+            "ocrImageWidth": 200,
+            "ocrImageHeight": 150,
+            "matchedLine": "ABCD",
+            "matchedLineSearchStart": 0,
+            "matchedLineSearchEnd": 4
+          }
+        ],
+        "checkedPageNumbers": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "too-large-line-gap",
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pageWidth": 200,
+          "pageHeight": 150,
+          "lines": [
+            {
+              "text": "A",
+              "bbox": {
+                "x": 0,
+                "y": 0,
+                "width": 10,
+                "height": 10
+              },
+              "charBoxes": [
+                {
+                  "char": "A",
+                  "bbox": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      10,
+                      0
+                    ],
+                    [
+                      10,
+                      10
+                    ],
+                    [
+                      0,
+                      10
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "text": "B",
+              "bbox": {
+                "x": 0,
+                "y": 50,
+                "width": 10,
+                "height": 10
+              },
+              "charBoxes": [
+                {
+                  "char": "B",
+                  "bbox": [
+                    [
+                      0,
+                      50
+                    ],
+                    [
+                      10,
+                      50
+                    ],
+                    [
+                      10,
+                      60
+                    ],
+                    [
+                      0,
+                      60
+                    ]
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "query": "AB",
+      "expected": {
+        "success": true,
+        "results": [],
+        "checkedPageNumbers": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "cross-line-fallback",
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pageWidth": 200,
+          "pageHeight": 150,
+          "lines": [
+            {
+              "text": "AB",
+              "bbox": {
+                "x": 0,
+                "y": 0,
+                "width": 20,
+                "height": 10
+              }
+            },
+            {
+              "text": "CD",
+              "bbox": {
+                "x": 0,
+                "y": 15,
+                "width": 20,
+                "height": 10
+              }
+            }
+          ]
+        }
+      ],
+      "query": "BC",
+      "expected": {
+        "success": true,
+        "results": [
+          {
+            "pageNumber": 1,
+            "bboxes": [
+              {
+                "x": 10,
+                "y": 0,
+                "width": 10,
+                "height": 10
+              },
+              {
+                "x": 0,
+                "y": 15,
+                "width": 10,
+                "height": 10
+              }
+            ],
+            "x": 10,
+            "y": 0,
+            "width": 10,
+            "height": 10,
+            "ocrImageWidth": 200,
+            "ocrImageHeight": 150,
+            "matchedLine": "ABCD",
+            "matchedLineSearchStart": 1,
+            "matchedLineSearchEnd": 3
+          }
+        ],
+        "checkedPageNumbers": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "geometry-dedupe",
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pageWidth": 200,
+          "pageHeight": 150,
+          "lines": [
+            {
+              "text": "A",
+              "bbox": {
+                "x": 0,
+                "y": 0,
+                "width": 10,
+                "height": 10
+              },
+              "charBoxes": [
+                {
+                  "char": "A",
+                  "bbox": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      10,
+                      0
+                    ],
+                    [
+                      10,
+                      10
+                    ],
+                    [
+                      0,
+                      10
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "text": "A",
+              "bbox": {
+                "x": 0,
+                "y": 0,
+                "width": 10,
+                "height": 10
+              },
+              "charBoxes": [
+                {
+                  "char": "A",
+                  "bbox": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      10,
+                      0
+                    ],
+                    [
+                      10,
+                      10
+                    ],
+                    [
+                      0,
+                      10
+                    ]
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "query": "A",
+      "expected": {
+        "success": true,
+        "results": [
+          {
+            "pageNumber": 1,
+            "x": 0,
+            "y": 0,
+            "width": 10,
+            "height": 10,
+            "ocrImageWidth": 200,
+            "ocrImageHeight": 150,
+            "matchedLine": "A",
+            "matchedLineSearchStart": 0,
+            "matchedLineSearchEnd": 1
+          }
+        ],
+        "checkedPageNumbers": [
+          1
+        ]
+      }
+    },
+    {
+      "id": "all-pages",
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pageWidth": 200,
+          "pageHeight": 150,
+          "lines": [
+            {
+              "text": "A",
+              "bbox": {
+                "x": 0,
+                "y": 0,
+                "width": 10,
+                "height": 10
+              },
+              "charBoxes": [
+                {
+                  "char": "A",
+                  "bbox": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      10,
+                      0
+                    ],
+                    [
+                      10,
+                      10
+                    ],
+                    [
+                      0,
+                      10
+                    ]
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageNumber": 2,
+          "pageWidth": 200,
+          "pageHeight": 150,
+          "lines": [
+            {
+              "text": "A",
+              "bbox": {
+                "x": 0,
+                "y": 0,
+                "width": 10,
+                "height": 10
+              },
+              "charBoxes": [
+                {
+                  "char": "A",
+                  "bbox": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      10,
+                      0
+                    ],
+                    [
+                      10,
+                      10
+                    ],
+                    [
+                      0,
+                      10
+                    ]
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "query": "A",
+      "expected": {
+        "success": true,
+        "results": [
+          {
+            "pageNumber": 1,
+            "x": 0,
+            "y": 0,
+            "width": 10,
+            "height": 10,
+            "ocrImageWidth": 200,
+            "ocrImageHeight": 150,
+            "matchedLine": "A",
+            "matchedLineSearchStart": 0,
+            "matchedLineSearchEnd": 1
+          },
+          {
+            "pageNumber": 2,
+            "x": 0,
+            "y": 0,
+            "width": 10,
+            "height": 10,
+            "ocrImageWidth": 200,
+            "ocrImageHeight": 150,
+            "matchedLine": "A",
+            "matchedLineSearchStart": 0,
+            "matchedLineSearchEnd": 1
+          }
+        ],
+        "checkedPageNumbers": [
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "id": "page-filter",
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pageWidth": 200,
+          "pageHeight": 150,
+          "lines": [
+            {
+              "text": "A",
+              "bbox": {
+                "x": 0,
+                "y": 0,
+                "width": 10,
+                "height": 10
+              },
+              "charBoxes": [
+                {
+                  "char": "A",
+                  "bbox": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      10,
+                      0
+                    ],
+                    [
+                      10,
+                      10
+                    ],
+                    [
+                      0,
+                      10
+                    ]
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "pageNumber": 2,
+          "pageWidth": 200,
+          "pageHeight": 150,
+          "lines": [
+            {
+              "text": "A",
+              "bbox": {
+                "x": 0,
+                "y": 0,
+                "width": 10,
+                "height": 10
+              },
+              "charBoxes": [
+                {
+                  "char": "A",
+                  "bbox": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      10,
+                      0
+                    ],
+                    [
+                      10,
+                      10
+                    ],
+                    [
+                      0,
+                      10
+                    ]
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "query": "A",
+      "pageIndex": 1,
+      "expected": {
+        "success": true,
+        "results": [
+          {
+            "pageNumber": 2,
+            "x": 0,
+            "y": 0,
+            "width": 10,
+            "height": 10,
+            "ocrImageWidth": 200,
+            "ocrImageHeight": 150,
+            "matchedLine": "A",
+            "matchedLineSearchStart": 0,
+            "matchedLineSearchEnd": 1
+          }
+        ],
+        "checkedPageNumbers": [
+          2
+        ]
+      }
+    }
+  ],
+  "documentedSourceBugs": [
+    {
+      "id": "utf16-astral-char-map",
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pageWidth": 200,
+          "pageHeight": 150,
+          "lines": [
+            {
+              "text": "😀A",
+              "bbox": {
+                "x": 0,
+                "y": 0,
+                "width": 30,
+                "height": 10
+              },
+              "charBoxes": [
+                {
+                  "char": "😀",
+                  "bbox": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      10,
+                      0
+                    ],
+                    [
+                      10,
+                      10
+                    ],
+                    [
+                      0,
+                      10
+                    ]
+                  ]
+                },
+                {
+                  "char": "A",
+                  "bbox": [
+                    [
+                      10,
+                      0
+                    ],
+                    [
+                      20,
+                      0
+                    ],
+                    [
+                      20,
+                      10
+                    ],
+                    [
+                      10,
+                      10
+                    ]
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "query": "A",
+      "source": {
+        "success": true,
+        "results": [],
+        "checkedPageNumbers": [
+          1
+        ]
+      },
+      "ours": {
+        "success": true,
+        "results": [
+          {
+            "x": 10,
+            "y": 0,
+            "width": 10,
+            "height": 10,
+            "pageNumber": 1,
+            "ocrImageWidth": 200,
+            "ocrImageHeight": 150,
+            "matchedLine": "😀A",
+            "matchedLineSearchStart": 2,
+            "matchedLineSearchEnd": 3
+          }
+        ],
+        "checkedPageNumbers": [
+          1
+        ]
+      },
+      "matched": false,
+      "reason": "Source indexes code-point char map with UTF-16 offsets or inconsistent whitespace; ours preserves canonical UTF-16 and the same whitespace normalization."
+    },
+    {
+      "id": "zero-width-crossline-map",
+      "pages": [
+        {
+          "pageNumber": 1,
+          "pageWidth": 200,
+          "pageHeight": 150,
+          "lines": [
+            {
+              "text": "A​B",
+              "bbox": {
+                "x": 0,
+                "y": 0,
+                "width": 30,
+                "height": 10
+              },
+              "charBoxes": [
+                {
+                  "char": "A",
+                  "bbox": [
+                    [
+                      0,
+                      0
+                    ],
+                    [
+                      10,
+                      0
+                    ],
+                    [
+                      10,
+                      10
+                    ],
+                    [
+                      0,
+                      10
+                    ]
+                  ]
+                },
+                {
+                  "char": "​",
+                  "bbox": [
+                    [
+                      10,
+                      0
+                    ],
+                    [
+                      20,
+                      0
+                    ],
+                    [
+                      20,
+                      10
+                    ],
+                    [
+                      10,
+                      10
+                    ]
+                  ]
+                },
+                {
+                  "char": "B",
+                  "bbox": [
+                    [
+                      20,
+                      0
+                    ],
+                    [
+                      30,
+                      0
+                    ],
+                    [
+                      30,
+                      10
+                    ],
+                    [
+                      20,
+                      10
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "text": "C",
+              "bbox": {
+                "x": 0,
+                "y": 15,
+                "width": 10,
+                "height": 10
+              },
+              "charBoxes": [
+                {
+                  "char": "C",
+                  "bbox": [
+                    [
+                      0,
+                      15
+                    ],
+                    [
+                      10,
+                      15
+                    ],
+                    [
+                      10,
+                      25
+                    ],
+                    [
+                      0,
+                      25
+                    ]
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "query": "BC",
+      "source": {
+        "success": true,
+        "results": [
+          {
+            "pageNumber": 1,
+            "bboxes": [
+              {
+                "x": 10,
+                "y": 0,
+                "width": 10,
+                "height": 10
+              },
+              {
+                "x": 0,
+                "y": 15,
+                "width": 10,
+                "height": 10
+              }
+            ],
+            "x": 10,
+            "y": 0,
+            "width": 10,
+            "height": 10,
+            "ocrImageWidth": 200,
+            "ocrImageHeight": 150,
+            "matchedLine": "A​BC",
+            "matchedLineSearchStart": 1,
+            "matchedLineSearchEnd": 3
+          }
+        ],
+        "checkedPageNumbers": [
+          1
+        ]
+      },
+      "ours": {
+        "success": true,
+        "results": [
+          {
+            "x": 20,
+            "y": 0,
+            "width": 10,
+            "height": 10,
+            "pageNumber": 1,
+            "ocrImageWidth": 200,
+            "ocrImageHeight": 150,
+            "matchedLine": "A​BC",
+            "matchedLineSearchStart": 1,
+            "matchedLineSearchEnd": 3,
+            "bboxes": [
+              {
+                "x": 20,
+                "y": 0,
+                "width": 10,
+                "height": 10
+              },
+              {
+                "x": 0,
+                "y": 15,
+                "width": 10,
+                "height": 10
+              }
+            ]
+          }
+        ],
+        "checkedPageNumbers": [
+          1
+        ]
+      },
+      "matched": false,
+      "reason": "Source indexes code-point char map with UTF-16 offsets or inconsistent whitespace; ours preserves canonical UTF-16 and the same whitespace normalization."
+    }
+  ]
+}

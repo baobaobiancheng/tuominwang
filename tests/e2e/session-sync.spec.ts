@@ -8,8 +8,8 @@ test("a tab with an old project list synchronizes after another tab switches acc
   await page.getByRole("button", { name: "登录工作台" }).click();
   const project = "跨标签页合成项目-" + randomUUID().slice(0, 8);
   for (const name of [project, project + "-另一个"]) {
-    await page.locator("summary").click();
-    await page.getByLabel("项目名称").fill(name);
+    await page.locator(".create-project summary").click();
+    await page.getByLabel("项目名称", { exact: true }).fill(name);
     await page.getByRole("button", { name: "新建项目", exact: true }).click();
     await expect(page.getByRole("heading", { name, exact: true })).toBeVisible();
   }
@@ -38,8 +38,8 @@ for (const lateStatus of [200, 401] as const) {
     await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
     await page.getByRole("button", { name: "登录工作台" }).click();
     const project = "切号中的合成上传-" + randomUUID().slice(0, 8);
-    await page.locator("summary").click();
-    await page.getByLabel("项目名称").fill(project);
+    await page.locator(".create-project summary").click();
+    await page.getByLabel("项目名称", { exact: true }).fill(project);
     await page.getByRole("button", { name: "新建项目", exact: true }).click();
     await expect(page.getByRole("heading", { name: project, exact: true })).toBeVisible();
 

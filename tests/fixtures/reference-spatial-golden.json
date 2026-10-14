@@ -1,0 +1,10156 @@
+[
+  {
+    "headed": true,
+    "gap": 0,
+    "n": 1,
+    "rowWidth": 35,
+    "text": "股权结构\n张三\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": true,
+    "gap": 0,
+    "n": 1,
+    "rowWidth": 80,
+    "text": "股权结构\n张三\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": true,
+    "gap": 0,
+    "n": 2,
+    "rowWidth": 35,
+    "text": "股权结构\n张三\n25%\n李四\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": true,
+    "gap": 0,
+    "n": 2,
+    "rowWidth": 80,
+    "text": "股权结构\n张三\n25%\n李四\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": [
+      {
+        "start": 5,
+        "end": 7,
+        "kind": "姓名",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "start": 12,
+        "end": 14,
+        "kind": "姓名",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ]
+  },
+  {
+    "headed": true,
+    "gap": 0,
+    "n": 3,
+    "rowWidth": 35,
+    "text": "股权结构\n张三\n25%\n李四\n25%\n股东\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 19,
+        "end": 21,
+        "text": "股东",
+        "bbox": {
+          "x": 90,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 22,
+        "end": 25,
+        "text": "25%",
+        "bbox": {
+          "x": 90,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": true,
+    "gap": 0,
+    "n": 3,
+    "rowWidth": 80,
+    "text": "股权结构\n张三\n25%\n李四\n25%\n股东\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 19,
+        "end": 21,
+        "text": "股东",
+        "bbox": {
+          "x": 180,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 22,
+        "end": 25,
+        "text": "25%",
+        "bbox": {
+          "x": 180,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": [
+      {
+        "start": 5,
+        "end": 7,
+        "kind": "姓名",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "start": 12,
+        "end": 14,
+        "kind": "姓名",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ]
+  },
+  {
+    "headed": true,
+    "gap": 0,
+    "n": 4,
+    "rowWidth": 35,
+    "text": "股权结构\n张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 19,
+        "end": 21,
+        "text": "股东",
+        "bbox": {
+          "x": 90,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 22,
+        "end": 25,
+        "text": "25%",
+        "bbox": {
+          "x": 90,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 26,
+        "end": 33,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 125,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:8",
+        "page": 0,
+        "start": 34,
+        "end": 37,
+        "text": "25%",
+        "bbox": {
+          "x": 125,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": true,
+    "gap": 0,
+    "n": 4,
+    "rowWidth": 80,
+    "text": "股权结构\n张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 19,
+        "end": 21,
+        "text": "股东",
+        "bbox": {
+          "x": 180,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 22,
+        "end": 25,
+        "text": "25%",
+        "bbox": {
+          "x": 180,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 26,
+        "end": 33,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 260,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:8",
+        "page": 0,
+        "start": 34,
+        "end": 37,
+        "text": "25%",
+        "bbox": {
+          "x": 260,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": [
+      {
+        "start": 5,
+        "end": 7,
+        "kind": "姓名",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "start": 12,
+        "end": 14,
+        "kind": "姓名",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "start": 26,
+        "end": 33,
+        "kind": "机构",
+        "bbox": {
+          "x": 260,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      }
+    ]
+  },
+  {
+    "headed": true,
+    "gap": 0,
+    "n": 5,
+    "rowWidth": 35,
+    "text": "股权结构\n张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%\n王五\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 19,
+        "end": 21,
+        "text": "股东",
+        "bbox": {
+          "x": 90,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 22,
+        "end": 25,
+        "text": "25%",
+        "bbox": {
+          "x": 90,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 26,
+        "end": 33,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 125,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:8",
+        "page": 0,
+        "start": 34,
+        "end": 37,
+        "text": "25%",
+        "bbox": {
+          "x": 125,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:9",
+        "page": 0,
+        "start": 38,
+        "end": 40,
+        "text": "王五",
+        "bbox": {
+          "x": 160,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:10",
+        "page": 0,
+        "start": 41,
+        "end": 44,
+        "text": "25%",
+        "bbox": {
+          "x": 160,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": true,
+    "gap": 0,
+    "n": 5,
+    "rowWidth": 80,
+    "text": "股权结构\n张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%\n王五\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 19,
+        "end": 21,
+        "text": "股东",
+        "bbox": {
+          "x": 180,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 22,
+        "end": 25,
+        "text": "25%",
+        "bbox": {
+          "x": 180,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 26,
+        "end": 33,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 260,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:8",
+        "page": 0,
+        "start": 34,
+        "end": 37,
+        "text": "25%",
+        "bbox": {
+          "x": 260,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:9",
+        "page": 0,
+        "start": 38,
+        "end": 40,
+        "text": "王五",
+        "bbox": {
+          "x": 340,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:10",
+        "page": 0,
+        "start": 41,
+        "end": 44,
+        "text": "25%",
+        "bbox": {
+          "x": 340,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": [
+      {
+        "start": 5,
+        "end": 7,
+        "kind": "姓名",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "start": 12,
+        "end": 14,
+        "kind": "姓名",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "start": 26,
+        "end": 33,
+        "kind": "机构",
+        "bbox": {
+          "x": 260,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "start": 38,
+        "end": 40,
+        "kind": "姓名",
+        "bbox": {
+          "x": 340,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ]
+  },
+  {
+    "headed": true,
+    "gap": 8,
+    "n": 1,
+    "rowWidth": 35,
+    "text": "股权结构\n张三\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": true,
+    "gap": 8,
+    "n": 1,
+    "rowWidth": 80,
+    "text": "股权结构\n张三\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": true,
+    "gap": 8,
+    "n": 2,
+    "rowWidth": 35,
+    "text": "股权结构\n张三\n25%\n李四\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": true,
+    "gap": 8,
+    "n": 2,
+    "rowWidth": 80,
+    "text": "股权结构\n张三\n25%\n李四\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": [
+      {
+        "start": 5,
+        "end": 7,
+        "kind": "姓名",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "start": 12,
+        "end": 14,
+        "kind": "姓名",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ]
+  },
+  {
+    "headed": true,
+    "gap": 8,
+    "n": 3,
+    "rowWidth": 35,
+    "text": "股权结构\n张三\n25%\n李四\n25%\n股东\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 19,
+        "end": 21,
+        "text": "股东",
+        "bbox": {
+          "x": 90,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 22,
+        "end": 25,
+        "text": "25%",
+        "bbox": {
+          "x": 90,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": true,
+    "gap": 8,
+    "n": 3,
+    "rowWidth": 80,
+    "text": "股权结构\n张三\n25%\n李四\n25%\n股东\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 19,
+        "end": 21,
+        "text": "股东",
+        "bbox": {
+          "x": 180,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 22,
+        "end": 25,
+        "text": "25%",
+        "bbox": {
+          "x": 180,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": [
+      {
+        "start": 5,
+        "end": 7,
+        "kind": "姓名",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "start": 12,
+        "end": 14,
+        "kind": "姓名",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ]
+  },
+  {
+    "headed": true,
+    "gap": 8,
+    "n": 4,
+    "rowWidth": 35,
+    "text": "股权结构\n张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 19,
+        "end": 21,
+        "text": "股东",
+        "bbox": {
+          "x": 90,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 22,
+        "end": 25,
+        "text": "25%",
+        "bbox": {
+          "x": 90,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 26,
+        "end": 33,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 125,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:8",
+        "page": 0,
+        "start": 34,
+        "end": 37,
+        "text": "25%",
+        "bbox": {
+          "x": 125,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": true,
+    "gap": 8,
+    "n": 4,
+    "rowWidth": 80,
+    "text": "股权结构\n张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 19,
+        "end": 21,
+        "text": "股东",
+        "bbox": {
+          "x": 180,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 22,
+        "end": 25,
+        "text": "25%",
+        "bbox": {
+          "x": 180,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 26,
+        "end": 33,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 260,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:8",
+        "page": 0,
+        "start": 34,
+        "end": 37,
+        "text": "25%",
+        "bbox": {
+          "x": 260,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": [
+      {
+        "start": 5,
+        "end": 7,
+        "kind": "姓名",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "start": 12,
+        "end": 14,
+        "kind": "姓名",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "start": 26,
+        "end": 33,
+        "kind": "机构",
+        "bbox": {
+          "x": 260,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      }
+    ]
+  },
+  {
+    "headed": true,
+    "gap": 8,
+    "n": 5,
+    "rowWidth": 35,
+    "text": "股权结构\n张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%\n王五\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 19,
+        "end": 21,
+        "text": "股东",
+        "bbox": {
+          "x": 90,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 22,
+        "end": 25,
+        "text": "25%",
+        "bbox": {
+          "x": 90,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 26,
+        "end": 33,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 125,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:8",
+        "page": 0,
+        "start": 34,
+        "end": 37,
+        "text": "25%",
+        "bbox": {
+          "x": 125,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:9",
+        "page": 0,
+        "start": 38,
+        "end": 40,
+        "text": "王五",
+        "bbox": {
+          "x": 160,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:10",
+        "page": 0,
+        "start": 41,
+        "end": 44,
+        "text": "25%",
+        "bbox": {
+          "x": 160,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": true,
+    "gap": 8,
+    "n": 5,
+    "rowWidth": 80,
+    "text": "股权结构\n张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%\n王五\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 19,
+        "end": 21,
+        "text": "股东",
+        "bbox": {
+          "x": 180,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 22,
+        "end": 25,
+        "text": "25%",
+        "bbox": {
+          "x": 180,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 26,
+        "end": 33,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 260,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:8",
+        "page": 0,
+        "start": 34,
+        "end": 37,
+        "text": "25%",
+        "bbox": {
+          "x": 260,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:9",
+        "page": 0,
+        "start": 38,
+        "end": 40,
+        "text": "王五",
+        "bbox": {
+          "x": 340,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:10",
+        "page": 0,
+        "start": 41,
+        "end": 44,
+        "text": "25%",
+        "bbox": {
+          "x": 340,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": [
+      {
+        "start": 5,
+        "end": 7,
+        "kind": "姓名",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "start": 12,
+        "end": 14,
+        "kind": "姓名",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "start": 26,
+        "end": 33,
+        "kind": "机构",
+        "bbox": {
+          "x": 260,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "start": 38,
+        "end": 40,
+        "kind": "姓名",
+        "bbox": {
+          "x": 340,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ]
+  },
+  {
+    "headed": true,
+    "gap": 35,
+    "n": 1,
+    "rowWidth": 35,
+    "text": "股权结构\n张三\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": true,
+    "gap": 35,
+    "n": 1,
+    "rowWidth": 80,
+    "text": "股权结构\n张三\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": true,
+    "gap": 35,
+    "n": 2,
+    "rowWidth": 35,
+    "text": "股权结构\n张三\n25%\n李四\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": true,
+    "gap": 35,
+    "n": 2,
+    "rowWidth": 80,
+    "text": "股权结构\n张三\n25%\n李四\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": [
+      {
+        "start": 5,
+        "end": 7,
+        "kind": "姓名",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "start": 12,
+        "end": 14,
+        "kind": "姓名",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ]
+  },
+  {
+    "headed": true,
+    "gap": 35,
+    "n": 3,
+    "rowWidth": 35,
+    "text": "股权结构\n张三\n25%\n李四\n25%\n股东\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 19,
+        "end": 21,
+        "text": "股东",
+        "bbox": {
+          "x": 90,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 22,
+        "end": 25,
+        "text": "25%",
+        "bbox": {
+          "x": 90,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": true,
+    "gap": 35,
+    "n": 3,
+    "rowWidth": 80,
+    "text": "股权结构\n张三\n25%\n李四\n25%\n股东\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 19,
+        "end": 21,
+        "text": "股东",
+        "bbox": {
+          "x": 180,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 22,
+        "end": 25,
+        "text": "25%",
+        "bbox": {
+          "x": 180,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": [
+      {
+        "start": 5,
+        "end": 7,
+        "kind": "姓名",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "start": 12,
+        "end": 14,
+        "kind": "姓名",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ]
+  },
+  {
+    "headed": true,
+    "gap": 35,
+    "n": 4,
+    "rowWidth": 35,
+    "text": "股权结构\n张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 19,
+        "end": 21,
+        "text": "股东",
+        "bbox": {
+          "x": 90,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 22,
+        "end": 25,
+        "text": "25%",
+        "bbox": {
+          "x": 90,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 26,
+        "end": 33,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 125,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:8",
+        "page": 0,
+        "start": 34,
+        "end": 37,
+        "text": "25%",
+        "bbox": {
+          "x": 125,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": true,
+    "gap": 35,
+    "n": 4,
+    "rowWidth": 80,
+    "text": "股权结构\n张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 19,
+        "end": 21,
+        "text": "股东",
+        "bbox": {
+          "x": 180,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 22,
+        "end": 25,
+        "text": "25%",
+        "bbox": {
+          "x": 180,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 26,
+        "end": 33,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 260,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:8",
+        "page": 0,
+        "start": 34,
+        "end": 37,
+        "text": "25%",
+        "bbox": {
+          "x": 260,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": [
+      {
+        "start": 5,
+        "end": 7,
+        "kind": "姓名",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "start": 12,
+        "end": 14,
+        "kind": "姓名",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "start": 26,
+        "end": 33,
+        "kind": "机构",
+        "bbox": {
+          "x": 260,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      }
+    ]
+  },
+  {
+    "headed": true,
+    "gap": 35,
+    "n": 5,
+    "rowWidth": 35,
+    "text": "股权结构\n张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%\n王五\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 19,
+        "end": 21,
+        "text": "股东",
+        "bbox": {
+          "x": 90,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 22,
+        "end": 25,
+        "text": "25%",
+        "bbox": {
+          "x": 90,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 26,
+        "end": 33,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 125,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:8",
+        "page": 0,
+        "start": 34,
+        "end": 37,
+        "text": "25%",
+        "bbox": {
+          "x": 125,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:9",
+        "page": 0,
+        "start": 38,
+        "end": 40,
+        "text": "王五",
+        "bbox": {
+          "x": 160,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:10",
+        "page": 0,
+        "start": 41,
+        "end": 44,
+        "text": "25%",
+        "bbox": {
+          "x": 160,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": true,
+    "gap": 35,
+    "n": 5,
+    "rowWidth": 80,
+    "text": "股权结构\n张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%\n王五\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 19,
+        "end": 21,
+        "text": "股东",
+        "bbox": {
+          "x": 180,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 22,
+        "end": 25,
+        "text": "25%",
+        "bbox": {
+          "x": 180,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 26,
+        "end": 33,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 260,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:8",
+        "page": 0,
+        "start": 34,
+        "end": 37,
+        "text": "25%",
+        "bbox": {
+          "x": 260,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:9",
+        "page": 0,
+        "start": 38,
+        "end": 40,
+        "text": "王五",
+        "bbox": {
+          "x": 340,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:10",
+        "page": 0,
+        "start": 41,
+        "end": 44,
+        "text": "25%",
+        "bbox": {
+          "x": 340,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": [
+      {
+        "start": 5,
+        "end": 7,
+        "kind": "姓名",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "start": 12,
+        "end": 14,
+        "kind": "姓名",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "start": 26,
+        "end": 33,
+        "kind": "机构",
+        "bbox": {
+          "x": 260,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "start": 38,
+        "end": 40,
+        "kind": "姓名",
+        "bbox": {
+          "x": 340,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ]
+  },
+  {
+    "headed": true,
+    "gap": 90,
+    "n": 1,
+    "rowWidth": 35,
+    "text": "股权结构\n张三\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": true,
+    "gap": 90,
+    "n": 1,
+    "rowWidth": 80,
+    "text": "股权结构\n张三\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": true,
+    "gap": 90,
+    "n": 2,
+    "rowWidth": 35,
+    "text": "股权结构\n张三\n25%\n李四\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": true,
+    "gap": 90,
+    "n": 2,
+    "rowWidth": 80,
+    "text": "股权结构\n张三\n25%\n李四\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": [
+      {
+        "start": 5,
+        "end": 7,
+        "kind": "姓名",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "start": 12,
+        "end": 14,
+        "kind": "姓名",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ]
+  },
+  {
+    "headed": true,
+    "gap": 90,
+    "n": 3,
+    "rowWidth": 35,
+    "text": "股权结构\n张三\n25%\n李四\n25%\n股东\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 19,
+        "end": 21,
+        "text": "股东",
+        "bbox": {
+          "x": 90,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 22,
+        "end": 25,
+        "text": "25%",
+        "bbox": {
+          "x": 90,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": true,
+    "gap": 90,
+    "n": 3,
+    "rowWidth": 80,
+    "text": "股权结构\n张三\n25%\n李四\n25%\n股东\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 19,
+        "end": 21,
+        "text": "股东",
+        "bbox": {
+          "x": 180,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 22,
+        "end": 25,
+        "text": "25%",
+        "bbox": {
+          "x": 180,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": [
+      {
+        "start": 5,
+        "end": 7,
+        "kind": "姓名",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "start": 12,
+        "end": 14,
+        "kind": "姓名",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ]
+  },
+  {
+    "headed": true,
+    "gap": 90,
+    "n": 4,
+    "rowWidth": 35,
+    "text": "股权结构\n张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 19,
+        "end": 21,
+        "text": "股东",
+        "bbox": {
+          "x": 90,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 22,
+        "end": 25,
+        "text": "25%",
+        "bbox": {
+          "x": 90,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 26,
+        "end": 33,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 125,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:8",
+        "page": 0,
+        "start": 34,
+        "end": 37,
+        "text": "25%",
+        "bbox": {
+          "x": 125,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": true,
+    "gap": 90,
+    "n": 4,
+    "rowWidth": 80,
+    "text": "股权结构\n张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 19,
+        "end": 21,
+        "text": "股东",
+        "bbox": {
+          "x": 180,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 22,
+        "end": 25,
+        "text": "25%",
+        "bbox": {
+          "x": 180,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 26,
+        "end": 33,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 260,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:8",
+        "page": 0,
+        "start": 34,
+        "end": 37,
+        "text": "25%",
+        "bbox": {
+          "x": 260,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": [
+      {
+        "start": 5,
+        "end": 7,
+        "kind": "姓名",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "start": 12,
+        "end": 14,
+        "kind": "姓名",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "start": 26,
+        "end": 33,
+        "kind": "机构",
+        "bbox": {
+          "x": 260,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      }
+    ]
+  },
+  {
+    "headed": true,
+    "gap": 90,
+    "n": 5,
+    "rowWidth": 35,
+    "text": "股权结构\n张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%\n王五\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 19,
+        "end": 21,
+        "text": "股东",
+        "bbox": {
+          "x": 90,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 22,
+        "end": 25,
+        "text": "25%",
+        "bbox": {
+          "x": 90,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 26,
+        "end": 33,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 125,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:8",
+        "page": 0,
+        "start": 34,
+        "end": 37,
+        "text": "25%",
+        "bbox": {
+          "x": 125,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:9",
+        "page": 0,
+        "start": 38,
+        "end": 40,
+        "text": "王五",
+        "bbox": {
+          "x": 160,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:10",
+        "page": 0,
+        "start": 41,
+        "end": 44,
+        "text": "25%",
+        "bbox": {
+          "x": 160,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": true,
+    "gap": 90,
+    "n": 5,
+    "rowWidth": 80,
+    "text": "股权结构\n张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%\n王五\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 19,
+        "end": 21,
+        "text": "股东",
+        "bbox": {
+          "x": 180,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 22,
+        "end": 25,
+        "text": "25%",
+        "bbox": {
+          "x": 180,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 26,
+        "end": 33,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 260,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:8",
+        "page": 0,
+        "start": 34,
+        "end": 37,
+        "text": "25%",
+        "bbox": {
+          "x": 260,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:9",
+        "page": 0,
+        "start": 38,
+        "end": 40,
+        "text": "王五",
+        "bbox": {
+          "x": 340,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:10",
+        "page": 0,
+        "start": 41,
+        "end": 44,
+        "text": "25%",
+        "bbox": {
+          "x": 340,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": [
+      {
+        "start": 5,
+        "end": 7,
+        "kind": "姓名",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "start": 12,
+        "end": 14,
+        "kind": "姓名",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "start": 26,
+        "end": 33,
+        "kind": "机构",
+        "bbox": {
+          "x": 260,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "start": 38,
+        "end": 40,
+        "kind": "姓名",
+        "bbox": {
+          "x": 340,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ]
+  },
+  {
+    "headed": true,
+    "gap": 96,
+    "n": 1,
+    "rowWidth": 35,
+    "text": "股权结构\n张三\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": true,
+    "gap": 96,
+    "n": 1,
+    "rowWidth": 80,
+    "text": "股权结构\n张三\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": true,
+    "gap": 96,
+    "n": 2,
+    "rowWidth": 35,
+    "text": "股权结构\n张三\n25%\n李四\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": true,
+    "gap": 96,
+    "n": 2,
+    "rowWidth": 80,
+    "text": "股权结构\n张三\n25%\n李四\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": true,
+    "gap": 96,
+    "n": 3,
+    "rowWidth": 35,
+    "text": "股权结构\n张三\n25%\n李四\n25%\n股东\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 19,
+        "end": 21,
+        "text": "股东",
+        "bbox": {
+          "x": 90,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 22,
+        "end": 25,
+        "text": "25%",
+        "bbox": {
+          "x": 90,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": true,
+    "gap": 96,
+    "n": 3,
+    "rowWidth": 80,
+    "text": "股权结构\n张三\n25%\n李四\n25%\n股东\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 19,
+        "end": 21,
+        "text": "股东",
+        "bbox": {
+          "x": 180,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 22,
+        "end": 25,
+        "text": "25%",
+        "bbox": {
+          "x": 180,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": true,
+    "gap": 96,
+    "n": 4,
+    "rowWidth": 35,
+    "text": "股权结构\n张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 19,
+        "end": 21,
+        "text": "股东",
+        "bbox": {
+          "x": 90,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 22,
+        "end": 25,
+        "text": "25%",
+        "bbox": {
+          "x": 90,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 26,
+        "end": 33,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 125,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:8",
+        "page": 0,
+        "start": 34,
+        "end": 37,
+        "text": "25%",
+        "bbox": {
+          "x": 125,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": true,
+    "gap": 96,
+    "n": 4,
+    "rowWidth": 80,
+    "text": "股权结构\n张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 19,
+        "end": 21,
+        "text": "股东",
+        "bbox": {
+          "x": 180,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 22,
+        "end": 25,
+        "text": "25%",
+        "bbox": {
+          "x": 180,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 26,
+        "end": 33,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 260,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:8",
+        "page": 0,
+        "start": 34,
+        "end": 37,
+        "text": "25%",
+        "bbox": {
+          "x": 260,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": [
+      {
+        "start": 26,
+        "end": 33,
+        "kind": "机构",
+        "bbox": {
+          "x": 260,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      }
+    ]
+  },
+  {
+    "headed": true,
+    "gap": 96,
+    "n": 5,
+    "rowWidth": 35,
+    "text": "股权结构\n张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%\n王五\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 19,
+        "end": 21,
+        "text": "股东",
+        "bbox": {
+          "x": 90,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 22,
+        "end": 25,
+        "text": "25%",
+        "bbox": {
+          "x": 90,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 26,
+        "end": 33,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 125,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:8",
+        "page": 0,
+        "start": 34,
+        "end": 37,
+        "text": "25%",
+        "bbox": {
+          "x": 125,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:9",
+        "page": 0,
+        "start": 38,
+        "end": 40,
+        "text": "王五",
+        "bbox": {
+          "x": 160,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:10",
+        "page": 0,
+        "start": 41,
+        "end": 44,
+        "text": "25%",
+        "bbox": {
+          "x": 160,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": true,
+    "gap": 96,
+    "n": 5,
+    "rowWidth": 80,
+    "text": "股权结构\n张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%\n王五\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 4,
+        "text": "股权结构",
+        "bbox": {
+          "x": 10,
+          "y": 0,
+          "width": 40,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 5,
+        "end": 7,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 8,
+        "end": 11,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 12,
+        "end": 14,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 15,
+        "end": 18,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 19,
+        "end": 21,
+        "text": "股东",
+        "bbox": {
+          "x": 180,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 22,
+        "end": 25,
+        "text": "25%",
+        "bbox": {
+          "x": 180,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 26,
+        "end": 33,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 260,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:8",
+        "page": 0,
+        "start": 34,
+        "end": 37,
+        "text": "25%",
+        "bbox": {
+          "x": 260,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:9",
+        "page": 0,
+        "start": 38,
+        "end": 40,
+        "text": "王五",
+        "bbox": {
+          "x": 340,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:10",
+        "page": 0,
+        "start": 41,
+        "end": 44,
+        "text": "25%",
+        "bbox": {
+          "x": 340,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": [
+      {
+        "start": 26,
+        "end": 33,
+        "kind": "机构",
+        "bbox": {
+          "x": 260,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      }
+    ]
+  },
+  {
+    "headed": false,
+    "gap": 0,
+    "n": 1,
+    "rowWidth": 35,
+    "text": "张三\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 0,
+    "n": 1,
+    "rowWidth": 80,
+    "text": "张三\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 0,
+    "n": 2,
+    "rowWidth": 35,
+    "text": "张三\n25%\n李四\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 0,
+    "n": 2,
+    "rowWidth": 80,
+    "text": "张三\n25%\n李四\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 0,
+    "n": 3,
+    "rowWidth": 35,
+    "text": "张三\n25%\n李四\n25%\n股东\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 14,
+        "end": 16,
+        "text": "股东",
+        "bbox": {
+          "x": 90,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 17,
+        "end": 20,
+        "text": "25%",
+        "bbox": {
+          "x": 90,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 0,
+    "n": 3,
+    "rowWidth": 80,
+    "text": "张三\n25%\n李四\n25%\n股东\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 14,
+        "end": 16,
+        "text": "股东",
+        "bbox": {
+          "x": 180,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 17,
+        "end": 20,
+        "text": "25%",
+        "bbox": {
+          "x": 180,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 0,
+    "n": 4,
+    "rowWidth": 35,
+    "text": "张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 14,
+        "end": 16,
+        "text": "股东",
+        "bbox": {
+          "x": 90,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 17,
+        "end": 20,
+        "text": "25%",
+        "bbox": {
+          "x": 90,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 21,
+        "end": 28,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 125,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 29,
+        "end": 32,
+        "text": "25%",
+        "bbox": {
+          "x": 125,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 0,
+    "n": 4,
+    "rowWidth": 80,
+    "text": "张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 14,
+        "end": 16,
+        "text": "股东",
+        "bbox": {
+          "x": 180,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 17,
+        "end": 20,
+        "text": "25%",
+        "bbox": {
+          "x": 180,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 21,
+        "end": 28,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 260,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 29,
+        "end": 32,
+        "text": "25%",
+        "bbox": {
+          "x": 260,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 0,
+    "n": 5,
+    "rowWidth": 35,
+    "text": "张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%\n王五\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 14,
+        "end": 16,
+        "text": "股东",
+        "bbox": {
+          "x": 90,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 17,
+        "end": 20,
+        "text": "25%",
+        "bbox": {
+          "x": 90,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 21,
+        "end": 28,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 125,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 29,
+        "end": 32,
+        "text": "25%",
+        "bbox": {
+          "x": 125,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:8",
+        "page": 0,
+        "start": 33,
+        "end": 35,
+        "text": "王五",
+        "bbox": {
+          "x": 160,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:9",
+        "page": 0,
+        "start": 36,
+        "end": 39,
+        "text": "25%",
+        "bbox": {
+          "x": 160,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 0,
+    "n": 5,
+    "rowWidth": 80,
+    "text": "张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%\n王五\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 14,
+        "end": 16,
+        "text": "股东",
+        "bbox": {
+          "x": 180,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 17,
+        "end": 20,
+        "text": "25%",
+        "bbox": {
+          "x": 180,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 21,
+        "end": 28,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 260,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 29,
+        "end": 32,
+        "text": "25%",
+        "bbox": {
+          "x": 260,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:8",
+        "page": 0,
+        "start": 33,
+        "end": 35,
+        "text": "王五",
+        "bbox": {
+          "x": 340,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:9",
+        "page": 0,
+        "start": 36,
+        "end": 39,
+        "text": "25%",
+        "bbox": {
+          "x": 340,
+          "y": 45,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": [
+      {
+        "start": 0,
+        "end": 2,
+        "kind": "姓名",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "start": 7,
+        "end": 9,
+        "kind": "姓名",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "start": 21,
+        "end": 28,
+        "kind": "机构",
+        "bbox": {
+          "x": 260,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "start": 33,
+        "end": 35,
+        "kind": "姓名",
+        "bbox": {
+          "x": 340,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ]
+  },
+  {
+    "headed": false,
+    "gap": 8,
+    "n": 1,
+    "rowWidth": 35,
+    "text": "张三\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 8,
+    "n": 1,
+    "rowWidth": 80,
+    "text": "张三\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 8,
+    "n": 2,
+    "rowWidth": 35,
+    "text": "张三\n25%\n李四\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 8,
+    "n": 2,
+    "rowWidth": 80,
+    "text": "张三\n25%\n李四\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 8,
+    "n": 3,
+    "rowWidth": 35,
+    "text": "张三\n25%\n李四\n25%\n股东\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 14,
+        "end": 16,
+        "text": "股东",
+        "bbox": {
+          "x": 90,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 17,
+        "end": 20,
+        "text": "25%",
+        "bbox": {
+          "x": 90,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 8,
+    "n": 3,
+    "rowWidth": 80,
+    "text": "张三\n25%\n李四\n25%\n股东\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 14,
+        "end": 16,
+        "text": "股东",
+        "bbox": {
+          "x": 180,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 17,
+        "end": 20,
+        "text": "25%",
+        "bbox": {
+          "x": 180,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 8,
+    "n": 4,
+    "rowWidth": 35,
+    "text": "张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 14,
+        "end": 16,
+        "text": "股东",
+        "bbox": {
+          "x": 90,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 17,
+        "end": 20,
+        "text": "25%",
+        "bbox": {
+          "x": 90,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 21,
+        "end": 28,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 125,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 29,
+        "end": 32,
+        "text": "25%",
+        "bbox": {
+          "x": 125,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 8,
+    "n": 4,
+    "rowWidth": 80,
+    "text": "张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 14,
+        "end": 16,
+        "text": "股东",
+        "bbox": {
+          "x": 180,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 17,
+        "end": 20,
+        "text": "25%",
+        "bbox": {
+          "x": 180,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 21,
+        "end": 28,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 260,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 29,
+        "end": 32,
+        "text": "25%",
+        "bbox": {
+          "x": 260,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 8,
+    "n": 5,
+    "rowWidth": 35,
+    "text": "张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%\n王五\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 14,
+        "end": 16,
+        "text": "股东",
+        "bbox": {
+          "x": 90,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 17,
+        "end": 20,
+        "text": "25%",
+        "bbox": {
+          "x": 90,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 21,
+        "end": 28,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 125,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 29,
+        "end": 32,
+        "text": "25%",
+        "bbox": {
+          "x": 125,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:8",
+        "page": 0,
+        "start": 33,
+        "end": 35,
+        "text": "王五",
+        "bbox": {
+          "x": 160,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:9",
+        "page": 0,
+        "start": 36,
+        "end": 39,
+        "text": "25%",
+        "bbox": {
+          "x": 160,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 8,
+    "n": 5,
+    "rowWidth": 80,
+    "text": "张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%\n王五\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 14,
+        "end": 16,
+        "text": "股东",
+        "bbox": {
+          "x": 180,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 17,
+        "end": 20,
+        "text": "25%",
+        "bbox": {
+          "x": 180,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 21,
+        "end": 28,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 260,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 29,
+        "end": 32,
+        "text": "25%",
+        "bbox": {
+          "x": 260,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:8",
+        "page": 0,
+        "start": 33,
+        "end": 35,
+        "text": "王五",
+        "bbox": {
+          "x": 340,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:9",
+        "page": 0,
+        "start": 36,
+        "end": 39,
+        "text": "25%",
+        "bbox": {
+          "x": 340,
+          "y": 53,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": [
+      {
+        "start": 0,
+        "end": 2,
+        "kind": "姓名",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "start": 7,
+        "end": 9,
+        "kind": "姓名",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "start": 21,
+        "end": 28,
+        "kind": "机构",
+        "bbox": {
+          "x": 260,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "start": 33,
+        "end": 35,
+        "kind": "姓名",
+        "bbox": {
+          "x": 340,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ]
+  },
+  {
+    "headed": false,
+    "gap": 35,
+    "n": 1,
+    "rowWidth": 35,
+    "text": "张三\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 35,
+    "n": 1,
+    "rowWidth": 80,
+    "text": "张三\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 35,
+    "n": 2,
+    "rowWidth": 35,
+    "text": "张三\n25%\n李四\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 35,
+    "n": 2,
+    "rowWidth": 80,
+    "text": "张三\n25%\n李四\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 35,
+    "n": 3,
+    "rowWidth": 35,
+    "text": "张三\n25%\n李四\n25%\n股东\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 14,
+        "end": 16,
+        "text": "股东",
+        "bbox": {
+          "x": 90,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 17,
+        "end": 20,
+        "text": "25%",
+        "bbox": {
+          "x": 90,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 35,
+    "n": 3,
+    "rowWidth": 80,
+    "text": "张三\n25%\n李四\n25%\n股东\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 14,
+        "end": 16,
+        "text": "股东",
+        "bbox": {
+          "x": 180,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 17,
+        "end": 20,
+        "text": "25%",
+        "bbox": {
+          "x": 180,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 35,
+    "n": 4,
+    "rowWidth": 35,
+    "text": "张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 14,
+        "end": 16,
+        "text": "股东",
+        "bbox": {
+          "x": 90,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 17,
+        "end": 20,
+        "text": "25%",
+        "bbox": {
+          "x": 90,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 21,
+        "end": 28,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 125,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 29,
+        "end": 32,
+        "text": "25%",
+        "bbox": {
+          "x": 125,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 35,
+    "n": 4,
+    "rowWidth": 80,
+    "text": "张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 14,
+        "end": 16,
+        "text": "股东",
+        "bbox": {
+          "x": 180,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 17,
+        "end": 20,
+        "text": "25%",
+        "bbox": {
+          "x": 180,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 21,
+        "end": 28,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 260,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 29,
+        "end": 32,
+        "text": "25%",
+        "bbox": {
+          "x": 260,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 35,
+    "n": 5,
+    "rowWidth": 35,
+    "text": "张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%\n王五\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 14,
+        "end": 16,
+        "text": "股东",
+        "bbox": {
+          "x": 90,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 17,
+        "end": 20,
+        "text": "25%",
+        "bbox": {
+          "x": 90,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 21,
+        "end": 28,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 125,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 29,
+        "end": 32,
+        "text": "25%",
+        "bbox": {
+          "x": 125,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:8",
+        "page": 0,
+        "start": 33,
+        "end": 35,
+        "text": "王五",
+        "bbox": {
+          "x": 160,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:9",
+        "page": 0,
+        "start": 36,
+        "end": 39,
+        "text": "25%",
+        "bbox": {
+          "x": 160,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 35,
+    "n": 5,
+    "rowWidth": 80,
+    "text": "张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%\n王五\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 14,
+        "end": 16,
+        "text": "股东",
+        "bbox": {
+          "x": 180,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 17,
+        "end": 20,
+        "text": "25%",
+        "bbox": {
+          "x": 180,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 21,
+        "end": 28,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 260,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 29,
+        "end": 32,
+        "text": "25%",
+        "bbox": {
+          "x": 260,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:8",
+        "page": 0,
+        "start": 33,
+        "end": 35,
+        "text": "王五",
+        "bbox": {
+          "x": 340,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:9",
+        "page": 0,
+        "start": 36,
+        "end": 39,
+        "text": "25%",
+        "bbox": {
+          "x": 340,
+          "y": 80,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": [
+      {
+        "start": 0,
+        "end": 2,
+        "kind": "姓名",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "start": 7,
+        "end": 9,
+        "kind": "姓名",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "start": 21,
+        "end": 28,
+        "kind": "机构",
+        "bbox": {
+          "x": 260,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "start": 33,
+        "end": 35,
+        "kind": "姓名",
+        "bbox": {
+          "x": 340,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ]
+  },
+  {
+    "headed": false,
+    "gap": 90,
+    "n": 1,
+    "rowWidth": 35,
+    "text": "张三\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 90,
+    "n": 1,
+    "rowWidth": 80,
+    "text": "张三\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 90,
+    "n": 2,
+    "rowWidth": 35,
+    "text": "张三\n25%\n李四\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 90,
+    "n": 2,
+    "rowWidth": 80,
+    "text": "张三\n25%\n李四\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 90,
+    "n": 3,
+    "rowWidth": 35,
+    "text": "张三\n25%\n李四\n25%\n股东\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 14,
+        "end": 16,
+        "text": "股东",
+        "bbox": {
+          "x": 90,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 17,
+        "end": 20,
+        "text": "25%",
+        "bbox": {
+          "x": 90,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 90,
+    "n": 3,
+    "rowWidth": 80,
+    "text": "张三\n25%\n李四\n25%\n股东\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 14,
+        "end": 16,
+        "text": "股东",
+        "bbox": {
+          "x": 180,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 17,
+        "end": 20,
+        "text": "25%",
+        "bbox": {
+          "x": 180,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 90,
+    "n": 4,
+    "rowWidth": 35,
+    "text": "张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 14,
+        "end": 16,
+        "text": "股东",
+        "bbox": {
+          "x": 90,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 17,
+        "end": 20,
+        "text": "25%",
+        "bbox": {
+          "x": 90,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 21,
+        "end": 28,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 125,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 29,
+        "end": 32,
+        "text": "25%",
+        "bbox": {
+          "x": 125,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 90,
+    "n": 4,
+    "rowWidth": 80,
+    "text": "张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 14,
+        "end": 16,
+        "text": "股东",
+        "bbox": {
+          "x": 180,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 17,
+        "end": 20,
+        "text": "25%",
+        "bbox": {
+          "x": 180,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 21,
+        "end": 28,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 260,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 29,
+        "end": 32,
+        "text": "25%",
+        "bbox": {
+          "x": 260,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 90,
+    "n": 5,
+    "rowWidth": 35,
+    "text": "张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%\n王五\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 14,
+        "end": 16,
+        "text": "股东",
+        "bbox": {
+          "x": 90,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 17,
+        "end": 20,
+        "text": "25%",
+        "bbox": {
+          "x": 90,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 21,
+        "end": 28,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 125,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 29,
+        "end": 32,
+        "text": "25%",
+        "bbox": {
+          "x": 125,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:8",
+        "page": 0,
+        "start": 33,
+        "end": 35,
+        "text": "王五",
+        "bbox": {
+          "x": 160,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:9",
+        "page": 0,
+        "start": 36,
+        "end": 39,
+        "text": "25%",
+        "bbox": {
+          "x": 160,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 90,
+    "n": 5,
+    "rowWidth": 80,
+    "text": "张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%\n王五\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 14,
+        "end": 16,
+        "text": "股东",
+        "bbox": {
+          "x": 180,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 17,
+        "end": 20,
+        "text": "25%",
+        "bbox": {
+          "x": 180,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 21,
+        "end": 28,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 260,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 29,
+        "end": 32,
+        "text": "25%",
+        "bbox": {
+          "x": 260,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:8",
+        "page": 0,
+        "start": 33,
+        "end": 35,
+        "text": "王五",
+        "bbox": {
+          "x": 340,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:9",
+        "page": 0,
+        "start": 36,
+        "end": 39,
+        "text": "25%",
+        "bbox": {
+          "x": 340,
+          "y": 135,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": [
+      {
+        "start": 0,
+        "end": 2,
+        "kind": "姓名",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "start": 7,
+        "end": 9,
+        "kind": "姓名",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "start": 21,
+        "end": 28,
+        "kind": "机构",
+        "bbox": {
+          "x": 260,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "start": 33,
+        "end": 35,
+        "kind": "姓名",
+        "bbox": {
+          "x": 340,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ]
+  },
+  {
+    "headed": false,
+    "gap": 96,
+    "n": 1,
+    "rowWidth": 35,
+    "text": "张三\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 96,
+    "n": 1,
+    "rowWidth": 80,
+    "text": "张三\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 96,
+    "n": 2,
+    "rowWidth": 35,
+    "text": "张三\n25%\n李四\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 96,
+    "n": 2,
+    "rowWidth": 80,
+    "text": "张三\n25%\n李四\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 96,
+    "n": 3,
+    "rowWidth": 35,
+    "text": "张三\n25%\n李四\n25%\n股东\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 14,
+        "end": 16,
+        "text": "股东",
+        "bbox": {
+          "x": 90,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 17,
+        "end": 20,
+        "text": "25%",
+        "bbox": {
+          "x": 90,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 96,
+    "n": 3,
+    "rowWidth": 80,
+    "text": "张三\n25%\n李四\n25%\n股东\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 14,
+        "end": 16,
+        "text": "股东",
+        "bbox": {
+          "x": 180,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 17,
+        "end": 20,
+        "text": "25%",
+        "bbox": {
+          "x": 180,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 96,
+    "n": 4,
+    "rowWidth": 35,
+    "text": "张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 14,
+        "end": 16,
+        "text": "股东",
+        "bbox": {
+          "x": 90,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 17,
+        "end": 20,
+        "text": "25%",
+        "bbox": {
+          "x": 90,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 21,
+        "end": 28,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 125,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 29,
+        "end": 32,
+        "text": "25%",
+        "bbox": {
+          "x": 125,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 96,
+    "n": 4,
+    "rowWidth": 80,
+    "text": "张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 14,
+        "end": 16,
+        "text": "股东",
+        "bbox": {
+          "x": 180,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 17,
+        "end": 20,
+        "text": "25%",
+        "bbox": {
+          "x": 180,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 21,
+        "end": 28,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 260,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 29,
+        "end": 32,
+        "text": "25%",
+        "bbox": {
+          "x": 260,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 96,
+    "n": 5,
+    "rowWidth": 35,
+    "text": "张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%\n王五\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 55,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 55,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 14,
+        "end": 16,
+        "text": "股东",
+        "bbox": {
+          "x": 90,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 17,
+        "end": 20,
+        "text": "25%",
+        "bbox": {
+          "x": 90,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 21,
+        "end": 28,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 125,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 29,
+        "end": 32,
+        "text": "25%",
+        "bbox": {
+          "x": 125,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:8",
+        "page": 0,
+        "start": 33,
+        "end": 35,
+        "text": "王五",
+        "bbox": {
+          "x": 160,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:9",
+        "page": 0,
+        "start": 36,
+        "end": 39,
+        "text": "25%",
+        "bbox": {
+          "x": 160,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  },
+  {
+    "headed": false,
+    "gap": 96,
+    "n": 5,
+    "rowWidth": 80,
+    "text": "张三\n25%\n李四\n25%\n股东\n25%\n合成甲有限公司\n25%\n王五\n25%",
+    "tokens": [
+      {
+        "id": "fixture:0",
+        "page": 0,
+        "start": 0,
+        "end": 2,
+        "text": "张三",
+        "bbox": {
+          "x": 20,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:1",
+        "page": 0,
+        "start": 3,
+        "end": 6,
+        "text": "25%",
+        "bbox": {
+          "x": 20,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:2",
+        "page": 0,
+        "start": 7,
+        "end": 9,
+        "text": "李四",
+        "bbox": {
+          "x": 100,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:3",
+        "page": 0,
+        "start": 10,
+        "end": 13,
+        "text": "25%",
+        "bbox": {
+          "x": 100,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:4",
+        "page": 0,
+        "start": 14,
+        "end": 16,
+        "text": "股东",
+        "bbox": {
+          "x": 180,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:5",
+        "page": 0,
+        "start": 17,
+        "end": 20,
+        "text": "25%",
+        "bbox": {
+          "x": 180,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:6",
+        "page": 0,
+        "start": 21,
+        "end": 28,
+        "text": "合成甲有限公司",
+        "bbox": {
+          "x": 260,
+          "y": 30,
+          "width": 60,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:7",
+        "page": 0,
+        "start": 29,
+        "end": 32,
+        "text": "25%",
+        "bbox": {
+          "x": 260,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:8",
+        "page": 0,
+        "start": 33,
+        "end": 35,
+        "text": "王五",
+        "bbox": {
+          "x": 340,
+          "y": 30,
+          "width": 30,
+          "height": 15
+        }
+      },
+      {
+        "id": "fixture:9",
+        "page": 0,
+        "start": 36,
+        "end": 39,
+        "text": "25%",
+        "bbox": {
+          "x": 340,
+          "y": 141,
+          "width": 30,
+          "height": 15
+        }
+      }
+    ],
+    "expected": []
+  }
+]

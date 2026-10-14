@@ -56,7 +56,7 @@ export async function buildDocxLayout(bytes: Buffer, text: string, anchors: Anch
     const rel = elements(parse(relPart), "http://schemas.openxmlformats.org/package/2006/relationships", "Relationship").find(r => r.getAttribute("Id") === ref);
     if (!rel || rel.getAttribute("TargetMode") === "External" || !(rel.getAttribute("Type") ?? "").endsWith("/image")) return;
     let imagePart: string; try { imagePart = posix.normalize(posix.join(posix.dirname(part), decodeURIComponent(rel.getAttribute("Target") ?? ""))); } catch { return; }
-    const page = pages.find(p => p.part === imagePart); if (!page || !/^word\/media\/[^/]+\.(png|jpe?g)$/i.test(imagePart)) { warnings.add("有图片尚未生成可审查预览，请查看图片审查区。"); return; }
+    const page = pages.find(p => p.part === imagePart); if (!page || !/^word\/media\/[^/]+\.(png|jpe?g|gif|bmp|tiff?)$/i.test(imagePart)) { warnings.add("有图片尚未生成可审查预览，请查看图片审查区。"); return; }
     let parent: Node | null = node; while (parent && !(parent.nodeType === 1 && (parent as Element).localName === "drawing")) parent = parent.parentNode;
     const extent = parent && elements(parent as Element, "http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing", "extent")[0];
     return { kind: "image", page: page.index, width: number(extent?.getAttribute("cx") ?? undefined, 12700), height: number(extent?.getAttribute("cy") ?? undefined, 12700) };

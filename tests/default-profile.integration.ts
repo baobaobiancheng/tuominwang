@@ -1,0 +1,26 @@
+import {test,after} from 'node:test';
+import assert from 'node:assert/strict';
+import {randomUUID} from 'node:crypto';
+import pg from 'pg';
+import sharp from 'sharp';
+import {buildApp} from '../apps/api/main.ts';
+import {tick} from '../apps/worker/main.ts';
+import {pool} from '../packages/adapters/db.ts';
+import {passwordHash,unseal} from '../packages/adapters/storage.ts';
+import {SOURCE_DEFAULT_ENTITY_TYPES} from '../packages/core/presets.ts';
+const admin=new pg.Pool({connectionString:process.env.MIGRATION_DATABASE_URL}),app=await buildApp();
+after(async()=>{await app.close();await pool.end();await admin.end();});
+test('new-project default snapshot actually runs seal/face scanning and source default masks instead of leaving policy empty',async()=>{
+ const tenant=randomUUID(),uid=randomUUID(),username='default-'+randomUUID(),password='synthetic-default',origin=process.env.APP_ORIGIN!;
+ await admin.query('INSERT INTO users VALUES($1,$2,$3,$4)',[uid,tenant,username,passwordHash(password)]);
+ const login=await app.inject({method:'POST',url:'/api/login',headers:{origin},payload:{username,password}}),cookie=String(login.headers['set-cookie']).split(';')[0];
+ const req=(method:any,url:string,payload?:any,binary=false)=>app.inject({method,url,headers:{origin,cookie,...binary?{'content-type':'application/octet-stream'}:{}},payload});
+ const project=(await req('POST','/api/projects',{name:'默认方案自动扫描',applyDefaultPresets:true})).json().id;
+ const row=(await admin.query('SELECT * FROM projects WHERE id=$1',[project])).rows[0],policy=JSON.parse(unseal(row.preset_policy,`${tenant}:${project}:presets`));assert.deepEqual(policy.profile.settings.enabledEntityTypeIds,[...SOURCE_DEFAULT_ENTITY_TYPES]);
+ const textDoc=(await req('POST',`/api/projects/${project}/documents`,{text:'电话13800138000',requestId:randomUUID()})).json().id;await tick();
+ const text=(await req('GET',`/api/documents/${textDoc}`)).json();assert.equal(text.job.status,'succeeded');const phone=text.marks.find((m:any)=>m.kind==='手机号');assert.deepEqual(phone.replacement,{mode:'reference-mask',variant:'detected'});
+ const source=await sharp(Buffer.from('<svg xmlns="http://www.w3.org/2000/svg" width="500" height="700"><rect width="500" height="700" fill="white"/><circle cx="350" cy="580" r="65" fill="none" stroke="red" stroke-width="8"/><path d="M310 580h80M350 540v80M320 550l60 60M320 610l60-60" stroke="red" stroke-width="5"/></svg>')).png().toBuffer(),batchId=randomUUID(),requestId=randomUUID();
+ await req('POST',`/api/projects/${project}/upload-batches`,{id:batchId,files:[{requestId,path:'synthetic-seal.png',size:source.length}]});
+ const uploaded=await req('POST',`/api/projects/${project}/files?batchId=${batchId}&requestId=${requestId}`,source,true);assert.equal(uploaded.statusCode,200,uploaded.body);await tick();
+ const view=(await req('GET',`/api/documents/${uploaded.json().id}`)).json();assert.equal(view.job.status,'succeeded',JSON.stringify(view.job));assert.ok(view.visualCandidates.some((c:any)=>c.reason==='印章'),JSON.stringify(view.visualCandidates));assert.equal(view.pageReview.maskStyle,'black');assert.equal(view.pageReview.mode,'unselected');assert.equal(view.pageReview.regions.length,0);
+});

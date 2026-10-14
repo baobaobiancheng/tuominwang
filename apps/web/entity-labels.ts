@@ -1,0 +1,2 @@
+/** Display labels only. This module must remain free of server/runtime imports. */
+export const entityLabels:Record<string,string>={name_cn:'姓名',org_name:'机构',id_card:'身份证号',phone:'手机号/座机',bank_card:'银行账号',address:'地址',email:'邮箱',website_url:'网址',uscc:'信用代码',wechat_id:'微信号',plate_cn:'车牌号',securities_account:'证券/资金账号',case_number:'案号',cert_no:'证照/许可证号',patent_no:'专利号',filing_no:'备案号',contract_amount:'金额',seal:'印章',face:'人脸',signature:'签名',passport_no:'护照号',tax_no:'税号',ein:'雇主识别号',international_id:'国际身份证号',ssn:'社保号',official_no:'公文编号',other:'自定义'};

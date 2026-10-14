@@ -9,6 +9,7 @@ const groups: Record<Mark["kind"], string> = {
   身份证号: "identity", 护照号: "identity", 信用代码: "identity", 车牌号: "identity",
   银行账号: "finance", "证券/资金账号": "finance", 金额: "finance",
   案号: "record", 专利号: "record", 备案号: "record", "证照/许可证号": "record",
+  税号: "identity", 雇主识别号: "identity", 国际身份证号: "identity", 社保号: "identity", 公文编号: "record",
   商业秘密: "other", 自定义: "other",
 };
 const kindOrder = new Map(Object.keys(groups).map((kind, index) => [kind, index]));
@@ -17,6 +18,7 @@ const colors: Record<Mark["kind"], string> = {
   邮箱: "#db2777", 微信号: "#059669", 网址: "#475569", 身份证号: "#ea580c", 护照号: "#ea580c",
   信用代码: "#4f46e5", 车牌号: "#0d9488", 银行账号: "#0891b2", "证券/资金账号": "#7c3aed",
   金额: "#dc2626", 案号: "#a16207", 专利号: "#00c853", 备案号: "#795548", "证照/许可证号": "#caa00c",
+  税号: "#4f46e5", 雇主识别号: "#4f46e5", 国际身份证号: "#ea580c", 社保号: "#ea580c", 公文编号: "#a16207",
   商业秘密: "#64748b", 自定义: "#64748b",
 };
 export function typeColor(kind: Mark["kind"]) { return colors[kind]; }

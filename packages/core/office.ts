@@ -1,3 +1,4 @@
+import {decodeXlsxString,encodeXlsxText} from "./ooxml-string.ts";
 import type { Document, Element, Node } from "@xmldom/xmldom";
 import { posix } from "node:path";
 import { isDeepStrictEqual } from "node:util";
@@ -11,7 +12,7 @@ const R = "http://schemas.openxmlformats.org/package/2006/relationships";
 const C = "http://schemas.openxmlformats.org/package/2006/content-types";
 const A = "http://schemas.openxmlformats.org/drawingml/2006/main";
 const OFFICE_R = "http://schemas.openxmlformats.org/officeDocument/2006/relationships";
-export const officeImagePart = (name: string) => /^word\/media\/[^/]+\.(png|jpe?g)$/i.test(name);
+export const officeImagePart = (name: string) => /^word\/media\/[^/]+\.(png|jpe?g|gif|bmp|tiff?)$/i.test(name);
 export type OfficeImages = Record<string, { text: string; output: Buffer; outputText: string }>;
 type Format = "docx" | "xlsx";
 type Binding = { anchor: Anchor; value: string; set: (value: string, marks: Mark[]) => void };
@@ -24,7 +25,7 @@ function childElements(element: Element, ns: string, local: string) {
   return Array.from(element.childNodes).filter((node): node is Element => node.nodeType === 1 && (node as Element).namespaceURI === ns && (node as Element).localName === local);
 }
 function remove(node: Node) { node.parentNode?.removeChild(node); }
-function textOf(node: Element) { return elements(node, node.namespaceURI ?? "", "t").map(t => t.textContent ?? "").join(""); }
+function textOf(node: Element) { return elements(node, node.namespaceURI ?? "", "t").map(t => node.namespaceURI === S ? decodeXlsxString(t.textContent ?? "") : t.textContent ?? "").join(""); }
 
 async function load(bytes: Buffer, format: Format, imageTexts?: Record<string, string>): Promise<Loaded> {
   const parts = await readZip(bytes), docs = new Map<string, Document>();
@@ -52,15 +53,16 @@ async function load(bytes: Buffer, format: Format, imageTexts?: Record<string, s
       const node = pending.pop()!;
       if (node.nodeType === 1) {
         const element = node as Element;
-        if (["binData", "altChunk", "OLEObject", "object", "control", "subDoc", "imagedata", "extLst"].includes(element.localName ?? "")) block(name, "UNSUPPORTED_OFFICE_OBJECT");
-        if (element.localName === "blip") {
-          const reference = element.getAttributeNS(OFFICE_R, "embed"), relName = posix.join(posix.dirname(name), "_rels", posix.basename(name) + ".rels");
+        if (["binData", "altChunk", "OLEObject", "object", "control", "subDoc", "extLst"].includes(element.localName ?? "")) block(name, "UNSUPPORTED_OFFICE_OBJECT");
+        if (element.localName === "blip" || element.localName === "imagedata") {
+          const vml=element.localName === "imagedata", officeId=element.getAttributeNS("urn:schemas-microsoft-com:office:office", "relid"), relationshipId=element.getAttributeNS(OFFICE_R,"id");
+          const reference = vml ? relationshipId || officeId : element.getAttributeNS(OFFICE_R, "embed"), relName = posix.join(posix.dirname(name), "_rels", posix.basename(name) + ".rels");
           const rels = parts.get(relName);
           if (rels && !relationshipDocs.has(relName)) relationshipDocs.set(relName, xml(rels));
           const relation = rels && elements(relationshipDocs.get(relName)!, R, "Relationship").find(r => r.getAttribute("Id") === reference);
           const target = relation?.getAttribute("Target") ?? "";
           let resolved = ""; try { resolved = posix.normalize(posix.join(posix.dirname(name), decodeURIComponent(target))); } catch { /* rejected below */ }
-          if (format !== "docx" || element.namespaceURI !== A || !imageTexts || !reference || element.getAttributeNS(OFFICE_R, "link") || Array.from(element.childNodes).some(n => n.nodeType === 1) || !relation || relation.getAttribute("TargetMode") === "External" || !(relation.getAttribute("Type") ?? "").endsWith("/image") || !officeImagePart(resolved) || !Object.hasOwn(imageTexts, resolved)) block(name, "UNSUPPORTED_OFFICE_OBJECT");
+          if (format !== "docx" || element.namespaceURI !== (vml ? "urn:schemas-microsoft-com:vml" : A) || !imageTexts || !reference || vml && (relationshipId && officeId && relationshipId!==officeId || element.getAttribute("src")) || element.getAttributeNS(OFFICE_R, "link") || Array.from(element.childNodes).some(n => n.nodeType === 1) || !relation || relation.getAttribute("TargetMode") === "External" || !(relation.getAttribute("Type") ?? "").endsWith("/image") || !officeImagePart(resolved) || !Object.hasOwn(imageTexts, resolved)) block(name, "UNSUPPORTED_OFFICE_OBJECT");
         }
         if (element.namespaceURI && !/^(http:\/\/(schemas\.(openxmlformats|microsoft)\.org|purl\.org)|urn:schemas-microsoft-com:)/.test(element.namespaceURI)) block(name, "UNSUPPORTED_OFFICE_OBJECT");
       }
@@ -139,6 +141,7 @@ async function load(bytes: Buffer, format: Format, imageTexts?: Record<string, s
         const type = cell.getAttribute("t"), cache = childElements(cell, S, "v")[0];
         if (childElements(cell, S, "f").length && !cache) block(part, "MISSING_FORMULA_CACHE");
         let value = type === "inlineStr" ? textOf(cell) : cache?.textContent ?? "";
+        if (type === "str") value=decodeXlsxString(value);
         if (type === "s") {
           if (!/^\d+$/.test(value) || shared[Number(value)] === undefined) throw new Error("INVALID_OFFICE");
           value = shared[Number(value)];
@@ -152,7 +155,7 @@ async function load(bytes: Buffer, format: Format, imageTexts?: Record<string, s
           // A literal inline string never executes, even when it begins with =, +, - or @.
           cell.setAttribute("t", "inlineStr");
           const is = doc.createElementNS(S, "is"), t = doc.createElementNS(S, "t");
-          t.setAttribute("xml:space", "preserve"); t.textContent = output; is.appendChild(t); cell.appendChild(is);
+          t.setAttribute("xml:space", "preserve"); t.textContent = encodeXlsxText(output); is.appendChild(t); cell.appendChild(is);
         };
         add(part, `cell:${reference}`, value, set, { row, column });
         // Formula text is removed on export, never evaluated. Cache is the value being reviewed.

@@ -116,7 +116,7 @@ test("expanded identifier candidates persist through review, existing v1 aliases
   const view = (await req("GET", `/api/documents/${doc}`)).json();
   assert.deepEqual(view.marks.map((m: any) => m.kind), ["证券/资金账号", "车牌号", "微信号", "网址", "专利号", "备案号", "证照/许可证号"]);
   assert.ok(view.marks.every((m: any) => m.decision === "pending"));
-  assert.equal((await admin.query("SELECT recognition FROM documents WHERE id=$1", [doc])).rows[0].recognition.rules, "cn-rules-3");
+  assert.equal((await admin.query("SELECT recognition FROM documents WHERE id=$1", [doc])).rows[0].recognition.rules, "cn-rules-3+reference-static-0.5.9-1");
   const license = view.marks[6];
   const mapped = await req("POST", `/api/documents/${doc}/mappings`, { revision: 0, start: license.start, end: license.end, kind: license.kind, requestId: randomUUID() });
   assert.equal(mapped.statusCode, 200, mapped.body);

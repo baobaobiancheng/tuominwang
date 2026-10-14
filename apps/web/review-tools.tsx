@@ -1,3 +1,5 @@
+import {entityIdentity,entityLabel,entityValueKey} from "../../packages/core/entity-identity.ts";
+import { ReplacementPoliciesEditor } from "./replacement-policies.tsx";
 import React, { useEffect, useRef, useState } from "react";
 import { MAX_MARKS, type DocumentView, type Mark, type PageReview } from "../../packages/contracts/index.ts";
 import type { KnownEntityCheck, SearchScope } from "../../packages/core/review-tools.ts";
@@ -25,7 +27,7 @@ export function ReviewTools({ doc, marks, pageReview, update, locate, run, api, 
   useEffect(() => () => { draft.current.version++; searchContext.current.version++; searchRequest.current++; }, []);
   const [checked, setChecked] = useState<{ version: number; result: KnownEntityCheck } | null>(null), [entityPage, setEntityPage] = useState(0);
   const coverage = checked?.version === draft.current.version ? checked.result : null;
-  const indexes = new Set(marks.flatMap((m, i) => (kind === "all" || m.kind === kind) && (scope === "all" || m.decision === scope || scope === "whitelist" && m.decision === "pending" && m.sources?.some(s => s.code === "project-whitelist")) ? [i] : []));
+  const indexes = new Set(marks.flatMap((m, i) => (kind === "all" || entityIdentity(m) === kind) && (scope === "all" || m.decision === scope || scope === "whitelist" && m.decision === "pending" && m.sources?.some(s => s.code === "project-whitelist")) ? [i] : []));
   async function search(cursors = [0], last = false) {
     const context = searchContext.current, version = context.version, request = ++searchRequest.current;
     setSearching(true);
@@ -89,12 +91,13 @@ export function ReviewTools({ doc, marks, pageReview, update, locate, run, api, 
     </div>}
     </div>}
     {surface !== "search" && <><fieldset hidden={mode !== "bulk"} disabled={disabled || !canReview} className="bulk-review"><legend>批量复核 · 当前文档</legend>
-      <label>类型<select value={kind} onChange={e => setKind(e.target.value)}><option value="all">全部类型</option>{[...new Set(marks.map(m => m.kind))].map(k => <option key={k}>{k}</option>)}</select></label>
+      <label>类型<select value={kind} onChange={e => setKind(e.target.value)}><option value="all">全部类型</option>{[...new Map(marks.map(m => [entityIdentity(m),m])).entries()].map(([k,m]) => <option key={k} value={k}>{entityLabel(m)}</option>)}</select></label>
       <label>状态<select value={scope} onChange={e => setScope(e.target.value)}><option value="pending">待确认</option><option value="whitelist">白名单待确认</option><option value="all">全部状态</option><option value="redact">已选脱敏</option><option value="ignore">已选保留</option></select></label>
       <span className="muted">符合 {indexes.size} 项</span>
       <button className="secondary" disabled={!indexes.size} onClick={() => bulk("redact")}>批量脱敏</button>
       <button className="quiet" disabled={!indexes.size} onClick={() => bulk("ignore")}>批量保留</button>
     </fieldset>
+    {mode === "bulk" && <ReplacementPoliciesEditor doc={doc} marks={marks} update={update} api={api} run={run} disabled={disabled || !canReview} canUseAliases={canUseAliases} />}
     <section hidden={mode !== "known"} className="known-entities" aria-label="已知实体漏标检查">
       <div className="actions"><h3>已知实体漏标检查</h3><button className="secondary" disabled={disabled || !canReview || !marks.length} onClick={() => void run(check)}>检查全文漏标</button></div>
       <p className="muted">检查当前材料中已知原值的重复位置；已标记项仍需确认，未知敏感内容仍需人工检查。</p>
@@ -108,7 +111,7 @@ export function ReviewTools({ doc, marks, pageReview, update, locate, run, api, 
             for (const match of entity.matches) count[match.status]++;
             const issue = entity.matches.find(m => m.status === "missing" || m.status === "conflict") ?? entity.matches.find(m => m.status === "retained") ?? entity.matches[0];
             const complete = !count.missing && !count.conflict && !count.retained && !entity.ambiguous;
-            return <tr key={entity.value}><td><span className="known-value" title={entity.value}>{entity.value}</span><small>{entity.kind}</small></td><td>标记 {count.marked} · 保留 {count.retained}<br />漏标 {count.missing} · 冲突 {count.conflict}</td><td className={complete ? "known-complete" : count.missing || count.conflict || entity.ambiguous ? "known-attention" : ""}>{entity.ambiguous ? "同值策略需核对" : count.conflict ? "存在范围冲突" : count.missing ? "存在漏标" : count.retained ? "存在保留项" : "已完整标记"}</td><td>{issue && <button className="quiet" disabled={disabled} onClick={() => void run(() => locate(issue))}>定位原文</button>}</td></tr>;
+            return <tr key={entityValueKey(entity,entity.value)}><td><span className="known-value" title={entity.value}>{entity.value}</span><small>{entityLabel(entity)}</small></td><td>标记 {count.marked} · 保留 {count.retained}<br />漏标 {count.missing} · 冲突 {count.conflict}</td><td className={complete ? "known-complete" : count.missing || count.conflict || entity.ambiguous ? "known-attention" : ""}>{entity.ambiguous ? "同值策略需核对" : count.conflict ? "存在范围冲突" : count.missing ? "存在漏标" : count.retained ? "存在保留项" : "已完整标记"}</td><td>{issue && <button className="quiet" disabled={disabled} onClick={() => void run(() => locate(issue))}>定位原文</button>}</td></tr>;
           })}</tbody>
         </table>}
         {coverage.entities.length > 50 && <div className="pagination" aria-label="漏标结果分页"><button className="quiet" disabled={!entityPage || disabled} onClick={() => setEntityPage(entityPage - 1)}>上一组</button><span>{entityPage + 1} / {Math.ceil(coverage.entities.length / 50)}</span><button className="quiet" disabled={(entityPage + 1) * 50 >= coverage.entities.length || disabled} onClick={() => setEntityPage(entityPage + 1)}>下一组</button></div>}
@@ -122,11 +125,11 @@ export function ReviewTools({ doc, marks, pageReview, update, locate, run, api, 
 export function ReplacementEditor({ mark, index, change }: { mark: Mark; index: number; change: (replacement: Mark["replacement"]) => void }) {
   const policy = mark.replacement;
   return <div className="replacement-editor">
-    <label>脱敏方式<select aria-label={`标记 ${index + 1} 脱敏方式`} value={policy?.mode ?? "type"} onChange={e => change(e.target.value === "alias" ? policy : e.target.value === "mask" ? { mode: "mask", prefix: 0, suffix: 0 } : e.target.value === "custom" ? { mode: "custom", value: "已隐藏" } : { mode: "type" })}>
-      <option value="type">类型占位符</option><option value="mask">部分遮盖</option><option value="custom">自定义替换</option>
+    <label>脱敏方式<select aria-label={`标记 ${index + 1} 脱敏方式`} value={policy?.mode ?? "type"} onChange={e => change(e.target.value === "alias" ? policy : e.target.value === "clear" ? {mode: "clear"} : e.target.value === "reference-mask" ? {mode: "reference-mask", variant: "default"} : e.target.value === "full" ? { mode: "full" } : e.target.value === "mask" ? { mode: "mask", prefix: 0, suffix: 0 } : e.target.value === "custom" ? { mode: "custom", value: "已隐藏" } : { mode: "type" })}>
+      <option value="clear">完整遮盖</option><option value="type">类型占位符</option><option value="full">全字符星号</option><option value="reference-mask">按类型遮盖</option><option value="mask">部分遮盖</option><option value="custom">自定义替换</option>
       {policy?.mode === "alias" && <option value="alias">项目假名</option>}
     </select></label>
     {policy?.mode === "mask" && <div className="mask-settings"><label>保留前几字<input aria-label={`标记 ${index + 1} 保留前几字`} type="number" min="0" max="100" value={policy.prefix} onChange={e => change({ ...policy, prefix: Number(e.target.value) })} /></label><label>保留后几字<input aria-label={`标记 ${index + 1} 保留后几字`} type="number" min="0" max="100" value={policy.suffix} onChange={e => change({ ...policy, suffix: Number(e.target.value) })} /></label></div>}
-    {policy?.mode === "custom" && <label>替换文字<input aria-label={`标记 ${index + 1} 替换文字`} value={policy.value} maxLength={100} onChange={e => change({ mode: "custom", value: e.target.value })} /><small>此方式不保存还原关系。</small></label>}
+    {policy?.mode === "custom" && <label>替换文字<textarea aria-label={`标记 ${index + 1} 替换文字`} value={policy.value} rows={2} onChange={e => change({ mode: "custom", value: e.target.value })} /><small>此方式不保存还原关系。</small></label>}
   </div>;
 }

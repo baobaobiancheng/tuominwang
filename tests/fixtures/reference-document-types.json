@@ -1,0 +1,1922 @@
+[
+  {
+    "text": "",
+    "filename": "",
+    "expected": {
+      "type": "other",
+      "confidence": 0.65,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "",
+    "filename": "民事起诉状.docx",
+    "expected": {
+      "type": "complaint",
+      "confidence": 0.98,
+      "scores": {
+        "complaint": 30,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "",
+    "filename": "答辩状.docx",
+    "expected": {
+      "type": "reply",
+      "confidence": 0.98,
+      "scores": {
+        "complaint": 0,
+        "reply": 30,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "",
+    "filename": "判决书.pdf",
+    "expected": {
+      "type": "judgment",
+      "confidence": 0.98,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 30,
+        "contract": 0,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "",
+    "filename": "合同.docx",
+    "expected": {
+      "type": "contract",
+      "confidence": 0.98,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 30,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "",
+    "filename": "律师函.docx",
+    "expected": {
+      "type": "official_letter",
+      "confidence": 0.98,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 30,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "",
+    "filename": "通知书.pdf",
+    "expected": {
+      "type": "official_letter",
+      "confidence": 0.98,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 30,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "",
+    "filename": "笔录.docx",
+    "expected": {
+      "type": "complaint",
+      "confidence": 0.98,
+      "scores": {
+        "complaint": 35,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "",
+    "filename": "法律意见书.docx",
+    "expected": {
+      "type": "contract",
+      "confidence": 0.98,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 30,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "",
+    "filename": "服务协议.docx",
+    "expected": {
+      "type": "other",
+      "confidence": 0.65,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "民事起诉状\n诉讼请求\n事实和理由\n具状人张三\n请求人民法院判令支付租金",
+    "filename": "",
+    "expected": {
+      "type": "complaint",
+      "confidence": 0.98,
+      "scores": {
+        "complaint": 70,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "民事起诉状\n诉讼请求\n事实和理由\n具状人张三\n请求人民法院判令支付租金",
+    "filename": "民事起诉状.docx",
+    "expected": {
+      "type": "complaint",
+      "confidence": 0.98,
+      "scores": {
+        "complaint": 100,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "民事起诉状\n诉讼请求\n事实和理由\n具状人张三\n请求人民法院判令支付租金",
+    "filename": "答辩状.docx",
+    "expected": {
+      "type": "reply",
+      "confidence": 0.7623762376237624,
+      "scores": {
+        "complaint": 70,
+        "reply": 30,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "民事起诉状\n诉讼请求\n事实和理由\n具状人张三\n请求人民法院判令支付租金",
+    "filename": "判决书.pdf",
+    "expected": {
+      "type": "judgment",
+      "confidence": 0.78,
+      "scores": {
+        "complaint": 70,
+        "reply": 0,
+        "judgment": 30,
+        "contract": 0,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "民事起诉状\n诉讼请求\n事实和理由\n具状人张三\n请求人民法院判令支付租金",
+    "filename": "合同.docx",
+    "expected": {
+      "type": "contract",
+      "confidence": 0.7623762376237624,
+      "scores": {
+        "complaint": 70,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 30,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "民事起诉状\n诉讼请求\n事实和理由\n具状人张三\n请求人民法院判令支付租金",
+    "filename": "律师函.docx",
+    "expected": {
+      "type": "official_letter",
+      "confidence": 0.7623762376237624,
+      "scores": {
+        "complaint": 70,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 30,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "民事起诉状\n诉讼请求\n事实和理由\n具状人张三\n请求人民法院判令支付租金",
+    "filename": "通知书.pdf",
+    "expected": {
+      "type": "official_letter",
+      "confidence": 0.7623762376237624,
+      "scores": {
+        "complaint": 70,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 30,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "民事起诉状\n诉讼请求\n事实和理由\n具状人张三\n请求人民法院判令支付租金",
+    "filename": "笔录.docx",
+    "expected": {
+      "type": "complaint",
+      "confidence": 0.98,
+      "scores": {
+        "complaint": 105,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "民事起诉状\n诉讼请求\n事实和理由\n具状人张三\n请求人民法院判令支付租金",
+    "filename": "法律意见书.docx",
+    "expected": {
+      "type": "contract",
+      "confidence": 0.7623762376237624,
+      "scores": {
+        "complaint": 70,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 30,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "民事起诉状\n诉讼请求\n事实和理由\n具状人张三\n请求人民法院判令支付租金",
+    "filename": "服务协议.docx",
+    "expected": {
+      "type": "complaint",
+      "confidence": 0.98,
+      "scores": {
+        "complaint": 70,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "答辩状\n答辩人李四\n答辩意见 驳回诉讼请求",
+    "filename": "",
+    "expected": {
+      "type": "reply",
+      "confidence": 0.8806451612903227,
+      "scores": {
+        "complaint": 0,
+        "reply": 26,
+        "judgment": 4,
+        "contract": 0,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "答辩状\n答辩人李四\n答辩意见 驳回诉讼请求",
+    "filename": "民事起诉状.docx",
+    "expected": {
+      "type": "complaint",
+      "confidence": 0.5409836065573771,
+      "scores": {
+        "complaint": 30,
+        "reply": 26,
+        "judgment": 4,
+        "contract": 0,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "答辩状\n答辩人李四\n答辩意见 驳回诉讼请求",
+    "filename": "答辩状.docx",
+    "expected": {
+      "type": "reply",
+      "confidence": 0.98,
+      "scores": {
+        "complaint": 0,
+        "reply": 56,
+        "judgment": 4,
+        "contract": 0,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "答辩状\n答辩人李四\n答辩意见 驳回诉讼请求",
+    "filename": "判决书.pdf",
+    "expected": {
+      "type": "judgment",
+      "confidence": 0.78,
+      "scores": {
+        "complaint": 0,
+        "reply": 26,
+        "judgment": 34,
+        "contract": 0,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "答辩状\n答辩人李四\n答辩意见 驳回诉讼请求",
+    "filename": "合同.docx",
+    "expected": {
+      "type": "contract",
+      "confidence": 0.72,
+      "scores": {
+        "complaint": 0,
+        "reply": 26,
+        "judgment": 4,
+        "contract": 30,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "答辩状\n答辩人李四\n答辩意见 驳回诉讼请求",
+    "filename": "律师函.docx",
+    "expected": {
+      "type": "official_letter",
+      "confidence": 0.5409836065573771,
+      "scores": {
+        "complaint": 0,
+        "reply": 26,
+        "judgment": 4,
+        "contract": 0,
+        "official_letter": 30,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "答辩状\n答辩人李四\n答辩意见 驳回诉讼请求",
+    "filename": "通知书.pdf",
+    "expected": {
+      "type": "official_letter",
+      "confidence": 0.5409836065573771,
+      "scores": {
+        "complaint": 0,
+        "reply": 26,
+        "judgment": 4,
+        "contract": 0,
+        "official_letter": 30,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "答辩状\n答辩人李四\n答辩意见 驳回诉讼请求",
+    "filename": "笔录.docx",
+    "expected": {
+      "type": "complaint",
+      "confidence": 0.5833333333333334,
+      "scores": {
+        "complaint": 35,
+        "reply": 26,
+        "judgment": 4,
+        "contract": 0,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "答辩状\n答辩人李四\n答辩意见 驳回诉讼请求",
+    "filename": "法律意见书.docx",
+    "expected": {
+      "type": "contract",
+      "confidence": 0.72,
+      "scores": {
+        "complaint": 0,
+        "reply": 26,
+        "judgment": 4,
+        "contract": 30,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "答辩状\n答辩人李四\n答辩意见 驳回诉讼请求",
+    "filename": "服务协议.docx",
+    "expected": {
+      "type": "reply",
+      "confidence": 0.8806451612903227,
+      "scores": {
+        "complaint": 0,
+        "reply": 26,
+        "judgment": 4,
+        "contract": 0,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "民事判决书\n原告张三 被告李四 本院认为 经审理查明 判决如下",
+    "filename": "",
+    "expected": {
+      "type": "judgment",
+      "confidence": 0.92,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 22,
+        "contract": 0,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "民事判决书\n原告张三 被告李四 本院认为 经审理查明 判决如下",
+    "filename": "民事起诉状.docx",
+    "expected": {
+      "type": "complaint",
+      "confidence": 0.6226415094339623,
+      "scores": {
+        "complaint": 30,
+        "reply": 0,
+        "judgment": 22,
+        "contract": 0,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "民事判决书\n原告张三 被告李四 本院认为 经审理查明 判决如下",
+    "filename": "答辩状.docx",
+    "expected": {
+      "type": "reply",
+      "confidence": 0.6226415094339623,
+      "scores": {
+        "complaint": 0,
+        "reply": 30,
+        "judgment": 22,
+        "contract": 0,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "民事判决书\n原告张三 被告李四 本院认为 经审理查明 判决如下",
+    "filename": "判决书.pdf",
+    "expected": {
+      "type": "judgment",
+      "confidence": 0.98,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 52,
+        "contract": 0,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "民事判决书\n原告张三 被告李四 本院认为 经审理查明 判决如下",
+    "filename": "合同.docx",
+    "expected": {
+      "type": "judgment",
+      "confidence": 0.6226415094339623,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 22,
+        "contract": 30,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "民事判决书\n原告张三 被告李四 本院认为 经审理查明 判决如下",
+    "filename": "律师函.docx",
+    "expected": {
+      "type": "judgment",
+      "confidence": 0.6226415094339623,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 22,
+        "contract": 0,
+        "official_letter": 30,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "民事判决书\n原告张三 被告李四 本院认为 经审理查明 判决如下",
+    "filename": "通知书.pdf",
+    "expected": {
+      "type": "judgment",
+      "confidence": 0.6226415094339623,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 22,
+        "contract": 0,
+        "official_letter": 30,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "民事判决书\n原告张三 被告李四 本院认为 经审理查明 判决如下",
+    "filename": "笔录.docx",
+    "expected": {
+      "type": "complaint",
+      "confidence": 0.6637931034482759,
+      "scores": {
+        "complaint": 35,
+        "reply": 0,
+        "judgment": 22,
+        "contract": 0,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "民事判决书\n原告张三 被告李四 本院认为 经审理查明 判决如下",
+    "filename": "法律意见书.docx",
+    "expected": {
+      "type": "contract",
+      "confidence": 0.72,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 22,
+        "contract": 30,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "民事判决书\n原告张三 被告李四 本院认为 经审理查明 判决如下",
+    "filename": "服务协议.docx",
+    "expected": {
+      "type": "judgment",
+      "confidence": 0.92,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 22,
+        "contract": 0,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "甲方乙方双方约定本合同违约责任第十条",
+    "filename": "",
+    "expected": {
+      "type": "contract",
+      "confidence": 0.85,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 13,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "甲方乙方双方约定本合同违约责任第十条",
+    "filename": "民事起诉状.docx",
+    "expected": {
+      "type": "complaint",
+      "confidence": 0.75,
+      "scores": {
+        "complaint": 30,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 13,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "甲方乙方双方约定本合同违约责任第十条",
+    "filename": "答辩状.docx",
+    "expected": {
+      "type": "reply",
+      "confidence": 0.75,
+      "scores": {
+        "complaint": 0,
+        "reply": 30,
+        "judgment": 0,
+        "contract": 13,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "甲方乙方双方约定本合同违约责任第十条",
+    "filename": "判决书.pdf",
+    "expected": {
+      "type": "judgment",
+      "confidence": 0.78,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 30,
+        "contract": 13,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "甲方乙方双方约定本合同违约责任第十条",
+    "filename": "合同.docx",
+    "expected": {
+      "type": "contract",
+      "confidence": 0.98,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 43,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "甲方乙方双方约定本合同违约责任第十条",
+    "filename": "律师函.docx",
+    "expected": {
+      "type": "official_letter",
+      "confidence": 0.75,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 13,
+        "official_letter": 30,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "甲方乙方双方约定本合同违约责任第十条",
+    "filename": "通知书.pdf",
+    "expected": {
+      "type": "official_letter",
+      "confidence": 0.75,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 13,
+        "official_letter": 30,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "甲方乙方双方约定本合同违约责任第十条",
+    "filename": "笔录.docx",
+    "expected": {
+      "type": "complaint",
+      "confidence": 0.7857142857142858,
+      "scores": {
+        "complaint": 35,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 13,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "甲方乙方双方约定本合同违约责任第十条",
+    "filename": "法律意见书.docx",
+    "expected": {
+      "type": "contract",
+      "confidence": 0.98,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 43,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "甲方乙方双方约定本合同违约责任第十条",
+    "filename": "服务协议.docx",
+    "expected": {
+      "type": "contract",
+      "confidence": 0.85,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 13,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "某某公司关于人事任命通知\n主送：张三",
+    "filename": "",
+    "expected": {
+      "type": "official_letter",
+      "confidence": 0.85,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 16,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "某某公司关于人事任命通知\n主送：张三",
+    "filename": "民事起诉状.docx",
+    "expected": {
+      "type": "complaint",
+      "confidence": 0.7021276595744682,
+      "scores": {
+        "complaint": 30,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 16,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "某某公司关于人事任命通知\n主送：张三",
+    "filename": "答辩状.docx",
+    "expected": {
+      "type": "reply",
+      "confidence": 0.7021276595744682,
+      "scores": {
+        "complaint": 0,
+        "reply": 30,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 16,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "某某公司关于人事任命通知\n主送：张三",
+    "filename": "判决书.pdf",
+    "expected": {
+      "type": "judgment",
+      "confidence": 0.78,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 30,
+        "contract": 0,
+        "official_letter": 16,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "某某公司关于人事任命通知\n主送：张三",
+    "filename": "合同.docx",
+    "expected": {
+      "type": "contract",
+      "confidence": 0.7021276595744682,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 30,
+        "official_letter": 16,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "某某公司关于人事任命通知\n主送：张三",
+    "filename": "律师函.docx",
+    "expected": {
+      "type": "official_letter",
+      "confidence": 0.98,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 46,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "某某公司关于人事任命通知\n主送：张三",
+    "filename": "通知书.pdf",
+    "expected": {
+      "type": "official_letter",
+      "confidence": 0.98,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 46,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "某某公司关于人事任命通知\n主送：张三",
+    "filename": "笔录.docx",
+    "expected": {
+      "type": "complaint",
+      "confidence": 0.7403846153846155,
+      "scores": {
+        "complaint": 35,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 16,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "某某公司关于人事任命通知\n主送：张三",
+    "filename": "法律意见书.docx",
+    "expected": {
+      "type": "contract",
+      "confidence": 0.7021276595744682,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 30,
+        "official_letter": 16,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "某某公司关于人事任命通知\n主送：张三",
+    "filename": "服务协议.docx",
+    "expected": {
+      "type": "official_letter",
+      "confidence": 0.85,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 16,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "工作证明\n兹证明张三先生",
+    "filename": "",
+    "expected": {
+      "type": "official_letter",
+      "confidence": 0.85,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 16,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "工作证明\n兹证明张三先生",
+    "filename": "民事起诉状.docx",
+    "expected": {
+      "type": "complaint",
+      "confidence": 0.7021276595744682,
+      "scores": {
+        "complaint": 30,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 16,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "工作证明\n兹证明张三先生",
+    "filename": "答辩状.docx",
+    "expected": {
+      "type": "reply",
+      "confidence": 0.7021276595744682,
+      "scores": {
+        "complaint": 0,
+        "reply": 30,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 16,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "工作证明\n兹证明张三先生",
+    "filename": "判决书.pdf",
+    "expected": {
+      "type": "judgment",
+      "confidence": 0.78,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 30,
+        "contract": 0,
+        "official_letter": 16,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "工作证明\n兹证明张三先生",
+    "filename": "合同.docx",
+    "expected": {
+      "type": "contract",
+      "confidence": 0.7021276595744682,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 30,
+        "official_letter": 16,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "工作证明\n兹证明张三先生",
+    "filename": "律师函.docx",
+    "expected": {
+      "type": "official_letter",
+      "confidence": 0.98,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 46,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "工作证明\n兹证明张三先生",
+    "filename": "通知书.pdf",
+    "expected": {
+      "type": "official_letter",
+      "confidence": 0.98,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 46,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "工作证明\n兹证明张三先生",
+    "filename": "笔录.docx",
+    "expected": {
+      "type": "complaint",
+      "confidence": 0.7403846153846155,
+      "scores": {
+        "complaint": 35,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 16,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "工作证明\n兹证明张三先生",
+    "filename": "法律意见书.docx",
+    "expected": {
+      "type": "contract",
+      "confidence": 0.7021276595744682,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 30,
+        "official_letter": 16,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "工作证明\n兹证明张三先生",
+    "filename": "服务协议.docx",
+    "expected": {
+      "type": "official_letter",
+      "confidence": 0.85,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 16,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "律师事务所函 特此函告 贵院受理已委托本所律师为其代理人",
+    "filename": "",
+    "expected": {
+      "type": "official_letter",
+      "confidence": 0.92,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 26,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "律师事务所函 特此函告 贵院受理已委托本所律师为其代理人",
+    "filename": "民事起诉状.docx",
+    "expected": {
+      "type": "complaint",
+      "confidence": 0.5789473684210527,
+      "scores": {
+        "complaint": 30,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 26,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "律师事务所函 特此函告 贵院受理已委托本所律师为其代理人",
+    "filename": "答辩状.docx",
+    "expected": {
+      "type": "reply",
+      "confidence": 0.5789473684210527,
+      "scores": {
+        "complaint": 0,
+        "reply": 30,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 26,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "律师事务所函 特此函告 贵院受理已委托本所律师为其代理人",
+    "filename": "判决书.pdf",
+    "expected": {
+      "type": "judgment",
+      "confidence": 0.78,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 30,
+        "contract": 0,
+        "official_letter": 26,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "律师事务所函 特此函告 贵院受理已委托本所律师为其代理人",
+    "filename": "合同.docx",
+    "expected": {
+      "type": "contract",
+      "confidence": 0.5789473684210527,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 30,
+        "official_letter": 26,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "律师事务所函 特此函告 贵院受理已委托本所律师为其代理人",
+    "filename": "律师函.docx",
+    "expected": {
+      "type": "official_letter",
+      "confidence": 0.98,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 56,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "律师事务所函 特此函告 贵院受理已委托本所律师为其代理人",
+    "filename": "通知书.pdf",
+    "expected": {
+      "type": "official_letter",
+      "confidence": 0.98,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 56,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "律师事务所函 特此函告 贵院受理已委托本所律师为其代理人",
+    "filename": "笔录.docx",
+    "expected": {
+      "type": "complaint",
+      "confidence": 0.620967741935484,
+      "scores": {
+        "complaint": 35,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 26,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "律师事务所函 特此函告 贵院受理已委托本所律师为其代理人",
+    "filename": "法律意见书.docx",
+    "expected": {
+      "type": "contract",
+      "confidence": 0.5789473684210527,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 30,
+        "official_letter": 26,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "律师事务所函 特此函告 贵院受理已委托本所律师为其代理人",
+    "filename": "服务协议.docx",
+    "expected": {
+      "type": "official_letter",
+      "confidence": 0.92,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 26,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "讯问笔录\n问：姓名？\n答：张三\n犯罪嫌疑人\n讯问时间",
+    "filename": "",
+    "expected": {
+      "type": "complaint",
+      "confidence": 0.75,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 5,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "讯问笔录\n问：姓名？\n答：张三\n犯罪嫌疑人\n讯问时间",
+    "filename": "民事起诉状.docx",
+    "expected": {
+      "type": "complaint",
+      "confidence": 0.9166666666666667,
+      "scores": {
+        "complaint": 30,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 5,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "讯问笔录\n问：姓名？\n答：张三\n犯罪嫌疑人\n讯问时间",
+    "filename": "答辩状.docx",
+    "expected": {
+      "type": "reply",
+      "confidence": 0.9166666666666667,
+      "scores": {
+        "complaint": 0,
+        "reply": 30,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 5,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "讯问笔录\n问：姓名？\n答：张三\n犯罪嫌疑人\n讯问时间",
+    "filename": "判决书.pdf",
+    "expected": {
+      "type": "judgment",
+      "confidence": 0.9166666666666667,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 30,
+        "contract": 0,
+        "official_letter": 5,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "讯问笔录\n问：姓名？\n答：张三\n犯罪嫌疑人\n讯问时间",
+    "filename": "合同.docx",
+    "expected": {
+      "type": "contract",
+      "confidence": 0.9166666666666667,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 30,
+        "official_letter": 5,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "讯问笔录\n问：姓名？\n答：张三\n犯罪嫌疑人\n讯问时间",
+    "filename": "律师函.docx",
+    "expected": {
+      "type": "official_letter",
+      "confidence": 0.98,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 35,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "讯问笔录\n问：姓名？\n答：张三\n犯罪嫌疑人\n讯问时间",
+    "filename": "通知书.pdf",
+    "expected": {
+      "type": "official_letter",
+      "confidence": 0.98,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 35,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "讯问笔录\n问：姓名？\n答：张三\n犯罪嫌疑人\n讯问时间",
+    "filename": "笔录.docx",
+    "expected": {
+      "type": "complaint",
+      "confidence": 0.9390243902439025,
+      "scores": {
+        "complaint": 35,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 5,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "讯问笔录\n问：姓名？\n答：张三\n犯罪嫌疑人\n讯问时间",
+    "filename": "法律意见书.docx",
+    "expected": {
+      "type": "contract",
+      "confidence": 0.9166666666666667,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 30,
+        "official_letter": 5,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "讯问笔录\n问：姓名？\n答：张三\n犯罪嫌疑人\n讯问时间",
+    "filename": "服务协议.docx",
+    "expected": {
+      "type": "complaint",
+      "confidence": 0.75,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 5,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "用户许可协议",
+    "filename": "",
+    "expected": {
+      "type": "other",
+      "confidence": 0.9,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 0,
+        "other": 10
+      }
+    }
+  },
+  {
+    "text": "用户许可协议",
+    "filename": "民事起诉状.docx",
+    "expected": {
+      "type": "other",
+      "confidence": 0.9,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 0,
+        "other": 10
+      }
+    }
+  },
+  {
+    "text": "用户许可协议",
+    "filename": "答辩状.docx",
+    "expected": {
+      "type": "other",
+      "confidence": 0.9,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 0,
+        "other": 10
+      }
+    }
+  },
+  {
+    "text": "用户许可协议",
+    "filename": "判决书.pdf",
+    "expected": {
+      "type": "judgment",
+      "confidence": 0.98,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 30,
+        "contract": 0,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "用户许可协议",
+    "filename": "合同.docx",
+    "expected": {
+      "type": "other",
+      "confidence": 0.9,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 0,
+        "other": 10
+      }
+    }
+  },
+  {
+    "text": "用户许可协议",
+    "filename": "律师函.docx",
+    "expected": {
+      "type": "other",
+      "confidence": 0.9,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 0,
+        "other": 10
+      }
+    }
+  },
+  {
+    "text": "用户许可协议",
+    "filename": "通知书.pdf",
+    "expected": {
+      "type": "other",
+      "confidence": 0.9,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 0,
+        "other": 10
+      }
+    }
+  },
+  {
+    "text": "用户许可协议",
+    "filename": "笔录.docx",
+    "expected": {
+      "type": "other",
+      "confidence": 0.9,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 0,
+        "other": 10
+      }
+    }
+  },
+  {
+    "text": "用户许可协议",
+    "filename": "法律意见书.docx",
+    "expected": {
+      "type": "other",
+      "confidence": 0.9,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 0,
+        "other": 10
+      }
+    }
+  },
+  {
+    "text": "用户许可协议",
+    "filename": "服务协议.docx",
+    "expected": {
+      "type": "other",
+      "confidence": 0.9,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 0,
+        "official_letter": 0,
+        "other": 10
+      }
+    }
+  },
+  {
+    "text": "证券代码：123456 证券简称：合成股份 公告编号：123 某某股份有限公司独立董事",
+    "filename": "",
+    "expected": {
+      "type": "contract",
+      "confidence": 0.85,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 15,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "证券代码：123456 证券简称：合成股份 公告编号：123 某某股份有限公司独立董事",
+    "filename": "民事起诉状.docx",
+    "expected": {
+      "type": "contract",
+      "confidence": 0.7173913043478262,
+      "scores": {
+        "complaint": 30,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 15,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "证券代码：123456 证券简称：合成股份 公告编号：123 某某股份有限公司独立董事",
+    "filename": "答辩状.docx",
+    "expected": {
+      "type": "contract",
+      "confidence": 0.7173913043478262,
+      "scores": {
+        "complaint": 0,
+        "reply": 30,
+        "judgment": 0,
+        "contract": 15,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "证券代码：123456 证券简称：合成股份 公告编号：123 某某股份有限公司独立董事",
+    "filename": "判决书.pdf",
+    "expected": {
+      "type": "contract",
+      "confidence": 0.72,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 30,
+        "contract": 15,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "证券代码：123456 证券简称：合成股份 公告编号：123 某某股份有限公司独立董事",
+    "filename": "合同.docx",
+    "expected": {
+      "type": "contract",
+      "confidence": 0.98,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 45,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "证券代码：123456 证券简称：合成股份 公告编号：123 某某股份有限公司独立董事",
+    "filename": "律师函.docx",
+    "expected": {
+      "type": "contract",
+      "confidence": 0.7173913043478262,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 15,
+        "official_letter": 30,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "证券代码：123456 证券简称：合成股份 公告编号：123 某某股份有限公司独立董事",
+    "filename": "通知书.pdf",
+    "expected": {
+      "type": "contract",
+      "confidence": 0.7173913043478262,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 15,
+        "official_letter": 30,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "证券代码：123456 证券简称：合成股份 公告编号：123 某某股份有限公司独立董事",
+    "filename": "笔录.docx",
+    "expected": {
+      "type": "contract",
+      "confidence": 0.7549019607843138,
+      "scores": {
+        "complaint": 35,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 15,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "证券代码：123456 证券简称：合成股份 公告编号：123 某某股份有限公司独立董事",
+    "filename": "法律意见书.docx",
+    "expected": {
+      "type": "contract",
+      "confidence": 0.98,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 45,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "证券代码：123456 证券简称：合成股份 公告编号：123 某某股份有限公司独立董事",
+    "filename": "服务协议.docx",
+    "expected": {
+      "type": "contract",
+      "confidence": 0.85,
+      "scores": {
+        "complaint": 0,
+        "reply": 0,
+        "judgment": 0,
+        "contract": 15,
+        "official_letter": 0,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "人民检察院刑事起诉书 犯罪事实公诉机关",
+    "filename": "",
+    "expected": {
+      "type": "complaint",
+      "confidence": 0.6,
+      "scores": {
+        "complaint": 24,
+        "reply": 0,
+        "judgment": 12,
+        "contract": 0,
+        "official_letter": 5,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "人民检察院刑事起诉书 犯罪事实公诉机关",
+    "filename": "民事起诉状.docx",
+    "expected": {
+      "type": "complaint",
+      "confidence": 0.8250000000000001,
+      "scores": {
+        "complaint": 54,
+        "reply": 0,
+        "judgment": 12,
+        "contract": 0,
+        "official_letter": 5,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "人民检察院刑事起诉书 犯罪事实公诉机关",
+    "filename": "答辩状.docx",
+    "expected": {
+      "type": "reply",
+      "confidence": 0.45833333333333337,
+      "scores": {
+        "complaint": 24,
+        "reply": 30,
+        "judgment": 12,
+        "contract": 0,
+        "official_letter": 5,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "人民检察院刑事起诉书 犯罪事实公诉机关",
+    "filename": "判决书.pdf",
+    "expected": {
+      "type": "judgment",
+      "confidence": 0.78,
+      "scores": {
+        "complaint": 24,
+        "reply": 0,
+        "judgment": 42,
+        "contract": 0,
+        "official_letter": 5,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "人民检察院刑事起诉书 犯罪事实公诉机关",
+    "filename": "合同.docx",
+    "expected": {
+      "type": "contract",
+      "confidence": 0.72,
+      "scores": {
+        "complaint": 24,
+        "reply": 0,
+        "judgment": 12,
+        "contract": 30,
+        "official_letter": 5,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "人民检察院刑事起诉书 犯罪事实公诉机关",
+    "filename": "律师函.docx",
+    "expected": {
+      "type": "official_letter",
+      "confidence": 0.5347222222222222,
+      "scores": {
+        "complaint": 24,
+        "reply": 0,
+        "judgment": 12,
+        "contract": 0,
+        "official_letter": 35,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "人民检察院刑事起诉书 犯罪事实公诉机关",
+    "filename": "通知书.pdf",
+    "expected": {
+      "type": "official_letter",
+      "confidence": 0.5347222222222222,
+      "scores": {
+        "complaint": 24,
+        "reply": 0,
+        "judgment": 12,
+        "contract": 0,
+        "official_letter": 35,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "人民检察院刑事起诉书 犯罪事实公诉机关",
+    "filename": "笔录.docx",
+    "expected": {
+      "type": "complaint",
+      "confidence": 0.842857142857143,
+      "scores": {
+        "complaint": 59,
+        "reply": 0,
+        "judgment": 12,
+        "contract": 0,
+        "official_letter": 5,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "人民检察院刑事起诉书 犯罪事实公诉机关",
+    "filename": "法律意见书.docx",
+    "expected": {
+      "type": "contract",
+      "confidence": 0.72,
+      "scores": {
+        "complaint": 24,
+        "reply": 0,
+        "judgment": 12,
+        "contract": 30,
+        "official_letter": 5,
+        "other": 1
+      }
+    }
+  },
+  {
+    "text": "人民检察院刑事起诉书 犯罪事实公诉机关",
+    "filename": "服务协议.docx",
+    "expected": {
+      "type": "complaint",
+      "confidence": 0.6,
+      "scores": {
+        "complaint": 24,
+        "reply": 0,
+        "judgment": 12,
+        "contract": 0,
+        "official_letter": 5,
+        "other": 1
+      }
+    }
+  }
+]

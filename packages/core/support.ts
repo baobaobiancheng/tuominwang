@@ -1,0 +1,14 @@
+import {writeZip} from './office-zip.ts';
+export const legalDocuments={
+ 'product-intro.md':{title:'脱敏汪产品说明',status:'product_information',content:'# 脱敏汪产品说明\n\n脱敏汪用于材料识别、人工复核、脱敏副本导出和授权还原。支持的格式和可用操作以材料页面实际显示为准。\n\n## 使用流程\n\n1. 新建项目并上传材料。\n2. 等待识别，逐项检查候选内容和页面区域。\n3. 保存复核，生成并下载脱敏副本。\n4. 使用假名时，按项目权限管理映射表和还原稿。\n\n自动识别可能误报或漏报，交付前需要人工复核。反馈记录可用于分析审核情况；反馈不会自动训练模型。\n'},
+ 'agreement.md':{title:'服务协议草稿',status:'draft',content:'# 服务协议草稿\n\n本文件是部署方待确认的产品资料草稿，未作为对外服务协议发布。\n\n## 待部署运营方确认\n\n- 服务提供主体和联系方式。\n- 适用的服务范围、账号管理和支持方式。\n- 使用授权、材料保留和删除安排。\n- 对外服务条款的审定与发布版本。\n\n本页面不要求用户同意草稿，也不记录协议接受。\n'},
+ 'privacy-policy.md':{title:'隐私说明草稿',status:'draft',content:'# 隐私说明草稿\n\n本文件是部署方待确认的处理说明草稿，未作为对外隐私政策发布。\n\n## 当前处理流程\n\n浏览器将选定材料上传至当前部署服务器。识别、复核、脱敏导出和项目映射在该部署内处理；材料读取受账号与项目权限控制。\n\n用户可保存人工反馈、个人词条及审核草稿。个人词条迁入规则库后，需要显式应用到项目才参与识别。\n\n前端故障日志仅记录时间和固定错误类别，不保存提交的错误详情、材料内容或调用栈。用户可下载自己账号的故障日志。\n\n## 待部署运营方确认\n\n处理主体、联系方式、部署地域、保存期限、备份、删除与用户请求流程，应由部署运营方确认并发布。\n'},
+}as const;
+export function readLegalDocument(name:string){if(!Object.hasOwn(legalDocuments,name))throw new Error('LEGAL_DOCUMENT_NOT_FOUND');const item=legalDocuments[name as keyof typeof legalDocuments];return{success:true,fileName:name,...item};}
+export function rendererCrashLine(at:string){if(!Number.isFinite(Date.parse(at)))throw new Error('INVALID_LOG_TIMESTAMP');return`\n[${new Date(at).toISOString()}] RENDERER JS ERROR (details omitted)\n`;}
+/** Wholly synthetic, original sample. No competitor assets or customer documents. */
+export async function onboardingSample(){const W='http://schemas.openxmlformats.org/wordprocessingml/2006/main',R='http://schemas.openxmlformats.org/package/2006/relationships',C='http://schemas.openxmlformats.org/package/2006/content-types',paragraphs=['脱敏汪体验材料（全部为合成信息）','法律服务委托协议 · 体验示例','甲方：示例甲方公司；联系人：张三。','联系方式：13800138000；电子邮箱：demo@example.com。','联系地址：北京市朝阳区示例路1号（虚构地址）。','合同金额：人民币100000元。','请识别上述候选，逐项复核，保存后导出脱敏副本。该材料仅用于功能体验，不代表真实交易或法律文件。'],files=new Map<string,Buffer>([
+ ['[Content_Types].xml',Buffer.from(`<Types xmlns="${C}"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>`)],
+ ['_rels/.rels',Buffer.from(`<Relationships xmlns="${R}"><Relationship Id="main" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>`)],
+ ['word/document.xml',Buffer.from(`<w:document xmlns:w="${W}"><w:body>${paragraphs.map(p=>`<w:p><w:r><w:t>${p}</w:t></w:r></w:p>`).join('')}<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1440" w:right="1440" w:bottom="1440" w:left="1440"/></w:sectPr></w:body></w:document>`)],
+ ]);return{fileName:'法律服务委托协议_体验示例.docx',bytes:await writeZip(files),synthetic:true};}

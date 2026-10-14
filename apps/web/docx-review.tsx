@@ -1,9 +1,11 @@
+import {entityLabel} from "../../packages/core/entity-identity.ts";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import type { Mark } from "../../packages/contracts/index.ts";
 import type { DocxBlock, DocxLayout, DocxRun, DocxTextStyle } from "../../packages/contracts/docx-layout.ts";
 import { appUrl } from "./urls.ts";
 import { typeColor } from "./text-highlights.tsx";
 import "./docx-review.css";
+import { processingRead } from "./processing-read-retry.ts";
 export type DocxSelection = { start: number; end: number };
 type TextRun = Extract<DocxRun, { kind: "text" }>;
 type Highlight = { start: number; end: number; mark: Mark };
@@ -57,9 +59,9 @@ export function DocxReview({ documentId, revision, marks, api, disabled = false,
   const highlights = useMemo(() => docxHighlights(marks), [marks]);
   const root = useRef<HTMLDivElement>(null), apiRef = useRef(api); apiRef.current = api;
   useEffect(() => {
-    let live = true; setLayout(null); setError(""); onSelect(null);
-    apiRef.current<DocxLayout>(`/documents/${documentId}/docx-layout?revision=${revision}`).then(value => { if (live) setLayout(value); }).catch(e => { if (live && e?.name !== "AbortError") setError(e?.message ?? "版式预览加载失败"); });
-    return () => { live = false; };
+    let live = true; const controller = new AbortController(); setLayout(null); setError(""); onSelect(null);
+    void processingRead(() => apiRef.current<DocxLayout>(`/documents/${documentId}/docx-layout?revision=${revision}`), controller.signal).then(value => { if (live) setLayout(value); }).catch(e => { if (live && e?.name !== "AbortError") setError(e?.message ?? "版式预览加载失败"); });
+    return () => { live = false; controller.abort(); };
   }, [documentId, revision, retry]);
   useEffect(() => {
     if (!layout || !focusRange || !root.current) return;
@@ -80,7 +82,7 @@ export function DocxReview({ documentId, revision, marks, api, disabled = false,
         if (run.kind === "break") return run.page ? <span key={i} className="docx-page-break" role="separator" aria-label="分页符" /> : <br key={i} />;
         if (run.kind === "tab") return <span key={i} className="docx-tab" aria-label="制表符">{"\t"}</span>;
         if (run.kind === "image") return <img key={i} className="docx-inline-image" draggable={false} alt={`文档图片 ${run.page + 1}，区域标注请使用图片审查区`} src={appUrl(`/api/documents/${documentId}/pages/${run.page}?revision=${revision}`)} style={{ width: run.width ? `${run.width}pt` : undefined, maxHeight: run.height ? `${run.height}pt` : undefined }} />;
-        return <span key={i} style={css(run.style)}>{runSegments(run, highlights).map(segment => <span key={segment.start} data-docx-start={segment.start} data-docx-end={segment.end} className={segment.mark ? `docx-mark docx-mark--${segment.mark.decision}` : undefined} style={segment.mark ? { "--docx-mark-color": typeColor(segment.mark.kind) } as React.CSSProperties : undefined} title={segment.mark ? `${segment.mark.kind} · ${segment.mark.decision === "redact" ? "脱敏" : segment.mark.decision === "ignore" ? "保留" : "待确认"}` : undefined} role={segment.mark ? "button" : undefined} tabIndex={segment.mark ? 0 : undefined} onClick={() => { if (segment.mark && window.getSelection()?.isCollapsed !== false) onMark?.(segment.mark); }} onKeyDown={e => { if (segment.mark && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); onMark?.(segment.mark); } }}>{segment.text}</span>)}</span>;
+        return <span key={i} style={css(run.style)}>{runSegments(run, highlights).map(segment => <span key={segment.start} data-docx-start={segment.start} data-docx-end={segment.end} className={segment.mark ? `docx-mark docx-mark--${segment.mark.decision}` : undefined} style={segment.mark ? { "--docx-mark-color": typeColor(segment.mark.kind) } as React.CSSProperties : undefined} title={segment.mark ? `${entityLabel(segment.mark)} · ${segment.mark.decision === "redact" ? "脱敏" : segment.mark.decision === "ignore" ? "保留" : "待确认"}` : undefined} role={segment.mark ? "button" : undefined} tabIndex={segment.mark ? 0 : undefined} onClick={() => { if (segment.mark && window.getSelection()?.isCollapsed !== false) onMark?.(segment.mark); }} onKeyDown={e => { if (segment.mark && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); onMark?.(segment.mark); } }}>{segment.text}</span>)}</span>;
       }) : <br />}</p>;
     });
   }

@@ -1,3 +1,15 @@
+import {sealPageReview,openPageReview} from "../../packages/adapters/page-review-storage.ts";
+import {appendProcessingEvent} from "../../packages/adapters/processing-events.ts";
+import {recordMarkdownExportEvent} from "../../packages/adapters/markdown-export-events.ts";
+import {expectsMarkdownExport,markdownSourceKind} from "../../packages/adapters/markdown-outcome.ts";
+import {getRuntimeWhitelists} from "../../packages/adapters/runtime-rule-update.ts";
+import { resolveDocumentPolicy } from "../../packages/adapters/document-policy.ts";
+import { applyReplacementPolicies } from "../../packages/core/replacement-policies.ts";
+import { profileReplacementPolicies, finalizeProfileReplacements } from "../../packages/core/profile-recognition.ts";
+import { resolvePolicyMappings } from "../api/mappings.ts";
+import { requirePermission } from "../api/access.ts";
+import { unseal } from "../../packages/adapters/storage.ts";
+import { readProjectPresets } from "../../packages/adapters/project-presets.ts";
 import { pathToFileURL } from "node:url";
 import {
   rows,
@@ -46,51 +58,66 @@ async function processNext(signal?: AbortSignal, releaseHeavy = async () => {}) 
       ),
     ).then(result => { if (!result.length) controller.abort(); }).catch(() => controller.abort()).finally(() => { checking = false; });
   }, 1000);
+  let doc:any;
   try {
     if (!(await scope(db => rows(db, sql`SELECT job_authorized(${job.id}) AS allowed`)))[0]?.allowed) throw new Error("PERMISSION_REVOKED");
-    const [doc] = await scope((db) =>
+    const [loadedDoc] = await scope((db) =>
       rows(db, sql`SELECT * FROM documents WHERE id=${job.document_id}`),
     );
+    doc=loadedDoc;
     if (!doc || doc.revision !== job.revision) throw new Error("STALE_VERSION");
-    if (job.kind === "detect") {
-      const [project] = await scope(db => rows(db, sql`SELECT dictionary,dictionary_revision FROM projects WHERE id=${doc.project_id}`));
+    {
+      const [project] = await scope(db => rows(db, sql`SELECT id,tenant_id,dictionary,dictionary_revision,preset_policy,preset_revision FROM projects WHERE id=${doc.project_id}`));
       if (!project) throw new Error("STALE_VERSION");
-      Object.assign(doc, project);
+      doc.runtimeWhitelists=await scope(db=>getRuntimeWhitelists(db,job.tenant_id,doc.project_id,job.user_id,doc.id));
+      Object.assign(doc, {dictionary: project.dictionary, dictionary_revision: project.dictionary_revision, ...resolveDocumentPolicy(doc, readProjectPresets(project))});
     }
     let snapshot: any;
     if (job.kind === "export") {
       [snapshot] = await scope(db => rows(db, sql`SELECT * FROM review_snapshots WHERE document_id=${doc.id} AND revision=${job.revision}`));
     }
-    const result = await runProcessing<any>({ kind: job.kind, doc, snapshot }, { signal: controller.signal, heavySlotHeld: true });
+    const result = await runProcessing<any>({ kind: job.kind, doc, snapshot }, { signal: controller.signal, heavySlotHeld: true, onEvent: envelope=>scope(db=>appendProcessingEvent(db,{job:job.id,generation:job.generation,tenant:doc.tenant_id,project:doc.project_id,user:job.user_id,document:doc.id,revision:job.revision,sourceHash:doc.source_hash,contentHash:doc.content_hash},envelope)).then(()=>{}) });
     // CPU worker is already terminated. Publish success only after releasing the processing slot.
     await releaseHeavy();
     const artifact = result.artifact as { id: string; hash: string; format?: string } | undefined;
     await scope(async (db) => {
-      const [project] = await rows(db, sql`SELECT id FROM projects WHERE id=${doc.project_id} FOR SHARE`);
+      const [project] = await rows(db, sql`SELECT id FROM projects WHERE id=${doc.project_id} FOR UPDATE`);
       if (!project || !(await rows(db, sql`SELECT job_authorized(${job.id}) AS allowed`))[0]?.allowed) throw new Error("PERMISSION_REVOKED");
       const [locked] = await rows(
         db,
         sql`SELECT * FROM documents WHERE id=${doc.id} FOR UPDATE`,
       );
       if (!locked || locked.revision !== job.revision) throw new Error("STALE_VERSION");
-      if (job.kind === "export") assertExportable(locked, job.revision, result.textLength, result.textHash, snapshot);
+      if (job.kind === "export") assertExportable({...locked,page_review:openPageReview(locked)},job.revision,result.textLength,result.textHash,snapshot?{...snapshot,page_review:openPageReview({...locked,revision:snapshot.revision,content_hash:snapshot.content_hash},snapshot.page_review)}:undefined);
       const updated = await rows(
         db,
         sql`UPDATE jobs SET status='succeeded',lease_until=NULL WHERE id=${job.id} AND generation=${job.generation} AND status='running' AND lease_until>now() RETURNING id`,
       );
       if (!updated.length) throw new Error("LEASE_LOST");
-      if (artifact)
-        await rows(
-          db,
-          sql`INSERT INTO artifacts(id,tenant_id,project_id,document_id,job_id,revision,hash,output_format) VALUES(${artifact.id},${doc.tenant_id},${doc.project_id},${doc.id},${job.id},${doc.revision},${artifact.hash},${artifact.format ?? doc.source_format})`,
-        );
+      if (artifact) {
+        for (const produced of [artifact,...(result.additionalArtifacts ?? [])]) await rows(db,
+          sql`INSERT INTO artifacts(id,tenant_id,project_id,document_id,job_id,revision,hash,output_format,output_role,output_name) VALUES(${produced.id},${doc.tenant_id},${doc.project_id},${doc.id},${job.id},${doc.revision},${produced.hash},${produced.format ?? doc.source_format},${produced.role ?? "primary"},${produced.name ?? null})`);
+        if([artifact,...(result.additionalArtifacts??[])].some(a=>(a.format??doc.source_format)==='md'))await recordMarkdownExportEvent(db,{tenant:doc.tenant_id,project:doc.project_id,user:job.user_id,document:doc.id,revision:job.revision,attemptKey:job.id},{event:'export-outcome',sourceKind:markdownSourceKind(doc.source_format),status:'success'});
+      }
       else {
+        if (doc.presetPolicy?.profile) {
+          const text = unseal(result.content, `${doc.tenant_id}:${doc.project_id}:${doc.id}`), policies = profileReplacementPolicies(doc.presetPolicy.profile.settings, doc.source_format, doc.batchMode, doc.documentPolicy?.configuration.exportMode);
+          let plan = applyReplacementPolicies(text, result.marks, policies);
+          if (plan.aliasRequests.length) {
+            await requirePermission(db, doc.project_id, ["view_mapping"]);
+            const mappings = await resolvePolicyMappings(db, doc, job.user_id, plan.aliasRequests);
+            plan = applyReplacementPolicies(text, result.marks, policies, mappings);
+            if (plan.aliasRequests.length) throw new Error("MAPPING_MISMATCH");
+          }
+          result.marks = finalizeProfileReplacements(plan.marks,result.anchors,doc.presetPolicy.profile.settings,doc.source_format,doc.batchMode,doc.documentPolicy?.configuration.exportMode);
+        }
+        const storedPageReview=sealPageReview({...doc,content_hash:result.hash},result.pageReview,doc.revision);
         await rows(
           db,
-          sql`UPDATE documents SET content=${result.content},content_hash=${result.hash},marks=${JSON.stringify(result.marks)}::jsonb,anchors=${JSON.stringify(result.anchors)}::jsonb,coverage=${JSON.stringify(result.coverage)}::jsonb,page_data=${JSON.stringify(result.pages)}::jsonb,page_review=NULL,recognition=${JSON.stringify(result.recognition)}::jsonb,state='review' WHERE id=${doc.id}`,
+          sql`UPDATE documents SET content=${result.content},content_hash=${result.hash},parse_version=${result.parseVersion??doc.parse_version},marks=${JSON.stringify(result.marks)}::jsonb,anchors=${JSON.stringify(result.anchors)}::jsonb,coverage=${JSON.stringify(result.coverage)}::jsonb,page_data=${JSON.stringify(result.pages)}::jsonb,page_review=${JSON.stringify(storedPageReview)}::jsonb,visual_candidates=${JSON.stringify(result.visualCandidates ?? [])}::jsonb,recognition=${JSON.stringify(result.recognition)}::jsonb,state='review' WHERE id=${doc.id}`,
         );
-        await rows(db, sql`INSERT INTO review_snapshots(document_id,revision,tenant_id,project_id,content_hash,parse_version,marks,rule_version,recognition,page_data)
-          VALUES(${doc.id},${doc.revision},${doc.tenant_id},${doc.project_id},${result.hash},${doc.parse_version},${JSON.stringify(result.marks)}::jsonb,${result.recognition.rules},${JSON.stringify(result.recognition)}::jsonb,${JSON.stringify(result.pages)}::jsonb)`);
+        await rows(db, sql`INSERT INTO review_snapshots(document_id,revision,tenant_id,project_id,content_hash,parse_version,marks,rule_version,recognition,page_data,page_review)
+          VALUES(${doc.id},${doc.revision},${doc.tenant_id},${doc.project_id},${result.hash},${result.parseVersion??doc.parse_version},${JSON.stringify(result.marks)}::jsonb,${result.recognition.rules},${JSON.stringify(result.recognition)}::jsonb,${JSON.stringify(result.pages)}::jsonb,${JSON.stringify(storedPageReview)}::jsonb)`);
       }
       await rows(
         db,
@@ -101,7 +128,7 @@ async function processNext(signal?: AbortSignal, releaseHeavy = async () => {}) 
     const known = [
       ...FILE_ERRORS,
       "STALE_VERSION",
-      "LEASE_LOST",
+      "LEASE_LOST", "PROCESSING_EVENT_WRITE_FAILED",
       "PERMISSION_REVOKED",
       "INVALID_MARKS",
       "OVERLAPPING_MARKS",
@@ -117,6 +144,7 @@ async function processNext(signal?: AbortSignal, releaseHeavy = async () => {}) 
         sql`UPDATE jobs SET status=${known.includes(message) || job.attempt >= 3 ? "failed" : "queued"},error_code=${code},available_at=now()+${2 ** job.attempt} * interval '1 second',lease_until=NULL WHERE id=${job.id} AND generation=${job.generation} AND status='running' RETURNING id`,
       );
       if (!updated.length) return;
+      if(job.kind==='export'&&doc&&expectsMarkdownExport(doc)&&(known.includes(message)||job.attempt>=3))await recordMarkdownExportEvent(db,{tenant:doc.tenant_id,project:doc.project_id,user:job.user_id,document:doc.id,revision:job.revision,attemptKey:job.id},{event:'export-outcome',sourceKind:markdownSourceKind(doc.source_format),status:'failed',issueCode:code});
       if (job.kind === "detect" && FILE_ERRORS.includes(code)) await rows(db, sql`UPDATE documents SET coverage=${JSON.stringify([{ id: "document", status: "blocked", reason: code }])}::jsonb WHERE id=${job.document_id} AND revision=${job.revision}`);
       await rows(
         db,

@@ -8,7 +8,7 @@ import { validateMarks } from "./redaction.ts";
 export const PAGED_FORMATS = ["pdf", "png", "jpg", "jpeg"];
 export const OUTPUT_MAX_BYTES = 50 * 1024 * 1024;
 type Page = Pick<ParsedPage, "index" | "width" | "height">;
-export type Box = { x: number; y: number; width: number; height: number };
+export type Box = { x: number; y: number; width: number; height: number; shape?:"rect"|"circle" };
 export function validatePageReview(value: unknown, pages: Page[], final = false): PageReview {
   const parsed = pageReviewSchema.safeParse(value);
   if (!parsed.success || !pages.length || pages.length > 300 || pages.some((p, i) => p.index !== i || !Number.isFinite(p.width) || !Number.isFinite(p.height) || p.width <= 0 || p.height <= 0)) throw new Error("INVALID_PAGE_REVIEW");
@@ -25,11 +25,10 @@ export function pageBoxes(text: string, marks: Mark[], anchors: Anchor[], page: 
   validateMarks(text, marks, true);
   const anchor = anchors.find(a => a.kind === "page" && a.page === page.index);
   if (!anchor) throw new Error("PAGE_POSITION_MISSING");
-  const boxes: Box[] = policy.regions.filter(r => r.page === page.index).map(({ x, y, width, height }) => ({ x, y, width, height }));
+  const boxes: Box[] = policy.regions.filter(r => r.page === page.index).map(({ x, y, width, height,shape }) => ({ x, y, width, height,...shape?{shape}:{} }));
   const localText = text.slice(anchor.start, anchor.end);
   if (glyphs.length > 200000 || glyphs.some(g => g.length !== 6 || !g.every(Number.isFinite) || !Number.isInteger(g[0]) || !Number.isInteger(g[1]) || g[0] < 0 || g[1] <= g[0] || g[1] > localText.length || g[4] < 0 || g[5] < 0)) throw new Error("PAGE_POSITION_MISSING");
   for (const mark of marks.filter(m => m.decision === "redact" && m.start < anchor.end && m.end > anchor.start)) {
-    if (mark.replacement && mark.replacement.mode !== "type") throw new Error("PAGE_REPLACEMENT_UNSUPPORTED");
     const start = Math.max(mark.start, anchor.start) - anchor.start, end = Math.min(mark.end, anchor.end) - anchor.start;
     const covered = new Uint8Array(end - start);
     for (const g of glyphs) if (g[0] < end && g[1] > start) {
@@ -43,15 +42,40 @@ export function pageBoxes(text: string, marks: Mark[], anchors: Anchor[], page: 
   }
   return boxes;
 }
-export async function clearPixels(png: Buffer, page: Page, boxes: Box[]) {
+export const MASK_COLORS = { black: [0, 0, 0], white: [255, 255, 255], purple: [52, 10, 94], lightGray: [203, 208, 216] } as const;
+export async function clearPixels(png: Buffer, page: Page, boxes: Box[], style: NonNullable<PageReview["maskStyle"]> = "black") {
+  const fill = MASK_COLORS[style];
+  if (!fill) throw new Error("INVALID_PAGE_REVIEW");
   const { data, info } = await sharp(png, { limitInputPixels: PAGE_MAX_PIXELS, failOn: "warning" }).flatten({ background: "white" }).toColourspace("srgb").removeAlpha().raw().toBuffer({ resolveWithObject: true });
   checkPixels(info.width, info.height);
   if (info.channels !== 3 || Math.abs(info.width / page.width - info.height / page.height) > 0.02) throw new Error("PAGE_POSITION_MISSING");
+  const whiteMask = style === "white" ? new Uint8Array(info.width * info.height) : undefined;
   for (const box of boxes) {
-    if (![box.x, box.y, box.width, box.height].every(Number.isFinite) || box.x < 0 || box.y < 0 || box.width <= 0 || box.height <= 0 || box.x + box.width > page.width || box.y + box.height > page.height) throw new Error("INVALID_PAGE_REVIEW");
+    if (box.shape!==undefined&&box.shape!=="rect"&&box.shape!=="circle"||![box.x, box.y, box.width, box.height].every(Number.isFinite) || box.x < 0 || box.y < 0 || box.width <= 0 || box.height <= 0 || box.x + box.width > page.width || box.y + box.height > page.height) throw new Error("INVALID_PAGE_REVIEW");
     const left = Math.floor(box.x * info.width / page.width), top = Math.floor(box.y * info.height / page.height);
     const right = Math.ceil((box.x + box.width) * info.width / page.width), bottom = Math.ceil((box.y + box.height) * info.height / page.height);
-    for (let y = top; y < bottom; y++) data.fill(0, (y * info.width + left) * 3, (y * info.width + right) * 3);
+    const cx=(box.x+box.width/2)*info.width/page.width,cy=(box.y+box.height/2)*info.height/page.height,rx=box.width/2*info.width/page.width,ry=box.height/2*info.height/page.height;
+    for (let y = top; y < bottom; y++) {
+      let from=left,to=right;
+      if(box.shape==='circle'){
+        // The source's circle is an ellipse inscribed in the supplied rectangle.
+        // Clear each pixel cell that intersects its interior, with no antialiased
+        // source-colour edge; corner pixels outside the ellipse remain original.
+        const nearestY=Math.max(y,Math.min(y+1,cy)),dy=(nearestY-cy)/ry,dx=rx*Math.sqrt(Math.max(0,1-dy*dy));
+        from=Math.max(left,Math.floor(cx-dx));to=Math.min(right,Math.ceil(cx+dx));
+      }
+      if (style === "black") data.fill(0, (y * info.width + from) * 3, (y * info.width + to) * 3);
+      else for (let x = from; x < to; x++) {
+        const at = y * info.width + x;
+        data[at * 3] = fill[0]; data[at * 3 + 1] = fill[1]; data[at * 3 + 2] = fill[2];
+        if (whiteMask) whiteMask[at] = 1;
+      }
+    }
+  }
+  // Draw white-mask edges inside the already cleared union, never on uncleared pixels.
+  if (whiteMask) for (let y = 0; y < info.height; y++) for (let x = 0; x < info.width; x++) {
+    const at = y * info.width + x;
+    if (whiteMask[at] && (x === 0 || y === 0 || x === info.width - 1 || y === info.height - 1 || !whiteMask[at - 1] || !whiteMask[at + 1] || !whiteMask[at - info.width] || !whiteMask[at + info.width])) data.fill(51, at * 3, at * 3 + 3);
   }
   const output = await sharp(data, { raw: { width: info.width, height: info.height, channels: 3 } }).png().toBuffer();
   const reread = await sharp(output).removeAlpha().raw().toBuffer();

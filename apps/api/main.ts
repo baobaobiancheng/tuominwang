@@ -1,4 +1,36 @@
+import {registerMarkdownReviewRoutes} from "./markdown-review.ts";
+import {openPageReview} from "../../packages/adapters/page-review-storage.ts";
+import {registerProcessingEventRoutes} from "./processing-events.ts";
+import {registerProcessingResourceRoutes} from "./processing-resources.ts";
+import {registerImageBatchSearchRoutes} from "./image-batch-search.ts";
+import {registerMarkdownManualDraftRoutes} from "./markdown-manual-draft.ts";
+import {recordMarkdownExportEvent} from "../../packages/adapters/markdown-export-events.ts";
+import {expectsMarkdownExport,markdownSourceKind} from "../../packages/adapters/markdown-outcome.ts";
+import {registerSupportRoutes} from "./support.ts";
+import {registerProcessingObservability} from "./processing-observability.ts";
+import {registerRuntimeRules} from "./runtime-rules.ts";
+import {registerReferenceDictionary} from "./reference-dictionary.ts";
+import {registerRestorationBatchRoutes} from "./restoration-batch.ts";
+import {registerFeedbackRoutes} from "./feedback.ts";
+import {registerImageUtilityRoutes} from "./image-utilities.ts";
+import {registerNetworkPolicyRoutes} from "./network-policy.ts";
+import {registerWorkspaceRecoveryRoutes} from "./workspace-recovery.ts";
+import { registerDocumentUnlockRoutes } from './document-unlock.ts';
+import { registerMcpRoutes } from "./mcp.ts";
+import { applyDocumentConfiguration } from "./document-policy.ts";
+import { registerDocumentPolicyRoutes } from "./document-policy.ts";
+import { registerOfficeVisualRoutes } from "./office-visual.ts";
+import { resolveDocumentPolicy } from "../../packages/adapters/document-policy.ts";
+import { readProjectPresets } from "../../packages/adapters/project-presets.ts";
+import { registerWorkspacePortableRoutes } from "./workspace-portable.ts";
+import { registerRestorationFileRoutes } from "./restoration-files.ts";
+import { registerProjectEntities } from "./project-entities.ts";
+import { registerPresetRoutes } from "./presets.ts";
+import { defaultProjectPresets } from './presets.ts';
+import { registerReplacementPolicies } from "./replacement-policies.ts";
 import { registerDocxLayoutRoutes } from "./docx-layout.ts";
+import { registerDocxPreviewRoutes } from './docx-preview.ts';
+import { registerMappingExports } from './mapping-export.ts';
 import { registerOcrRoutes } from "./ocr.ts";
 import { registerVisualRoutes } from "./visual.ts";
 import Fastify from "fastify";
@@ -177,11 +209,36 @@ export async function buildApp() {
     return { ok: true };
   });
   registerFileRoutes(app);
+  registerDocumentUnlockRoutes(app);
+  registerWorkspaceRecoveryRoutes(app);
+  registerMarkdownManualDraftRoutes(app);
+  registerMarkdownReviewRoutes(app);
+  registerImageBatchSearchRoutes(app);
+  registerProcessingEventRoutes(app);
+  registerProcessingResourceRoutes(app);
+  registerNetworkPolicyRoutes(app);
+  registerProcessingObservability(app);
+  registerRuntimeRules(app);
+  registerReferenceDictionary(app);
   registerVisualRoutes(app);
+  registerImageUtilityRoutes(app);
   registerDocxLayoutRoutes(app);
+  registerDocxPreviewRoutes(app);
+  registerMappingExports(app);
   registerOcrRoutes(app);
   registerRecognitionRoutes(app, nerReady);
   registerReviewTools(app);
+  registerReplacementPolicies(app);
+  registerPresetRoutes(app);
+  registerProjectEntities(app);
+  registerWorkspacePortableRoutes(app);
+  registerRestorationFileRoutes(app);
+  registerRestorationBatchRoutes(app);
+  registerFeedbackRoutes(app);
+  registerSupportRoutes(app);
+  registerDocumentPolicyRoutes(app);
+  registerOfficeVisualRoutes(app);
+  registerMcpRoutes(app,applyDocumentConfiguration);
   registerMappingRoutes(app);
   registerMemberRoutes(app);
   app.get("/api/projects", (req) => {
@@ -191,14 +248,27 @@ export async function buildApp() {
       return Promise.all(projects.map(async project => ({ ...project, permissions: await capabilities(db, project.id) })));
     });
   });
+  app.get('/api/projects/:id',async req=>{
+    const project=id.parse((req.params as any).id);
+    return projectScope(req,{project},['view_original'],async db=>{
+      const [p]=await rows(db,sql`SELECT id,name,created_at FROM projects WHERE id=${project}`);
+      if(!p)fail('NOT_FOUND',404);
+      return {...p,permissions:await capabilities(db,project)};
+    });
+  });
   app.post("/api/projects", async (req) => {
-    const { name } = projectSchema.parse(req.body);
+    const { name,applyDefaultPresets } = projectSchema.extend({applyDefaultPresets:z.boolean().default(false)}).parse(req.body);
     return scoped(req.user.id, req.user.tenant_id, async (db) => {
       const project = randomUUID();
       await rows(
         db,
         sql`INSERT INTO projects(id,tenant_id,owner_id,name) VALUES(${project},${req.user.tenant_id},${req.user.id},${name})`,
       );
+      if(applyDefaultPresets){
+        const presets=await defaultProjectPresets(db,req);
+        await rows(db,sql`UPDATE projects SET preset_revision=1,preset_policy=${seal(JSON.stringify(presets),`${req.user.tenant_id}:${project}:presets`)} WHERE id=${project}`);
+        await audit(db,req.user,project,'default_presets_applied',project);
+      }
       await audit(db, req.user, project, "project_created", project);
       return { id: project, name };
     });
@@ -268,7 +338,7 @@ export async function buildApp() {
       if (page.revision !== undefined && d.revision !== page.revision) fail("VERSION_CONFLICT", 409);
       const [job] = await rows(
         db,
-        sql`SELECT id,kind,status,error_code,required_permissions FROM jobs WHERE document_id=${doc} ORDER BY created_at DESC,id DESC LIMIT 1`,
+        sql`SELECT id,kind,status,error_code,required_permissions,user_id FROM jobs WHERE document_id=${doc} ORDER BY created_at DESC,id DESC LIMIT 1`,
       );
       return {
         id: d.id,
@@ -283,11 +353,13 @@ export async function buildApp() {
         parseVersion: d.parse_version,
         anchors: d.anchors,
         coverage: d.coverage,
-        pageReview: d.page_review,
+        pageReview: openPageReview(d),
         pages: (d.page_data ?? []).map(({ index, width, height, rotation, confidence, part }: any) => ({ index, width, height, rotation, confidence, part })),
-        job,
+        job:job?{id:job.id,kind:job.kind,status:job.status,error_code:job.error_code,required_permissions:job.required_permissions,canObserveEvents:job.user_id===req.user.id}:undefined,
         canRunNer: nerReady,
         nerEnabled: d.ner_enabled,
+        visualCandidates: d.visual_candidates,
+        visualDiagnostics:d.recognition?.visual??null,
         layers: {
           rules: d.state === "queued" ? "pending" : "completed",
           ner: d.ner_enabled ? (d.state === "review" ? "completed" : "pending") : (nerReady ? "not_requested" : "not_configured"),
@@ -315,7 +387,7 @@ export async function buildApp() {
       if (!d) fail("NOT_FOUND", 404);
       if (d.revision !== input.revision) fail("VERSION_CONFLICT", 409);
       if (d.state !== "review") fail("DETECTION_INCOMPLETE", 409);
-      try { return await runProcessing<Uint8Array>({ kind: "page-preview", doc: { ...d, page_review: input.pageReview ?? d.page_review }, page, marks: input.marks }); }
+      try { return await runProcessing<Uint8Array>({ kind: "page-preview", doc: { ...d, page_review: input.pageReview ?? openPageReview(d) }, page, marks: input.marks }); }
       catch (e) { fail((e as Error).message, 400); }
     });
     return reply.type("image/png").send(Buffer.from(image));
@@ -344,6 +416,8 @@ export async function buildApp() {
       );
       if (!d) fail("NOT_FOUND", 404);
       if (d.revision !== revision) fail("VERSION_CONFLICT", 409);
+      const [presetProject] = await rows(db, sql`SELECT id,tenant_id,preset_policy,preset_revision FROM projects WHERE id=${d.project_id}`);
+      Object.assign(d,resolveDocumentPolicy(d,readProjectPresets(presetProject)));
       const [snapshot] = await rows(db, sql`SELECT * FROM review_snapshots WHERE document_id=${doc} AND revision=${revision}`);
       try {
         await runProcessing({ kind: "gate", doc: d, snapshot });
@@ -368,7 +442,7 @@ export async function buildApp() {
   app.post("/api/jobs/:id/cancel", async (req) => {
     const job = id.parse((req.params as any).id);
     return projectScope(req, { job }, [], async (db, project) => {
-      const [target] = await rows(db, sql`SELECT required_permissions FROM jobs WHERE id=${job}`);
+      const [target] = await rows(db, sql`SELECT * FROM jobs WHERE id=${job}`);
       await requirePermission(db, project, target.required_permissions);
       const [j] = await rows(
         db,
@@ -376,13 +450,26 @@ export async function buildApp() {
       );
       if (!j) fail("JOB_NOT_ACTIVE", 409);
       await rows(db, sql`UPDATE attempts SET finished_at=now(),outcome='cancelled' WHERE job_id=${job} AND finished_at IS NULL`);
+      if(target.kind==='export'){
+        const [d]=await rows(db,sql`SELECT d.*,p.preset_policy,p.preset_revision FROM documents d JOIN projects p ON p.id=d.project_id WHERE d.id=${target.document_id}`);
+        if(d){Object.assign(d,resolveDocumentPolicy(d,readProjectPresets({id:d.project_id,tenant_id:d.tenant_id,preset_revision:d.preset_revision,preset_policy:d.preset_policy})));if(expectsMarkdownExport(d))await recordMarkdownExportEvent(db,{tenant:d.tenant_id,project:d.project_id,user:req.user.id,document:d.id,revision:target.revision,attemptKey:job},{event:'export-outcome',sourceKind:markdownSourceKind(d.source_format),status:'cancelled'});}
+      }
       await audit(db, req.user, j.project_id, "job_cancelled", job);
       return { ok: true };
     });
   });
+  app.get("/api/documents/:id/outputs", async req => {
+    const doc = id.parse((req.params as any).id), {revision} = z.object({revision:z.coerce.number().int().nonnegative()}).parse(req.query);
+    return projectScope(req,{document:doc},["export"],async db=>{
+      const [d]=await rows(db,sql`SELECT revision,state FROM documents WHERE id=${doc}`);
+      if(!d || d.revision!==revision)fail("VERSION_CONFLICT",409);
+      if(d.state!=="review")fail("POLICY_CHANGED",409);
+      return rows(db,sql`SELECT DISTINCT ON(a.output_role) a.output_role AS role,a.output_format AS format FROM artifacts a JOIN jobs j ON j.id=a.job_id WHERE a.document_id=${doc} AND a.revision=${revision} AND j.status='succeeded' ORDER BY a.output_role,j.created_at DESC`);
+    });
+  });
   app.post("/api/documents/:id/download-link", async (req) => {
     const doc = id.parse((req.params as any).id);
-    const { revision } = revisionSchema.parse(req.body);
+    const { revision,role } = revisionSchema.extend({role:z.enum(["primary","markdown","pdf-docx"]).default("primary")}).parse(req.body);
     return projectScope(req, { document: doc }, ["export"], async (db) => {
       const [d] = await rows(
         db,
@@ -390,11 +477,13 @@ export async function buildApp() {
       );
       if (!d) fail("NOT_FOUND", 404);
       if (d.revision !== revision) fail("VERSION_CONFLICT", 409);
+      const [presetProject] = await rows(db, sql`SELECT id,tenant_id,preset_policy,preset_revision FROM projects WHERE id=${d.project_id}`);
+      Object.assign(d,resolveDocumentPolicy(d,readProjectPresets(presetProject)));
       const [snapshot] = await rows(db, sql`SELECT * FROM review_snapshots WHERE document_id=${doc} AND revision=${revision}`);
       try { await runProcessing({ kind: "gate", doc: d, snapshot }); } catch (e) { fail((e as Error).message, 409); }
       const [a] = await rows(
         db,
-        sql`SELECT a.* FROM artifacts a JOIN jobs j ON j.id=a.job_id WHERE a.document_id=${doc} AND a.revision=${d.revision} AND j.status='succeeded' ORDER BY j.created_at DESC LIMIT 1`,
+        sql`SELECT a.* FROM artifacts a JOIN jobs j ON j.id=a.job_id WHERE a.document_id=${doc} AND a.revision=${d.revision} AND a.output_role=${role} AND j.status='succeeded' ORDER BY j.created_at DESC LIMIT 1`,
       );
       if (!a) fail("EXPORT_NOT_READY", 409);
       try {

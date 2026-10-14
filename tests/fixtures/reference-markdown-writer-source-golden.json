@@ -1,0 +1,3497 @@
+[
+  {
+    "id": "plain-0",
+    "source": "# 标题\n张三 手机 13800138000\n",
+    "operations": [],
+    "result": {
+      "success": true,
+      "source": "# 标题\n张三 手机 13800138000\n",
+      "buffer": "IyDmoIfpopgK5byg5LiJIOaJi+acuiAxMzgwMDEzODAwMAo=",
+      "report": {
+        "passed": true,
+        "operationCount": 0,
+        "appliedOperationCount": 0,
+        "outputSha256": "ae7a7b2ba3562bf96c1dd670adde5c0332450e55cfb6c1b928bb78f3e97dc662",
+        "deterministicSha256": [
+          "ae7a7b2ba3562bf96c1dd670adde5c0332450e55cfb6c1b928bb78f3e97dc662",
+          "ae7a7b2ba3562bf96c1dd670adde5c0332450e55cfb6c1b928bb78f3e97dc662",
+          "ae7a7b2ba3562bf96c1dd670adde5c0332450e55cfb6c1b928bb78f3e97dc662"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "plain-1",
+    "source": "# 标题\n张三 手机 13800138000\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 3,
+        "scanEnd": 5,
+        "region": "text"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "# 标题\n【姓名001】 手机 13800138000\n",
+      "buffer": "IyDmoIfpopgK44CQ5aeT5ZCNMDAx44CRIOaJi+acuiAxMzgwMDEzODAwMAo=",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "8995f0eb7312ba4f5c166fbbd02a8d0ab6d86d290a13d2fdc3ed3d43cb6137dc",
+        "deterministicSha256": [
+          "8995f0eb7312ba4f5c166fbbd02a8d0ab6d86d290a13d2fdc3ed3d43cb6137dc",
+          "8995f0eb7312ba4f5c166fbbd02a8d0ab6d86d290a13d2fdc3ed3d43cb6137dc",
+          "8995f0eb7312ba4f5c166fbbd02a8d0ab6d86d290a13d2fdc3ed3d43cb6137dc"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "plain-2",
+    "source": "# 标题\n张三 手机 13800138000\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 3,
+        "scanEnd": 5,
+        "region": "text"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "# 标题\n【姓名001】 手机 13800138000\n",
+      "buffer": "IyDmoIfpopgK44CQ5aeT5ZCNMDAx44CRIOaJi+acuiAxMzgwMDEzODAwMAo=",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "8995f0eb7312ba4f5c166fbbd02a8d0ab6d86d290a13d2fdc3ed3d43cb6137dc",
+        "deterministicSha256": [
+          "8995f0eb7312ba4f5c166fbbd02a8d0ab6d86d290a13d2fdc3ed3d43cb6137dc",
+          "8995f0eb7312ba4f5c166fbbd02a8d0ab6d86d290a13d2fdc3ed3d43cb6137dc",
+          "8995f0eb7312ba4f5c166fbbd02a8d0ab6d86d290a13d2fdc3ed3d43cb6137dc"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "inline-0",
+    "source": "**张三** 与 *李四* 和 ~~王五~~，`代码张三`。\n",
+    "operations": [],
+    "result": {
+      "success": true,
+      "source": "**张三** 与 *李四* 和 ~~王五~~，`代码张三`。\n",
+      "buffer": "KirlvKDkuIkqKiDkuI4gKuadjuWbmyog5ZKMIH5+546L5LqUfn7vvIxg5Luj56CB5byg5LiJYOOAggo=",
+      "report": {
+        "passed": true,
+        "operationCount": 0,
+        "appliedOperationCount": 0,
+        "outputSha256": "53c29b9506e404351e7a44c157363a3332274eed5bd090997afa2f23b19a444e",
+        "deterministicSha256": [
+          "53c29b9506e404351e7a44c157363a3332274eed5bd090997afa2f23b19a444e",
+          "53c29b9506e404351e7a44c157363a3332274eed5bd090997afa2f23b19a444e",
+          "53c29b9506e404351e7a44c157363a3332274eed5bd090997afa2f23b19a444e"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "inline-1",
+    "source": "**张三** 与 *李四* 和 ~~王五~~，`代码张三`。\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 0,
+        "scanEnd": 2,
+        "region": "text"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "【姓名001】 与 *李四* 和 ~~王五~~，`代码张三`。\n",
+      "buffer": "44CQ5aeT5ZCNMDAx44CRIOS4jiAq5p2O5ZubKiDlkowgfn7njovkupR+fu+8jGDku6PnoIHlvKDkuIlg44CCCg==",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "157174621aae698216c5979cbcf565876c1af495b4348dedb7c72cf20017ab54",
+        "deterministicSha256": [
+          "157174621aae698216c5979cbcf565876c1af495b4348dedb7c72cf20017ab54",
+          "157174621aae698216c5979cbcf565876c1af495b4348dedb7c72cf20017ab54",
+          "157174621aae698216c5979cbcf565876c1af495b4348dedb7c72cf20017ab54"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "inline-2",
+    "source": "**张三** 与 *李四* 和 ~~王五~~，`代码张三`。\n",
+    "operations": [
+      {
+        "operationId": "op-2",
+        "entityType": "name_cn",
+        "original": "李四",
+        "replacement": "【姓名001】",
+        "scanStart": 5,
+        "scanEnd": 7,
+        "region": "text"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "**张三** 与 【姓名001】 和 ~~王五~~，`代码张三`。\n",
+      "buffer": "KirlvKDkuIkqKiDkuI4g44CQ5aeT5ZCNMDAx44CRIOWSjCB+fueOi+S6lH5+77yMYOS7o+eggeW8oOS4iWDjgIIK",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "1f56f97f7af9a805bdc4604d1866f88e1faf0b0bf38022b362a677771ab54763",
+        "deterministicSha256": [
+          "1f56f97f7af9a805bdc4604d1866f88e1faf0b0bf38022b362a677771ab54763",
+          "1f56f97f7af9a805bdc4604d1866f88e1faf0b0bf38022b362a677771ab54763",
+          "1f56f97f7af9a805bdc4604d1866f88e1faf0b0bf38022b362a677771ab54763"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "inline-3",
+    "source": "**张三** 与 *李四* 和 ~~王五~~，`代码张三`。\n",
+    "operations": [
+      {
+        "operationId": "op-3",
+        "entityType": "name_cn",
+        "original": "王五",
+        "replacement": "【姓名001】",
+        "scanStart": 10,
+        "scanEnd": 12,
+        "region": "text"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "**张三** 与 *李四* 和 【姓名001】，`代码张三`。\n",
+      "buffer": "KirlvKDkuIkqKiDkuI4gKuadjuWbmyog5ZKMIOOAkOWnk+WQjTAwMeOAke+8jGDku6PnoIHlvKDkuIlg44CCCg==",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "d8788b35890ff380cb726914b8f6f84d01fc3e3fdc2f2930b65f4b58324211e9",
+        "deterministicSha256": [
+          "d8788b35890ff380cb726914b8f6f84d01fc3e3fdc2f2930b65f4b58324211e9",
+          "d8788b35890ff380cb726914b8f6f84d01fc3e3fdc2f2930b65f4b58324211e9",
+          "d8788b35890ff380cb726914b8f6f84d01fc3e3fdc2f2930b65f4b58324211e9"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "inline-4",
+    "source": "**张三** 与 *李四* 和 ~~王五~~，`代码张三`。\n",
+    "operations": [
+      {
+        "operationId": "op-4",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 15,
+        "scanEnd": 17,
+        "region": "code"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "**张三** 与 *李四* 和 ~~王五~~，`代码【姓名001】`。\n",
+      "buffer": "KirlvKDkuIkqKiDkuI4gKuadjuWbmyog5ZKMIH5+546L5LqUfn7vvIxg5Luj56CB44CQ5aeT5ZCNMDAx44CRYOOAggo=",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "efdeeb1ebc27a66227d9da8987c4b65dcae6c437d0fd3ee18da36ede722f9776",
+        "deterministicSha256": [
+          "efdeeb1ebc27a66227d9da8987c4b65dcae6c437d0fd3ee18da36ede722f9776",
+          "efdeeb1ebc27a66227d9da8987c4b65dcae6c437d0fd3ee18da36ede722f9776",
+          "efdeeb1ebc27a66227d9da8987c4b65dcae6c437d0fd3ee18da36ede722f9776"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "inline-5",
+    "source": "**张三** 与 *李四* 和 ~~王五~~，`代码张三`。\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 0,
+        "scanEnd": 2,
+        "region": "text"
+      },
+      {
+        "operationId": "op-2",
+        "entityType": "name_cn",
+        "original": "李四",
+        "replacement": "【姓名001】",
+        "scanStart": 5,
+        "scanEnd": 7,
+        "region": "text"
+      },
+      {
+        "operationId": "op-3",
+        "entityType": "name_cn",
+        "original": "王五",
+        "replacement": "【姓名001】",
+        "scanStart": 10,
+        "scanEnd": 12,
+        "region": "text"
+      },
+      {
+        "operationId": "op-4",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 15,
+        "scanEnd": 17,
+        "region": "code"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "【姓名001】 与 【姓名001】 和 【姓名001】，`代码【姓名001】`。\n",
+      "buffer": "44CQ5aeT5ZCNMDAx44CRIOS4jiDjgJDlp5PlkI0wMDHjgJEg5ZKMIOOAkOWnk+WQjTAwMeOAke+8jGDku6PnoIHjgJDlp5PlkI0wMDHjgJFg44CCCg==",
+      "report": {
+        "passed": true,
+        "operationCount": 4,
+        "appliedOperationCount": 4,
+        "outputSha256": "e7933c006ffcb8eeef512ae9a83c335530b7541caf35738a13a62d19fb1925d1",
+        "deterministicSha256": [
+          "e7933c006ffcb8eeef512ae9a83c335530b7541caf35738a13a62d19fb1925d1",
+          "e7933c006ffcb8eeef512ae9a83c335530b7541caf35738a13a62d19fb1925d1",
+          "e7933c006ffcb8eeef512ae9a83c335530b7541caf35738a13a62d19fb1925d1"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "links-0",
+    "source": "[张三](https://example.com/张三 \"标题\") <https://example.com> test@example.com\n[甲][foo]\n\n[foo]: https://example.org\n",
+    "operations": [],
+    "result": {
+      "success": true,
+      "source": "张三 ` https://example.com ` ` test@example.com `\n甲\n\n\n",
+      "buffer": "5byg5LiJIGAgaHR0cHM6Ly9leGFtcGxlLmNvbSBgIGAgdGVzdEBleGFtcGxlLmNvbSBgCueUsgoKCg==",
+      "report": {
+        "passed": true,
+        "operationCount": 0,
+        "appliedOperationCount": 0,
+        "outputSha256": "53269884cf9e5f30b6d0666503d0044283598c7b0de885ae086416acde8ce519",
+        "deterministicSha256": [
+          "53269884cf9e5f30b6d0666503d0044283598c7b0de885ae086416acde8ce519",
+          "53269884cf9e5f30b6d0666503d0044283598c7b0de885ae086416acde8ce519",
+          "53269884cf9e5f30b6d0666503d0044283598c7b0de885ae086416acde8ce519"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "links-1",
+    "source": "[张三](https://example.com/张三 \"标题\") <https://example.com> test@example.com\n[甲][foo]\n\n[foo]: https://example.org\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 0,
+        "scanEnd": 2,
+        "region": "link_label"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "【姓名001】 ` https://example.com ` ` test@example.com `\n甲\n\n\n",
+      "buffer": "44CQ5aeT5ZCNMDAx44CRIGAgaHR0cHM6Ly9leGFtcGxlLmNvbSBgIGAgdGVzdEBleGFtcGxlLmNvbSBgCueUsgoKCg==",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "6218841b60b65428aa91265f8c583920230f5283feb98f157f7c6183a4fbfbd7",
+        "deterministicSha256": [
+          "6218841b60b65428aa91265f8c583920230f5283feb98f157f7c6183a4fbfbd7",
+          "6218841b60b65428aa91265f8c583920230f5283feb98f157f7c6183a4fbfbd7",
+          "6218841b60b65428aa91265f8c583920230f5283feb98f157f7c6183a4fbfbd7"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "links-2",
+    "source": "[张三](https://example.com/张三 \"标题\") <https://example.com> test@example.com\n[甲][foo]\n\n[foo]: https://example.org\n",
+    "operations": [
+      {
+        "operationId": "op-2",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 23,
+        "scanEnd": 25,
+        "region": "link_destination"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "张三 ` https://example.com ` ` test@example.com `\n甲\n\n\n",
+      "buffer": "5byg5LiJIGAgaHR0cHM6Ly9leGFtcGxlLmNvbSBgIGAgdGVzdEBleGFtcGxlLmNvbSBgCueUsgoKCg==",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "53269884cf9e5f30b6d0666503d0044283598c7b0de885ae086416acde8ce519",
+        "deterministicSha256": [
+          "53269884cf9e5f30b6d0666503d0044283598c7b0de885ae086416acde8ce519",
+          "53269884cf9e5f30b6d0666503d0044283598c7b0de885ae086416acde8ce519",
+          "53269884cf9e5f30b6d0666503d0044283598c7b0de885ae086416acde8ce519"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "links-3",
+    "source": "[张三](https://example.com/张三 \"标题\") <https://example.com> test@example.com\n[甲][foo]\n\n[foo]: https://example.org\n",
+    "operations": [
+      {
+        "operationId": "op-3",
+        "entityType": "name_cn",
+        "original": "https://example.com",
+        "replacement": "【姓名001】",
+        "scanStart": 3,
+        "scanEnd": 22,
+        "region": "link_destination"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "张三 ` https://example.com ` ` test@example.com `\n甲\n\n\n",
+      "buffer": "5byg5LiJIGAgaHR0cHM6Ly9leGFtcGxlLmNvbSBgIGAgdGVzdEBleGFtcGxlLmNvbSBgCueUsgoKCg==",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "53269884cf9e5f30b6d0666503d0044283598c7b0de885ae086416acde8ce519",
+        "deterministicSha256": [
+          "53269884cf9e5f30b6d0666503d0044283598c7b0de885ae086416acde8ce519",
+          "53269884cf9e5f30b6d0666503d0044283598c7b0de885ae086416acde8ce519",
+          "53269884cf9e5f30b6d0666503d0044283598c7b0de885ae086416acde8ce519"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "links-4",
+    "source": "[张三](https://example.com/张三 \"标题\") <https://example.com> test@example.com\n[甲][foo]\n\n[foo]: https://example.org\n",
+    "operations": [
+      {
+        "operationId": "op-4",
+        "entityType": "name_cn",
+        "original": "https://example.com",
+        "replacement": "【姓名001】",
+        "scanStart": 26,
+        "scanEnd": 45,
+        "region": "link_label"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "张三 【姓名001】 ` test@example.com `\n甲\n\n\n",
+      "buffer": "5byg5LiJIOOAkOWnk+WQjTAwMeOAkSBgIHRlc3RAZXhhbXBsZS5jb20gYArnlLIKCgo=",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "bea91e2066570e87e6785b2c203d9f7d716792d3ec210a53cd46e561f541d565",
+        "deterministicSha256": [
+          "bea91e2066570e87e6785b2c203d9f7d716792d3ec210a53cd46e561f541d565",
+          "bea91e2066570e87e6785b2c203d9f7d716792d3ec210a53cd46e561f541d565",
+          "bea91e2066570e87e6785b2c203d9f7d716792d3ec210a53cd46e561f541d565"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "links-5",
+    "source": "[张三](https://example.com/张三 \"标题\") <https://example.com> test@example.com\n[甲][foo]\n\n[foo]: https://example.org\n",
+    "operations": [
+      {
+        "operationId": "op-5",
+        "entityType": "name_cn",
+        "original": "https://example.com",
+        "replacement": "【姓名001】",
+        "scanStart": 46,
+        "scanEnd": 65,
+        "region": "link_destination"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "张三 ` https://example.com ` ` test@example.com `\n甲\n\n\n",
+      "buffer": "5byg5LiJIGAgaHR0cHM6Ly9leGFtcGxlLmNvbSBgIGAgdGVzdEBleGFtcGxlLmNvbSBgCueUsgoKCg==",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "53269884cf9e5f30b6d0666503d0044283598c7b0de885ae086416acde8ce519",
+        "deterministicSha256": [
+          "53269884cf9e5f30b6d0666503d0044283598c7b0de885ae086416acde8ce519",
+          "53269884cf9e5f30b6d0666503d0044283598c7b0de885ae086416acde8ce519",
+          "53269884cf9e5f30b6d0666503d0044283598c7b0de885ae086416acde8ce519"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "links-6",
+    "source": "[张三](https://example.com/张三 \"标题\") <https://example.com> test@example.com\n[甲][foo]\n\n[foo]: https://example.org\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 0,
+        "scanEnd": 2,
+        "region": "link_label"
+      },
+      {
+        "operationId": "op-2",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 23,
+        "scanEnd": 25,
+        "region": "link_destination"
+      },
+      {
+        "operationId": "op-3",
+        "entityType": "name_cn",
+        "original": "https://example.com",
+        "replacement": "【姓名001】",
+        "scanStart": 3,
+        "scanEnd": 22,
+        "region": "link_destination"
+      },
+      {
+        "operationId": "op-4",
+        "entityType": "name_cn",
+        "original": "https://example.com",
+        "replacement": "【姓名001】",
+        "scanStart": 26,
+        "scanEnd": 45,
+        "region": "link_label"
+      },
+      {
+        "operationId": "op-5",
+        "entityType": "name_cn",
+        "original": "https://example.com",
+        "replacement": "【姓名001】",
+        "scanStart": 46,
+        "scanEnd": 65,
+        "region": "link_destination"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "【姓名001】 【姓名001】 ` test@example.com `\n甲\n\n\n",
+      "buffer": "44CQ5aeT5ZCNMDAx44CRIOOAkOWnk+WQjTAwMeOAkSBgIHRlc3RAZXhhbXBsZS5jb20gYArnlLIKCgo=",
+      "report": {
+        "passed": true,
+        "operationCount": 5,
+        "appliedOperationCount": 5,
+        "outputSha256": "42d59f3cbe48e588ac04a2c074b05adf7e99abb26ff3d232d89750306211b47a",
+        "deterministicSha256": [
+          "42d59f3cbe48e588ac04a2c074b05adf7e99abb26ff3d232d89750306211b47a",
+          "42d59f3cbe48e588ac04a2c074b05adf7e99abb26ff3d232d89750306211b47a",
+          "42d59f3cbe48e588ac04a2c074b05adf7e99abb26ff3d232d89750306211b47a"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "code-0",
+    "source": "```js\n张三\n```\n\n    李四\n",
+    "operations": [],
+    "result": {
+      "success": true,
+      "source": "```js\n张三\n```\n\n    李四\n",
+      "buffer": "YGBganMK5byg5LiJCmBgYAoKICAgIOadjuWbmwo=",
+      "report": {
+        "passed": true,
+        "operationCount": 0,
+        "appliedOperationCount": 0,
+        "outputSha256": "d641565d9dc1568f648afd7456573542dd062bb46353061a0e76e0145c985da8",
+        "deterministicSha256": [
+          "d641565d9dc1568f648afd7456573542dd062bb46353061a0e76e0145c985da8",
+          "d641565d9dc1568f648afd7456573542dd062bb46353061a0e76e0145c985da8",
+          "d641565d9dc1568f648afd7456573542dd062bb46353061a0e76e0145c985da8"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "code-1",
+    "source": "```js\n张三\n```\n\n    李四\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 0,
+        "scanEnd": 2,
+        "region": "code"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "```js\n【姓名001】\n```\n\n    李四\n",
+      "buffer": "YGBganMK44CQ5aeT5ZCNMDAx44CRCmBgYAoKICAgIOadjuWbmwo=",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "481079497388ddfb973f6e5fb58dfca350eccd7fb6f9d20059c92c5364fa874c",
+        "deterministicSha256": [
+          "481079497388ddfb973f6e5fb58dfca350eccd7fb6f9d20059c92c5364fa874c",
+          "481079497388ddfb973f6e5fb58dfca350eccd7fb6f9d20059c92c5364fa874c",
+          "481079497388ddfb973f6e5fb58dfca350eccd7fb6f9d20059c92c5364fa874c"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "code-2",
+    "source": "```js\n张三\n```\n\n    李四\n",
+    "operations": [
+      {
+        "operationId": "op-2",
+        "entityType": "name_cn",
+        "original": "李四",
+        "replacement": "【姓名001】",
+        "scanStart": 3,
+        "scanEnd": 5,
+        "region": "code"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "```js\n张三\n```\n\n    【姓名001】\n",
+      "buffer": "YGBganMK5byg5LiJCmBgYAoKICAgIOOAkOWnk+WQjTAwMeOAkQo=",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "d9ee6bad35be818894108bbc47d5c4c1576497dd8c7ce80ed358bd8c94b9db5a",
+        "deterministicSha256": [
+          "d9ee6bad35be818894108bbc47d5c4c1576497dd8c7ce80ed358bd8c94b9db5a",
+          "d9ee6bad35be818894108bbc47d5c4c1576497dd8c7ce80ed358bd8c94b9db5a",
+          "d9ee6bad35be818894108bbc47d5c4c1576497dd8c7ce80ed358bd8c94b9db5a"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "code-3",
+    "source": "```js\n张三\n```\n\n    李四\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 0,
+        "scanEnd": 2,
+        "region": "code"
+      },
+      {
+        "operationId": "op-2",
+        "entityType": "name_cn",
+        "original": "李四",
+        "replacement": "【姓名001】",
+        "scanStart": 3,
+        "scanEnd": 5,
+        "region": "code"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "```js\n【姓名001】\n```\n\n    【姓名001】\n",
+      "buffer": "YGBganMK44CQ5aeT5ZCNMDAx44CRCmBgYAoKICAgIOOAkOWnk+WQjTAwMeOAkQo=",
+      "report": {
+        "passed": true,
+        "operationCount": 2,
+        "appliedOperationCount": 2,
+        "outputSha256": "77d3b5a8693c4dc8e9c5eb92b274dcd50f17984c36ae967e9814edd472459ad2",
+        "deterministicSha256": [
+          "77d3b5a8693c4dc8e9c5eb92b274dcd50f17984c36ae967e9814edd472459ad2",
+          "77d3b5a8693c4dc8e9c5eb92b274dcd50f17984c36ae967e9814edd472459ad2",
+          "77d3b5a8693c4dc8e9c5eb92b274dcd50f17984c36ae967e9814edd472459ad2"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "image-0",
+    "source": "![张三](photo.png) 与 <div>敏感HTML</div>\n",
+    "operations": [],
+    "result": {
+      "success": true,
+      "source": " 与 敏感HTML\n",
+      "buffer": "IOS4jiDmlY/mhJ9IVE1MCg==",
+      "report": {
+        "passed": true,
+        "operationCount": 0,
+        "appliedOperationCount": 0,
+        "outputSha256": "d4cdf7f29022ec23bed6847ef86679273d3c26100639c259453349104b1e8d0a",
+        "deterministicSha256": [
+          "d4cdf7f29022ec23bed6847ef86679273d3c26100639c259453349104b1e8d0a",
+          "d4cdf7f29022ec23bed6847ef86679273d3c26100639c259453349104b1e8d0a",
+          "d4cdf7f29022ec23bed6847ef86679273d3c26100639c259453349104b1e8d0a"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 3
+      }
+    }
+  },
+  {
+    "id": "image-1",
+    "source": "![张三](photo.png) 与 <div>敏感HTML</div>\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 0,
+        "scanEnd": 2,
+        "region": "image_alt"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": " 与 敏感HTML\n",
+      "buffer": "IOS4jiDmlY/mhJ9IVE1MCg==",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "d4cdf7f29022ec23bed6847ef86679273d3c26100639c259453349104b1e8d0a",
+        "deterministicSha256": [
+          "d4cdf7f29022ec23bed6847ef86679273d3c26100639c259453349104b1e8d0a",
+          "d4cdf7f29022ec23bed6847ef86679273d3c26100639c259453349104b1e8d0a",
+          "d4cdf7f29022ec23bed6847ef86679273d3c26100639c259453349104b1e8d0a"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 3
+      }
+    }
+  },
+  {
+    "id": "image-2",
+    "source": "![张三](photo.png) 与 <div>敏感HTML</div>\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 0,
+        "scanEnd": 2,
+        "region": "image_alt"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": " 与 敏感HTML\n",
+      "buffer": "IOS4jiDmlY/mhJ9IVE1MCg==",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "d4cdf7f29022ec23bed6847ef86679273d3c26100639c259453349104b1e8d0a",
+        "deterministicSha256": [
+          "d4cdf7f29022ec23bed6847ef86679273d3c26100639c259453349104b1e8d0a",
+          "d4cdf7f29022ec23bed6847ef86679273d3c26100639c259453349104b1e8d0a",
+          "d4cdf7f29022ec23bed6847ef86679273d3c26100639c259453349104b1e8d0a"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 3
+      }
+    }
+  },
+  {
+    "id": "yaml-0",
+    "source": "---\nname: 张三\n金额: 100\nlist: [李四, 王五]\n---\n\n正文\n",
+    "operations": [],
+    "result": {
+      "success": true,
+      "source": "---\nname: 张三\n金额: 100\nlist: [李四, 王五]\n---\n\n正文\n",
+      "buffer": "LS0tCm5hbWU6IOW8oOS4iQrph5Hpop06IDEwMApsaXN0OiBb5p2O5ZubLCDnjovkupRdCi0tLQoK5q2j5paHCg==",
+      "report": {
+        "passed": true,
+        "operationCount": 0,
+        "appliedOperationCount": 0,
+        "outputSha256": "cfc46c6bdf7e94eadd39a08f019ad41c91ddbef56d9ad02b1a605bce1b0cd968",
+        "deterministicSha256": [
+          "cfc46c6bdf7e94eadd39a08f019ad41c91ddbef56d9ad02b1a605bce1b0cd968",
+          "cfc46c6bdf7e94eadd39a08f019ad41c91ddbef56d9ad02b1a605bce1b0cd968",
+          "cfc46c6bdf7e94eadd39a08f019ad41c91ddbef56d9ad02b1a605bce1b0cd968"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "yaml-1",
+    "source": "---\nname: 张三\n金额: 100\nlist: [李四, 王五]\n---\n\n正文\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 5,
+        "scanEnd": 7,
+        "region": "frontmatter"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "---\nname: 【姓名001】\n金额: 100\nlist: [李四, 王五]\n---\n\n正文\n",
+      "buffer": "LS0tCm5hbWU6IOOAkOWnk+WQjTAwMeOAkQrph5Hpop06IDEwMApsaXN0OiBb5p2O5ZubLCDnjovkupRdCi0tLQoK5q2j5paHCg==",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "1708697f5c6c21f69b34feae005e1d3a7683c8c65c0e19157d5c930508e8e547",
+        "deterministicSha256": [
+          "1708697f5c6c21f69b34feae005e1d3a7683c8c65c0e19157d5c930508e8e547",
+          "1708697f5c6c21f69b34feae005e1d3a7683c8c65c0e19157d5c930508e8e547",
+          "1708697f5c6c21f69b34feae005e1d3a7683c8c65c0e19157d5c930508e8e547"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "yaml-2",
+    "source": "---\nname: 张三\n金额: 100\nlist: [李四, 王五]\n---\n\n正文\n",
+    "operations": [
+      {
+        "operationId": "op-2",
+        "entityType": "name_cn",
+        "original": "李四",
+        "replacement": "【姓名001】",
+        "scanStart": 16,
+        "scanEnd": 18,
+        "region": "frontmatter"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "---\nname: 张三\n金额: 100\nlist: [【姓名001】, 王五]\n---\n\n正文\n",
+      "buffer": "LS0tCm5hbWU6IOW8oOS4iQrph5Hpop06IDEwMApsaXN0OiBb44CQ5aeT5ZCNMDAx44CRLCDnjovkupRdCi0tLQoK5q2j5paHCg==",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "427ac7601d64a38ccbf267768b41ce0b4798fd08747ffaa17bb27ad1a1677086",
+        "deterministicSha256": [
+          "427ac7601d64a38ccbf267768b41ce0b4798fd08747ffaa17bb27ad1a1677086",
+          "427ac7601d64a38ccbf267768b41ce0b4798fd08747ffaa17bb27ad1a1677086",
+          "427ac7601d64a38ccbf267768b41ce0b4798fd08747ffaa17bb27ad1a1677086"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "yaml-3",
+    "source": "---\nname: 张三\n金额: 100\nlist: [李四, 王五]\n---\n\n正文\n",
+    "operations": [
+      {
+        "operationId": "op-3",
+        "entityType": "name_cn",
+        "original": "王五",
+        "replacement": "【姓名001】",
+        "scanStart": 19,
+        "scanEnd": 21,
+        "region": "frontmatter"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "---\nname: 张三\n金额: 100\nlist: [李四, 【姓名001】]\n---\n\n正文\n",
+      "buffer": "LS0tCm5hbWU6IOW8oOS4iQrph5Hpop06IDEwMApsaXN0OiBb5p2O5ZubLCDjgJDlp5PlkI0wMDHjgJFdCi0tLQoK5q2j5paHCg==",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "36fc5d469741b37b60fd5fcad7ee353f6261744a0a626676fd26df348611d4c6",
+        "deterministicSha256": [
+          "36fc5d469741b37b60fd5fcad7ee353f6261744a0a626676fd26df348611d4c6",
+          "36fc5d469741b37b60fd5fcad7ee353f6261744a0a626676fd26df348611d4c6",
+          "36fc5d469741b37b60fd5fcad7ee353f6261744a0a626676fd26df348611d4c6"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "yaml-4",
+    "source": "---\nname: 张三\n金额: 100\nlist: [李四, 王五]\n---\n\n正文\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 5,
+        "scanEnd": 7,
+        "region": "frontmatter"
+      },
+      {
+        "operationId": "op-2",
+        "entityType": "name_cn",
+        "original": "李四",
+        "replacement": "【姓名001】",
+        "scanStart": 16,
+        "scanEnd": 18,
+        "region": "frontmatter"
+      },
+      {
+        "operationId": "op-3",
+        "entityType": "name_cn",
+        "original": "王五",
+        "replacement": "【姓名001】",
+        "scanStart": 19,
+        "scanEnd": 21,
+        "region": "frontmatter"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "---\nname: 【姓名001】\n金额: 100\nlist: [【姓名001】, 【姓名001】]\n---\n\n正文\n",
+      "buffer": "LS0tCm5hbWU6IOOAkOWnk+WQjTAwMeOAkQrph5Hpop06IDEwMApsaXN0OiBb44CQ5aeT5ZCNMDAx44CRLCDjgJDlp5PlkI0wMDHjgJFdCi0tLQoK5q2j5paHCg==",
+      "report": {
+        "passed": true,
+        "operationCount": 3,
+        "appliedOperationCount": 3,
+        "outputSha256": "58f5fdae45b3b9bf477b810651ff008c1a9e1b43f5581547485ce1a3806badfc",
+        "deterministicSha256": [
+          "58f5fdae45b3b9bf477b810651ff008c1a9e1b43f5581547485ce1a3806badfc",
+          "58f5fdae45b3b9bf477b810651ff008c1a9e1b43f5581547485ce1a3806badfc",
+          "58f5fdae45b3b9bf477b810651ff008c1a9e1b43f5581547485ce1a3806badfc"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "yaml-invalid-0",
+    "source": "---\nname: [张三\n---\n正文",
+    "operations": [],
+    "result": {
+      "success": true,
+      "source": "---\nname: [张三\n---\n正文",
+      "buffer": "LS0tCm5hbWU6IFvlvKDkuIkKLS0tCuato+aWhw==",
+      "report": {
+        "passed": true,
+        "operationCount": 0,
+        "appliedOperationCount": 0,
+        "outputSha256": "acb1c7a3f5b934f425604786a0fc0778e3e2dfc3eb9993c67cb8a360ddcfe168",
+        "deterministicSha256": [
+          "acb1c7a3f5b934f425604786a0fc0778e3e2dfc3eb9993c67cb8a360ddcfe168",
+          "acb1c7a3f5b934f425604786a0fc0778e3e2dfc3eb9993c67cb8a360ddcfe168",
+          "acb1c7a3f5b934f425604786a0fc0778e3e2dfc3eb9993c67cb8a360ddcfe168"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "yaml-invalid-1",
+    "source": "---\nname: [张三\n---\n正文",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 7,
+        "scanEnd": 9,
+        "region": "frontmatter"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "---\nname: [【姓名001】\n---\n正文",
+      "buffer": "LS0tCm5hbWU6IFvjgJDlp5PlkI0wMDHjgJEKLS0tCuato+aWhw==",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "a9feb0b4c8d4d950296accb7885c4c4158929a8c53d549060e64c07299e76f5e",
+        "deterministicSha256": [
+          "a9feb0b4c8d4d950296accb7885c4c4158929a8c53d549060e64c07299e76f5e",
+          "a9feb0b4c8d4d950296accb7885c4c4158929a8c53d549060e64c07299e76f5e",
+          "a9feb0b4c8d4d950296accb7885c4c4158929a8c53d549060e64c07299e76f5e"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "yaml-invalid-2",
+    "source": "---\nname: [张三\n---\n正文",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 7,
+        "scanEnd": 9,
+        "region": "frontmatter"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "---\nname: [【姓名001】\n---\n正文",
+      "buffer": "LS0tCm5hbWU6IFvjgJDlp5PlkI0wMDHjgJEKLS0tCuato+aWhw==",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "a9feb0b4c8d4d950296accb7885c4c4158929a8c53d549060e64c07299e76f5e",
+        "deterministicSha256": [
+          "a9feb0b4c8d4d950296accb7885c4c4158929a8c53d549060e64c07299e76f5e",
+          "a9feb0b4c8d4d950296accb7885c4c4158929a8c53d549060e64c07299e76f5e",
+          "a9feb0b4c8d4d950296accb7885c4c4158929a8c53d549060e64c07299e76f5e"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "table-0",
+    "source": "| 姓名 | 金额 |\n| --- | --- |\n| **张三** | 100 万元 |\n| 李\\|四 | `200` |\n",
+    "operations": [],
+    "result": {
+      "success": true,
+      "source": "| 姓名 | 金额 |\n| --- | --- |\n| **张三** | 100 万元 |\n| 李\\|四 | `200` |\n",
+      "buffer": "fCDlp5PlkI0gfCDph5Hpop0gfAp8IC0tLSB8IC0tLSB8CnwgKirlvKDkuIkqKiB8IDEwMMKg5LiH5YWDIHwKfCDmnY5cfOWbmyB8IGAyMDBgIHwK",
+      "report": {
+        "passed": true,
+        "operationCount": 0,
+        "appliedOperationCount": 0,
+        "outputSha256": "60f10c9793df522591b2013e6bead8f261f53fda53bb518828398a577d2c14d2",
+        "deterministicSha256": [
+          "60f10c9793df522591b2013e6bead8f261f53fda53bb518828398a577d2c14d2",
+          "60f10c9793df522591b2013e6bead8f261f53fda53bb518828398a577d2c14d2",
+          "60f10c9793df522591b2013e6bead8f261f53fda53bb518828398a577d2c14d2"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "table-1",
+    "source": "| 姓名 | 金额 |\n| --- | --- |\n| **张三** | 100 万元 |\n| 李\\|四 | `200` |\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 6,
+        "scanEnd": 8,
+        "region": "table"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "| 姓名 | 金额 |\n| --- | --- |\n| 【姓名001】 | 100 万元 |\n| 李\\|四 | `200` |\n",
+      "buffer": "fCDlp5PlkI0gfCDph5Hpop0gfAp8IC0tLSB8IC0tLSB8Cnwg44CQ5aeT5ZCNMDAx44CRIHwgMTAwwqDkuIflhYMgfAp8IOadjlx85ZubIHwgYDIwMGAgfAo=",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "b6810438b6773848d592654fdca0002d168ffd38110b5f1a87c91efa315f7735",
+        "deterministicSha256": [
+          "b6810438b6773848d592654fdca0002d168ffd38110b5f1a87c91efa315f7735",
+          "b6810438b6773848d592654fdca0002d168ffd38110b5f1a87c91efa315f7735",
+          "b6810438b6773848d592654fdca0002d168ffd38110b5f1a87c91efa315f7735"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "table-2",
+    "source": "| 姓名 | 金额 |\n| --- | --- |\n| **张三** | 100 万元 |\n| 李\\|四 | `200` |\n",
+    "operations": [
+      {
+        "operationId": "op-2",
+        "entityType": "name_cn",
+        "original": "100",
+        "replacement": "【姓名001】",
+        "scanStart": 9,
+        "scanEnd": 12,
+        "region": "table"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "| 姓名 | 金额 |\n| --- | --- |\n| **张三** | 【姓名001】 万元 |\n| 李\\|四 | `200` |\n",
+      "buffer": "fCDlp5PlkI0gfCDph5Hpop0gfAp8IC0tLSB8IC0tLSB8CnwgKirlvKDkuIkqKiB8IOOAkOWnk+WQjTAwMeOAkcKg5LiH5YWDIHwKfCDmnY5cfOWbmyB8IGAyMDBgIHwK",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "8ba27e5b8665f48f71fbe5e6d01a7ab09f59db3857cecd3e7c9103bffd618c0e",
+        "deterministicSha256": [
+          "8ba27e5b8665f48f71fbe5e6d01a7ab09f59db3857cecd3e7c9103bffd618c0e",
+          "8ba27e5b8665f48f71fbe5e6d01a7ab09f59db3857cecd3e7c9103bffd618c0e",
+          "8ba27e5b8665f48f71fbe5e6d01a7ab09f59db3857cecd3e7c9103bffd618c0e"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "table-3",
+    "source": "| 姓名 | 金额 |\n| --- | --- |\n| **张三** | 100 万元 |\n| 李\\|四 | `200` |\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 6,
+        "scanEnd": 8,
+        "region": "table"
+      },
+      {
+        "operationId": "op-2",
+        "entityType": "name_cn",
+        "original": "100",
+        "replacement": "【姓名001】",
+        "scanStart": 9,
+        "scanEnd": 12,
+        "region": "table"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "| 姓名 | 金额 |\n| --- | --- |\n| 【姓名001】 | 【姓名001】 万元 |\n| 李\\|四 | `200` |\n",
+      "buffer": "fCDlp5PlkI0gfCDph5Hpop0gfAp8IC0tLSB8IC0tLSB8Cnwg44CQ5aeT5ZCNMDAx44CRIHwg44CQ5aeT5ZCNMDAx44CRwqDkuIflhYMgfAp8IOadjlx85ZubIHwgYDIwMGAgfAo=",
+      "report": {
+        "passed": true,
+        "operationCount": 2,
+        "appliedOperationCount": 2,
+        "outputSha256": "97f84a5370d7fcdd04dc643b33131f27356d3be63e395d9d64d9318711a264d4",
+        "deterministicSha256": [
+          "97f84a5370d7fcdd04dc643b33131f27356d3be63e395d9d64d9318711a264d4",
+          "97f84a5370d7fcdd04dc643b33131f27356d3be63e395d9d64d9318711a264d4",
+          "97f84a5370d7fcdd04dc643b33131f27356d3be63e395d9d64d9318711a264d4"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "html-table-0",
+    "source": "<table><caption>合同</caption><thead><tr><th>姓名</th><th>金额</th></tr></thead><tbody><tr><td rowspan=\"2\">张三&amp;甲<br>乙</td><td>100万元</td></tr><tr><td>200</td></tr></tbody></table>\n",
+    "operations": [],
+    "result": {
+      "success": true,
+      "source": "<table><caption>合同</caption><thead><tr><th>姓名</th><th>金额</th></tr></thead><tbody><tr><td rowspan=\"2\">张三&amp;甲<br>乙</td><td>100万元</td></tr><tr><td>200</td></tr></tbody></table>\n",
+      "buffer": "PHRhYmxlPjxjYXB0aW9uPuWQiOWQjDwvY2FwdGlvbj48dGhlYWQ+PHRyPjx0aD7lp5PlkI08L3RoPjx0aD7ph5Hpop08L3RoPjwvdHI+PC90aGVhZD48dGJvZHk+PHRyPjx0ZCByb3dzcGFuPSIyIj7lvKDkuIkmYW1wO+eUsjxicj7kuZk8L3RkPjx0ZD4xMDDkuIflhYM8L3RkPjwvdHI+PHRyPjx0ZD4yMDA8L3RkPjwvdHI+PC90Ym9keT48L3RhYmxlPgo=",
+      "report": {
+        "passed": true,
+        "operationCount": 0,
+        "appliedOperationCount": 0,
+        "outputSha256": "c94df723af33235b88468f70c38ea0dca513cd6c5805fbca36e55401ec9decfe",
+        "deterministicSha256": [
+          "c94df723af33235b88468f70c38ea0dca513cd6c5805fbca36e55401ec9decfe",
+          "c94df723af33235b88468f70c38ea0dca513cd6c5805fbca36e55401ec9decfe",
+          "c94df723af33235b88468f70c38ea0dca513cd6c5805fbca36e55401ec9decfe"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "html-table-1",
+    "source": "<table><caption>合同</caption><thead><tr><th>姓名</th><th>金额</th></tr></thead><tbody><tr><td rowspan=\"2\">张三&amp;甲<br>乙</td><td>100万元</td></tr><tr><td>200</td></tr></tbody></table>\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 9,
+        "scanEnd": 11,
+        "region": "table"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "<table><caption>合同</caption><thead><tr><th>姓名</th><th>金额</th></tr></thead><tbody><tr><td rowspan=\"2\">【姓名001】&amp;甲<br>乙</td><td>100万元</td></tr><tr><td>200</td></tr></tbody></table>\n",
+      "buffer": "PHRhYmxlPjxjYXB0aW9uPuWQiOWQjDwvY2FwdGlvbj48dGhlYWQ+PHRyPjx0aD7lp5PlkI08L3RoPjx0aD7ph5Hpop08L3RoPjwvdHI+PC90aGVhZD48dGJvZHk+PHRyPjx0ZCByb3dzcGFuPSIyIj7jgJDlp5PlkI0wMDHjgJEmYW1wO+eUsjxicj7kuZk8L3RkPjx0ZD4xMDDkuIflhYM8L3RkPjwvdHI+PHRyPjx0ZD4yMDA8L3RkPjwvdHI+PC90Ym9keT48L3RhYmxlPgo=",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "befc74553669773b76740c260ed53ffa04edd028102ee442176a1bdcdde8e485",
+        "deterministicSha256": [
+          "befc74553669773b76740c260ed53ffa04edd028102ee442176a1bdcdde8e485",
+          "befc74553669773b76740c260ed53ffa04edd028102ee442176a1bdcdde8e485",
+          "befc74553669773b76740c260ed53ffa04edd028102ee442176a1bdcdde8e485"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "html-table-2",
+    "source": "<table><caption>合同</caption><thead><tr><th>姓名</th><th>金额</th></tr></thead><tbody><tr><td rowspan=\"2\">张三&amp;甲<br>乙</td><td>100万元</td></tr><tr><td>200</td></tr></tbody></table>\n",
+    "operations": [
+      {
+        "operationId": "op-2",
+        "entityType": "name_cn",
+        "original": "&",
+        "replacement": "【姓名001】",
+        "scanStart": 11,
+        "scanEnd": 12,
+        "region": "table"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "<table><caption>合同</caption><thead><tr><th>姓名</th><th>金额</th></tr></thead><tbody><tr><td rowspan=\"2\">张三【姓名001】甲<br>乙</td><td>100万元</td></tr><tr><td>200</td></tr></tbody></table>\n",
+      "buffer": "PHRhYmxlPjxjYXB0aW9uPuWQiOWQjDwvY2FwdGlvbj48dGhlYWQ+PHRyPjx0aD7lp5PlkI08L3RoPjx0aD7ph5Hpop08L3RoPjwvdHI+PC90aGVhZD48dGJvZHk+PHRyPjx0ZCByb3dzcGFuPSIyIj7lvKDkuInjgJDlp5PlkI0wMDHjgJHnlLI8YnI+5LmZPC90ZD48dGQ+MTAw5LiH5YWDPC90ZD48L3RyPjx0cj48dGQ+MjAwPC90ZD48L3RyPjwvdGJvZHk+PC90YWJsZT4K",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "57e8dba729f43704898cacdc3e36439e006c54a61cb8c931bdf939d90fc73f79",
+        "deterministicSha256": [
+          "57e8dba729f43704898cacdc3e36439e006c54a61cb8c931bdf939d90fc73f79",
+          "57e8dba729f43704898cacdc3e36439e006c54a61cb8c931bdf939d90fc73f79",
+          "57e8dba729f43704898cacdc3e36439e006c54a61cb8c931bdf939d90fc73f79"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "html-table-3",
+    "source": "<table><caption>合同</caption><thead><tr><th>姓名</th><th>金额</th></tr></thead><tbody><tr><td rowspan=\"2\">张三&amp;甲<br>乙</td><td>100万元</td></tr><tr><td>200</td></tr></tbody></table>\n",
+    "operations": [
+      {
+        "operationId": "op-3",
+        "entityType": "name_cn",
+        "original": "100",
+        "replacement": "【姓名001】",
+        "scanStart": 16,
+        "scanEnd": 19,
+        "region": "table"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "<table><caption>合同</caption><thead><tr><th>姓名</th><th>金额</th></tr></thead><tbody><tr><td rowspan=\"2\">张三&amp;甲<br>乙</td><td>【姓名001】万元</td></tr><tr><td>200</td></tr></tbody></table>\n",
+      "buffer": "PHRhYmxlPjxjYXB0aW9uPuWQiOWQjDwvY2FwdGlvbj48dGhlYWQ+PHRyPjx0aD7lp5PlkI08L3RoPjx0aD7ph5Hpop08L3RoPjwvdHI+PC90aGVhZD48dGJvZHk+PHRyPjx0ZCByb3dzcGFuPSIyIj7lvKDkuIkmYW1wO+eUsjxicj7kuZk8L3RkPjx0ZD7jgJDlp5PlkI0wMDHjgJHkuIflhYM8L3RkPjwvdHI+PHRyPjx0ZD4yMDA8L3RkPjwvdHI+PC90Ym9keT48L3RhYmxlPgo=",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "ad073831ed016f3a2c42a86d1a85327b832f84e93e7a619fb6d7e14d991452e6",
+        "deterministicSha256": [
+          "ad073831ed016f3a2c42a86d1a85327b832f84e93e7a619fb6d7e14d991452e6",
+          "ad073831ed016f3a2c42a86d1a85327b832f84e93e7a619fb6d7e14d991452e6",
+          "ad073831ed016f3a2c42a86d1a85327b832f84e93e7a619fb6d7e14d991452e6"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "html-table-4",
+    "source": "<table><caption>合同</caption><thead><tr><th>姓名</th><th>金额</th></tr></thead><tbody><tr><td rowspan=\"2\">张三&amp;甲<br>乙</td><td>100万元</td></tr><tr><td>200</td></tr></tbody></table>\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 9,
+        "scanEnd": 11,
+        "region": "table"
+      },
+      {
+        "operationId": "op-2",
+        "entityType": "name_cn",
+        "original": "&",
+        "replacement": "【姓名001】",
+        "scanStart": 11,
+        "scanEnd": 12,
+        "region": "table"
+      },
+      {
+        "operationId": "op-3",
+        "entityType": "name_cn",
+        "original": "100",
+        "replacement": "【姓名001】",
+        "scanStart": 16,
+        "scanEnd": 19,
+        "region": "table"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "<table><caption>合同</caption><thead><tr><th>姓名</th><th>金额</th></tr></thead><tbody><tr><td rowspan=\"2\">【姓名001】【姓名001】甲<br>乙</td><td>【姓名001】万元</td></tr><tr><td>200</td></tr></tbody></table>\n",
+      "buffer": "PHRhYmxlPjxjYXB0aW9uPuWQiOWQjDwvY2FwdGlvbj48dGhlYWQ+PHRyPjx0aD7lp5PlkI08L3RoPjx0aD7ph5Hpop08L3RoPjwvdHI+PC90aGVhZD48dGJvZHk+PHRyPjx0ZCByb3dzcGFuPSIyIj7jgJDlp5PlkI0wMDHjgJHjgJDlp5PlkI0wMDHjgJHnlLI8YnI+5LmZPC90ZD48dGQ+44CQ5aeT5ZCNMDAx44CR5LiH5YWDPC90ZD48L3RyPjx0cj48dGQ+MjAwPC90ZD48L3RyPjwvdGJvZHk+PC90YWJsZT4K",
+      "report": {
+        "passed": true,
+        "operationCount": 3,
+        "appliedOperationCount": 3,
+        "outputSha256": "f457409c848232be7e92dae9d25fd8ebc9014ecc2c8c905957bbc8239887698d",
+        "deterministicSha256": [
+          "f457409c848232be7e92dae9d25fd8ebc9014ecc2c8c905957bbc8239887698d",
+          "f457409c848232be7e92dae9d25fd8ebc9014ecc2c8c905957bbc8239887698d",
+          "f457409c848232be7e92dae9d25fd8ebc9014ecc2c8c905957bbc8239887698d"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "footnote-0",
+    "source": "张三[^a]。\n\n[^a]: 李四 **王五**\n",
+    "operations": [],
+    "result": {
+      "success": true,
+      "source": "张三[^a]。\n\n[^a]: 李四 **王五**\n",
+      "buffer": "5byg5LiJW15hXeOAggoKW15hXTog5p2O5ZubICoq546L5LqUKioK",
+      "report": {
+        "passed": true,
+        "operationCount": 0,
+        "appliedOperationCount": 0,
+        "outputSha256": "d7764d9529030e4fed26f4b1fdcbace7c7442a57f19690ad791784b3997abfd2",
+        "deterministicSha256": [
+          "d7764d9529030e4fed26f4b1fdcbace7c7442a57f19690ad791784b3997abfd2",
+          "d7764d9529030e4fed26f4b1fdcbace7c7442a57f19690ad791784b3997abfd2",
+          "d7764d9529030e4fed26f4b1fdcbace7c7442a57f19690ad791784b3997abfd2"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "footnote-1",
+    "source": "张三[^a]。\n\n[^a]: 李四 **王五**\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 0,
+        "scanEnd": 2,
+        "region": "text"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "【姓名001】[^a]。\n\n[^a]: 李四 **王五**\n",
+      "buffer": "44CQ5aeT5ZCNMDAx44CRW15hXeOAggoKW15hXTog5p2O5ZubICoq546L5LqUKioK",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "8acd70f51434cf8a45e7b4b2a63181710893e329318f96b28b55cf1ffef88dd0",
+        "deterministicSha256": [
+          "8acd70f51434cf8a45e7b4b2a63181710893e329318f96b28b55cf1ffef88dd0",
+          "8acd70f51434cf8a45e7b4b2a63181710893e329318f96b28b55cf1ffef88dd0",
+          "8acd70f51434cf8a45e7b4b2a63181710893e329318f96b28b55cf1ffef88dd0"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "footnote-2",
+    "source": "张三[^a]。\n\n[^a]: 李四 **王五**\n",
+    "operations": [
+      {
+        "operationId": "op-2",
+        "entityType": "name_cn",
+        "original": "李四",
+        "replacement": "【姓名001】",
+        "scanStart": 4,
+        "scanEnd": 6,
+        "region": "footnote"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "张三[^a]。\n\n[^a]: 【姓名001】 **王五**\n",
+      "buffer": "5byg5LiJW15hXeOAggoKW15hXTog44CQ5aeT5ZCNMDAx44CRICoq546L5LqUKioK",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "900ad0c60fbb7064933037864cef2d73926c5d66a0496c12c00d4e6da56a9973",
+        "deterministicSha256": [
+          "900ad0c60fbb7064933037864cef2d73926c5d66a0496c12c00d4e6da56a9973",
+          "900ad0c60fbb7064933037864cef2d73926c5d66a0496c12c00d4e6da56a9973",
+          "900ad0c60fbb7064933037864cef2d73926c5d66a0496c12c00d4e6da56a9973"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "footnote-3",
+    "source": "张三[^a]。\n\n[^a]: 李四 **王五**\n",
+    "operations": [
+      {
+        "operationId": "op-3",
+        "entityType": "name_cn",
+        "original": "王五",
+        "replacement": "【姓名001】",
+        "scanStart": 7,
+        "scanEnd": 9,
+        "region": "footnote"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "张三[^a]。\n\n[^a]: 李四 【姓名001】\n",
+      "buffer": "5byg5LiJW15hXeOAggoKW15hXTog5p2O5ZubIOOAkOWnk+WQjTAwMeOAkQo=",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "4eb3495ea1f76559039ec0f17d51b2304cf1ad862162888dc8b23f66a92f998e",
+        "deterministicSha256": [
+          "4eb3495ea1f76559039ec0f17d51b2304cf1ad862162888dc8b23f66a92f998e",
+          "4eb3495ea1f76559039ec0f17d51b2304cf1ad862162888dc8b23f66a92f998e",
+          "4eb3495ea1f76559039ec0f17d51b2304cf1ad862162888dc8b23f66a92f998e"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "footnote-4",
+    "source": "张三[^a]。\n\n[^a]: 李四 **王五**\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 0,
+        "scanEnd": 2,
+        "region": "text"
+      },
+      {
+        "operationId": "op-2",
+        "entityType": "name_cn",
+        "original": "李四",
+        "replacement": "【姓名001】",
+        "scanStart": 4,
+        "scanEnd": 6,
+        "region": "footnote"
+      },
+      {
+        "operationId": "op-3",
+        "entityType": "name_cn",
+        "original": "王五",
+        "replacement": "【姓名001】",
+        "scanStart": 7,
+        "scanEnd": 9,
+        "region": "footnote"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "【姓名001】[^a]。\n\n[^a]: 【姓名001】 【姓名001】\n",
+      "buffer": "44CQ5aeT5ZCNMDAx44CRW15hXeOAggoKW15hXTog44CQ5aeT5ZCNMDAx44CRIOOAkOWnk+WQjTAwMeOAkQo=",
+      "report": {
+        "passed": true,
+        "operationCount": 3,
+        "appliedOperationCount": 3,
+        "outputSha256": "bc7654550a12ef107dbaf6f0d3ad081cc737c26f8747d858a39d8fef62bc8eff",
+        "deterministicSha256": [
+          "bc7654550a12ef107dbaf6f0d3ad081cc737c26f8747d858a39d8fef62bc8eff",
+          "bc7654550a12ef107dbaf6f0d3ad081cc737c26f8747d858a39d8fef62bc8eff",
+          "bc7654550a12ef107dbaf6f0d3ad081cc737c26f8747d858a39d8fef62bc8eff"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "entities-0",
+    "source": "张&amp;三 A\\*B &copy; 😀\r\n下一行\r\n",
+    "operations": [],
+    "result": {
+      "success": true,
+      "source": "张&amp;三 A\\*B &copy; 😀\r\n下一行\r\n",
+      "buffer": "5bygJmFtcDvkuIkgQVwqQiAmY29weTsg8J+YgA0K5LiL5LiA6KGMDQo=",
+      "report": {
+        "passed": true,
+        "operationCount": 0,
+        "appliedOperationCount": 0,
+        "outputSha256": "9a961c5f583bae13384d54d99e7634d7a8253b57c15cc444e9e2a0502294e0da",
+        "deterministicSha256": [
+          "9a961c5f583bae13384d54d99e7634d7a8253b57c15cc444e9e2a0502294e0da",
+          "9a961c5f583bae13384d54d99e7634d7a8253b57c15cc444e9e2a0502294e0da",
+          "9a961c5f583bae13384d54d99e7634d7a8253b57c15cc444e9e2a0502294e0da"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "entities-1",
+    "source": "张&amp;三 A\\*B &copy; 😀\r\n下一行\r\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "&",
+        "replacement": "【姓名001】",
+        "scanStart": 1,
+        "scanEnd": 2,
+        "region": "text"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "张【姓名001】三 A\\*B &copy; 😀\r\n下一行\r\n",
+      "buffer": "5byg44CQ5aeT5ZCNMDAx44CR5LiJIEFcKkIgJmNvcHk7IPCfmIANCuS4i+S4gOihjA0K",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "f8c3042c1c8f764ef8ecc4ebdeedfa084328bce9dd8e1a95a58b7c6b0cb0131a",
+        "deterministicSha256": [
+          "f8c3042c1c8f764ef8ecc4ebdeedfa084328bce9dd8e1a95a58b7c6b0cb0131a",
+          "f8c3042c1c8f764ef8ecc4ebdeedfa084328bce9dd8e1a95a58b7c6b0cb0131a",
+          "f8c3042c1c8f764ef8ecc4ebdeedfa084328bce9dd8e1a95a58b7c6b0cb0131a"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "entities-2",
+    "source": "张&amp;三 A\\*B &copy; 😀\r\n下一行\r\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "&",
+        "replacement": "【姓名001】",
+        "scanStart": 1,
+        "scanEnd": 2,
+        "region": "text"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "张【姓名001】三 A\\*B &copy; 😀\r\n下一行\r\n",
+      "buffer": "5byg44CQ5aeT5ZCNMDAx44CR5LiJIEFcKkIgJmNvcHk7IPCfmIANCuS4i+S4gOihjA0K",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "f8c3042c1c8f764ef8ecc4ebdeedfa084328bce9dd8e1a95a58b7c6b0cb0131a",
+        "deterministicSha256": [
+          "f8c3042c1c8f764ef8ecc4ebdeedfa084328bce9dd8e1a95a58b7c6b0cb0131a",
+          "f8c3042c1c8f764ef8ecc4ebdeedfa084328bce9dd8e1a95a58b7c6b0cb0131a",
+          "f8c3042c1c8f764ef8ecc4ebdeedfa084328bce9dd8e1a95a58b7c6b0cb0131a"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "bom-0",
+    "source": "﻿# 张三\r\n正文\n",
+    "operations": [],
+    "result": {
+      "success": true,
+      "source": "# 张三\r\n正文\n",
+      "buffer": "77u/IyDlvKDkuIkNCuato+aWhwo=",
+      "report": {
+        "passed": true,
+        "operationCount": 0,
+        "appliedOperationCount": 0,
+        "outputSha256": "11c283f32314692bb7b6123a589f32d4e217867db97e717d07e94ba0d10fe6db",
+        "deterministicSha256": [
+          "11c283f32314692bb7b6123a589f32d4e217867db97e717d07e94ba0d10fe6db",
+          "11c283f32314692bb7b6123a589f32d4e217867db97e717d07e94ba0d10fe6db",
+          "11c283f32314692bb7b6123a589f32d4e217867db97e717d07e94ba0d10fe6db"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "bom-1",
+    "source": "﻿# 张三\r\n正文\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 0,
+        "scanEnd": 2,
+        "region": "text"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "# 【姓名001】\r\n正文\n",
+      "buffer": "77u/IyDjgJDlp5PlkI0wMDHjgJENCuato+aWhwo=",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "e1ab892f023e662cb19aaeab92163e05e36934303417217eee48f2fc386d6fa7",
+        "deterministicSha256": [
+          "e1ab892f023e662cb19aaeab92163e05e36934303417217eee48f2fc386d6fa7",
+          "e1ab892f023e662cb19aaeab92163e05e36934303417217eee48f2fc386d6fa7",
+          "e1ab892f023e662cb19aaeab92163e05e36934303417217eee48f2fc386d6fa7"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "bom-2",
+    "source": "﻿# 张三\r\n正文\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 0,
+        "scanEnd": 2,
+        "region": "text"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "# 【姓名001】\r\n正文\n",
+      "buffer": "77u/IyDjgJDlp5PlkI0wMDHjgJENCuato+aWhwo=",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "e1ab892f023e662cb19aaeab92163e05e36934303417217eee48f2fc386d6fa7",
+        "deterministicSha256": [
+          "e1ab892f023e662cb19aaeab92163e05e36934303417217eee48f2fc386d6fa7",
+          "e1ab892f023e662cb19aaeab92163e05e36934303417217eee48f2fc386d6fa7",
+          "e1ab892f023e662cb19aaeab92163e05e36934303417217eee48f2fc386d6fa7"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "deep-0",
+    "source": "> ## 张**三**\n> - [x] 李四\n>   - 王五  \n>     下一行\n\n---\n",
+    "operations": [],
+    "result": {
+      "success": true,
+      "source": "> ## 张**三**\n> - [x] 李四\n>   - 王五  \n>     下一行\n\n---\n",
+      "buffer": "PiAjIyDlvKAqKuS4iSoqCj4gLSBbeF0g5p2O5ZubCj4gICAtIOeOi+S6lCAgCj4gICAgIOS4i+S4gOihjAoKLS0tCg==",
+      "report": {
+        "passed": true,
+        "operationCount": 0,
+        "appliedOperationCount": 0,
+        "outputSha256": "cfd80314115224ca21c8bd2082786f5d415a383e4a6f46ab48d9e69f08e0036b",
+        "deterministicSha256": [
+          "cfd80314115224ca21c8bd2082786f5d415a383e4a6f46ab48d9e69f08e0036b",
+          "cfd80314115224ca21c8bd2082786f5d415a383e4a6f46ab48d9e69f08e0036b",
+          "cfd80314115224ca21c8bd2082786f5d415a383e4a6f46ab48d9e69f08e0036b"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "deep-1",
+    "source": "> ## 张**三**\n> - [x] 李四\n>   - 王五  \n>     下一行\n\n---\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "李四",
+        "replacement": "【姓名001】",
+        "scanStart": 3,
+        "scanEnd": 5,
+        "region": "text"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "> ## 张**三**\n> - [x] 【姓名001】\n>   - 王五  \n>     下一行\n\n---\n",
+      "buffer": "PiAjIyDlvKAqKuS4iSoqCj4gLSBbeF0g44CQ5aeT5ZCNMDAx44CRCj4gICAtIOeOi+S6lCAgCj4gICAgIOS4i+S4gOihjAoKLS0tCg==",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "3d875398fd750600b98f930c720f5b902f362b0938b808859e52a6b242cff3a6",
+        "deterministicSha256": [
+          "3d875398fd750600b98f930c720f5b902f362b0938b808859e52a6b242cff3a6",
+          "3d875398fd750600b98f930c720f5b902f362b0938b808859e52a6b242cff3a6",
+          "3d875398fd750600b98f930c720f5b902f362b0938b808859e52a6b242cff3a6"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "deep-2",
+    "source": "> ## 张**三**\n> - [x] 李四\n>   - 王五  \n>     下一行\n\n---\n",
+    "operations": [
+      {
+        "operationId": "op-2",
+        "entityType": "name_cn",
+        "original": "王五",
+        "replacement": "【姓名001】",
+        "scanStart": 6,
+        "scanEnd": 8,
+        "region": "text"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "> ## 张**三**\n> - [x] 李四\n>   - 【姓名001】  \n>     下一行\n\n---\n",
+      "buffer": "PiAjIyDlvKAqKuS4iSoqCj4gLSBbeF0g5p2O5ZubCj4gICAtIOOAkOWnk+WQjTAwMeOAkSAgCj4gICAgIOS4i+S4gOihjAoKLS0tCg==",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "5bee1caa74005436cdec98960649d0b06f5385bbddeae52d3da8e011de6c7264",
+        "deterministicSha256": [
+          "5bee1caa74005436cdec98960649d0b06f5385bbddeae52d3da8e011de6c7264",
+          "5bee1caa74005436cdec98960649d0b06f5385bbddeae52d3da8e011de6c7264",
+          "5bee1caa74005436cdec98960649d0b06f5385bbddeae52d3da8e011de6c7264"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "deep-3",
+    "source": "> ## 张**三**\n> - [x] 李四\n>   - 王五  \n>     下一行\n\n---\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "李四",
+        "replacement": "【姓名001】",
+        "scanStart": 3,
+        "scanEnd": 5,
+        "region": "text"
+      },
+      {
+        "operationId": "op-2",
+        "entityType": "name_cn",
+        "original": "王五",
+        "replacement": "【姓名001】",
+        "scanStart": 6,
+        "scanEnd": 8,
+        "region": "text"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "> ## 张**三**\n> - [x] 【姓名001】\n>   - 【姓名001】  \n>     下一行\n\n---\n",
+      "buffer": "PiAjIyDlvKAqKuS4iSoqCj4gLSBbeF0g44CQ5aeT5ZCNMDAx44CRCj4gICAtIOOAkOWnk+WQjTAwMeOAkSAgCj4gICAgIOS4i+S4gOihjAoKLS0tCg==",
+      "report": {
+        "passed": true,
+        "operationCount": 2,
+        "appliedOperationCount": 2,
+        "outputSha256": "a911b7c0ab20c35b2ee7523a6668c5ba655a60a84d54c5aed5e244c3de9c6373",
+        "deterministicSha256": [
+          "a911b7c0ab20c35b2ee7523a6668c5ba655a60a84d54c5aed5e244c3de9c6373",
+          "a911b7c0ab20c35b2ee7523a6668c5ba655a60a84d54c5aed5e244c3de9c6373",
+          "a911b7c0ab20c35b2ee7523a6668c5ba655a60a84d54c5aed5e244c3de9c6373"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "escapes-0",
+    "source": "a\\*b a&#38;b a&copy;b ` a  b ` `a\nb`\n",
+    "operations": [],
+    "result": {
+      "success": true,
+      "source": "a\\*b a&#38;b a&copy;b ` a  b ` `a\nb`\n",
+      "buffer": "YVwqYiBhJiMzODtiIGEmY29weTtiIGAgYSAgYiBgIGBhCmJgCg==",
+      "report": {
+        "passed": true,
+        "operationCount": 0,
+        "appliedOperationCount": 0,
+        "outputSha256": "ed3400c1b796d5bceddfc093bf3e724caa3977de4d679461dab2e55c601311be",
+        "deterministicSha256": [
+          "ed3400c1b796d5bceddfc093bf3e724caa3977de4d679461dab2e55c601311be",
+          "ed3400c1b796d5bceddfc093bf3e724caa3977de4d679461dab2e55c601311be",
+          "ed3400c1b796d5bceddfc093bf3e724caa3977de4d679461dab2e55c601311be"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "escapes-1",
+    "source": "a\\*b a&#38;b a&copy;b ` a  b ` `a\nb`\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "&",
+        "replacement": "【姓名001】",
+        "scanStart": 5,
+        "scanEnd": 6,
+        "region": "text"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "a\\*b a【姓名001】b a&copy;b ` a  b ` `a\nb`\n",
+      "buffer": "YVwqYiBh44CQ5aeT5ZCNMDAx44CRYiBhJmNvcHk7YiBgIGEgIGIgYCBgYQpiYAo=",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "09df4c24f181678c3e73b16778b7675748f40b0ccff6fe1e4e1f687dd2c72441",
+        "deterministicSha256": [
+          "09df4c24f181678c3e73b16778b7675748f40b0ccff6fe1e4e1f687dd2c72441",
+          "09df4c24f181678c3e73b16778b7675748f40b0ccff6fe1e4e1f687dd2c72441",
+          "09df4c24f181678c3e73b16778b7675748f40b0ccff6fe1e4e1f687dd2c72441"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "escapes-2",
+    "source": "a\\*b a&#38;b a&copy;b ` a  b ` `a\nb`\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "&",
+        "replacement": "【姓名001】",
+        "scanStart": 5,
+        "scanEnd": 6,
+        "region": "text"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "a\\*b a【姓名001】b a&copy;b ` a  b ` `a\nb`\n",
+      "buffer": "YVwqYiBh44CQ5aeT5ZCNMDAx44CRYiBhJmNvcHk7YiBgIGEgIGIgYCBgYQpiYAo=",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "09df4c24f181678c3e73b16778b7675748f40b0ccff6fe1e4e1f687dd2c72441",
+        "deterministicSha256": [
+          "09df4c24f181678c3e73b16778b7675748f40b0ccff6fe1e4e1f687dd2c72441",
+          "09df4c24f181678c3e73b16778b7675748f40b0ccff6fe1e4e1f687dd2c72441",
+          "09df4c24f181678c3e73b16778b7675748f40b0ccff6fe1e4e1f687dd2c72441"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "ref-0",
+    "source": "[张**三**][id] 与 [李四][] 及 [王五]\n\n[id]: <https://example.com/甲> \"title\"\n[李四]: https://example.org\n[王五]: mailto:demo@example.com\n",
+    "operations": [],
+    "result": {
+      "success": true,
+      "source": "张三 与 李四 及 王五\n\n\n\n\n",
+      "buffer": "5byg5LiJIOS4jiDmnY7lm5sg5Y+KIOeOi+S6lAoKCgoK",
+      "report": {
+        "passed": true,
+        "operationCount": 0,
+        "appliedOperationCount": 0,
+        "outputSha256": "adf62743025507bfc0cf3fd8f9d72654b6a2d2e618295edb8bebd62bf6c74c4f",
+        "deterministicSha256": [
+          "adf62743025507bfc0cf3fd8f9d72654b6a2d2e618295edb8bebd62bf6c74c4f",
+          "adf62743025507bfc0cf3fd8f9d72654b6a2d2e618295edb8bebd62bf6c74c4f",
+          "adf62743025507bfc0cf3fd8f9d72654b6a2d2e618295edb8bebd62bf6c74c4f"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "ref-1",
+    "source": "[张**三**][id] 与 [李四][] 及 [王五]\n\n[id]: <https://example.com/甲> \"title\"\n[李四]: https://example.org\n[王五]: mailto:demo@example.com\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "李四",
+        "replacement": "【姓名001】",
+        "scanStart": 5,
+        "scanEnd": 7,
+        "region": "link_label"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "张三 与 【姓名001】 及 王五\n\n\n\n\n",
+      "buffer": "5byg5LiJIOS4jiDjgJDlp5PlkI0wMDHjgJEg5Y+KIOeOi+S6lAoKCgoK",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "491554d0964fc81c0ae21c593bc4f3be4254e3a33f6587f4daf737b68cdc1c61",
+        "deterministicSha256": [
+          "491554d0964fc81c0ae21c593bc4f3be4254e3a33f6587f4daf737b68cdc1c61",
+          "491554d0964fc81c0ae21c593bc4f3be4254e3a33f6587f4daf737b68cdc1c61",
+          "491554d0964fc81c0ae21c593bc4f3be4254e3a33f6587f4daf737b68cdc1c61"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "ref-2",
+    "source": "[张**三**][id] 与 [李四][] 及 [王五]\n\n[id]: <https://example.com/甲> \"title\"\n[李四]: https://example.org\n[王五]: mailto:demo@example.com\n",
+    "operations": [
+      {
+        "operationId": "op-2",
+        "entityType": "name_cn",
+        "original": "王五",
+        "replacement": "【姓名001】",
+        "scanStart": 10,
+        "scanEnd": 12,
+        "region": "link_label"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "张三 与 李四 及 【姓名001】\n\n\n\n\n",
+      "buffer": "5byg5LiJIOS4jiDmnY7lm5sg5Y+KIOOAkOWnk+WQjTAwMeOAkQoKCgoK",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "86680026037671350f669dc27d0b1e732160ee93488c64c90cfc503fb1ab8cbe",
+        "deterministicSha256": [
+          "86680026037671350f669dc27d0b1e732160ee93488c64c90cfc503fb1ab8cbe",
+          "86680026037671350f669dc27d0b1e732160ee93488c64c90cfc503fb1ab8cbe",
+          "86680026037671350f669dc27d0b1e732160ee93488c64c90cfc503fb1ab8cbe"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "ref-3",
+    "source": "[张**三**][id] 与 [李四][] 及 [王五]\n\n[id]: <https://example.com/甲> \"title\"\n[李四]: https://example.org\n[王五]: mailto:demo@example.com\n",
+    "operations": [
+      {
+        "operationId": "op-3",
+        "entityType": "name_cn",
+        "original": "https://example.com",
+        "replacement": "【姓名001】",
+        "scanStart": 13,
+        "scanEnd": 32,
+        "region": "link_destination"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "张三 与 李四 及 王五\n\n\n\n\n",
+      "buffer": "5byg5LiJIOS4jiDmnY7lm5sg5Y+KIOeOi+S6lAoKCgoK",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "adf62743025507bfc0cf3fd8f9d72654b6a2d2e618295edb8bebd62bf6c74c4f",
+        "deterministicSha256": [
+          "adf62743025507bfc0cf3fd8f9d72654b6a2d2e618295edb8bebd62bf6c74c4f",
+          "adf62743025507bfc0cf3fd8f9d72654b6a2d2e618295edb8bebd62bf6c74c4f",
+          "adf62743025507bfc0cf3fd8f9d72654b6a2d2e618295edb8bebd62bf6c74c4f"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "ref-4",
+    "source": "[张**三**][id] 与 [李四][] 及 [王五]\n\n[id]: <https://example.com/甲> \"title\"\n[李四]: https://example.org\n[王五]: mailto:demo@example.com\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "李四",
+        "replacement": "【姓名001】",
+        "scanStart": 5,
+        "scanEnd": 7,
+        "region": "link_label"
+      },
+      {
+        "operationId": "op-2",
+        "entityType": "name_cn",
+        "original": "王五",
+        "replacement": "【姓名001】",
+        "scanStart": 10,
+        "scanEnd": 12,
+        "region": "link_label"
+      },
+      {
+        "operationId": "op-3",
+        "entityType": "name_cn",
+        "original": "https://example.com",
+        "replacement": "【姓名001】",
+        "scanStart": 13,
+        "scanEnd": 32,
+        "region": "link_destination"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "张三 与 【姓名001】 及 【姓名001】\n\n\n\n\n",
+      "buffer": "5byg5LiJIOS4jiDjgJDlp5PlkI0wMDHjgJEg5Y+KIOOAkOWnk+WQjTAwMeOAkQoKCgoK",
+      "report": {
+        "passed": true,
+        "operationCount": 3,
+        "appliedOperationCount": 3,
+        "outputSha256": "2e601162f3a4d8aadbc70cc322e52e48533a76e3d6b6b8612979758c057c7254",
+        "deterministicSha256": [
+          "2e601162f3a4d8aadbc70cc322e52e48533a76e3d6b6b8612979758c057c7254",
+          "2e601162f3a4d8aadbc70cc322e52e48533a76e3d6b6b8612979758c057c7254",
+          "2e601162f3a4d8aadbc70cc322e52e48533a76e3d6b6b8612979758c057c7254"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "autolink-0",
+    "source": "www.example.com/path user@example.com <a@b.com> <https://example.org>\n",
+    "operations": [],
+    "result": {
+      "success": true,
+      "source": "` www.example.com/path ` ` user@example.com ` ` a@b.com ` ` https://example.org `\n",
+      "buffer": "YCB3d3cuZXhhbXBsZS5jb20vcGF0aCBgIGAgdXNlckBleGFtcGxlLmNvbSBgIGAgYUBiLmNvbSBgIGAgaHR0cHM6Ly9leGFtcGxlLm9yZyBgCg==",
+      "report": {
+        "passed": true,
+        "operationCount": 0,
+        "appliedOperationCount": 0,
+        "outputSha256": "0cf809f7e80738dd65fcb3666cf0c7f9e4c1c49c3e7440d82efcb25ebf59b0b7",
+        "deterministicSha256": [
+          "0cf809f7e80738dd65fcb3666cf0c7f9e4c1c49c3e7440d82efcb25ebf59b0b7",
+          "0cf809f7e80738dd65fcb3666cf0c7f9e4c1c49c3e7440d82efcb25ebf59b0b7",
+          "0cf809f7e80738dd65fcb3666cf0c7f9e4c1c49c3e7440d82efcb25ebf59b0b7"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "yaml-complex-0",
+    "source": "---\n\"张三\": |\n  李四\n  王五\nlist:\n - key: \"张\\u4e09\"\n - yes: true\n - amount: 123\n - alias: &a 李四\n - again: *a\n---\n正文\n",
+    "operations": [],
+    "result": {
+      "success": true,
+      "source": "---\n\"张三\": |\n  李四\n  王五\nlist:\n - key: \"张\\u4e09\"\n - yes: true\n - amount: 123\n - alias: &a 李四\n - again: *a\n---\n正文\n",
+      "buffer": "LS0tCiLlvKDkuIkiOiB8CiAg5p2O5ZubCiAg546L5LqUCmxpc3Q6CiAtIGtleTogIuW8oFx1NGUwOSIKIC0geWVzOiB0cnVlCiAtIGFtb3VudDogMTIzCiAtIGFsaWFzOiAmYSDmnY7lm5sKIC0gYWdhaW46ICphCi0tLQrmraPmlocK",
+      "report": {
+        "passed": true,
+        "operationCount": 0,
+        "appliedOperationCount": 0,
+        "outputSha256": "23df0d0b82a57d8ce67abd19a0ccbfa770e6a16486829486d0b1f140244852d3",
+        "deterministicSha256": [
+          "23df0d0b82a57d8ce67abd19a0ccbfa770e6a16486829486d0b1f140244852d3",
+          "23df0d0b82a57d8ce67abd19a0ccbfa770e6a16486829486d0b1f140244852d3",
+          "23df0d0b82a57d8ce67abd19a0ccbfa770e6a16486829486d0b1f140244852d3"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "yaml-complex-1",
+    "source": "---\n\"张三\": |\n  李四\n  王五\nlist:\n - key: \"张\\u4e09\"\n - yes: true\n - amount: 123\n - alias: &a 李四\n - again: *a\n---\n正文\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 0,
+        "scanEnd": 2,
+        "region": "frontmatter"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "---\n\"【姓名001】\": |\n  李四\n  王五\nlist:\n - key: \"张\\u4e09\"\n - yes: true\n - amount: 123\n - alias: &a 李四\n - again: *a\n---\n正文\n",
+      "buffer": "LS0tCiLjgJDlp5PlkI0wMDHjgJEiOiB8CiAg5p2O5ZubCiAg546L5LqUCmxpc3Q6CiAtIGtleTogIuW8oFx1NGUwOSIKIC0geWVzOiB0cnVlCiAtIGFtb3VudDogMTIzCiAtIGFsaWFzOiAmYSDmnY7lm5sKIC0gYWdhaW46ICphCi0tLQrmraPmlocK",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "ef88a57fce9bb9de33afd3153f000e8cc0c1aad68abd1bd27425d86e32b00d1c",
+        "deterministicSha256": [
+          "ef88a57fce9bb9de33afd3153f000e8cc0c1aad68abd1bd27425d86e32b00d1c",
+          "ef88a57fce9bb9de33afd3153f000e8cc0c1aad68abd1bd27425d86e32b00d1c",
+          "ef88a57fce9bb9de33afd3153f000e8cc0c1aad68abd1bd27425d86e32b00d1c"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "yaml-complex-2",
+    "source": "---\n\"张三\": |\n  李四\n  王五\nlist:\n - key: \"张\\u4e09\"\n - yes: true\n - amount: 123\n - alias: &a 李四\n - again: *a\n---\n正文\n",
+    "operations": [
+      {
+        "operationId": "op-2",
+        "entityType": "name_cn",
+        "original": "李四",
+        "replacement": "【姓名001】",
+        "scanStart": 3,
+        "scanEnd": 5,
+        "region": "frontmatter"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "---\n\"张三\": |\n  【姓名001】\n  王五\nlist:\n - key: \"张\\u4e09\"\n - yes: true\n - amount: 123\n - alias: &a 李四\n - again: *a\n---\n正文\n",
+      "buffer": "LS0tCiLlvKDkuIkiOiB8CiAg44CQ5aeT5ZCNMDAx44CRCiAg546L5LqUCmxpc3Q6CiAtIGtleTogIuW8oFx1NGUwOSIKIC0geWVzOiB0cnVlCiAtIGFtb3VudDogMTIzCiAtIGFsaWFzOiAmYSDmnY7lm5sKIC0gYWdhaW46ICphCi0tLQrmraPmlocK",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "2530094a8825c7d3691f4d22349d074f2f7242385ac23f52c79c2ae0dae96708",
+        "deterministicSha256": [
+          "2530094a8825c7d3691f4d22349d074f2f7242385ac23f52c79c2ae0dae96708",
+          "2530094a8825c7d3691f4d22349d074f2f7242385ac23f52c79c2ae0dae96708",
+          "2530094a8825c7d3691f4d22349d074f2f7242385ac23f52c79c2ae0dae96708"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "yaml-complex-3",
+    "source": "---\n\"张三\": |\n  李四\n  王五\nlist:\n - key: \"张\\u4e09\"\n - yes: true\n - amount: 123\n - alias: &a 李四\n - again: *a\n---\n正文\n",
+    "operations": [
+      {
+        "operationId": "op-3",
+        "entityType": "name_cn",
+        "original": "王五",
+        "replacement": "【姓名001】",
+        "scanStart": 6,
+        "scanEnd": 8,
+        "region": "frontmatter"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "---\n\"张三\": |\n  李四\n  【姓名001】\nlist:\n - key: \"张\\u4e09\"\n - yes: true\n - amount: 123\n - alias: &a 李四\n - again: *a\n---\n正文\n",
+      "buffer": "LS0tCiLlvKDkuIkiOiB8CiAg5p2O5ZubCiAg44CQ5aeT5ZCNMDAx44CRCmxpc3Q6CiAtIGtleTogIuW8oFx1NGUwOSIKIC0geWVzOiB0cnVlCiAtIGFtb3VudDogMTIzCiAtIGFsaWFzOiAmYSDmnY7lm5sKIC0gYWdhaW46ICphCi0tLQrmraPmlocK",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "ce032894bb7ae3c2a0563d38fc62d16300736e5f7a74b12e11fd534b59151be3",
+        "deterministicSha256": [
+          "ce032894bb7ae3c2a0563d38fc62d16300736e5f7a74b12e11fd534b59151be3",
+          "ce032894bb7ae3c2a0563d38fc62d16300736e5f7a74b12e11fd534b59151be3",
+          "ce032894bb7ae3c2a0563d38fc62d16300736e5f7a74b12e11fd534b59151be3"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "yaml-complex-4",
+    "source": "---\n\"张三\": |\n  李四\n  王五\nlist:\n - key: \"张\\u4e09\"\n - yes: true\n - amount: 123\n - alias: &a 李四\n - again: *a\n---\n正文\n",
+    "operations": [
+      {
+        "operationId": "op-4",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 18,
+        "scanEnd": 20,
+        "region": "frontmatter"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "```text\n张三\n李四\n王五\nlist\nkey\n【姓名001】\nyes\namount\nalias\n李四\nagain\n正文\n```\n",
+      "buffer": "YGBgdGV4dArlvKDkuIkK5p2O5ZubCueOi+S6lApsaXN0CmtleQrjgJDlp5PlkI0wMDHjgJEKeWVzCmFtb3VudAphbGlhcwrmnY7lm5sKYWdhaW4K5q2j5paHCmBgYAo=",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "0a9c80ff4d6b29e497ed1d6670a4204567cbe69828e737bee21f1ed2e711b3c5",
+        "deterministicSha256": [
+          "0a9c80ff4d6b29e497ed1d6670a4204567cbe69828e737bee21f1ed2e711b3c5",
+          "0a9c80ff4d6b29e497ed1d6670a4204567cbe69828e737bee21f1ed2e711b3c5",
+          "0a9c80ff4d6b29e497ed1d6670a4204567cbe69828e737bee21f1ed2e711b3c5"
+        ],
+        "issues": [],
+        "format": "plain-text",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "yaml-complex-5",
+    "source": "---\n\"张三\": |\n  李四\n  王五\nlist:\n - key: \"张\\u4e09\"\n - yes: true\n - amount: 123\n - alias: &a 李四\n - again: *a\n---\n正文\n",
+    "operations": [
+      {
+        "operationId": "op-5",
+        "entityType": "name_cn",
+        "original": "李四",
+        "replacement": "【姓名001】",
+        "scanStart": 38,
+        "scanEnd": 40,
+        "region": "frontmatter"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "---\n\"张三\": |\n  李四\n  王五\nlist:\n - key: \"张\\u4e09\"\n - yes: true\n - amount: 123\n - alias: &a 【姓名001】\n - again: *a\n---\n正文\n",
+      "buffer": "LS0tCiLlvKDkuIkiOiB8CiAg5p2O5ZubCiAg546L5LqUCmxpc3Q6CiAtIGtleTogIuW8oFx1NGUwOSIKIC0geWVzOiB0cnVlCiAtIGFtb3VudDogMTIzCiAtIGFsaWFzOiAmYSDjgJDlp5PlkI0wMDHjgJEKIC0gYWdhaW46ICphCi0tLQrmraPmlocK",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "13a772a902c42551deaa6a6463b88f334ccface19f98c28267f665f499fd4b28",
+        "deterministicSha256": [
+          "13a772a902c42551deaa6a6463b88f334ccface19f98c28267f665f499fd4b28",
+          "13a772a902c42551deaa6a6463b88f334ccface19f98c28267f665f499fd4b28",
+          "13a772a902c42551deaa6a6463b88f334ccface19f98c28267f665f499fd4b28"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "yaml-complex-6",
+    "source": "---\n\"张三\": |\n  李四\n  王五\nlist:\n - key: \"张\\u4e09\"\n - yes: true\n - amount: 123\n - alias: &a 李四\n - again: *a\n---\n正文\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 0,
+        "scanEnd": 2,
+        "region": "frontmatter"
+      },
+      {
+        "operationId": "op-2",
+        "entityType": "name_cn",
+        "original": "李四",
+        "replacement": "【姓名001】",
+        "scanStart": 3,
+        "scanEnd": 5,
+        "region": "frontmatter"
+      },
+      {
+        "operationId": "op-3",
+        "entityType": "name_cn",
+        "original": "王五",
+        "replacement": "【姓名001】",
+        "scanStart": 6,
+        "scanEnd": 8,
+        "region": "frontmatter"
+      },
+      {
+        "operationId": "op-4",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 18,
+        "scanEnd": 20,
+        "region": "frontmatter"
+      },
+      {
+        "operationId": "op-5",
+        "entityType": "name_cn",
+        "original": "李四",
+        "replacement": "【姓名001】",
+        "scanStart": 38,
+        "scanEnd": 40,
+        "region": "frontmatter"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "```text\n【姓名001】\n【姓名001】\n【姓名001】\nlist\nkey\n【姓名001】\nyes\namount\nalias\n【姓名001】\nagain\n正文\n```\n",
+      "buffer": "YGBgdGV4dArjgJDlp5PlkI0wMDHjgJEK44CQ5aeT5ZCNMDAx44CRCuOAkOWnk+WQjTAwMeOAkQpsaXN0CmtleQrjgJDlp5PlkI0wMDHjgJEKeWVzCmFtb3VudAphbGlhcwrjgJDlp5PlkI0wMDHjgJEKYWdhaW4K5q2j5paHCmBgYAo=",
+      "report": {
+        "passed": true,
+        "operationCount": 5,
+        "appliedOperationCount": 5,
+        "outputSha256": "cf3f3baaf951fd9a4e539d9efe42abc64dbcc6e094f10aa823e7261e1ae306be",
+        "deterministicSha256": [
+          "cf3f3baaf951fd9a4e539d9efe42abc64dbcc6e094f10aa823e7261e1ae306be",
+          "cf3f3baaf951fd9a4e539d9efe42abc64dbcc6e094f10aa823e7261e1ae306be",
+          "cf3f3baaf951fd9a4e539d9efe42abc64dbcc6e094f10aa823e7261e1ae306be"
+        ],
+        "issues": [],
+        "format": "plain-text",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "html-wrap-0",
+    "source": "<div><table><tr><td>A&amp;B&#x1F600;C</td><td>张三</td></tr></table></div>\n",
+    "operations": [],
+    "result": {
+      "success": true,
+      "source": "<table><tbody><tr><td>A&amp;B😀C</td><td>张三</td></tr></tbody></table>\n",
+      "buffer": "PHRhYmxlPjx0Ym9keT48dHI+PHRkPkEmYW1wO0Lwn5iAQzwvdGQ+PHRkPuW8oOS4iTwvdGQ+PC90cj48L3Rib2R5PjwvdGFibGU+Cg==",
+      "report": {
+        "passed": true,
+        "operationCount": 0,
+        "appliedOperationCount": 0,
+        "outputSha256": "8555f0ba7d00156477a4fa73fa6b0e5437a80a7f00a19e9badf66fc6f6328de5",
+        "deterministicSha256": [
+          "8555f0ba7d00156477a4fa73fa6b0e5437a80a7f00a19e9badf66fc6f6328de5",
+          "8555f0ba7d00156477a4fa73fa6b0e5437a80a7f00a19e9badf66fc6f6328de5",
+          "8555f0ba7d00156477a4fa73fa6b0e5437a80a7f00a19e9badf66fc6f6328de5"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 2
+      }
+    }
+  },
+  {
+    "id": "html-wrap-1",
+    "source": "<div><table><tr><td>A&amp;B&#x1F600;C</td><td>张三</td></tr></table></div>\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "&",
+        "replacement": "【姓名001】",
+        "scanStart": 1,
+        "scanEnd": 2,
+        "region": "table"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "<table><tbody><tr><td>A【姓名001】B😀C</td><td>张三</td></tr></tbody></table>\n",
+      "buffer": "PHRhYmxlPjx0Ym9keT48dHI+PHRkPkHjgJDlp5PlkI0wMDHjgJFC8J+YgEM8L3RkPjx0ZD7lvKDkuIk8L3RkPjwvdHI+PC90Ym9keT48L3RhYmxlPgo=",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "2ecfd6e375b2164b6d6016ba380478d06cdf1194dc55f41da0eb5f12b0a974b8",
+        "deterministicSha256": [
+          "2ecfd6e375b2164b6d6016ba380478d06cdf1194dc55f41da0eb5f12b0a974b8",
+          "2ecfd6e375b2164b6d6016ba380478d06cdf1194dc55f41da0eb5f12b0a974b8",
+          "2ecfd6e375b2164b6d6016ba380478d06cdf1194dc55f41da0eb5f12b0a974b8"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 2
+      }
+    }
+  },
+  {
+    "id": "html-wrap-2",
+    "source": "<div><table><tr><td>A&amp;B&#x1F600;C</td><td>张三</td></tr></table></div>\n",
+    "operations": [
+      {
+        "operationId": "op-2",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 7,
+        "scanEnd": 9,
+        "region": "table"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "<table><tbody><tr><td>A&amp;B😀C</td><td>【姓名001】</td></tr></tbody></table>\n",
+      "buffer": "PHRhYmxlPjx0Ym9keT48dHI+PHRkPkEmYW1wO0Lwn5iAQzwvdGQ+PHRkPuOAkOWnk+WQjTAwMeOAkTwvdGQ+PC90cj48L3Rib2R5PjwvdGFibGU+Cg==",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "1fa40375877ba9e916f58c10c4ca86c915fe4e6561337c78f6a54fadbe959cc0",
+        "deterministicSha256": [
+          "1fa40375877ba9e916f58c10c4ca86c915fe4e6561337c78f6a54fadbe959cc0",
+          "1fa40375877ba9e916f58c10c4ca86c915fe4e6561337c78f6a54fadbe959cc0",
+          "1fa40375877ba9e916f58c10c4ca86c915fe4e6561337c78f6a54fadbe959cc0"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 2
+      }
+    }
+  },
+  {
+    "id": "html-wrap-3",
+    "source": "<div><table><tr><td>A&amp;B&#x1F600;C</td><td>张三</td></tr></table></div>\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "&",
+        "replacement": "【姓名001】",
+        "scanStart": 1,
+        "scanEnd": 2,
+        "region": "table"
+      },
+      {
+        "operationId": "op-2",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 7,
+        "scanEnd": 9,
+        "region": "table"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "<table><tbody><tr><td>A【姓名001】B😀C</td><td>【姓名001】</td></tr></tbody></table>\n",
+      "buffer": "PHRhYmxlPjx0Ym9keT48dHI+PHRkPkHjgJDlp5PlkI0wMDHjgJFC8J+YgEM8L3RkPjx0ZD7jgJDlp5PlkI0wMDHjgJE8L3RkPjwvdHI+PC90Ym9keT48L3RhYmxlPgo=",
+      "report": {
+        "passed": true,
+        "operationCount": 2,
+        "appliedOperationCount": 2,
+        "outputSha256": "401d0e083e466728224a6841b4920d54108ba53daf4add6273b3173b937de017",
+        "deterministicSha256": [
+          "401d0e083e466728224a6841b4920d54108ba53daf4add6273b3173b937de017",
+          "401d0e083e466728224a6841b4920d54108ba53daf4add6273b3173b937de017",
+          "401d0e083e466728224a6841b4920d54108ba53daf4add6273b3173b937de017"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 2
+      }
+    }
+  },
+  {
+    "id": "html-nested-0",
+    "source": "<table><tr><td colspan=\"2\"><b>张三</b><table><tr><td>李四</td></tr></table></td></tr></table>\n",
+    "operations": [],
+    "result": {
+      "success": true,
+      "source": "<table><tbody><tr><td colspan=\"2\">张三李四</td></tr></tbody></table>\n",
+      "buffer": "PHRhYmxlPjx0Ym9keT48dHI+PHRkIGNvbHNwYW49IjIiPuW8oOS4ieadjuWbmzwvdGQ+PC90cj48L3Rib2R5PjwvdGFibGU+Cg==",
+      "report": {
+        "passed": true,
+        "operationCount": 0,
+        "appliedOperationCount": 0,
+        "outputSha256": "6e9ba758807fe4bbfd1b9896e0fbe15d1df2da3808d3f5d1248bda8fd817707e",
+        "deterministicSha256": [
+          "6e9ba758807fe4bbfd1b9896e0fbe15d1df2da3808d3f5d1248bda8fd817707e",
+          "6e9ba758807fe4bbfd1b9896e0fbe15d1df2da3808d3f5d1248bda8fd817707e",
+          "6e9ba758807fe4bbfd1b9896e0fbe15d1df2da3808d3f5d1248bda8fd817707e"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "html-nested-1",
+    "source": "<table><tr><td colspan=\"2\"><b>张三</b><table><tr><td>李四</td></tr></table></td></tr></table>\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 0,
+        "scanEnd": 2,
+        "region": "table"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "<table><tbody><tr><td colspan=\"2\">【姓名001】李四</td></tr></tbody></table>\n",
+      "buffer": "PHRhYmxlPjx0Ym9keT48dHI+PHRkIGNvbHNwYW49IjIiPuOAkOWnk+WQjTAwMeOAkeadjuWbmzwvdGQ+PC90cj48L3Rib2R5PjwvdGFibGU+Cg==",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "7da6a13d542caccc931c05bc6b7d4663ddfe77025e78ee519f4450ad4a535ec0",
+        "deterministicSha256": [
+          "7da6a13d542caccc931c05bc6b7d4663ddfe77025e78ee519f4450ad4a535ec0",
+          "7da6a13d542caccc931c05bc6b7d4663ddfe77025e78ee519f4450ad4a535ec0",
+          "7da6a13d542caccc931c05bc6b7d4663ddfe77025e78ee519f4450ad4a535ec0"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "html-nested-2",
+    "source": "<table><tr><td colspan=\"2\"><b>张三</b><table><tr><td>李四</td></tr></table></td></tr></table>\n",
+    "operations": [
+      {
+        "operationId": "op-2",
+        "entityType": "name_cn",
+        "original": "李四",
+        "replacement": "【姓名001】",
+        "scanStart": 2,
+        "scanEnd": 4,
+        "region": "table"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "<table><tbody><tr><td colspan=\"2\">张三【姓名001】</td></tr></tbody></table>\n",
+      "buffer": "PHRhYmxlPjx0Ym9keT48dHI+PHRkIGNvbHNwYW49IjIiPuW8oOS4ieOAkOWnk+WQjTAwMeOAkTwvdGQ+PC90cj48L3Rib2R5PjwvdGFibGU+Cg==",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "a53ca0411aeef834f18d5ab5ec52375543dfbf537895f7fc19d0072718678c6e",
+        "deterministicSha256": [
+          "a53ca0411aeef834f18d5ab5ec52375543dfbf537895f7fc19d0072718678c6e",
+          "a53ca0411aeef834f18d5ab5ec52375543dfbf537895f7fc19d0072718678c6e",
+          "a53ca0411aeef834f18d5ab5ec52375543dfbf537895f7fc19d0072718678c6e"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "html-nested-3",
+    "source": "<table><tr><td colspan=\"2\"><b>张三</b><table><tr><td>李四</td></tr></table></td></tr></table>\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 0,
+        "scanEnd": 2,
+        "region": "table"
+      },
+      {
+        "operationId": "op-2",
+        "entityType": "name_cn",
+        "original": "李四",
+        "replacement": "【姓名001】",
+        "scanStart": 2,
+        "scanEnd": 4,
+        "region": "table"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "<table><tbody><tr><td colspan=\"2\">【姓名001】【姓名001】</td></tr></tbody></table>\n",
+      "buffer": "PHRhYmxlPjx0Ym9keT48dHI+PHRkIGNvbHNwYW49IjIiPuOAkOWnk+WQjTAwMeOAkeOAkOWnk+WQjTAwMeOAkTwvdGQ+PC90cj48L3Rib2R5PjwvdGFibGU+Cg==",
+      "report": {
+        "passed": true,
+        "operationCount": 2,
+        "appliedOperationCount": 2,
+        "outputSha256": "e24cfcfeabf988704dd5adb3edb5affd97d6b4ce07c48c86f3e44b018b28922c",
+        "deterministicSha256": [
+          "e24cfcfeabf988704dd5adb3edb5affd97d6b4ce07c48c86f3e44b018b28922c",
+          "e24cfcfeabf988704dd5adb3edb5affd97d6b4ce07c48c86f3e44b018b28922c",
+          "e24cfcfeabf988704dd5adb3edb5affd97d6b4ce07c48c86f3e44b018b28922c"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "html-blacklist-0",
+    "source": "<table><caption>张三</caption><tr><th>A</th><td><script>不能看见</script><svg>不读</svg>李四<img src=\"secret\">王五</td></tr><tr><td rowspan=\"2000\">甲</td><td>乙</td></tr></table>\n",
+    "operations": [],
+    "result": {
+      "success": true,
+      "source": "<table><caption>张三</caption><tbody><tr><th>A</th><td>李四王五</td></tr><tr><td rowspan=\"1000\">甲</td><td>乙</td></tr></tbody></table>\n",
+      "buffer": "PHRhYmxlPjxjYXB0aW9uPuW8oOS4iTwvY2FwdGlvbj48dGJvZHk+PHRyPjx0aD5BPC90aD48dGQ+5p2O5Zub546L5LqUPC90ZD48L3RyPjx0cj48dGQgcm93c3Bhbj0iMTAwMCI+55SyPC90ZD48dGQ+5LmZPC90ZD48L3RyPjwvdGJvZHk+PC90YWJsZT4K",
+      "report": {
+        "passed": true,
+        "operationCount": 0,
+        "appliedOperationCount": 0,
+        "outputSha256": "8380eaaa399c38d45bf8d14ea0445ffae7e623547a4bd11ea5992383eb4195b1",
+        "deterministicSha256": [
+          "8380eaaa399c38d45bf8d14ea0445ffae7e623547a4bd11ea5992383eb4195b1",
+          "8380eaaa399c38d45bf8d14ea0445ffae7e623547a4bd11ea5992383eb4195b1",
+          "8380eaaa399c38d45bf8d14ea0445ffae7e623547a4bd11ea5992383eb4195b1"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "html-blacklist-1",
+    "source": "<table><caption>张三</caption><tr><th>A</th><td><script>不能看见</script><svg>不读</svg>李四<img src=\"secret\">王五</td></tr><tr><td rowspan=\"2000\">甲</td><td>乙</td></tr></table>\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 0,
+        "scanEnd": 2,
+        "region": "table"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "<table><caption>【姓名001】</caption><tbody><tr><th>A</th><td>李四王五</td></tr><tr><td rowspan=\"1000\">甲</td><td>乙</td></tr></tbody></table>\n",
+      "buffer": "PHRhYmxlPjxjYXB0aW9uPuOAkOWnk+WQjTAwMeOAkTwvY2FwdGlvbj48dGJvZHk+PHRyPjx0aD5BPC90aD48dGQ+5p2O5Zub546L5LqUPC90ZD48L3RyPjx0cj48dGQgcm93c3Bhbj0iMTAwMCI+55SyPC90ZD48dGQ+5LmZPC90ZD48L3RyPjwvdGJvZHk+PC90YWJsZT4K",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "080115422e8b6d929a1c2c9d63733bfb28f0152274fdb992252718af2a6c2fde",
+        "deterministicSha256": [
+          "080115422e8b6d929a1c2c9d63733bfb28f0152274fdb992252718af2a6c2fde",
+          "080115422e8b6d929a1c2c9d63733bfb28f0152274fdb992252718af2a6c2fde",
+          "080115422e8b6d929a1c2c9d63733bfb28f0152274fdb992252718af2a6c2fde"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "html-blacklist-2",
+    "source": "<table><caption>张三</caption><tr><th>A</th><td><script>不能看见</script><svg>不读</svg>李四<img src=\"secret\">王五</td></tr><tr><td rowspan=\"2000\">甲</td><td>乙</td></tr></table>\n",
+    "operations": [
+      {
+        "operationId": "op-2",
+        "entityType": "name_cn",
+        "original": "李四",
+        "replacement": "【姓名001】",
+        "scanStart": 5,
+        "scanEnd": 7,
+        "region": "table"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "<table><caption>张三</caption><tbody><tr><th>A</th><td>【姓名001】王五</td></tr><tr><td rowspan=\"1000\">甲</td><td>乙</td></tr></tbody></table>\n",
+      "buffer": "PHRhYmxlPjxjYXB0aW9uPuW8oOS4iTwvY2FwdGlvbj48dGJvZHk+PHRyPjx0aD5BPC90aD48dGQ+44CQ5aeT5ZCNMDAx44CR546L5LqUPC90ZD48L3RyPjx0cj48dGQgcm93c3Bhbj0iMTAwMCI+55SyPC90ZD48dGQ+5LmZPC90ZD48L3RyPjwvdGJvZHk+PC90YWJsZT4K",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "1b5d614f60375a799c960f8a52f9e844244165b6038a7a90bbfe0f1118c61e0a",
+        "deterministicSha256": [
+          "1b5d614f60375a799c960f8a52f9e844244165b6038a7a90bbfe0f1118c61e0a",
+          "1b5d614f60375a799c960f8a52f9e844244165b6038a7a90bbfe0f1118c61e0a",
+          "1b5d614f60375a799c960f8a52f9e844244165b6038a7a90bbfe0f1118c61e0a"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "html-blacklist-3",
+    "source": "<table><caption>张三</caption><tr><th>A</th><td><script>不能看见</script><svg>不读</svg>李四<img src=\"secret\">王五</td></tr><tr><td rowspan=\"2000\">甲</td><td>乙</td></tr></table>\n",
+    "operations": [
+      {
+        "operationId": "op-3",
+        "entityType": "name_cn",
+        "original": "王五",
+        "replacement": "【姓名001】",
+        "scanStart": 7,
+        "scanEnd": 9,
+        "region": "table"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "<table><caption>张三</caption><tbody><tr><th>A</th><td>李四【姓名001】</td></tr><tr><td rowspan=\"1000\">甲</td><td>乙</td></tr></tbody></table>\n",
+      "buffer": "PHRhYmxlPjxjYXB0aW9uPuW8oOS4iTwvY2FwdGlvbj48dGJvZHk+PHRyPjx0aD5BPC90aD48dGQ+5p2O5Zub44CQ5aeT5ZCNMDAx44CRPC90ZD48L3RyPjx0cj48dGQgcm93c3Bhbj0iMTAwMCI+55SyPC90ZD48dGQ+5LmZPC90ZD48L3RyPjwvdGJvZHk+PC90YWJsZT4K",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "65c9a0e95a1d0e870bdc544c43bf89fecc6631edc8a1107a776d20c8c8d1d31a",
+        "deterministicSha256": [
+          "65c9a0e95a1d0e870bdc544c43bf89fecc6631edc8a1107a776d20c8c8d1d31a",
+          "65c9a0e95a1d0e870bdc544c43bf89fecc6631edc8a1107a776d20c8c8d1d31a",
+          "65c9a0e95a1d0e870bdc544c43bf89fecc6631edc8a1107a776d20c8c8d1d31a"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "html-blacklist-4",
+    "source": "<table><caption>张三</caption><tr><th>A</th><td><script>不能看见</script><svg>不读</svg>李四<img src=\"secret\">王五</td></tr><tr><td rowspan=\"2000\">甲</td><td>乙</td></tr></table>\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 0,
+        "scanEnd": 2,
+        "region": "table"
+      },
+      {
+        "operationId": "op-2",
+        "entityType": "name_cn",
+        "original": "李四",
+        "replacement": "【姓名001】",
+        "scanStart": 5,
+        "scanEnd": 7,
+        "region": "table"
+      },
+      {
+        "operationId": "op-3",
+        "entityType": "name_cn",
+        "original": "王五",
+        "replacement": "【姓名001】",
+        "scanStart": 7,
+        "scanEnd": 9,
+        "region": "table"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "<table><caption>【姓名001】</caption><tbody><tr><th>A</th><td>【姓名001】【姓名001】</td></tr><tr><td rowspan=\"1000\">甲</td><td>乙</td></tr></tbody></table>\n",
+      "buffer": "PHRhYmxlPjxjYXB0aW9uPuOAkOWnk+WQjTAwMeOAkTwvY2FwdGlvbj48dGJvZHk+PHRyPjx0aD5BPC90aD48dGQ+44CQ5aeT5ZCNMDAx44CR44CQ5aeT5ZCNMDAx44CRPC90ZD48L3RyPjx0cj48dGQgcm93c3Bhbj0iMTAwMCI+55SyPC90ZD48dGQ+5LmZPC90ZD48L3RyPjwvdGJvZHk+PC90YWJsZT4K",
+      "report": {
+        "passed": true,
+        "operationCount": 3,
+        "appliedOperationCount": 3,
+        "outputSha256": "88b333941e28284705810f2538e917f31b831bbc742436facf6a71f9bc55ab70",
+        "deterministicSha256": [
+          "88b333941e28284705810f2538e917f31b831bbc742436facf6a71f9bc55ab70",
+          "88b333941e28284705810f2538e917f31b831bbc742436facf6a71f9bc55ab70",
+          "88b333941e28284705810f2538e917f31b831bbc742436facf6a71f9bc55ab70"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "gfm-mixed-0",
+    "source": "| 姓名 | 金额 |\n| :-- | --: |\n| 张**三** | 100<br>200 |\n| ![甲](img) | A\\|B |\n",
+    "operations": [],
+    "result": {
+      "success": true,
+      "source": "| 姓名 | 金额 |\n| :-- | --: |\n| 张**三** | 100<br>200 |\n|  | A\\|B |\n",
+      "buffer": "fCDlp5PlkI0gfCDph5Hpop0gfAp8IDotLSB8IC0tOiB8Cnwg5bygKirkuIkqKiB8IDEwMDxicj4yMDAgfAp8ICB8IEFcfEIgfAo=",
+      "report": {
+        "passed": true,
+        "operationCount": 0,
+        "appliedOperationCount": 0,
+        "outputSha256": "4134a1f149e54dea16199f14de7856f88ce0cc8341bc0656e30a542164d04f25",
+        "deterministicSha256": [
+          "4134a1f149e54dea16199f14de7856f88ce0cc8341bc0656e30a542164d04f25",
+          "4134a1f149e54dea16199f14de7856f88ce0cc8341bc0656e30a542164d04f25",
+          "4134a1f149e54dea16199f14de7856f88ce0cc8341bc0656e30a542164d04f25"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 1
+      }
+    }
+  },
+  {
+    "id": "gfm-mixed-1",
+    "source": "| 姓名 | 金额 |\n| :-- | --: |\n| 张**三** | 100<br>200 |\n| ![甲](img) | A\\|B |\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "100",
+        "replacement": "【姓名001】",
+        "scanStart": 9,
+        "scanEnd": 12,
+        "region": "table"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "| 姓名 | 金额 |\n| :-- | --: |\n| 张**三** | 【姓名001】<br>200 |\n|  | A\\|B |\n",
+      "buffer": "fCDlp5PlkI0gfCDph5Hpop0gfAp8IDotLSB8IC0tOiB8Cnwg5bygKirkuIkqKiB8IOOAkOWnk+WQjTAwMeOAkTxicj4yMDAgfAp8ICB8IEFcfEIgfAo=",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "c9958eda3a4102036e5e5108077c5f3203a7f01af477c5925925a2b734374bcd",
+        "deterministicSha256": [
+          "c9958eda3a4102036e5e5108077c5f3203a7f01af477c5925925a2b734374bcd",
+          "c9958eda3a4102036e5e5108077c5f3203a7f01af477c5925925a2b734374bcd",
+          "c9958eda3a4102036e5e5108077c5f3203a7f01af477c5925925a2b734374bcd"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 1
+      }
+    }
+  },
+  {
+    "id": "gfm-mixed-2",
+    "source": "| 姓名 | 金额 |\n| :-- | --: |\n| 张**三** | 100<br>200 |\n| ![甲](img) | A\\|B |\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "100",
+        "replacement": "【姓名001】",
+        "scanStart": 9,
+        "scanEnd": 12,
+        "region": "table"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "| 姓名 | 金额 |\n| :-- | --: |\n| 张**三** | 【姓名001】<br>200 |\n|  | A\\|B |\n",
+      "buffer": "fCDlp5PlkI0gfCDph5Hpop0gfAp8IDotLSB8IC0tOiB8Cnwg5bygKirkuIkqKiB8IOOAkOWnk+WQjTAwMeOAkTxicj4yMDAgfAp8ICB8IEFcfEIgfAo=",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "c9958eda3a4102036e5e5108077c5f3203a7f01af477c5925925a2b734374bcd",
+        "deterministicSha256": [
+          "c9958eda3a4102036e5e5108077c5f3203a7f01af477c5925925a2b734374bcd",
+          "c9958eda3a4102036e5e5108077c5f3203a7f01af477c5925925a2b734374bcd",
+          "c9958eda3a4102036e5e5108077c5f3203a7f01af477c5925925a2b734374bcd"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 1
+      }
+    }
+  },
+  {
+    "id": "newline-0",
+    "source": "张三\r\n李四\n\n王五\r\n",
+    "operations": [],
+    "result": {
+      "success": true,
+      "source": "张三\r\n李四\n\n王五\r\n",
+      "buffer": "5byg5LiJDQrmnY7lm5sKCueOi+S6lA0K",
+      "report": {
+        "passed": true,
+        "operationCount": 0,
+        "appliedOperationCount": 0,
+        "outputSha256": "f8cea71d645dad275b33495adfebfcfdb49ca897fd3f3fde946d8a6b5c5c5ea9",
+        "deterministicSha256": [
+          "f8cea71d645dad275b33495adfebfcfdb49ca897fd3f3fde946d8a6b5c5c5ea9",
+          "f8cea71d645dad275b33495adfebfcfdb49ca897fd3f3fde946d8a6b5c5c5ea9",
+          "f8cea71d645dad275b33495adfebfcfdb49ca897fd3f3fde946d8a6b5c5c5ea9"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "newline-1",
+    "source": "张三\r\n李四\n\n王五\r\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 0,
+        "scanEnd": 2,
+        "region": "text"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "【姓名001】\r\n李四\n\n王五\r\n",
+      "buffer": "44CQ5aeT5ZCNMDAx44CRDQrmnY7lm5sKCueOi+S6lA0K",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "11b2b5bdbcf906837e8998332f254b25578f03f0e18d58e140ac8cdd2e82ee8a",
+        "deterministicSha256": [
+          "11b2b5bdbcf906837e8998332f254b25578f03f0e18d58e140ac8cdd2e82ee8a",
+          "11b2b5bdbcf906837e8998332f254b25578f03f0e18d58e140ac8cdd2e82ee8a",
+          "11b2b5bdbcf906837e8998332f254b25578f03f0e18d58e140ac8cdd2e82ee8a"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "newline-2",
+    "source": "张三\r\n李四\n\n王五\r\n",
+    "operations": [
+      {
+        "operationId": "op-2",
+        "entityType": "name_cn",
+        "original": "李四",
+        "replacement": "【姓名001】",
+        "scanStart": 4,
+        "scanEnd": 6,
+        "region": "text"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "张三\r\n【姓名001】\n\n王五\r\n",
+      "buffer": "5byg5LiJDQrjgJDlp5PlkI0wMDHjgJEKCueOi+S6lA0K",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "752d2ef23b88ebe8b031e8e81f04ef18660fb3ddcf7548c58695ca0a365b1825",
+        "deterministicSha256": [
+          "752d2ef23b88ebe8b031e8e81f04ef18660fb3ddcf7548c58695ca0a365b1825",
+          "752d2ef23b88ebe8b031e8e81f04ef18660fb3ddcf7548c58695ca0a365b1825",
+          "752d2ef23b88ebe8b031e8e81f04ef18660fb3ddcf7548c58695ca0a365b1825"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "newline-3",
+    "source": "张三\r\n李四\n\n王五\r\n",
+    "operations": [
+      {
+        "operationId": "op-3",
+        "entityType": "name_cn",
+        "original": "王五",
+        "replacement": "【姓名001】",
+        "scanStart": 7,
+        "scanEnd": 9,
+        "region": "text"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "张三\r\n李四\n\n【姓名001】\r\n",
+      "buffer": "5byg5LiJDQrmnY7lm5sKCuOAkOWnk+WQjTAwMeOAkQ0K",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "081add5d20d3f0e1c928780f28f95ccfc531e896ab03210c2a2e5228bc0f6bce",
+        "deterministicSha256": [
+          "081add5d20d3f0e1c928780f28f95ccfc531e896ab03210c2a2e5228bc0f6bce",
+          "081add5d20d3f0e1c928780f28f95ccfc531e896ab03210c2a2e5228bc0f6bce",
+          "081add5d20d3f0e1c928780f28f95ccfc531e896ab03210c2a2e5228bc0f6bce"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "newline-4",
+    "source": "张三\r\n李四\n\n王五\r\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 0,
+        "scanEnd": 2,
+        "region": "text"
+      },
+      {
+        "operationId": "op-2",
+        "entityType": "name_cn",
+        "original": "李四",
+        "replacement": "【姓名001】",
+        "scanStart": 4,
+        "scanEnd": 6,
+        "region": "text"
+      },
+      {
+        "operationId": "op-3",
+        "entityType": "name_cn",
+        "original": "王五",
+        "replacement": "【姓名001】",
+        "scanStart": 7,
+        "scanEnd": 9,
+        "region": "text"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "【姓名001】\r\n【姓名001】\n\n【姓名001】\r\n",
+      "buffer": "44CQ5aeT5ZCNMDAx44CRDQrjgJDlp5PlkI0wMDHjgJEKCuOAkOWnk+WQjTAwMeOAkQ0K",
+      "report": {
+        "passed": true,
+        "operationCount": 3,
+        "appliedOperationCount": 3,
+        "outputSha256": "01be754163ebc559c66524e6ca4741d69b8aa8f087c5bf3ac0125388bf86d865",
+        "deterministicSha256": [
+          "01be754163ebc559c66524e6ca4741d69b8aa8f087c5bf3ac0125388bf86d865",
+          "01be754163ebc559c66524e6ca4741d69b8aa8f087c5bf3ac0125388bf86d865",
+          "01be754163ebc559c66524e6ca4741d69b8aa8f087c5bf3ac0125388bf86d865"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "inline-space-0",
+    "source": "` 张三 ` 与 ``张`三``\n",
+    "operations": [],
+    "result": {
+      "success": true,
+      "source": "` 张三 ` 与 ``张`三``\n",
+      "buffer": "YCDlvKDkuIkgYCDkuI4gYGDlvKBg5LiJYGAK",
+      "report": {
+        "passed": true,
+        "operationCount": 0,
+        "appliedOperationCount": 0,
+        "outputSha256": "b7f66eb33dc71621e4db8ad28999c988ecbc92a5146e44c48d66ec45f9658800",
+        "deterministicSha256": [
+          "b7f66eb33dc71621e4db8ad28999c988ecbc92a5146e44c48d66ec45f9658800",
+          "b7f66eb33dc71621e4db8ad28999c988ecbc92a5146e44c48d66ec45f9658800",
+          "b7f66eb33dc71621e4db8ad28999c988ecbc92a5146e44c48d66ec45f9658800"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "inline-space-1",
+    "source": "` 张三 ` 与 ``张`三``\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 0,
+        "scanEnd": 2,
+        "region": "code"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "` 【姓名001】 ` 与 ``张`三``\n",
+      "buffer": "YCDjgJDlp5PlkI0wMDHjgJEgYCDkuI4gYGDlvKBg5LiJYGAK",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "eba10ff69a4e27555600adef8d2ad615be9ad7a31116dda11a0e63065e973afc",
+        "deterministicSha256": [
+          "eba10ff69a4e27555600adef8d2ad615be9ad7a31116dda11a0e63065e973afc",
+          "eba10ff69a4e27555600adef8d2ad615be9ad7a31116dda11a0e63065e973afc",
+          "eba10ff69a4e27555600adef8d2ad615be9ad7a31116dda11a0e63065e973afc"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "inline-space-2",
+    "source": "` 张三 ` 与 ``张`三``\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 0,
+        "scanEnd": 2,
+        "region": "code"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "` 【姓名001】 ` 与 ``张`三``\n",
+      "buffer": "YCDjgJDlp5PlkI0wMDHjgJEgYCDkuI4gYGDlvKBg5LiJYGAK",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "eba10ff69a4e27555600adef8d2ad615be9ad7a31116dda11a0e63065e973afc",
+        "deterministicSha256": [
+          "eba10ff69a4e27555600adef8d2ad615be9ad7a31116dda11a0e63065e973afc",
+          "eba10ff69a4e27555600adef8d2ad615be9ad7a31116dda11a0e63065e973afc",
+          "eba10ff69a4e27555600adef8d2ad615be9ad7a31116dda11a0e63065e973afc"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "escaping-repeat-0",
+    "source": "a\\*b a*b a\\*b\n",
+    "operations": [],
+    "result": {
+      "success": true,
+      "source": "a\\*b a*b a\\*b\n",
+      "buffer": "YVwqYiBhKmIgYVwqYgo=",
+      "report": {
+        "passed": true,
+        "operationCount": 0,
+        "appliedOperationCount": 0,
+        "outputSha256": "42237f4f6d1095622eb5fc16c77ff5e441a54e2c8138313af112fccfd67d9005",
+        "deterministicSha256": [
+          "42237f4f6d1095622eb5fc16c77ff5e441a54e2c8138313af112fccfd67d9005",
+          "42237f4f6d1095622eb5fc16c77ff5e441a54e2c8138313af112fccfd67d9005",
+          "42237f4f6d1095622eb5fc16c77ff5e441a54e2c8138313af112fccfd67d9005"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "no-text-0",
+    "source": "![甲](secret)\n",
+    "operations": [],
+    "result": {
+      "success": true,
+      "source": "\n",
+      "buffer": "Cg==",
+      "report": {
+        "passed": true,
+        "operationCount": 0,
+        "appliedOperationCount": 0,
+        "outputSha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+        "deterministicSha256": [
+          "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+          "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 1
+      }
+    }
+  },
+  {
+    "id": "empty-0",
+    "source": "",
+    "operations": [],
+    "result": {
+      "success": true,
+      "source": "",
+      "buffer": "",
+      "report": {
+        "passed": true,
+        "operationCount": 0,
+        "appliedOperationCount": 0,
+        "outputSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "deterministicSha256": [
+          "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "yaml-only-0",
+    "source": "---\nname: 张三\n---\n",
+    "operations": [],
+    "result": {
+      "success": true,
+      "source": "---\nname: 张三\n---\n",
+      "buffer": "LS0tCm5hbWU6IOW8oOS4iQotLS0K",
+      "report": {
+        "passed": true,
+        "operationCount": 0,
+        "appliedOperationCount": 0,
+        "outputSha256": "6bd6fe62a9b167beddfd7c2bbc15f66013c6601dad175437f4d0deec203de94e",
+        "deterministicSha256": [
+          "6bd6fe62a9b167beddfd7c2bbc15f66013c6601dad175437f4d0deec203de94e",
+          "6bd6fe62a9b167beddfd7c2bbc15f66013c6601dad175437f4d0deec203de94e",
+          "6bd6fe62a9b167beddfd7c2bbc15f66013c6601dad175437f4d0deec203de94e"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "yaml-only-1",
+    "source": "---\nname: 张三\n---\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 5,
+        "scanEnd": 7,
+        "region": "frontmatter"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "---\nname: 【姓名001】\n---\n",
+      "buffer": "LS0tCm5hbWU6IOOAkOWnk+WQjTAwMeOAkQotLS0K",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "d9d5677c01433381349c8f120bee5f87c1ec06a87bfcbb4557624380b950b36e",
+        "deterministicSha256": [
+          "d9d5677c01433381349c8f120bee5f87c1ec06a87bfcbb4557624380b950b36e",
+          "d9d5677c01433381349c8f120bee5f87c1ec06a87bfcbb4557624380b950b36e",
+          "d9d5677c01433381349c8f120bee5f87c1ec06a87bfcbb4557624380b950b36e"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "yaml-only-2",
+    "source": "---\nname: 张三\n---\n",
+    "operations": [
+      {
+        "operationId": "op-1",
+        "entityType": "name_cn",
+        "original": "张三",
+        "replacement": "【姓名001】",
+        "scanStart": 5,
+        "scanEnd": 7,
+        "region": "frontmatter"
+      }
+    ],
+    "result": {
+      "success": true,
+      "source": "---\nname: 【姓名001】\n---\n",
+      "buffer": "LS0tCm5hbWU6IOOAkOWnk+WQjTAwMeOAkQotLS0K",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "d9d5677c01433381349c8f120bee5f87c1ec06a87bfcbb4557624380b950b36e",
+        "deterministicSha256": [
+          "d9d5677c01433381349c8f120bee5f87c1ec06a87bfcbb4557624380b950b36e",
+          "d9d5677c01433381349c8f120bee5f87c1ec06a87bfcbb4557624380b950b36e",
+          "d9d5677c01433381349c8f120bee5f87c1ec06a87bfcbb4557624380b950b36e"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "cross",
+    "source": "# **张三** 与 李四\n",
+    "operations": [
+      {
+        "operationId": "cross",
+        "entityType": "name_cn",
+        "original": "张三 与",
+        "replacement": "***",
+        "scanStart": 0,
+        "scanEnd": 4,
+        "region": "text"
+      }
+    ],
+    "fullStar": false,
+    "result": {
+      "success": true,
+      "source": "# \\*\\*\\* 李四\n",
+      "buffer": "IyBcKlwqXCog5p2O5ZubCg==",
+      "report": {
+        "passed": true,
+        "operationCount": 1,
+        "appliedOperationCount": 1,
+        "outputSha256": "438eb3f5c609c64cda2b4ee7a55fee0676963627500b2fc19dca46c0bd922487",
+        "deterministicSha256": [
+          "438eb3f5c609c64cda2b4ee7a55fee0676963627500b2fc19dca46c0bd922487",
+          "438eb3f5c609c64cda2b4ee7a55fee0676963627500b2fc19dca46c0bd922487",
+          "438eb3f5c609c64cda2b4ee7a55fee0676963627500b2fc19dca46c0bd922487"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  },
+  {
+    "id": "overlap",
+    "source": "张三李四",
+    "operations": [
+      {
+        "operationId": "a",
+        "entityType": "name_cn",
+        "original": "张三李",
+        "replacement": "甲",
+        "scanStart": 0,
+        "scanEnd": 3,
+        "region": "text"
+      },
+      {
+        "operationId": "b",
+        "entityType": "org_name",
+        "original": "三李四",
+        "replacement": "乙",
+        "scanStart": 1,
+        "scanEnd": 4,
+        "region": "text"
+      }
+    ],
+    "fullStar": true,
+    "result": {
+      "success": true,
+      "source": "\\*\\*\\*\\*",
+      "buffer": "XCpcKlwqXCo=",
+      "report": {
+        "passed": true,
+        "operationCount": 2,
+        "appliedOperationCount": 2,
+        "outputSha256": "694c1b465791aeae4fc702252bb6e78735922f9a57d1c4423bba7fdc1d9c923d",
+        "deterministicSha256": [
+          "694c1b465791aeae4fc702252bb6e78735922f9a57d1c4423bba7fdc1d9c923d",
+          "694c1b465791aeae4fc702252bb6e78735922f9a57d1c4423bba7fdc1d9c923d",
+          "694c1b465791aeae4fc702252bb6e78735922f9a57d1c4423bba7fdc1d9c923d"
+        ],
+        "issues": [],
+        "format": "preserved",
+        "removedAssetCount": 0
+      }
+    }
+  }
+]

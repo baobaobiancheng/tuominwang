@@ -1,0 +1,567 @@
+{
+  "source": "Official Windows0.5.9 static standalone seal_detector.py 50e6193f5241557ffef606d022dda486bdb4b3ac6303903e53a600ecf85b2628, evaluated as isolated pure pixel algorithms; no desktop license or product execution",
+  "sourceOpenCv": "4.10.0.84",
+  "runtimeOpenCv": "4.10.0",
+  "cases": [
+    {
+      "id": "red-ring",
+      "width": 800,
+      "height": 1000,
+      "options": {},
+      "file": "red-ring.png",
+      "sha256": "6ba2534238b086653a41eb499c3193cc7fbb6a830026718feaedf4bb72d3bc7f",
+      "expected": [
+        {
+          "x": 276,
+          "y": 276,
+          "width": 148,
+          "height": 148,
+          "confidence": 0.85,
+          "color": "red",
+          "shape": "circle",
+          "method": "hough"
+        }
+      ]
+    },
+    {
+      "id": "red-ellipse",
+      "width": 800,
+      "height": 1000,
+      "options": {},
+      "file": "red-ellipse.png",
+      "sha256": "fa0f0fec9ff23153333b03ea922fc8cfbbd6d6e3209941df3a8f4a972d55db06",
+      "expected": [
+        {
+          "x": 248,
+          "y": 300,
+          "width": 100,
+          "height": 100,
+          "confidence": 0.86,
+          "color": "red",
+          "shape": "circle",
+          "method": "hough"
+        },
+        {
+          "x": 342,
+          "y": 294,
+          "width": 108,
+          "height": 108,
+          "confidence": 0.85,
+          "color": "red",
+          "shape": "circle",
+          "method": "hough"
+        }
+      ]
+    },
+    {
+      "id": "blue-ring",
+      "width": 800,
+      "height": 1000,
+      "options": {},
+      "file": "blue-ring.png",
+      "sha256": "d20b832e69af1efc5953516affbb53ed523ae5eccefa1da363288e601e6d2a08",
+      "expected": [
+        {
+          "x": 276,
+          "y": 276,
+          "width": 148,
+          "height": 148,
+          "confidence": 0.85,
+          "color": "blue",
+          "shape": "circle",
+          "method": "hough"
+        }
+      ]
+    },
+    {
+      "id": "blue-ellipse",
+      "width": 800,
+      "height": 1000,
+      "options": {},
+      "file": "blue-ellipse.png",
+      "sha256": "a66c45a73f1085c316ce7ef408a7a0140dc90f33fe5c91e379ab0e61961369c0",
+      "expected": [
+        {
+          "x": 348,
+          "y": 298,
+          "width": 104,
+          "height": 104,
+          "confidence": 0.85,
+          "color": "blue",
+          "shape": "circle",
+          "method": "hough"
+        },
+        {
+          "x": 248,
+          "y": 300,
+          "width": 100,
+          "height": 100,
+          "confidence": 0.85,
+          "color": "blue",
+          "shape": "circle",
+          "method": "hough"
+        }
+      ]
+    },
+    {
+      "id": "orange-ring",
+      "width": 800,
+      "height": 1000,
+      "options": {},
+      "file": "orange-ring.png",
+      "sha256": "dff2d554fa5c39327f3e27dc291246f8ed47ffe67c82649680818284f70d8b93",
+      "expected": [
+        {
+          "x": 276,
+          "y": 276,
+          "width": 148,
+          "height": 148,
+          "confidence": 0.85,
+          "color": "red",
+          "shape": "circle",
+          "method": "hough"
+        }
+      ]
+    },
+    {
+      "id": "orange-ellipse",
+      "width": 800,
+      "height": 1000,
+      "options": {},
+      "file": "orange-ellipse.png",
+      "sha256": "f8dd58935c950fbc52c1fe6190364fed560879d2daad8db34bdd320bfef4da0e",
+      "expected": [
+        {
+          "x": 352,
+          "y": 300,
+          "width": 100,
+          "height": 100,
+          "confidence": 0.84,
+          "color": "red",
+          "shape": "circle",
+          "method": "hough"
+        },
+        {
+          "x": 257,
+          "y": 305,
+          "width": 90,
+          "height": 90,
+          "confidence": 0.81,
+          "color": "red",
+          "shape": "circle",
+          "method": "hough"
+        }
+      ]
+    },
+    {
+      "id": "faded-ring",
+      "width": 800,
+      "height": 1000,
+      "options": {},
+      "file": "faded-ring.png",
+      "sha256": "d6007dbff1ea3bb5183a0392e7158cd9fb452f56afb20a366078dc1310f1e293",
+      "expected": [
+        {
+          "x": 268,
+          "y": 274,
+          "width": 156,
+          "height": 156,
+          "confidence": 0.86,
+          "color": "red",
+          "shape": "circle",
+          "method": "hough"
+        }
+      ]
+    },
+    {
+      "id": "faded-ellipse",
+      "width": 800,
+      "height": 1000,
+      "options": {},
+      "file": "faded-ellipse.png",
+      "sha256": "4f8ed01f707f4fe24c2549f7d2735cdbd19af681c0374a73b260cc7a32e464a4",
+      "expected": [
+        {
+          "x": 352,
+          "y": 300,
+          "width": 100,
+          "height": 100,
+          "confidence": 0.83,
+          "color": "red",
+          "shape": "circle",
+          "method": "hough"
+        },
+        {
+          "x": 254,
+          "y": 302,
+          "width": 104,
+          "height": 104,
+          "confidence": 0.83,
+          "color": "red",
+          "shape": "circle",
+          "method": "hough"
+        }
+      ]
+    },
+    {
+      "id": "black-ring",
+      "width": 800,
+      "height": 1000,
+      "options": {},
+      "file": "black-ring.png",
+      "sha256": "17bfd7815fbcb3a56e53b69509e6f56a95c2fe41f5772160678c4793b1125532",
+      "expected": []
+    },
+    {
+      "id": "black-ellipse",
+      "width": 800,
+      "height": 1000,
+      "options": {},
+      "file": "black-ellipse.png",
+      "sha256": "eee5893361f0603f5cb183c14ce69f4275a2ebb87c5af4b8200127c994466d30",
+      "expected": []
+    },
+    {
+      "id": "gray-ring",
+      "width": 800,
+      "height": 1000,
+      "options": {},
+      "file": "gray-ring.png",
+      "sha256": "ac3d38bd6c839244bd9b3e88394b262648d46ba530c8363b344a3927d179a4fa",
+      "expected": []
+    },
+    {
+      "id": "gray-ellipse",
+      "width": 800,
+      "height": 1000,
+      "options": {},
+      "file": "gray-ellipse.png",
+      "sha256": "3c011c7e69b420cba5f15a87209f45242e4b5912431770bd67905d0340b9816f",
+      "expected": []
+    },
+    {
+      "id": "solid-icon",
+      "width": 800,
+      "height": 1000,
+      "options": {},
+      "file": "solid-icon.png",
+      "sha256": "8ea26a1691e2f03511c8ac8b96b406409de01f9b66112c2e6088681d69f47c4a",
+      "expected": []
+    },
+    {
+      "id": "empty-frame",
+      "width": 800,
+      "height": 1000,
+      "options": {},
+      "file": "empty-frame.png",
+      "sha256": "ebfad095d141a6660af67cd2c9510084d8b93596e286c544e8cd386100751dfc",
+      "expected": []
+    },
+    {
+      "id": "paired-stamps",
+      "width": 800,
+      "height": 1000,
+      "options": {},
+      "file": "paired-stamps.png",
+      "sha256": "e6853c98a13d39dcff27a56277b96ba0799c7f66bf246fc076b1baaaabdcc74d",
+      "expected": [
+        {
+          "x": 178,
+          "y": 278,
+          "width": 144,
+          "height": 144,
+          "confidence": 0.88,
+          "color": "red",
+          "shape": "circle",
+          "method": "hough"
+        },
+        {
+          "x": 378,
+          "y": 278,
+          "width": 144,
+          "height": 144,
+          "confidence": 0.88,
+          "color": "red",
+          "shape": "circle",
+          "method": "hough"
+        }
+      ]
+    },
+    {
+      "id": "thin-digital",
+      "width": 800,
+      "height": 1000,
+      "options": {},
+      "file": "thin-digital.png",
+      "sha256": "65dc7c8322e230d1bdb8241d7c6fc3a5a568029a2935fc3255496e44c9c694c6",
+      "expected": [
+        {
+          "x": 277,
+          "y": 277,
+          "width": 146,
+          "height": 146,
+          "confidence": 0.81,
+          "color": "red",
+          "shape": "circle",
+          "method": "hough"
+        }
+      ]
+    },
+    {
+      "id": "large-arc",
+      "width": 800,
+      "height": 1000,
+      "options": {},
+      "file": "large-arc.png",
+      "sha256": "ce9280d5b79d5e51ab54e4650b0c6ad98efe4cece7f2b9a53dc3ed1b681b6834",
+      "expected": []
+    },
+    {
+      "id": "crop-edge",
+      "width": 800,
+      "height": 1000,
+      "options": {},
+      "file": "crop-edge.png",
+      "sha256": "ec1170e63c1c9103794b2ecdb198aaabfab4369d1c1586d755d2a61bc70458cf",
+      "expected": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 88,
+          "height": 118,
+          "confidence": 0.86,
+          "color": "red",
+          "shape": "circle",
+          "method": "hough"
+        }
+      ]
+    },
+    {
+      "id": "source-scale",
+      "width": 1600,
+      "height": 2000,
+      "options": {},
+      "file": "source-scale.png",
+      "sha256": "ec62f321674bf56de13ef9b00cd72f2f3ac2f222a4e44fb519c9813f5b5ecd89",
+      "expected": [
+        {
+          "x": 543,
+          "y": 539,
+          "width": 314,
+          "height": 314,
+          "confidence": 0.86,
+          "color": "red",
+          "shape": "circle",
+          "method": "hough"
+        }
+      ]
+    },
+    {
+      "id": "options-segOnly",
+      "width": 800,
+      "height": 1000,
+      "options": {
+        "houghVoteThreshold": 200
+      },
+      "file": "options-segOnly.png",
+      "sha256": "cf04049f438942f4c6f129487a6e315c8a2701a4d1052ad5332f1d41c42c3027",
+      "expected": [
+        {
+          "x": 249,
+          "y": 284,
+          "width": 202,
+          "height": 132,
+          "confidence": 0.71,
+          "color": "red",
+          "shape": "ellipse",
+          "method": "color_seg"
+        }
+      ]
+    },
+    {
+      "id": "options-houghOnly",
+      "width": 800,
+      "height": 1000,
+      "options": {
+        "colorSeg": false
+      },
+      "file": "options-houghOnly.png",
+      "sha256": "cf04049f438942f4c6f129487a6e315c8a2701a4d1052ad5332f1d41c42c3027",
+      "expected": [
+        {
+          "x": 248,
+          "y": 300,
+          "width": 100,
+          "height": 100,
+          "confidence": 0.86,
+          "color": "red",
+          "shape": "circle",
+          "method": "hough"
+        },
+        {
+          "x": 342,
+          "y": 294,
+          "width": 108,
+          "height": 108,
+          "confidence": 0.85,
+          "color": "red",
+          "shape": "circle",
+          "method": "hough"
+        }
+      ]
+    },
+    {
+      "id": "options-noEmblem",
+      "width": 800,
+      "height": 1000,
+      "options": {
+        "emblemFillMax": 0
+      },
+      "file": "options-noEmblem.png",
+      "sha256": "cf04049f438942f4c6f129487a6e315c8a2701a4d1052ad5332f1d41c42c3027",
+      "expected": [
+        {
+          "x": 248,
+          "y": 300,
+          "width": 100,
+          "height": 100,
+          "confidence": 0.86,
+          "color": "red",
+          "shape": "circle",
+          "method": "hough"
+        },
+        {
+          "x": 342,
+          "y": 294,
+          "width": 108,
+          "height": 108,
+          "confidence": 0.85,
+          "color": "red",
+          "shape": "circle",
+          "method": "hough"
+        }
+      ]
+    },
+    {
+      "id": "options-looseColor",
+      "width": 800,
+      "height": 1000,
+      "options": {
+        "minColorRatio": 0.001,
+        "minSectors": 1,
+        "minRingDensityRed": 0.01
+      },
+      "file": "options-looseColor.png",
+      "sha256": "cf04049f438942f4c6f129487a6e315c8a2701a4d1052ad5332f1d41c42c3027",
+      "expected": [
+        {
+          "x": 248,
+          "y": 300,
+          "width": 100,
+          "height": 100,
+          "confidence": 0.86,
+          "color": "red",
+          "shape": "circle",
+          "method": "hough"
+        },
+        {
+          "x": 342,
+          "y": 294,
+          "width": 108,
+          "height": 108,
+          "confidence": 0.85,
+          "color": "red",
+          "shape": "circle",
+          "method": "hough"
+        }
+      ]
+    },
+    {
+      "id": "options-strictColor",
+      "width": 800,
+      "height": 1000,
+      "options": {
+        "minColorRatio": 0.9
+      },
+      "file": "options-strictColor.png",
+      "sha256": "cf04049f438942f4c6f129487a6e315c8a2701a4d1052ad5332f1d41c42c3027",
+      "expected": [
+        {
+          "x": 249,
+          "y": 284,
+          "width": 202,
+          "height": 132,
+          "confidence": 0.71,
+          "color": "red",
+          "shape": "ellipse",
+          "method": "color_seg"
+        }
+      ]
+    },
+    {
+      "id": "options-largeGateOff",
+      "width": 800,
+      "height": 1000,
+      "options": {
+        "bigCircleMaxGapDeg": 0,
+        "bigCircleMinDensity": 0
+      },
+      "file": "options-largeGateOff.png",
+      "sha256": "cf04049f438942f4c6f129487a6e315c8a2701a4d1052ad5332f1d41c42c3027",
+      "expected": [
+        {
+          "x": 248,
+          "y": 300,
+          "width": 100,
+          "height": 100,
+          "confidence": 0.86,
+          "color": "red",
+          "shape": "circle",
+          "method": "hough"
+        },
+        {
+          "x": 342,
+          "y": 294,
+          "width": 108,
+          "height": 108,
+          "confidence": 0.85,
+          "color": "red",
+          "shape": "circle",
+          "method": "hough"
+        }
+      ]
+    },
+    {
+      "id": "options-resize480",
+      "width": 800,
+      "height": 1000,
+      "options": {
+        "maxShortSide": 480
+      },
+      "file": "options-resize480.png",
+      "sha256": "cf04049f438942f4c6f129487a6e315c8a2701a4d1052ad5332f1d41c42c3027",
+      "expected": [
+        {
+          "x": 248,
+          "y": 295,
+          "width": 110,
+          "height": 110,
+          "confidence": 0.86,
+          "color": "red",
+          "shape": "circle",
+          "method": "hough"
+        },
+        {
+          "x": 347,
+          "y": 297,
+          "width": 106,
+          "height": 106,
+          "confidence": 0.85,
+          "color": "red",
+          "shape": "circle",
+          "method": "hough"
+        }
+      ]
+    }
+  ]
+}

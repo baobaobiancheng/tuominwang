@@ -6,7 +6,7 @@ import { openPdf, checkPixels, PAGE_MAX_PIXELS } from "../core/pdf-reader.ts";
 import type { Anchor, Coverage, ParsedPage, SourceFormat } from "../contracts/index.ts";
 import { writeArtifact, writeOriginal, hash } from "./storage.ts";
 
-export async function parsePages(bytes: Buffer, format: SourceFormat) {
+export async function parsePages(bytes: Buffer, format: SourceFormat, onPage?: (page: ParsedPage, text: string, glyphs: Glyph[], totalPages: number) => void | Promise<void>) {
   if (format !== "pdf" && !(format === "png" ? bytes.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10])) : bytes.subarray(0, 3).equals(Buffer.from([255, 216, 255])))) throw new Error("INVALID_IMAGE");
   const pdf = format === "pdf" ? await openPdf(bytes) : undefined;
   let ocr: Worker | undefined;
@@ -47,6 +47,7 @@ export async function parsePages(bytes: Buffer, format: SourceFormat) {
       anchors.push({ kind: "page", page: index, start: offset, end: offset + text.length });
       fragments.push(text); offset += text.length + 1;
       coverage.push({ id: `page:${index}`, status: "complete" });
+      await onPage?.(pages.at(-1)!,text,glyphs,pdf?.count??1);
     }
     if (pdf) for (const [key, value] of Object.entries(pdf.meta)) {
       anchors.push({ kind: "object", part: "metadata", object: key, start: offset, end: offset + value.length });

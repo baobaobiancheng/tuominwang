@@ -9,8 +9,8 @@ test("OCR correction saves page text and requires fresh review while retaining t
   await page.getByLabel("账号", { exact: true }).fill(process.env.E2E_USERNAME!);
   await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
   await page.getByRole("button", { name: "登录工作台" }).click();
-  await page.locator("summary").click();
-  await page.getByLabel("项目名称").fill("OCR纠错-" + randomUUID().slice(0, 8));
+  await page.locator(".create-project summary").click();
+  await page.getByLabel("项目名称", { exact: true }).fill("OCR纠错-" + randomUUID().slice(0, 8));
   await page.getByRole("button", { name: "新建项目", exact: true }).click();
   await page.getByRole("button", { name: "导入材料", exact: true }).click();
   await page.getByLabel("选择文件", { exact: true }).setInputFiles({ name: "公开OCR纠错样本.pdf", mimeType: "application/pdf", buffer: pdfFixture() });

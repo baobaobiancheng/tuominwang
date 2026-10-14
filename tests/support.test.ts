@@ -1,0 +1,5 @@
+import{it,expect}from'vitest';
+import{readLegalDocument,onboardingSample,rendererCrashLine}from'../packages/core/support.ts';
+import{parseOffice}from'../packages/core/office.ts';
+it('legal documents are explicit draft metadata and reject traversal; no acceptance is inferred',()=>{expect(readLegalDocument('agreement.md').status).toBe('draft');expect(readLegalDocument('privacy-policy.md').status).toBe('draft');expect(readLegalDocument('product-intro.md').content).toContain('人工复核');expect(()=>readLegalDocument('../../.env')).toThrow('LEGAL_DOCUMENT_NOT_FOUND');});
+it('synthetic DOCX is a real readable original document, and crash output is fixed text only',async()=>{const sample=await onboardingSample(),parsed=await parseOffice(sample.bytes,'docx');expect(sample.synthetic).toBe(true);expect(parsed.text).toContain('13800138000');expect(parsed.text).toContain('全部为合成信息');expect(parsed.coverage.every(c=>c.status==='complete')).toBe(true);expect(rendererCrashLine('2026-10-14T00:00:00Z')).toBe('\n[2026-10-14T00:00:00.000Z] RENDERER JS ERROR (details omitted)\n');});

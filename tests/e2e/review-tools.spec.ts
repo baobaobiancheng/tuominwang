@@ -6,8 +6,8 @@ test("desktop full-text search, bulk decisions, undo/redo and partial replacemen
   await page.getByLabel("账号", { exact: true }).fill(process.env.E2E_USERNAME!);
   await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
   await page.getByRole("button", { name: "登录工作台" }).click();
-  await page.locator("summary").click();
-  await page.getByLabel("项目名称").fill("合成复核项目");
+  await page.locator(".create-project summary").click();
+  await page.getByLabel("项目名称", { exact: true }).fill("合成复核项目");
   await page.getByRole("button", { name: "新建项目", exact: true }).click();
   await page.getByRole("button", { name: "导入材料", exact: true }).click();
   await page.getByLabel("待处理文本").fill("客户甲13800138000；客户乙13900139000");
@@ -51,8 +51,8 @@ test("known-entity check locates the full document, invalidates changed drafts a
   await page.getByLabel("账号", { exact: true }).fill(process.env.E2E_USERNAME!);
   await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
   await page.getByRole("button", { name: "登录工作台" }).click();
-  await page.locator("summary").click();
-  await page.getByLabel("项目名称").fill("合成漏标检查项目");
+  await page.locator(".create-project summary").click();
+  await page.getByLabel("项目名称", { exact: true }).fill("合成漏标检查项目");
   await page.getByRole("button", { name: "新建项目", exact: true }).click();
   await page.getByRole("button", { name: "导入材料", exact: true }).click();
   const text = "😀合成客户|" + "x".repeat(40000) + "|合成客户|合成客户";

@@ -2,13 +2,14 @@ import { useConfirmAction } from "./confirm-action.tsx";
 import React, { useEffect, useState } from "react";
 import { markSchema } from "../../packages/contracts/index.ts";
 type Version = { id: string; revision: number };
-type Plan = { documents: Version[]; decision: "redact" | "ignore"; kind?: string; whitelist: boolean };
+type Plan = { documents: Version[]; decision: "redact" | "ignore"; kind?: string; rawEntityType?:string; whitelist: boolean };
 export function BatchReview({ project, docs, run, api, changed, active, activate }: {
   project: string; docs: { id: string; name?: string; state: string; revision?: number }[];
   run: (action: () => Promise<void>) => Promise<void>; api: <T>(path: string, method?: string, body?: unknown) => Promise<T>; changed: () => Promise<void>;
   active: boolean; activate: () => void;
 }) {
   const confirmAction = useConfirmAction();
+  const [rawType,setRawType]=useState("");
   const [open, setOpen] = useState(false), [selected, setSelected] = useState<string[]>([]), [kind, setKind] = useState(""), [whitelist, setWhitelist] = useState(false), [decision, setDecision] = useState<Plan["decision"]>("redact");
   const [preview, setPreview] = useState<{ input: Plan; documents: (Version & { affected: number })[] } | null>(null), [receipt, setReceipt] = useState<Version[] | null>(null), [done, setDone] = useState("");
   useEffect(() => { setSelected(current => current.filter(id => docs.some(d => d.id === id))); }, [docs]);
@@ -17,11 +18,11 @@ export function BatchReview({ project, docs, run, api, changed, active, activate
     <button className="secondary" aria-expanded={active && open} onClick={() => { if (active && open) setOpen(false); else { setOpen(true); activate(); } }}>{active && open ? "收起批量复核" : "项目批量复核"}</button>
     {active && open && <div className="panel"><h2>项目批量复核</h2><p className="muted">只处理勾选材料中的待确认候选，最多 20 份。未加载和未勾选的材料不会被修改。请先核对原文。</p>
       <div className="batch-documents">{docs.map((d, i) => <label key={d.id}><input type="checkbox" aria-label={`批量选择 ${d.name ?? `文本 ${docs.length - i}`}`} checked={selected.includes(d.id)} disabled={d.state !== "review" || d.revision === undefined || selected.length >= 20 && !selected.includes(d.id)} onChange={e => { setSelected(e.target.checked ? [...selected, d.id] : selected.filter(v => v !== d.id)); invalidate(); }} />{d.name ?? `文本 ${docs.length - i}`}</label>)}</div>
-      <div className="bulk-review"><label>候选类型<select aria-label="批量候选类型" value={kind} onChange={e => { setKind(e.target.value); invalidate(); }}><option value="">全部类型</option>{markSchema.shape.kind.options.map(k => <option key={k}>{k}</option>)}</select></label>
+      <div className="bulk-review"><label>候选类型<select aria-label="批量候选类型" value={kind} onChange={e => { setKind(e.target.value); invalidate(); }}><option value="">全部类型</option>{markSchema.shape.kind.options.map(k => <option key={k}>{k}</option>)}</select></label>{kind==="自定义"&&<label>自定义类型名称<input value={rawType} onChange={e=>{setRawType(e.target.value);invalidate();}}/></label>}
         <label>处理决定<select aria-label="批量处理决定" value={decision} onChange={e => { setDecision(e.target.value as Plan["decision"]); invalidate(); }}><option value="redact">脱敏处理</option><option value="ignore">保留原值</option></select></label>
         <label className="check-label"><input type="checkbox" checked={whitelist} onChange={e => { setWhitelist(e.target.checked); invalidate(); }} />仅白名单建议</label>
         <button className="secondary" disabled={!selected.length || selected.some(id => !docs.some(d => d.id === id))} onClick={() => void run(async () => {
-          const input: Plan = { documents: selected.map(id => ({ id, revision: docs.find(d => d.id === id)!.revision! })), ...(kind ? { kind } : {}), decision, whitelist };
+          const input: Plan = { documents: selected.map(id => ({ id, revision: docs.find(d => d.id === id)!.revision! })), ...(kind ? { kind,...kind==="自定义"&&rawType?{rawEntityType:rawType}:{} } : {}), decision, whitelist };
           const result = await api<{ documents: (Version & { affected: number })[] }>(`/projects/${project}/review-batch/preview`, "POST", input); setPreview({ input, documents: result.documents }); setDone("");
         })}>核对批量范围</button>
       </div>

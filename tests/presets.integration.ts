@@ -1,0 +1,76 @@
+import { test, after } from "node:test";
+import assert from "node:assert/strict";
+import { randomUUID } from "node:crypto";
+import pg from "pg";
+import { buildApp } from "../apps/api/main.ts";
+import { registerPresetRoutes } from "../apps/api/presets.ts";
+import { tick } from "../apps/worker/main.ts";
+import { pool } from "../packages/adapters/db.ts";
+import { passwordHash } from "../packages/adapters/storage.ts";
+import { importedEntries } from "../packages/core/presets.ts";
+
+const admin = new pg.Pool({ connectionString: process.env.MIGRATION_DATABASE_URL }), app = await buildApp();
+if (!app.hasRoute({ method: "GET", url: "/api/presets/profiles" })) registerPresetRoutes(app);
+after(async () => { await app.close(); await pool.end(); await admin.end(); });
+test("presets encrypt all payloads, isolate users and tenants, enforce CAS and invalidate project snapshots", async () => {
+  const tenant = randomUUID(), origin = process.env.APP_ORIGIN!, password = "synthetic-presets-password";
+  async function account(tenantId = tenant) {
+    const uid = randomUUID(), username = "presets-" + randomUUID(); await admin.query("INSERT INTO users VALUES($1,$2,$3,$4)", [uid, tenantId, username, passwordHash(password)]);
+    const logged = await app.inject({ method: "POST", url: "/api/login", headers: { origin }, payload: { username, password } });
+    const cookie = String(logged.headers["set-cookie"]).split(";")[0];
+    return { uid, req: (method: any, url: string, payload?: any) => app.inject({ method, url, headers: { origin, cookie }, payload }) };
+  }
+  const owner = await account(), other = await account(), cross = await account(randomUUID()), req = owner.req;
+  let list = (await req("GET", "/api/presets/profiles")).json(); assert.equal(list.items[0].settings.readonly, true);
+  const preset = (await req("POST", "/api/presets/profiles", { name: "合成测试方案" })).json(); assert.equal(preset.revision, 1);
+  assert.equal((await req("POST", "/api/presets/profiles", { name: " 合成测试方案 " })).statusCode, 409);
+  assert.equal((await other.req("GET", `/api/presets/profiles/${preset.settings.id}`)).statusCode, 404);
+  assert.equal((await cross.req("GET", `/api/presets/profiles/${preset.settings.id}`)).statusCode, 404);
+  assert.equal((await req("PUT", "/api/presets/profiles/system_default", list.items[0])).statusCode, 403);
+  const updatedSettings = { ...preset.settings, docx: { ...preset.settings.docx, removeHeaderFooter: true, removeImages: true, commentHandlingMode: "anonymize" }, pdf: { ...preset.settings.pdf, exportPdfAsDocx: true, maskStyle: "purple" } };
+  const updated = await req("PUT", `/api/presets/profiles/${preset.settings.id}`, { revision: 1, settings: updatedSettings }); assert.equal(updated.statusCode, 200); assert.equal(updated.json().revision, 2); assert.equal(updated.json().settings.pdf.maskStyle, "purple");
+  assert.equal((await req("PUT", `/api/presets/profiles/${preset.settings.id}`, { revision: 1, settings: updatedSettings })).statusCode, 409);
+  const copy = (await req("POST", `/api/presets/profiles/${preset.settings.id}/duplicate`, {})).json(); assert.equal(copy.settings.name, "合成测试方案 副本"); assert.equal(copy.settings.docx.removeImages, true);
+  const copy2 = (await req("POST", `/api/presets/profiles/${preset.settings.id}/duplicate`, {})).json(); assert.equal(copy2.settings.name, "合成测试方案 副本 2");
+  const longName = "😀".repeat(100), longPreset = (await req("POST", "/api/presets/profiles", { name: longName })).json();
+  const longCopy = await req("POST", `/api/presets/profiles/${longPreset.settings.id}/duplicate`, {}); assert.equal(longCopy.statusCode, 200); assert.ok(longCopy.json().settings.name.length <= 200); assert.ok(longCopy.json().settings.name.isWellFormed());
+  const longCopy2 = await req("POST", `/api/presets/profiles/${longPreset.settings.id}/duplicate`, {}); assert.equal(longCopy2.statusCode, 200); assert.notEqual(longCopy.json().settings.name, longCopy2.json().settings.name); assert.equal((await req("GET", "/api/presets/profiles")).statusCode, 200);
+  const r = (await req("POST", "/api/presets/rulesets", { name: "合成规则库" })).json();
+  const entries = importedEntries([{ row: 2, pattern: "合成甲乙公司", entityType: "org_name", kind: "forceDetect", enabled: true }], "manual");
+  const rules = await req("PUT", `/api/presets/rulesets/${r.settings.id}`, { revision: 1, settings: { ...r.settings, entries } }); assert.equal(rules.statusCode, 200);
+  let pref = (await req("GET", "/api/presets/preferences")).json();
+  const p = await req("PUT", "/api/presets/preferences", { revision: pref.revision, defaultProfileId: preset.settings.id, activeRuleSetId: r.settings.id }); assert.equal(p.statusCode, 200); pref = p.json();
+  assert.equal((await req("PUT", "/api/presets/preferences", { revision: pref.revision - 1, defaultProfileId: preset.settings.id, activeRuleSetId: null })).statusCode, 409);
+  const defaultsCreated = await req("POST", "/api/projects", { name: "合成新建默认", applyDefaultPresets: true }); assert.equal(defaultsCreated.statusCode,200,defaultsCreated.body);
+  const defaultsPolicy = (await req("GET", `/api/projects/${defaultsCreated.json().id}/presets`)).json(); assert.equal(defaultsPolicy.revision,1); assert.deepEqual(defaultsPolicy.profile,updated.json()); assert.equal(defaultsPolicy.ruleset.settings.id,r.settings.id); assert.equal(defaultsPolicy.ruleset.revision,2);
+  const project = (await req("POST", "/api/projects", { name: "合成方案应用" })).json().id;
+  const legacyPolicy=(await req("GET",`/api/projects/${project}/presets`)).json();assert.equal(legacyPolicy.profile,null);assert.equal(legacyPolicy.revision,0);
+  const doc = (await req("POST", `/api/projects/${project}/documents`, { text: "13800138000", requestId: randomUUID() })).json().id; await tick();
+  const view = (await req("GET", `/api/documents/${doc}`)).json(); assert.equal(view.state, "review");
+  const saved = (await req("PUT", `/api/documents/${doc}/review`, { revision: view.revision, marks: view.marks.map((m: any) => ({ ...m, decision: "redact" })) })).json();
+  const exported = await req("POST", `/api/documents/${doc}/export`, { revision: saved.revision }); assert.equal(exported.statusCode, 200); await tick();
+  const link = (await req("POST", `/api/documents/${doc}/download-link`, { revision: saved.revision })).json(); assert.ok(link.url);
+  const artifact = (await admin.query("SELECT id FROM artifacts WHERE document_id=$1", [doc])).rows[0].id;
+  const record = await req("POST", "/api/presets/preferences/exports", { revision: pref.revision, documentId: doc, artifactId: artifact }); assert.equal(record.statusCode, 200); pref = record.json(); assert.equal(pref.settings.lastSuccessfulExportByKind.txt.artifactId, artifact);
+  assert.equal((await req("POST", "/api/presets/preferences/exports", { revision: pref.revision, documentId: doc, artifactId: randomUUID() })).statusCode, 409);
+  const applied = await req("PUT", `/api/projects/${project}/presets`, { revision: 0, profileId: preset.settings.id, profileRevision: 2, rulesetId: r.settings.id, rulesetRevision: 2 }); assert.equal(applied.statusCode, 200); assert.equal(applied.json().revision, 1);
+  assert.equal((await req("GET", `/api/documents/${doc}`)).json().state, "outdated");
+  assert.equal((await req("POST", `/api/documents/${doc}/download-link`, { revision: saved.revision })).statusCode, 409);
+  assert.equal((await app.inject({ url: link.url })).statusCode, 200); // old already-signed immutable artifact remains available
+  assert.equal((await req("POST", "/api/presets/preferences/exports", { revision: pref.revision, documentId: doc, artifactId: artifact })).statusCode, 409);
+  const stored = await admin.query("SELECT payload FROM redaction_presets WHERE owner_id=$1", [owner.uid]); assert.ok(stored.rows.every(x => !x.payload.includes("合成")));
+  const projectPolicy = (await admin.query("SELECT preset_policy FROM projects WHERE id=$1", [project])).rows[0].preset_policy; assert.ok(!projectPolicy.includes("合成"));
+  assert.equal((await req("DELETE", `/api/presets/profiles/${preset.settings.id}`, { revision: 2 })).statusCode, 200);
+  assert.equal((await req("GET", "/api/presets/preferences")).json().settings.defaultProfileId, "system_default");
+  assert.equal((await req("GET", `/api/projects/${project}/presets`)).json().profile.settings.name, "合成测试方案"); // snapshot is not a mutable catalogue pointer
+  assert.equal((await req("GET", "/api/presets/rulesets/template.xlsx")).statusCode, 200);
+  assert.equal((await req("GET", `/api/presets/rulesets/${r.settings.id}/export.xlsx?revision=1`)).statusCode, 409);
+  assert.equal((await req("GET", `/api/presets/rulesets/${r.settings.id}/export.xlsx?revision=2`)).statusCode, 200);
+  const conflictProject=(await req("POST","/api/projects",{name:"合成规则别名冲突"})).json().id;
+  const conflictDoc=(await req("POST",`/api/projects/${conflictProject}/documents`,{text:"姓名：张三",requestId:randomUUID()})).json().id;await tick();
+  const conflictView=(await req("GET",`/api/documents/${conflictDoc}`)).json();assert.ok(conflictView.marks.some((m:any)=>m.kind==="姓名"));
+  assert.equal((await req("PUT",`/api/documents/${conflictDoc}/review`,{revision:conflictView.revision,marks:conflictView.marks.map((m:any)=>({...m,decision:"redact"}))})).statusCode,200);
+  const skip=importedEntries([{row:2,pattern:"张三",entityType:"name_cn",kind:"forceSkip",enabled:true}],"manual");
+  const updatedRules=(await req("PUT",`/api/presets/rulesets/${r.settings.id}`,{revision:2,settings:{...rules.json().settings,entries:[...rules.json().settings.entries,...skip]}})).json();assert.equal(updatedRules.revision,3);
+  const promoted=await req("POST",`/api/presets/rulesets/${r.settings.id}/promotion`,{revision:3,projectId:conflictProject});assert.equal(promoted.statusCode,200,promoted.body);assert.ok(promoted.json().conflicts.some((x:any)=>x.kind==="opposite"));assert.equal(promoted.json().accepted.some((x:any)=>x.pattern==="张三"),false);
+});

@@ -10,7 +10,7 @@ test("same-value groups review every occurrence across mark pages and text windo
   await page.getByLabel("账号", { exact: true }).fill(process.env.E2E_USERNAME!);
   await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
   await page.getByRole("button", { name: "登录工作台", exact: true }).click();
-  await page.locator("summary").click();
+  await page.locator(".create-project summary").click();
   await page.getByLabel("项目名称", { exact: true }).fill("合成实体操作项目");
   await page.getByRole("button", { name: "新建项目", exact: true }).click();
   await page.getByRole("button", { name: "导入材料", exact: true }).click();
@@ -86,7 +86,7 @@ test("same-value groups review every occurrence across mark pages and text windo
   await group.getByRole("button", { name: phone, exact: true }).click();
   const visibleOriginal = await original.inputValue();
   await page.getByRole("button", { name: "刷新处理预览", exact: true }).click();
-  await expect(page.getByRole("textbox", { name: "处理预览", exact: true })).toHaveValue(visibleOriginal.replaceAll(phone, "【手机号】"));
+  await expect(page.getByRole("textbox", { name: "处理预览", exact: true })).toHaveValue(visibleOriginal.replaceAll(phone, "138****8000"));
   await expect(original).toBeHidden();
   await page.getByRole("button", { name: "原文审查", exact: true }).click();
   await expect(original).toHaveValue(visibleOriginal);
@@ -99,7 +99,7 @@ test("same-value groups review every occurrence across mark pages and text windo
   const pendingDownload = page.waitForEvent("download");
   await downloadButton.click();
   const file = await (await pendingDownload).path();
-  expect(await readFile(file!, "utf8")).toBe(text.replaceAll(phone, "【手机号】"));
+  expect(await readFile(file!, "utf8")).toBe(text.replaceAll(phone, "138****8000"));
 
   // Selection is UI state, not a dirty draft, and must never migrate to another document.
   await page.getByRole("button", { name: "提交新文本", exact: true }).click();

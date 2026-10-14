@@ -1,3 +1,5 @@
+import {openPageReview} from "../../packages/adapters/page-review-storage.ts";
+import {sameEntity} from "../../packages/core/entity-identity.ts";
 import type { FastifyInstance } from "fastify";
 import { z } from "zod";
 import { id, reviewSchema, REVIEW_BODY_BYTES, MAX_MARKS, markSchema, type Mark } from "../../packages/contracts/index.ts";
@@ -11,9 +13,10 @@ import { reviewMarks } from "../../packages/core/redaction.ts";
 
 function fail(message: string, statusCode = 409): never { throw Object.assign(new Error(message), { statusCode }); }
 export function registerReviewTools(app: FastifyInstance) {
-  const batchSchema = z.object({ documents: z.array(z.object({ id, revision: z.number().int().nonnegative() })).min(1).max(20), kind: markSchema.shape.kind.optional(), whitelist: z.boolean().default(false), decision: z.enum(["redact", "ignore"]).default("redact") });
+  const batchSchema = z.object({ documents: z.array(z.object({ id, revision: z.number().int().nonnegative() })).min(1).max(20), kind: markSchema.shape.kind.optional(), rawEntityType:markSchema.shape.rawEntityType, whitelist: z.boolean().default(false), decision: z.enum(["redact", "ignore"]).default("redact") });
   for (const mode of ["preview", "apply", "undo"] as const) app.post(`/api/projects/:id/review-batch/${mode}`, async req => {
     const project = id.parse((req.params as any).id), input = batchSchema.parse(req.body), ids = input.documents.map(d => d.id);
+    if(input.rawEntityType!==undefined&&input.kind!=="自定义")fail("INVALID_ENTITY_TYPE",400);
     if (new Set(ids).size !== ids.length) fail("INVALID_INPUT", 400);
     return projectScope(req, { project }, ["review"], async db => {
       const [p] = await rows(db, sql`SELECT id FROM projects WHERE id=${project} FOR UPDATE`);
@@ -27,12 +30,12 @@ export function registerReviewTools(app: FastifyInstance) {
       const deadline = Date.now() + 60000, result: { id: string; revision: number; affected: number }[] = [];
       for (const d of docs) {
         let affected = 0, next: Mark[] = (d.marks as Mark[]).map(m => {
-          if (m.decision !== "pending" || input.kind && m.kind !== input.kind || input.whitelist && !m.sources?.some(s => s.code === "project-whitelist")) return m;
+          if (m.decision !== "pending" || input.kind && !sameEntity(m,{kind:input.kind,rawEntityType:input.rawEntityType}) || input.whitelist && !m.sources?.some(s => s.code === "project-whitelist")) return m;
           affected++; return { ...m, decision: input.decision };
         });
         if (mode === "undo") {
           const [previous] = await rows(db, sql`SELECT * FROM review_snapshots WHERE document_id=${d.id} AND revision=${d.revision - 1}`);
-          if (!previous || previous.content_hash !== d.content_hash || previous.parse_version !== d.parse_version || !isDeepStrictEqual(previous.recognition, d.recognition) || !isDeepStrictEqual(previous.page_review, d.page_review) || !isDeepStrictEqual(previous.page_data, d.page_data)) fail("SNAPSHOT_MISMATCH");
+          if (!previous || previous.content_hash !== d.content_hash || previous.parse_version !== d.parse_version || !isDeepStrictEqual(previous.recognition, d.recognition) || !isDeepStrictEqual(openPageReview({...d,revision:previous.revision,content_hash:previous.content_hash},previous.page_review),openPageReview(d)) || !isDeepStrictEqual(previous.page_data, d.page_data)) fail("SNAPSHOT_MISMATCH");
           next = previous.marks; affected = next.length;
         }
         if (mode === "preview") { result.push({ id: d.id, revision: d.revision, affected }); continue; }

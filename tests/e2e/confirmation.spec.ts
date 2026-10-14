@@ -13,8 +13,8 @@ test("PDF repeat applies once without native confirmation and one undo removes e
   const nativeDialogs: string[] = [];
   page.on("dialog", async dialog => { nativeDialogs.push(dialog.type()); await dialog.dismiss(); });
   await login(page);
-  await page.locator("summary").click();
-  await page.getByLabel("项目名称").fill("重复页即时草稿");
+  await page.locator(".create-project summary").click();
+  await page.getByLabel("项目名称", { exact: true }).fill("重复页即时草稿");
   await page.getByRole("button", { name: "新建项目", exact: true }).click();
   await page.getByRole("button", { name: "导入材料", exact: true }).click();
   await page.getByLabel("选择文件", { exact: true }).setInputFiles({ name: "重复页.pdf", mimeType: "application/pdf", buffer: pdfFixture({ pages: 2 }) });
@@ -24,7 +24,7 @@ test("PDF repeat applies once without native confirmation and one undo removes e
   await page.getByRole("button", { name: /重复页.pdf/ }).click();
   const canvas = page.getByLabel("区域框选画布");
   await expect(canvas).toBeVisible({ timeout: 30000 });
-  await page.getByRole("combobox", { name: "区域类型", exact: true }).selectOption("印章");
+  await page.getByRole("combobox", { name: "区域用途", exact: true }).selectOption("印章");
   await page.getByLabel("结束页", { exact: true }).fill("2");
   await page.getByRole("button", { name: "应用到指定页", exact: true }).click();
   await expect(page.getByRole("alertdialog", { name: "操作确认" })).toHaveCount(0);
@@ -67,8 +67,8 @@ test("Escape cancels only the top confirmation and double confirmation writes a 
   await confirmation.getByRole("button", { name: "确认执行", exact: true }).click();
   await expect(organization).toBeHidden();
 
-  await page.locator("summary").click();
-  await page.getByLabel("项目名称").fill("持久确认唯一写入");
+  await page.locator(".create-project summary").click();
+  await page.getByLabel("项目名称", { exact: true }).fill("持久确认唯一写入");
   await page.getByRole("button", { name: "新建项目", exact: true }).click();
   await page.getByRole("button", { name: "项目词表", exact: true }).click();
   await page.getByLabel("名称或代号", { exact: true }).fill("合成机构");

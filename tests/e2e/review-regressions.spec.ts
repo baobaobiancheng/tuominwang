@@ -27,12 +27,23 @@ async function workspace(page: Page, status = "succeeded", open = true) {
     beforeGet: undefined as (() => Promise<void>) | undefined,
     beforeReview: undefined as (() => Promise<void>) | undefined,
     beforeSubmit: undefined as (() => Promise<void>) | undefined,
+    recoveryWrites: [] as any[],
+    beforeRecovery: undefined as (() => Promise<void>) | undefined,
     reviews: [] as { revision: number; marks: DocumentView["marks"] }[],
     downloads: [] as { revision: number }[],
   };
   await page.route("**/api/**", async route => {
     const request = route.request(), path = new URL(request.url()).pathname;
     const respond = (body: unknown, status = 200) => route.fulfill({ status, json: body });
+    if (path === "/api/ai-collab/tasks" && request.method()==="GET") return respond({items:[]});
+    if (path === "/api/ai-collab/connectors" && request.method()==="GET") return respond({items:[]});
+    if (path === "/api/presets/profiles" && request.method()==="GET") return respond({items:[]});
+    if (path === `/api/documents/${docId}/configuration` && request.method()==="GET") return respond({revision:state.doc.revision,configuration:{}});
+    if (path === `/api/projects/${projectId}/workspace/recent` && request.method()==="POST") return respond({ok:true});
+    if (path === `/api/documents/${docId}/recovery` && request.method()==="GET") return respond(null);
+    if (path === `/api/documents/${docId}/recovery` && request.method()==="PUT") {const body=request.postDataJSON();state.recoveryWrites.push(body);await state.beforeRecovery?.();return respond({id:"draft",revision:body.recoveryRevision+1,documentRevision:state.doc.revision,savedAt:new Date().toISOString()});}
+    if (path === `/api/documents/${docId}/outputs` && request.method()==="GET") return respond([]);
+    if (path === `/api/documents/${docId}/portable-draft` && request.method()==="GET") return respond({available:false});
     if (path === "/api/session") return respond({ username: "回归测试" });
     if (path === "/api/projects") return respond([{ id: projectId, name: "回归项目", permissions: [...permissionSchema.options] }]);
     if (path === `/api/projects/${projectId}/upload-batches`) return respond([]);
@@ -64,7 +75,7 @@ async function workspace(page: Page, status = "succeeded", open = true) {
   });
   await page.goto("/");
   await page.getByRole("button", { name: "回归项目", exact: true }).click();
-  await page.locator("summary").click();
+  await page.locator(".create-project summary").click();
   if (open) {
     await page.getByRole("button", { name: /文本 1/ }).click();
     await page.getByRole("button", { name: "逐条复核", exact: true }).click();
@@ -113,7 +124,7 @@ test("saving locks all editors and navigation until the authoritative reload fin
     page.getByRole("button", { name: "删除标记" }).first(),
     page.getByRole("button", { name: "提交新文本", exact: true }),
     page.getByRole("button", { name: "回归项目", exact: true }),
-    page.getByLabel("项目名称"),
+    page.getByLabel("项目名称", { exact: true }),
   ]) await expect(locator).toBeDisabled();
   save.resolve();
   await expect.poll(() => state.getCount).toBe(2);
@@ -238,4 +249,21 @@ test("session expiry from background polling cancels an App-owned destructive co
   await account.fill("重新登录账号");
   await expect(account).toHaveValue("重新登录账号");
   expect(deletes).toBe(0);
+});
+
+
+test("autosave drains the latest review edit after a slow previous save without losing source decisions",async({page})=>{
+ await page.clock.install();await page.clock.pauseAt(new Date());
+ const state=await workspace(page),first=deferred();let writes=0;
+ state.beforeRecovery=()=>++writes===1?first.promise:Promise.resolve();
+ await page.getByLabel("标记 1 处理决定").selectOption("redact");
+ await page.clock.runFor(1600);await expect.poll(()=>state.recoveryWrites.length).toBe(1);
+ await page.getByLabel("标记 2 处理决定").selectOption("redact");
+ await page.clock.runFor(1600);expect(state.recoveryWrites.length).toBe(1);
+ first.resolve();await expect.poll(()=>state.recoveryWrites.length).toBe(2);
+ expect(state.recoveryWrites[0].recoveryRevision).toBe(0);
+ expect(state.recoveryWrites[1].recoveryRevision).toBe(1);
+ expect(state.recoveryWrites[1].draft.marks.map((m:any)=>m.decision)).toEqual(["redact","redact"]);
+ expect(state.reviews).toHaveLength(0);expect(state.downloads).toHaveLength(0);
+ await expect(page.getByText("草稿已自动保存；保存复核后才能导出。")).toBeVisible();
 });

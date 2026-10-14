@@ -1,3 +1,4 @@
+import {entityLabel} from '../../packages/core/entity-identity.ts';
 import { useConfirmAction } from "./confirm-action.tsx";
 import React, { useEffect, useRef, useState } from "react";
 import type { DocumentView, Mark } from "../../packages/contracts/index.ts";
@@ -7,7 +8,7 @@ type Calls = { run: (action: () => Promise<void>) => Promise<void>; api: <T>(pat
 export function MappingPicker({ doc, mark, assigned, run, api }: Calls & { doc: DocumentView; mark: Mark; assigned: (ref: Reference) => void }) {
   const confirmAction = useConfirmAction();
   const [proposals, setProposals] = useState<Reference[] | null>(null), requestId = useRef(crypto.randomUUID());
-  const body = { revision: doc.revision, start: mark.start, end: mark.end, kind: mark.kind };
+  const body = { revision: doc.revision, start: mark.start, end: mark.end, kind: mark.kind,...mark.rawEntityType!==undefined?{rawEntityType:mark.rawEntityType}:{} };
   return <div className="mapping-picker">
     {mark.replacement?.mode === "alias" && <p className="muted">项目假名：{mark.replacement.token}</p>}
     <button className="quiet" onClick={() => void run(async () => { const result = await api<{ proposals: Reference[] }>(`/documents/${doc.id}/mapping-proposals`, "POST", body); setProposals(result.proposals); })}>选择项目假名</button>
@@ -24,13 +25,13 @@ export function MappingPicker({ doc, mark, assigned, run, api }: Calls & { doc: 
 }
 
 export function MappingList({ project, run, api, active, activate }: Calls & { project: string; active: boolean; activate: () => void }) {
-  const [list, setList] = useState<{ id: string; value: string; token: string; kind: string }[] | null>(null), [more, setMore] = useState(false);
+  const [list, setList] = useState<{ id: string; value: string; token: string; kind: Mark["kind"];rawEntityType?:string }[] | null>(null), [more, setMore] = useState(false);
   async function load(append = false) {
     const next = await api<NonNullable<typeof list>>(`/projects/${project}/mappings?limit=20&offset=${append ? list?.length ?? 0 : 0}`);
     setList(previous => append ? [...previous ?? [], ...next] : next); setMore(next.length === 20);
   }
   return <section className="mapping-list"><button className="secondary" aria-expanded={active && list !== null} onClick={() => active && list !== null ? setList(null) : list !== null ? activate() : void run(async () => { await load(); activate(); })}>{active && list !== null ? "收起假名映射" : "查看假名映射"}</button>
-    {active && list !== null && <div className="panel"><h2>项目假名映射</h2><p className="muted">此处包含原始信息，请勿转发给无权接收的人。</p>{!list.length ? <p>尚未创建项目假名。</p> : <table className="data-table"><thead><tr><th>假名</th><th>原值</th><th>类型</th></tr></thead><tbody>{list.map(m => <tr key={m.id}><td>{m.token}</td><td>{m.value}</td><td>{m.kind}</td></tr>)}</tbody></table>}{more && <button className="secondary" onClick={() => void run(() => load(true))}>更多映射</button>}</div>}
+    {active && list !== null && <div className="panel"><h2>项目假名映射</h2><p className="muted">此处包含原始信息，请勿转发给无权接收的人。</p>{!list.length ? <p>尚未创建项目假名。</p> : <table className="data-table"><thead><tr><th>假名</th><th>原值</th><th>类型</th></tr></thead><tbody>{list.map(m => <tr key={m.id}><td>{m.token}</td><td>{m.value}</td><td>{entityLabel(m)}</td></tr>)}</tbody></table>}{more && <button className="secondary" onClick={() => void run(() => load(true))}>更多映射</button>}</div>}
   </section>;
 }
 

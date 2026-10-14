@@ -2,8 +2,7 @@ import { test, expect } from "./fixture.ts";
 import { randomUUID } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import { pdfFixture } from "../pdf-fixtures.ts";
-import { openPdf } from "../../packages/core/pdf-reader.ts";
-import sharp from "sharp";
+import { execFileSync } from "node:child_process";
 import { officeImageFixture } from "../office-fixtures.ts";
 import { readZip } from "../../packages/core/office-zip.ts";
 
@@ -14,8 +13,8 @@ test("desktop page regions, repeat across pages, deletion undo, pixel preview an
   await page.getByLabel("账号", { exact: true }).fill(process.env.E2E_USERNAME!);
   await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
   await page.getByRole("button", { name: "登录工作台" }).click();
-  await page.locator("summary").click();
-  await page.getByLabel("项目名称").fill("区域处理-" + randomUUID().slice(0, 8));
+  await page.locator(".create-project summary").click();
+  await page.getByLabel("项目名称", { exact: true }).fill("区域处理-" + randomUUID().slice(0, 8));
   await page.getByRole("button", { name: "新建项目", exact: true }).click();
   await page.getByRole("button", { name: "导入材料", exact: true }).click();
   await page.getByLabel("选择文件", { exact: true }).setInputFiles({ name: "公开区域样本.pdf", mimeType: "application/pdf", buffer: pdfFixture({ pages: 2 }) });
@@ -32,12 +31,12 @@ test("desktop page regions, repeat across pages, deletion undo, pixel preview an
   const rect = (await canvas.boundingBox())!;
   await page.mouse.move(rect.x + rect.width * .1, rect.y + rect.height * .3); await page.mouse.down();
   await page.mouse.move(rect.x + rect.width * .3, rect.y + rect.height * .4); await page.mouse.up();
-  await page.getByLabel("区域类型").selectOption("印章");
+  await page.getByLabel("区域用途").selectOption("印章");
   await page.getByLabel("结束页", { exact: true }).fill("2");
   await page.getByRole("button", { name: "应用到指定页", exact: true }).click();
-  await expect(page.getByText("印章 · 区域 1", { exact: true })).toBeVisible();
+  await expect(page.getByText("印章 · 矩形区域 1", { exact: true })).toBeVisible();
   await page.getByRole("button", { name: "下一页原件", exact: true }).click();
-  await expect(page.getByText("印章 · 区域 1", { exact: true })).toBeVisible();
+  await expect(page.getByText("印章 · 矩形区域 1", { exact: true })).toBeVisible();
   await page.getByRole("button", { name: "从副本移除此页" }).click();
   await expect(page.getByText("此页不包含在副本中", { exact: true })).toBeVisible();
   await page.getByRole("button", { name: "撤销页面修改" }).click();
@@ -54,23 +53,23 @@ test("desktop page regions, repeat across pages, deletion undo, pixel preview an
   const button = page.getByRole("button", { name: "核验并下载 PDF", exact: true });
   await expect(button).toBeEnabled({ timeout: 30000 });
   const pendingDownload = page.waitForEvent("download"); await button.click(); const downloaded = await pendingDownload;
-  const pdf = await openPdf(await readFile((await downloaded.path())!));
-  try { expect(pdf.count).toBe(1); expect(pdf.meta).toEqual({}); expect((await pdf.page(0)).text).toBe(""); } finally { pdf.close(); }
+  // Keep PDFium/sharp in an ordinary short-lived process, outside Playwright's IPC worker.
+  const inspected = JSON.parse(execFileSync(process.execPath,["--import","tsx","--input-type=module","--eval",`import{readFileSync}from'node:fs';import{openPdf}from'./packages/core/pdf-reader.ts';const pdf=await openPdf(readFileSync(0));try{console.log(JSON.stringify({count:pdf.count,meta:pdf.meta,text:(await pdf.page(0)).text}));}finally{pdf.close();}`],{input:await readFile((await downloaded.path())!),encoding:"utf8"}));
+  expect(inspected).toEqual({count:1,meta:{},text:""});
   expect(await page.locator("body").innerText()).not.toMatch(/浏览器验收|工程评审|开发进度|技术取舍|完整一期/);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 
 test("DOCX embedded image review keeps document format and strips the original image resource", async ({ page }) => {
   test.setTimeout(90000);
-  const reader = await openPdf(pdfFixture()); let jpeg: Buffer;
-  try { jpeg = await sharp((await reader.page(0)).png).jpeg().toBuffer(); } finally { reader.close(); }
+  const jpeg = await readFile("tests/fixtures/office-image-public-synthetic.jpg");
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/");
   await page.getByLabel("账号", { exact: true }).fill(process.env.E2E_USERNAME!);
   await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
   await page.getByRole("button", { name: "登录工作台" }).click();
-  await page.locator("summary").click();
-  await page.getByLabel("项目名称").fill("内嵌图片-" + randomUUID().slice(0, 8));
+  await page.locator(".create-project summary").click();
+  await page.getByLabel("项目名称", { exact: true }).fill("内嵌图片-" + randomUUID().slice(0, 8));
   await page.getByRole("button", { name: "新建项目", exact: true }).click();
   await page.getByRole("button", { name: "导入材料", exact: true }).click();
   await page.getByLabel("选择文件", { exact: true }).setInputFiles({ name: "含图合同.docx", mimeType: "application/octet-stream", buffer: await officeImageFixture(jpeg) });

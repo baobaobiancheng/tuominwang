@@ -1,10 +1,11 @@
+import {entityIdentity,entityLabel,sameEntity} from '../../packages/core/entity-identity.ts';
 import React, { useMemo, useState } from "react";
 import { typeColor } from "./text-highlights.tsx";
 import type { DocumentView, Mark } from "../../packages/contracts/index.ts";
 
 export type EntityGroup = {
   id: string;
-  kind: Mark["kind"];
+  kind: Mark["kind"];rawEntityType?:string;
   value: string;
   exact: boolean;
   indices: number[];
@@ -35,11 +36,11 @@ export function buildEntityGroups(doc: Pick<DocumentView, "text" | "textOffset" 
     const value = visible
       ? doc.text.slice(mark.start - offset, Math.min(mark.end, mark.start + 2000) - offset)
       : cached ?? "";
-    const id = exact ? JSON.stringify([mark.kind, value]) : JSON.stringify([mark.kind, mark.start, mark.end, index]);
+    const id = exact ? JSON.stringify([entityIdentity(mark), value]) : JSON.stringify([entityIdentity(mark), mark.start, mark.end, index]);
     let group = groups.get(id);
     const policy = replacementKey(mark.replacement);
     if (!group) {
-      group = { id, kind: mark.kind, value, exact, indices: [], counts: { pending: 0, redact: 0, ignore: 0 }, mixedDecisions: false, mixedReplacements: false };
+      group = { id, kind: mark.kind,...mark.rawEntityType!==undefined?{rawEntityType:mark.rawEntityType}:{}, value, exact, indices: [], counts: { pending: 0, redact: 0, ignore: 0 }, mixedDecisions: false, mixedReplacements: false };
       groups.set(id, group);
       policies.set(id, policy);
     }
@@ -52,7 +53,7 @@ export function buildEntityGroups(doc: Pick<DocumentView, "text" | "textOffset" 
     group.indices.sort((a, b) => marks[a].start - marks[b].start || marks[a].end - marks[b].end || a - b);
     group.mixedDecisions = Object.values(group.counts).filter(Boolean).length > 1;
   }
-  return result.sort((a, b) => a.kind.localeCompare(b.kind, "zh-CN") || marks[a.indices[0]].start - marks[b.indices[0]].start);
+  return result.sort((a, b) => entityLabel(a).localeCompare(entityLabel(b), "zh-CN") || marks[a.indices[0]].start - marks[b.indices[0]].start);
 }
 
 const PAGE_SIZE = 50;
@@ -75,8 +76,8 @@ export function EntityGroups({ doc, marks, update, locate, run, disabled, canRev
   const [selected, setSelected] = useState<Set<string>>(() => new Set());
   const [collapsedTypes, setCollapsedTypes] = useState<Set<string>>(() => new Set());
   const [positions, setPositions] = useState<Record<string, number>>({});
-  const kinds = useMemo(() => [...new Set(groups.map(group => group.kind))], [groups]);
-  const filtered = useMemo(() => groups.filter(group => (kind === "all" || group.kind === kind) && group.value.includes(query)), [groups, kind, query]);
+  const kinds = useMemo(() => [...new Map(groups.map(group => [entityIdentity(group),entityLabel(group)])).entries()], [groups]);
+  const filtered = useMemo(() => groups.filter(group => (kind === "all" || entityIdentity(group) === kind) && group.value.includes(query)), [groups, kind, query]);
   const filteredIds = useMemo(() => new Set(filtered.map(group => group.id)), [filtered]);
   const chosen = useMemo(() => groups.filter(group => selected.has(group.id)), [groups, selected]);
   const chosenCount = chosen.reduce((count, group) => count + group.indices.length, 0);
@@ -120,7 +121,7 @@ export function EntityGroups({ doc, marks, update, locate, run, disabled, canRev
   return <section className="entity-groups" aria-label="实体分组">
     <div className="entity-group-heading"><h2>敏感实体 <small>{groups.length} 组 · {marks.length} 处</small></h2><button className="quiet" onClick={onCheck}>全文漏标检查</button></div>
     <div className="entity-group-filters">
-      <label>实体类型<select aria-label="实体类型筛选" value={kind} onChange={event => { setKind(event.target.value); setPage(0); }}><option value="all">全部类型</option>{kinds.map(value => <option key={value}>{value}</option>)}</select></label>
+      <label>实体类型<select aria-label="实体类型筛选" value={kind} onChange={event => { setKind(event.target.value); setPage(0); }}><option value="all">全部类型</option>{kinds.map(([id,label]) => <option key={id} value={id}>{label}</option>)}</select></label>
       <label>原值查找<input aria-label="实体原值筛选" value={query} onChange={event => { setQuery(event.target.value); setPage(0); }} placeholder="筛选已载入的原值或片段" /></label>
     </div>
     <div className="entity-group-selection">
@@ -142,13 +143,13 @@ export function EntityGroups({ doc, marks, update, locate, run, disabled, canRev
       const preview = Array.from(group.value).slice(0, 120).join("");
       const label = group.value ? `${preview}${preview.length < group.value.length || !group.exact ? "…" : ""}` : "定位查看原值";
       return <React.Fragment key={group.id}>
-        {(index === 0 || pageGroups[index - 1].kind !== group.kind) && <h3 className="entity-type-heading"><button type="button" className="quiet" aria-label={`${collapsedTypes.has(group.kind) ? "展开" : "收起"}${group.kind}实体`} aria-expanded={!collapsedTypes.has(group.kind)} style={{ "--entity-color": typeColor(group.kind) } as React.CSSProperties} onClick={() => setCollapsedTypes(previous => { const next = new Set(previous); if (next.has(group.kind)) next.delete(group.kind); else next.add(group.kind); return next; })}><span aria-hidden="true">{collapsedTypes.has(group.kind) ? "▸" : "▾"}</span><span className="entity-type-dot" aria-hidden="true" />{group.kind}<small>{filtered.filter(item => item.kind === group.kind).reduce((total, item) => total + item.indices.length, 0)} 处</small></button></h3>}
-        <article className="entity-group-card" hidden={collapsedTypes.has(group.kind)} style={{ "--entity-color": typeColor(group.kind) } as React.CSSProperties}>
-          <div className="entity-group-value"><input type="checkbox" aria-label={`选择${group.kind}实体：${label}，位置 ${marks[group.indices[0]].start + 1}`} checked={selected.has(group.id)} disabled={locked} onChange={event => choose(group.id, event.target.checked)} /><button className="quote" title={group.value || undefined} onClick={() => show(group, 0)}>{label}</button><span className="entity-count">{group.indices.length} 处</span></div>
+        {(index === 0 || !sameEntity(pageGroups[index - 1],group)) && <h3 className="entity-type-heading"><button type="button" className="quiet" aria-label={`${collapsedTypes.has(entityIdentity(group)) ? "展开" : "收起"}${entityLabel(group)}实体`} aria-expanded={!collapsedTypes.has(entityIdentity(group))} style={{ "--entity-color": typeColor(group.kind) } as React.CSSProperties} onClick={() => setCollapsedTypes(previous => { const next = new Set(previous); if (next.has(entityIdentity(group))) next.delete(entityIdentity(group)); else next.add(entityIdentity(group)); return next; })}><span aria-hidden="true">{collapsedTypes.has(entityIdentity(group)) ? "▸" : "▾"}</span><span className="entity-type-dot" aria-hidden="true" />{entityLabel(group)}<small>{filtered.filter(item => sameEntity(item,group)).reduce((total, item) => total + item.indices.length, 0)} 处</small></button></h3>}
+        <article className="entity-group-card" hidden={collapsedTypes.has(entityIdentity(group))} style={{ "--entity-color": typeColor(group.kind) } as React.CSSProperties}>
+          <div className="entity-group-value"><input type="checkbox" aria-label={`选择${entityLabel(group)}实体：${label}，位置 ${marks[group.indices[0]].start + 1}`} checked={selected.has(group.id)} disabled={locked} onChange={event => choose(group.id, event.target.checked)} /><button className="quote" title={group.value || undefined} onClick={() => show(group, 0)}>{label}</button><span className="entity-count">{group.indices.length} 处</span></div>
           {!group.exact && <small className="muted">原值片段 · 独立位置 {mark.start + 1}–{mark.end}</small>}
           <div className="entity-group-counts"><span>待确认 {group.counts.pending}</span><span>脱敏 {group.counts.redact}</span><span>保留 {group.counts.ignore}</span></div>
           {(group.mixedDecisions || group.mixedReplacements) && <p className="entity-group-warning">{group.mixedDecisions ? "处理决定不一致" : ""}{group.mixedDecisions && group.mixedReplacements ? " · " : ""}{group.mixedReplacements ? "脱敏方式不一致" : ""}，请逐处核对。</p>}
-          <div className="entity-occurrence-nav" aria-label={`${group.kind}出现位置`}><button className="quiet" disabled={occurrence === 0} onClick={() => show(group, occurrence - 1)}>上一处</button><span>第 {occurrence + 1} / {group.indices.length} 处 · 位置 {mark.start + 1}</span><button className="quiet" disabled={occurrence + 1 >= group.indices.length} onClick={() => show(group, occurrence + 1)}>下一处</button><button className="quiet" onClick={() => { show(group, occurrence); onEdit(markIndex); }}>{canReview ? "编辑此处" : "查看此处"}</button></div>
+          <div className="entity-occurrence-nav" aria-label={`${entityLabel(group)}出现位置`}><button className="quiet" disabled={occurrence === 0} onClick={() => show(group, occurrence - 1)}>上一处</button><span>第 {occurrence + 1} / {group.indices.length} 处 · 位置 {mark.start + 1}</span><button className="quiet" disabled={occurrence + 1 >= group.indices.length} onClick={() => show(group, occurrence + 1)}>下一处</button><button className="quiet" onClick={() => { show(group, occurrence); onEdit(markIndex); }}>{canReview ? "编辑此处" : "查看此处"}</button></div>
         </article>
       </React.Fragment>;
     })}</div>

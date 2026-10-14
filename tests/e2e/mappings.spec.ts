@@ -5,8 +5,8 @@ test("desktop alias creation, explicit same-entity confirmation and independent 
   await page.getByLabel("账号", { exact: true }).fill(process.env.E2E_USERNAME!);
   await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
   await page.getByRole("button", { name: "登录工作台" }).click();
-  await page.locator("summary").click();
-  await page.getByLabel("项目名称").fill("合成假名项目");
+  await page.locator(".create-project summary").click();
+  await page.getByLabel("项目名称", { exact: true }).fill("合成假名项目");
   await page.getByRole("button", { name: "新建项目", exact: true }).click();
   await page.getByRole("button", { name: "导入材料", exact: true }).click();
   await page.getByLabel("待处理文本").fill("联系13800138000；备用13800138000");
@@ -21,7 +21,7 @@ test("desktop alias creation, explicit same-entity confirmation and independent 
   await expect(page.getByLabel("标记 1 脱敏方式")).toHaveValue("alias");
   await page.getByRole("button", { name: "选择项目假名", exact: true }).nth(1).click();
   await expect(page.getByText("同名不一定是同一实体，请核对后选择。", { exact: true })).toBeVisible();
-  await expect(page.getByLabel("标记 2 脱敏方式")).toHaveValue("type");
+  await expect(page.getByLabel("标记 2 脱敏方式")).toHaveValue("reference-mask");
   await page.getByRole("button", { name: "确认同一实体并使用 【敏感项_000001】", exact: true }).click();
   await page.getByRole("button", { name: "保存复核", exact: true }).click();
   await expect(page.getByText("复核已保存", { exact: true })).toBeVisible();

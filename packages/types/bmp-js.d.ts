@@ -1,0 +1,1 @@
+declare module "bmp-js" { const bmp: { decode(bytes: Buffer): { width: number; height: number; data: Buffer }; encode(image: { width: number; height: number; data: Buffer }): { data: Buffer } }; export default bmp; }

@@ -9,8 +9,8 @@ test("desktop blocks export and fresh downloads when object coverage changes", a
     await page.getByLabel("账号", { exact: true }).fill(process.env.E2E_USERNAME!);
     await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
     await page.getByRole("button", { name: "登录工作台" }).click();
-    await page.locator("summary").click();
-    await page.getByLabel("项目名称").fill("公开合成样本-" + randomUUID().slice(0, 8));
+    await page.locator(".create-project summary").click();
+    await page.getByLabel("项目名称", { exact: true }).fill("公开合成样本-" + randomUUID().slice(0, 8));
     await page.getByRole("button", { name: "新建项目", exact: true }).click();
     await page.getByRole("button", { name: "导入材料", exact: true }).click();
     await page.getByLabel("待处理文本").fill("公开合成样本 13800138000");

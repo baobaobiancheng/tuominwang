@@ -1,3 +1,4 @@
+import {parseReferenceMarkdown,exportReferenceMarkdown,verifyReferenceMarkdownPrivacy,type ReferenceMarkdown,type MarkdownBlockerReview} from './reference-markdown.ts';
 import { parse } from "csv-parse/sync";
 import { stringify } from "csv-stringify/sync";
 import { fromMarkdown } from "mdast-util-from-markdown";
@@ -13,7 +14,7 @@ FILE_ERRORS.push("INVALID_PAGE_REVIEW", "PAGE_CONVERSION_REQUIRED", "PAGE_POSITI
 export function fileFormat(path: string): SourceFormat {
   if (path !== path.normalize("NFC") || /[\\\x00-\x1f\x7f:]/.test(path) || path.startsWith("/") || path.split("/").some(p => !p || p === "." || p === ".." || p.endsWith(".") || p.endsWith(" ")))
     throw new Error("INVALID_PATH");
-  const result = sourceFormatSchema.safeParse(path.split(".").at(-1)?.toLowerCase());
+  const result = sourceFormatSchema.safeParse(path.split(".").at(-1)?.toLowerCase()==="markdown"?"md":path.split(".").at(-1)?.toLowerCase());
   if (!result.success) throw new Error("UNSUPPORTED_FORMAT");
   return result.data;
 }
@@ -26,14 +27,14 @@ function markdownSafe(text: string) {
     for (const child of node.children ?? []) pending.push(child);
   }
 }
-export function parseFile(bytes: Buffer, format: SourceFormat): { text: string; anchors: Anchor[]; coverage: Coverage[] } {
+export function parseFile(bytes: Buffer, format: SourceFormat, options:{fileName?:string}={}): { text: string; anchors: Anchor[]; coverage: Coverage[]; markdown?:ReferenceMarkdown } {
   if (!["txt", "md", "csv"].includes(format)) throw new Error("UNSUPPORTED_FORMAT");
   if (bytes.length > FILE_MAX_BYTES) throw new Error("FILE_SIZE_LIMIT");
   let input: string;
   try { input = new TextDecoder("utf-8", { fatal: true }).decode(bytes); }
   catch { throw new Error("INVALID_ENCODING"); }
   if (input.includes("\0") || !input.trim()) throw new Error("INVALID_ENCODING");
-  if (format === "md") markdownSafe(input);
+  if (format === "md") {const markdown=parseReferenceMarkdown(bytes,options.fileName??"source.md");return{text:markdown.scanText,anchors:markdown.anchors,coverage:markdown.coverage,markdown};}
   if (format !== "csv") return { text: input, anchors: [{ kind: "text", start: 0, end: input.length }], coverage: [{ id: "text", status: "complete" }] };
   let records: string[][];
   let cells = 0;
@@ -62,8 +63,10 @@ export function validateFileMarks(text: string, marks: Mark[], format: SourceFor
     if (!anchor || anchor.end < mark.end) throw new Error("CROSS_CELL_MARK");
   }
 }
-export function exportFile(text: string, marks: Mark[], format: SourceFormat, anchors: Anchor[]) {
+export function exportFile(text: string, marks: Mark[], format: SourceFormat, anchors: Anchor[], context:{markdown?:ReferenceMarkdown;blockerReview?:MarkdownBlockerReview}={}) {
   validateFileMarks(text, marks, format, anchors, true);
+  if(format==="md"&&context.markdown){if(context.markdown.scanText!==text)throw new Error("SOURCE_MISMATCH");return exportReferenceMarkdown(context.markdown,marks,{blockerReview:context.blockerReview}).buffer.toString("utf8");}
+  if(format==="md"&&anchors.some(a=>a.part==="markdown"))throw new Error("MARKDOWN_SIDECAR_REQUIRED");
   if (format !== "csv") {
     const output = redact(text, marks);
     if (format === "md") markdownSafe(output);
@@ -84,11 +87,33 @@ export function exportFile(text: string, marks: Mark[], format: SourceFormat, an
   }
   return stringify(records, { record_delimiter: "\r\n", quoted: true });
 }
-export function verifyFile(text: string, marks: Mark[], output: string, format: SourceFormat, anchors: Anchor[]) {
-  if (output !== exportFile(text, marks, format, anchors)) throw new Error("ARTIFACT_MISMATCH");
+export function verifyFile(text: string, marks: Mark[], output: string, format: SourceFormat, anchors: Anchor[], context:{markdown?:ReferenceMarkdown;blockerReview?:MarkdownBlockerReview}={}) {
+  if (output !== exportFile(text, marks, format, anchors,context)) throw new Error("ARTIFACT_MISMATCH");
+  if(format==="md"&&context.markdown)verifyReferenceMarkdownPrivacy(context.markdown,marks,Buffer.from(output));
   if (format === "csv") {
     const normalized = (parse(output) as string[][]).flat().join("\n");
     const hidden = new Set(marks.filter(m => m.decision === "redact").map(m => text.slice(m.start, m.end)));
     if ([...hidden].some(value => normalized.includes(value))) throw new Error("RESIDUE_FOUND");
-  } else verify(text, marks, output);
+  } else if(format!=="md"||!context.markdown) verify(text, marks, output);
 }
+
+FILE_ERRORS.push("VISUAL_FONT_REQUIRED", "VISUAL_FONT_MISMATCH", "VISUAL_FONT_GLYPH_REQUIRED", "VISUAL_TEXT_FIT_FAILED");
+
+FILE_ERRORS.push("VISUAL_CANDIDATE_LIMIT");
+
+FILE_ERRORS.push("DOCX_PREVIEW_RELATIONSHIP_INVALID", "REFERENCE_SPATIAL_INVALID", "REFERENCE_SPATIAL_LIMIT", "REFERENCE_POSITION_INVALID");
+FILE_ERRORS.push('ENCRYPTED_OFFICE','DOCUMENT_PASSWORD_INVALID','DOCUMENT_UNLOCK_UNSUPPORTED','DOCUMENT_UNLOCK_FAILED','DOCUMENT_UNLOCK_VERIFICATION_FAILED','DOCUMENT_UNLOCK_FORMAT_MISMATCH','DOCUMENT_LEGACY_CONVERSION_REQUIRED','REFERENCE_TABLE_INVALID','REFERENCE_TABLE_POSITION','REFERENCE_TABLE_LIMIT');
+
+FILE_ERRORS.push('DOCUMENT_ENCRYPTION_INVALID','DOCUMENT_ENCRYPTION_UNSUPPORTED','DOCUMENT_INTEGRITY_MISMATCH','DOCUMENT_NOT_ENCRYPTED','DOCUMENT_PASSWORD_INCORRECT','DOCUMENT_PASSWORD_SLOT_REQUIRED','DOCUMENT_UNLOCK_FORMAT_UNSUPPORTED','REFERENCE_TABLE_NER_INVALID');
+
+FILE_ERRORS.push('OPENCV_RUNTIME_REQUIRED','OPENCV_RUNTIME_MISMATCH','OPENCV_RUNTIME_INVALID','REFERENCE_SEAL_INVALID','REFERENCE_SEAL_SEGMENTATION_INVALID');
+
+FILE_ERRORS.push("PAGE_REVIEW_STORAGE_INVALID");
+
+FILE_ERRORS.push('MARKDOWN_EXTENSION_UNSUPPORTED','MARKDOWN_TOO_LARGE','MARKDOWN_INVALID_UTF8','MARKDOWN_NUL','MARKDOWN_EXPORT_FAILED','MARKDOWN_SIDECAR_REQUIRED','MARKDOWN_RECOGNITION_REQUIRED');
+
+FILE_ERRORS.push('MARKDOWN_SOURCE_COMPATIBILITY_FORBIDDEN','MARKDOWN_CONTENT_MISMATCH','MARKDOWN_ASSET_RESIDUE');
+
+FILE_ERRORS.push('MARKDOWN_BLOCKERS_UNREVIEWED');
+
+FILE_ERRORS.push("OFFICE_XML_VALUE_INVALID");

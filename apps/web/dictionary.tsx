@@ -1,3 +1,4 @@
+import {sameEntity,entityLabel,entityValueKey} from "../../packages/core/entity-identity.ts";
 import { useConfirmAction } from "./confirm-action.tsx";
 import { appUrl } from "./urls.ts";
 import React, { useState, useEffect } from "react";
@@ -8,6 +9,7 @@ export function Dictionary({ project, signal, run, changed, onPending, active, a
   const confirmAction = useConfirmAction();
   const [open, setOpen] = useState(false), [revision, setRevision] = useState(0), [entries, setEntries] = useState<DictionaryEntry[]>([]);
   const [value, setValue] = useState(""), [kind, setKind] = useState<DictionaryEntry["kind"]>("机构"), [dirty, setDirty] = useState(false);
+  const [rawType,setRawType]=useState("");
   const [action, setAction] = useState<"include" | "exclude">("include");
   useEffect(() => { onPending(open && (dirty || !!value.trim())); return () => onPending(false); }, [open, dirty, value, onPending]);
   async function request(method = "GET", body?: unknown) {
@@ -45,10 +47,11 @@ export function Dictionary({ project, signal, run, changed, onPending, active, a
       <div className="dictionary-add">
         <label>名称或代号<input value={value} maxLength={200} onChange={e => setValue(e.target.value)} /></label>
         <label>信息类型<select value={kind} onChange={e => setKind(e.target.value as DictionaryEntry["kind"])}>{markSchema.shape.kind.options.map(k => <option key={k}>{k}</option>)}</select></label>
+        {kind==="自定义"&&<label>自定义类型名称<input value={rawType} onChange={e=>setRawType(e.target.value)}/></label>}
         <label>名单<select value={action} onChange={e => setAction(e.target.value as typeof action)}><option value="include">黑名单</option><option value="exclude">白名单</option></select></label>
-        <button className="secondary" disabled={!value.trim() || entries.length >= 1000} onClick={() => { const item = { value: value.trim(), kind, ...(action === "exclude" ? { action } : {}) }; if (!entries.some(e => e.value === item.value && e.kind === item.kind)) { setEntries([...entries, item]); setDirty(true); } setValue(""); }}>添加词条</button>
+        <button className="secondary" disabled={!value.trim() || entries.length >= 1000} onClick={() => { const item = { value: value.trim(), kind,...kind==="自定义"&&rawType?{rawEntityType:rawType}:{}, ...(action === "exclude" ? { action } : {}) }; if (!entries.some(e => e.value === item.value && sameEntity(e,item))) { setEntries([...entries, item]); setDirty(true); } setValue(""); }}>添加词条</button>
       </div>
-      <ul className="dictionary-list">{entries.map((e, i) => <li key={`${e.kind}:${e.value}`}><span>{e.value}</span><small>{e.kind} · {e.action === "exclude" ? "白名单" : "黑名单"}</small><button className="quiet" aria-label={`移除词条 ${e.value}`} onClick={() => { setEntries(entries.filter((_, n) => n !== i)); setDirty(true); }}>移除</button></li>)}</ul>
+      <ul className="dictionary-list">{entries.map((e, i) => <li key={entityValueKey(e,e.value)}><span>{e.value}</span><small>{entityLabel(e)} · {e.action === "exclude" ? "白名单" : "黑名单"}</small><button className="quiet" aria-label={`移除词条 ${e.value}`} onClick={() => { setEntries(entries.filter((_, n) => n !== i)); setDirty(true); }}>移除</button></li>)}</ul>
       {!entries.length && <p className="muted">尚无词条。</p>}
       <div className="actions"><button disabled={!dirty} onClick={async () => {
         if (await confirmAction("保存词表后，项目内已有材料需重新识别并复核，旧处理副本不能获取新下载链接。已经签发的链接到期前仍有效。确定保存？")) void run(async () => { const data = await request("PUT", { revision, entries }); setRevision(data.revision); setDirty(false); await changed(); });

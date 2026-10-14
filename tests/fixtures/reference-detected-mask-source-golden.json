@@ -1,0 +1,2149 @@
+[
+  {
+    "code": "REF41-id_card",
+    "kind": "身份证号",
+    "text": "身份证号：110101199001011234",
+    "start": 5,
+    "end": 23,
+    "expected": "**************1234"
+  },
+  {
+    "code": "REF41-id_card",
+    "kind": "身份证号",
+    "text": "身份证号：110101199001011234",
+    "start": 5,
+    "end": 23,
+    "expected": "**************1234",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-mobile",
+    "kind": "手机号",
+    "text": "手机：138 1234 5678",
+    "start": 3,
+    "end": 16,
+    "expected": "138****5678"
+  },
+  {
+    "code": "REF41-mobile",
+    "kind": "手机号",
+    "text": "手机：138 1234 5678",
+    "start": 3,
+    "end": 16,
+    "expected": "138****5678",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-wechat_labeled",
+    "kind": "微信号",
+    "text": "微信号：_alice123",
+    "start": 4,
+    "end": 13,
+    "expected": "_a*****23"
+  },
+  {
+    "code": "REF41-wechat_labeled",
+    "kind": "微信号",
+    "text": "微信号：_alice123",
+    "start": 4,
+    "end": 13,
+    "expected": "_a*****23",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-wechat_wxid",
+    "kind": "微信号",
+    "text": "wxid_abc123",
+    "start": 0,
+    "end": 11,
+    "expected": "wx*******23"
+  },
+  {
+    "code": "REF41-wechat_wxid",
+    "kind": "微信号",
+    "text": "wxid_abc123",
+    "start": 0,
+    "end": 11,
+    "expected": "wx*******23",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-bank",
+    "kind": "银行账号",
+    "text": "银行账号：1234567890123456",
+    "start": 5,
+    "end": 21,
+    "expected": "1234********3456"
+  },
+  {
+    "code": "REF41-bank",
+    "kind": "银行账号",
+    "text": "银行账号：1234567890123456",
+    "start": 5,
+    "end": 21,
+    "expected": "1234********3456",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-bank_labeled",
+    "kind": "银行账号",
+    "text": "银行账号：1234 5678 9O12 3456",
+    "start": 5,
+    "end": 24,
+    "expected": "1234****3456"
+  },
+  {
+    "code": "REF41-bank_labeled",
+    "kind": "银行账号",
+    "text": "银行账号：1234 5678 9O12 3456",
+    "start": 5,
+    "end": 24,
+    "expected": "1234****3456",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-email",
+    "kind": "邮箱",
+    "text": "alice@example.com",
+    "start": 0,
+    "end": 17,
+    "expected": "al***@e***.com"
+  },
+  {
+    "code": "REF41-email",
+    "kind": "邮箱",
+    "text": "alice@example.com",
+    "start": 0,
+    "end": 17,
+    "expected": "al***@e***.com",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-email_ocr",
+    "kind": "邮箱",
+    "text": "邮箱：alice @ example . com",
+    "start": 3,
+    "end": 24,
+    "expected": "al***@e***.com"
+  },
+  {
+    "code": "REF41-email_ocr",
+    "kind": "邮箱",
+    "text": "邮箱：alice @ example . com",
+    "start": 3,
+    "end": 24,
+    "expected": "al***@e***.com",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-url-www",
+    "kind": "网址",
+    "text": "官网：www.example.com/path",
+    "start": 3,
+    "end": 23,
+    "expected": "****"
+  },
+  {
+    "code": "REF41-url-www",
+    "kind": "网址",
+    "text": "官网：www.example.com/path",
+    "start": 3,
+    "end": 23,
+    "expected": "****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "INT-phone",
+    "kind": "固定电话",
+    "text": "统一社会信用代码：91330100MA12345678",
+    "start": 9,
+    "end": 17,
+    "expected": "****"
+  },
+  {
+    "code": "INT-phone",
+    "kind": "固定电话",
+    "text": "统一社会信用代码：91330100MA12345678",
+    "start": 9,
+    "end": 17,
+    "expected": "****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-uscc",
+    "kind": "信用代码",
+    "text": "统一社会信用代码：91330100MA12345678",
+    "start": 9,
+    "end": 27,
+    "expected": "913301********5678"
+  },
+  {
+    "code": "REF41-uscc",
+    "kind": "信用代码",
+    "text": "统一社会信用代码：91330100MA12345678",
+    "start": 9,
+    "end": 27,
+    "expected": "913301********5678",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-tax_labeled",
+    "kind": "税号",
+    "text": "税号：123456789012345",
+    "start": 3,
+    "end": 18,
+    "expected": "1234****2345"
+  },
+  {
+    "code": "REF41-tax_labeled",
+    "kind": "税号",
+    "text": "税号：123456789012345",
+    "start": 3,
+    "end": 18,
+    "expected": "1234****2345",
+    "stage": "raster-final"
+  },
+  {
+    "code": "INT-phone",
+    "kind": "固定电话",
+    "text": "010-12345678",
+    "start": 0,
+    "end": 12,
+    "expected": "010-****-5678"
+  },
+  {
+    "code": "INT-phone",
+    "kind": "固定电话",
+    "text": "010-12345678",
+    "start": 0,
+    "end": 12,
+    "expected": "010-****-5678",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-landline",
+    "kind": "固定电话",
+    "text": "010-12345678",
+    "start": 0,
+    "end": 12,
+    "expected": "010-****-5678"
+  },
+  {
+    "code": "REF41-landline",
+    "kind": "固定电话",
+    "text": "010-12345678",
+    "start": 0,
+    "end": 12,
+    "expected": "010-****-5678",
+    "stage": "raster-final"
+  },
+  {
+    "code": "INT-phone",
+    "kind": "固定电话",
+    "text": "联系电话：23456789",
+    "start": 5,
+    "end": 13,
+    "expected": "****"
+  },
+  {
+    "code": "INT-phone",
+    "kind": "固定电话",
+    "text": "联系电话：23456789",
+    "start": 5,
+    "end": 13,
+    "expected": "****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-local_phone",
+    "kind": "固定电话",
+    "text": "联系电话：23456789",
+    "start": 5,
+    "end": 13,
+    "expected": "2345****"
+  },
+  {
+    "code": "REF41-local_phone",
+    "kind": "固定电话",
+    "text": "联系电话：23456789",
+    "start": 5,
+    "end": 13,
+    "expected": "2345****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-contact_name",
+    "kind": "姓名",
+    "text": "联系人：张三，",
+    "start": 4,
+    "end": 6,
+    "expected": "张*"
+  },
+  {
+    "code": "REF41-contact_name",
+    "kind": "姓名",
+    "text": "联系人：张三，",
+    "start": 4,
+    "end": 6,
+    "expected": "张*",
+    "stage": "raster-final"
+  },
+  {
+    "code": "SCENE-explicit-name",
+    "kind": "姓名",
+    "text": "联系人：张三，",
+    "start": 4,
+    "end": 6,
+    "expected": "张*"
+  },
+  {
+    "code": "SCENE-explicit-name",
+    "kind": "姓名",
+    "text": "联系人：张三，",
+    "start": 4,
+    "end": 6,
+    "expected": "张*",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-transcript_name",
+    "kind": "姓名",
+    "text": "被询问人：李四男",
+    "start": 5,
+    "end": 7,
+    "expected": "李*"
+  },
+  {
+    "code": "REF41-transcript_name",
+    "kind": "姓名",
+    "text": "被询问人：李四男",
+    "start": 5,
+    "end": 7,
+    "expected": "李*",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-officer_names",
+    "kind": "姓名",
+    "text": "询问人：张三、李四工作单位",
+    "start": 4,
+    "end": 6,
+    "expected": "张*"
+  },
+  {
+    "code": "REF41-officer_names",
+    "kind": "姓名",
+    "text": "询问人：张三、李四工作单位",
+    "start": 4,
+    "end": 6,
+    "expected": "张*",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-officer_names",
+    "kind": "姓名",
+    "text": "询问人：张三、李四工作单位",
+    "start": 7,
+    "end": 9,
+    "expected": "李*"
+  },
+  {
+    "code": "REF41-officer_names",
+    "kind": "姓名",
+    "text": "询问人：张三、李四工作单位",
+    "start": 7,
+    "end": 9,
+    "expected": "李*",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-self_name",
+    "kind": "姓名",
+    "text": "我叫王五，男",
+    "start": 2,
+    "end": 4,
+    "expected": "王*"
+  },
+  {
+    "code": "REF41-self_name",
+    "kind": "姓名",
+    "text": "我叫王五，男",
+    "start": 2,
+    "end": 4,
+    "expected": "王*",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-address_labeled_door",
+    "kind": "地址",
+    "text": "联系地址：北京市朝阳区建国路88号101室",
+    "start": 5,
+    "end": 21,
+    "expected": "北京市****"
+  },
+  {
+    "code": "REF41-address_labeled_door",
+    "kind": "地址",
+    "text": "联系地址：北京市朝阳区建国路88号101室",
+    "start": 5,
+    "end": 21,
+    "expected": "北京市朝阳区****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-address_unlabeled",
+    "kind": "地址",
+    "text": "联系地址：北京市朝阳区建国路88号101室",
+    "start": 5,
+    "end": 21,
+    "expected": "北京市****"
+  },
+  {
+    "code": "REF41-address_unlabeled",
+    "kind": "地址",
+    "text": "联系地址：北京市朝阳区建国路88号101室",
+    "start": 5,
+    "end": 21,
+    "expected": "北京市朝阳区****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-context_place",
+    "kind": "地址",
+    "text": "联系地址：北京市朝阳区建国路88号101室",
+    "start": 5,
+    "end": 21,
+    "expected": "北京市****"
+  },
+  {
+    "code": "REF41-address_labeled_no_door",
+    "kind": "地址",
+    "text": "住址：浙江省杭州市西湖区文三路",
+    "start": 3,
+    "end": 15,
+    "expected": "浙江省杭州市****"
+  },
+  {
+    "code": "REF41-address_labeled_no_door",
+    "kind": "地址",
+    "text": "住址：浙江省杭州市西湖区文三路",
+    "start": 3,
+    "end": 15,
+    "expected": "浙江省杭州市****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-context_place",
+    "kind": "地址",
+    "text": "会议地点：北京市某某会议中心",
+    "start": 5,
+    "end": 14,
+    "expected": "北京市****"
+  },
+  {
+    "code": "REF41-venue_labeled",
+    "kind": "地址",
+    "text": "会议地点：北京市某某会议中心",
+    "start": 5,
+    "end": 14,
+    "expected": "北京市****"
+  },
+  {
+    "code": "REF41-venue_labeled",
+    "kind": "地址",
+    "text": "会议地点：北京市某某会议中心",
+    "start": 5,
+    "end": 14,
+    "expected": "****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-address_unlabeled",
+    "kind": "地址",
+    "text": "北京市朝阳区建国路88号101室",
+    "start": 0,
+    "end": 16,
+    "expected": "北京市****"
+  },
+  {
+    "code": "REF41-address_unlabeled",
+    "kind": "地址",
+    "text": "北京市朝阳区建国路88号101室",
+    "start": 0,
+    "end": 16,
+    "expected": "北京市朝阳区****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-address_unlabeled",
+    "kind": "地址",
+    "text": "北京市朝阳区建国路88号地下车库12号",
+    "start": 0,
+    "end": 12,
+    "expected": "北京市****"
+  },
+  {
+    "code": "REF41-property_base",
+    "kind": "地址",
+    "text": "北京市朝阳区建国路88号地下车库12号",
+    "start": 0,
+    "end": 12,
+    "expected": "北京市****"
+  },
+  {
+    "code": "REF41-garage",
+    "kind": "地址",
+    "text": "北京市朝阳区建国路88号地下车库12号",
+    "start": 0,
+    "end": 19,
+    "expected": "北京市****"
+  },
+  {
+    "code": "REF41-garage",
+    "kind": "地址",
+    "text": "北京市朝阳区建国路88号地下车库12号",
+    "start": 0,
+    "end": 19,
+    "expected": "北京市朝阳区****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-property_base",
+    "kind": "地址",
+    "text": "北京市朝阳区建国路88号负一层住宅",
+    "start": 0,
+    "end": 12,
+    "expected": "北京市****"
+  },
+  {
+    "code": "REF41-address_unlabeled",
+    "kind": "地址",
+    "text": "北京市朝阳区建国路88号负一层住宅",
+    "start": 0,
+    "end": 15,
+    "expected": "北京市****"
+  },
+  {
+    "code": "REF41-address_unlabeled",
+    "kind": "地址",
+    "text": "北京市朝阳区建国路88号负一层住宅",
+    "start": 0,
+    "end": 15,
+    "expected": "北京市朝阳区****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-address_unlabeled",
+    "kind": "地址",
+    "text": "北京市朝阳区建国路88号附1号",
+    "start": 0,
+    "end": 12,
+    "expected": "北京市****"
+  },
+  {
+    "code": "REF41-attached_door",
+    "kind": "地址",
+    "text": "北京市朝阳区建国路88号附1号",
+    "start": 0,
+    "end": 15,
+    "expected": "北京市****"
+  },
+  {
+    "code": "REF41-attached_door",
+    "kind": "地址",
+    "text": "北京市朝阳区建国路88号附1号",
+    "start": 0,
+    "end": 15,
+    "expected": "北京市朝阳区****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-address_unlabeled",
+    "kind": "地址",
+    "text": "位于北京市海淀区阳光花园",
+    "start": 2,
+    "end": 12,
+    "expected": "北京市****"
+  },
+  {
+    "code": "REF41-address_unlabeled",
+    "kind": "地址",
+    "text": "位于北京市海淀区阳光花园",
+    "start": 2,
+    "end": 12,
+    "expected": "北京市海淀区****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-context_place",
+    "kind": "地址",
+    "text": "位于北京市海淀区阳光花园",
+    "start": 2,
+    "end": 12,
+    "expected": "北京市****"
+  },
+  {
+    "code": "REF41-address_unlabeled",
+    "kind": "地址",
+    "text": "北京市朝阳区阳光花园88号1单元至3单元",
+    "start": 0,
+    "end": 20,
+    "expected": "北京市****"
+  },
+  {
+    "code": "REF41-address_unlabeled",
+    "kind": "地址",
+    "text": "北京市朝阳区阳光花园88号1单元至3单元",
+    "start": 0,
+    "end": 20,
+    "expected": "北京市朝阳区****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-unit_range",
+    "kind": "地址",
+    "text": "北京市朝阳区阳光花园88号1单元至3单元",
+    "start": 0,
+    "end": 20,
+    "expected": "北京市****"
+  },
+  {
+    "code": "REF41-unit_range",
+    "kind": "地址",
+    "text": "北京市朝阳区阳光花园88号1单元至3单元",
+    "start": 0,
+    "end": 20,
+    "expected": "北京市朝阳区****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-plate",
+    "kind": "车牌号",
+    "text": "粤A123456",
+    "start": 0,
+    "end": 8,
+    "expected": "粤A*****"
+  },
+  {
+    "code": "REF41-plate",
+    "kind": "车牌号",
+    "text": "粤A123456",
+    "start": 0,
+    "end": 8,
+    "expected": "粤A*****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-securities_account",
+    "kind": "证券/资金账号",
+    "text": "资金账号：1234567890",
+    "start": 0,
+    "end": 15,
+    "expected": "资金账号：*****7890"
+  },
+  {
+    "code": "REF41-securities_account",
+    "kind": "证券/资金账号",
+    "text": "资金账号：1234567890",
+    "start": 0,
+    "end": 15,
+    "expected": "资金账号：*****7890",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-case_no",
+    "kind": "案号",
+    "text": "（2026）京0101民初123号",
+    "start": 0,
+    "end": 17,
+    "expected": "（****）****号"
+  },
+  {
+    "code": "REF41-case_no",
+    "kind": "案号",
+    "text": "（2026）京0101民初123号",
+    "start": 0,
+    "end": 17,
+    "expected": "（****）****号",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-admin_no",
+    "kind": "公文编号",
+    "text": "京政发〔2026〕第123号",
+    "start": 0,
+    "end": 14,
+    "expected": "〔****〕****号"
+  },
+  {
+    "code": "REF41-admin_no",
+    "kind": "公文编号",
+    "text": "京政发〔2026〕第123号",
+    "start": 0,
+    "end": 14,
+    "expected": "〔****〕****号",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-realty_cert",
+    "kind": "证照/许可证号",
+    "text": "京（2026）北京市不动产权第123456号",
+    "start": 0,
+    "end": 22,
+    "expected": "（****）不动产权第****号"
+  },
+  {
+    "code": "REF41-realty_cert",
+    "kind": "证照/许可证号",
+    "text": "京（2026）北京市不动产权第123456号",
+    "start": 0,
+    "end": 22,
+    "expected": "（****）不动产权第****号",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-case_no",
+    "kind": "案号",
+    "text": "京（2026）北京市不动产权第123456号",
+    "start": 1,
+    "end": 22,
+    "expected": "（****）****号"
+  },
+  {
+    "code": "REF41-case_no",
+    "kind": "案号",
+    "text": "京（2026）北京市不动产权第123456号",
+    "start": 1,
+    "end": 22,
+    "expected": "（****）****号",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-patent",
+    "kind": "专利号",
+    "text": "PCT/CN2026/123456",
+    "start": 0,
+    "end": 17,
+    "expected": "专利号：****"
+  },
+  {
+    "code": "REF41-patent",
+    "kind": "专利号",
+    "text": "PCT/CN2026/123456",
+    "start": 0,
+    "end": 17,
+    "expected": "专利号：****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-patent_labeled",
+    "kind": "专利号",
+    "text": "专利号：202612345678",
+    "start": 0,
+    "end": 16,
+    "expected": "专利号：****"
+  },
+  {
+    "code": "REF41-patent_labeled",
+    "kind": "专利号",
+    "text": "专利号：202612345678",
+    "start": 0,
+    "end": 16,
+    "expected": "专利号：****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-icp",
+    "kind": "备案号",
+    "text": "京ICP备12345678号",
+    "start": 0,
+    "end": 14,
+    "expected": "备案号：****"
+  },
+  {
+    "code": "REF41-icp",
+    "kind": "备案号",
+    "text": "京ICP备12345678号",
+    "start": 0,
+    "end": 14,
+    "expected": "备案号：****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "INT-phone",
+    "kind": "固定电话",
+    "text": "京ICP备12345678号",
+    "start": 5,
+    "end": 13,
+    "expected": "****"
+  },
+  {
+    "code": "INT-phone",
+    "kind": "固定电话",
+    "text": "京ICP备12345678号",
+    "start": 5,
+    "end": 13,
+    "expected": "****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-filing_beizi",
+    "kind": "备案号",
+    "text": "粤备字第123456号",
+    "start": 0,
+    "end": 11,
+    "expected": "备案号：****"
+  },
+  {
+    "code": "REF41-filing_beizi",
+    "kind": "备案号",
+    "text": "粤备字第123456号",
+    "start": 0,
+    "end": 11,
+    "expected": "备案号：****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-filing_labeled",
+    "kind": "备案号",
+    "text": "备案号：AB123456",
+    "start": 0,
+    "end": 12,
+    "expected": "备案号：****"
+  },
+  {
+    "code": "REF41-filing_labeled",
+    "kind": "备案号",
+    "text": "备案号：AB123456",
+    "start": 0,
+    "end": 12,
+    "expected": "备案号：****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-land_cert",
+    "kind": "证照/许可证号",
+    "text": "京国用（2026）字第123456号",
+    "start": 0,
+    "end": 18,
+    "expected": "证号：****"
+  },
+  {
+    "code": "REF41-land_cert",
+    "kind": "证照/许可证号",
+    "text": "京国用（2026）字第123456号",
+    "start": 0,
+    "end": 18,
+    "expected": "证号：****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-housing_permit",
+    "kind": "证照/许可证号",
+    "text": "京房权证字第123456号",
+    "start": 0,
+    "end": 13,
+    "expected": "证号：****"
+  },
+  {
+    "code": "REF41-housing_permit",
+    "kind": "证照/许可证号",
+    "text": "京房权证字第123456号",
+    "start": 0,
+    "end": 13,
+    "expected": "证号：****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-realty_unit",
+    "kind": "证照/许可证号",
+    "text": "123456789012GA12345F12345678",
+    "start": 0,
+    "end": 28,
+    "expected": "证号：****"
+  },
+  {
+    "code": "REF41-realty_unit",
+    "kind": "证照/许可证号",
+    "text": "123456789012GA12345F12345678",
+    "start": 0,
+    "end": 28,
+    "expected": "证号：****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-certificate_labeled",
+    "kind": "证照/许可证号",
+    "text": "施工许可证号：AB123456",
+    "start": 7,
+    "end": 15,
+    "expected": "施工许可证号：****"
+  },
+  {
+    "code": "REF41-certificate_labeled",
+    "kind": "证照/许可证号",
+    "text": "施工许可证号：AB123456",
+    "start": 7,
+    "end": 15,
+    "expected": "施工许可证号：****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-parcel",
+    "kind": "证照/许可证号",
+    "text": "（2026）第123号地块",
+    "start": 0,
+    "end": 13,
+    "expected": "****地块"
+  },
+  {
+    "code": "REF41-parcel",
+    "kind": "证照/许可证号",
+    "text": "（2026）第123号地块",
+    "start": 0,
+    "end": 13,
+    "expected": "****地块",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-id_card",
+    "kind": "身份证号",
+    "text": "出生日期：1990-01-01\n身份证号：110101199001011234",
+    "start": 21,
+    "end": 39,
+    "expected": "******************"
+  },
+  {
+    "code": "REF41-id_card",
+    "kind": "身份证号",
+    "text": "出生日期：1990-01-01\n身份证号：110101199001011234",
+    "start": 21,
+    "end": 39,
+    "expected": "******************",
+    "stage": "raster-final"
+  },
+  {
+    "code": "INT-phone",
+    "kind": "手机号",
+    "text": "手机：+86 138 1234 5678",
+    "start": 3,
+    "end": 20,
+    "expected": "****"
+  },
+  {
+    "code": "INT-phone",
+    "kind": "手机号",
+    "text": "手机：+86 138 1234 5678",
+    "start": 3,
+    "end": 20,
+    "expected": "****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-mobile",
+    "kind": "手机号",
+    "text": "手机：+86 138 1234 5678",
+    "start": 3,
+    "end": 20,
+    "expected": "138****5678"
+  },
+  {
+    "code": "REF41-mobile",
+    "kind": "手机号",
+    "text": "手机：+86 138 1234 5678",
+    "start": 3,
+    "end": 20,
+    "expected": "138****5678",
+    "stage": "raster-final"
+  },
+  {
+    "code": "INT-phone",
+    "kind": "固定电话",
+    "text": "010-12345678",
+    "start": 0,
+    "end": 12,
+    "expected": "010-****-5678"
+  },
+  {
+    "code": "INT-phone",
+    "kind": "固定电话",
+    "text": "010-12345678",
+    "start": 0,
+    "end": 12,
+    "expected": "010-****-5678",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-landline",
+    "kind": "固定电话",
+    "text": "010-12345678",
+    "start": 0,
+    "end": 12,
+    "expected": "010-****-5678"
+  },
+  {
+    "code": "REF41-landline",
+    "kind": "固定电话",
+    "text": "010-12345678",
+    "start": 0,
+    "end": 12,
+    "expected": "010-****-5678",
+    "stage": "raster-final"
+  },
+  {
+    "code": "INT-phone",
+    "kind": "手机号",
+    "text": "+86-010-12345678",
+    "start": 0,
+    "end": 16,
+    "expected": "****"
+  },
+  {
+    "code": "INT-phone",
+    "kind": "手机号",
+    "text": "+86-010-12345678",
+    "start": 0,
+    "end": 16,
+    "expected": "****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-landline",
+    "kind": "固定电话",
+    "text": "+86-010-12345678",
+    "start": 0,
+    "end": 16,
+    "expected": "86-010-****-5678"
+  },
+  {
+    "code": "REF41-landline",
+    "kind": "固定电话",
+    "text": "+86-010-12345678",
+    "start": 0,
+    "end": 16,
+    "expected": "86-010-****-5678",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-landline",
+    "kind": "固定电话",
+    "text": "(8621)12345678",
+    "start": 0,
+    "end": 14,
+    "expected": "86-21-****-5678"
+  },
+  {
+    "code": "REF41-landline",
+    "kind": "固定电话",
+    "text": "(8621)12345678",
+    "start": 0,
+    "end": 14,
+    "expected": "86-21-****-5678",
+    "stage": "raster-final"
+  },
+  {
+    "code": "INT-phone",
+    "kind": "固定电话",
+    "text": "(8621)12345678",
+    "start": 1,
+    "end": 14,
+    "expected": "8621-****-5678"
+  },
+  {
+    "code": "INT-phone",
+    "kind": "固定电话",
+    "text": "(8621)12345678",
+    "start": 1,
+    "end": 14,
+    "expected": "8621-****-5678",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-bank",
+    "kind": "银行账号",
+    "text": "银行账号：1234567890123456789",
+    "start": 5,
+    "end": 24,
+    "expected": "1234********6789"
+  },
+  {
+    "code": "REF41-bank",
+    "kind": "银行账号",
+    "text": "银行账号：1234567890123456789",
+    "start": 5,
+    "end": 24,
+    "expected": "1234********6789",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-wechat_labeled",
+    "kind": "微信号",
+    "text": "微信号：alice1",
+    "start": 4,
+    "end": 10,
+    "expected": "******"
+  },
+  {
+    "code": "REF41-wechat_labeled",
+    "kind": "微信号",
+    "text": "微信号：alice1",
+    "start": 4,
+    "end": 10,
+    "expected": "******",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-email_ocr",
+    "kind": "邮箱",
+    "text": "邮箱：a @ e . com",
+    "start": 3,
+    "end": 14,
+    "expected": "*@e***.com"
+  },
+  {
+    "code": "REF41-email_ocr",
+    "kind": "邮箱",
+    "text": "邮箱：a @ e . com",
+    "start": 3,
+    "end": 14,
+    "expected": "*@e***.com",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-filing_labeled",
+    "kind": "备案号",
+    "text": "登记备案号：AB123456",
+    "start": 0,
+    "end": 14,
+    "expected": "登记备案号：****"
+  },
+  {
+    "code": "REF41-filing_labeled",
+    "kind": "备案号",
+    "text": "登记备案号：AB123456",
+    "start": 0,
+    "end": 14,
+    "expected": "登记备案号：****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-patent_labeled",
+    "kind": "专利号",
+    "text": "专利申请号：202612345678",
+    "start": 0,
+    "end": 18,
+    "expected": "专利申请号：****"
+  },
+  {
+    "code": "REF41-patent_labeled",
+    "kind": "专利号",
+    "text": "专利申请号：202612345678",
+    "start": 0,
+    "end": 18,
+    "expected": "专利申请号：****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "AMOUNT-post_yuan_bare_number",
+    "kind": "金额",
+    "text": "车辆价款说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明元人民币人民币人民币人民币人民币人民币人民币人民币人民币人民币10000",
+    "start": 83,
+    "end": 88,
+    "expected": "***"
+  },
+  {
+    "code": "AMOUNT-post_yuan_bare_number",
+    "kind": "金额",
+    "text": "车辆价款说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明元人民币人民币人民币人民币人民币人民币人民币人民币人民币人民币10000",
+    "start": 83,
+    "end": 88,
+    "expected": "***",
+    "stage": "raster-final"
+  },
+  {
+    "code": "SCENE-explicit-name",
+    "kind": "姓名",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 3,
+    "end": 5,
+    "expected": "张*"
+  },
+  {
+    "code": "SCENE-explicit-name",
+    "kind": "姓名",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 3,
+    "end": 5,
+    "expected": "张*",
+    "stage": "raster-final"
+  },
+  {
+    "code": "SCENE-form-name_cn",
+    "kind": "姓名",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 3,
+    "end": 5,
+    "expected": "**"
+  },
+  {
+    "code": "SCENE-form-name_cn",
+    "kind": "姓名",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 3,
+    "end": 5,
+    "expected": "**",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-id_card",
+    "kind": "身份证号",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 16,
+    "end": 34,
+    "expected": "******************"
+  },
+  {
+    "code": "REF41-id_card",
+    "kind": "身份证号",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 16,
+    "end": 34,
+    "expected": "******************",
+    "stage": "raster-final"
+  },
+  {
+    "code": "SCENE-form-id_card",
+    "kind": "身份证号",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 16,
+    "end": 34,
+    "expected": "****"
+  },
+  {
+    "code": "SCENE-form-id_card",
+    "kind": "身份证号",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 16,
+    "end": 34,
+    "expected": "****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "INT-phone",
+    "kind": "固定电话",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 40,
+    "end": 48,
+    "expected": "****"
+  },
+  {
+    "code": "INT-phone",
+    "kind": "固定电话",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 40,
+    "end": 48,
+    "expected": "****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-local_phone",
+    "kind": "固定电话",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 40,
+    "end": 48,
+    "expected": "2345****"
+  },
+  {
+    "code": "REF41-local_phone",
+    "kind": "固定电话",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 40,
+    "end": 48,
+    "expected": "2345****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "SCENE-form-phone",
+    "kind": "固定电话",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 40,
+    "end": 48,
+    "expected": "****"
+  },
+  {
+    "code": "SCENE-form-phone",
+    "kind": "固定电话",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 40,
+    "end": 48,
+    "expected": "****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "SCENE-explicit-org",
+    "kind": "机构",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 54,
+    "end": 63,
+    "expected": "上海**有限公司"
+  },
+  {
+    "code": "SCENE-explicit-org",
+    "kind": "机构",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 54,
+    "end": 63,
+    "expected": "上海**有限公司",
+    "stage": "raster-final"
+  },
+  {
+    "code": "SCENE-form-org_name",
+    "kind": "机构",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 54,
+    "end": 63,
+    "expected": "上海**有限公司"
+  },
+  {
+    "code": "SCENE-form-org_name",
+    "kind": "机构",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 54,
+    "end": 63,
+    "expected": "****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-address_labeled_door",
+    "kind": "地址",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 67,
+    "end": 79,
+    "expected": "北京市****"
+  },
+  {
+    "code": "REF41-address_labeled_door",
+    "kind": "地址",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 67,
+    "end": 79,
+    "expected": "北京市海淀区****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-address_unlabeled",
+    "kind": "地址",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 67,
+    "end": 79,
+    "expected": "北京市****"
+  },
+  {
+    "code": "REF41-address_unlabeled",
+    "kind": "地址",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 67,
+    "end": 79,
+    "expected": "北京市海淀区****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "SCENE-form-address",
+    "kind": "地址",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 67,
+    "end": 79,
+    "expected": "北京市****"
+  },
+  {
+    "code": "SCENE-form-address",
+    "kind": "地址",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 67,
+    "end": 79,
+    "expected": "****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-bank",
+    "kind": "银行账号",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 85,
+    "end": 101,
+    "expected": "1234********3456"
+  },
+  {
+    "code": "REF41-bank",
+    "kind": "银行账号",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 85,
+    "end": 101,
+    "expected": "1234********3456",
+    "stage": "raster-final"
+  },
+  {
+    "code": "SCENE-form-bank_card",
+    "kind": "银行账号",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 85,
+    "end": 101,
+    "expected": "****"
+  },
+  {
+    "code": "SCENE-form-bank_card",
+    "kind": "银行账号",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 85,
+    "end": 101,
+    "expected": "****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "INT-phone",
+    "kind": "固定电话",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 107,
+    "end": 115,
+    "expected": "****"
+  },
+  {
+    "code": "INT-phone",
+    "kind": "固定电话",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 107,
+    "end": 115,
+    "expected": "****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-uscc",
+    "kind": "信用代码",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 107,
+    "end": 125,
+    "expected": "913301********5678"
+  },
+  {
+    "code": "REF41-uscc",
+    "kind": "信用代码",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 107,
+    "end": 125,
+    "expected": "913301********5678",
+    "stage": "raster-final"
+  },
+  {
+    "code": "SCENE-form-uscc",
+    "kind": "信用代码",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 107,
+    "end": 125,
+    "expected": "****"
+  },
+  {
+    "code": "SCENE-form-uscc",
+    "kind": "信用代码",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 107,
+    "end": 125,
+    "expected": "****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "AMOUNT-labeled_bare_number",
+    "kind": "金额",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 129,
+    "end": 135,
+    "expected": "***元"
+  },
+  {
+    "code": "AMOUNT-labeled_bare_number",
+    "kind": "金额",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 129,
+    "end": 135,
+    "expected": "***元",
+    "stage": "raster-final"
+  },
+  {
+    "code": "SCENE-form-contract_amount",
+    "kind": "金额",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 129,
+    "end": 135,
+    "expected": "****"
+  },
+  {
+    "code": "SCENE-form-contract_amount",
+    "kind": "金额",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+    "start": 129,
+    "end": 135,
+    "expected": "****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "SCENE-transaction-merchant",
+    "kind": "机构",
+    "text": "微信支付 商户：合成超市有限公司\n付款给张三100元 社保电脑号：123456789",
+    "start": 0,
+    "end": 4,
+    "expected": "**"
+  },
+  {
+    "code": "SCENE-transaction-merchant",
+    "kind": "机构",
+    "text": "微信支付 商户：合成超市有限公司\n付款给张三100元 社保电脑号：123456789",
+    "start": 0,
+    "end": 4,
+    "expected": "****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "SCENE-transaction-merchant",
+    "kind": "机构",
+    "text": "微信支付 商户：合成超市有限公司\n付款给张三100元 社保电脑号：123456789",
+    "start": 8,
+    "end": 16,
+    "expected": "合成超市**有限公司"
+  },
+  {
+    "code": "SCENE-transaction-merchant",
+    "kind": "机构",
+    "text": "微信支付 商户：合成超市有限公司\n付款给张三100元 社保电脑号：123456789",
+    "start": 8,
+    "end": 16,
+    "expected": "****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "AMOUNT-standalone_yuan",
+    "kind": "金额",
+    "text": "微信支付 商户：合成超市有限公司\n付款给张三100元 社保电脑号：123456789",
+    "start": 22,
+    "end": 26,
+    "expected": "***元"
+  },
+  {
+    "code": "AMOUNT-standalone_yuan",
+    "kind": "金额",
+    "text": "微信支付 商户：合成超市有限公司\n付款给张三100元 社保电脑号：123456789",
+    "start": 22,
+    "end": 26,
+    "expected": "***元",
+    "stage": "raster-final"
+  },
+  {
+    "code": "SCENE-social-insurance-number",
+    "kind": "社保号",
+    "text": "微信支付 商户：合成超市有限公司\n付款给张三100元 社保电脑号：123456789",
+    "start": 33,
+    "end": 42,
+    "expected": "123***789"
+  },
+  {
+    "code": "SCENE-social-insurance-number",
+    "kind": "社保号",
+    "text": "微信支付 商户：合成超市有限公司\n付款给张三100元 社保电脑号：123456789",
+    "start": 33,
+    "end": 42,
+    "expected": "123***789",
+    "stage": "raster-final"
+  },
+  {
+    "code": "INT-phone",
+    "kind": "固定电话",
+    "text": "社会保险 12345678/上海合成甲有限公司",
+    "start": 5,
+    "end": 13,
+    "expected": "****"
+  },
+  {
+    "code": "INT-phone",
+    "kind": "固定电话",
+    "text": "社会保险 12345678/上海合成甲有限公司",
+    "start": 5,
+    "end": 13,
+    "expected": "****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "SCENE-social-insurance-company",
+    "kind": "机构",
+    "text": "社会保险 12345678/上海合成甲有限公司",
+    "start": 14,
+    "end": 23,
+    "expected": "上海**有限公司"
+  },
+  {
+    "code": "SCENE-social-insurance-company",
+    "kind": "机构",
+    "text": "社会保险 12345678/上海合成甲有限公司",
+    "start": 14,
+    "end": 23,
+    "expected": "上海***公司",
+    "stage": "raster-final"
+  },
+  {
+    "code": "SCENE-transaction-merchant",
+    "kind": "机构",
+    "text": "社会保险 12345678/上海合成甲有限公司",
+    "start": 14,
+    "end": 23,
+    "expected": "上海**有限公司"
+  },
+  {
+    "code": "SCENE-transaction-merchant",
+    "kind": "机构",
+    "text": "社会保险 12345678/上海合成甲有限公司",
+    "start": 14,
+    "end": 23,
+    "expected": "****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "SCENE-receipt-wechat-pair",
+    "kind": "微信号",
+    "text": "微信号 转账申请人 收款方付款方\n付款方alice123张三收款方\n2026-10-14 12:00:00李四\n__masked_id__",
+    "start": 20,
+    "end": 28,
+    "expected": "al****23"
+  },
+  {
+    "code": "SCENE-receipt-wechat-pair",
+    "kind": "微信号",
+    "text": "微信号 转账申请人 收款方付款方\n付款方alice123张三收款方\n2026-10-14 12:00:00李四\n__masked_id__",
+    "start": 20,
+    "end": 28,
+    "expected": "al****23",
+    "stage": "raster-final"
+  },
+  {
+    "code": "SCENE-receipt-name-pair",
+    "kind": "姓名",
+    "text": "微信号 转账申请人 收款方付款方\n付款方alice123张三收款方\n2026-10-14 12:00:00李四\n__masked_id__",
+    "start": 28,
+    "end": 30,
+    "expected": "张*"
+  },
+  {
+    "code": "SCENE-receipt-name-pair",
+    "kind": "姓名",
+    "text": "微信号 转账申请人 收款方付款方\n付款方alice123张三收款方\n2026-10-14 12:00:00李四\n__masked_id__",
+    "start": 28,
+    "end": 30,
+    "expected": "张*",
+    "stage": "raster-final"
+  },
+  {
+    "code": "SCENE-receipt-timestamp-name",
+    "kind": "姓名",
+    "text": "微信号 转账申请人 收款方付款方\n付款方alice123张三收款方\n2026-10-14 12:00:00李四\n__masked_id__",
+    "start": 53,
+    "end": 55,
+    "expected": "李*"
+  },
+  {
+    "code": "SCENE-receipt-timestamp-name",
+    "kind": "姓名",
+    "text": "微信号 转账申请人 收款方付款方\n付款方alice123张三收款方\n2026-10-14 12:00:00李四\n__masked_id__",
+    "start": 53,
+    "end": 55,
+    "expected": "李*",
+    "stage": "raster-final"
+  },
+  {
+    "code": "SCENE-receipt-standalone-wechat",
+    "kind": "微信号",
+    "text": "微信号 转账申请人 收款方付款方\n付款方alice123张三收款方\n2026-10-14 12:00:00李四\n__masked_id__",
+    "start": 56,
+    "end": 69,
+    "expected": "__*********__"
+  },
+  {
+    "code": "SCENE-receipt-standalone-wechat",
+    "kind": "微信号",
+    "text": "微信号 转账申请人 收款方付款方\n付款方alice123张三收款方\n2026-10-14 12:00:00李四\n__masked_id__",
+    "start": 56,
+    "end": 69,
+    "expected": "__*********__",
+    "stage": "raster-final"
+  },
+  {
+    "code": "AMOUNT-label",
+    "kind": "金额",
+    "text": "合同金额：10000元",
+    "start": 5,
+    "end": 11,
+    "expected": "***元"
+  },
+  {
+    "code": "AMOUNT-label",
+    "kind": "金额",
+    "text": "合同金额：10000元",
+    "start": 5,
+    "end": 11,
+    "expected": "***元",
+    "stage": "raster-final"
+  },
+  {
+    "code": "AMOUNT-currency",
+    "kind": "金额",
+    "text": "￥10000",
+    "start": 0,
+    "end": 6,
+    "expected": "¥***元"
+  },
+  {
+    "code": "AMOUNT-currency",
+    "kind": "金额",
+    "text": "￥10000",
+    "start": 0,
+    "end": 6,
+    "expected": "¥***元",
+    "stage": "raster-final"
+  },
+  {
+    "code": "AMOUNT-currency",
+    "kind": "金额",
+    "text": "￥10000元（壹万元整）",
+    "start": 0,
+    "end": 7,
+    "expected": "¥***元"
+  },
+  {
+    "code": "AMOUNT-currency",
+    "kind": "金额",
+    "text": "￥10000元（壹万元整）",
+    "start": 0,
+    "end": 7,
+    "expected": "¥***元",
+    "stage": "raster-final"
+  },
+  {
+    "code": "AMOUNT-uppercase",
+    "kind": "金额",
+    "text": "￥10000元（壹万元整）",
+    "start": 8,
+    "end": 12,
+    "expected": "***万元整"
+  },
+  {
+    "code": "AMOUNT-uppercase",
+    "kind": "金额",
+    "text": "￥10000元（壹万元整）",
+    "start": 8,
+    "end": 12,
+    "expected": "***万元整",
+    "stage": "raster-final"
+  },
+  {
+    "code": "AMOUNT-currency",
+    "kind": "金额",
+    "text": "RMB 10000元",
+    "start": 0,
+    "end": 10,
+    "expected": "RMB ***元"
+  },
+  {
+    "code": "AMOUNT-currency",
+    "kind": "金额",
+    "text": "RMB 10000元",
+    "start": 0,
+    "end": 10,
+    "expected": "RMB ***元",
+    "stage": "raster-final"
+  },
+  {
+    "code": "AMOUNT-currency",
+    "kind": "金额",
+    "text": "人民币10000元",
+    "start": 0,
+    "end": 9,
+    "expected": "人民币[金额]"
+  },
+  {
+    "code": "AMOUNT-currency",
+    "kind": "金额",
+    "text": "人民币10000元",
+    "start": 0,
+    "end": 9,
+    "expected": "人民币[金额]",
+    "stage": "raster-final"
+  },
+  {
+    "code": "AMOUNT-uppercase",
+    "kind": "金额",
+    "text": "大写：壹万元整",
+    "start": 3,
+    "end": 7,
+    "expected": "***万元整"
+  },
+  {
+    "code": "AMOUNT-uppercase",
+    "kind": "金额",
+    "text": "大写：壹万元整",
+    "start": 3,
+    "end": 7,
+    "expected": "***万元整",
+    "stage": "raster-final"
+  },
+  {
+    "code": "AMOUNT-standalone",
+    "kind": "金额",
+    "text": "支付了 12万元",
+    "start": 4,
+    "end": 8,
+    "expected": "***万元"
+  },
+  {
+    "code": "AMOUNT-standalone",
+    "kind": "金额",
+    "text": "支付了 12万元",
+    "start": 4,
+    "end": 8,
+    "expected": "***万元",
+    "stage": "raster-final"
+  },
+  {
+    "code": "AMOUNT-table_summary",
+    "kind": "金额",
+    "text": "合计：1000",
+    "start": 3,
+    "end": 7,
+    "expected": "***"
+  },
+  {
+    "code": "AMOUNT-table_summary",
+    "kind": "金额",
+    "text": "合计：1000",
+    "start": 3,
+    "end": 7,
+    "expected": "***",
+    "stage": "raster-final"
+  },
+  {
+    "code": "AMOUNT-labeled_bare_number",
+    "kind": "金额",
+    "text": "金额人民币：10000",
+    "start": 6,
+    "end": 11,
+    "expected": "***"
+  },
+  {
+    "code": "AMOUNT-labeled_bare_number",
+    "kind": "金额",
+    "text": "金额人民币：10000",
+    "start": 6,
+    "end": 11,
+    "expected": "***",
+    "stage": "raster-final"
+  },
+  {
+    "code": "AMOUNT-conversation_payment",
+    "kind": "金额",
+    "text": "还我500块钱",
+    "start": 2,
+    "end": 7,
+    "expected": "***"
+  },
+  {
+    "code": "AMOUNT-conversation_payment",
+    "kind": "金额",
+    "text": "还我500块钱",
+    "start": 2,
+    "end": 7,
+    "expected": "***",
+    "stage": "raster-final"
+  },
+  {
+    "code": "AMOUNT-standalone_yuan",
+    "kind": "金额",
+    "text": "需500元",
+    "start": 1,
+    "end": 5,
+    "expected": "***元"
+  },
+  {
+    "code": "AMOUNT-standalone_yuan",
+    "kind": "金额",
+    "text": "需500元",
+    "start": 1,
+    "end": 5,
+    "expected": "***元",
+    "stage": "raster-final"
+  },
+  {
+    "code": "AMOUNT-per_share_price",
+    "kind": "金额",
+    "text": "12.50港元/股",
+    "start": 0,
+    "end": 9,
+    "expected": "***"
+  },
+  {
+    "code": "AMOUNT-per_share_price",
+    "kind": "金额",
+    "text": "12.50港元/股",
+    "start": 0,
+    "end": 9,
+    "expected": "***",
+    "stage": "raster-final"
+  },
+  {
+    "code": "AMOUNT-thousand_sep",
+    "kind": "金额",
+    "text": "1,234,567",
+    "start": 0,
+    "end": 9,
+    "expected": "***"
+  },
+  {
+    "code": "AMOUNT-thousand_sep",
+    "kind": "金额",
+    "text": "1,234,567",
+    "start": 0,
+    "end": 9,
+    "expected": "***",
+    "stage": "raster-final"
+  },
+  {
+    "code": "AMOUNT-standalone_uppercase",
+    "kind": "金额",
+    "text": "壹万贰仟元整",
+    "start": 0,
+    "end": 6,
+    "expected": "***元整"
+  },
+  {
+    "code": "AMOUNT-standalone_uppercase",
+    "kind": "金额",
+    "text": "壹万贰仟元整",
+    "start": 0,
+    "end": 6,
+    "expected": "***元整",
+    "stage": "raster-final"
+  },
+  {
+    "code": "SCENE-explicit-name",
+    "kind": "姓名",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234",
+    "start": 3,
+    "end": 5,
+    "expected": "张*"
+  },
+  {
+    "code": "SCENE-explicit-name",
+    "kind": "姓名",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234",
+    "start": 3,
+    "end": 5,
+    "expected": "张*",
+    "stage": "raster-final"
+  },
+  {
+    "code": "SCENE-form-name_cn",
+    "kind": "姓名",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234",
+    "start": 3,
+    "end": 5,
+    "expected": "**"
+  },
+  {
+    "code": "SCENE-form-name_cn",
+    "kind": "姓名",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234",
+    "start": 3,
+    "end": 5,
+    "expected": "**",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-id_card",
+    "kind": "身份证号",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234",
+    "start": 16,
+    "end": 34,
+    "expected": "**************1234"
+  },
+  {
+    "code": "REF41-id_card",
+    "kind": "身份证号",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234",
+    "start": 16,
+    "end": 34,
+    "expected": "**************1234",
+    "stage": "raster-final"
+  },
+  {
+    "code": "SCENE-form-id_card",
+    "kind": "身份证号",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234",
+    "start": 16,
+    "end": 34,
+    "expected": "****"
+  },
+  {
+    "code": "SCENE-form-id_card",
+    "kind": "身份证号",
+    "text": "姓名：张三\n性别：男\n身份证号：110101199001011234",
+    "start": 16,
+    "end": 34,
+    "expected": "****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "SCENE-social-insurance-number",
+    "kind": "社保号",
+    "text": "社会保险 社保电脑号：123456789 参保人姓名：张三丰\n",
+    "start": 11,
+    "end": 20,
+    "expected": "123***789"
+  },
+  {
+    "code": "SCENE-social-insurance-number",
+    "kind": "社保号",
+    "text": "社会保险 社保电脑号：123456789 参保人姓名：张三丰\n",
+    "start": 11,
+    "end": 20,
+    "expected": "123***789",
+    "stage": "raster-final"
+  },
+  {
+    "code": "SCENE-explicit-name",
+    "kind": "姓名",
+    "text": "社会保险 社保电脑号：123456789 参保人姓名：张三丰\n",
+    "start": 27,
+    "end": 30,
+    "expected": "张**"
+  },
+  {
+    "code": "SCENE-explicit-name",
+    "kind": "姓名",
+    "text": "社会保险 社保电脑号：123456789 参保人姓名：张三丰\n",
+    "start": 27,
+    "end": 30,
+    "expected": "张**",
+    "stage": "raster-final"
+  },
+  {
+    "code": "SCENE-social-insurance-name",
+    "kind": "姓名",
+    "text": "社会保险 社保电脑号：123456789 参保人姓名：张三丰\n",
+    "start": 27,
+    "end": 30,
+    "expected": "**"
+  },
+  {
+    "code": "SCENE-social-insurance-name",
+    "kind": "姓名",
+    "text": "社会保险 社保电脑号：123456789 参保人姓名：张三丰\n",
+    "start": 27,
+    "end": 30,
+    "expected": "**",
+    "stage": "raster-final"
+  },
+  {
+    "code": "AMOUNT-labeled_bare_number",
+    "kind": "金额",
+    "text": "付款方：张三\n交易 订单 金额：10000元",
+    "start": 16,
+    "end": 22,
+    "expected": "***元"
+  },
+  {
+    "code": "AMOUNT-labeled_bare_number",
+    "kind": "金额",
+    "text": "付款方：张三\n交易 订单 金额：10000元",
+    "start": 16,
+    "end": 22,
+    "expected": "***元",
+    "stage": "raster-final"
+  },
+  {
+    "code": "INT-ein",
+    "kind": "雇主识别号",
+    "text": "EIN: 12-3456789",
+    "start": 5,
+    "end": 15,
+    "expected": "****"
+  },
+  {
+    "code": "INT-ein",
+    "kind": "雇主识别号",
+    "text": "EIN: 12-3456789",
+    "start": 5,
+    "end": 15,
+    "expected": "****",
+    "stage": "raster-final"
+  },
+  {
+    "code": "INT-passport",
+    "kind": "护照号",
+    "text": "Passport: AB1234567",
+    "start": 10,
+    "end": 19,
+    "expected": "*****4567"
+  },
+  {
+    "code": "INT-passport",
+    "kind": "护照号",
+    "text": "Passport: AB1234567",
+    "start": 10,
+    "end": 19,
+    "expected": "*****4567",
+    "stage": "raster-final"
+  },
+  {
+    "code": "INT-national-id",
+    "kind": "国际身份证号",
+    "text": "National ID: 123456789012345678",
+    "start": 13,
+    "end": 31,
+    "expected": "**************5678"
+  },
+  {
+    "code": "INT-national-id",
+    "kind": "国际身份证号",
+    "text": "National ID: 123456789012345678",
+    "start": 13,
+    "end": 31,
+    "expected": "**************5678",
+    "stage": "raster-final"
+  },
+  {
+    "code": "REF41-uscc",
+    "kind": "信用代码",
+    "text": "National ID: 123456789012345678",
+    "start": 13,
+    "end": 31,
+    "expected": "123456********5678"
+  },
+  {
+    "code": "REF41-uscc",
+    "kind": "信用代码",
+    "text": "National ID: 123456789012345678",
+    "start": 13,
+    "end": 31,
+    "expected": "123456********5678",
+    "stage": "raster-final"
+  },
+  {
+    "code": "INT-phone",
+    "kind": "手机号",
+    "text": "Phone: +1 212 555 1234",
+    "start": 7,
+    "end": 22,
+    "expected": "121****1234"
+  },
+  {
+    "code": "INT-phone",
+    "kind": "手机号",
+    "text": "Phone: +1 212 555 1234",
+    "start": 7,
+    "end": 22,
+    "expected": "121****1234",
+    "stage": "raster-final"
+  }
+]

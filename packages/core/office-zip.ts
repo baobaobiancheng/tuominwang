@@ -70,5 +70,5 @@ export function xml(bytes: Buffer): Document {
   }
   return doc;
 }
-export const xmlBytes = (doc: Document) => Buffer.from(new XMLSerializer().serializeToString(doc));
+export const xmlBytes = (doc: Document) => {const source=new XMLSerializer().serializeToString(doc);if(!source.isWellFormed()||/[\x00-\x08\x0B\x0C\x0E-\x1F\uFFFE\uFFFF]/u.test(source))throw new Error("OFFICE_XML_VALUE_INVALID");return Buffer.from(source);};
 export const elements = (node: Document | Element, ns: string, name: string): Element[] => Array.from(node.getElementsByTagNameNS(ns, name));

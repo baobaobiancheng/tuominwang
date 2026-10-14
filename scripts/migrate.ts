@@ -1,3 +1,4 @@
+import {migrateLegacyPageReviewMetadata} from "../packages/adapters/page-review-migration.ts";
 import pg from "pg";
 import { readFile } from "node:fs/promises";
 const c = new pg.Client({
@@ -17,7 +18,7 @@ try {
   await c.query(
     "CREATE TABLE IF NOT EXISTS schema_migrations(version text PRIMARY KEY)",
   );
-  for (const version of ["001", "002", "003", "004", "005", "006", "007", "008", "009"]) if (
+  for (const version of ["001", "002", "003", "004", "005", "006", "007", "008", "009", "010", "011", "012", "013", "014", "015", "016", "017", "018", "019", "020", "021", "022", "023"]) if (
     !(await c.query("SELECT 1 FROM schema_migrations WHERE version=$1", [version]))
       .rowCount
   ) {
@@ -26,6 +27,7 @@ try {
     );
     await c.query("INSERT INTO schema_migrations VALUES($1)", [version]);
   }
+  await migrateLegacyPageReviewMetadata(c);
   await c.query("COMMIT");
   console.log("数据库迁移完成");
 } catch (e) {

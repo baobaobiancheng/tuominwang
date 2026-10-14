@@ -86,7 +86,6 @@ test("file batch, immutable originals/snapshots, CSV export, blocked objects, re
   assert.equal(state.marks.length, 1);
   for (const [name, bytes, code] of [
     ["bad.csv", Buffer.from('a,b\n"bad'), "INVALID_CSV"],
-    ["bad.md", Buffer.from("![x](https://example.com/a.png)"), "UNSUPPORTED_MARKDOWN_OBJECT"],
     ["bad.txt", Buffer.from([0xff, 0xfe]), "INVALID_ENCODING"],
     ["bad.pdf", Buffer.from("%PDF-1.7"), "INVALID_PDF"],
     ["dense.txt", Buffer.from("a@b.co ".repeat(32769)), "MARK_LIMIT"],
@@ -99,6 +98,14 @@ test("file batch, immutable originals/snapshots, CSV export, blocked objects, re
     assert.equal(blocked.coverage[0].status, "blocked");
     assert.equal((await request("POST", `/api/documents/${file.id}/export`, { revision: 0 })).statusCode, 409);
   }
+  const embeddedMd=await upload("embedded.md",Buffer.from("![x](https://example.com/a.png)"));
+  await tick();
+  const embeddedView=(await request("GET",`/api/documents/${embeddedMd.id}`)).json();
+  assert.equal(embeddedView.job.status,"succeeded");
+  assert.equal(embeddedView.parseVersion,2);
+  const needsConfirmation=await request("POST",`/api/documents/${embeddedMd.id}/export`,{revision:embeddedView.revision});
+  assert.equal(needsConfirmation.statusCode,409);
+  assert.equal(needsConfirmation.json().error,"MARKDOWN_BLOCKERS_UNREVIEWED");
   for (const format of ["docx", "xlsx"] as const) {
     const original = await officeFixture(format), file = await upload(`Office.${format}`, original);
     await tick();

@@ -14,7 +14,7 @@ export const test = base.extend<{ account: void }>({
     try {
       // Respect the real IP login limiter across tests and worker restarts; never weaken the server's limit.
       const recent = (await db.query("SELECT EXTRACT(EPOCH FROM (MIN(expires_at)-interval '12 hours'+interval '61 seconds'-now())) AS wait_seconds,COUNT(*) AS n FROM sessions WHERE expires_at>now()+interval '12 hours'-interval '60 seconds'")).rows[0];
-      if (Number(recent.n) >= 9) { testInfo.setTimeout(100000); await delay(Math.max(0, Number(recent.wait_seconds) * 1000)); }
+      if (Number(recent.n) >= 9) { await delay(Math.max(0, Number(recent.wait_seconds) * 1000)); }
       await db.query("INSERT INTO users VALUES($1,$2,$3,$4)", [randomUUID(), randomUUID(), username, passwordHash(password)]);
     }
     finally { await db.end(); }
@@ -22,6 +22,6 @@ export const test = base.extend<{ account: void }>({
     process.env.E2E_USERNAME = username; process.env.E2E_PASSWORD = password;
     try { await use(); }
     finally { process.env.E2E_USERNAME = previous.username; process.env.E2E_PASSWORD = previous.password; }
-  }, { auto: true }],
+  }, { auto: true, timeout: 120000 }],
 });
 export { expect };

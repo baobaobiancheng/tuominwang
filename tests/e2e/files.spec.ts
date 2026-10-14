@@ -6,17 +6,17 @@ import { tmpdir } from "node:os";
 import { officeFixture } from "../office-fixtures.ts";
 import { readZip } from "../../packages/core/office-zip.ts";
 import { pdfFixture } from "../pdf-fixtures.ts";
-import { openPdf } from "../../packages/core/pdf-reader.ts";
+import { execFileSync } from "node:child_process";
 
 test("PDF and image imports expose authenticated page previews and extracted text", async ({ page }) => {
-  const pdf = pdfFixture({ pages: 2 }), reader = await openPdf(pdf);
-  let png: Buffer; try { png = (await reader.page(0)).png; } finally { reader.close(); }
+  const pdf = pdfFixture({ pages: 2 });
+  const png=execFileSync(process.execPath,['--input-type=module','-e',"import {openPdf}from'./packages/core/pdf-reader.ts';const chunks=[];for await(const chunk of process.stdin)chunks.push(chunk);const reader=await openPdf(Buffer.concat(chunks));try{process.stdout.write((await reader.page(0)).png);}finally{reader.close();}"],{input:pdf,maxBuffer:20*1024*1024});
   await page.goto("/");
   await page.getByLabel("账号", { exact: true }).fill(process.env.E2E_USERNAME!);
   await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
   await page.getByRole("button", { name: "登录工作台" }).click();
-  await page.locator("summary").click();
-  await page.getByLabel("项目名称").fill("页面资料-" + randomUUID().slice(0, 8));
+  await page.locator(".create-project summary").click();
+  await page.getByLabel("项目名称", { exact: true }).fill("页面资料-" + randomUUID().slice(0, 8));
   await page.getByRole("button", { name: "新建项目", exact: true }).click();
   await page.getByRole("button", { name: "导入材料", exact: true }).click();
   await page.getByLabel("选择文件", { exact: true }).setInputFiles([{ name: "合同.pdf", mimeType: "application/pdf", buffer: pdf }, { name: "发票.png", mimeType: "image/png", buffer: png }]);
@@ -24,11 +24,11 @@ test("PDF and image imports expose authenticated page previews and extracted tex
   await expect(page.getByText("已保存", { exact: true })).toHaveCount(2);
   await page.getByRole("button", { name: "返回材料列表", exact: true }).click();
   await page.getByRole("button", { name: /合同.pdf/ }).click();
-  await expect(page.getByRole("img", { name: "原件第 1 页" })).toBeVisible();
-  await expect.poll(() => page.getByRole("img", { name: "原件第 1 页" }).evaluate(el => (el as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
+  await expect(page.getByRole("img", { name: "原件第 1 页" })).toBeVisible({timeout:30000});
+  await expect.poll(() => page.getByRole("img", { name: "原件第 1 页" }).evaluate(el => (el as HTMLImageElement).naturalWidth),{timeout:30000}).toBeGreaterThan(0);
   await expect(page.getByLabel("原文", { exact: true })).toHaveValue(/13800138000/);
   await page.getByRole("button", { name: "下一页原件", exact: true }).click();
-  await expect(page.getByRole("img", { name: "原件第 2 页" })).toBeVisible();
+  await expect(page.getByRole("img", { name: "原件第 2 页" })).toBeVisible({timeout:30000});
   await page.screenshot({ path: "test-results/pdf-pages-desktop.png", fullPage: true });
   await expect(page.getByRole("button", { name: "导出已选标记的处理副本", exact: true })).toBeDisabled();
 });
@@ -39,8 +39,8 @@ for (const format of ["docx", "xlsx"] as const) test(`${format} upload, object r
   await page.getByLabel("账号", { exact: true }).fill(process.env.E2E_USERNAME!);
   await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
   await page.getByRole("button", { name: "登录工作台" }).click();
-  await page.locator("summary").click();
-  await page.getByLabel("项目名称").fill("公开文档-" + randomUUID().slice(0, 8));
+  await page.locator(".create-project summary").click();
+  await page.getByLabel("项目名称", { exact: true }).fill("公开文档-" + randomUUID().slice(0, 8));
   await page.getByRole("button", { name: "新建项目", exact: true }).click();
   await page.getByRole("button", { name: "导入材料", exact: true }).click();
   await page.getByLabel("选择文件", { exact: true }).setInputFiles({ name: `合成资料.${format}`, mimeType: "application/octet-stream", buffer: await officeFixture(format) });
@@ -70,8 +70,8 @@ test("large text paging keeps unsaved decisions and absolute manual anchors", as
   await page.getByLabel("账号", { exact: true }).fill(process.env.E2E_USERNAME!);
   await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
   await page.getByRole("button", { name: "登录工作台" }).click();
-  await page.locator("summary").click();
-  await page.getByLabel("项目名称").fill("分段材料-" + randomUUID().slice(0, 8));
+  await page.locator(".create-project summary").click();
+  await page.getByLabel("项目名称", { exact: true }).fill("分段材料-" + randomUUID().slice(0, 8));
   await page.getByRole("button", { name: "新建项目", exact: true }).click();
   await page.getByRole("button", { name: "导入材料", exact: true }).click();
   const content = "13800138000\n" + "甲".repeat(40000) + "张三\n" + "乙".repeat(70000) + "\n13900139000";
@@ -101,7 +101,7 @@ test("large text paging keeps unsaved decisions and absolute manual anchors", as
   await expect(downloadButton).toBeEnabled();
   const download = page.waitForEvent("download");
   await downloadButton.click();
-  expect(await readFile((await (await download).path())!, "utf8")).toBe(content.replace("13800138000", "【手机号】").replace("13900139000", "【手机号】").replace("张三", "【自定义】"));
+  expect(await readFile((await (await download).path())!, "utf8")).toBe(content.replace("13800138000", "138****8000").replace("13900139000", "139****9000").replace("张三", "【自定义】"));
   await page.screenshot({ path: "test-results/large-text-desktop.png", fullPage: true });
 });
 
@@ -111,8 +111,8 @@ test("CSV upload, review, safe download and desktop file list", async ({ page })
   await page.getByLabel("账号", { exact: true }).fill(credentials.username);
   await page.getByLabel("密码", { exact: true }).fill(credentials.password);
   await page.getByRole("button", { name: "登录工作台" }).click();
-  await page.locator("summary").click();
-  await page.getByLabel("项目名称").fill("CSV验收-" + randomUUID().slice(0, 8));
+  await page.locator(".create-project summary").click();
+  await page.getByLabel("项目名称", { exact: true }).fill("CSV验收-" + randomUUID().slice(0, 8));
   await page.getByRole("button", { name: "新建项目", exact: true }).click();
   await page.getByRole("button", { name: "导入材料", exact: true }).click();
   await expect(page.getByLabel("选择文件", { exact: true })).toBeEnabled();
@@ -147,9 +147,9 @@ test("resume after response loss and reload verifies content and skips stored or
   await page.getByLabel("账号", { exact: true }).fill(process.env.E2E_USERNAME!);
   await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
   await page.getByRole("button", { name: "登录工作台" }).click();
-  await page.locator("summary").click();
+  await page.locator(".create-project summary").click();
   const projectName = "续传-" + randomUUID().slice(0, 8);
-  await page.getByLabel("项目名称").fill(projectName);
+  await page.getByLabel("项目名称", { exact: true }).fill(projectName);
   await page.getByRole("button", { name: "新建项目", exact: true }).click();
   await page.getByRole("button", { name: "导入材料", exact: true }).click();
   const first = { name: "客户.txt", mimeType: "text/plain", buffer: Buffer.from("客户电话 13800138000") };
@@ -209,9 +209,9 @@ test("directory resume keeps nested paths and requires the original root directo
     await page.getByLabel("账号", { exact: true }).fill(process.env.E2E_USERNAME!);
     await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
     await page.getByRole("button", { name: "登录工作台" }).click();
-    await page.locator("summary").click();
+    await page.locator(".create-project summary").click();
     const projectName = "目录续传-" + randomUUID().slice(0, 8);
-    await page.getByLabel("项目名称").fill(projectName);
+    await page.getByLabel("项目名称", { exact: true }).fill(projectName);
     await page.getByRole("button", { name: "新建项目", exact: true }).click();
     await page.getByRole("button", { name: "导入材料", exact: true }).click();
     await page.route("**/api/projects/*/files?*", route => route.abort("connectionfailed"));

@@ -1,0 +1,62 @@
+{
+  "model": "mdefrance/yolos-tiny-signature-detection",
+  "revision": "b788cf7376464453c3dea1e5ee8589adcaa0c634",
+  "source": "https://huggingface.co/mdefrance/yolos-tiny-signature-detection/tree/b788cf7376464453c3dea1e5ee8589adcaa0c634",
+  "license": "Apache-2.0",
+  "sourceSafetensorsHash": "fe95c5b4651a826f2ce3e4fb21e62445f943eac34950ba87abe5e9e3602b3897",
+  "input": [
+    1,
+    3,
+    640,
+    640
+  ],
+  "preprocess": {
+    "rgb": true,
+    "resize": "640x640 bilinear (sharp linear)",
+    "scale": 0.00392156862745098,
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ]
+  },
+  "outputs": {
+    "logits": [
+      1,
+      100,
+      2
+    ],
+    "pred_boxes": [
+      1,
+      100,
+      4
+    ]
+  },
+  "threshold": 0.5,
+  "conversion": {
+    "torch": "2.8.0",
+    "transformers": "4.57.1",
+    "onnx": "1.19.1",
+    "opset": 17,
+    "externalData": false
+  },
+  "files": {
+    "config.json": "081cca4b52b6c79d2ead6b5d9acc1c0cc04bd127758a95264ed5c305d8d53b58",
+    "NOTICE.txt": "e71db3e985311fae03766011a34c4fd5d2407c9718c2caa1872c62b7e8a8b5e8",
+    "model.onnx": "0fd39bb4cd9a79b82fca781b314dcfc0296dc5e3168ef93f98a6c7f0c92bb209",
+    "LICENSE.txt": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "preprocessor_config.json": "2723351e75bfcfb9a47656a8b46e259e3649ae7b2545c9deb2ce8a0f3a840d18"
+  },
+  "sizes": {
+    "config.json": 825,
+    "NOTICE.txt": 641,
+    "model.onnx": 26102349,
+    "LICENSE.txt": 11358,
+    "preprocessor_config.json": 441
+  }
+}

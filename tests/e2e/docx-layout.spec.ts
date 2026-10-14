@@ -10,8 +10,8 @@ test("Word layout links split-run marks and selections, keeps object view and or
   await page.getByLabel("账号", { exact: true }).fill(process.env.E2E_USERNAME!);
   await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
   await page.getByRole("button", { name: "登录工作台" }).click();
-  await page.locator("summary").click();
-  await page.getByLabel("项目名称").fill("Word版式-" + randomUUID().slice(0, 8));
+  await page.locator(".create-project summary").click();
+  await page.getByLabel("项目名称", { exact: true }).fill("Word版式-" + randomUUID().slice(0, 8));
   await page.getByRole("button", { name: "新建项目", exact: true }).click();
   await page.getByRole("button", { name: "导入材料", exact: true }).click();
   await page.getByLabel("选择文件", { exact: true }).setInputFiles({ name: "版式合成.docx", mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document", buffer: await officeFixture("docx") });
@@ -32,18 +32,26 @@ test("Word layout links split-run marks and selections, keeps object view and or
       await route.fulfill({ response, json: body });
     }
   });
+  let transientLayoutBusy = 2, transientPreviewBusy = 2;
+  await page.route('**/docx-preview?*', async route => {
+    if (transientPreviewBusy > 0) { transientPreviewBusy--; return route.fulfill({ status: 409, json: { error: 'PROCESSING_BUSY' } }); }
+    await route.continue();
+  });
   await page.route('**/docx-layout?*', async route => {
     if (!readyProjectionObserved) {
       prematureLayoutRequests++;
       return route.fulfill({ status: 409, json: { error: 'DOCX_LAYOUT_NOT_READY' } });
     }
+    if (transientLayoutBusy > 0) { transientLayoutBusy--; return route.fulfill({ status: 409, json: { error: 'PROCESSING_BUSY' } }); }
     await route.continue();
   });
   const layoutResponse = page.waitForResponse(r => r.url().includes("/docx-layout?") && r.ok());
   await page.getByRole("button", { name: /版式合成.docx/ }).click();
+  await page.getByText("结构化原文与其他对象", { exact: true }).click();
   const response = await layoutResponse, endpoint = new URL(response.url());
   expect(initialProjection).toBe(false);
   expect(readyProjectionObserved).toBe(true);
+  expect(transientLayoutBusy).toBe(0); expect(transientPreviewBusy).toBe(0);
   expect(prematureLayoutRequests, 'layout must wait for the ready projection at the same revision').toBe(0);
   const layout = page.getByRole("region", { name: "Word 版式审查", exact: true });
   await expect(layout.locator(".docx-paper-table")).toBeVisible();
@@ -76,6 +84,7 @@ test("Word layout links split-run marks and selections, keeps object view and or
   await page.getByRole("button", { name: "对象原文", exact: true }).click();
   await expect(page.locator('textarea[aria-label="原文"]')).toBeVisible();
   await page.getByRole("button", { name: "Word 版式审查", exact: true }).click();
+  await page.getByText("结构化原文与其他对象", { exact: true }).click();
   await expect(para).toBeVisible();
   const old = await page.request.get(endpoint.href, { timeout: 15_000 }); expect(old.status()).toBe(409);
   const anonymous = await playwright.request.newContext({ timeout: 15_000 });

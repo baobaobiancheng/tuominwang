@@ -1,3 +1,4 @@
+import { entityValueKey } from "../../packages/core/entity-identity.ts";
 import type { FastifyInstance } from "fastify";
 import { randomUUID } from "node:crypto";
 import { isDeepStrictEqual } from "node:util";
@@ -45,7 +46,7 @@ export function registerRecognitionRoutes(app: FastifyInstance, nerReady: boolea
   });
   app.put("/api/projects/:id/dictionary", async req => {
     const project = id.parse((req.params as any).id), input = dictionarySchema.parse(req.body);
-    const keys = input.entries.map(e => `${e.kind}:${e.value}`);
+    const keys = input.entries.map(e => entityValueKey(e,e.value));
     if (new Set(keys).size !== keys.length) fail("DUPLICATE_DICTIONARY_ENTRY", 400);
     return projectScope(req, { project }, ["manage_dictionary"], async db => {
       const [p] = await rows(db, sql`SELECT * FROM projects WHERE id=${project} FOR UPDATE`);

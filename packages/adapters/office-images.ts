@@ -1,3 +1,5 @@
+import { normalizeOfficeMedia, type OfficeMediaFrame } from "../core/office-media.ts";
+import { renderDocumentVisualPage } from "./visual-replacement.ts";
 import { parseOffice, officeImagePart, type OfficeImages } from "../core/office.ts";
 import { readZip } from "../core/office-zip.ts";
 import { clearPixels, pageBoxes, validatePageReview } from "../core/page-redaction.ts";
@@ -6,18 +8,18 @@ import type { Anchor, ParsedPage, Mark } from "../contracts/index.ts";
 import { parsePages } from "./page-parser.ts";
 import { hash, readArtifact, readOriginal } from "./storage.ts";
 
-export async function parseOfficeImages(bytes: Buffer) {
+export async function parseOfficeImages(bytes: Buffer, onPage?: (page: ParsedPage, text:string, glyphs: import("../core/ocr.ts").Glyph[],totalPages:number)=>void|Promise<void>) {
   const parts = await readZip(bytes), images = [...parts.keys()].filter(officeImagePart).sort();
   if (images.length > 300) throw new Error("PAGE_LIMIT");
   if (!images.length) return { ...await parseOffice(bytes, "docx"), pages: [] };
-  const texts: Record<string, string> = {}, pages: ParsedPage[] = [];
+  const texts: Record<string, string> = {}, pages: (ParsedPage & { mediaFrames: OfficeMediaFrame[]; mediaSourceHash: string; mediaFormat: string })[] = [];
   let totalGlyphs = 0;
   for (const part of images) {
-    const parsed = await parsePages(parts.get(part)!, /\.png$/i.test(part) ? "png" : "jpg");
+    const media = await normalizeOfficeMedia(parts.get(part)!), parsed = await parsePages(media.png, "png", (page,text,glyphs)=>onPage?.({...page,index:pages.length,part},text,glyphs,images.length));
     if (parsed.pages.length !== 1) throw new Error("INVALID_IMAGE");
     totalGlyphs += parsed.glyphCount;
     if (totalGlyphs > 1000000) throw new Error("PDF_TEXT_LIMIT");
-    texts[part] = parsed.text; pages.push({ ...parsed.pages[0], index: pages.length, part });
+    texts[part] = parsed.text; pages.push({ ...parsed.pages[0], index: pages.length, part, mediaFrames: media.frames, mediaSourceHash: media.sourceHash, mediaFormat: media.format });
   }
   return { ...await parseOffice(bytes, "docx", texts), pages };
 }
@@ -41,7 +43,7 @@ export async function exportOfficeImages(d: any, text: string): Promise<OfficeIm
     for (const { page, anchor, boxes } of plans) {
       const source = await readOriginal(page.previewId);
       if (hash(source) !== page.previewHash) throw new Error("SOURCE_MISMATCH");
-      const { png } = await clearPixels(source, page, boxes), outputText = (await recognizePage(ocr, png)).text;
+      const { png } = await renderDocumentVisualPage(d, text, page.index, d.marks, validatePageReview(d.page_review, d.page_data, true)), outputText = (await recognizePage(ocr, png)).text;
       if ([...hidden].some(value => outputText.replace(/\s/gu, "").includes(value))) throw new Error("RESIDUE_FOUND");
       images[page.part!] = { text: text.slice(anchor.start, anchor.end), output: png, outputText };
     }

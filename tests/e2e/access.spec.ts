@@ -18,7 +18,7 @@ test("desktop organization accounts, independent project grants and read-only re
   await page.screenshot({ path: "test-results/organization-desktop.png", fullPage: true });
   await dialog.getByRole("button", { name: "关闭组织管理" }).click();
   const projectName = "权限项目-" + randomUUID().slice(0, 8);
-  await page.locator("summary").click(); await page.getByLabel("项目名称").fill(projectName);
+  await page.locator(".create-project summary").click(); await page.getByLabel("项目名称", { exact: true }).fill(projectName);
   await page.getByRole("button", { name: "新建项目", exact: true }).click();
   await page.getByRole("button", { name: "导入材料", exact: true }).click();
   await page.getByLabel("待处理文本").fill("公开测试 电话13800138000");

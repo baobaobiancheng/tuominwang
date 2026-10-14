@@ -1,10 +1,18 @@
+import {openPageReview,sealPageReview} from "../../packages/adapters/page-review-storage.ts";
+import {getRuntimeWhitelists} from "../../packages/adapters/runtime-rule-update.ts";
+import { resolveDocumentPolicy } from "../../packages/adapters/document-policy.ts";
+import { readProjectPresets } from "../../packages/adapters/project-presets.ts";
 import type { FastifyInstance } from "fastify";
 import { z } from "zod";
 import { id } from "../../packages/contracts/index.ts";
 import { ocrCorrectionSchema, type OcrTextView } from "../../packages/contracts/ocr.ts";
 import { rows, sql } from "../../packages/adapters/db.ts";
 import { runProcessing } from "../../packages/adapters/processing.ts";
-import { projectScope } from "./access.ts";
+import { projectScope,requirePermission } from "./access.ts";
+import {profileReplacementPolicies,finalizeProfileReplacements} from '../../packages/core/profile-recognition.ts';
+import {applyReplacementPolicies} from '../../packages/core/replacement-policies.ts';
+import {resolvePolicyMappings} from './mappings.ts';
+import {unseal} from '../../packages/adapters/storage.ts';
 const params = z.object({ id, page: z.coerce.number().int().min(0).max(299) });
 function fail(message: string, statusCode = 409): never { throw Object.assign(new Error(message), { statusCode }); }
 export function registerOcrRoutes(app: FastifyInstance) {
@@ -20,15 +28,30 @@ export function registerOcrRoutes(app: FastifyInstance) {
   app.put("/api/documents/:id/pages/:page/ocr-text", { bodyLimit: 2 * 1024 * 1024 }, async req => {
     const { id: doc, page } = params.parse(req.params), correction = ocrCorrectionSchema.parse(req.body);
     return projectScope(req, { document: doc }, ["view_original", "review"], async db => {
-      const [d] = await rows(db, sql`SELECT d.*,p.dictionary,p.dictionary_revision FROM documents d JOIN projects p ON p.id=d.project_id WHERE d.id=${doc} FOR UPDATE OF d`);
+      const [scope]=await rows(db,sql`SELECT project_id FROM documents WHERE id=${doc}`);
+      if(!scope)fail('NOT_FOUND',404);
+      await rows(db,sql`SELECT id FROM projects WHERE id=${scope.project_id} FOR UPDATE`);
+      const [d] = await rows(db, sql`SELECT d.*,p.dictionary,p.dictionary_revision,p.preset_policy,p.preset_revision FROM documents d JOIN projects p ON p.id=d.project_id WHERE d.id=${doc} FOR UPDATE OF d`);
       if (!d) fail("NOT_FOUND", 404);
       if (d.revision !== correction.revision) fail("VERSION_CONFLICT");
       if (d.state !== "review") fail(d.state === "outdated" ? "POLICY_CHANGED" : "DETECTION_INCOMPLETE");
+      Object.assign(d,resolveDocumentPolicy(d,readProjectPresets({id:d.project_id,tenant_id:d.tenant_id,preset_revision:d.preset_revision,preset_policy:d.preset_policy})));
+      d.runtimeWhitelists=await getRuntimeWhitelists(db,d.tenant_id,d.project_id,req.user.id,d.id);
       let result: any;
       try { result = await runProcessing({ kind: "ocr-correct", doc: d, page, correction }); }
       catch (e) { fail((e as Error).message, (e as Error).message === "OCR_TEXT_CONFLICT" ? 409 : 400); }
       if (!result.changed) return { revision: d.revision, changed: false };
-      await rows(db, sql`UPDATE documents SET content=${result.content},content_hash=${result.hash},anchors=${JSON.stringify(result.anchors)}::jsonb,page_data=${JSON.stringify(result.pages)}::jsonb,marks=${JSON.stringify(result.marks)}::jsonb,recognition=${JSON.stringify(result.recognition)}::jsonb,revision=revision+1 WHERE id=${doc}`);
+      if(d.presetPolicy?.profile){
+        const text=unseal(result.content,`${d.tenant_id}:${d.project_id}:${d.id}`),profile=d.presetPolicy.profile.settings,policies=profileReplacementPolicies(profile,d.source_format,d.batchMode,d.documentPolicy?.configuration.exportMode);
+        let plan=applyReplacementPolicies(text,result.marks,policies);
+        if(plan.aliasRequests.length){await requirePermission(db,d.project_id,['view_mapping']);const mappings=await resolvePolicyMappings(db,d,req.user.id,plan.aliasRequests);plan=applyReplacementPolicies(text,result.marks,policies,mappings);if(plan.aliasRequests.length)fail('MAPPING_MISMATCH',400);}
+        result.marks=finalizeProfileReplacements(plan.marks,result.anchors,profile,d.source_format,d.batchMode,d.documentPolicy?.configuration.exportMode);
+      }
+      // OCR edits change text, not page pixels. Keep the independently collected
+      // visual scan diagnostics so a partial scan cannot silently become complete.
+      if(d.recognition?.visual) result.recognition={...result.recognition,visual:d.recognition.visual};
+      const storedPageReview=sealPageReview({...d,content_hash:result.hash},openPageReview(d),d.revision+1);
+      await rows(db, sql`UPDATE documents SET content=${result.content},content_hash=${result.hash},anchors=${JSON.stringify(result.anchors)}::jsonb,page_data=${JSON.stringify(result.pages)}::jsonb,marks=${JSON.stringify(result.marks)}::jsonb,recognition=${JSON.stringify(result.recognition)}::jsonb,page_review=${JSON.stringify(storedPageReview)}::jsonb,revision=revision+1 WHERE id=${doc}`);
       // A new content revision has no saved review snapshot. Already issued links keep their immutable artifact.
       await rows(db, sql`UPDATE attempts SET finished_at=now(),outcome='ocr_text_changed' WHERE finished_at IS NULL AND job_id IN (SELECT id FROM jobs WHERE document_id=${doc} AND status IN ('queued','running'))`);
       await rows(db, sql`UPDATE jobs SET status='cancelled',lease_until=NULL WHERE document_id=${doc} AND status IN ('queued','running')`);

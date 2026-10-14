@@ -83,8 +83,8 @@ export function registerFileRoutes(app: FastifyInstance) {
         return { id: previous.id };
       }
       const doc = randomUUID(), source = randomUUID(), aad = `${req.user.tenant_id}:${project}:${doc}`;
-      await rows(db, sql`INSERT INTO documents(id,tenant_id,project_id,request_id,content,content_hash,source_id,source_name,source_format,source_hash,source_bytes)
-        VALUES(${doc},${req.user.tenant_id},${project},${input.requestId},${seal("", aad)},${hash("")},${source},${seal(entry.path, aad + ":name")},${fileFormat(entry.path)},${digest},${bytes.length})`);
+      await rows(db, sql`INSERT INTO documents(id,tenant_id,project_id,request_id,content,content_hash,source_id,source_name,source_format,source_hash,source_bytes,is_batch)
+        VALUES(${doc},${req.user.tenant_id},${project},${input.requestId},${seal("", aad)},${hash("")},${source},${seal(entry.path, aad + ":name")},${fileFormat(entry.path)},${digest},${bytes.length},${manifest.length > 1})`);
       await writeOriginal(source, bytes, doc);
       await rows(db, sql`INSERT INTO jobs(id,tenant_id,project_id,document_id,user_id,kind) VALUES(${randomUUID()},${req.user.tenant_id},${project},${doc},${req.user.id},'detect')`);
       await rows(db, sql`INSERT INTO audit(tenant_id,project_id,user_id,event,object_id) VALUES(${req.user.tenant_id},${project},${req.user.id},'file_uploaded',${doc})`);

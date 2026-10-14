@@ -1,0 +1,5096 @@
+[
+  {
+    "lines": [
+      {
+        "horizontal": false,
+        "fixed": 20,
+        "start": 20,
+        "end": 80
+      },
+      {
+        "horizontal": false,
+        "fixed": 120,
+        "start": 20,
+        "end": 80
+      },
+      {
+        "horizontal": false,
+        "fixed": 220,
+        "start": 20,
+        "end": 80
+      },
+      {
+        "horizontal": true,
+        "fixed": 20,
+        "start": 20,
+        "end": 220
+      },
+      {
+        "horizontal": true,
+        "fixed": 50,
+        "start": 20,
+        "end": 220
+      },
+      {
+        "horizontal": true,
+        "fixed": 80,
+        "start": 20,
+        "end": 220
+      }
+    ],
+    "page": {
+      "width": 800,
+      "height": 600
+    },
+    "expected": [
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 2,
+        "bbox": {
+          "x": 20,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 60
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 2,
+        "bbox": {
+          "x": 120,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 60
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 2,
+        "bbox": {
+          "x": 20,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 60
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 2,
+        "bbox": {
+          "x": 120,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 60
+        }
+      }
+    ]
+  },
+  {
+    "lines": [
+      {
+        "horizontal": false,
+        "fixed": 20,
+        "start": 20,
+        "end": 80
+      },
+      {
+        "horizontal": false,
+        "fixed": 120,
+        "start": 20,
+        "end": 80
+      },
+      {
+        "horizontal": false,
+        "fixed": 220,
+        "start": 20,
+        "end": 80
+      },
+      {
+        "horizontal": true,
+        "fixed": 20,
+        "start": 20,
+        "end": 120
+      },
+      {
+        "horizontal": true,
+        "fixed": 20,
+        "start": 120.5,
+        "end": 220
+      },
+      {
+        "horizontal": true,
+        "fixed": 50,
+        "start": 20,
+        "end": 120
+      },
+      {
+        "horizontal": true,
+        "fixed": 50,
+        "start": 120.5,
+        "end": 220
+      },
+      {
+        "horizontal": true,
+        "fixed": 80,
+        "start": 20,
+        "end": 120
+      },
+      {
+        "horizontal": true,
+        "fixed": 80,
+        "start": 120.5,
+        "end": 220
+      }
+    ],
+    "page": {
+      "width": 800,
+      "height": 600
+    },
+    "expected": [
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 2,
+        "bbox": {
+          "x": 20,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 60
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 2,
+        "bbox": {
+          "x": 120,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 60
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 2,
+        "bbox": {
+          "x": 20,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 60
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 2,
+        "bbox": {
+          "x": 120,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 60
+        }
+      }
+    ]
+  },
+  {
+    "lines": [
+      {
+        "horizontal": false,
+        "fixed": 20,
+        "start": 20,
+        "end": 110
+      },
+      {
+        "horizontal": false,
+        "fixed": 120,
+        "start": 20,
+        "end": 110
+      },
+      {
+        "horizontal": false,
+        "fixed": 220,
+        "start": 20,
+        "end": 110
+      },
+      {
+        "horizontal": true,
+        "fixed": 20,
+        "start": 20,
+        "end": 220
+      },
+      {
+        "horizontal": true,
+        "fixed": 50,
+        "start": 20,
+        "end": 220
+      },
+      {
+        "horizontal": true,
+        "fixed": 80,
+        "start": 20,
+        "end": 220
+      },
+      {
+        "horizontal": true,
+        "fixed": 110,
+        "start": 20,
+        "end": 220
+      }
+    ],
+    "page": {
+      "width": 800,
+      "height": 600
+    },
+    "expected": [
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 2,
+        "bbox": {
+          "x": 20,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 2,
+        "bbox": {
+          "x": 120,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 2,
+        "bbox": {
+          "x": 20,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 2,
+        "bbox": {
+          "x": 120,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 2,
+        "bbox": {
+          "x": 20,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 2,
+        "bbox": {
+          "x": 120,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 90
+        }
+      }
+    ]
+  },
+  {
+    "lines": [
+      {
+        "horizontal": false,
+        "fixed": 20,
+        "start": 20,
+        "end": 110
+      },
+      {
+        "horizontal": false,
+        "fixed": 120,
+        "start": 20,
+        "end": 110
+      },
+      {
+        "horizontal": false,
+        "fixed": 220,
+        "start": 20,
+        "end": 110
+      },
+      {
+        "horizontal": true,
+        "fixed": 20,
+        "start": 20,
+        "end": 120
+      },
+      {
+        "horizontal": true,
+        "fixed": 20,
+        "start": 120.5,
+        "end": 220
+      },
+      {
+        "horizontal": true,
+        "fixed": 50,
+        "start": 20,
+        "end": 120
+      },
+      {
+        "horizontal": true,
+        "fixed": 50,
+        "start": 120.5,
+        "end": 220
+      },
+      {
+        "horizontal": true,
+        "fixed": 80,
+        "start": 20,
+        "end": 120
+      },
+      {
+        "horizontal": true,
+        "fixed": 80,
+        "start": 120.5,
+        "end": 220
+      },
+      {
+        "horizontal": true,
+        "fixed": 110,
+        "start": 20,
+        "end": 120
+      },
+      {
+        "horizontal": true,
+        "fixed": 110,
+        "start": 120.5,
+        "end": 220
+      }
+    ],
+    "page": {
+      "width": 800,
+      "height": 600
+    },
+    "expected": [
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 2,
+        "bbox": {
+          "x": 20,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 2,
+        "bbox": {
+          "x": 120,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 2,
+        "bbox": {
+          "x": 20,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 2,
+        "bbox": {
+          "x": 120,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 2,
+        "bbox": {
+          "x": 20,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 2,
+        "bbox": {
+          "x": 120,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 90
+        }
+      }
+    ]
+  },
+  {
+    "lines": [
+      {
+        "horizontal": false,
+        "fixed": 20,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": false,
+        "fixed": 120,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": false,
+        "fixed": 220,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": true,
+        "fixed": 20,
+        "start": 20,
+        "end": 220
+      },
+      {
+        "horizontal": true,
+        "fixed": 50,
+        "start": 20,
+        "end": 220
+      },
+      {
+        "horizontal": true,
+        "fixed": 80,
+        "start": 20,
+        "end": 220
+      },
+      {
+        "horizontal": true,
+        "fixed": 110,
+        "start": 20,
+        "end": 220
+      },
+      {
+        "horizontal": true,
+        "fixed": 140,
+        "start": 20,
+        "end": 220
+      },
+      {
+        "horizontal": true,
+        "fixed": 170,
+        "start": 20,
+        "end": 220
+      }
+    ],
+    "page": {
+      "width": 800,
+      "height": 600
+    },
+    "expected": [
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 2,
+        "bbox": {
+          "x": 20,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 2,
+        "bbox": {
+          "x": 120,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 2,
+        "bbox": {
+          "x": 20,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 2,
+        "bbox": {
+          "x": 120,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 2,
+        "bbox": {
+          "x": 20,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 2,
+        "bbox": {
+          "x": 120,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 3,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 2,
+        "bbox": {
+          "x": 20,
+          "y": 110,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 3,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 2,
+        "bbox": {
+          "x": 120,
+          "y": 110,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 4,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 2,
+        "bbox": {
+          "x": 20,
+          "y": 140,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 4,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 2,
+        "bbox": {
+          "x": 120,
+          "y": 140,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 150
+        }
+      }
+    ]
+  },
+  {
+    "lines": [
+      {
+        "horizontal": false,
+        "fixed": 20,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": false,
+        "fixed": 120,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": false,
+        "fixed": 220,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": true,
+        "fixed": 20,
+        "start": 20,
+        "end": 120
+      },
+      {
+        "horizontal": true,
+        "fixed": 20,
+        "start": 120.5,
+        "end": 220
+      },
+      {
+        "horizontal": true,
+        "fixed": 50,
+        "start": 20,
+        "end": 120
+      },
+      {
+        "horizontal": true,
+        "fixed": 50,
+        "start": 120.5,
+        "end": 220
+      },
+      {
+        "horizontal": true,
+        "fixed": 80,
+        "start": 20,
+        "end": 120
+      },
+      {
+        "horizontal": true,
+        "fixed": 80,
+        "start": 120.5,
+        "end": 220
+      },
+      {
+        "horizontal": true,
+        "fixed": 110,
+        "start": 20,
+        "end": 120
+      },
+      {
+        "horizontal": true,
+        "fixed": 110,
+        "start": 120.5,
+        "end": 220
+      },
+      {
+        "horizontal": true,
+        "fixed": 140,
+        "start": 20,
+        "end": 120
+      },
+      {
+        "horizontal": true,
+        "fixed": 140,
+        "start": 120.5,
+        "end": 220
+      },
+      {
+        "horizontal": true,
+        "fixed": 170,
+        "start": 20,
+        "end": 120
+      },
+      {
+        "horizontal": true,
+        "fixed": 170,
+        "start": 120.5,
+        "end": 220
+      }
+    ],
+    "page": {
+      "width": 800,
+      "height": 600
+    },
+    "expected": [
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 2,
+        "bbox": {
+          "x": 20,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 2,
+        "bbox": {
+          "x": 120,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 2,
+        "bbox": {
+          "x": 20,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 2,
+        "bbox": {
+          "x": 120,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 2,
+        "bbox": {
+          "x": 20,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 2,
+        "bbox": {
+          "x": 120,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 3,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 2,
+        "bbox": {
+          "x": 20,
+          "y": 110,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 3,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 2,
+        "bbox": {
+          "x": 120,
+          "y": 110,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 4,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 2,
+        "bbox": {
+          "x": 20,
+          "y": 140,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 4,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 2,
+        "bbox": {
+          "x": 120,
+          "y": 140,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 200,
+          "height": 150
+        }
+      }
+    ]
+  },
+  {
+    "lines": [
+      {
+        "horizontal": false,
+        "fixed": 20,
+        "start": 20,
+        "end": 80
+      },
+      {
+        "horizontal": false,
+        "fixed": 120,
+        "start": 20,
+        "end": 80
+      },
+      {
+        "horizontal": false,
+        "fixed": 220,
+        "start": 20,
+        "end": 80
+      },
+      {
+        "horizontal": false,
+        "fixed": 320,
+        "start": 20,
+        "end": 80
+      },
+      {
+        "horizontal": true,
+        "fixed": 20,
+        "start": 20,
+        "end": 320
+      },
+      {
+        "horizontal": true,
+        "fixed": 50,
+        "start": 20,
+        "end": 320
+      },
+      {
+        "horizontal": true,
+        "fixed": 80,
+        "start": 20,
+        "end": 320
+      }
+    ],
+    "page": {
+      "width": 800,
+      "height": 600
+    },
+    "expected": [
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 3,
+        "bbox": {
+          "x": 20,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 60
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 3,
+        "bbox": {
+          "x": 120,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 60
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 3,
+        "bbox": {
+          "x": 20,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 60
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 3,
+        "bbox": {
+          "x": 220,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 60
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 3,
+        "bbox": {
+          "x": 120,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 60
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 3,
+        "bbox": {
+          "x": 220,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 60
+        }
+      }
+    ]
+  },
+  {
+    "lines": [
+      {
+        "horizontal": false,
+        "fixed": 20,
+        "start": 20,
+        "end": 80
+      },
+      {
+        "horizontal": false,
+        "fixed": 120,
+        "start": 20,
+        "end": 80
+      },
+      {
+        "horizontal": false,
+        "fixed": 220,
+        "start": 20,
+        "end": 80
+      },
+      {
+        "horizontal": false,
+        "fixed": 320,
+        "start": 20,
+        "end": 80
+      },
+      {
+        "horizontal": true,
+        "fixed": 20,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": true,
+        "fixed": 20,
+        "start": 170.5,
+        "end": 320
+      },
+      {
+        "horizontal": true,
+        "fixed": 50,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": true,
+        "fixed": 50,
+        "start": 170.5,
+        "end": 320
+      },
+      {
+        "horizontal": true,
+        "fixed": 80,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": true,
+        "fixed": 80,
+        "start": 170.5,
+        "end": 320
+      }
+    ],
+    "page": {
+      "width": 800,
+      "height": 600
+    },
+    "expected": [
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 3,
+        "bbox": {
+          "x": 20,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 60
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 3,
+        "bbox": {
+          "x": 120,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 60
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 3,
+        "bbox": {
+          "x": 20,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 60
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 3,
+        "bbox": {
+          "x": 220,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 60
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 3,
+        "bbox": {
+          "x": 120,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 60
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 3,
+        "bbox": {
+          "x": 220,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 60
+        }
+      }
+    ]
+  },
+  {
+    "lines": [
+      {
+        "horizontal": false,
+        "fixed": 20,
+        "start": 20,
+        "end": 110
+      },
+      {
+        "horizontal": false,
+        "fixed": 120,
+        "start": 20,
+        "end": 110
+      },
+      {
+        "horizontal": false,
+        "fixed": 220,
+        "start": 20,
+        "end": 110
+      },
+      {
+        "horizontal": false,
+        "fixed": 320,
+        "start": 20,
+        "end": 110
+      },
+      {
+        "horizontal": true,
+        "fixed": 20,
+        "start": 20,
+        "end": 320
+      },
+      {
+        "horizontal": true,
+        "fixed": 50,
+        "start": 20,
+        "end": 320
+      },
+      {
+        "horizontal": true,
+        "fixed": 80,
+        "start": 20,
+        "end": 320
+      },
+      {
+        "horizontal": true,
+        "fixed": 110,
+        "start": 20,
+        "end": 320
+      }
+    ],
+    "page": {
+      "width": 800,
+      "height": 600
+    },
+    "expected": [
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 3,
+        "bbox": {
+          "x": 20,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 3,
+        "bbox": {
+          "x": 120,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 3,
+        "bbox": {
+          "x": 20,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 3,
+        "bbox": {
+          "x": 220,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 3,
+        "bbox": {
+          "x": 120,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 3,
+        "bbox": {
+          "x": 20,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 3,
+        "bbox": {
+          "x": 220,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 3,
+        "bbox": {
+          "x": 120,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 3,
+        "bbox": {
+          "x": 220,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 90
+        }
+      }
+    ]
+  },
+  {
+    "lines": [
+      {
+        "horizontal": false,
+        "fixed": 20,
+        "start": 20,
+        "end": 110
+      },
+      {
+        "horizontal": false,
+        "fixed": 120,
+        "start": 20,
+        "end": 110
+      },
+      {
+        "horizontal": false,
+        "fixed": 220,
+        "start": 20,
+        "end": 110
+      },
+      {
+        "horizontal": false,
+        "fixed": 320,
+        "start": 20,
+        "end": 110
+      },
+      {
+        "horizontal": true,
+        "fixed": 20,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": true,
+        "fixed": 20,
+        "start": 170.5,
+        "end": 320
+      },
+      {
+        "horizontal": true,
+        "fixed": 50,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": true,
+        "fixed": 50,
+        "start": 170.5,
+        "end": 320
+      },
+      {
+        "horizontal": true,
+        "fixed": 80,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": true,
+        "fixed": 80,
+        "start": 170.5,
+        "end": 320
+      },
+      {
+        "horizontal": true,
+        "fixed": 110,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": true,
+        "fixed": 110,
+        "start": 170.5,
+        "end": 320
+      }
+    ],
+    "page": {
+      "width": 800,
+      "height": 600
+    },
+    "expected": [
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 3,
+        "bbox": {
+          "x": 20,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 3,
+        "bbox": {
+          "x": 120,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 3,
+        "bbox": {
+          "x": 20,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 3,
+        "bbox": {
+          "x": 220,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 3,
+        "bbox": {
+          "x": 120,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 3,
+        "bbox": {
+          "x": 20,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 3,
+        "bbox": {
+          "x": 220,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 3,
+        "bbox": {
+          "x": 120,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 3,
+        "bbox": {
+          "x": 220,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 90
+        }
+      }
+    ]
+  },
+  {
+    "lines": [
+      {
+        "horizontal": false,
+        "fixed": 20,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": false,
+        "fixed": 120,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": false,
+        "fixed": 220,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": false,
+        "fixed": 320,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": true,
+        "fixed": 20,
+        "start": 20,
+        "end": 320
+      },
+      {
+        "horizontal": true,
+        "fixed": 50,
+        "start": 20,
+        "end": 320
+      },
+      {
+        "horizontal": true,
+        "fixed": 80,
+        "start": 20,
+        "end": 320
+      },
+      {
+        "horizontal": true,
+        "fixed": 110,
+        "start": 20,
+        "end": 320
+      },
+      {
+        "horizontal": true,
+        "fixed": 140,
+        "start": 20,
+        "end": 320
+      },
+      {
+        "horizontal": true,
+        "fixed": 170,
+        "start": 20,
+        "end": 320
+      }
+    ],
+    "page": {
+      "width": 800,
+      "height": 600
+    },
+    "expected": [
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 3,
+        "bbox": {
+          "x": 20,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 3,
+        "bbox": {
+          "x": 120,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 3,
+        "bbox": {
+          "x": 20,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 3,
+        "bbox": {
+          "x": 220,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 3,
+        "bbox": {
+          "x": 120,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 3,
+        "bbox": {
+          "x": 20,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 3,
+        "bbox": {
+          "x": 220,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 3,
+        "bbox": {
+          "x": 120,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 3,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 3,
+        "bbox": {
+          "x": 20,
+          "y": 110,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 3,
+        "bbox": {
+          "x": 220,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 3,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 3,
+        "bbox": {
+          "x": 120,
+          "y": 110,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 4,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 3,
+        "bbox": {
+          "x": 20,
+          "y": 140,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 3,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 3,
+        "bbox": {
+          "x": 220,
+          "y": 110,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 4,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 3,
+        "bbox": {
+          "x": 120,
+          "y": 140,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 4,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 3,
+        "bbox": {
+          "x": 220,
+          "y": 140,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 150
+        }
+      }
+    ]
+  },
+  {
+    "lines": [
+      {
+        "horizontal": false,
+        "fixed": 20,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": false,
+        "fixed": 120,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": false,
+        "fixed": 220,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": false,
+        "fixed": 320,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": true,
+        "fixed": 20,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": true,
+        "fixed": 20,
+        "start": 170.5,
+        "end": 320
+      },
+      {
+        "horizontal": true,
+        "fixed": 50,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": true,
+        "fixed": 50,
+        "start": 170.5,
+        "end": 320
+      },
+      {
+        "horizontal": true,
+        "fixed": 80,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": true,
+        "fixed": 80,
+        "start": 170.5,
+        "end": 320
+      },
+      {
+        "horizontal": true,
+        "fixed": 110,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": true,
+        "fixed": 110,
+        "start": 170.5,
+        "end": 320
+      },
+      {
+        "horizontal": true,
+        "fixed": 140,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": true,
+        "fixed": 140,
+        "start": 170.5,
+        "end": 320
+      },
+      {
+        "horizontal": true,
+        "fixed": 170,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": true,
+        "fixed": 170,
+        "start": 170.5,
+        "end": 320
+      }
+    ],
+    "page": {
+      "width": 800,
+      "height": 600
+    },
+    "expected": [
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 3,
+        "bbox": {
+          "x": 20,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 3,
+        "bbox": {
+          "x": 120,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 3,
+        "bbox": {
+          "x": 20,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 3,
+        "bbox": {
+          "x": 220,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 3,
+        "bbox": {
+          "x": 120,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 3,
+        "bbox": {
+          "x": 20,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 3,
+        "bbox": {
+          "x": 220,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 3,
+        "bbox": {
+          "x": 120,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 3,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 3,
+        "bbox": {
+          "x": 20,
+          "y": 110,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 3,
+        "bbox": {
+          "x": 220,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 3,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 3,
+        "bbox": {
+          "x": 120,
+          "y": 110,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 4,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 3,
+        "bbox": {
+          "x": 20,
+          "y": 140,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 3,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 3,
+        "bbox": {
+          "x": 220,
+          "y": 110,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 4,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 3,
+        "bbox": {
+          "x": 120,
+          "y": 140,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 4,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 3,
+        "bbox": {
+          "x": 220,
+          "y": 140,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 300,
+          "height": 150
+        }
+      }
+    ]
+  },
+  {
+    "lines": [
+      {
+        "horizontal": false,
+        "fixed": 20,
+        "start": 20,
+        "end": 80
+      },
+      {
+        "horizontal": false,
+        "fixed": 120,
+        "start": 20,
+        "end": 80
+      },
+      {
+        "horizontal": false,
+        "fixed": 220,
+        "start": 20,
+        "end": 80
+      },
+      {
+        "horizontal": false,
+        "fixed": 320,
+        "start": 20,
+        "end": 80
+      },
+      {
+        "horizontal": false,
+        "fixed": 420,
+        "start": 20,
+        "end": 80
+      },
+      {
+        "horizontal": true,
+        "fixed": 20,
+        "start": 20,
+        "end": 420
+      },
+      {
+        "horizontal": true,
+        "fixed": 50,
+        "start": 20,
+        "end": 420
+      },
+      {
+        "horizontal": true,
+        "fixed": 80,
+        "start": 20,
+        "end": 420
+      }
+    ],
+    "page": {
+      "width": 800,
+      "height": 600
+    },
+    "expected": [
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 4,
+        "bbox": {
+          "x": 20,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 60
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 4,
+        "bbox": {
+          "x": 120,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 60
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 4,
+        "bbox": {
+          "x": 20,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 60
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 4,
+        "bbox": {
+          "x": 220,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 60
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 4,
+        "bbox": {
+          "x": 120,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 60
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 3,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 4,
+        "bbox": {
+          "x": 320,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 60
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 4,
+        "bbox": {
+          "x": 220,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 60
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 3,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 4,
+        "bbox": {
+          "x": 320,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 60
+        }
+      }
+    ]
+  },
+  {
+    "lines": [
+      {
+        "horizontal": false,
+        "fixed": 20,
+        "start": 20,
+        "end": 80
+      },
+      {
+        "horizontal": false,
+        "fixed": 120,
+        "start": 20,
+        "end": 80
+      },
+      {
+        "horizontal": false,
+        "fixed": 220,
+        "start": 20,
+        "end": 80
+      },
+      {
+        "horizontal": false,
+        "fixed": 320,
+        "start": 20,
+        "end": 80
+      },
+      {
+        "horizontal": false,
+        "fixed": 420,
+        "start": 20,
+        "end": 80
+      },
+      {
+        "horizontal": true,
+        "fixed": 20,
+        "start": 20,
+        "end": 220
+      },
+      {
+        "horizontal": true,
+        "fixed": 20,
+        "start": 220.5,
+        "end": 420
+      },
+      {
+        "horizontal": true,
+        "fixed": 50,
+        "start": 20,
+        "end": 220
+      },
+      {
+        "horizontal": true,
+        "fixed": 50,
+        "start": 220.5,
+        "end": 420
+      },
+      {
+        "horizontal": true,
+        "fixed": 80,
+        "start": 20,
+        "end": 220
+      },
+      {
+        "horizontal": true,
+        "fixed": 80,
+        "start": 220.5,
+        "end": 420
+      }
+    ],
+    "page": {
+      "width": 800,
+      "height": 600
+    },
+    "expected": [
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 4,
+        "bbox": {
+          "x": 20,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 60
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 4,
+        "bbox": {
+          "x": 120,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 60
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 4,
+        "bbox": {
+          "x": 20,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 60
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 4,
+        "bbox": {
+          "x": 220,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 60
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 4,
+        "bbox": {
+          "x": 120,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 60
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 3,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 4,
+        "bbox": {
+          "x": 320,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 60
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 4,
+        "bbox": {
+          "x": 220,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 60
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 3,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 2,
+        "colCount": 4,
+        "bbox": {
+          "x": 320,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 60
+        }
+      }
+    ]
+  },
+  {
+    "lines": [
+      {
+        "horizontal": false,
+        "fixed": 20,
+        "start": 20,
+        "end": 110
+      },
+      {
+        "horizontal": false,
+        "fixed": 120,
+        "start": 20,
+        "end": 110
+      },
+      {
+        "horizontal": false,
+        "fixed": 220,
+        "start": 20,
+        "end": 110
+      },
+      {
+        "horizontal": false,
+        "fixed": 320,
+        "start": 20,
+        "end": 110
+      },
+      {
+        "horizontal": false,
+        "fixed": 420,
+        "start": 20,
+        "end": 110
+      },
+      {
+        "horizontal": true,
+        "fixed": 20,
+        "start": 20,
+        "end": 420
+      },
+      {
+        "horizontal": true,
+        "fixed": 50,
+        "start": 20,
+        "end": 420
+      },
+      {
+        "horizontal": true,
+        "fixed": 80,
+        "start": 20,
+        "end": 420
+      },
+      {
+        "horizontal": true,
+        "fixed": 110,
+        "start": 20,
+        "end": 420
+      }
+    ],
+    "page": {
+      "width": 800,
+      "height": 600
+    },
+    "expected": [
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 4,
+        "bbox": {
+          "x": 20,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 4,
+        "bbox": {
+          "x": 120,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 4,
+        "bbox": {
+          "x": 20,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 4,
+        "bbox": {
+          "x": 220,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 4,
+        "bbox": {
+          "x": 120,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 4,
+        "bbox": {
+          "x": 20,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 3,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 4,
+        "bbox": {
+          "x": 320,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 4,
+        "bbox": {
+          "x": 220,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 4,
+        "bbox": {
+          "x": 120,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 3,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 4,
+        "bbox": {
+          "x": 320,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 4,
+        "bbox": {
+          "x": 220,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 3,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 4,
+        "bbox": {
+          "x": 320,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 90
+        }
+      }
+    ]
+  },
+  {
+    "lines": [
+      {
+        "horizontal": false,
+        "fixed": 20,
+        "start": 20,
+        "end": 110
+      },
+      {
+        "horizontal": false,
+        "fixed": 120,
+        "start": 20,
+        "end": 110
+      },
+      {
+        "horizontal": false,
+        "fixed": 220,
+        "start": 20,
+        "end": 110
+      },
+      {
+        "horizontal": false,
+        "fixed": 320,
+        "start": 20,
+        "end": 110
+      },
+      {
+        "horizontal": false,
+        "fixed": 420,
+        "start": 20,
+        "end": 110
+      },
+      {
+        "horizontal": true,
+        "fixed": 20,
+        "start": 20,
+        "end": 220
+      },
+      {
+        "horizontal": true,
+        "fixed": 20,
+        "start": 220.5,
+        "end": 420
+      },
+      {
+        "horizontal": true,
+        "fixed": 50,
+        "start": 20,
+        "end": 220
+      },
+      {
+        "horizontal": true,
+        "fixed": 50,
+        "start": 220.5,
+        "end": 420
+      },
+      {
+        "horizontal": true,
+        "fixed": 80,
+        "start": 20,
+        "end": 220
+      },
+      {
+        "horizontal": true,
+        "fixed": 80,
+        "start": 220.5,
+        "end": 420
+      },
+      {
+        "horizontal": true,
+        "fixed": 110,
+        "start": 20,
+        "end": 220
+      },
+      {
+        "horizontal": true,
+        "fixed": 110,
+        "start": 220.5,
+        "end": 420
+      }
+    ],
+    "page": {
+      "width": 800,
+      "height": 600
+    },
+    "expected": [
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 4,
+        "bbox": {
+          "x": 20,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 4,
+        "bbox": {
+          "x": 120,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 4,
+        "bbox": {
+          "x": 20,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 4,
+        "bbox": {
+          "x": 220,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 4,
+        "bbox": {
+          "x": 120,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 4,
+        "bbox": {
+          "x": 20,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 3,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 4,
+        "bbox": {
+          "x": 320,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 4,
+        "bbox": {
+          "x": 220,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 4,
+        "bbox": {
+          "x": 120,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 3,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 4,
+        "bbox": {
+          "x": 320,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 4,
+        "bbox": {
+          "x": 220,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 90
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 3,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 3,
+        "colCount": 4,
+        "bbox": {
+          "x": 320,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 90
+        }
+      }
+    ]
+  },
+  {
+    "lines": [
+      {
+        "horizontal": false,
+        "fixed": 20,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": false,
+        "fixed": 120,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": false,
+        "fixed": 220,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": false,
+        "fixed": 320,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": false,
+        "fixed": 420,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": true,
+        "fixed": 20,
+        "start": 20,
+        "end": 420
+      },
+      {
+        "horizontal": true,
+        "fixed": 50,
+        "start": 20,
+        "end": 420
+      },
+      {
+        "horizontal": true,
+        "fixed": 80,
+        "start": 20,
+        "end": 420
+      },
+      {
+        "horizontal": true,
+        "fixed": 110,
+        "start": 20,
+        "end": 420
+      },
+      {
+        "horizontal": true,
+        "fixed": 140,
+        "start": 20,
+        "end": 420
+      },
+      {
+        "horizontal": true,
+        "fixed": 170,
+        "start": 20,
+        "end": 420
+      }
+    ],
+    "page": {
+      "width": 800,
+      "height": 600
+    },
+    "expected": [
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 20,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 120,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 20,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 220,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 120,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 20,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 3,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 320,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 220,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 120,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 3,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 20,
+          "y": 110,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 3,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 320,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 220,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 3,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 120,
+          "y": 110,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 4,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 20,
+          "y": 140,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 3,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 320,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 3,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 220,
+          "y": 110,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 4,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 120,
+          "y": 140,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 3,
+        "colIndex": 3,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 320,
+          "y": 110,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 4,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 220,
+          "y": 140,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 4,
+        "colIndex": 3,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 320,
+          "y": 140,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      }
+    ]
+  },
+  {
+    "lines": [
+      {
+        "horizontal": false,
+        "fixed": 20,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": false,
+        "fixed": 120,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": false,
+        "fixed": 220,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": false,
+        "fixed": 320,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": false,
+        "fixed": 420,
+        "start": 20,
+        "end": 170
+      },
+      {
+        "horizontal": true,
+        "fixed": 20,
+        "start": 20,
+        "end": 220
+      },
+      {
+        "horizontal": true,
+        "fixed": 20,
+        "start": 220.5,
+        "end": 420
+      },
+      {
+        "horizontal": true,
+        "fixed": 50,
+        "start": 20,
+        "end": 220
+      },
+      {
+        "horizontal": true,
+        "fixed": 50,
+        "start": 220.5,
+        "end": 420
+      },
+      {
+        "horizontal": true,
+        "fixed": 80,
+        "start": 20,
+        "end": 220
+      },
+      {
+        "horizontal": true,
+        "fixed": 80,
+        "start": 220.5,
+        "end": 420
+      },
+      {
+        "horizontal": true,
+        "fixed": 110,
+        "start": 20,
+        "end": 220
+      },
+      {
+        "horizontal": true,
+        "fixed": 110,
+        "start": 220.5,
+        "end": 420
+      },
+      {
+        "horizontal": true,
+        "fixed": 140,
+        "start": 20,
+        "end": 220
+      },
+      {
+        "horizontal": true,
+        "fixed": 140,
+        "start": 220.5,
+        "end": 420
+      },
+      {
+        "horizontal": true,
+        "fixed": 170,
+        "start": 20,
+        "end": 220
+      },
+      {
+        "horizontal": true,
+        "fixed": 170,
+        "start": 220.5,
+        "end": 420
+      }
+    ],
+    "page": {
+      "width": 800,
+      "height": 600
+    },
+    "expected": [
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 20,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 120,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 20,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 220,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 120,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 20,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 0,
+        "colIndex": 3,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 320,
+          "y": 20,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 220,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 120,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 3,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 20,
+          "y": 110,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 1,
+        "colIndex": 3,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 320,
+          "y": 50,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 220,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 3,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 120,
+          "y": 110,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 4,
+        "colIndex": 0,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 20,
+          "y": 140,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 2,
+        "colIndex": 3,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 320,
+          "y": 80,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 3,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 220,
+          "y": 110,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 4,
+        "colIndex": 1,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 120,
+          "y": 140,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 3,
+        "colIndex": 3,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 320,
+          "y": 110,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 4,
+        "colIndex": 2,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 220,
+          "y": 140,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      },
+      {
+        "tableId": 0,
+        "rowIndex": 4,
+        "colIndex": 3,
+        "rowSpan": 1,
+        "colSpan": 1,
+        "rowCount": 5,
+        "colCount": 4,
+        "bbox": {
+          "x": 320,
+          "y": 140,
+          "width": 100,
+          "height": 30
+        },
+        "tableBBox": {
+          "x": 20,
+          "y": 20,
+          "width": 400,
+          "height": 150
+        }
+      }
+    ]
+  }
+]

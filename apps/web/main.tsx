@@ -1,5 +1,28 @@
+import {MarkdownBlockers} from "./markdown-blockers.tsx";
+import {ProcessingProgress} from "./processing-progress.tsx";
+import { MarkdownManualDraft } from "./markdown-manual-draft.tsx";
+import {entityIdentity,entityLabel,entitySpanKey} from '../../packages/core/entity-identity.ts';
+import { OcrDiagnostics } from "./image-utilities.tsx";
+import {SupportPanel,installRendererErrorReporter} from "./support.tsx";
+import {ProcessingObservability} from "./processing-observability.tsx";
+import {ReferenceDictionaryFiles} from "./reference-dictionary.tsx";
+import {RestorationBatch} from "./restoration-batch.tsx";
+import {FeedbackPanel} from "./feedback.tsx";
+import {RecoveryDraft,RecentWorkspaces} from "./workspace-recovery.tsx";
+import {NetworkPolicy} from "./network-policy.tsx";
+import { AutomaticVisual } from "./automatic-visual.tsx";
+import { AiCollaboration } from "./ai-collab.tsx";
+import { DocumentConfigurationEditor } from "./document-configuration.tsx";
+import { OfficeFaces } from "./office-faces.tsx";
+import { ImportedPortableDraft } from "./portable-draft.tsx";
+import { ProjectEntities } from "./project-entities.tsx";
+import { ExportOutputs } from "./export-outputs.tsx";
+import { WorkspacePortable, downloadResponse } from "./workspace-portable.tsx";
+import { RestorationFiles } from "./restoration-files.tsx";
+import { PresetManager } from "./presets.tsx";
 import { RevisionHistory } from "./revision-history.tsx";
-import { DocxReview } from "./docx-review.tsx";
+import { PaginatedDocxReview as DocxReview } from "./docx-paginated-review.tsx";
+import {DocumentUnlock} from './document-unlock.tsx';
 import { ConfirmationDialog, useConfirmAction } from "./confirm-action.tsx";
 import { appUrl } from "./urls.ts";
 import React, { useCallback, useEffect, useState, useRef } from "react";
@@ -14,6 +37,7 @@ import { ReviewTools, ReplacementEditor } from "./review-tools.tsx";
 import { TextHighlights, typeColor } from "./text-highlights.tsx";
 import { EntityGroups } from "./entity-groups.tsx";
 import { MappingPicker, MappingList, RestoreDialog } from "./mappings.tsx";
+import {MappingExport} from './mapping-export.tsx';
 import { BatchReview } from "./batch-review.tsx";
 import { PageEditor, emptyPageReview } from "./page-review.tsx";
 import { OrganizationDialog, ProjectMembers, AuditPanel } from "./members.tsx";
@@ -34,10 +58,13 @@ const messages: Record<string, string> = {
   PAGE_CONVERSION_REQUIRED: "请先选择副本转换方式并保存复核",
   PAGE_POSITION_MISSING: "部分敏感文字无法可靠定位到页面，请检查原件或重新解析",
   PAGE_REPLACEMENT_UNSUPPORTED: "图片型副本只支持完整清除选区，请取消假名、自定义替换或部分遮盖",
+  POLICY_TARGET_NOT_FOUND: "原值选择已失效，请重新选择",
+  POLICY_VALUE_CONFLICT: "相同原值存在不同策略，请先统一",
+  AMBIGUOUS_MAPPING: "相同原值对应多个实体，请逐项选择假名",
   PIXEL_VERIFICATION_FAILED: "副本像素或隐藏内容核验失败，已阻止下载",
   OUTPUT_SIZE_LIMIT: "生成的副本超过 50 MB，请拆分材料",
   RATE_LIMITED: "请求过于频繁，请稍后重试",
-  INVALID_REPLACEMENT: "遮盖必须隐藏至少一个字，替换文字不能包含完整原值或特殊标记符号",
+  INVALID_REPLACEMENT: "遮盖必须隐藏至少一个字，替换文字不能包含完整原值、空字符或无效编码",
   INVALID_SEARCH: "查找文字无效，请输入不超过 200 字的内容",
   KNOWN_ENTITY_VALUE_LIMIT: "单个已知原值超过 2,000 个字符，请缩小标记范围后再检查",
   KNOWN_ENTITY_SCAN_LIMIT: "材料过长或已知原值过多，无法完成本次漏标检查；请拆分材料后重试",
@@ -63,6 +90,16 @@ const messages: Record<string, string> = {
   POLICY_CHANGED: "项目词表已更新，请重新识别后复核",
   DUPLICATE_DICTIONARY_ENTRY: "词表中有重复项目，请检查",
   INVALID_PDF: "PDF 文件损坏或无法读取，请检查原件",
+  ENCRYPTED_OFFICE: "文件已加密，请输入文件密码解锁。",
+  RECOVERY_OUTDATED: "草稿所属材料版本已变化，请使用当前材料重新复核。",
+  RECOVERY_CONFLICT: "自动草稿已被其他窗口更新，请重新打开材料。",
+  DOCUMENT_PASSWORD_INCORRECT: "文件密码不正确，请重新输入。",
+  DOCUMENT_INTEGRITY_MISMATCH: "加密文件完整性核验失败，请核对原文件。",
+  DOCUMENT_ENCRYPTION_UNSUPPORTED: "此文件加密方式暂不支持。",
+  DOCUMENT_PASSWORD_INVALID: "文件密码不正确，请重新输入。",
+  DOCUMENT_UNLOCK_VERIFICATION_FAILED: "解锁后的文件未通过完整性核验。",
+  DOCUMENT_UNLOCK_UNSUPPORTED: "此文件加密方式暂不支持。",
+  DOCUMENT_LEGACY_CONVERSION_REQUIRED: "旧版 Word／Excel 文件需要先转换为 docx／xlsx。",
   ENCRYPTED_PDF: "PDF 已加密，请先使用有权访问的解密副本",
   PAGE_LIMIT: "PDF 最多支持 300 页，请拆分文件",
   INVALID_PDF_PAGE: "PDF 页面无法读取，已停止处理",
@@ -90,9 +127,25 @@ const messages: Record<string, string> = {
   INVALID_ENCODING: "文本编码无法读取，请转换为 UTF-8 后导入",
   INVALID_CSV: "CSV 行列或引号格式不正确，请检查文件",
   CELL_LIMIT: "文件单元格数量超过处理限制，请拆分文件",
+  MARKDOWN_RECOGNITION_REQUIRED: "此 Markdown 使用旧版识别坐标，请重新识别后复核。",
+  MARKDOWN_SIDECAR_REQUIRED: "Markdown 源码映射缺失，请重新识别后复核。",
+  MARKDOWN_BLOCKERS_UNREVIEWED: "请在“Markdown 图片与 HTML 处理”确认嵌入内容后再导出。",
+  MARKDOWN_BLOCKER_INVALID: "嵌入内容已变化，请重新打开材料后确认。",
+  MARKDOWN_CONTENT_MISMATCH: "Markdown 处理结果与复核内容不一致，已阻止导出，请重新核对。",
+  MARKDOWN_ASSET_RESIDUE: "Markdown 仍含未处理嵌入内容，已阻止导出。",
+  MARKDOWN_EXPORT_FAILED: "Markdown 无法安全回写，请检查复核范围后重试。",
+  MARKDOWN_DRAFT_CONFLICT: "手工稿已被其他窗口更新，请重新打开。",
+  MARKDOWN_DRAFT_OUTDATED: "手工稿所属材料版本已变化，请重新载入当前材料。",
+  SIGNATURE_MODEL_REQUIRED: "签名识别资源未配置，请联系管理员。",
+  SIGNATURE_MODEL_MISMATCH: "签名识别资源校验失败，请联系管理员。",
+  SIGNATURE_OUTPUT_INVALID: "签名候选无法可靠定位，请人工检查。",
+  PAGE_REVIEW_STORAGE_INVALID: "页面复核记录校验失败，请重新打开材料后核对。",
+  IMAGE_SEARCH_INVALID: "请输入有效的图像查找文字，空白不能作为查询。",
+  PROCESSING_EVENT_WRITE_FAILED: "处理进度保存失败，请重新打开材料后重试。",
   UNSUPPORTED_MARKDOWN_OBJECT: "Markdown 包含图片或 HTML，请移除这些内容后重新导入",
   CROSS_CELL_MARK: "标记不能跨越单元格，请分别选择每个单元格内的内容",
   CROSS_OBJECT_MARK: "标记不能跨越段落、单元格或属性，请分开选择",
+  OFFICE_XML_VALUE_INVALID: "替换文字含此 Office 格式无法保存的字符，请调整文字后重试。",
   INVALID_OFFICE: "Office 文件损坏、加密或结构不完整，请检查后重新上传",
   ZIP_LIMIT: "文件解压后超过限制：单项 50 MB、合计 256 MB、最多 10,000 项",
   XML_LIMIT: "文件结构过于复杂，无法安全处理",
@@ -107,6 +160,13 @@ const messages: Record<string, string> = {
   COVERAGE_INCOMPLETE: "文件存在未处理内容或定位信息缺失，暂不能导出",
   SNAPSHOT_MISMATCH: "复核记录与当前内容不一致，暂不能导出，请重新打开材料核对",
   EXPORT_POLICY_FAILED: "导出校验失败，请重试或联系管理员",
+  VISUAL_FONT_REQUIRED: '文字遮盖所需字体尚未配置，请联系管理员',
+  VISUAL_FONT_MISMATCH: '文字遮盖字体完整性核验失败，已停止处理',
+  VISUAL_FONT_GLYPH_REQUIRED: '遮盖标签含字体不支持的字，请调整替换文字',
+  VISUAL_TEXT_FIT_FAILED: '替换文字无法完整放入所选区域，请缩短文字或扩大区域',
+  VISUAL_CANDIDATE_LIMIT: '候选区域过多，请分批复核材料',
+  MAPPING_NOT_FOUND: '所选材料没有已确认的假名，请先复核并保存假名替换',
+  CONFIG_MODE_CONFLICT: '当前替换模式与逐类规则不一致，请核对设置',
 };
 async function apiRequest<T>(
   path: string,
@@ -123,7 +183,7 @@ async function apiRequest<T>(
   const data = await r.json();
   signal?.throwIfAborted();
   if (r.status === 401) window.dispatchEvent(new Event("session-expired"));
-  if (!r.ok) throw new Error(messages[data.error] ?? data.error);
+  if (!r.ok) throw Object.assign(new Error(messages[data.error] ?? data.error), { code: data.error, status: r.status });
   return data;
 }
 type SessionControls = { validateSession: () => Promise<boolean>; rememberSession: (username: string | null) => void; sessionNotice: string };
@@ -173,7 +233,9 @@ function SessionWorkspace() {
 function App({ validateSession, rememberSession, sessionNotice }: SessionControls) {
   const confirmAction = useConfirmAction();
   const [requests] = useState(() => new AbortController());
+  const [collaborationJob] = useState(()=>{const value=new URLSearchParams(window.location.search).get('collab');return value&&/^lbj_[a-f0-9]{32}$/u.test(value)?value:undefined;});
   useEffect(() => () => requests.abort(), [requests]);
+  useEffect(()=>installRendererErrorReporter(),[]);
   function api<T>(path: string, method = "GET", body?: unknown): Promise<T> {
     return apiRequest<T>(path, method, body, requests.signal);
   }
@@ -193,6 +255,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
     [selection, setSelection] = useState<[number, number] | null>(null),
     [requestId, setRequestId] = useState(crypto.randomUUID());
   const [markPage, setMarkPage] = useState(0);
+  const [feedbackOpen,setFeedbackOpen]=useState(false);
   const [pageReview, setPageReview] = useState<PageReview>(emptyPageReview);
   const [undoStack, setUndoStack] = useState<Mark[][]>([]), [redoStack, setRedoStack] = useState<Mark[][]>([]);
   const [preview, setPreview] = useState<string | null>(null);
@@ -221,6 +284,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
   useEffect(() => { setReviewTool("marks"); }, [doc?.id, doc?.revision]);
   const busyRef = useRef(false), dirtyRef = useRef(false);
   const currentDoc = useRef(doc);
+  const visualRequests = useRef(new Map<string,string>());
   const allowed = (permission: Permission) => (projects.find(p => p.id === project)?.permissions ?? []).includes(permission);
   const docAllowed = (permission: Permission) => (doc?.permissions ?? []).includes(permission);
   const canReview = docAllowed("review");
@@ -293,17 +357,29 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
     setPageReview(d.pageReview ?? emptyPageReview());
     setUndoStack([]); setRedoStack([]); setPreview(null);
     setImporting(false);
+    void api(`/projects/${d.project_id}/workspace/recent`,"POST",{documentId:d.id}).catch(()=>{});
   }
   useEffect(() => {
     api<{ username: string | null }>("/session")
-      .then((u) => {
+      .then(async (u) => {
         rememberSession(u.username);
         setUser(u.username);
-        if (u.username) void refresh().catch((e) => setError(e.message));
+        if (u.username) await refresh().catch((e) => setError(e.message));
       })
       .catch(() => {})
       .finally(() => setReady(true));
   }, []);
+  useEffect(()=>{
+    if(!ready||!user||!collaborationJob)return;
+    let active=true;
+    void (async()=>{
+      const task=await api<{projectId:string}>(`/ai-collab/tasks/${collaborationJob}`);
+      const target=await api<{id:string;name:string;permissions:Permission[]}>(`/projects/${task.projectId}`);
+      if(!active)return;
+      setProjects(previous=>previous.some(p=>p.id===target.id)?previous:[target,...previous]);setProject(target.id);
+    })().catch(e=>{if(active)setError((e as Error).message);});
+    return()=>{active=false;};
+  },[ready,user,collaborationJob]);
   useEffect(() => {
     let active = true;
     setActiveTool(null);
@@ -370,7 +446,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
   }
   function update(next: Mark[], fromServer = false) {
     if (!canReview || (busyRef.current && !fromServer) || conflict || doc?.state !== "review" || currentDoc.current?.id !== doc.id) return;
-    // ponytail: 10 in-memory edit steps, sharing unchanged mark objects; no persistence of drafts.
+    // ponytail: 10 in-memory edit steps, sharing unchanged mark objects; encrypted recovery drafts are stored separately.
     setUndoStack(stack => [...stack.slice(-9), marks]); setRedoStack([]); setPreview(null);
     dirtyRef.current = true;
     setMarks(next);
@@ -389,6 +465,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
     const offset = currentDoc.current?.textOffset ?? 0;
     setSelection(t.selectionStart<t.selectionEnd?[t.selectionStart + offset,t.selectionEnd + offset]:null);
   }
+  const feedbackDocument=doc?{id:doc.id,revision:doc.revision,name:doc.name??"文本材料",text:doc.text,textOffset:doc.textOffset??0}:undefined;
   const pending = marks.filter((m) => m.decision === "pending").length;
   const pageCount = Math.max(1, Math.ceil(marks.length / 50));
   const page = Math.min(markPage, pageCount - 1);
@@ -524,6 +601,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
                 >
                   核验并下载 {outputFormat.toUpperCase()}
                 </button>
+                <ExportOutputs doc={doc} api={api} run={run} disabled={!docAllowed("export") || dirty || busy || conflict} />
               </section>
   ) : null;
   return (
@@ -576,6 +654,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
               void run(async () => {
                 const p = await api<{ id: string }>("/projects", "POST", {
                   name,
+                  applyDefaultPresets:true,
                 });
                 await refresh();
                 setProject(p.id);
@@ -683,8 +762,21 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
           {!doc && !importing ? (
             <>
             <div className="project-tools">
+            <button className="secondary" disabled={busy} onClick={()=>setFeedbackOpen(v=>!v)}>反馈与个人规则</button>{feedbackOpen&&<FeedbackPanel key={`feedback:${project}`} project={project||undefined} document={feedbackDocument} api={api} run={run} />}
+            {project && allowed("view_original") && allowed("export") && <ProcessingObservability project={project} documents={docs.map((d,i)=>({id:d.id,revision:d.revision??0,name:d.name??`文本 ${i+1}`}))} loadDocuments={async()=>{const all:typeof docs=[];for(let offset=0;;offset+=100){const page=await api<typeof docs>(`/projects/${project}/documents?limit=100&offset=${offset}`);all.push(...page);if(page.length<100)break;}return all.map((d,i)=>({id:d.id,revision:d.revision??0,name:d.name??`文本 ${i+1}`}));}} api={api} run={run} onChanged={async()=>{await refreshDocs();}} />}
+            {project && feedbackOpen && <ReferenceDictionaryFiles project={project} api={api} run={run} />}
+            <details><summary>帮助与产品资料</summary><SupportPanel run={run} api={api}/><OcrDiagnostics run={async operation=>{if(operation==='health')return api('/ocr/health');const response=await fetch(appUrl('/api/ocr/diagnostic'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({reason:'用户请求 OCR 检查'})});if(!response.ok){await downloadResponse(response,'OCR诊断.json');return;}const result=await response.clone().json();await downloadResponse(response,'OCR诊断.json');return result;}} /></details>
+            <RecentWorkspaces api={api} disabled={busy||dirty} onOpen={async(projectId,documentId)=>{await run(async()=>{const p=await api<typeof projects[number]>(`/projects/${projectId}`);setProjects(v=>v.some(x=>x.id===p.id)?v:[...v,p]);setProject(projectId);if(documentId)await openDoc(documentId);else setDoc(null);});}} />
+            {project && <NetworkPolicy projectId={project} api={api} disabled={busy||!allowed("manage_models")} />}
+            {project && allowed("view_original") && <AiCollaboration key={`collaboration:${project}`} project={project} focusJob={collaborationJob} documents={docs} api={api} run={run} onOpen={id => void run(() => openDoc(id))} />}
+            {project && allowed("view_original") && allowed("review") && <ProjectEntities key={`entities:${project}`} project={project} api={api} run={run} changed={() => refreshDocs()} />}
+            <WorkspacePortable key={`portable:${project}`} projectId={project || null} canExport={allowed("export") && allowed("view_original") && allowed("view_mapping")} canApply={allowed("manage_dictionary")&&allowed("review")&&!dirty} onApplied={async()=>{await refresh();setDoc(null);await refreshDocs();}} onImported={async id => { await refresh(); setProject(id); setDoc(null); }} />
+            {project && <RestorationBatch key={`batch-restore:${project}`} projectId={project} enabled={allowed("restore")} />}
+            {project && <RestorationFiles key={`restoration:${project}`} projectId={project} enabled={allowed("restore")} />}
+            <PresetManager key={`presets:${project}`} project={project || undefined} permissions={projects.find(p => p.id === project)?.permissions} run={run} api={api} onPending={setDictionaryDirty} onApplied={async () => { await refreshDocs(); }} />
             {project && allowed("manage_dictionary") && <Dictionary key={project} project={project} signal={requests.signal} run={run} changed={() => refreshDocs()} onPending={setDictionaryDirty} active={activeTool === "dictionary"} activate={() => setActiveTool("dictionary")} />}
             {project && allowed("view_mapping") && <MappingList key={`mapping:${project}`} project={project} run={run} api={api} active={activeTool === "mapping"} activate={() => setActiveTool("mapping")} />}
+            {project && <MappingExport key={`mapping-export:${project}`} projectId={project} enabled={allowed('view_original')&&allowed('view_mapping')&&allowed('export')}/>}
             {project && allowed("review") && <BatchReview key={`batch:${project}`} project={project} docs={docs} run={run} api={api} changed={() => refreshDocs()} active={activeTool === "batch"} activate={() => setActiveTool("batch")} />}
             {project && allowed("manage_members") && <ProjectMembers key={`members:${project}`} project={project} username={user} run={run} api={api} onPending={setMemberPending} active={activeTool === "members"} activate={() => setActiveTool("members")} />}
             {project && allowed("manage_members") && <AuditPanel key={`audit:${project}`} project={project} run={run} api={api} active={activeTool === "audit"} activate={() => setActiveTool("audit")} />}
@@ -773,8 +865,13 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
                 {doc.canRunNer && canReview && docAllowed("manage_models") && <button className="secondary" disabled={dirty || conflict || ["queued", "running"].includes(doc.job?.status ?? "")} onClick={async () => {
                   if (await confirmAction("识别人名、机构和地址候选，并创建新复核版本。原有处理决定不会自动沿用，确定继续？")) void run(async () => { await api(`/documents/${doc.id}/recognize`, "POST", { revision: doc.revision, ner: true }); await openDoc(doc.id); });
                 }}>识别实体候选</button>}
-                {doc.layers.ner === "completed" && <span className="muted">实体候选已识别，请结合上下文复核。</span>}
+                {doc.visualDiagnostics&&!doc.visualDiagnostics.complete&&<p role="alert" className="error">部分页面的自动视觉检测未完成，请人工核对人脸、印章和签名区域后再保存复核。受影响页：{doc.visualDiagnostics.pages.filter(p=>p.warnings.length).map(p=>p.page+1).join("、")}</p>}
+              {doc.layers.ner === "completed" && <span className="muted">实体候选已识别，请结合上下文复核。</span>}
               </div>
+              {canReview && doc.job?.status==="failed" && ["ENCRYPTED_PDF","ENCRYPTED_OFFICE"].includes(doc.job.error_code??"") && <DocumentUnlock id={doc.id} revision={doc.revision} api={api} disabled={dirty||conflict} onDone={()=>openDoc(doc.id)} />}
+              <button className="secondary" disabled={busy} onClick={()=>setFeedbackOpen(v=>!v)}>反馈与个人规则</button>{feedbackOpen&&<FeedbackPanel key={`feedback-doc:${doc.id}`} project={doc.project_id} document={feedbackDocument} api={api} run={run}/>}
+              {canReview && doc.state==="review" && <RecoveryDraft key={`recovery:${doc.id}:${doc.revision}`} doc={doc} marks={marks} pageReview={pageReview} dirty={dirty} disabled={busy||conflict} api={api} onRestore={(next,pages)=>{if(pages)setPageReview(pages);update(next,true);}} />}
+              {doc.job?.canObserveEvents === true && docAllowed("view_original") && <ProcessingProgress key={`progress:${doc.job.id}`} job={doc.job} api={api} />}
               {doc.job && (
                 <p className="muted" role="status">
                   任务：
@@ -845,13 +942,21 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
                     将选中文字加入标记
                   </button>
                   </div>
+                  <div className="material-tools">
+                    {docAllowed("view_original") && docAllowed("export") && <MarkdownManualDraft key={`${doc.id}:${doc.revision}`} document={doc} api={api} run={run} />}
+                    {doc.format === "md" && doc.parseVersion === 2 && doc.state === "review" && docAllowed("view_original") && docAllowed("review") && !dirty && !conflict && <MarkdownBlockers key={`blockers:${doc.id}`} document={doc} api={api} run={run} onChanged={() => openDoc(doc.id)} />}
+                    <DocumentConfigurationEditor key={`configuration:${doc.id}:${doc.revision}`} doc={doc} api={api} run={run} onChanged={() => openDoc(doc.id)} disabled={!canReview || dirty || conflict || ["queued","running"].includes(doc.job?.status ?? "")} />
+                    <AutomaticVisual key={`automatic-visual:${doc.id}:${doc.revision}`} doc={doc} value={pageReview} disabled={!canReview || conflict || doc.state !== "review"} change={value => { setPageReview(value); setDirty(true); }} />
+                    <OfficeFaces key={`office-faces:${doc.id}:${doc.revision}`} doc={doc} value={pageReview} api={api} run={run} disabled={!canReview || conflict || doc.state !== "review"} change={value => { setPageReview(value); setDirty(true); }} />
+                    <ImportedPortableDraft key={`portable-draft:${doc.id}:${doc.revision}`} documentId={doc.id} revision={doc.revision} enabled={doc.state === "review" && docAllowed("review") && docAllowed("view_original") && docAllowed("view_mapping") && !dirty && !conflict} onChanged={() => openDoc(doc.id)} />
+                  </div>
                   <div className="document-search" hidden={reviewTool !== "search"}>
                     <ReviewTools key={`search:${doc.id}:${doc.revision}`} surface="search" doc={doc} marks={marks} pageReview={pageReview} update={update} run={run} api={api} canReview={canReview} canUseAliases={docAllowed("view_mapping")} mode={reviewTool === "search" ? "search" : "marks"} showMarks={() => setReviewTool("marks")} disabled={busy || conflict || doc.state !== "review"} locate={span => loadText(Math.max(0, span.start - 256), span)} />
                   </div>
                   {previewMode && !hasPages && <section className="document-output" aria-label="文本处理预览"><p className="muted">当前原文段落的处理结果；待确认项仍显示原值。实际下载还需保存复核并通过文件核验。</p>{preview !== null ? <textarea readOnly aria-label="处理预览" value={preview} /> : <p role="status" className="empty">复核已修改，请刷新处理预览。</p>}</section>}
                   <div hidden={previewMode && !hasPages}>
                   <p className="muted">选中文字后，可补充自定义标记。</p>
-                  {hasPages && <PageEditor key={`${doc.id}:${doc.revision}`} doc={doc} value={pageReview} marks={marks} run={run} ocr={{ disabled: dirty, load: (page, revision) => api(`/documents/${doc.id}/pages/${page}/ocr-text?revision=${revision}`), save: (page, input) => api(`/documents/${doc.id}/pages/${page}/ocr-text`, "PUT", input), onSaved: async () => { if (currentDoc.current?.id !== doc.id) return; await openDoc(doc.id); setNotice("识别文字已更新，请重新确认敏感标记并保存复核。"); } }} detectVisual={(page, detectors) => api(`/documents/${doc.id}/pages/${page}/visual-candidates`, "POST", { revision: doc.revision, detectors })} previewPage={async index => {
+                  {hasPages && <PageEditor imageSearch={(query,pageIndex)=>api(`/documents/${doc.id}/image-search`,"POST",{revision:doc.revision,query,...pageIndex!==undefined?{pageIndex}:{}})} key={`${doc.id}:${doc.revision}`} doc={doc} value={pageReview} marks={marks} run={run} ocr={{ disabled: dirty, load: (page, revision) => api(`/documents/${doc.id}/pages/${page}/ocr-text?revision=${revision}`), save: (page, input) => api(`/documents/${doc.id}/pages/${page}/ocr-text`, "PUT", input), onSaved: async () => { if (currentDoc.current?.id !== doc.id) return; await openDoc(doc.id); setNotice("识别文字已更新，请重新确认敏感标记并保存复核。"); } }} imageUtility={async(page,operation,payload)=>{const route=operation==='clear-cache'?`/documents/${doc.id}/ocr-cache/clear`:`/documents/${doc.id}/pages/${page}/${({region:'ocr-region',rerun:'ocr-rerun',labels:'labels',annotations:'annotations'} as const)[operation]}`;if(operation==='labels'||operation==='annotations'){const response=await fetch(appUrl('/api'+route),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});await downloadResponse(response,`${operation==='labels'?'训练标注':'图像标注'}-${page+1}.json`);return {};}return api(route,'POST',payload);}} pauseVisualSeals={async page=>{const requestId=visualRequests.current.get(`${doc.id}:${page}`);if(!requestId)throw new Error('VISUAL_REQUEST_NOT_ACTIVE');await api(`/documents/${doc.id}/visual-requests/${requestId}/pause-seals`,'POST',{});}} detectVisual={async(page, detectors)=>{const key=`${doc.id}:${page}`,requestId=crypto.randomUUID();visualRequests.current.set(key,requestId);try{return await api(`/documents/${doc.id}/pages/${page}/visual-candidates`,'POST',{revision:doc.revision,detectors,requestId});}finally{if(visualRequests.current.get(key)===requestId)visualRequests.current.delete(key);}}} previewPage={async index => {
                     const response = await fetch(appUrl(`/api/documents/${doc.id}/pages/${index}/preview`), { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ revision: doc.revision, marks, pageReview }), signal: requests.signal });
                     requests.signal.throwIfAborted();
                     if (response.status === 401) window.dispatchEvent(new Event("session-expired"));
@@ -932,7 +1037,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
                             {m.start >= (doc.textOffset ?? 0) && m.end <= (doc.textOffset ?? 0) + doc.text.length ? doc.text.slice(m.start - (doc.textOffset ?? 0), Math.min(m.end, m.start + 120) - (doc.textOffset ?? 0)) : doc.markTexts?.[`${m.start}:${m.end}`] ?? "定位原文"}
                           </button>
                           <small>
-                            {m.kind} · {m.start}-{m.end}
+                            {entityLabel(m)} · {m.start}-{m.end}
                             {m.sources?.length ? ` · ${[...new Set(m.sources.map(s => ({ rules: "规则匹配", ner: "实体识别", ai: "语义识别", manual: "人工标记" })[s.layer]))].join("、")}` : ""}
                             {m.sources?.some(s => s.code === "project-whitelist") ? " · 白名单建议" : ""}
                             {doc.format === "csv" && (() => { const a = doc.anchors?.find(a => a.start <= m.start && a.end >= m.end); return a ? ` · 第 ${a.row} 行 / 第 ${a.column} 列` : ""; })()}
@@ -963,8 +1068,8 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
                             <option value="ignore">保留原值</option>
                           </select>
                         </label>
-                        <label>信息类型<select aria-label={`标记 ${i + 1} 信息类型`} disabled={!canReview || conflict || doc.state !== "review"} value={m.kind} onChange={e => update(marks.map((v, j) => j === i ? { ...v, kind: e.target.value as Mark["kind"], replacement: undefined, sources: [{ layer: "manual", code: "human-mark" }] } : v))}>{markSchema.shape.kind.options.map(k => <option key={k}>{k}</option>)}</select></label>
-                        {m.decision === "redact" && (!(isPaged || doc.anchors?.some(a => a.object === "image-text" && a.start <= m.start && a.end >= m.end)) ? <fieldset disabled={!canReview || conflict || doc.state !== "review"}><ReplacementEditor mark={m} index={i} change={replacement => update(marks.map((v, j) => j === i ? { ...v, replacement } : v))} />{docAllowed("view_mapping") && <MappingPicker key={`${doc.id}:${doc.revision}:${m.start}:${m.end}:${m.kind}`} doc={doc} mark={m} run={run} api={api} assigned={replacement => update(marks.map((v, j) => j === i ? { ...v, replacement } : v), true)} />}</fieldset> : <p className="muted">清除对应文字的图像像素{m.replacement && m.replacement.mode !== "type" && <button disabled={!canReview} className="quiet" onClick={() => update(marks.map((v, j) => j === i ? { ...v, replacement: undefined } : v))}>改为完整清除</button>}</p>)}
+                        <label>信息类型<select aria-label={`标记 ${i + 1} 信息类型`} disabled={!canReview || conflict || doc.state !== "review"} value={entityIdentity(m)} onChange={e => update(marks.map((v, j) => j === i ? { ...v, kind: e.target.value as Mark["kind"], rawEntityType:undefined,replacement: undefined, rasterReplacement:undefined,replacementOrigin: undefined, sources: [{ layer: "manual", code: "human-mark" }] } : v))}>{m.rawEntityType!==undefined&&<option value={entityIdentity(m)}>{entityLabel(m)}</option>}{markSchema.shape.kind.options.map(k => <option key={k}>{k}</option>)}</select></label>{m.kind==="自定义"&&<label>自定义类型名称<input value={m.rawEntityType??""} placeholder="留空使用通用自定义类型" disabled={!canReview||conflict||doc.state!=="review"} onChange={e=>update(marks.map((v,j)=>j===i?{...v,rawEntityType:e.target.value||undefined,replacement:undefined,rasterReplacement:undefined,replacementOrigin:undefined,sources:[{layer:"manual",code:"human-mark"}]}:v))}/></label>}
+                        {m.decision === "redact" && <fieldset disabled={!canReview || conflict || doc.state !== "review"}><ReplacementEditor mark={m} index={i} change={replacement => update(marks.map((v, j) => j === i ? { ...v, replacement, rasterReplacement:undefined,replacementOrigin: "manual" } : v))} />{docAllowed("view_mapping") && <MappingPicker key={`${doc.id}:${doc.revision}:${entitySpanKey(m)}`} doc={doc} mark={m} run={run} api={api} assigned={replacement => update(marks.map((v, j) => j === i ? { ...v, replacement, rasterReplacement:undefined,replacementOrigin: "manual" } : v), true)} />}</fieldset>}
                         <button
                           className="quiet"
                           disabled={!canReview || conflict || doc.state !== "review"}

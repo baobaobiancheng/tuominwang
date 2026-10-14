@@ -44,8 +44,9 @@ export async function createNer() {
     return { start, end };
   }
   return { ...bundle, vocab, logits, close: () => session.release(),
-    async detect(text: string, anchors: Anchor[] = []) {
+    async detect(text: string, anchors: Anchor[] = [], options:{onProgress?:(event:{processedTextEnd:number;totalTextLength:number;matches:Mark[]})=>void|Promise<void>}={}) {
       if (text.length > NER_TEXT_MAX_CHARS) throw new Error("NER_TEXT_LIMIT");
+      const published=new Set<string>();
       const marks: Mark[] = [], kinds: Record<number, Mark["kind"]> = { 2: "姓名", 3: "地址", 4: "机构" };
       const spans = anchors.length ? anchors : [{ start: 0, end: text.length }];
       for (const span of spans) {
@@ -61,6 +62,7 @@ export async function createNer() {
               break;
             }
           }
+          if(options.onProgress){const processedTextEnd=offset+126>=tokens.length?span.end:span.start+tokens[offset+94].start,matches=mergeCandidates(text,marks.filter(m=>m.end<=processedTextEnd&&!published.has(`${m.start}:${m.end}:${m.kind}`)));for(const m of matches)published.add(`${m.start}:${m.end}:${m.kind}`);await options.onProgress({processedTextEnd,totalTextLength:text.length,matches});}
           if (offset + 126 >= tokens.length) break;
         }
       }

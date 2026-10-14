@@ -15,6 +15,8 @@ test("stable mappings bind exact source, type, immutable id/version and token; s
   expect(() => validateMappingMarks(text, marks, [one, two])).not.toThrow();
   expect(redact(text, marks)).toBe("【机构_000001】与【机构_000002】");
   expect(restoreText(redact(text, marks), [one, two], true, true)).toBe(text);
+  expect(restoreText('说明【重要】 '+one.token,[one],true,true)).toBe('说明【重要】 '+one.value);
+  expect(()=>restoreText('说明【重要】 【未知_000099】 '+one.token,[one],true,true)).toThrow('UNKNOWN_ALIAS');
   expect(() => validateMappingMarks(text, marks, [one])).toThrow("MAPPING_MISMATCH");
   expect(() => validateMappingMarks(text, [{ ...marks[0], kind: "姓名" }], [one])).toThrow("MAPPING_MISMATCH");
   expect(() => validateMappingMarks("丙丁公司", [marks[0]], [one])).toThrow("MAPPING_MISMATCH");
@@ -31,4 +33,12 @@ test("new identifier kinds use unchanged v1 sensitive-item aliases and bind the 
   expect(() => validateMappingMarks(text, [mark], [mapping])).not.toThrow();
   expect(restoreText(redact(text, [mark]), [mapping], true, true)).toBe(text);
   expect(() => validateMappingMarks(text, [{ ...mark, kind: "银行账号" }], [mapping])).toThrow("MAPPING_MISMATCH");
+});
+
+import {largePlainMappings} from './restoration-large-fixture.ts';
+test('restores the full100000 diverse205-character valid aliases without native RegExp compilation, preserving gates and one pass',()=>{
+ const{mappings:values,lastToken}=largePlainMappings(),mappings:Mapping[]=Object.entries(values).map(([token,value],i)=>({id:String(i),token,value,version:1,kind:'自定义'}));
+ expect(restoreText(lastToken,mappings,true,true)).toBe('合成客户100000');expect(()=>restoreText(lastToken,mappings,false,true)).toThrow('MAPPING_ACCESS_DENIED');
+ const one:Mapping={id:'a',token:'A',value:'AB',version:1,kind:'自定义'},two:Mapping={id:'b',token:'AB',value:'最长',version:1,kind:'自定义'};
+ expect(restoreText('AB A',[one,two],true,true)).toBe('最长 AB');
 });

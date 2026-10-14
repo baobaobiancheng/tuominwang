@@ -1,0 +1,69 @@
+{
+  "id": "REFERENCE-CONTEXT-ITER024",
+  "source": "lawbot0.5.9 read-only static closures, independently authored runtime helpers",
+  "licensedRuntime": "R0",
+  "sourceHashes": {
+    ".data/research/lawbot-2026-10-13/readable/main.js": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+    ".data/research/lawbot-2026-10-13/readable/renderer.js": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+    ".data/research/lawbot-2026-10-14/deep-processing/D9V2C_Ir.readable.js": "a9ec44eada3b0fb4d9ef17eeed078db2d1d237fa0200325c5a9c0d42ce8fea8d"
+  },
+  "files": {
+    "packages/core/reference-table.ts": "1b24bcccbc1134c0b8163b55640b7537abf8e86411094567b2c610f11e09d733",
+    "packages/core/reference-visual-table.ts": "25f2ecfb0d6117afcc2d6657e521c54e52a4cc8a671ba29595565fbce8061b8a",
+    "packages/core/reference-vector-table.ts": "89bf0685493a40feceda72dadef2d5e4908422bd33be28f47223374af2ff890b",
+    "packages/core/reference-party.ts": "5234da81ec08c99debd7a460261b60cfe3367dcb252302071992707bfd305150",
+    "packages/core/reference-fragment.ts": "8e07651fafba6744197b8835b6ff35a202a77644c16800a9c1dad72562b66f22",
+    "packages/core/reference-detected-mask.ts": "7311374ba2b03983105cf4deb72e8e5395e49756fdb81141e198bbbfb0e347b0",
+    "packages/core/reference/table-rule-data.json": "30bb8b9f7f3e4c8462e82d4edb60c1c7a2b42e3d4c1076f1b0a5a1ea3a246b42",
+    "packages/core/reference/fragment-rule-data.json": "3ba1a06438e07d2affc7f4368e0effdf83bdf340d36acdbf07f8757d6f3cb614",
+    "packages/adapters/reference-table.ts": "d3ad5d920bcae619c9b8c869186beb3010a5394f50fe4b9345cd88fb3953841d",
+    "packages/adapters/reference-visual-table.ts": "7539bbc5ce6aead94e1847e33fe7e2538e6e777adc3aa1cd603afb13ddc48201",
+    "packages/adapters/reference-pdf-table.ts": "e92d7d94d4e9ab5b2844902dcca42b0e78e3e4fa5195efcd3d3a495cde295e4f",
+    "packages/adapters/recognition-context.ts": "f2ca4394181160258138b5113d78bfe6ae266a44695bfe4118433932e34bcfc6",
+    "packages/core/profile-recognition.ts": "5781d71910f96ccd56154aa8a2d9db51f9126d3231deda7359fed6bc893b3843",
+    "packages/core/redaction.ts": "ec8af969b46f30adf1875854505cfdf9364a591880abf831ee4ed0ffd16e30ec",
+    "packages/adapters/processing-worker.ts": "cf616ea0f6caf2790891fd9c03d793827c1a6194d9458aa5fa8267923980d2ba",
+    "packages/adapters/ocr-correction.ts": "20a3a98a8ba79cab22238c20a353d60d90e633197889da4198c3e956718ee7c7",
+    "tests/reference-table.test.ts": "a602e3e459db5033cf843fbef805b5455e25c92e3d2a36eea3bd12752acebdc9",
+    "tests/reference-table-adapter.test.ts": "da3449cb573950fe0f3927947658a04a8a0975d645a630a3450a0d6a8e139a8e",
+    "tests/reference-party.test.ts": "4f46a5e328c194ff790610578759e855aeba3ae7f04d888cb44a206010c75e63",
+    "tests/reference-fragment.test.ts": "5422d198b1f42d4fa38736fd69a97fdc81dfac3d4ee308c526a7b6238747cd9e",
+    "tests/reference-visual-table.test.ts": "7bf7674cb42f31ef10244cb0286f9114508ce52323a9b81e0b2e342da907f2ae",
+    "tests/reference-detected-mask.test.ts": "5d37693abe7f2cd847a4b7973a0843bf6fdd905c7b8a24f0eee10872a52d7f44",
+    "tests/contextual-recognition.integration.ts": "215215638cfdf97303e084df35042e78e69172947cb4f5b6174bea932b45c0b7",
+    "tests/fixtures/reference-table-source-golden.json": "16c5b451559f22911a15c367e98589bb7317d6f72493dc8473a5ded963f94f85",
+    "tests/fixtures/reference-party-source-golden.json": "01b189f62ddf854f05dfbbc88264d69487a24fe1a681c0dd20514d1e90b63974",
+    "tests/fixtures/reference-fragment-source-golden.json": "ec68d4639c148a2e9424b80a0dbf380ab7667673465d12f064f5d226934d0b08",
+    "tests/fixtures/reference-layout-source-golden.json": "e2f55a9ba6b205e415b4f1a456990c9740c4b4f25b19fcd7e6d90aea28b45024",
+    "tests/fixtures/reference-vector-source-golden.json": "a6a2cdbacea874543f0459172422dedfea871bbfda4b01efa5fe292ff67ba5cb",
+    "tests/fixtures/reference-detected-mask-source-golden.json": "17c39fefa2aef46135e60ebb5a3892c50bd32c3c21c6edd0399ea53d90af399d"
+  },
+  "oracle": {
+    "table": 168,
+    "tableMissing": 0,
+    "tableExtraCases": 44,
+    "party": 96,
+    "fragment": 240,
+    "layout": 81,
+    "vector": 18,
+    "mask": 253
+  },
+  "runtimeActivation": "文档/逆向台账/contracts/rule-runtime-activation-20261014.json",
+  "differences": [
+    "All automatic candidates pending; no source automatic confirmation or precomputed untrusted masked field",
+    "Office stories/cells and model UTF16 original positions are authoritative; no upstream placeholder (0,0) or global indexOf rebinding",
+    "OOXML merged empty continuation uses owner label semantically and actual continuation content has its own original anchors",
+    "Exact repeated model offsets retained instead of source same-value final dedup loss",
+    "Glyph source maps bind physically reordered text to real canonical spans; raster correction explicitly switches page to OCR provenance",
+    "GFM decoded entity candidate removes the entire authenticated encoded raw sequence; this can produce more stars than source decoded-only text",
+    "Unicode mask preserves valid codepoints, never unchanged selected original receipt value",
+    "Source no-caller/nonimplemented methods are explicit; no proprietary whole runtime in release"
+  ],
+  "remaining": [
+    "Licensed competitor processing runtime is R0; static pure oracle does not prove authorized end-to-end equivalence or exhaust future/hidden versions",
+    "Real multilingual OCR/NER accuracy is an evaluation gate independent of source rule migration; existing frozen public corpus pins remain unchanged",
+    "54 non-litigation blacklist strings have source method but no extracted caller; keep opt-in API/data, not default fabricated activation",
+    "Compatibility configuration wires known party/fragment alternatives; it does not claim the complete proprietary legacy model/decision engine has been distributed or executed",
+    "Source computes different winners for coincident provenance (e.g. USCC versus tax); our pending evidence remains additive. Runtime/source geometric and encoded-text safety differences are explicit in the context manifest"
+  ]
+}

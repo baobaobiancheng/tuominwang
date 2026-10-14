@@ -7,9 +7,33 @@ import { buildApp } from "../apps/api/main.ts";
 import { tick } from "../apps/worker/main.ts";
 import { pool } from "../packages/adapters/db.ts";
 import { passwordHash, readOriginal, writeOriginal, readArtifact, writeArtifact, hash, seal, unseal } from "../packages/adapters/storage.ts";
+import {officeImageFixture} from './office-fixtures.ts';
+import {parseOffice} from '../packages/core/office.ts';
 
 const admin = new pg.Pool({ connectionString: process.env.MIGRATION_DATABASE_URL }), app = await buildApp();
 after(async () => { await app.close(); await pool.end(); await admin.end(); });
+test('actual OCR correction inherits the current profile and creates only pending immutable aliases',async()=>{
+  const tenant=randomUUID(),user=randomUUID(),username='ocr-policy-'+randomUUID(),password='synthetic-ocr-policy';await admin.query('INSERT INTO users VALUES($1,$2,$3,$4)',[user,tenant,username,passwordHash(password)]);
+  const origin=process.env.APP_ORIGIN!,login=await app.inject({method:'POST',url:'/api/login',headers:{origin},payload:{username,password}}),cookie=String(login.headers['set-cookie']).split(';')[0],req=(method:any,url:string,payload?:any)=>app.inject({method,url,headers:{origin,cookie},payload});
+  for(const format of ['docx','png']){
+    const project=(await req('POST','/api/projects',{name:'OCR自动方案-'+format})).json().id,preset=(await req('POST','/api/presets/profiles',{name:'OCR继承-'+format})).json();
+    const settings={...preset.settings,enabledEntityTypeIds:preset.settings.enabledEntityTypeIds.filter((kind:string)=>kind!=='email'),docx:{...preset.settings.docx,defaultMode:'full_star'},image:{...preset.settings.image,defaultMode:'default_pseudonym'}};
+    assert.equal((await req('PUT',`/api/presets/profiles/${preset.settings.id}`,{revision:1,settings})).statusCode,200);
+    assert.equal((await req('PUT',`/api/projects/${project}/presets`,{revision:0,profileId:preset.settings.id,profileRevision:2,rulesetId:null})).statusCode,200);
+    const doc=randomUUID(),source=randomUUID(),preview=randomUUID(),mapId=randomUUID(),ocr='1380013800O',image=await sharp(Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="240" height="80"><rect width="240" height="80" fill="white"/><text x="10" y="40" font-size="24">${ocr}</text></svg>`)).png().toBuffer(),bytes=format==='docx'?await officeImageFixture(image):image;
+    const part='word/media/customer-13800138000.jpg',parsed=format==='docx'?await parseOffice(bytes,'docx',{[part]:ocr}):{text:ocr,anchors:[{kind:'page',page:0,start:0,end:ocr.length}] as import('../packages/contracts/index.ts').Anchor[],coverage:[{id:'page:0',status:'complete'}]},offset=format==='docx'?parsed.anchors.find(a=>a.object==='image-text')!.start:0,text=parsed.text,aad=`${tenant}:${project}:${doc}`;
+    await writeOriginal(source,bytes,doc);await writeOriginal(preview,image,doc);const map=JSON.stringify(Array.from(ocr,(_,i)=>[i,i+1,10+i*17,15,17,28]));await writeArtifact(mapId,map,doc);
+    const page={index:0,width:240,height:80,rotation:0,confidence:95,previewId:preview,previewHash:hash(image),mapId,mapHash:hash(map),...(format==='docx'?{part}:{})},anchors=parsed.anchors,coverage=parsed.coverage,emailStart=text.indexOf('demo@example.com'),marks=format==='docx'?[{start:emailStart,end:emailStart+16,kind:'邮箱',decision:'redact',replacement:{mode:'custom',text:'已隐藏邮箱'},replacementOrigin:'manual',sources:[{layer:'manual',code:'human-mark'}]}]:[];
+    await admin.query(`INSERT INTO documents(id,tenant_id,project_id,request_id,content,content_hash,source_id,source_name,source_format,source_hash,source_bytes,state,marks,anchors,coverage,page_data,page_review) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,'review',$12,$13,$14,$15,$16)`,[doc,tenant,project,randomUUID(),seal(text,aad),hash(text),source,seal(`ocr.${format}`,aad+':name'),format,hash(bytes),bytes.length,JSON.stringify(marks),JSON.stringify(anchors),JSON.stringify(coverage),JSON.stringify([page]),JSON.stringify({mode:'raster',regions:[],deletedPages:[]})]);
+    const visualDiagnostic={complete:false,pages:[{page:0,detectors:['seal'],warnings:['COLOR_SEGMENTATION_FAILED']}]};await admin.query('UPDATE documents SET recognition=$2 WHERE id=$1',[doc,JSON.stringify({visual:visualDiagnostic})]);
+    const changed=await req('PUT',`/api/documents/${doc}/pages/0/ocr-text`,{revision:0,start:10,end:11,expectedText:'O',text:'0'});assert.equal(changed.statusCode,200,changed.body);
+    const stored=(await admin.query('SELECT * FROM documents WHERE id=$1',[doc])).rows[0],phone=stored.marks.find((m:any)=>m.kind==='手机号'&&m.start===offset&&m.end===offset+11);assert.ok(phone);assert.equal(phone.decision,'pending');assert.equal(phone.replacement?.mode,format==='docx'?'full':'alias');assert.equal(stored.recognition.presetRevision,1);assert.deepEqual(stored.recognition.visual,visualDiagnostic);
+    if(format==='png'){const mapping=(await admin.query('SELECT * FROM entity_mappings WHERE id=$1',[phone.replacement.mappingId])).rows[0];assert.equal(JSON.parse(unseal(mapping.payload,`${tenant}:${project}:${mapping.id}:mapping:1`)).value,'13800138000');}
+    if(format==='docx'){const retained=stored.marks.find((m:any)=>m.kind==='邮箱'&&m.start===emailStart);assert.equal(retained.decision,'pending');assert.deepEqual(retained.replacement,{mode:'custom',text:'已隐藏邮箱'});assert.equal(retained.replacementOrigin,'manual');}
+    assert.equal((await admin.query('SELECT COUNT(*)::int n FROM review_snapshots WHERE document_id=$1 AND revision=1',[doc])).rows[0].n,0);
+    const blocked=await req('POST',`/api/documents/${doc}/export`,{revision:1});assert.ok([400,409].includes(blocked.statusCode));assert.equal(blocked.json().error,'INVALID_MARKS');assert.ok((await readOriginal(source)).equals(bytes));
+  }
+});
 test("OCR correction persists immutable maps, invalidates review/export, retains original, and survives recognition", async () => {
   assert.ok(new URL(process.env.DATABASE_URL!).pathname.startsWith("/tmw_test_"));
   const user = randomUUID(), tenant = randomUUID(), username = "ocr-" + randomUUID(), password = "synthetic-ocr-test-password";

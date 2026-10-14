@@ -1,3 +1,5 @@
+import {verifiedDocumentSource} from "./document-source.ts";
+import { renderDocumentVisualPage } from "./visual-replacement.ts";
 import sharp from "sharp";
 import { createHash } from "node:crypto";
 import { clearPixels, pageBoxes, RasterPdf, validatePageReview, OUTPUT_MAX_BYTES } from "../core/page-redaction.ts";
@@ -10,7 +12,6 @@ import { validateFileMarks } from "../core/files.ts";
 export async function validatePageExport(d: any, text: string) {
   const pages = d.page_data as ParsedPage[], policy = validatePageReview(d.page_review, pages, true);
   validateFileMarks(text, d.marks, d.source_format, d.anchors, true);
-  for (const m of d.marks as Mark[]) if (m.decision === "redact" && m.replacement && m.replacement.mode !== "type") throw new Error("PAGE_REPLACEMENT_UNSUPPORTED");
   const boxes = new Map<number, ReturnType<typeof pageBoxes>>();
   for (const page of pages) if (!policy.deletedPages.includes(page.index)) {
     const map = await readArtifact(page.mapId);
@@ -24,8 +25,7 @@ export async function validatePageExport(d: any, text: string) {
 }
 export async function exportPages(d: any, text: string) {
   const { pages, policy, boxes } = await validatePageExport(d, text);
-  const original = await readOriginal(d.source_id);
-  if (hash(original) !== d.source_hash) throw new Error("SOURCE_MISMATCH");
+  const original = await verifiedDocumentSource(d);
   const pdf = d.source_format === "pdf" ? new RasterPdf() : undefined;
   let image: Buffer | undefined;
   const selected = new Set((d.marks as Mark[]).filter(m => m.decision === "redact").map(m => text.slice(m.start, m.end).replace(/\s/gu, "")).filter(Boolean));
@@ -34,7 +34,7 @@ export async function exportPages(d: any, text: string) {
     for (const page of kept) {
       const source = await readOriginal(page.previewId);
       if (hash(source) !== page.previewHash) throw new Error("SOURCE_MISMATCH");
-      const cleared = await clearPixels(source, page, boxes.get(page.index)!);
+      const cleared = await renderDocumentVisualPage(d, text, page.index, d.marks, policy);
       const recognized = (await recognizePage(ocr, cleared.png)).text.replace(/\s/gu, "");
       if ([...selected].some(value => recognized.includes(value))) throw new Error("RESIDUE_FOUND");
       hashes.push(createHash("sha256").update(cleared.rgb).digest("hex"));

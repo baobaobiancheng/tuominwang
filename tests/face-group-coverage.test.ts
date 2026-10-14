@@ -1,0 +1,2 @@
+import{it,expect}from'vitest';import{matchFaceBoxes}from'../scripts/face-box-metrics.ts';
+it('counts both overlapping group boxes covered by one unmatched detection, without creating an individual TP',()=>{expect(matchFaceBoxes([{x:20,y:20,width:10,height:10,score:.9}],[],[{x:0,y:0,width:100,height:100},{x:10,y:0,width:100,height:100}],.5)).toEqual({tp:0,fp:0,fn:0,ignoredGroupPredictions:1,groupBoxesCovered:2,groupBoxes:2});});

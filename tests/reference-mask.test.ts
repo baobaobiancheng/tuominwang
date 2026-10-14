@@ -1,0 +1,8 @@
+import {it,expect} from 'vitest';
+import {referenceFullMask,referencePartialMask} from '../packages/core/reference-mask.ts';
+it('applies every source type mask family, not a generic retained prefix/suffix',()=>{
+ const cases:[string,string,string][]=[['张三丰','姓名','张**'],['北京市合成科技有限公司','机构','北京市**有限公司'],['广东省广州市天河区合成路88号','地址','广东省广州市****'],['110101199001011234','身份证号','**************1234'],['13812345678','手机号','138****5678'],['010-12345678','固定电话','010-****-5678'],['1234567890123456','银行账号','1234****3456'],['1234567890123456','证券/资金账号','1234****3456'],['91330100MA12345678','信用代码','913301********5678'],['alice@example.com','邮箱','al***@e***.com'],['粤A12345','车牌号','粤A*****'],['E12345678','护照号','*****5678'],['粤ICP备123456号','备案号','***备案号***'],['123456','postal_code','123***'],['女','gender','**'],['https://example.com','网址','****'],['（2026）京民初123号','案号','***案号/文件号***'],['AB123456','证照/许可证号','***证照/许可证号***'],['CN123456789A','专利号','***专利号***'],['secret','自定义','******'],['微信abc123','微信号','****']];
+ for(const[value,kind,expected]of cases)expect(referencePartialMask(value,kind),kind).toBe(expected);
+});
+it('keeps official 3-character name policy distinct, and protects Unicode surrogate boundaries',()=>{expect(referencePartialMask('张三丰','姓名','official-name')).toBe('张*丰');expect(referencePartialMask('😀张三','姓名')).toBe('😀**');expect(referenceFullMask('😀张三')).toBe('***');expect(()=>referencePartialMask('\ud83d','姓名')).toThrow('INVALID_REPLACEMENT');});
+it('does not truncate a long organization suffix or a full star mask to custom policy limits',()=>{const value='广东省广州市'+ '合成'.repeat(100)+'有限公司';const output=referencePartialMask(value,'机构');expect(output).toBe('广东省**有限公司');expect(referenceFullMask('张'.repeat(1000))).toHaveLength(1000);});

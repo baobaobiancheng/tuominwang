@@ -12,8 +12,9 @@ test("partial and custom replacements share Unicode-safe validation and keep old
   expect(redact(text, [{ ...base, replacement: { mode: "custom", value: "客户甲" } }])).toBe("客户甲");
   expect(() => replacementFor(text, { ...base, replacement: { mode: "mask", prefix: 5, suffix: 1 } })).toThrow("INVALID_REPLACEMENT");
   expect(() => replacementFor(text, { ...base, replacement: { mode: "custom", value: text } })).toThrow("INVALID_REPLACEMENT");
-  expect(markSchema.safeParse({ ...base, replacement: { mode: "custom", value: "【MAP_1】" } }).success).toBe(false);
-  expect(markSchema.safeParse({ ...base, replacement: { mode: "custom", value: "<script>" } }).success).toBe(false);
+  expect(markSchema.safeParse({ ...base, replacement: { mode: "custom", value: "【MAP_1】" } }).success).toBe(true);
+  expect(markSchema.safeParse({ ...base, replacement: { mode: "custom", value: "<script>" } }).success).toBe(true);
+  expect(markSchema.safeParse({ ...base, replacement: { mode: "custom", value: "\0" } }).success).toBe(false);
   const huge = "😀".repeat(100000);
   expect(replacementFor(huge, { ...base, end: huge.length, replacement: { mode: "mask", prefix: 100, suffix: 100 } })).toBe("😀".repeat(100) + "***" + "😀".repeat(100));
 });
