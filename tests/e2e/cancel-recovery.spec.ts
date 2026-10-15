@@ -63,11 +63,19 @@ test("cancelled queued detection refreshes the whole material and reruns at a ne
     expect(staleRetry.status()).toBe(409);
 
     await page.getByRole("button", { name: "重新识别", exact: true }).click();
+    const submitted = page.waitForResponse(response => response.request().method() === "POST"
+      && new URL(response.url()).pathname === `/api/documents/${id}/recognize`);
     await page.getByRole("alertdialog", { name: "操作确认" }).getByRole("button", { name: "确认执行" }).click();
+    const recognition = await submitted;
+    expect(recognition.status()).toBe(200);
+    const queuedJob = await recognition.json();
+    expect(queuedJob.revision).toBe(2);
+    expect(queuedJob.jobId).not.toBe(oldJob);
     const queuedAgain = await (await page.request.get(`/api/documents/${id}`)).json();
     expect(queuedAgain.state).toBe("queued");
     expect(queuedAgain.revision).toBe(2);
     expect(queuedAgain.job.id).not.toBe(oldJob);
+    expect(queuedAgain.job.id).toBe(queuedJob.jobId);
     await locker.query("SELECT pg_advisory_unlock(7843,2)");
     held = false;
     await expect.poll(async () => (await (await page.request.get(`/api/documents/${id}`)).json()).state, { timeout: 45000 }).toBe("review");

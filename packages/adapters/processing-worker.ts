@@ -37,6 +37,7 @@ import { parseOfficeImages, officeImagePlan, exportOfficeImages } from "./office
 import { PAGED_FORMATS, validatePageReview, pageBoxes, clearPixels } from "../core/page-redaction.ts";
 import type { ParsedPage, Anchor } from "../contracts/index.ts";
 import { hash, unseal, seal, readOriginal, readArtifact, writeArtifact, setObjectOwner } from "./storage.ts";
+import {scanVisualCandidates} from './visual-scan.ts';
 import type { ProcessingInput } from "./processing.ts";
 
 let eventSequence=0,eventStage='initializing';
@@ -219,25 +220,7 @@ async function execute(input: ProcessingInput): Promise<any> {
     let entityCorrectionsStale=false;try{Object.assign(d,hydrateEntityCorrections({...d,content_hash:hash(text)}));if(d.entityCorrections){assertEntityCorrections(d.entityCorrections,{...d,content_hash:hash(text)});const materialized=materializeEntityCorrections(d,text,marks);marks=materialized.marks;d.entityCorrections=materialized.frame;d.entity_corrections=sealEntityCorrections({...d,content_hash:hash(text)},materialized.frame!);}}catch(error){if((error as Error).message!=='ENTITY_CORRECTION_STALE')throw error;const archived=archiveEntityCorrections(d);if(!archived||archived.frame.sourceHash!==d.source_hash)throw Error('ENTITY_CORRECTION_INVALID');entityCorrectionsStale=true;d.entityCorrections=null;coverage.push({id:'entity-corrections',status:'blocked',reason:'ENTITY_CORRECTION_STALE'});}
     if(markdown)await createMarkdownMatchPublisher(text.length,"contextual",processingEvent)({processedTextEnd:text.length,totalTextLength:text.length,matches:marks});
     const profile=d.presetPolicy?.profile?.settings, style=profile ? profileForFormat(profile, d.source_format === "docx" ? "png" : d.source_format, d.batchMode) : undefined;
-    const visualCandidates: any[]=[],visualPages:{page:number;detectors:string[];warnings:string[]}[]=[];
-    if(profile && pages.length){
-      const detectors=(['face','seal','signature'] as const).filter(detector=>profile.enabledEntityTypeIds.includes(detector));
-      if(detectors.length){
-        const visual=await import("../core/visual-detection.ts");
-        for(const page of pages){
-          const preview=await readOriginal(page.previewId);if(hash(preview)!==page.previewHash)throw new Error("SOURCE_MISMATCH");
-          const initialVisual=visual.canonicalVisualResult(await visual.detectVisual(preview,detectors),page);
-          visualPages.push({page:page.index,detectors:[...detectors],warnings:initialVisual.warnings??[]});
-          let candidates=initialVisual.candidates;
-          if(d.source_format==="pdf" && detectors.includes("seal")){
-            const original=await verifiedDocumentSource(d);
-            candidates=visual.suppressOverlaps([...candidates,...await(await import("../core/visual-pdf.ts")).detectPdfImageSeals(original,page.index,preview,readPageRotationState(d).rotations[String(page.index)]??0)]);
-          }
-          if(["png","jpg","jpeg"].includes(d.source_format))candidates=(await import("../core/visual-morphology.ts")).filterCertificateSealCandidates(candidates,{text,filename:d.source_name?unseal(d.source_name,`${aad}:name`):""},page).candidates;
-          for(const candidate of candidates){visualCandidates.push({...candidate,page:page.index});if(visualCandidates.length>3000)throw new Error("VISUAL_CANDIDATE_LIMIT");}
-        }
-      }
-    }
+    const {visualCandidates,visualPages}=await scanVisualCandidates(d,text,pages,profile);
     for(const page of pages){const anchor=anchors.find(a=>d.source_format==='docx'?a.kind==='object'&&a.object==='image-text'&&a.part===page.part:a.kind==='page'&&a.page===page.index);if(anchor)processingEvent({type:'page-processed',stage:'recognize',pageNumber:page.index+1,totalPages:pages.length,ocrCompleted:true,matches:marks.filter(m=>m.start>=anchor.start&&m.end<=anchor.end),canonicalHash:hash(text),coordinateSpace:'canonical-raster'});}
     processingEvent({type:'progress',stage:'recognize',percent:100,message:'识别已完成，请人工复核',processedTextEnd:text.length,totalTextLength:text.length});
     const pageReview=pages.length && style && "maskStyle" in style ? {mode:"unselected",maskStyle:style.maskStyle,regions:[],deletedPages:[]} : null;

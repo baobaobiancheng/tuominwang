@@ -12,6 +12,7 @@ import {defaultProfile} from '../../packages/core/presets.ts';
 import {requirePermission,projectScope} from './access.ts';
 import {resolveDocumentPolicy} from '../../packages/adapters/document-policy.ts';
 function fail(message:string,statusCode=409):never{throw Object.assign(new Error(message),{statusCode});}
+function missingPreset(error:unknown){return error instanceof Error&&error.message==='NOT_FOUND'&&(error as Error&{statusCode?:number}).statusCode===404;}
 // Caller uses projectScope and holds the project lock; this changes only the named document.
 export async function applyDocumentConfiguration(db:DB,req:FastifyRequest,documentId:string,configuration:unknown,batch=true){
   const config=documentConfigurationSchema.parse(configuration),[d]=await rows(db,sql`SELECT * FROM documents WHERE id=${documentId} FOR UPDATE`);
@@ -19,9 +20,28 @@ export async function applyDocumentConfiguration(db:DB,req:FastifyRequest,docume
   if((await rows(db,sql`SELECT id FROM jobs WHERE document_id=${documentId} AND status IN('queued','running')`)).length)fail('JOB_ACTIVE');
   const [project]=await rows(db,sql`SELECT * FROM projects WHERE id=${d.project_id} FOR UPDATE`);if(!project)fail('NOT_FOUND',404);
   const existing=getProjectPresetPolicy(project);
-  const profile:Profile=structuredClone(config.profileId?(await getPreset<Profile>(db,req,'profile',config.profileId)).settings:existing.profile?.settings??defaultProfile());
+  const prior=resolveDocumentPolicy(d,existing).documentPolicy;
+  let selectedProfile:Profile=existing.profile?.settings??defaultProfile();
+  if(config.profileId){
+    try{selectedProfile=(await getPreset<Profile>(db,req,'profile',config.profileId)).settings;}
+    catch(error){
+      if(!missingPreset(error)||!prior||prior.configuration.profileId!==config.profileId)throw error;
+      selectedProfile=prior.profile;
+    }
+  }
+  const profile:Profile=structuredClone(selectedProfile);
   let ruleset:RuleSet|null=existing.ruleset?.settings??null;
-  if(config.rulesetId!==undefined){await requirePermission(db,d.project_id,['manage_dictionary']);ruleset=config.rulesetId?(await getPreset<RuleSet>(db,req,'ruleset',config.rulesetId)).settings:null;}
+  if(config.rulesetId!==undefined){
+    await requirePermission(db,d.project_id,['manage_dictionary']);
+    if(!config.rulesetId)ruleset=null;
+    else{
+      try{ruleset=(await getPreset<RuleSet>(db,req,'ruleset',config.rulesetId)).settings;}
+      catch(error){
+        if(!missingPreset(error)||!prior?.ruleset||prior.configuration.rulesetId!==config.rulesetId)throw error;
+        ruleset=prior.ruleset;
+      }
+    }
+  }
   const fileKind=isWordFormat(d.source_format)?'docx':d.source_format==='pdf'?'pdf':['png','jpg','jpeg'].includes(d.source_format)?'image':'markdown';
   if(config.entityTypes)profile.enabledEntityTypeIds=config.entityTypes;
   if(config.pseudonymRules){

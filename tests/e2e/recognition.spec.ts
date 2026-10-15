@@ -1,6 +1,7 @@
 import { test, expect } from "./fixture.ts";
 
 test("desktop project dictionary changes invalidate review and drive a new candidate run", async ({ page }) => {
+  test.setTimeout(90000);
   await page.goto("/");
   await page.getByLabel("账号", { exact: true }).fill(process.env.E2E_USERNAME!);
   await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
@@ -34,8 +35,23 @@ test("desktop project dictionary changes invalidate review and drive a new candi
   await expect(page.getByRole("button", { name: "北京甲乙科技有限公司", exact: true })).toBeVisible();
   await expect(page.getByLabel("标记 1 处理决定")).toHaveValue("pending");
   await page.getByRole("button", { name: "识别实体候选", exact: true }).click();
+  const submitted = page.waitForResponse(response => response.request().method() === "POST"
+    && /^\/api\/documents\/[a-f0-9-]{36}\/recognize$/u.test(new URL(response.url()).pathname));
   await page.getByRole("alertdialog", { name: "操作确认" }).getByRole("button", { name: "确认执行", exact: true }).click();
-  await expect(page.getByText("实体候选已识别，请结合上下文复核。", { exact: true })).toBeVisible();
+  const response = await submitted;
+  expect(response.status()).toBe(200);
+  expect(response.request().postDataJSON()).toEqual({ revision: 2, ner: true });
+  const queued = await response.json();
+  expect(queued.revision).toBe(3);
+  expect(queued.jobId).toMatch(/^[a-f0-9-]{36}$/u);
+  const documentPath = new URL(response.url()).pathname.replace(/\/recognize$/u, "");
+  await expect.poll(async () => {
+    const loaded = await page.request.get(documentPath);
+    expect(loaded.status()).toBe(200);
+    const document = await loaded.json();
+    return { id: document.id, revision: document.revision, state: document.state, nerEnabled: document.nerEnabled, jobId: document.job?.id, jobStatus: document.job?.status };
+  }, { timeout: 60000, intervals: [1000] }).toEqual({ id: documentPath.split("/").at(-1), revision: 3, state: "review", nerEnabled: true, jobId: queued.jobId, jobStatus: "succeeded" });
+  await expect(page.getByText("实体候选已识别，请结合上下文复核。", { exact: true })).toBeVisible({ timeout: 15000 });
   await expect(page.getByText(/规则匹配、实体识别/)).toBeVisible();
   await page.screenshot({ path: "test-results/project-dictionary-desktop.png", fullPage: true });
 });

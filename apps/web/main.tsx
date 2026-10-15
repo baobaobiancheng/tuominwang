@@ -1,4 +1,5 @@
 import {createApiRequest} from './http-client.ts';
+import {textareaCoordinateBridge} from './textarea-coordinates.ts';
 import {restoreHiddenReviewEntities}from'../../packages/core/review-type-hide.ts';
 import {createReviewFeedbackDispatcher} from './review-feedback.ts';
 import {createAutomaticRuntimeRuleDispatcher} from './automatic-runtime-rules.ts';
@@ -320,21 +321,34 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
   const [reviewTool, setReviewTool] = useState<"marks" | "search" | "bulk" | "known">("marks");
   const [docxView, setDocxView] = useState<"layout" | "text">("layout");
   const [docxFocus, setDocxFocus] = useState<{ start: number; end: number } | null>(null);
-  const [pendingAuditFocus,setPendingAuditFocus] = useState<{documentId:string;start:number;end:number}|null>(null);
+  const [pendingAuditFocus,setPendingAuditFocus] = useState<{documentId:string;projectId:string;revision:number;textOffset:number;start:number;end:number}|null>(null);
   const [docsLoading, setDocsLoading] = useState(false);
   const [moreProjects, setMoreProjects] = useState(false), [moreDocs, setMoreDocs] = useState(false);
   const original = useRef<HTMLTextAreaElement>(null);
   useEffect(()=>{
-    if(!pendingAuditFocus||doc?.id!==pendingAuditFocus.documentId)return;
+    if(!pendingAuditFocus||busy||doc?.id!==pendingAuditFocus.documentId||doc?.project_id!==pendingAuditFocus.projectId||doc?.revision!==pendingAuditFocus.revision)return;
     const offset=doc.textOffset??0;
-    if(pendingAuditFocus.start<offset||pendingAuditFocus.end>offset+doc.text.length)return;
+    if(offset!==pendingAuditFocus.textOffset||pendingAuditFocus.start<offset||pendingAuditFocus.end>offset+doc.text.length)return;
     const frame=requestAnimationFrame(()=>{
-      const field=original.current;if(!field)return;
-      field.focus();field.setSelectionRange(pendingAuditFocus.start-offset,pendingAuditFocus.end-offset);
-      field.scrollIntoView({block:'nearest'});setPendingAuditFocus(null);
+      const field=original.current;
+      if(!field||busyRef.current||field.matches(':disabled')||!field.getClientRects().length||currentDoc.current?.id!==pendingAuditFocus.documentId||currentDoc.current?.revision!==pendingAuditFocus.revision||(currentDoc.current?.textOffset??0)!==pendingAuditFocus.textOffset||currentProject.current!==pendingAuditFocus.projectId)return;
+      let start:number,end:number;
+      try {
+        const bridge=textareaCoordinateBridge(doc.text,field.value);
+        start=bridge.toTextarea(pendingAuditFocus.start-offset);
+        end=bridge.toTextarea(pendingAuditFocus.end-offset);
+      } catch(error) {
+        if((error as Error).message!=='TEXTAREA_VALUE_MISMATCH'){
+          setError('当前标记的换行位置无法在原文框中精确选取，请在原文中手动核对。');
+          setPendingAuditFocus(current=>current===pendingAuditFocus?null:current);
+        }
+        return;
+      }
+      field.focus();field.setSelectionRange(start,end);
+      if(field.selectionStart===start&&field.selectionEnd===end){field.scrollIntoView({block:'nearest'});setPendingAuditFocus(current=>current===pendingAuditFocus?null:current);}
     });
     return()=>cancelAnimationFrame(frame);
-  },[pendingAuditFocus,doc?.id,doc?.textOffset,doc?.text,docxView]);
+  },[pendingAuditFocus,busy,doc?.id,doc?.project_id,doc?.revision,doc?.textOffset,doc?.text,docxView]);
   const highlightLayer = useRef<HTMLDivElement>(null);
   useEffect(() => { setReviewTool("marks"); }, [doc?.id, doc?.revision]);
   const busyRef = useRef(false), dirtyRef = useRef(false);
@@ -409,7 +423,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
     if (d.id !== id) throw new Error("材料状态已变化，请重新打开。");
     if (onlyIfCurrent && (currentDoc.current?.id !== id || currentProject.current !== d.project_id || dirtyRef.current)) return;
     const pageFocus=!!focus&&d.anchors?.some(a=>a.start<focus.end&&a.end>focus.start&&(a.kind==='page'||a.kind==='object'&&a.object==='image-text'));
-    setPendingAuditFocus(focus&&!pageFocus?{documentId:id,...focus}:null);
+    setPendingAuditFocus(focus&&!pageFocus?{documentId:id,projectId:d.project_id,revision:d.revision,textOffset:d.textOffset??0,...focus}:null);
     if(focus&&!pageFocus&&isWordFormat(d.format))setDocxView('text');
     setDoc(d);
     setDocxFocus(focus??null);
@@ -472,6 +486,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
           if (active) { setError(e.message); setDocsLoading(false); }
         });
     setDoc(null);
+    setPendingAuditFocus(null);
     setDirty(false);
     setConflict(false);
     return () => {
@@ -510,14 +525,14 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
     const current = currentDoc.current;
     if (!current) return;
     const next = await api<DocumentView>(`/documents/${current.id}?offset=${offset}&revision=${current.revision}`);
-    if (next.revision !== current.revision) throw new Error(messages.VERSION_CONFLICT);
-    setDoc(d => d?.id === current.id ? { ...d, text: next.text, textOffset: next.textOffset, textLength: next.textLength, nextTextOffset: next.nextTextOffset, markTexts: { ...next.markTexts, ...d.markTexts } } : d);
+    if (next.id !== current.id || next.project_id !== current.project_id || next.revision !== current.revision) throw new Error(messages.VERSION_CONFLICT);
+    if (currentDoc.current?.id !== current.id || currentDoc.current?.revision !== current.revision || currentProject.current !== current.project_id) return;
+    setDoc(d => d?.id === current.id && d.revision === current.revision && d.project_id === current.project_id ? { ...d, text: next.text, textOffset: next.textOffset, textLength: next.textLength, nextTextOffset: next.nextTextOffset, markTexts: { ...next.markTexts, ...d.markTexts } } : d);
     setSelection(null);
     setPreview(null);
     setPreviewMode(false);
-    if (mark && !current.anchors?.some(a=>a.start<mark.end&&a.end>mark.start&&(a.kind==='page'||a.kind==='object'&&a.object==='image-text'))) requestAnimationFrame(() => {
-      original.current?.focus(); original.current?.setSelectionRange(mark.start - (next.textOffset ?? 0), mark.end - (next.textOffset ?? 0));
-    });
+    const pageFocus=mark&&current.anchors?.some(a=>a.start<mark.end&&a.end>mark.start&&(a.kind==='page'||a.kind==='object'&&a.object==='image-text'));
+    setPendingAuditFocus(mark&&!pageFocus?{documentId:current.id,projectId:current.project_id,revision:current.revision,textOffset:next.textOffset??0,...mark}:null);
   }
   function update(next: Mark[], fromServer = false) {
     if (!canReview || (busyRef.current && !fromServer) || conflict || doc?.state !== "review" || currentDoc.current?.id !== doc.id) return false;
@@ -542,8 +557,13 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
     setDirty(changed); dirtyRef.current = changed; setPreview(null); setNotice("");
   }
   function captureSelection(t:HTMLTextAreaElement){
-    const offset = currentDoc.current?.textOffset ?? 0;
-    setSelection(t.selectionStart<t.selectionEnd?[t.selectionStart + offset,t.selectionEnd + offset]:null);
+    const current=currentDoc.current;
+    if(!current||t!==original.current){setSelection(null);return;}
+    try {
+      const bridge=textareaCoordinateBridge(current.text,t.value),offset=current.textOffset??0;
+      const start=bridge.toCanonical(t.selectionStart),end=bridge.toCanonical(t.selectionEnd);
+      setSelection(start<end?[offset+start,offset+end]:null);
+    } catch { setSelection(null); }
   }
   const feedbackDocument=doc?{id:doc.id,revision:doc.revision,name:doc.name??"文本材料",text:doc.text,textOffset:doc.textOffset??0}:undefined;
   const pending = marks.filter((m) => m.decision === "pending").length;
@@ -1153,11 +1173,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
                               if(doc.anchors?.some(a=>a.start<m.end&&a.end>m.start&&(a.kind==='page'||a.kind==='object'&&a.object==='image-text')))return;
                               const offset = doc.textOffset ?? 0;
                               if (m.start < offset || m.end > offset + doc.text.length) { void run(() => loadText(Math.max(0, m.start - 256), m)); return; }
-                              requestAnimationFrame(() => { original.current?.focus();
-                              original.current?.setSelectionRange(
-                                m.start - offset,
-                                m.end - offset,
-                              ); });
+                              setPendingAuditFocus({documentId:doc.id,projectId:doc.project_id,revision:doc.revision,textOffset:offset,start:m.start,end:m.end});
                             }}
                           >
                             {m.start >= (doc.textOffset ?? 0) && m.end <= (doc.textOffset ?? 0) + doc.text.length ? doc.text.slice(m.start - (doc.textOffset ?? 0), Math.min(m.end, m.start + 120) - (doc.textOffset ?? 0)) : doc.markTexts?.[`${m.start}:${m.end}`] ?? "定位原文"}

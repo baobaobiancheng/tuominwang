@@ -1,38 +1,29 @@
 import {verifiedDocumentSource} from './document-source.ts';
-import {documentTableMarks} from './reference-table.ts';
-import {effectiveSignatureGroups} from '../core/signature-group-policy.ts';
-import {rulesetMaterialRoute} from '../core/document-route.ts';
+import {runProcessing} from './processing.ts';
 import {reviewEntityWasUserAdded} from '../core/review-type-hide.ts';
 import {reviewEntityBirth} from '../core/review-entity-birth.ts';
-import{isWordFormat,processingDocument}from'../core/document-format.ts';
 import {mappingMatchesEntity,mappingMatchesValue} from "../core/mappings.ts";
 import {sameEntity,entitySpanKey} from '../core/entity-identity.ts';
 import { randomUUID } from "node:crypto";
-import type { Anchor, Mark, SourceFormat } from "../contracts/index.ts";
+import type { Anchor, Mark } from "../contracts/index.ts";
+import{isWordFormat}from'../core/document-format.ts';
 import type { Glyph } from "../core/ocr.ts";
+import type {RuntimeWhitelist} from "../core/runtime-rule-update.ts";
 import { correctPageText, shiftOcrAnchors } from "../core/ocr-correction.ts";
 import { validateMarks, mergeCandidates } from "../core/redaction.ts";
-import { detectComplete } from "../core/recognition-pipeline.ts";
-import {applyDocumentRoute} from '../core/document-route.ts';
 import type {DocumentPolicy} from '../contracts/document-policy.ts';
 import { validatePageReview } from "../core/page-redaction.ts";
-import { activeDictionary, enabledProfileMarks } from "../core/profile-recognition.ts";
-import { hash, readArtifact, readOriginal, seal, unseal, writeArtifact } from "./storage.ts";
+import { hash, readArtifact, readOriginal, removeOwnedArtifact, seal, unseal, writeArtifact } from "./storage.ts";
 import sharp from "sharp";
 import { PAGE_MAX_PIXELS } from "../core/pdf-reader.ts";
 async function previewPixels(bytes: Buffer) { try { return await sharp(bytes, { limitInputPixels: PAGE_MAX_PIXELS, failOn: "warning" }).flatten({ background: "white" }).toColourspace("srgb").removeAlpha().raw().toBuffer({ resolveWithObject: true }); } catch { throw new Error("PORTABLE_DRAFT_PREVIEW_INVALID"); } }
 function glyphMap(source: string): Glyph[] { try { const value = JSON.parse(source); if (!Array.isArray(value) || value.length > 200000 || value.some(g => !Array.isArray(g))) throw new Error(); return value; } catch { throw new Error("PORTABLE_DRAFT_MAP_INVALID"); } }
-/** Fresh imported candidates obey the resolved document route before inherited review marks are rebound. */
-export function freshPortableMarks(text:string,anchors:Anchor[],dictionary:any[],presetPolicy:any,sourceFormat:SourceFormat,documentPolicy:DocumentPolicy|null,pagesCount:number,filename=""){
- const configuration=documentPolicy?.configuration;
- const complete=detectComplete(text,anchors,activeDictionary(dictionary,presetPolicy),{ocr:pagesCount>0,sourceFormat,configuration,filename});
- return enabledProfileMarks(applyDocumentRoute(text,anchors,complete.marks,configuration,{suppressEvidenceScene:complete.evidenceScene.controlled}),presetPolicy.profile?.settings);
-}
-export async function restorePortableDraft(d: any, old: any, assets: any[], mappings: any[], dictionary: any[], presetPolicy: any, documentPolicy:DocumentPolicy|null) {
+export async function restorePortableDraft(d: any, old: any, assets: any[], mappings: any[], dictionary: any[], presetPolicy: any, documentPolicy:DocumentPolicy|null, runtimeWhitelists:readonly RuntimeWhitelist[]=[], dictionaryRevision=0) {
   const aad = `${d.tenant_id}:${d.project_id}:${d.id}`, source = await readOriginal(d.source_id), original = unseal(d.content, aad);
   if (hash(source) !== d.source_hash || hash(source) !== old.sourceHash || hash(original) !== d.content_hash || old.format !== d.source_format || !old.content.isWellFormed() || hash(old.content) !== old.contentHash) throw new Error("PORTABLE_DRAFT_SOURCE_MISMATCH");
-  const trustedParsingSource=await verifiedDocumentSource(d),processingFormat=processingDocument(d).source_format as SourceFormat;
-  let text = original, anchors = (d.anchors as Anchor[]).map(a => ({ ...a })); const pages = (d.page_data ?? []).map((p: any) => ({ ...p })); const rebuilt: number[] = [];
+  await verifiedDocumentSource(d);
+  let text = original, anchors = (d.anchors as Anchor[]).map(a => ({ ...a })); const pages = (d.page_data ?? []).map((p: any) => ({ ...p })); const rebuilt: number[] = [],createdArtifactIds:string[]=[];
+  try {
   if (assets.length !== pages.length || new Set(assets.map(p => p.index)).size !== assets.length) throw new Error("PORTABLE_DRAFT_PAGE_MISMATCH");
   if (!Array.isArray(old.anchors) || old.anchors.some((a: any) => !Number.isSafeInteger(a.start) || !Number.isSafeInteger(a.end) || a.start < 0 || a.end < a.start || a.end > old.content.length)) throw new Error("PORTABLE_DRAFT_ANCHOR_INVALID");
   for (const page of pages) {
@@ -57,7 +48,7 @@ export async function restorePortableDraft(d: any, old: any, assets: any[], mapp
     if (!saved.ocrRevision || !freshText.length) throw new Error("PORTABLE_DRAFT_TEXT_CHANGED");
     const corrected = correctPageText(freshText, glyphs, { revision: 0, start: 0, end: freshText.length, expectedText: freshText, text: desiredText }, page.width, page.height);
     if (JSON.stringify(corrected.glyphs) !== JSON.stringify(oldGlyphs)) rebuilt.push(page.index);
-    text = text.slice(0, target.start) + corrected.text + text.slice(target.end); anchors = shiftOcrAnchors(anchors, target, corrected.delta); const mapId = randomUUID(), mapHash = await writeArtifact(mapId, JSON.stringify(corrected.glyphs), d.id); Object.assign(page, { mapId, mapHash, ocrRevision: saved.ocrRevision });
+    text = text.slice(0, target.start) + corrected.text + text.slice(target.end); anchors = shiftOcrAnchors(anchors, target, corrected.delta); const mapId = randomUUID();createdArtifactIds.push(mapId);const mapHash = await writeArtifact(mapId, JSON.stringify(corrected.glyphs), d.id); Object.assign(page, { mapId, mapHash, ocrRevision: saved.ocrRevision });
   }
   if (text !== old.content) throw new Error("PORTABLE_DRAFT_TEXT_CHANGED");
   const signature = (a: Anchor) => JSON.stringify([a.kind, a.part ?? null, a.object ?? null, a.page ?? null, a.row ?? null, a.column ?? null, a.start, a.end]);
@@ -70,7 +61,19 @@ export async function restorePortableDraft(d: any, old: any, assets: any[], mapp
     const {signatureGroup:_foreignGroup,...portable}=m;
     return { ...portable, userAdded:m.hiddenByType?reviewEntityWasUserAdded(m):reviewEntityBirth(m,old.reviewProvenance?.entries.find((e:any)=>e.active&&e.markIndex===index)),decision: m.hiddenByType===true?"ignore" as const:"pending" as const, ...(replacement ? { replacement } : {}), sources: m.hiddenByType===true?m.sources:[{ layer: "manual" as const, code: "imported-draft-requires-review" }] };
   });
-  validateMarks(text, imported);const fresh=freshPortableMarks(text,anchors,dictionary,presetPolicy,d.source_format,documentPolicy,pages.length,d.source_name?unseal(d.source_name,`${aad}:name`):""),signatureMarks=effectiveSignatureGroups(text,anchors,(await documentTableMarks(trustedParsingSource,text,anchors,processingFormat)).marks.filter(m=>m.signatureGroup),presetPolicy?.profile?.settings,presetPolicy?.ruleset?.settings,rulesetMaterialRoute(d.recognition?.classification?.type??'other',documentPolicy?.configuration)),base=mergeCandidates(text,fresh,signatureMarks).map(m=>m.signatureGroup?{...m,decision:'pending' as const,replacement:undefined,replacementOrigin:undefined,hiddenByType:undefined,hiddenTypeWasUserAdded:undefined}:m),safeImported=imported.filter(m=>!signatureMarks.some(s=>m.start<s.end&&m.end>s.start)),importedKeys=new Set(safeImported.map(entitySpanKey)),marks=[...base.filter(m=>!importedKeys.has(entitySpanKey(m))),...safeImported].sort((a,b)=>a.start-b.start||a.end-b.end);const restoredMarkIndices=imported.map(mark=>safeImported.includes(mark)?marks.indexOf(mark):-1);const unresolved=imported.filter(m=>!safeImported.includes(m)).map(m=>({category:'signature-group',reason:'PORTABLE_SIGNATURE_REVIEW_REQUIRED',source:{start:m.start,end:m.end,kind:m.kind}}));
+  validateMarks(text, imported);
+  // Reuse the complete isolated recognizer against the already verified canonical
+  // text and authenticated page maps. It produces fresh candidates only: neither
+  // the imported review decisions nor any current correction frame enters it.
+  const freshDoc={...d,content:seal(text,aad),content_hash:hash(text),anchors,page_data:pages,reuseParsedPages:true,
+    dictionary:seal(JSON.stringify(dictionary),`${d.tenant_id}:${d.project_id}:dictionary`),dictionary_revision:dictionaryRevision,presetPolicy,documentPolicy,
+    runtimeWhitelists,entity_corrections:null,entityCorrections:null,page_review:null,marks:[]};
+  const detected=await runProcessing<any>({kind:'detect',doc:freshDoc},{timeoutMs:1800000});
+  if(detected.hash!==hash(text)||unseal(detected.content,aad)!==text||JSON.stringify(detected.anchors)!==JSON.stringify(anchors)||JSON.stringify(detected.pages)!==JSON.stringify(pages))throw new Error('PORTABLE_DRAFT_SOURCE_MISMATCH');
+  const fresh=detected.marks as Mark[],signatureMarks=fresh.filter(m=>m.signatureGroup);
+  validateMarks(text,fresh);
+  const base=fresh.map(m=>m.signatureGroup?{...m,decision:'pending' as const,replacement:undefined,replacementOrigin:undefined,hiddenByType:undefined,hiddenTypeWasUserAdded:undefined}:m),safeImported=imported.filter(m=>!signatureMarks.some(s=>m.start<s.end&&m.end>s.start)),importedKeys=new Set(safeImported.map(entitySpanKey)),marks=[...base.filter(m=>!importedKeys.has(entitySpanKey(m))),...safeImported].sort((a,b)=>a.start-b.start||a.end-b.end);const restoredMarkIndices=imported.map(mark=>safeImported.includes(mark)?marks.indexOf(mark):-1);const unresolved=imported.filter(m=>!safeImported.includes(m)).map(m=>({category:'signature-group',reason:'PORTABLE_SIGNATURE_REVIEW_REQUIRED',source:{start:m.start,end:m.end,kind:m.kind}}));
   const regionCandidates = old.pageReview ? validatePageReview(old.pageReview, pages).regions : [], deletedPageCandidates = old.pageReview ? validatePageReview(old.pageReview, pages).deletedPages : [];
-  return { content: seal(text, aad), hash: hash(text), anchors, pages, marks, restoredMarkIndices,entityCorrections:null,unresolved,pageReview: pages.length ? { mode: "unselected", regions: [], deletedPages: [], ...(old.pageReview?.maskStyle ? { maskStyle: old.pageReview.maskStyle } : {}) } : null, regionCandidates, deletedPageCandidates, rebuiltMapPages: rebuilt };
+  return { content: seal(text, aad), hash: hash(text), anchors, pages, marks, restoredMarkIndices,entityCorrections:null,unresolved,createdArtifactIds,visualCandidates:detected.visualCandidates??[],recognition:{...d.recognition,...detected.recognition,...d.recognition?.markdown?{markdown:d.recognition.markdown}:{}},pageReview: pages.length ? { mode: "unselected", regions: [], deletedPages: [], ...(old.pageReview?.maskStyle ? { maskStyle: old.pageReview.maskStyle } : {}) } : null, regionCandidates, deletedPageCandidates, rebuiltMapPages: rebuilt };
+  } catch(error) { await Promise.allSettled(createdArtifactIds.map(id=>removeOwnedArtifact(id,d.id))); throw error; }
 }

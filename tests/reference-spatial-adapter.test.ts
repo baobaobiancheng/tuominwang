@@ -3,7 +3,8 @@ import {mkdtemp,rm} from 'node:fs/promises';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
 import {randomUUID} from 'node:crypto';
-import {writeArtifact,seal,hash} from '../packages/adapters/storage.ts';
+import sharp from 'sharp';
+import {writeArtifact,writeOriginal,seal,hash} from '../packages/adapters/storage.ts';
 import {documentSpatialMarks} from '../packages/adapters/reference-spatial.ts';
 import {correctOcrText} from '../packages/adapters/ocr-correction.ts';
 import {applyReplacementPolicies} from '../packages/core/replacement-policies.ts';
@@ -29,10 +30,13 @@ test('OCR correction uses the selected receipt route and inherited profile witho
  try{
   const text='转账申请人 收款方付款方\n2026-10-14 12:00:00张三',id=randomUUID(),tenant_id=randomUUID(),project_id=randomUUID(),mapId=randomUUID(),glyphs:Glyph[]=[];
   for(let i=0;i<text.length;i++)if(text[i]!=='\n')glyphs.push([i,i+1,(i%7)*10,Math.floor(i/7)*25,10,15]);
-  const mapHash=await writeArtifact(mapId,JSON.stringify(glyphs)),anchors:Anchor[]=[{kind:'page',page:0,start:0,end:text.length}],page:ParsedPage={index:0,width:100,height:200,mapId,mapHash,rotation:0,confidence:1,previewId:randomUUID(),previewHash:'0'.repeat(64)},profile=defaultProfile();profile.image.defaultMode='default_star';
+  const previewId=randomUUID(),preview=await sharp({create:{width:100,height:200,channels:3,background:'#ffffff'}}).png().toBuffer();
+  await writeOriginal(previewId,preview,id);
+  const mapHash=await writeArtifact(mapId,JSON.stringify(glyphs)),anchors:Anchor[]=[{kind:'page',page:0,start:0,end:text.length}],page:ParsedPage={index:0,width:100,height:200,mapId,mapHash,rotation:0,confidence:1,previewId,previewHash:hash(preview)},profile=defaultProfile();profile.image.defaultMode='default_star';
   const d={id,tenant_id,project_id,content:seal(text,`${tenant_id}:${project_id}:${id}`),content_hash:hash(text),anchors,page_data:[page],marks:[],source_format:'png',ner_enabled:false,presetPolicy:{profile:{settings:profile},revision:0}};
   const edit={revision:0,start:text.length-2,end:text.length,expectedText:'张三',text:'李四'};
   const automatic=await correctOcrText(d,0,edit);expect(automatic.marks!.some(m=>m.sources?.some(s=>s.code.includes('SCENE-receipt')))).toBe(false);
+  await expect(correctOcrText({...d,page_data:[{...page,previewHash:'0'.repeat(64)}]},0,edit)).rejects.toThrow('SOURCE_MISMATCH');
   const result=await correctOcrText({...d,documentPolicy:{configuration:{documentType:'screenshot'}}},0,edit);
   const next=text.slice(0,-2)+'李四';expect(result.marks!.some(m=>m.sources?.some(s=>s.code.includes('SCENE-receipt')))).toBe(true);
   const marks=finalizeProfileReplacements(applyReplacementPolicies(next,result.marks!,profileReplacementPolicies(profile,'png')).marks,result.anchors!,profile,'png');expect(marks.every(m=>m.decision==='pending')).toBe(true);expect(marks.every(m=>m.replacement?.mode==='reference-mask')).toBe(true);

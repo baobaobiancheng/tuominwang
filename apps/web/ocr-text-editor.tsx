@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import type { OcrCorrectionInput, OcrTextView } from "../../packages/contracts/ocr.ts";
+import { textareaCoordinateBridge } from "./textarea-coordinates.ts";
 
 type Props = { documentId: string; revision: number; page: number; disabled: boolean;
   load: (page: number, revision: number) => Promise<OcrTextView>;
@@ -36,7 +37,15 @@ export function OcrTextEditor({ documentId, revision, page, disabled, load, save
       {busy && <p role="status">正在处理识别文字…</p>}
       {error && <p role="alert">{error}</p>}{message && <p role="status">{message}</p>}
       {data && <>
-        <label>本页识别文字<textarea aria-label="本页识别文字" value={text} readOnly rows={8} onSelect={e => { const { selectionStart: start, selectionEnd: end } = e.currentTarget; setSelection({ start, end }); setReplacement(text.slice(start, end)); }} /></label>
+        <label>本页识别文字<textarea aria-label="本页识别文字" value={text} readOnly rows={8} onSelect={e => {
+          try {
+            const field=e.currentTarget, bridge=textareaCoordinateBridge(text,field.value);
+            const start=bridge.toCanonical(field.selectionStart),end=bridge.toCanonical(field.selectionEnd);
+            setSelection({start,end});setReplacement(text.slice(start,end));setError("");
+          } catch {
+            setSelection({start:0,end:0});setReplacement("");setError("识别文字选区与原文坐标不一致，请重新打开本页后选择。");
+          }
+        }} /></label>
         {!text && <p>本页没有可纠正的识别文字，可在原件上手动框选敏感区域。</p>}
         <label>纠正为<textarea aria-label="纠正后的文字" value={replacement} rows={3} disabled={disabled || busy || selection.end <= selection.start} onChange={e => setReplacement(e.target.value)} /></label>
         <button className="secondary" disabled={disabled || busy || selection.end <= selection.start || replacement === text.slice(selection.start, selection.end)} onClick={() => void (run ? run(submit) : submit())}>保存文字并重新复核</button>

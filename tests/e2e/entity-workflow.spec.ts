@@ -53,7 +53,12 @@ test("same-value groups review every occurrence across mark pages and text windo
   await group.getByRole("button", { name: phone, exact: true }).click();
   await group.getByRole("button", { name: "下一处", exact: true }).click();
   await expect(group).toContainText("第 2 / 60 处");
-  await expect.poll(() => original.evaluate((el: HTMLTextAreaElement) => el.value.slice(el.selectionStart, el.selectionEnd))).toBe(phone);
+  await expect.poll(async () => {
+    const selected = await original.evaluate((el: HTMLTextAreaElement) => ({ text: el.value.slice(el.selectionStart, el.selectionEnd), start: el.selectionStart }));
+    const pagination = await page.getByLabel("原文分段", { exact: true }).innerText();
+    const first = Number(pagination.match(/文本位置\s+(\d+)/u)?.[1]);
+    return { text: selected.text, absoluteStart: selected.start + first - 1 };
+  }).toEqual({ text: phone, absoluteStart: text.indexOf(phone, phone.length) });
   await group.getByRole("button", { name: "上一处", exact: true }).click();
   await group.getByRole("button", { name: "编辑此处", exact: true }).click();
   await expect(page.getByRole("button", { name: "逐条复核", exact: true })).toHaveAttribute("aria-pressed", "true");
@@ -109,10 +114,25 @@ test("same-value groups review every occurrence across mark pages and text windo
   await page.getByRole("button", { name: "提交并识别", exact: true }).click();
   await expect(group.getByText("待确认 1", { exact: true })).toBeVisible({ timeout: 30000 });
   const documentNavigation = page.getByRole("navigation", { name: "材料导航", exact: true });
-  await Promise.all([
-    page.waitForResponse(response => response.request().method() === "GET" && new URL(response.url()).pathname === `/api/documents/${firstDocumentId}` && response.status() === 200, { timeout: 30000 }),
-    documentNavigation.getByRole("button", { name: "文本 1", exact: true }).click(),
-  ]);
+  const firstDocumentRequest = () => page.waitForResponse(response => response.request().method() === "GET"
+    && new URL(response.url()).pathname === `/api/documents/${firstDocumentId}`, { timeout: 30000 });
+  let loaded = firstDocumentRequest();
+  await documentNavigation.getByRole("button", { name: "文本 1", exact: true }).click();
+  let documentResponse = await loaded;
+  if (documentResponse.status() === 429) {
+    expect((await documentResponse.json()) as { error: string }).toEqual({ error: "RATE_LIMITED" });
+    await expect(page.getByText("请求过于频繁，请稍后重试", { exact: true })).toBeVisible();
+    const retryAfter = documentResponse.headers()["retry-after"];
+    expect(retryAfter).toMatch(/^(?:0|[1-9]\d?)$/u);
+    const seconds = Number(retryAfter);
+    expect(seconds).toBeLessThanOrEqual(60);
+    await page.waitForTimeout((seconds + 1) * 1000);
+    loaded = firstDocumentRequest();
+    await documentNavigation.getByRole("button", { name: "文本 1", exact: true }).click();
+    documentResponse = await loaded;
+  }
+  expect(documentResponse.status()).toBe(200);
+  expect(((await documentResponse.json()) as { id: string }).id).toBe(firstDocumentId);
   await expect(original).toHaveValue(/^13800138000\|x{10}/);
   await expect(group.getByText("脱敏 60", { exact: true })).toBeVisible({ timeout: 30000 });
   await group.getByRole("checkbox").check();

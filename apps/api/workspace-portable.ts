@@ -29,19 +29,48 @@ import { resolveDocumentPolicy } from "../../packages/adapters/document-policy.t
 import { documentPolicySchema } from "../../packages/contracts/document-policy.ts";
 import { readProjectPresets } from "../../packages/adapters/project-presets.ts";
 import { restorePortableDraft } from "../../packages/adapters/portable-draft.ts";
+import { applyReplacementPolicies } from "../../packages/core/replacement-policies.ts";
+import { profileReplacementPolicies, finalizeProfileReplacements } from "../../packages/core/profile-recognition.ts";
+import { resolvePolicyMappings } from "./mappings.ts";
+import {getRuntimeWhitelists} from "../../packages/adapters/runtime-rule-update.ts";
 import { validatePageReview } from "../../packages/core/page-redaction.ts";
 import { randomUUID } from "node:crypto";
 import { z } from "zod";
-import { id, dictionarySchema, FILE_MAX_BYTES, markSchema, sourceFormatSchema } from "../../packages/contracts/index.ts";
+import { id, dictionarySchema, FILE_MAX_BYTES, markSchema, sourceFormatSchema, type Mark } from "../../packages/contracts/index.ts";
 import {reviewEntityWasUserAdded} from '../../packages/core/review-type-hide.ts';
 import {reviewEntityBirth} from '../../packages/core/review-entity-birth.ts';
 import { projectPresetSchema } from "../../packages/contracts/presets.ts";
 import { readNativeOrReferencePortable, writeNativePortable, type NativePortable } from "../../packages/core/native-portable.ts";
 import { fileFormat } from "../../packages/core/files.ts";
-import { hash, readArtifact, readOriginal, seal, unseal, writeArtifact, writeOriginal } from "../../packages/adapters/storage.ts";
+import { hash, readArtifact, readOriginal, removeOwnedArtifact, seal, unseal, writeArtifact, writeOriginal } from "../../packages/adapters/storage.ts";
 import { rows, scoped, sql,type DB } from "../../packages/adapters/db.ts";
-import { projectScope, denied as fail } from "./access.ts";
+import { projectScope, requirePermission, denied as fail } from "./access.ts";
 async function checked<T>(action: () => Promise<T> | T): Promise<T> { try { return await action(); } catch (e) { const error = e as Error & { statusCode?: number }; if (!error.statusCode && /^(?:MAPPING_LIBRARY_|PORTABLE_|NATIVE_PORTABLE_|RESTORE_|FILE_SIZE_LIMIT|ZIP_LIMIT|XML_LIMIT|UNSAFE_XML|INVALID_OFFICE|UNSUPPORTED_FORMAT|INVALID_PAGE_REVIEW)/.test(error.message)) Object.assign(error, { statusCode: 400 }); throw error; } }
+// A restored native draft has two disjoint origins. Reapply today's profile only
+// to fresh recognizer candidates; imported review slots retain their reviewed
+// replacement and mapping identity, but every decision still starts pending.
+async function applyFreshPortableReplacements(db:DB,d:any,restored:any,policy:any,user:string) {
+  const profile=policy.presetPolicy?.profile?.settings;
+  if(!profile)return;
+  const imported=new Set<number>((restored.restoredMarkIndices as number[]).filter(index=>index>=0));
+  const freshIndices:number[]=[];
+  const fresh:Mark[]=[];
+  for(const [index,mark] of (restored.marks as Mark[]).entries())if(!imported.has(index)){freshIndices.push(index);fresh.push(mark);}
+  if(!fresh.length)return;
+  const text=unseal(restored.content,`${d.tenant_id}:${d.project_id}:${d.id}`);
+  if(hash(text)!==restored.hash)fail('PORTABLE_DRAFT_SOURCE_MISMATCH',409);
+  const policies=profileReplacementPolicies(profile,d.source_format,policy.batchMode,policy.documentPolicy?.configuration.exportMode);
+  let plan=applyReplacementPolicies(text,fresh,policies);
+  if(plan.aliasRequests.length){
+    await requirePermission(db,d.project_id,['view_mapping']);
+    const semanticDoc={...d,content:restored.content,content_hash:restored.hash,marks:restored.marks,anchors:restored.anchors,page_data:restored.pages,entity_corrections:null,entityCorrections:null};
+    const mappings=await resolvePolicyMappings(db,semanticDoc,user,plan.aliasRequests);
+    plan=applyReplacementPolicies(text,fresh,policies,mappings);
+    if(plan.aliasRequests.length)fail('MAPPING_MISMATCH',400);
+  }
+  const finalized=finalizeProfileReplacements(plan.marks,restored.anchors,profile,d.source_format,policy.batchMode,policy.documentPolicy?.configuration.exportMode);
+  for(const [offset,index] of freshIndices.entries())restored.marks[index]=finalized[offset];
+}
 const password = z.string().min(4).max(1024).refine(v => !!v.trim());
 const file = z.string().min(1).max(Math.ceil(FILE_MAX_BYTES * 4 / 3) + 100000);
 async function retainPortableSlots(db:DB,d:any,actorId:string,operation:string){const marks=d.marks.map((m:any)=>({...m,decision:m.hiddenByType===true?'ignore':'pending'}));await recordReboundReviewProvenance(db,d,{...d,marks,revision:d.revision+1},{links:marks.map((_:any,index:number)=>({beforeIndex:index,afterIndex:index})),actorId,operation});}
@@ -97,21 +126,22 @@ export function registerWorkspacePortableRoutes(app: FastifyInstance) {
   });
   app.post("/api/documents/:id/portable-draft/restore", async req => {
     const doc = id.parse((req.params as any).id), input = z.object({ revision: z.number().int().nonnegative() }).strict().parse(req.body);
-    return projectScope(req, { document: doc }, ["view_original", "view_mapping", "review"], async (db, project) => {
+    let createdArtifactIds:string[]=[],callbackCompleted=false;
+    try { return await projectScope(req, { document: doc }, ["view_original", "view_mapping", "review"], async (db, project) => {
       const [p] = await rows(db, sql`SELECT * FROM projects WHERE id=${project} FOR UPDATE`), [d] = await rows(db, sql`SELECT * FROM documents WHERE id=${doc} FOR UPDATE`); if (!p.portable_state) fail("PORTABLE_DRAFT_NOT_FOUND", 404); if (d.state !== "review" || d.revision !== input.revision) fail("VERSION_CONFLICT", 409);
       const stored = JSON.parse(unseal(p.portable_state, `${req.user.tenant_id}:${project}:portable-state`)); const oldId = Object.entries(stored.documentIdMap).find(([, target]) => target === doc)?.[0], old = stored.importedSnapshot.documents.find((item: any) => item.id === oldId); if (!old) fail("PORTABLE_DRAFT_NOT_FOUND", 404);
       const assets = stored.restoredDraftAssets.find((item: any) => item.documentId === doc)?.pages ?? [], mappings = await getProjectMappings(db,project,{historical:true}), dictionary = p.dictionary ? JSON.parse(unseal(p.dictionary, `${req.user.tenant_id}:${project}:dictionary`)) : [];
       try{await verifiedDocumentSource(d);}catch(e){fail((e as Error).message,409);}
-      const legacyMarkdown=stored.format==="tuominwang-workspace"&&old.format==="md"&&old.recognition?.markdown?.version!=="markdown-source-2",referenceOld=legacyMarkdown?{detection:{documentText:old.content},review:{entities:old.marks.map((m:any,index:number)=>({type:m.rawEntityType??m.kind,text:old.content.slice(m.start,m.end),startOffset:m.start,endOffset:m.end,sourceStart:m.start,sourceEnd:m.end,nativeReplacement:m.replacement,deleted:m.decision==='ignore',userAdded:m.hiddenByType?reviewEntityWasUserAdded(m):reviewEntityBirth(m,old.reviewProvenance?.entries.find((e:any)=>e.active&&e.markIndex===index)),...m.hiddenByType===true?{hiddenByType:true,meta:{hiddenByType:true,hiddenTypeWasUserAdded:m.hiddenTypeWasUserAdded===true}}:{},customReplacement:m.replacement?.mode==="custom"?m.replacement.value:undefined,anchor:{contextBefore:old.content.slice(Math.max(0,m.start-30),m.start),contextAfter:old.content.slice(m.end,m.end+30)}})),activeBBoxes:[],deletedBBoxes:[]},exportState:{}}:{...old,effectiveProfileSnapshot:stored.importedSnapshot.profileSnapshot};const nativePolicy=stored.format === "tuominwang-workspace"&&!legacyMarkdown?resolveDocumentPolicy(d,readProjectPresets(p)):null;const restored = await checked(() => nativePolicy?restorePortableDraft(d, old, assets, mappings, dictionary, nativePolicy.presetPolicy,nativePolicy.documentPolicy):restoreReferencePortableDraft(d,referenceOld,legacyMarkdown?old.sourceHash:stored.referenceSourceHashes?.[oldId as string],mappings)); stored.pendingDraftRegions ??= {}; stored.pendingDraftRegions[doc] = { regions: restored.regionCandidates, deletedPages: restored.deletedPageCandidates, unresolved:("unresolved" in restored?restored.unresolved:[]) }; await rows(db, sql`UPDATE projects SET portable_state=${seal(JSON.stringify(stored), `${req.user.tenant_id}:${project}:portable-state`)} WHERE id=${project}`);
+      const legacyMarkdown=stored.format==="tuominwang-workspace"&&old.format==="md"&&old.recognition?.markdown?.version!=="markdown-source-2",referenceOld=legacyMarkdown?{detection:{documentText:old.content},review:{entities:old.marks.map((m:any,index:number)=>({type:m.rawEntityType??m.kind,text:old.content.slice(m.start,m.end),startOffset:m.start,endOffset:m.end,sourceStart:m.start,sourceEnd:m.end,nativeReplacement:m.replacement,deleted:m.decision==='ignore',userAdded:m.hiddenByType?reviewEntityWasUserAdded(m):reviewEntityBirth(m,old.reviewProvenance?.entries.find((e:any)=>e.active&&e.markIndex===index)),...m.hiddenByType===true?{hiddenByType:true,meta:{hiddenByType:true,hiddenTypeWasUserAdded:m.hiddenTypeWasUserAdded===true}}:{},customReplacement:m.replacement?.mode==="custom"?m.replacement.value:undefined,anchor:{contextBefore:old.content.slice(Math.max(0,m.start-30),m.start),contextAfter:old.content.slice(m.end,m.end+30)}})),activeBBoxes:[],deletedBBoxes:[]},exportState:{}}:{...old,effectiveProfileSnapshot:stored.importedSnapshot.profileSnapshot};const nativePolicy=stored.format === "tuominwang-workspace"&&!legacyMarkdown?resolveDocumentPolicy(d,readProjectPresets(p)):null;const currentRuntimeRules=nativePolicy?await getRuntimeWhitelists(db,req.user.tenant_id,project,req.user.id,doc):[];const restored = await checked(() => nativePolicy?restorePortableDraft(d, old, assets, mappings, dictionary, nativePolicy.presetPolicy,nativePolicy.documentPolicy,currentRuntimeRules,p.dictionary_revision):restoreReferencePortableDraft(d,referenceOld,legacyMarkdown?old.sourceHash:stored.referenceSourceHashes?.[oldId as string],mappings)); createdArtifactIds=('createdArtifactIds'in restored?restored.createdArtifactIds:[]) as string[]; if(nativePolicy)await applyFreshPortableReplacements(db,d,restored,nativePolicy,req.user.id); stored.pendingDraftRegions ??= {}; stored.pendingDraftRegions[doc] = { regions: restored.regionCandidates, deletedPages: restored.deletedPageCandidates, unresolved:("unresolved" in restored?restored.unresolved:[]) }; await rows(db, sql`UPDATE projects SET portable_state=${seal(JSON.stringify(stored), `${req.user.tenant_id}:${project}:portable-state`)} WHERE id=${project}`);
       const archivedCorrection=archiveEntityCorrections(d);let correctionFrame:any=('entityCorrections'in restored)?restored.entityCorrections:null;if(stored.format==='tuominwang-workspace'&&!legacyMarkdown&&archivedCorrection){if(archivedCorrection.frame.contentHash!==restored.hash||archivedCorrection.frame.sourceHash!==d.source_hash)fail('ENTITY_CORRECTION_STALE',409);correctionFrame={...archivedCorrection.frame,capturedRevision:d.revision+1,entries:archivedCorrection.frame.entries.map(entry=>{const afterIndex=entry.markIndex===undefined?undefined:restored.restoredMarkIndices[entry.markIndex];if(entry.active===false)return entry;if(afterIndex===undefined||afterIndex<0)return{...entry,active:false};const mark=restored.marks[afterIndex];if(mark.start!==entry.start||mark.end!==entry.end||entityIdentity(mark)!==entityIdentity(entry))fail('ENTITY_CORRECTION_STALE',409);return{...entry,markIndex:afterIndex};})};}const nextDoc={...d,content:restored.content,content_hash:restored.hash,marks:restored.marks,revision:d.revision+1},storedCorrection=correctionFrame?sealEntityCorrections(nextDoc,correctionFrame):d.entity_corrections??null;await recordReboundReviewProvenance(db,d,nextDoc,{links:[],actorId:req.user.id,operation:'portable-draft-restore'});
       const geometryDoc={...nextDoc,anchors:restored.anchors,page_data:restored.pages},geometry=await restorePortableEntityGeometry(db,geometryDoc,old,restored,req.user.id);
       restored.regionCandidates=geometry.regions;restored.unresolved=geometry.unresolved;
       stored.pendingDraftRegions[doc]={regions:geometry.regions,deletedPages:restored.deletedPageCandidates,unresolved:geometry.unresolved};
       await rows(db,sql`UPDATE projects SET portable_state=${seal(JSON.stringify(stored),`${req.user.tenant_id}:${project}:portable-state`)} WHERE id=${project}`);
-      await rows(db, sql`UPDATE documents SET content=${restored.content},content_hash=${restored.hash},entity_corrections=${storedCorrection},coverage=${JSON.stringify([...d.coverage.filter((c:any)=>c.id!=="portable-review-unresolved"&&(c.id!=="entity-corrections"||!correctionFrame)),...(restored.unresolved.length?[{id:"portable-review-unresolved",status:"blocked",reason:"PORTABLE_REVIEW_UNRESOLVED"}]:[])])}::jsonb,anchors=${JSON.stringify(restored.anchors)}::jsonb,page_data=${JSON.stringify(restored.pages)}::jsonb,marks=${JSON.stringify(restored.marks)}::jsonb,page_review=${JSON.stringify(sealPageReview({...d,content_hash:restored.hash},restored.pageReview,d.revision+1))}::jsonb,revision=revision+1 WHERE id=${doc}`);
+      await rows(db, sql`UPDATE documents SET content=${restored.content},content_hash=${restored.hash},entity_corrections=${storedCorrection},coverage=${JSON.stringify([...d.coverage.filter((c:any)=>c.id!=="portable-review-unresolved"&&(c.id!=="entity-corrections"||!correctionFrame)),...(restored.unresolved.length?[{id:"portable-review-unresolved",status:"blocked",reason:"PORTABLE_REVIEW_UNRESOLVED"}]:[])])}::jsonb,anchors=${JSON.stringify(restored.anchors)}::jsonb,page_data=${JSON.stringify(restored.pages)}::jsonb,marks=${JSON.stringify(restored.marks)}::jsonb,page_review=${JSON.stringify(sealPageReview({...d,content_hash:restored.hash},restored.pageReview,d.revision+1))}::jsonb,visual_candidates=${JSON.stringify('visualCandidates'in restored?restored.visualCandidates:d.visual_candidates??[])}::jsonb,recognition=${JSON.stringify('recognition'in restored?restored.recognition:d.recognition)}::jsonb,revision=revision+1 WHERE id=${doc}`);
       await rows(db, sql`UPDATE jobs SET status='cancelled',lease_until=NULL WHERE document_id=${doc} AND status IN ('queued','running')`); await rows(db, sql`INSERT INTO audit(tenant_id,project_id,user_id,event,object_id) VALUES(${req.user.tenant_id},${project},${req.user.id},'portable_draft_restored',${doc})`);
-      return { revision: d.revision + 1, pending: stored.pendingDraftRegions[doc], rebuiltMapPages: restored.rebuiltMapPages };
-    });
+      callbackCompleted=true;return { revision: d.revision + 1, pending: stored.pendingDraftRegions[doc], rebuiltMapPages: restored.rebuiltMapPages };
+    }); } catch(error) { if(!callbackCompleted)await Promise.allSettled(createdArtifactIds.map(id=>removeOwnedArtifact(id,doc))); if((error as Error).message==='PROCESSING_BUSY')Object.assign(error as Error,{statusCode:409}); throw error; }
   });
   app.post("/api/documents/:id/portable-draft/confirm-region", async req => {
     const doc = id.parse((req.params as any).id), input = z.object({ revision: z.number().int().nonnegative(), regionId: id }).strict().parse(req.body);

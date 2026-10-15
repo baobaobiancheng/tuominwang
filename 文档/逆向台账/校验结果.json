@@ -1,5 +1,5 @@
 {
-  "ledger_sha256": "19d40f5ff97b2eaa8f9d66dd699cdac8b67acd12fc20eaa46c0ba154fb78b36c",
+  "ledger_sha256": "4b3c2d30f1180c10968ef64e92d06e344ec0b25d9601c7469f34bf47b0b1c3c6",
   "reference_version": "0.5.9",
   "interface_count": 258,
   "flow_count": 37,
@@ -7,9 +7,9 @@
   "historical_ipc_missing": [],
   "unmapped_interfaces": [],
   "empty_evidence_interfaces": [],
-  "evidence_reference_count": 4847,
-  "evidence_file_count": 4390,
-  "evidence_baseline_at": "2026-10-15T21:37:36.361511+00:00",
+  "evidence_reference_count": 4853,
+  "evidence_file_count": 4729,
+  "evidence_baseline_at": "2026-10-15T23:43:46.294394+00:00",
   "evidence_baseline_note": "这些哈希是2026-10-13本轮从当前现存文件建立的内容基线，只用于此后漂移检测；不能反向证明基线建立前的文件内容、原始发布完整性或过去运行结论。专有源码未修改。 ITER-012/013追加人工契约、交叉审查、新版指南及明确列举的子路径源码；旧文件哈希继续保留。已批准源码和主分析文档的哈希变更逐项记录previous/current，不扫描部署凭据。 ITER-014仅显式更新最终应用Compose及新增部署结果文件，保留真实OOM与未验证边界，未纳入密钥或环境凭据。 ITER-015仅补115项UI入口、两处动态桥调用集合、交叉审查/核验脚本及新增OpenJPEG发布证据；保留此前应用和部署文件的哈希，正在进行的前端修复漂移由后续迭代单独复核。 ITER-016：仅将本轮明确修改的前端/测试/部署/文档及验收回执更新基线，事件保存旧新哈希；无业务材料或凭据入账。 ITER-017新增分组/增补契约、交叉审查及npm原生签名差异证据；仅maintain新增71解释及维护规则旧动态数量文案的历史hash显式更新。未纳入凭据、未改竞品文件或应用。下载tarball及原生比较的逐项SHA保存在专项报告，不自动扩大成算法可信声明。 ITER-020：补我方Word结构预览、页内OCR改字、视觉候选的实现/验收与规则交接；显式更新5项应用pin，previous/current与原ledger备份保留；早期UI/26例与旧交接独审仅为历史阶段，不代表最终功能或最终文档全部被独审。竞品S2/R0、全部I级别不变，未据本地验证声明公网发布。 ITER-022显式更新进度检查点应用pin；main87基线原字节和旧新hash逐项保留，新能力未一律提级，未发布服务。 ITER-023仅显式进度检查点，28项原pin旧字节归档；有失败日志和新阶段未完成事项，未整体升格。 ITER-030显式逐ID更新，所有漂移旧字节保留并精确验hash；竞品运行R0保持不变。 ITER-031发布及真实OOM影响补证；README和指南文本旧字节精确保留；7张历史截图原字节缺失明确列出，旧hash保留且不声称历史图全部可验证。 ITER038静态语义逐ID合并；旧漂移逐一有精确字节归档，未覆盖掉历史证据。 ITER039握手故障独立复现；变更旧字节逐一验hash并归档，未以定向通过推全量或发布。 ITER040保留全部旧pin字节；逐ID/流程说明CAS更正，等级不变；实际门禁与服务器发布分别记录。 ITER040补5个已存在的新引用当前哈希；不反推其建立基线前内容。新增Edge截图调用保留此前精确字节，尚未运行。 ITER041逐文件真实variant与前后testSHA/logSHA固定；历史结果不冒称当前单次全量。两项测试修正保留旧字节及独立源裁定。 ITER042：首轮真实Edge失败原样保留；18项新旧字节逐一固定，4项产品修复待重新运行，等级不变。 ITER043最终本地：所有旧pin精确字节均找到并归档；API/Edge逐variant保留，无单次全量虚称；13条备注校准不改等级，图文实际核对；部署另证。 ITER044上线：首次真实OOM/回滚与恢复、二次发布、TXT/PNG实产物、指南补丁分别保留；无新增资源限制或模型读取改动；证据变更先核旧字节，S/I/R不变。 ITER-050首次检查点新增审查和实际反例，不变更已有pin及S/I/R，修复与发布尚待。 ITER-050终版：明确更新14路径及文档pin，旧字节按SHA归档；保留失败/跳过/反驳与最终同源层次。258R0及S/I不升级；未把本地验收写为已发布。 ITER-050发布：4文档旧字节先归档，追加最小部署与公网只读证据，保留历史状态而不升级S/I/R。 ITER-051反例检查点：状态文件旧字节先归档；固定已结束实测而不固定仍运行日志；不升级S/I/R。 ITER-051第一批：旧源码Git7ef93d6精确字节归档后显式转移pin；772单元及Edge2为第一批实测，签名/进度/MCP后续未验，竞品R0/线上050记录保持。 051第二批本地checkpoint：显式pin转换及事前旧字节归档；777完整单元、定向API/Edge与跨组反驳；95文件API仍执行、活动日志不pin、未部署。 051第三批本地checkpoint：显式旧pin归档转换，851完整check、分层API/Edge、27图；104全API仍执行，未部署，S/I/R不升。 051第四批前停点：104文件执行35，61过1测试期望失败；无条件安全断言重验1/1，假名与模型导航补齐，未部署。 051第四批checkpoint：SQL044及Edge1/1、854 check134/783、28节30图；105完整API仍运行，未部署，旧pin精确字节归档。 051e终态：105文件209项分段通过、854输入不变、044上线/397运行文件和web资源/5邻居/公网Edge/28节30图，源R0及I级保持。 052显式归档9处旧pin后更新；完整83失败/分层87成功、793单元及规则和质量边界分别保留，208条过期门禁等待清理不提升状态。",
   "evidence_files": {
     ".data/deploy/aliyun-20261013/before/api-main.ts": {
@@ -2770,6 +2770,21 @@
     ".data/deploy/aliyun-20261016/iteration053/write-release-docs.py": {
       "sha256": "51916c8748edd00a098c4112e3c527e6e58c678e4d32aca4d53090d4aaef6a2f",
       "bytes": 11145,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261016/iteration054/final-runtime-stage-precommit.json": {
+      "sha256": "9d509bb9adc9579508aa40ba4871bdc7ef8084785081c3de5c8e6745c6772af0",
+      "bytes": 232,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261016/iteration054/private-github-visibility.json": {
+      "sha256": "516d8f8a8621d6b3be1fc5ae6b20d16472649a2d95745d8a03bbc7a297598653",
+      "bytes": 270,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261016/iteration054/web-build-v4-receipt.json": {
+      "sha256": "74c15478ecc2a1c0af3634b125661618901bc715a784953b1cc36f78bd9847f7",
+      "bytes": 1077,
       "matches_baseline": true
     },
     ".data/deploy/session-sync-20261013/admin-session-after.png": {
@@ -13607,6 +13622,1611 @@
       "bytes": 11207,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-16/iteration054/arch/check-finalization-resume-proof.json": {
+      "sha256": "706e11db39f051a7d0b1e20ed9ea842d84725b95fd4dcf691560b05ddcc8e716",
+      "bytes": 897,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/arch/copied-api-112-terminal-review.md": {
+      "sha256": "42a52084e9100d924a93f732e64576ee2edb1235dcdb29d5581ba2f9d101b3d1",
+      "bytes": 2314,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/arch/crlf-keyboard-luna-review.md": {
+      "sha256": "dc71ca637458e7264ee1f1ebbbb0a81c1b5f8635bce44c66a9b9dbf3a7a18cde",
+      "bytes": 4039,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/arch/final-check-v4-runner-cross-review.md": {
+      "sha256": "76ed6d0caff2cbe3fc0738ba6d267d3ecce11128f7695cd6cd67f9fdd2e8b498",
+      "bytes": 1678,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/arch/final-check-v4-terminal-independent-review.json": {
+      "sha256": "8b811a371663cb58a6266c98bfa23ff5286eecaca4a5873e00bd8c348143a84a",
+      "bytes": 977,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/arch/final-merge-layered-api-independent-review.json": {
+      "sha256": "12178b6985d92b5ff0122d4fc5905d3609154a22f5e75269a9a46fc6d52445db",
+      "bytes": 1927,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/arch/final-merge-layered-api-review.md": {
+      "sha256": "3729b6c94dc846f63106e56ccf850d7b9e2ffca8e28268082c01f91636002a70",
+      "bytes": 1835,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/arch/freeze-final-v4-scope-delta-review.md": {
+      "sha256": "ca666f8231190954e08be0c1d8b0c1f69ac72d667221f13ea31fd6c3446ede46",
+      "bytes": 1001,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/arch/full-api-validation/verification/copied-api-112-receipt.json": {
+      "sha256": "7300cc34b03160877a9cb358152f444e9226b15cf6a4a80c5b2d02b46be2a6c7",
+      "bytes": 6867,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/arch/full-api-validation/verification/copied-api-112-terminal-independent-review.json": {
+      "sha256": "42932467a07eb0b9df7b9d79bc6d69d1217485758a4b93e656d0873d59e20e26",
+      "bytes": 2624,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/arch/full-api-validation/verification/copied-api-112.log": {
+      "sha256": "1347d6816511bd8d6cf7281060c096a070624694551a17aedb2f99e61939af00",
+      "bytes": 63875,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/arch/full-api-validation/verification/copied-manifest-metadata-correction-pre.json": {
+      "sha256": "f73d5712512565564b7b2c488bc3cd4b92809ffa4e034ad7aa7b61f17d6be274",
+      "bytes": 1595,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/arch/ocr-visual-candidate-report.md": {
+      "sha256": "8329db6a405139e0a50079777f441e303f8d08b44c3e002cd8b7c4fbddf807e4",
+      "bytes": 4063,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/arch/ocr-visual-candidate-v2-delta.md": {
+      "sha256": "bb74e76e5d2f5afdfd36aaa87e0d9dd0008be5c65bd26641f8c5ef3d59c354a2",
+      "bytes": 874,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/arch/ocr-visual-candidate-v2.patch": {
+      "sha256": "9a075954894f8b453e216158c8c24c898219bb7e569866c8e913351feefde661",
+      "bytes": 27859,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/arch/portable-map-cleanup-formal-freeze-review.md": {
+      "sha256": "c0af9bece19791d2c4ead491cabbad48de6e45cb979bf90e1e9c77856329d066",
+      "bytes": 1374,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/arch/portable-map-cleanup-node24-attempt01.log": {
+      "sha256": "2da50219511ff6d7e98ac762220edc9ea7b9c8b04b948e96a592a2ae37509f2f",
+      "bytes": 885,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/arch/portable-map-cleanup-review.md": {
+      "sha256": "73f7a38f8de2bb331c2439f816f41358acb5437f463ea97006a8dcad9f655ddf",
+      "bytes": 3342,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/arch/portable-map-cleanup-root-strengthening.patch": {
+      "sha256": "34d39ded849574459139d7cd8b2be4724846462a204ae2aaf78cdef679a104aa",
+      "bytes": 9083,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/arch/portable-map-cleanup-test.patch": {
+      "sha256": "ab5d99e0e8df52544c15c52c18a4244bf41d35d44c97800a0d2e193006e59972",
+      "bytes": 8441,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/arch/portable-map-cleanup-typed.patch": {
+      "sha256": "35d0843851170c5bce32494c4e42c8941d4131c14163263427efa5066112c109",
+      "bytes": 9145,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/arch/portable-map-cleanup-witness-permission-correction.md": {
+      "sha256": "4b43aad9209c31afc0067388b8bf60d03e157341e4c718f85429266b784e1a9e",
+      "bytes": 1870,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/arch/release054-preflight-review.md": {
+      "sha256": "ad6ef4983517459cc4af1b05d04e2b2e8c100aad1c0e5ae1a42fd9a7782f1660",
+      "bytes": 3791,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/arch/textarea-browser-probe-notes.md": {
+      "sha256": "df594924fda83b3147ea5ab7fdf5ef7337bd47a6d78b2fbac2df0e8fd5aa1fe9",
+      "bytes": 2246,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/arch/textarea-native-probes-manifest.json": {
+      "sha256": "092cfe64b8b518a0d02e2e02d0817b6550eb8db111f5aaf78ab2033af91614c2",
+      "bytes": 997,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/arch/textarea-readonly-keyboard-probe.json": {
+      "sha256": "baa0b405198e1e13815b9f98460247eaee9c508e3ddb6ff6b3eb3fe15f0694d1",
+      "bytes": 1176,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/arch/textarea-value-repeat-probe.json": {
+      "sha256": "ab2c86083eb51c9afbc6c67c2fbb6787d9fda7d52372e075f8d2076236704ec7",
+      "bytes": 1206,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-checkpoint-ledger.json": {
+      "sha256": "19d40f5ff97b2eaa8f9d66dd699cdac8b67acd12fc20eaa46c0ba154fb78b36c",
+      "bytes": 7349407,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-crlf-two-own-dev.json": {
+      "sha256": "077fa0be40627fc4af36c5af90b1f0ac1d79f475b40cc787da26717172b9a89c",
+      "bytes": 1318,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-crlf-v2-own-dev.json": {
+      "sha256": "7d4cb317b3de035221a1a4f77acbbb8eab401ff8adc61f0981c3524955f7b75a",
+      "bytes": 1323,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-crlf-v3-own-dev.json": {
+      "sha256": "b1afe8ddeb569aff9b0d6984dbf6096a4665fb98dfe8f8077e0b75c9498a1820",
+      "bytes": 1331,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-edge-checkpoint/文档/逆向台账/contracts/policy-ocr-portable-054-20261016.md": {
+      "sha256": "f35f4de53dfaf31c74c76fbb5e6b3c5b780ab7dc145e7a7e5fd6dbd9fb3afdd5",
+      "bytes": 7466,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-final-api-crlf-checkpoint/ledger.json": {
+      "sha256": "1ab40ba6f9b2cfda8dce6acc3e737e3fb1c00cb5c86d16023f2a7d30007f3f18",
+      "bytes": 7401028,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-final-api-crlf-checkpoint/文档/逆向台账/contracts/policy-ocr-portable-054-20261016.md": {
+      "sha256": "43517e69bff4cb13f82d1b42f51a4dc5b2817ea08e8498e66fb193216b103e82",
+      "bytes": 10417,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-final-source-merge/apps/web/main.tsx": {
+      "sha256": "b5a4e19025b300986ae4da801205750f948333ed63ac62e8186e83667c5a671b",
+      "bytes": 97660,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-final-source-merge/apps/web/ocr-text-editor.tsx": {
+      "sha256": "30252ebfb44a44479e4ab63a7102dbea2ba2e721a9ad0f2e4656a60d14f29bc8",
+      "bytes": 4160,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-final-source-merge/tests/e2e/cancel-recovery.spec.ts": {
+      "sha256": "df4479c0eb5f23f9f2fb4a4da887296dea55f87eec9c79c07c37e9cc46517022",
+      "bytes": 5330,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-final-source-merge/tests/e2e/docx-layout.spec.ts": {
+      "sha256": "91ba0588c3dda5ba54501e1e5e7bbab21df53f8420f2a346e61209ffb6a6cb5d",
+      "bytes": 8017,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-final-source-merge/tests/e2e/entity-workflow.spec.ts": {
+      "sha256": "6084013911e5dcd11de3f1452863689cfdced7aaab246182d947ef4546fe97aa",
+      "bytes": 12049,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-final-source-merge/tests/e2e/project-entities.spec.ts": {
+      "sha256": "393b9133af41d0cdede6f7fc716e668641e7120d50612e662beb8dcc4392308e",
+      "bytes": 19335,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-final-source-merge/tests/e2e/recognition.spec.ts": {
+      "sha256": "b8eb8dcca93ec9ce09e00ab8f2aa28820493b9b67728f1eb5a62278249c69c95",
+      "bytes": 3504,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-fresh-policy.json": {
+      "sha256": "8e411fc4b5827f350e0314c9f21e8132d316313daf3fdebc6c5387edbfefa885",
+      "bytes": 258,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-fresh-policy/apps/api/workspace-portable.ts": {
+      "sha256": "1445f0cbcc9c4dda18011cc6364b6109c013c096a1d8e3cd9b7cbd23a44951b4",
+      "bytes": 47254,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-local-doc-final/manifest.json": {
+      "sha256": "c2ef1724a085c9c58ae3e4e9cda92dbd0640370f58340f91b08255d97183bf45",
+      "bytes": 4326,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-map-test-typing/tests/portable-map-cleanup.integration.ts": {
+      "sha256": "6ff6c071e15397e7111c8e247769505d4037c6b921935a8735e15ef217cf3f69",
+      "bytes": 8788,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-matrix-plan-ledger.json": {
+      "sha256": "67476e5a221cab7870f7198d17b0c9df6efae2d86b7ba0b3519928777678e31b",
+      "bytes": 7360917,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-matrix-plan/文档/逆向台账/contracts/policy-ocr-portable-054-20261016.md": {
+      "sha256": "b1910ed00991f45afdd770fd7ba5ec1cd18da6656fe6d2c94eb63298ba44049f",
+      "bytes": 3839,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-merge.json": {
+      "sha256": "0fd19cbc1ffabf01155ec94aa229588f7d10170466b3684e3c89bfebc5ec1f3f",
+      "bytes": 2328,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-merge/apps/api/document-policy.ts": {
+      "sha256": "419beb393aa67ed6aa4f44ab8fa4c8719b02c5db7b7612dc74e1e91c0e1af7cd",
+      "bytes": 6581,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-merge/apps/api/workspace-portable.ts": {
+      "sha256": "2f77e71730e46d183cf923ec09c30f5f72dc605e15b3225497ed2c7170620e2c",
+      "bytes": 46339,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-merge/apps/web/document-configuration.tsx": {
+      "sha256": "2dfa0e513ef698efe4654670916fdceba18d79e7ccbe698772a947ddd73da448",
+      "bytes": 4904,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-merge/packages/adapters/ocr-correction.ts": {
+      "sha256": "ddcd8d1fc8bf3b8a70deff9d3f2ec8f72d917dd58fae904754265dce7ee4be90",
+      "bytes": 7456,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-merge/packages/adapters/portable-draft.ts": {
+      "sha256": "8deb4591554aa6b9faf22349a109847ba893e1006de962b9fbdef4e234e795ca",
+      "bytes": 11269,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-merge/tests/document-policy-portable.integration.ts": {
+      "sha256": "1eb6f57865b7f30c949d20ed967aa23e874d59732f17e7c1dbf908b86ecba5af",
+      "bytes": 6437,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-merge/tests/evidence-screenshot.test.ts": {
+      "sha256": "233efabf9343627de11d3631d2f51444502b57524e3caf2bf6a23ce2c85c6003",
+      "bytes": 13152,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-policy-matrix-doc/文档/逆向台账/contracts/policy-ocr-portable-054-20261016.md": {
+      "sha256": "f475d83460ad74db77f95e7ca8d6b2e0f7d5075fcdfd1e6ea18cfd3dc785df1e",
+      "bytes": 5581,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-sequence-fixture-grant/tests/portable-map-cleanup.integration.ts": {
+      "sha256": "86e0a7b8c2ff45cb4c3cc679b551e1d23cf17982e8e1741882c608e0a360db27",
+      "bytes": 8849,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-test-strengthening.json": {
+      "sha256": "749adcc28ed786913483d85443e2756b565e3d9131f7d7af3fc0214d56b4c4b8",
+      "bytes": 749,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-unit-fixture.json": {
+      "sha256": "0a512bc82fd2c09888910c3ccafea2c22219289c6f3129ad682f767c7ebfa561",
+      "bytes": 275,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-unit-fixture/tests/reference-spatial-adapter.test.ts": {
+      "sha256": "59eb34fc06395a44704c51f1645902bd0cfb8ce703c67c113849e7a087de35a2",
+      "bytes": 4592,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-visual-merge.json": {
+      "sha256": "dacbe5eb0115bfa008caf4b261d97b0bb2ca57895dd2f6ffcd0d7fbc5ba18c20",
+      "bytes": 1069,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-visual-merge/apps/api/ocr.ts": {
+      "sha256": "2130b6142b7cca5873b94d5956c7e590d4f79530c9b18bfd6fa27dc90724ea80",
+      "bytes": 6908,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-visual-merge/packages/adapters/ocr-correction.ts": {
+      "sha256": "87bb1c589c3322b3a8f87b078405e9f89dfa28347fc383bd5c52fd791e3a9fb1",
+      "bytes": 7762,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-visual-merge/packages/adapters/processing-worker.ts": {
+      "sha256": "40393b081e7715aba49781a5278df147d32775fdba9dd825b7a1786641d7c986",
+      "bytes": 28660,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-visual-merge/tests/ocr.integration.ts": {
+      "sha256": "cc6035f88b424f09fd9e27f79fed51c578836d6c2522b672fcf2059bf82b8937",
+      "bytes": 14402,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-vite-input-exclusion/apps/web/node_modules/.vite/deps/@radix-ui_react-icons.js": {
+      "sha256": "251012b133375fc5be89fbbe080757c0097e5f216393909b4fe6c7092d4dd782",
+      "bytes": 506020,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-vite-input-exclusion/apps/web/node_modules/.vite/deps/@radix-ui_react-icons.js.map": {
+      "sha256": "0b8913e63386b5cdc240e57b7ee72aaa3f2c1d74cf09ede85936c3090aa01e23",
+      "bytes": 665469,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-vite-input-exclusion/apps/web/node_modules/.vite/deps/_metadata.json": {
+      "sha256": "d041ab2d4c7e2d13813263d7bd67695da994cf5ca9967afa80ac10e39cde8acb",
+      "bytes": 1958,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-vite-input-exclusion/apps/web/node_modules/.vite/deps/chunk-EV5AVFAP.js": {
+      "sha256": "6136436713c8d00e47f657549d3ec566594cedde4b778e01efc19193ba3f04ef",
+      "bytes": 16342,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-vite-input-exclusion/apps/web/node_modules/.vite/deps/chunk-EV5AVFAP.js.map": {
+      "sha256": "6d13a266cb0a11813708fdbd701fb321298fc6ee8840e90041932e7171967830",
+      "bytes": 26510,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-vite-input-exclusion/apps/web/node_modules/.vite/deps/chunk-HMC3HVTM.js": {
+      "sha256": "fcaa33e04f640d4f9fee14800fc62c95c165d2eb051cd70194bad0faf88ca55b",
+      "bytes": 45658,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-vite-input-exclusion/apps/web/node_modules/.vite/deps/chunk-HMC3HVTM.js.map": {
+      "sha256": "082c2053107e41650e8e8052b6b66dd5fef5a1c0084dae6a4131ca8aec1f0baf",
+      "bytes": 71158,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-vite-input-exclusion/apps/web/node_modules/.vite/deps/chunk-ZPWHCABL.js": {
+      "sha256": "485de0fbac117e89bfdc47fdaefb9005480342b5ec647823620dd6a42c0fe5b9",
+      "bytes": 1928,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-vite-input-exclusion/apps/web/node_modules/.vite/deps/chunk-ZPWHCABL.js.map": {
+      "sha256": "ed562b0bba7ee7214e56ac7f728054b3496bec4597c94a4eb7b4179e6f5cb1c9",
+      "bytes": 93,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-vite-input-exclusion/apps/web/node_modules/.vite/deps/docx-preview.js": {
+      "sha256": "263bc52ba5768467cd06661f381598e631cabec2a358813d49ee5797b2194ca7",
+      "bytes": 282058,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-vite-input-exclusion/apps/web/node_modules/.vite/deps/docx-preview.js.map": {
+      "sha256": "50ce83f73881d23cf324103ae3b154c391242f66c6a85e1b1e5835ae2e89b3fd",
+      "bytes": 315959,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-vite-input-exclusion/apps/web/node_modules/.vite/deps/package.json": {
+      "sha256": "3ca9d4afd21425087cf31893b8f9f63c81b0b8408db5e343ca76e5f8aa26ab9a",
+      "bytes": 23,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-vite-input-exclusion/apps/web/node_modules/.vite/deps/react-dom.js": {
+      "sha256": "28c093de130a6029247ae34f238e073be48756913dae8588f99e478f76403e62",
+      "bytes": 155,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-vite-input-exclusion/apps/web/node_modules/.vite/deps/react-dom.js.map": {
+      "sha256": "ed562b0bba7ee7214e56ac7f728054b3496bec4597c94a4eb7b4179e6f5cb1c9",
+      "bytes": 93,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-vite-input-exclusion/apps/web/node_modules/.vite/deps/react-dom_client.js": {
+      "sha256": "e35f8e20b039adc1798b587063e532379309594893b702caefdd738e7c02b036",
+      "bytes": 1005517,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-vite-input-exclusion/apps/web/node_modules/.vite/deps/react-dom_client.js.map": {
+      "sha256": "dcbf78c7d202f4ae5affe2239f453918300086428f0876410ba0d8320f1268a0",
+      "bytes": 1559406,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-vite-input-exclusion/apps/web/node_modules/.vite/deps/react.js": {
+      "sha256": "fd36fde1e3523e260e0fe6cacf99e20593d0b0ecb0ab7064b5ddaf0e4ce661d8",
+      "bytes": 117,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-vite-input-exclusion/apps/web/node_modules/.vite/deps/react.js.map": {
+      "sha256": "ed562b0bba7ee7214e56ac7f728054b3496bec4597c94a4eb7b4179e6f5cb1c9",
+      "bytes": 93,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-vite-input-exclusion/apps/web/node_modules/.vite/deps/react_jsx-dev-runtime.js": {
+      "sha256": "c031c6e50980d9d3187d8b11c8d6463b22afa854f308817dd08ad4dbfc32e415",
+      "bytes": 12435,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-vite-input-exclusion/apps/web/node_modules/.vite/deps/react_jsx-dev-runtime.js.map": {
+      "sha256": "c19ccc354927c037393dbe6c8b945f9ff1249cfc48db671152a73b1d9e350bf9",
+      "bytes": 18752,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-vite-input-exclusion/apps/web/node_modules/.vite/deps/zod.js": {
+      "sha256": "b9615279e1d680e034545d94348ea160525515cc12200551452e417eca8dae64",
+      "bytes": 416388,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-vite-input-exclusion/apps/web/node_modules/.vite/deps/zod.js.map": {
+      "sha256": "8e4e6d514f1d2bc98d63221aa4ce1b56512300eb734bf8678dbd305d3a6c9160",
+      "bytes": 776265,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/callback-witness-receipt.json": {
+      "sha256": "05bb4edf1d2457bdcb4a28545a16ca6966d31a265611019fd491f9e609c5620d",
+      "bytes": 528,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/callback-witness-v2-receipt.json": {
+      "sha256": "274d13ba1657531e58b6387f255dd0f5099def8eb081ee0763f2624bb139820d",
+      "bytes": 528,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/callback-witness-v2.log": {
+      "sha256": "8b61b15669f7ac8b2d7dd5a8de9af589912f0805bece16a8f418491adf42eb85",
+      "bytes": 885,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/callback-witness.log": {
+      "sha256": "5f9088e3cb55f4a589974d6226dd7531f12e80be59159e99b68473636ed0cff8",
+      "bytes": 1290,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/check-runner-review-transition.json": {
+      "sha256": "34ecefba7137d09dfcf2540e1bbf84aaf58e5c975da0b50bf5f103add23ae536",
+      "bytes": 426,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/checkpoint-maintain-check.json": {
+      "sha256": "9a6f2e23c5e400b3c9e39344f5c3509a1fc1926d44eb92c7ce4ec093d185a954",
+      "bytes": 842,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/checkpoint-maintain.json": {
+      "sha256": "4c6d59d4209e7bd67f70be31eb1837017509a7cc2706e8bbd3ef6893b98a6fd9",
+      "bytes": 845,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/checkpoint-transition.json": {
+      "sha256": "4da8371b732bd33d47cc2ded78b48f07d4cb8c80d128d7c2777cf19d3c2d8653",
+      "bytes": 4127,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/completeness-inputs-v1.json": {
+      "sha256": "ee1d9c8abc88e650ddead137283583e40f0ae6ae964a081dc3ebb7e62500ecff",
+      "bytes": 145603,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/completeness-v1-receipt.json": {
+      "sha256": "bea399c9bc42e3ea54d7a03621203bd1fceba2b508695e99044f08cbf209a6e2",
+      "bytes": 535,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/completeness-v1.log": {
+      "sha256": "2da7e1d46cca48ef1c747e51757d52df337ca6e0822f06b15b1cb7e197515837",
+      "bytes": 388,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/configuration-edge-receipt.json": {
+      "sha256": "696fa97691f3af579069cc77ef170c79af5ff2c126917da4bb1b08d86035eac8",
+      "bytes": 773,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/configuration-edge-results.json": {
+      "sha256": "95c26ed0b7f5b4f5486a695c5be28ac85a1ee8d6ff3aa4a90a5a93cd83aec392",
+      "bytes": 7457,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/configuration-edge-v2-receipt.json": {
+      "sha256": "d35497ecd92a9e93d1115fb6fdc30f611e977a496797d7e5b69c45ba4d021b2f",
+      "bytes": 773,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/configuration-edge-v2-results.json": {
+      "sha256": "69036c1f0b67ce316e1fc7116bded50f1573b778d7040cf650284fb986cba661",
+      "bytes": 2874,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/configuration-edge-v2.log": {
+      "sha256": "e958b4be99f9a15571b2b60124f5b8556a9f438cdfcf28e671136fd0f6501b75",
+      "bytes": 2025,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/configuration-edge.log": {
+      "sha256": "c9231fa3bab10752cd4ead4a85bf6c0c0b0950a7a2665a4c4be6874396531379",
+      "bytes": 5153,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/configuration-inputs-v2.json": {
+      "sha256": "a544155a6da748276ba6e7f49782090f04dacb44894d1675d347a4b924b03b34",
+      "bytes": 144898,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/deploy-images-preflight.json": {
+      "sha256": "4750f55aaaf7493267bb767cb038af18a2389b9f3e0f502f45a481635822b01b",
+      "bytes": 305,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/deploy-preflight-refresh.json": {
+      "sha256": "8f7dcadefcf45a69132884fa057ec8920115357ab3e46d2fb74e0d93870f5468",
+      "bytes": 354,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/deploy-preflight.json": {
+      "sha256": "46792181eef31f9e3392c250a392a12a1bf29433a02cc84cc93619f8eac7621f",
+      "bytes": 255,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/edge-checkpoint-transition.json": {
+      "sha256": "436dd1d34f6b6caf05b31909400ba36bef94da07a9992440097ec022e37a25e1",
+      "bytes": 503,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/edge-plan.json": {
+      "sha256": "9662e256040b3f82c5c363905bdf0a55a6efba9fc3bc1988fe9ca1d3aaf449aa",
+      "bytes": 65019,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/edge-planned-tests.json": {
+      "sha256": "2ca491e03b19ac1a58485952b8161fe114e3eaad50448a1745ba9990e50fe1ea",
+      "bytes": 28769,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/final-check-receipt.json": {
+      "sha256": "3d017b37d163312385f88fff1fe89a9d541ca47f016e987914b6c94c4440047e",
+      "bytes": 313,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/final-check-v2-receipt.json": {
+      "sha256": "37b1dcc77bbed7292f4c77c167cf7211792420c694b7a7ac056a480f538a5ed3",
+      "bytes": 313,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/final-check-v2.log": {
+      "sha256": "2158e54388b176d48a83b2b9b7acc4dc35bd514011206b049064373a3f713b2b",
+      "bytes": 1657,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/final-check-v3-receipt.json": {
+      "sha256": "a257fe49d1fe67ae5d6ef07d81634e285c0c3c30167e873ef9b2191a0a3fbe0a",
+      "bytes": 313,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/final-check-v3.log": {
+      "sha256": "58f8db38a0502f6ea0de976e6ae8e570c37d4b0957cfa2897db68b4cb66bfffe",
+      "bytes": 1657,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/final-check-v4-receipt.json": {
+      "sha256": "4a4cd77d72fb0c70c8491ae8207f6b0b0a1436c6900aafd1243a92b80867b467",
+      "bytes": 2783,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/final-check-v4.log": {
+      "sha256": "ba23e162b3ca453838c87d21e1a925a9782293bc7fc85c5ad930bba66cd1c3b0",
+      "bytes": 1657,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/final-check.log": {
+      "sha256": "e31a5efe427b6b3e1f3658618340e65929059fe3667d013ade46fbe15126e834",
+      "bytes": 5513,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/final-inputs-v1.json": {
+      "sha256": "218db2bf4a890e5bffca3eb8182860b63c4f24bd2245ae890eb5ad15f76e86a6",
+      "bytes": 145842,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/final-inputs-v2.json": {
+      "sha256": "428eb86c7b80b240ac122ce852cc6617c740b6e87fb310f58d9f8f6f8da59402",
+      "bytes": 145842,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/final-inputs-v3.json": {
+      "sha256": "a3386331909f516e6308a931076d6ae8d12f267e1b7c33afb11cf0134ddeda2c",
+      "bytes": 145842,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/final-inputs-v4.json": {
+      "sha256": "892a3ea7b8812cbf2edc6672fd1f69fcfd619854efbe9da87d9acb9ac22e0edf",
+      "bytes": 148369,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/final-inputs.json": {
+      "sha256": "57cb6b554311a45849b5f549682b6e77c7f827e3c3d59e9f7ef88e4af4dd3b8a",
+      "bytes": 146024,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/final-merge-ledger-transition.json": {
+      "sha256": "b80f957cc3155c24640b7c461b174a2f3470ccbc5f685c3e44db847f94bc7b91",
+      "bytes": 3530,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/final-source-merge-explanation-correction.json": {
+      "sha256": "a8ed766afc9ffea8f06ae1856a56784f03591d1348556a55fc52d28eed055545",
+      "bytes": 1809,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/final-source-merge.json": {
+      "sha256": "22c96765fca647fca88d6a03bc3358703ecdce43cb0d602150b19fb0363505f1",
+      "bytes": 5991,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/freeze-final-v4.py": {
+      "sha256": "36056326c9692a989dd0bd6892bc6d353f206343f06cb874c5610905a8165401",
+      "bytes": 3517,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/freeze-matrix-plan.py": {
+      "sha256": "b21b9e109ff82e601d4d6bb1a4843efdd38e4768a872d2904671b47a09e4bddc",
+      "bytes": 6751,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/freeze-policy-matrix.py": {
+      "sha256": "5c581d5f16a2b93f5e4b48719a0386689fe4386aaf82dd4a81cd255d4921cd74",
+      "bytes": 6638,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/freeze-scope-review-transition.json": {
+      "sha256": "91be3fcfdf432a9e77d5977cdfdeedb01892ef7073a3b36ceaff41a3f49ff8b2",
+      "bytes": 458,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/fresh-policy-receipt.json": {
+      "sha256": "92ed00dcbe5d5d306cd0422df66da6199ea80169e9b92098ce6e5ce8c2f65123",
+      "bytes": 534,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/fresh-policy-red-maintain-check.json": {
+      "sha256": "9c1f6d4dfa1debd27cde02c7188413dc1e43e9a050fe49e3cd824ce0ad2d9216",
+      "bytes": 842,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/fresh-policy-red-maintain.json": {
+      "sha256": "bba682ec84c0190c78183a2d86aaa2e068da8f5ed96e7ff51f9232fa7fa669c7",
+      "bytes": 845,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/fresh-policy.log": {
+      "sha256": "1fba04635e3932b201404006f362b3554c85b8c2e03cc27d942510c1e64d3a88",
+      "bytes": 1147,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/cancel-edge-race/REPORT.md": {
+      "sha256": "8320deb2e79eec295cd78d650e9ea6474e77be352ecfae2597b1757224f1e8ec",
+      "bytes": 3030,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/cancel-edge-race/cancel-recovery.candidate.patch": {
+      "sha256": "38fb5a0d955b129eefffa68c4373356734f1b17550a3ea7df64d6c6977e6f5d4",
+      "bytes": 1259,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/configuration-field-ui-inventory.md": {
+      "sha256": "b0eaa8c40dcf2f8547a2bb838768e5ba6e24efa1174f85353f09eff4d89b8449",
+      "bytes": 9172,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/docx-visible-v2/REPORT.md": {
+      "sha256": "feae3a3cf825cb245c6fd9d9a47567d28dbc71402fc1a15cc6942a69ece76857",
+      "bytes": 3013,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/docx-visible-v2/evidence/artifact/redacted.docx": {
+      "sha256": "0b00029710d11697faf22e308396ff2fed79d48151b1e7c65fb4f19179e29eaf",
+      "bytes": 2061,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/docx-visible-v2/evidence/candidate/docx-layout-visible-v2.candidate.patch": {
+      "sha256": "5784d7fd57d7f067c86f98069d497a98ef39cff9276e39e085d5a2ed7ecec899",
+      "bytes": 3928,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/docx-visible-v2/evidence/candidate/docx-layout-visible-v2.candidate.spec.ts": {
+      "sha256": "5b17787bbbc6e22db838772f36753abde3c64480dc9a9b9c262d9d5a88e798d9",
+      "bytes": 9673,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/docx-visible-v2/evidence/candidate/v1-to-v2.delta.patch": {
+      "sha256": "dbb5f12dbde0b5dc63a28f583e21abe5795a4c2ae8de685ff7f6be09be7ea995",
+      "bytes": 2705,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/docx-visible-v2/evidence/control/edge-docx-planned-one.json": {
+      "sha256": "d4e26af55a4fd9adb27b3e3825979e62ac222b1c785ff9d8445b146b0bbf1632",
+      "bytes": 478,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/docx-visible-v2/evidence/control/playwright.private.config.ts": {
+      "sha256": "cdec301934f76ad4a52d2222eb5e182bdd71bdfc09a2b563cae3302fdb300a5e",
+      "bytes": 958,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/docx-visible-v2/evidence/control/preparation-manifest-v6.json": {
+      "sha256": "990fc898912a5281c9f49cbec3fed6f22f4cc241cf45b7d0c790d7a5226d69ce",
+      "bytes": 3587,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/docx-visible-v2/evidence/control/run-private-e2e.mjs": {
+      "sha256": "f3da8462bf244061f88c9caf2fec04668eff3ad2c4814e91f278199e457fea75",
+      "bytes": 2323,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/docx-visible-v2/evidence/control/run-verified-docx-v2.mjs": {
+      "sha256": "3e1f4d8773f43ed9acd049200ac69afc8a6234c138ac93a1bfc939ea05ced1cd",
+      "bytes": 10268,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/docx-visible-v2/evidence/control/source-865-manifest.json": {
+      "sha256": "57cb6b554311a45849b5f549682b6e77c7f827e3c3d59e9f7ef88e4af4dd3b8a",
+      "bytes": 146024,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/docx-visible-v2/evidence/evidence-manifest.json": {
+      "sha256": "a797c4fc0887932059e7c740529430dcd2f1120f945c73182ffe5e4b1ae8225d",
+      "bytes": 6132,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/docx-visible-v2/evidence/result/formal-after.json": {
+      "sha256": "f474ba35493577e715532ef0e5b74a14d9b122466b65ed7fa119b98b3d01ffa0",
+      "bytes": 230669,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/docx-visible-v2/evidence/result/formal-before.json": {
+      "sha256": "f474ba35493577e715532ef0e5b74a14d9b122466b65ed7fa119b98b3d01ffa0",
+      "bytes": 230669,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/docx-visible-v2/evidence/result/playwright-results.json": {
+      "sha256": "5d8bd5f7d1cca042268c280fcd5af6939bab23a462bd5ef9696f1d01acdd413c",
+      "bytes": 3833,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/docx-visible-v2/evidence/result/private-after.json": {
+      "sha256": "87c06776c5fd42aa2925c01c9253524e0dcb41c4dbb315527cfe2300351f908a",
+      "bytes": 231447,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/docx-visible-v2/evidence/result/private-before.json": {
+      "sha256": "103d4ff26b148048a6ad95aae77055011ab0d2fa6e726042d153d68dab84cc9c",
+      "bytes": 230619,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/docx-visible-v2/evidence/result/terminal-receipt.json": {
+      "sha256": "4f1a5e305cf76691ca785669a36665c5bdf29b8a184b49225cd2fa1343341c8b",
+      "bytes": 7859,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/docx-visible-v2/evidence/result/terminal.log": {
+      "sha256": "227926045d5bbcb8a8e94a422063ea7cfdc53f2e852d15d2082ebcbdd5efd2b6",
+      "bytes": 1945,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/docx-visible-v2/evidence/screenshots/docx-layout-review.png": {
+      "sha256": "1a3381286b0dbbb30bae4615ef9d5741df8789a81268e66f39a4170984ee8ab8",
+      "bytes": 144304,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/docx-visible-v2/evidence/screenshots/docx-primary-visible-after-export.png": {
+      "sha256": "d433540838c9a6491e5a335dab7a9fc51c57daccff654e237bc4ea2de614fb93",
+      "bytes": 144306,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/docx-visible-v2/evidence/screenshots/docx-primary-visible-before-review.png": {
+      "sha256": "4cd79a321417c29c68dbef928b21efcc9c484eb3ca170b06684a3a8421f9dbe8",
+      "bytes": 132678,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/edge-retry-planned-seven.json": {
+      "sha256": "d100d9b376d6f42d56337415c37d8b429684c5b4b54a440b8e3536ab7296f65c",
+      "bytes": 3034,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/edge-retry-result-validation/REPORT.md": {
+      "sha256": "7b91f1a6c44fefb30579b12a9afc9001f5ee7576e028f0b6aa529fba6195435b",
+      "bytes": 2118,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/edge-retry-result-validation/raw-first-run/error-context.md": {
+      "sha256": "ac3ce0e80956cb9f5c4a967f5d8128bcefa59b5f6d0f064e30d34dc0c9a807a4",
+      "bytes": 13350,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/edge-retry-result-validation/raw-first-run/formal-after.json": {
+      "sha256": "f474ba35493577e715532ef0e5b74a14d9b122466b65ed7fa119b98b3d01ffa0",
+      "bytes": 230669,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/edge-retry-result-validation/raw-first-run/formal-before.json": {
+      "sha256": "f474ba35493577e715532ef0e5b74a14d9b122466b65ed7fa119b98b3d01ffa0",
+      "bytes": 230669,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/edge-retry-result-validation/raw-first-run/playwright-results.json": {
+      "sha256": "f17823f6fe8d50e5f362b7de115817b3bee798d4147fbbe9550401970f7aa612",
+      "bytes": 14575,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/edge-retry-result-validation/raw-first-run/private-after.json": {
+      "sha256": "d992fc36967d8e2bf3485b592980c0b9a72675ac03a4c324654f3709d79a603a",
+      "bytes": 231483,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/edge-retry-result-validation/raw-first-run/private-before.json": {
+      "sha256": "9e78aff9096f7537d5aa1400d305f25e5b6f0a2ff4e67400ea4cfdd11bf6e763",
+      "bytes": 230709,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/edge-retry-result-validation/raw-first-run/terminal-receipt.json": {
+      "sha256": "89cb6a6c22bb7286f8277e2aecd8219ae2483bed36d4240a5d79a03128b0d69d",
+      "bytes": 5788,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/edge-retry-result-validation/raw-first-run/terminal.log": {
+      "sha256": "f8620e14bd101490974bffe5722dd6309011160cbc11585b57fd40d5ea674388",
+      "bytes": 4428,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/edge-retry-result-validation/raw-first-run/trace.zip": {
+      "sha256": "a40a5c2d24391a7de51fe70a58fdd40d7ed895ae218b782d4b2f18f149a1b369",
+      "bytes": 4427998,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/edge-retry-result-validation/seven-result-validation.json": {
+      "sha256": "1e791298554f70816038d6997f845c827769e0b299e62c227a270e1c45dc879f",
+      "bytes": 10965,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/edge-retry-result-validation/validate.py": {
+      "sha256": "3af30de0bc083946e1d2c86c60d172337b7aed53bad774b5eb74e2f81c582226",
+      "bytes": 5710,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/edge-retry-validation-wrapper-preparation.json": {
+      "sha256": "3f48f2c35c7b2728951a5200e5f864962a29a9a8a02d2e81cbbdb57287b4546a",
+      "bytes": 3077,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/entity-selection-focus/REPORT.md": {
+      "sha256": "ee21b9d2580fd3d34932d26ddacc03364f2e9a62c73af72a7362a73c35094eb4",
+      "bytes": 3172,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/entity-selection-focus/entity-selection-focus.candidate.patch": {
+      "sha256": "3e830dd39de504c18df978b2d9684d289c05a316f268bcd255987f8e6024249a",
+      "bytes": 6944,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/entity-workflow-rate-limit/REPORT.md": {
+      "sha256": "dfafc4c8a463706ca75ec658300f58418736025652f8415fb9e09baaf1a951ee",
+      "bytes": 3281,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/entity-workflow-rate-limit/entity-workflow.candidate.patch": {
+      "sha256": "57b2506d748aa9d14f9127631537520176bdc2f9486c2eda48c2d7a4ad7982ae",
+      "bytes": 2119,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/final-web-merge-bundle/files/apps/web/main.tsx": {
+      "sha256": "fcc56ded479fa4f179d803eb897c1b24d5254c4d0fcad6b1654447aa88d710cb",
+      "bytes": 99399,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/final-web-merge-bundle/files/apps/web/ocr-text-editor.tsx": {
+      "sha256": "fa4343c2dbc5b3c90efb536b047020a350515ebd1c4fa838f681c9fee025bb17",
+      "bytes": 4590,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/final-web-merge-bundle/files/apps/web/textarea-coordinates.ts": {
+      "sha256": "a18698a598914db7323ebc34ff90efd3fab4c91479bd49129eb6582e6d7dfd1c",
+      "bytes": 1707,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/final-web-merge-bundle/files/tests/e2e/cancel-recovery.spec.ts": {
+      "sha256": "01cdfe86e297d30334ee16296f19cce0247c6776c2d62c9aa47ab1630ee6dbce",
+      "bytes": 5778,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/final-web-merge-bundle/files/tests/e2e/crlf-selection.spec.ts": {
+      "sha256": "fe3120d1814859ce4e429adbf346a2f52af54ac3b0af1609a7c6968093b2e609",
+      "bytes": 15334,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/final-web-merge-bundle/files/tests/e2e/docx-layout.spec.ts": {
+      "sha256": "5b17787bbbc6e22db838772f36753abde3c64480dc9a9b9c262d9d5a88e798d9",
+      "bytes": 9673,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/final-web-merge-bundle/files/tests/e2e/entity-workflow.spec.ts": {
+      "sha256": "d0088c26554d79b2f8a5e6a56b8160cf8ef80daaa80f51f247d734c0eaa6073a",
+      "bytes": 13308,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/final-web-merge-bundle/files/tests/e2e/project-entities.spec.ts": {
+      "sha256": "2842a3a7a866f5669d51cfb1279bea0db00ce448b17107fc5caa21c090d8d1ed",
+      "bytes": 19979,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/final-web-merge-bundle/files/tests/e2e/recognition.spec.ts": {
+      "sha256": "5cede0bd819428f89acc236cac62f05903d6dee875256695400f340d9c9960bf",
+      "bytes": 4638,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/final-web-merge-bundle/files/tests/textarea-coordinates.test.ts": {
+      "sha256": "121b5fdcc03385f5b92d0e79298ed9b4cd06d1c00e7c7fcd37b5d2d43e286e15",
+      "bytes": 3001,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/final-web-merge-bundle/manifest.json": {
+      "sha256": "02180372595f86b73d4e9cf17bc90cbb49fc281b12ed2721594e5b6893384d5a",
+      "bytes": 6102,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/formal-054-adversarial-final.md": {
+      "sha256": "ba953fb1201de6cd961140b9c381dd42a90003b27fb8ffb59ef2f4be6daeaa42",
+      "bytes": 4690,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/portable-fresh-replacement-cross-review.md": {
+      "sha256": "880a8ae4cc1747cf7e257e66327aa969737fdd065102d6237d8299808284efcd",
+      "bytes": 8333,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/portable-v4-cross-review.md": {
+      "sha256": "61c52ae482e8e58ea248748c4c199a36e6543c99f91d0fe955a84c0443efdbd5",
+      "bytes": 6177,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/project-entities-action-oracle/V2-REPORT.md": {
+      "sha256": "c0b5d58d47aa22dbd6f75d4fe16a91382fa70dde558e06712b0094897101bd6a",
+      "bytes": 1294,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/project-entities-action-oracle/project-entities-action-oracle.v2.patch": {
+      "sha256": "26376d6853ade9b1ecceb72d09311ef11c1a604846aa2c6b6a21829490d7aa0e",
+      "bytes": 12046,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/recognition-completion-oracle/REPORT.md": {
+      "sha256": "2d42f39ba983345865d0a3575be84d89ea9ef9f57cdd716291b279f7597db9bf",
+      "bytes": 865,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/recognition-completion-oracle/diagnosis.json": {
+      "sha256": "06026f661629a8714ab234ce46b3c7e622a60f319326868d865b9d76d13ae23a",
+      "bytes": 2272,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/recognition-completion-oracle/frontend-cross-review.md": {
+      "sha256": "63393ccb13e743be04331700551706bedf4b6998d8d1be46969aee0709535773",
+      "bytes": 2112,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/recognition-completion-oracle/recognition.candidate.patch": {
+      "sha256": "0ecf85d8ba06fd573f1f58c78d927d03c4823b05236ce647d583b1c7215759a5",
+      "bytes": 2451,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/reference-spatial-fixture-fix/REPORT.md": {
+      "sha256": "3302a852bb9aad3564d154b35368531989ac1ddefb8dfd3968cea0b31b3fc65a",
+      "bytes": 1779,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/reference-spatial-fixture-fix/reference-spatial-fixture.candidate.patch": {
+      "sha256": "9ae13cb248dd4d57d699f67c32026781179fb985f0a6134c475e81eaeb8441ab",
+      "bytes": 2959,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-final/attempt01-evidence/candidate/crlf-selection.spec.ts": {
+      "sha256": "3944fcfb54e9238e046f996dc5be3299dd1bf7a723a5505cd0e03404e2e8bb7e",
+      "bytes": 13925,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-final/attempt01-evidence/control/edge-crlf-planned-two.json": {
+      "sha256": "52147b8c8586cecdf2d11baa11c83c2208dcf26790357f0657569e40cfcd0c17",
+      "bytes": 897,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-final/attempt01-evidence/control/playwright.private.config.ts": {
+      "sha256": "cdec301934f76ad4a52d2222eb5e182bdd71bdfc09a2b563cae3302fdb300a5e",
+      "bytes": 958,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-final/attempt01-evidence/control/preparation-manifest-crlf.json": {
+      "sha256": "1b5b2715e3bc6808d3eb03e356cc57045eec15d67eb02e21425a1041279a1da6",
+      "bytes": 3217,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-final/attempt01-evidence/control/run-private-e2e.mjs": {
+      "sha256": "33fe85c17b343c81c9b3a9e4651e40e8c14565d47870f4df132fcac392462419",
+      "bytes": 2450,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-final/attempt01-evidence/control/run-verified-crlf.mjs": {
+      "sha256": "f9ec046527a14a393b005e669c39f31c817897ae0b76bfed9a6b966e4272770b",
+      "bytes": 10714,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-final/attempt01-evidence/evidence-manifest.json": {
+      "sha256": "bf1fbd987e729cfe1609c90d214ae64ddef383c661f4d2e06114ed73db981e07",
+      "bytes": 4320,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-final/attempt01-evidence/failure/error-context.md": {
+      "sha256": "caa02eddbc46c76d3b5d3a8f0cfbbda21bab8ebb94cbae9aebac6fa1b19174c3",
+      "bytes": 11942,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-final/attempt01-evidence/failure/trace.zip": {
+      "sha256": "c750a95d7f49086118f76b90ef6b2dc406108b6a97afd2fb0ea24b76b67c8bcf",
+      "bytes": 1570329,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-final/attempt01-evidence/result/formal-after.json": {
+      "sha256": "f474ba35493577e715532ef0e5b74a14d9b122466b65ed7fa119b98b3d01ffa0",
+      "bytes": 230669,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-final/attempt01-evidence/result/formal-before.json": {
+      "sha256": "f474ba35493577e715532ef0e5b74a14d9b122466b65ed7fa119b98b3d01ffa0",
+      "bytes": 230669,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-final/attempt01-evidence/result/playwright-results.json": {
+      "sha256": "4bfab0b3c9453b38b6be565e0fea8da314e5fc682323aec9fc7b939a7cc75873",
+      "bytes": 11169,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-final/attempt01-evidence/result/private-after.json": {
+      "sha256": "458a5ff15ddf7097b66f8252e67861af2b097b437f7fd32641561e4760530834",
+      "bytes": 232244,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-final/attempt01-evidence/result/private-before.json": {
+      "sha256": "d137e2841f0253b77134f41b6a42a50df09937eea9360eda3e1b403f6a7d96e3",
+      "bytes": 231416,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-final/attempt01-evidence/result/terminal-receipt.json": {
+      "sha256": "0e21412c6943d970b60b1619a5f64480d53f56c2fe02cc78e3a73475167bb155",
+      "bytes": 8746,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-final/attempt01-evidence/result/terminal.log": {
+      "sha256": "7aa863bfcfc7d187dac433082305706e159e38670d296c3cff8cd9a7c58478c2",
+      "bytes": 6237,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-v2/attempt01-evidence/candidate/crlf-selection.spec.ts": {
+      "sha256": "f9991f0830c77da986b949e7d98dedf7baf6c4cac926c625c9576ae0c2381c39",
+      "bytes": 14197,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-v2/attempt01-evidence/control/edge-crlf-v2-planned-one.json": {
+      "sha256": "9cff3905154d190a2bd5e319f6a96678faeb21576ad450797cc8f96043b2180a",
+      "bytes": 516,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-v2/attempt01-evidence/control/preparation-manifest-crlf-v2.json": {
+      "sha256": "ce54163291b7b56ccf69b811470cd38b0f51a19412549a6f8fce6d39f63934f4",
+      "bytes": 3129,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-v2/attempt01-evidence/control/run-private-crlf-v2.mjs": {
+      "sha256": "1b742d99c70aaf3b9763a2f91581cfd6deac9575190bf97753350fe2ba91e482",
+      "bytes": 2371,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-v2/attempt01-evidence/control/run-verified-crlf-v2.mjs": {
+      "sha256": "4d08c14604c5f4aac8cbe80bb923e458c310ac41bbee0438464ffc106a49a34a",
+      "bytes": 10721,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-v2/attempt01-evidence/evidence-manifest.json": {
+      "sha256": "bbe09226cdcf26e9de5debf0b486059f1a1f65a62728b4e54f8bf68945902c83",
+      "bytes": 3974,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-v2/attempt01-evidence/failure/error-context.md": {
+      "sha256": "e17b076e9619497f06f6ab6182be7c515f454ae679914d9ed009445ab0361340",
+      "bytes": 11942,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-v2/attempt01-evidence/failure/trace.zip": {
+      "sha256": "d621942ea1cc41bcd4c6dc25c40032d08fd2fe1559a89a390700962860403498",
+      "bytes": 1658839,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-v2/attempt01-evidence/result/formal-after.json": {
+      "sha256": "f474ba35493577e715532ef0e5b74a14d9b122466b65ed7fa119b98b3d01ffa0",
+      "bytes": 230669,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-v2/attempt01-evidence/result/formal-before.json": {
+      "sha256": "f474ba35493577e715532ef0e5b74a14d9b122466b65ed7fa119b98b3d01ffa0",
+      "bytes": 230669,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-v2/attempt01-evidence/result/playwright-results.json": {
+      "sha256": "13c38609c8b9773028283ccc7efd104c045df5c79d4d538361caa9ceab1f2a1a",
+      "bytes": 7282,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-v2/attempt01-evidence/result/private-after.json": {
+      "sha256": "67e0aef17903d8b652e888b4cf20dd97ee49b18a5091b946916a794961fda865",
+      "bytes": 232236,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-v2/attempt01-evidence/result/private-before.json": {
+      "sha256": "0fc4800298bb365cebe5021ec9a58944404adc594e5aed53d2fbf6d02bbcdc9e",
+      "bytes": 231408,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-v2/attempt01-evidence/result/terminal-receipt.json": {
+      "sha256": "c62866bceae2889121427f3fd6676662c08aadb6329c17ccb4aa6f8e574059ae",
+      "bytes": 7907,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-v2/attempt01-evidence/result/terminal.log": {
+      "sha256": "cf17d740377cae519a0d8990f5587267a39161d6f3a95fe8f45616f9750c8515",
+      "bytes": 4223,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-v3/REPORT.md": {
+      "sha256": "6e4fa0d4e5dbbe7ad129f4ae5d7b4ac5ab855a840fdc4d2d88fde62cef01fb82",
+      "bytes": 2008,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-v3/evidence/crlf-edge-selection.png": {
+      "sha256": "112fcd77c01739a429789b4349d1fad1b26e77d40e2010db047c834f5bc3c515",
+      "bytes": 178790,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-v3/evidence/crlf-reviewed.txt": {
+      "sha256": "a89ac4f9623232d390d7c99db9f5790a8798819a28c04b3cb45b777ab7bcfc7f",
+      "bytes": 40050,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-v3/evidence/crlf-selection.candidate.spec.ts": {
+      "sha256": "fe3120d1814859ce4e429adbf346a2f52af54ac3b0af1609a7c6968093b2e609",
+      "bytes": 15334,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-v3/evidence/edge-crlf-v3-planned-one.json": {
+      "sha256": "5b3d9d5875b746d44146a9e0bbc0c9fe446cd5f052ea26e73aadd7338bfe3e42",
+      "bytes": 578,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-v3/evidence/evidence-manifest.json": {
+      "sha256": "6d1d39937c5225476d68bd22a43d02243d78bdeb4cf0633102aa9c5cb91d5665",
+      "bytes": 2519,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-v3/evidence/formal-after.json": {
+      "sha256": "f474ba35493577e715532ef0e5b74a14d9b122466b65ed7fa119b98b3d01ffa0",
+      "bytes": 230669,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-v3/evidence/formal-before.json": {
+      "sha256": "f474ba35493577e715532ef0e5b74a14d9b122466b65ed7fa119b98b3d01ffa0",
+      "bytes": 230669,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-v3/evidence/playwright-results.json": {
+      "sha256": "c75db02c40f6530303cdc4400bd9f0d33bc0f1bc30a8019dea505e16565f65a0",
+      "bytes": 241574,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-v3/evidence/playwright.private.config.ts": {
+      "sha256": "cdec301934f76ad4a52d2222eb5e182bdd71bdfc09a2b563cae3302fdb300a5e",
+      "bytes": 958,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-v3/evidence/preparation-manifest-crlf-v3.json": {
+      "sha256": "0f3cc9f9173c66eba2aa4973ace921f7c04aebdeb6ddaf7253f7decf978b9ed5",
+      "bytes": 3129,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-v3/evidence/private-after.json": {
+      "sha256": "77eb31d7927a32eede223c69a1aeb24e4c18e9546f997a296a1d275dc1097142",
+      "bytes": 232236,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-v3/evidence/private-before.json": {
+      "sha256": "85efcaf9bf65b36b73eebb73178573132ddde5b5feba812e4ecb8d45fb9f6ba2",
+      "bytes": 232236,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-v3/evidence/run-private-crlf-v3.mjs": {
+      "sha256": "1b742d99c70aaf3b9763a2f91581cfd6deac9575190bf97753350fe2ba91e482",
+      "bytes": 2371,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-v3/evidence/run-verified-crlf-v3.mjs": {
+      "sha256": "5abf0904f20d403a16da525acc4332b82f2cc693b1230c3f4c2da71bf2fcd47e",
+      "bytes": 10721,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-v3/evidence/terminal-receipt.json": {
+      "sha256": "08edaf24e4b1a7af40ff3e235e20cbc138414d0fb4953a8c6c7d0f84a656ec51",
+      "bytes": 7421,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/frontend/textarea-crlf-edge-v3/evidence/terminal.log": {
+      "sha256": "8bd2ca4846ac091440569de6038538a583683beaedd1dd7243e37c281b4388cd",
+      "bytes": 1607,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/full-api-operator-interruption.json": {
+      "sha256": "0b5dfff7e8995a8168bc0928db92ed384256e5190642727e8778f90f489f86f6",
+      "bytes": 1670,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/full-api-receipt.json": {
+      "sha256": "f49fd6320ccf008eb60fc378302a903f52e6287febad0fc7b4e331579c158381",
+      "bytes": 5855,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/full-api.log": {
+      "sha256": "3b7b9303e00a24eafe8e5f831c2f076363babf68e34fa6fc333a6ef376f17604",
+      "bytes": 3278,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/full-edge-v2-receipt.json": {
+      "sha256": "2494dfc07a5bf538f5bcd2ab045b11b80135a52b61e55406ad46f561a71d4299",
+      "bytes": 2015,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/full-edge-v2-results.json": {
+      "sha256": "c88f8258180b62e3867c5e8cd0b461f0f603a7330f2373a9d29ea036e0227095",
+      "bytes": 867095,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/full-edge-v2.log": {
+      "sha256": "6585b9895e4257dc28e8226c0f5c942a95e16fb65007d4dedb3337f66585a358",
+      "bytes": 25718,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/handbook-054-v2-draft.md": {
+      "sha256": "7aec2dcf70c7713aa8bd33abca561a1beaa6a04966b701c8e4f655a9b3001484",
+      "bytes": 4253,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/handbook-json-before.json": {
+      "sha256": "cdf29f8426b1d049f46422ec8fd309690940c4201f573c7285a772c20fdfb163",
+      "bytes": 1676,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/matrix-api-planned.json": {
+      "sha256": "ebbc29fe75d8d41dec09481000f5707bd0ea48bf6797b217932fd4f99639abfb",
+      "bytes": 5064,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/matrix-plan-transition.json": {
+      "sha256": "15fbd92ed39851e2b579c1d85f740134757be6749a3088d9815f976d5084535f",
+      "bytes": 1048,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/normal-dev-restored-after-edge.json": {
+      "sha256": "c08bdf85ec94ec61ac8df9706c2dd72211a8f5fdb92e0d1d0cd31b4355f28f9e",
+      "bytes": 1582,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/ocr-existing-visual-receipt.json": {
+      "sha256": "27458d32f41ff4c34ddc467e88e22276ec5f07013f372da8e0543fe94adeb293",
+      "bytes": 511,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/ocr-existing-visual.log": {
+      "sha256": "a0d080e585dd127d95588b4a9805bf4d8fff0691825837979e4d27e6525f8169",
+      "bytes": 382,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/ocr-green-receipt.json": {
+      "sha256": "1bb9398de8370fb3761bdc35b90a5811a27cd6ad24af1f0d824c2c2b5924cd3b",
+      "bytes": 526,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/ocr-green.log": {
+      "sha256": "83da50c4eb00e991494cdbabe5b31339526eff87173c57b7cd73bd1cb84bfb28",
+      "bytes": 654,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/partial-full-check-receipt.json": {
+      "sha256": "2f5aacc31aa81b2201aeef6904a9598786dbbbffdecf88051d27ae9fc1653feb",
+      "bytes": 313,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/partial-full-check.log": {
+      "sha256": "137f949bcbc22e5dc122504b20b16a2c22e2db51e6386dac1485b64e962eff8b",
+      "bytes": 2060,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/policy-matrix-transition.json": {
+      "sha256": "ccb9a6d151afde2c000f608675337f2b6d3f402a55be24175fbbb9412f879046",
+      "bytes": 1823,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/portable-inputs-v4.json": {
+      "sha256": "89f0d571dbe76bdaf1b3743664b2e20a49d5d5517c11410169e881ff2be3c113",
+      "bytes": 145074,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/portable-v4-receipt.json": {
+      "sha256": "124d548517471e64782bf5726cacb21d31c4f6d1fe4bf77f8c4fb435a4f555a7",
+      "bytes": 528,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/portable-v4.log": {
+      "sha256": "df9e5a4319cfd5eaca2a6587947aa4086f31bf55fd3a1a0dcfd961aa8f30123f",
+      "bytes": 265,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/profile-green-receipt.json": {
+      "sha256": "8d0e7e8d798d313a2a922c5e9c6f4118ad7385f5a3d05b0a3552422638a6b1cb",
+      "bytes": 532,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/profile-green.log": {
+      "sha256": "148c62c1b2e4cadba9f65cb9038b8e2c2305d01a1d1cf9c4d9caeac025ce0e19",
+      "bytes": 240,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/profile-red-receipt.json": {
+      "sha256": "923dfbce5d41056b97f9ba05f7242586676d887bf711e9e8330257512bdf5675",
+      "bytes": 532,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/profile-red.log": {
+      "sha256": "14ade6e3ff694beacd5f6e34be5f3dfaeb426f751c795a04cbc19b5306ba51df",
+      "bytes": 1001,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/profile-v3-receipt.json": {
+      "sha256": "2e7a5946700bc25713a2b9907059d1fba9766cd64bb172956e4e42c25370e9b8",
+      "bytes": 532,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/profile-v3.log": {
+      "sha256": "3b1675189cf4b6bcc5210932d53b086c1fef883a27ea1dd455c9d3cbdcf6de8b",
+      "bytes": 238,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/reference-spatial-fixture-green-receipt.json": {
+      "sha256": "c9f4fdef0eab63ef9cfdac8aff1ff2dc31bab348cff5f3a0b09f587b5e2b17b4",
+      "bytes": 606,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/reference-spatial-fixture-green.log": {
+      "sha256": "3f808a47f4b8bd80df5f3274b1c3b16e42cdc0fc7ee343664fadc0a4bbfb9cd1",
+      "bytes": 224,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/rules/cross-format-run-v2-attempt04-output-proof.json": {
+      "sha256": "5b39f2176e968ff8313bc971c9178013f039cc6eba17203ad8e9f25d46ddc76e",
+      "bytes": 4591,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/rules/cross-format-run-v2-attempt04-pre.json": {
+      "sha256": "0e95ffb379b92ee1ad39156374d5b2bdc580776edccf91f4936768e96ba4b9d0",
+      "bytes": 483,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/rules/cross-format-run-v2-attempt04-receipt.json": {
+      "sha256": "6a999072889fa2641e95c7fda5f80d4a2ca76f321eb124231cdd790ccf8673b3",
+      "bytes": 1274,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/rules/cross-format-run-v2-attempt04.log": {
+      "sha256": "71fb22eb3e83330171b3566a1f58b85d08dea32af7feaceef3459603b9367bce",
+      "bytes": 4080,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/rules/next055-after-v3.log": {
+      "sha256": "e6f22860e46ed963b0ba6cf7ce066878f4fb9304863277978052b2fe69ca7efa",
+      "bytes": 1146,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/rules/next055-before-export.log": {
+      "sha256": "5115f16dc3278f155f849b947bdd7bf32524ad681d688f7367acd6065248ae02",
+      "bytes": 1372,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/rules/next055-before-v3.log": {
+      "sha256": "04642009bf555d3804bfbdd0b3e08e8dc249d7fa456caff04b60170327a3783e",
+      "bytes": 2060,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/rules/next055-portable-publish-semantics.md": {
+      "sha256": "0ac23c45019c299e5a6fe4c3361bfd304b060448df689de285c837f8391d2df7",
+      "bytes": 6247,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/rules/next055-portable-publish.patch": {
+      "sha256": "12bb0391d366fc97d257c1ba1c5a831ddaebd9050981108ded477281a95cbf6f",
+      "bytes": 20410,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/rules/portable-fresh-completeness-api-evidence.md": {
+      "sha256": "9aebe901664bbad899e57d3b877ff226fdb64197fcb98161650d1a96b44ccaba",
+      "bytes": 6026,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/rules/portable-fresh-completeness-final.log": {
+      "sha256": "c9c0a4ca844bb86d5cf58c14ae30cb0b1fde9872f99e25b71367f260bd3c4886",
+      "bytes": 392,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/rules/portable-fresh-completeness-tests.patch": {
+      "sha256": "77cc24a7235b46898d9bc702d3d673f4bd167796eebf445694e1b48c432f6b0b",
+      "bytes": 15865,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/rules/portable-fresh-completeness.md": {
+      "sha256": "8c0cd477ca9ee434fc570f2052b535e5467f1984312c50a802511c13b7371b99",
+      "bytes": 10499,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/rules/portable-fresh-cross-format-adversarial.md": {
+      "sha256": "9bdb7dc3a17f0bf76bf8dd598e686959624ecc5077ca0080722daa0c97908cc7",
+      "bytes": 8409,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/rules/portable-fresh-cross-format-result-final.md": {
+      "sha256": "a3723fcaa8003f28fe0d2a879fcf6285701ed724d4aa9e315671a7cf7e48fe5f",
+      "bytes": 3974,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/rules/portable-fresh-cross-format.candidate.patch": {
+      "sha256": "ce18974976baf74e86e8ab4704da4ad1a18722d4ebb9cb4c83bdffcc498d4c42",
+      "bytes": 15622,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/rules/portable-fresh-cross-format.candidate.ts": {
+      "sha256": "8963a0881a8b8de6d47ca305486b8dbfe1273aff64dbe9740cf7cd4d5f13bf9c",
+      "bytes": 15236,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/rules/portable-fresh-full-detect-v4-complete.patch": {
+      "sha256": "51a2ccd3739c40553845467a5c4704417d31c3134ebe383380c1831c25e5159d",
+      "bytes": 37544,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/rules/reference-spatial-visual-cross-review.md": {
+      "sha256": "88ff210d9c4fcfd59c0e316f037ec996dd2e8f67a753c508e9737bd66490dad9",
+      "bytes": 2903,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/rules/technical-handoff-054-draft.md": {
+      "sha256": "27ef08cf7d445025ff4d4a7e1688f8b3199f4b1aee30465aebb3f103769bbff7",
+      "bytes": 3546,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/rules/textarea-coordinate-bridge/candidate.patch": {
+      "sha256": "ce1ab1f4ea19e1df8c9a1e6b0f74706a097a56a31fcaa9ba13f3c90127420817",
+      "bytes": 7153,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/rules/textarea-coordinate-bridge/report.md": {
+      "sha256": "5112cb130bceb9dc2983f060bbed95a6cdbbcb9553720f60fba32713798f786a",
+      "bytes": 3699,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/run-final-check-v4.py": {
+      "sha256": "55c96a7887568db7a195edffbf42456c8b98864f6b1e9f30cf09c22dc9076359",
+      "bytes": 4824,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/run-matrix.py": {
+      "sha256": "4810af7dcb8256bed3618ea5aaf8b3a3cd3c619455db8817faf71e1df17e87a1",
+      "bytes": 3564,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/scenario-v4-receipt.json": {
+      "sha256": "edd88a3c82dfb0df21ddfa411a77346d810973de55db83de6d0ad1877a262168",
+      "bytes": 524,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/scenario-v4.log": {
+      "sha256": "41c6b1ed568e7a8ccef5da5c7ea4ecdd707012038939da528aae0f8e1f349169",
+      "bytes": 262,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/test-typing-transition.json": {
+      "sha256": "518b1d2448943103ffe5ce739f77ef5fb5a43f4c4b26187d1e73123a2f54a868",
+      "bytes": 887,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/tool-assessment/assessment.md": {
+      "sha256": "32b2258ff97cd0435b692f9fdad5af65ce0e19a25881b0ef3fa6595c6d3dbc43",
+      "bytes": 2055,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/tool-assessment/pentagi-readme.md": {
+      "sha256": "6ec53d1da7b36c7146ea9c55056e07e2e7299f6a2ed23876f7f25a85cbd6ad1f",
+      "bytes": 254433,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/tool-assessment/reverse-skill-case-review.md": {
+      "sha256": "da9ca51e03f1b1fe3728e74cf97515c1c51b21ed96a98b834d6b3c35558a3b58",
+      "bytes": 6881,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/tool-assessment/reverse-skill-js-reverse.md": {
+      "sha256": "ba6379bb85d2f9d80c9b418867d9c4be810f8681db1f74098264fbd04d118dc8",
+      "bytes": 9091,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/tool-assessment/reverse-skill-readme.md": {
+      "sha256": "901928f1cf058e43c8bc38586a21681bc301589e24e744f114d49859b2934910",
+      "bytes": 16111,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/tool-assessment/source-manifest.json": {
+      "sha256": "85a246a05d37fc5343e7ac51e0db946cbc74226f11f9fce2a561b2f0d54632c1",
+      "bytes": 1861,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/visual-inputs-v2.json": {
+      "sha256": "78d69c725587ed6caf3e295550d9624131420a48cd900082b16b915197f0dae8",
+      "bytes": 145419,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/visual-v2-receipt.json": {
+      "sha256": "ab77aaf3d77343d41db9c4f8f88439a7e30e4499d644eb7143e25dc0d4e0cfda",
+      "bytes": 529,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/visual-v2.log": {
+      "sha256": "39fd58dc858b841102240492b0092d78d23b363d7b7ed5963ce99ad6010bbe31",
+      "bytes": 1907,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/vite-input-classification.json": {
+      "sha256": "bfd07702e392518a6349a9a3ea02c2850b31055bd52a29a1a3b99ad14278abb3",
+      "bytes": 7804,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/write-checkpoint-v1.py": {
+      "sha256": "d1bd1fb283e039f81813ead8bec176f16ec84edaa9b3010279be59c350596d26",
+      "bytes": 8061,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/write-checkpoint.py": {
+      "sha256": "d54a63ae0ebb2ce8637bc409fc166b95cf833a9c986adbdc3b64425033d4bbb6",
+      "bytes": 8085,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/write-edge-checkpoint.py": {
+      "sha256": "ce54f327aba3c461081f0b317b53b05b28e3ba5846e18b6610f9054591d8db13",
+      "bytes": 8609,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/write-final-merge-checkpoint.py": {
+      "sha256": "5ed0c0f5ae7e5f536cd6ba635355f2a49aafe6051ac4f310504e21afeef60f49",
+      "bytes": 11114,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration055/material-policy-candidate-cross-review.md": {
+      "sha256": "1fa236dd5dc25a2c34845152759f123a81a25e0bc7d73e898bb31ec6de360bfa",
+      "bytes": 2120,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration055/rules/material-policy-contract/api-and-test.candidate.patch": {
+      "sha256": "c6e05fa0129459767c86e22f8f5f3fd11eb8984927f8da37399d74a273ad034c",
+      "bytes": 22452,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration055/rules/material-policy-contract/api-attempt06-final.md": {
+      "sha256": "eba02dcae6014b431850499953d4526d5ebf83b5149c291c3aaf7e547103453e",
+      "bytes": 4339,
+      "matches_baseline": true
+    },
     ".dockerignore": {
       "sha256": "59df9b03430248faa476958d45963401dd77fbe890db757e11a093ac4dde11a5",
       "bytes": 466,
@@ -13618,8 +15238,8 @@
       "matches_baseline": true
     },
     "README.md": {
-      "sha256": "f46be699601e063de5b63f207f972aee2a9c99ba2b87bd3dc1802452fe1d4de1",
-      "bytes": 14134,
+      "sha256": "bdf49984bf765f3da1c405c71f8ff9edcb90f8d025d3c663727b829d6ec55710",
+      "bytes": 14551,
       "matches_baseline": true
     },
     "apps/api/access.ts": {
@@ -13638,8 +15258,8 @@
       "matches_baseline": true
     },
     "apps/api/document-policy.ts": {
-      "sha256": "419beb393aa67ed6aa4f44ab8fa4c8719b02c5db7b7612dc74e1e91c0e1af7cd",
-      "bytes": 6581,
+      "sha256": "9869c7beda3cdadacccbb97567be3652d223571b8a406e6d63b0b352cd81fe59",
+      "bytes": 7272,
       "matches_baseline": true
     },
     "apps/api/document-route.ts": {
@@ -13773,8 +15393,8 @@
       "matches_baseline": true
     },
     "apps/api/ocr.ts": {
-      "sha256": "2130b6142b7cca5873b94d5956c7e590d4f79530c9b18bfd6fa27dc90724ea80",
-      "bytes": 6908,
+      "sha256": "f6334d7c3497f07d016a97e2a1e299b8887fa6fbd4fb8aee7f8d564c14c32efb",
+      "bytes": 7039,
       "matches_baseline": true
     },
     "apps/api/office-visual.ts": {
@@ -13908,8 +15528,8 @@
       "matches_baseline": true
     },
     "apps/api/workspace-portable.ts": {
-      "sha256": "2f77e71730e46d183cf923ec09c30f5f72dc605e15b3225497ed2c7170620e2c",
-      "bytes": 46339,
+      "sha256": "3040b98156169fba29c7a63ffebfef2bafc7998727856172c98ab3002193595f",
+      "bytes": 49501,
       "matches_baseline": true
     },
     "apps/api/workspace-recovery.ts": {
@@ -13963,8 +15583,8 @@
       "matches_baseline": true
     },
     "apps/web/document-configuration.tsx": {
-      "sha256": "2dfa0e513ef698efe4654670916fdceba18d79e7ccbe698772a947ddd73da448",
-      "bytes": 4904,
+      "sha256": "b60b6f016192193c9844c51de94b0c40ab9a4959b3523defc7474808a0abc12b",
+      "bytes": 7119,
       "matches_baseline": true
     },
     "apps/web/document-normalization.tsx": {
@@ -14068,8 +15688,8 @@
       "matches_baseline": true
     },
     "apps/web/main.tsx": {
-      "sha256": "b5a4e19025b300986ae4da801205750f948333ed63ac62e8186e83667c5a671b",
-      "bytes": 97660,
+      "sha256": "fcc56ded479fa4f179d803eb897c1b24d5254c4d0fcad6b1654447aa88d710cb",
+      "bytes": 99399,
       "matches_baseline": true
     },
     "apps/web/manual-occurrences.tsx": {
@@ -14118,8 +15738,8 @@
       "matches_baseline": true
     },
     "apps/web/ocr-text-editor.tsx": {
-      "sha256": "30252ebfb44a44479e4ab63a7102dbea2ba2e721a9ad0f2e4656a60d14f29bc8",
-      "bytes": 4160,
+      "sha256": "fa4343c2dbc5b3c90efb536b047020a350515ebd1c4fa838f681c9fee025bb17",
+      "bytes": 4590,
       "matches_baseline": true
     },
     "apps/web/office-faces.tsx": {
@@ -14265,6 +15885,11 @@
     "apps/web/text-highlights.tsx": {
       "sha256": "ed605f19efdd9369401b3027db8b4c62b1bbf598c8f350dbe301d7c6a49be91c",
       "bytes": 5417,
+      "matches_baseline": true
+    },
+    "apps/web/textarea-coordinates.ts": {
+      "sha256": "a18698a598914db7323ebc34ff90efd3fab4c91479bd49129eb6582e6d7dfd1c",
+      "bytes": 1707,
       "matches_baseline": true
     },
     "apps/web/tmm-compatibility.tsx": {
@@ -14583,8 +16208,8 @@
       "matches_baseline": true
     },
     "packages/adapters/ocr-correction.ts": {
-      "sha256": "ddcd8d1fc8bf3b8a70deff9d3f2ec8f72d917dd58fae904754265dce7ee4be90",
-      "bytes": 7456,
+      "sha256": "d659be0a288fe5e2235eeb9491926a52ccd5916c77abea77dcc025646972b594",
+      "bytes": 8357,
       "matches_baseline": true
     },
     "packages/adapters/office-images.ts": {
@@ -14638,8 +16263,8 @@
       "matches_baseline": true
     },
     "packages/adapters/portable-draft.ts": {
-      "sha256": "8deb4591554aa6b9faf22349a109847ba893e1006de962b9fbdef4e234e795ca",
-      "bytes": 11269,
+      "sha256": "d3e78df607789890f27602575c1b685f8b616a4d20c67f43ab0a700bacd8ccda",
+      "bytes": 11180,
       "matches_baseline": true
     },
     "packages/adapters/portable-entity-geometry.ts": {
@@ -14663,8 +16288,8 @@
       "matches_baseline": true
     },
     "packages/adapters/processing-worker.ts": {
-      "sha256": "40393b081e7715aba49781a5278df147d32775fdba9dd825b7a1786641d7c986",
-      "bytes": 28660,
+      "sha256": "92ed9c27136ec145438eaf14e09fed0ff599b7b8cf311de9defd1c17f14410b0",
+      "bytes": 27202,
       "matches_baseline": true
     },
     "packages/adapters/processing.ts": {
@@ -14765,6 +16390,11 @@
     "packages/adapters/visual-replacement.ts": {
       "sha256": "e2d626332e9e41a67fcfd18b6614d506b5dfb5ea9daefd386bc7e9584e10612c",
       "bytes": 1772,
+      "matches_baseline": true
+    },
+    "packages/adapters/visual-scan.ts": {
+      "sha256": "5cf4f92e4962c79c31d4d9dc406ce06829c0ff1b7c27c9e46b5cbeb915e22e7d",
+      "bytes": 2000,
       "matches_baseline": true
     },
     "packages/adapters/workspace-import-journal.ts": {
@@ -16132,6 +17762,11 @@
       "bytes": 2315,
       "matches_baseline": true
     },
+    "tests/document-policy-portable.integration.ts": {
+      "sha256": "49ea16c98ed61f186547f16958a528101e084e1f71ae2a3beb68b0b100c74e65",
+      "bytes": 10304,
+      "matches_baseline": true
+    },
     "tests/document-unlock-word.test.ts": {
       "sha256": "09b9f1da4a5d7d01577a6503c6d03fe3a505f699cb5ba0d9a40fb2dca8dec7c6",
       "bytes": 6390,
@@ -16188,8 +17823,8 @@
       "matches_baseline": true
     },
     "tests/e2e/cancel-recovery.spec.ts": {
-      "sha256": "df4479c0eb5f23f9f2fb4a4da887296dea55f87eec9c79c07c37e9cc46517022",
-      "bytes": 5330,
+      "sha256": "01cdfe86e297d30334ee16296f19cce0247c6776c2d62c9aa47ab1630ee6dbce",
+      "bytes": 5778,
       "matches_baseline": true
     },
     "tests/e2e/cancel-response-loss.spec.ts": {
@@ -16207,14 +17842,24 @@
       "bytes": 19298,
       "matches_baseline": true
     },
+    "tests/e2e/crlf-selection.spec.ts": {
+      "sha256": "fe3120d1814859ce4e429adbf346a2f52af54ac3b0af1609a7c6968093b2e609",
+      "bytes": 15334,
+      "matches_baseline": true
+    },
     "tests/e2e/design-qa.spec.ts": {
       "sha256": "5b9b58191f07b090ab498352ac8644d78a237ee19d0399d41b4ce679ef44a784",
       "bytes": 2282,
       "matches_baseline": true
     },
+    "tests/e2e/document-configuration-load.spec.ts": {
+      "sha256": "ad7f34debf6f889668b54c1ed2b38c9420c51afb0b3a44dc648265434d1065be",
+      "bytes": 8133,
+      "matches_baseline": true
+    },
     "tests/e2e/docx-layout.spec.ts": {
-      "sha256": "91ba0588c3dda5ba54501e1e5e7bbab21df53f8420f2a346e61209ffb6a6cb5d",
-      "bytes": 8017,
+      "sha256": "5b17787bbbc6e22db838772f36753abde3c64480dc9a9b9c262d9d5a88e798d9",
+      "bytes": 9673,
       "matches_baseline": true
     },
     "tests/e2e/docx-preview.spec.ts": {
@@ -16233,8 +17878,8 @@
       "matches_baseline": true
     },
     "tests/e2e/entity-workflow.spec.ts": {
-      "sha256": "6084013911e5dcd11de3f1452863689cfdced7aaab246182d947ef4546fe97aa",
-      "bytes": 12049,
+      "sha256": "d0088c26554d79b2f8a5e6a56b8160cf8ef80daaa80f51f247d734c0eaa6073a",
+      "bytes": 13308,
       "matches_baseline": true
     },
     "tests/e2e/export-policy.spec.ts": {
@@ -16353,13 +17998,13 @@
       "matches_baseline": true
     },
     "tests/e2e/project-entities.spec.ts": {
-      "sha256": "393b9133af41d0cdede6f7fc716e668641e7120d50612e662beb8dcc4392308e",
-      "bytes": 19335,
+      "sha256": "2842a3a7a866f5669d51cfb1279bea0db00ce448b17107fc5caa21c090d8d1ed",
+      "bytes": 19979,
       "matches_baseline": true
     },
     "tests/e2e/recognition.spec.ts": {
-      "sha256": "b8eb8dcca93ec9ce09e00ab8f2aa28820493b9b67728f1eb5a62278249c69c95",
-      "bytes": 3504,
+      "sha256": "5cede0bd819428f89acc236cac62f05903d6dee875256695400f340d9c9960bf",
+      "bytes": 4638,
       "matches_baseline": true
     },
     "tests/e2e/restoration-batch.spec.ts": {
@@ -16488,8 +18133,8 @@
       "matches_baseline": true
     },
     "tests/evidence-screenshot.test.ts": {
-      "sha256": "233efabf9343627de11d3631d2f51444502b57524e3caf2bf6a23ce2c85c6003",
-      "bytes": 13152,
+      "sha256": "e288a561e35480546ebe610d0a0880ce265899ac9c91a7659b6cc374de0b6aeb",
+      "bytes": 12937,
       "matches_baseline": true
     },
     "tests/export-gate.test.ts": {
@@ -17092,6 +18737,11 @@
       "bytes": 3092,
       "matches_baseline": true
     },
+    "tests/ocr-classification.integration.ts": {
+      "sha256": "af1f6b534aba4c9547b6546b0232f892452a9ba9d55eade251c932c1fa89a7e8",
+      "bytes": 7627,
+      "matches_baseline": true
+    },
     "tests/ocr-correction.test.ts": {
       "sha256": "1c883e296ce9e72df51e642c6371b769adce23e6523863587b2212afd06d1661",
       "bytes": 4654,
@@ -17102,9 +18752,14 @@
       "bytes": 1367,
       "matches_baseline": true
     },
+    "tests/ocr-visual-correction.integration.ts": {
+      "sha256": "44c5209341bd32ca078d131f76313e738f901c8dd9664d06e98e2a35a34a3aed",
+      "bytes": 11504,
+      "matches_baseline": true
+    },
     "tests/ocr.integration.ts": {
-      "sha256": "cc6035f88b424f09fd9e27f79fed51c578836d6c2522b672fcf2059bf82b8937",
-      "bytes": 14402,
+      "sha256": "0dfb1d992420fd76940eedb00ec2dbdf4ea3faea02269206cc30f5cda98a99fb",
+      "bytes": 14517,
       "matches_baseline": true
     },
     "tests/office-fixtures.ts": {
@@ -17242,9 +18897,34 @@
       "bytes": 8840,
       "matches_baseline": true
     },
+    "tests/portable-fresh-completeness.integration.ts": {
+      "sha256": "cfc6cf08173d80ebbdb0be0058a3033c4469dcdac5ab1093dedb3a0b5395990f",
+      "bytes": 15685,
+      "matches_baseline": true
+    },
+    "tests/portable-fresh-cross-format.integration.ts": {
+      "sha256": "8963a0881a8b8de6d47ca305486b8dbfe1273aff64dbe9740cf7cd4d5f13bf9c",
+      "bytes": 15236,
+      "matches_baseline": true
+    },
+    "tests/portable-fresh-replacement.integration.ts": {
+      "sha256": "cbb8d95f287926e8b476d2aa2c303568925ab2faca2644a851115671e0a05e0b",
+      "bytes": 9035,
+      "matches_baseline": true
+    },
+    "tests/portable-fresh-rules.integration.ts": {
+      "sha256": "c11705a2d8e6258d622374eb1bc8232897d4abafb5c5839fffd6d10fb03271bf",
+      "bytes": 8975,
+      "matches_baseline": true
+    },
     "tests/portable-legacy-geometry.integration.ts": {
       "sha256": "1f728f56542571546a740b030e05b2bdea2217c0312e7269dfbdc0a99178be03",
       "bytes": 8039,
+      "matches_baseline": true
+    },
+    "tests/portable-map-cleanup.integration.ts": {
+      "sha256": "d3d3a2fa4448d50790ca67c99a0c7da5ac61e0678692252466e876d0d932b7dd",
+      "bytes": 9103,
       "matches_baseline": true
     },
     "tests/portable-type-hide.integration.ts": {
@@ -17493,8 +19173,8 @@
       "matches_baseline": true
     },
     "tests/reference-spatial-adapter.test.ts": {
-      "sha256": "59eb34fc06395a44704c51f1645902bd0cfb8ce703c67c113849e7a087de35a2",
-      "bytes": 4592,
+      "sha256": "c89dd56bc4ee6d1e1ae4513e58ee6ecf77762efd92d4f19129a36c69df126c56",
+      "bytes": 4929,
       "matches_baseline": true
     },
     "tests/reference-spatial.test.ts": {
@@ -17780,6 +19460,11 @@
     "tests/text-highlights.test.ts": {
       "sha256": "8aa3a7feaaadd52f2c1dc280f02ae48f30dca73548deed85c14f4c6ec1a1fabb",
       "bytes": 4068,
+      "matches_baseline": true
+    },
+    "tests/textarea-coordinates.test.ts": {
+      "sha256": "121b5fdcc03385f5b92d0e79298ed9b4cd06d1c00e7c7fcd37b5d2d43e286e15",
+      "bytes": 3001,
       "matches_baseline": true
     },
     "tests/type-hide-geometry.integration.ts": {
@@ -19298,8 +20983,8 @@
       "matches_baseline": true
     },
     "文档/待办与完成状态-20261015.md": {
-      "sha256": "ceaba0bed5cb66c0ecf6aa7551c736abd82a32bab737755390e8db596b426682",
-      "bytes": 26186,
+      "sha256": "d0ae3ad2c5729ff075076039503f25f58d447d5f744f91fd1ee788787370df8f",
+      "bytes": 27618,
       "matches_baseline": true
     },
     "文档/按钮确认交互修复与验收.md": {
@@ -19323,8 +21008,8 @@
       "matches_baseline": true
     },
     "文档/脱敏规则完整技术交接-迭代023.md": {
-      "sha256": "e77a1176d4dcb1bee16a920ad117b7f146f076e7f0559cc379b4d97d2651910c",
-      "bytes": 386135,
+      "sha256": "f73fe3fc49b29b1be21aed43f421ab08ad864aa9ef8e70c2c78f36d332914930",
+      "bytes": 390911,
       "matches_baseline": true
     },
     "文档/脱敏规则技术交接-20261014.md": {
@@ -20217,6 +21902,11 @@
       "bytes": 4852,
       "matches_baseline": true
     },
+    "文档/逆向台账/contracts/material-policy-055-candidate-20261016.md": {
+      "sha256": "8b523da8a0cbc2a64bc9da81ceb689bacd951c80ace4f5b4fb2a2dbfd1a971e9",
+      "bytes": 1419,
+      "matches_baseline": true
+    },
     "文档/逆向台账/contracts/mcp-ai-collaboration-porting-20261014.json": {
       "sha256": "98bdb79606a370cc6afdceb47a8cdc47622f9dda9301ae649c5423a5f4d70d52",
       "bytes": 326608,
@@ -20355,6 +22045,11 @@
     "文档/逆向台账/contracts/personal-settings-interface-closure-20261015.md": {
       "sha256": "4a8729e9e69497cf578e474b1b6a38bb7c175066e1558fcc86421b74429b9ffd",
       "bytes": 10340,
+      "matches_baseline": true
+    },
+    "文档/逆向台账/contracts/policy-ocr-portable-054-20261016.md": {
+      "sha256": "e74a65f9671e6cf73619202951c224e2b1f6d35aebcee8ec392b4528a8c0e501",
+      "bytes": 15618,
       "matches_baseline": true
     },
     "文档/逆向台账/contracts/portable-filename-053-20261016.md": {

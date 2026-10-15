@@ -3,16 +3,15 @@ import {detectComplete} from '../packages/core/recognition-pipeline.ts';
 import {applyDocumentRoute} from '../packages/core/document-route.ts';
 import {selectEvidenceScene,isEvidenceChatText,applyEvidenceScene} from '../packages/core/evidence-screenshot.ts';
 import {classifyReferenceDocumentDetail} from '../packages/core/reference-rules.ts';
-import {freshPortableMarks} from '../packages/adapters/portable-draft.ts';
-import type {DocumentPolicy} from '../packages/contracts/document-policy.ts';
 import type {Anchor,Mark} from '../packages/contracts/index.ts';
 
 const sceneCodes=(marks:ReturnType<typeof detectComplete>['marks'])=>marks.flatMap(m=>m.sources?.map(s=>s.code)??[]).filter(code=>code.startsWith('SCENE-'));
-const detect=(text:string,format:'txt'|'docx'|'pdf'|'png'|'jpg'|'jpeg',configuration?:{documentType:'auto'|'general'|'contract'|'judgment'|'screenshot'})=>{
- const anchors:Anchor[]=[{kind:'text',start:0,end:text.length}];
- const result=detectComplete(text,anchors,[],{sourceFormat:format,configuration});
+const routed=(text:string,anchors:Anchor[],format:'txt'|'docx'|'pdf'|'png'|'jpg'|'jpeg',configuration?:{documentType:'auto'|'general'|'contract'|'judgment'|'screenshot'},filename='')=>{
+ const result=detectComplete(text,anchors,[],{sourceFormat:format,configuration,filename});
  return {...result,marks:applyDocumentRoute(text,anchors,result.marks,configuration,{suppressEvidenceScene:result.evidenceScene.controlled})};
 };
+const detect=(text:string,format:'txt'|'docx'|'pdf'|'png'|'jpg'|'jpeg',configuration?:{documentType:'auto'|'general'|'contract'|'judgment'|'screenshot'})=>
+ routed(text,[{kind:'text',start:0,end:text.length}],format,configuration);
 
 describe('public 0.5.9 evidence screenshot scene contract',()=>{
  it('uses text and selected route, never image extension, as screenshot hint',()=>{
@@ -93,12 +92,11 @@ describe('public 0.5.9 evidence screenshot scene contract',()=>{
   const result=detectComplete(text,anchors,[],{sourceFormat:'pdf'});
   expect(result.marks.every(m=>anchors.some(a=>a.start<=m.start&&m.end<=a.end))).toBe(true);
  });
- it('rebuilds portable fresh candidates with the resolved document route',()=>{
+ it('applies the production recognizer and route to explicit screenshot input',()=>{
   const text='申请方 转账 收款方 __masked_id__',anchors:Anchor[]=[{kind:'text',start:0,end:text.length}];
-  const policy=(documentType:'auto'|'screenshot')=>({configuration:{documentType}} as DocumentPolicy);
-  expect(sceneCodes(freshPortableMarks(text,anchors,[],{},'png',policy('auto'),1))).not.toContain('SCENE-receipt-standalone-wechat');
-  expect(sceneCodes(freshPortableMarks(text,anchors,[],{},'png',policy('screenshot'),1))).toContain('SCENE-receipt-standalone-wechat');
-  expect(sceneCodes(freshPortableMarks(text,anchors,[],{},'txt',policy('screenshot'),0))).toContain('SCENE-receipt-standalone-wechat');
+  expect(sceneCodes(routed(text,anchors,'png',{documentType:'auto'}).marks)).not.toContain('SCENE-receipt-standalone-wechat');
+  expect(sceneCodes(routed(text,anchors,'png',{documentType:'screenshot'}).marks)).toContain('SCENE-receipt-standalone-wechat');
+  expect(sceneCodes(routed(text,anchors,'txt',{documentType:'screenshot'}).marks)).toContain('SCENE-receipt-standalone-wechat');
  });
  it('uses the public form postprocessor on real baseline amount overlap',()=>{
   const text='姓名：李四\n金额：1000元\n银行帐号：12345678\n合同金额：人民币1000元';
@@ -130,10 +128,9 @@ describe('public 0.5.9 evidence screenshot scene contract',()=>{
   const landline:Mark={...phone,sources:[{layer:'rules',code:'INT-phone',score:.8}]};
   expect(applyEvidenceScene(text,anchors,[mobile,landline],route).filter(m=>m.kind==='手机号'||m.kind==='固定电话').map(m=>m.kind)).toEqual(['手机号','固定电话']);
  });
- it('binds portable fresh PDF form scene to the trusted filename and retains explicit route priority',()=>{
+ it('binds production PDF form recognition to filename and explicit route priority',()=>{
   const text='姓名：张三\n金额：1000元\n银行帐号：12345678',anchors:Anchor[]=[{kind:'page',page:0,start:0,end:text.length}];
-  const policy=(documentType:'auto'|'screenshot')=>({configuration:{documentType}} as DocumentPolicy);
-  const fresh=(filename:string,documentType:'auto'|'screenshot')=>freshPortableMarks(text,anchors,[],{},'pdf',policy(documentType),1,filename);
+  const fresh=(filename:string,documentType:'auto'|'screenshot')=>routed(text,anchors,'pdf',{documentType},filename).marks;
   const form=(marks:Mark[])=>marks.filter(m=>m.sources?.some(s=>s.code.startsWith('SCENE-form-'))).map(m=>({start:m.start,end:m.end,text:text.slice(m.start,m.end),kind:m.kind,decision:m.decision,sources:m.sources?.filter(s=>s.code.startsWith('SCENE-form-'))}));
   const expected=[
    {start:3,end:5,text:'张三',kind:'姓名',decision:'pending',sources:[{layer:'rules',code:'SCENE-form-name_cn',score:.95}]},
@@ -148,7 +145,7 @@ describe('public 0.5.9 evidence screenshot scene contract',()=>{
   expect(form(explicit)).toEqual(expected);
   expect(generic.every(m=>m.decision==='pending')).toBe(true);
   expect(explicit.every(m=>m.decision==='pending')).toBe(true);
-  expect(freshPortableMarks(text,anchors,[],{},'pdf',policy('auto'),1)).toEqual(fresh('', 'auto'));
+  expect(routed(text,anchors,'pdf',{documentType:'auto'}).marks).toEqual(fresh('', 'auto'));
   expect(form(fresh('', 'auto'))).toEqual(expected);
  });
 });

@@ -47,6 +47,14 @@ test("Word layout links split-run marks and selections, keeps object view and or
   });
   const layoutResponse = page.waitForResponse(r => r.url().includes("/docx-layout?") && r.ok());
   await page.getByRole("button", { name: /版式合成.docx/ }).click();
+  const primaryFrame = page.locator('iframe[title="Word 离线分页预览"]');
+  const primaryText = page.frameLocator('iframe[title="Word 离线分页预览"]').locator('.tmw-word-text').filter({ hasText: "合成客户电话" }).first();
+  await expect(page.getByText("1 个预览页 · 只读原件", { exact: true })).toBeVisible({ timeout: 30_000 });
+  await expect(primaryText).toContainText("合成客户电话");
+  await primaryFrame.scrollIntoViewIfNeeded();
+  await primaryText.scrollIntoViewIfNeeded();
+  await expect(primaryText).toBeInViewport({ ratio: 1 });
+  await page.screenshot({ path: testInfo.outputPath("docx-primary-visible-before-review.png"), timeout: 15_000 });
   await page.getByText("结构化原文与其他对象", { exact: true }).click();
   const response = await layoutResponse, endpoint = new URL(response.url());
   expect(initialProjection).toBe(false);
@@ -84,8 +92,15 @@ test("Word layout links split-run marks and selections, keeps object view and or
   await page.getByRole("button", { name: "对象原文", exact: true }).click();
   await expect(page.locator('textarea[aria-label="原文"]')).toBeVisible();
   await page.getByRole("button", { name: "Word 版式审查", exact: true }).click();
+  await expect(page.getByText("复核版本 1", { exact: true })).toBeVisible();
+  const revisionOneLayout = page.waitForResponse(r => {
+    if (r.request().method() !== "GET" || r.status() !== 200) return false;
+    const url = new URL(r.url());
+    return url.pathname === endpoint.pathname && url.searchParams.get("revision") === "1";
+  }, { timeout: 30_000 });
   await page.getByText("结构化原文与其他对象", { exact: true }).click();
-  await expect(para).toBeVisible();
+  expect((await revisionOneLayout).status()).toBe(200);
+  await expect(para).toBeVisible({ timeout: 15_000 });
   const old = await page.request.get(endpoint.href, { timeout: 15_000 }); expect(old.status()).toBe(409);
   const anonymous = await playwright.request.newContext({ timeout: 15_000 });
   try { expect((await anonymous.get(endpoint.href)).status()).toBe(401); } finally { await anonymous.dispose(); }
@@ -108,7 +123,14 @@ test("Word layout links split-run marks and selections, keeps object view and or
     const parts = await readZip(await readFile(path));
     expect(parts.get('word/document.xml')!.toString()).toContain('<w:tbl>');
     for (const content of parts.values()) expect(content.toString()).not.toContain('13800138000');
+    // The short synthetic DOCX has no page-size metadata. Its iframe can occupy
+    // less than half the viewport while the actual Word text is fully readable.
+    // Bring both scrolling containers into view and assert the content itself.
+    await primaryFrame.scrollIntoViewIfNeeded();
+    await primaryText.scrollIntoViewIfNeeded();
+    await expect(primaryText).toBeInViewport({ ratio: 1 });
+    await page.screenshot({ path: testInfo.outputPath("docx-primary-visible-after-export.png"), timeout: 15_000 });
     await page.screenshot({ path: testInfo.outputPath('docx-layout-review.png'), fullPage: true, timeout: 15_000 });
-    console.info("[docx-layout] artifact content and screenshot verified");
+    console.info("[docx-layout] artifact content and visible Word screenshots verified");
   });
 });

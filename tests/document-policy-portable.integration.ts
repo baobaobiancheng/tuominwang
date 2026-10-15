@@ -1,0 +1,132 @@
+// Intended destination: tests/document-policy-portable.integration.ts
+// Candidate only. Run with scripts/run-isolated.ts integration and a tmw_test_ DB.
+import {test,after} from 'node:test';
+import assert from 'node:assert/strict';
+import {randomUUID} from 'node:crypto';
+import pg from 'pg';
+import {buildApp} from '../apps/api/main.ts';
+import {registerWorkspacePortableRoutes} from '../apps/api/workspace-portable.ts';
+import {tick} from '../apps/worker/main.ts';
+import {pool} from '../packages/adapters/db.ts';
+import {defaultProfile} from '../packages/core/presets.ts';
+import {hash,passwordHash,readOriginal,unseal} from '../packages/adapters/storage.ts';
+
+assert.ok(new URL(process.env.DATABASE_URL!).pathname.startsWith('/tmw_test_'));
+assert.ok(new URL(process.env.MIGRATION_DATABASE_URL!).pathname.startsWith('/tmw_test_'));
+assert.ok(process.env.DATA_DIR?.includes('/.data/test-runs/'));
+const admin=new pg.Pool({connectionString:process.env.MIGRATION_DATABASE_URL}),app=await buildApp();
+if(!app.hasRoute({method:'POST',url:'/api/portable/import'}))registerWorkspacePortableRoutes(app);
+after(async()=>{await app.close();await pool.end();await admin.end();});
+
+test('deleted personal profile snapshot remains editable after native portable import',{timeout:180000},async()=>{
+ const tenant=randomUUID(),user=randomUUID(),username='portable-policy-'+user,password='synthetic-portable-policy',origin=process.env.APP_ORIGIN!;
+ await admin.query('INSERT INTO users VALUES($1,$2,$3,$4)',[user,tenant,username,passwordHash(password)]);
+ const login=await app.inject({method:'POST',url:'/api/login',headers:{origin},payload:{username,password}});
+ assert.equal(login.statusCode,200,login.body);
+ const cookie=String(login.headers['set-cookie']).split(';')[0];
+ const req=(method:string,url:string,payload?:any,binary=false)=>app.inject({method:method as any,url,payload,headers:{origin,cookie,...binary?{'content-type':'application/octet-stream'}:{}}});
+ const projectResponse=await req('POST','/api/projects',{name:'portable policy source'});
+ assert.equal(projectResponse.statusCode,200,projectResponse.body);
+ const project=projectResponse.json().id as string;
+ const source=Buffer.from('姓名：张三\n手机号：13800138000','utf8'),name='portable-policy.txt',batch=randomUUID(),requestId=randomUUID();
+ const accepted=await req('POST',`/api/projects/${project}/upload-batches`,{id:batch,files:[{requestId,path:name,size:source.length}]});
+ assert.equal(accepted.statusCode,200,accepted.body);
+ const uploaded=await req('POST',`/api/projects/${project}/files?batchId=${batch}&requestId=${requestId}`,source,true);
+ assert.equal(uploaded.statusCode,200,uploaded.body);
+ const doc=uploaded.json().id as string;
+ assert.equal(await tick(),true);
+ const initial=(await req('GET',`/api/documents/${doc}`)).json();
+ assert.equal(initial.state,'review');
+
+ const onlyPhone={...defaultProfile(),enabledEntityTypeIds:['phone']};
+ const created=await req('POST','/api/presets/profiles',{name:'portable phone only',profile:onlyPhone});
+ assert.equal(created.statusCode,200,created.body);
+ const personalId=created.json().settings.id as string;
+ const createdRules=await req('POST','/api/presets/rulesets',{name:'portable saved rules'});
+ assert.equal(createdRules.statusCode,200,createdRules.body);
+ const rulesetId=createdRules.json().settings.id as string;
+ const configured=await req('POST',`/api/documents/${doc}/configuration`,{revision:initial.revision,configuration:{profileId:personalId,rulesetId,documentType:'auto'}});
+ assert.equal(configured.statusCode,200,configured.body);
+ const recognized=await req('POST',`/api/documents/${doc}/recognize`,{revision:configured.json().revision,ner:false});
+ assert.equal(recognized.statusCode,200,recognized.body);
+ assert.equal(await tick(),true);
+ const current=(await req('GET',`/api/documents/${doc}`)).json();
+ assert.equal(current.state,'review');
+ assert.ok(current.marks.some((m:any)=>m.kind==='手机号'));
+ assert.ok(!current.marks.some((m:any)=>m.kind==='姓名'));
+ const backup=await req('POST',`/api/projects/${project}/portable/export`,{password:'synthetic-portable-policy-backup'});
+ assert.equal(backup.statusCode,200,backup.body);
+
+ // UI action: 脱敏方案与规则库 → 删除方案. Its text says applied projects
+ // retain the saved settings, so a document snapshot must remain usable.
+ const deleted=await req('DELETE',`/api/presets/profiles/${personalId}`,{revision:created.json().revision});
+ assert.equal(deleted.statusCode,200,deleted.body);
+ const deletedRules=await req('DELETE',`/api/presets/rulesets/${rulesetId}`,{revision:createdRules.json().revision});
+ assert.equal(deletedRules.statusCode,200,deletedRules.body);
+ const imported=await req('POST','/api/portable/import',{name:'portable policy reopened',password:'synthetic-portable-policy-backup',bytesBase64:backup.rawPayload.toString('base64')});
+ assert.equal(imported.statusCode,200,imported.body);
+ const newProject=imported.json().id as string;
+ const [newRow]=(await admin.query('SELECT id,source_id,source_hash FROM documents WHERE project_id=$1',[newProject])).rows;
+ assert.ok(newRow);
+ assert.equal(newRow.source_hash,hash(source));
+ assert.deepEqual(await readOriginal(newRow.source_id),source);
+ assert.equal(await tick(),true);
+ const reopened=(await req('GET',`/api/documents/${newRow.id}`)).json();
+ assert.equal(reopened.state,'review');
+ assert.ok(reopened.marks.some((m:any)=>m.kind==='手机号'));
+ assert.ok(!reopened.marks.some((m:any)=>m.kind==='姓名'));
+ const settings=await req('GET',`/api/documents/${newRow.id}/configuration`);
+ assert.equal(settings.statusCode,200,settings.body);
+ assert.equal(settings.json().configuration.profileId,personalId);
+ assert.equal(settings.json().configuration.rulesetId,rulesetId);
+ const catalogue=await req('GET','/api/presets/profiles');
+ assert.equal(catalogue.statusCode,200,catalogue.body);
+ assert.ok(!catalogue.json().items.some((item:any)=>item.settings.id===personalId));
+ assert.ok(!(await req('GET','/api/presets/rulesets')).json().items.some((item:any)=>item.settings.id===rulesetId));
+ const beforeRow=(await admin.query('SELECT tenant_id,revision,document_policy_revision,document_policy FROM documents WHERE id=$1',[newRow.id])).rows[0];
+ const beforePolicy=JSON.parse(unseal(beforeRow.document_policy,`${beforeRow.tenant_id}:${newProject}:${newRow.id}:document-policy`));
+ assert.equal(beforePolicy.ruleset.id,rulesetId);
+ const unknownProfile=await req('POST',`/api/documents/${newRow.id}/configuration`,{revision:reopened.revision,configuration:{...settings.json().configuration,profileId:randomUUID()}});
+ assert.equal(unknownProfile.statusCode,404,unknownProfile.body);
+ const unknownRuleset=await req('POST',`/api/documents/${newRow.id}/configuration`,{revision:reopened.revision,configuration:{...settings.json().configuration,rulesetId:randomUUID()}});
+ assert.equal(unknownRuleset.statusCode,404,unknownRuleset.body);
+ const afterReject=(await admin.query('SELECT revision,document_policy_revision,document_policy FROM documents WHERE id=$1',[newRow.id])).rows[0];
+ assert.equal(afterReject.revision,beforeRow.revision);
+ assert.equal(afterReject.document_policy_revision,beforeRow.document_policy_revision);
+ assert.equal(afterReject.document_policy,beforeRow.document_policy);
+ const memberName='portable-member-'+randomUUID();
+ const memberMade=await req('POST','/api/organization/members',{username:memberName,password});
+ assert.equal(memberMade.statusCode,200,memberMade.body);
+ const granted=await req('PUT',`/api/projects/${newProject}/members/${memberMade.json().id}`,{revision:null,permissions:['view_original','review']});
+ assert.equal(granted.statusCode,200,granted.body);
+ const memberLogin=await app.inject({method:'POST',url:'/api/login',headers:{origin},payload:{username:memberName,password}});
+ assert.equal(memberLogin.statusCode,200,memberLogin.body);
+ const memberCookie=String(memberLogin.headers['set-cookie']).split(';')[0];
+ const memberApply=await app.inject({method:'POST',url:`/api/documents/${newRow.id}/configuration`,headers:{origin,cookie:memberCookie},payload:{revision:reopened.revision,configuration:settings.json().configuration}});
+ assert.equal(memberApply.statusCode,403,memberApply.body);
+ assert.equal((await admin.query('SELECT document_policy FROM documents WHERE id=$1',[newRow.id])).rows[0].document_policy,beforeRow.document_policy);
+
+ // UI action: 本材料识别与脱敏设置 → change 材料类型 → 保存设置并重新识别.
+ // Current HEAD returns 404 NOT_FOUND here despite the valid sealed snapshot.
+ const changed=await req('POST',`/api/documents/${newRow.id}/configuration`,{revision:reopened.revision,configuration:{...settings.json().configuration,documentType:'general'}});
+ assert.equal(changed.statusCode,200,changed.body);
+ const changedRow=(await admin.query('SELECT tenant_id,document_policy FROM documents WHERE id=$1',[newRow.id])).rows[0];
+ const changedPolicy=JSON.parse(unseal(changedRow.document_policy,`${changedRow.tenant_id}:${newProject}:${newRow.id}:document-policy`));
+ assert.notEqual(changedPolicy.profile.id,beforePolicy.profile.id,'each applied document snapshot receives a fresh profile id');
+ assert.equal(beforePolicy.profile.source,'user');
+ assert.equal(changedPolicy.profile.source,'user');
+ assert.equal(beforePolicy.profile.readonly,false);
+ assert.equal(changedPolicy.profile.readonly,false);
+ const beforeProfileSettings={...beforePolicy.profile,id:'<material-snapshot-id>'};
+ const changedProfileSettings={...changedPolicy.profile,id:'<material-snapshot-id>'};
+ assert.deepEqual(changedProfileSettings,beforeProfileSettings,'material type change must retain every other sealed profile setting');
+ assert.deepEqual(changedPolicy.ruleset,beforePolicy.ruleset);
+ const retry=await req('POST',`/api/documents/${newRow.id}/recognize`,{revision:changed.json().revision,ner:false});
+ assert.equal(retry.statusCode,200,retry.body);
+ assert.equal(await tick(),true);
+ const afterView=(await req('GET',`/api/documents/${newRow.id}`)).json();
+ assert.equal(afterView.state,'review');
+ assert.ok(afterView.marks.some((m:any)=>m.kind==='手机号'));
+ assert.ok(!afterView.marks.some((m:any)=>m.kind==='姓名'));
+ assert.deepEqual(await readOriginal(newRow.source_id),source);
+});

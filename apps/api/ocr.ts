@@ -53,12 +53,12 @@ export function registerOcrRoutes(app: FastifyInstance) {
         if(plan.aliasRequests.length){await requirePermission(db,d.project_id,['view_mapping']);const mappings=await resolvePolicyMappings(db,next,req.user.id,plan.aliasRequests);plan=applyReplacementPolicies(text,result.marks,policies,mappings,{semanticValue});if(plan.aliasRequests.length)fail('MAPPING_MISMATCH',400);}
         result.marks=finalizeProfileReplacements(plan.marks,result.anchors,profile,d.source_format,d.batchMode,d.documentPolicy?.configuration.exportMode);
       }
-      // OCR edits change text, not page pixels. Keep the independently collected
-      // visual scan diagnostics so a partial scan cannot silently become complete.
-      if(d.recognition?.visual) result.recognition={...result.recognition,visual:d.recognition.visual};
+      // OCR edits change text, not page pixels. Retain the old visual diagnostic
+      // only when no new detector scan was requested; an actual rescan replaces it.
+      if(result.visualCandidates===undefined&&d.recognition?.visual) result.recognition={...result.recognition,visual:d.recognition.visual};
       const storedPageReview=sealPageReview({...d,content_hash:result.hash},openPageReview(d),d.revision+1);
       await recordReboundReviewProvenance(db,d,{...next,marks:result.marks},{links,actorId:req.user.id,operation:'ocr-text-correction'});
-      await rows(db, sql`UPDATE documents SET content=${result.content},content_hash=${result.hash},anchors=${JSON.stringify(result.anchors)}::jsonb,page_data=${JSON.stringify(result.pages)}::jsonb,marks=${JSON.stringify(result.marks)}::jsonb,recognition=${JSON.stringify(result.recognition)}::jsonb,page_review=${JSON.stringify(storedPageReview)}::jsonb,entity_corrections=${rebound.stored},revision=revision+1 WHERE id=${doc}`);
+      await rows(db, sql`UPDATE documents SET content=${result.content},content_hash=${result.hash},anchors=${JSON.stringify(result.anchors)}::jsonb,page_data=${JSON.stringify(result.pages)}::jsonb,marks=${JSON.stringify(result.marks)}::jsonb,recognition=${JSON.stringify(result.recognition)}::jsonb,visual_candidates=${JSON.stringify(result.visualCandidates??d.visual_candidates??[])}::jsonb,page_review=${JSON.stringify(storedPageReview)}::jsonb,entity_corrections=${rebound.stored},revision=revision+1 WHERE id=${doc}`);
       // A new content revision has no saved review snapshot. Already issued links keep their immutable artifact.
       await rows(db, sql`UPDATE attempts SET finished_at=now(),outcome='ocr_text_changed' WHERE finished_at IS NULL AND job_id IN (SELECT id FROM jobs WHERE document_id=${doc} AND status IN ('queued','running'))`);
       await rows(db, sql`UPDATE jobs SET status='cancelled',lease_until=NULL WHERE document_id=${doc} AND status IN ('queued','running')`);
