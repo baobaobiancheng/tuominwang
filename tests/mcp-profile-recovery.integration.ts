@@ -76,11 +76,28 @@ test('MCP profile resolution isolates a damaged peer and keeps explicit selectio
   }
   const byId = await authorize(goodId), byName = await authorize('MCP有效方案');
   assert.equal(byId.statusCode, 200, byId.body); assert.equal(byName.statusCode, 200, byName.body);
-  const badExplicit = await authorize(badId);
-  assert.equal(badExplicit.statusCode,500,badExplicit.body);assert.equal(badExplicit.json().error,'INTERNAL_ERROR');
-  const foreignSelection = await authorize(goodId, foreign, foreignCall, foreignProject.json().id);
-  assert.equal(foreignSelection.statusCode, 404, foreignSelection.body);
-  const foreignName=await authorize('MCP有效方案',foreign,foreignCall,foreignProject.json().id);assert.equal(foreignName.statusCode,404,foreignName.body);
+  async function rejectedBeforeTask(profile: string, expectedError: string, of = owner, call = ownerCall, projectId = ownerProject.json().id) {
+    const source = await of.request('POST', `/api/projects/${projectId}/documents`, { text: '合成材料', requestId: randomUUID() });
+    assert.equal(source.statusCode, 200, source.body);
+    for (let attempt = 0; attempt < 10; attempt++) { const view = await of.request('GET', `/api/documents/${source.json().id}`); assert.equal(view.statusCode, 200, view.body); if (view.json().state === 'review') break; await tick(); }
+    const ready = await of.request('GET', `/api/documents/${source.json().id}`); assert.equal(ready.json().state, 'review', ready.body);
+    const documentBefore = (await admin.query('SELECT revision,state,document_policy,document_policy_revision FROM documents WHERE id=$1', [source.json().id])).rows[0];
+    const counts = async () => ({
+      tasks: (await admin.query('SELECT count(*)::int AS n FROM ai_collab_tasks WHERE project_id=$1', [projectId])).rows[0].n,
+      snapshots: (await admin.query('SELECT count(*)::int AS n FROM ai_collab_task_snapshot WHERE project_id=$1', [projectId])).rows[0].n,
+      jobs: (await admin.query('SELECT count(*)::int AS n FROM jobs WHERE project_id=$1', [projectId])).rows[0].n,
+    });
+    const before = await counts();
+    const rejected = await call('start_lawbot_redaction', { project_id: projectId, document_ids: [source.json().id], advanced: { profile }, task_mode: 'redact_only', request_id: randomUUID() });
+    assert.equal(rejected.isError, true, JSON.stringify(rejected));
+    assert.equal(rejected.structuredContent.error, expectedError, JSON.stringify(rejected));
+    assert.equal(rejected.structuredContent.jobId, undefined, 'failed preflight cannot advertise a task');
+    assert.deepEqual(await counts(), before, 'failed preflight cannot create task, snapshot, or job');
+    assert.deepEqual((await admin.query('SELECT revision,state,document_policy,document_policy_revision FROM documents WHERE id=$1', [source.json().id])).rows[0], documentBefore, 'failed preflight cannot change the source document');
+  }
+  await rejectedBeforeTask(badId, 'INTERNAL_ERROR');
+  await rejectedBeforeTask(goodId, 'SAVED_SETTING_NOT_FOUND', foreign, foreignCall, foreignProject.json().id);
+  await rejectedBeforeTask('MCP有效方案', 'SAVED_SETTING_NOT_FOUND', foreign, foreignCall, foreignProject.json().id);
   const preference = await owner.request('GET', '/api/presets/preferences');
   assert.equal(preference.statusCode, 200); assert.equal(preference.json().settings.defaultProfileId, 'system_default');
   assert.equal(preference.json().revision, setDefault.json().revision + 1);
