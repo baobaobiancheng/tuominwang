@@ -323,7 +323,7 @@ export async function buildApp() {
     return projectScope(req, { project }, [], async (db) => {
       const list = await rows(
         db,
-        sql`SELECT d.id,d.revision,d.state,d.created_at,d.source_name,d.source_format,(SELECT status FROM jobs WHERE document_id=d.id ORDER BY created_at DESC,id DESC LIMIT 1) AS job_state FROM documents d WHERE project_id=${project} ORDER BY created_at DESC,id DESC LIMIT ${limit} OFFSET ${offset}`,
+        sql`SELECT d.id,d.revision,d.state,d.created_at,d.source_name,d.source_format,(SELECT status FROM jobs WHERE document_id=d.id ORDER BY created_at DESC,id DESC LIMIT 1) AS job_state,(SELECT kind FROM jobs WHERE document_id=d.id ORDER BY created_at DESC,id DESC LIMIT 1) AS job_kind,(SELECT status FROM jobs WHERE document_id=d.id AND kind='detect' AND revision=d.revision ORDER BY created_at DESC,id DESC LIMIT 1) AS detect_state FROM documents d WHERE project_id=${project} ORDER BY created_at DESC,id DESC LIMIT ${limit} OFFSET ${offset}`,
       );
       const canView = (await capabilities(db, project)).includes("view_original");
       return list.map(({source_name,...d}) => ({...d, name: canView && source_name ? unseal(source_name, `${req.user.tenant_id}:${project}:${d.id}:name`) : null }));
@@ -384,6 +384,10 @@ export async function buildApp() {
         db,
         sql`SELECT id,kind,status,error_code,required_permissions,user_id FROM jobs WHERE document_id=${doc} ORDER BY created_at DESC,id DESC LIMIT 1`,
       );
+      const [detectJob] = await rows(
+        db,
+        sql`SELECT status FROM jobs WHERE document_id=${doc} AND kind='detect' AND revision=${d.revision} ORDER BY created_at DESC,id DESC LIMIT 1`,
+      );
       return {
         id: d.id,
         permissions: await capabilities(db, d.project_id),
@@ -409,7 +413,7 @@ export async function buildApp() {
         visualCandidates: d.visual_candidates,
         visualDiagnostics:d.recognition?.visual??null,
         layers: {
-          rules: d.state === "queued" ? "pending" : "completed",
+          rules: d.state === "review" ? "completed" : d.state === "outdated" ? "outdated" : d.state === "queued" && ["failed", "cancelled"].includes(detectJob?.status) ? detectJob.status : "pending",
           ner: d.ner_enabled ? (d.state === "review" ? "completed" : "pending") : (nerReady ? "not_requested" : "not_configured"),
           ai: "not_configured",
         },

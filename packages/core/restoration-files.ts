@@ -3,7 +3,7 @@ import {MAX_MAPPING_ENTRIES} from "../contracts/mapping-limits.ts";
 import {validAliasToken,normalizedWordAlias} from "../contracts/alias-token.ts";
 import type { Element, Node } from "@xmldom/xmldom";
 import { posix } from "node:path";
-import { readZip, writeZip, xml, xmlBytes, elements } from "./office-zip.ts";
+import { readZip, writeZip, xml, xmlBytes, elements, decodeOfficeXml } from "./office-zip.ts";
 import { readProtectedPortable, type PortableCredentials, type PortableObject } from "./workspace-portable.ts";
 import { FILE_MAX_BYTES } from "../contracts/index.ts";
 const W = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", R = "http://schemas.openxmlformats.org/officeDocument/2006/relationships", RELS = "http://schemas.openxmlformats.org/package/2006/relationships", CT = "http://schemas.openxmlformats.org/package/2006/content-types", X = "http://www.w3.org/XML/1998/namespace";
@@ -17,23 +17,40 @@ const tokenIdentity = normalizedWordAlias;
 function rank(value: string) { const full = (value.match(/[\uFF01-\uFF60\uFFE0-\uFFE6\u3000-\u303F]/gu) ?? []).length, half = (value.match(/[\x21-\x7E\uFF61-\uFFDC]/gu) ?? []).length; return [Number(!/[\s\u200B-\u200D\uFEFF]/u.test(value)), full / Math.max(1, full + half), Number(!/\p{P}/u.test(value)), Array.from(value).length]; }
 export function parseRestorationMapping(data: any, options: RestorationOptions = {}): RestorationPlan {
   if (!record(data) && !Array.isArray(data)) return fail("RESTORE_MAPPING_INVALID");
+  const objectData: PortableObject | undefined = record(data) ? data : undefined;
+  if (objectData && Object.hasOwn(objectData, "mappings") && !record(objectData.mappings)) fail("RESTORE_MAPPING_INVALID");
+  const fallbackMappings: PortableObject = record(objectData?.mappings) ? objectData.mappings : {};
+  // An explicit source token-canonical file supplies its own fallback values.
+  // The caller's occurrence selection is an intentional product override.
+  const sourceCanonical = !!objectData && record(objectData.mappings) && record(objectData._meta) &&
+    objectData._meta.restoreStrategy === "token-canonical" && options.strategy !== "occurrence";
+  if (sourceCanonical) {
+    const entries = Object.entries(fallbackMappings) as [string, unknown][];
+    if (!entries.length || entries.length > MAX_MAPPING_ENTRIES || entries.some(([token, value]) =>
+      !validAliasToken(token) || typeof value !== "string" || !value.trim() || !value.isWellFormed())) fail("RESTORE_MAPPING_INVALID");
+  }
   const originals = new Map<string, string[]>(), types = Object.create(null) as Record<string, string>, occurrences = Object.create(null) as Record<string, string[]>;
   function add(token: any, value: any, type?: any) { if (typeof token !== "string" || !token.trim() || typeof value !== "string" || !value.trim()) return; if(!validAliasToken(token)||!value.isWellFormed())fail("RESTORE_MAPPING_INVALID"); const values = originals.get(token) ?? []; values.push(value); originals.set(token, values); if (typeof type === "string") types[token] ??= type; }
   if (Array.isArray(data)) { for (const item of data) if (record(item)) add(item.pseudonym ?? item.token, item.normalized ?? item.value ?? item.original, item.entityType ?? item.kind); }
   else {
-    for (const [token, value] of Object.entries(data.mappings ?? {})) add(token, value);
-    for (const item of data.details ?? []) { if (!record(item)) continue; add(item.pseudonym, item.normalized, item.entityType); for (const form of item.forms ?? []) if (record(form)) add(item.pseudonym, form.original, item.entityType); }
-    for (const item of data.occurrences ?? []) { if (!record(item)) continue; add(item.token, item.original, item.entityType); if (typeof item.token === "string" && typeof item.original === "string" && item.token.trim() && item.original.trim()) (occurrences[item.token] ??= []).push(item.original); }
-    for (const [token, item] of Object.entries(data.entityMap ?? {}) as [string, any][]) if (record(item)) { add(token, item.canonical, item.entityType); add(token, item.restoreChoice, item.entityType); for (const form of item.forms ?? []) if (record(form)) add(token, form.original, item.entityType); }
+    for (const [token, value] of Object.entries(record(data.mappings) ? data.mappings : {})) add(token, value);
+    for (const item of Array.isArray(data.details) ? data.details : []) { if (!record(item)) continue; add(item.pseudonym, item.normalized, item.entityType); for (const form of Array.isArray(item.forms) ? item.forms : []) if (record(form)) add(item.pseudonym, form.original, item.entityType); }
+    for (const item of Array.isArray(data.occurrences) ? data.occurrences : []) { if (!record(item)) continue; add(item.token, item.original, item.entityType); if (typeof item.token === "string" && typeof item.original === "string" && item.token.trim() && item.original.trim()) (occurrences[item.token] ??= []).push(item.original); }
+    for (const [token, item] of Object.entries(record(data.entityMap) ? data.entityMap : {}) as [string, any][]) if (record(item)) { add(token, item.canonical, item.entityType); add(token, item.restoreChoice, item.entityType); for (const form of Array.isArray(item.forms) ? item.forms : []) if (record(form)) add(token, form.original, item.entityType); }
   }
   if (!originals.size || originals.size > MAX_MAPPING_ENTRIES) fail("RESTORE_MAPPING_INVALID");
   const mappings = Object.create(null) as Record<string, string>, ambiguities: RestorationPlan["ambiguities"] = [];
   for (const [token, values] of originals) {
+    // Source helper matches only fallback keys; details and occurrence-only
+    // metadata must not create a newly restorable token in this format.
+    if (sourceCanonical && !Object.hasOwn(fallbackMappings, token)) continue;
     const unique = [...new Set(values)].sort((a, b) => { const aa = rank(a), bb = rank(b); for (let i = 0; i < aa.length; i++) if (aa[i] !== bb[i]) return bb[i] - aa[i]; return a < b ? -1 : a > b ? 1 : 0; });
     const choice = options.choices && Object.hasOwn(options.choices, token) ? options.choices[token] : undefined; if (choice !== undefined && !unique.includes(choice)) fail("RESTORE_CHOICE_INVALID");
-    if (unique.length > 1 && choice === undefined && options.strategy !== "occurrence") ambiguities.push({ token, originals: unique, suggestedOriginal: unique[0] });
-    mappings[token] = choice ?? (options.strategy === "occurrence" && record(data) && typeof (data as PortableObject).mappings?.[token] === "string" ? (data as PortableObject).mappings[token] : unique[0]);
+    if (unique.length > 1 && choice === undefined && options.strategy !== "occurrence" && !sourceCanonical) ambiguities.push({ token, originals: unique, suggestedOriginal: unique[0] });
+    mappings[token] = choice ?? (sourceCanonical ? fallbackMappings[token] : options.strategy === "occurrence" && record(data) && typeof (data as PortableObject).mappings?.[token] === "string" ? (data as PortableObject).mappings[token] : unique[0]);
   }
+  if (sourceCanonical && options.choices) for (const token of Object.keys(options.choices))
+    if (!Object.hasOwn(mappings, token)) fail("RESTORE_CHOICE_INVALID");
   // Source Ad preserves every raw mapping key and adds a trimmed canonical
   // spelling. Keep the full literal so longest matching consumes its whitespace;
   // do not normalize internal plain text or silently merge conflicting queues.
@@ -47,6 +64,10 @@ export function parseRestorationMapping(data: any, options: RestorationOptions =
   const normalizedTokens = new Map<string, string>(), normalizedQueues = new Map<string, string>();
   for (const [token, original] of Object.entries(mappings)) { const normalized = tokenIdentity(token), previous = normalizedTokens.get(normalized); if (previous !== undefined && previous !== original) fail("RESTORE_NORMALIZED_TOKEN_COLLISION"); normalizedTokens.set(normalized, original); if(options.strategy === "occurrence") { const signature=JSON.stringify([original,occurrences[token]??[]]), previousQueue=normalizedQueues.get(normalized); if(previousQueue!==undefined&&previousQueue!==signature)fail("RESTORE_NORMALIZED_TOKEN_COLLISION");normalizedQueues.set(normalized,signature); } }
   if (options.allowCanonicalSelection) ambiguities.length = 0;
+  // Keep the source helper's queue shape for explicit canonical files. The
+  // token-canonical resolver uses mappings; occurrence mode retains raw queues.
+  if (sourceCanonical) for (const [token, queue] of Object.entries(occurrences))
+    occurrences[token] = queue.map(original => Object.hasOwn(fallbackMappings, token) ? fallbackMappings[token] : original);
   return { mappings, occurrenceQueues: occurrences, entityTypes: types, ambiguities, strategy: options.strategy ?? "token-canonical", sourceVersion: Array.isArray(data) ? "legacy-array" : String(data._meta?.version ?? "0.5") };
 }
 export async function readRestorationMapping(bytes: Buffer, credentials: PortableCredentials = {}, options: RestorationOptions = {}) {
@@ -172,7 +193,7 @@ function restorationXmlBytes(document: Parameters<typeof xmlBytes>[0]) {
   try { return xmlBytes(document); }
   catch (error) { if (error instanceof Error && error.message === "OFFICE_XML_VALUE_INVALID") fail("RESTORE_XML_VALUE_INVALID"); throw error; }
 }
-function restorationXml(bytes: Buffer) { if(/[\x00-\x08\x0B\x0C\x0E-\x1F\uFFFE\uFFFF]/u.test(bytes.toString("utf8")))fail("RESTORE_XML_VALUE_INVALID");return xml(bytes); }
+function restorationXml(bytes: Buffer) { if(/[\x00-\x08\x0B\x0C\x0E-\x1F\uFFFE\uFFFF]/u.test(decodeOfficeXml(bytes)))fail("RESTORE_XML_VALUE_INVALID");return xml(bytes); }
 type MetadataMode = "all" | "wrapped" | "none";
 type MetadataField = { text: string; mode: MetadataMode; set: (value: string) => void };
 const knownWrappedAlias = (token: string) => /^【[^【】]+】(?:【[^【】]+】)*$/u.test(token.trim());

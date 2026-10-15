@@ -55,10 +55,94 @@ export function writeZip(parts: Map<string, Buffer>): Promise<Buffer> {
     zip.end();
   });
 }
+function declaredEncoding(source: string): string | undefined {
+  if (!source.startsWith("<?xml")) return undefined;
+  const end = source.indexOf("?>", 5);
+  if (end < 0) throw new Error("INVALID_OFFICE");
+  const declaration = source.slice(0, end + 2);
+  return declaration.match(/\bencoding\s*=\s*(["'])([A-Za-z][A-Za-z0-9._-]*)\1/)?.[2];
+}
+function matchingUnicodeDeclaration(actual: string, declared: string | undefined): boolean {
+  if (!declared) return true;
+  const label = declared.toLowerCase();
+  if (actual === "utf-8") return label === "utf-8" || label === "utf8";
+  if (actual === "utf-16le") return label === "utf-16" || label === "utf-16le";
+  if (actual === "utf-16be") return label === "utf-16" || label === "utf-16be";
+  if (actual === "utf-32le") return label === "utf-32" || label === "utf-32le";
+  return label === "utf-32" || label === "utf-32be";
+}
+const latin1Label = (label: string) => /^(?:iso-?8859-?1|iso_8859-1|latin-?1|l1|ibm819|cp819)$/i.test(label);
+/** Read XML declarations at their actual boundary, without a fixed prefix window. */
+function asciiDeclaredEncoding(bytes: Buffer): string | undefined {
+  if (bytes.subarray(0, 5).toString("ascii") !== "<?xml") return undefined;
+  const end = bytes.indexOf(Buffer.from("?>"), 5);
+  if (end < 0) throw new Error("INVALID_OFFICE");
+  return declaredEncoding(bytes.subarray(0, end + 2).toString("latin1"));
+}
+/** Decode the XML part before applying XML safety checks. */
+export function decodeOfficeXml(bytes: Buffer): string {
+  try {
+    const first = bytes.subarray(0, 4).toString("hex");
+    const utf32LE = first === "fffe0000" || first === "3c000000";
+    const utf32BE = first === "0000feff" || first === "0000003c";
+    if (utf32LE || utf32BE) {
+      const offset = first === "fffe0000" || first === "0000feff" ? 4 : 0;
+      if ((bytes.length - offset) % 4) throw new Error("INVALID_OFFICE");
+      const chunks: string[] = [], points: number[] = [];
+      for (let i = offset; i < bytes.length; i += 4) {
+        const point = utf32LE ? bytes.readUInt32LE(i) : bytes.readUInt32BE(i);
+        if (point > 0x10ffff || point >= 0xd800 && point <= 0xdfff) throw new Error("INVALID_OFFICE");
+        points.push(point);
+        if (points.length === 4096) { chunks.push(String.fromCodePoint(...points)); points.length = 0; }
+      }
+      if (points.length) chunks.push(String.fromCodePoint(...points));
+      const source = chunks.join("");
+      if (!matchingUnicodeDeclaration(utf32LE ? "utf-32le" : "utf-32be", declaredEncoding(source))) throw new Error("INVALID_OFFICE");
+      return source;
+    }
+    let encoding = "utf-8";
+    let signature: string | undefined;
+    if (first.startsWith("fffe") || first === "3c003f00") signature = encoding = "utf-16le";
+    else if (first.startsWith("feff") || first === "003c003f") signature = encoding = "utf-16be";
+    else if (first.startsWith("efbbbf")) signature = "utf-8";
+    else {
+      const declaration = asciiDeclaredEncoding(bytes);
+      if (declaration) encoding = declaration;
+    }
+    // TextDecoder's ISO-8859-1 label aliases Windows-1252; XML uses Latin-1.
+    const source = latin1Label(encoding) ? bytes.toString("latin1") : new TextDecoder(encoding, { fatal: true }).decode(bytes);
+    if (signature && !matchingUnicodeDeclaration(signature, declaredEncoding(source))) throw new Error("INVALID_OFFICE");
+    return source;
+  } catch { throw new Error("INVALID_OFFICE"); }
+}
+function assertNoDtd(source: string): void {
+  // Only XML comments, CDATA, and processing instructions may contain these
+  // literal strings without declaring a DTD. Unterminated regions fail closed.
+  for (let i = 0; i < source.length;) {
+    const start = source.indexOf("<", i);
+    if (start < 0) return;
+    if (source.startsWith("<!--", start)) {
+      const end = source.indexOf("-->", start + 4);
+      if (end < 0) throw new Error("INVALID_OFFICE");
+      i = end + 3; continue;
+    }
+    if (source.startsWith("<![CDATA[", start)) {
+      const end = source.indexOf("]]>", start + 9);
+      if (end < 0) throw new Error("INVALID_OFFICE");
+      i = end + 3; continue;
+    }
+    if (source.startsWith("<?", start)) {
+      const end = source.indexOf("?>", start + 2);
+      if (end < 0) throw new Error("INVALID_OFFICE");
+      i = end + 2; continue;
+    }
+    if (/^<!(?:DOCTYPE|ENTITY)\b/i.test(source.slice(start, start + 10))) throw new Error("UNSAFE_XML");
+    i = start + 1;
+  }
+}
 export function xml(bytes: Buffer): Document {
-  let source: string;
-  try { source = new TextDecoder("utf-8", { fatal: true }).decode(bytes); } catch { throw new Error("INVALID_OFFICE"); }
-  if (/<!DOCTYPE|<!ENTITY/i.test(source)) throw new Error("UNSAFE_XML");
+  const source = decodeOfficeXml(bytes);
+  assertNoDtd(source);
   let doc: Document;
   try { doc = new DOMParser({ onError() { throw new Error("INVALID_OFFICE"); } }).parseFromString(source, "application/xml"); }
   catch { throw new Error("INVALID_OFFICE"); }
@@ -70,5 +154,5 @@ export function xml(bytes: Buffer): Document {
   }
   return doc;
 }
-export const xmlBytes = (doc: Document) => {const source=new XMLSerializer().serializeToString(doc);if(!source.isWellFormed()||/[\x00-\x08\x0B\x0C\x0E-\x1F\uFFFE\uFFFF]/u.test(source))throw new Error("OFFICE_XML_VALUE_INVALID");return Buffer.from(source);};
+export const xmlBytes = (doc: Document) => {const source=new XMLSerializer().serializeToString(doc).replace(/^(<\?xml\s[^?]*?\bencoding\s*=\s*["'])[^"']+(["'])/i, "$1UTF-8$2");if(!source.isWellFormed()||/[\x00-\x08\x0B\x0C\x0E-\x1F\uFFFE\uFFFF]/u.test(source))throw new Error("OFFICE_XML_VALUE_INVALID");return Buffer.from(source);};
 export const elements = (node: Document | Element, ns: string, name: string): Element[] => Array.from(node.getElementsByTagNameNS(ns, name));

@@ -1,3 +1,4 @@
+import {cleanupWorkspaceImports} from '../../packages/adapters/workspace-import.ts';
 import{hydrateEntityCorrections}from '../../packages/adapters/entity-corrections.ts';
 import{semanticEntityValue}from '../../packages/core/entity-corrections.ts';
 import{persistDocumentNormalization}from'../../packages/adapters/document-normalization.ts';
@@ -29,6 +30,7 @@ import { runProcessing } from "../../packages/adapters/processing.ts";
 import { purgeRequestedMaterials } from "../../packages/adapters/deletions.ts";
 export async function tick(signal?: AbortSignal) {
   if (signal?.aborted) return false;
+  await cleanupWorkspaceImports();
   // Idle polls must not steal the heavy slot from an immediate download after task completion.
   if (!(await rows(globalDb, sql`SELECT worker_pending() AS pending`))[0]?.pending) return false;
   // Hold a session lock until the CPU thread is terminated, including cancellation.

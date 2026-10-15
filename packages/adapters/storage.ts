@@ -7,7 +7,7 @@ import {
   timingSafeEqual,
   createHmac,
 } from "node:crypto";
-import { mkdir, writeFile, readFile } from "node:fs/promises";
+import { mkdir, writeFile, readFile, open, link, unlink, lstat } from "node:fs/promises";
 import { resolve } from "node:path";
 export const hash = (s: string | Buffer) =>
   createHash("sha256").update(s).digest("hex");
@@ -43,17 +43,24 @@ export async function writeArtifact(id: string, text: string, owner = objectOwne
   if (!/^[a-f0-9-]{36}$/.test(id)) throw new Error("INVALID_OBJECT");
   const dir = resolve(process.env.DATA_DIR ?? ".data/files");
   await mkdir(dir, { recursive: true, mode: 0o700 });
+  let registry: string | undefined;
   if (owner) {
     if (!/^[a-f0-9-]{36}$/.test(owner)) throw new Error("INVALID_OBJECT");
-    const registry = resolve(dir, ".owners", owner);
+    registry = resolve(dir, ".owners", owner);
     await mkdir(registry, { recursive: true, mode: 0o700 });
-    // Register before writing, so crashes/cancellation do not leave unowned private objects.
-    await writeFile(resolve(registry, id), "", { flag: "wx", mode: 0o600 });
   }
-  await writeFile(resolve(dir, id), seal(text, id), {
-    flag: "wx",
-    mode: 0o600,
-  });
+  const target = resolve(dir, id), registered = registry ? resolve(registry,id) : target;
+  const handle = await open(registered, "wx", 0o600);
+  let linked = false;
+  try {
+    // The private owner directory records even an interrupted empty reservation.
+    if (registry) { await link(registered,target); linked = true; }
+    await handle.writeFile(seal(text, id), "utf8");
+  } catch (error) {
+    // A colliding target belongs to somebody else; remove only our reservation.
+    if (!registry || !linked) await unlink(registered);
+    throw error;
+  } finally { await handle.close(); }
   return hash(text);
 }
 export async function readArtifact(id: string) {
@@ -62,6 +69,33 @@ export async function readArtifact(id: string) {
     await readFile(resolve(process.env.DATA_DIR ?? ".data/files", id), "utf8"),
     id,
   );
+}
+// A caller may release only an artifact it has already tied to this owner.
+// Legacy registrations are empty markers, so their flat object must be verified by the caller.
+export async function removeOwnedArtifact(id: string, owner: string, legacyFlatVerified = false) {
+  if (!/^[a-f0-9-]{36}$/.test(id) || !/^[a-f0-9-]{36}$/.test(owner)) throw new Error("INVALID_OBJECT");
+  const dir = resolve(process.env.DATA_DIR ?? ".data/files");
+  const target = resolve(dir, id), registered = resolve(dir, ".owners", owner, id);
+  const statOrMissing = async (path: string) => {
+    try { return await lstat(path, { bigint: true }); }
+    catch (error) { if ((error as NodeJS.ErrnoException).code === "ENOENT") return undefined; throw error; }
+  };
+  const missingIsOkay = async (path: string) => {
+    try { await unlink(path); }
+    catch (error) { if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error; }
+  };
+  const registration = await statOrMissing(registered), material = await statOrMissing(target);
+  if (!registration) {
+    if (material) throw new Error("ARTIFACT_OWNER_MISSING");
+    return;
+  }
+  if (!registration.isFile() || (material && !material.isFile())) throw new Error("ARTIFACT_OWNER_CHANGED");
+  if (material) {
+    const same = registration.dev === material.dev && registration.ino === material.ino;
+    if (!same && !(registration.size === 0n && legacyFlatVerified)) throw new Error("ARTIFACT_OWNER_CHANGED");
+    await missingIsOkay(target);
+  }
+  await missingIsOkay(registered);
 }
 // Original bytes are encrypted separately from parsed text; never overwrite an object.
 export async function writeOriginal(id: string, bytes: Buffer, owner?: string) {

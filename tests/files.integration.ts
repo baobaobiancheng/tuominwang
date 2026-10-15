@@ -78,8 +78,14 @@ test("file batch, immutable originals/snapshots, CSV export, blocked objects, re
   const retry = await upload("重试.txt", Buffer.from("13900139000"));
   let state = (await request("GET", `/api/documents/${retry.id}`)).json();
   assert.equal((await request("POST", `/api/jobs/${state.job.id}/cancel`)).statusCode, 200);
-  assert.equal((await request("POST", `/api/jobs/${state.job.id}/retry`, { revision: 0 })).statusCode, 200);
-  assert.equal((await request("POST", `/api/jobs/${state.job.id}/retry`, { revision: 0 })).statusCode, 409);
+  const cancelled = (await request("GET", `/api/documents/${retry.id}`)).json();
+  assert.equal(cancelled.state,"outdated");assert.equal(cancelled.revision,state.revision+1);
+  assert.equal((await request("POST", `/api/jobs/${state.job.id}/retry`, { revision: state.revision })).statusCode, 409);
+  const sameRevisionRetry=await request("POST", `/api/jobs/${state.job.id}/retry`, { revision: cancelled.revision });
+  assert.equal(sameRevisionRetry.statusCode,409,sameRevisionRetry.body);
+  const resumed=await request("POST", `/api/documents/${retry.id}/recognize`, { revision: cancelled.revision,ner:false });
+  assert.equal(resumed.statusCode,200,resumed.body);
+  assert.equal((await request("POST", `/api/documents/${retry.id}/recognize`, { revision: cancelled.revision,ner:false })).statusCode,409);
   await tick();
   state = (await request("GET", `/api/documents/${retry.id}`)).json();
   assert.equal(state.state, "review");

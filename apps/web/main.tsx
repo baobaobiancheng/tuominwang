@@ -297,7 +297,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
   const [rotationActive,setRotationActive]=useState(false);
   const [projects, setProjects] = useState<{ id: string; name: string; permissions: Permission[] }[]>([]),
     [project, setProject] = useState(""),
-    [docs, setDocs] = useState<{ id: string; state: string; name?: string; job_state?: string; revision?: number }[]>([]),
+    [docs, setDocs] = useState<{ id: string; state: string; name?: string; job_state?: string; job_kind?: "detect" | "export"; detect_state?: string; revision?: number }[]>([]),
     [doc, setDoc] = useState<DocumentView | null>(null),
     [marks, setMarks] = useState<Mark[]>([]),
     [dirty, setDirty] = useState(false);
@@ -345,16 +345,17 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
   const highlightLayer = useRef<HTMLDivElement>(null);
   useEffect(() => { setReviewTool("marks"); }, [doc?.id, doc?.revision]);
   const busyRef = useRef(false), dirtyRef = useRef(false);
-  const currentDoc = useRef(doc);
+  const currentDoc = useRef(doc), currentProject = useRef(project);
   const visualRequests = useRef(new Map<string,string>());
   const allowed = (permission: Permission) => (projects.find(p => p.id === project)?.permissions ?? []).includes(permission);
   const docAllowed = (permission: Permission) => (doc?.permissions ?? []).includes(permission);
   const canReview = docAllowed("review");
   const canManageJob = !!doc?.job?.required_permissions?.length && doc.job.required_permissions.every(docAllowed);
   useEffect(() => {
-    if (doc) setDocs(current => current.map(item => item.id === doc.id ? { ...item, state: doc.state, revision: doc.revision, job_state: doc.job?.status } : item));
-  }, [doc?.id, doc?.revision, doc?.state, doc?.job?.status]);
+    if (doc) setDocs(current => current.map(item => item.id === doc.id ? { ...item, state: doc.state, revision: doc.revision, job_state: doc.job?.status, job_kind: doc.job?.kind, detect_state: doc.state === "queued" && doc.job?.kind === "detect" ? doc.job.status : doc.layers.rules } : item));
+  }, [doc?.id, doc?.revision, doc?.state, doc?.job?.status, doc?.job?.kind, doc?.layers.rules]);
   currentDoc.current = doc;
+  currentProject.current = project;
   dirtyRef.current = dirty;
   useEffect(() => {
     const expire = () => {
@@ -404,12 +405,16 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
     setMoreProjects(next.length === 20);
   }
   async function refreshDocs(append = false) {
-    const next = await api<typeof docs>(`/projects/${project}/documents?limit=20&offset=${append ? docs.length : 0}`);
+    const requestedProject = project;
+    const next = await api<typeof docs>(`/projects/${requestedProject}/documents?limit=20&offset=${append ? docs.length : 0}`);
+    if (currentProject.current !== requestedProject) return;
     setDocs(current => append ? [...current, ...next] : next);
     setMoreDocs(next.length === 20);
   }
-  async function openDoc(id: string, focus?: {start:number;end:number}) {
-    const d = await api<DocumentView>("/documents/" + id + (focus?`?offset=${Math.max(0,focus.start-256)}`:""));
+  async function openDoc(id: string, focus?: {start:number;end:number}, snapshot?: DocumentView, onlyIfCurrent = false) {
+    const d = snapshot ?? await api<DocumentView>("/documents/" + id + (focus?`?offset=${Math.max(0,focus.start-256)}`:""));
+    if (d.id !== id) throw new Error("材料状态已变化，请重新打开。");
+    if (onlyIfCurrent && (currentDoc.current?.id !== id || currentProject.current !== d.project_id || dirtyRef.current)) return;
     const pageFocus=!!focus&&d.anchors?.some(a=>a.start<focus.end&&a.end>focus.start&&(a.kind==='page'||a.kind==='object'&&a.object==='image-text'));
     setPendingAuditFocus(focus&&!pageFocus?{documentId:id,...focus}:null);
     if(focus&&!pageFocus&&isWordFormat(d.format))setDocxView('text');
@@ -876,9 +881,9 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
                 <div className="material-head"><span>材料名称</span><span>状态</span><span>操作</span></div>
                 {docs.map((d, i) => allowed("view_original") ? <button className="material-row quiet" key={d.id} onClick={async () => { if (dictionaryDirty && !await confirmAction("放弃未保存的词表修改？")) return; void run(() => openDoc(d.id)); }}>
                   <span className="material-name"><FileTextIcon />{d.name ?? `文本 ${docs.length - i}`}</span>
-                  <span className={"material-status " + (d.job_state ?? "")}>{d.state === "outdated" ? "需重新识别" : d.job_state === "failed" ? "处理失败" : d.job_state === "cancelled" ? "已取消" : d.state === "queued" ? "处理中" : "可复核"}</span>
+                  <span className={"material-status " + (d.state === "queued" ? d.detect_state ?? "" : d.job_kind === "export" ? d.job_state ?? "" : "")}>{d.state === "outdated" ? "需重新识别" : d.state === "queued" && d.detect_state === "failed" ? "识别失败" : d.state === "queued" && d.detect_state === "cancelled" ? "识别已取消" : d.state === "queued" && ["queued", "running"].includes(d.detect_state ?? "") ? "处理中" : d.state === "review" && d.job_kind === "export" && d.job_state === "failed" ? "可复核 · 副本失败" : d.state === "review" && d.job_kind === "export" && d.job_state === "cancelled" ? "可复核 · 副本已取消" : d.state === "review" && d.job_kind === "export" && ["queued", "running"].includes(d.job_state ?? "") ? "可复核 · 副本处理中" : d.state === "review" ? "可复核" : "待处理"}</span>
                   <span className="material-open">打开 <ChevronRightIcon /></span>
-                </button> : <div className="material-row limited-material" key={d.id}><span className="material-name"><FileTextIcon />材料 {docs.length - i}</span><span className="material-status">{d.job_state === "running" || d.job_state === "queued" ? "处理中" : d.state === "review" ? "已识别" : "待处理"}</span><div className="actions">
+                </button> : <div className="material-row limited-material" key={d.id}><span className="material-name"><FileTextIcon />材料 {docs.length - i}</span><span className="material-status">{d.state === "outdated" ? "需重新识别" : d.state === "queued" && d.detect_state === "failed" ? "识别失败" : d.state === "queued" && d.detect_state === "cancelled" ? "识别已取消" : d.state === "queued" && ["running", "queued"].includes(d.detect_state ?? "") ? "处理中" : d.state === "review" && d.job_kind === "export" && d.job_state === "failed" ? "已识别 · 副本失败" : d.state === "review" && d.job_kind === "export" && d.job_state === "cancelled" ? "已识别 · 副本已取消" : d.state === "review" && d.job_kind === "export" && ["queued", "running"].includes(d.job_state ?? "") ? "已识别 · 副本处理中" : d.state === "review" ? "已识别" : "待处理"}</span><div className="actions">
                   {allowed("export") && <><button className="secondary" disabled={d.state !== "review" || ["queued", "running"].includes(d.job_state ?? "")} onClick={() => void run(async () => { await api(`/documents/${d.id}/export`, "POST", { revision: d.revision }); await refreshDocs(); })}>生成副本</button><button className="quiet" onClick={() => void run(async () => { const result = await api<{ url: string }>(`/documents/${d.id}/download-link`, "POST", { revision: d.revision }); const a = document.createElement("a"); a.href = appUrl(result.url); a.click(); })}>下载副本</button></>}
                   {allowed("restore") && <RestoreDialog doc={{ id: d.id, revision: d.revision ?? 0 }} disabled={d.state !== "review"} run={run} api={api} />}
                   {allowed("delete_material") && <button className="quiet" onClick={async () => { if (await confirmAction("永久删除此材料的原件、复核和副本？不能恢复。项目共享词表、假名映射仍保留；已签发链接到期后清除文件。")) void run(async () => { await api(`/documents/${d.id}/delete`, "POST", { revision: d.revision }); await refreshDocs(); }); }}>删除材料</button>}
@@ -940,7 +945,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
               <div className="review-toolbar">
               <div className="statusbar">
                 <span>
-                  自动识别 {doc.layers.rules === "completed" ? "已完成" : "待处理"}
+                  自动识别 {({ completed: "已完成", outdated: "需重新识别", pending: "待处理", failed: "失败", cancelled: "已取消" } as Record<string, string>)[doc.layers.rules] ?? "待处理"}
                 </span>
                 <span>
                   复核版本 {doc.revision}
@@ -984,11 +989,36 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
                   {canManageJob && ["queued", "running"].includes(doc.job.status) && (
                     <button
                       className="quiet"
+                      disabled={busy || conflict || (doc.job.kind === "detect" && dirty)}
                       onClick={() =>
                         void run(async () => {
-                          await api("/jobs/" + doc.job!.id + "/cancel", "POST");
-                          const latest = await api<DocumentView>("/documents/" + doc.id);
-                          setDoc(current => current?.id === doc.id ? { ...current, job: latest.job } : current);
+                          const documentId = doc.id, projectId = doc.project_id, jobId = doc.job!.id, jobKind = doc.job!.kind;
+                          let cancelError: unknown;
+                          try { await api("/jobs/" + jobId + "/cancel", "POST"); }
+                          catch (error) { cancelError = error; }
+                          // A lost response may follow a committed cancellation. Read the
+                          // complete material snapshot before deciding what to show or retry.
+                          let latest: DocumentView;
+                          try { latest = await api<DocumentView>("/documents/" + documentId); }
+                          catch (readError) {
+                            if (currentDoc.current?.id === documentId && currentProject.current === projectId) {
+                              setConflict(true);
+                              setNotice("取消结果尚未确认，请重新加载材料状态后继续操作。");
+                            }
+                            throw readError;
+                          }
+                          if (jobKind === "detect" || !dirtyRef.current) await openDoc(documentId, undefined, latest, true);
+                          if (jobKind === "export" && dirtyRef.current && currentDoc.current?.id === documentId) {
+                            // Preserve the local review draft while showing the export outcome.
+                            setDoc(current => current?.id === documentId ? { ...current, job: latest.job } : current);
+                            if (currentDoc.current.revision !== latest.revision) setConflict(true);
+                          }
+                          if (currentDoc.current?.id !== documentId || currentProject.current !== latest.project_id) return;
+                          await refreshDocs();
+                          if (cancelError) {
+                            if (latest.job?.id === jobId && latest.job.status === "cancelled") setNotice("取消已生效，已读取最新材料状态。");
+                            else throw cancelError;
+                          }
                         })
                       }
                     >
