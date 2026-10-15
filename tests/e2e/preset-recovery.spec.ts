@@ -1,0 +1,87 @@
+import pg from 'pg';
+import { test, expect } from './fixture.ts';
+
+test('one damaged personal profile remains visible as a warning while valid profiles and new projects work', async ({ page }, info) => {
+  test.setTimeout(120000);
+  if (!new URL(process.env.MIGRATION_DATABASE_URL!).pathname.startsWith('/tmw_test_')) throw new Error('ISOLATED_DATABASE_REQUIRED');
+  const admin = new pg.Client({ connectionString: process.env.MIGRATION_DATABASE_URL });
+  await admin.connect();
+  try {
+    await page.goto('/');
+    await page.getByLabel('账号', { exact: true }).fill(process.env.E2E_USERNAME!);
+    await page.getByLabel('密码', { exact: true }).fill(process.env.E2E_PASSWORD!);
+    await page.getByRole('button', { name: '登录工作台', exact: true }).click();
+    await page.locator('.create-project summary').click();
+    await page.getByLabel('项目名称', { exact: true }).fill('方案异常恢复原工程');
+    const originalCreated = page.waitForResponse(r => new URL(r.url()).pathname === '/api/projects' && r.request().method() === 'POST');
+    await page.getByRole('button', { name: '新建项目', exact: true }).click();
+    const originalResponse = await originalCreated;
+    expect(originalResponse.status()).toBe(200);
+    const originalProject = await originalResponse.json();
+    await page.getByRole('button', { name: '脱敏方案与规则库', exact: true }).click();
+    async function createProfile(name: string): Promise<string> {
+      await page.getByLabel('新方案或规则库名称', { exact: true }).fill(name);
+      const response = page.waitForResponse(r => new URL(r.url()).pathname === '/api/presets/profiles' && r.request().method() === 'POST');
+      await page.getByRole('button', { name: '新建方案', exact: true }).click();
+      const created = await response;
+      expect(created.status()).toBe(200);
+      const value = await created.json();
+      await expect(page.getByLabel('脱敏方案', { exact: true })).toHaveValue(value.settings.id);
+      return value.settings.id;
+    }
+    const good = await createProfile('合成可用方案'), bad = await createProfile('合成待隔离方案');
+    await page.getByRole('button', { name: '设为个人默认', exact: true }).click();
+    await expect(page.getByText('已设为个人默认方案', { exact: true })).toBeVisible();
+    const preferences = await page.request.get('/api/presets/preferences');
+    expect(preferences.status()).toBe(200);
+    expect((await preferences.json()).settings.defaultProfileId).toBe(bad);
+    await page.getByRole('button', { name: '脱敏方案与规则库', exact: true }).click();
+    const owner = (await admin.query('SELECT id,tenant_id FROM users WHERE username=$1', [process.env.E2E_USERNAME!])).rows[0];
+    expect(owner).toBeTruthy();
+    const damaged = 'synthetic-corrupted-profile-aead';
+    const mutation = await admin.query("UPDATE redaction_presets SET payload=$1 WHERE id=$2 AND owner_id=$3 AND tenant_id=$4 AND kind='profile' RETURNING revision", [damaged, bad, owner.id, owner.tenant_id]);
+    expect(mutation.rowCount).toBe(1);
+    // Create a project before opening the catalogue: default repair must not depend on a prior list request.
+    await page.locator('.create-project summary').click();
+    await page.getByLabel('项目名称', { exact: true }).fill('方案异常恢复回退工程');
+    const fallbackCreated = page.waitForResponse(r => new URL(r.url()).pathname === '/api/projects' && r.request().method() === 'POST');
+    await page.getByRole('button', { name: '新建项目', exact: true }).click();
+    const fallbackResponse = await fallbackCreated;
+    expect(fallbackResponse.status()).toBe(200);
+    const fallbackProject = await fallbackResponse.json();
+    const fallbackPolicy = await page.request.get(`/api/projects/${fallbackProject.id}/presets`);
+    expect(fallbackPolicy.status()).toBe(200);
+    expect((await fallbackPolicy.json()).profile.settings.id).toBe('system_default');
+    await page.getByRole('button', { name: '脱敏方案与规则库', exact: true }).click();
+    await expect(page.getByText('有 1 个个人方案暂时无法读取；原记录已保留，请联系管理员核查。可继续使用其他方案。', { exact: true })).toBeVisible();
+    const select = page.getByLabel('脱敏方案', { exact: true });
+    await expect(select.getByRole('option', { name: '合成待隔离方案', exact: true })).toHaveCount(0);
+    await expect(select.getByRole('option', { name: '合成可用方案', exact: true })).toHaveCount(1);
+    await expect(select).toHaveValue('system_default');
+    await select.selectOption(good);
+    const goodDefaultSaved = page.waitForResponse(r => new URL(r.url()).pathname === '/api/presets/preferences' && r.request().method() === 'PUT');
+    await page.getByRole('button', { name: '设为个人默认', exact: true }).click();
+    const goodDefaultResponse = await goodDefaultSaved;
+    expect(goodDefaultResponse.status()).toBe(200);
+    expect((await goodDefaultResponse.json()).settings.defaultProfileId).toBe(good);
+    await expect(page.getByText('已设为个人默认方案', { exact: true })).toBeVisible();
+    await page.getByText('有 1 个个人方案暂时无法读取；原记录已保留，请联系管理员核查。可继续使用其他方案。', { exact: true }).scrollIntoViewIfNeeded();
+    await page.screenshot({ path: info.outputPath('profile-recovery-warning.png'), fullPage: true });
+    await page.locator('.create-project summary').click();
+    await page.getByLabel('项目名称', { exact: true }).fill('方案异常恢复新工程');
+    const createdProject = page.waitForResponse(r => new URL(r.url()).pathname === '/api/projects' && r.request().method() === 'POST');
+    await page.getByRole('button', { name: '新建项目', exact: true }).click();
+    const response = await createdProject;
+    expect(response.status()).toBe(200);
+    const project = await response.json();
+    const policy = await page.request.get(`/api/projects/${project.id}/presets`);
+    expect(policy.status()).toBe(200);
+    expect((await policy.json()).profile.settings.id).toBe(good);
+    const originalPolicy = await page.request.get(`/api/projects/${originalProject.id}/presets`);
+    expect(originalPolicy.status()).toBe(200);
+    expect((await originalPolicy.json()).profile.settings.id).toBe('system_default');
+    const preserved = (await admin.query('SELECT payload,revision FROM redaction_presets WHERE id=$1 AND owner_id=$2', [bad, owner.id])).rows[0];
+    expect(preserved.payload).toBe(damaged);
+    expect(preserved.revision).toBe(mutation.rows[0].revision);
+  } finally { await admin.end(); }
+});

@@ -212,6 +212,25 @@ async function apiRequest<T>(
   }
   return data;
 }
+function waitForRateWindow(ms: number, signal: AbortSignal): Promise<void> {
+  return new Promise((resolve, reject) => {
+    if (signal.aborted) { reject(signal.reason); return; }
+    const timer = window.setTimeout(() => { signal.removeEventListener("abort", abort); resolve(); }, ms);
+    const abort = () => { window.clearTimeout(timer); reject(signal.reason); };
+    signal.addEventListener("abort", abort, { once: true });
+  });
+}
+async function retryRateLimited<T>(request: () => Promise<T>, signal: AbortSignal): Promise<T> {
+  for (let attempt = 0; ; attempt++) {
+    signal.throwIfAborted();
+    try { return await request(); }
+    catch (error) {
+      const failure = error as { status?: number; retryAfterMs?: number };
+      if (failure.status !== 429 || typeof failure.retryAfterMs !== "number" || attempt >= 2) throw error;
+      await waitForRateWindow(failure.retryAfterMs, signal);
+    }
+  }
+}
 type SessionControls = { validateSession: () => Promise<boolean>; rememberSession: (username: string | null) => void; sessionNotice: string };
 function SessionWorkspace() {
   const identity = useRef<string | null | undefined>(undefined);
@@ -270,6 +289,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
   const [manualRuleScope,setManualRuleScope]=useState<'file'|'project'|'spot'>('file');
   const [user, setUser] = useState<string | null>(null),
     [ready, setReady] = useState(false),
+    [connectionError, setConnectionError] = useState(false),
     [error, setError] = useState(""),
     [notice, setNotice] = useState(sessionNotice),
     [conflict, setConflict] = useState(false),
@@ -406,14 +426,25 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
     void api(`/projects/${d.project_id}/workspace/recent`,"POST",{documentId:d.id}).catch(()=>{});
   }
   useEffect(() => {
-    api<{ username: string | null }>("/session")
-      .then(async (u) => {
-        rememberSession(u.username);
-        setUser(u.username);
-        if (u.username) await refresh().catch((e) => setError(e.message));
-      })
-      .catch(() => {})
-      .finally(() => setReady(true));
+    let active = true;
+    void (async () => {
+      try {
+        const session = await retryRateLimited(() => api<{ username: string | null }>("/session"), requests.signal);
+        if (!active) return;
+        // Register the identity before a rate-window wait so cross-tab changes
+        // can invalidate this workspace and abort its pending project request.
+        rememberSession(session.username);
+        if (session.username) await retryRateLimited(() => refresh(), requests.signal);
+        if (!active) return;
+        setUser(session.username);
+      } catch {
+        // A rate window or transport failure does not prove the user logged out.
+        if (active && !requests.signal.aborted) setConnectionError(true);
+      } finally {
+        if (active && !requests.signal.aborted) setReady(true);
+      }
+    })();
+    return () => { active = false; };
   }, []);
   useEffect(()=>{
     if(!ready||!user||!collaborationJob)return;
@@ -525,6 +556,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
   const isPaged = ["pdf", "png", "jpg", "jpeg"].includes(doc?.format ?? "txt");
   const outputFormat = isPaged && doc?.format !== "pdf" ? "png" : doc?.format ?? "txt";
   if (!ready) return <main>正在连接工作台…</main>;
+  if (connectionError) return <main><p role="alert">会话验证暂不可用，请稍后重试连接。</p><button onClick={() => window.location.reload()}>重试连接</button></main>;
   if (!user)
     return (
       <main className="login-shell">

@@ -24,14 +24,16 @@ test('spatial adapter authenticates maps, supports corrected override and confin
   await expect(documentSpatialMarks(text,anchors,[{...page,width:10}])).rejects.toThrow('PAGE_POSITION_MISSING');
  }finally{if(oldDir===undefined)delete process.env.DATA_DIR;else process.env.DATA_DIR=oldDir;if(oldKey===undefined)delete process.env.DATA_KEY;else process.env.DATA_KEY=oldKey;await rm(dir,{recursive:true});}
 });
-test('OCR correction retains image receipt context and applies current inherited profile without approving candidates',async()=>{
+test('OCR correction uses the selected receipt route and inherited profile without approving candidates',async()=>{
  const oldDir=process.env.DATA_DIR,oldKey=process.env.DATA_KEY,dir=await mkdtemp(join(tmpdir(),'tmw-ocr-context-test-'));process.env.DATA_DIR=dir;process.env.DATA_KEY='b'.repeat(64);
  try{
   const text='转账申请人 收款方付款方\n2026-10-14 12:00:00张三',id=randomUUID(),tenant_id=randomUUID(),project_id=randomUUID(),mapId=randomUUID(),glyphs:Glyph[]=[];
   for(let i=0;i<text.length;i++)if(text[i]!=='\n')glyphs.push([i,i+1,(i%7)*10,Math.floor(i/7)*25,10,15]);
   const mapHash=await writeArtifact(mapId,JSON.stringify(glyphs)),anchors:Anchor[]=[{kind:'page',page:0,start:0,end:text.length}],page:ParsedPage={index:0,width:100,height:200,mapId,mapHash,rotation:0,confidence:1,previewId:randomUUID(),previewHash:'0'.repeat(64)},profile=defaultProfile();profile.image.defaultMode='default_star';
   const d={id,tenant_id,project_id,content:seal(text,`${tenant_id}:${project_id}:${id}`),content_hash:hash(text),anchors,page_data:[page],marks:[],source_format:'png',ner_enabled:false,presetPolicy:{profile:{settings:profile},revision:0}};
-  const result=await correctOcrText(d,0,{revision:0,start:text.length-2,end:text.length,expectedText:'张三',text:'李四'});
+  const edit={revision:0,start:text.length-2,end:text.length,expectedText:'张三',text:'李四'};
+  const automatic=await correctOcrText(d,0,edit);expect(automatic.marks!.some(m=>m.sources?.some(s=>s.code.includes('SCENE-receipt')))).toBe(false);
+  const result=await correctOcrText({...d,documentPolicy:{configuration:{documentType:'screenshot'}}},0,edit);
   const next=text.slice(0,-2)+'李四';expect(result.marks!.some(m=>m.sources?.some(s=>s.code.includes('SCENE-receipt')))).toBe(true);
   const marks=finalizeProfileReplacements(applyReplacementPolicies(next,result.marks!,profileReplacementPolicies(profile,'png')).marks,result.anchors!,profile,'png');expect(marks.every(m=>m.decision==='pending')).toBe(true);expect(marks.every(m=>m.replacement?.mode==='reference-mask')).toBe(true);
  }finally{if(oldDir===undefined)delete process.env.DATA_DIR;else process.env.DATA_DIR=oldDir;if(oldKey===undefined)delete process.env.DATA_KEY;else process.env.DATA_KEY=oldKey;await rm(dir,{recursive:true});}

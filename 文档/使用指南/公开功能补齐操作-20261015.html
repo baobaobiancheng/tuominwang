@@ -1,6 +1,6 @@
-<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>脱敏汪本轮操作指南</title><style>body{max-width:1060px;margin:auto;padding:32px;font:16px/1.8 system-ui,"PingFang SC",sans-serif;color:#23212b;background:#faf9fc}h1,h2,h3{color:#3b205c}h2{margin-top:48px;border-top:1px solid #ddd4e8;padding-top:24px}a{color:#614291}nav{padding:18px;background:white;border:1px solid #ded7e9}nav a{display:inline-block;margin:4px 20px 4px 0}table{border-collapse:collapse;width:100%;background:white;margin:20px 0}th,td{border:1px solid #ddd4e8;padding:12px;text-align:left;vertical-align:top}th{background:#f0edf6}img{display:block;max-width:100%;height:auto;border:1px solid #ddd;margin:20px auto}blockquote{border-left:4px solid #7958a1;padding:4px 18px;background:white;margin-left:0}code{overflow-wrap:anywhere}pre{white-space:pre-wrap;overflow:auto;background:#f0edf6;padding:16px}.workflow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;list-style-position:inside;padding:0}.workflow li{padding:16px;border:1px solid #bda8d4;background:white;border-radius:6px}li{margin:8px 0}@media print{body{padding:0}nav{display:none}h2{break-before:auto}img{max-height:900px;object-fit:contain}table{break-inside:avoid}}</style><nav><a href="#section-1">先走完一次完整流程</a><a href="#section-2">1. 找到正确页面或 Word 图片</a><a href="#section-3">2. 选取图片或 PDF 上已经识别的文字</a><a href="#section-4">3. 手动标注区域与调整识别实体的位置</a><a href="#section-5">4. 一次找到并标记全部同文位置</a><a href="#section-6">5. 按处理范围查找图像文字</a><a href="#section-7">6. 将同一清除位置应用到多页</a><a href="#section-8">7. 区域 OCR、Word 图片重识别与改字</a><a href="#section-9">8. 旋转 PDF 页面</a><a href="#section-10">9. 隐藏一类实体并恢复</a><a href="#section-11">10. Word 版式与兼容预览</a><a href="#section-12">11. 批量还原与找回副本</a><a href="#section-13">12. 来源记录、标注下载与最终检查</a><a href="#section-14">13. 项目实体查漏：逐份查看，再逐处决定</a><a href="#section-15">14. 反馈和个人规则的生效范围</a><a href="#section-16">与对标产品的入口差异和识别质量</a><a href="#section-17">常见提示怎么处理</a></nav><main><h1>页面标注、同文处理与审查操作</h1>
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>脱敏汪本轮操作指南</title><style>body{max-width:1060px;margin:auto;padding:32px;font:16px/1.8 system-ui,"PingFang SC",sans-serif;color:#23212b;background:#faf9fc}h1,h2,h3{color:#3b205c}h2{margin-top:48px;border-top:1px solid #ddd4e8;padding-top:24px}a{color:#614291}nav{padding:18px;background:white;border:1px solid #ded7e9}nav a{display:inline-block;margin:4px 20px 4px 0}table{border-collapse:collapse;width:100%;background:white;margin:20px 0}th,td{border:1px solid #ddd4e8;padding:12px;text-align:left;vertical-align:top}th{background:#f0edf6}img{display:block;max-width:100%;height:auto;border:1px solid #ddd;margin:20px auto}blockquote{border-left:4px solid #7958a1;padding:4px 18px;background:white;margin-left:0}code{overflow-wrap:anywhere}pre{white-space:pre-wrap;overflow:auto;background:#f0edf6;padding:16px}.workflow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;list-style-position:inside;padding:0}.workflow li{padding:16px;border:1px solid #bda8d4;background:white;border-radius:6px}li{margin:8px 0}@media print{body{padding:0}nav{display:none}h2{break-before:auto}img{max-height:900px;object-fit:contain}table{break-inside:avoid}}</style><nav><a href="#section-1">先走完一次完整流程</a><a href="#section-2">1. 找到正确页面或 Word 图片</a><a href="#section-3">2. 选取图片或 PDF 上已经识别的文字</a><a href="#section-4">3. 手动标注区域与调整识别实体的位置</a><a href="#section-5">4. 一次找到并标记全部同文位置</a><a href="#section-6">5. 按处理范围查找图像文字</a><a href="#section-7">6. 将同一清除位置应用到多页</a><a href="#section-8">7. 区域 OCR、Word 图片重识别与改字</a><a href="#section-9">8. 旋转 PDF 页面</a><a href="#section-10">9. 隐藏一类实体并恢复</a><a href="#section-11">10. Word 版式与兼容预览</a><a href="#section-12">11. 批量还原与找回副本</a><a href="#section-13">12. 来源记录、标注下载与最终检查</a><a href="#section-14">13. 项目实体查漏：逐份查看，再逐处决定</a><a href="#section-15">14. 反馈和个人规则的生效范围</a><a href="#section-16">与对标产品的入口差异和识别质量</a><a href="#section-17">常见提示怎么处理</a><a href="#section-18">15. 部分个人方案损坏时继续使用</a><a href="#section-19">16. 外部文件零次或部分还原</a><a href="#section-20">17. 工程重开后的PDF双实体复核</a><a href="#section-21">18. 查看项目OCR纠错中未处理的原因</a><a href="#section-22">19. AI返回稿复核后再允许还原</a><a href="#section-23">20. 截图或聊天材料选择识别方式</a></nav><main><h1>页面标注、同文处理与审查操作</h1>
 <blockquote>
-<p>2026-10-15 本轮操作指南。本地检查、针对性接口及浏览器验收已完成；截图均来自隔离账号和合成材料。实际服务器版本与发布时间见发布记录。首次使用建议先完成第 1 节的小样例，再操作业务材料。</p>
+<p>2026-10-15 本轮操作指南。新增方案恢复、外部部分还原、PDF工程重开、OCR原因与AI还原操作；图示流程已用隔离账号和合成材料实际操作。整体门禁结果见当前完成状态。实际服务器版本与发布时间见发布记录。首次使用建议先完成第 1 节的小样例，再操作业务材料。</p>
 </blockquote>
 <h2 id="section-1">先走完一次完整流程</h2>
 <ol class="workflow"><li>导入材料</li><li>等待识别完成</li><li>查看原件与复核</li><li>补漏、改字和位置调整</li><li>保存复核</li><li>生成处理副本</li><li>核验并下载</li></ol><p>旋转或重新识别后，返回复核；全部待确认项处理完成后再保存和导出。</p>
@@ -382,4 +382,95 @@
 </tbody></table>
 <p>下图是明确清除旧 OCR 纠错后的实际状态：旧审批不继续有效，需点击重新识别。</p>
 <p><img src="%E6%88%AA%E5%9B%BE-20261015/OCR%E6%B8%85%E9%99%A4%E6%97%A7%E7%BA%A0%E9%94%99%E5%90%8E.png" alt="清除纠错后需要重新识别"></p>
+<h2 id="section-18">15. 部分个人方案损坏时继续使用</h2>
+<ol>
+<li>打开“方案管理”，先查看方案列表上方的提示。</li>
+<li>少数方案无法读取时，其余有效方案仍可选择；损坏方案不会自动删除。</li>
+<li>默认方案已无法使用时，系统回退默认设置。新建项目后检查当前方案；旧项目保留此前自己的配置副本。</li>
+<li>选择可用方案并确认项目设置，再导入材料。MCP 按名称或ID使用相同有效方案目录。</li>
+</ol>
+<p>全局加密密钥错误不能通过回退掩盖；此时联系管理员修复配置，不重复建立业务项目。</p>
+<p><img src="%E6%88%AA%E5%9B%BE-20261015/%E6%96%B9%E6%A1%88%E6%8D%9F%E5%9D%8F%E6%8F%90%E7%A4%BA.png" alt="有效方案仍可选择及默认回退提示"></p>
+<h2 id="section-19">16. 外部文件零次或部分还原</h2>
+<ol>
+<li>在文件还原入口选择外部MD、TXT或DOCX及正确映射表。</li>
+<li>检查歧义并明确原值，再执行还原。</li>
+<li>文件没有当前映射中的假名时，会提示未发生替换，仍可保存原样副本；不要把该提示理解为已经找回其它未知假名。</li>
+<li>出现“未完整匹配的标签”提示时，说明映射不能完整覆盖这些标签。纯文本映射仍可能回填标签内部片段；不要仅凭成功数量判断全文已还原。</li>
+<li>下载结果，核对替换次数及内容。BOM、换行与无匹配DOCX原字节保留。</li>
+<li>批量入口逐份显示成功、失败和未完整匹配提示。检查每份结果后下载所选副本ZIP；一个文件失败不影响其余已验证结果。旧DOC默认保留DOC；WPS或希望另存格式时选择“旧版 DOC／WPS 另存为 DOCX”。</li>
+</ol>
+<p>使用本工具签发文件的受管还原，仍需要有效权限、版本和映射；未知或歧义标签不会被伪造还原。</p>
+<p><img src="%E6%88%AA%E5%9B%BE-20261015/%E5%A4%96%E9%83%A8%E6%9C%AA%E5%8C%B9%E9%85%8D%E6%A0%87%E7%AD%BE%E6%8F%90%E7%A4%BA.png" alt="外部Word部分还原与未完整匹配提示"></p>
+<h2 id="section-20">17. 工程重开后的PDF双实体复核</h2>
+<ol>
+<li>旋转PDF并重新识别后，使用逐条列表或实体组内的上一条/下一条，检查是否定位到正确原件页。</li>
+<li>调整各实体遮盖框并保存；下载加密工程备份。</li>
+<li>导入为新项目，重新识别后恢复工程草稿。分别检查并确认每个恢复区域，旧审批不继承。</li>
+<li>对全部待确认实体重新选择脱敏或保留。</li>
+<li>重新勾选“转换为不可选字的图片型 PDF 副本”，保存复核、检查处理预览，再生成、核验并下载。</li>
+<li>打开实际下载文件，逐页检查。没有重新勾选输出方式、没有完成实体和区域复核时，生成按钮保持禁用。</li>
+</ol>
+<p><img src="%E6%88%AA%E5%9B%BE-20261015/PDF%E5%B7%A5%E7%A8%8B%E9%87%8D%E5%BC%80%E5%8F%8C%E5%8C%BA%E5%9F%9F%E9%A2%84%E8%A7%88.png" alt="工程重开后双区域复核与图片型PDF预览"></p>
+<p><img src="%E6%88%AA%E5%9B%BE-20261015/PDF%E6%A0%B8%E9%AA%8C%E4%B8%8B%E8%BD%BD%E5%B0%B1%E7%BB%AA.png" alt="保存、生成与核验下载就绪"></p>
+<h2 id="section-21">18. 查看项目OCR纠错中未处理的原因</h2>
+<ol>
+<li>打开“项目范围OCR实体改字”，填写原识别文字、纠正文字和类型，先点击预览。</li>
+<li>查看影响文件数以及“未处理范围原因”。按每个文件列出的原因分别处理。</li>
+<li>Markdown纠正后文字的新增位置暂不支持自动补录，进入该材料手工标注；识别未完成的文件先等待完成；缺少可靠页面坐标的文件先检查原件及OCR状态。</li>
+<li>影响数为零时不能应用；有受影响内容时，检查预览并应用，随后重新复核。</li>
+</ol>
+<p>原件、原始识别文本与字框保留。项目级语义纠错不会自动学习为长期规则，也不能代替每份材料最终复核。</p>
+<p><img src="%E6%88%AA%E5%9B%BE-20261015/OCR%E6%9C%AA%E5%A4%84%E7%90%86%E5%8E%9F%E5%9B%A0.png" alt="OCR改字预览逐文件未处理原因"></p>
+<h2 id="section-22">19. AI返回稿复核后再允许还原</h2>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>操作</th>
+<th>应看到的结果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>交付</td>
+<td>在AI协作任务中按提示授权识别及脱敏交付，复核材料并生成副本</td>
+<td>外部AI取得的是脱敏稿</td>
+</tr>
+<tr>
+<td>返回</td>
+<td>外部工具提交当前轮的返回稿</td>
+<td>页面等待复核返回稿，未经人工确认不能还原</td>
+</tr>
+<tr>
+<td>复核</td>
+<td>检查返回稿，点击“我已复核返回稿，确认内容”</td>
+<td>仅AI处理的任务显示“本轮已完成”</td>
+</tr>
+<tr>
+<td>授权</td>
+<td>需要还原且具备项目权限时，点击“允许使用本项目假名表还原此次返回稿”</td>
+<td>按钮消失；只对当前任务明确授权</td>
+</tr>
+<tr>
+<td>执行</td>
+<td>由已连接的MCP客户端调用打开还原或开始还原工具</td>
+<td>同一轮生成真正的还原副本；重复请求返回既有产物</td>
+</tr>
+<tr>
+<td>检查</td>
+<td>刷新任务，点击“下载还原稿”</td>
+<td>打开文件核对内容和替换情况</td>
+</tr>
+</tbody></table>
+<p>若还原长时间无结果，可点“检查并接续还原”；仍在处理时显示当前状态，中断后可接续。</p>
+<p>续审会产生新一轮，旧轮编号或旧上传槽不能替代当前轮。没有还原权限、映射不匹配或返回稿未复核时，按错误提示修正后再试，不切换账号绕过。</p>
+<p><img src="%E6%88%AA%E5%9B%BE-20261015/MCP%E8%BF%98%E5%8E%9F%E7%A8%BF%E4%B8%8B%E8%BD%BD.png" alt="当前轮实际生成还原稿并提供下载"></p>
+<h2 id="section-23">20. 截图或聊天材料选择识别方式</h2>
+<ol>
+<li>打开材料的“本材料识别与脱敏设置”。</li>
+<li>“材料类型”可先用“自动判断”；PNG、PDF等扩展名本身不能说明一定是聊天截图。</li>
+<li>确认是聊天或表单截图时，可明确选“截图材料”，点击“保存设置并重新识别”，在确认框确认。</li>
+<li>等待识别后逐项核对联系人、账号、地址、金额等候选。聊天短句、客服名称和转账说明仍可能误识别；对误检选择保留，对漏检手工补录。</li>
+<li>类型或识别文字变化后重新复核，保存并生成副本，最终打开下载文件检查。</li>
+</ol>
 </main></html>

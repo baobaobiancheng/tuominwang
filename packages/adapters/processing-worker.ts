@@ -197,8 +197,8 @@ async function execute(input: ProcessingInput): Promise<any> {
     if(d.source_format==='pdf')validateRotationPages(readPageRotationState(d),pages);
     processingEvent({type:'progress',stage:'recognize',message:'正在核对文字中的敏感信息',processedTextEnd:0,totalTextLength:text.length});
     const dictionary = d.dictionary ? JSON.parse(unseal(d.dictionary, `${d.tenant_id}:${d.project_id}:dictionary`)) : [];
-    const complete = detectComplete(text, anchors, activeDictionary(dictionary, d.presetPolicy), { filename: d.source_name ? unseal(d.source_name, `${aad}:name`) : "", ocr: pages.length > 0, screenshot: ["png", "jpg", "jpeg"].includes(d.source_format) });
-    let marks = applyDocumentRoute(text, anchors, complete.marks, d.documentPolicy?.configuration), nerVersion: string | null = null;
+    const complete = detectComplete(text, anchors, activeDictionary(dictionary, d.presetPolicy), { filename: d.source_name ? unseal(d.source_name, `${aad}:name`) : "", ocr: pages.length > 0, sourceFormat:d.source_format,configuration:d.documentPolicy?.configuration });
+    let marks = applyDocumentRoute(text, anchors, complete.marks, d.documentPolicy?.configuration,{suppressEvidenceScene:complete.evidenceScene.controlled}), nerVersion: string | null = null;
     if(markdown)await createMarkdownMatchPublisher(text.length,"rules",processingEvent)({processedTextEnd:text.length,totalTextLength:text.length,matches:marks});
     const markdownNer=markdown?createMarkdownMatchPublisher(text.length,"ner",processingEvent):undefined;
     if(pages.length) marks = mergeCandidates(text,marks,await documentSpatialMarks(text,anchors,pages));

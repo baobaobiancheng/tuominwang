@@ -42,7 +42,7 @@ test('batch restore defaults actual CFB DOC to original DOC and preserves source
     const parts = await readZip(normalized.buffer);
     const xml = parts.get('word/document.xml')!.toString();
     assert.ok(xml.includes('13800138000'));
-    parts.set('word/document.xml', Buffer.from(xml.replace('13800138000', 'CLIENT A')));
+    parts.set('word/document.xml', Buffer.from(xml.replace('13800138000', 'CLIENT A 【姓名999】')));
     const generated = await configuredLegacyConverter().exportDocxToLegacy(await writeZip(parts), '.doc');
     const source = Buffer.from(generated.buffer), sourceHash = hash(source);
     assert.ok(isLegacyCompound(source));
@@ -61,6 +61,7 @@ test('batch restore defaults actual CFB DOC to original DOC and preserves source
     assert.equal(result.success, true, response.body);
     assert.equal(result.format, 'doc');
     assert.ok(result.stats.totalReplacements >= 1);
+    assert.deepEqual(result.stats.unknownTokens, ['【姓名999】']);
 
     const downloaded = await request('GET', result.downloadPath);
     assert.equal(downloaded.statusCode, 200, downloaded.body.slice(0, 200));
@@ -70,6 +71,7 @@ test('batch restore defaults actual CFB DOC to original DOC and preserves source
     const reread = await normalizeLegacyBytes(downloaded.rawPayload, 'restored.doc', '.doc');
     const text = (await parseOffice(reread.buffer, 'docx')).text;
     assert.ok(text.includes('合成甲'));
+    assert.ok(text.includes('【姓名999】'));
     assert.ok(!text.includes('CLIENT A'));
 
     const zipResponse = await request('POST', `${base}/batch/download`,
@@ -84,6 +86,7 @@ test('batch restore defaults actual CFB DOC to original DOC and preserves source
     assert.equal(hash(zipped), result.hash);
     const zippedText = (await parseOffice((await normalizeLegacyBytes(zipped, name, '.doc')).buffer, 'docx')).text;
     assert.ok(zippedText.includes('合成甲'));
+    assert.ok(zippedText.includes('【姓名999】'));
     assert.ok(!zippedText.includes('CLIENT A'));
 
     assert.equal(hash(source), sourceHash);

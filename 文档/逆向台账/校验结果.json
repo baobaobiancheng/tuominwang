@@ -1,5 +1,5 @@
 {
-  "ledger_sha256": "8c45b810912beab9e16bbeba16d05351a5d2fbf49751cd30550b2e870d543306",
+  "ledger_sha256": "ce16c85fbaea0adc549cb2f88e273ca54421e20ddd76272641ac4cb02bb80b26",
   "reference_version": "0.5.9",
   "interface_count": 258,
   "flow_count": 37,
@@ -7,9 +7,9 @@
   "historical_ipc_missing": [],
   "unmapped_interfaces": [],
   "empty_evidence_interfaces": [],
-  "evidence_reference_count": 4687,
-  "evidence_file_count": 2563,
-  "evidence_baseline_at": "2026-10-15T11:44:49.813854+00:00",
+  "evidence_reference_count": 4716,
+  "evidence_file_count": 2754,
+  "evidence_baseline_at": "2026-10-15T14:36:12.814218+00:00",
   "evidence_baseline_note": "这些哈希是2026-10-13本轮从当前现存文件建立的内容基线，只用于此后漂移检测；不能反向证明基线建立前的文件内容、原始发布完整性或过去运行结论。专有源码未修改。 ITER-012/013追加人工契约、交叉审查、新版指南及明确列举的子路径源码；旧文件哈希继续保留。已批准源码和主分析文档的哈希变更逐项记录previous/current，不扫描部署凭据。 ITER-014仅显式更新最终应用Compose及新增部署结果文件，保留真实OOM与未验证边界，未纳入密钥或环境凭据。 ITER-015仅补115项UI入口、两处动态桥调用集合、交叉审查/核验脚本及新增OpenJPEG发布证据；保留此前应用和部署文件的哈希，正在进行的前端修复漂移由后续迭代单独复核。 ITER-016：仅将本轮明确修改的前端/测试/部署/文档及验收回执更新基线，事件保存旧新哈希；无业务材料或凭据入账。 ITER-017新增分组/增补契约、交叉审查及npm原生签名差异证据；仅maintain新增71解释及维护规则旧动态数量文案的历史hash显式更新。未纳入凭据、未改竞品文件或应用。下载tarball及原生比较的逐项SHA保存在专项报告，不自动扩大成算法可信声明。 ITER-020：补我方Word结构预览、页内OCR改字、视觉候选的实现/验收与规则交接；显式更新5项应用pin，previous/current与原ledger备份保留；早期UI/26例与旧交接独审仅为历史阶段，不代表最终功能或最终文档全部被独审。竞品S2/R0、全部I级别不变，未据本地验证声明公网发布。 ITER-022显式更新进度检查点应用pin；main87基线原字节和旧新hash逐项保留，新能力未一律提级，未发布服务。 ITER-023仅显式进度检查点，28项原pin旧字节归档；有失败日志和新阶段未完成事项，未整体升格。 ITER-030显式逐ID更新，所有漂移旧字节保留并精确验hash；竞品运行R0保持不变。 ITER-031发布及真实OOM影响补证；README和指南文本旧字节精确保留；7张历史截图原字节缺失明确列出，旧hash保留且不声称历史图全部可验证。 ITER038静态语义逐ID合并；旧漂移逐一有精确字节归档，未覆盖掉历史证据。 ITER039握手故障独立复现；变更旧字节逐一验hash并归档，未以定向通过推全量或发布。 ITER040保留全部旧pin字节；逐ID/流程说明CAS更正，等级不变；实际门禁与服务器发布分别记录。 ITER040补5个已存在的新引用当前哈希；不反推其建立基线前内容。新增Edge截图调用保留此前精确字节，尚未运行。 ITER041逐文件真实variant与前后testSHA/logSHA固定；历史结果不冒称当前单次全量。两项测试修正保留旧字节及独立源裁定。 ITER042：首轮真实Edge失败原样保留；18项新旧字节逐一固定，4项产品修复待重新运行，等级不变。 ITER043最终本地：所有旧pin精确字节均找到并归档；API/Edge逐variant保留，无单次全量虚称；13条备注校准不改等级，图文实际核对；部署另证。 ITER044上线：首次真实OOM/回滚与恢复、二次发布、TXT/PNG实产物、指南补丁分别保留；无新增资源限制或模型读取改动；证据变更先核旧字节，S/I/R不变。",
   "evidence_files": {
     ".data/deploy/aliyun-20261013/before/api-main.ts": {
@@ -2278,8 +2278,8 @@
       "matches_baseline": true
     },
     ".data/research/lawbot-2026-10-15/iteration035/unified-aliases-edge.png": {
-      "sha256": "008c3da09cb6be9a8a5ae739dd2f3540a6c58fcd5262df7a67a0c88796098a68",
-      "bytes": 107306,
+      "sha256": "b38f3a44fafe361704cd9c5dfd979e3ad4ae1693a46aa46097df70f237c51a03",
+      "bytes": 105278,
       "matches_baseline": true
     },
     ".data/research/lawbot-2026-10-15/iteration036/before-doc-refresh/功能核对清单.md": {
@@ -4218,8 +4218,8 @@
       "matches_baseline": true
     },
     ".data/research/lawbot-2026-10-15/iteration036/edge-review-filter.png": {
-      "sha256": "42317b6a10c3174977fa0b9e86a7d844e97878f7cd6877b7af55079a43838161",
-      "bytes": 197836,
+      "sha256": "cada8077129d842fb4d27cffae71d80aad6a5a025cbf5e82f04abf6638e08d4c",
+      "bytes": 198051,
       "matches_baseline": true
     },
     ".data/research/lawbot-2026-10-15/iteration036/final-check-filter-retry.json": {
@@ -4987,6 +4987,856 @@
       "bytes": 12230,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-15/iteration046/complete-gates-final.json": {
+      "sha256": "46e19ab89c08ad841eeddc66edb23fdfd3c3bbe3baf663b4260353e9fabcb87f",
+      "bytes": 627,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration046/complete-gates-plan.json": {
+      "sha256": "25d82419b7c269bcd79c86b2649492eee41f6ce48a2db4513cc5fc825c99adcb",
+      "bytes": 107106,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration046/complete-integration.log": {
+      "sha256": "0d53378c1a0bf1b7e3f56333a52f3ccc53a0aed8996cf79bf5ade8499094126b",
+      "bytes": 47735,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration046/edge-exact-inventory.json": {
+      "sha256": "5c43bd7cc8d1e2a26228085b9813ab9a71cf45b94a0f2d9ae52f0fa156241d2a",
+      "bytes": 18200,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration046/merged-check-with-converter.json": {
+      "sha256": "0bab905ac8968252d41ccb29bc9ea3ca491edeed67146339cb3224a461f81f07",
+      "bytes": 500,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration046/merged-check-with-converter.log": {
+      "sha256": "bc45af3865fded9064f6f74d513bce7115cbcf71576d49b54178d27b284806ea",
+      "bytes": 1855,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration046/merged-edge-final.json": {
+      "sha256": "0a1f0cbc7471f591cd85cde117b241e92a46c5861272ab6f35b8da72a339f049",
+      "bytes": 69307,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration046/merged-edge-preset-recovery.log": {
+      "sha256": "b063c704b7aa702a559a91730389939b5ad41c1994f5f38fe7b7c0536a9887ed",
+      "bytes": 2401,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration046/merged-edge-restoration-source-compat.log": {
+      "sha256": "eab0f3695640acf94cbd26ff2670b20f0d7428bc6019c5b2a2bc014d03a99c17",
+      "bytes": 2491,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration046/merged-pdf-cross-edge-attempt10.log": {
+      "sha256": "52f253adb3fb3ff006397817b6b9fdb7a0cab3e644f1789d4fddd7bca55a575d",
+      "bytes": 2016,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration046/merged-profile-recovery-api.log": {
+      "sha256": "7fed127f6aacce099d61b2a3465c3019ce76b0cdbedddd3f0858c1f5cefae946",
+      "bytes": 794,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration046/merged-profile-warning-screenshot.log": {
+      "sha256": "d4cbd6466ef3c3944b05f8056cdb7d2bf9a05e09970a1b34d4a1816f7913d24f",
+      "bytes": 2204,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration046/merged-restoration-api.log": {
+      "sha256": "fc6ccecbce4e1628fe2e9bb044a50b8b19ae2d60f73aaf5d25536f08180383e0",
+      "bytes": 267,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration046/merged-visual-cross-api.log": {
+      "sha256": "e4e23c874422502b23b23a622f0bc6fe6540b31c8da089ba71d26ae6b518c6fd",
+      "bytes": 297,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration046/pdf-cross-attempt10.json": {
+      "sha256": "e92abf781cf4eaafe31bc476b3d4fefac0a332351c08e0e447ffde7cb14fb69b",
+      "bytes": 808,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration046/pinned-evidence-before-further-gates/initial-drift.json": {
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "bytes": 3,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration046/profile-corruption-isolated-final.log": {
+      "sha256": "56e8dae76f7c297119518c8e43858785b69d68f30767a9b900b0051d6e2c0860",
+      "bytes": 484,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration046/restoration-baseline.json": {
+      "sha256": "bfc4471a9822cee5ba86b11c855ec7c59f6391157f2f180eca99698394e5cda4",
+      "bytes": 1057,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration046/staged/tests/visual-cross-chain.integration.ts": {
+      "sha256": "315b8d61841f6d95b1284991706d245600107d6b50f7be29381c68771dee890d",
+      "bytes": 14147,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration046/visual-cross-isolated.log": {
+      "sha256": "495c241e75542c06db3d2a087cb7adc2675e2a3a3c8171a2b79b29b9bd42d5de",
+      "bytes": 295,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration047/arch/architecture-review.md": {
+      "sha256": "657ebadd7b907c4722120a3ec220e6b081059c2171459694c94c3ca4a20a247b",
+      "bytes": 3902,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration047/arch/ledger-review.md": {
+      "sha256": "922fc229476b28f62c6e956993a0f75583d4292de26081b22483ebfbca16d415",
+      "bytes": 4469,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration047/arch/mcp-profile-after-fix.log": {
+      "sha256": "041fabd1cca74d3d28dd4749c144b9a06a2712a15945b754a3f0484fa5d99493",
+      "bytes": 1009,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration047/arch/mcp-profile-after-queue-drain.log": {
+      "sha256": "c955a200885d8db6b2240e10bb27a836cc1421486b44f042c717aa3352bd05d3",
+      "bytes": 247,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration047/arch/mcp-profile-after-worker-fixture.log": {
+      "sha256": "eca130f84aa1d10d31b371e7d3b2233128d8f51991888d44c4bca1b806d76077",
+      "bytes": 1011,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration047/arch/mcp-profile-before-fix.log": {
+      "sha256": "6ca90de9e8eead47a075beb61feade72bfdd89a0611211b86017bffb607b0335",
+      "bytes": 1013,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration047/arch/mcp-profile-shared.patch": {
+      "sha256": "0b1ece1ec1b3633e1a358683d6c7fbbe3e676670bd312b52dc6921e25747d3a0",
+      "bytes": 4516,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration047/arch/preset-review.md": {
+      "sha256": "da0b9889ceebd701b579068cec104fc25dabe5a7046f8b50ed5718f45508fac6",
+      "bytes": 2885,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration047/arch/restoration-review.md": {
+      "sha256": "1d185693159340021fad57214c8fd7fa7e9ae34c8ad50591a36ef39054b2c98a",
+      "bytes": 1894,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration047/pin-transition.json": {
+      "sha256": "f4da33270b433e1e7e435063507e68280b84b169ff22e107e4a6466b534772f4",
+      "bytes": 3770,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration047/rules/amount-rules-luna.md": {
+      "sha256": "beb473dd3464ea517406b9ca1ccc911fb0e60352fec9323201ffb785ba3c3f38",
+      "bytes": 6460,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration047/rules/bank-form-activation.diff": {
+      "sha256": "36e50b03f406fce5b37f4e65610f68e2a3307b46c025dbe25bfbf099e36a3c8b",
+      "bytes": 6121,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration047/rules/bank-form-after-fix.log": {
+      "sha256": "48581a0872f0e4b74bc117712ab942a0847fdda4972b4281576eb8edfca70b3a",
+      "bytes": 226,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration047/rules/bank-form-before-fix.log": {
+      "sha256": "edfa19ea5b78b0f35b6fedb7266692da7668a668cc22a0919a73e8b91a52ba04",
+      "bytes": 1017,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration047/rules/frontend-delivery-luna.md": {
+      "sha256": "09dc61e8bb6b35173f4812d67b14e94141494ab789d6bed771a3ff8a67c196ab",
+      "bytes": 10781,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration047/rules/main-review.md": {
+      "sha256": "b70b24b2220cc975bdd707e5cbb123e2bdb44dcdfd7b49346c62c8bc7b9a21dc",
+      "bytes": 8492,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration047/rules/scenario-gate-luna.md": {
+      "sha256": "93446597441e3856b0b093d18bc085515e4705da58ece312b00482739abe3c9b",
+      "bytes": 7901,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration047/run-final-gates.mjs": {
+      "sha256": "679d3952d8ff6629f45d11f96b1173d5c15f624ca1cd4bbebda0ba0de29341ec",
+      "bytes": 4833,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration047/visual/main-cross-review.md": {
+      "sha256": "dc0d1378ffcd22f6875359982edbfd99df3bc00dc935f72305402b4571091fa1",
+      "bytes": 6398,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration047/visual/pdf-e2e-review.md": {
+      "sha256": "e54a10a00c3b6bbc40122771a3d0b9107dc43cc62b32eaa344da19613b7749a1",
+      "bytes": 4954,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration047/visual/source-ui-boundary-review.md": {
+      "sha256": "60b57a27efb1fc1562938f9d68db3cde27d4e2d2f226c677aa4d4db705de0741",
+      "bytes": 6707,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration047/visual/word-integration-review.md": {
+      "sha256": "47a4c3e491b42f0c63d64d83c5ba2411618706e403f370a630de82a1188880f3",
+      "bytes": 5777,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/final-check.log": {
+      "sha256": "40e7f9b5a2e8e5524279a102e8492a70061de5ee9711b24af387fb0a37e18362",
+      "bytes": 1657,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/final-e2e.log": {
+      "sha256": "c12d04e59de64e4eaa385a4ba01669a036ecb506560419dca8db81f4798cbf94",
+      "bytes": 21593,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/final-edge-inventory.log": {
+      "sha256": "e17a9955c7123960754252947f9ce245f019e21fe056915c5cb0f3e59cc6fc4f",
+      "bytes": 9121,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/final-edge-results/entity-corrections-Edge-pr-bddf5-s-and-blocks-an-empty-apply/markdown-correction-skipped-reason.png": {
+      "sha256": "9e700c442cd0314227d97184b55a53f11bdc0e39d097aeaa1da3714255df6cea",
+      "bytes": 161236,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/final-edge-results/pdf-cross-chain-Edge-two-p-75ffc-d-downloads-verified-pixels/pdf-restored-double-geometry-preview.png": {
+      "sha256": "539207f874c94d4ca0656d4f721e8e988cab6865ca379e74fb6d3a39b9486cfa",
+      "bytes": 188781,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/final-edge-results/pdf-cross-chain-Edge-two-p-75ffc-d-downloads-verified-pixels/pdf-verified-download-ready.png": {
+      "sha256": "cc00832f4088cd86fa842173d4f851895115c10d7178b2da7827f541d45779be",
+      "bytes": 192928,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/final-edge-results/preset-recovery-one-damage-ee108-files-and-new-projects-work/profile-recovery-warning.png": {
+      "sha256": "3399065ad8e708184bc676898196faf067e368d1d306d9ee9df6f02914bcb7df",
+      "bytes": 100526,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/final-edge-results/source-review-actual-Markd-5da68--canonical-review-positions/error-context.md": {
+      "sha256": "84aa8c910f4405e7ce4d790aab648aec0658268493bc413b86df180c9ddd6d80",
+      "bytes": 30754,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/final-edge-results/source-review-actual-Markd-5da68--canonical-review-positions/trace.zip": {
+      "sha256": "b61165b783e7e06ef7d33ea357a6e3b1c76807328fec8f73e5d09b2b5fbdfd97",
+      "bytes": 1751206,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/final-edge-results/type-hide-persistence-Edge-62a25-tes-false-positive-feedback/error-context.md": {
+      "sha256": "a0d3f54c332cd4b38640fc271810acc0a3167821cd50b5d4fb2c437226d69ebe",
+      "bytes": 738,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/final-edge-results/type-hide-persistence-Edge-62a25-tes-false-positive-feedback/trace.zip": {
+      "sha256": "0163c3226366e6b37d195b74156cf9af15072119c5874ec875a3c72185dc01bf",
+      "bytes": 4376868,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/final-gates-final.json": {
+      "sha256": "0a7ec916b75f8f625f780541b0c4e9953af198f8a8b2610d704cd1c6d706b843",
+      "bytes": 1471,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/final-gates-plan.json": {
+      "sha256": "c94cff95cfd78061173818a2de6b4bf47beffc98fb0561834580e69a72d03177",
+      "bytes": 146795,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/final-integration.log": {
+      "sha256": "82d8961525541dd5e21a752115b1c50b67134d4c13b8d8c4171eb8ef221722ac",
+      "bytes": 49607,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/merged-check-exit.json": {
+      "sha256": "ada77270a51fa5f28e268f2792723ba701121cef45d9fd49a788658b92fc7445",
+      "bytes": 50,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/merged-check.log": {
+      "sha256": "67d69679975d3ecbdec614b4ca05d579f4d2ab1fd96bc0bf11593b40256f90a8",
+      "bytes": 1564,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/pin-transition.json": {
+      "sha256": "00ff8a1343189a066d58c80fb14d4ff28a1b012870f6df73eacfde9bdfae2cb0",
+      "bytes": 4169,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/run-final-gates.mjs": {
+      "sha256": "8490ee5dea4cf9c2430d0721ef15117335ea504941025bbe368827854f5ccaa8",
+      "bytes": 5162,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/scenario/actual-after-contract.json": {
+      "sha256": "535d445affc807ca4b7320e652696f9e2487fff3d817914fed9f6d54c264e7c3",
+      "bytes": 1057,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/scenario/actual-after-contract.log": {
+      "sha256": "5f3e0bc6418579b2292d5562e18e1869a3928e3d22a51be37a70f269000a6726",
+      "bytes": 747,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/scenario/actual-before-contract.json": {
+      "sha256": "853acaa8fab02347d3448e22ab8d93df8a89e65803c92427b0de41cb31a05ee6",
+      "bytes": 1059,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/scenario/actual-before-contract.log": {
+      "sha256": "ecba2a6d1a958fd1d589b1472bfa18d3306ecd1855fbe729528babf6e5044470",
+      "bytes": 749,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/scenario/api-first-fixture.integration.ts": {
+      "sha256": "3d628aa419edbde3d0bb277052803b489de5a5265209da37ddb93495146b835d",
+      "bytes": 9342,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/scenario/api-regression-candidate.md": {
+      "sha256": "3ec63dce19ee1020125cae6fd7991c9744a65386d75d149fbba5b2977858ba28",
+      "bytes": 2631,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/scenario/api-second-fixture.integration.ts": {
+      "sha256": "74751f76c417bbc9b63da413516d29d88bf0b3b86b98869f6725f03e11ca7948",
+      "bytes": 9491,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/scenario/caller-review-luna.md": {
+      "sha256": "16276432a921252d26334488c251f092b4489cbc3aeb88a376bee9f9440fe7e3",
+      "bytes": 8348,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/scenario/evidence-screenshot.patch": {
+      "sha256": "93876eb8984720fae712636b15a26ecf7194e61bc1f7664db8896989aa5fef25",
+      "bytes": 53082,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/scenario/implementation-review.md": {
+      "sha256": "28b21785069f4755629e7795efa50b860c5df720c69b96ee52acbc5de7a85ad1",
+      "bytes": 7028,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/scenario/merge-receipt.json": {
+      "sha256": "3533759b9982ddc7cd46eb5d0faa50e9390e3feba3e0897e5bf06d701a237dac",
+      "bytes": 2430,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/scenario/merged-api-first.log": {
+      "sha256": "8bc98400c6016cd5af0d4c748bbfd10137abcc2451347c2e8067ef4c0dc8467d",
+      "bytes": 887,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/scenario/merged-api-second.log": {
+      "sha256": "61c51ef958c9efccc3fdd2930411bae7857df95f0b77c7d42ab7ed346841bc07",
+      "bytes": 1342,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/scenario/merged-api-third.log": {
+      "sha256": "cfabbaffd4739b8746b8f82b170e59c55374f06125c06a21b23d0bc32fc10612",
+      "bytes": 262,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/scenario/merged-context-green.log": {
+      "sha256": "05af4b4586c2b711c991e703023ec972450ba33f8e13a96e265d3a6993ec6995",
+      "bytes": 225,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/scenario/merged-vitest.log": {
+      "sha256": "6fdf520787e0c4a0834d335dda245dc05ed5ecc03e4ee620f0ad56319c8bc204",
+      "bytes": 423,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/scenario/reference-spatial-adapter-before-contract-fixture.test.ts": {
+      "sha256": "beae40a9c1534168e9db8dc9650c1b9ce5e3bcac39d6565d566d780a642d3097",
+      "bytes": 4374,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/scenario/scenario-tests-luna.md": {
+      "sha256": "da07cbb1d28c618e84fef63bc96589db45fb3f82e66eb1d3f04a8c31868358fc",
+      "bytes": 10230,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/scenario/source-gate-luna.md": {
+      "sha256": "d46e529cfc97d5c2fe7c27c47d1289042581a65e6aa376428d9501db8e3ef21c",
+      "bytes": 13096,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/scenario/ur-postprocess-review-luna.md": {
+      "sha256": "2d8482b9069e094bc71610cb53700a93640716b846c892462542c14ae8878834",
+      "bytes": 15515,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/targeted-terminal-receipts.json": {
+      "sha256": "88497b61ba31285c80adca1be9ac069e113dbdf1ef31b3dc9b1a37767f325a9c",
+      "bytes": 1087,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/ui/entity-corrections-before-fix.tsx": {
+      "sha256": "7adce5ec14257db27695d46c8f0631b4ff4979d381a59fa63357ce7cb086bc8c",
+      "bytes": 9481,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/ui/green-proof.json": {
+      "sha256": "f2a216130735a4b93e0b5c015749de5edc5ce109f115608b1553ba81216cb678",
+      "bytes": 449,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/ui/skip-reason-green-edge.log": {
+      "sha256": "cee6c3036ba5f353b8e09f46731e78880a6a1202291966c13da6cc4688d8de18",
+      "bytes": 2927,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/ui/skip-reason-red-edge.log": {
+      "sha256": "13f83b28fcd25203d67840daf07262bed0123c8c2114a52f5174d14e50395616",
+      "bytes": 7256,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration048/ui/test-before-screenshot-scroll.spec.ts": {
+      "sha256": "9110a72f067b8ce34fdaf0d75c00c80604665ddbc38481325731730a154a92dc",
+      "bytes": 9751,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/arch/cross-review.md": {
+      "sha256": "2a304e549c26150ed93914eb1fd3117f76d56fcb360b536f67ecd35b53e4f015",
+      "bytes": 6829,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/arch/final-candidate-review.md": {
+      "sha256": "e89ef08e484a467f06dde79128722c7f697ef25f1afa49afb76dbefdab59e354",
+      "bytes": 6029,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/arch/ipc-a.md": {
+      "sha256": "cd58e59d7e5a6ecad9ae51d27e65ffbbf129a4f410701b1680447ba001d5ea77",
+      "bytes": 13351,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/arch/ipc-b.md": {
+      "sha256": "05ea7c5b5991ae841a38be94b99179cce48d76373af77c9995741f0cb5fb3251",
+      "bytes": 12941,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/arch/ipc-c.md": {
+      "sha256": "53491dfc1c98a06a98ec3115835ce843c85a291138f8d259b631db509eb2c8f6",
+      "bytes": 9469,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/arch/main-review.md": {
+      "sha256": "140cc4ab652befd987b8e2e1cefb86f131e47ea283bd496bdd8c8d7420eb0a1d",
+      "bytes": 5023,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/arch/next-review.md": {
+      "sha256": "2e734fbc191c7867601929c1f0e94b076b5babfeadbf1f67d77c873281f1a231",
+      "bytes": 2220,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/candidate-api-main-runtime-equality.json": {
+      "sha256": "3c3bae0f3beabd886b4728b7c9f750cc9bf783c38f711b8aac582b6747747724",
+      "bytes": 65971,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/edge-first/edge.log": {
+      "sha256": "abf07dda98609f850dc4e77da494732afcb7f79e70b3f0c947dd88cf9e8eddeb",
+      "bytes": 2406,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/edge-first/receipt.json": {
+      "sha256": "13ed76c0de8656ed23872841a210c227edb5940f040ceabcec28e406feff244a",
+      "bytes": 1974,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/edge-first/results/mcp-ai-process-restore-ai--252c1-ownloadable-reviewed-result/mcp-ai-process-restored.png": {
+      "sha256": "7a9d09239e7d05d442fd62f4b55180a449dff0db8d36f073d5d05ba56d24cc72",
+      "bytes": 104235,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/edge-first/results/restoration-source-compat--060b9--and-exact-Markdown-aliases/external-unknown-warning.png": {
+      "sha256": "d8d3792a94f9874444ac7ed1e3c79b5a1726ec00408b0724c105719089b8430e",
+      "bytes": 86176,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/edge-identity-final/edge.log": {
+      "sha256": "058c5aeb17484e716c6ecf757d987146d299182e2191b55c844126341ada3699",
+      "bytes": 2416,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/edge-identity-final/receipt.json": {
+      "sha256": "76a03259f8e2d41f9d46cc4182739cd479153accf2ef66dd7ec60e672ef02feb",
+      "bytes": 2104,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/edge-session-final/edge.log": {
+      "sha256": "ef8d519498f769cafdfd3056359c9a07ec0506e0a2ea2f794c135defe2496906",
+      "bytes": 2398,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/edge-session-final/receipt.json": {
+      "sha256": "526131ffcc6914b6a36360b80c4578155147fbb53d337e83209f6bb8fe09133a",
+      "bytes": 1914,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/edge-ui-final/edge.log": {
+      "sha256": "e91f681ff66ca19c59c51dfdc833fecd1a2889d429f2202f93666ba469b8190d",
+      "bytes": 2017,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/edge-ui-final/receipt.json": {
+      "sha256": "2448a257f8103ac68420ee208fef9d8651fde8818213e84cbf011b7365d5ed0a",
+      "bytes": 2062,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/external-final-consolidated.patch": {
+      "sha256": "e22b52bbedb87d21eb813013a252d6f5c4c1b455763f1883c432b1b3c42c7d2a",
+      "bytes": 65328,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/external-restore/actual-before.json": {
+      "sha256": "07f4acad39261241ea8fc3a7bd41c8962d01b22cd8031db18bf25ccca6e3d100",
+      "bytes": 336,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/external-restore/actual-before.log": {
+      "sha256": "d01be919d73b3260fd6ea49f0fb87c6cfff20a3204767d6b3cc494be5f65d536",
+      "bytes": 132,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/external-restore/candidate-affected-unit.log": {
+      "sha256": "8f8a0e479b42a8f460f09a5d9320882395baa152dd56d0a885018a76d62eef40",
+      "bytes": 297,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/external-restore/candidate-batch-api.log": {
+      "sha256": "506c309aa1e2578a5952b16de4c96b31230a1d9c30714240c4dd46e9efa3e445",
+      "bytes": 794,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/external-restore/candidate-legacy-doc-api.log": {
+      "sha256": "781f0caacf7b6c5627c725053071a4a26a23b6c2946f6bf59a9b4593960168e0",
+      "bytes": 235,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/external-restore/candidate-single-api-receipt.json": {
+      "sha256": "9a570517dbb48fd86a9489c396361031ec80b4eaffce8c3ef10707d24cc19e33",
+      "bytes": 1090,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/external-restore/candidate-single-api.log": {
+      "sha256": "d3b1485d357f20efa0538f641fe221a3095d6036e0b355fec382cf48273aec4c",
+      "bytes": 295,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/external-restore/candidate-substring-unit-green.log": {
+      "sha256": "63f335d6958d4c65bf2c29933f5b527029e9d9cd9c84a14cc235a1c65b21894c",
+      "bytes": 297,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/external-restore/candidate-substring-unit.log": {
+      "sha256": "78f484df5d2c597dc49a760a8ffec92590ad2527086f186239fd376fc052ca87",
+      "bytes": 2549,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/external-restore/candidate-typecheck-third.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/final-check-identity-inputs.json": {
+      "sha256": "6ff247e8afb33cd544e50518f64480ecfe6b2454491ab56bef56e503e66a8679",
+      "bytes": 125160,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/final-check-identity-receipt.json": {
+      "sha256": "8247067c6965910fc170c5668142e202ea44a5c1ec31fc70e1c7837618f40dbc",
+      "bytes": 2020,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/final-check-identity.log": {
+      "sha256": "be5da4792df5eef19320e6e6b727587906447eb60ea4d58b0e6d05c43d1d70f7",
+      "bytes": 1657,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/final-check-inputs.json": {
+      "sha256": "3ac2955698bce29f106c90611a72a82dc5413c414007f1d1cc19581114ed2c71",
+      "bytes": 125160,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/final-check-receipt.json": {
+      "sha256": "70009c25d28b81f11d68204d0f0a71aeb98d903d3f34a411950c5a0bb3fb6adc",
+      "bytes": 2093,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/final-check.log": {
+      "sha256": "8f8510517098dce2d89b7fb5e846829e73051ed2ed05b44cc231b63e97696cf9",
+      "bytes": 1855,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/final-local-pin-transition.json": {
+      "sha256": "b8c3d71b583d5522c03cb52269fa373c648206eb16f48abe52a78101dab89f5e",
+      "bytes": 2620,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/final-patch-inputs.json": {
+      "sha256": "52469b0ebaaf0294b159670c0b3e64ab799906ae24a78a5bb69a15e73ad65162",
+      "bytes": 6411,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/frontend/final-ui-review.md": {
+      "sha256": "578dc7a00bb2bc3af209e4f04b47548d67a62be0d6c27d865e9872c6d18e4449",
+      "bytes": 2281,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/frontend/identity-fix-review.md": {
+      "sha256": "8a5a270e9caa9b7032c9427210234edc1e50c3e0f8fccdb4cdc185d3e5579503",
+      "bytes": 1726,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/frontend/main-review.md": {
+      "sha256": "a32a9b3832d1e43d84228e84e59f5e685bfe83f0b4cb3b6c9262ddb878fe8ee2",
+      "bytes": 6943,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/frontend/mcp-a.md": {
+      "sha256": "fa10fb661fda75321deafabc43bcdc1ced5932cc46dcbd828e0e9113f7fa6d66",
+      "bytes": 7094,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/frontend/mcp-b.md": {
+      "sha256": "9092153c24e74ff31a9636f0adf17b65cf2447b3f8cf61969e66f30942616c73",
+      "bytes": 8187,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/frontend/ui-c.md": {
+      "sha256": "e9df2246050b505cca9228cd1fdcf1944343b6cc95e6f0c1537b481c0e6e84a7",
+      "bytes": 6499,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/guide-image-provenance.json": {
+      "sha256": "85d9755c977f6a89234590bed1e6fe07f5b8e61012cdccc891027bebe022fd29",
+      "bytes": 2121,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/guide-render-end.png": {
+      "sha256": "0da3f9336426661930ffb234f4166e699edb54959ff469c2625a9f2a65a43400",
+      "bytes": 200543,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/guide-render-middle.png": {
+      "sha256": "7297b4ba9b976164a74ba2722f93d3a4e342e13bb46b4bb7a240457b7c56fbaa",
+      "bytes": 248371,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/guide-render-top.png": {
+      "sha256": "d07d6147b13a247f63122f60582abee03d256c6fe3e56bb474dfc5ebcb816438",
+      "bytes": 225214,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/guide-render-validation.json": {
+      "sha256": "7b8356fa57540ba1feed3587d66bca5b2122febd13408eeeece51193b6fd55c6",
+      "bytes": 2615,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/identity-final-pin-transition.json": {
+      "sha256": "e6c5bd92cf029c3158f70f52bf78f7587738917d036db5e1b49a054e749e7be3",
+      "bytes": 1937,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/identity-fix/candidate.patch": {
+      "sha256": "4540aafe03473c70e8275d361c3c25084dc292730d91f36fc417c43c0aac1b91",
+      "bytes": 3823,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/identity-fix/merge-receipt.json": {
+      "sha256": "84f4baecff21a00d936df74134e72dd38ef802c3e2149eba3bb9a57fccb548c8",
+      "bytes": 448,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/inventory.json": {
+      "sha256": "d7d968222259042af221eb124b015979b9d47cb0e0b2484268d5a61f833d747c",
+      "bytes": 101153,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/mcp-final-consolidated.patch": {
+      "sha256": "6098b041861a81c1bf4764b3b33d964269e7e9f506941ef2466c7f37ed89756f",
+      "bytes": 92991,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/mcp/NEXT.md": {
+      "sha256": "cc209fd9764a2aeba2183d7605255df0a7666280a3a2814904c16ab6dcbf3234",
+      "bytes": 2314,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/mcp/candidate-api-first.log": {
+      "sha256": "bf5dfc86137076c5426dcd4851aad4a5f4674b66760283332d6147b1bc2c0b22",
+      "bytes": 295,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/mcp/candidate-api-matrix.log": {
+      "sha256": "a5f855cb3477798d3cebd4b0aa0fe12a4d8af50369ab5a5cfbf0a1ba33298dfb",
+      "bytes": 4536,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/mcp/candidate-api-owner.log": {
+      "sha256": "62519b00efb48ecbf760a0b0bdc396e4279cdac22bd3ba9160895db5c96e6e95",
+      "bytes": 295,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/mcp/candidate-api-recovery-matrix.log": {
+      "sha256": "fea2482f36ede1f740c41cf96d67d61007b79aabbacb1e85ab61b361e14d171f",
+      "bytes": 4533,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/mcp/candidate-api-recovery.log": {
+      "sha256": "77cd7a64809894cedb03a70539caf6c1bf9a8db5fc56344f199773608f9b0253",
+      "bytes": 295,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/mcp/next.patch": {
+      "sha256": "5a7fa4568d9f2625da206f9d45a5f086c77b26c617c2fd8fe93874500f63fa96",
+      "bytes": 24178,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/mcp/proved-first/apps/api/mcp.ts": {
+      "sha256": "7473b49fc9a8a063767f115855d9914224aced133b55802caf8ce9b342bf7f20",
+      "bytes": 56161,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/mcp/proved-first/apps/web/ai-collab.tsx": {
+      "sha256": "328a1f624a9adcd1e4ddd017f42a271c2e4cc313037bb40868064e2dcdba37f2",
+      "bytes": 10535,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/mcp/proved-first/receipt.json": {
+      "sha256": "d67c9d77cc5edca848369f4ddbfc140b85823189d200b6fb542c1b847e179dbc",
+      "bytes": 680,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/mcp/proved-first/tests/mcp.integration.ts": {
+      "sha256": "8e88aa1b6a4269f9e5ac619031bc28862c767ccf7e2623939fb3d127c0df8752",
+      "bytes": 31784,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/mcp/proved-owner-and-matrix/receipt.json": {
+      "sha256": "31c451bff5ed6d102f62cad708d3a64b86c54b3f145a3a0763bfe3a8da018c96",
+      "bytes": 1174,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/mcp/recovery-run-inputs.json": {
+      "sha256": "b8d0dc98fd52f6ed68bb94995e13893433918a8a7328dc98988225eb8bda976f",
+      "bytes": 382,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/merge-pin-transition.json": {
+      "sha256": "6c88ed3ab9eb74ecabdce36de4fd835b4303072f8a58c8fdb86c59f572c68cec",
+      "bytes": 6459,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/merge/receipt.json": {
+      "sha256": "5441c6f7ed35eac7482fb07ad9b58968f2a8367f2bab2dabbc0e0ae3a493aeaa",
+      "bytes": 6826,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/overwritten-image-old-proof-search.json": {
+      "sha256": "284e44908e8b8826886fd8b65dc5ba0c60b11bbf6edcd51b032055ead4e889fa",
+      "bytes": 1237,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/review-pin-transition.json": {
+      "sha256": "4fc0df41f40b185f8b53f41538d4a825b6b8ff3ede7d055acc5075c16a40f1e9",
+      "bytes": 674,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/root-coverage-table-only-first.json": {
+      "sha256": "433646faa5183d1231661f906643cb285c9d27c240e4bf46059db8a7d3b0bb53",
+      "bytes": 1515,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/root-coverage-verification.json": {
+      "sha256": "6013ae258e7cf4628b2e352ec8cc05e41c28ac9ba29f66210a6f1ccfa0601d41",
+      "bytes": 2086,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/rules/cross-review.md": {
+      "sha256": "44c6be59fb03d5155859a674e6cf4d55f7a7b177925afa6702358f1f67d144c9",
+      "bytes": 8848,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/rules/final-external-review.md": {
+      "sha256": "fbefe4844b495979a3a6fc03fdb6c06e4ec5f9443b46c107d941cd7f64f295c9",
+      "bytes": 7197,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/rules/ipc-a.md": {
+      "sha256": "125702ca0b8101aa6c700f5d63ecae1e1903940805c60595c921704056376b2f",
+      "bytes": 11934,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/rules/ipc-b.md": {
+      "sha256": "e77e37c1dacfa1ba071de1fb49204c259b376a71d086ecd3002e7a41486bb050",
+      "bytes": 14572,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/rules/ipc-c.md": {
+      "sha256": "a31da1b01ed0fa697a7d5157af6a4c568a857f58232a4a545db0ba11e7c104ab",
+      "bytes": 11170,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/rules/main-review.md": {
+      "sha256": "394556640900a24bfc6b4345ea1acb2203d61970fc1600b7e7cba3ebe8a32189",
+      "bytes": 5772,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/source-review/candidate-before-window-shadow-fix.patch": {
+      "sha256": "9b92db84ed80444524b14ea7db5e1b4fdf83fb20003379b2a93bb629ea5f05e5",
+      "bytes": 7151,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/source-review/candidate.patch": {
+      "sha256": "85b5241909bf152ed4c6b748556d074a3485299495974bedfc3bdd0301a9129d",
+      "bytes": 7155,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/source-review/rootcause.md": {
+      "sha256": "4093d38a97cea9b3d3243065112c19f195e24fd7ee55bf82f20b91e83b0d8ca6",
+      "bytes": 3290,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/type-hide/root-cause.md": {
+      "sha256": "40ec45448104b4f591af71d3fb90b570f7357ed11cdf5afee03cf37a08012593",
+      "bytes": 4119,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/type-hide/type-hide-rate-window-candidate.patch": {
+      "sha256": "651d585540a390d412bcbe9805bfe40689570c432df8d0913d1905386232bc8b",
+      "bytes": 15473,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/ui-failures/merge-receipt.json": {
+      "sha256": "6f30936bac930d7813d370c5f7cd02c93ba60187a85dbad6e3c99e801710277e",
+      "bytes": 646,
+      "matches_baseline": true
+    },
     ".dockerignore": {
       "sha256": "59df9b03430248faa476958d45963401dd77fbe890db757e11a093ac4dde11a5",
       "bytes": 466,
@@ -5133,8 +5983,8 @@
       "matches_baseline": true
     },
     "apps/api/mcp.ts": {
-      "sha256": "2873f3464d5dc17d6bd8613fa8ac703b4a41f6368d4dfedc4508570abd626893",
-      "bytes": 53476,
+      "sha256": "c2eac7536c589a19f48d7bc8ae7f5506e7018f3dfc88aed59d16d7213ee9c4aa",
+      "bytes": 58278,
       "matches_baseline": true
     },
     "apps/api/members.ts": {
@@ -5168,8 +6018,8 @@
       "matches_baseline": true
     },
     "apps/api/presets.ts": {
-      "sha256": "3820fe5c6fa2ea215a33867a6310d3a00611da9a54bdca4d5c580a4cc83e7bae",
-      "bytes": 19861,
+      "sha256": "66c93be6d12cbb43fa8b21af211a4552e54da702e7e3c228be21f09d2ca0c7ee",
+      "bytes": 22134,
       "matches_baseline": true
     },
     "apps/api/processing-events.ts": {
@@ -5218,8 +6068,8 @@
       "matches_baseline": true
     },
     "apps/api/restoration-files.ts": {
-      "sha256": "6f4ed898d0f4891dfb7b7fa51a9b62507110ea4fe071a54c68e537d35ddff20f",
-      "bytes": 7342,
+      "sha256": "7dc8e1ef6b657f6d0bad059ad7d3b84a574625fe131fe1628a831f17527a0dda",
+      "bytes": 7442,
       "matches_baseline": true
     },
     "apps/api/review-feedback-entities.ts": {
@@ -5283,8 +6133,8 @@
       "matches_baseline": true
     },
     "apps/api/workspace-portable.ts": {
-      "sha256": "808b95ed37143ea528edfa8d8a9eb34c64b9c3f139e1eb602d0086f70aa8dca3",
-      "bytes": 45758,
+      "sha256": "28197103f503f429f03bc1f6ee8ff42b78c2cd5a29836625c8720428f4e07acd",
+      "bytes": 45835,
       "matches_baseline": true
     },
     "apps/api/workspace-recovery.ts": {
@@ -5298,8 +6148,8 @@
       "matches_baseline": true
     },
     "apps/web/ai-collab.tsx": {
-      "sha256": "43461f6691239b47e9111b14a21d8313440c3d6731eeac2c1f0e7e33b942cb27",
-      "bytes": 10381,
+      "sha256": "12e32803e809a886a62f58bd1d4ecf9078ca59419a2ef197bde9d6fd984d86f8",
+      "bytes": 10612,
       "matches_baseline": true
     },
     "apps/web/automatic-runtime-rules.ts": {
@@ -5388,8 +6238,8 @@
       "matches_baseline": true
     },
     "apps/web/entity-corrections.tsx": {
-      "sha256": "7adce5ec14257db27695d46c8f0631b4ff4979d381a59fa63357ce7cb086bc8c",
-      "bytes": 9481,
+      "sha256": "2dae6df7b0ccd66dd7414b7a3a4fa46d0a665610a0a47a5083b0f6418b91c431",
+      "bytes": 10345,
       "matches_baseline": true
     },
     "apps/web/entity-geometry.tsx": {
@@ -5438,8 +6288,8 @@
       "matches_baseline": true
     },
     "apps/web/main.tsx": {
-      "sha256": "5dc83dc9dd653d74dd8ec2a61926498ba054211dc2d389650f43bc65b6cefe91",
-      "bytes": 91300,
+      "sha256": "1246da312e63dfd99c98dabc83c67e033153d8957cc1be5b0015d0b20cc69190",
+      "bytes": 93042,
       "matches_baseline": true
     },
     "apps/web/manual-occurrences.tsx": {
@@ -5523,8 +6373,8 @@
       "matches_baseline": true
     },
     "apps/web/presets.tsx": {
-      "sha256": "27575e2472b010d8a7ba9dc29a29f3e4656a56b843da756970730794e8e917fa",
-      "bytes": 22785,
+      "sha256": "af0e3947e7f1d1cd687af6960ac557a1f85899fdae24d3e86fd597e8694f6e20",
+      "bytes": 23171,
       "matches_baseline": true
     },
     "apps/web/processing-observability.tsx": {
@@ -5568,8 +6418,8 @@
       "matches_baseline": true
     },
     "apps/web/restoration-batch.tsx": {
-      "sha256": "6ac98435f85025e6d90109b9293fd82ff03f3562c7c51657982c802c9ca1e4b9",
-      "bytes": 9652,
+      "sha256": "a3f96d2f708db2891cf93daa46c6e282d7595bbca8044c8b9bc77036c0712c74",
+      "bytes": 9999,
       "matches_baseline": true
     },
     "apps/web/restoration-error.ts": {
@@ -5578,8 +6428,8 @@
       "matches_baseline": true
     },
     "apps/web/restoration-files.tsx": {
-      "sha256": "31c5274b61eecae202e1d1a9fa43ac66cfd9bf245e5ec69687a81ab916ef9f9b",
-      "bytes": 5340,
+      "sha256": "378bf0100246ddd2a6997d9be709406c6f88fe9cecf2f89e7e34599bf416e457",
+      "bytes": 5650,
       "matches_baseline": true
     },
     "apps/web/restoration-progress.ts": {
@@ -5618,8 +6468,8 @@
       "matches_baseline": true
     },
     "apps/web/source-review.tsx": {
-      "sha256": "2374dd750ff4133747cd3532c2f8d218a147016179f5d72b608dc6db91695016",
-      "bytes": 13096,
+      "sha256": "667e258a19ffd4f0d63407667a07d7560b83da279657148e8326ca154373f9ad",
+      "bytes": 13775,
       "matches_baseline": true
     },
     "apps/web/style.css": {
@@ -5913,8 +6763,8 @@
       "matches_baseline": true
     },
     "packages/adapters/legacy-restoration.ts": {
-      "sha256": "1ce812a213f54345d39cc699e09f9c4153caa6cc88b2e5973d6d1f8d3d141ec7",
-      "bytes": 2742,
+      "sha256": "af5ca554b74db45eec5f517d5a7255079b6ad4fa318a1f780b6d9df0181182cb",
+      "bytes": 2769,
       "matches_baseline": true
     },
     "packages/adapters/manual-occurrences.ts": {
@@ -5948,8 +6798,8 @@
       "matches_baseline": true
     },
     "packages/adapters/ocr-correction.ts": {
-      "sha256": "80ba06f2cd7010aca2f815ec59f2239d365cc68ed44544dc1f541443eaa152d3",
-      "bytes": 7379,
+      "sha256": "ddcd8d1fc8bf3b8a70deff9d3f2ec8f72d917dd58fae904754265dce7ee4be90",
+      "bytes": 7456,
       "matches_baseline": true
     },
     "packages/adapters/office-images.ts": {
@@ -5998,8 +6848,8 @@
       "matches_baseline": true
     },
     "packages/adapters/portable-draft.ts": {
-      "sha256": "70a2caf33e5bf1af8b37db8b272f585ff66391c9ad77ac90f11f519ac5eab60d",
-      "bytes": 9206,
+      "sha256": "e8f519a8facf2e67342643006b5cbd0ba2c171a9d0fb2485634ef6d9d3a5c71f",
+      "bytes": 9987,
       "matches_baseline": true
     },
     "packages/adapters/portable-entity-geometry.ts": {
@@ -6023,8 +6873,8 @@
       "matches_baseline": true
     },
     "packages/adapters/processing-worker.ts": {
-      "sha256": "964cf0bb9cd3f174c3fcc1902bf5a62f03eb11da82b3a54022f7bbbf79474f03",
-      "bytes": 27796,
+      "sha256": "c0274b62f2773df0a6c389c28ec6f72274a7092ccdf1378660d2c20530ee0583",
+      "bytes": 27868,
       "matches_baseline": true
     },
     "packages/adapters/processing.ts": {
@@ -6253,8 +7103,8 @@
       "matches_baseline": true
     },
     "packages/core/document-route.ts": {
-      "sha256": "7a00fd91959c8a1db5ac5b2e0648813bcf0803f2ccef0d61594411391e30550a",
-      "bytes": 1524,
+      "sha256": "e71793a73a7fc6e08acdc78b4d2f219ce81b17e6939655ba7cfb4d2657245d92",
+      "bytes": 1710,
       "matches_baseline": true
     },
     "packages/core/document-unlock-word.ts": {
@@ -6290,6 +7140,11 @@
     "packages/core/entity-identity.ts": {
       "sha256": "3f60a6b85405a0dfa3822d0d8b9a80b33a7eb7418cb775bb944dc1325df2ced2",
       "bytes": 2283,
+      "matches_baseline": true
+    },
+    "packages/core/evidence-screenshot.ts": {
+      "sha256": "4a5a8a4029362c110bbcfac6c4d245c520dc4d8ae892ca0785ec06e164848a06",
+      "bytes": 9897,
       "matches_baseline": true
     },
     "packages/core/export-gate.ts": {
@@ -6488,8 +7343,8 @@
       "matches_baseline": true
     },
     "packages/core/recognition-pipeline.ts": {
-      "sha256": "580f399dc77578f9e5ef6ce4a527cabf157e885546fc13d5d3b407fab4524e1a",
-      "bytes": 2366,
+      "sha256": "0f13150c69c1bb9bf86d4172caa3df149fbbe1124f0c26d698ba39af2a0d2bfe",
+      "bytes": 2818,
       "matches_baseline": true
     },
     "packages/core/redaction.ts": {
@@ -6588,8 +7443,8 @@
       "matches_baseline": true
     },
     "packages/core/reference-rules.ts": {
-      "sha256": "d48e976f8722958baf3b98c149051df3158509e365e886e22af3893eba37c6c9",
-      "bytes": 75218,
+      "sha256": "6fd1f4e6f39f4ed09eecb827cf35fda71491e70a5db308d8d14b1a9c44c16576",
+      "bytes": 75454,
       "matches_baseline": true
     },
     "packages/core/reference-runtime-rule-producer.ts": {
@@ -6728,13 +7583,13 @@
       "matches_baseline": true
     },
     "packages/core/restoration-batch.ts": {
-      "sha256": "9bcafcacb2dfb5b0d0cc4a9731d73dd6bb5c4b07067c2233510c9104ebf37e13",
-      "bytes": 2663,
+      "sha256": "98293e0ace71fb02a617ececa4b8d0cd9c90eef52ff3a6bbacd2c8d4d0a6f2b6",
+      "bytes": 2717,
       "matches_baseline": true
     },
     "packages/core/restoration-files.ts": {
-      "sha256": "aeba0486bc1f292fb5cc2232e660bcc5ae4a1b9a77371004d67a4f277c5c426f",
-      "bytes": 27773,
+      "sha256": "9e1822aa44d7dfd1d00cd17dd981cd8a426d9ab2144d34cad76ed7b713b5d87e",
+      "bytes": 28905,
       "matches_baseline": true
     },
     "packages/core/review-entity-birth.ts": {
@@ -7498,8 +8353,8 @@
       "matches_baseline": true
     },
     "tests/e2e/entity-corrections.spec.ts": {
-      "sha256": "a2eb58da74be3c68eeb1e7dce8bfddea4e6487fce6bb4cb711c209d26c6fe64e",
-      "bytes": 6588,
+      "sha256": "58ada8d4b0567ca0823cd1f6369c0ec688200f36a4456c2cda6d7705c666a85b",
+      "bytes": 9791,
       "matches_baseline": true
     },
     "tests/e2e/entity-workflow.spec.ts": {
@@ -7562,6 +8417,11 @@
       "bytes": 3950,
       "matches_baseline": true
     },
+    "tests/e2e/mcp-ai-process-restore.spec.ts": {
+      "sha256": "ff577902400a0b10c9aaab95ab94d24960bf9ecaacd9a4c71d5d2d82cd41efd8",
+      "bytes": 8072,
+      "matches_baseline": true
+    },
     "tests/e2e/ocr-correction.spec.ts": {
       "sha256": "cd55f41d25872eb12fdeb671464945900af2c03d5e6d095d35598fd4be1704a6",
       "bytes": 3714,
@@ -7582,9 +8442,19 @@
       "bytes": 8678,
       "matches_baseline": true
     },
+    "tests/e2e/pdf-cross-chain.spec.ts": {
+      "sha256": "09f60bed44a1b10dc900badc0307a749827dc4922c3707e8753acf647ff03cb0",
+      "bytes": 23084,
+      "matches_baseline": true
+    },
     "tests/e2e/porting-closure.spec.ts": {
       "sha256": "9cbe6bc310caf383235f109cb2189791728df66339a059f64a062e9904e8f3e0",
       "bytes": 10751,
+      "matches_baseline": true
+    },
+    "tests/e2e/preset-recovery.spec.ts": {
+      "sha256": "920151ab1b07ced42632796b191fdc9d853f617a018cd3917509a5109cb2d405",
+      "bytes": 6666,
       "matches_baseline": true
     },
     "tests/e2e/presets.spec.ts": {
@@ -7612,6 +8482,11 @@
       "bytes": 4291,
       "matches_baseline": true
     },
+    "tests/e2e/restoration-source-compat.spec.ts": {
+      "sha256": "db3587b67c3a8ff8dcdc4f8c76fe94cadafdf9270744c21fbe5ba0a8aaad3b83",
+      "bytes": 5483,
+      "matches_baseline": true
+    },
     "tests/e2e/review-filter.spec.ts": {
       "sha256": "6ac8e1a8af175b2b3195a81da9e82e3b63a192c6e840e598dd23e7f055e08373",
       "bytes": 4196,
@@ -7633,8 +8508,8 @@
       "matches_baseline": true
     },
     "tests/e2e/session-sync.spec.ts": {
-      "sha256": "617e5c3c672e937aadf9e3150e55f255f8c41e2936875b6fb135ebeb06a0b616",
-      "bytes": 6157,
+      "sha256": "73a5c406b381bd7a8db5e7ed1fd4a8b579ae2c26708b28bc968e78c1b1bd5552",
+      "bytes": 9083,
       "matches_baseline": true
     },
     "tests/e2e/source-review.spec.ts": {
@@ -7643,8 +8518,8 @@
       "matches_baseline": true
     },
     "tests/e2e/type-hide-persistence.spec.ts": {
-      "sha256": "af2ba8d38f57903bcbbf3ea8a3525c6aaeec88c8938b799ba739550cba2ff430",
-      "bytes": 7436,
+      "sha256": "6b07c3716b04b2253b91c0cee7521333500a62bc4aea00f7a585a8bae85c011f",
+      "bytes": 10840,
       "matches_baseline": true
     },
     "tests/e2e/unified-aliases.spec.ts": {
@@ -7707,9 +8582,19 @@
       "bytes": 1948,
       "matches_baseline": true
     },
+    "tests/evidence-screenshot.test.ts": {
+      "sha256": "fbbe1d426f518c43a404a8876b868bac264b346be1cb7a85a04a83ce018ad051",
+      "bytes": 11331,
+      "matches_baseline": true
+    },
     "tests/export-gate.test.ts": {
       "sha256": "6b1f12dd4ac51db23871d3da5bd385274fc07e186101bb5ac089376651f37eb5",
       "bytes": 3780,
+      "matches_baseline": true
+    },
+    "tests/external-unknown-restoration.test.ts": {
+      "sha256": "22e1b129beedb4098d15c9e8d0d7fa8505c8c2e1432c3cd0323adfed91497451",
+      "bytes": 5356,
       "matches_baseline": true
     },
     "tests/face-group-coverage.test.ts": {
@@ -8233,8 +9118,13 @@
       "matches_baseline": true
     },
     "tests/mcp-complete-matrix.integration.ts": {
-      "sha256": "b40331d139706e013ac7e998420bccd6e8808ac38dfbdf4a69fd958b57c29944",
-      "bytes": 17421,
+      "sha256": "5b38d7df0b4ab5c1d210316d2f80b9adbb6ae582d3e6b1cd183d32c143508ebe",
+      "bytes": 17823,
+      "matches_baseline": true
+    },
+    "tests/mcp-profile-recovery.integration.ts": {
+      "sha256": "69a224db21d72c42b6938862de6be21fea558526040097487df3a427b7540833",
+      "bytes": 7157,
       "matches_baseline": true
     },
     "tests/mcp-tools.test.ts": {
@@ -8243,8 +9133,8 @@
       "matches_baseline": true
     },
     "tests/mcp.integration.ts": {
-      "sha256": "463ba0cb31b18ea8db7ab0a183eec272e1ee5561fee38b59d4a234650e4ee216",
-      "bytes": 26875,
+      "sha256": "e46e766469e314307a9a144c5c4f8229801b18e6aa11ab353df0d1f6fdd87f89",
+      "bytes": 39809,
       "matches_baseline": true
     },
     "tests/ner.integration.ts": {
@@ -8467,6 +9357,11 @@
       "bytes": 3329,
       "matches_baseline": true
     },
+    "tests/profile-recovery.integration.ts": {
+      "sha256": "6a1140ccfb936513235f1d19c63943d2eb7f913bae0b8cfe8ecdcd092db079d0",
+      "bytes": 8005,
+      "matches_baseline": true
+    },
     "tests/project-audit-batch-facts.test.ts": {
       "sha256": "f51090ca762dfa6d27193cd301a2aef8532007a64892655645b6be69662f5d0a",
       "bytes": 2408,
@@ -8608,8 +9503,8 @@
       "matches_baseline": true
     },
     "tests/reference-rules.test.ts": {
-      "sha256": "9cbc678769c61d6806bab271940f78fee0c51925d6e07f33dd464070b19df9be",
-      "bytes": 11375,
+      "sha256": "d206b9cbf4e65dc115368a468d16ae9f7669e55f649c574e8a50fb22d8bc24cd",
+      "bytes": 11809,
       "matches_baseline": true
     },
     "tests/reference-runtime-rule-producer.test.ts": {
@@ -8638,8 +9533,8 @@
       "matches_baseline": true
     },
     "tests/reference-spatial-adapter.test.ts": {
-      "sha256": "beae40a9c1534168e9db8dc9650c1b9ce5e3bcac39d6565d566d780a642d3097",
-      "bytes": 4374,
+      "sha256": "59eb34fc06395a44704c51f1645902bd0cfb8ce703c67c113849e7a087de35a2",
+      "bytes": 4592,
       "matches_baseline": true
     },
     "tests/reference-spatial.test.ts": {
@@ -8693,23 +9588,23 @@
       "matches_baseline": true
     },
     "tests/restoration-batch-doc-default.integration.ts": {
-      "sha256": "e1ce55ae0d235ffd93c19854cc1f551b95e7fc4c38d87339dd082f073a7e6a95",
-      "bytes": 5290,
+      "sha256": "adb8b98189c6a873a5d31ac6b55f2a841e534412c668a7118d69ec2f9d2e011b",
+      "bytes": 5481,
       "matches_baseline": true
     },
     "tests/restoration-batch.integration.ts": {
-      "sha256": "d1294df5a6096c4b8f816d17be8b858691a45eeda45ce8a74f1f16e8eb8de325",
-      "bytes": 12287,
+      "sha256": "b7092db8ae3ac326d930ef07f5e0d51374e962ad0dea866b9a160a889e96901c",
+      "bytes": 12548,
       "matches_baseline": true
     },
     "tests/restoration-batch.test.ts": {
-      "sha256": "c57584c1afb755aac11532be84c960c3996bd99cd1833dfceeca1743d4712809",
-      "bytes": 1795,
+      "sha256": "fef98d9ddfc871e3a2a0efc172c68aeee385bd6d755d9a798ba6ca5beebfd594",
+      "bytes": 2048,
       "matches_baseline": true
     },
     "tests/restoration-capacity.test.ts": {
-      "sha256": "190fdcc3bf8e8631436db3a3ef59c7bd86849248f881c63ef2f57995b285e812",
-      "bytes": 6204,
+      "sha256": "d3bee5e60f68a5d58ee735d0936531c5e5c55edb69d67c813f4b19ec2985bc6c",
+      "bytes": 6499,
       "matches_baseline": true
     },
     "tests/restoration-composite.test.ts": {
@@ -8717,9 +9612,14 @@
       "bytes": 7922,
       "matches_baseline": true
     },
+    "tests/restoration-external-source-compat.integration.ts": {
+      "sha256": "d6db9090a65ea5e4a7b218120a1312432a4541684cb59b024305a7e86c4e0045",
+      "bytes": 6246,
+      "matches_baseline": true
+    },
     "tests/restoration-files.test.ts": {
-      "sha256": "4f21e4d97286420f521868d31be9e145d4f4b659d3ecb962c033963e98a783d5",
-      "bytes": 16371,
+      "sha256": "73955490822c6041b168ab1ce190785ef4a7c041acc3c91acd4e8dc290bcb52a",
+      "bytes": 18038,
       "matches_baseline": true
     },
     "tests/restoration-large-fixture.ts": {
@@ -8872,6 +9772,11 @@
       "bytes": 4752,
       "matches_baseline": true
     },
+    "tests/scenario-routing.integration.ts": {
+      "sha256": "ef4b5821d1cc11099f322b45648649599470af0c4e0f6bf0191d609a9a5dfe5d",
+      "bytes": 9678,
+      "matches_baseline": true
+    },
     "tests/signature-model.test.ts": {
       "sha256": "a1de69282eeaa078083d14c4431dcda0e59436535ca436f9afc158d485bc0eb2",
       "bytes": 2373,
@@ -8910,6 +9815,11 @@
     "tests/user-memory-rules.test.ts": {
       "sha256": "153d31ab05862c575f78b8d620fed07fddd8bc414b6b0b8d92aa5e42772ec433",
       "bytes": 4809,
+      "matches_baseline": true
+    },
+    "tests/visual-cross-chain.integration.ts": {
+      "sha256": "a859cf59a81fe1822b2897c1a6e1cb93c53bbcb4f06a180b49320f41c69c477f",
+      "bytes": 18682,
       "matches_baseline": true
     },
     "tests/visual-detection.test.ts": {
@@ -9012,6 +9922,11 @@
       "bytes": 292,
       "matches_baseline": true
     },
+    "文档/使用指南/README.md": {
+      "sha256": "ed67dcd9440711633a17fa218a42805aaac89d1c52e847e47e5dbc4f253683ee",
+      "bytes": 1341,
+      "matches_baseline": true
+    },
     "文档/使用指南/build-result.json": {
       "sha256": "456f55ce43489a53c60e7a0289ba56891957bcabe17b631c3eb5787aea639d8e",
       "bytes": 8668,
@@ -9033,13 +9948,13 @@
       "matches_baseline": true
     },
     "文档/使用指南/公开功能补齐操作-20261015.html": {
-      "sha256": "7a3ceb6cb3508e818b6bee86135428ac16e4bc6adf5ed1608daebaf2d1883df4",
-      "bytes": 26779,
+      "sha256": "16a58ddfc926d1ce3a97e5108bdcbaa307cbcab790835a1301594a774d19272c",
+      "bytes": 33774,
       "matches_baseline": true
     },
     "文档/使用指南/公开功能补齐操作-20261015.md": {
-      "sha256": "f37597bc3b9e15e82d2011ef042f2aa3ab8f6a3e0ad18d004b7cec1261abfe1f",
-      "bytes": 19658,
+      "sha256": "05868c79df35361b7c0945d015eadc286ba22dd33bc98999ceddabddf40b11c5",
+      "bytes": 25175,
       "matches_baseline": true
     },
     "文档/使用指南/功能核对清单.md": {
@@ -9057,9 +9972,24 @@
       "bytes": 17986,
       "matches_baseline": true
     },
+    "文档/使用指南/截图-20261015/MCP还原稿下载.png": {
+      "sha256": "7a9d09239e7d05d442fd62f4b55180a449dff0db8d36f073d5d05ba56d24cc72",
+      "bytes": 104235,
+      "matches_baseline": true
+    },
+    "文档/使用指南/截图-20261015/OCR未处理原因.png": {
+      "sha256": "9e700c442cd0314227d97184b55a53f11bdc0e39d097aeaa1da3714255df6cea",
+      "bytes": 161236,
+      "matches_baseline": true
+    },
     "文档/使用指南/截图-20261015/OCR清除旧纠错后.png": {
       "sha256": "39bd7a2b9703902e7e63ce099f97fe0ef848be546bb43317fd30d4fca90acbae",
       "bytes": 191640,
+      "matches_baseline": true
+    },
+    "文档/使用指南/截图-20261015/PDF工程重开双区域预览.png": {
+      "sha256": "539207f874c94d4ca0656d4f721e8e988cab6865ca379e74fb6d3a39b9486cfa",
+      "bytes": 188781,
       "matches_baseline": true
     },
     "文档/使用指南/截图-20261015/PDF查漏定位第2页.png": {
@@ -9067,9 +9997,19 @@
       "bytes": 171221,
       "matches_baseline": true
     },
+    "文档/使用指南/截图-20261015/PDF核验下载就绪.png": {
+      "sha256": "cc00832f4088cd86fa842173d4f851895115c10d7178b2da7827f541d45779be",
+      "bytes": 192928,
+      "matches_baseline": true
+    },
     "文档/使用指南/截图-20261015/Word选择两处同文.png": {
       "sha256": "b88448cc783e9b9f17a5f5548f7ac876b5b30cbd3b05bf703bdafcd0e83e8a29",
       "bytes": 46774,
+      "matches_baseline": true
+    },
+    "文档/使用指南/截图-20261015/外部未匹配标签提示.png": {
+      "sha256": "d8d3792a94f9874444ac7ed1e3c79b5a1726ec00408b0724c105719089b8430e",
+      "bytes": 86176,
       "matches_baseline": true
     },
     "文档/使用指南/截图-20261015/实体位置调整中.png": {
@@ -9080,6 +10020,11 @@
     "文档/使用指南/截图-20261015/实体位置调整控件.png": {
       "sha256": "e2fae40c991c7b77f8e80b555d7f6fdf2d76cce0c885df9503f306fa366db36f",
       "bytes": 32279,
+      "matches_baseline": true
+    },
+    "文档/使用指南/截图-20261015/方案损坏提示.png": {
+      "sha256": "3399065ad8e708184bc676898196faf067e368d1d306d9ee9df6f02914bcb7df",
+      "bytes": 100526,
       "matches_baseline": true
     },
     "文档/使用指南/截图-20261015/本轮补充截图证据.json": {
@@ -10242,14 +11187,19 @@
       "bytes": 1079,
       "matches_baseline": true
     },
+    "文档/发布记录-20261015-049.md": {
+      "sha256": "2c0fd4d24566237605c375c174a80682cb0c81f0474e7a21a629045e279e2de7",
+      "bytes": 1270,
+      "matches_baseline": true
+    },
     "文档/完整移植验收-20261014.md": {
       "sha256": "c7b0f79ef42ca715bfe8c95cd2739d977eb7497fb91fe6cfd3a96aafe5476343",
       "bytes": 5031,
       "matches_baseline": true
     },
     "文档/待办与完成状态-20261015.md": {
-      "sha256": "3cdff2573771c532ad1999e93acd5f0899fd51f7de3f247a1f6b77ff576b6d96",
-      "bytes": 10757,
+      "sha256": "b60b09c60420361d5b885eb570d29e93902a8f7a29a0a6d92b655f96694c523b",
+      "bytes": 12131,
       "matches_baseline": true
     },
     "文档/按钮确认交互修复与验收.md": {
@@ -10273,8 +11223,8 @@
       "matches_baseline": true
     },
     "文档/脱敏规则完整技术交接-迭代023.md": {
-      "sha256": "e55402af6d9b47de9dadda2a9657d30f6fbdddf948210062c3216b78eef32869",
-      "bytes": 347669,
+      "sha256": "eba8915426cd19d2a8a0ffe43c506a560a8deb66f160c6285acac9339b1c7bcd",
+      "bytes": 354477,
       "matches_baseline": true
     },
     "文档/脱敏规则技术交接-20261014.md": {
@@ -10595,6 +11545,11 @@
     "文档/逆向台账/contracts/circle-metadata-restoration-20261014.md": {
       "sha256": "651fb0def739d71fc1dff1be87920a4afb492438c29f2eddf1ca119dfdb1e05d",
       "bytes": 2734,
+      "matches_baseline": true
+    },
+    "文档/逆向台账/contracts/continuation-reliability-20261015.md": {
+      "sha256": "e356e6b17d5bf2c2f24bee9a596adf55673234256817e68a3f0867b8806f4448",
+      "bytes": 16882,
       "matches_baseline": true
     },
     "文档/逆向台账/contracts/cross-review-entry-closure.mjs": {

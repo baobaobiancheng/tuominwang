@@ -13,6 +13,11 @@ function fail(message: string, statusCode = 409): never { throw Object.assign(ne
 const scope = (req: FastifyRequest, fn: (db: DB) => Promise<any>) => scoped(req.user.id, req.user.tenant_id, fn);
 const presetAad = (req: FastifyRequest, target: string) => `${req.user.tenant_id}:${req.user.id}:preset:${target}`;
 const preferenceAad = (req: FastifyRequest) => `${req.user.tenant_id}:${req.user.id}:preset-preferences`;
+function verifiedUserProfile(value: unknown, target: string): Profile {
+  const profile = profileSchema.parse(value);
+  if (profile.id !== target || profile.source !== "user" || profile.readonly) throw new Error("PRESET_STORAGE_INVALID");
+  return profile;
+}
 function nameHash(req: FastifyRequest, kind: string, name: string) { return createHmac("sha256", Buffer.from(process.env.DATA_KEY!, "hex")).update(`${req.user.tenant_id}:${req.user.id}:${kind}:${name.trim().toLocaleLowerCase("zh-CN")}`).digest("hex"); }
 async function getPreference(db: DB, req: FastifyRequest) {
   await rows(db, sql`INSERT INTO redaction_preferences(tenant_id,owner_id,payload) VALUES(${req.user.tenant_id},${req.user.id},${seal(JSON.stringify(defaultPreferences()), preferenceAad(req))}) ON CONFLICT DO NOTHING`);
@@ -24,18 +29,52 @@ async function savePreference(db: DB, req: FastifyRequest, previous: { revision:
   await rows(db, sql`UPDATE redaction_preferences SET revision=revision+1,payload=${seal(JSON.stringify(checked), preferenceAad(req))} WHERE owner_id=${req.user.id} AND tenant_id=${req.user.tenant_id} AND revision=${previous.revision}`);
   return { revision: previous.revision + 1, settings: checked };
 }
+// The desktop catalogue validates each saved user profile during startup and
+// repairs a default pointer whose target has disappeared. Keep damaged cloud
+// rows for recovery, but do not let one owner row block unrelated profiles.
+async function profileCatalogue(db: DB, req: FastifyRequest, preference: { revision: number; settings: PresetPreferences }) {
+  const records = await rows(db, sql`SELECT * FROM redaction_presets WHERE kind='profile' ORDER BY updated_at DESC,id`);
+  const items: StoredPreset<Profile>[] = [];
+  let unavailableCount = 0;
+  for (const row of records) {
+    let plaintext: string;
+    try {
+      plaintext = unseal(row.payload, presetAad(req, row.id));
+    } catch (error) {
+      // Key configuration is a server failure, not an invalid individual row.
+      if ((error as Error).message === "DATA_KEY_REQUIRED") throw error;
+      unavailableCount++;
+      continue;
+    }
+    let value: unknown;
+    try { value = JSON.parse(plaintext); }
+    catch (error) { if (error instanceof SyntaxError) { unavailableCount++; continue; } throw error; }
+    try { items.push({ revision: row.revision, settings: verifiedUserProfile(value, row.id) }); }
+    catch (error) { if (error instanceof z.ZodError || (error as Error).message === "PRESET_STORAGE_INVALID") { unavailableCount++; continue; } throw error; }
+  }
+  const selected = preference.settings.defaultProfileId;
+  if (selected !== SYSTEM_PROFILE_ID && !items.some(item => item.settings.id === selected)) {
+    preference = await savePreference(db, req, preference, { ...preference.settings, defaultProfileId: SYSTEM_PROFILE_ID });
+  }
+  return { items, preference, unavailableCount };
+}
+export async function getProfileCatalogue(db: DB, req: FastifyRequest) {
+  return profileCatalogue(db, req, await getPreference(db, req));
+}
 export async function getPreset<T extends Profile | RuleSet>(db: DB, req: FastifyRequest, kind: "profile" | "ruleset", target: string, lock = false): Promise<StoredPreset<T>> {
   if (kind === "profile" && target === SYSTEM_PROFILE_ID) return { revision: 0, settings: defaultProfile() as T };
   id.parse(target);
   const [row] = await rows(db, sql`SELECT * FROM redaction_presets WHERE id=${target} AND kind=${kind} ${lock ? sql`FOR UPDATE` : sql``}`);
   if (!row) fail("NOT_FOUND", 404);
   const value = JSON.parse(unseal(row.payload, presetAad(req, target)));
-  return { revision: row.revision, settings: (kind === "profile" ? profileSchema.parse(value) : checkedRuleset(value)) as T };
+  return { revision: row.revision, settings: (kind === "profile" ? verifiedUserProfile(value, target) : checkedRuleset(value)) as T };
 }
 // Called only when a new project explicitly requests personal defaults. Existing null policies retain their legacy semantics.
 export async function defaultProjectPresets(db: DB, req: FastifyRequest): Promise<ProjectPresetPolicy> {
-  const preference = await getPreference(db, req);
-  const profile = await getPreset<Profile>(db, req, "profile", preference.settings.defaultProfileId);
+  const { items, preference } = await getProfileCatalogue(db, req);
+  const profile = preference.settings.defaultProfileId === SYSTEM_PROFILE_ID
+    ? { revision: 0, settings: defaultProfile() }
+    : items.find(item => item.settings.id === preference.settings.defaultProfileId)!;
   const ruleset = preference.settings.activeRuleSetId ? await getPreset<RuleSet>(db, req, "ruleset", preference.settings.activeRuleSetId) : null;
   return projectPresetSchema.parse({ revision: 1, profile: structuredClone(profile), ruleset: structuredClone(ruleset) });
 }
@@ -54,9 +93,12 @@ export function registerPresetRoutes(app: FastifyInstance) {
   for (const kind of ["profile", "ruleset"] as const) {
     const base = `/api/presets/${kind === "profile" ? "profiles" : "rulesets"}`;
     app.get(base, req => scope(req, async db => {
+      if (kind === "profile") {
+        const { items, preference, unavailableCount } = await getProfileCatalogue(db, req);
+        return { items: [{ revision: 0, settings: defaultProfile() }, ...items], preferences: preference, unavailableCount };
+      }
       const list = await rows(db, sql`SELECT * FROM redaction_presets WHERE kind=${kind} ORDER BY updated_at DESC,id`);
-      const items = list.map(row => ({ revision: row.revision, settings: kind === "profile" ? profileSchema.parse(JSON.parse(unseal(row.payload, presetAad(req, row.id)))) : checkedRuleset(JSON.parse(unseal(row.payload, presetAad(req, row.id)))) }));
-      if (kind === "profile") items.unshift({ revision: 0, settings: defaultProfile() });
+      const items = list.map(row => ({ revision: row.revision, settings: checkedRuleset(JSON.parse(unseal(row.payload, presetAad(req, row.id)))) }));
       return { items, preferences: await getPreference(db, req) };
     }));
     app.get(`${base}/:id`, req => scope(req, db => getPreset(db, req, kind, userId.parse((req.params as any).id))));

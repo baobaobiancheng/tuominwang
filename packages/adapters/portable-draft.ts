@@ -5,11 +5,13 @@ import{isWordFormat}from'../core/document-format.ts';
 import {mappingMatchesEntity,mappingMatchesValue} from "../core/mappings.ts";
 import {sameEntity,entitySpanKey} from '../core/entity-identity.ts';
 import { randomUUID } from "node:crypto";
-import type { Anchor, Mark } from "../contracts/index.ts";
+import type { Anchor, Mark, SourceFormat } from "../contracts/index.ts";
 import type { Glyph } from "../core/ocr.ts";
 import { correctPageText, shiftOcrAnchors } from "../core/ocr-correction.ts";
 import { validateMarks, mergeCandidates } from "../core/redaction.ts";
 import { detectComplete } from "../core/recognition-pipeline.ts";
+import {applyDocumentRoute} from '../core/document-route.ts';
+import type {DocumentPolicy} from '../contracts/document-policy.ts';
 import { validatePageReview } from "../core/page-redaction.ts";
 import { activeDictionary, enabledProfileMarks } from "../core/profile-recognition.ts";
 import { hash, readArtifact, readOriginal, seal, unseal, writeArtifact } from "./storage.ts";
@@ -17,7 +19,13 @@ import sharp from "sharp";
 import { PAGE_MAX_PIXELS } from "../core/pdf-reader.ts";
 async function previewPixels(bytes: Buffer) { try { return await sharp(bytes, { limitInputPixels: PAGE_MAX_PIXELS, failOn: "warning" }).flatten({ background: "white" }).toColourspace("srgb").removeAlpha().raw().toBuffer({ resolveWithObject: true }); } catch { throw new Error("PORTABLE_DRAFT_PREVIEW_INVALID"); } }
 function glyphMap(source: string): Glyph[] { try { const value = JSON.parse(source); if (!Array.isArray(value) || value.length > 200000 || value.some(g => !Array.isArray(g))) throw new Error(); return value; } catch { throw new Error("PORTABLE_DRAFT_MAP_INVALID"); } }
-export async function restorePortableDraft(d: any, old: any, assets: any[], mappings: any[], dictionary: any[], presetPolicy: any) {
+/** Fresh imported candidates obey the resolved document route before inherited review marks are rebound. */
+export function freshPortableMarks(text:string,anchors:Anchor[],dictionary:any[],presetPolicy:any,sourceFormat:SourceFormat,documentPolicy:DocumentPolicy|null,pagesCount:number){
+ const configuration=documentPolicy?.configuration;
+ const complete=detectComplete(text,anchors,activeDictionary(dictionary,presetPolicy),{ocr:pagesCount>0,sourceFormat,configuration});
+ return enabledProfileMarks(applyDocumentRoute(text,anchors,complete.marks,configuration,{suppressEvidenceScene:complete.evidenceScene.controlled}),presetPolicy.profile?.settings);
+}
+export async function restorePortableDraft(d: any, old: any, assets: any[], mappings: any[], dictionary: any[], presetPolicy: any, documentPolicy:DocumentPolicy|null) {
   const aad = `${d.tenant_id}:${d.project_id}:${d.id}`, source = await readOriginal(d.source_id), original = unseal(d.content, aad);
   if (hash(source) !== d.source_hash || hash(source) !== old.sourceHash || hash(original) !== d.content_hash || old.format !== d.source_format || !old.content.isWellFormed() || hash(old.content) !== old.contentHash) throw new Error("PORTABLE_DRAFT_SOURCE_MISMATCH");
   if(d.source_id)await verifiedDocumentSource(d);
@@ -58,7 +66,7 @@ export async function restorePortableDraft(d: any, old: any, assets: any[], mapp
     let replacement = m.replacement; if (replacement?.mode === "alias") { const ref=replacement;const direct=byId.get(ref.mappingId),matches=mappings.filter(candidate=>candidate.token===ref.token&&candidate.version===ref.version&&mappingMatchesValue(candidate,text.slice(m.start,m.end))&&mappingMatchesEntity(candidate,m)),mapping=direct??(matches.length===1?matches[0]:undefined); if (!mapping || mapping.version!==ref.version||mapping.token!==ref.token||!mappingMatchesValue(mapping,text.slice(m.start,m.end)) || !mappingMatchesEntity(mapping,m)) throw new Error("PORTABLE_DRAFT_MAPPING_MISMATCH"); replacement = { ...replacement, mappingId: mapping.id, version: mapping.version }; }
     return { ...m, userAdded:m.hiddenByType?reviewEntityWasUserAdded(m):reviewEntityBirth(m,old.reviewProvenance?.entries.find((e:any)=>e.active&&e.markIndex===index)),decision: m.hiddenByType===true?"ignore" as const:"pending" as const, ...(replacement ? { replacement } : {}), sources: m.hiddenByType===true?m.sources:[{ layer: "manual" as const, code: "imported-draft-requires-review" }] };
   });
-  validateMarks(text, imported);const importedKeys=new Set(imported.map(entitySpanKey)),fresh=enabledProfileMarks(detectComplete(text, anchors, activeDictionary(dictionary, presetPolicy), { ocr: !!pages.length }).marks, presetPolicy.profile?.settings),marks=[...fresh.filter(m=>!importedKeys.has(entitySpanKey(m))),...imported].sort((a,b)=>a.start-b.start||a.end-b.end);const restoredMarkIndices=imported.map(mark=>marks.indexOf(mark));
+  validateMarks(text, imported);const importedKeys=new Set(imported.map(entitySpanKey)),fresh=freshPortableMarks(text,anchors,dictionary,presetPolicy,d.source_format,documentPolicy,pages.length),marks=[...fresh.filter(m=>!importedKeys.has(entitySpanKey(m))),...imported].sort((a,b)=>a.start-b.start||a.end-b.end);const restoredMarkIndices=imported.map(mark=>marks.indexOf(mark));
   const regionCandidates = old.pageReview ? validatePageReview(old.pageReview, pages).regions : [], deletedPageCandidates = old.pageReview ? validatePageReview(old.pageReview, pages).deletedPages : [];
   return { content: seal(text, aad), hash: hash(text), anchors, pages, marks, restoredMarkIndices,entityCorrections:null,unresolved:[] as any[],pageReview: pages.length ? { mode: "unselected", regions: [], deletedPages: [], ...(old.pageReview?.maskStyle ? { maskStyle: old.pageReview.maskStyle } : {}) } : null, regionCandidates, deletedPageCandidates, rebuiltMapPages: rebuilt };
 }

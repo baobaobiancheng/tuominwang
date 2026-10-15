@@ -34,8 +34,8 @@ export async function correctOcrText(doc: any, index: number, input: OcrCorrecti
   if (!corrected.changed) return { changed: false };
   const nextText = text.slice(0, anchor.start) + corrected.text + text.slice(anchor.end), nextAnchors = shiftOcrAnchors(anchors, anchor, corrected.delta);
   const dictionary = doc.dictionary ? JSON.parse(unseal(doc.dictionary, `${doc.tenant_id}:${doc.project_id}:dictionary`)) : [];
-  const complete = detectComplete(nextText, nextAnchors, activeDictionary(dictionary, doc.presetPolicy), {ocr:true, screenshot:['png','jpg','jpeg'].includes(doc.source_format), filename: doc.source_name ? unseal(doc.source_name, `${aad}:name`) : ""});let candidates=complete.marks,nerVersion:string|null=null;
-  candidates = applyDocumentRoute(nextText,nextAnchors,candidates,doc.documentPolicy?.configuration);
+  const complete = detectComplete(nextText, nextAnchors, activeDictionary(dictionary, doc.presetPolicy), {ocr:true, sourceFormat:doc.source_format,configuration:doc.documentPolicy?.configuration, filename: doc.source_name ? unseal(doc.source_name, `${aad}:name`) : ""});let candidates=complete.marks,nerVersion:string|null=null;
+  candidates = applyDocumentRoute(nextText,nextAnchors,candidates,doc.documentPolicy?.configuration,{suppressEvidenceScene:complete.evidenceScene.controlled});
   candidates = mergeCandidates(nextText,candidates,await documentSpatialMarks(nextText,nextAnchors,doc.page_data,new Map([[index,corrected.glyphs]])));
   const bytes=doc.source_id?await verifiedDocumentSource(doc):Buffer.alloc(0),overrides=new Map([[index,corrected.glyphs]]);
   if (doc.ner_enabled) {

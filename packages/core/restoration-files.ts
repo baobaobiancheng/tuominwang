@@ -7,7 +7,7 @@ import { readProtectedPortable, type PortableCredentials, type PortableObject } 
 import { FILE_MAX_BYTES } from "../contracts/index.ts";
 const W = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", R = "http://schemas.openxmlformats.org/officeDocument/2006/relationships", RELS = "http://schemas.openxmlformats.org/package/2006/relationships", X = "http://www.w3.org/XML/1998/namespace";
 export type RestorationPlan = { mappings: Record<string, string>; occurrenceQueues: Record<string, string[]>; entityTypes: Record<string, string>; ambiguities: { token: string; originals: string[]; suggestedOriginal: string }[]; strategy: "token-canonical" | "occurrence"; sourceVersion: string };
-export type RestorationOptions = { strategy?: "token-canonical" | "occurrence"; choices?: Record<string, string>; allowCanonicalSelection?: boolean; allowNoMatches?: boolean };
+export type RestorationOptions = { strategy?: "token-canonical" | "occurrence"; choices?: Record<string, string>; allowCanonicalSelection?: boolean; allowNoMatches?: boolean; preserveUnknownTokens?: boolean };
 export type RestorationStats = { mappingEntries: number; tokensInDocument: number; totalReplacements: number; crossRunReplacements: number; normalizedMatches: number; storyReplacements: Record<string, number>; unknownTokens: string[]; residualTokens: string[]; hyperlinkReplacements: number };
 const fail = (code: string): never => { throw new Error(code); };
 const record = (v: any): v is PortableObject => !!v && typeof v === "object" && !Array.isArray(v);
@@ -85,9 +85,13 @@ export function emittedRestorationTokens(text:string,knownTokens:string[],flexib
 export function inspectRestorationTokens(text: string, knownTokens: string[], flexible = true): string[] {
   return tokenInspector(knownTokens, flexible)(text);
 }
-function assertNoUnknown(texts: string[], plan: RestorationPlan, accepted = Object.keys(plan.mappings), flexible = true) {
-  const inspect = tokenInspector(accepted, flexible);
-  if (texts.some(text => inspect(text).length)) fail("RESTORE_UNKNOWN_TOKEN");
+function checkRestorationTokens(texts: string[], plan: RestorationPlan, accepted = Object.keys(plan.mappings), flexible = true, preserveUnknownTokens = false) {
+  const inspect = tokenInspector(accepted, flexible), unknown = new Set<string>();
+  for (const text of texts) for (const token of inspect(text)) {
+    if (!preserveUnknownTokens) fail("RESTORE_UNKNOWN_TOKEN");
+    unknown.add(token);
+  }
+  return [...unknown];
 }
 type WordTokenMatch = { index: number; 0: string; token: string };
 /** Whole balanced wrapper sequences use the same compressed radix matcher as
@@ -116,22 +120,34 @@ function wordTokenMatcher(tokens: string[]) {
   return {matches,replace(text:string,replacement:(raw:string,token:string)=>string){const output:string[]=[];let offset=0;for(const match of matches(text)){output.push(text.slice(offset,match.index),replacement(match[0],match.token));offset=match.index+match[0].length;}output.push(text.slice(offset));return output.join('');}};
 }
 export function restoreMarkdown(bytes: Buffer, plan: RestorationPlan, options: RestorationOptions = {}) {
-  assertPlan(plan); if (bytes.length > FILE_MAX_BYTES) fail("FILE_SIZE_LIMIT"); let text: string; try { text = new TextDecoder("utf8", { fatal: true }).decode(bytes); } catch { return fail("RESTORE_TEXT_ENCODING_INVALID"); }
+  assertPlan(plan); if (bytes.length > FILE_MAX_BYTES) fail("FILE_SIZE_LIMIT"); let text: string; try { text = new TextDecoder("utf8", { fatal: true, ignoreBOM: true }).decode(bytes); } catch { return fail("RESTORE_TEXT_ENCODING_INVALID"); }
   const variants = new Map<string, string>();
+  const tokens = Object.keys(plan.mappings), exact = new Set(tokens);
+  // Source Td installs exact mapping keys before adding escaped/HTML forms with ??=.
+  // A derived form never replaces a caller-supplied exact key.
+  for (const token of tokens) variants.set(token, token);
   const constant = (token: string) => plan.strategy !== "occurrence" || (plan.occurrenceQueues[token] ?? []).every(value => value === plan.mappings[token]);
-  function variant(form: string, token: string) {
+  function derived(form: string, token: string) {
+    if (exact.has(form)) return;
     const previous = variants.get(form);
     if (previous !== undefined && previous !== token && (plan.mappings[previous] !== plan.mappings[token] || !constant(previous) || !constant(token))) fail("RESTORE_NORMALIZED_TOKEN_COLLISION");
-    variants.set(form, token);
+    if (previous === undefined) variants.set(form, token);
   }
-  for (const token of Object.keys(plan.mappings)) { variant(token, token); variant(token.replace(/([\\`*_{}\[\]()#+.!>|~<>-])/g, "\\$1"), token); variant(token.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;"), token); }
-  assertNoUnknown([text.replaceAll("\\【", "【").replaceAll("\\】", "】")], plan, [...variants.keys()], false);
+  for (const token of tokens) {
+    derived(token.replace(/([\\`*_{}\[\]()#+.!>|~<>-])/g, "\\$1"), token);
+    derived(token.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#39;"), token);
+  }
+  const unknownTokens = checkRestorationTokens([text.replaceAll("\\【", "【").replaceAll("\\】", "】")], plan, [...variants.keys()], false, options.preserveUnknownTokens);
   const matcher = literalMatcher(variants), value = resolver(plan), result = stats(plan), found = new Set<string>();
+  result.unknownTokens = unknownTokens;
   const output = matcher.replace(text, match => { const token = match.value; found.add(token); result.totalReplacements++; return value(token); });
   result.tokensInDocument = found.size; result.storyReplacements.markdown = result.totalReplacements;
   if (!result.totalReplacements && !options.allowNoMatches) fail("RESTORE_NO_TOKENS");
+  // The public external-file path treats an ordinary no-op as a successful
+  // byte-preserving copy. Managed callers retain the strict default.
+  const bytesOut = !result.totalReplacements && options.allowNoMatches ? Buffer.from(bytes) : Buffer.from(output);
   // One-pass replacement intentionally leaves token-shaped text that was itself part of an original value.
-  return { output: Buffer.from(output), stats: result, ambiguities: plan.ambiguities, residualTokens: result.residualTokens };
+  return { output: bytesOut, stats: result, ambiguities: plan.ambiguities, residualTokens: result.residualTokens };
 }
 type TextNode = { node: Element; text: string; start: number; end: number; run: Element | null };
 function parentElement(node: Node | null, local: string): Element | null { for (let p = node; p; p = p.parentNode) if (p.nodeType === 1 && (p as Element).namespaceURI === W && (p as Element).localName === local) return p as Element; return null; }
@@ -187,8 +203,9 @@ export async function restoreDocx(bytes: Buffer, plan: RestorationPlan, options:
   const parsed = [...parts.keys()].filter(name => /\.(?:xml|rels)$/i.test(name)).sort((a, b) => a.localeCompare(b)).map(story => ({ story, document: restorationXml(parts.get(story)!) }));
   const paragraphs = parsed.flatMap(({ story, document }) => elements(document, W, "p").map(p => ({ story, paragraph: p, nodes: paragraphNodes(p) })));
   const metadata = parsed.map(part => ({ ...part, fields: metadataFields(part.document, paragraphTextNodes(part.document)) }));
-  assertNoUnknown([...paragraphs.map(p => p.nodes.map(n => n.text).join("")), ...metadata.flatMap(p => p.fields.map(f => f.text))], plan);
+  const unknownTokens = checkRestorationTokens([...paragraphs.map(p => p.nodes.map(n => n.text).join("")), ...metadata.flatMap(p => p.fields.map(f => f.text))], plan, undefined, true, options.preserveUnknownTokens);
   const matcher = wordTokenMatcher(Object.keys(plan.mappings)), value = resolver(plan), result = stats(plan), found = new Set<string>();
+  result.unknownTokens = unknownTokens;
   // The office canonical order is paragraph content followed by metadata.
   // Resolve metadata first to avoid cloned run properties being restored twice,
   // but begin its occurrence cursor after all original paragraph matches.
@@ -235,7 +252,11 @@ export async function restoreDocx(bytes: Buffer, plan: RestorationPlan, options:
     let expected = text; for (const e of expectedEdits.sort((a, b) => b.start - a.start)) expected = expected.slice(0, e.start) + e.value + expected.slice(e.end);
     if (paragraphNodes(paragraph).map(n => n.node.textContent ?? "").join("") !== expected) fail("RESTORE_LAYOUT_MISMATCH");
   }
-  result.tokensInDocument = found.size; if (!result.totalReplacements && !options.allowNoMatches) fail("RESTORE_NO_TOKENS");
+  result.tokensInDocument = found.size;
+  if (!result.totalReplacements) {
+    if (!options.allowNoMatches) fail("RESTORE_NO_TOKENS");
+    return { output: Buffer.from(bytes), stats: result, ambiguities: plan.ambiguities, residualTokens: result.residualTokens };
+  }
   // Relationship parts may have been updated by createHyperlink. Only body
   // parts need a second serialization after paragraph edits.
   for (const { story, document } of parsed) if (elements(document, W, "p").length) parts.set(story, restorationXmlBytes(document));

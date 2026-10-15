@@ -97,3 +97,22 @@ it("emitted-token discovery retains complete plain and composite keys without gr
  expect(emittedRestorationTokens('【姓名001】',known,true)).toEqual([]);
  expect(emittedRestorationTokens('联系代号；【姓 名001】 \u200b【机构001】；前【邮 箱001】后',known,true)).toEqual(known.slice(0,3));
 });
+
+it("external-file no-op option preserves valid Markdown and Word bytes but never accepts unknown aliases", async () => {
+  const plan = parseRestorationMapping({ mappings: { "【姓名001】": "合成甲" } });
+  const markdown = Buffer.from("公开正文");
+  expect(restoreMarkdown(markdown, plan, { allowNoMatches: true })).toMatchObject({ output: markdown, stats: { totalReplacements: 0 } });
+  const markdownBomCrlf = Buffer.from("\uFEFF公开正文\r\n");
+  expect(restoreMarkdown(markdownBomCrlf, plan, { allowNoMatches: true }).output).toEqual(markdownBomCrlf);
+  const matchedBomCrlf = Buffer.from("\uFEFF【姓名001】\r\n");
+  expect(restoreMarkdown(matchedBomCrlf, plan).output).toEqual(Buffer.from("\uFEFF合成甲\r\n"));
+  expect(() => restoreMarkdown(markdown, plan)).toThrow("RESTORE_NO_TOKENS");
+  expect(() => restoreMarkdown(Buffer.from("【姓名999】"), plan, { allowNoMatches: true })).toThrow("RESTORE_UNKNOWN_TOKEN");
+  const docx = await officeFixture("docx", { "word/document.xml": `<w:document xmlns:w="${W}"><w:body><w:p><w:r><w:t>公开正文</w:t></w:r></w:p></w:body></w:document>` });
+  const unchanged = await restoreDocx(docx, plan, { allowNoMatches: true });
+  expect(unchanged.output).toEqual(docx);
+  expect(unchanged.stats.totalReplacements).toBe(0);
+  await expect(restoreDocx(docx, plan)).rejects.toThrow("RESTORE_NO_TOKENS");
+  const unknown = await officeFixture("docx", { "word/document.xml": `<w:document xmlns:w="${W}"><w:body><w:p><w:r><w:t>【姓名999】</w:t></w:r></w:p></w:body></w:document>` });
+  await expect(restoreDocx(unknown, plan, { allowNoMatches: true })).rejects.toThrow("RESTORE_UNKNOWN_TOKEN");
+});

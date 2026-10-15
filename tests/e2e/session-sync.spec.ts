@@ -103,3 +103,53 @@ for (const lateStatus of [200, 401] as const) {
     }
   });
 }
+
+test('switching account during boot project rate-window retry invalidates the old identity and pending load', async ({ page, context }) => {
+  test.setTimeout(90000);
+  await page.goto('/');
+  await page.getByLabel('账号', { exact: true }).fill(process.env.E2E_USERNAME!);
+  await page.getByLabel('密码', { exact: true }).fill(process.env.E2E_PASSWORD!);
+  await page.getByRole('button', { name: '登录工作台' }).click();
+  const name = '启动重试切号-' + randomUUID().slice(0, 8);
+  await page.locator('.create-project summary').click();
+  await page.getByLabel('项目名称', { exact: true }).fill(name);
+  await page.getByRole('button', { name: '新建项目', exact: true }).click();
+  await expect(page.getByRole('heading', { name, exact: true })).toBeVisible();
+  const username = 'boot-other-' + randomUUID().slice(0, 8), password = randomUUID();
+  const headers = { Origin: 'http://127.0.0.1:5178' };
+  expect((await context.request.post('/api/organization/members', { headers, data: { username, password } })).ok()).toBe(true);
+  let release!: () => void, started!: () => void;
+  const gate = new Promise<void>(resolve => { release = resolve; });
+  const intercepted = new Promise<void>(resolve => { started = resolve; });
+  let held = false;
+  await page.route('**/api/projects?*', async route => {
+    if (!held && route.request().method() === 'GET') { held = true; started(); await gate; }
+    await route.continue();
+  });
+  try {
+    const sessionResponse = page.waitForResponse(r => new URL(r.url()).pathname === '/api/session');
+    await page.reload();
+    expect((await (await sessionResponse).json()).username).toBe(process.env.E2E_USERNAME);
+    await intercepted;
+    let exhausted = false;
+    for (let i = 0; i < 121; i++) {
+      const response = await context.request.get('/api/session');
+      if (response.status() === 429) { expect(response.headers()['retry-after']).toMatch(/^[0-9]+$/); exhausted = true; break; }
+      expect(response.status()).toBe(200);
+    }
+    expect(exhausted).toBe(true);
+    const rateLimited = page.waitForResponse(r => new URL(r.url()).pathname === '/api/projects' && r.status() === 429);
+    release();
+    await rateLimited;
+    expect((await context.request.post('/api/login', { headers, data: { username, password } })).ok()).toBe(true);
+    await page.evaluate(() => window.dispatchEvent(new Event('focus')));
+    await expect(page.locator('.account-name')).toHaveText(username);
+    await expect(page.getByRole('button', { name, exact: true })).toHaveCount(0);
+    await expect(page.getByRole('heading', { name: '选择一个项目', exact: true })).toBeVisible();
+    await expect(page.getByRole('button', { name: '登录工作台', exact: true })).toHaveCount(0);
+    expect((await (await context.request.get('/api/session')).json()).username).toBe(username);
+  } finally {
+    release();
+    await page.unrouteAll({ behavior: 'wait' });
+  }
+});
