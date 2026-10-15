@@ -1,0 +1,66 @@
+{
+  "scope": "051 secondbatch local checkpoint; full API still running, not production acceptance",
+  "mainCheck": {
+    "ended": "2026-10-15T17:21:01.659332+00:00",
+    "exitCode": 0,
+    "inputFiles": 809,
+    "inputsUnchanged": true,
+    "bendLaws": 11,
+    "incorrectMutationsRejected": 13,
+    "unitFiles": 133,
+    "passedUnitTests": 777,
+    "skippedUnitTests": 0,
+    "typecheck": true,
+    "viteBuild": true,
+    "legacyControlEnabled": true,
+    "scope": "final809 includes signature, terminal-progress and implicit MCP selector; API95 still running, not production acceptance"
+  },
+  "focusedApi": {
+    "signature": {
+      "pass": 6,
+      "fail": 0,
+      "skip": 0,
+      "log": ".data/research/lawbot-2026-10-15/iteration051/signature-formal-api-attempt03.log"
+    },
+    "mcpResume": {
+      "pass": 1,
+      "fail": 0,
+      "skip": 0,
+      "log": ".data/research/lawbot-2026-10-15/iteration051/mcp-resume-selection-attempt02.log"
+    }
+  },
+  "edge": {
+    "cancelRecovery": {
+      "pass": 1,
+      "seconds": 21.2
+    },
+    "cancelResponseLoss": {
+      "pass": 1,
+      "seconds": 18.9
+    },
+    "signatureDownload": {
+      "pass": 1,
+      "seconds": 39.4
+    },
+    "signatureGuideRepetition": {
+      "pass": 1,
+      "seconds": 40.4
+    }
+  },
+  "guide": {
+    "sections": 25,
+    "images": 24,
+    "allImagesLoaded": true,
+    "overflow": false
+  },
+  "fullApi": {
+    "plannedFiles": 95,
+    "status": "running",
+    "activeLogNotPinned": ".data/research/lawbot-2026-10-15/iteration051/full-api-final.log"
+  },
+  "sourceVersion": "local051/schema040",
+  "production": "last050/schema039",
+  "referenceRuntime": "258R0",
+  "modelsChanged": false,
+  "resourceCapsAdded": false
+}

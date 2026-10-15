@@ -32,6 +32,13 @@ const terminal=new Set(['cancelled_by_user','failed','completed']);
 const UNCHANGED=Symbol('UNCHANGED');
 const resumableStates=new Set<string>(taskStates.filter(s=>s!=='client_disconnected'&&!terminal.has(s)));
 function validResumeState(value:unknown){return typeof value==='string'&&resumableStates.has(value);}
+// Public 0.5.9 canResumeDeliveredJob stable phases. Keep cloud explicit-ID
+// and initial takeover semantics; implicit resume first prefers a delivered task.
+const deliveredResumeStates=new Set<string>(['sanitized_artifact_ready','analyzing_by_ai','ai_result_rejected','round_completed','restore_failed','waiting_for_restore_approval']);
+function implicitResumeTask(tasks:PrivateTask[]){
+ return tasks.find(t=>!terminal.has(t.state)&&(t.deliveries.length>0||!!t.combined)&&deliveredResumeStates.has((t.pendingResume||t.state==='client_disconnected'?t.resumeState:t.state)??''))
+  ?? tasks.find(t=>!terminal.has(t.state));
+}
 function aad(req:FastifyRequest,target:string){return `${req.user.tenant_id}:${req.user.id}:ai-collab:${target}`;}
 function decode(value:string){const b=Buffer.from(bytesSchema.parse(value),'base64');if(b.length>20*1024*1024||b.toString('base64')!==value)fail('RESULT_BYTES_INVALID',400);return b;}
 function privateRead(row:any,req:FastifyRequest):PrivateTask{const t=JSON.parse(unseal(row.payload,aad(req,row.id)));if(t.revision!==row.revision||taskUUID(t.jobId)!==row.id)fail('TASK_STORAGE_INVALID',409);return t;}
@@ -238,7 +245,7 @@ export function registerMcpRoutes(app:FastifyInstance,applyConfiguration?:Collab
   if(name==='list_lawbot_saved_settings'){const p=(await internal(req,'GET','/api/presets/profiles')).json(),r=(await internal(req,'GET','/api/presets/rulesets')).json();return {profiles:p.items.map((x:any)=>({id:x.settings.id,name:x.settings.name,revision:x.revision,readonly:x.settings.readonly})),ruleSets:r.items.map((x:any)=>({id:x.settings.id,name:x.settings.name,revision:x.revision})),defaults:{defaultProfileId:p.preferences.settings.defaultProfileId,activeRuleSetId:p.preferences.settings.activeRuleSetId}};}
   if(name==='start_lawbot_redaction'||name==='start_lawbot_redaction_for_user_manual_review')return start(req,a,caller,name.endsWith('_for_user_manual_review'));
   if(name==='resume_lawbot_task'){
-  const t=a.job_id?await load(req,a.job_id):(await list(req)).find(t=>!terminal.has(t.state));if(!t)fail('TASK_NOT_FOUND',404);if(terminal.has(t.state))fail('INVALID_STATE',409);if((t.pendingResume||t.state==='client_disconnected')&&!validResumeState(t.resumeState))fail('RESUME_STATE_UNAVAILABLE',409);
+  const t=a.job_id?await load(req,a.job_id):implicitResumeTask(await list(req));if(!t)fail('TASK_NOT_FOUND',404);if(terminal.has(t.state))fail('INVALID_STATE',409);if((t.pendingResume||t.state==='client_disconnected')&&!validResumeState(t.resumeState))fail('RESUME_STATE_UNAVAILABLE',409);
   const samePending=(task:PrivateTask)=>task.pendingResume?.sessionId===caller.sessionId&&task.pendingResume.adapterId===caller.adapterId;
   if(samePending(t)&&t.state==='waiting_for_session_authorization')return {...externalTask(t),resumeRequested:true};
   const update=await change(req,t.jobId,undefined,undefined,task=>{

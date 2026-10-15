@@ -3,6 +3,7 @@ import { ReplacementPoliciesEditor } from "./replacement-policies.tsx";
 import React, { useEffect, useRef, useState } from "react";
 import { MAX_MARKS, type DocumentView, type Mark, type PageReview } from "../../packages/contracts/index.ts";
 import type { KnownEntityCheck, SearchScope } from "../../packages/core/review-tools.ts";
+import {applySignatureDecision} from "../../packages/core/review-group-ui.ts";
 
 export function ReviewTools({ doc, marks, pageReview, update, locate, run, api, disabled, canReview, canUseAliases, mode, showMarks, surface = "all", onAddMissing }: {
   doc: DocumentView; marks: Mark[]; update: (marks: Mark[]) => void; locate: (span: { start: number; end: number }) => Promise<void>;
@@ -59,7 +60,7 @@ export function ReviewTools({ doc, marks, pageReview, update, locate, run, api, 
   }
   function bulk(decision: Mark["decision"]) {
     if (disabled || !canReview || !indexes.size) return;
-    update(marks.map((m, i) => indexes.has(i) ? { ...m, decision } : m)); showMarks();
+    update(applySignatureDecision(marks,indexes,decision)); showMarks();
   }
   async function check() {
     const version = draft.current.version;

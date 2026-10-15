@@ -26,6 +26,7 @@ import {
 } from "../../packages/adapters/db.ts";
 import { FILE_ERRORS } from "../../packages/core/files.ts";
 import { assertExportable } from "../../packages/core/export-gate.ts";
+import {assertTrustedSignatureGroups} from "../../packages/adapters/signature-source-gate.ts";
 import { runProcessing } from "../../packages/adapters/processing.ts";
 import { purgeRequestedMaterials } from "../../packages/adapters/deletions.ts";
 export async function tick(signal?: AbortSignal) {
@@ -90,14 +91,14 @@ async function processNext(signal?: AbortSignal, releaseHeavy = async () => {}) 
     await releaseHeavy();
     const artifact = result.artifact as { id: string; hash: string; format?: string } | undefined;
     await scope(async (db) => {
-      const [project] = await rows(db, sql`SELECT id FROM projects WHERE id=${doc.project_id} FOR UPDATE`);
+      const [project] = await rows(db, sql`SELECT id,tenant_id,preset_policy,preset_revision FROM projects WHERE id=${doc.project_id} FOR UPDATE`);
       if (!project || !(await rows(db, sql`SELECT job_authorized(${job.id}) AS allowed`))[0]?.allowed) throw new Error("PERMISSION_REVOKED");
       const [locked] = await rows(
         db,
         sql`SELECT * FROM documents WHERE id=${doc.id} FOR UPDATE`,
       );
       if (!locked || locked.revision !== job.revision) throw new Error("STALE_VERSION");
-      if (job.kind === "export") assertExportable({...locked,page_review:openPageReview(locked)},job.revision,result.textLength,result.textHash,snapshot?{...snapshot,page_review:openPageReview({...locked,revision:snapshot.revision,content_hash:snapshot.content_hash},snapshot.page_review)}:undefined);
+      if (job.kind === "export") { Object.assign(locked,resolveDocumentPolicy(locked,readProjectPresets(project))); await assertTrustedSignatureGroups(locked); assertExportable({...locked,page_review:openPageReview(locked)},job.revision,result.textLength,result.textHash,snapshot?{...snapshot,page_review:openPageReview({...locked,revision:snapshot.revision,content_hash:snapshot.content_hash},snapshot.page_review)}:undefined); }
       const updated = await rows(
         db,
         sql`UPDATE jobs SET status='succeeded',lease_until=NULL WHERE id=${job.id} AND generation=${job.generation} AND status='running' AND lease_until>now() RETURNING id`,
@@ -140,7 +141,7 @@ async function processNext(signal?: AbortSignal, releaseHeavy = async () => {}) 
       "STALE_VERSION",
       "LEASE_LOST", "PROCESSING_EVENT_WRITE_FAILED",
       "PERMISSION_REVOKED",
-      "INVALID_MARKS",
+      "INVALID_MARKS", "SIGNATURE_GROUP_INVALID", "SIGNATURE_GROUP_RECOGNITION_REQUIRED", "SIGNATURE_GROUP_RULE_CONFLICT",
       "OVERLAPPING_MARKS",
       "RESIDUE_FOUND",
       "ARTIFACT_MISMATCH",

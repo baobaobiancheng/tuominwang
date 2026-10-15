@@ -39,6 +39,8 @@ test("cancelled queued detection refreshes the whole material and reruns at a ne
     expect(first.revision).toBe(0);
     expect(first.job.kind).toBe("detect");
     const id = first.id, oldJob = first.job.id;
+    let oldEventRequests = 0;
+    page.on('request', request => { if (new URL(request.url()).pathname === `/api/jobs/${oldJob}/events`) oldEventRequests++; });
     const originalBefore = (await locker.query("SELECT source_id,source_hash FROM documents WHERE id=$1", [id])).rows[0];
     expect(await readOriginal(originalBefore.source_id)).toEqual(source);
 
@@ -46,6 +48,11 @@ test("cancelled queued detection refreshes the whole material and reruns at a ne
     await expect(page.getByText("材料的处理状态已变化，请重新识别后复核。原有复核记录仍保留。", { exact: true })).toBeVisible();
     await expect(page.getByText("自动识别 需重新识别", { exact: false })).toBeVisible();
     await expect(page.getByText("复核版本 1", { exact: true })).toBeVisible();
+    await expect(page.getByRole('region', { name: '处理进度' })).toHaveCount(0);
+    await expect(page.getByText('进度暂时无法更新，正在重试。', { exact: true })).toHaveCount(0);
+    const eventsAtOutdated = oldEventRequests;
+    await page.waitForTimeout(6200); // Beyond the component's former 5 s retry timer.
+    expect(oldEventRequests).toBe(eventsAtOutdated);
     await expect(page.getByRole("button", { name: "重试任务", exact: true })).toHaveCount(0);
     const cancelled = await (await page.request.get(`/api/documents/${id}`)).json();
     expect(cancelled.state).toBe("outdated");

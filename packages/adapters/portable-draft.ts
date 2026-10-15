@@ -1,7 +1,10 @@
 import {verifiedDocumentSource} from './document-source.ts';
+import {documentTableMarks} from './reference-table.ts';
+import {effectiveSignatureGroups} from '../core/signature-group-policy.ts';
+import {rulesetMaterialRoute} from '../core/document-route.ts';
 import {reviewEntityWasUserAdded} from '../core/review-type-hide.ts';
 import {reviewEntityBirth} from '../core/review-entity-birth.ts';
-import{isWordFormat}from'../core/document-format.ts';
+import{isWordFormat,processingDocument}from'../core/document-format.ts';
 import {mappingMatchesEntity,mappingMatchesValue} from "../core/mappings.ts";
 import {sameEntity,entitySpanKey} from '../core/entity-identity.ts';
 import { randomUUID } from "node:crypto";
@@ -28,7 +31,7 @@ export function freshPortableMarks(text:string,anchors:Anchor[],dictionary:any[]
 export async function restorePortableDraft(d: any, old: any, assets: any[], mappings: any[], dictionary: any[], presetPolicy: any, documentPolicy:DocumentPolicy|null) {
   const aad = `${d.tenant_id}:${d.project_id}:${d.id}`, source = await readOriginal(d.source_id), original = unseal(d.content, aad);
   if (hash(source) !== d.source_hash || hash(source) !== old.sourceHash || hash(original) !== d.content_hash || old.format !== d.source_format || !old.content.isWellFormed() || hash(old.content) !== old.contentHash) throw new Error("PORTABLE_DRAFT_SOURCE_MISMATCH");
-  if(d.source_id)await verifiedDocumentSource(d);
+  const trustedParsingSource=await verifiedDocumentSource(d),processingFormat=processingDocument(d).source_format as SourceFormat;
   let text = original, anchors = (d.anchors as Anchor[]).map(a => ({ ...a })); const pages = (d.page_data ?? []).map((p: any) => ({ ...p })); const rebuilt: number[] = [];
   if (assets.length !== pages.length || new Set(assets.map(p => p.index)).size !== assets.length) throw new Error("PORTABLE_DRAFT_PAGE_MISMATCH");
   if (!Array.isArray(old.anchors) || old.anchors.some((a: any) => !Number.isSafeInteger(a.start) || !Number.isSafeInteger(a.end) || a.start < 0 || a.end < a.start || a.end > old.content.length)) throw new Error("PORTABLE_DRAFT_ANCHOR_INVALID");
@@ -64,9 +67,10 @@ export async function restorePortableDraft(d: any, old: any, assets: any[], mapp
   if (!legacyText && (anchors.length !== old.anchors.length || anchors.some((a, i) => signature(a) !== signature(old.anchors[i])))) throw new Error("PORTABLE_DRAFT_ANCHOR_MISMATCH");
   const byId = new Map(mappings.map(m => [m.id, m])), imported = (old.marks as Mark[]).map((m,index) => {
     let replacement = m.replacement; if (replacement?.mode === "alias") { const ref=replacement;const direct=byId.get(ref.mappingId),matches=mappings.filter(candidate=>candidate.token===ref.token&&candidate.version===ref.version&&mappingMatchesValue(candidate,text.slice(m.start,m.end))&&mappingMatchesEntity(candidate,m)),mapping=direct??(matches.length===1?matches[0]:undefined); if (!mapping || mapping.version!==ref.version||mapping.token!==ref.token||!mappingMatchesValue(mapping,text.slice(m.start,m.end)) || !mappingMatchesEntity(mapping,m)) throw new Error("PORTABLE_DRAFT_MAPPING_MISMATCH"); replacement = { ...replacement, mappingId: mapping.id, version: mapping.version }; }
-    return { ...m, userAdded:m.hiddenByType?reviewEntityWasUserAdded(m):reviewEntityBirth(m,old.reviewProvenance?.entries.find((e:any)=>e.active&&e.markIndex===index)),decision: m.hiddenByType===true?"ignore" as const:"pending" as const, ...(replacement ? { replacement } : {}), sources: m.hiddenByType===true?m.sources:[{ layer: "manual" as const, code: "imported-draft-requires-review" }] };
+    const {signatureGroup:_foreignGroup,...portable}=m;
+    return { ...portable, userAdded:m.hiddenByType?reviewEntityWasUserAdded(m):reviewEntityBirth(m,old.reviewProvenance?.entries.find((e:any)=>e.active&&e.markIndex===index)),decision: m.hiddenByType===true?"ignore" as const:"pending" as const, ...(replacement ? { replacement } : {}), sources: m.hiddenByType===true?m.sources:[{ layer: "manual" as const, code: "imported-draft-requires-review" }] };
   });
-  validateMarks(text, imported);const importedKeys=new Set(imported.map(entitySpanKey)),fresh=freshPortableMarks(text,anchors,dictionary,presetPolicy,d.source_format,documentPolicy,pages.length),marks=[...fresh.filter(m=>!importedKeys.has(entitySpanKey(m))),...imported].sort((a,b)=>a.start-b.start||a.end-b.end);const restoredMarkIndices=imported.map(mark=>marks.indexOf(mark));
+  validateMarks(text, imported);const fresh=freshPortableMarks(text,anchors,dictionary,presetPolicy,d.source_format,documentPolicy,pages.length),signatureMarks=effectiveSignatureGroups(text,anchors,(await documentTableMarks(trustedParsingSource,text,anchors,processingFormat)).marks.filter(m=>m.signatureGroup),presetPolicy?.profile?.settings,presetPolicy?.ruleset?.settings,rulesetMaterialRoute(d.recognition?.classification?.type??'other',documentPolicy?.configuration)),base=mergeCandidates(text,fresh,signatureMarks).map(m=>m.signatureGroup?{...m,decision:'pending' as const,replacement:undefined,replacementOrigin:undefined,hiddenByType:undefined,hiddenTypeWasUserAdded:undefined}:m),safeImported=imported.filter(m=>!signatureMarks.some(s=>m.start<s.end&&m.end>s.start)),importedKeys=new Set(safeImported.map(entitySpanKey)),marks=[...base.filter(m=>!importedKeys.has(entitySpanKey(m))),...safeImported].sort((a,b)=>a.start-b.start||a.end-b.end);const restoredMarkIndices=imported.map(mark=>safeImported.includes(mark)?marks.indexOf(mark):-1);const unresolved=imported.filter(m=>!safeImported.includes(m)).map(m=>({category:'signature-group',reason:'PORTABLE_SIGNATURE_REVIEW_REQUIRED',source:{start:m.start,end:m.end,kind:m.kind}}));
   const regionCandidates = old.pageReview ? validatePageReview(old.pageReview, pages).regions : [], deletedPageCandidates = old.pageReview ? validatePageReview(old.pageReview, pages).deletedPages : [];
-  return { content: seal(text, aad), hash: hash(text), anchors, pages, marks, restoredMarkIndices,entityCorrections:null,unresolved:[] as any[],pageReview: pages.length ? { mode: "unselected", regions: [], deletedPages: [], ...(old.pageReview?.maskStyle ? { maskStyle: old.pageReview.maskStyle } : {}) } : null, regionCandidates, deletedPageCandidates, rebuiltMapPages: rebuilt };
+  return { content: seal(text, aad), hash: hash(text), anchors, pages, marks, restoredMarkIndices,entityCorrections:null,unresolved,pageReview: pages.length ? { mode: "unselected", regions: [], deletedPages: [], ...(old.pageReview?.maskStyle ? { maskStyle: old.pageReview.maskStyle } : {}) } : null, regionCandidates, deletedPageCandidates, rebuiltMapPages: rebuilt };
 }

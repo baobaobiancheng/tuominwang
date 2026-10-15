@@ -1,4 +1,8 @@
 import {reviewEntityBirth,reviewEntityBirths}from'../../packages/core/review-entity-birth.ts';
+import {assertSignatureReviewTransition} from '../../packages/core/review-groups.ts';
+import {assertTrustedSignatureGroups} from '../../packages/adapters/signature-source-gate.ts';
+import {resolveDocumentPolicy} from '../../packages/adapters/document-policy.ts';
+import {readProjectPresets} from '../../packages/adapters/project-presets.ts';
 import {readReviewProvenance,sealNextReviewProvenance} from '../../packages/adapters/review-provenance.ts';
 import {matchReviewEntitySlots} from '../../packages/core/review-entity-slots.ts';
 import {rebindEntityCorrections} from '../../packages/adapters/entity-corrections.ts';
@@ -17,7 +21,11 @@ import { isDeepStrictEqual } from "node:util";
 // Caller holds the document row lock. Both single-document and project review use the same validation/snapshot path.
 export async function saveReview(db: DB, user: string, d: any, incoming: Mark[], timeoutMs?: number, trustedSnapshot = false, pageReview?: PageReview) {
   if (d.state !== "review") throw Object.assign(new Error(d.state === "outdated" ? "POLICY_CHANGED" : "DETECTION_INCOMPLETE"), { statusCode: 409 });
+  const [project]=await rows(db,sql`SELECT id,tenant_id,preset_policy,preset_revision FROM projects WHERE id=${d.project_id}`);
+  Object.assign(d,resolveDocumentPolicy(d,readProjectPresets(project)));
+  await assertTrustedSignatureGroups(d);
   const provenance=await readReviewProvenance(db,d),matched=matchReviewEntitySlots(provenance,d.marks,incoming),births=reviewEntityBirths(provenance,d.marks),priorIndices=new Map(matched.links.map(link=>[link.afterIndex,link.beforeIndex]));
+  assertSignatureReviewTransition(d.marks,matched.marks,matched.links);
   const supplied=trustedSnapshot ? matched.marks : reviewMarks(d.marks, matched.marks);
   const marks=supplied.map((mark,index)=>{const beforeIndex=priorIndices.get(index),birth=beforeIndex!==undefined?births.get(beforeIndex)!:trustedSnapshot?reviewEntityBirth(mark,matched.priorByAfter.get(index)):true,{hiddenTypeWasUserAdded:_origin,userAdded:_birth,...value}=mark;return{...value,userAdded:birth,...mark.hiddenByType?{hiddenTypeWasUserAdded:birth}:{}};});
   if (!trustedSnapshot && marks.some(m => m.replacement?.mode === "alias" && !(d.marks as Mark[]).some(old => old.start === m.start && old.end === m.end && sameEntity(old,m) && isDeepStrictEqual(old.replacement, m.replacement)))) await requirePermission(db, d.project_id, ["view_mapping"]);

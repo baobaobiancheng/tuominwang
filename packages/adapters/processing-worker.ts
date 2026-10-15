@@ -8,7 +8,6 @@ import {storeMarkdownSource,loadMarkdownSource,readMarkdownBlockerReview} from '
 import {markdownSourceReady,createMarkdownMatchPublisher} from '../core/reference-markdown-progress.ts';
 import type {ReferenceMarkdown} from '../core/reference-markdown.ts';
 import {eventEnvelope,type ProcessingEvent} from "../core/processing-events.ts";
-import {applyActiveRulesetCandidates} from "../core/user-memory-rules.ts";
 import {runtimeWhitelistCandidates} from "../core/runtime-rule-update.ts";
 import {readLiveRuntimeRules} from './runtime-rules-control.ts';
 import {verifiedDocumentSource} from "./document-source.ts";
@@ -25,6 +24,8 @@ import { randomUUID } from "node:crypto";
 import { mergeCandidates } from "../core/redaction.ts";
 import { parseFile, exportFile, verifyFile, validateFileMarks, FILE_ERRORS } from "../core/files.ts";
 import { assertExportable } from "../core/export-gate.ts";
+import {assertTrustedSignatureGroups} from './signature-source-gate.ts';
+import {applySignatureLogicalRules,applyRulesPreservingSignatureGroups,assertSignaturePolicyGroups} from '../core/signature-group-policy.ts';
 import { textWindow } from "../core/text-window.ts";
 import { checkKnownEntities, previewText, searchText } from "../core/review-tools.ts";
 import { validateMappingMarks } from "../core/mappings.ts";
@@ -208,10 +209,12 @@ async function execute(input: ProcessingInput): Promise<any> {
       finally { await ner.close(); }
     }
     if(!d.ner_enabled)marks=await contextualDocumentMarks(detectBytes,text,anchors,pages,d.source_format,marks,{configuration:d.documentPolicy?.configuration,documentType:contextualDocumentType(complete.classification.type,d.documentPolicy?.configuration)});
+    marks = applySignatureLogicalRules(text,marks,d.presetPolicy?.ruleset?.settings,rulesetMaterialRoute(complete.classification.type,d.documentPolicy?.configuration));
     marks = enabledProfileMarks(marks, d.presetPolicy?.profile?.settings);
     const liveRules=await readLiveRuntimeRules();
     marks=mergeCandidates(text,marks,runtimeWhitelistCandidates(text,anchors,marks,[...(d.runtimeWhitelists??[]),...liveRules]));
-    marks=enabledProfileMarks(applyActiveRulesetCandidates(text,anchors,marks,d.presetPolicy?.ruleset?.settings,rulesetMaterialRoute(complete.classification.type,d.documentPolicy?.configuration)),d.presetPolicy?.profile?.settings);
+    marks=enabledProfileMarks(applyRulesPreservingSignatureGroups(text,anchors,marks,d.presetPolicy?.ruleset?.settings,rulesetMaterialRoute(complete.classification.type,d.documentPolicy?.configuration)),d.presetPolicy?.profile?.settings);
+    assertSignaturePolicyGroups(marks);
     let entityCorrectionsStale=false;try{Object.assign(d,hydrateEntityCorrections({...d,content_hash:hash(text)}));if(d.entityCorrections){assertEntityCorrections(d.entityCorrections,{...d,content_hash:hash(text)});const materialized=materializeEntityCorrections(d,text,marks);marks=materialized.marks;d.entityCorrections=materialized.frame;d.entity_corrections=sealEntityCorrections({...d,content_hash:hash(text)},materialized.frame!);}}catch(error){if((error as Error).message!=='ENTITY_CORRECTION_STALE')throw error;const archived=archiveEntityCorrections(d);if(!archived||archived.frame.sourceHash!==d.source_hash)throw Error('ENTITY_CORRECTION_INVALID');entityCorrectionsStale=true;d.entityCorrections=null;coverage.push({id:'entity-corrections',status:'blocked',reason:'ENTITY_CORRECTION_STALE'});}
     if(markdown)await createMarkdownMatchPublisher(text.length,"contextual",processingEvent)({processedTextEnd:text.length,totalTextLength:text.length,matches:marks});
     const profile=d.presetPolicy?.profile?.settings, style=profile ? profileForFormat(profile, d.source_format === "docx" ? "png" : d.source_format, d.batchMode) : undefined;
@@ -245,6 +248,7 @@ async function execute(input: ProcessingInput): Promise<any> {
   if(d.source_format==="md"&&d.parse_version<2&&input.kind!=="verify")throw new Error("MARKDOWN_RECOGNITION_REQUIRED");
   const markdown=d.source_format==="md"&&d.parse_version===2?await loadMarkdownSource(d,text):undefined;
   assertExportable(d, d.revision, text.length, digest, "snapshot" in input?input.snapshot:undefined);
+  if(input.kind!=="verify")await assertTrustedSignatureGroups(d);
   if (input.kind === "gate") { validateFileMarks(text, d.marks, d.source_format, d.anchors, true); if (paged) await validatePageExport(d, text); if (embedded) await officeImagePlan(d, text); return {}; }
   if (paged) {
     const {output,format}=await exportPages(d,text);
@@ -271,6 +275,6 @@ try { processingEvent({type:'progress',stage:workerData.kind==='export'?'export'
 catch (error) {
   if(heartbeat)clearInterval(heartbeat);
   const message = (error as Error).message;
-  const known = [...FILE_ERRORS, "POLICY_TARGET_NOT_FOUND", "POLICY_VALUE_CONFLICT", "AMBIGUOUS_MAPPING", "DOCX_LAYOUT_LIMIT", "OCR_TEXT_CONFLICT", "OCR_POSITION_REQUIRED", "VISUAL_MODEL_REQUIRED", "VISUAL_MODEL_MISMATCH", "VISUAL_OUTPUT_INVALID", "VISUAL_INPUT_INVALID", "INVALID_SEARCH", "IMAGE_SEARCH_INVALID", "OCR_MAP_INVALID", "KNOWN_ENTITY_VALUE_LIMIT", "KNOWN_ENTITY_SCAN_LIMIT", "INVALID_MARKS", "OVERLAPPING_MARKS", "RESIDUE_FOUND", "ARTIFACT_MISMATCH", "VERSION_CONFLICT", "DETECTION_INCOMPLETE", "COVERAGE_INCOMPLETE", "SNAPSHOT_MISMATCH", "EXPORT_POLICY_FAILED"];
+  const known = [...FILE_ERRORS, "POLICY_TARGET_NOT_FOUND", "POLICY_VALUE_CONFLICT", "AMBIGUOUS_MAPPING", "DOCX_LAYOUT_LIMIT", "OCR_TEXT_CONFLICT", "OCR_POSITION_REQUIRED", "VISUAL_MODEL_REQUIRED", "VISUAL_MODEL_MISMATCH", "VISUAL_OUTPUT_INVALID", "VISUAL_INPUT_INVALID", "INVALID_SEARCH", "IMAGE_SEARCH_INVALID", "OCR_MAP_INVALID", "KNOWN_ENTITY_VALUE_LIMIT", "KNOWN_ENTITY_SCAN_LIMIT", "INVALID_MARKS", "SIGNATURE_GROUP_INVALID", "SIGNATURE_GROUP_RECOGNITION_REQUIRED", "SIGNATURE_GROUP_RULE_CONFLICT", "OVERLAPPING_MARKS", "RESIDUE_FOUND", "ARTIFACT_MISMATCH", "VERSION_CONFLICT", "DETECTION_INCOMPLETE", "COVERAGE_INCOMPLETE", "SNAPSHOT_MISMATCH", "EXPORT_POLICY_FAILED"];
   parentPort!.postMessage({ type:"processing-result", ok: false, code: known.includes(message) ? message : "PROCESSING_FAILED" });
 }

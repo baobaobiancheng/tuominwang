@@ -1,3 +1,4 @@
+import {applySignatureDecision} from '../../packages/core/review-group-ui.ts';
 import {openPageReview} from "../../packages/adapters/page-review-storage.ts";
 import {sameEntity} from "../../packages/core/entity-identity.ts";
 import type { FastifyInstance } from "fastify";
@@ -31,10 +32,9 @@ export function registerReviewTools(app: FastifyInstance) {
       const docs = await rows(db, sql`SELECT * FROM documents WHERE project_id=${project} AND id IN (${sql.join(ids.map(v => sql`${v}`), sql`,`)}) ORDER BY id`);
       const deadline = Date.now() + 60000, result: { id: string; revision: number; affected: number }[] = [];
       for (const d of docs) {
-        const provenance=await readReviewProvenance(db,d);let affected = 0, next: ReviewEntityHint[] = addReviewEntityHints(provenance,d.marks).map(m => {
-          if (m.decision !== "pending" || input.kind && !sameEntity(m,{kind:input.kind,rawEntityType:input.rawEntityType}) || input.whitelist && !m.sources?.some(s => s.code === "project-whitelist")) return m;
-          affected++; return { ...m, decision: input.decision };
-        });
+        const provenance=await readReviewProvenance(db,d),current=addReviewEntityHints(provenance,d.marks);
+        const selected=new Set(current.flatMap((m,index)=>m.decision === "pending" && (!input.kind || sameEntity(m,{kind:input.kind,rawEntityType:input.rawEntityType})) && (!input.whitelist || m.sources?.some(s => s.code === "project-whitelist"))?[index]:[]));
+        let next: ReviewEntityHint[]=applySignatureDecision(current,selected,input.decision),affected=next.filter((m,index)=>m.decision!==current[index].decision).length;
         if (mode === "undo") {
           const [previous] = await rows(db, sql`SELECT * FROM review_snapshots WHERE document_id=${d.id} AND revision=${d.revision - 1}`);
           if (!previous || previous.content_hash !== d.content_hash || previous.parse_version !== d.parse_version || !isDeepStrictEqual(previous.recognition, d.recognition) || !isDeepStrictEqual(openPageReview({...d,revision:previous.revision,content_hash:previous.content_hash},previous.page_review),openPageReview(d)) || !isDeepStrictEqual(previous.page_data, d.page_data)) fail("SNAPSHOT_MISMATCH");

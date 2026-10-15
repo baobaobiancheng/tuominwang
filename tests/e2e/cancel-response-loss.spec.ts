@@ -44,6 +44,8 @@ test('cancel commits despite a lost POST response and failed readback, then relo
     expect(first.revision).toBe(0);
     expect(first.job.kind).toBe('detect');
     const id = first.id as string, jobId = first.job.id as string;
+    let oldEventRequests = 0;
+    page.on('request', request => { if (new URL(request.url()).pathname === `/api/jobs/${jobId}/events`) oldEventRequests++; });
     const originalBefore = (await locker.query('SELECT source_id,source_hash FROM documents WHERE id=$1', [id])).rows[0];
     expect(await readOriginal(originalBefore.source_id)).toEqual(source);
 
@@ -71,6 +73,11 @@ test('cancel commits despite a lost POST response and failed readback, then relo
     await expect(page.getByRole('button', { name: '重新载入最新复核', exact: true })).toBeVisible();
     await expect(page.getByRole('button', { name: '取消任务', exact: true })).toBeDisabled();
     await expect(page.getByRole('button', { name: '重新识别', exact: true })).toBeDisabled();
+    await expect(page.getByRole('region', { name: '处理进度' })).toHaveCount(0);
+    await expect(page.getByText('进度暂时无法更新，正在重试。', { exact: true })).toHaveCount(0);
+    const eventsAtConflict = oldEventRequests;
+    await page.waitForTimeout(6200); // Beyond the component's former 5 s retry timer.
+    expect(oldEventRequests).toBe(eventsAtConflict);
     expect(cancelPosts).toBe(1);
     expect(readbackFailures).toBe(1);
     const authoritative = await (await page.request.get(`/api/documents/${id}`)).json();
@@ -90,6 +97,9 @@ test('cancel commits despite a lost POST response and failed readback, then relo
     await expect(page.getByRole('button', { name: '重新载入最新复核', exact: true })).toHaveCount(0);
     await expect(page.getByRole('button', { name: '重试任务', exact: true })).toHaveCount(0);
     await expect(page.getByRole('button', { name: '重新识别', exact: true })).toBeEnabled();
+    await expect(page.getByRole('region', { name: '处理进度' })).toHaveCount(0);
+    await expect(page.getByText('进度暂时无法更新，正在重试。', { exact: true })).toHaveCount(0);
+    expect(oldEventRequests).toBe(eventsAtConflict);
     expect(cancelPosts).toBe(1);
     await page.screenshot({ path: `${evidenceDir}/cancel-reloaded-${runId}.png`, fullPage: true });
     const originalAfter = (await locker.query('SELECT source_id,source_hash FROM documents WHERE id=$1', [id])).rows[0];

@@ -1,4 +1,5 @@
 import {hideReviewEntityType,restoreHiddenReviewEntities} from '../../packages/core/review-type-hide.ts';
+import {applySignatureDecision} from '../../packages/core/review-group-ui.ts';
 import type{ReviewFeedbackCause}from'../../packages/core/review-feedback.ts';
 import {entityIdentity,entityLabel,sameEntity} from '../../packages/core/entity-identity.ts';
 import {correctionForMark} from '../../packages/core/entity-corrections.ts';
@@ -145,11 +146,11 @@ export function EntityGroups({ doc, marks, update, locate, run, disabled, canRev
   function apply(decision: Mark["decision"]) {
     if (locked || !chosen.length) return;
     const indices = new Set(chosen.flatMap(group => group.indices));
-    update(marks.map((mark, index) => indices.has(index) ? { ...mark, decision } : mark));
+    update(applySignatureDecision(marks,indices,decision));
     setSelected(new Set());
   }
   function deleteGroups(targets: EntityGroup[]) {
-    if(locked||!targets.length)return;
+    if(locked||!targets.length||targets.some(group=>group.indices.some(index=>!!marks[index].signatureGroup)))return;
     const indices=new Set(targets.flatMap(group=>group.indices));
     // Server provenance preserves removed slots as inactive history. The current
     // candidate list has no source deleted flag; explicit deletion removes it.
@@ -178,13 +179,13 @@ export function EntityGroups({ doc, marks, update, locate, run, disabled, canRev
     {filterEntities&&doc.state==="review"&&!remoteIndices&&!filterError&&<p role="status">{retryNotice||"正在筛选全部标记…"}</p>}{filterError&&<p role="alert">{filterError}<button className="quiet" onClick={()=>setRetrySerial(value=>value+1)}>重试筛选</button></p>}
     <div className="entity-group-selection">
       <label><input type="checkbox" checked={allFilteredSelected} disabled={locked || !filtered.length} onChange={chooseFiltered} />选择筛选结果全部 {filtered.length} 组</label>
-      <span role="status">已选 {chosen.length} 组 · {chosenCount} 处{hiddenChosen ? `（筛选外 ${hiddenChosen} 组）` : ""}</span>
+      <span role="status">{chosen.some(group=>group.indices.some(index=>!!marks[index].signatureGroup))?"签名分格姓名可整组保留，不能删除标记 · ":""}已选 {chosen.length} 组 · {chosenCount} 处{hiddenChosen ? `（筛选外 ${hiddenChosen} 组）` : ""}</span>
       <button className="quiet" disabled={!chosen.length} onClick={() => setSelected(new Set())}>清空选择</button>
     </div>
     <div className="entity-group-actions" role="group" aria-label="所选实体处理">
       <button className="secondary" disabled={locked || !chosen.length} onClick={() => apply("redact")}>所选组脱敏</button>
       <button className="quiet" disabled={locked || !chosen.length} onClick={() => apply("ignore")}>所选组保留</button>
-      <button className="quiet" disabled={locked || !chosen.length} onClick={() => apply("pending")}>恢复待确认</button><button className="quiet" disabled={locked||!chosen.length} onClick={()=>setDeleteScope(chosen)}>删除所选组标记</button>
+      <button className="quiet" disabled={locked || !chosen.length} onClick={() => apply("pending")}>恢复待确认</button><button className="quiet" disabled={locked||!chosen.length||chosen.some(group=>group.indices.some(index=>!!marks[index].signatureGroup))} onClick={()=>setDeleteScope(chosen)}>删除所选组标记</button>
     </div>
     {!!hiddenTypeCount&&<p role="status">已隐藏 {hiddenTypeCount} 个类型 · {hiddenMarks.length} 处，保存后保留原值。<button className="quiet" disabled={locked} onClick={restoreHiddenTypes}>恢复隐藏类型（需重新确认）</button></p>}
     {deleteScope&&<div role="dialog" aria-modal="true" aria-label="确认删除分组标记"><p>删除此组全部出现位置的标记？标记将从当前候选中移除，已有复核历史与原文件保留。</p><button onClick={()=>deleteGroups(deleteScope)} disabled={locked}>确认删除标记</button><button onClick={()=>setDeleteScope(null)}>取消删除</button></div>}
@@ -199,7 +200,7 @@ export function EntityGroups({ doc, marks, update, locate, run, disabled, canRev
       return <React.Fragment key={group.id}>
         {(index === 0 || !sameEntity(pageGroups[index - 1],group)) && <h3 className="entity-type-heading"><button type="button" className="quiet" aria-label={`${collapsedTypes.has(entityIdentity(group)) ? "展开" : "收起"}${entityLabel(group)}实体`} aria-expanded={!collapsedTypes.has(entityIdentity(group))} style={{ "--entity-color": typeColor(group.kind) } as React.CSSProperties} onClick={() => setCollapsedTypes(previous => { const next = new Set(previous); if (next.has(entityIdentity(group))) next.delete(entityIdentity(group)); else next.add(entityIdentity(group)); return next; })}><span aria-hidden="true">{collapsedTypes.has(entityIdentity(group)) ? "▸" : "▾"}</span><span className="entity-type-dot" aria-hidden="true" />{entityLabel(group)}<small>{filtered.filter(item => sameEntity(item,group)).reduce((total, item) => total + item.indices.length, 0)} 处</small></button><button className="quiet" disabled={locked} onClick={()=>hideType(group)}>隐藏此类型</button></h3>}
         <article className="entity-group-card" hidden={collapsedTypes.has(entityIdentity(group))} style={{ "--entity-color": typeColor(group.kind) } as React.CSSProperties}>
-          <div className="entity-group-value"><button className="quiet" disabled={locked} onClick={()=>setDeleteScope([group])}>删除此组标记</button><input type="checkbox" aria-label={`选择${entityLabel(group)}实体：${label}，位置 ${marks[group.indices[0]].start + 1}`} checked={selected.has(group.id)} disabled={locked} onChange={event => choose(group.id, event.target.checked)} /><button className="quote" title={group.value || undefined} onClick={() => show(group, 0)}>{label}</button><span className="entity-count">{group.indices.length} 处</span></div>
+          <div className="entity-group-value"><button className="quiet" disabled={locked||group.indices.some(index=>!!marks[index].signatureGroup)} title={group.indices.some(index=>!!marks[index].signatureGroup)?"签名分格姓名请整组保留原值":""} onClick={()=>setDeleteScope([group])}>删除此组标记</button><input type="checkbox" aria-label={`选择${entityLabel(group)}实体：${label}，位置 ${marks[group.indices[0]].start + 1}`} checked={selected.has(group.id)} disabled={locked} onChange={event => choose(group.id, event.target.checked)} /><button className="quote" title={group.value || undefined} onClick={() => show(group, 0)}>{label}</button><span className="entity-count">{group.indices.length} 处</span></div>
           {!group.exact && <small className="muted">原值片段 · 独立位置 {mark.start + 1}–{mark.end}</small>}
           <div className="entity-group-counts"><span>待确认 {group.counts.pending}</span><span>脱敏 {group.counts.redact}</span><span>保留 {group.counts.ignore}</span></div>
           {(group.mixedDecisions || group.mixedReplacements) && <p className="entity-group-warning">{group.mixedDecisions ? "处理决定不一致" : ""}{group.mixedDecisions && group.mixedReplacements ? " · " : ""}{group.mixedReplacements ? "脱敏方式不一致" : ""}，请逐处核对。</p>}

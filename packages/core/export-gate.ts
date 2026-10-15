@@ -1,4 +1,5 @@
 import{processingDocument,isLegacyWordFormat,originalDocumentFormat}from'./document-format.ts';
+import {assertSignatureGroups} from './review-groups.ts';
 import {createHash} from 'node:crypto';
 import { z } from "zod";
 import { MAX_MARKS, markSchema } from "../contracts/index.ts";
@@ -98,6 +99,7 @@ export function assertExportable(d: Document, revision: number, textLength: numb
   const version = Number.isSafeInteger(revision) && revision >= 0 && revision === d.revision;
   const covered = coverageComplete(d, textLength);
   const reviewed = marks.success && marks.data.every(mark => mark.decision !== "pending");
+  if(marks.success)assertSignatureGroups(marks.data);
   const bound = !!snapshot && snapshot.document_id === d.id && snapshot.tenant_id === d.tenant_id && snapshot.project_id === d.project_id
     && snapshot.revision === d.revision && snapshot.parse_version === d.parse_version && Number.isSafeInteger(d.parse_version) && d.parse_version >= 1
     && snapshot.content_hash === d.content_hash && actualHash === d.content_hash && isDeepStrictEqual(snapshot.marks, d.marks)

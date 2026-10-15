@@ -54,6 +54,7 @@ import { Uploads } from "./uploads.tsx";
 import { Dictionary } from "./dictionary.tsx";
 import { ReviewToolDialog } from "./review-tool-dialog.tsx";
 import { ReviewTools, ReplacementEditor } from "./review-tools.tsx";
+import {applySignatureDecision,signatureGroupLabel} from "../../packages/core/review-group-ui.ts";
 import { TextHighlights, typeColor } from "./text-highlights.tsx";
 import { EntityGroups } from "./entity-groups.tsx";
 import { MappingPicker, MappingList, RestoreDialog } from "./mappings.tsx";
@@ -149,6 +150,9 @@ const messages: Record<string, string> = {
   INVALID_CSV: "CSV 行列或引号格式不正确，请检查文件",
   CELL_LIMIT: "文件单元格数量超过处理限制，请拆分文件",
   MARKDOWN_RECOGNITION_REQUIRED: "此 Markdown 使用旧版识别坐标，请重新识别后复核。",
+  SIGNATURE_GROUP_RECOGNITION_REQUIRED: "此材料的分格姓名需要重新识别，并由你重新复核后才能保存或生成新副本。原有复核记录与已签发链接保留。",
+  SIGNATURE_GROUP_INVALID: "分格姓名需要整组决定，请重新打开材料并核对。",
+  SIGNATURE_GROUP_RULE_CONFLICT: "规则只排除了分格姓名的一部分，无法按组复核；请调整该规则后重新识别。",
   MARKDOWN_SIDECAR_REQUIRED: "Markdown 源码映射缺失，请重新识别后复核。",
   MARKDOWN_BLOCKERS_UNREVIEWED: "请在“Markdown 图片与 HTML 处理”确认嵌入内容后再导出。",
   MARKDOWN_BLOCKER_INVALID: "嵌入内容已变化，请重新打开材料后确认。",
@@ -966,7 +970,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
               {canReview && doc.job?.status==="failed" && ["ENCRYPTED_PDF","ENCRYPTED_OFFICE"].includes(doc.job.error_code??"") && <DocumentUnlock id={doc.id} revision={doc.revision} api={api} disabled={dirty||conflict} onDone={()=>openDoc(doc.id)} />}
               <button className="secondary" disabled={busy} onClick={()=>setFeedbackOpen(v=>!v)}>反馈与个人规则</button>{feedbackOpen&&<FeedbackPanel key={`feedback-doc:${doc.id}`} project={doc.project_id} document={feedbackDocument} api={api} run={run}/>}
               {canReview && doc.state==="review" && <RecoveryDraft key={`recovery:${doc.id}:${doc.revision}`} doc={doc} marks={marks} pageReview={pageReview} dirty={dirty} disabled={busy||conflict} api={api} onRestore={(next,pages)=>{if(pages)setPageReview(pages);update(next,true);}} />}
-              {doc.job?.canObserveEvents === true && docAllowed("view_original") && <ProcessingProgress key={`progress:${doc.job.id}`} job={doc.job} api={api} />}
+              {doc.job?.canObserveEvents === true && doc.state !== "outdated" && !conflict && docAllowed("view_original") && <ProcessingProgress key={`progress:${doc.job.id}`} job={doc.job} api={api} />}
               {doc.job && (
                 <p className="muted" role="status">
                   任务：
@@ -1171,7 +1175,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
                           </button>
                           {m.hiddenByType&&<p className="muted">已按类型隐藏，不参与处理。<button className="quiet" disabled={!canReview||conflict||doc.state!=="review"} onClick={()=>update(restoreHiddenReviewEntities(marks,m))}>恢复此类型为待确认</button></p>}{(()=>{const corrected=correctionForMark(doc,m,i);return corrected?<p className="muted">OCR 纠正为：{corrected.correctedText}</p>:null;})()}
                           <small>
-                            {entityLabel(m)} · {m.start}-{m.end}
+                            {m.signatureGroup ? `签名姓名 ${signatureGroupLabel(marks,m.signatureGroup.id,doc.text,doc.textOffset??0,doc.markTexts)} · 第 ${m.signatureGroup.memberIndex+1}/${m.signatureGroup.memberCount} 格 · 整组决定 · ` : ""}{entityLabel(m)} · {m.start}-{m.end}
                             {m.sources?.length ? ` · ${[...new Set(m.sources.map(s => ({ rules: "规则匹配", ner: "实体识别", ai: "语义识别", manual: "人工标记" })[s.layer]))].join("、")}` : ""}
                             {m.sources?.some(s => s.code === "project-whitelist") ? " · 白名单建议" : ""}
                             {doc.format === "csv" && (() => { const a = doc.anchors?.find(a => a.start <= m.start && a.end >= m.end); return a ? ` · 第 ${a.row} 行 / 第 ${a.column} 列` : ""; })()}
@@ -1184,17 +1188,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
                             aria-label={"标记 " + (i + 1) + " 处理决定"}
                             value={m.decision}
                             onChange={(e) =>
-                              update(
-                                marks.map((v, j) =>
-                                  j === i
-                                    ? {
-                                        ...v,
-                                        decision: e.target
-                                          .value as Mark["decision"],
-                                      }
-                                    : v,
-                                ),
-                              )
+                              update(applySignatureDecision(marks,new Set([i]),e.target.value as Mark["decision"]))
                             }
                           >
                             <option value="pending">待确认</option>
@@ -1202,11 +1196,11 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
                             <option value="ignore">保留原值</option>
                           </select>
                         </label>
-                        <label>信息类型<select aria-label={`标记 ${i + 1} 信息类型`} disabled={!canReview || conflict || doc.state !== "review" || m.hiddenByType} value={entityIdentity(m)} onChange={e => update(marks.map((v, j) => j === i ? { ...v, kind: e.target.value as Mark["kind"], rawEntityType:undefined,replacement: undefined, rasterReplacement:undefined,replacementOrigin: undefined, sources: [{ layer: "manual", code: "human-mark" }] } : v))}>{m.rawEntityType!==undefined&&<option value={entityIdentity(m)}>{entityLabel(m)}</option>}{markSchema.shape.kind.options.map(k => <option key={k}>{k}</option>)}</select></label>{m.kind==="自定义"&&<label>自定义类型名称<input value={m.rawEntityType??""} placeholder="留空使用通用自定义类型" disabled={!canReview||conflict||doc.state!=="review"} onChange={e=>update(marks.map((v,j)=>j===i?{...v,rawEntityType:e.target.value||undefined,replacement:undefined,rasterReplacement:undefined,replacementOrigin:undefined,sources:[{layer:"manual",code:"human-mark"}]}:v))}/></label>}
+                        <label>信息类型<select aria-label={`标记 ${i + 1} 信息类型`} disabled={!canReview || conflict || doc.state !== "review" || m.hiddenByType || !!m.signatureGroup} value={entityIdentity(m)} onChange={e => update(marks.map((v, j) => j === i ? { ...v, kind: e.target.value as Mark["kind"], rawEntityType:undefined,replacement: undefined, rasterReplacement:undefined,replacementOrigin: undefined, sources: [{ layer: "manual", code: "human-mark" }] } : v))}>{m.rawEntityType!==undefined&&<option value={entityIdentity(m)}>{entityLabel(m)}</option>}{markSchema.shape.kind.options.map(k => <option key={k}>{k}</option>)}</select></label>{m.kind==="自定义"&&<label>自定义类型名称<input value={m.rawEntityType??""} placeholder="留空使用通用自定义类型" disabled={!canReview||conflict||doc.state!=="review"} onChange={e=>update(marks.map((v,j)=>j===i?{...v,rawEntityType:e.target.value||undefined,replacement:undefined,rasterReplacement:undefined,replacementOrigin:undefined,sources:[{layer:"manual",code:"human-mark"}]}:v))}/></label>}
                         {m.decision === "redact" && <fieldset disabled={!canReview || conflict || doc.state !== "review"}><ReplacementEditor mark={m} index={i} change={replacement => update(marks.map((v, j) => j === i ? { ...v, replacement, rasterReplacement:undefined,replacementOrigin: "manual" } : v))} />{docAllowed("view_mapping") && <MappingPicker key={`${doc.id}:${doc.revision}:${entitySpanKey(m)}`} doc={doc} mark={m} markIndex={i} run={run} api={api} assigned={replacement => update(marks.map((v, j) => j === i ? { ...v, replacement, rasterReplacement:undefined,replacementOrigin: "manual" } : v), true)} />}</fieldset>}
                         <button
                           className="quiet"
-                          disabled={!canReview || conflict || doc.state !== "review"}
+                          disabled={!canReview || conflict || doc.state !== "review" || !!m.signatureGroup}
                           onClick={() =>
                             changeMarks(marks.filter((_, j) => i !== j),"single-delete")
                           }

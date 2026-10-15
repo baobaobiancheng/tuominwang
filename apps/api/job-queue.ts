@@ -21,7 +21,7 @@ export async function queueExport(db:DB,req:FastifyRequest,doc:string,revision:n
  Object.assign(d,resolveDocumentPolicy(d,readProjectPresets(p)));
  const[snapshot]=await rows(db,sql`SELECT * FROM review_snapshots WHERE document_id=${doc} AND revision=${revision}`);
  try{await runProcessing({kind:'gate',doc:d,snapshot});}
- catch(e){const code=(e as Error).message;denied(code,['INVALID_MARKS','OVERLAPPING_MARKS','CROSS_CELL_MARK'].includes(code)?400:409);}
+ catch(e){const code=(e as Error).message;denied(code,['INVALID_MARKS','OVERLAPPING_MARKS','CROSS_CELL_MARK','SIGNATURE_GROUP_INVALID'].includes(code)?400:409);}
  const[existing]=collabTaskId
   ?await rows(db,sql`SELECT id FROM jobs WHERE document_id=${doc} AND kind='export' AND revision=${revision} AND collab_task_id=${collabTaskId} AND status IN ('queued','running','succeeded') ORDER BY created_at DESC LIMIT 1`)
   :await rows(db,sql`SELECT id FROM jobs WHERE document_id=${doc} AND kind='export' AND revision=${revision} AND collab_task_id IS NULL AND status IN ('queued','running','succeeded') ORDER BY created_at DESC LIMIT 1`);

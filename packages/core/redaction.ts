@@ -1,4 +1,5 @@
 import {validAliasToken} from "../contracts/alias-token.ts";
+import {signatureResidueAllowance,countLiteral} from './review-groups.ts';
 import {isOfficeProtocolAttribute} from './office-protocol.ts';
 import {entityIdentity,entityLabel,entitySpanKey} from './entity-identity.ts';
 import { referencePartialMask, referenceFullMask } from "./reference-mask.ts";
@@ -117,7 +118,8 @@ export function mergeCandidates(text: string, ...groups: Mark[][]): Mark[] {
     const key = entitySpanKey(mark), previous = merged.get(key);
     const sources = [...previous?.sources ?? [], ...mark.sources ?? []];
     const unique = [...new Map(sources.map(source => [`${source.layer}:${source.code}`, source])).values()];
-    merged.set(key, { ...mark, decision: "pending", ...(unique.length ? { sources: unique } : {}) });
+    if(previous?.signatureGroup&&mark.signatureGroup&&previous.signatureGroup.id!==mark.signatureGroup.id)throw new Error('SIGNATURE_GROUP_CONFLICT');
+    merged.set(key, { ...mark, ...previous?.signatureGroup&&!mark.signatureGroup?{signatureGroup:previous.signatureGroup}:{}, decision: "pending", ...(unique.length ? { sources: unique } : {}) });
     if (merged.size > MAX_MARKS) throw new Error("MARK_LIMIT");
   }
   return [...merged.values()].sort((a, b) => a.start - b.start || a.end - b.end || entityIdentity(a).localeCompare(entityIdentity(b), "zh"));
@@ -201,6 +203,6 @@ export function verify(text: string, marks: Mark[], output: string) {
   if (output !== redact(text, marks)) throw new Error("ARTIFACT_MISMATCH");
   // Conservative: repeated selected values elsewhere must also be reviewed.
   const hidden = new Set(marks.filter(m => m.decision === "redact").map(m => text.slice(m.start, m.end)));
-  if ([...hidden].some(value => output.includes(value)))
+  if ([...hidden].some(value => countLiteral(output,value)>signatureResidueAllowance(text,marks,value)))
     throw new Error("RESIDUE_FOUND");
 }

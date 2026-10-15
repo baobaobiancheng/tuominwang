@@ -1,4 +1,5 @@
 import{isWordFormat}from'./document-format.ts';
+import {signatureResidueAllowance,countLiteral,assertSignatureGroups} from './review-groups.ts';
 import {parseReferenceMarkdown,exportReferenceMarkdown,verifyReferenceMarkdownPrivacy,type ReferenceMarkdown,type MarkdownBlockerReview} from './reference-markdown.ts';
 import { parse } from "csv-parse/sync";
 import { stringify } from "csv-stringify/sync";
@@ -57,6 +58,7 @@ export function parseFile(bytes: Buffer, format: SourceFormat, options:{fileName
 export function validateFileMarks(text: string, marks: Mark[], format: SourceFormat, anchors: Anchor[], final = false) {
   if (isWordFormat(format)||format==="xlsx") return validateOfficeMarks(text, marks, anchors, final);
   validateMarks(text, marks, final);
+  if(final)assertSignatureGroups(marks);
   if (format === "csv") for (const mark of marks) {
     let lo = 0, hi = anchors.length;
     while (lo < hi) { const mid = (lo + hi) >>> 1; if (anchors[mid].start <= mark.start) lo = mid + 1; else hi = mid; }
@@ -94,7 +96,7 @@ export function verifyFile(text: string, marks: Mark[], output: string, format: 
   if (format === "csv") {
     const normalized = (parse(output) as string[][]).flat().join("\n");
     const hidden = new Set(marks.filter(m => m.decision === "redact").map(m => text.slice(m.start, m.end)));
-    if ([...hidden].some(value => normalized.includes(value))) throw new Error("RESIDUE_FOUND");
+    if ([...hidden].some(value => countLiteral(normalized,value)>signatureResidueAllowance(text,marks,value))) throw new Error("RESIDUE_FOUND");
   } else if(format!=="md"||!context.markdown) verify(text, marks, output);
 }
 

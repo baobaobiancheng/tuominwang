@@ -50,6 +50,7 @@ export const markSchema = z.object({
   kind: z.enum(["手机号", "固定电话", "邮箱", "身份证号", "银行账号", "信用代码", "案号", "护照号", "姓名", "机构", "地址", "金额", "商业秘密", "自定义", "证券/资金账号", "车牌号", "微信号", "网址", "专利号", "备案号", "证照/许可证号", "税号", "雇主识别号", "国际身份证号", "社保号", "公文编号"]),
   rawEntityType:z.string().min(1).refine(v=>v.isWellFormed()&&!v.includes('\0')).optional(),
   decision: z.enum(["pending", "redact", "ignore"]),
+  signatureGroup: z.object({id:z.string().regex(/^sig_[a-f0-9]{32}$/u),memberIndex:z.number().int().min(0).max(MAX_MARKS-1),memberCount:z.number().int().min(2).max(MAX_MARKS)}).strict().optional(),
   replacement: replacementSchema.optional(),
   replacementOrigin: z.enum(["manual", "overall", "type", "value"]).optional(),
   rasterReplacement: z.boolean().optional(),

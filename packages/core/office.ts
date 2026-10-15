@@ -1,4 +1,5 @@
 import {decodeXlsxString,encodeXlsxText} from "./ooxml-string.ts";
+import {signatureResidueAllowance,countLiteral,assertSignatureGroups} from './review-groups.ts';
 import type { Document, Element, Node } from "@xmldom/xmldom";
 import { posix } from "node:path";
 import { isDeepStrictEqual } from "node:util";
@@ -201,6 +202,7 @@ export async function parseOffice(bytes: Buffer, format: Format, imageTexts?: Re
 }
 export function validateOfficeMarks(text: string, marks: Mark[], anchors: Anchor[], final = false) {
   validateMarks(text, marks, final);
+  if(final)assertSignatureGroups(marks);
   for (const mark of marks) {
     let lo = 0, hi = anchors.length;
     while (lo < hi) { const mid = (lo + hi) >>> 1; if (anchors[mid].start <= mark.start) lo = mid + 1; else hi = mid; }
@@ -264,10 +266,26 @@ export async function verifyOffice(_source: Buffer, format: Format, output: Buff
   const checked = await load(output, format, imageTexts);
   if (checked.coverage.some(c => c.status !== "complete")) throw new Error("COVERAGE_INCOMPLETE");
   const hidden = new Set(marks.filter(m => m.decision === "redact").map(m => text.slice(m.start, m.end)));
+  const signature=marks.filter(m=>m.signatureGroup);
+  // Signature groups are native paragraph/cell bindings. Source image OCR is
+  // appended after those bindings, and output image names may have changed.
+  const source=signature.length?await load(_source,format):{bindings:[],anchors:[]};
+  // Counts alone would accept a swap between an ignored and redacted cell in
+  // the same ZIP part. Compare the complete value of every signature binding.
+  const affected=new Set<typeof source.bindings[number]>();
+  for(const mark of signature){const bindings=source.bindings.filter(b=>b.anchor.start<=mark.start&&b.anchor.end>=mark.end);if(bindings.length!==1)throw new Error("RESIDUE_FOUND");affected.add(bindings[0]);}
+  for(const binding of affected){
+    const same=checked.bindings.filter(b=>b.anchor.part===binding.anchor.part&&b.anchor.object===binding.anchor.object);
+    if(same.length!==1)throw new Error("RESIDUE_FOUND");
+    const local=marks.filter(m=>m.decision==='redact'&&binding.anchor.start<=m.start&&binding.anchor.end>=m.end).map(m=>({...m,start:m.start-binding.anchor.start,end:m.end-binding.anchor.start}));
+    if(same[0].value!==redact(binding.value,local))throw new Error("RESIDUE_FOUND");
+  }
   for (const value of hidden) {
-    if (checked.text.includes(value)) throw new Error("RESIDUE_FOUND");
+    const allowed=signatureResidueAllowance(text,marks,value);
+    if (countLiteral(checked.text,value)>allowed) throw new Error("RESIDUE_FOUND");
     for (const [name, doc] of checked.docs) {
-      if (name.includes(value) || (doc.textContent ?? "").includes(value)) throw new Error("RESIDUE_FOUND");
+      const byPart=marks.filter(m=>m.signatureGroup&&m.decision==='ignore'&&text.slice(m.start,m.end)===value&&source.anchors.some(a=>a.part===name&&a.start<=m.start&&a.end>=m.end)).length;
+      if (name.includes(value) || countLiteral(doc.textContent ?? "",value)>byPart) throw new Error("RESIDUE_FOUND");
       for (const node of elements(doc, "*", "*")) if (Array.from(node.attributes).some(a => a.value.includes(value))) throw new Error("RESIDUE_FOUND");
     }
   }
