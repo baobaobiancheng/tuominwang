@@ -1,0 +1,367 @@
+{
+  "schema": "tuominwang.team-sol-visual-luna3.v1",
+  "date": "2026-10-15",
+  "reviewer": "visual_docs_ids",
+  "scope": "read-only review of public guide, existing screenshot/log evidence, selected E2E source, and visual-related IDs among C delegated 62",
+  "baseline": {
+    "head": "5cee048dd637aeac69fc30b5350c5494d9386c00",
+    "worktree": "heavily modified; no reset/cleanup; this report is the only new file pair",
+    "referenceRuntime": "R0"
+  },
+  "reviewedFiles": [
+    {
+      "path": "AGENTS.md",
+      "sha256": "804b32a78576278e1e4ccecab6a2b4db7b94b0aaa263bae3609cbf13799c91a1"
+    },
+    {
+      "path": "文档/逆向台账/contracts/team-sol-visual-plan-20261015.md",
+      "sha256": "a4593158c8a66c52104aee144bb613e3717094d5f64599892db5c2611c5b25de"
+    },
+    {
+      "path": "文档/使用指南/公开功能补齐操作-20261015.md",
+      "sha256": "2820d2e7a07e0d8e2505b3c024ff3c842aa627821e78a591454de6a8b30d58cd"
+    },
+    {
+      "path": "tests/e2e/manual-occurrences-geometry.spec.ts",
+      "sha256": "b0f2e8c38fef62d03e6ea88e665dbf0a423ee3ac5e56b404cfb8a7e9a22f95e4",
+      "mtime": "2026-10-15 14:40:50 +0800"
+    },
+    {
+      "path": "tests/e2e/type-hide-persistence.spec.ts",
+      "sha256": "766ac467de123e7054eb642edad7ff795e89872ee24caad38d2a6afd07ab535a",
+      "mtime": "2026-10-15 14:05:40 +0800"
+    },
+    {
+      "path": "tests/e2e/source-review.spec.ts",
+      "sha256": "6a7d14e4157f6d7c8d0c61354509000ff709872a5299c3a74ac6240dbfa20113",
+      "mtime": "2026-10-15 13:22:14 +0800"
+    },
+    {
+      "path": "tests/e2e/entity-corrections.spec.ts",
+      "sha256": "a2eb58da74be3c68eeb1e7dce8bfddea4e6487fce6bb4cb711c209d26c6fe64e",
+      "mtime": "2026-10-15 13:16:24 +0800"
+    },
+    {
+      "path": "tests/e2e/page-selection-edit.spec.ts",
+      "sha256": "a70b7942f73d82e57823d54994cf8f0746cd25b529a5dbf24d97fb02b744d468",
+      "mtime": "2026-10-15 14:52:38 +0800"
+    }
+  ],
+  "evidenceClasses": {
+    "sourceStatic": "公开脱敏猫 0.5.9 静态源、有限节点图与精确文件/片段哈希；不表明其运行行为或质量。",
+    "ownApi": "本工具 API/集成/保存恢复证据；不等于 Edge 交互或竞品执行。",
+    "ownEdge": "仅可由日志时间、测试摘要、当时输入和断言支持；日志未记自然退出码时不补造退出码。",
+    "competitorRuntime": "R0；公开静态源可读，未有许可证处理运行，不主张竞品功能/模型等价。"
+  },
+  "guideReview": [
+    {
+      "location": "文档/使用指南/公开功能补齐操作-20261015.md:3",
+      "claim": "指南为本地待发布版本；3张已有图是隔离 Edge/合成样例；服务器入口以部署记录为准；type-hide 已有接口证据但 Edge 待完成。",
+      "assessment": "口径与可见证据层级相符。三图哈希可固定；此句不应被解读为当前树全 Edge 已完成。",
+      "recommendation": "保留，并在拿到 root 当前树完整 Edge 证据后更新具体待办句。"
+    },
+    {
+      "location": "...公开功能补齐操作-20261015.md:21-28",
+      "claim": "PDF/图片按原件页；Word 内嵌图按图片资源顺序；同一资源复用时影响多处引用。",
+      "assessment": "与入口差异表吻合公开源 Electron 与本工具资源区结构差异。复用媒体部件可能多引用生效，但指南没有附本工具对同一 media part 的 Edge 例证。",
+      "recommendation": "保持“资源顺序，不是 Word 页码”；同资源多引用句建议补充基于同一 DOCX media target 的 API/导出或 Edge 证据，避免只由格式语义推到产品行为。"
+    },
+    {
+      "location": "...公开功能补齐操作-20261015.md:30-42",
+      "claim": "页面文字透明层选字；新项仍待审；截图手机号为保留原值，因此能出现在“高亮外”。",
+      "assessment": "指南自我限定准确；迭代034旧 Edge 页选字完整流程有单测日志 PASS，但该日志早于当前 spec 修改。旧指南图是查找结果全页，不展示当前旧 ignore 重加流程。",
+      "recommendation": "避免把该图标为当前旧 ignore 重加操作证据；补当前 spec fresh trace 与截图。"
+    },
+    {
+      "location": "...公开功能补齐操作-20261015.md:44-68",
+      "claim": "区域可拖/坐标录入；八手柄实体尺寸调整；保存后可预览；不安全错位导出拒绝；新操作图待补。",
+      "assessment": "当前 E2E 源含真实坐标读回、8手柄计数、实体几何保存/清除断言；历史 iteration035 Edge 曾2 passed，但日志早于当前 spec，且现有截图是保存后界面，未显示画布八手柄及坐标控件保存前态。拒绝导出属于代码/API门禁边界，当前所审 Edge 图不能证明。",
+      "recommendation": "保留“新图待补”；完成 root fresh Edge 后用图显示原件画布、编辑框/8手柄和左/上/宽/高，状态为尚未保存。"
+    },
+    {
+      "location": "...公开功能补齐操作-20261015.md:70-84",
+      "claim": "同文可跨 Word 正文/表格/图像 OCR/PDF/Markdown；定位、勾选、加入标记、反馈待复核。",
+      "assessment": "iteration035 历史 Edge second.log 2 passed摘要来自早于当前 spec 的版本；测试逻辑预期 2 个 Word 正文匹配、二选项均 checked、定位不丢结果、加入2个 pending marks、自动规则 API 和 FN API记录。但可找到的截图是保存后的主界面，未呈现勾选态或 FN 记录。当前行 84 的“自动反馈断言等待”相对于旧测试日志可能滞后，然而当前 spec mtime晚于日志，不能据旧 PASS 删掉门禁。",
+      "recommendation": "等当前哈希 fresh run；截图建议两张：查找结果页两框都勾选，添加后结果/逐条列表，并把 FN API/界面行的原始响应放入 trace/报告。明确不是一张折叠或保存后的界面图。"
+    },
+    {
+      "location": "...公开功能补齐操作-20261015.md:86-119",
+      "claim": "图像坐标搜索区域内外、批次区域、区域 OCR / Word 图片重读、纠错双值、密码解锁。",
+      "assessment": "安全限制和“需复核”措辞适当；此批功能在本次所列当前 E2E spec 中无全套 Edge 结果，只有区域图像搜索有已过的旧版本 Edge 路径。不要扩写为竞品对应能力。",
+      "recommendation": "每个未由 fresh Edge 覆盖的复杂 UI 流程沿用章节的自有功能说明，并保留合成/API边界。"
+    },
+    {
+      "location": "...公开功能补齐操作-20261015.md:121-130",
+      "claim": "PDF手动旋转/重识别，人工记录保留但审批重置；附真实旋转图。",
+      "assessment": "静态/本地实现与历史 Edge 轮转图有证据，但该指南图是之前真图；没有将其视作本轮新操作图。页面按页切换与竞品连续视图差异写得准确。",
+      "recommendation": "维持按页切换差异；不要把 PDF worker资源通道或本地页切换等价成竞品 PDF 连续滚动行为。"
+    },
+    {
+      "location": "...公开功能补齐操作-20261015.md:132-141",
+      "claim": "隐藏后内容仍输出；隐藏是语义状态而非折叠，恢复为 pending；自动实体不因拖框成为手工新增。",
+      "assessment": "措辞有实际风险提示且与 type-hide API/codec/feedback 数据证据相符。Edge仍未运行；没有隐藏组/恢复后的真实操作截图。",
+      "recommendation": "保留明确 Edge 待运行；补隐藏类型标题、隐藏后组消失/刷新仍隐、恢复后待审核的两张合成材料截图及测试 trace。"
+    },
+    {
+      "location": "...公开功能补齐操作-20261015.md:143-189",
+      "claim": "Word分页预览/兼容模式、还原批处理、来源审查和训练/图像标注下载。",
+      "assessment": "Word浏览器版式与桌面Word差异已直接写明；来源记录图是旧的真实继承记录截图。本轮 source-review.spec 有操作范围但无匹配Edge日志，因此不能把旧图作 current browser proof。",
+      "recommendation": "保持桌面排版非像素等价说明；需要宣称当前复核来源 UI 已 fresh 验收时，补最新 source-review Edge 原始日志/截图。"
+    },
+    {
+      "location": "...公开功能补齐操作-20261015.md:191-210",
+      "claim": "Word图资源区而非在Word图片DOM上同手势；本工具PDF按页而竞品连续视图；办公版式不保证逐像素；质量数据按公开集限制列出。",
+      "assessment": "方向谨慎。Face 5749与1原始图超限、Signature 35 validation不是test、Stamp 786/1315且上游逐图授权/数据重合/黑白商用分层未核，数字与已链接原报告吻合。没有竞品质量基准或任何模型等价结论。",
+      "recommendation": "保留逐类来源/数据范围限制；印章17.44%/24.03%/20.21%继续注明不足以称实用识别；不要把离线签名模型套说成竞品模型。"
+    }
+  ],
+  "existingGuideScreenshots": [
+    {
+      "path": "文档/使用指南/截图-20261015/页面文字选取与区域调整.png",
+      "sha256": "c595f75e21fa5b150d728dbbc86526e65e103b5a7ebc8e0b00c6b41f5e8aaddf",
+      "bytes": 198620,
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "role": "existing guide image",
+      "finding": "旧图展示页面选字/区域或查找结果的一部分，不展示当前 Edge 测试要求的两同文勾选及 automatic FN 结果，也不是旧 ignore 重加的新操作图。"
+    },
+    {
+      "path": "文档/使用指南/截图-20261015/页面旋转与复核.png",
+      "sha256": "01ace3b94c23c8d14a5fd214bae9149c4cfbf6b70721fb7a5a448170c5f2c702",
+      "bytes": 206940,
+      "dimensions": [
+        1440,
+        1000
+      ],
+      "role": "existing guide image",
+      "finding": "旧 PDF 旋转与复核界面；不是本轮新操作图。"
+    },
+    {
+      "path": "文档/使用指南/截图-20261015/继承审查记录.png",
+      "sha256": "746392049d85054183b0478f8303f19af0e4428493e60cee15c907a940635933",
+      "bytes": 28267,
+      "dimensions": [
+        266,
+        400
+      ],
+      "role": "existing guide image",
+      "finding": "旧导入工程继承审查记录界面；不是本轮 source-review current tree fresh proof。"
+    }
+  ],
+  "newScreenshotRequirements": [
+    {
+      "scenario": "Word same text: two positions checked / automatic FN",
+      "requiredFrame": "查找结果列表同时可见两处且复选框已勾选；再拍加入后两项处于待审核的界面。原始 trace/API记录应显示一条 false_negative、entity_text CLIENT A、producer one-click-add；以测试真实结果为准。",
+      "availableEvidence": "iteration035 edge-word-manual-1792042962419.png is full-page after review save and does not show the selected-results view. No edge-word-manual-results-*.png was found under iteration035.",
+      "status": "missing fresh operation image"
+    },
+    {
+      "scenario": "manual area / entity geometry",
+      "requiredFrame": "保存前显示区域画布/实体框、八个缩放手柄和左/上/宽/高控件的值；测试 trace 要含 move/resize 前后 geometry assertions 和后续保存/重开数据。",
+      "availableEvidence": "edge-entity-geometry-1792042976956.png is post-save page review (SHA 2424bbff…); edge-word-manual image is also post-save. `edge-page-selection-edit-1792039648261.png` is post-review fullPage and not the required manual geometry state.",
+      "status": "missing fresh operation image"
+    },
+    {
+      "scenario": "hide group and restore",
+      "requiredFrame": "隐藏前后的组状态及刷新重开后仍隐藏；恢复后待审核重新决定。Screenshots should be separate before/after and backed by current Edge trace.",
+      "availableEvidence": "no `type-hide-persistence` Edge log or operation screenshot found in iteration034–037 top-level evidence; API/codec data exists separately.",
+      "status": "missing Edge and image"
+    },
+    {
+      "scenario": "page selected text: old ignore then re-add",
+      "requiredFrame": "同一 source-kind-raw range先为 ignore；再选字加回后同时可核对旧 ignore保留、新 pending/userAdded=true 的状态。",
+      "availableEvidence": "current page-selection test now asserts one ignore and one newly user-added pending mark; current test file mtime 14:52 is later than its last visible PASS log (iteration034 12:47). The old fullPage image predates this source update.",
+      "status": "current logic not freshly run / new image missing"
+    }
+  ],
+  "edgeEvidence": [
+    {
+      "test": "tests/e2e/page-selection-edit.spec.ts",
+      "log": ".data/research/lawbot-2026-10-15/iteration034/edge-page-selection-fifth.log",
+      "logSha256": "f87a03a9ad93ee598048c4520b439bbbca6ef6e00d53f7cd5c6cd43fe4dc68e0",
+      "logMtime": "2026-10-15 12:47:28 +0800",
+      "summary": "1 passed (20.0s); page text drag/mark, automatic runtime API (older code), save, image text search in/out and persistence assertions.",
+      "explicitNaturalExitCode": null,
+      "currentSourceSha256": "a70b7942f73d82e57823d54994cf8f0746cd25b529a5dbf24d97fb02b744d468",
+      "sourceMtime": "2026-10-15 14:52:38 +0800",
+      "status": "historical PASS; current spec modified later, and now adds old-ignore re-add assertions; not current-source acceptance"
+    },
+    {
+      "test": "tests/e2e/manual-occurrences-geometry.spec.ts",
+      "log": ".data/research/lawbot-2026-10-15/iteration035/edge-manual-geometry-first.log",
+      "logSha256": "757145949074dc1d63d668fd841838313027cd332efbf91982a405475b9eb759",
+      "logMtime": "2026-10-15 13:42 +0800",
+      "summary": "first attempt failed one Word same-occurrence test; automatic runtime result assertion expected true, received false; second test did not run.",
+      "explicitNaturalExitCode": null,
+      "status": "failed attempt retained; no success inference"
+    },
+    {
+      "test": "tests/e2e/manual-occurrences-geometry.spec.ts",
+      "log": ".data/research/lawbot-2026-10-15/iteration035/edge-manual-geometry-second.log",
+      "logSha256": "737021d205d2e3882582233912ed8006f0d3f9ce40f42ef500b70d242bae68f8",
+      "logMtime": "2026-10-15 13:47:44 +0800",
+      "summary": "2 passed (5.9m); test source had synthetic PNG/DOCX + CLIENT A. Current spec mtime 14:40:50 is later; no test input/source hash in log to bind the current edit.",
+      "explicitNaturalExitCode": null,
+      "status": "historical pass for prior source only; not current-source acceptance"
+    },
+    {
+      "test": "tests/e2e/type-hide-persistence.spec.ts",
+      "log": null,
+      "summary": "No Edge log found in iteration034–037 evidence. API/codec/unit and type-hide source static evidence do not prove browser hide-refresh-restore.",
+      "status": "not run in available Edge evidence"
+    },
+    {
+      "test": "tests/e2e/source-review.spec.ts",
+      "log": null,
+      "summary": "No Edge log found in iteration034–037 evidence; current source-review UI/API diff evidence cannot be called browser PASS.",
+      "status": "not run in available Edge evidence"
+    },
+    {
+      "test": "tests/e2e/entity-corrections.spec.ts",
+      "log": null,
+      "summary": "No matching Edge log found in iteration034–037 evidence; entity-correction API integration records are separate.",
+      "status": "not run in available Edge evidence"
+    }
+  ],
+  "sourceStaticIdScreen": {
+    "input": {
+      "path": "文档/逆向台账/contracts/source-finite-closure-C-20261015.json",
+      "sha256": "485167f23f097cac100b1df5e233a66bd8a70e727cbdddfb2755fe13f29fbfa1",
+      "delegatedRows": 62,
+      "remainingPublicUnreadNodes": 0,
+      "all258Complete": false,
+      "allNativeEquivalent": false
+    },
+    "rule": "C’s own scope says these 62 belong to A/B/root and are not auto-closed; this screen filters visual/document/UI direct relevance and reuses existing finite reports without adding ledger rows or promoting unrelated IDs.",
+    "visualDirectCandidates": [
+      {
+        "id": "UI-2c1712d35460",
+        "dedup": "A renderer finite static closure / renderer-mapping-sidebar-closure; S3 candidate exact UI only, parent review required.",
+        "sourceAnchor": ".data/research/lawbot-2026-10-13/readable/renderer.js:5054-5313 EntityTreeSidebar (exact node in A report); source SHA 4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+        "callerConsumerLeaf": "renderer UI entry -> entity sidebar/group filters/actions -> parent event handlers/saved-review consumers are in A finite report; dependencies include virtual-window/page/image projections. Prior A marked exact graph complete; this pass found no contradictory evidence; no runtime inference."
+      },
+      {
+        "id": "UI-ad41d13c4a2d",
+        "dedup": "A renderer finite static closure / renderer-mapping-sidebar-closure; S3 candidate exact UI only, parent review required.",
+        "sourceAnchor": ".data/research/lawbot-2026-10-13/readable/renderer.js:5335-5403 PseudonymPolicyList/PreviewRulesPanel; jc lifecycle 4404-4490; source SHA 4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+        "callerConsumerLeaf": "policy UI -> handlers/token coordinator + normalization/alias deps -> review/persist/export consumers appear in A graph. A itself limits candidate to this stable ID and lists runtime R0. No fresh contrary source evidence observed."
+      },
+      {
+        "id": "UI-3f01047e6b59",
+        "dedup": "Already listed in source-static-remaining-by-visual-20261015 and pdf-rotation-manual-closure-20261015; stays S2/R0.",
+        "sourceAnchor": ".data/research/lawbot-2026-10-13/readable/renderer.js:22301-22671, 22740-23018, 23363-23479, 23489-23596, 24528-24536, 25554-25668, 25815-25948, 25959-25986 (PDF viewport/rotation/search/mount/save chains); exact hashes in pdf-rotation-manual-closure-20261015.json; source SHA 4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+        "callerConsumerLeaf": "PDF rotate/manual control -> native/OCR/canonical viewport geometry -> rendered/search/select/save/apply and lifecycle; remaining repeat-name caller links / external pdf.js leaves stay bounded by the existing report."
+      },
+      {
+        "id": "UI-32ce2fb60c5f",
+        "dedup": "Already listed in source-static-remaining-by-visual-20261015 and pdf-rotation-manual-closure-20261015; stays S2/R0.",
+        "sourceAnchor": ".data/research/lawbot-2026-10-13/readable/renderer.js:23693-23794; 23970-24020; 6455-6570; 8144-related producer as listed in reports; source SHA 4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+        "callerConsumerLeaf": "format-specific manual/batch placement -> normalized geometry/source map -> document review marks; PDF/image OCR and DOCX local matching remain bounded as listed in current report, no additional closure."
+      },
+      {
+        "id": "UI-339d8e53408d",
+        "dedup": "Already listed in source-static-remaining-by-visual-20261015 and workspace-renderer-lifecycle-20261015; stays S2/R0.",
+        "sourceAnchor": ".data/research/lawbot-2026-10-13/readable/renderer.js:32576 onward; source SHA 4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+        "callerConsumerLeaf": "per-format preview/snapshot transition -> serializer/dirty signature/cache/anchor conversion -> workspace initialize/replace; existing root report specifies remaining recursion."
+      },
+      {
+        "id": "UI-67e30cf66ad0",
+        "dedup": "Already listed in source-static-remaining-by-visual-20261015; stays S2/R0.",
+        "sourceAnchor": ".data/research/lawbot-2026-10-13/readable/renderer.js:34660-34679 and 35294 onward; source SHA 4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+        "callerConsumerLeaf": "known-entity audit UI -> native PDF text/candidate geometry -> review draft; upstream OCR/cache/re-recognition and all gf2 draft producers remain unclosed in root list."
+      },
+      {
+        "id": "IPC-a982d6d137ce",
+        "dedup": "Existing pdfjs-worker-resource-static-by-visual-20261015.json; do not expand.",
+        "sourceAnchor": "10 declared static nodes in that report: main module dir 26323; resolver 26715-26740; preload invoke 311-315; renderer initializers/consumers 25823-25853 and 34691-34704. Main SHA 40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba; preload SHA f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b; renderer SHA 4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc.",
+        "callerConsumerLeaf": "worker resource resolver -> direct preload IPC -> two public renderer PDF.js worker setup sites -> loading/error/unmount consumers; external pdf.js worker internals remain leaves. This is not the whole PDF business graph or native execution."
+      },
+      {
+        "id": "IPC-4dd20e80cae3",
+        "dedup": "Already represented in visual-interface-closure-20261015 and inventory-closure-input-20261015; exact static source ranges re-used, no new callgraph claim.",
+        "sourceAnchor": "renderer.js 22975-22999 slice 546075f258a62a73bfd23809b30a49064979e1e058e67c4ff9d3144c83fd7505; main.js 18186-18273 slice dbd71a1b2ea82683ef86daac7b8a8099045930bff739d9ff5fef023db1f9fd2; renderer SHA 4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc, main SHA 40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+        "callerConsumerLeaf": "image text search UI producer -> preload/main route search dispatch -> OCR lines/character boxes/bbox result consumed by review UI. Existing report notes Unicode UTF16 and empty normalized query risks; not a new finding.",
+        "sourceFileHashes": {
+          ".data/research/lawbot-2026-10-13/readable/renderer.js": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          ".data/research/lawbot-2026-10-13/readable/main.js": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba"
+        }
+      },
+      {
+        "id": "IPC-ba07bb14e3df",
+        "dedup": "Already represented in visual-interface-closure-20261015 and inventory-closure-input-20261015.",
+        "sourceAnchor": "renderer.js 25622-25655 slice 16c833f39f088ac543e6b136c76abedef22e57cd8594e752b427e26dcd00893f; main.js 18308-18342 slice 9a8edccef23ede20e759fbf2159321fbe03ebc37e6e7bbf278c90670c09c77ee; main.js preload/main dependencies in existing report.",
+        "callerConsumerLeaf": "PDF page image review -> cached PDF OCR page fetch -> canvas/text UI; external PDF/PDF.js native worker and operating system execution remain out-of-scope leaves.",
+        "sourceFileHashes": {
+          ".data/research/lawbot-2026-10-13/readable/renderer.js": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          ".data/research/lawbot-2026-10-13/readable/main.js": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba"
+        }
+      },
+      {
+        "id": "IPC-910347ed48b5",
+        "dedup": "Already represented in visual-interface-closure-20261015 and inventory-closure-input-20261015.",
+        "sourceAnchor": "renderer.js 24171-24200 slice f69fc9afdae1715ac3093293ac9c87964150e09211035f63486b3b464e4ac476; main.js 18273-18308 slice 849d05143932393c1c71aabf3602a5dd65f04d57b91416ba04d9dce2a65e9422.",
+        "callerConsumerLeaf": "selected OCR page region -> OCR glyph extraction -> selected-text and bbox returned to region/editor UI. Existing source report identifies invalid canvas dimension/finite-value validation as boundaries, not a new finding.",
+        "sourceFileHashes": {
+          ".data/research/lawbot-2026-10-13/readable/renderer.js": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          ".data/research/lawbot-2026-10-13/readable/main.js": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba"
+        }
+      },
+      {
+        "id": "IPC-d3864dc80560",
+        "dedup": "Already represented in visual-interface-closure-20261015 and inventory-closure-input-20261015.",
+        "sourceAnchor": "main.js 26985-27005 slice 117815323a8206ba943ad915d719a48d9c8546e78981343765e8ed851e80efd9; renderer.js 37534-37546 slice f665e5879a09172f9afdedb5b2c8a2951e92ca5f488d90c98a084656f24be0f3.",
+        "callerConsumerLeaf": "review label export UI -> main native save handler -> downloadable label file; filesystem save dialog/output is a platform leaf.",
+        "sourceFileHashes": {
+          ".data/research/lawbot-2026-10-13/readable/renderer.js": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          ".data/research/lawbot-2026-10-13/readable/main.js": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba"
+        }
+      },
+      {
+        "id": "IPC-5569a4344615",
+        "dedup": "Already represented in visual-interface-closure-20261015 and inventory-closure-input-20261015.",
+        "sourceAnchor": "main.js 26985-27005 slice 117815323a8206ba943ad915d719a48d9c8546e78981343765e8ed851e80efd9; renderer.js 37534-37546 slice f665e5879a09172f9afdedb5b2c8a2951e92ca5f488d90c98a084656f24be0f3.",
+        "callerConsumerLeaf": "image annotation save UI -> main native save handler -> local JSON/output location; OS filesystem/dialog consumer remains leaf.",
+        "sourceFileHashes": {
+          ".data/research/lawbot-2026-10-13/readable/renderer.js": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          ".data/research/lawbot-2026-10-13/readable/main.js": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba"
+        }
+      }
+    ],
+    "notIncluded": [],
+    "result": "No new static ID or finite closure proposed by this pass; no S2→S3, 62→closed or 258→closed promotion. The two A S3 candidates remain conditional on parent review; no fresh counterexample found. The worker stays exactly its previously declared 10 nodes."
+  },
+  "productCounterexamples": "No new product defect reproduced because this pass ran no product browser or API workflow. Concrete evidence gaps are missing current-source screenshots/logs; do not rewrite those as defects.",
+  "sourceDifference": {
+    "word": "公开 Electron renderer 把 Word 内嵌图片操作放在文档审查上下文中；我方网页通过“内嵌图片资源”选择器切换。两种入口/编号不是同一 UI 坐标，不据此主张像素或手势等价。",
+    "pdf": "Source PDF path exposes scroll/virtualization and worker-backed PDF.js behavior; our page review presents an explicit page selector and previous/next. This is a browser/cloud adaptation, not a behavior or pixel equivalence claim.",
+    "competitorRuntime": "R0. Static public source only. License path remains unopened; no license bypass, model execution, or feature-equivalence inference."
+  },
+  "metricsAudit": [
+    {
+      "category": "face",
+      "claim": "5749 attempted; P/R/F1 at IoU0.5 75.85/76.25/76.05%; raw one 36.15MP input rejected; normalized long-side-1024 all succeeded.",
+      "source": "文档/逆向台账/contracts/public-face-validation-20261014.md",
+      "assessment": "matches linked full report; photography-domain limits retained."
+    },
+    {
+      "category": "signature",
+      "claim": "35 official validation, default model+NMS P/R/F1 50.9/80.0/62.2%.",
+      "source": "文档/逆向台账/contracts/signature-model-porting-20261014.md",
+      "assessment": "matches report; not an independent test set; no competitor model equivalence."
+    },
+    {
+      "category": "stamp",
+      "claim": "mixed public test 786 images/1315 boxes, P/R/F1 17.44/24.03/20.21%.",
+      "source": "文档/逆向台账/contracts/public-stamp-validation-20261015.md",
+      "assessment": "matches report; 999 FN /1496 FP; no black-white commercial stratification, per-image upstream license and training overlap unresolved. The guide does not claim usable automatic recognition."
+    }
+  ],
+  "limitations": [
+    "No Edge, API test, model run, competitor activation, deployment, screenshot fabrication or new image capture was performed in this read-only review.",
+    "Available plain logs contain Playwright summaries but do not record the natural shell exit code; report leaves it null rather than infer a process exit status.",
+    "Current specs were modified after the visible latest PASS logs, so those logs do not validate current working-tree source.",
+    "The report does not edit the guide; recommendations are exact line targets for root to merge after fresh evidence."
+  ]
+}

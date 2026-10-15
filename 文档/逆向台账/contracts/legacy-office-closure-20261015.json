@@ -1,0 +1,604 @@
+{
+  "schema": "tuominwang.legacy-office.source-and-adapter-closure.v1",
+  "date": "2026-10-15",
+  "status": "A legacy converter/control frozen; independent C full4API on final Linux/amd64 service passed; remaining platform/runtime/quality boundaries explicit",
+  "source": {
+    "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+    "sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+    "bytes": 1996358
+  },
+  "renderer": {
+    "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+    "sourceYU": [
+      30494,
+      30501
+    ],
+    "callers": [
+      32506,
+      32587
+    ],
+    "metadata": "sourceEntry documents/id/source.docx; original fileName; fileKind docx; legacyOffice copy; sources[id]=already normalized sourceRef"
+  },
+  "sourceScripts": [
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/legacy-office/source-scripts/legacy_office_bridge.ps1",
+      "sourceAsar": ".data/research/lawbot-2026-10-14/windows-static/package/resources/app.asar",
+      "asarOffset": 3712060,
+      "size": 5794,
+      "sha256": "dfdcada8e2acc0ceb6c4e2447aa873344d02ae48d88bbb4ef2ec69a7d272ec9b",
+      "asarIntegrityMatches": true
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/legacy-office/source-scripts/legacy_office_cleanup.ps1",
+      "sourceAsar": ".data/research/lawbot-2026-10-14/windows-static/package/resources/app.asar",
+      "asarOffset": 3717854,
+      "size": 193,
+      "sha256": "6c7609a3e9e9bfa0b3e7990a34191bc9309b4c00e0f05c5e3f209b65824f6150",
+      "asarIntegrityMatches": true
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/legacy-office/source-scripts/legacy_office_process.ps1",
+      "sourceAsar": ".data/research/lawbot-2026-10-14/windows-static/package/resources/app.asar",
+      "asarOffset": 3718047,
+      "size": 2448,
+      "sha256": "51a16d3f21c9b8ec4a79e211e51e3e04abf09842a6de1ca8c6853491ac48ad4a",
+      "asarIntegrityMatches": true
+    }
+  ],
+  "branches": [
+    {
+      "id": "LEGACY-REGISTRY",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 15716,
+        "endLine": 15912,
+        "sha256": "d701be324991b4ad80ed532c30e3497d22fdaf4f3d2aa412203b964cb6ab112b",
+        "bytes": 9935
+      },
+      "semantics": "SourceRefs attach legacyOffice, lazy hash, provider/path/buffer and source lifecycle; original raw path is memory-only.",
+      "implementation": "Existing cloud immutable object registry + C normalization original/derived hashes, not a native filesystem path API.",
+      "evidence": "C full4API independently executed on final Linux/amd64 converter; immutable dual-source and permission/CAS/backup/restoration tested. Source native OS/runtime boundary remains.",
+      "status": "implemented-cloud-adapter-independently-tested"
+    },
+    {
+      "id": "LEGACY-SP",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 15914,
+        "endLine": 15992,
+        "sha256": "0a9d19f6849d64a18c767e3915ed366d0acaa0ee007b2dc67566e3683f1af167",
+        "bytes": 5659
+      },
+      "semantics": "Sp all seven story parts; VML one image/shape only, source exclusions, units/crop/rotation/flip and monotonic docPr.",
+      "implementation": "core/legacy-office.normalizeLegacyInlineImages",
+      "evidence": "57 source-pure generated cases; external image refusal is explicit extra hardening",
+      "status": "implemented-public-adapter"
+    },
+    {
+      "id": "LEGACY-TP",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 16015,
+        "endLine": 16042,
+        "sha256": "2b36d1145e17461f0d1458a773f11d7d8df43b11f38aaffc39d80f41f75830a5",
+        "bytes": 2014
+      },
+      "semantics": "Tp simple/complex nested field stack, skip PAGE/NUMPAGES/SECTIONPAGES only closed results; malformed unclosed flush; entity decode + NFKC + whitespace/control normalization.",
+      "implementation": "core/legacy-office.legacyStorySignature",
+      "evidence": "40 source-pure generated cases",
+      "status": "implemented-public-adapter"
+    },
+    {
+      "id": "LEGACY-OP",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 16043,
+        "endLine": 16046,
+        "sha256": "1961a994b38dbe10fafc22e71609188783a184b98941b2ffbdc2636fe545e090",
+        "bytes": 880
+      },
+      "semantics": "Op body/header/footer/footnotes/endnotes/comments plus raw table/textbox/embedded image counts. Does not prove layout or all private metadata.",
+      "implementation": "core/legacy-office.legacyContentSummary/assertLegacyRoundtrip",
+      "evidence": "5 source-pure document summaries + actual DOC roundtrip",
+      "status": "implemented-public-adapter"
+    },
+    {
+      "id": "LEGACY-INPUT-ZIP",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 16059,
+        "endLine": 16079,
+        "sha256": "4ac00f8b6e6f78989b8201850085a5f755ab2988905c5cc220b08534b2a96ddc",
+        "bytes": 1418
+      },
+      "semantics": "CFB or recognized DOCX ZIP; ZIP fast path Sp and no converter execution.",
+      "implementation": "adapters/legacy-office.importLegacyToDocx",
+      "evidence": "actual ZIP mislabeled DOC fastpath no RPC unit; CFB graph validates before third party parser",
+      "status": "implemented-public-adapter"
+    },
+    {
+      "id": "LEGACY-EXPORT-GUARD",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 16080,
+        "endLine": 16104,
+        "sha256": "09e70af87f39666b5a5d9c35c912b548f97f48d4ea64c166696475f9c6d5ec14",
+        "bytes": 3422
+      },
+      "semantics": "DOCX valid input, Mac WPS original unsupported; real legacy output CFB, same engine back-import, seven dimension exact compare before release.",
+      "implementation": "adapters/legacy-office.exportDocxToLegacy",
+      "evidence": "actual arm64 and Linux/amd64 simple DOC export success; complex textbox strict mismatch refusal",
+      "status": "implemented-public-adapter"
+    },
+    {
+      "id": "LEGACY-QUEUE-TEMP",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 16105,
+        "endLine": 16135,
+        "sha256": "b320b7ea9679fad81cda48c8d14e131a495b19e9a4ae053f5f432f81b83a5689",
+        "bytes": 1191
+      },
+      "semantics": "Serialized conversion jobs, owned temporary tree; source stale temp cleanup 24h and retry cleanup.",
+      "implementation": "Node converter queue + per-service serialized jobs, per-job TemporaryDirectory and isolated LO profile",
+      "evidence": "actual cancellation and timeout both temporaryDirectoriesRemaining=0; container tmpfs removes process-crash residue",
+      "status": "implemented-cloud-lifecycle-adaptation"
+    },
+    {
+      "id": "LEGACY-LO",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 16136,
+        "endLine": 16178,
+        "sha256": "911b659e00f6e0bda21f2e99314f02d3289cae1956ec78e7ccd1c08b0d0ae985",
+        "bytes": 3507
+      },
+      "semantics": "Source Mac CLI soffice, shell:false, 120sec import/180sec export, abort/timeout own process, controlled errors and output existence.",
+      "implementation": "services/legacy-office.convert_bytes via UNO and own process group",
+      "evidence": "actual LO7.4.7.2 Linux/amd64 + arm64; actual120.266sec stalled executable timeout; macro NEVER_EXECUTE0/update NO_UPDATE0 are added security controls",
+      "status": "implemented-public-adapter"
+    },
+    {
+      "id": "LEGACY-WINDOWS-CANDIDATES",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 16179,
+        "endLine": 16202,
+        "sha256": "f1226cf8e74cef6074bfcf4cc0524cfb3a00ea967f15633f48edf7112c8de076",
+        "bytes": 3342
+      },
+      "semantics": "darwin only LibreOffice; Windows WPS only WPS; DOC Word then WPS, preferred engine first; cancel immediately; aggregate failures.",
+      "implementation": "Cloud Linux intentionally follows LO strategy. No Windows COM execution or engine equivalence claimed.",
+      "evidence": "Windows bridge scripts extracted and integrity verified; static-only",
+      "status": "platform-native-not-executed"
+    },
+    {
+      "id": "LEGACY-WINDOWS-BRIDGE",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 16203,
+        "endLine": 16228,
+        "sha256": "17fbac1b7001550af7d8c99d8f8c9aad948bb278619f895e2cd8cf1096c00ebf",
+        "bytes": 1625
+      },
+      "semantics": "PowerShell isolated bridge, source identity DOCX; input/output temp files; JSON receipt; logs bounded and no shell.",
+      "implementation": "No proprietary scripts redistributed or invoked by cloud runtime.",
+      "evidence": "ASAR integrity-verified 5794-byte bridge; exact hash in sourceScripts",
+      "status": "platform-native-not-executed"
+    },
+    {
+      "id": "LEGACY-WINDOWS-CLEANUP",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 16229,
+        "endLine": 16240,
+        "sha256": "3539b2f7eda6e8eeaafe35c26c475a1767878793e3a9b2e9a26884465e4d5745",
+        "bytes": 540
+      },
+      "semantics": "Bridge cleanup invokes source ownership guard. Actual script verifies PID/name/startTimeTicks and existing process exclusion; does not kill unrelated Word/WPS.",
+      "implementation": "Cloud own process-group kill replaces COM process ownership, no cross-project/global kill.",
+      "evidence": "source three-script ASAR manifest; actual own stalled/cancel process cleanup",
+      "status": "implemented-cloud-process-adaptation"
+    },
+    {
+      "id": "LEGACY-RESTORE",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 16241,
+        "endLine": 16267,
+        "sha256": "b5009de16aefb53f72739cf265272657aeb75f0ced0b7f5e6cfceef2119cbd12",
+        "bytes": 2644
+      },
+      "semantics": "Standalone pseudonym restore DOC/WPS imports, restores, source progress3/22/80/100, requires same legacy output extension and strict readback; Mac DOC supported, WPS original unsupported.",
+      "implementation": "A converter ready; C restoration integration owned separately. Explicit DOCX is an additional user-selected output, not source original-format success.",
+      "evidence": "C full4API independently executed on final Linux/amd64 converter; immutable dual-source and permission/CAS/backup/restoration tested. Source native OS/runtime boundary remains.",
+      "status": "implemented-cloud-adapter-independently-tested"
+    },
+    {
+      "id": "LEGACY-REGISTER",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 16981,
+        "endLine": 17008,
+        "sha256": "26b1398e555afd7330529286be2a9f8842cc741a0b0fd508729eb0feb93fe0a6",
+        "bytes": 2168
+      },
+      "semantics": "Register legacy raw bytes; ZIP fastpath normalized source; encrypted CFB retained needsPassword; normal converted source ref retains original name and metadata.",
+      "implementation": "Immutable original + separate normalized_source_id/hash and encrypted witness.",
+      "evidence": "C full4API independently executed on final Linux/amd64 converter; immutable dual-source and permission/CAS/backup/restoration tested. Source native OS/runtime boundary remains.",
+      "status": "implemented-cloud-adapter-independently-tested"
+    },
+    {
+      "id": "LEGACY-UNLOCK",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 17009,
+        "endLine": 17047,
+        "sha256": "21d43f6383fdb81f8f830297b0e9ecc6eb3b4e6724a058cb3c0fd2472f27f204",
+        "bytes": 2849
+      },
+      "semantics": "Known password only: source F.decrypt, require CFB output for legacy, convert and register normalized ref, old ref release. Mislabeled encrypted OOXML returning ZIP is source-refused in this branch.",
+      "implementation": "Adapter graph validation→officecrypto-tool.isEncrypted→known-password decrypt→CFB validation→UNO; password never in transport.",
+      "evidence": "Actual self-generated encrypted DOC: no password DOCUMENT_ENCRYPTED, wrong DOCUMENT_PASSWORD_INVALID, correct successful; originalHash remains encrypted source SHA",
+      "status": "implemented-public-adapter"
+    },
+    {
+      "id": "LEGACY-APPLY-SOURCE",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 17438,
+        "endLine": 17447,
+        "sha256": "b091742308eda4ce31e76e95ff98947ebb0667c5346c123ec5f9b7f72e0d526b",
+        "bytes": 880
+      },
+      "semantics": "Apply reads normalized sourceRef, associated legacy metadata and originalSourcePath; source hash represents normalized ref.",
+      "implementation": "Cloud preserves both original and normalized SHA; encrypted attestation and parse gates.",
+      "evidence": "C full4API independently executed on final Linux/amd64 converter; immutable dual-source and permission/CAS/backup/restoration tested. Source native OS/runtime boundary remains.",
+      "status": "implemented-cloud-adapter-independently-tested"
+    },
+    {
+      "id": "LEGACY-MAC-ORDINARY-DEFAULT",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 17790,
+        "endLine": 17798,
+        "sha256": "bdc914ed005e55c9f49085577479d94c66f75a82c8fba34fa417c7fe899ef660",
+        "bytes": 1051
+      },
+      "semantics": "Ce2=darwin&&legacy. Ordinary redaction output path .doc/.wps is rewritten .docx.",
+      "implementation": "Linux cloud default DOCX. Explicit DOC can invoke additional strict roundtrip.",
+      "evidence": "Source caller exact static trace, C corrected default configuration",
+      "status": "implemented-public-adapter"
+    },
+    {
+      "id": "LEGACY-WINDOWS-ORDINARY-OUTPUT",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 17870,
+        "endLine": 17891,
+        "sha256": "56933c54758e596b1429daf0957233e3c392e62a2a75b1ece4071f54df8e7611",
+        "bytes": 2437
+      },
+      "semantics": "Only legacy&&!Ce2 invokes original-format export guard. Must retain preservedDocxBuffer, not plain generated body fallback.",
+      "implementation": "Cloud normalized DOCX primary stays DOCX unless explicit DOC chosen; strict converter for selected DOC only.",
+      "evidence": "C full4API independently executed on final Linux/amd64 converter; immutable dual-source and permission/CAS/backup/restoration tested. Source native OS/runtime boundary remains.",
+      "status": "implemented-cloud-adapter-independently-tested"
+    },
+    {
+      "id": "LEGACY-RESTORE-SINGLE",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 18417,
+        "endLine": 18428,
+        "sha256": "6982d4390b2bc158cdc885fbb1700dd4a73026f81a0268ec7e79a80644298ec5",
+        "bytes": 1313
+      },
+      "semantics": "Pseudonym single-file restore dispatches Rp; separate from ordinary redaction default.",
+      "implementation": "C shared restoration dispatcher and output format handling.",
+      "evidence": "C full4API independently executed on final Linux/amd64 converter; immutable dual-source and permission/CAS/backup/restoration tested. Source native OS/runtime boundary remains.",
+      "status": "implemented-cloud-adapter-independently-tested"
+    },
+    {
+      "id": "LEGACY-RESTORE-BATCH",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 18448,
+        "endLine": 18463,
+        "sha256": "e15a1257b5bde8b88eeaeb38e6d5477f389a4aeafe0612c1d873dc64d013a7d3",
+        "bytes": 889
+      },
+      "semantics": "Pseudonym batch restore dispatches Rp and per-file progress with owned output.",
+      "implementation": "C shared restoration dispatcher and batch path.",
+      "evidence": "C full4API independently executed on final Linux/amd64 converter; immutable dual-source and permission/CAS/backup/restoration tested. Source native OS/runtime boundary remains.",
+      "status": "implemented-cloud-adapter-independently-tested"
+    },
+    {
+      "id": "LEGACY-TMM-SCHEMA",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 19005,
+        "endLine": 19010,
+        "sha256": "65125fd367e1e3a4651cdb660a51b70d957817ccd8b33c942a6db93886d90a96",
+        "bytes": 641
+      },
+      "semantics": "Gm legacyOffice fields extension, optional engine/version, normalizationVersion>=1; source schema only word/wps.",
+      "implementation": "Accept source v2 libreoffice metadata as source validator version inconsistency, not reject Mac genuine saves.",
+      "evidence": "Source22423 explicitly also accepts libreoffice; static mismatch recorded",
+      "status": "implemented-public-adapter"
+    },
+    {
+      "id": "LEGACY-TMM-KIND",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 19164,
+        "endLine": 19173,
+        "sha256": "43c6a81d87ce5bfd192800df3726316911d742f90856a3fe8f8e1a4b0fa5136c",
+        "bytes": 1401
+      },
+      "semantics": "legacyOffice metadata only fileKind docx.",
+      "implementation": "Reference projection docx while native extension retains original DOC/WPS and normalized source+witness.",
+      "evidence": "C full4API independently executed on final Linux/amd64 converter; immutable dual-source and permission/CAS/backup/restoration tested. Source native OS/runtime boundary remains.",
+      "status": "implemented-cloud-adapter-independently-tested"
+    },
+    {
+      "id": "LEGACY-TMM-V3-PATH",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 21629,
+        "endLine": 21633,
+        "sha256": "24cf93574da84ce2ccc81336abe6df7057caa81416ccc5b453ee0bf01f51fbac",
+        "bytes": 216
+      },
+      "semantics": "Nb prefers fileName extension. V3 path may source.doc/source.wps even when bytes are normalized DOCX and fileKind docx.",
+      "implementation": "Never infer actual codec solely from sourceEntry suffix.",
+      "evidence": "source21722 copy plus renderer YU initial source.docx; C informed exact distinction",
+      "status": "implemented-public-adapter"
+    },
+    {
+      "id": "LEGACY-TMM-V3-WRITER",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 21718,
+        "endLine": 21730,
+        "sha256": "3eee4c20b8d6ea7d2480635e39607de960bc34512656a47bc705bddf9301dcaf",
+        "bytes": 2745
+      },
+      "semantics": "Writer stores source provider bytes, legacyOffice in metadata.",
+      "implementation": "Normalized DOCX sourceEntry + raw original preserved only native extension (extra safety).",
+      "evidence": "C full4API independently executed on final Linux/amd64 converter; immutable dual-source and permission/CAS/backup/restoration tested. Source native OS/runtime boundary remains.",
+      "status": "implemented-cloud-adapter-independently-tested"
+    },
+    {
+      "id": "LEGACY-TMM-V2-META",
+      "source": {
+        "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+        "startLine": 22421,
+        "endLine": 22425,
+        "sha256": "d34bab54ceff875b41e9502de7cec310a77cefdb3ba4a2afa6e5f2627ceefff0",
+        "bytes": 1620
+      },
+      "semantics": "V2 metadata explicitly accepts word/wps/libreoffice versus older Gm only word/wps.",
+      "implementation": "All three recognized engine labels retained; no source schema error copied.",
+      "evidence": "Static source exact lines",
+      "status": "implemented-public-adapter"
+    }
+  ],
+  "implementation": [
+    {
+      "path": "packages/core/legacy-office.ts",
+      "sha256": "601732c1fc0bd967b4e0467d198688d5b521e46bfc0fb974796ac7af49ce3416",
+      "bytes": 10505
+    },
+    {
+      "path": "packages/adapters/legacy-office.ts",
+      "sha256": "348baed1d8ef760483714e2bc1c3b6040e80b523e66c085f2f568415642d19ad",
+      "bytes": 9334
+    },
+    {
+      "path": "services/legacy-office/Dockerfile",
+      "sha256": "c02fc6d631782724752f9e73fe2bb262affc11fd9cd543f299809e519c5b2348",
+      "bytes": 655
+    },
+    {
+      "path": "services/legacy-office/convert.py",
+      "sha256": "96edb9e638cd79cce160be8556678194f06cd21f9ec20e0245a2f01adcd6ade3",
+      "bytes": 8171
+    },
+    {
+      "path": "services/legacy-office/server.py",
+      "sha256": "ad009698da25d5ea3a43b57c683b9c5269cd9c02cc8164209f0cb3250888c216",
+      "bytes": 3341
+    },
+    {
+      "path": "services/legacy-office/compose.fragment.yml",
+      "sha256": "58838281b66356c2b9e13871b4b276b69790a9535e1d1b312501c14e5f66f45d",
+      "bytes": 609
+    },
+    {
+      "path": "tests/legacy-office.test.ts",
+      "sha256": "f9f8656fc76d6b55749fb44cc0fd1c672fa5ed3c4138fcd19bcec949525bf13a",
+      "bytes": 7396
+    },
+    {
+      "path": "tests/legacy-office-service.test.ts",
+      "sha256": "abe3d568070310703a475c877605c9b33161ddcdedcc92d0cd930167359c3d8a",
+      "bytes": 6238
+    },
+    {
+      "path": "tests/fixtures/legacy-office-source-golden.json",
+      "sha256": "a08b60281ffdc875fd0049bde81e25135d34064e9066bf614ab743bda39b59d6",
+      "bytes": 132178
+    },
+    {
+      "path": "packages/adapters/legacy-office-control.ts",
+      "sha256": "7d7beea263f9d55f0e6141bce8a5a96afd1883d2b3ab3651b7a88e4b13f293ab",
+      "bytes": 982
+    },
+    {
+      "path": "tests/legacy-office-control.test.ts",
+      "sha256": "9d1236fb2c93f0f3b13edd3a3e2a81073fce40d839b232e5af415ee6bd66e920",
+      "bytes": 5751
+    }
+  ],
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/legacy-office/unit-final.log",
+      "sha256": "c3f8c6807607bde6c5502abefba9e445ed4daccfaa460771510e97ba0b33f934",
+      "bytes": 224
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/legacy-office/typecheck-final.log",
+      "sha256": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92",
+      "bytes": 15
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/legacy-office/service-actual-decrypt.log",
+      "sha256": "c5dc03ad69d84119e6140a36ec8f134494db4e050391d39f938cb774ef9b265d",
+      "bytes": 226
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/legacy-office/service-actual-amd64.log",
+      "sha256": "4a559ef74412a9903292b4a2921cf45ff502681076f430fbabe0f57ee5615b83",
+      "bytes": 226
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/legacy-office/actual-uno-result.json",
+      "sha256": "e8cd4a82af2300da120c260d5b766bd96fc866dc884def3bfe85fae3a0310838",
+      "bytes": 3296
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/legacy-office/actual-uno-amd64-result.json",
+      "sha256": "16ac3c2ce234ce265e63135b2126748fc14f159ae0486f039ef1d7270344fda2",
+      "bytes": 3306
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/legacy-office/timeout-actual.log",
+      "sha256": "c1e0bff8da1cfe1e0fe94fc714a9f1c035c2e9623f5775f888f617ad4d700926",
+      "bytes": 111
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/legacy-office/runtime-versions.txt",
+      "sha256": "a5e869b9cfc2766296ec6153041dd37f69bcb73263022e5add271df0ca864f9d",
+      "bytes": 6460
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/legacy-office/health-actual.json",
+      "sha256": "9172e254ffe065b270fd38ace28f757014d275fb66603e0d2e479cf5d2f39be4",
+      "bytes": 154
+    }
+  ],
+  "pureOracle": {
+    "Tp": 40,
+    "Sp": 57,
+    "Op": 5,
+    "tests": 5,
+    "passed": 5
+  },
+  "actual": {
+    "arm64Linux": {
+      "passed": 2,
+      "durationSeconds": 46.28,
+      "version": "7.4.7.2"
+    },
+    "amd64Linux": {
+      "passed": 2,
+      "durationSeconds": 93.45,
+      "image": "tuominwang-legacy-office:iteration032-candidate",
+      "imageId": "sha256:73274fed2c2b05f990c3345db7976c031cade10be0a5b69e6a78148db5f660c6",
+      "version": "7.4.7.2"
+    },
+    "timeout": {
+      "seconds": 120.26638097094838,
+      "code": "LEGACY_OFFICE_TIMEOUT",
+      "temporaryDirectoriesRemaining": 0,
+      "fixture": "Controlled nonresponding executable only; actual source120sec watchdog, synthetic no materials; exec-enabled tmpfs used in fault harness only."
+    },
+    "scope": "Self-created synthetic DOC containing text/table/header/footer/footnote/endnote/comment/image; separate complex textbox negative. True encrypted DOC generated legitimately with known 13-character test password. No competitor protected processor or activation run.",
+    "parentCancellation": {
+      "tests": 3,
+      "passed": 3,
+      "durationSeconds": 25.62,
+      "platform": "Linux/amd64",
+      "image": "tuominwang-legacy-office:iteration033-candidate",
+      "imageId": "sha256:621f231b59f0db64944d7afe9b6c5cae3fdf7c67cf29ad78d8696246228a3781",
+      "protocol": "worker start UUID -> parent register/ACK -> fetch; parent Abort -> private cancel + worker terminate; service600sec UUID tombstone handles cancel-before-convert",
+      "proof": {
+        "path": ".data/research/lawbot-2026-10-15/iteration033/legacy-parent-cancel-actual.json",
+        "sha256": "8eb84fbc0106a65f89fba9230ffb7b989da3d2d5cfd88e1230d68bc11804a710",
+        "bytes": 628
+      },
+      "log": {
+        "path": ".data/research/lawbot-2026-10-15/iteration033/legacy-control-actual-amd64.log",
+        "sha256": "f7f25adcf7e19e1dc4b2e9d2521b966a8cb3649fbc1c36a4bac6e29c50862cc6",
+        "bytes": 226
+      },
+      "cleanupMilliseconds": 2340,
+      "remainingOfficeProcesses": 0,
+      "remainingTemporaryProfiles": 0
+    },
+    "CSharedLifecycleIndependent": {
+      "tests": 4,
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "durationSeconds": 98.463222958,
+      "service": "final iteration033 Linux/amd64 converter",
+      "log": {
+        "path": ".data/research/lawbot-2026-10-15/iteration033/review-C-legacy-api-independent-A.log",
+        "sha256": "ed0aff87bc0365ff2639b04b1879f05be01bbe2697d1f36bfdae0b34ae882462",
+        "bytes": 857
+      },
+      "proof": {
+        "path": ".data/research/lawbot-2026-10-15/iteration033/legacy-api-actual-A-frozen.json",
+        "sha256": "d90b9505f9a917f45a8f28172c8212d2ab271d64aaa1a4af5f0d87cc76c15e98",
+        "bytes": 1083
+      },
+      "scope": "ZIP mislabel fastpath; genuine binary DOC; default DOCX and explicit strict DOC plus DOCX; immutable dual source; route/OCR candidate/apply/faces; four backups/reopen/portable draft; known password no/wrong/correct; CAS/cross tenant; standalone DOC restore strict real readback",
+      "boundary": "Later iteration034 verified-source bridge tamper changes were not executed by this older independent4API run; those require separate author/independent evidence."
+    },
+    "officeParserIndependent": {
+      "tests": 5,
+      "passed": 5,
+      "durationSeconds": 3.65,
+      "log": {
+        "path": ".data/research/lawbot-2026-10-15/iteration033/review-office-protocol-capacity-by-A.log",
+        "sha256": "20af78ca5dc17c6ab6268e66f80dfcfcc416dc4d70eb9544bf2f6d215d63ae50",
+        "bytes": 224
+      },
+      "scope": "all >20000 bindings kept, exact UTF8+newline50MiB canonical budget failclosed; only exact protocol URI at Word settings uri attribute suppressed from automatic URL; manual/private/visible values retain gate"
+    }
+  },
+  "securityDifferences": [
+    "Private byte RPC only, no server paths, DB, DATA_KEY, materials or model mount in conversion container. Production only internal Docker network, no published ports.",
+    "UNO exact official NEVER_EXECUTE=0 and NO_UPDATE=0, abort-only interaction handler, per-job isolated profile and process group, shell:false. Source Mac CLI did not explicitly set these properties.",
+    "Validate full raw CFB graph before officecrypto-tool parsing; skip external image relations; parse package XML safely.",
+    "Keep immutable original raw DOC/WPS bytes and separately authenticated normalized DOCX; source sourceRef/TMM only held normalized bytes.",
+    "Existing upload/transport50MiB budget remains, compared to source unlock262144000-byte cap. No new model startup/resource limits.",
+    "Apt package versions recorded in built image; Debian base digest pinned, apt repositories are not time-snapshot pinned. Actual deployment must pin produced image digest."
+  ],
+  "remaining": [
+    "No genuine historical Kingsoft WPS dialect corpus executed; a .wps filename containing compatible DOCX/CFB is not proof of all Kingsoft codecs. Windows Word/WPS COM branches remain static only, not run.",
+    "Seven source content dimensions do not prove pixel/page layout equality. Actual shared DOC readback additionally retains complete verifyOffice XML/attribute/filename/image-text privacy gates.",
+    "Source licensed runtime remains R0; all pure source and our actual LibreOffice API tests do not establish competitor runtime equivalence.",
+    "Apt archive sources are not snapshot-date pinned; produced final image digest is fixed separately."
+  ],
+  "officialSources": [
+    "https://api.libreoffice.org/docs/idl/ref/MacroExecMode_8idl.html",
+    "https://api.libreoffice.org/docs/idl/ref/namespacecom_1_1sun_1_1star_1_1document_1_1UpdateDocMode.html",
+    "https://api.libreoffice.org/docs/idl/ref/servicecom_1_1sun_1_1star_1_1document_1_1MediaDescriptor.html",
+    "https://api.libreoffice.org/docs/idl/ref/interfacecom_1_1sun_1_1star_1_1frame_1_1XStorable.html",
+    "https://github.com/LibreOffice/core/blob/libreoffice-7-4/sw/source/filter/ww8/wrtww8.cxx"
+  ],
+  "closedFindings": [
+    {
+      "id": "A-LEGACY-P2-CANCEL",
+      "status": "closed",
+      "evidence": "actual parent worker AbortSignal -> UUID ACK registered -> private service cancel; tombstone before convert, real LO PID and profile cleanup; final amd643tests"
+    },
+    {
+      "id": "A-LEGACY-P2-PARENT-DEADLINE",
+      "status": "closed",
+      "evidence": "root manual normalization parent150000ms now exceeds source120s + RPC130s and setup/cancel overhead"
+    }
+  ]
+}

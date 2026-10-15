@@ -1,0 +1,417 @@
+{
+  "version": 1,
+  "date": "2026-10-15",
+  "scope": "STATIC-SAVE-IPC + feedback persistence finite public body call graph",
+  "staticConclusion": "finite caller/service/key/codec/fs/receipt edges read with exact byte pins; source runtime remains R0",
+  "notGlobalCompletion": true,
+  "notNativePlatformEquivalence": true,
+  "nodes": [
+    {
+      "id": "SAVE-PRELOAD",
+      "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+      "startLine": 70,
+      "endLine": 89,
+      "sourceFileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+      "rangeSha256": "a824ab193f732eeb18e6cc1fdcf2e24af6773069219549a9f152fcd77ada976f",
+      "role": "explicit IPC exposure",
+      "calls": [
+        "SAVE-HANDLERS"
+      ],
+      "observedBehavior": "Exactly named open/openRecovery/save/getSaveResult/saveRecovery/saveAs/migrate methods call ipcRenderer.invoke; no own path/key implementation in preload.",
+      "depth": "finite-public-static-body-read",
+      "competitorRuntime": "R0",
+      "ownRuntimeNotEvidenceForSourceDepth": true
+    },
+    {
+      "id": "SAVE-RENDERER",
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 3669,
+      "endLine": 3945,
+      "sourceFileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "rangeSha256": "1721d9e6e7bb80f320a1e94349dd736931ad50f19ea38f67645686d3fb016059",
+      "role": "vu workspace store + mu snapshot transport",
+      "calls": [
+        "SAVE-PRELOAD"
+      ],
+      "observedBehavior": "ensureProtectedDataUnlocked precedes protected operations; serialized save/saveAs queue, recovery pending waits, project/revision-guarded receipt, missing-result recovery polls; updated sourceRefs only when project and old ref still match. Renderer path itself is not native cryptographic authority.",
+      "depth": "finite-public-static-body-read",
+      "competitorRuntime": "R0",
+      "ownRuntimeNotEvidenceForSourceDepth": true
+    },
+    {
+      "id": "SAVE-HANDLERS",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 25586,
+      "endLine": 25766,
+      "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "rangeSha256": "21a4bf3a149984c010dafbb36dcf236413f5862ddb4d6e6131deba2e752fcd81",
+      "role": "dI handlers and rI receipt",
+      "calls": [
+        "SAVE-SERVICE",
+        "RECOVERY-SERVICE"
+      ],
+      "observedBehavior": "rI counts outstanding work, ce is Mac task/background lease (not an auth guard). Save idempotent Map uses requestId+sender.id, sender conflict fails; completed carries underlying success/error receipt; prune after <=100 and age<1h, does not reject request101; restart loses Map. Open uses s2 bounded V1 migration prompt on exact errors, recovery absence errors, saveAs/dialog cancellation returns null.",
+      "depth": "finite-public-static-body-read",
+      "competitorRuntime": "R0",
+      "ownRuntimeNotEvidenceForSourceDepth": true
+    },
+    {
+      "id": "SAVE-SERVICE",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 22560,
+      "endLine": 22694,
+      "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "rangeSha256": "2f2bc3c81a7417c7fe0faa2cba25b1ea0066f05100781c9f4558cc3ff88b96a9",
+      "role": "sw save/open/readProfile/MRU",
+      "calls": [
+        "ARCHIVE-V1",
+        "CODEC-MANAGER",
+        "COMPAT-HYDRATOR",
+        "SOURCE-REGISTRY",
+        "RECOVERY-SERVICE"
+      ],
+      "observedBehavior": "project+revision match snapshot; V1 WORKSPACE_V1_REQUIRES_V2 fallback only; V2 selects supplied bytes, compatible old archive source stream or registered ref, missing fails; in-place V1 and V2-to-V3 migration require saveAs; source release and reader close in finally; save receipt carries project/revision/time/format/freshrefs; open hydrates protected snapshots and binds fresh refs/OCR cache, MRU counts known only when read.",
+      "depth": "finite-public-static-body-read",
+      "competitorRuntime": "R0",
+      "ownRuntimeNotEvidenceForSourceDepth": true
+    },
+    {
+      "id": "ARCHIVE-V1",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 19336,
+      "endLine": 19504,
+      "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "rangeSha256": "9040329ef41889a2f7aae709e2aed20c978df7ee3413ad701691794ec13cd0d1",
+      "role": "xg ZIP writer + reader",
+      "calls": [
+        "FS-ATOMIC-V1"
+      ],
+      "observedBehavior": "schema migration/checks, all source/detection/review/MD sidecar entries; SHA256 manifest; bounds/duplicate/path/checksum/manifest-document equality; MD actual source reparse exact sidecar check; writer temp wx→write→fsync→rename retries→cleanup; source missing fails. V1 is not claimed encrypted.",
+      "depth": "finite-public-static-body-read",
+      "competitorRuntime": "R0",
+      "ownRuntimeNotEvidenceForSourceDepth": true
+    },
+    {
+      "id": "FS-ATOMIC-V1",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 19404,
+      "endLine": 19431,
+      "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "rangeSha256": "4818e5448a719ee932cca5b74bff57a2eb3d7fc01b77e04e3a428b0f83c5df46",
+      "role": "V1 temp file atomic replacement",
+      "calls": [],
+      "observedBehavior": "Unique sibling temporary path, exclusive write/fsync/close, 3 rename attempts, finally close+unlink; does not replace on upstream validation failure.",
+      "depth": "finite-public-static-body-read",
+      "competitorRuntime": "R0",
+      "ownRuntimeNotEvidenceForSourceDepth": true
+    },
+    {
+      "id": "CODEC-MANAGER",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 25190,
+      "endLine": 25274,
+      "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "rangeSha256": "e64b34b0e2d4bdc9696617bda7fb4ed88e78656cbe0af2d8bdc32050c90f3fdd",
+      "role": "L_ key-owning V2/V3 manager",
+      "calls": [
+        "KEY-HIERARCHY",
+        "CODEC-V2-WRITER",
+        "CODEC-V3-WRITER",
+        "COMPAT-HYDRATOR"
+      ],
+      "observedBehavior": "migrate only V1; random DEK32 and local CMK slot; open requires exactly one local-cmk slot; protected-write access separate from unlocked read; compatible version dispatch; key buffers wiped finally; snapshot schema, source descriptors, OCRsegments, rules/profile/decisions preserved.",
+      "depth": "finite-public-static-body-read",
+      "competitorRuntime": "R0",
+      "ownRuntimeNotEvidenceForSourceDepth": true
+    },
+    {
+      "id": "COMPAT-HYDRATOR",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 22472,
+      "endLine": 22540,
+      "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "rangeSha256": "ae40e96ef09f3606c63bd7fab88a4b20a91b6da3500e4a8a2434bc089635235d",
+      "role": "nw compatible reader hydrate",
+      "calls": [
+        "CODEC-V2-READER",
+        "CODEC-V3-READER",
+        "SOURCE-REGISTRY"
+      ],
+      "observedBehavior": "V3 verifies all entries, exact entity/review/OCR counts, rejects unfinished diskproject state arrays, reconstructs full schema; V2 reads meta/state/OCR segments then global state and migrates schema1; source providers bind reader streams, closes on failure. Returns sources through registry rather than arbitrary absolute ref.",
+      "depth": "finite-public-static-body-read",
+      "competitorRuntime": "R0",
+      "ownRuntimeNotEvidenceForSourceDepth": true
+    },
+    {
+      "id": "CODEC-V2-WRITER",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 24505,
+      "endLine": 24584,
+      "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "rangeSha256": "08d715429150a80afd1535854db1120e22e864d5b3215da860d064a4c16d65a8",
+      "role": "vx V2 controlled ZIP→AEAD→verify→replace",
+      "calls": [
+        "SECURE-CONTAINER"
+      ],
+      "observedBehavior": "declared sizes/docIds/paths/OCR segmentation, source stored uncompressed; unique v2tmp, streaming ZIP to encrypted cf; readback Tx manifest verify, beforeReplace hook, bounded OS retry, cleanup, preserve previous file on failure.",
+      "depth": "finite-public-static-body-read",
+      "competitorRuntime": "R0",
+      "ownRuntimeNotEvidenceForSourceDepth": true
+    },
+    {
+      "id": "CODEC-V2-READER",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 24601,
+      "endLine": 24761,
+      "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "rangeSha256": "a78fd3b8718eea8018ab15df41ee95f9512a318ac00bf7da501d6dbf3343ebb4",
+      "role": "Tx open controlled V2 entries",
+      "calls": [
+        "SECURE-CONTAINER"
+      ],
+      "observedBehavior": "AEAD-backed random-access ZIP; exact object type, duplicate/path/inner-encryption/compression/size/index/source/OCR declaration checks; no undeclared entries; controlled range/stream reads; source registry only receives validated provider.",
+      "depth": "finite-public-static-body-read",
+      "competitorRuntime": "R0",
+      "ownRuntimeNotEvidenceForSourceDepth": true
+    },
+    {
+      "id": "CODEC-V3-WRITER",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 21905,
+      "endLine": 21987,
+      "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "rangeSha256": "2ec222f9e3b511714a84d40daa50b8b5383f3ddb7a243da5633add381c05cd7b",
+      "role": "Fb V3 segmented writer",
+      "calls": [
+        "SECURE-CONTAINER",
+        "CODEC-V3-READER"
+      ],
+      "observedBehavior": "stage payloads, diskspace preflight, ZIP64/segmented sources into encrypted temp, Yb.verifyAllEntries before replacement, known disk/permission errors mapped, cleanup and key zeroing finally.",
+      "depth": "finite-public-static-body-read",
+      "competitorRuntime": "R0",
+      "ownRuntimeNotEvidenceForSourceDepth": true
+    },
+    {
+      "id": "CODEC-V3-READER",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 22065,
+      "endLine": 22177,
+      "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "rangeSha256": "cc91045ced17c6feef280d09669d8444fc291b87ea506f518b148a58157b3bf1",
+      "role": "Yb V3 structural open",
+      "calls": [
+        "SECURE-CONTAINER"
+      ],
+      "observedBehavior": "controlled paths, declared bytes/segment hashes/logical ranges/counts/lookup source fingerprints, source and global state identity checks; no undeclared entry. Full hydration verification is called by nw, not merely ZIP open.",
+      "depth": "finite-public-static-body-read",
+      "competitorRuntime": "R0",
+      "ownRuntimeNotEvidenceForSourceDepth": true
+    },
+    {
+      "id": "SECURE-CONTAINER",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 14925,
+      "endLine": 15150,
+      "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "rangeSha256": "f239ae79a0d05123e378d555fefe4bae39ac7e4c02c17f37203d7f94e07330f8",
+      "role": "cf/lf/df protected object I/O",
+      "calls": [
+        "KEY-HIERARCHY"
+      ],
+      "observedBehavior": "cf chunks AES256GCM with object identity/chunk AAD, header auth, 4MiB frame, unique temp, fsync, first/last readback then rename; lf authenticates header and each requested chunk, bounds range, zeroes key close; df checks objectType/objectId, single local slot, unwraps read or protectedWrite then closes/wipes.",
+      "depth": "finite-public-static-body-read",
+      "competitorRuntime": "R0",
+      "ownRuntimeNotEvidenceForSourceDepth": true
+    },
+    {
+      "id": "KEY-HIERARCHY",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 19650,
+      "endLine": 19880,
+      "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "rangeSha256": "c9f4d1389f4ce27cd39e4873e5d2d08f034c30ca9a93ff877c0cd90b5e4f8e47",
+      "role": "Fg local OS key hierarchy",
+      "calls": [],
+      "observedBehavior": "safeStorage availability required; encrypted device recovery DRK, password SCRYPT CMK slot, AAD slot metadata; unlocked-session TTL and wiping, exact slot/keyId checks; protected-write can use device slot without exposing material key; atomic mode0600 metadata write. Native OS domain is not reproduced by cloud tenant DATA_KEY and cannot be declared native-equivalent.",
+      "depth": "finite-public-static-body-read",
+      "competitorRuntime": "R0",
+      "ownRuntimeNotEvidenceForSourceDepth": true
+    },
+    {
+      "id": "RECOVERY-SERVICE",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 19896,
+      "endLine": 20112,
+      "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "rangeSha256": "5e0708b32e862b703e9ece211a87ccc59e45e064b1ee566aff52100684c28a2b",
+      "role": "Hg recovery protected source/snapshot lifecycle",
+      "calls": [
+        "SECURE-CONTAINER",
+        "SOURCE-REGISTRY"
+      ],
+      "observedBehavior": "source bytes or registered stream only; snapshot project/revision CAS and stale revision receipt; fingerprint reuse, per-source encrypted recovery objects plus encrypted snapshot, remove obsolete recovery objects; session marker/prompt selection; opening validates protected size, MD reparse sidecar, registers providers and releases partial refs on failure; discard releases only owned recovery refs, protected-read key errors are surfaced.",
+      "depth": "finite-public-static-body-read",
+      "competitorRuntime": "R0",
+      "ownRuntimeNotEvidenceForSourceDepth": true
+    },
+    {
+      "id": "SOURCE-REGISTRY",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 26850,
+      "endLine": 26880,
+      "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "rangeSha256": "811726d76f6f9030350a9720dd455a88d05080b0ea0bca556f5cd9971f0ee37c",
+      "role": "actual service dependency construction",
+      "calls": [
+        "SAVE-SERVICE",
+        "RECOVERY-SERVICE",
+        "KEY-HIERARCHY"
+      ],
+      "observedBehavior": "actual keyhierarchy Fg(userData/auth,safeStorage), L_(same keyhierarchy), sw(xg,_g,L_,fp registry), Hg(same keyhierarchy/registry), await beginSession, dI registration. Read/write caller graph therefore connects actual objects rather than similarly named helpers.",
+      "depth": "finite-public-static-body-read",
+      "competitorRuntime": "R0",
+      "ownRuntimeNotEvidenceForSourceDepth": true
+    },
+    {
+      "id": "FEEDBACK-STORE",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 13332,
+      "endLine": 13487,
+      "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "rangeSha256": "c23b4d8d51d7f66c95cd1b879148088f10c1b60303a9dcc73fe369412158664a",
+      "role": "Mu persistent store and singleton",
+      "calls": [
+        "FEEDBACK-IPC"
+      ],
+      "observedBehavior": "addBatch normalizes camel/snake aliases, allocates own IDs/time/OS user, Map inserts, save once+audit; no updateMemoryFromFeedback invocation in add/addBatch. save conditional configured XOR obfuscation then synchronous UTF8 write; load reinstates feedback/memory/hints/audit, catches malformed reads. This weak source obfuscation is documented, not copied as cloud AEAD security.",
+      "depth": "finite-public-static-body-read",
+      "competitorRuntime": "R0",
+      "ownRuntimeNotEvidenceForSourceDepth": true
+    },
+    {
+      "id": "FEEDBACK-IPC",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 18092,
+      "endLine": 18186,
+      "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "rangeSha256": "1fbfb031715580e200f169bc8c683b6bd7442a8c7fe52a933089a80992e25a1f",
+      "role": "actual feedback handlers and retired learner",
+      "calls": [
+        "FEEDBACK-STORE"
+      ],
+      "observedBehavior": "feedback:add/add-batch call Mu; addBatch calls getAllMemories.filter but discards return and performs no learning. Seven learner endpoints explicitly retired/no-op/error shapes; do not invent active learner training/rollback.",
+      "depth": "finite-public-static-body-read",
+      "competitorRuntime": "R0",
+      "ownRuntimeNotEvidenceForSourceDepth": true
+    },
+    {
+      "id": "TRANSFER-IPC",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 25756,
+      "endLine": 25785,
+      "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "rangeSha256": "a8db775e253ab2a8420d4869585f0eff4babd20f5a8bcd7a32dfdbeee4aa05ef",
+      "role": "exact create/receive transfer handlers",
+      "calls": [
+        "TRANSFER-SERVICE"
+      ],
+      "observedBehavior": "source path required, native save/open dialogs may cancel; create rejects overwriting original; receive requires password and returns transient compatible reader through sw. No absolute host paths are accepted by cloud adapter.",
+      "depth": "finite-public-static-body-read",
+      "competitorRuntime": "R0",
+      "ownRuntimeNotEvidenceForSourceDepth": true
+    },
+    {
+      "id": "TRANSFER-SERVICE",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 25286,
+      "endLine": 25351,
+      "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "rangeSha256": "babb07fc9b841a4502b24c1b898b91cdce287d16de4349781b9e1cda93d1bc6c",
+      "role": "V_ authenticated transfer wrapping",
+      "calls": [
+        "KEY-HIERARCHY",
+        "SECURE-CONTAINER",
+        "COMPAT-HYDRATOR"
+      ],
+      "observedBehavior": "local protected snapshot is opened before copy; fresh DEK/random generated transfer password and SCRYPT AESGCM wrapped slot; secure transfer readback before returning; receive requires exactly one transfer slot, validates field encodings/KDF/AAD/tag and reports password invalid; opened transfer version dispatches full Tx/Yb reader; raw secrets wiped finally.",
+      "depth": "finite-public-static-body-read",
+      "competitorRuntime": "R0",
+      "ownRuntimeNotEvidenceForSourceDepth": true
+    },
+    {
+      "id": "V3-HYDRATION-READ",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 22177,
+      "endLine": 22387,
+      "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "rangeSha256": "c1019e8188751d48b994ab6aca9b1cece9d0af6abb96b506a33e1aefbae72960",
+      "role": "Yb document/state/payload/global hydration and verifyAllEntries",
+      "calls": [
+        "SECURE-CONTAINER"
+      ],
+      "observedBehavior": "segment/payload/lookup hashes and exact uncompressed bytes; payload UTF16 logical range slices; full collection reconstruction, mergeSnapshotEntries/fileOverrideEntries consolidation, no lazy unloaded collections accepted by finite nw hydration; all entries verified before full import, close releases secure reader and key.",
+      "depth": "finite-public-static-body-read",
+      "competitorRuntime": "R0",
+      "ownRuntimeNotEvidenceForSourceDepth": true
+    },
+    {
+      "id": "V2-HYDRATION-READ",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 24678,
+      "endLine": 24732,
+      "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "rangeSha256": "36f092b708c05e90b9a63af60ee861c3ea2bc9a34ff6675b35e1997162218cd3",
+      "role": "Tx controlled state/OCR/source reader",
+      "calls": [
+        "SECURE-CONTAINER"
+      ],
+      "observedBehavior": "manifest-selected source/meta/state only; safe source range checks, OCR segment exact line/page count and bounded bytes/JSON, closes random ZIP and secure reader.",
+      "depth": "finite-public-static-body-read",
+      "competitorRuntime": "R0",
+      "ownRuntimeNotEvidenceForSourceDepth": true
+    },
+    {
+      "id": "RECENT-INDEX",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 19505,
+      "endLine": 19565,
+      "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "rangeSha256": "7801c88c2b09d0e55c9390ef901e013cac505cd917f7976afb19a91f0f7c24fc",
+      "role": "_g protected MRU index",
+      "calls": [
+        "SECURE-CONTAINER"
+      ],
+      "observedBehavior": "protected index read; explicit legacy JSON migration then protected re-read before unlink; list removes non-existing native paths; remember preserves prior lastSavedAt when undefined and caps only recent index20, forget removes index entry only; protected atomic write via df, plaintext fallback temp→rename→unlink.",
+      "depth": "finite-public-static-body-read",
+      "competitorRuntime": "R0",
+      "ownRuntimeNotEvidenceForSourceDepth": true
+    },
+    {
+      "id": "KEY-SLOT-PRIMITIVES",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 19566,
+      "endLine": 19649,
+      "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "rangeSha256": "83206eb63d693daf73739eec4d69a9d5d782f53f9b525915bc822e9072c00817",
+      "role": "SCRYPT and slot AEAD primitives",
+      "calls": [],
+      "observedBehavior": "password >=4 chars, <=1024 UTF8 bytes/non-whitespace; validated scrypt salt/N/r/p, fresh salt, explicit maxmem; canonical slot metadata AAD, AES256GCM32-byte keys and tags, wrong-password auth failure. No password guess or OS key recovery executed.",
+      "depth": "finite-public-static-body-read",
+      "competitorRuntime": "R0",
+      "ownRuntimeNotEvidenceForSourceDepth": true
+    }
+  ],
+  "crossReferences": [
+    "文档/逆向台账/contracts/renderer-finite-static-closure-20261015.json",
+    "文档/逆向台账/contracts/workspace-renderer-lifecycle-20261015.json",
+    "文档/逆向台账/contracts/workspace-format-porting-20261014.json",
+    "文档/逆向台账/contracts/source-registry-project-provenance-20261015.json"
+  ],
+  "boundaries": [
+    "No source license activation or competitor protected workflow executed",
+    "OS safeStorage/local CMK/password prompt, native file chooser/shell and native atomic path behavior remain source-platform domain; cloud uses authenticated upload/immutable objects/tenant AEAD/CAS/receipt adapter",
+    "Ranges record this named finite graph; do not infer whole renderer or whole product closure from these nodes",
+    "Own codec/API tests are separate implementation evidence and are not used to assert source runtime or source static depth"
+  ],
+  "feedbackAuditOrder": "addFeedbackBatch persists this.save() before this.addAuditLog(); unlike addFeedback, the new batch audit is not persisted until a later save. Our immediate transaction audit is a declared improvement, not source-identical persistence timing."
+}

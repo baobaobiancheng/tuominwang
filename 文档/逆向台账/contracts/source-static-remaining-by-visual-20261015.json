@@ -1,0 +1,220 @@
+{
+  "date": "2026-10-15",
+  "kind": "remaining-static-function-chain-evidence-not-implementation-missing-inference",
+  "ledgerSnapshot": {
+    "path": "文档/逆向台账/ledger.json",
+    "bytes": 6032616,
+    "sha256": "6cee182f2c9eab9685b9b22f56e811fcdf79e1a573c25fabb39576a6589cd5f8"
+  },
+  "counts": {
+    "interfaces": 258,
+    "staticDepth": {
+      "S2": 258
+    },
+    "runtimeStatus": {
+      "R0": 258
+    }
+  },
+  "noPromotion": true,
+  "method": "Read existing explicit remaining fields and verify concrete current readable function locations. Do not carry forward historical gaps already closed by later source reports; no source S3 inferred from own tests. This is a prioritized evidence-deepening list, not an assertion all corresponding own features are absent.",
+  "chains": [
+    {
+      "id": "UI-2c1712d35460",
+      "chain": "DOCX/Markdown/Image/PDF entity projection and lazy navigation",
+      "sourceLocations": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 8810,
+          "functionChain": "To2→Eo2(8820): filters/type/text/score→full entity sidebar"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 6333,
+          "functionChain": "St2: virtual block/window→source offsets→DOM selection"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 26935,
+          "functionChain": "Image Ia2→Pa2 computed projection; not same-name function22929/31794"
+        }
+      ],
+      "remaining": "Expand complete producer/filter/virtual-window/scroll branches and caller identities; own UI tests do not prove source sidebar completeness.",
+      "historicalContractRemaining": [
+        "未展开 DOCX Eo2 投影/惰性列表完整性（renderer:8820起）、Markdown St2 虚拟窗口定位（6333起）、Image Pa2 投影（26935附近）及 PDF Il2 完整滚动链。已读callsite不证明各格式侧栏显示全部实体。",
+        "未展开 zf/_c/er2 的所有调用者及 feedback.addBatch 主进程持久化；本项只读指定删除分支。"
+      ],
+      "staticDepth": "S2",
+      "runtime": "R0"
+    },
+    {
+      "id": "UI-3f01047e6b59",
+      "chain": "PDF viewport/search rotation and coordinate chain",
+      "sourceLocations": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 23449,
+          "functionChain": "nr2→ar2(23464)→ir2:90/180/270 and page geometry"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 24528,
+          "functionChain": "rl2→sl2(24535): preview-only singlebox medianheight smoothing/verticalcentering; uses Tr2/ir2, not a standalone rotation/croptransform"
+        }
+      ],
+      "remaining": "Source helper scopes repeat names. Bind each viewport/rotation/crop producer and every native/OCR consumer; external pdf.js internals remain separately versioned dependency.",
+      "historicalContractRemaining": [
+        "未展开 Markdown虚拟窗口完整搜索 producer/窗口加载 St2(6333起) 和其他全文索引，只确认共享DOM搜索与scope消费者。",
+        "PDF xa2/ka2 已读直接坐标组合；nr2(23449起)、Ji2/ar2/sl2/Ar2/rl2 全部旋转坐标转换尚未递归闭合。未读 pdf.js 的 getTextContent 实现，未运行Unicode/字体/分页用例。"
+      ],
+      "staticDepth": "S2",
+      "runtime": "R0",
+      "scopeCorrection": "First concrete read of24500-24540 establishes previewmedianheight role; priorgeneric pendinglabel corrected, oldreport exactbytes archived."
+    },
+    {
+      "id": "UI-339d8e53408d",
+      "chain": "Per-format snapshot serialization / dirty signatures / incremental replacement",
+      "sourceLocations": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 32576,
+          "functionChain": "Nu2→Iu2(32601)→Du2(32610)→workspace initialize/replaceContent"
+        }
+      ],
+      "remaining": "Recursively expand per-format serializer/changed-document signature/PDF reuse/OCR cache/anchor incompatibility; later codec/API/receipt tests close own behavior, not all source renderer branches.",
+      "historicalContractRemaining": [
+        "未展开 Nu2(32622调用)各格式snapshot序列化、workspace save/recovery preload及主进程加密/原子落盘/重开恢复；恢复正确性仍未动态验证。",
+        "child内 gs2/zu2/forceRefreshReviewHighlights 等渲染算法和DOCX文档大型异步加载的所有取消/卸载路径尚未闭合。"
+      ],
+      "staticDepth": "S2",
+      "runtime": "R0"
+    },
+    {
+      "id": "UI-ad41d13c4a2d",
+      "chain": "Inherited canonical token coordinator and unified application",
+      "sourceLocations": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 4418,
+          "functionChain": "jc: set/reserve/snapshot/tokenFor/apply and alias/counter maps"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 29843,
+          "functionChain": "UK: canonical normalization and organization abbreviation"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 34463,
+          "functionChain": "Hm2: scope/unified changes→feedback/flush/partial mutation"
+        }
+      ],
+      "remaining": "Source Mm/Ad plain/mixed/outer-whitespace mapping and export/restoration are now separately closed; still expand complete jc+UK inherited lifecycle and every caller before claiming whole-source closure.",
+      "historicalContractRemaining": [
+        "jc完整 inherited-profile/canonicalKey/tokenFor/apply实现（4418起）及UK规范化/机构简称关系（29843起）未递归展开；完整alias碰撞等价性仍未闭合。",
+        "未从这些entry逐一追到DOCX/PDF/Image/Markdown导出mask选择器、LPM生成及还原消费；不得把预览qp结果等同导出成品。"
+      ],
+      "staticDepth": "S2",
+      "runtime": "R0"
+    },
+    {
+      "id": "UI-67e30cf66ad0",
+      "chain": "Known-entity audit PDF text and geometry production",
+      "sourceLocations": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 34660,
+          "functionChain": "pf2→ff2(34673)→vf2(34679)"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 35294,
+          "functionChain": "xv2 candidate geometry→gf2 draft provenance"
+        }
+      ],
+      "remaining": "Need complete upstream text/cache/geometry and re-recognition version relationships; own current audit API is not source native execution.",
+      "historicalContractRemaining": [
+        "vf2 PDF native全文抽取（34679起）、ff2/pf2/xv2候选几何转换（34673/34660/35294起）尚未递归展开；uf2与cf2直接算法已读，不等于整条geometry闭合。",
+        "未读所有gf2上游draft生成和重新识别并发版本门；需要动态覆盖删除页OCR、sourceMap缺口、失败返回与审计切换。"
+      ],
+      "staticDepth": "S2",
+      "runtime": "R0"
+    },
+    {
+      "id": "UI-32ce2fb60c5f",
+      "chain": "Same-position batch and manual-correction concrete producers",
+      "sourceLocations": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 23696,
+          "functionChain": "PDF As2→Ts2(23701)→Es2(23708)→Is2(23722); Ib/Pb(10649/10655)"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 6455,
+          "functionChain": "DOCX sn2→hs2(8144)"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 23975,
+          "functionChain": "PDF so2; Image Xe2(26483)→yi2(27246)"
+        }
+      ],
+      "remaining": "Expand format-specific local matching/relative geometry/entity construction/unmount/cancel/stale-cache/partial mutation rollback; existing parent-loop reading is insufficient.",
+      "historicalContractRemaining": [
+        "PDF Es2/Pb/Ib/As2/Ts2/Is2完整相对坐标转换及DOCX同图批量路径未展开；本节只读PDF Rs2父控制流。",
+        "DOCX sn2(6455起)所有本地匹配、PDF so2与Image Xe2搜索包装、manual hs2/Ul2/yi2建实体实现尚未完整递归闭合。",
+        "未动态验证关窗、切换文件、预览期间重新识别/删除实体、异步错误后重复apply、保存重开和导出；仍R0。"
+      ],
+      "staticDepth": "S2",
+      "runtime": "R0"
+    },
+    {
+      "id": "workspace-provider-source-registry",
+      "chain": "Main source references / leases / output collision lifecycle",
+      "sourceLocations": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16750,
+          "functionChain": "M2→h2.resolve(sourceRef)→source registry/provider lease"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16767,
+          "functionChain": "A2: sourceRef/content/source bytes→format output and filesystem collision/cleanup"
+        }
+      ],
+      "remaining": "Trace source registry producer/ownership/recovery/lease disposal and all output failure branches. Cloud immutable source and stream tests are adaptations, not proof of all desktop provider lifecycles.",
+      "historicalContractRemaining": [],
+      "staticDepth": "S2",
+      "runtime": "R0"
+    }
+  ],
+  "notRelistedAsUnobtained": [
+    "Windows seal_detector.py obtained and26 numeric source-oracles complete; actual mixed quality F1.5=20.21% remains separate.",
+    "Markdown application parser/writer now source oracles; mdast/YAML/parse5 dependency internals remain boundary, not absent application implementation.",
+    "Mm/Ad LPM whole/mixed/raw+trim aliases and actual MD/Word restored independently; not reopen merely from old10/14 notes.",
+    "Rule lists/41groups and report generation have newer A reports; old pending notes alone are not current finding."
+  ],
+  "evidence": [
+    {
+      "path": "文档/逆向台账/contracts/deep-ui-parents-20261014.json",
+      "bytes": 40888,
+      "sha256": "b4a9529e9740c06116e36da34934d29dfc89a675d5b5fca4e9dee72b4a130bd0"
+    },
+    {
+      "path": "文档/逆向台账/contracts/current-interface-handoff-20261014.json",
+      "bytes": 6116271,
+      "sha256": "60290e06ba185d4a5b1754d5d0af697e435ccd90b45299bfb7518cb78359097d"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "bytes": 2771447,
+      "sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "bytes": 1996358,
+      "sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba"
+    }
+  ]
+}

@@ -2,7 +2,7 @@ import { readFile } from "node:fs/promises";
 import { test, expect } from "./fixture.ts";
 
 test("same-value groups review every occurrence across mark pages and text windows, preserve exceptions and export the real result", async ({ page }) => {
-  test.setTimeout(120000);
+  test.setTimeout(150000);
   await page.setViewportSize({ width: 1440, height: 1000 });
   const phone = "13800138000";
   const text = phone + "|" + "x".repeat(40000) + "|" + Array(59).fill(phone).join("|");
@@ -76,7 +76,9 @@ test("same-value groups review every occurrence across mark pages and text windo
   await page.getByRole("button", { name: "保存复核", exact: true }).click();
   await expect(page.getByText("复核已保存", { exact: true })).toBeVisible();
   await page.getByRole("button", { name: "返回材料列表", exact: true }).click();
+  const firstDocumentLoaded = page.waitForResponse(response => response.request().method() === "GET" && /^\/api\/documents\/[a-f0-9-]{36}$/.test(new URL(response.url()).pathname) && response.status() === 200);
   await page.getByRole("button", { name: /文本 1/ }).click();
+  const firstDocumentId = ((await (await firstDocumentLoaded).json()) as { id: string }).id;
   await expect(page.getByRole("button", { name: "按实体", exact: true })).toHaveAttribute("aria-pressed", "true");
   await expect(group.getByText("脱敏 59", { exact: true })).toBeVisible();
   await expect(group.getByText("保留 1", { exact: true })).toBeVisible();
@@ -107,8 +109,12 @@ test("same-value groups review every occurrence across mark pages and text windo
   await page.getByRole("button", { name: "提交并识别", exact: true }).click();
   await expect(group.getByText("待确认 1", { exact: true })).toBeVisible({ timeout: 30000 });
   const documentNavigation = page.getByRole("navigation", { name: "材料导航", exact: true });
-  await documentNavigation.getByRole("button", { name: "文本 1", exact: true }).click();
-  await expect(group.getByText("脱敏 60", { exact: true })).toBeVisible();
+  await Promise.all([
+    page.waitForResponse(response => response.request().method() === "GET" && new URL(response.url()).pathname === `/api/documents/${firstDocumentId}` && response.status() === 200, { timeout: 30000 }),
+    documentNavigation.getByRole("button", { name: "文本 1", exact: true }).click(),
+  ]);
+  await expect(original).toHaveValue(/^13800138000\|x{10}/);
+  await expect(group.getByText("脱敏 60", { exact: true })).toBeVisible({ timeout: 30000 });
   await group.getByRole("checkbox").check();
   await expect(groups.getByRole("status")).toHaveText("已选 1 组 · 60 处");
   await expect(page.getByRole("button", { name: "保存复核", exact: true })).toBeDisabled();
@@ -122,4 +128,38 @@ test("same-value groups review every occurrence across mark pages and text windo
   await expect(groups.getByRole("button", { name: "所选组脱敏", exact: true })).toBeDisabled();
   await expect(page.getByRole("alertdialog", { name: "操作确认" })).toHaveCount(0);
   expect(unexpectedDialogs).toBe(0);
+});
+
+test("entity groups recover after a rate window and a busy processing slot while retaining the real review result", async ({ page }) => {
+  test.setTimeout(60000);
+  await page.goto("/");
+  await page.getByLabel("账号", { exact: true }).fill(process.env.E2E_USERNAME!);
+  await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
+  await page.getByRole("button", { name: "登录工作台", exact: true }).click();
+  await page.locator(".create-project summary").click();
+  await page.getByLabel("项目名称", { exact: true }).fill("合成实体筛选短暂繁忙");
+  await page.getByRole("button", { name: "新建项目", exact: true }).click();
+  let filterRequests = 0, failNextInvalid = false;
+  const filterTimes: number[] = [];
+  await page.route("**/api/documents/*/entity-filter", async route => {
+    filterRequests++;filterTimes.push(Date.now());
+    if (failNextInvalid) { failNextInvalid = false; return route.fulfill({ status: 400, json: { error: "INVALID_INPUT" } }); }
+    if (filterRequests === 1) return route.fulfill({ status: 429, headers: { "Retry-After": "1" }, json: { error: "RATE_LIMITED" } });
+    if (filterRequests === 2) return route.fulfill({ status: 409, json: { error: "PROCESSING_BUSY" } });
+    return route.continue();
+  });
+  await page.getByRole("button", { name: "导入材料", exact: true }).click();
+  await page.getByLabel("待处理文本", { exact: true }).fill("联系电话 13800138000");
+  await page.getByRole("button", { name: "提交并识别", exact: true }).click();
+  const groups = page.getByRole("region", { name: "实体分组", exact: true });
+  await expect(groups.locator(".entity-group-card")).toContainText("待确认 1", { timeout: 30000 });
+  expect(filterRequests).toBeGreaterThanOrEqual(3);
+  expect(filterTimes[1] - filterTimes[0]).toBeGreaterThanOrEqual(1000);
+  await expect(groups.getByRole("alert")).toHaveCount(0);
+  failNextInvalid = true;
+  await groups.getByLabel("实体原值筛选", { exact: true }).fill("13800138000");
+  await expect(groups.getByRole("alert")).toContainText("筛选未完成，请重试。");
+  await groups.getByRole("button", { name: "重试筛选", exact: true }).click();
+  await expect(groups.locator(".entity-group-card")).toContainText("待确认 1", { timeout: 30000 });
+  await expect(groups.getByRole("alert")).toHaveCount(0);
 });

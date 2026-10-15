@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-15",
+  "reviewer": "C independent read-only",
+  "scope": [
+    "packages/core/reference-review-feedback.ts",
+    "packages/core/review-feedback.ts",
+    "apps/api/review-feedback.ts",
+    "apps/web/review-feedback.ts",
+    "apps/web/entity-groups.tsx"
+  ],
+  "sourceRuntime": "R0",
+  "findings": [],
+  "qualifiedConclusion": "No new reproducible defect in reviewed scope; does not certify whole product/native workflow",
+  "actual": {
+    "tests": 2,
+    "passed": 2,
+    "failed": 0,
+    "skipped": 0,
+    "runtime": "Node24.19.0",
+    "log": {
+      "path": ".data/research/lawbot-2026-10-15/iteration036/review-feedback-independent-C-frozen.log",
+      "sha256": "19bed89036bdb1f4fa1171a7528633b087b60787b1e9c64fe15d225f7c115a33"
+    }
+  },
+  "checks": [
+    "Current project view_original+review, active user session and separate user-bound sealed plan AAD",
+    "Historical same canonical plan allows revision<=current but persists original plan revision; current source+canonical and selected raw span still verified",
+    "Exact current opaque slots and indexed semantic correction; canonical138 and semantic149 remain distinct",
+    "getHintState user row FOR UPDATE occurs before feedback id existence test; concurrent same plan serializes and does not duplicate records",
+    "Prepare-time/source Co2 session dedupe reserves key before RPC; failure yields count0 without pretending success",
+    "Explicit producer only: generic keep/replacement/type-hide/noop do not infer FP; PDF not generalized as Word/MD producer",
+    "Read/store permission revocation and cross-tenant plan injection denied; no auto memory/training"
+  ],
+  "implementation": [
+    {
+      "path": "packages/core/reference-review-feedback.ts",
+      "sha256": "334e00538fd5cf5f4aa3026a4c8829944fc798c7f5bd06ea94e154ff1f270864"
+    },
+    {
+      "path": "packages/core/review-feedback.ts",
+      "sha256": "02d53653f1ffc5c0a851b46adb7e88880cad8c1eaec6fc0df038a33d2e4928a6"
+    },
+    {
+      "path": "apps/api/review-feedback.ts",
+      "sha256": "f19534dc01067a8bd8605f4135a1fb0fbc63b117f6b09931dc627295f26b25df"
+    },
+    {
+      "path": "apps/web/review-feedback.ts",
+      "sha256": "a4e3deefcb6f8bb55ffe5acca9e72e5b35e6a48b5fbff77741107b21afa8ac2b"
+    },
+    {
+      "path": "apps/web/entity-groups.tsx",
+      "sha256": "e9ee9b2c7191b39d24c85906e66a57e9f83c05a501bacc223b3173ea00dbd3af"
+    },
+    {
+      "path": "tests/review-feedback.integration.ts",
+      "sha256": "819093f0343d1e59233b5bf666453b54863bf429bf6d948c553fb46286af1575"
+    }
+  ]
+}

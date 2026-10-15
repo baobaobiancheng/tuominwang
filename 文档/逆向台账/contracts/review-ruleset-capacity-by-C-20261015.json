@@ -1,0 +1,99 @@
+{
+  "reviewer": "C independent read-only adversarial review",
+  "date": "2026-10-15",
+  "status": "closed-no-qualified-findings",
+  "scope": "Remove source-unsupported ruleset entries 32768 count limit only; do not alter per-document mark or model/worker budgets.",
+  "competitorLicensedRuntime": "R0 unchanged",
+  "nodeVersion": "v24.19.0",
+  "test": {
+    "file": "tests/ruleset-capacity.integration.ts",
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "durationMs": 11285.645084,
+    "caseDurationMs": 9395.852584,
+    "processExitCode": 0,
+    "proof": {
+      "entries": 32769,
+      "httpBodyUtf8Bytes": 10070956,
+      "readbackAllEntries": true,
+      "terminalEntryConsumed": true,
+      "terminalTrace": [
+        {
+          "code": "ruleset-force-detect:9f79e485-9317-41d8-a77c-f397e1ce54d4",
+          "layer": "rules",
+          "score": 1
+        }
+      ],
+      "canonicalHash": "243f42bfa49c05ae18bb6e13f0480b39ce7ec1b3eed66a08c6abc8a0aab0a0d0",
+      "encryptedAtRest": true,
+      "crossTenant404": true,
+      "staleRevision409": true,
+      "modelAndWorkerBudgetsUnchanged": true
+    }
+  },
+  "reviewedBehavior": [
+    "Full rulesetSchema validation and checkedRuleset iteration/dedup on every entry",
+    "Full project ruleset immutable snapshot and active ruleset iteration without slice/truncation",
+    "32769 entries / 10070956-byte PUT, complete deepEqual GET, terminal rule real worker source trace with pending decision",
+    "Cross-tenant404, stale revision409, encrypted payload and canonical unchanged",
+    "Narrow archived-byte diff removes exactly .max(32768); MAX_MARKS=32768 and MARK_LIMIT still apply to actual material candidates"
+  ],
+  "findings": [],
+  "productFilesEditedByReviewer": [],
+  "freeze": true,
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration036/ruleset-capacity-actual-C-frozen.json",
+      "sha256": "5042bc1525dc898f5c74052fac527b363486e1a8b5746843035340ee43d7561b",
+      "bytes": 483
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration036/review-ruleset-capacity-independent-C-frozen.log",
+      "sha256": "082f5ba362acb884a0a1d6a577a808b9071a7d44953bc564c95d577b5019959a",
+      "bytes": 299
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration036/before/ruleset-capacity/packages/contracts/presets.ts",
+      "sha256": "ae359b6e0d99f39d8b004fef2f292eabd0e7a65289df27d49f2a1f41eedbdeef",
+      "bytes": 4867
+    },
+    {
+      "path": "packages/contracts/presets.ts",
+      "sha256": "fd4ae1ec3f3042a60ddb089e82cb15b95db3fba166c980b9136a6096bad535e0",
+      "bytes": 4856
+    },
+    {
+      "path": "tests/ruleset-capacity.integration.ts",
+      "sha256": "1f84c0209a8f80af71e985dba759992a07da3895a378ddf2e533ad0558829772",
+      "bytes": 4629
+    },
+    {
+      "path": "packages/core/presets.ts",
+      "sha256": "9f255314c21c8582cff97d1b7162dd654712450a71cf7eadd29e855ce2cd6f40",
+      "bytes": 13271
+    },
+    {
+      "path": "packages/core/user-memory-rules.ts",
+      "sha256": "e930a08d8020e0f824611f1250e94110a7f24d80512889586fb4def9f1cbc918",
+      "bytes": 3577
+    },
+    {
+      "path": "packages/contracts/index.ts",
+      "sha256": "898770695ee6f8dd5096f002504d3e20476e6b16e8a340918fe549a0c932d236",
+      "bytes": 8182
+    }
+  ],
+  "authorEvidencePreserved": [
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration036/C-before-ruleset-capacity-independent/ruleset-capacity-actual-A.json",
+      "sha256": "5ef00355d73d182d398796b87c90a137abbf55a4c222f18e56aa69c7bd9eff21",
+      "bytes": 483
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration036/C-before-ruleset-capacity-independent/ruleset-capacity-api-A.log",
+      "sha256": "6c2de42303c5302239b91dcfda4525e3ec06d894af41184ac5a46763cd2eb76c",
+      "bytes": 300
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 import {literalMatcher} from "./literal-matcher.ts";
 import {MAX_MAPPING_ENTRIES} from "../contracts/mapping-limits.ts";
-import {validAliasToken} from "../contracts/alias-token.ts";
+import {validAliasToken,normalizedWordAlias} from "../contracts/alias-token.ts";
 import type { Element, Node } from "@xmldom/xmldom";
 import { readZip, writeZip, xml, xmlBytes, elements } from "./office-zip.ts";
 import { readProtectedPortable, type PortableCredentials, type PortableObject } from "./workspace-portable.ts";
@@ -12,17 +12,17 @@ export type RestorationStats = { mappingEntries: number; tokensInDocument: numbe
 const fail = (code: string): never => { throw new Error(code); };
 const record = (v: any): v is PortableObject => !!v && typeof v === "object" && !Array.isArray(v);
 const normalizeToken = (token: string) => token.replace(/[\s\u200B-\u200D\uFEFF]/gu, "");
-const tokenIdentity = (token: string) => token.startsWith("【") && token.endsWith("】") ? normalizeToken(token) : token;
+const tokenIdentity = normalizedWordAlias;
 function rank(value: string) { const full = (value.match(/[\uFF01-\uFF60\uFFE0-\uFFE6\u3000-\u303F]/gu) ?? []).length, half = (value.match(/[\x21-\x7E\uFF61-\uFFDC]/gu) ?? []).length; return [Number(!/[\s\u200B-\u200D\uFEFF]/u.test(value)), full / Math.max(1, full + half), Number(!/\p{P}/u.test(value)), Array.from(value).length]; }
 export function parseRestorationMapping(data: any, options: RestorationOptions = {}): RestorationPlan {
   if (!record(data) && !Array.isArray(data)) return fail("RESTORE_MAPPING_INVALID");
   const originals = new Map<string, string[]>(), types = Object.create(null) as Record<string, string>, occurrences = Object.create(null) as Record<string, string[]>;
-  function add(token: any, value: any, type?: any) { if (typeof token !== "string" || !token.trim() || typeof value !== "string" || !value.trim()) return; token = token.trim(); if(!validAliasToken(token)||!value.isWellFormed())fail("RESTORE_MAPPING_INVALID"); const values = originals.get(token) ?? []; values.push(value); originals.set(token, values); if (typeof type === "string") types[token] ??= type; }
+  function add(token: any, value: any, type?: any) { if (typeof token !== "string" || !token.trim() || typeof value !== "string" || !value.trim()) return; if(!validAliasToken(token)||!value.isWellFormed())fail("RESTORE_MAPPING_INVALID"); const values = originals.get(token) ?? []; values.push(value); originals.set(token, values); if (typeof type === "string") types[token] ??= type; }
   if (Array.isArray(data)) { for (const item of data) if (record(item)) add(item.pseudonym ?? item.token, item.normalized ?? item.value ?? item.original, item.entityType ?? item.kind); }
   else {
     for (const [token, value] of Object.entries(data.mappings ?? {})) add(token, value);
     for (const item of data.details ?? []) { if (!record(item)) continue; add(item.pseudonym, item.normalized, item.entityType); for (const form of item.forms ?? []) if (record(form)) add(item.pseudonym, form.original, item.entityType); }
-    for (const item of data.occurrences ?? []) { if (!record(item)) continue; add(item.token, item.original, item.entityType); if (typeof item.token === "string" && typeof item.original === "string" && item.token.trim() && item.original.trim()) (occurrences[item.token.trim()] ??= []).push(item.original); }
+    for (const item of data.occurrences ?? []) { if (!record(item)) continue; add(item.token, item.original, item.entityType); if (typeof item.token === "string" && typeof item.original === "string" && item.token.trim() && item.original.trim()) (occurrences[item.token] ??= []).push(item.original); }
     for (const [token, item] of Object.entries(data.entityMap ?? {}) as [string, any][]) if (record(item)) { add(token, item.canonical, item.entityType); add(token, item.restoreChoice, item.entityType); for (const form of item.forms ?? []) if (record(form)) add(token, form.original, item.entityType); }
   }
   if (!originals.size || originals.size > MAX_MAPPING_ENTRIES) fail("RESTORE_MAPPING_INVALID");
@@ -32,6 +32,16 @@ export function parseRestorationMapping(data: any, options: RestorationOptions =
     const choice = options.choices && Object.hasOwn(options.choices, token) ? options.choices[token] : undefined; if (choice !== undefined && !unique.includes(choice)) fail("RESTORE_CHOICE_INVALID");
     if (unique.length > 1 && choice === undefined && options.strategy !== "occurrence") ambiguities.push({ token, originals: unique, suggestedOriginal: unique[0] });
     mappings[token] = choice ?? (options.strategy === "occurrence" && record(data) && typeof (data as PortableObject).mappings?.[token] === "string" ? (data as PortableObject).mappings[token] : unique[0]);
+  }
+  // Source Ad preserves every raw mapping key and adds a trimmed canonical
+  // spelling. Keep the full literal so longest matching consumes its whitespace;
+  // do not normalize internal plain text or silently merge conflicting queues.
+  // MAX_MAPPING_ENTRIES applies to supplied keys, before derived spellings.
+  for(const [raw,original] of Object.entries(mappings)){
+    const canonical=raw.trim();if(canonical===raw)continue;
+    if(Object.hasOwn(mappings,canonical)){
+      if(mappings[canonical]!==original||options.strategy==='occurrence'&&JSON.stringify(occurrences[canonical]??[])!==JSON.stringify(occurrences[raw]??[]))fail("RESTORE_NORMALIZED_TOKEN_COLLISION");
+    }else{mappings[canonical]=original;if(types[raw]!==undefined)types[canonical]=types[raw];if(occurrences[raw])occurrences[canonical]=[...occurrences[raw]];}
   }
   const normalizedTokens = new Map<string, string>(), normalizedQueues = new Map<string, string>();
   for (const [token, original] of Object.entries(mappings)) { const normalized = tokenIdentity(token), previous = normalizedTokens.get(normalized); if (previous !== undefined && previous !== original) fail("RESTORE_NORMALIZED_TOKEN_COLLISION"); normalizedTokens.set(normalized, original); if(options.strategy === "occurrence") { const signature=JSON.stringify([original,occurrences[token]??[]]), previousQueue=normalizedQueues.get(normalized); if(previousQueue!==undefined&&previousQueue!==signature)fail("RESTORE_NORMALIZED_TOKEN_COLLISION");normalizedQueues.set(normalized,signature); } }
@@ -45,23 +55,33 @@ export async function readRestorationMapping(bytes: Buffer, credentials: Portabl
 }
 function stats(plan: RestorationPlan): RestorationStats { return { mappingEntries: Object.keys(plan.mappings).length, tokensInDocument: 0, totalReplacements: 0, crossRunReplacements: 0, normalizedMatches: 0, storyReplacements: {}, unknownTokens: [], residualTokens: [], hyperlinkReplacements: 0 }; }
 function assertPlan(plan: RestorationPlan) { if (plan.ambiguities.length) fail("RESTORE_AMBIGUOUS_MAPPING"); if (!Object.keys(plan.mappings).length) fail("RESTORE_MAPPING_INVALID"); }
-function resolver(plan: RestorationPlan, initialCounts: Map<string, number> = new Map()) { const cursors = new Map(initialCounts); return (token: string) => { if (plan.strategy === "occurrence") { const index = cursors.get(token) ?? 0, queue = plan.occurrenceQueues[token]; cursors.set(token, index + 1); return queue?.[index] ?? plan.mappings[token]; } return plan.mappings[token]; }; }
+function resolver(plan: RestorationPlan, initialCounts: Map<string, number> = new Map()) { const identity=(token:string)=>tokenIdentity(token.trim()),cursors=new Map<string,number>();for(const[token,count]of initialCounts){const key=identity(token);cursors.set(key,(cursors.get(key)??0)+count);}return (token: string) => { if (plan.strategy === "occurrence") { const key=identity(token),index = cursors.get(key) ?? 0, queue = plan.occurrenceQueues[token]; cursors.set(key, index + 1); return queue?.[index] ?? plan.mappings[token]; } return plan.mappings[token]; }; }
 function tokenInspector(tokens: string[], flexible = true) {
-  const accepted = new Set(tokens.map(t => flexible ? normalizeToken(t) : t));
-  const families = [...new Set(tokens.map(t => normalizeToken(t).match(/^【(.+?)(?:[_-]?[0-9０-９]+)?】$/u)?.[1]).filter((v): v is string => !!v))];
+  const wrappers=tokens.filter(t=>t.includes('【'));
+  const matchKnown=flexible?wordTokenMatcher(wrappers):literalMatcher(wrappers.map(t=>[t,t]as const));
+  const components=[...new Set(wrappers.flatMap(t=>t.match(/【[^【】]+】/gu)??[]).map(normalizeToken))];
+  const componentSet=new Set(components),families=[...new Set(components.map(t=>t.match(/^【(.+?)(?:[_-]?[0-9０-９]+)?】$/u)?.[1]).filter((v):v is string=>!!v))];
   function resemblesAlias(token: string) {
-    const body = normalizeToken(token).slice(1, -1);
-    if (/^.+?[_-]?[0-9０-９]+$/u.test(body)) return true;
-    return families.some(prefix => body === prefix || body.startsWith(prefix) && /^[_-]?[0-9０-９?]/u.test(body.slice(prefix.length)));
+    const normalized=normalizeToken(token),body=normalized.slice(1,-1);
+    if(componentSet.has(normalized)||/^.+?[_-]?[0-9０-９]+$/u.test(body))return true;
+    return families.some(prefix=>body===prefix||body.startsWith(prefix)&&/^[_-]?[0-9０-９?]/u.test(body.slice(prefix.length)));
   }
   return (text: string) => {
-    const wrapped = [...text.matchAll(/【[^【】]+】/gu)].map(m => m[0]);
-    const unknown = wrapped.filter(t => !accepted.has(flexible ? normalizeToken(t) : t) && resemblesAlias(t));
-    const remainder = text.replace(/【[^【】]+】/gu, "");
-    return [...new Set([...unknown, ...remainder.match(/[【】]/gu) ?? []])];
+    // Remove only complete registered aliases. Knowing a composite never grants
+    // independent recognition to its component wrappers.
+    const rest=matchKnown.replace(text,()=>''),wrapped=[...rest.matchAll(/【[^【】]+】/gu)].map(m=>m[0]);
+    const unknown=wrapped.filter(resemblesAlias),remainder=rest.replace(/【[^【】]+】/gu,'');
+    return [...new Set([...unknown,...remainder.match(/[【】]/gu)??[]])];
   };
 }
 /** Read-only token policy shared with sanitized delivery validation; no mapping values required. */
+/** Actual emitted aliases, retaining whole plain/mixed/composite keys. This
+ * is distinct from unknown-token inspection, which intentionally recognizes
+ * bracket-shaped families without granting their component tokens. */
+export function emittedRestorationTokens(text:string,knownTokens:string[],flexible=false):string[]{
+ const tokens=flexible?wordTokenMatcher(knownTokens).matches(text).map(m=>m.token):[...literalMatcher(knownTokens.map(t=>[t,t]as const)).matches(text)].map(m=>m.value);
+ return [...new Set(tokens)];
+}
 export function inspectRestorationTokens(text: string, knownTokens: string[], flexible = true): string[] {
   return tokenInspector(knownTokens, flexible)(text);
 }
@@ -70,29 +90,30 @@ function assertNoUnknown(texts: string[], plan: RestorationPlan, accepted = Obje
   if (texts.some(text => inspect(text).length)) fail("RESTORE_UNKNOWN_TOKEN");
 }
 type WordTokenMatch = { index: number; 0: string; token: string };
-/** Wrapped aliases are complete balanced units. Looking them up after the same
- * normalization avoids a 100000-way whitespace-expanded RegExp. Plain aliases
- * cannot contain either wrapper delimiter, so their matches cannot cross one. */
+/** Whole balanced wrapper sequences use the same compressed radix matcher as
+ * plain aliases. Normalize whitespace/zero-width characters only for this Word
+ * surface, retaining raw UTF16 positions through compact gap offsets. */
 function wordTokenMatcher(tokens: string[]) {
-  const wrappers = new Map(tokens.filter(t => t.startsWith("【") && t.endsWith("】")).map(t => [tokenIdentity(t), t]));
-  const plain = tokens.filter(t => !t.startsWith("【"));
-  const exact = plain.length ? literalMatcher(plain.map(token => [token,token] as const)) : null;
-  const matches = (text: string): WordTokenMatch[] => {
-    const found: WordTokenMatch[] = [];
-    for (const match of text.matchAll(/【[^【】]+】/gu)) {
-      const token = wrappers.get(tokenIdentity(match[0]));
-      if (token !== undefined) found.push({ index: match.index, 0: match[0], token });
+  const wrappers=tokens.filter(t=>t.includes('【'));
+  const normalized=wrappers.length?literalMatcher(wrappers.map(t=>[tokenIdentity(t),t]as const)):null;
+  const plain=tokens.filter(t=>!t.includes('【'));
+  const exact=plain.length?literalMatcher(plain.map(t=>[t,t]as const)):null;
+  const matches=(text:string):WordTokenMatch[]=>{
+    const found:WordTokenMatch[]=[];
+    if(normalized){
+      const removals:{start:number;length:number}[]=[];
+      for(const wrapper of text.matchAll(/【[^【】]+】/gu))for(const gap of wrapper[0].matchAll(/[\s\u200B-\u200D\uFEFF]+/gu))removals.push({start:wrapper.index+gap.index,length:gap[0].length});
+      for(const gap of text.matchAll(/(?<=】)[\s\u200B-\u200D\uFEFF]+(?=【)/gu))removals.push({start:gap.index,length:gap[0].length});
+      removals.sort((a,b)=>a.start-b.start);const gaps:{at:number;total:number}[]=[],pieces:string[]=[];let removed=0,from=0;
+      for(const gap of removals){pieces.push(text.slice(from,gap.start));gaps.push({at:gap.start-removed,total:removed+gap.length});removed+=gap.length;from=gap.start+gap.length;}pieces.push(text.slice(from));const compact=pieces.join('');
+      const rawOffset=(index:number,start:boolean)=>{let low=0,high=gaps.length;while(low<high){const mid=(low+high)>>>1;if(start?gaps[mid].at<=index:gaps[mid].at<index)low=mid+1;else high=mid;}return index+(low?gaps[low-1].total:0);};
+      for(const match of normalized.matches(compact)){const start=rawOffset(match.index,true),end=rawOffset(match.index+match.text.length,false);found.push({index:start,0:text.slice(start,end),token:match.value});}
     }
-    if (exact) for (const match of exact.matches(text)) found.push({ index: match.index, 0: match.text, token: match.value });
-    found.sort((a, b) => a.index - b.index || b[0].length - a[0].length);
-    let end = -1;
-    return found.filter(match => { if (match.index < end) return false; end = match.index + match[0].length; return true; });
+    if(exact)for(const match of exact.matches(text))found.push({index:match.index,0:match.text,token:match.value});
+    found.sort((a,b)=>a.index-b.index||b[0].length-a[0].length);let end=-1;
+    return found.filter(match=>{if(match.index<end)return false;end=match.index+match[0].length;return true;});
   };
-  return { matches, replace(text: string, replacement: (raw: string, token: string) => string) {
-    const output: string[] = []; let offset = 0;
-    for (const match of matches(text)) { output.push(text.slice(offset, match.index), replacement(match[0], match.token)); offset = match.index + match[0].length; }
-    output.push(text.slice(offset)); return output.join("");
-  } };
+  return {matches,replace(text:string,replacement:(raw:string,token:string)=>string){const output:string[]=[];let offset=0;for(const match of matches(text)){output.push(text.slice(offset,match.index),replacement(match[0],match.token));offset=match.index+match[0].length;}output.push(text.slice(offset));return output.join('');}};
 }
 export function restoreMarkdown(bytes: Buffer, plan: RestorationPlan, options: RestorationOptions = {}) {
   assertPlan(plan); if (bytes.length > FILE_MAX_BYTES) fail("FILE_SIZE_LIMIT"); let text: string; try { text = new TextDecoder("utf8", { fatal: true }).decode(bytes); } catch { return fail("RESTORE_TEXT_ENCODING_INVALID"); }

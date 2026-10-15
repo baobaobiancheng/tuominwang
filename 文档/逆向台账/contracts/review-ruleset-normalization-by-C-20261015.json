@@ -1,0 +1,38 @@
+{
+  "scope": "Read-only independent source named-field normalization review",
+  "status": "closed-no-qualified-findings",
+  "tests": {
+    "pass": 1,
+    "fail": 0,
+    "skip": 0,
+    "durationMs": 7122.088333,
+    "caseDurationMs": 2638.17175,
+    "runtime": "v24.19.0"
+  },
+  "checks": [
+    "Known deprecated description/applicability fields accepted and source-normalized to empty/all",
+    "contains matchMode normalizes exact; normalizedPattern recomputed",
+    "Own entry material route extension retained and actual terminal entry worker consumed on general route",
+    "Unknown fields rejected400; unrelated profile description retained"
+  ],
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration036/review-ruleset-normalization-independent-C.log",
+      "sha256": "dfce793e2beb1a3df8df57029b125af2f07dfcb6d470315e556cd8f29b2dfbd4",
+      "bytes": 323
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration036/ruleset-normalization-actual-C-frozen.json",
+      "sha256": "5cebdcf48c6b198bec5e04e210f0ab01d2872c981dd4d022151156420eb9a5bf",
+      "bytes": 371
+    },
+    {
+      "path": "tests/ruleset-normalization.integration.ts",
+      "sha256": "9371599d96c2d41958fa2c0c318006c7bafa0d6754847af690d56d197e73ee21",
+      "bytes": 4546
+    }
+  ],
+  "productFrozen": true,
+  "competitorLicensedRuntime": "R0",
+  "proofScope": "Own synthetic isolated runtime plus finite public static source, not licensed competitor execution"
+}

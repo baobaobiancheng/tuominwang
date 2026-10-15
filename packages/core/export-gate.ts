@@ -1,3 +1,4 @@
+import{processingDocument,isLegacyWordFormat,originalDocumentFormat}from'./document-format.ts';
 import {createHash} from 'node:crypto';
 import { z } from "zod";
 import { MAX_MARKS, markSchema } from "../contracts/index.ts";
@@ -9,6 +10,7 @@ import type { ParsedPage } from "../contracts/index.ts";
 type Document = {
   id: string; tenant_id: string; project_id: string; revision: number; state: string;
   source_id: string | null; source_hash?:string|null; source_format: string; parse_version: number; content_hash: string;
+  normalized_source_id?:string|null;normalized_source_hash?:string|null;normalization_source_hash?:string|null;normalization_metadata?:string|null;
   marks: unknown; anchors: unknown; coverage: unknown; recognition?: unknown; page_review?: unknown; page_data?: ParsedPage[];
 };
 type Snapshot = {
@@ -25,6 +27,8 @@ const coverageSchema = z.array(z.object({ id: z.string().min(1), status: z.liter
 
 // The TS bridge is tested separately: Bend proves the Boolean policy, not parser correctness.
 export function coverageComplete(d: Document, textLength: number) {
+  if(isLegacyWordFormat(originalDocumentFormat(d))&&(!d.normalized_source_id||!d.normalized_source_hash||d.normalization_source_hash!==d.source_hash||!d.normalization_metadata))return false;
+  d=processingDocument(d);
   const paged = PAGED_FORMATS.includes(d.source_format);
   if (!["txt", "md", "csv", "docx", "xlsx", ...PAGED_FORMATS].includes(d.source_format) || !Number.isSafeInteger(textLength) || textLength < (paged || d.source_format === "md" && d.parse_version === 2 ? 0 : 1)) return false;
   const coverage = coverageSchema.safeParse(d.coverage), anchors = anchorsSchema.safeParse(d.anchors);

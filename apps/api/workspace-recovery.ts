@@ -1,3 +1,4 @@
+import{rememberWorkspaceRecent,openWorkspaceRecent}from'../../packages/adapters/workspace-recents.ts';
 import type {FastifyInstance} from 'fastify';
 import {randomUUID} from 'node:crypto';
 import {z} from 'zod';
@@ -13,10 +14,10 @@ import {projectScope,requirePermission} from './access.ts';
 function fail(code:string,statusCode=409):never{throw Object.assign(new Error(code),{statusCode});}
 function receipt(row:any){return {id:row.id,projectId:row.project_id,documentId:row.document_id,revision:row.revision,documentRevision:row.document_revision,savedAt:new Date(row.saved_at).toISOString()};}
 export function registerWorkspaceRecoveryRoutes(app:FastifyInstance){
- app.get('/api/workspace/recent',async req=>scoped(req.user.id,req.user.tenant_id,db=>rows(db,sql`SELECT r.project_id AS "projectId",r.document_id AS "documentId",p.name,r.opened_at AS "openedAt" FROM workspace_recents r JOIN projects p ON p.id=r.project_id WHERE r.user_id=${req.user.id} ORDER BY r.opened_at DESC`)));
+ app.get('/api/workspace/recent',async req=>scoped(req.user.id,req.user.tenant_id,async db=>(await rows(db,sql`SELECT r.project_id AS "projectId",r.document_id AS "documentId",p.name,r.opened_at AS "openedAt",r.saved_at,r.metadata FROM workspace_recents r JOIN projects p ON p.id=r.project_id WHERE r.user_id=${req.user.id} ORDER BY r.opened_at DESC`)).map(row=>openWorkspaceRecent(req.user,row))));
  app.post('/api/projects/:id/workspace/recent',async req=>{const project=id.parse((req.params as any).id),input=z.object({documentId:id.nullable().optional()}).strict().parse(req.body);return projectScope(req,{project},['view_original'],async db=>{
   if(input.documentId&&!(await rows(db,sql`SELECT id FROM documents WHERE id=${input.documentId} AND project_id=${project}`)).length)fail('NOT_FOUND',404);
-  await rows(db,sql`INSERT INTO workspace_recents(tenant_id,project_id,user_id,document_id) VALUES(${req.user.tenant_id},${project},${req.user.id},${input.documentId??null}) ON CONFLICT(project_id,user_id) DO UPDATE SET document_id=excluded.document_id,opened_at=now()`);return {ok:true};
+  await rememberWorkspaceRecent(db,req.user,project,input);return {ok:true};
  });});
  app.delete('/api/projects/:id/workspace/recent',async req=>{const project=id.parse((req.params as any).id);return projectScope(req,{project},['view_original'],async db=>{await rows(db,sql`DELETE FROM workspace_recents WHERE project_id=${project} AND user_id=${req.user.id}`);return {ok:true};});});
  app.get('/api/workspace/recoveries',async req=>scoped(req.user.id,req.user.tenant_id,async db=>(await rows(db,sql`SELECT r.*,d.source_name,p.name AS project_name FROM workspace_recoveries r JOIN documents d ON d.id=r.document_id JOIN projects p ON p.id=r.project_id WHERE r.user_id=${req.user.id} ORDER BY r.saved_at DESC`)).map(r=>({...receipt(r),name:r.source_name?unseal(r.source_name,`${r.tenant_id}:${r.project_id}:${r.document_id}:name`):'未命名材料',projectName:r.project_name}))));

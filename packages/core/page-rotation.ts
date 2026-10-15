@@ -1,0 +1,5 @@
+import type{Glyph}from'./ocr.ts';
+export type RotationBox={x:number;y:number;width:number;height:number};
+export function quarterTurn(value:number){if(!Number.isFinite(value)||value%90!==0)throw Error('PAGE_ROTATION_INVALID');return((value%360)+360)%360;}
+export function rotatePageBox(box:RotationBox,width:number,height:number,rotation:number):RotationBox{const r=quarterTurn(rotation);if(![box.x,box.y,box.width,box.height,width,height].every(Number.isFinite)||width<=0||height<=0||box.width<0||box.height<0)throw Error('PAGE_ROTATION_GEOMETRY_INVALID');if(r===90)return{x:height-box.y-box.height,y:box.x,width:box.height,height:box.width};if(r===180)return{x:width-box.x-box.width,y:height-box.y-box.height,width:box.width,height:box.height};if(r===270)return{x:box.y,y:width-box.x-box.width,width:box.height,height:box.width};return{...box};}
+export function rotatePageGlyphs(glyphs:Glyph[],width:number,height:number,rotation:number):Glyph[]{return glyphs.map(g=>{const b=rotatePageBox({x:g[2],y:g[3],width:g[4],height:g[5]},width,height,rotation);return[g[0],g[1],b.x,b.y,b.width,b.height];});}

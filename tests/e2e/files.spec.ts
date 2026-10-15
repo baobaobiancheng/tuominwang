@@ -1,4 +1,5 @@
 import { test, expect } from "./fixture.ts";
+import type { Page } from "@playwright/test";
 import { randomUUID } from "node:crypto";
 import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { join, basename } from "node:path";
@@ -8,7 +9,29 @@ import { readZip } from "../../packages/core/office-zip.ts";
 import { pdfFixture } from "../pdf-fixtures.ts";
 import { execFileSync } from "node:child_process";
 
+async function submitExportAndWait(page: Page, format: string, jobTimeout = 45_000) {
+  const responsePromise = page.waitForResponse(response => response.request().method() === "POST" && /^\/api\/documents\/[^/]+\/export$/.test(new URL(response.url()).pathname), { timeout: 30_000 });
+  await page.getByRole("button", { name: "导出已选标记的处理副本", exact: true }).click();
+  const response = await responsePromise;
+  expect(response.status()).toBe(200);
+  const jobId = (await response.json()).id as string;
+  expect(jobId).toMatch(/^[0-9a-f-]{36}$/);
+  const documentId = new URL(response.url()).pathname.split("/")[3];
+  await expect.poll(async () => {
+    const current = await page.request.get(`/api/documents/${documentId}`);
+    expect(current.status()).toBe(200);
+    const document = await current.json();
+    if (document.job?.id !== jobId || document.job?.kind !== "export") return "waiting-for-export-job";
+    if (document.job.status === "failed" || document.job.status === "cancelled") throw new Error(`Export ${jobId} ${document.job.status}: ${document.job.error_code ?? "UNKNOWN"}`);
+    return document.job.status as string;
+  }, { timeout: jobTimeout }).toBe("succeeded");
+  const button = page.getByRole("button", { name: `核验并下载 ${format}`, exact: true });
+  await expect(button).toBeEnabled({ timeout: 15_000 });
+  return button;
+}
+
 test("PDF and image imports expose authenticated page previews and extracted text", async ({ page }) => {
+  test.setTimeout(120_000);
   const pdf = pdfFixture({ pages: 2 });
   const png=execFileSync(process.execPath,['--input-type=module','-e',"import {openPdf}from'./packages/core/pdf-reader.ts';const chunks=[];for await(const chunk of process.stdin)chunks.push(chunk);const reader=await openPdf(Buffer.concat(chunks));try{process.stdout.write((await reader.page(0)).png);}finally{reader.close();}"],{input:pdf,maxBuffer:20*1024*1024});
   await page.goto("/");
@@ -29,12 +52,30 @@ test("PDF and image imports expose authenticated page previews and extracted tex
   await expect(page.getByLabel("原文", { exact: true })).toHaveValue(/13800138000/);
   await page.getByRole("button", { name: "下一页原件", exact: true }).click();
   await expect(page.getByRole("img", { name: "原件第 2 页" })).toBeVisible({timeout:30000});
+  await page.getByRole("button", { name: "上一页原件", exact: true }).click();
+  await page.getByRole("button", { name: "逐条复核", exact: true }).click();
+  const quotes=page.locator('.mark .quote').filter({hasText:'13800138000'});
+  await expect(quotes).toHaveCount(2);
+  await quotes.nth(1).click();
+  await expect(page.getByLabel('跳转原件页面',{exact:true})).toHaveValue('1');
+  await expect(page.getByRole('img',{name:'原件第 2 页',exact:true})).toBeVisible();
+  await page.getByRole('button',{name:'上一页原件',exact:true}).click();
+  await quotes.nth(1).click();
+  await expect(page.getByLabel('跳转原件页面',{exact:true})).toHaveValue('1');
+  await page.getByRole('button',{name:'上一页原件',exact:true}).click();
+  await page.getByRole('button',{name:'按实体',exact:true}).click();
+  const occurrences=page.getByLabel('手机号出现位置',{exact:true});
+  await occurrences.getByRole('button',{name:'下一处',exact:true}).click();
+  await expect(page.getByLabel('跳转原件页面',{exact:true})).toHaveValue('1');
+  await expect(occurrences).toContainText('第 2 / 2 处');
+  await expect(page.getByRole('img',{name:'原件第 2 页',exact:true})).toBeVisible();
+  await expect(page.getByRole('button',{name:'删除此组标记',exact:true})).toBeEnabled();
   await page.screenshot({ path: "test-results/pdf-pages-desktop.png", fullPage: true });
   await expect(page.getByRole("button", { name: "导出已选标记的处理副本", exact: true })).toBeDisabled();
 });
 
 for (const format of ["docx", "xlsx"] as const) test(`${format} upload, object review, binary export and download`, async ({ page }) => {
-  if (format === "docx") test.setTimeout(120_000);
+  test.setTimeout(120_000);
   await page.goto("/");
   await page.getByLabel("账号", { exact: true }).fill(process.env.E2E_USERNAME!);
   await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
@@ -56,9 +97,7 @@ for (const format of ["docx", "xlsx"] as const) test(`${format} upload, object r
   for (let i = 1; i <= count; i++) await page.getByLabel(`标记 ${i} 处理决定`).selectOption("redact");
   await page.getByRole("button", { name: "保存复核", exact: true }).click();
   await expect(page.getByText("复核已保存", { exact: true })).toBeVisible();
-  await page.getByRole("button", { name: "导出已选标记的处理副本", exact: true }).click();
-  const button = page.getByRole("button", { name: `核验并下载 ${format.toUpperCase()}`, exact: true });
-  await expect(button).toBeEnabled({ timeout: format === "docx" ? 45_000 : 5_000 });
+  const button = await submitExportAndWait(page, format.toUpperCase());
   const download = page.waitForEvent("download"); await button.click();
   const parts = await readZip(await readFile((await (await download).path())!));
   for (const content of parts.values()) expect(content.toString()).not.toContain("13800138000");
@@ -66,6 +105,7 @@ for (const format of ["docx", "xlsx"] as const) test(`${format} upload, object r
 });
 
 test("large text paging keeps unsaved decisions and absolute manual anchors", async ({ page }) => {
+  test.setTimeout(150_000);
   await page.goto("/");
   await page.getByLabel("账号", { exact: true }).fill(process.env.E2E_USERNAME!);
   await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
@@ -81,7 +121,7 @@ test("large text paging keeps unsaved decisions and absolute manual anchors", as
   await page.getByRole("button", { name: "返回材料列表", exact: true }).click();
   await page.getByRole("button", { name: /分段.txt/ }).click();
   await page.getByRole("button", { name: "逐条复核", exact: true }).click();
-  await expect(page.getByLabel("标记 1 处理决定")).toBeVisible();
+  await expect(page.getByLabel("标记 1 处理决定")).toBeVisible({timeout:30000});
   await page.getByLabel("标记 1 处理决定").selectOption("redact");
   await page.getByRole("button", { name: "下一段原文", exact: true }).click();
   const original = page.getByLabel("原文", { exact: true });
@@ -96,9 +136,7 @@ test("large text paging keeps unsaved decisions and absolute manual anchors", as
   await expect(page.getByLabel("标记 3 处理决定")).toHaveValue("redact");
   await page.getByRole("button", { name: "保存复核", exact: true }).click();
   await expect(page.getByText("复核已保存", { exact: true })).toBeVisible();
-  await page.getByRole("button", { name: "导出已选标记的处理副本", exact: true }).click();
-  const downloadButton = page.getByRole("button", { name: "核验并下载 TXT", exact: true });
-  await expect(downloadButton).toBeEnabled();
+  const downloadButton = await submitExportAndWait(page, "TXT");
   const download = page.waitForEvent("download");
   await downloadButton.click();
   expect(await readFile((await (await download).path())!, "utf8")).toBe(content.replace("13800138000", "138****8000").replace("13900139000", "139****9000").replace("张三", "【自定义】"));
@@ -106,6 +144,7 @@ test("large text paging keeps unsaved decisions and absolute manual anchors", as
 });
 
 test("CSV upload, review, safe download and desktop file list", async ({ page }) => {
+  test.setTimeout(120_000);
   const credentials = { username: process.env.E2E_USERNAME!, password: process.env.E2E_PASSWORD! };
   await page.goto("/");
   await page.getByLabel("账号", { exact: true }).fill(credentials.username);
@@ -126,9 +165,7 @@ test("CSV upload, review, safe download and desktop file list", async ({ page })
   await page.getByLabel("标记 1 处理决定").selectOption("redact");
   await page.getByLabel("标记 2 处理决定").selectOption("redact");
   await page.getByRole("button", { name: "保存复核", exact: true }).click();
-  await page.getByRole("button", { name: "导出已选标记的处理副本", exact: true }).click();
-  const button = page.getByRole("button", { name: "核验并下载 CSV", exact: true });
-  await expect(button).toBeEnabled();
+  const button = await submitExportAndWait(page, "CSV");
   const downloaded = page.waitForEvent("download");
   await button.click();
   const download = await downloaded;

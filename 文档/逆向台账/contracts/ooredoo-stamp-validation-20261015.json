@@ -1,0 +1,746 @@
+{
+  "schema": "tuominwang.fixed-candidate-full-public-stamp-test.v1",
+  "date": "2026-10-15",
+  "completedAt": "2026-10-15T03:52:28.346Z",
+  "researchOnly": true,
+  "dataset": {
+    "name": "mapo80/stamps mixed public test; upstream authorization and black/white strata NOT verified",
+    "revision": "998243bde1262ccb57ca28ddd6868b05fd1ddf49",
+    "url": "https://huggingface.co/datasets/mapo80/stamps",
+    "download": "https://huggingface.co/datasets/mapo80/stamps/resolve/998243bde1262ccb57ca28ddd6868b05fd1ddf49/test.zip",
+    "archiveHash": "c3942fd1dc8037649885c7cec7d5e1c8399b131fe75605083c39d50b674d5f4b",
+    "archiveBytes": 95060991,
+    "declaredLicense": "CC-BY-4.0 in uploader card; per-image original upstream permission/attribution chain unresolved",
+    "split": "all 786 published test images,661 positive125negative,1315class0 stamp boxes",
+    "selection": "complete sorted published split; no omissions; detector failures count all gold as FN",
+    "boundaries": [
+      "No color/black-white or Chinese-commercial stratum labels supplied. Cannot derive independent blackwhite/commercial accuracy.",
+      "Upstream combined resplit datasets; source-family/training overlap with any upstream models is not established.",
+      "No test tuning, thresholds changed, training, raw-image redistribution, or competitor activation."
+    ],
+    "readmeHash": "fdadaedc3d70d0a439eebeeff035538d6f946290b3b4f18a4de6812164c8ea06",
+    "yamlHash": "624e5aca1f044533ce15f0c66062353e2c175f6e7976f2b1876006ddcb1dbfdd"
+  },
+  "model": {
+    "model": "Ooredoo-Group/ooredoo-stamp-detection",
+    "revision": "4576990c16edc1e67fe543768200e09cc3ee605e",
+    "weightSHA256": "eb767096894faeeb7d71ec45590aaba5fcac29a06f52b9ef2924a827e7f08634",
+    "onnxSHA256": "4bdf1da731d9a5788c1014b1b2579324cef9a2be743b93d23d4679d82d3473fb",
+    "onnxBytes": 122832748,
+    "input": "batch1,RGB normalized, dynamic H/W; official YolosImageProcessor aspect resize640 shortest960longest; no test tuning",
+    "parameters": 30650118,
+    "torch": "2.8.0",
+    "transformers": "4.57.1",
+    "onnx": "1.19.1",
+    "python": "3.12.14 (main, Aug 25 2026, 13:50:33) [Clang 22.1.3 ]",
+    "maxRSS": 1361559552,
+    "maxRSSUnit": "bytes on macOS; KiB on Linux",
+    "preprocessing": {
+      "do_convert_annotations": true,
+      "do_normalize": true,
+      "do_pad": true,
+      "do_rescale": true,
+      "do_resize": true,
+      "format": "coco_detection",
+      "image_mean": [
+        0.485,
+        0.456,
+        0.406
+      ],
+      "image_processor_type": "YolosImageProcessor",
+      "image_std": [
+        0.229,
+        0.224,
+        0.225
+      ],
+      "pad_size": null,
+      "resample": 2,
+      "rescale_factor": 0.00392156862745098,
+      "size": {
+        "longest_edge": 960,
+        "shortest_edge": 640
+      }
+    },
+    "license": "Model card Apache-2.0; base hustvl/yolos-small Apache-2.0; original training image grants/overlap unverified"
+  },
+  "parity": {
+    "node": "v24.19.0",
+    "model": "4bdf1da731d9a5788c1014b1b2579324cef9a2be743b93d23d4679d82d3473fb",
+    "beforeRss": 219922432,
+    "maxRssKiB": 883600,
+    "results": [
+      {
+        "name": "square640",
+        "inputShape": [
+          1,
+          3,
+          640,
+          640
+        ],
+        "elapsedMs": 1936.615583,
+        "errors": {
+          "logits": {
+            "maxAbsolute": 8.106231689453125e-06,
+            "meanAbsolute": 1.8181651830673218e-06
+          },
+          "pred_boxes": {
+            "maxAbsolute": 4.172325134277344e-07,
+            "meanAbsolute": 6.368383765220642e-08
+          }
+        },
+        "rssBytes": 601341952
+      },
+      {
+        "name": "rect640x960",
+        "inputShape": [
+          1,
+          3,
+          640,
+          960
+        ],
+        "elapsedMs": 3573.741417,
+        "errors": {
+          "logits": {
+            "maxAbsolute": 9.298324584960938e-06,
+            "meanAbsolute": 2.339426428079605e-06
+          },
+          "pred_boxes": {
+            "maxAbsolute": 6.556510925292969e-07,
+            "meanAbsolute": 9.688548743724823e-08
+          }
+        },
+        "rssBytes": 640008192
+      },
+      {
+        "name": "published-image",
+        "inputShape": [
+          1,
+          3,
+          896,
+          640
+        ],
+        "elapsedMs": 3417.681208,
+        "errors": {
+          "logits": {
+            "maxAbsolute": 2.574920654296875e-05,
+            "meanAbsolute": 4.079379141330719e-06
+          },
+          "pred_boxes": {
+            "maxAbsolute": 9.387731552124023e-07,
+            "meanAbsolute": 1.369556412100792e-07
+          }
+        },
+        "rssBytes": 519405568
+      }
+    ]
+  },
+  "preprocessing": "Exact official pinned Transformers4.57.1 YolosImageProcessor/Pillow11.3.0; aspect resize shortest640,longest960,RGB,ImageNet normalize; dynamic ONNX input",
+  "threshold": {
+    "value": 0.5,
+    "source": "Official post_process_object_detection default inspected before first test inference",
+    "tunedOnTest": false
+  },
+  "postprocessing": "model-only official100queries softmax stamp-vs-background; no addedNMS; combined uses unchanged existing per-reason globalNMS0.3 over baseline+model; boxes page-clipped to actualoriginal dimensions",
+  "boundaries": [
+    "Weight/modelcard Apache-2.0 and base Apache-2.0, but original350trainingimage grants and overlap with786test unknown. Not independent commercialblackwhite gold.",
+    "Additional model candidate only. Original source OpenCV baseline unchanged. No product integration/startup changes.",
+    "No images uploaded, redistributed, trained or test thresholds tuned."
+  ],
+  "counts": {
+    "images": 786,
+    "GT": 1315,
+    "positive": 661,
+    "negative": 125,
+    "failed": 0,
+    "predictions": 1924,
+    "combinedPredictions": 2772
+  },
+  "metrics": {
+    "0.25": {
+      "tp": 718,
+      "fp": 1206,
+      "fn": 597,
+      "precision": 0.3731808731808732,
+      "recall": 0.5460076045627377,
+      "f1": 0.44334671194813213
+    },
+    "0.5": {
+      "tp": 547,
+      "fp": 1377,
+      "fn": 768,
+      "precision": 0.2843035343035343,
+      "recall": 0.4159695817490494,
+      "f1": 0.33775856745909233
+    },
+    "0.75": {
+      "tp": 150,
+      "fp": 1774,
+      "fn": 1165,
+      "precision": 0.07796257796257797,
+      "recall": 0.11406844106463879,
+      "f1": 0.09262117937635073
+    }
+  },
+  "combinedMetrics": {
+    "0.25": {
+      "tp": 800,
+      "fp": 1972,
+      "fn": 515,
+      "precision": 0.2886002886002886,
+      "recall": 0.6083650190114068,
+      "f1": 0.3914851969659897
+    },
+    "0.5": {
+      "tp": 578,
+      "fp": 2194,
+      "fn": 737,
+      "precision": 0.2085137085137085,
+      "recall": 0.43954372623574145,
+      "f1": 0.2828480548079276
+    },
+    "0.75": {
+      "tp": 159,
+      "fp": 2613,
+      "fn": 1156,
+      "precision": 0.05735930735930736,
+      "recall": 0.12091254752851711,
+      "f1": 0.07780768289699046
+    }
+  },
+  "sourceFamilies": [
+    {
+      "name": "neg_funsd",
+      "images": 20,
+      "GT": 0,
+      "metrics": {
+        "0.25": {
+          "tp": 0,
+          "fp": 28,
+          "fn": 0,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        "0.5": {
+          "tp": 0,
+          "fp": 28,
+          "fn": 0,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        "0.75": {
+          "tp": 0,
+          "fp": 28,
+          "fn": 0,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0
+        }
+      },
+      "combinedMetrics": {
+        "0.25": {
+          "tp": 0,
+          "fp": 34,
+          "fn": 0,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        "0.5": {
+          "tp": 0,
+          "fp": 34,
+          "fn": 0,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        "0.75": {
+          "tp": 0,
+          "fp": 34,
+          "fn": 0,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0
+        }
+      },
+      "boundary": "Published filenamefamilies only; not commercial/color/blackwhite strata."
+    },
+    {
+      "name": "neg_rvl_cdip",
+      "images": 105,
+      "GT": 0,
+      "metrics": {
+        "0.25": {
+          "tp": 0,
+          "fp": 141,
+          "fn": 0,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        "0.5": {
+          "tp": 0,
+          "fp": 141,
+          "fn": 0,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        "0.75": {
+          "tp": 0,
+          "fp": 141,
+          "fn": 0,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0
+        }
+      },
+      "combinedMetrics": {
+        "0.25": {
+          "tp": 0,
+          "fp": 132,
+          "fn": 0,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        "0.5": {
+          "tp": 0,
+          "fp": 132,
+          "fn": 0,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0
+        },
+        "0.75": {
+          "tp": 0,
+          "fp": 132,
+          "fn": 0,
+          "precision": 0,
+          "recall": 0,
+          "f1": 0
+        }
+      },
+      "boundary": "Published filenamefamilies only; not commercial/color/blackwhite strata."
+    },
+    {
+      "name": "stamp_detectation_marcos",
+      "images": 36,
+      "GT": 40,
+      "metrics": {
+        "0.25": {
+          "tp": 37,
+          "fp": 102,
+          "fn": 3,
+          "precision": 0.26618705035971224,
+          "recall": 0.925,
+          "f1": 0.4134078212290503
+        },
+        "0.5": {
+          "tp": 35,
+          "fp": 104,
+          "fn": 5,
+          "precision": 0.2517985611510791,
+          "recall": 0.875,
+          "f1": 0.39106145251396646
+        },
+        "0.75": {
+          "tp": 26,
+          "fp": 113,
+          "fn": 14,
+          "precision": 0.18705035971223022,
+          "recall": 0.65,
+          "f1": 0.2905027932960894
+        }
+      },
+      "combinedMetrics": {
+        "0.25": {
+          "tp": 40,
+          "fp": 147,
+          "fn": 0,
+          "precision": 0.21390374331550802,
+          "recall": 1,
+          "f1": 0.3524229074889868
+        },
+        "0.5": {
+          "tp": 36,
+          "fp": 151,
+          "fn": 4,
+          "precision": 0.1925133689839572,
+          "recall": 0.9,
+          "f1": 0.31718061674008813
+        },
+        "0.75": {
+          "tp": 27,
+          "fp": 160,
+          "fn": 13,
+          "precision": 0.1443850267379679,
+          "recall": 0.675,
+          "f1": 0.23788546255506607
+        }
+      },
+      "boundary": "Published filenamefamilies only; not commercial/color/blackwhite strata."
+    },
+    {
+      "name": "stamp_detection_jsam",
+      "images": 439,
+      "GT": 887,
+      "metrics": {
+        "0.25": {
+          "tp": 490,
+          "fp": 609,
+          "fn": 397,
+          "precision": 0.445859872611465,
+          "recall": 0.552423900789177,
+          "f1": 0.49345417925478346
+        },
+        "0.5": {
+          "tp": 369,
+          "fp": 730,
+          "fn": 518,
+          "precision": 0.33575978161965425,
+          "recall": 0.4160090191657272,
+          "f1": 0.3716012084592145
+        },
+        "0.75": {
+          "tp": 81,
+          "fp": 1018,
+          "fn": 806,
+          "precision": 0.07370336669699727,
+          "recall": 0.09131905298759865,
+          "f1": 0.08157099697885196
+        }
+      },
+      "combinedMetrics": {
+        "0.25": {
+          "tp": 553,
+          "fp": 1253,
+          "fn": 334,
+          "precision": 0.3062015503875969,
+          "recall": 0.6234498308906427,
+          "f1": 0.41069439287040477
+        },
+        "0.5": {
+          "tp": 396,
+          "fp": 1410,
+          "fn": 491,
+          "precision": 0.21926910299003322,
+          "recall": 0.4464487034949267,
+          "f1": 0.2940958039361307
+        },
+        "0.75": {
+          "tp": 91,
+          "fp": 1715,
+          "fn": 796,
+          "precision": 0.050387596899224806,
+          "recall": 0.10259301014656144,
+          "f1": 0.0675826216115856
+        }
+      },
+      "boundary": "Published filenamefamilies only; not commercial/color/blackwhite strata."
+    },
+    {
+      "name": "stamp_detection_stampa",
+      "images": 46,
+      "GT": 72,
+      "metrics": {
+        "0.25": {
+          "tp": 27,
+          "fp": 102,
+          "fn": 45,
+          "precision": 0.20930232558139536,
+          "recall": 0.375,
+          "f1": 0.26865671641791045
+        },
+        "0.5": {
+          "tp": 19,
+          "fp": 110,
+          "fn": 53,
+          "precision": 0.14728682170542637,
+          "recall": 0.2638888888888889,
+          "f1": 0.1890547263681592
+        },
+        "0.75": {
+          "tp": 1,
+          "fp": 128,
+          "fn": 71,
+          "precision": 0.007751937984496124,
+          "recall": 0.013888888888888888,
+          "f1": 0.009950248756218905
+        }
+      },
+      "combinedMetrics": {
+        "0.25": {
+          "tp": 32,
+          "fp": 90,
+          "fn": 40,
+          "precision": 0.26229508196721313,
+          "recall": 0.4444444444444444,
+          "f1": 0.32989690721649484
+        },
+        "0.5": {
+          "tp": 20,
+          "fp": 102,
+          "fn": 52,
+          "precision": 0.16393442622950818,
+          "recall": 0.2777777777777778,
+          "f1": 0.20618556701030927
+        },
+        "0.75": {
+          "tp": 2,
+          "fp": 120,
+          "fn": 70,
+          "precision": 0.01639344262295082,
+          "recall": 0.027777777777777776,
+          "f1": 0.020618556701030927
+        }
+      },
+      "boundary": "Published filenamefamilies only; not commercial/color/blackwhite strata."
+    },
+    {
+      "name": "yolo_stamp_classify",
+      "images": 140,
+      "GT": 316,
+      "metrics": {
+        "0.25": {
+          "tp": 164,
+          "fp": 224,
+          "fn": 152,
+          "precision": 0.422680412371134,
+          "recall": 0.5189873417721519,
+          "f1": 0.4659090909090909
+        },
+        "0.5": {
+          "tp": 124,
+          "fp": 264,
+          "fn": 192,
+          "precision": 0.31958762886597936,
+          "recall": 0.3924050632911392,
+          "f1": 0.3522727272727273
+        },
+        "0.75": {
+          "tp": 42,
+          "fp": 346,
+          "fn": 274,
+          "precision": 0.10824742268041238,
+          "recall": 0.13291139240506328,
+          "f1": 0.11931818181818182
+        }
+      },
+      "combinedMetrics": {
+        "0.25": {
+          "tp": 175,
+          "fp": 316,
+          "fn": 141,
+          "precision": 0.3564154786150713,
+          "recall": 0.5537974683544303,
+          "f1": 0.43370508054522927
+        },
+        "0.5": {
+          "tp": 126,
+          "fp": 365,
+          "fn": 190,
+          "precision": 0.25661914460285135,
+          "recall": 0.3987341772151899,
+          "f1": 0.31226765799256506
+        },
+        "0.75": {
+          "tp": 39,
+          "fp": 452,
+          "fn": 277,
+          "precision": 0.07942973523421588,
+          "recall": 0.12341772151898735,
+          "f1": 0.09665427509293681
+        }
+      },
+      "boundary": "Published filenamefamilies only; not commercial/color/blackwhite strata."
+    }
+  ],
+  "execution": {
+    "node": "v24.19.0",
+    "parts": [
+      {
+        "path": ".data/research/lawbot-2026-10-15/iteration032/ooredoo-stamp-prefix.json",
+        "sha256": "582b7e97f1c633bcf7061898d6c42da78d3b8021710aef2aefef02cff38b66af",
+        "range": {
+          "start": 0,
+          "end": 32
+        },
+        "rows": 32,
+        "scriptHash": "9a690488edc9397868d5be1a8936d820cb6086c56d340e761e81b24eafe43ada"
+      },
+      {
+        "path": ".data/research/lawbot-2026-10-15/iteration032/ooredoo-stamp-shard1.json",
+        "sha256": "5e876fd91ea4b86ef5670c39a701200eccd86b566db8a63bfba5258aad58c099",
+        "range": {
+          "start": 32,
+          "end": 284
+        },
+        "rows": 252,
+        "scriptHash": "58a013141185f632c37f33580b35fd093dcebf5f0e70d9838a22735e6de4be19",
+        "maxNodeRssKiB": 959200
+      },
+      {
+        "path": ".data/research/lawbot-2026-10-15/iteration032/ooredoo-stamp-shard2.json",
+        "sha256": "31e8ce30c097075c57ccae08d931769c2544452119d2fcae4b1d067517a1e811",
+        "range": {
+          "start": 284,
+          "end": 536
+        },
+        "rows": 252,
+        "scriptHash": "58a013141185f632c37f33580b35fd093dcebf5f0e70d9838a22735e6de4be19",
+        "maxNodeRssKiB": 661472
+      },
+      {
+        "path": ".data/research/lawbot-2026-10-15/iteration032/ooredoo-stamp-shard3.json",
+        "sha256": "b2eda1a9ed5450ab1a87e59662842cb81a52343fafe88f240d346ebfc2b542ee",
+        "range": {
+          "start": 536,
+          "end": 786
+        },
+        "rows": 250,
+        "scriptHash": "58a013141185f632c37f33580b35fd093dcebf5f0e70d9838a22735e6de4be19",
+        "maxNodeRssKiB": 1042864
+      }
+    ],
+    "pauseManifest": {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/ooredoo-evaluation-gate-pause.json",
+      "sha256": "0054385bd42e1b61c1beded447fe58eb1ccdd191a3e01ac131af246978630bf6"
+    },
+    "timing": {
+      "rawAllRowsPreserved": true,
+      "accuracyRowsExcluded": 0,
+      "pausePollutedRowsExcludedOnlyFromCleanLatency": [
+        {
+          "shard": 1,
+          "rowIndexZeroBased": 72,
+          "reason": "firstrow completed after first SIGSTOP wait included pausedclock",
+          "name": "neg_rvl_cdip_000104.png"
+        },
+        {
+          "shard": 1,
+          "rowIndexZeroBased": 250,
+          "reason": "firstrow willcomplete after secondpause for Paddle; elapsedincludesstop",
+          "name": "stamp_detection_jsam_000282.jpg"
+        },
+        {
+          "shard": 2,
+          "rowIndexZeroBased": 96,
+          "reason": "firstrow after future resume includes gatepause",
+          "name": "stamp_detection_jsam_000380.jpg"
+        },
+        {
+          "shard": 3,
+          "rowIndexZeroBased": 96,
+          "reason": "firstrow after future resume includes gatepause",
+          "name": "stamp_detection_stampa_000632.jpg"
+        },
+        {
+          "shard": 3,
+          "rowIndexZeroBased": 234,
+          "reason": "firstrow after Edge window resume includes SIGSTOP elapsed",
+          "name": "yolo_stamp_classify_000770.jpg"
+        }
+      ],
+      "cleanLatencyImages": 781,
+      "p50Ms": 4249.759040999983,
+      "p95Ms": 9193.771416999996,
+      "maxMs": 14193.416875000054,
+      "boundary": "Otherclean rows include processconcurrency/normalCPUcontention. Do not use fullwalltime acrossSIGSTOP as clean inference duration; rawpausepolluted elapsedMs retained."
+    },
+    "mergeScript": {
+      "path": "scripts/merge-stamp-candidate-evaluation.ts",
+      "sha256": "7fc04abf678098a9567bbf8c8751322c5e7e0a66f15f6841fc3f0b269c967333"
+    }
+  },
+  "state": "complete-786-research-quality-insufficient-not-product-integrated",
+  "licenseBoundary": {
+    "officialModel": "https://huggingface.co/Ooredoo-Group/ooredoo-stamp-detection/tree/4576990c16edc1e67fe543768200e09cc3ee605e",
+    "weight": "Official card Apache2, base hustvl/yolos-small Apache2; safetensors offline eager export, no remote code",
+    "training": "350images711boxes,Kaggle/HF unspecified sources; original grants and overlap with786mixedtest unknown",
+    "test": "Uploader CCBY4 declared; original image grants/attribution and commercial/blackwhite strata unverified. No imagesredistributed or training/testthreshold tuning."
+  },
+  "decision": "Model-only IoU.5 F1=33.78% vs baseline20.21%; addingbaseline reduces F1to28.28%. Precision28.43%,recall41.60%,IoU.75 F1=9.26% remain inadequate for practical automaticseal completeness. Model122.83MB/Nodeparitypeak863MiB; not a safe-lightweight cohosting conclusion. No productintegration/startup/resource changes.",
+  "resourceSummary": {
+    "onnxBytes": 122832748,
+    "onnxSHA256": "4bdf1da731d9a5788c1014b1b2579324cef9a2be743b93d23d4679d82d3473fb",
+    "cleanThreeInputParityMaxNodeRssKiB": 883600,
+    "researchShardMaxNodeRssKiB": 1042864,
+    "pythonPreprocessorMaxRssBytes": 327729152,
+    "boundary": "Nodeparity and shard measurements separate; Pythonpreprocessor independent. SIGSTOP five rowtimes preserved and excluded only cleanlatency, notaccuracy. Clean batchlatencies still include CPUconcurrency; not singleproductionlatency."
+  },
+  "independentReview": {
+    "state": "PASS",
+    "reviewer": "complete_rules",
+    "scope": "786unique/1315GT/0error, image+labelSHA/gold allsame baseline,4716 perrowcounts identical, fourpartshashes verified",
+    "boundary": "Metadata only, not secondinference or commercialblackwhitegold/licenseaudit",
+    "report": {
+      "path": "文档/逆向台账/contracts/review-ooredoo-stamp-by-rules-20261015.json",
+      "bytes": 1724,
+      "sha256": "ce1efb870cfd74f0dd4df2ad9eebbacd32ce61d055f15c47ac864e8e2fc9ec56"
+    }
+  },
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/ooredoo-stamp-full-validation.json",
+      "bytes": 2846599,
+      "sha256": "71c70fb893a906658afaa3e8bad5e5856ce9fb031242431d2c7ebfe205de4de4"
+    },
+    {
+      "path": "文档/评估/Ooredoo印章全量候选验证20261015/per-image.json",
+      "bytes": 2846599,
+      "sha256": "71c70fb893a906658afaa3e8bad5e5856ce9fb031242431d2c7ebfe205de4de4"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/ooredoo-stamp-merge.log",
+      "bytes": 2752,
+      "sha256": "7f79a0b153fe9e5697e2f51ea4fcd1ac89882d3838e1607355c7dfbd17dcdeac"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/ooredoo-evaluation-gate-pause.json",
+      "bytes": 4011,
+      "sha256": "0054385bd42e1b61c1beded447fe58eb1ccdd191a3e01ac131af246978630bf6"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/ooredoo-stamp-prefix.json",
+      "bytes": 89596,
+      "sha256": "582b7e97f1c633bcf7061898d6c42da78d3b8021710aef2aefef02cff38b66af"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/ooredoo-stamp-shard1.json",
+      "bytes": 823072,
+      "sha256": "5e876fd91ea4b86ef5670c39a701200eccd86b566db8a63bfba5258aad58c099"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/ooredoo-stamp-shard2.json",
+      "bytes": 987152,
+      "sha256": "31e8ce30c097075c57ccae08d931769c2544452119d2fcae4b1d067517a1e811"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/ooredoo-stamp-shard3.json",
+      "bytes": 951455,
+      "sha256": "b2eda1a9ed5450ab1a87e59662842cb81a52343fafe88f240d346ebfc2b542ee"
+    },
+    {
+      "path": "scripts/merge-stamp-candidate-evaluation.ts",
+      "bytes": 6360,
+      "sha256": "7fc04abf678098a9567bbf8c8751322c5e7e0a66f15f6841fc3f0b269c967333"
+    },
+    {
+      "path": ".data/evals/stamp-model/ooredoo-onnx/export.json",
+      "bytes": 1324,
+      "sha256": "46d383b7df26d5fb1af929b592ba9ed1be718e835f94e8aaa3f63837197b7f0e"
+    },
+    {
+      "path": ".data/evals/stamp-model/ooredoo-onnx/parity-node.json",
+      "bytes": 1572,
+      "sha256": "324e8de046d2c04803772ecb2746ce7fc0a0e20582c7a85d323260b0a9a5576b"
+    },
+    {
+      "path": ".data/evals/stamp-model/ooredoo-source/README.md",
+      "bytes": 2224,
+      "sha256": "32df7a019cb3e26f24cadd7a5b89ed9125b09b7d1450a87db9d8bba4a294e169"
+    }
+  ]
+}

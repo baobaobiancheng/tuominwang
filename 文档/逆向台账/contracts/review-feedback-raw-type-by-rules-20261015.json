@@ -1,0 +1,61 @@
+{
+  "date": "2026-10-15",
+  "reviewer": "A independent read-only",
+  "sourceRuntime": "R0",
+  "scope": "Source single raw feedback type, lower-query versus lower-includes IPC stats versus strict-equality review/proof/audit; not batch reinterpretation",
+  "result": "1 real API PASS3142.568542ms/0skip",
+  "findings": [],
+  "routeBindings": {
+    "IPC-b199b300f630": "GET /api/feedback/review-statistics",
+    "IPC-9bb6c463b31f": "GET /api/feedback/statistics",
+    "IPC-14a3820628e8": "GET /api/feedback/statistics?documentName= exact case"
+  },
+  "cases": [
+    "RESEARCH_FALSE_POSITIVE",
+    "research_confirmed",
+    "false_positive",
+    "false_negative",
+    "confirmed",
+    "__proto__"
+  ],
+  "checked": [
+    "Fresh app DB readback raw types",
+    "Case-insensitive exact query",
+    "IPC FP2/FN1/confirmed2 versus review/proof FP1/FN1/confirmed1",
+    "JSON/CSV/JSONL/MD/proof preserve raw string",
+    "Source FP-only batch mapping unchanged",
+    "Encrypted persistence and no automatic learning"
+  ],
+  "files": [
+    {
+      "path": "apps/api/feedback.ts",
+      "sha256": "064b9c6393e0e955090c99c969575d07600b73e0e3d0db24b92f43832c0d8463",
+      "bytes": 15286
+    },
+    {
+      "path": "packages/core/feedback.ts",
+      "sha256": "1712e7fdd9641f11a765b94aae0aeac79ef31552e442a0dccc32d8f19352f089",
+      "bytes": 10121
+    },
+    {
+      "path": "packages/contracts/feedback.ts",
+      "sha256": "e9f79b4d028bcac80afcedb7b2f10bfc219508de5d8de26b6802ad43015cccf9",
+      "bytes": 3702
+    },
+    {
+      "path": "tests/feedback-raw-type.integration.ts",
+      "sha256": "91a602b60ac07262d85053ec2956993db53d5df264781ec2c16ed6c3243db0b6",
+      "bytes": 4944
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration036/review-feedback-raw-type-A.log",
+      "sha256": "674ab8ad77681a0c1ff90a0ee99a4228484ee9525b3de1b08990e55471e4b3fd",
+      "bytes": 295
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-actual-A-frozen.json",
+      "sha256": "3a48152048bbc1f25651751014e2a22cb94021111061a7e71ac1b69bd0bcfb1d",
+      "bytes": 639
+    }
+  ]
+}

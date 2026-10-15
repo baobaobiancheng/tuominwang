@@ -1,4 +1,5 @@
 import {validAliasToken} from "../contracts/alias-token.ts";
+import {isOfficeProtocolAttribute} from './office-protocol.ts';
 import {entityIdentity,entityLabel,entitySpanKey} from './entity-identity.ts';
 import { referencePartialMask, referenceFullMask } from "./reference-mask.ts";
 import { referenceDetectedMask } from "./reference-detected-mask.ts";
@@ -35,9 +36,8 @@ export function validBankCard(value: string) {
   return sum % 10 === 0;
 }
 export function detect(text: string, anchors: Anchor[] = [], dictionary: DictionaryEntry[] = []): Mark[] {
-  // This DrawingML protocol attribute identifies image structure and also remains in namespace declarations.
-  const pictureUri = "http://schemas.openxmlformats.org/drawingml/2006/picture";
-  const pictureUriAttributes = new Set(anchors.filter(a => a.kind === "object" && /^word\/.+\.xml$/u.test(a.part ?? "") && /^attribute:\d+:uri$/u.test(a.object ?? "") && text.slice(a.start, a.end) === pictureUri).map(a => `${a.start}:${a.end}`));
+  // Structural format identifiers are not business URLs. Visible text still participates.
+  const pictureUriAttributes = new Set(anchors.filter(a => isOfficeProtocolAttribute(text,a)).map(a => `${a.start}:${a.end}`));
   const rules: [Mark["kind"], RegExp, string, ((value: string) => boolean)?][] = [
     ["身份证号", /(?<![A-Za-z0-9])[1-9]\d{16}[\dXx](?![A-Za-z0-9])/g, "id-checksum", validId],
     ["手机号", /(?<!\d)(?:\+86[ -]?)?1[3-9]\d{9}(?!\d)/g, "cn-mobile"],
@@ -168,7 +168,7 @@ export function replacementFor(text: string, mark: Mark) {
     return output;
   }
   if (policy.mode === "alias") {
-    if (policy.version !== 1 || !validAliasToken(policy.token) || policy.token.includes(value)) throw new Error("INVALID_REPLACEMENT");
+    if (!Number.isInteger(policy.version) || policy.version < 1 || !validAliasToken(policy.token) || policy.token.includes(value)) throw new Error("INVALID_REPLACEMENT");
     return policy.token;
   }
   let output: string;

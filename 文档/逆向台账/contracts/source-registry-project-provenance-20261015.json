@@ -1,0 +1,279 @@
+{
+  "date": "2026-10-15",
+  "phase": "iteration034-root-deep-source-and-implementation",
+  "status": "partial-followup-in-progress",
+  "noPromotion": true,
+  "runtime": "R0 for every protected competitor pipeline; extracted utility probes are not protected processing E2E",
+  "source": [
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "bytes": 1996358,
+      "sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "bytes": 2771447,
+      "sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc"
+    }
+  ],
+  "chains": [
+    {
+      "id": "workspace-provider-source-registry",
+      "sourceBranches": [
+        {
+          "lines": [
+            15714,
+            15909
+          ],
+          "symbols": [
+            "up",
+            "dp.register",
+            "registerProvider",
+            "requireRecord",
+            "ensureManagedPath",
+            "resolve",
+            "openReadStream",
+            "readRange",
+            "release",
+            "disposeSync"
+          ],
+          "behaviors": [
+            "Buffer/ArrayBuffer/view/array and path registration",
+            "path-cache renamed label/legacy Office refresh",
+            "owned managed copy recovery with record identity check",
+            "provider declared size validation and overflow/short read rejection",
+            "direct/fallback range reading and safe integer bounds",
+            "provider close, path-map removal, cleanup warning, process dispose"
+          ]
+        },
+        {
+          "lines": [
+            16735,
+            16820
+          ],
+          "symbols": [
+            "S2",
+            "M2",
+            "v2",
+            "N2",
+            "A2",
+            "jp.add"
+          ],
+          "behaviors": [
+            "seed OCR cache only new source",
+            "release and output cleanup bookkeeping",
+            "6 permission/busy rename retries then timestamp; other errors propagate",
+            "renderer exit aborts sender-owned jobs"
+          ]
+        },
+        {
+          "lines": [
+            20020,
+            20078
+          ],
+          "symbols": [
+            "recovery.open",
+            "releaseOpenedSources"
+          ],
+          "behaviors": [
+            "legacy plaintext migration error",
+            "source manifest size and Markdown sidecar checks",
+            "protected provider stream and range handle finally close",
+            "partial registrations release on failure"
+          ]
+        },
+        {
+          "lines": [
+            22600,
+            22698
+          ],
+          "symbols": [
+            "workspace.saveV2",
+            "save",
+            "open",
+            "openTransientV2Reader"
+          ],
+          "behaviors": [
+            "source bytes vs existing archive provider vs source registry stream",
+            "release old references exactly once",
+            "source registry partial registration failure closes archive",
+            "source OCR cache reseeding; formal save receipt and recent list"
+          ]
+        }
+      ],
+      "sourceProbeCount": 15,
+      "sourceEvidence": {
+        "path": ".data/research/lawbot-2026-10-15/iteration034/source-registry-probes.json",
+        "bytes": 2277,
+        "sha256": "f021b9f505bd536093adf462e7c665563eae77ce956e34593c315c7d4f7773e7"
+      },
+      "ownAdapters": [
+        "apps/api/processing-resources.ts",
+        "packages/adapters/processing-resources.ts",
+        "apps/api/workspace-portable.ts",
+        "apps/api/workspace-saves.ts"
+      ],
+      "deliberateDifferences": [
+        "Cloud immutable source hashes are reauthenticated; do not copy source cached-hash/changed-original recovery as integrity authority.",
+        "Immutable cloud output IDs and explicit folder conflicts replace desktop A2 existing-path overwrites.",
+        "Browser cannot grant arbitrary client filesystem paths or OS provider handles; HTTP session-bound resource leases carry equivalent bytes and cleanup ownership."
+      ],
+      "remaining": [
+        "Final full API and Edge gate after shared features freeze."
+      ]
+    },
+    {
+      "id": "UI-67e30cf66ad0",
+      "sourceBranches": [
+        {
+          "lines": [
+            32080,
+            32165
+          ],
+          "symbols": [
+            "Yi2",
+            "Xi2",
+            "Ji2",
+            "Qi2",
+            "er2",
+            "tr2",
+            "nr2"
+          ],
+          "behaviors": [
+            "metadata selective copy incl fullName/restoreOriginal/recognizedText/OCR correction/geometry",
+            "producer sourceChain up to first32 independently from serialization",
+            "manual/project-panel provenance and rejected/confirmed/user-added states"
+          ]
+        },
+        {
+          "lines": [
+            34591,
+            34756
+          ],
+          "symbols": [
+            "nf2",
+            "rf2",
+            "of2",
+            "lf2",
+            "uf2",
+            "cf2",
+            "hf2",
+            "pf2",
+            "ff2",
+            "vf2",
+            "gf2"
+          ],
+          "behaviors": [
+            "native glyph affine quads and font baseline conversion",
+            "whitespace/fullwidth paren normalization with union geometry",
+            "PDF destroy finally",
+            "per-format draft/box source selection"
+          ]
+        },
+        {
+          "lines": [
+            34758,
+            35115
+          ],
+          "symbols": [
+            "yf2",
+            "Tf2",
+            "Pf2",
+            "Rf2",
+            "Df2",
+            "Of2",
+            "Bf2",
+            "jf2",
+            "Wf2",
+            "qf2",
+            "Gf2"
+          ],
+          "behaviors": [
+            "performat source/sidecar and imagePath/line/occurrence bindings",
+            "same/other/missed/skipped project summary",
+            "OCR-only project correction targets and corrected-text supplement dedup",
+            "source reviewState user provenance and format-specific UI updates"
+          ]
+        }
+      ],
+      "implemented": [
+        "Encrypted immutable entity provenance snapshots, complete server-recorded events, trusted server actor/time and tombstones.",
+        "Paged current provenance API with CAS/permission; read-only UI.",
+        "Historical archive retains authenticated original canonical text; missing historical payload is explicitly unknown.",
+        "Project normalized discovery uses exact source ev goldens and raw UTF16 ranges; normalized aliases do not automatically widen immutable value authority."
+      ],
+      "deliberateDifferences": [
+        "Our marks remain pending until actual human save; competitor project insertion sets confirmed=true.",
+        "Source native PDF font/baseline implementation is replaced by versioned PDFium glyph coordinates; exact native PDF internals are a dependency boundary.",
+        "Own full provenance events are preserved independently; source producer/serializer chain limits do not silently truncate server history."
+      ],
+      "remaining": [
+        "jf2 project-wide entity OCR correction migration and actual conflict/skipped/stale mutation proofs assigned C.",
+        "Geometry and re-recognition atomic rotation assigned B.",
+        "Final full Edge and adversarial review."
+      ]
+    }
+  ],
+  "evidence": [
+    {
+      "path": "packages/core/reference-project-search.ts",
+      "bytes": 1797,
+      "sha256": "e612e9e3b628b7d43468c0c06de55d8fd2701fd372c6039a62de0ce7bab905d5"
+    },
+    {
+      "path": "tests/fixtures/reference-project-search-source-golden.json",
+      "bytes": 7949,
+      "sha256": "13d767203ae322817729ee529e8a6d5de7e33df090173f7e451b7283e585a833"
+    },
+    {
+      "path": "tests/reference-project-search.test.ts",
+      "bytes": 1225,
+      "sha256": "c66bbbfda6d58519fff0c5beb49ac00f10744820d4122c29f5544aa5187ee73f"
+    },
+    {
+      "path": "tests/project-search.integration.ts",
+      "bytes": 2627,
+      "sha256": "d09192f7f0246be168d95c26e5445f38b6d5624e314d5e358c6ff4962a7520b9"
+    },
+    {
+      "path": "packages/core/review-provenance.ts",
+      "bytes": 6133,
+      "sha256": "a1d39ffaa5597b43a0fbceb48a249db2a37e99bbfd113b46e97ab8a029224ff4"
+    },
+    {
+      "path": "packages/adapters/review-provenance.ts",
+      "bytes": 2722,
+      "sha256": "4ffd747b01bf92cdea985486bbe2896026c6dbdfc69a7b1f490fe12a88997509"
+    },
+    {
+      "path": "apps/api/review-provenance.ts",
+      "bytes": 1504,
+      "sha256": "cfcf254ef10e0f0e21e73ee6b839944bf26cf5bb9e98b135d5f62d6bebe934e2"
+    },
+    {
+      "path": "apps/web/review-provenance.tsx",
+      "bytes": 2124,
+      "sha256": "68f21be9fafb6c64f892c929174c4f992a57bf6e1255567956b8709509da43b6"
+    },
+    {
+      "path": "tests/review-provenance.test.ts",
+      "bytes": 3567,
+      "sha256": "266bef0343df8e2d0af0469c45e85bb134fcfdea1766ddd5ef09f24e3092dda9"
+    },
+    {
+      "path": "tests/review-provenance.integration.ts",
+      "bytes": 5535,
+      "sha256": "215d267037308be25f7a020399fc1fe2f2e66dc2698b39c54765f6550fef730c"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration034/project-search-provenance-units-third.log",
+      "bytes": 225,
+      "sha256": "c1d6cbdd825adf4f2c5cfbb9ba1a45f186ff9c8c2b47e6c03afc36f112b6dd41"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration034/review-provenance-api-second.log",
+      "bytes": 295,
+      "sha256": "47515c564c1e56913a1bd91f574d2cca4b17a3226ff410caff4a8b1cbbc7a334"
+    }
+  ]
+}

@@ -1,5 +1,9 @@
+import {verifiedDocumentSource} from './document-source.ts';
+import {reviewEntityWasUserAdded} from '../core/review-type-hide.ts';
+import {reviewEntityBirth} from '../core/review-entity-birth.ts';
+import{isWordFormat}from'../core/document-format.ts';
 import {mappingMatchesEntity,mappingMatchesValue} from "../core/mappings.ts";
-import {sameEntity} from '../core/entity-identity.ts';
+import {sameEntity,entitySpanKey} from '../core/entity-identity.ts';
 import { randomUUID } from "node:crypto";
 import type { Anchor, Mark } from "../contracts/index.ts";
 import type { Glyph } from "../core/ocr.ts";
@@ -16,6 +20,7 @@ function glyphMap(source: string): Glyph[] { try { const value = JSON.parse(sour
 export async function restorePortableDraft(d: any, old: any, assets: any[], mappings: any[], dictionary: any[], presetPolicy: any) {
   const aad = `${d.tenant_id}:${d.project_id}:${d.id}`, source = await readOriginal(d.source_id), original = unseal(d.content, aad);
   if (hash(source) !== d.source_hash || hash(source) !== old.sourceHash || hash(original) !== d.content_hash || old.format !== d.source_format || !old.content.isWellFormed() || hash(old.content) !== old.contentHash) throw new Error("PORTABLE_DRAFT_SOURCE_MISMATCH");
+  if(d.source_id)await verifiedDocumentSource(d);
   let text = original, anchors = (d.anchors as Anchor[]).map(a => ({ ...a })); const pages = (d.page_data ?? []).map((p: any) => ({ ...p })); const rebuilt: number[] = [];
   if (assets.length !== pages.length || new Set(assets.map(p => p.index)).size !== assets.length) throw new Error("PORTABLE_DRAFT_PAGE_MISMATCH");
   if (!Array.isArray(old.anchors) || old.anchors.some((a: any) => !Number.isSafeInteger(a.start) || !Number.isSafeInteger(a.end) || a.start < 0 || a.end < a.start || a.end > old.content.length)) throw new Error("PORTABLE_DRAFT_ANCHOR_INVALID");
@@ -25,7 +30,7 @@ export async function restorePortableDraft(d: any, old: any, assets: any[], mapp
     if (hash(actualPreview) !== page.previewHash || hash(oldPreview) !== saved.previewHash || hash(actualMap) !== page.mapHash || hash(oldMap) !== saved.mapHash) throw new Error("PORTABLE_DRAFT_SOURCE_MISMATCH");
     const raw = await previewPixels(actualPreview), other = await previewPixels(oldPreview);
     if (raw.info.width !== other.info.width || raw.info.height !== other.info.height || !raw.data.equals(other.data)) throw new Error("PORTABLE_DRAFT_PREVIEW_MISMATCH");
-    const findAnchor = (list: Anchor[]) => list.find(a => d.source_format === "docx" ? a.kind === "object" && a.object === "image-text" && a.part === page.part : a.kind === "page" && a.page === page.index), target = findAnchor(anchors), savedAnchor = findAnchor(old.anchors);
+    const findAnchor = (list: Anchor[]) => list.find(a => isWordFormat(d.source_format) ? a.kind === "object" && a.object === "image-text" && a.part === page.part : a.kind === "page" && a.page === page.index), target = findAnchor(anchors), savedAnchor = findAnchor(old.anchors);
     if (!target || !savedAnchor) throw new Error("PORTABLE_DRAFT_ANCHOR_INVALID");
     const freshText = text.slice(target.start, target.end), desiredText = old.content.slice(savedAnchor.start, savedAnchor.end), glyphs = glyphMap(actualMap), oldGlyphs = glyphMap(oldMap);
     const physical = new Set(glyphs.map(g => g.slice(2).join(":"))), recovered = new Set<string>();
@@ -49,11 +54,11 @@ export async function restorePortableDraft(d: any, old: any, assets: any[], mapp
   // equivalence permits canonicalizing only that documented legacy shape.
   const legacyText = d.source_format === "txt" && old.anchors.length === 0 && Array.isArray(old.coverage) && old.coverage.length === 0 && Array.isArray(old.pages) && old.pages.length === 0 && anchors.length === 1 && anchors[0].kind === "text" && anchors[0].start === 0 && anchors[0].end === text.length;
   if (!legacyText && (anchors.length !== old.anchors.length || anchors.some((a, i) => signature(a) !== signature(old.anchors[i])))) throw new Error("PORTABLE_DRAFT_ANCHOR_MISMATCH");
-  const byToken = new Map(mappings.map(m => [m.token, m])), imported = (old.marks as Mark[]).map(m => {
-    let replacement = m.replacement; if (replacement?.mode === "alias") { const mapping = byToken.get(replacement.token); if (!mapping || !mappingMatchesValue(mapping,text.slice(m.start,m.end)) || !mappingMatchesEntity(mapping,m)) throw new Error("PORTABLE_DRAFT_MAPPING_MISMATCH"); replacement = { ...replacement, mappingId: mapping.id, version: 1 }; }
-    return { ...m, decision: "pending" as const, ...(replacement ? { replacement } : {}), sources: [{ layer: "manual" as const, code: "imported-draft-requires-review" }] };
+  const byId = new Map(mappings.map(m => [m.id, m])), imported = (old.marks as Mark[]).map((m,index) => {
+    let replacement = m.replacement; if (replacement?.mode === "alias") { const ref=replacement;const direct=byId.get(ref.mappingId),matches=mappings.filter(candidate=>candidate.token===ref.token&&candidate.version===ref.version&&mappingMatchesValue(candidate,text.slice(m.start,m.end))&&mappingMatchesEntity(candidate,m)),mapping=direct??(matches.length===1?matches[0]:undefined); if (!mapping || mapping.version!==ref.version||mapping.token!==ref.token||!mappingMatchesValue(mapping,text.slice(m.start,m.end)) || !mappingMatchesEntity(mapping,m)) throw new Error("PORTABLE_DRAFT_MAPPING_MISMATCH"); replacement = { ...replacement, mappingId: mapping.id, version: mapping.version }; }
+    return { ...m, userAdded:m.hiddenByType?reviewEntityWasUserAdded(m):reviewEntityBirth(m,old.reviewProvenance?.entries.find((e:any)=>e.active&&e.markIndex===index)),decision: m.hiddenByType===true?"ignore" as const:"pending" as const, ...(replacement ? { replacement } : {}), sources: m.hiddenByType===true?m.sources:[{ layer: "manual" as const, code: "imported-draft-requires-review" }] };
   });
-  validateMarks(text, imported); const marks = mergeCandidates(text, enabledProfileMarks(detectComplete(text, anchors, activeDictionary(dictionary, presetPolicy), { ocr: !!pages.length }).marks, presetPolicy.profile?.settings), imported).map(m => ({ ...m, decision: "pending" as const }));
+  validateMarks(text, imported);const importedKeys=new Set(imported.map(entitySpanKey)),fresh=enabledProfileMarks(detectComplete(text, anchors, activeDictionary(dictionary, presetPolicy), { ocr: !!pages.length }).marks, presetPolicy.profile?.settings),marks=[...fresh.filter(m=>!importedKeys.has(entitySpanKey(m))),...imported].sort((a,b)=>a.start-b.start||a.end-b.end);const restoredMarkIndices=imported.map(mark=>marks.indexOf(mark));
   const regionCandidates = old.pageReview ? validatePageReview(old.pageReview, pages).regions : [], deletedPageCandidates = old.pageReview ? validatePageReview(old.pageReview, pages).deletedPages : [];
-  return { content: seal(text, aad), hash: hash(text), anchors, pages, marks, pageReview: pages.length ? { mode: "unselected", regions: [], deletedPages: [], ...(old.pageReview?.maskStyle ? { maskStyle: old.pageReview.maskStyle } : {}) } : null, regionCandidates, deletedPageCandidates, rebuiltMapPages: rebuilt };
+  return { content: seal(text, aad), hash: hash(text), anchors, pages, marks, restoredMarkIndices,entityCorrections:null,unresolved:[] as any[],pageReview: pages.length ? { mode: "unselected", regions: [], deletedPages: [], ...(old.pageReview?.maskStyle ? { maskStyle: old.pageReview.maskStyle } : {}) } : null, regionCandidates, deletedPageCandidates, rebuiltMapPages: rebuilt };
 }

@@ -1,3 +1,4 @@
+import{isWordFormat}from'../../packages/core/document-format.ts';
 import type {FastifyRequest,FastifyInstance} from 'fastify';
 import {z} from 'zod';
 import {id} from '../../packages/contracts/index.ts';
@@ -21,7 +22,7 @@ export async function applyDocumentConfiguration(db:DB,req:FastifyRequest,docume
   const profile:Profile=structuredClone(config.profileId?(await getPreset<Profile>(db,req,'profile',config.profileId)).settings:existing.profile?.settings??defaultProfile());
   let ruleset:RuleSet|null=existing.ruleset?.settings??null;
   if(config.rulesetId!==undefined){await requirePermission(db,d.project_id,['manage_dictionary']);ruleset=config.rulesetId?(await getPreset<RuleSet>(db,req,'ruleset',config.rulesetId)).settings:null;}
-  const fileKind=d.source_format==='docx'?'docx':d.source_format==='pdf'?'pdf':['png','jpg','jpeg'].includes(d.source_format)?'image':'markdown';
+  const fileKind=isWordFormat(d.source_format)?'docx':d.source_format==='pdf'?'pdf':['png','jpg','jpeg'].includes(d.source_format)?'image':'markdown';
   if(config.entityTypes)profile.enabledEntityTypeIds=config.entityTypes;
   if(config.pseudonymRules){
     const expected=Object.values(config.pseudonymRules).some(v=>v!=="pseudonym")?"selective_pseudonym":"custom_pseudonym";
@@ -43,7 +44,7 @@ export async function applyDocumentConfiguration(db:DB,req:FastifyRequest,docume
   if(config.removeHeaderFooter!==undefined)profile.docx.removeHeaderFooter=config.removeHeaderFooter;
   if(config.commentHandlingMode)profile.docx.commentHandlingMode=config.commentHandlingMode;
   if(config.outputFormats){
-    const allowed=d.source_format==='docx'?['docx','md']:d.source_format==='pdf'?['pdf','docx','md']:fileKind==='image'?['png','md']:d.source_format==='txt'?['txt','md']:[d.source_format];
+    const allowed=d.source_format==='doc'?['doc','docx','md']:d.source_format==='wps'?['docx','md']:d.source_format==='docx'?['docx','md']:d.source_format==='pdf'?['pdf','docx','md']:fileKind==='image'?['png','md']:d.source_format==='txt'?['txt','md']:[d.source_format];
     if(config.outputFormats.some(f=>!allowed.includes(f)))fail('UNSUPPORTED_OUTPUT_FORMAT',400);
     const markdown=config.outputFormats.includes('md');profile.docx.exportMarkdown=markdown;profile.pdf.exportMarkdown=markdown;profile.image.exportMarkdown=markdown;
     profile.pdf.exportPdfAsDocx=d.source_format==='pdf'&&config.outputFormats.includes('docx');

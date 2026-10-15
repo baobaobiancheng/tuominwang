@@ -1,14 +1,21 @@
+import{hydrateEntityCorrections,assertEntityCorrections,sealEntityCorrections,archiveEntityCorrections}from './entity-corrections.ts';
+import{applyEntityCorrections,materializeEntityCorrections}from '../core/entity-corrections.ts';
+import{readPageRotationState,validateRotationPages}from"./page-rotation-state.ts";
+import{normalizeStoredDocument}from'./document-normalization.ts';
+import{isBinaryFormat,isLegacyWordFormat,originalDocumentFormat}from'../core/document-format.ts';
+import{legacyOutputArtifacts,verifyLegacyDoc,wantsLegacyDoc}from'./legacy-office-output.ts';
 import {storeMarkdownSource,loadMarkdownSource,readMarkdownBlockerReview} from './markdown-source.ts';
 import {markdownSourceReady,createMarkdownMatchPublisher} from '../core/reference-markdown-progress.ts';
 import type {ReferenceMarkdown} from '../core/reference-markdown.ts';
 import {eventEnvelope,type ProcessingEvent} from "../core/processing-events.ts";
 import {applyActiveRulesetCandidates} from "../core/user-memory-rules.ts";
 import {runtimeWhitelistCandidates} from "../core/runtime-rule-update.ts";
+import {readLiveRuntimeRules} from './runtime-rules-control.ts';
 import {verifiedDocumentSource} from "./document-source.ts";
 import {contextualDocumentMarks,contextualDocumentType} from "./recognition-context.ts";
 import { profileForFormat } from "../core/presets.ts";
 import { documentSpatialMarks } from './reference-spatial.ts';
-import { applyDocumentRoute } from "../core/document-route.ts";
+import { applyDocumentRoute, rulesetMaterialRoute } from "../core/document-route.ts";
 import { renderDocumentVisualPage } from "./visual-replacement.ts";
 import { activeDictionary, enabledProfileMarks } from "../core/profile-recognition.ts";
 import { detectComplete, filterCompleteNer, recognitionVersion } from "../core/recognition-pipeline.ts";
@@ -34,8 +41,8 @@ let eventSequence=0,eventStage='initializing';
 const eventsEnabled=!!workerData.processingEventStream;
 function processingEvent(event:ProcessingEvent){if(!eventsEnabled)return;eventStage=event.stage;parentPort!.postMessage(eventEnvelope(event,++eventSequence));}
 function pageProcessed(page:ParsedPage,text:string,glyphs:import('../core/ocr.ts').Glyph[],totalPages:number){processingEvent({type:'page-processed',stage:'ocr',pageNumber:page.index+1,totalPages,ocrCompleted:true,ocrCachePage:{text,width:page.width,height:page.height,previewHash:page.previewHash,mapHash:page.mapHash,glyphs},coordinateSpace:'canonical-raster'});processingEvent({type:'progress',stage:'ocr',percent:Math.round(50*(page.index+1)/totalPages),message:`已完成 ${page.index+1} / ${totalPages} 页图像文字读取`});}
-async function profileOutputs(d: any, text: string, bytes: Buffer, format: string, imageTexts?: Record<string,string>) {
-  if (!d.presetPolicy?.profile) return [{role:"primary" as const,name:`redacted.${format}`,format,bytes}];
+async function profileOutputs(d: any, text: string, bytes: Buffer, format: string, imageTexts?: Record<string,string>,convertLegacy=true) {
+  if (!d.presetPolicy?.profile) {const outputs=[{role:"primary" as const,name:`redacted.${format}`,format,bytes}];return convertLegacy?legacyOutputArtifacts(d,text,outputs):outputs;}
   const {buildProfileArtifacts} = await import("./profile-export.ts");
   const outputs=await buildProfileArtifacts({document:d,text,verifiedOutput:bytes,outputFormat:format,filename:`redacted.${format}`,profile:d.presetPolicy.profile.settings,batch:d.batchMode,outputImageTexts:imageTexts});
   if(d.source_format==="txt" && d.documentPolicy?.configuration.outputFormats?.includes("md")) {
@@ -43,26 +50,38 @@ async function profileOutputs(d: any, text: string, bytes: Buffer, format: strin
     const escaped=bytes.toString("utf8").replace(/([\\`*_[\]{}()#+.!<>|~-])/gu,"\\$1");
     outputs.push({role:"markdown",name:"redacted.md",format:"md",bytes:Buffer.from(escaped)});
   }
-  return outputs;
+  return convertLegacy?legacyOutputArtifacts(d,text,outputs):outputs;
 }
 async function verifyExpected(d: any, text: string, bytes: Buffer, format: string, artifact: {id:string;hash:string;output_role?:string}, imageTexts?:Record<string,string>) {
-  const expected = (await profileOutputs(d,text,bytes,format,imageTexts)).find(a => a.role === (artifact.output_role ?? "primary"));
+  const expected = (await profileOutputs(d,text,bytes,format,imageTexts,false)).find(a => a.role === (artifact.output_role === "word-docx"?"primary":artifact.output_role ?? "primary"));
   if(!expected) throw new Error("ARTIFACT_MISMATCH");
-  const actual = ["docx","xlsx",...PAGED_FORMATS].includes(expected.format) ? await readOriginal(artifact.id) : Buffer.from(await readArtifact(artifact.id));
+  if(originalDocumentFormat(d)==="doc"&&wantsLegacyDoc(d)&&(artifact.output_role??"primary")==="primary"){const actual=await readOriginal(artifact.id);if(hash(actual)!==artifact.hash)throw new Error("ARTIFACT_MISMATCH");await verifyLegacyDoc(actual,expected.bytes,d,text);return;}
+  const actual = isBinaryFormat(expected.format) ? await readOriginal(artifact.id) : Buffer.from(await readArtifact(artifact.id));
   if(hash(actual)!==artifact.hash || !actual.equals(expected.bytes))throw new Error("ARTIFACT_MISMATCH");
 }
 async function publishOutputs(d: any,text: string,bytes: Buffer,format: string,digest: string,imageTexts?:Record<string,string>) {
   const outputs=await profileOutputs(d,text,bytes,format,imageTexts), artifacts=[];
   for(const output of outputs){
     const id=randomUUID();
-    await writeArtifact(id,["docx","xlsx",...PAGED_FORMATS].includes(output.format) ? output.bytes.toString("base64") : output.bytes.toString("utf8"));
-    artifacts.push({id,hash:hash(output.bytes),format:output.format,role:output.role,name:output.name});
+    await writeArtifact(id,isBinaryFormat(output.format) ? output.bytes.toString("base64") : output.bytes.toString("utf8"));
+    artifacts.push({id,hash:hash(output.bytes),format:output.format,role:output.role,name:output.name,...("legacyVerification" in output?{legacyVerification:output.legacyVerification}:{})});
   }
   return {artifact:artifacts[0],additionalArtifacts:artifacts.slice(1),textLength:text.length,textHash:digest};
 }
-async function execute(input: ProcessingInput) {
+async function execute(input: ProcessingInput): Promise<any> {
+  if(input.kind==='page-rotation')return(await import("./page-rotation.ts")).applyPageRotation(input.doc,input.request,d=>execute({kind:"detect",doc:d}));
+  if(input.kind==='legacy-office-normalize')return normalizeStoredDocument(input.doc,input.password);
+  let normalizedSource:any;
+  if("doc" in input&&input.doc&&input.kind==="detect"&&isLegacyWordFormat(originalDocumentFormat(input.doc))&&!input.doc.normalized_source_id){processingEvent({type:"progress",stage:"parse",message:"正在读取旧版 Word 文档"});normalizedSource=await normalizeStoredDocument(input.doc);input={...input,doc:{...input.doc,...normalizedSource}};}
   if ("doc" in input && ["detect", "export"].includes(input.kind)) setObjectOwner(input.doc.id);
-  if(input.kind==='restoration-batch-file')return (await import("../core/restoration-batch.ts")).restoreBatch([{...input.file,bytes:Buffer.from(input.file.bytes)}],input.plan);
+  if(input.kind==='folder-output')return (await import('./folder-output.ts')).writeFolderOutput(input);
+  if(input.kind==='folder-output-read')return (await import('./folder-output.ts')).readFolderOutput(input);
+  if(input.kind==='entity-filter')return (await import('./review-mark-filter.ts')).filterDocumentEntities(input.doc,input.input,input.marks,input.sourceSlots);
+  if(input.kind==='manual-occurrences')return(await import('./manual-occurrences.ts')).planDocumentManualOccurrences(input.doc,input.query);
+  if(input.kind==='document-route')return (await import('./reference-route.ts')).detectDocumentRoute(input.doc,input.overrideDocType);
+  if(input.kind==='docx-image-ocr')return (await import('./docx-image-ocr.ts')).recognizeDocumentDocxImages(input.doc,d=>execute({kind:'detect',doc:d}) as any);
+  if(input.kind==='restoration-batch-file'&&isLegacyWordFormat(input.file.format))return (await import('./legacy-restoration.ts')).restoreLegacyFile({...input.file,bytes:Buffer.from(input.file.bytes)},input.plan);
+  if(input.kind==='restoration-batch-file')return (await import("../core/restoration-batch.ts")).restoreBatch([{...input.file,bytes:Buffer.from(input.file.bytes)}],input.plan,progress=>processingEvent({type:"progress",stage:"restore",percent:progress.percent,message:`已完成 ${progress.completed} / ${progress.total} 个文件还原`}));
   if(input.kind==='image-batch-search')return (await import("./image-batch-search.ts")).imageBatchSearch(input.doc,input.query,input.pageIndex);
   if(input.kind==='image-utility')return (await import("./image-utilities.ts")).imageUtility(input);
   if(input.kind==='document-unlock'){
@@ -74,7 +93,7 @@ async function execute(input: ProcessingInput) {
   if (input.kind === "dictionary-import") return (await import("../core/dictionary-workbook.ts")).importDictionary(Buffer.from(input.bytes));
   if (input.kind === "dictionary-export") return (await import("../core/dictionary-workbook.ts")).exportDictionary(input.entries);
   if (input.kind === "download") {
-    const output = ["docx", "xlsx", ...PAGED_FORMATS].includes(input.artifact.format ?? "") ? await readOriginal(input.artifact.id) : await readArtifact(input.artifact.id);
+    const output = isBinaryFormat(input.artifact.format??"") ? await readOriginal(input.artifact.id) : await readArtifact(input.artifact.id);
     if (hash(output) !== input.artifact.hash) throw new Error("ARTIFACT_MISMATCH");
     return output;
   }
@@ -83,7 +102,7 @@ async function execute(input: ProcessingInput) {
   if (input.kind === "docx-preview") return (await import("./docx-preview.ts")).documentDocxPreview(input.doc);
   if (input.kind === "ocr-text") return (await import("./ocr-correction.ts")).readOcrText(input.doc, input.page!);
   if (input.kind === "ocr-correct") return (await import("./ocr-correction.ts")).correctOcrText(input.doc, input.page!, input.correction!);
-  const d = input.doc, aad = `${d.tenant_id}:${d.project_id}:${d.id}`;
+  const d = input.kind==='detect'?{...input.doc}:hydrateEntityCorrections(input.doc), aad = `${d.tenant_id}:${d.project_id}:${d.id}`;
   const office = ["docx", "xlsx"].includes(d.source_format);
   const paged = PAGED_FORMATS.includes(d.source_format);
   const embedded = d.source_format === "docx" && !!d.page_data?.length;
@@ -98,7 +117,7 @@ async function execute(input: ProcessingInput) {
       if (d.source_format === "pdf" && input.detectors!.includes("seal")) {
         const source = await verifiedDocumentSource(d);
         const { detectPdfImageSeals } = await import("../core/visual-pdf.ts");
-        result.candidates = visual.suppressOverlaps([...result.candidates, ...await detectPdfImageSeals(source, page.index, bytes)]);
+        result.candidates = visual.suppressOverlaps([...result.candidates, ...await detectPdfImageSeals(source, page.index, bytes,readPageRotationState(d).rotations[String(page.index)]??0)]);
       }
       if (["png", "jpg", "jpeg"].includes(d.source_format)) {
         const { filterCertificateSealCandidates } = await import("../core/visual-morphology.ts");
@@ -162,12 +181,12 @@ async function execute(input: ProcessingInput) {
     if (d.source_id) {
       const bytes = await verifiedDocumentSource(d);detectBytes=bytes;
       if(["docx","xlsx"].includes(d.source_format)&&bytes.subarray(0,8).equals(Buffer.from("d0cf11e0a1b11ae1","hex")))throw new Error("ENCRYPTED_OFFICE");
-      if ((d.page_data ?? []).some((p: any) => (p.ocrRevision ?? 0) > 0)) {
+      if (d.reuseParsedPages===true || (d.page_data ?? []).some((p: any) => (p.ocrRevision ?? 0) > 0)) {
         if (hash(text) !== d.content_hash) throw new Error("SOURCE_MISMATCH");
         anchors = d.anchors; coverage = d.coverage; pages = d.page_data;
         for (const page of pages) if (hash(await readArtifact(page.mapId)) !== page.mapHash || hash(await readOriginal(page.previewId)) !== page.previewHash) throw new Error("SOURCE_MISMATCH");
       } else {
-      const paged = d.source_format === "docx" ? await parseOfficeImages(bytes,pageProcessed) : ["pdf", "png", "jpg", "jpeg"].includes(d.source_format) ? await parsePages(bytes, d.source_format,pageProcessed) : undefined;
+      const paged = d.source_format === "docx" ? await parseOfficeImages(bytes,pageProcessed) : ["pdf", "png", "jpg", "jpeg"].includes(d.source_format) ? await parsePages(bytes, d.source_format,pageProcessed,{rotations:d.source_format==="pdf"?readPageRotationState(d).rotations:undefined,manualOnlyPages:d.source_format==="pdf"?readPageRotationState(d).manualOnlyPages:undefined}) : undefined;
       const parsed = paged ?? (office ? await parseOffice(bytes, d.source_format) : parseFile(bytes, d.source_format,{fileName:d.source_name?unseal(d.source_name,`${aad}:name`):undefined}));
       text = parsed.text; anchors = parsed.anchors; coverage = parsed.coverage;
       if("markdown" in parsed)markdown=parsed.markdown as ReferenceMarkdown|undefined;
@@ -175,6 +194,7 @@ async function execute(input: ProcessingInput) {
       pages = paged?.pages ?? [];
       }
     }
+    if(d.source_format==='pdf')validateRotationPages(readPageRotationState(d),pages);
     processingEvent({type:'progress',stage:'recognize',message:'正在核对文字中的敏感信息',processedTextEnd:0,totalTextLength:text.length});
     const dictionary = d.dictionary ? JSON.parse(unseal(d.dictionary, `${d.tenant_id}:${d.project_id}:dictionary`)) : [];
     const complete = detectComplete(text, anchors, activeDictionary(dictionary, d.presetPolicy), { filename: d.source_name ? unseal(d.source_name, `${aad}:name`) : "", ocr: pages.length > 0, screenshot: ["png", "jpg", "jpeg"].includes(d.source_format) });
@@ -189,8 +209,10 @@ async function execute(input: ProcessingInput) {
     }
     if(!d.ner_enabled)marks=await contextualDocumentMarks(detectBytes,text,anchors,pages,d.source_format,marks,{configuration:d.documentPolicy?.configuration,documentType:contextualDocumentType(complete.classification.type,d.documentPolicy?.configuration)});
     marks = enabledProfileMarks(marks, d.presetPolicy?.profile?.settings);
-    marks=mergeCandidates(text,marks,runtimeWhitelistCandidates(text,anchors,marks,d.runtimeWhitelists??[]));
-    marks=enabledProfileMarks(applyActiveRulesetCandidates(text,anchors,marks,d.presetPolicy?.ruleset?.settings,contextualDocumentType(complete.classification.type,d.documentPolicy?.configuration)),d.presetPolicy?.profile?.settings);
+    const liveRules=await readLiveRuntimeRules();
+    marks=mergeCandidates(text,marks,runtimeWhitelistCandidates(text,anchors,marks,[...(d.runtimeWhitelists??[]),...liveRules]));
+    marks=enabledProfileMarks(applyActiveRulesetCandidates(text,anchors,marks,d.presetPolicy?.ruleset?.settings,rulesetMaterialRoute(complete.classification.type,d.documentPolicy?.configuration)),d.presetPolicy?.profile?.settings);
+    let entityCorrectionsStale=false;try{Object.assign(d,hydrateEntityCorrections({...d,content_hash:hash(text)}));if(d.entityCorrections){assertEntityCorrections(d.entityCorrections,{...d,content_hash:hash(text)});const materialized=materializeEntityCorrections(d,text,marks);marks=materialized.marks;d.entityCorrections=materialized.frame;d.entity_corrections=sealEntityCorrections({...d,content_hash:hash(text)},materialized.frame!);}}catch(error){if((error as Error).message!=='ENTITY_CORRECTION_STALE')throw error;const archived=archiveEntityCorrections(d);if(!archived||archived.frame.sourceHash!==d.source_hash)throw Error('ENTITY_CORRECTION_INVALID');entityCorrectionsStale=true;d.entityCorrections=null;coverage.push({id:'entity-corrections',status:'blocked',reason:'ENTITY_CORRECTION_STALE'});}
     if(markdown)await createMarkdownMatchPublisher(text.length,"contextual",processingEvent)({processedTextEnd:text.length,totalTextLength:text.length,matches:marks});
     const profile=d.presetPolicy?.profile?.settings, style=profile ? profileForFormat(profile, d.source_format === "docx" ? "png" : d.source_format, d.batchMode) : undefined;
     const visualCandidates: any[]=[],visualPages:{page:number;detectors:string[];warnings:string[]}[]=[];
@@ -205,7 +227,7 @@ async function execute(input: ProcessingInput) {
           let candidates=initialVisual.candidates;
           if(d.source_format==="pdf" && detectors.includes("seal")){
             const original=await verifiedDocumentSource(d);
-            candidates=visual.suppressOverlaps([...candidates,...await(await import("../core/visual-pdf.ts")).detectPdfImageSeals(original,page.index,preview)]);
+            candidates=visual.suppressOverlaps([...candidates,...await(await import("../core/visual-pdf.ts")).detectPdfImageSeals(original,page.index,preview,readPageRotationState(d).rotations[String(page.index)]??0)]);
           }
           if(["png","jpg","jpeg"].includes(d.source_format))candidates=(await import("../core/visual-morphology.ts")).filterCertificateSealCandidates(candidates,{text,filename:d.source_name?unseal(d.source_name,`${aad}:name`):""},page).candidates;
           for(const candidate of candidates){visualCandidates.push({...candidate,page:page.index});if(visualCandidates.length>3000)throw new Error("VISUAL_CANDIDATE_LIMIT");}
@@ -216,12 +238,13 @@ async function execute(input: ProcessingInput) {
     processingEvent({type:'progress',stage:'recognize',percent:100,message:'识别已完成，请人工复核',processedTextEnd:text.length,totalTextLength:text.length});
     const pageReview=pages.length && style && "maskStyle" in style ? {mode:"unselected",maskStyle:style.maskStyle,regions:[],deletedPages:[]} : null;
     const markdownMetadata=markdown?await storeMarkdownSource(markdown,d.id):undefined;
-    return { parseVersion:markdown?2:d.parse_version,visualCandidates, pageReview, content: seal(text, aad), hash: hash(text), marks, anchors, coverage, pages, classification: complete.classification, recognition: { ...markdownMetadata?{markdown:markdownMetadata}:{}, rules: recognitionVersion, dictionaryRevision: d.dictionary_revision ?? 0, presetRevision: d.presetPolicy?.revision ?? 0, documentPolicyRevision:d.documentPolicy?.revision??0, documentType:d.documentPolicy?.configuration.documentType??"auto", classification: complete.classification, visual:{complete:visualPages.every(p=>!p.warnings.length),pages:visualPages}, ner: nerVersion, ai: null } };
+    return { ...normalizedSource?{normalizedSource}:{},entityCorrectionsStale,entityCorrectionsStored:d.entity_corrections??null,parseVersion:markdown?2:d.parse_version,visualCandidates, pageReview, content: seal(text, aad), hash: hash(text), marks, anchors, coverage, pages, classification: complete.classification, recognition: { ...markdownMetadata?{markdown:markdownMetadata}:{}, rules: recognitionVersion, dictionaryRevision: d.dictionary_revision ?? 0, presetRevision: d.presetPolicy?.revision ?? 0, documentPolicyRevision:d.documentPolicy?.revision??0, documentType:d.documentPolicy?.configuration.documentType??"auto", classification: complete.classification, visual:{complete:visualPages.every(p=>!p.warnings.length),pages:visualPages}, ner: nerVersion, ai: null } };
   }
+  if(d.entityCorrections?.entries.some((e:any)=>e.active===false))throw Error('ENTITY_CORRECTION_UNRESOLVED');
   const digest = hash(text);
   if(d.source_format==="md"&&d.parse_version<2&&input.kind!=="verify")throw new Error("MARKDOWN_RECOGNITION_REQUIRED");
   const markdown=d.source_format==="md"&&d.parse_version===2?await loadMarkdownSource(d,text):undefined;
-  assertExportable(d, d.revision, text.length, digest, input.snapshot);
+  assertExportable(d, d.revision, text.length, digest, "snapshot" in input?input.snapshot:undefined);
   if (input.kind === "gate") { validateFileMarks(text, d.marks, d.source_format, d.anchors, true); if (paged) await validatePageExport(d, text); if (embedded) await officeImagePlan(d, text); return {}; }
   if (paged) {
     const {output,format}=await exportPages(d,text);

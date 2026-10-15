@@ -3,6 +3,7 @@ import { test, expect } from "./fixture.ts";
 import { exportDictionary, importDictionary } from "../../packages/core/dictionary-workbook.ts";
 
 test("desktop XLSX lists remain drafts until saved; project whitelist review and undo touch only confirmed scope", async ({ page }) => {
+  test.setTimeout(120000);
   await page.goto("/");
   await page.getByLabel("账号", { exact: true }).fill(process.env.E2E_USERNAME!);
   await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
@@ -40,8 +41,10 @@ test("desktop XLSX lists remain drafts until saved; project whitelist review and
   await page.getByRole("button", { name: "确认批量保存", exact: true }).click();
   await page.getByRole("alertdialog", { name: "操作确认" }).getByRole("button", { name: "确认执行", exact: true }).click();
   await expect(page.getByText("批量复核已保存", { exact: true })).toBeVisible();
+  const undoResponse=page.waitForResponse(response=>response.request().method()==='POST'&&/\/api\/projects\/[^/]+\/review-batch\/undo$/.test(response.url()));
   await page.getByRole("button", { name: "撤销本次批量复核", exact: true }).click();
   await page.getByRole("alertdialog", { name: "操作确认" }).getByRole("button", { name: "确认执行", exact: true }).click();
+  expect((await undoResponse).status()).toBe(200);
   await expect(page.getByText("已撤销本次批量复核", { exact: true })).toBeVisible();
   await page.screenshot({ path: "test-results/batch-review-desktop.png", fullPage: true });
   await page.getByRole("button", { name: /文本 1\s+可复核/ }).click();

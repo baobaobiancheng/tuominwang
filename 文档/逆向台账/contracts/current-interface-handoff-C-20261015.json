@@ -1,0 +1,3153 @@
+{
+  "date": "2026-10-15",
+  "scope": "C exact49 personal settings and17 workspace IPC recommendations",
+  "sourceRuntime": "R0",
+  "allNativeEquivalent": false,
+  "ledgerIsParentOwned": true,
+  "rows": [
+    {
+      "id": "IPC-0b6b223f384f",
+      "name": "profile:create",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "POST",
+      "actualRoute": "/api/presets/profiles"
+    },
+    {
+      "id": "IPC-92e8c95a136b",
+      "name": "profile:list",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "GET",
+      "actualRoute": "/api/presets/profiles"
+    },
+    {
+      "id": "IPC-ddc5ff507c75",
+      "name": "profile:get",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "GET",
+      "actualRoute": "/api/presets/profiles/:id"
+    },
+    {
+      "id": "IPC-59456f319530",
+      "name": "profile:update",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "PUT",
+      "actualRoute": "/api/presets/profiles/:id"
+    },
+    {
+      "id": "IPC-271b4728636e",
+      "name": "profile:duplicate",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "POST",
+      "actualRoute": "/api/presets/profiles/:id/duplicate"
+    },
+    {
+      "id": "IPC-18da1e923824",
+      "name": "ruleset:create",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "POST",
+      "actualRoute": "/api/presets/rulesets"
+    },
+    {
+      "id": "IPC-c04013aa6e1b",
+      "name": "ruleset:list",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "GET",
+      "actualRoute": "/api/presets/rulesets"
+    },
+    {
+      "id": "IPC-8bfb6ec9fcd8",
+      "name": "ruleset:get",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "GET",
+      "actualRoute": "/api/presets/rulesets/:id"
+    },
+    {
+      "id": "IPC-9a6a89a8fb10",
+      "name": "ruleset:update",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "PUT",
+      "actualRoute": "/api/presets/rulesets/:id"
+    },
+    {
+      "id": "IPC-7754362b9148",
+      "name": "ruleset:download-excel-template",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "GET",
+      "actualRoute": "/api/presets/rulesets/template.xlsx"
+    },
+    {
+      "id": "IPC-337d01816990",
+      "name": "ruleset:export-excel",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "GET",
+      "actualRoute": "/api/presets/rulesets/:id/export.xlsx?revision=2"
+    },
+    {
+      "id": "IPC-c17682083b52",
+      "name": "ruleset:import-excel",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "POST",
+      "actualRoute": "/api/presets/rulesets/:id/import?revision=2"
+    },
+    {
+      "id": "IPC-3d307eb4bc00",
+      "name": "preference:set-default-profile",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "PUT",
+      "actualRoute": "/api/presets/preferences"
+    },
+    {
+      "id": "IPC-2187e949f831",
+      "name": "ruleset:set-active",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "PUT",
+      "actualRoute": "/api/presets/preferences"
+    },
+    {
+      "id": "IPC-7b3025225249",
+      "name": "preference:record-successful-export",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "POST",
+      "actualRoute": "/api/presets/preferences/exports"
+    },
+    {
+      "id": "IPC-2bdb599038fb",
+      "name": "ruleset:preview-workspace-promotion",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "POST",
+      "actualRoute": "/api/presets/rulesets/:id/promotion"
+    },
+    {
+      "id": "IPC-7e8602707608",
+      "name": "profile:delete",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "DELETE",
+      "actualRoute": "/api/presets/profiles/:id"
+    },
+    {
+      "id": "IPC-620a9576690e",
+      "name": "ruleset:delete",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "DELETE",
+      "actualRoute": "/api/presets/rulesets/:id"
+    },
+    {
+      "id": "IPC-d874c25112ba",
+      "name": "feedback:add",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "POST",
+      "actualRoute": "/api/feedback",
+      "sourceClassificationContract": "Raw valid string type preserved without case/trim conversion",
+      "phase036Evidence": [
+        {
+          "path": "文档/逆向台账/contracts/feedback-raw-type-closure-20261015.json",
+          "sha256": "651363b426d951372a6d136e99032bfd922897e77eb9978b16681934ede7bea5"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-actual-C-frozen.json",
+          "sha256": "3a48152048bbc1f25651751014e2a22cb94021111061a7e71ac1b69bd0bcfb1d"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-api-C-first.log",
+          "sha256": "a8f04abaaf774b885d1e416137273f1ecaf2c7ba7aecc4275822ed733918f853"
+        }
+      ],
+      "phase036IndependentEvidence": {
+        "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-actual-A-frozen.json",
+        "sha256": "3a48152048bbc1f25651751014e2a22cb94021111061a7e71ac1b69bd0bcfb1d"
+      }
+    },
+    {
+      "id": "IPC-a05e3b6af8e1",
+      "name": "review:add-feedback",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "POST",
+      "actualRoute": "/api/feedback",
+      "sourceClassificationContract": "Raw valid string type preserved, unlike FP-only batch mapping",
+      "phase036Evidence": [
+        {
+          "path": "文档/逆向台账/contracts/feedback-raw-type-closure-20261015.json",
+          "sha256": "651363b426d951372a6d136e99032bfd922897e77eb9978b16681934ede7bea5"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-actual-C-frozen.json",
+          "sha256": "3a48152048bbc1f25651751014e2a22cb94021111061a7e71ac1b69bd0bcfb1d"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-api-C-first.log",
+          "sha256": "a8f04abaaf774b885d1e416137273f1ecaf2c7ba7aecc4275822ed733918f853"
+        }
+      ],
+      "phase036IndependentEvidence": {
+        "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-actual-A-frozen.json",
+        "sha256": "3a48152048bbc1f25651751014e2a22cb94021111061a7e71ac1b69bd0bcfb1d"
+      }
+    },
+    {
+      "id": "IPC-6ff537a49940",
+      "name": "feedback:add-batch",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "POST",
+      "actualRoute": "/api/feedback/batch",
+      "sourceClassificationContract": "Only feedbackType==='FP' maps false_positive; every other input maps false_negative",
+      "phase036Evidence": [
+        {
+          "path": "文档/逆向台账/contracts/feedback-raw-type-closure-20261015.json",
+          "sha256": "651363b426d951372a6d136e99032bfd922897e77eb9978b16681934ede7bea5"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-actual-C-frozen.json",
+          "sha256": "3a48152048bbc1f25651751014e2a22cb94021111061a7e71ac1b69bd0bcfb1d"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-api-C-first.log",
+          "sha256": "a8f04abaaf774b885d1e416137273f1ecaf2c7ba7aecc4275822ed733918f853"
+        }
+      ],
+      "phase036IndependentEvidence": {
+        "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-actual-A-frozen.json",
+        "sha256": "3a48152048bbc1f25651751014e2a22cb94021111061a7e71ac1b69bd0bcfb1d"
+      }
+    },
+    {
+      "id": "IPC-feab6613b5ed",
+      "name": "feedback:query",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "GET",
+      "actualRoute": "/api/feedback",
+      "sourceClassificationContract": "Document name and type lower-case exact match; raw stored type unchanged",
+      "phase036Evidence": [
+        {
+          "path": "文档/逆向台账/contracts/feedback-raw-type-closure-20261015.json",
+          "sha256": "651363b426d951372a6d136e99032bfd922897e77eb9978b16681934ede7bea5"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-actual-C-frozen.json",
+          "sha256": "3a48152048bbc1f25651751014e2a22cb94021111061a7e71ac1b69bd0bcfb1d"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-api-C-first.log",
+          "sha256": "a8f04abaaf774b885d1e416137273f1ecaf2c7ba7aecc4275822ed733918f853"
+        }
+      ],
+      "phase036IndependentEvidence": {
+        "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-actual-A-frozen.json",
+        "sha256": "3a48152048bbc1f25651751014e2a22cb94021111061a7e71ac1b69bd0bcfb1d"
+      }
+    },
+    {
+      "id": "IPC-72093dfff7bf",
+      "name": "review:get-feedbacks",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "GET",
+      "actualRoute": "/api/feedback",
+      "sourceClassificationContract": "Return unchanged raw record types",
+      "phase036Evidence": [
+        {
+          "path": "文档/逆向台账/contracts/feedback-raw-type-closure-20261015.json",
+          "sha256": "651363b426d951372a6d136e99032bfd922897e77eb9978b16681934ede7bea5"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-actual-C-frozen.json",
+          "sha256": "3a48152048bbc1f25651751014e2a22cb94021111061a7e71ac1b69bd0bcfb1d"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-api-C-first.log",
+          "sha256": "a8f04abaaf774b885d1e416137273f1ecaf2c7ba7aecc4275822ed733918f853"
+        }
+      ],
+      "phase036IndependentEvidence": {
+        "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-actual-A-frozen.json",
+        "sha256": "3a48152048bbc1f25651751014e2a22cb94021111061a7e71ac1b69bd0bcfb1d"
+      }
+    },
+    {
+      "id": "IPC-14a3820628e8",
+      "name": "feedback:get-document-stats",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "GET",
+      "actualRoute": "/api/feedback/statistics?documentName=:exactName",
+      "sourceClassificationContract": "Case-exact document selection; lower-case substring false_positive/false_negative/confirmed counters",
+      "phase036Evidence": [
+        {
+          "path": "文档/逆向台账/contracts/feedback-raw-type-closure-20261015.json",
+          "sha256": "651363b426d951372a6d136e99032bfd922897e77eb9978b16681934ede7bea5"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-actual-C-frozen.json",
+          "sha256": "3a48152048bbc1f25651751014e2a22cb94021111061a7e71ac1b69bd0bcfb1d"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-api-C-first.log",
+          "sha256": "a8f04abaaf774b885d1e416137273f1ecaf2c7ba7aecc4275822ed733918f853"
+        }
+      ],
+      "phase036IndependentEvidence": {
+        "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-actual-A-frozen.json",
+        "sha256": "3a48152048bbc1f25651751014e2a22cb94021111061a7e71ac1b69bd0bcfb1d"
+      }
+    },
+    {
+      "id": "IPC-9bb6c463b31f",
+      "name": "feedback:get-global-stats",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "GET",
+      "actualRoute": "/api/feedback/statistics",
+      "sourceClassificationContract": "Lower-case substring counters; nested reviewStatistics is separate exact-equality contract",
+      "phase036Evidence": [
+        {
+          "path": "文档/逆向台账/contracts/feedback-raw-type-closure-20261015.json",
+          "sha256": "651363b426d951372a6d136e99032bfd922897e77eb9978b16681934ede7bea5"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-actual-C-frozen.json",
+          "sha256": "3a48152048bbc1f25651751014e2a22cb94021111061a7e71ac1b69bd0bcfb1d"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-api-C-first.log",
+          "sha256": "a8f04abaaf774b885d1e416137273f1ecaf2c7ba7aecc4275822ed733918f853"
+        }
+      ],
+      "phase036IndependentEvidence": {
+        "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-actual-A-frozen.json",
+        "sha256": "3a48152048bbc1f25651751014e2a22cb94021111061a7e71ac1b69bd0bcfb1d"
+      }
+    },
+    {
+      "id": "IPC-b199b300f630",
+      "name": "review:get-statistics",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "GET",
+      "actualRoute": "/api/feedback/review-statistics",
+      "sourceClassificationContract": "Exact raw type equality to false_positive/false_negative/confirmed; no lower-case or substring expansion",
+      "phase036Evidence": [
+        {
+          "path": "文档/逆向台账/contracts/feedback-raw-type-closure-20261015.json",
+          "sha256": "651363b426d951372a6d136e99032bfd922897e77eb9978b16681934ede7bea5"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-actual-C-frozen.json",
+          "sha256": "3a48152048bbc1f25651751014e2a22cb94021111061a7e71ac1b69bd0bcfb1d"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-api-C-first.log",
+          "sha256": "a8f04abaaf774b885d1e416137273f1ecaf2c7ba7aecc4275822ed733918f853"
+        }
+      ],
+      "phase036IndependentEvidence": {
+        "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-actual-A-frozen.json",
+        "sha256": "3a48152048bbc1f25651751014e2a22cb94021111061a7e71ac1b69bd0bcfb1d"
+      }
+    },
+    {
+      "id": "IPC-9dbd84b9715b",
+      "name": "review:get-blacklist",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "GET",
+      "actualRoute": "/api/review-memory"
+    },
+    {
+      "id": "IPC-9a7ac510f8c7",
+      "name": "review:get-whitelist",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "GET",
+      "actualRoute": "/api/review-memory"
+    },
+    {
+      "id": "IPC-5457cc5660c4",
+      "name": "learner:get-stats",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "GET",
+      "actualRoute": "/api/learner/get-stats"
+    },
+    {
+      "id": "IPC-e024a8242875",
+      "name": "review:export-audit-log",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "POST",
+      "actualRoute": "/api/feedback/export",
+      "sourceClassificationContract": "kind=audit; raw types preserved; JSON statistics exact enum equality, CSV/JSONL raw records",
+      "phase036Evidence": [
+        {
+          "path": "文档/逆向台账/contracts/feedback-raw-type-closure-20261015.json",
+          "sha256": "651363b426d951372a6d136e99032bfd922897e77eb9978b16681934ede7bea5"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-actual-C-frozen.json",
+          "sha256": "3a48152048bbc1f25651751014e2a22cb94021111061a7e71ac1b69bd0bcfb1d"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-api-C-first.log",
+          "sha256": "a8f04abaaf774b885d1e416137273f1ecaf2c7ba7aecc4275822ed733918f853"
+        }
+      ],
+      "phase036IndependentEvidence": {
+        "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-actual-A-frozen.json",
+        "sha256": "3a48152048bbc1f25651751014e2a22cb94021111061a7e71ac1b69bd0bcfb1d"
+      }
+    },
+    {
+      "id": "IPC-bb6001e11068",
+      "name": "review:export-proof-lite",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "POST",
+      "actualRoute": "/api/feedback/export",
+      "sourceClassificationContract": "kind=proof-lite; statistics exact enum equality; raw feedback retained",
+      "phase036Evidence": [
+        {
+          "path": "文档/逆向台账/contracts/feedback-raw-type-closure-20261015.json",
+          "sha256": "651363b426d951372a6d136e99032bfd922897e77eb9978b16681934ede7bea5"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-actual-C-frozen.json",
+          "sha256": "3a48152048bbc1f25651751014e2a22cb94021111061a7e71ac1b69bd0bcfb1d"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-api-C-first.log",
+          "sha256": "a8f04abaaf774b885d1e416137273f1ecaf2c7ba7aecc4275822ed733918f853"
+        }
+      ],
+      "phase036IndependentEvidence": {
+        "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-actual-A-frozen.json",
+        "sha256": "3a48152048bbc1f25651751014e2a22cb94021111061a7e71ac1b69bd0bcfb1d"
+      }
+    },
+    {
+      "id": "IPC-d3e5e1de12d2",
+      "name": "review:export-user-memories",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "POST",
+      "actualRoute": "/api/feedback/export"
+    },
+    {
+      "id": "IPC-196efa6b695b",
+      "name": "feedback:export-audit-report",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "POST",
+      "actualRoute": "/api/feedback/export",
+      "sourceClassificationContract": "kind=audit-report; exact enum statistics, raw unknown detail label escaped rather than changed to confirmed",
+      "phase036Evidence": [
+        {
+          "path": "文档/逆向台账/contracts/feedback-raw-type-closure-20261015.json",
+          "sha256": "651363b426d951372a6d136e99032bfd922897e77eb9978b16681934ede7bea5"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-actual-C-frozen.json",
+          "sha256": "3a48152048bbc1f25651751014e2a22cb94021111061a7e71ac1b69bd0bcfb1d"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-api-C-first.log",
+          "sha256": "a8f04abaaf774b885d1e416137273f1ecaf2c7ba7aecc4275822ed733918f853"
+        }
+      ],
+      "phase036IndependentEvidence": {
+        "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-actual-A-frozen.json",
+        "sha256": "3a48152048bbc1f25651751014e2a22cb94021111061a7e71ac1b69bd0bcfb1d"
+      }
+    },
+    {
+      "id": "IPC-b2c075e4afde",
+      "name": "feedback:delete-by-document",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "POST",
+      "actualRoute": "/api/feedback/delete-by-document"
+    },
+    {
+      "id": "IPC-efc77b9d6c1d",
+      "name": "feedback:delete-by-id",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "DELETE",
+      "actualRoute": "/api/feedback/:id"
+    },
+    {
+      "id": "IPC-b828b79da058",
+      "name": "feedback:clear-all",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "POST",
+      "actualRoute": "/api/feedback/clear-all"
+    },
+    {
+      "id": "IPC-7d7beed074d0",
+      "name": "review:clear-all",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "POST",
+      "actualRoute": "/api/feedback/clear-all"
+    },
+    {
+      "id": "IPC-25271d44841c",
+      "name": "dictionary:add-entry",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "POST",
+      "actualRoute": "/api/review-memory"
+    },
+    {
+      "id": "IPC-acbca2a96370",
+      "name": "dictionary:get-entries",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "GET",
+      "actualRoute": "/api/review-memory"
+    },
+    {
+      "id": "IPC-d0b393b9e93d",
+      "name": "dictionary:select-import-file",
+      "suggested_ledger_status": "I1",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "cloud file-byte/download adaptation, not native dialog execution",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "POST",
+      "actualRoute": "/api/review-memory/import"
+    },
+    {
+      "id": "IPC-50d02c91469e",
+      "name": "dictionary:import",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "POST",
+      "actualRoute": "/api/review-memory/import"
+    },
+    {
+      "id": "IPC-0f2d4d6b6262",
+      "name": "dictionary:export",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "GET",
+      "actualRoute": "/api/review-memory/export"
+    },
+    {
+      "id": "IPC-8a12674fee54",
+      "name": "dictionary:select-export-path",
+      "suggested_ledger_status": "I1",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "cloud file-byte/download adaptation, not native dialog execution",
+      "boundary": "原生文件保存对话框未在云端执行；以真实 XLSX 下载交付",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "GET",
+      "actualRoute": "/api/review-memory/export"
+    },
+    {
+      "id": "IPC-9b9d5a0f489e",
+      "name": "dictionary:save-export-file",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "GET",
+      "actualRoute": "/api/review-memory/export"
+    },
+    {
+      "id": "IPC-3f0d71fadee4",
+      "name": "dictionary:download-excel-template",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "GET",
+      "actualRoute": "/api/projects/:id/reference-dictionary/template.xlsx"
+    },
+    {
+      "id": "IPC-22c459a29cd7",
+      "name": "dictionary:export-excel",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "GET",
+      "actualRoute": "/api/projects/:id/reference-dictionary/export.xlsx"
+    },
+    {
+      "id": "IPC-7de3f60b8ed5",
+      "name": "dictionary:select-excel-import-file",
+      "suggested_ledger_status": "I1",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "cloud file-byte/download adaptation, not native dialog execution",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "POST",
+      "actualRoute": "/api/projects/:id/reference-dictionary/import"
+    },
+    {
+      "id": "IPC-c19a241811ac",
+      "name": "dictionary:record-hint-action",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "POST",
+      "actualRoute": "/api/projects/:id/reference-dictionary/hint-action"
+    },
+    {
+      "id": "IPC-80e954e3a669",
+      "name": "dictionary:remove-entry",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": null,
+      "reason": "实际调用并检验返回字段、持久化与特定副作用",
+      "implementation_scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ],
+      "source_evidence_policy": "Source body evidence is not synthesized from own runtime; retain existing source depth unless parent joins exact old contract row/source proof.",
+      "actualMethod": "DELETE",
+      "actualRoute": "/api/review-memory/:id"
+    },
+    {
+      "id": "IPC-e6a8f1b41825",
+      "name": "workspace:create-transfer",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": "S3-candidate-finite-named-callgraph",
+      "reason": "受密码保护传输副本实际写入、重读、完整原件/状态/catalog保留；不覆盖旧文件",
+      "implementation_scope": "Declared authenticated cloud workflow only; native OS filePath/keychain/sender semantics are explicit non-equivalence",
+      "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0",
+      "actualRoute": "POST /api/projects/:id/portable/export",
+      "sourceNodes": [
+        {
+          "id": "TRANSFER-IPC",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 25756,
+          "endLine": 25785,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "a8db775e253ab2a8420d4869585f0eff4babd20f5a8bcd7a32dfdbeee4aa05ef",
+          "role": "exact create/receive transfer handlers",
+          "calls": [
+            "TRANSFER-SERVICE"
+          ],
+          "observedBehavior": "source path required, native save/open dialogs may cancel; create rejects overwriting original; receive requires password and returns transient compatible reader through sw. No absolute host paths are accepted by cloud adapter.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "TRANSFER-SERVICE",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 25286,
+          "endLine": 25351,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "babb07fc9b841a4502b24c1b898b91cdce287d16de4349781b9e1cda93d1bc6c",
+          "role": "V_ authenticated transfer wrapping",
+          "calls": [
+            "KEY-HIERARCHY",
+            "SECURE-CONTAINER",
+            "COMPAT-HYDRATOR"
+          ],
+          "observedBehavior": "local protected snapshot is opened before copy; fresh DEK/random generated transfer password and SCRYPT AESGCM wrapped slot; secure transfer readback before returning; receive requires exactly one transfer slot, validates field encodings/KDF/AAD/tag and reports password invalid; opened transfer version dispatches full Tx/Yb reader; raw secrets wiped finally.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "SECURE-CONTAINER",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 14925,
+          "endLine": 15150,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "f239ae79a0d05123e378d555fefe4bae39ac7e4c02c17f37203d7f94e07330f8",
+          "role": "cf/lf/df protected object I/O",
+          "calls": [
+            "KEY-HIERARCHY"
+          ],
+          "observedBehavior": "cf chunks AES256GCM with object identity/chunk AAD, header auth, 4MiB frame, unique temp, fsync, first/last readback then rename; lf authenticates header and each requested chunk, bounds range, zeroes key close; df checks objectType/objectId, single local slot, unwraps read or protectedWrite then closes/wipes.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "KEY-HIERARCHY",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 19650,
+          "endLine": 19880,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "c9f4d1389f4ce27cd39e4873e5d2d08f034c30ca9a93ff877c0cd90b5e4f8e47",
+          "role": "Fg local OS key hierarchy",
+          "calls": [],
+          "observedBehavior": "safeStorage availability required; encrypted device recovery DRK, password SCRYPT CMK slot, AAD slot metadata; unlocked-session TTL and wiping, exact slot/keyId checks; protected-write can use device slot without exposing material key; atomic mode0600 metadata write. Native OS domain is not reproduced by cloud tenant DATA_KEY and cannot be declared native-equivalent.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        }
+      ],
+      "evidence": [
+        {
+          "path": "tests/workspace-compat.integration.ts",
+          "sha256": "fa41c0210de0874c1cdb08ce2743fbda0dddb4ccedf13a9d59f20fcd1afda461"
+        },
+        {
+          "path": "tests/workspace-recovery-network.integration.ts",
+          "sha256": "72d39419c562093a3d0007d3b6539316d703b11047b96bafaaa23b8bffb65042"
+        },
+        {
+          "path": "tests/platform-interface-closure.integration.ts",
+          "sha256": "ce51032d342e95a82eff579af63640c4230699f4abc949cb2a55b1f8b6941952"
+        },
+        {
+          "path": "文档/逆向台账/contracts/workspace-save-source-callgraph-20261015.json",
+          "sha256": "9a139873f695250820d7727c100f00b5befa140bb5d6e01e6071670c24da9e9e"
+        },
+        {
+          "path": "文档/逆向台账/contracts/project-entity-corrections-porting-20261015.json",
+          "sha256": "0650ed6171a0751d0cc9b0d86a6d5417856ca0ff8ad8b8f08528680d138fba17"
+        }
+      ],
+      "source_evidence_policy": "Finite named preload/handler/service/key/codec/fs/receipt graph; does not establish whole renderer/native runtime.",
+      "actualRoutes": [
+        {
+          "method": "POST",
+          "route": "/api/projects/:id/portable/export"
+        }
+      ]
+    },
+    {
+      "id": "IPC-f53f8972c1a5",
+      "name": "workspace:discard-recovery",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": "S3-candidate-finite-named-callgraph",
+      "reason": "真实owner+revision删除草稿，保留材料和已保存复核",
+      "implementation_scope": "Declared authenticated cloud workflow only; native OS filePath/keychain/sender semantics are explicit non-equivalence",
+      "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0",
+      "actualRoute": "DELETE /api/documents/:id/recovery",
+      "sourceNodes": [
+        {
+          "id": "SAVE-HANDLERS",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 25586,
+          "endLine": 25766,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "21a4bf3a149984c010dafbb36dcf236413f5862ddb4d6e6131deba2e752fcd81",
+          "role": "dI handlers and rI receipt",
+          "calls": [
+            "SAVE-SERVICE",
+            "RECOVERY-SERVICE"
+          ],
+          "observedBehavior": "rI counts outstanding work, ce is Mac task/background lease (not an auth guard). Save idempotent Map uses requestId+sender.id, sender conflict fails; completed carries underlying success/error receipt; prune after <=100 and age<1h, does not reject request101; restart loses Map. Open uses s2 bounded V1 migration prompt on exact errors, recovery absence errors, saveAs/dialog cancellation returns null.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "RECOVERY-SERVICE",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 19896,
+          "endLine": 20112,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "5e0708b32e862b703e9ece211a87ccc59e45e064b1ee566aff52100684c28a2b",
+          "role": "Hg recovery protected source/snapshot lifecycle",
+          "calls": [
+            "SECURE-CONTAINER",
+            "SOURCE-REGISTRY"
+          ],
+          "observedBehavior": "source bytes or registered stream only; snapshot project/revision CAS and stale revision receipt; fingerprint reuse, per-source encrypted recovery objects plus encrypted snapshot, remove obsolete recovery objects; session marker/prompt selection; opening validates protected size, MD reparse sidecar, registers providers and releases partial refs on failure; discard releases only owned recovery refs, protected-read key errors are surfaced.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        }
+      ],
+      "evidence": [
+        {
+          "path": "tests/workspace-compat.integration.ts",
+          "sha256": "fa41c0210de0874c1cdb08ce2743fbda0dddb4ccedf13a9d59f20fcd1afda461"
+        },
+        {
+          "path": "tests/workspace-recovery-network.integration.ts",
+          "sha256": "72d39419c562093a3d0007d3b6539316d703b11047b96bafaaa23b8bffb65042"
+        },
+        {
+          "path": "tests/platform-interface-closure.integration.ts",
+          "sha256": "ce51032d342e95a82eff579af63640c4230699f4abc949cb2a55b1f8b6941952"
+        },
+        {
+          "path": "文档/逆向台账/contracts/workspace-save-source-callgraph-20261015.json",
+          "sha256": "9a139873f695250820d7727c100f00b5befa140bb5d6e01e6071670c24da9e9e"
+        },
+        {
+          "path": "文档/逆向台账/contracts/project-entity-corrections-porting-20261015.json",
+          "sha256": "0650ed6171a0751d0cc9b0d86a6d5417856ca0ff8ad8b8f08528680d138fba17"
+        }
+      ],
+      "source_evidence_policy": "Finite named preload/handler/service/key/codec/fs/receipt graph; does not establish whole renderer/native runtime.",
+      "actualRoutes": [
+        {
+          "method": "DELETE",
+          "route": "/api/documents/:id/recovery"
+        }
+      ]
+    },
+    {
+      "id": "IPC-3c8789ad9a8f",
+      "name": "workspace:forget-recent",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": "S3-candidate-finite-named-callgraph",
+      "reason": "仅移除本人最近索引，不删除工程",
+      "implementation_scope": "Declared authenticated cloud workflow only; native OS filePath/keychain/sender semantics are explicit non-equivalence",
+      "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0",
+      "actualRoute": "DELETE /api/projects/:id/workspace/recent",
+      "sourceNodes": [
+        {
+          "id": "SAVE-HANDLERS",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 25586,
+          "endLine": 25766,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "21a4bf3a149984c010dafbb36dcf236413f5862ddb4d6e6131deba2e752fcd81",
+          "role": "dI handlers and rI receipt",
+          "calls": [
+            "SAVE-SERVICE",
+            "RECOVERY-SERVICE"
+          ],
+          "observedBehavior": "rI counts outstanding work, ce is Mac task/background lease (not an auth guard). Save idempotent Map uses requestId+sender.id, sender conflict fails; completed carries underlying success/error receipt; prune after <=100 and age<1h, does not reject request101; restart loses Map. Open uses s2 bounded V1 migration prompt on exact errors, recovery absence errors, saveAs/dialog cancellation returns null.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "SAVE-SERVICE",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 22560,
+          "endLine": 22694,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "2f2bc3c81a7417c7fe0faa2cba25b1ea0066f05100781c9f4558cc3ff88b96a9",
+          "role": "sw save/open/readProfile/MRU",
+          "calls": [
+            "ARCHIVE-V1",
+            "CODEC-MANAGER",
+            "COMPAT-HYDRATOR",
+            "SOURCE-REGISTRY",
+            "RECOVERY-SERVICE"
+          ],
+          "observedBehavior": "project+revision match snapshot; V1 WORKSPACE_V1_REQUIRES_V2 fallback only; V2 selects supplied bytes, compatible old archive source stream or registered ref, missing fails; in-place V1 and V2-to-V3 migration require saveAs; source release and reader close in finally; save receipt carries project/revision/time/format/freshrefs; open hydrates protected snapshots and binds fresh refs/OCR cache, MRU counts known only when read.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "RECENT-INDEX",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 19505,
+          "endLine": 19565,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "7801c88c2b09d0e55c9390ef901e013cac505cd917f7976afb19a91f0f7c24fc",
+          "role": "_g protected MRU index",
+          "calls": [
+            "SECURE-CONTAINER"
+          ],
+          "observedBehavior": "protected index read; explicit legacy JSON migration then protected re-read before unlink; list removes non-existing native paths; remember preserves prior lastSavedAt when undefined and caps only recent index20, forget removes index entry only; protected atomic write via df, plaintext fallback temp→rename→unlink.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        }
+      ],
+      "evidence": [
+        {
+          "path": "tests/workspace-compat.integration.ts",
+          "sha256": "fa41c0210de0874c1cdb08ce2743fbda0dddb4ccedf13a9d59f20fcd1afda461"
+        },
+        {
+          "path": "tests/workspace-recovery-network.integration.ts",
+          "sha256": "72d39419c562093a3d0007d3b6539316d703b11047b96bafaaa23b8bffb65042"
+        },
+        {
+          "path": "tests/platform-interface-closure.integration.ts",
+          "sha256": "ce51032d342e95a82eff579af63640c4230699f4abc949cb2a55b1f8b6941952"
+        },
+        {
+          "path": "文档/逆向台账/contracts/workspace-save-source-callgraph-20261015.json",
+          "sha256": "9a139873f695250820d7727c100f00b5befa140bb5d6e01e6071670c24da9e9e"
+        },
+        {
+          "path": "文档/逆向台账/contracts/project-entity-corrections-porting-20261015.json",
+          "sha256": "0650ed6171a0751d0cc9b0d86a6d5417856ca0ff8ad8b8f08528680d138fba17"
+        }
+      ],
+      "source_evidence_policy": "Finite named preload/handler/service/key/codec/fs/receipt graph; does not establish whole renderer/native runtime.",
+      "actualRoutes": [
+        {
+          "method": "DELETE",
+          "route": "/api/projects/:id/workspace/recent"
+        }
+      ]
+    },
+    {
+      "id": "IPC-7e55b9d273b1",
+      "name": "workspace:list-recent",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": "S3-candidate-finite-named-callgraph",
+      "reason": "20项MRU，lastSavedAt独立持久、加密显示名/材料数、原ey可复用数；未知明确known=false",
+      "implementation_scope": "Declared authenticated cloud workflow only; native OS filePath/keychain/sender semantics are explicit non-equivalence",
+      "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0",
+      "actualRoute": "GET /api/workspace/recent",
+      "sourceNodes": [
+        {
+          "id": "SAVE-HANDLERS",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 25586,
+          "endLine": 25766,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "21a4bf3a149984c010dafbb36dcf236413f5862ddb4d6e6131deba2e752fcd81",
+          "role": "dI handlers and rI receipt",
+          "calls": [
+            "SAVE-SERVICE",
+            "RECOVERY-SERVICE"
+          ],
+          "observedBehavior": "rI counts outstanding work, ce is Mac task/background lease (not an auth guard). Save idempotent Map uses requestId+sender.id, sender conflict fails; completed carries underlying success/error receipt; prune after <=100 and age<1h, does not reject request101; restart loses Map. Open uses s2 bounded V1 migration prompt on exact errors, recovery absence errors, saveAs/dialog cancellation returns null.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "SAVE-SERVICE",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 22560,
+          "endLine": 22694,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "2f2bc3c81a7417c7fe0faa2cba25b1ea0066f05100781c9f4558cc3ff88b96a9",
+          "role": "sw save/open/readProfile/MRU",
+          "calls": [
+            "ARCHIVE-V1",
+            "CODEC-MANAGER",
+            "COMPAT-HYDRATOR",
+            "SOURCE-REGISTRY",
+            "RECOVERY-SERVICE"
+          ],
+          "observedBehavior": "project+revision match snapshot; V1 WORKSPACE_V1_REQUIRES_V2 fallback only; V2 selects supplied bytes, compatible old archive source stream or registered ref, missing fails; in-place V1 and V2-to-V3 migration require saveAs; source release and reader close in finally; save receipt carries project/revision/time/format/freshrefs; open hydrates protected snapshots and binds fresh refs/OCR cache, MRU counts known only when read.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "RECENT-INDEX",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 19505,
+          "endLine": 19565,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "7801c88c2b09d0e55c9390ef901e013cac505cd917f7976afb19a91f0f7c24fc",
+          "role": "_g protected MRU index",
+          "calls": [
+            "SECURE-CONTAINER"
+          ],
+          "observedBehavior": "protected index read; explicit legacy JSON migration then protected re-read before unlink; list removes non-existing native paths; remember preserves prior lastSavedAt when undefined and caps only recent index20, forget removes index entry only; protected atomic write via df, plaintext fallback temp→rename→unlink.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        }
+      ],
+      "evidence": [
+        {
+          "path": "tests/workspace-save-receipts.integration.ts",
+          "sha256": "47247ca8f8e8c304bf3a60b0803c4b3cd56866e58f898c3a9bb0bfe594d025aa"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/workspace-save-receipts-final-api.log",
+          "sha256": "6a5286304d857dcfabbd0fe94d1720153f839a7afe60024495aeb47289ae5df2"
+        },
+        {
+          "path": "文档/逆向台账/contracts/workspace-save-source-callgraph-20261015.json",
+          "sha256": "9a139873f695250820d7727c100f00b5befa140bb5d6e01e6071670c24da9e9e"
+        },
+        {
+          "path": "文档/逆向台账/contracts/project-entity-corrections-porting-20261015.json",
+          "sha256": "0650ed6171a0751d0cc9b0d86a6d5417856ca0ff8ad8b8f08528680d138fba17"
+        }
+      ],
+      "source_evidence_policy": "Finite named preload/handler/service/key/codec/fs/receipt graph; does not establish whole renderer/native runtime.",
+      "actualRoutes": [
+        {
+          "method": "GET",
+          "route": "/api/workspace/recent"
+        }
+      ]
+    },
+    {
+      "id": "IPC-be30d4526c26",
+      "name": "workspace:list-recoveries",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": "S3-candidate-finite-named-callgraph",
+      "reason": "真实当前权限可读的本人恢复记录及版本",
+      "implementation_scope": "Declared authenticated cloud workflow only; native OS filePath/keychain/sender semantics are explicit non-equivalence",
+      "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0",
+      "actualRoute": "GET /api/workspace/recoveries",
+      "sourceNodes": [
+        {
+          "id": "SAVE-HANDLERS",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 25586,
+          "endLine": 25766,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "21a4bf3a149984c010dafbb36dcf236413f5862ddb4d6e6131deba2e752fcd81",
+          "role": "dI handlers and rI receipt",
+          "calls": [
+            "SAVE-SERVICE",
+            "RECOVERY-SERVICE"
+          ],
+          "observedBehavior": "rI counts outstanding work, ce is Mac task/background lease (not an auth guard). Save idempotent Map uses requestId+sender.id, sender conflict fails; completed carries underlying success/error receipt; prune after <=100 and age<1h, does not reject request101; restart loses Map. Open uses s2 bounded V1 migration prompt on exact errors, recovery absence errors, saveAs/dialog cancellation returns null.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "RECOVERY-SERVICE",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 19896,
+          "endLine": 20112,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "5e0708b32e862b703e9ece211a87ccc59e45e064b1ee566aff52100684c28a2b",
+          "role": "Hg recovery protected source/snapshot lifecycle",
+          "calls": [
+            "SECURE-CONTAINER",
+            "SOURCE-REGISTRY"
+          ],
+          "observedBehavior": "source bytes or registered stream only; snapshot project/revision CAS and stale revision receipt; fingerprint reuse, per-source encrypted recovery objects plus encrypted snapshot, remove obsolete recovery objects; session marker/prompt selection; opening validates protected size, MD reparse sidecar, registers providers and releases partial refs on failure; discard releases only owned recovery refs, protected-read key errors are surfaced.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        }
+      ],
+      "evidence": [
+        {
+          "path": "tests/workspace-compat.integration.ts",
+          "sha256": "fa41c0210de0874c1cdb08ce2743fbda0dddb4ccedf13a9d59f20fcd1afda461"
+        },
+        {
+          "path": "tests/workspace-recovery-network.integration.ts",
+          "sha256": "72d39419c562093a3d0007d3b6539316d703b11047b96bafaaa23b8bffb65042"
+        },
+        {
+          "path": "tests/platform-interface-closure.integration.ts",
+          "sha256": "ce51032d342e95a82eff579af63640c4230699f4abc949cb2a55b1f8b6941952"
+        },
+        {
+          "path": "文档/逆向台账/contracts/workspace-save-source-callgraph-20261015.json",
+          "sha256": "9a139873f695250820d7727c100f00b5befa140bb5d6e01e6071670c24da9e9e"
+        },
+        {
+          "path": "文档/逆向台账/contracts/project-entity-corrections-porting-20261015.json",
+          "sha256": "0650ed6171a0751d0cc9b0d86a6d5417856ca0ff8ad8b8f08528680d138fba17"
+        }
+      ],
+      "source_evidence_policy": "Finite named preload/handler/service/key/codec/fs/receipt graph; does not establish whole renderer/native runtime.",
+      "actualRoutes": [
+        {
+          "method": "GET",
+          "route": "/api/workspace/recoveries"
+        }
+      ]
+    },
+    {
+      "id": "IPC-a80eb991f683",
+      "name": "workspace:list-recovery-prompts",
+      "suggested_ledger_status": "I1",
+      "suggested_static_status": "S3-candidate-finite-named-callgraph",
+      "reason": "真实待恢复信息；不自动批准草稿; source filters prompts by incomplete PDF/previous unclean session, cloud exposes available dirty drafts rather than claiming native process-session parity",
+      "implementation_scope": "Declared authenticated cloud workflow only; native OS filePath/keychain/sender semantics are explicit non-equivalence",
+      "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0",
+      "actualRoute": "GET /api/workspace/recoveries + GET /api/documents/:id/recovery",
+      "sourceNodes": [
+        {
+          "id": "SAVE-HANDLERS",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 25586,
+          "endLine": 25766,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "21a4bf3a149984c010dafbb36dcf236413f5862ddb4d6e6131deba2e752fcd81",
+          "role": "dI handlers and rI receipt",
+          "calls": [
+            "SAVE-SERVICE",
+            "RECOVERY-SERVICE"
+          ],
+          "observedBehavior": "rI counts outstanding work, ce is Mac task/background lease (not an auth guard). Save idempotent Map uses requestId+sender.id, sender conflict fails; completed carries underlying success/error receipt; prune after <=100 and age<1h, does not reject request101; restart loses Map. Open uses s2 bounded V1 migration prompt on exact errors, recovery absence errors, saveAs/dialog cancellation returns null.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "RECOVERY-SERVICE",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 19896,
+          "endLine": 20112,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "5e0708b32e862b703e9ece211a87ccc59e45e064b1ee566aff52100684c28a2b",
+          "role": "Hg recovery protected source/snapshot lifecycle",
+          "calls": [
+            "SECURE-CONTAINER",
+            "SOURCE-REGISTRY"
+          ],
+          "observedBehavior": "source bytes or registered stream only; snapshot project/revision CAS and stale revision receipt; fingerprint reuse, per-source encrypted recovery objects plus encrypted snapshot, remove obsolete recovery objects; session marker/prompt selection; opening validates protected size, MD reparse sidecar, registers providers and releases partial refs on failure; discard releases only owned recovery refs, protected-read key errors are surfaced.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        }
+      ],
+      "evidence": [
+        {
+          "path": "tests/workspace-compat.integration.ts",
+          "sha256": "fa41c0210de0874c1cdb08ce2743fbda0dddb4ccedf13a9d59f20fcd1afda461"
+        },
+        {
+          "path": "tests/workspace-recovery-network.integration.ts",
+          "sha256": "72d39419c562093a3d0007d3b6539316d703b11047b96bafaaa23b8bffb65042"
+        },
+        {
+          "path": "tests/platform-interface-closure.integration.ts",
+          "sha256": "ce51032d342e95a82eff579af63640c4230699f4abc949cb2a55b1f8b6941952"
+        },
+        {
+          "path": "文档/逆向台账/contracts/workspace-save-source-callgraph-20261015.json",
+          "sha256": "9a139873f695250820d7727c100f00b5befa140bb5d6e01e6071670c24da9e9e"
+        },
+        {
+          "path": "文档/逆向台账/contracts/project-entity-corrections-porting-20261015.json",
+          "sha256": "0650ed6171a0751d0cc9b0d86a6d5417856ca0ff8ad8b8f08528680d138fba17"
+        }
+      ],
+      "source_evidence_policy": "Finite named preload/handler/service/key/codec/fs/receipt graph; does not establish whole renderer/native runtime.",
+      "actualRoutes": [
+        {
+          "method": "GET",
+          "route": "/api/workspace/recoveries"
+        },
+        {
+          "method": "GET",
+          "route": "/api/documents/:id/recovery"
+        }
+      ]
+    },
+    {
+      "id": "IPC-f417c3628886",
+      "name": "workspace:migrate-v1-to-v2",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": "S3-candidate-finite-named-callgraph",
+      "reason": "V1/V2/V3真实字节转换、重读完整比较、源字节保留",
+      "implementation_scope": "Declared authenticated cloud workflow only; native OS filePath/keychain/sender semantics are explicit non-equivalence",
+      "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0",
+      "actualRoute": "POST /api/portable/migrate",
+      "sourceNodes": [
+        {
+          "id": "SAVE-HANDLERS",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 25586,
+          "endLine": 25766,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "21a4bf3a149984c010dafbb36dcf236413f5862ddb4d6e6131deba2e752fcd81",
+          "role": "dI handlers and rI receipt",
+          "calls": [
+            "SAVE-SERVICE",
+            "RECOVERY-SERVICE"
+          ],
+          "observedBehavior": "rI counts outstanding work, ce is Mac task/background lease (not an auth guard). Save idempotent Map uses requestId+sender.id, sender conflict fails; completed carries underlying success/error receipt; prune after <=100 and age<1h, does not reject request101; restart loses Map. Open uses s2 bounded V1 migration prompt on exact errors, recovery absence errors, saveAs/dialog cancellation returns null.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "CODEC-MANAGER",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 25190,
+          "endLine": 25274,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "e64b34b0e2d4bdc9696617bda7fb4ed88e78656cbe0af2d8bdc32050c90f3fdd",
+          "role": "L_ key-owning V2/V3 manager",
+          "calls": [
+            "KEY-HIERARCHY",
+            "CODEC-V2-WRITER",
+            "CODEC-V3-WRITER",
+            "COMPAT-HYDRATOR"
+          ],
+          "observedBehavior": "migrate only V1; random DEK32 and local CMK slot; open requires exactly one local-cmk slot; protected-write access separate from unlocked read; compatible version dispatch; key buffers wiped finally; snapshot schema, source descriptors, OCRsegments, rules/profile/decisions preserved.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "ARCHIVE-V1",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 19336,
+          "endLine": 19504,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "9040329ef41889a2f7aae709e2aed20c978df7ee3413ad701691794ec13cd0d1",
+          "role": "xg ZIP writer + reader",
+          "calls": [
+            "FS-ATOMIC-V1"
+          ],
+          "observedBehavior": "schema migration/checks, all source/detection/review/MD sidecar entries; SHA256 manifest; bounds/duplicate/path/checksum/manifest-document equality; MD actual source reparse exact sidecar check; writer temp wx→write→fsync→rename retries→cleanup; source missing fails. V1 is not claimed encrypted.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "CODEC-V2-WRITER",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 24505,
+          "endLine": 24584,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "08d715429150a80afd1535854db1120e22e864d5b3215da860d064a4c16d65a8",
+          "role": "vx V2 controlled ZIP→AEAD→verify→replace",
+          "calls": [
+            "SECURE-CONTAINER"
+          ],
+          "observedBehavior": "declared sizes/docIds/paths/OCR segmentation, source stored uncompressed; unique v2tmp, streaming ZIP to encrypted cf; readback Tx manifest verify, beforeReplace hook, bounded OS retry, cleanup, preserve previous file on failure.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        }
+      ],
+      "evidence": [
+        {
+          "path": "tests/workspace-compat.integration.ts",
+          "sha256": "fa41c0210de0874c1cdb08ce2743fbda0dddb4ccedf13a9d59f20fcd1afda461"
+        },
+        {
+          "path": "tests/workspace-recovery-network.integration.ts",
+          "sha256": "72d39419c562093a3d0007d3b6539316d703b11047b96bafaaa23b8bffb65042"
+        },
+        {
+          "path": "tests/platform-interface-closure.integration.ts",
+          "sha256": "ce51032d342e95a82eff579af63640c4230699f4abc949cb2a55b1f8b6941952"
+        },
+        {
+          "path": "文档/逆向台账/contracts/workspace-save-source-callgraph-20261015.json",
+          "sha256": "9a139873f695250820d7727c100f00b5befa140bb5d6e01e6071670c24da9e9e"
+        },
+        {
+          "path": "文档/逆向台账/contracts/project-entity-corrections-porting-20261015.json",
+          "sha256": "0650ed6171a0751d0cc9b0d86a6d5417856ca0ff8ad8b8f08528680d138fba17"
+        }
+      ],
+      "source_evidence_policy": "Finite named preload/handler/service/key/codec/fs/receipt graph; does not establish whole renderer/native runtime.",
+      "actualRoutes": [
+        {
+          "method": "POST",
+          "route": "/api/portable/migrate"
+        }
+      ]
+    },
+    {
+      "id": "IPC-feb24aa50a4f",
+      "name": "workspace:open",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": "S3-candidate-finite-named-callgraph",
+      "reason": "完整原件/旧复核字段保留、重新识别、显式恢复人工草稿；自动recent",
+      "implementation_scope": "Declared authenticated cloud workflow only; native OS filePath/keychain/sender semantics are explicit non-equivalence",
+      "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0",
+      "actualRoute": "POST /api/portable/import + POST /api/documents/:id/portable-draft/restore",
+      "sourceNodes": [
+        {
+          "id": "SAVE-PRELOAD",
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "startLine": 70,
+          "endLine": 89,
+          "sourceFileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+          "rangeSha256": "a824ab193f732eeb18e6cc1fdcf2e24af6773069219549a9f152fcd77ada976f",
+          "role": "explicit IPC exposure",
+          "calls": [
+            "SAVE-HANDLERS"
+          ],
+          "observedBehavior": "Exactly named open/openRecovery/save/getSaveResult/saveRecovery/saveAs/migrate methods call ipcRenderer.invoke; no own path/key implementation in preload.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "SAVE-RENDERER",
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 3669,
+          "endLine": 3945,
+          "sourceFileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "rangeSha256": "1721d9e6e7bb80f320a1e94349dd736931ad50f19ea38f67645686d3fb016059",
+          "role": "vu workspace store + mu snapshot transport",
+          "calls": [
+            "SAVE-PRELOAD"
+          ],
+          "observedBehavior": "ensureProtectedDataUnlocked precedes protected operations; serialized save/saveAs queue, recovery pending waits, project/revision-guarded receipt, missing-result recovery polls; updated sourceRefs only when project and old ref still match. Renderer path itself is not native cryptographic authority.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "SAVE-HANDLERS",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 25586,
+          "endLine": 25766,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "21a4bf3a149984c010dafbb36dcf236413f5862ddb4d6e6131deba2e752fcd81",
+          "role": "dI handlers and rI receipt",
+          "calls": [
+            "SAVE-SERVICE",
+            "RECOVERY-SERVICE"
+          ],
+          "observedBehavior": "rI counts outstanding work, ce is Mac task/background lease (not an auth guard). Save idempotent Map uses requestId+sender.id, sender conflict fails; completed carries underlying success/error receipt; prune after <=100 and age<1h, does not reject request101; restart loses Map. Open uses s2 bounded V1 migration prompt on exact errors, recovery absence errors, saveAs/dialog cancellation returns null.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "SAVE-SERVICE",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 22560,
+          "endLine": 22694,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "2f2bc3c81a7417c7fe0faa2cba25b1ea0066f05100781c9f4558cc3ff88b96a9",
+          "role": "sw save/open/readProfile/MRU",
+          "calls": [
+            "ARCHIVE-V1",
+            "CODEC-MANAGER",
+            "COMPAT-HYDRATOR",
+            "SOURCE-REGISTRY",
+            "RECOVERY-SERVICE"
+          ],
+          "observedBehavior": "project+revision match snapshot; V1 WORKSPACE_V1_REQUIRES_V2 fallback only; V2 selects supplied bytes, compatible old archive source stream or registered ref, missing fails; in-place V1 and V2-to-V3 migration require saveAs; source release and reader close in finally; save receipt carries project/revision/time/format/freshrefs; open hydrates protected snapshots and binds fresh refs/OCR cache, MRU counts known only when read.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "COMPAT-HYDRATOR",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 22472,
+          "endLine": 22540,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "ae40e96ef09f3606c63bd7fab88a4b20a91b6da3500e4a8a2434bc089635235d",
+          "role": "nw compatible reader hydrate",
+          "calls": [
+            "CODEC-V2-READER",
+            "CODEC-V3-READER",
+            "SOURCE-REGISTRY"
+          ],
+          "observedBehavior": "V3 verifies all entries, exact entity/review/OCR counts, rejects unfinished diskproject state arrays, reconstructs full schema; V2 reads meta/state/OCR segments then global state and migrates schema1; source providers bind reader streams, closes on failure. Returns sources through registry rather than arbitrary absolute ref.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        }
+      ],
+      "evidence": [
+        {
+          "path": "tests/workspace-compat.integration.ts",
+          "sha256": "fa41c0210de0874c1cdb08ce2743fbda0dddb4ccedf13a9d59f20fcd1afda461"
+        },
+        {
+          "path": "tests/workspace-recovery-network.integration.ts",
+          "sha256": "72d39419c562093a3d0007d3b6539316d703b11047b96bafaaa23b8bffb65042"
+        },
+        {
+          "path": "tests/platform-interface-closure.integration.ts",
+          "sha256": "ce51032d342e95a82eff579af63640c4230699f4abc949cb2a55b1f8b6941952"
+        },
+        {
+          "path": "文档/逆向台账/contracts/workspace-save-source-callgraph-20261015.json",
+          "sha256": "9a139873f695250820d7727c100f00b5befa140bb5d6e01e6071670c24da9e9e"
+        },
+        {
+          "path": "文档/逆向台账/contracts/project-entity-corrections-porting-20261015.json",
+          "sha256": "0650ed6171a0751d0cc9b0d86a6d5417856ca0ff8ad8b8f08528680d138fba17"
+        }
+      ],
+      "source_evidence_policy": "Finite named preload/handler/service/key/codec/fs/receipt graph; does not establish whole renderer/native runtime.",
+      "actualRoutes": [
+        {
+          "method": "POST",
+          "route": "/api/portable/import"
+        },
+        {
+          "method": "POST",
+          "route": "/api/documents/:id/portable-draft/restore"
+        }
+      ]
+    },
+    {
+      "id": "IPC-86a65aa5ca0e",
+      "name": "workspace:open-dialog",
+      "suggested_ledger_status": "I1",
+      "suggested_static_status": "S3-candidate-finite-named-callgraph",
+      "reason": "浏览器文件授权选择；非Electron本地对话框; native OS dialog itself is not executed by this cloud API proof",
+      "implementation_scope": "Declared authenticated cloud workflow only; native OS filePath/keychain/sender semantics are explicit non-equivalence",
+      "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0",
+      "actualRoute": "POST /api/portable/import",
+      "sourceNodes": [
+        {
+          "id": "SAVE-PRELOAD",
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "startLine": 70,
+          "endLine": 89,
+          "sourceFileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+          "rangeSha256": "a824ab193f732eeb18e6cc1fdcf2e24af6773069219549a9f152fcd77ada976f",
+          "role": "explicit IPC exposure",
+          "calls": [
+            "SAVE-HANDLERS"
+          ],
+          "observedBehavior": "Exactly named open/openRecovery/save/getSaveResult/saveRecovery/saveAs/migrate methods call ipcRenderer.invoke; no own path/key implementation in preload.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "SAVE-HANDLERS",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 25586,
+          "endLine": 25766,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "21a4bf3a149984c010dafbb36dcf236413f5862ddb4d6e6131deba2e752fcd81",
+          "role": "dI handlers and rI receipt",
+          "calls": [
+            "SAVE-SERVICE",
+            "RECOVERY-SERVICE"
+          ],
+          "observedBehavior": "rI counts outstanding work, ce is Mac task/background lease (not an auth guard). Save idempotent Map uses requestId+sender.id, sender conflict fails; completed carries underlying success/error receipt; prune after <=100 and age<1h, does not reject request101; restart loses Map. Open uses s2 bounded V1 migration prompt on exact errors, recovery absence errors, saveAs/dialog cancellation returns null.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "SAVE-SERVICE",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 22560,
+          "endLine": 22694,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "2f2bc3c81a7417c7fe0faa2cba25b1ea0066f05100781c9f4558cc3ff88b96a9",
+          "role": "sw save/open/readProfile/MRU",
+          "calls": [
+            "ARCHIVE-V1",
+            "CODEC-MANAGER",
+            "COMPAT-HYDRATOR",
+            "SOURCE-REGISTRY",
+            "RECOVERY-SERVICE"
+          ],
+          "observedBehavior": "project+revision match snapshot; V1 WORKSPACE_V1_REQUIRES_V2 fallback only; V2 selects supplied bytes, compatible old archive source stream or registered ref, missing fails; in-place V1 and V2-to-V3 migration require saveAs; source release and reader close in finally; save receipt carries project/revision/time/format/freshrefs; open hydrates protected snapshots and binds fresh refs/OCR cache, MRU counts known only when read.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        }
+      ],
+      "evidence": [
+        {
+          "path": "tests/workspace-compat.integration.ts",
+          "sha256": "fa41c0210de0874c1cdb08ce2743fbda0dddb4ccedf13a9d59f20fcd1afda461"
+        },
+        {
+          "path": "tests/workspace-recovery-network.integration.ts",
+          "sha256": "72d39419c562093a3d0007d3b6539316d703b11047b96bafaaa23b8bffb65042"
+        },
+        {
+          "path": "tests/platform-interface-closure.integration.ts",
+          "sha256": "ce51032d342e95a82eff579af63640c4230699f4abc949cb2a55b1f8b6941952"
+        },
+        {
+          "path": "文档/逆向台账/contracts/workspace-save-source-callgraph-20261015.json",
+          "sha256": "9a139873f695250820d7727c100f00b5befa140bb5d6e01e6071670c24da9e9e"
+        },
+        {
+          "path": "文档/逆向台账/contracts/project-entity-corrections-porting-20261015.json",
+          "sha256": "0650ed6171a0751d0cc9b0d86a6d5417856ca0ff8ad8b8f08528680d138fba17"
+        }
+      ],
+      "source_evidence_policy": "Finite named preload/handler/service/key/codec/fs/receipt graph; does not establish whole renderer/native runtime.",
+      "actualRoutes": [
+        {
+          "method": "POST",
+          "route": "/api/portable/import"
+        }
+      ]
+    },
+    {
+      "id": "IPC-8ed0acbb4144",
+      "name": "workspace:open-recovery",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": "S3-candidate-finite-named-callgraph",
+      "reason": "owner/当前权限/revision/源hash+映射重核，返回草稿不伪批准",
+      "implementation_scope": "Declared authenticated cloud workflow only; native OS filePath/keychain/sender semantics are explicit non-equivalence",
+      "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0",
+      "actualRoute": "POST /api/documents/:id/recovery/open",
+      "sourceNodes": [
+        {
+          "id": "SAVE-HANDLERS",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 25586,
+          "endLine": 25766,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "21a4bf3a149984c010dafbb36dcf236413f5862ddb4d6e6131deba2e752fcd81",
+          "role": "dI handlers and rI receipt",
+          "calls": [
+            "SAVE-SERVICE",
+            "RECOVERY-SERVICE"
+          ],
+          "observedBehavior": "rI counts outstanding work, ce is Mac task/background lease (not an auth guard). Save idempotent Map uses requestId+sender.id, sender conflict fails; completed carries underlying success/error receipt; prune after <=100 and age<1h, does not reject request101; restart loses Map. Open uses s2 bounded V1 migration prompt on exact errors, recovery absence errors, saveAs/dialog cancellation returns null.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "RECOVERY-SERVICE",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 19896,
+          "endLine": 20112,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "5e0708b32e862b703e9ece211a87ccc59e45e064b1ee566aff52100684c28a2b",
+          "role": "Hg recovery protected source/snapshot lifecycle",
+          "calls": [
+            "SECURE-CONTAINER",
+            "SOURCE-REGISTRY"
+          ],
+          "observedBehavior": "source bytes or registered stream only; snapshot project/revision CAS and stale revision receipt; fingerprint reuse, per-source encrypted recovery objects plus encrypted snapshot, remove obsolete recovery objects; session marker/prompt selection; opening validates protected size, MD reparse sidecar, registers providers and releases partial refs on failure; discard releases only owned recovery refs, protected-read key errors are surfaced.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "SECURE-CONTAINER",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 14925,
+          "endLine": 15150,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "f239ae79a0d05123e378d555fefe4bae39ac7e4c02c17f37203d7f94e07330f8",
+          "role": "cf/lf/df protected object I/O",
+          "calls": [
+            "KEY-HIERARCHY"
+          ],
+          "observedBehavior": "cf chunks AES256GCM with object identity/chunk AAD, header auth, 4MiB frame, unique temp, fsync, first/last readback then rename; lf authenticates header and each requested chunk, bounds range, zeroes key close; df checks objectType/objectId, single local slot, unwraps read or protectedWrite then closes/wipes.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        }
+      ],
+      "evidence": [
+        {
+          "path": "tests/workspace-compat.integration.ts",
+          "sha256": "fa41c0210de0874c1cdb08ce2743fbda0dddb4ccedf13a9d59f20fcd1afda461"
+        },
+        {
+          "path": "tests/workspace-recovery-network.integration.ts",
+          "sha256": "72d39419c562093a3d0007d3b6539316d703b11047b96bafaaa23b8bffb65042"
+        },
+        {
+          "path": "tests/platform-interface-closure.integration.ts",
+          "sha256": "ce51032d342e95a82eff579af63640c4230699f4abc949cb2a55b1f8b6941952"
+        },
+        {
+          "path": "文档/逆向台账/contracts/workspace-save-source-callgraph-20261015.json",
+          "sha256": "9a139873f695250820d7727c100f00b5befa140bb5d6e01e6071670c24da9e9e"
+        },
+        {
+          "path": "文档/逆向台账/contracts/project-entity-corrections-porting-20261015.json",
+          "sha256": "0650ed6171a0751d0cc9b0d86a6d5417856ca0ff8ad8b8f08528680d138fba17"
+        }
+      ],
+      "source_evidence_policy": "Finite named preload/handler/service/key/codec/fs/receipt graph; does not establish whole renderer/native runtime.",
+      "actualRoutes": [
+        {
+          "method": "POST",
+          "route": "/api/documents/:id/recovery/open"
+        }
+      ]
+    },
+    {
+      "id": "IPC-1d575f4ee880",
+      "name": "workspace:read-review-profile",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": "S3-candidate-finite-named-callgraph",
+      "reason": "原ey完整算法提取启用更正/假名冲突及保留token",
+      "implementation_scope": "Declared authenticated cloud workflow only; native OS filePath/keychain/sender semantics are explicit non-equivalence",
+      "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0",
+      "actualRoute": "POST /api/portable/review-profile",
+      "sourceNodes": [
+        {
+          "id": "SAVE-HANDLERS",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 25586,
+          "endLine": 25766,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "21a4bf3a149984c010dafbb36dcf236413f5862ddb4d6e6131deba2e752fcd81",
+          "role": "dI handlers and rI receipt",
+          "calls": [
+            "SAVE-SERVICE",
+            "RECOVERY-SERVICE"
+          ],
+          "observedBehavior": "rI counts outstanding work, ce is Mac task/background lease (not an auth guard). Save idempotent Map uses requestId+sender.id, sender conflict fails; completed carries underlying success/error receipt; prune after <=100 and age<1h, does not reject request101; restart loses Map. Open uses s2 bounded V1 migration prompt on exact errors, recovery absence errors, saveAs/dialog cancellation returns null.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "SAVE-SERVICE",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 22560,
+          "endLine": 22694,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "2f2bc3c81a7417c7fe0faa2cba25b1ea0066f05100781c9f4558cc3ff88b96a9",
+          "role": "sw save/open/readProfile/MRU",
+          "calls": [
+            "ARCHIVE-V1",
+            "CODEC-MANAGER",
+            "COMPAT-HYDRATOR",
+            "SOURCE-REGISTRY",
+            "RECOVERY-SERVICE"
+          ],
+          "observedBehavior": "project+revision match snapshot; V1 WORKSPACE_V1_REQUIRES_V2 fallback only; V2 selects supplied bytes, compatible old archive source stream or registered ref, missing fails; in-place V1 and V2-to-V3 migration require saveAs; source release and reader close in finally; save receipt carries project/revision/time/format/freshrefs; open hydrates protected snapshots and binds fresh refs/OCR cache, MRU counts known only when read.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "COMPAT-HYDRATOR",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 22472,
+          "endLine": 22540,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "ae40e96ef09f3606c63bd7fab88a4b20a91b6da3500e4a8a2434bc089635235d",
+          "role": "nw compatible reader hydrate",
+          "calls": [
+            "CODEC-V2-READER",
+            "CODEC-V3-READER",
+            "SOURCE-REGISTRY"
+          ],
+          "observedBehavior": "V3 verifies all entries, exact entity/review/OCR counts, rejects unfinished diskproject state arrays, reconstructs full schema; V2 reads meta/state/OCR segments then global state and migrates schema1; source providers bind reader streams, closes on failure. Returns sources through registry rather than arbitrary absolute ref.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        }
+      ],
+      "evidence": [
+        {
+          "path": "tests/workspace-compat.integration.ts",
+          "sha256": "fa41c0210de0874c1cdb08ce2743fbda0dddb4ccedf13a9d59f20fcd1afda461"
+        },
+        {
+          "path": "tests/workspace-recovery-network.integration.ts",
+          "sha256": "72d39419c562093a3d0007d3b6539316d703b11047b96bafaaa23b8bffb65042"
+        },
+        {
+          "path": "tests/platform-interface-closure.integration.ts",
+          "sha256": "ce51032d342e95a82eff579af63640c4230699f4abc949cb2a55b1f8b6941952"
+        },
+        {
+          "path": "文档/逆向台账/contracts/workspace-save-source-callgraph-20261015.json",
+          "sha256": "9a139873f695250820d7727c100f00b5befa140bb5d6e01e6071670c24da9e9e"
+        },
+        {
+          "path": "文档/逆向台账/contracts/project-entity-corrections-porting-20261015.json",
+          "sha256": "0650ed6171a0751d0cc9b0d86a6d5417856ca0ff8ad8b8f08528680d138fba17"
+        }
+      ],
+      "source_evidence_policy": "Finite named preload/handler/service/key/codec/fs/receipt graph; does not establish whole renderer/native runtime.",
+      "actualRoutes": [
+        {
+          "method": "POST",
+          "route": "/api/portable/review-profile"
+        }
+      ]
+    },
+    {
+      "id": "IPC-70e09702200d",
+      "name": "workspace:receive-transfer",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": "S3-candidate-finite-named-callgraph",
+      "reason": "受密码保护副本真实打开；本地keychain包无合法跨设备密钥不能伪解锁",
+      "implementation_scope": "Declared authenticated cloud workflow only; native OS filePath/keychain/sender semantics are explicit non-equivalence",
+      "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0",
+      "actualRoute": "POST /api/portable/import",
+      "sourceNodes": [
+        {
+          "id": "TRANSFER-IPC",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 25756,
+          "endLine": 25785,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "a8db775e253ab2a8420d4869585f0eff4babd20f5a8bcd7a32dfdbeee4aa05ef",
+          "role": "exact create/receive transfer handlers",
+          "calls": [
+            "TRANSFER-SERVICE"
+          ],
+          "observedBehavior": "source path required, native save/open dialogs may cancel; create rejects overwriting original; receive requires password and returns transient compatible reader through sw. No absolute host paths are accepted by cloud adapter.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "TRANSFER-SERVICE",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 25286,
+          "endLine": 25351,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "babb07fc9b841a4502b24c1b898b91cdce287d16de4349781b9e1cda93d1bc6c",
+          "role": "V_ authenticated transfer wrapping",
+          "calls": [
+            "KEY-HIERARCHY",
+            "SECURE-CONTAINER",
+            "COMPAT-HYDRATOR"
+          ],
+          "observedBehavior": "local protected snapshot is opened before copy; fresh DEK/random generated transfer password and SCRYPT AESGCM wrapped slot; secure transfer readback before returning; receive requires exactly one transfer slot, validates field encodings/KDF/AAD/tag and reports password invalid; opened transfer version dispatches full Tx/Yb reader; raw secrets wiped finally.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "COMPAT-HYDRATOR",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 22472,
+          "endLine": 22540,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "ae40e96ef09f3606c63bd7fab88a4b20a91b6da3500e4a8a2434bc089635235d",
+          "role": "nw compatible reader hydrate",
+          "calls": [
+            "CODEC-V2-READER",
+            "CODEC-V3-READER",
+            "SOURCE-REGISTRY"
+          ],
+          "observedBehavior": "V3 verifies all entries, exact entity/review/OCR counts, rejects unfinished diskproject state arrays, reconstructs full schema; V2 reads meta/state/OCR segments then global state and migrates schema1; source providers bind reader streams, closes on failure. Returns sources through registry rather than arbitrary absolute ref.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "KEY-HIERARCHY",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 19650,
+          "endLine": 19880,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "c9f4d1389f4ce27cd39e4873e5d2d08f034c30ca9a93ff877c0cd90b5e4f8e47",
+          "role": "Fg local OS key hierarchy",
+          "calls": [],
+          "observedBehavior": "safeStorage availability required; encrypted device recovery DRK, password SCRYPT CMK slot, AAD slot metadata; unlocked-session TTL and wiping, exact slot/keyId checks; protected-write can use device slot without exposing material key; atomic mode0600 metadata write. Native OS domain is not reproduced by cloud tenant DATA_KEY and cannot be declared native-equivalent.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        }
+      ],
+      "evidence": [
+        {
+          "path": "tests/workspace-compat.integration.ts",
+          "sha256": "fa41c0210de0874c1cdb08ce2743fbda0dddb4ccedf13a9d59f20fcd1afda461"
+        },
+        {
+          "path": "tests/workspace-recovery-network.integration.ts",
+          "sha256": "72d39419c562093a3d0007d3b6539316d703b11047b96bafaaa23b8bffb65042"
+        },
+        {
+          "path": "tests/platform-interface-closure.integration.ts",
+          "sha256": "ce51032d342e95a82eff579af63640c4230699f4abc949cb2a55b1f8b6941952"
+        },
+        {
+          "path": "文档/逆向台账/contracts/workspace-save-source-callgraph-20261015.json",
+          "sha256": "9a139873f695250820d7727c100f00b5befa140bb5d6e01e6071670c24da9e9e"
+        },
+        {
+          "path": "文档/逆向台账/contracts/project-entity-corrections-porting-20261015.json",
+          "sha256": "0650ed6171a0751d0cc9b0d86a6d5417856ca0ff8ad8b8f08528680d138fba17"
+        }
+      ],
+      "source_evidence_policy": "Finite named preload/handler/service/key/codec/fs/receipt graph; does not establish whole renderer/native runtime.",
+      "actualRoutes": [
+        {
+          "method": "POST",
+          "route": "/api/portable/import"
+        }
+      ]
+    },
+    {
+      "id": "IPC-c356082df625",
+      "name": "workspace:save",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": "S3-candidate-finite-named-callgraph",
+      "reason": "owner+session+requestId幂等、payload冲突、snapshotCAS、真实running/completed/failed、不可变密文字节",
+      "implementation_scope": "Declared authenticated cloud workflow only; native OS filePath/keychain/sender semantics are explicit non-equivalence",
+      "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0",
+      "actualRoute": "POST /api/projects/:id/portable/save",
+      "sourceNodes": [
+        {
+          "id": "SAVE-RENDERER",
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 3669,
+          "endLine": 3945,
+          "sourceFileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "rangeSha256": "1721d9e6e7bb80f320a1e94349dd736931ad50f19ea38f67645686d3fb016059",
+          "role": "vu workspace store + mu snapshot transport",
+          "calls": [
+            "SAVE-PRELOAD"
+          ],
+          "observedBehavior": "ensureProtectedDataUnlocked precedes protected operations; serialized save/saveAs queue, recovery pending waits, project/revision-guarded receipt, missing-result recovery polls; updated sourceRefs only when project and old ref still match. Renderer path itself is not native cryptographic authority.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "SAVE-HANDLERS",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 25586,
+          "endLine": 25766,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "21a4bf3a149984c010dafbb36dcf236413f5862ddb4d6e6131deba2e752fcd81",
+          "role": "dI handlers and rI receipt",
+          "calls": [
+            "SAVE-SERVICE",
+            "RECOVERY-SERVICE"
+          ],
+          "observedBehavior": "rI counts outstanding work, ce is Mac task/background lease (not an auth guard). Save idempotent Map uses requestId+sender.id, sender conflict fails; completed carries underlying success/error receipt; prune after <=100 and age<1h, does not reject request101; restart loses Map. Open uses s2 bounded V1 migration prompt on exact errors, recovery absence errors, saveAs/dialog cancellation returns null.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "SAVE-SERVICE",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 22560,
+          "endLine": 22694,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "2f2bc3c81a7417c7fe0faa2cba25b1ea0066f05100781c9f4558cc3ff88b96a9",
+          "role": "sw save/open/readProfile/MRU",
+          "calls": [
+            "ARCHIVE-V1",
+            "CODEC-MANAGER",
+            "COMPAT-HYDRATOR",
+            "SOURCE-REGISTRY",
+            "RECOVERY-SERVICE"
+          ],
+          "observedBehavior": "project+revision match snapshot; V1 WORKSPACE_V1_REQUIRES_V2 fallback only; V2 selects supplied bytes, compatible old archive source stream or registered ref, missing fails; in-place V1 and V2-to-V3 migration require saveAs; source release and reader close in finally; save receipt carries project/revision/time/format/freshrefs; open hydrates protected snapshots and binds fresh refs/OCR cache, MRU counts known only when read.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "ARCHIVE-V1",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 19336,
+          "endLine": 19504,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "9040329ef41889a2f7aae709e2aed20c978df7ee3413ad701691794ec13cd0d1",
+          "role": "xg ZIP writer + reader",
+          "calls": [
+            "FS-ATOMIC-V1"
+          ],
+          "observedBehavior": "schema migration/checks, all source/detection/review/MD sidecar entries; SHA256 manifest; bounds/duplicate/path/checksum/manifest-document equality; MD actual source reparse exact sidecar check; writer temp wx→write→fsync→rename retries→cleanup; source missing fails. V1 is not claimed encrypted.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "CODEC-MANAGER",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 25190,
+          "endLine": 25274,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "e64b34b0e2d4bdc9696617bda7fb4ed88e78656cbe0af2d8bdc32050c90f3fdd",
+          "role": "L_ key-owning V2/V3 manager",
+          "calls": [
+            "KEY-HIERARCHY",
+            "CODEC-V2-WRITER",
+            "CODEC-V3-WRITER",
+            "COMPAT-HYDRATOR"
+          ],
+          "observedBehavior": "migrate only V1; random DEK32 and local CMK slot; open requires exactly one local-cmk slot; protected-write access separate from unlocked read; compatible version dispatch; key buffers wiped finally; snapshot schema, source descriptors, OCRsegments, rules/profile/decisions preserved.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        }
+      ],
+      "evidence": [
+        {
+          "path": "tests/workspace-save-receipts.integration.ts",
+          "sha256": "47247ca8f8e8c304bf3a60b0803c4b3cd56866e58f898c3a9bb0bfe594d025aa"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/workspace-save-receipts-final-api.log",
+          "sha256": "6a5286304d857dcfabbd0fe94d1720153f839a7afe60024495aeb47289ae5df2"
+        },
+        {
+          "path": "文档/逆向台账/contracts/workspace-save-source-callgraph-20261015.json",
+          "sha256": "9a139873f695250820d7727c100f00b5befa140bb5d6e01e6071670c24da9e9e"
+        },
+        {
+          "path": "文档/逆向台账/contracts/project-entity-corrections-porting-20261015.json",
+          "sha256": "0650ed6171a0751d0cc9b0d86a6d5417856ca0ff8ad8b8f08528680d138fba17"
+        },
+        {
+          "path": "文档/逆向台账/contracts/workspace-save-normalized-integrity-porting-20261015.json",
+          "sha256": "5215bc45b883bdbae572a071b1b37f5a128e5e4625d490379840784488a3118e"
+        }
+      ],
+      "source_evidence_policy": "Finite named preload/handler/service/key/codec/fs/receipt graph; does not establish whole renderer/native runtime.",
+      "actualRoutes": [
+        {
+          "method": "POST",
+          "route": "/api/projects/:id/portable/save"
+        }
+      ]
+    },
+    {
+      "id": "IPC-ff1d1193dc22",
+      "name": "workspace:save-as",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": "S3-candidate-finite-named-callgraph",
+      "reason": "真实受保护导出/另存下载；不读写用户原生绝对路径",
+      "implementation_scope": "Declared authenticated cloud workflow only; native OS filePath/keychain/sender semantics are explicit non-equivalence",
+      "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0",
+      "actualRoute": "POST /api/projects/:id/portable/export",
+      "sourceNodes": [
+        {
+          "id": "SAVE-RENDERER",
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 3669,
+          "endLine": 3945,
+          "sourceFileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "rangeSha256": "1721d9e6e7bb80f320a1e94349dd736931ad50f19ea38f67645686d3fb016059",
+          "role": "vu workspace store + mu snapshot transport",
+          "calls": [
+            "SAVE-PRELOAD"
+          ],
+          "observedBehavior": "ensureProtectedDataUnlocked precedes protected operations; serialized save/saveAs queue, recovery pending waits, project/revision-guarded receipt, missing-result recovery polls; updated sourceRefs only when project and old ref still match. Renderer path itself is not native cryptographic authority.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "SAVE-HANDLERS",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 25586,
+          "endLine": 25766,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "21a4bf3a149984c010dafbb36dcf236413f5862ddb4d6e6131deba2e752fcd81",
+          "role": "dI handlers and rI receipt",
+          "calls": [
+            "SAVE-SERVICE",
+            "RECOVERY-SERVICE"
+          ],
+          "observedBehavior": "rI counts outstanding work, ce is Mac task/background lease (not an auth guard). Save idempotent Map uses requestId+sender.id, sender conflict fails; completed carries underlying success/error receipt; prune after <=100 and age<1h, does not reject request101; restart loses Map. Open uses s2 bounded V1 migration prompt on exact errors, recovery absence errors, saveAs/dialog cancellation returns null.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "SAVE-SERVICE",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 22560,
+          "endLine": 22694,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "2f2bc3c81a7417c7fe0faa2cba25b1ea0066f05100781c9f4558cc3ff88b96a9",
+          "role": "sw save/open/readProfile/MRU",
+          "calls": [
+            "ARCHIVE-V1",
+            "CODEC-MANAGER",
+            "COMPAT-HYDRATOR",
+            "SOURCE-REGISTRY",
+            "RECOVERY-SERVICE"
+          ],
+          "observedBehavior": "project+revision match snapshot; V1 WORKSPACE_V1_REQUIRES_V2 fallback only; V2 selects supplied bytes, compatible old archive source stream or registered ref, missing fails; in-place V1 and V2-to-V3 migration require saveAs; source release and reader close in finally; save receipt carries project/revision/time/format/freshrefs; open hydrates protected snapshots and binds fresh refs/OCR cache, MRU counts known only when read.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        }
+      ],
+      "evidence": [
+        {
+          "path": "tests/workspace-compat.integration.ts",
+          "sha256": "fa41c0210de0874c1cdb08ce2743fbda0dddb4ccedf13a9d59f20fcd1afda461"
+        },
+        {
+          "path": "tests/workspace-recovery-network.integration.ts",
+          "sha256": "72d39419c562093a3d0007d3b6539316d703b11047b96bafaaa23b8bffb65042"
+        },
+        {
+          "path": "tests/platform-interface-closure.integration.ts",
+          "sha256": "ce51032d342e95a82eff579af63640c4230699f4abc949cb2a55b1f8b6941952"
+        },
+        {
+          "path": "文档/逆向台账/contracts/workspace-save-source-callgraph-20261015.json",
+          "sha256": "9a139873f695250820d7727c100f00b5befa140bb5d6e01e6071670c24da9e9e"
+        },
+        {
+          "path": "文档/逆向台账/contracts/project-entity-corrections-porting-20261015.json",
+          "sha256": "0650ed6171a0751d0cc9b0d86a6d5417856ca0ff8ad8b8f08528680d138fba17"
+        }
+      ],
+      "source_evidence_policy": "Finite named preload/handler/service/key/codec/fs/receipt graph; does not establish whole renderer/native runtime.",
+      "actualRoutes": [
+        {
+          "method": "POST",
+          "route": "/api/projects/:id/portable/export"
+        }
+      ]
+    },
+    {
+      "id": "IPC-9be2a0784913",
+      "name": "workspace:save-recovery",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": "S3-candidate-finite-named-callgraph",
+      "reason": "真实加密draft、revisionCAS、完整人工标记/页图/映射权限；不改变正式复核",
+      "implementation_scope": "Declared authenticated cloud workflow only; native OS filePath/keychain/sender semantics are explicit non-equivalence",
+      "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0",
+      "actualRoute": "PUT /api/documents/:id/recovery",
+      "sourceNodes": [
+        {
+          "id": "SAVE-RENDERER",
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 3669,
+          "endLine": 3945,
+          "sourceFileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "rangeSha256": "1721d9e6e7bb80f320a1e94349dd736931ad50f19ea38f67645686d3fb016059",
+          "role": "vu workspace store + mu snapshot transport",
+          "calls": [
+            "SAVE-PRELOAD"
+          ],
+          "observedBehavior": "ensureProtectedDataUnlocked precedes protected operations; serialized save/saveAs queue, recovery pending waits, project/revision-guarded receipt, missing-result recovery polls; updated sourceRefs only when project and old ref still match. Renderer path itself is not native cryptographic authority.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "SAVE-HANDLERS",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 25586,
+          "endLine": 25766,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "21a4bf3a149984c010dafbb36dcf236413f5862ddb4d6e6131deba2e752fcd81",
+          "role": "dI handlers and rI receipt",
+          "calls": [
+            "SAVE-SERVICE",
+            "RECOVERY-SERVICE"
+          ],
+          "observedBehavior": "rI counts outstanding work, ce is Mac task/background lease (not an auth guard). Save idempotent Map uses requestId+sender.id, sender conflict fails; completed carries underlying success/error receipt; prune after <=100 and age<1h, does not reject request101; restart loses Map. Open uses s2 bounded V1 migration prompt on exact errors, recovery absence errors, saveAs/dialog cancellation returns null.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "RECOVERY-SERVICE",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 19896,
+          "endLine": 20112,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "5e0708b32e862b703e9ece211a87ccc59e45e064b1ee566aff52100684c28a2b",
+          "role": "Hg recovery protected source/snapshot lifecycle",
+          "calls": [
+            "SECURE-CONTAINER",
+            "SOURCE-REGISTRY"
+          ],
+          "observedBehavior": "source bytes or registered stream only; snapshot project/revision CAS and stale revision receipt; fingerprint reuse, per-source encrypted recovery objects plus encrypted snapshot, remove obsolete recovery objects; session marker/prompt selection; opening validates protected size, MD reparse sidecar, registers providers and releases partial refs on failure; discard releases only owned recovery refs, protected-read key errors are surfaced.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        }
+      ],
+      "evidence": [
+        {
+          "path": "tests/workspace-compat.integration.ts",
+          "sha256": "fa41c0210de0874c1cdb08ce2743fbda0dddb4ccedf13a9d59f20fcd1afda461"
+        },
+        {
+          "path": "tests/workspace-recovery-network.integration.ts",
+          "sha256": "72d39419c562093a3d0007d3b6539316d703b11047b96bafaaa23b8bffb65042"
+        },
+        {
+          "path": "tests/platform-interface-closure.integration.ts",
+          "sha256": "ce51032d342e95a82eff579af63640c4230699f4abc949cb2a55b1f8b6941952"
+        },
+        {
+          "path": "文档/逆向台账/contracts/workspace-save-source-callgraph-20261015.json",
+          "sha256": "9a139873f695250820d7727c100f00b5befa140bb5d6e01e6071670c24da9e9e"
+        },
+        {
+          "path": "文档/逆向台账/contracts/project-entity-corrections-porting-20261015.json",
+          "sha256": "0650ed6171a0751d0cc9b0d86a6d5417856ca0ff8ad8b8f08528680d138fba17"
+        }
+      ],
+      "source_evidence_policy": "Finite named preload/handler/service/key/codec/fs/receipt graph; does not establish whole renderer/native runtime.",
+      "actualRoutes": [
+        {
+          "method": "PUT",
+          "route": "/api/documents/:id/recovery"
+        }
+      ]
+    },
+    {
+      "id": "IPC-1ad8e879614a",
+      "name": "workspace:save-result",
+      "suggested_ledger_status": "I4",
+      "suggested_static_status": "S3-candidate-finite-named-callgraph",
+      "reason": "真实回执查询；1h/100缓存淘汰，重启遗留running明确interrupted，下载重新核当前权限/全部源hash/快照/byteshash",
+      "implementation_scope": "Declared authenticated cloud workflow only; native OS filePath/keychain/sender semantics are explicit non-equivalence",
+      "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0",
+      "actualRoute": "POST /api/projects/:id/portable/save-result + GET /api/projects/:id/portable/saves/:receipt/download",
+      "sourceNodes": [
+        {
+          "id": "SAVE-RENDERER",
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 3669,
+          "endLine": 3945,
+          "sourceFileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "rangeSha256": "1721d9e6e7bb80f320a1e94349dd736931ad50f19ea38f67645686d3fb016059",
+          "role": "vu workspace store + mu snapshot transport",
+          "calls": [
+            "SAVE-PRELOAD"
+          ],
+          "observedBehavior": "ensureProtectedDataUnlocked precedes protected operations; serialized save/saveAs queue, recovery pending waits, project/revision-guarded receipt, missing-result recovery polls; updated sourceRefs only when project and old ref still match. Renderer path itself is not native cryptographic authority.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "SAVE-HANDLERS",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 25586,
+          "endLine": 25766,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "21a4bf3a149984c010dafbb36dcf236413f5862ddb4d6e6131deba2e752fcd81",
+          "role": "dI handlers and rI receipt",
+          "calls": [
+            "SAVE-SERVICE",
+            "RECOVERY-SERVICE"
+          ],
+          "observedBehavior": "rI counts outstanding work, ce is Mac task/background lease (not an auth guard). Save idempotent Map uses requestId+sender.id, sender conflict fails; completed carries underlying success/error receipt; prune after <=100 and age<1h, does not reject request101; restart loses Map. Open uses s2 bounded V1 migration prompt on exact errors, recovery absence errors, saveAs/dialog cancellation returns null.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        }
+      ],
+      "evidence": [
+        {
+          "path": "tests/workspace-save-receipts.integration.ts",
+          "sha256": "47247ca8f8e8c304bf3a60b0803c4b3cd56866e58f898c3a9bb0bfe594d025aa"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/workspace-save-receipts-final-api.log",
+          "sha256": "6a5286304d857dcfabbd0fe94d1720153f839a7afe60024495aeb47289ae5df2"
+        },
+        {
+          "path": "文档/逆向台账/contracts/workspace-save-source-callgraph-20261015.json",
+          "sha256": "9a139873f695250820d7727c100f00b5befa140bb5d6e01e6071670c24da9e9e"
+        },
+        {
+          "path": "文档/逆向台账/contracts/project-entity-corrections-porting-20261015.json",
+          "sha256": "0650ed6171a0751d0cc9b0d86a6d5417856ca0ff8ad8b8f08528680d138fba17"
+        },
+        {
+          "path": "文档/逆向台账/contracts/workspace-save-normalized-integrity-porting-20261015.json",
+          "sha256": "5215bc45b883bdbae572a071b1b37f5a128e5e4625d490379840784488a3118e"
+        }
+      ],
+      "source_evidence_policy": "Finite named preload/handler/service/key/codec/fs/receipt graph; does not establish whole renderer/native runtime.",
+      "actualRoutes": [
+        {
+          "method": "POST",
+          "route": "/api/projects/:id/portable/save-result"
+        },
+        {
+          "method": "GET",
+          "route": "/api/projects/:id/portable/saves/:receipt/download"
+        }
+      ]
+    },
+    {
+      "id": "IPC-98cb505df8ea",
+      "name": "workspace:select-review-profile",
+      "suggested_ledger_status": "I1",
+      "suggested_static_status": "S3-candidate-finite-named-callgraph",
+      "reason": "真实原ey更正及假名完整导入；冲突显式选择、项目旧复核失效并重识别; uploaded profile apply is verified, source OS chooser is a platform adaptation",
+      "implementation_scope": "Declared authenticated cloud workflow only; native OS filePath/keychain/sender semantics are explicit non-equivalence",
+      "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0",
+      "actualRoute": "POST /api/projects/:id/portable/review-profile",
+      "sourceNodes": [
+        {
+          "id": "SAVE-HANDLERS",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 25586,
+          "endLine": 25766,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "21a4bf3a149984c010dafbb36dcf236413f5862ddb4d6e6131deba2e752fcd81",
+          "role": "dI handlers and rI receipt",
+          "calls": [
+            "SAVE-SERVICE",
+            "RECOVERY-SERVICE"
+          ],
+          "observedBehavior": "rI counts outstanding work, ce is Mac task/background lease (not an auth guard). Save idempotent Map uses requestId+sender.id, sender conflict fails; completed carries underlying success/error receipt; prune after <=100 and age<1h, does not reject request101; restart loses Map. Open uses s2 bounded V1 migration prompt on exact errors, recovery absence errors, saveAs/dialog cancellation returns null.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        },
+        {
+          "id": "SAVE-SERVICE",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 22560,
+          "endLine": 22694,
+          "sourceFileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "rangeSha256": "2f2bc3c81a7417c7fe0faa2cba25b1ea0066f05100781c9f4558cc3ff88b96a9",
+          "role": "sw save/open/readProfile/MRU",
+          "calls": [
+            "ARCHIVE-V1",
+            "CODEC-MANAGER",
+            "COMPAT-HYDRATOR",
+            "SOURCE-REGISTRY",
+            "RECOVERY-SERVICE"
+          ],
+          "observedBehavior": "project+revision match snapshot; V1 WORKSPACE_V1_REQUIRES_V2 fallback only; V2 selects supplied bytes, compatible old archive source stream or registered ref, missing fails; in-place V1 and V2-to-V3 migration require saveAs; source release and reader close in finally; save receipt carries project/revision/time/format/freshrefs; open hydrates protected snapshots and binds fresh refs/OCR cache, MRU counts known only when read.",
+          "depth": "finite-public-static-body-read",
+          "competitorRuntime": "R0",
+          "ownRuntimeNotEvidenceForSourceDepth": true
+        }
+      ],
+      "evidence": [
+        {
+          "path": "tests/workspace-compat.integration.ts",
+          "sha256": "fa41c0210de0874c1cdb08ce2743fbda0dddb4ccedf13a9d59f20fcd1afda461"
+        },
+        {
+          "path": "tests/workspace-recovery-network.integration.ts",
+          "sha256": "72d39419c562093a3d0007d3b6539316d703b11047b96bafaaa23b8bffb65042"
+        },
+        {
+          "path": "tests/platform-interface-closure.integration.ts",
+          "sha256": "ce51032d342e95a82eff579af63640c4230699f4abc949cb2a55b1f8b6941952"
+        },
+        {
+          "path": "文档/逆向台账/contracts/workspace-save-source-callgraph-20261015.json",
+          "sha256": "9a139873f695250820d7727c100f00b5befa140bb5d6e01e6071670c24da9e9e"
+        },
+        {
+          "path": "文档/逆向台账/contracts/project-entity-corrections-porting-20261015.json",
+          "sha256": "0650ed6171a0751d0cc9b0d86a6d5417856ca0ff8ad8b8f08528680d138fba17"
+        }
+      ],
+      "source_evidence_policy": "Finite named preload/handler/service/key/codec/fs/receipt graph; does not establish whole renderer/native runtime.",
+      "actualRoutes": [
+        {
+          "method": "POST",
+          "route": "/api/projects/:id/portable/review-profile"
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "exactRows": 66,
+    "I4_candidates": 60,
+    "I1_explicitBoundaries": 6
+  },
+  "newBusinessCompletionReport": {
+    "path": "文档/逆向台账/contracts/project-entity-corrections-porting-20261015.json",
+    "sha256": "0650ed6171a0751d0cc9b0d86a6d5417856ca0ff8ad8b8f08528680d138fba17"
+  },
+  "notes": [
+    "Historical17 row I1 was a conservative phase032 snapshot; this file distinguishes actual cloud workflow verification from three explicit native/process-specific boundary cases, instead of upgrading a whole family.",
+    "No runtime depth for vendor source is inferred from any own API/UI fixture.",
+    "Parent must select exact final freshgate hashes and preserves its ledger history before applying recommendations."
+  ],
+  "finalNormalizedReceiptGate": {
+    "path": "文档/逆向台账/contracts/workspace-save-normalized-integrity-porting-20261015.json",
+    "sha256": "5215bc45b883bdbae572a071b1b37f5a128e5e4625d490379840784488a3118e"
+  },
+  "phase036Changes": {
+    "routesUpdatedIndividually": [
+      "feedback:add",
+      "review:add-feedback",
+      "feedback:add-batch",
+      "feedback:query",
+      "review:get-feedbacks",
+      "feedback:get-document-stats",
+      "feedback:get-global-stats",
+      "review:get-statistics",
+      "review:export-audit-log",
+      "review:export-proof-lite",
+      "feedback:export-audit-report"
+    ],
+    "all66CurrentRoutesExplicit": true,
+    "rulesetCapacityAndNormalizationIndependentReviews": [
+      "文档/逆向台账/contracts/review-ruleset-capacity-by-C-20261015.json",
+      "文档/逆向台账/contracts/review-ruleset-normalization-by-C-20261015.json"
+    ],
+    "codecHiddenAndCorrectionReports": [
+      "文档/逆向台账/contracts/portable-type-hide-closure-20261015.json",
+      "文档/逆向台账/contracts/hidden-correction-lifecycle-20261015.json"
+    ],
+    "originalI4CandidatesAreCloudContractsNotNativeRuntime": true,
+    "feedbackPeerReview": "文档/逆向台账/contracts/review-feedback-raw-type-by-rules-20261015.json"
+  }
+}

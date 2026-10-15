@@ -1,0 +1,237 @@
+{
+  "date": "2026-10-15",
+  "reviewer": "A complete_rules",
+  "method": "read-only author-code review plus independently rerun real isolated API workflows and extracted pure-source oracle; no Edge, no competitor licensed processor",
+  "scope": [
+    "apps/api/docx-safe-mode.ts",
+    "apps/api/docx-image-ocr.ts",
+    "packages/adapters/docx-image-ocr.ts",
+    "apps/web/docx-safe-mode.tsx",
+    "apps/web/docx-image-ocr.tsx",
+    "apps/api/restoration-batch.ts",
+    "apps/web/restoration-progress.ts",
+    "scripts/024.sql",
+    "packages/core/mapping-library.ts",
+    "packages/core/mapping-normalization.ts",
+    "packages/adapters/mapping-library.ts",
+    "apps/api/mapping-library.ts",
+    "apps/web/mapping-library.tsx",
+    "scripts/025.sql",
+    "apps/api/workspace-saves.ts",
+    "apps/web/workspace-portable.tsx",
+    "scripts/028.sql"
+  ],
+  "findings": [
+    {
+      "id": "A-032-P2-OCR-SOURCE",
+      "severity": "P2",
+      "title": "OCR apply accepted token after authenticated original storage changed",
+      "before": {
+        "status": 200,
+        "revision": 1,
+        "log": ".data/research/lawbot-2026-10-15/iteration032/review-B-ocr-source-before.log"
+      },
+      "fix": "Author B added verifiedDocumentSource(original+unlocked) plus current canonical AEAD/SHA check before mappings/review writes",
+      "after": {
+        "originalMismatch": 409,
+        "canonicalMismatch": 409,
+        "unlockedMismatch": 409,
+        "revision": 0,
+        "test": "tests/rule-adversarial-review.integration.ts",
+        "log": ".data/research/lawbot-2026-10-15/iteration032/review-B-ocr-source-after.log"
+      },
+      "status": "closed-independent-actual"
+    },
+    {
+      "id": "A-032-P2-SAVE-RETRY",
+      "severity": "P2",
+      "title": "Terminal failed save request reused failed request forever in UI",
+      "sourceEvidence": "exportProject previously cleared saveRequest only on successful download; same password reused same requestId; server correctly returns durable same failed receipt",
+      "fix": "Author C now clears saveRequest on confirmed terminal failed/missing before throw; network errors retain recovery request",
+      "after": "Read latest line22 and verified durable failed/same-request API behavior independently; no browser retry claim",
+      "status": "closed-static-ui-and-actual-api"
+    }
+  ],
+  "tested": [
+    {
+      "scope": "B exact visual/OCR/restore/source-safe-mode",
+      "tests": 6,
+      "pass": 6,
+      "durationMs": 15480.664542,
+      "log": ".data/research/lawbot-2026-10-15/iteration032/review-B-visual-independent-A.log"
+    },
+    {
+      "scope": "B source apply adversary",
+      "tests": 1,
+      "pass": 1,
+      "durationMs": 3153.664792,
+      "log": ".data/research/lawbot-2026-10-15/iteration032/review-B-ocr-source-after.log"
+    },
+    {
+      "scope": "C catalog and full backup",
+      "tests": 3,
+      "pass": 3,
+      "durationMs": 12214.860125,
+      "log": ".data/research/lawbot-2026-10-15/iteration032/review-C-platform-independent-A.log"
+    },
+    {
+      "scope": "C async save receipt",
+      "tests": 2,
+      "pass": 2,
+      "durationMs": 3072.837042,
+      "log": ".data/research/lawbot-2026-10-15/iteration032/review-C-workspace-save-independent-A.log"
+    },
+    {
+      "scope": "C49 personal exact methods including long hint payload",
+      "tests": 4,
+      "pass": 4,
+      "exactIds": 49,
+      "durationMs": 34865.933667,
+      "log": ".data/research/lawbot-2026-10-15/iteration032/review-C-personal-independent-A.log"
+    },
+    {
+      "scope": "C full source Mm/Pd/kd overlapping/nested/raw/no_text_replace combinations",
+      "cases": 2500,
+      "fullOutputDifferences": 0,
+      "script": ".data/research/lawbot-2026-10-15/iteration032/review-mapping-source-fuzz.mts",
+      "result": ".data/research/lawbot-2026-10-15/iteration032/review-mapping-source-fuzz.json"
+    }
+  ],
+  "reviewNotes": [
+    "Safe-mode preferences are AEAD tenant/user scoped with real get/set/reset and arbitrary JSON reasons; no fake native process-crash discovery",
+    "OCR candidate AAD binds owner/revision/source/content/dictionary/project presets/document policy/runtime rules; apply resets pending, no accepted snapshot; original/current canonical/unlocked bytes now revalidated",
+    "Progress reads independently recheck restore permission without blocking behind active project write transaction;100 only after persistence commit; no filename/source plaintext in progress response",
+    "Mapping directory owner RLS and project view_original+view_mapping gates; full hidden same-name records included in backup; compiled source forms/occurrences/combinations survive real LPM→MD/crossrunWord restore",
+    "Workspace save request HMAC binds session/input/project/format/password, true background promise errors persist failed state; expectedSnapshot checked before export; subsequent downloads check current permissions, snapshot fingerprint and all source/page/payload hashes",
+    "Source cache100 and1h retention are traced source behavior, not invented limits; no native-file-dialog or licensed-runtime equivalence upgrade"
+  ],
+  "remaining": [
+    "R0 source licensed processor remains unrun",
+    "Root browser acceptance separate; no Edge invoked by reviewer",
+    "No new open qualified finding in reviewed frozen code"
+  ],
+  "code": [
+    {
+      "path": "apps/api/docx-safe-mode.ts",
+      "bytes": 1632,
+      "sha256": "19c512be7ab3b113aac64e99e84976d0a51c32f084804b01e466462a8f2e5c8b"
+    },
+    {
+      "path": "apps/api/docx-image-ocr.ts",
+      "bytes": 7372,
+      "sha256": "5c7d559160a4a0b8ccc159e9b677ab7a3bcf87150ba901f91fa1b73addb7c78d"
+    },
+    {
+      "path": "packages/adapters/docx-image-ocr.ts",
+      "bytes": 3359,
+      "sha256": "facc97795736847d56c7d8e27ceca7fae19e529aadce9a10bc3a1cf12224ac3d"
+    },
+    {
+      "path": "apps/web/docx-safe-mode.tsx",
+      "bytes": 2076,
+      "sha256": "942f868dcbf9e9900daf9b08c4a77d133a7546275f3ae575d43a9c8c38e7bcd3"
+    },
+    {
+      "path": "apps/web/docx-image-ocr.tsx",
+      "bytes": 3395,
+      "sha256": "dad8a108704337e0439bf35046820aeb46db66d2a84ea68600c8df3a2aabc69e"
+    },
+    {
+      "path": "apps/api/restoration-batch.ts",
+      "bytes": 7426,
+      "sha256": "19ab05ff0c67f471f985f55f548e070ac0ad9fe8d4b475d6deec00071266bb6c"
+    },
+    {
+      "path": "apps/web/restoration-progress.ts",
+      "bytes": 1067,
+      "sha256": "9487e4e167b1dabbdcf16b55cdcc376aa841e6bed10f16fde02f1d39425da6ac"
+    },
+    {
+      "path": "scripts/024.sql",
+      "bytes": 772,
+      "sha256": "f1a5f60e7adec2752919134aa18d7bf0c06fbf61fd55db5fca9e75878d3ac146"
+    },
+    {
+      "path": "packages/core/mapping-library.ts",
+      "bytes": 9192,
+      "sha256": "d8f6f33077cb6c858c93b6627e06da99a56af267204c1039fbeaeae325c0c2e9"
+    },
+    {
+      "path": "packages/core/mapping-normalization.ts",
+      "bytes": 7895,
+      "sha256": "bd72f54c59a1882f0d7ba2997c558b32501f7545f632fdb98ecf5245911ee4c9"
+    },
+    {
+      "path": "packages/adapters/mapping-library.ts",
+      "bytes": 4341,
+      "sha256": "d75f5e7d49f88a1b0d312cae27ec8f595480c45b2f9555685d5c99b9b1591b12"
+    },
+    {
+      "path": "apps/api/mapping-library.ts",
+      "bytes": 5443,
+      "sha256": "6e4cb95781f39c67bda1641ac001719ac7a5cd50ffa2ebd8d0e4061e6f0609d4"
+    },
+    {
+      "path": "apps/web/mapping-library.tsx",
+      "bytes": 4000,
+      "sha256": "4ba5a4a1d4689dd5c4ac921849f61651a1c2289a0f288a7da5bad14d5ab53a43"
+    },
+    {
+      "path": "scripts/025.sql",
+      "bytes": 1074,
+      "sha256": "8cf7951ce90730be338e4c9d40612b9947ac2d2408ff3930d4c7985fe8b4ebe8"
+    },
+    {
+      "path": "apps/api/workspace-saves.ts",
+      "bytes": 8317,
+      "sha256": "ac3cf38ae09b990c787d33d977de16df07a47865e1df1d3d651538f7d6f71657"
+    },
+    {
+      "path": "apps/web/workspace-portable.tsx",
+      "bytes": 6406,
+      "sha256": "33e657917927ce2cb30f8b476709cc3844ae59fff52a0b5f771e935b745c58c8"
+    },
+    {
+      "path": "scripts/028.sql",
+      "bytes": 1362,
+      "sha256": "99e03f47a0d61b2ae7c0517b32ae99e7e37fe6bc9861ff576cf6958b59d6f2d9"
+    }
+  ],
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/review-B-visual-independent-A.log",
+      "bytes": 1201,
+      "sha256": "22c6278f5c0a6dd57993ce3346f64e572979af5996c9f3b8bf9d53ce1a637acc"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/review-B-ocr-source-after.log",
+      "bytes": 266,
+      "sha256": "c964f3c38976eb269e55ca9a716315fd955c5d4b0b8f28e956c4bcc0fe0db74a"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/review-C-platform-independent-A.log",
+      "bytes": 710,
+      "sha256": "a449f5ef1bddeb76a3a6b470565844e4d4f07e42bcf6efa85d388590e1edc14a"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/review-C-workspace-save-independent-A.log",
+      "bytes": 497,
+      "sha256": "6ed444de6c88a6cc1351364811084e74d7b6d68a5f794528ff936b1c61211886"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/review-C-personal-independent-A.log",
+      "bytes": 805,
+      "sha256": "44ee1054839f256533700604d73d22363d7e267318f9e24d03c4224c0ac64863"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/review-mapping-source-fuzz.mts",
+      "bytes": 2216,
+      "sha256": "80c99c05124a4ccdd9c299f39a6adfb517c74978c2326276dd0148c0c6639cd5"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/review-mapping-source-fuzz.json",
+      "bytes": 24,
+      "sha256": "cde01152cf1282bfc200049f8bc3591e2a4170aa519ff1124b2b87790a0be04a"
+    }
+  ]
+}

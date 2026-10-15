@@ -1,0 +1,3796 @@
+{
+  "schema": "tuominwang.legacy-office.pure-source-oracle.v1",
+  "sourcePath": ".data/research/lawbot-2026-10-13/readable/main.js",
+  "sourceHash": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+  "functions": {
+    "mp": {
+      "sha256": "73d9127ffbb56dfd0f80ccf0d7641b952e2a7663a9aafef8c7bed2407cb6bcd0",
+      "bytes": 123
+    },
+    "gp": {
+      "sha256": "9754536f5284a3c02bf5d3a60c3b9e98f1a052494e3caf1fb45ded478098612e",
+      "bytes": 148
+    },
+    "yp": {
+      "sha256": "cc441a6c840c665037f993e39ee7cb6a1cb456f18afc0c4f2e2458d11aaa1706",
+      "bytes": 451
+    },
+    "bp": {
+      "sha256": "53cbc3db5d25cbcbc8e9ce5af47014c7eac7620345e4da7541c05f81f330bb67",
+      "bytes": 295
+    },
+    "wp": {
+      "sha256": "d3fbe15769b648a35042baaeb82994e9c00887ef17096bd30454c4aa573afbbc",
+      "bytes": 1810
+    },
+    "xp": {
+      "sha256": "a032106c1df8ee0bb154c8b0a070db54a3da3b5175fb35cb6e88f27505a7632c",
+      "bytes": 184
+    },
+    "_p": {
+      "sha256": "847a73d5e69d0d42bc2e38ce7b61798557e8adc5b1f85721d875574a2bbd7bdd",
+      "bytes": 211
+    },
+    "Ip": {
+      "sha256": "88c5a1ba2d974ea9e03268fd9213bb2ac2e5f0738dc1bbb304495c2ba58d0386",
+      "bytes": 115
+    },
+    "Sp": {
+      "sha256": "ab3e946145e9fd1ede102e3acb5a9823e4649dda57bad8383671412538703782",
+      "bytes": 2249
+    },
+    "Pp": {
+      "sha256": "ed0f3711e13ade515f6bc358a1598eb6528bcd2f679204931ab99316a9595b97",
+      "bytes": 318
+    },
+    "Tp": {
+      "sha256": "56e4a39445fe9616e218c501b8fb22455dd9708f0f328b3b06712b7d4d2d9980",
+      "bytes": 1694
+    },
+    "Op": {
+      "sha256": "f928a46fd73829826893b09f9a8f72938e4f0ace50029b2494c9c05965b4d674",
+      "bytes": 879
+    }
+  },
+  "fields": [
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldSimple w:instr=\"PAGE\"><w:t>合成</w:t></w:fldSimple><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldSimple w:instr=\"PAGE\"><w:t>合成</w:t><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三合成末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldChar w:fldCharType=\"begin\"/><w:instrText>PAGE</w:instrText><w:t>instruction-hidden</w:t><w:fldChar w:fldCharType=\"separate\"/><w:t>合成</w:t><w:fldChar w:fldCharType=\"end\"/><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldChar w:fldCharType=\"begin\"/><w:instrText>PAGE</w:instrText><w:t>instruction-hidden</w:t><w:fldChar w:fldCharType=\"separate\"/><w:t>合成</w:t><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三合成末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldSimple w:instr=\"NUMPAGES\"><w:t>合成</w:t></w:fldSimple><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldSimple w:instr=\"NUMPAGES\"><w:t>合成</w:t><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三合成末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldChar w:fldCharType=\"begin\"/><w:instrText>NUMPAGES</w:instrText><w:t>instruction-hidden</w:t><w:fldChar w:fldCharType=\"separate\"/><w:t>合成</w:t><w:fldChar w:fldCharType=\"end\"/><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldChar w:fldCharType=\"begin\"/><w:instrText>NUMPAGES</w:instrText><w:t>instruction-hidden</w:t><w:fldChar w:fldCharType=\"separate\"/><w:t>合成</w:t><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三合成末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldSimple w:instr=\"SECTIONPAGES\"><w:t>合成</w:t></w:fldSimple><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldSimple w:instr=\"SECTIONPAGES\"><w:t>合成</w:t><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三合成末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldChar w:fldCharType=\"begin\"/><w:instrText>SECTIONPAGES</w:instrText><w:t>instruction-hidden</w:t><w:fldChar w:fldCharType=\"separate\"/><w:t>合成</w:t><w:fldChar w:fldCharType=\"end\"/><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldChar w:fldCharType=\"begin\"/><w:instrText>SECTIONPAGES</w:instrText><w:t>instruction-hidden</w:t><w:fldChar w:fldCharType=\"separate\"/><w:t>合成</w:t><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三合成末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldSimple w:instr=\"PAGE \\* MERGEFORMAT\"><w:t>合成</w:t></w:fldSimple><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldSimple w:instr=\"PAGE \\* MERGEFORMAT\"><w:t>合成</w:t><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三合成末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldChar w:fldCharType=\"begin\"/><w:instrText>PAGE \\* MERGEFORMAT</w:instrText><w:t>instruction-hidden</w:t><w:fldChar w:fldCharType=\"separate\"/><w:t>合成</w:t><w:fldChar w:fldCharType=\"end\"/><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldChar w:fldCharType=\"begin\"/><w:instrText>PAGE \\* MERGEFORMAT</w:instrText><w:t>instruction-hidden</w:t><w:fldChar w:fldCharType=\"separate\"/><w:t>合成</w:t><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三合成末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldSimple w:instr=\"PAGEREF NAME\"><w:t>合成</w:t></w:fldSimple><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三合成末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldSimple w:instr=\"PAGEREF NAME\"><w:t>合成</w:t><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三合成末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldChar w:fldCharType=\"begin\"/><w:instrText>PAGEREF NAME</w:instrText><w:t>instruction-hidden</w:t><w:fldChar w:fldCharType=\"separate\"/><w:t>合成</w:t><w:fldChar w:fldCharType=\"end\"/><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三合成末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldChar w:fldCharType=\"begin\"/><w:instrText>PAGEREF NAME</w:instrText><w:t>instruction-hidden</w:t><w:fldChar w:fldCharType=\"separate\"/><w:t>合成</w:t><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三合成末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldSimple w:instr=\"DATE\"><w:t>合成</w:t></w:fldSimple><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三合成末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldSimple w:instr=\"DATE\"><w:t>合成</w:t><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三合成末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldChar w:fldCharType=\"begin\"/><w:instrText>DATE</w:instrText><w:t>instruction-hidden</w:t><w:fldChar w:fldCharType=\"separate\"/><w:t>合成</w:t><w:fldChar w:fldCharType=\"end\"/><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三合成末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldChar w:fldCharType=\"begin\"/><w:instrText>DATE</w:instrText><w:t>instruction-hidden</w:t><w:fldChar w:fldCharType=\"separate\"/><w:t>合成</w:t><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三合成末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldSimple w:instr=\"MERGEFIELD 姓名\"><w:t>合成</w:t></w:fldSimple><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三合成末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldSimple w:instr=\"MERGEFIELD 姓名\"><w:t>合成</w:t><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三合成末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldChar w:fldCharType=\"begin\"/><w:instrText>MERGEFIELD 姓名</w:instrText><w:t>instruction-hidden</w:t><w:fldChar w:fldCharType=\"separate\"/><w:t>合成</w:t><w:fldChar w:fldCharType=\"end\"/><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三合成末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldChar w:fldCharType=\"begin\"/><w:instrText>MERGEFIELD 姓名</w:instrText><w:t>instruction-hidden</w:t><w:fldChar w:fldCharType=\"separate\"/><w:t>合成</w:t><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三合成末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldSimple w:instr=\"HYPERLINK https://example.invalid\"><w:t>合成</w:t></w:fldSimple><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三合成末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldSimple w:instr=\"HYPERLINK https://example.invalid\"><w:t>合成</w:t><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三合成末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldChar w:fldCharType=\"begin\"/><w:instrText>HYPERLINK https://example.invalid</w:instrText><w:t>instruction-hidden</w:t><w:fldChar w:fldCharType=\"separate\"/><w:t>合成</w:t><w:fldChar w:fldCharType=\"end\"/><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三合成末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldChar w:fldCharType=\"begin\"/><w:instrText>HYPERLINK https://example.invalid</w:instrText><w:t>instruction-hidden</w:t><w:fldChar w:fldCharType=\"separate\"/><w:t>合成</w:t><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三合成末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldSimple w:instr=\"\"><w:t>合成</w:t></w:fldSimple><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三合成末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldSimple w:instr=\"\"><w:t>合成</w:t><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三合成末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldChar w:fldCharType=\"begin\"/><w:instrText></w:instrText><w:t>instruction-hidden</w:t><w:fldChar w:fldCharType=\"separate\"/><w:t>合成</w:t><w:fldChar w:fldCharType=\"end\"/><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三合成末"
+    },
+    {
+      "input": "<w:t>Ａ​ 甲&amp;&lt;&#x4e59;&#19977;</w:t><w:fldChar w:fldCharType=\"begin\"/><w:instrText></w:instrText><w:t>instruction-hidden</w:t><w:fldChar w:fldCharType=\"separate\"/><w:t>合成</w:t><w:tab/><w:br/><w:cr/><w:t>末</w:t>",
+      "expected": "A甲&<乙三合成末"
+    },
+    {
+      "input": "<w:fldSimple w:instr=\"PAGE\"/>末",
+      "expected": ""
+    },
+    {
+      "input": "<w:fldChar w:fldCharType=\"end\"/><w:t>末</w:t>",
+      "expected": "末"
+    },
+    {
+      "input": "<w:fldSimple w:instr=\"DATE\"><w:t>前</w:t><w:fldSimple w:instr=\"PAGE\"><w:t>7</w:t></w:fldSimple><w:t>后</w:t></w:fldSimple>",
+      "expected": "前后"
+    },
+    {
+      "input": "<w:fldSimple w:instr=\"PAGE\"><w:fldChar w:fldCharType=\"begin\"/><w:instrText>DATE</w:instrText><w:fldChar w:fldCharType=\"separate\"/><w:t>内</w:t><w:fldChar w:fldCharType=\"end\"/></w:fldSimple>",
+      "expected": ""
+    }
+  ],
+  "inline": [
+    {
+      "changes": {
+        "word/document.xml": "<w:document xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:2in;height:25.4mm\"><v:imagedata r:id=\"img1\" /></v:shape></w:pict></w:r></w:p></w:document>",
+        "word/_rels/document.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 1,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 0,
+          "extent": [
+            {
+              "cx": "1828800",
+              "cy": "914400"
+            }
+          ],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            },
+            {
+              "id": "22",
+              "name": "合成图"
+            }
+          ],
+          "crop": [],
+          "transform": [
+            {}
+          ],
+          "blip": [
+            "img1"
+          ]
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/header2.xml": "<w:hdr xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:2in;height:25.4mm\"><v:imagedata r:id=\"img1\" cropleft=\"32768f\" croptop=\"25%\"/></v:shape></w:pict></w:r></w:p></w:hdr>",
+        "word/_rels/header2.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 1,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header2.xml": {
+          "pict": 0,
+          "extent": [
+            {
+              "cx": "1828800",
+              "cy": "914400"
+            }
+          ],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            },
+            {
+              "id": "22",
+              "name": "合成图"
+            }
+          ],
+          "crop": [
+            {
+              "l": "50000",
+              "t": "25000"
+            }
+          ],
+          "transform": [
+            {}
+          ],
+          "blip": [
+            "img1"
+          ]
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/footer3.xml": "<w:ftr xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:2in;height:25.4mm\"><v:imagedata r:id=\"img1\" cropright=\"0.5\" cropbottom=\"200%\"/></v:shape></w:pict></w:r></w:p></w:ftr>",
+        "word/_rels/footer3.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 1,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer3.xml": {
+          "pict": 0,
+          "extent": [
+            {
+              "cx": "1828800",
+              "cy": "914400"
+            }
+          ],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            },
+            {
+              "id": "22",
+              "name": "合成图"
+            }
+          ],
+          "crop": [
+            {
+              "r": "50000",
+              "b": "100000"
+            }
+          ],
+          "transform": [
+            {}
+          ],
+          "blip": [
+            "img1"
+          ]
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/footnotes.xml": "<w:footnotes xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:2in;height:25.4mm\"><v:imagedata r:id=\"img1\" cropleft=\"nonsense\"/></v:shape></w:pict></w:r></w:p></w:footnotes>",
+        "word/_rels/footnotes.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 1,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footnotes.xml": {
+          "pict": 0,
+          "extent": [
+            {
+              "cx": "1828800",
+              "cy": "914400"
+            }
+          ],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            },
+            {
+              "id": "22",
+              "name": "合成图"
+            }
+          ],
+          "crop": [],
+          "transform": [
+            {}
+          ],
+          "blip": [
+            "img1"
+          ]
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/endnotes.xml": "<w:endnotes xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:2in;height:25.4mm\"><v:imagedata r:id=\"img1\" cropleft=\"-1%\"/></v:shape></w:pict></w:r></w:p></w:endnotes>",
+        "word/_rels/endnotes.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 0,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/endnotes.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            }
+          ],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/comments.xml": "<w:comments xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:2.54cm;height:96px\"><v:imagedata r:id=\"img1\" /></v:shape></w:pict></w:r></w:p></w:comments>",
+        "word/_rels/comments.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 1,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [
+            {
+              "cx": "914400",
+              "cy": "914400"
+            }
+          ],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            },
+            {
+              "id": "22",
+              "name": "合成图"
+            }
+          ],
+          "crop": [],
+          "transform": [
+            {}
+          ],
+          "blip": [
+            "img1"
+          ]
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/document.xml": "<w:document xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:2.54cm;height:96px\"><v:imagedata r:id=\"img1\" cropleft=\"32768f\" croptop=\"25%\"/></v:shape></w:pict></w:r></w:p></w:document>",
+        "word/_rels/document.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 1,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 0,
+          "extent": [
+            {
+              "cx": "914400",
+              "cy": "914400"
+            }
+          ],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            },
+            {
+              "id": "22",
+              "name": "合成图"
+            }
+          ],
+          "crop": [
+            {
+              "l": "50000",
+              "t": "25000"
+            }
+          ],
+          "transform": [
+            {}
+          ],
+          "blip": [
+            "img1"
+          ]
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/header2.xml": "<w:hdr xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:2.54cm;height:96px\"><v:imagedata r:id=\"img1\" cropright=\"0.5\" cropbottom=\"200%\"/></v:shape></w:pict></w:r></w:p></w:hdr>",
+        "word/_rels/header2.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 1,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header2.xml": {
+          "pict": 0,
+          "extent": [
+            {
+              "cx": "914400",
+              "cy": "914400"
+            }
+          ],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            },
+            {
+              "id": "22",
+              "name": "合成图"
+            }
+          ],
+          "crop": [
+            {
+              "r": "50000",
+              "b": "100000"
+            }
+          ],
+          "transform": [
+            {}
+          ],
+          "blip": [
+            "img1"
+          ]
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/footer3.xml": "<w:ftr xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:2.54cm;height:96px\"><v:imagedata r:id=\"img1\" cropleft=\"nonsense\"/></v:shape></w:pict></w:r></w:p></w:ftr>",
+        "word/_rels/footer3.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 1,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer3.xml": {
+          "pict": 0,
+          "extent": [
+            {
+              "cx": "914400",
+              "cy": "914400"
+            }
+          ],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            },
+            {
+              "id": "22",
+              "name": "合成图"
+            }
+          ],
+          "crop": [],
+          "transform": [
+            {}
+          ],
+          "blip": [
+            "img1"
+          ]
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/footnotes.xml": "<w:footnotes xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:2.54cm;height:96px\"><v:imagedata r:id=\"img1\" cropleft=\"-1%\"/></v:shape></w:pict></w:r></w:p></w:footnotes>",
+        "word/_rels/footnotes.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 0,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footnotes.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            }
+          ],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/endnotes.xml": "<w:endnotes xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:1pt;height:2\"><v:imagedata r:id=\"img1\" /></v:shape></w:pict></w:r></w:p></w:endnotes>",
+        "word/_rels/endnotes.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 1,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/endnotes.xml": {
+          "pict": 0,
+          "extent": [
+            {
+              "cx": "12700",
+              "cy": "25400"
+            }
+          ],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            },
+            {
+              "id": "22",
+              "name": "合成图"
+            }
+          ],
+          "crop": [],
+          "transform": [
+            {}
+          ],
+          "blip": [
+            "img1"
+          ]
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/comments.xml": "<w:comments xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:1pt;height:2\"><v:imagedata r:id=\"img1\" cropleft=\"32768f\" croptop=\"25%\"/></v:shape></w:pict></w:r></w:p></w:comments>",
+        "word/_rels/comments.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 1,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [
+            {
+              "cx": "12700",
+              "cy": "25400"
+            }
+          ],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            },
+            {
+              "id": "22",
+              "name": "合成图"
+            }
+          ],
+          "crop": [
+            {
+              "l": "50000",
+              "t": "25000"
+            }
+          ],
+          "transform": [
+            {}
+          ],
+          "blip": [
+            "img1"
+          ]
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/document.xml": "<w:document xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:1pt;height:2\"><v:imagedata r:id=\"img1\" cropright=\"0.5\" cropbottom=\"200%\"/></v:shape></w:pict></w:r></w:p></w:document>",
+        "word/_rels/document.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 1,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 0,
+          "extent": [
+            {
+              "cx": "12700",
+              "cy": "25400"
+            }
+          ],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            },
+            {
+              "id": "22",
+              "name": "合成图"
+            }
+          ],
+          "crop": [
+            {
+              "r": "50000",
+              "b": "100000"
+            }
+          ],
+          "transform": [
+            {}
+          ],
+          "blip": [
+            "img1"
+          ]
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/header2.xml": "<w:hdr xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:1pt;height:2\"><v:imagedata r:id=\"img1\" cropleft=\"nonsense\"/></v:shape></w:pict></w:r></w:p></w:hdr>",
+        "word/_rels/header2.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 1,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header2.xml": {
+          "pict": 0,
+          "extent": [
+            {
+              "cx": "12700",
+              "cy": "25400"
+            }
+          ],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            },
+            {
+              "id": "22",
+              "name": "合成图"
+            }
+          ],
+          "crop": [],
+          "transform": [
+            {}
+          ],
+          "blip": [
+            "img1"
+          ]
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/footer3.xml": "<w:ftr xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:1pt;height:2\"><v:imagedata r:id=\"img1\" cropleft=\"-1%\"/></v:shape></w:pict></w:r></w:p></w:ftr>",
+        "word/_rels/footer3.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 0,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer3.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            }
+          ],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/footnotes.xml": "<w:footnotes xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:0;height:-3\"><v:imagedata r:id=\"img1\" /></v:shape></w:pict></w:r></w:p></w:footnotes>",
+        "word/_rels/footnotes.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 1,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footnotes.xml": {
+          "pict": 0,
+          "extent": [
+            {
+              "cx": "5486400",
+              "cy": "3086100"
+            }
+          ],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            },
+            {
+              "id": "22",
+              "name": "合成图"
+            }
+          ],
+          "crop": [],
+          "transform": [
+            {}
+          ],
+          "blip": [
+            "img1"
+          ]
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/endnotes.xml": "<w:endnotes xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:0;height:-3\"><v:imagedata r:id=\"img1\" cropleft=\"32768f\" croptop=\"25%\"/></v:shape></w:pict></w:r></w:p></w:endnotes>",
+        "word/_rels/endnotes.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 1,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/endnotes.xml": {
+          "pict": 0,
+          "extent": [
+            {
+              "cx": "5486400",
+              "cy": "3086100"
+            }
+          ],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            },
+            {
+              "id": "22",
+              "name": "合成图"
+            }
+          ],
+          "crop": [
+            {
+              "l": "50000",
+              "t": "25000"
+            }
+          ],
+          "transform": [
+            {}
+          ],
+          "blip": [
+            "img1"
+          ]
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/comments.xml": "<w:comments xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:0;height:-3\"><v:imagedata r:id=\"img1\" cropright=\"0.5\" cropbottom=\"200%\"/></v:shape></w:pict></w:r></w:p></w:comments>",
+        "word/_rels/comments.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 1,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [
+            {
+              "cx": "5486400",
+              "cy": "3086100"
+            }
+          ],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            },
+            {
+              "id": "22",
+              "name": "合成图"
+            }
+          ],
+          "crop": [
+            {
+              "r": "50000",
+              "b": "100000"
+            }
+          ],
+          "transform": [
+            {}
+          ],
+          "blip": [
+            "img1"
+          ]
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/document.xml": "<w:document xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:0;height:-3\"><v:imagedata r:id=\"img1\" cropleft=\"nonsense\"/></v:shape></w:pict></w:r></w:p></w:document>",
+        "word/_rels/document.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 1,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 0,
+          "extent": [
+            {
+              "cx": "5486400",
+              "cy": "3086100"
+            }
+          ],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            },
+            {
+              "id": "22",
+              "name": "合成图"
+            }
+          ],
+          "crop": [],
+          "transform": [
+            {}
+          ],
+          "blip": [
+            "img1"
+          ]
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/header2.xml": "<w:hdr xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:0;height:-3\"><v:imagedata r:id=\"img1\" cropleft=\"-1%\"/></v:shape></w:pict></w:r></w:p></w:hdr>",
+        "word/_rels/header2.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 0,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header2.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            }
+          ],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/footer3.xml": "<w:ftr xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:bad;height:0\"><v:imagedata r:id=\"img1\" /></v:shape></w:pict></w:r></w:p></w:ftr>",
+        "word/_rels/footer3.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 1,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer3.xml": {
+          "pict": 0,
+          "extent": [
+            {
+              "cx": "5486400",
+              "cy": "3086100"
+            }
+          ],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            },
+            {
+              "id": "22",
+              "name": "合成图"
+            }
+          ],
+          "crop": [],
+          "transform": [
+            {}
+          ],
+          "blip": [
+            "img1"
+          ]
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/footnotes.xml": "<w:footnotes xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:bad;height:0\"><v:imagedata r:id=\"img1\" cropleft=\"32768f\" croptop=\"25%\"/></v:shape></w:pict></w:r></w:p></w:footnotes>",
+        "word/_rels/footnotes.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 1,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footnotes.xml": {
+          "pict": 0,
+          "extent": [
+            {
+              "cx": "5486400",
+              "cy": "3086100"
+            }
+          ],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            },
+            {
+              "id": "22",
+              "name": "合成图"
+            }
+          ],
+          "crop": [
+            {
+              "l": "50000",
+              "t": "25000"
+            }
+          ],
+          "transform": [
+            {}
+          ],
+          "blip": [
+            "img1"
+          ]
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/endnotes.xml": "<w:endnotes xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:bad;height:0\"><v:imagedata r:id=\"img1\" cropright=\"0.5\" cropbottom=\"200%\"/></v:shape></w:pict></w:r></w:p></w:endnotes>",
+        "word/_rels/endnotes.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 1,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/endnotes.xml": {
+          "pict": 0,
+          "extent": [
+            {
+              "cx": "5486400",
+              "cy": "3086100"
+            }
+          ],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            },
+            {
+              "id": "22",
+              "name": "合成图"
+            }
+          ],
+          "crop": [
+            {
+              "r": "50000",
+              "b": "100000"
+            }
+          ],
+          "transform": [
+            {}
+          ],
+          "blip": [
+            "img1"
+          ]
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/comments.xml": "<w:comments xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:bad;height:0\"><v:imagedata r:id=\"img1\" cropleft=\"nonsense\"/></v:shape></w:pict></w:r></w:p></w:comments>",
+        "word/_rels/comments.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 1,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [
+            {
+              "cx": "5486400",
+              "cy": "3086100"
+            }
+          ],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            },
+            {
+              "id": "22",
+              "name": "合成图"
+            }
+          ],
+          "crop": [],
+          "transform": [
+            {}
+          ],
+          "blip": [
+            "img1"
+          ]
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/document.xml": "<w:document xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:bad;height:0\"><v:imagedata r:id=\"img1\" cropleft=\"-1%\"/></v:shape></w:pict></w:r></w:p></w:document>",
+        "word/_rels/document.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 0,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            }
+          ],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/header2.xml": "<w:hdr xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:2in;rotation:-15;flip:x y\"><v:imagedata r:id=\"img1\" /></v:shape></w:pict></w:r></w:p></w:hdr>",
+        "word/_rels/header2.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 1,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header2.xml": {
+          "pict": 0,
+          "extent": [
+            {
+              "cx": "1828800",
+              "cy": "3086100"
+            }
+          ],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            },
+            {
+              "id": "22",
+              "name": "合成图"
+            }
+          ],
+          "crop": [],
+          "transform": [
+            {
+              "rot": "-900000",
+              "flipH": "1",
+              "flipV": "1"
+            }
+          ],
+          "blip": [
+            "img1"
+          ]
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/footer3.xml": "<w:ftr xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:2in;rotation:-15;flip:x y\"><v:imagedata r:id=\"img1\" cropleft=\"32768f\" croptop=\"25%\"/></v:shape></w:pict></w:r></w:p></w:ftr>",
+        "word/_rels/footer3.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 1,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer3.xml": {
+          "pict": 0,
+          "extent": [
+            {
+              "cx": "1828800",
+              "cy": "3086100"
+            }
+          ],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            },
+            {
+              "id": "22",
+              "name": "合成图"
+            }
+          ],
+          "crop": [
+            {
+              "l": "50000",
+              "t": "25000"
+            }
+          ],
+          "transform": [
+            {
+              "rot": "-900000",
+              "flipH": "1",
+              "flipV": "1"
+            }
+          ],
+          "blip": [
+            "img1"
+          ]
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/footnotes.xml": "<w:footnotes xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:2in;rotation:-15;flip:x y\"><v:imagedata r:id=\"img1\" cropright=\"0.5\" cropbottom=\"200%\"/></v:shape></w:pict></w:r></w:p></w:footnotes>",
+        "word/_rels/footnotes.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 1,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footnotes.xml": {
+          "pict": 0,
+          "extent": [
+            {
+              "cx": "1828800",
+              "cy": "3086100"
+            }
+          ],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            },
+            {
+              "id": "22",
+              "name": "合成图"
+            }
+          ],
+          "crop": [
+            {
+              "r": "50000",
+              "b": "100000"
+            }
+          ],
+          "transform": [
+            {
+              "rot": "-900000",
+              "flipH": "1",
+              "flipV": "1"
+            }
+          ],
+          "blip": [
+            "img1"
+          ]
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/endnotes.xml": "<w:endnotes xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:2in;rotation:-15;flip:x y\"><v:imagedata r:id=\"img1\" cropleft=\"nonsense\"/></v:shape></w:pict></w:r></w:p></w:endnotes>",
+        "word/_rels/endnotes.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 1,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/endnotes.xml": {
+          "pict": 0,
+          "extent": [
+            {
+              "cx": "1828800",
+              "cy": "3086100"
+            }
+          ],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            },
+            {
+              "id": "22",
+              "name": "合成图"
+            }
+          ],
+          "crop": [],
+          "transform": [
+            {
+              "rot": "-900000",
+              "flipH": "1",
+              "flipV": "1"
+            }
+          ],
+          "blip": [
+            "img1"
+          ]
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/comments.xml": "<w:comments xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:2in;rotation:-15;flip:x y\"><v:imagedata r:id=\"img1\" cropleft=\"-1%\"/></v:shape></w:pict></w:r></w:p></w:comments>",
+        "word/_rels/comments.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 0,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            }
+          ],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/document.xml": "<w:document xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:20;rotation:90deg;flip:y\"><v:imagedata r:id=\"img1\" /></v:shape></w:pict></w:r></w:p></w:document>",
+        "word/_rels/document.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 1,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 0,
+          "extent": [
+            {
+              "cx": "254000",
+              "cy": "3086100"
+            }
+          ],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            },
+            {
+              "id": "22",
+              "name": "合成图"
+            }
+          ],
+          "crop": [],
+          "transform": [
+            {
+              "rot": "5400000",
+              "flipV": "1"
+            }
+          ],
+          "blip": [
+            "img1"
+          ]
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/header2.xml": "<w:hdr xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:20;rotation:90deg;flip:y\"><v:imagedata r:id=\"img1\" cropleft=\"32768f\" croptop=\"25%\"/></v:shape></w:pict></w:r></w:p></w:hdr>",
+        "word/_rels/header2.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 1,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header2.xml": {
+          "pict": 0,
+          "extent": [
+            {
+              "cx": "254000",
+              "cy": "3086100"
+            }
+          ],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            },
+            {
+              "id": "22",
+              "name": "合成图"
+            }
+          ],
+          "crop": [
+            {
+              "l": "50000",
+              "t": "25000"
+            }
+          ],
+          "transform": [
+            {
+              "rot": "5400000",
+              "flipV": "1"
+            }
+          ],
+          "blip": [
+            "img1"
+          ]
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/footer3.xml": "<w:ftr xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:20;rotation:90deg;flip:y\"><v:imagedata r:id=\"img1\" cropright=\"0.5\" cropbottom=\"200%\"/></v:shape></w:pict></w:r></w:p></w:ftr>",
+        "word/_rels/footer3.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 1,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer3.xml": {
+          "pict": 0,
+          "extent": [
+            {
+              "cx": "254000",
+              "cy": "3086100"
+            }
+          ],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            },
+            {
+              "id": "22",
+              "name": "合成图"
+            }
+          ],
+          "crop": [
+            {
+              "r": "50000",
+              "b": "100000"
+            }
+          ],
+          "transform": [
+            {
+              "rot": "5400000",
+              "flipV": "1"
+            }
+          ],
+          "blip": [
+            "img1"
+          ]
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/footnotes.xml": "<w:footnotes xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:20;rotation:90deg;flip:y\"><v:imagedata r:id=\"img1\" cropleft=\"nonsense\"/></v:shape></w:pict></w:r></w:p></w:footnotes>",
+        "word/_rels/footnotes.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 1,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footnotes.xml": {
+          "pict": 0,
+          "extent": [
+            {
+              "cx": "254000",
+              "cy": "3086100"
+            }
+          ],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            },
+            {
+              "id": "22",
+              "name": "合成图"
+            }
+          ],
+          "crop": [],
+          "transform": [
+            {
+              "rot": "5400000",
+              "flipV": "1"
+            }
+          ],
+          "blip": [
+            "img1"
+          ]
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/endnotes.xml": "<w:endnotes xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:20;rotation:90deg;flip:y\"><v:imagedata r:id=\"img1\" cropleft=\"-1%\"/></v:shape></w:pict></w:r></w:p></w:endnotes>",
+        "word/_rels/endnotes.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 0,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/endnotes.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            }
+          ],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/comments.xml": "<w:comments xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"position:absolute;width:20\"><v:imagedata r:id=\"img1\" /></v:shape></w:pict></w:r></w:p></w:comments>",
+        "word/_rels/comments.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 0,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            }
+          ],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/document.xml": "<w:document xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"position:absolute;width:20\"><v:imagedata r:id=\"img1\" cropleft=\"32768f\" croptop=\"25%\"/></v:shape></w:pict></w:r></w:p></w:document>",
+        "word/_rels/document.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 0,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            }
+          ],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/header2.xml": "<w:hdr xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"position:absolute;width:20\"><v:imagedata r:id=\"img1\" cropright=\"0.5\" cropbottom=\"200%\"/></v:shape></w:pict></w:r></w:p></w:hdr>",
+        "word/_rels/header2.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 0,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header2.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            }
+          ],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/footer3.xml": "<w:ftr xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"position:absolute;width:20\"><v:imagedata r:id=\"img1\" cropleft=\"nonsense\"/></v:shape></w:pict></w:r></w:p></w:ftr>",
+        "word/_rels/footer3.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 0,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer3.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            }
+          ],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/footnotes.xml": "<w:footnotes xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"position:absolute;width:20\"><v:imagedata r:id=\"img1\" cropleft=\"-1%\"/></v:shape></w:pict></w:r></w:p></w:footnotes>",
+        "word/_rels/footnotes.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 0,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footnotes.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            }
+          ],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/endnotes.xml": "<w:endnotes xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"position:relative;width:20\"><v:imagedata r:id=\"img1\" /></v:shape></w:pict></w:r></w:p></w:endnotes>",
+        "word/_rels/endnotes.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 0,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/endnotes.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            }
+          ],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/comments.xml": "<w:comments xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"position:relative;width:20\"><v:imagedata r:id=\"img1\" cropleft=\"32768f\" croptop=\"25%\"/></v:shape></w:pict></w:r></w:p></w:comments>",
+        "word/_rels/comments.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 0,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            }
+          ],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/document.xml": "<w:document xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"position:relative;width:20\"><v:imagedata r:id=\"img1\" cropright=\"0.5\" cropbottom=\"200%\"/></v:shape></w:pict></w:r></w:p></w:document>",
+        "word/_rels/document.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 0,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            }
+          ],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/header2.xml": "<w:hdr xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"position:relative;width:20\"><v:imagedata r:id=\"img1\" cropleft=\"nonsense\"/></v:shape></w:pict></w:r></w:p></w:hdr>",
+        "word/_rels/header2.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 0,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header2.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            }
+          ],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/footer3.xml": "<w:ftr xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"position:relative;width:20\"><v:imagedata r:id=\"img1\" cropleft=\"-1%\"/></v:shape></w:pict></w:r></w:p></w:ftr>",
+        "word/_rels/footer3.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 0,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer3.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            }
+          ],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/footnotes.xml": "<w:footnotes xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"\"><v:imagedata r:id=\"img1\" /></v:shape></w:pict></w:r></w:p></w:footnotes>",
+        "word/_rels/footnotes.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 1,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footnotes.xml": {
+          "pict": 0,
+          "extent": [
+            {
+              "cx": "5486400",
+              "cy": "3086100"
+            }
+          ],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            },
+            {
+              "id": "22",
+              "name": "合成图"
+            }
+          ],
+          "crop": [],
+          "transform": [
+            {}
+          ],
+          "blip": [
+            "img1"
+          ]
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/endnotes.xml": "<w:endnotes xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"\"><v:imagedata r:id=\"img1\" cropleft=\"32768f\" croptop=\"25%\"/></v:shape></w:pict></w:r></w:p></w:endnotes>",
+        "word/_rels/endnotes.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 1,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/endnotes.xml": {
+          "pict": 0,
+          "extent": [
+            {
+              "cx": "5486400",
+              "cy": "3086100"
+            }
+          ],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            },
+            {
+              "id": "22",
+              "name": "合成图"
+            }
+          ],
+          "crop": [
+            {
+              "l": "50000",
+              "t": "25000"
+            }
+          ],
+          "transform": [
+            {}
+          ],
+          "blip": [
+            "img1"
+          ]
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/comments.xml": "<w:comments xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"\"><v:imagedata r:id=\"img1\" cropright=\"0.5\" cropbottom=\"200%\"/></v:shape></w:pict></w:r></w:p></w:comments>",
+        "word/_rels/comments.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 1,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [
+            {
+              "cx": "5486400",
+              "cy": "3086100"
+            }
+          ],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            },
+            {
+              "id": "22",
+              "name": "合成图"
+            }
+          ],
+          "crop": [
+            {
+              "r": "50000",
+              "b": "100000"
+            }
+          ],
+          "transform": [
+            {}
+          ],
+          "blip": [
+            "img1"
+          ]
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/document.xml": "<w:document xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"\"><v:imagedata r:id=\"img1\" cropleft=\"nonsense\"/></v:shape></w:pict></w:r></w:p></w:document>",
+        "word/_rels/document.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 1,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 0,
+          "extent": [
+            {
+              "cx": "5486400",
+              "cy": "3086100"
+            }
+          ],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            },
+            {
+              "id": "22",
+              "name": "合成图"
+            }
+          ],
+          "crop": [],
+          "transform": [
+            {}
+          ],
+          "blip": [
+            "img1"
+          ]
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/header2.xml": "<w:hdr xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"\"><v:imagedata r:id=\"img1\" cropleft=\"-1%\"/></v:shape></w:pict></w:r></w:p></w:hdr>",
+        "word/_rels/header2.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 0,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header2.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            }
+          ],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/footer3.xml": "<w:ftr xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:20\"><v:textbox><w:txbxContent><w:p/></w:txbxContent></v:textbox><v:imagedata r:id=\"img1\" /></v:shape></w:pict></w:r></w:p></w:ftr>",
+        "word/_rels/footer3.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 0,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer3.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            }
+          ],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/footnotes.xml": "<w:footnotes xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:group><v:shape id=\"合成图\" style=\"width:20\"><v:imagedata r:id=\"img1\" /></v:shape></v:group></w:pict></w:r></w:p></w:footnotes>",
+        "word/_rels/footnotes.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 0,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footnotes.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            }
+          ],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/endnotes.xml": "<w:endnotes xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:20\"><v:imagedata r:id=\"img1\" /><v:imagedata r:id=\"img1\"/></v:shape></w:pict></w:r></w:p></w:endnotes>",
+        "word/_rels/endnotes.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 0,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/endnotes.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            }
+          ],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/comments.xml": "<w:comments xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:20\"><v:shape/><v:imagedata r:id=\"img1\" /></v:shape></w:pict></w:r></w:p></w:comments>",
+        "word/_rels/comments.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 0,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            }
+          ],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/document.xml": "<w:document xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:20\"><v:imagedata r:id=\"missing\" /></v:shape></w:pict></w:r></w:p></w:document>",
+        "word/_rels/document.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 0,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            }
+          ],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/header2.xml": "<w:hdr xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:20\"><v:imagedata /></v:shape></w:pict></w:r></w:p></w:hdr>",
+        "word/_rels/header2.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 0,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/header2.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            }
+          ],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    },
+    {
+      "changes": {
+        "word/footer3.xml": "<w:ftr xmlns:w=\"http://schemas.openxmlformats.org/wordprocessingml/2006/main\" xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:r=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships\" xmlns:wp=\"http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing\"><wp:docPr id=\"21\" name=\"existing\"/><w:p><w:r><w:pict><v:shape id=\"合成图\" style=\"width:20\" flip=\"x\"><v:imagedata r:id=\"img1\" /></v:shape></w:pict></w:r></w:p></w:ftr>",
+        "word/_rels/footer3.xml.rels": "<Relationships xmlns=\"http://schemas.openxmlformats.org/package/2006/relationships\"><Relationship Id=\"img1\" Type=\"http://schemas.openxmlformats.org/officeDocument/2006/relationships/image\" Target=\"media/synthetic.png\"/></Relationships>"
+      },
+      "converted": 1,
+      "visual": {
+        "word/comments.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/document.xml": {
+          "pict": 1,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        },
+        "word/footer3.xml": {
+          "pict": 0,
+          "extent": [
+            {
+              "cx": "254000",
+              "cy": "3086100"
+            }
+          ],
+          "property": [
+            {
+              "id": "21",
+              "name": "existing"
+            },
+            {
+              "id": "22",
+              "name": "合成图"
+            }
+          ],
+          "crop": [],
+          "transform": [
+            {
+              "flipH": "1"
+            }
+          ],
+          "blip": [
+            "img1"
+          ]
+        },
+        "word/header1.xml": {
+          "pict": 0,
+          "extent": [],
+          "property": [],
+          "crop": [],
+          "transform": [],
+          "blip": []
+        }
+      }
+    }
+  ],
+  "summaries": [
+    {
+      "path": "tests/fixtures/legacy-office/simple.docx",
+      "sha256": "fad50abcfe8d2384bf16136956adc8d4fdb5c0d098580eeba564305bc0760575",
+      "expected": {
+        "body": "BODY_SYNTHETIC电话13800138000TABLE_R1C1TABLE_R1C2TABLE_R2C1TABLE_R2C2FOOTNOTE_SYNTHETIC_REFERENCEENDNOTE_SYNTHETIC_REFERENCECOMMENT_ANCHOR",
+        "headers": [
+          "HEADER_SYNTHETIC"
+        ],
+        "footers": [
+          "FOOTER_SYNTHETIC"
+        ],
+        "footnotes": "FOOTNOTE_SYNTHETIC",
+        "endnotes": "ENDNOTE_SYNTHETIC",
+        "comments": "COMMENT_SYNTHETIC",
+        "structures": {
+          "tables": 1,
+          "textboxes": 0,
+          "images": 1
+        }
+      }
+    },
+    {
+      "path": "tests/fixtures/legacy-office/imported.docx",
+      "sha256": "7b10aa8943f2917adb86d6529e5765b83905dbef7926d527e70018c86ef7ed2b",
+      "expected": {
+        "body": "BODY_SYNTHETIC电话13800138000TABLE_R1C1TABLE_R1C2TABLE_R2C1TABLE_R2C2FOOTNOTE_SYNTHETIC_REFERENCEENDNOTE_SYNTHETIC_REFERENCECOMMENT_ANCHOR",
+        "headers": [
+          "HEADER_SYNTHETIC"
+        ],
+        "footers": [
+          "FOOTER_SYNTHETIC"
+        ],
+        "footnotes": "FOOTNOTE_SYNTHETIC",
+        "endnotes": "ENDNOTE_SYNTHETIC",
+        "comments": "COMMENT_SYNTHETIC",
+        "structures": {
+          "tables": 1,
+          "textboxes": 0,
+          "images": 1
+        }
+      }
+    },
+    {
+      "path": "tests/fixtures/legacy-office/roundtrip.docx",
+      "sha256": "b244de0aeb7d7acc0a57e9800a0dc0e3e7a669f00a3f584ddb40fa4bba7b8c5a",
+      "expected": {
+        "body": "BODY_SYNTHETIC电话13800138000TABLE_R1C1TABLE_R1C2TABLE_R2C1TABLE_R2C2FOOTNOTE_SYNTHETIC_REFERENCEENDNOTE_SYNTHETIC_REFERENCECOMMENT_ANCHOR",
+        "headers": [
+          "HEADER_SYNTHETIC"
+        ],
+        "footers": [
+          "FOOTER_SYNTHETIC"
+        ],
+        "footnotes": "FOOTNOTE_SYNTHETIC",
+        "endnotes": "ENDNOTE_SYNTHETIC",
+        "comments": "COMMENT_SYNTHETIC",
+        "structures": {
+          "tables": 1,
+          "textboxes": 0,
+          "images": 1
+        }
+      }
+    },
+    {
+      "path": "tests/fixtures/legacy-office/textbox-imported.docx",
+      "sha256": "731f9e2c1d42eaae6cf87c111254934f4f05bd259b1f90013d6e3a7617835b1b",
+      "expected": {
+        "body": "BODY_SYNTHETIC电话13800138000TABLE_R1C1TABLE_R1C2TABLE_R2C1TABLE_R2C2FOOTNOTE_SYNTHETIC_REFERENCEENDNOTE_SYNTHETIC_REFERENCECOMMENT_ANCHORTEXTBOX_SYNTHETICTEXTBOX_SYNTHETIC",
+        "headers": [
+          "HEADER_SYNTHETIC"
+        ],
+        "footers": [
+          "FOOTER_SYNTHETIC"
+        ],
+        "footnotes": "FOOTNOTE_SYNTHETIC",
+        "endnotes": "ENDNOTE_SYNTHETIC",
+        "comments": "COMMENT_SYNTHETIC",
+        "structures": {
+          "tables": 1,
+          "textboxes": 2,
+          "images": 1
+        }
+      }
+    },
+    {
+      "path": "tests/fixtures/legacy-office/textbox-roundtrip.docx",
+      "sha256": "c42f78371748c9a256cb6a4d51e9f97c2718e11a04344ac007a18f509d98fefb",
+      "expected": {
+        "body": "BODY_SYNTHETIC电话13800138000TABLE_R1C1TABLE_R1C2TABLE_R2C1TABLE_R2C2FOOTNOTE_SYNTHETIC_REFERENCEENDNOTE_SYNTHETIC_REFERENCECOMMENT_ANCHORTEXTBOX_SYNTHETICTEXTBOX_SYNTHETIC",
+        "headers": [
+          "HEADER_SYNTHETIC"
+        ],
+        "footers": [
+          "FOOTER_SYNTHETIC"
+        ],
+        "footnotes": "FOOTNOTE_SYNTHETIC",
+        "endnotes": "ENDNOTE_SYNTHETIC",
+        "comments": "COMMENT_SYNTHETIC",
+        "structures": {
+          "tables": 1,
+          "textboxes": 3,
+          "images": 1
+        }
+      }
+    }
+  ],
+  "boundaries": [
+    "Only extracted pure Tp/Op/Sp dependency closure executed locally; no licensed competitor processor, application, engine or activation invoked.",
+    "No external-link normalization case in equivalence corpus: our normalizer deliberately refuses external image relationships.",
+    "Expected visual objects compare namespace-aware numeric/link metadata rather than serializer bytes; source ZIP implementation replaced by a local in-memory ZIP facade."
+  ]
+}

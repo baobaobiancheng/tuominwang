@@ -1,0 +1,2749 @@
+{
+  "status": "read_only_reconciliation_no_ledger_change",
+  "capturedAt": "2026-10-15T10:28:33.190095+00:00",
+  "ledgerStatusDictionary": {
+    "I0": "未逐项评估",
+    "I1": "已有独立相关实现，仍有差异/缺项",
+    "I2": "对应能力明确未实现/未启用",
+    "I3": "不属于当前网页版功能对齐范围",
+    "I4": "逐项实现及验证完成"
+  },
+  "ledgerFullCounts": {
+    "I4": 38,
+    "I3": 60,
+    "I1": 148,
+    "I2": 12
+  },
+  "i1Count": 148,
+  "evidenceGroupCounts": {
+    "C196": 94,
+    "rules35": 29,
+    "visual21_or_ui6": 25
+  },
+  "classificationCounts": {
+    "bounded_implemented_candidate_pending_final_gates": 72,
+    "implemented_with_protocol_format_or_native_difference": 29,
+    "named_mcp_tool_actual_cloud_adaptation_source_protocol_boundary": 12,
+    "named_method_actual_cloud_adaptation_native_or_external_boundary": 5,
+    "native_browser_adaptation_explicit_boundary": 5,
+    "native_desktop_selection_adapted_to_browser": 5,
+    "ocr_lazy_to_eager_timing_adaptation_no_completed_document_counterexample": 1,
+    "specific_own_interface_receipt_not_consolidated_in_ledger": 12,
+    "ui_surface_or_acceptance_difference_no_named_missing_business_result": 6,
+    "batch_legacy_default_original_doc_actual_api_verified": 1
+  },
+  "confirmedUnimplementedPublicBusinessNodes": [],
+  "meaning": "I1 records related own implementation with differences, missing pieces, or incomplete per-ID proof. It is not a count of absent public business functions. I4 candidates stay I1 until root final gate and ledger decision.",
+  "sourceHashes": {
+    "ledger.json": "73fd4363e8cab1aef50c7f19bc354b0cd3973c4ae49c6a14541395ae9d06f8a7",
+    "contracts/team-sol-architecture-C196-independent-join-20261015.json": "067709b2bfa4b2b4e738c0347ad8b1f1f29a6f409f3f795dd8919436144fd2e8",
+    "contracts/team-sol-architecture-final-implementation-gaps-20261015.json": "25df418e67982f03d10b5313ae26e804f157724474092e39959a0441b8f6beea",
+    "contracts/current-interface-handoff-C-20261015.json": "f17bf198d47414d221e8964e0cef6a2dc9beed4dc4428b6102326d390420e27f",
+    "contracts/team-sol-rules-final-implementation-map-20261015.json": "8c82bdb50b7e0d78ed5c4d742b5fd162fa18998f69f90ef57e5d1fa33033d84f",
+    "contracts/team-sol-visual-final-implementation-map-20261015.json": "531376ac180de72e355979d36e625a4eb8555b96055bb994d2aa2d5ea54ef56d"
+  },
+  "boundaries": [
+    "No competitor licensed runtime was executed; all source entries remain R0.",
+    "C196 static semantic closure does not imply implementation I4.",
+    "The 12 C entries with ledger 未逐项评估 retain unknown per-ID acceptance despite group-level implementation coverage.",
+    "The visual get-ocr-page branch is a lazy versus eager timing adaptation, not a proven missing OCR page in a completed document.",
+    "UI hierarchy/surface differences and final Edge acceptance remain open; the later project entity audit implementation supersedes older missing-feature wording for UI-67e30cf66ad0.",
+    "The active full Edge result and deployment are not included."
+  ],
+  "rows": [
+    {
+      "id": "IPC-121d180be5d8",
+      "name": "ai-collab:repair-task-storage",
+      "kind": "IPC",
+      "namespace": "ai-collab",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "ai-collab:repair-task-storage 已在隔离云端适配中逐方法实际调用成功；AEAD storage checked, truthful repairPerformed=false when all healthy。保留现 I1，不声称 Electron 本地管道/私有协议或竞品许可运行等价。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "named_method_actual_cloud_adaptation_native_or_external_boundary",
+      "exactDifference": "ai-collab:repair-task-storage 已在隔离云端适配中逐方法实际调用成功；AEAD storage checked, truthful repairPerformed=false when all healthy。保留现 I1，不声称 Electron 本地管道/私有协议或竞品许可运行等价。",
+      "suggestedStatusFromReport": null,
+      "evidencePointers": [
+        "contracts/mcp-exact-method-runtime-20261014.json#IPC-121d180be5d8"
+      ]
+    },
+    {
+      "id": "IPC-7f4cfe68e159",
+      "name": "app:export-crash-log",
+      "kind": "IPC",
+      "namespace": "app",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "未逐项评估；同业务域有能力不等于此通道已对齐。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "specific_own_interface_receipt_not_consolidated_in_ledger",
+      "exactDifference": "Ledger says 未逐项评估; C implementation gap review names domain implementation but does not provide a final per-ID completion receipt here. No absent public business node was confirmed.",
+      "suggestedStatusFromReport": null,
+      "evidencePointers": [
+        "contracts/team-sol-architecture-final-implementation-gaps-20261015.json",
+        "ledger.json#IPC-7f4cfe68e159"
+      ]
+    },
+    {
+      "id": "IPC-611ab311c5f6",
+      "name": "app:get-version",
+      "kind": "IPC",
+      "namespace": "app",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "未逐项评估；同业务域有能力不等于此通道已对齐。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "specific_own_interface_receipt_not_consolidated_in_ledger",
+      "exactDifference": "Ledger says 未逐项评估; C implementation gap review names domain implementation but does not provide a final per-ID completion receipt here. No absent public business node was confirmed.",
+      "suggestedStatusFromReport": null,
+      "evidencePointers": [
+        "contracts/team-sol-architecture-final-implementation-gaps-20261015.json",
+        "ledger.json#IPC-611ab311c5f6"
+      ]
+    },
+    {
+      "id": "IPC-5d7065a40d45",
+      "name": "app:read-legal-doc",
+      "kind": "IPC",
+      "namespace": "app",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "未逐项评估；同业务域有能力不等于此通道已对齐。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "specific_own_interface_receipt_not_consolidated_in_ledger",
+      "exactDifference": "Ledger says 未逐项评估; C implementation gap review names domain implementation but does not provide a final per-ID completion receipt here. No absent public business node was confirmed.",
+      "suggestedStatusFromReport": null,
+      "evidencePointers": [
+        "contracts/team-sol-architecture-final-implementation-gaps-20261015.json",
+        "ledger.json#IPC-5d7065a40d45"
+      ]
+    },
+    {
+      "id": "IPC-65f32fe31f76",
+      "name": "app:read-onboarding-sample",
+      "kind": "IPC",
+      "namespace": "app",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "未逐项评估；同业务域有能力不等于此通道已对齐。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "specific_own_interface_receipt_not_consolidated_in_ledger",
+      "exactDifference": "Ledger says 未逐项评估; C implementation gap review names domain implementation but does not provide a final per-ID completion receipt here. No absent public business node was confirmed.",
+      "suggestedStatusFromReport": null,
+      "evidencePointers": [
+        "contracts/team-sol-architecture-final-implementation-gaps-20261015.json",
+        "ledger.json#IPC-65f32fe31f76"
+      ]
+    },
+    {
+      "id": "IPC-5a998529649c",
+      "name": "desensitization:apply",
+      "kind": "IPC",
+      "namespace": "desensitization",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已有保存快照、export任务与产物核验；格式能力仍有差距。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "rules35",
+      "classification": "implemented_with_protocol_format_or_native_difference",
+      "exactDifference": "Cloud review→export job→signed artifact/download is real; native per-format save-target, fallback and detailed failure receipt differ.",
+      "boundaryClass": "format/export/native",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-rules-final-implementation-map-20261015.json#IPC-5a998529649c"
+      ]
+    },
+    {
+      "id": "IPC-88cd1d915682",
+      "name": "desensitization:cancel",
+      "kind": "IPC",
+      "namespace": "desensitization",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "desensitization:cancel 的云端对应合同已逐项定位并有既有定向证据；Cancel marks queued/running job cancelled; source requestId returns canceled:false for absent/finished and emits cancel progress; cloud returns JOB_NOT_ACTIVE and lacks that exact event/cleanup pairing. 保留现 I1，源许可运行 R0，当前全量 API 仍需独立结果。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "rules35",
+      "classification": "implemented_with_protocol_format_or_native_difference",
+      "exactDifference": "Cancel marks queued/running job cancelled; source requestId returns canceled:false for absent/finished and emits cancel progress; cloud returns JOB_NOT_ACTIVE and lacks that exact event/cleanup pairing.",
+      "boundaryClass": "contract/failure",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-rules-final-implementation-map-20261015.json#IPC-88cd1d915682"
+      ]
+    },
+    {
+      "id": "IPC-fd1ca8c6cb27",
+      "name": "desensitization:cleanup-paths",
+      "kind": "IPC",
+      "namespace": "desensitization",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "desensitization:cleanup-paths 的云端对应合同已逐项定位并有既有定向证据；Cloud removes authenticated temporary resource IDs; source accepts paths only for matching successful output receipts. Permanent artifact cleanup deliberately excluded. 保留现 I1，源许可运行 R0，当前全量 API 仍需独立结果。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "rules35",
+      "classification": "implemented_with_protocol_format_or_native_difference",
+      "exactDifference": "Cloud removes authenticated temporary resource IDs; source accepts paths only for matching successful output receipts. Permanent artifact cleanup deliberately excluded.",
+      "boundaryClass": "native path/identity",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-rules-final-implementation-map-20261015.json#IPC-fd1ca8c6cb27"
+      ]
+    },
+    {
+      "id": "IPC-7d7d2d58da91",
+      "name": "desensitization:detect-only",
+      "kind": "IPC",
+      "namespace": "desensitization",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "desensitization:detect-only 的云端对应合同已逐项定位并有既有定向证据；Real new recognition job/candidates; source inline request/session streaming, per-page matches and exact OCR/format engine behavior are not equivalent. 保留现 I1，源许可运行 R0，当前全量 API 仍需独立结果。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "rules35",
+      "classification": "implemented_with_protocol_format_or_native_difference",
+      "exactDifference": "Real new recognition job/candidates; source inline request/session streaming, per-page matches and exact OCR/format engine behavior are not equivalent.",
+      "boundaryClass": "format/runtime",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-rules-final-implementation-map-20261015.json#IPC-7d7d2d58da91"
+      ]
+    },
+    {
+      "id": "IPC-42a70f50df5f",
+      "name": "desensitization:detect-route-only",
+      "kind": "IPC",
+      "namespace": "desensitization",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "desensitization:detect-route-only 的云端对应合同已逐项定位并有既有定向证据；Real route response for DOCX/PDF/MD/PNG; source native sourceRef/override dispatch and licensed runtime decision remain unverified. 保留现 I1，源许可运行 R0，当前全量 API 仍需独立结果。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "rules35",
+      "classification": "implemented_with_protocol_format_or_native_difference",
+      "exactDifference": "Real route response for DOCX/PDF/MD/PNG; source native sourceRef/override dispatch and licensed runtime decision remain unverified.",
+      "boundaryClass": "format/runtime",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-rules-final-implementation-map-20261015.json#IPC-42a70f50df5f"
+      ]
+    },
+    {
+      "id": "IPC-85f474cad97a",
+      "name": "desensitization:generate-reports",
+      "kind": "IPC",
+      "namespace": "desensitization",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "审计与产物记录已有；跨格式审查报告未完整对齐。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "rules35",
+      "classification": "implemented_with_protocol_format_or_native_difference",
+      "exactDifference": "Real JSON/HTML/MD/CSV/ZIP report is persisted; source embedded generator fields/proof wording and local asset path are not byte-identical.",
+      "boundaryClass": "format/native",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-rules-final-implementation-map-20261015.json#IPC-85f474cad97a"
+      ]
+    },
+    {
+      "id": "IPC-8c5afeb517e6",
+      "name": "desensitization:get-apply-result",
+      "kind": "IPC",
+      "namespace": "desensitization",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已有文档job结果和受检下载链接。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "rules35",
+      "classification": "implemented_with_protocol_format_or_native_difference",
+      "exactDifference": "No missing user-observable result state: export returns job ID; job-ID events expose queued/running/succeeded/failed/cancelled and terminal complete; document GET exposes latest job error_code; folder export exposes per-file status/error; /outputs+download cover success. Source sender/requestId in-memory receipt protocol differs from authenticated HTTP/job identity.",
+      "boundaryClass": "protocol/identity adaptation only",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-rules-final-implementation-map-20261015.json#IPC-8c5afeb517e6"
+      ]
+    },
+    {
+      "id": "IPC-a09f09579955",
+      "name": "desensitization:get-markdown-export-stats",
+      "kind": "IPC",
+      "namespace": "desensitization",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "desensitization:get-markdown-export-stats 的云端对应合同已逐项定位并有既有定向证据；Actual manual draft event counted; source local markdown-export.log tail and its exact Zf aggregate/error contract differ from project-scoped DB. 保留现 I1，源许可运行 R0，当前全量 API 仍需独立结果。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "rules35",
+      "classification": "implemented_with_protocol_format_or_native_difference",
+      "exactDifference": "Actual manual draft event counted; source local markdown-export.log tail and its exact Zf aggregate/error contract differ from project-scoped DB.",
+      "boundaryClass": "native log",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-rules-final-implementation-map-20261015.json#IPC-a09f09579955"
+      ]
+    },
+    {
+      "id": "IPC-7b3e67a5a715",
+      "name": "desensitization:get-resource-diagnostics",
+      "kind": "IPC",
+      "namespace": "desensitization",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "desensitization:get-resource-diagnostics 的云端对应合同已逐项定位并有既有定向证据；Actual authorized project counts; source dev-only engine/sourceRef cache counters are unavailable and explicitly reported as such. 保留现 I1，源许可运行 R0，当前全量 API 仍需独立结果。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "rules35",
+      "classification": "implemented_with_protocol_format_or_native_difference",
+      "exactDifference": "Actual authorized project counts; source dev-only engine/sourceRef cache counters are unavailable and explicitly reported as such.",
+      "boundaryClass": "native cache",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-rules-final-implementation-map-20261015.json#IPC-7b3e67a5a715"
+      ]
+    },
+    {
+      "id": "IPC-58567733591e",
+      "name": "desensitization:page-processed",
+      "kind": "IPC",
+      "namespace": "desensitization",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "desensitization:page-processed 的云端对应合同已逐项定位并有既有定向证据；Real preterminal page event with boxes/matches; source per-page engine matching differs from cloud whole-document context filtering and event envelope. 保留现 I1，源许可运行 R0，当前全量 API 仍需独立结果。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "rules35",
+      "classification": "implemented_with_protocol_format_or_native_difference",
+      "exactDifference": "Real preterminal page event with boxes/matches; source per-page engine matching differs from cloud whole-document context filtering and event envelope.",
+      "boundaryClass": "event/format",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-rules-final-implementation-map-20261015.json#IPC-58567733591e"
+      ]
+    },
+    {
+      "id": "IPC-e4cf3e6c3c0a",
+      "name": "desensitization:pause-seals",
+      "kind": "IPC",
+      "namespace": "desensitization",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "desensitization:pause-seals 的云端对应合同已逐项定位并有既有定向证据；Active visual request pause works; source same-sender detect engine Ne.pause and PDF seal-loop completed-page preservation are not the same task/event model. 保留现 I1，源许可运行 R0，当前全量 API 仍需独立结果。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "rules35",
+      "classification": "implemented_with_protocol_format_or_native_difference",
+      "exactDifference": "Active visual request pause works; source same-sender detect engine Ne.pause and PDF seal-loop completed-page preservation are not the same task/event model.",
+      "boundaryClass": "event/runtime",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-rules-final-implementation-map-20261015.json#IPC-e4cf3e6c3c0a"
+      ]
+    },
+    {
+      "id": "IPC-c1cec3199992",
+      "name": "desensitization:process-file-main",
+      "kind": "IPC",
+      "namespace": "desensitization",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "desensitization:process-file-main 的云端对应合同已逐项定位并有既有定向证据；Real per-document export exists; source legacy filePath single helper combines read/process/write/report with different error/format fallback. 保留现 I1，源许可运行 R0，当前全量 API 仍需独立结果。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "rules35",
+      "classification": "implemented_with_protocol_format_or_native_difference",
+      "exactDifference": "Real per-document export exists; source legacy filePath single helper combines read/process/write/report with different error/format fallback.",
+      "boundaryClass": "format/native",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-rules-final-implementation-map-20261015.json#IPC-c1cec3199992"
+      ]
+    },
+    {
+      "id": "IPC-27dd16394cd6",
+      "name": "desensitization:process-files",
+      "kind": "IPC",
+      "namespace": "desensitization",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "desensitization:process-files 的云端对应合同已逐项定位并有既有定向证据；Cloud batch uses asynchronous upload manifest/jobs and per-file status/error/download rather than source single-call byte array; processing, failure and cancellation outcomes remain observable. Timing/response shape is an explicit web adaptation, not a missing batch business function. 保留现 I1，源许可运行 R0，当前全量 API 仍需独立结果。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "rules35",
+      "classification": "implemented_with_protocol_format_or_native_difference",
+      "exactDifference": "Cloud batch uses asynchronous upload manifest/jobs and per-file status/error/download rather than source single-call byte array; processing, failure and cancellation outcomes remain observable. Timing/response shape is an explicit web adaptation, not a missing batch business function.",
+      "boundaryClass": "async protocol adaptation only",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-rules-final-implementation-map-20261015.json#IPC-27dd16394cd6"
+      ]
+    },
+    {
+      "id": "IPC-8fc7e5c07051",
+      "name": "desensitization:progress",
+      "kind": "IPC",
+      "namespace": "desensitization",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "desensitization:progress 的云端对应合同已逐项定位并有既有定向证据；Real monotonic persisted job events; source direct webContents progress payload/heartbeat/cancel stage is not field-identical. 保留现 I1，源许可运行 R0，当前全量 API 仍需独立结果。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "rules35",
+      "classification": "implemented_with_protocol_format_or_native_difference",
+      "exactDifference": "Real monotonic persisted job events; source direct webContents progress payload/heartbeat/cancel stage is not field-identical.",
+      "boundaryClass": "event/runtime",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-rules-final-implementation-map-20261015.json#IPC-8fc7e5c07051"
+      ]
+    },
+    {
+      "id": "IPC-a07c3fdcbe45",
+      "name": "desensitization:read-file",
+      "kind": "IPC",
+      "namespace": "desensitization",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "desensitization:read-file 的云端对应合同已逐项定位并有既有定向证据；Authenticated immutable document read exists; source accepts raw local path and returns byte buffer/fileType without document scope. 保留现 I1，源许可运行 R0，当前全量 API 仍需独立结果。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "rules35",
+      "classification": "implemented_with_protocol_format_or_native_difference",
+      "exactDifference": "Authenticated immutable document read exists; source accepts raw local path and returns byte buffer/fileType without document scope.",
+      "boundaryClass": "native path/security",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-rules-final-implementation-map-20261015.json#IPC-a07c3fdcbe45"
+      ]
+    },
+    {
+      "id": "IPC-f071ce7c965b",
+      "name": "desensitization:read-source",
+      "kind": "IPC",
+      "namespace": "desensitization",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "desensitization:read-source 的云端对应合同已逐项定位并有既有定向证据；Source bytes authenticated by resource lease; sourceRef registry shape and in-session managed paths replaced by cloud ownership/version bindings. 保留现 I1，源许可运行 R0，当前全量 API 仍需独立结果。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "rules35",
+      "classification": "implemented_with_protocol_format_or_native_difference",
+      "exactDifference": "Source bytes authenticated by resource lease; sourceRef registry shape and in-session managed paths replaced by cloud ownership/version bindings.",
+      "boundaryClass": "native registry",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-rules-final-implementation-map-20261015.json#IPC-f071ce7c965b"
+      ]
+    },
+    {
+      "id": "IPC-81f79eee361a",
+      "name": "desensitization:recognize-docx-images",
+      "kind": "IPC",
+      "namespace": "desensitization",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "desensitization:recognize-docx-images 的云端对应合同已逐项定位并有既有定向证据；Real separate DOCX image OCR and apply candidate flow; source direct callback appends image-only matches to active draft, cloud token/apply/revision flow differs. 保留现 I1，源许可运行 R0，当前全量 API 仍需独立结果。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "rules35",
+      "classification": "implemented_with_protocol_format_or_native_difference",
+      "exactDifference": "Real separate DOCX image OCR and apply candidate flow; source direct callback appends image-only matches to active draft, cloud token/apply/revision flow differs.",
+      "boundaryClass": "event/format",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-rules-final-implementation-map-20261015.json#IPC-81f79eee361a"
+      ]
+    },
+    {
+      "id": "IPC-8f1caa190dda",
+      "name": "desensitization:register-source",
+      "kind": "IPC",
+      "namespace": "desensitization",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已有不可变source及上传批次；sourceRefId契约不兼容。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "rules35",
+      "classification": "implemented_with_protocol_format_or_native_difference",
+      "exactDifference": "Immutable uploaded source and owner resource lease work; source accepts filePath/fileBuffer and local registry ID.",
+      "boundaryClass": "native path/registry",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-rules-final-implementation-map-20261015.json#IPC-8f1caa190dda"
+      ]
+    },
+    {
+      "id": "IPC-d9b14aa97589",
+      "name": "desensitization:release-sources",
+      "kind": "IPC",
+      "namespace": "desensitization",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "desensitization:release-sources 的云端对应合同已逐项定位并有既有定向证据；Actual temporary lease release; source also removes local engine cache/managed source paths; cloud removedEngineCaches=0 truthfully. 保留现 I1，源许可运行 R0，当前全量 API 仍需独立结果。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "rules35",
+      "classification": "implemented_with_protocol_format_or_native_difference",
+      "exactDifference": "Actual temporary lease release; source also removes local engine cache/managed source paths; cloud removedEngineCaches=0 truthfully.",
+      "boundaryClass": "native engine cache",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-rules-final-implementation-map-20261015.json#IPC-d9b14aa97589"
+      ]
+    },
+    {
+      "id": "IPC-f1f713df2b98",
+      "name": "desensitization:save-file",
+      "kind": "IPC",
+      "namespace": "desensitization",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "desensitization:save-file 的云端对应合同已逐项定位并有既有定向证据；Actual artifact written through export job; source generic arbitrary buffer/text local write and overwrite semantics are not exposed. 保留现 I1，源许可运行 R0，当前全量 API 仍需独立结果。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "rules35",
+      "classification": "implemented_with_protocol_format_or_native_difference",
+      "exactDifference": "Actual artifact written through export job; source generic arbitrary buffer/text local write and overwrite semantics are not exposed.",
+      "boundaryClass": "native generic file writer",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-rules-final-implementation-map-20261015.json#IPC-f1f713df2b98"
+      ]
+    },
+    {
+      "id": "IPC-629ace0aecd1",
+      "name": "desensitization:save-markdown-draft",
+      "kind": "IPC",
+      "namespace": "desensitization",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "desensitization:save-markdown-draft 的云端对应合同已逐项定位并有既有定向证据；Real encrypted versioned draft/download exists; source local _待人工处理稿.md direct write differs in path naming/conflict policy. 保留现 I1，源许可运行 R0，当前全量 API 仍需独立结果。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "rules35",
+      "classification": "implemented_with_protocol_format_or_native_difference",
+      "exactDifference": "Real encrypted versioned draft/download exists; source local _待人工处理稿.md direct write differs in path naming/conflict policy.",
+      "boundaryClass": "native path",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-rules-final-implementation-map-20261015.json#IPC-629ace0aecd1"
+      ]
+    },
+    {
+      "id": "IPC-9577d3a9d6d0",
+      "name": "desensitization:save-report",
+      "kind": "IPC",
+      "namespace": "desensitization",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "desensitization:save-report 的云端对应合同已逐项定位并有既有定向证据；Real report download persists; source generic caller supplied report content/name written locally is not exposed as such. 保留现 I1，源许可运行 R0，当前全量 API 仍需独立结果。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "rules35",
+      "classification": "implemented_with_protocol_format_or_native_difference",
+      "exactDifference": "Real report download persists; source generic caller supplied report content/name written locally is not exposed as such.",
+      "boundaryClass": "native generic writer",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-rules-final-implementation-map-20261015.json#IPC-9577d3a9d6d0"
+      ]
+    },
+    {
+      "id": "IPC-e29b03465bc3",
+      "name": "desensitization:scan-dropped-folder",
+      "kind": "IPC",
+      "namespace": "desensitization",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "desensitization:scan-dropped-folder 的云端对应合同已逐项定位并有既有定向证据；Cloud receives authenticated manifest with relative paths/hash; source scans OS folder tree and detects symlink/mtime itself. 保留现 I1，源许可运行 R0，当前全量 API 仍需独立结果。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "rules35",
+      "classification": "implemented_with_protocol_format_or_native_difference",
+      "exactDifference": "Cloud receives authenticated manifest with relative paths/hash; source scans OS folder tree and detects symlink/mtime itself.",
+      "boundaryClass": "native filesystem",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-rules-final-implementation-map-20261015.json#IPC-e29b03465bc3"
+      ]
+    },
+    {
+      "id": "IPC-95d4f752bfb1",
+      "name": "desensitization:select-files",
+      "kind": "IPC",
+      "namespace": "desensitization",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "desensitization:select-files 的云端对应合同已逐项定位并有既有定向证据；Browser upload picker plus manifest/intake works; Electron showOpenDialog multiSelect local paths/filesInfo absent. 保留现 I1，源许可运行 R0，当前全量 API 仍需独立结果。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "rules35",
+      "classification": "implemented_with_protocol_format_or_native_difference",
+      "exactDifference": "Browser upload picker plus manifest/intake works; Electron showOpenDialog multiSelect local paths/filesInfo absent.",
+      "boundaryClass": "native dialog",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-rules-final-implementation-map-20261015.json#IPC-95d4f752bfb1"
+      ]
+    },
+    {
+      "id": "IPC-523337153cab",
+      "name": "desensitization:select-folder",
+      "kind": "IPC",
+      "namespace": "desensitization",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "desensitization:select-folder 的云端对应合同已逐项定位并有既有定向证据；Browser folder upload adaptation works; Electron openDirectory local path picker absent. 保留现 I1，源许可运行 R0，当前全量 API 仍需独立结果。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "rules35",
+      "classification": "implemented_with_protocol_format_or_native_difference",
+      "exactDifference": "Browser folder upload adaptation works; Electron openDirectory local path picker absent.",
+      "boundaryClass": "native dialog",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-rules-final-implementation-map-20261015.json#IPC-523337153cab"
+      ]
+    },
+    {
+      "id": "IPC-d7d18b241f88",
+      "name": "desensitization:unlock-source",
+      "kind": "IPC",
+      "namespace": "desensitization",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "desensitization:unlock-source 的云端对应合同已逐项定位并有既有定向证据；Real password retry and immutable derived source for DOC/PDF are covered; source local sourceRef unlock format/errors differ, and full encrypted format matrix not proven. 保留现 I1，源许可运行 R0，当前全量 API 仍需独立结果。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "rules35",
+      "classification": "implemented_with_protocol_format_or_native_difference",
+      "exactDifference": "Real password retry and immutable derived source for DOC/PDF are covered; source local sourceRef unlock format/errors differ, and full encrypted format matrix not proven.",
+      "boundaryClass": "format/native",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-rules-final-implementation-map-20261015.json#IPC-d7d18b241f88"
+      ]
+    },
+    {
+      "id": "IPC-0ea3b09c375b",
+      "name": "desensitization:update-runtime-rules",
+      "kind": "IPC",
+      "namespace": "desensitization",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "desensitization:update-runtime-rules 的云端对应合同已逐项定位并有既有定向证据；Real active detect temporary AEAD rules, owner revocation and terminal cleanup verified in isolation; source direct IPC task-window timing and licensed runtime remain R0. No concrete public producer omission remains after PageEditor fix. 保留现 I1，源许可运行 R0，当前全量 API 仍需独立结果。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "rules35",
+      "classification": "implemented_with_protocol_format_or_native_difference",
+      "exactDifference": "Real active detect temporary AEAD rules, owner revocation and terminal cleanup verified in isolation; source direct IPC task-window timing and licensed runtime remain R0. No concrete public producer omission remains after PageEditor fix.",
+      "boundaryClass": "runtime/native task identity",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-rules-final-implementation-map-20261015.json#IPC-0ea3b09c375b"
+      ]
+    },
+    {
+      "id": "IPC-96ccc7c0ce76",
+      "name": "desensitization:validate-folder-source",
+      "kind": "IPC",
+      "namespace": "desensitization",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "desensitization:validate-folder-source 的云端对应合同已逐项定位并有既有定向证据；Real SHA/bytes/owner recheck; source compares local lstat size/mtime/symlink against scan session, unavailable in cloud upload. 保留现 I1，源许可运行 R0，当前全量 API 仍需独立结果。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "rules35",
+      "classification": "implemented_with_protocol_format_or_native_difference",
+      "exactDifference": "Real SHA/bytes/owner recheck; source compares local lstat size/mtime/symlink against scan session, unavailable in cloud upload.",
+      "boundaryClass": "native filesystem",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-rules-final-implementation-map-20261015.json#IPC-96ccc7c0ce76"
+      ]
+    },
+    {
+      "id": "IPC-e84cabdffc27",
+      "name": "desensitization:write-folder-manifest",
+      "kind": "IPC",
+      "namespace": "desensitization",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "desensitization:write-folder-manifest 的云端对应合同已逐项定位并有既有定向证据；Real complete/status-verified manifest and ZIP; source local HTML wx file path differs from immutable cloud ZIP artifact. 保留现 I1，源许可运行 R0，当前全量 API 仍需独立结果。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "rules35",
+      "classification": "implemented_with_protocol_format_or_native_difference",
+      "exactDifference": "Real complete/status-verified manifest and ZIP; source local HTML wx file path differs from immutable cloud ZIP artifact.",
+      "boundaryClass": "native path/format",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-rules-final-implementation-map-20261015.json#IPC-e84cabdffc27"
+      ]
+    },
+    {
+      "id": "IPC-25271d44841c",
+      "name": "dictionary:add-entry",
+      "kind": "IPC",
+      "namespace": "dictionary",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "POST /api/review-memory 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-25271d44841c"
+      ]
+    },
+    {
+      "id": "IPC-3f0d71fadee4",
+      "name": "dictionary:download-excel-template",
+      "kind": "IPC",
+      "namespace": "dictionary",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "GET /api/projects/:id/reference-dictionary/template.xlsx 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-3f0d71fadee4"
+      ]
+    },
+    {
+      "id": "IPC-0f2d4d6b6262",
+      "name": "dictionary:export",
+      "kind": "IPC",
+      "namespace": "dictionary",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "GET /api/review-memory/export 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-0f2d4d6b6262"
+      ]
+    },
+    {
+      "id": "IPC-22c459a29cd7",
+      "name": "dictionary:export-excel",
+      "kind": "IPC",
+      "namespace": "dictionary",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "GET /api/projects/:id/reference-dictionary/export.xlsx 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-22c459a29cd7"
+      ]
+    },
+    {
+      "id": "IPC-acbca2a96370",
+      "name": "dictionary:get-entries",
+      "kind": "IPC",
+      "namespace": "dictionary",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "GET /api/review-memory 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-acbca2a96370"
+      ]
+    },
+    {
+      "id": "IPC-50d02c91469e",
+      "name": "dictionary:import",
+      "kind": "IPC",
+      "namespace": "dictionary",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "POST /api/review-memory/import 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-50d02c91469e"
+      ]
+    },
+    {
+      "id": "IPC-c19a241811ac",
+      "name": "dictionary:record-hint-action",
+      "kind": "IPC",
+      "namespace": "dictionary",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "POST /api/projects/:id/reference-dictionary/hint-action 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-c19a241811ac"
+      ]
+    },
+    {
+      "id": "IPC-80e954e3a669",
+      "name": "dictionary:remove-entry",
+      "kind": "IPC",
+      "namespace": "dictionary",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "DELETE /api/review-memory/:id 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-80e954e3a669"
+      ]
+    },
+    {
+      "id": "IPC-9b9d5a0f489e",
+      "name": "dictionary:save-export-file",
+      "kind": "IPC",
+      "namespace": "dictionary",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "GET /api/review-memory/export 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-9b9d5a0f489e"
+      ]
+    },
+    {
+      "id": "IPC-7de3f60b8ed5",
+      "name": "dictionary:select-excel-import-file",
+      "kind": "IPC",
+      "namespace": "dictionary",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "POST /api/projects/:id/reference-dictionary/import 已有逐名隔离调用/返回与持久结果证据；浏览器选择器/本机路径仍是原生边界，保留现 I 状态；云端业务适配已逐项核。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "native_browser_adaptation_explicit_boundary",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-7de3f60b8ed5"
+      ]
+    },
+    {
+      "id": "IPC-d0b393b9e93d",
+      "name": "dictionary:select-import-file",
+      "kind": "IPC",
+      "namespace": "dictionary",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "POST /api/review-memory/import 已有逐名隔离调用/返回与持久结果证据；浏览器选择器/本机路径仍是原生边界，保留现 I 状态；云端业务适配已逐项核。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "native_browser_adaptation_explicit_boundary",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-d0b393b9e93d"
+      ]
+    },
+    {
+      "id": "IPC-d874c25112ba",
+      "name": "feedback:add",
+      "kind": "IPC",
+      "namespace": "feedback",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "POST /api/feedback 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-d874c25112ba"
+      ]
+    },
+    {
+      "id": "IPC-6ff537a49940",
+      "name": "feedback:add-batch",
+      "kind": "IPC",
+      "namespace": "feedback",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "POST /api/feedback/batch 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-6ff537a49940"
+      ]
+    },
+    {
+      "id": "IPC-b828b79da058",
+      "name": "feedback:clear-all",
+      "kind": "IPC",
+      "namespace": "feedback",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "POST /api/feedback/clear-all 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-b828b79da058"
+      ]
+    },
+    {
+      "id": "IPC-b2c075e4afde",
+      "name": "feedback:delete-by-document",
+      "kind": "IPC",
+      "namespace": "feedback",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "POST /api/feedback/delete-by-document 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-b2c075e4afde"
+      ]
+    },
+    {
+      "id": "IPC-efc77b9d6c1d",
+      "name": "feedback:delete-by-id",
+      "kind": "IPC",
+      "namespace": "feedback",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "DELETE /api/feedback/:id 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-efc77b9d6c1d"
+      ]
+    },
+    {
+      "id": "IPC-196efa6b695b",
+      "name": "feedback:export-audit-report",
+      "kind": "IPC",
+      "namespace": "feedback",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "POST /api/feedback/export 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-196efa6b695b"
+      ]
+    },
+    {
+      "id": "IPC-14a3820628e8",
+      "name": "feedback:get-document-stats",
+      "kind": "IPC",
+      "namespace": "feedback",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "GET /api/feedback/statistics?documentName=Case.DOCX 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-14a3820628e8"
+      ]
+    },
+    {
+      "id": "IPC-9bb6c463b31f",
+      "name": "feedback:get-global-stats",
+      "kind": "IPC",
+      "namespace": "feedback",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "GET /api/feedback/statistics 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-9bb6c463b31f"
+      ]
+    },
+    {
+      "id": "IPC-feab6613b5ed",
+      "name": "feedback:query",
+      "kind": "IPC",
+      "namespace": "feedback",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "GET /api/feedback?documentName=case.docx 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-feab6613b5ed"
+      ]
+    },
+    {
+      "id": "IPC-47ecc7525dfe",
+      "name": "image-review:clear-ocr-cache",
+      "kind": "IPC",
+      "namespace": "image-review",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已逐项核 image-review:clear-ocr-cache：revision and permission checked OCR cache clear with requery miss。No material public action branch identified; source caller-supplied key becomes authenticated document scope. 保留现 I1，源许可运行 R0；当前全量门禁不能由既有定向证据代替。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "visual21_or_ui6",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "No material public action branch identified; source caller-supplied key becomes authenticated document scope.",
+      "boundaryClass": "In-memory cache semantics differ; no native OCR engine equivalence.",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/team-sol-visual-final-implementation-map-20261015.json#IPC-47ecc7525dfe"
+      ]
+    },
+    {
+      "id": "IPC-d3864dc80560",
+      "name": "image:export-labels",
+      "kind": "IPC",
+      "namespace": "image",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已逐项核 image:export-labels：permission-scoped labels JSON response downloaded from page UI; preserves long type, confidence zero and geometry。Host home-directory write path is replaced by browser download; no business data branch identified. 保留现 I1，源许可运行 R0；当前全量门禁不能由既有定向证据代替。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "visual21_or_ui6",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "Host home-directory write path is replaced by browser download; no business data branch identified.",
+      "boundaryClass": "Native file path and destination chooser unavailable; source confidence coercion is not copied.",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/team-sol-visual-final-implementation-map-20261015.json#IPC-d3864dc80560"
+      ]
+    },
+    {
+      "id": "IPC-5569a4344615",
+      "name": "image:save-annotations",
+      "kind": "IPC",
+      "namespace": "image",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已逐项核 image:save-annotations：authenticated page annotations JSON download with source metadata and geometry。Adjacent host sidecar path is browser download adaptation; no annotation field branch identified. 保留现 I1，源许可运行 R0；当前全量门禁不能由既有定向证据代替。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "visual21_or_ui6",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "Adjacent host sidecar path is browser download adaptation; no annotation field branch identified.",
+      "boundaryClass": "No native adjacent basename sidecar or OS write error; output filename differs.",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/team-sol-visual-final-implementation-map-20261015.json#IPC-5569a4344615"
+      ]
+    },
+    {
+      "id": "IPC-5457cc5660c4",
+      "name": "learner:get-stats",
+      "kind": "IPC",
+      "namespace": "learner",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "GET /api/learner/get-stats 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-5457cc5660c4"
+      ]
+    },
+    {
+      "id": "IPC-7c61ecffef61",
+      "name": "log:renderer-error",
+      "kind": "IPC",
+      "namespace": "log",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "未逐项评估；同业务域有能力不等于此通道已对齐。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "specific_own_interface_receipt_not_consolidated_in_ledger",
+      "exactDifference": "Ledger says 未逐项评估; C implementation gap review names domain implementation but does not provide a final per-ID completion receipt here. No absent public business node was confirmed.",
+      "suggestedStatusFromReport": null,
+      "evidencePointers": [
+        "contracts/team-sol-architecture-final-implementation-gaps-20261015.json",
+        "ledger.json#IPC-7c61ecffef61"
+      ]
+    },
+    {
+      "id": "IPC-cf6cc425333d",
+      "name": "mcp-connectors:copy-setup",
+      "kind": "IPC",
+      "namespace": "mcp-connectors",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "mcp-connectors:copy-setup 已在隔离云端适配中逐方法实际调用成功；actual initialized session/configuration, no claim OS client installation or reachability。保留现 I1，不声称 Electron 本地管道/私有协议或竞品许可运行等价。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "named_method_actual_cloud_adaptation_native_or_external_boundary",
+      "exactDifference": "mcp-connectors:copy-setup 已在隔离云端适配中逐方法实际调用成功；actual initialized session/configuration, no claim OS client installation or reachability。保留现 I1，不声称 Electron 本地管道/私有协议或竞品许可运行等价。",
+      "suggestedStatusFromReport": null,
+      "evidencePointers": [
+        "contracts/mcp-exact-method-runtime-20261014.json#IPC-cf6cc425333d"
+      ]
+    },
+    {
+      "id": "IPC-d70108ef71d7",
+      "name": "mcp-connectors:get-status",
+      "kind": "IPC",
+      "namespace": "mcp-connectors",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "mcp-connectors:get-status 已在隔离云端适配中逐方法实际调用成功；actual initialized session/configuration, no claim OS client installation or reachability。保留现 I1，不声称 Electron 本地管道/私有协议或竞品许可运行等价。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "named_method_actual_cloud_adaptation_native_or_external_boundary",
+      "exactDifference": "mcp-connectors:get-status 已在隔离云端适配中逐方法实际调用成功；actual initialized session/configuration, no claim OS client installation or reachability。保留现 I1，不声称 Electron 本地管道/私有协议或竞品许可运行等价。",
+      "suggestedStatusFromReport": null,
+      "evidencePointers": [
+        "contracts/mcp-exact-method-runtime-20261014.json#IPC-d70108ef71d7"
+      ]
+    },
+    {
+      "id": "IPC-13b1b9cd954f",
+      "name": "mcp-connectors:retry",
+      "kind": "IPC",
+      "namespace": "mcp-connectors",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "mcp-connectors:retry 已在隔离云端适配中逐方法实际调用成功；actual initialized session/configuration, no claim OS client installation or reachability。保留现 I1，不声称 Electron 本地管道/私有协议或竞品许可运行等价。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "named_method_actual_cloud_adaptation_native_or_external_boundary",
+      "exactDifference": "mcp-connectors:retry 已在隔离云端适配中逐方法实际调用成功；actual initialized session/configuration, no claim OS client installation or reachability。保留现 I1，不声称 Electron 本地管道/私有协议或竞品许可运行等价。",
+      "suggestedStatusFromReport": null,
+      "evidencePointers": [
+        "contracts/mcp-exact-method-runtime-20261014.json#IPC-13b1b9cd954f"
+      ]
+    },
+    {
+      "id": "IPC-7a1832cb9fe9",
+      "name": "mcp-connectors:update-automation",
+      "kind": "IPC",
+      "namespace": "mcp-connectors",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "mcp-connectors:update-automation 已在隔离云端适配中逐方法实际调用成功；actual initialized session/configuration, no claim OS client installation or reachability。保留现 I1，不声称 Electron 本地管道/私有协议或竞品许可运行等价。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "named_method_actual_cloud_adaptation_native_or_external_boundary",
+      "exactDifference": "mcp-connectors:update-automation 已在隔离云端适配中逐方法实际调用成功；actual initialized session/configuration, no claim OS client installation or reachability。保留现 I1，不声称 Electron 本地管道/私有协议或竞品许可运行等价。",
+      "suggestedStatusFromReport": null,
+      "evidencePointers": [
+        "contracts/mcp-exact-method-runtime-20261014.json#IPC-7a1832cb9fe9"
+      ]
+    },
+    {
+      "id": "IPC-f8d8e4c7c379",
+      "name": "net:get-stats",
+      "kind": "IPC",
+      "namespace": "net",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "未逐项评估；同业务域有能力不等于此通道已对齐。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "specific_own_interface_receipt_not_consolidated_in_ledger",
+      "exactDifference": "Ledger says 未逐项评估; C implementation gap review names domain implementation but does not provide a final per-ID completion receipt here. No absent public business node was confirmed.",
+      "suggestedStatusFromReport": null,
+      "evidencePointers": [
+        "contracts/team-sol-architecture-final-implementation-gaps-20261015.json",
+        "ledger.json#IPC-f8d8e4c7c379"
+      ]
+    },
+    {
+      "id": "IPC-539465a49a9b",
+      "name": "net:reset-stats",
+      "kind": "IPC",
+      "namespace": "net",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "未逐项评估；同业务域有能力不等于此通道已对齐。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "specific_own_interface_receipt_not_consolidated_in_ledger",
+      "exactDifference": "Ledger says 未逐项评估; C implementation gap review names domain implementation but does not provide a final per-ID completion receipt here. No absent public business node was confirmed.",
+      "suggestedStatusFromReport": null,
+      "evidencePointers": [
+        "contracts/team-sol-architecture-final-implementation-gaps-20261015.json",
+        "ledger.json#IPC-539465a49a9b"
+      ]
+    },
+    {
+      "id": "IPC-978012face0b",
+      "name": "net:set-offline",
+      "kind": "IPC",
+      "namespace": "net",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "未逐项评估；同业务域有能力不等于此通道已对齐。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "specific_own_interface_receipt_not_consolidated_in_ledger",
+      "exactDifference": "Ledger says 未逐项评估; C implementation gap review names domain implementation but does not provide a final per-ID completion receipt here. No absent public business node was confirmed.",
+      "suggestedStatusFromReport": null,
+      "evidencePointers": [
+        "contracts/team-sol-architecture-final-implementation-gaps-20261015.json",
+        "ledger.json#IPC-978012face0b"
+      ]
+    },
+    {
+      "id": "IPC-0ecb1de9c806",
+      "name": "ocr:collect-diagnostic",
+      "kind": "IPC",
+      "namespace": "ocr",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已逐项核 ocr:collect-diagnostic：authenticated diagnostic probe with redacted cloud summary。Local diagnostic path/stderr collection intentionally narrowed for cloud privacy; source private runtime detail is not portable. 保留现 I1，源许可运行 R0；当前全量门禁不能由既有定向证据代替。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "visual21_or_ui6",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "Local diagnostic path/stderr collection intentionally narrowed for cloud privacy; source private runtime detail is not portable.",
+      "boundaryClass": "Does not prove native Python/Paddle installation or OCR quality.",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/team-sol-visual-final-implementation-map-20261015.json#IPC-0ecb1de9c806"
+      ]
+    },
+    {
+      "id": "IPC-f02ad1fa2413",
+      "name": "ocr:health-check",
+      "kind": "IPC",
+      "namespace": "ocr",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已逐项核 ocr:health-check：authenticated OCR model/probe health endpoint and UI action。No material public health action branch identified; native host probe is replaced by service probe. 保留现 I1，源许可运行 R0；当前全量门禁不能由既有定向证据代替。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "visual21_or_ui6",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "No material public health action branch identified; native host probe is replaced by service probe.",
+      "boundaryClass": "Health response does not establish accuracy, throughput or source private model parity.",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/team-sol-visual-final-implementation-map-20261015.json#IPC-f02ad1fa2413"
+      ]
+    },
+    {
+      "id": "IPC-7b3025225249",
+      "name": "preference:record-successful-export",
+      "kind": "IPC",
+      "namespace": "preference",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "POST /api/presets/preferences/exports 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-7b3025225249"
+      ]
+    },
+    {
+      "id": "IPC-3d307eb4bc00",
+      "name": "preference:set-default-profile",
+      "kind": "IPC",
+      "namespace": "preference",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "PUT /api/presets/preferences 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-3d307eb4bc00"
+      ]
+    },
+    {
+      "id": "IPC-0b6b223f384f",
+      "name": "profile:create",
+      "kind": "IPC",
+      "namespace": "profile",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "POST /api/presets/profiles 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-0b6b223f384f"
+      ]
+    },
+    {
+      "id": "IPC-7e8602707608",
+      "name": "profile:delete",
+      "kind": "IPC",
+      "namespace": "profile",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "DELETE /api/presets/profiles/:id 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-7e8602707608"
+      ]
+    },
+    {
+      "id": "IPC-271b4728636e",
+      "name": "profile:duplicate",
+      "kind": "IPC",
+      "namespace": "profile",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "POST /api/presets/profiles/:id/duplicate 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-271b4728636e"
+      ]
+    },
+    {
+      "id": "IPC-ddc5ff507c75",
+      "name": "profile:get",
+      "kind": "IPC",
+      "namespace": "profile",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "GET /api/presets/profiles/:id 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-ddc5ff507c75"
+      ]
+    },
+    {
+      "id": "IPC-92e8c95a136b",
+      "name": "profile:list",
+      "kind": "IPC",
+      "namespace": "profile",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "GET /api/presets/profiles 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-92e8c95a136b"
+      ]
+    },
+    {
+      "id": "IPC-59456f319530",
+      "name": "profile:update",
+      "kind": "IPC",
+      "namespace": "profile",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "PUT /api/presets/profiles/:id 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-59456f319530"
+      ]
+    },
+    {
+      "id": "IPC-bd4779635d5d",
+      "name": "pseudonym:inspect-restore-mapping",
+      "kind": "IPC",
+      "namespace": "pseudonym",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已逐项核 pseudonym:inspect-restore-mapping：project restore mapping inspect with password/permission and ambiguity choice gate。Source restoreChoices is inert and ambiguities empty; own meaningful ambiguity gate extends behavior. 保留现 I1，源许可运行 R0；当前全量门禁不能由既有定向证据代替。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "visual21_or_ui6",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "Source restoreChoices is inert and ambiguities empty; own meaningful ambiguity gate extends behavior.",
+      "boundaryClass": "Native userData keychain mapping and private source key hierarchy are not transferable.",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/team-sol-visual-final-implementation-map-20261015.json#IPC-bd4779635d5d"
+      ]
+    },
+    {
+      "id": "IPC-420bf82d10ca",
+      "name": "pseudonym:list-mappings",
+      "kind": "IPC",
+      "namespace": "pseudonym",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "未逐项评估；同业务域有能力不等于此通道已对齐。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "specific_own_interface_receipt_not_consolidated_in_ledger",
+      "exactDifference": "Ledger says 未逐项评估; C implementation gap review names domain implementation but does not provide a final per-ID completion receipt here. No absent public business node was confirmed.",
+      "suggestedStatusFromReport": null,
+      "evidencePointers": [
+        "contracts/team-sol-architecture-final-implementation-gaps-20261015.json",
+        "ledger.json#IPC-420bf82d10ca"
+      ]
+    },
+    {
+      "id": "IPC-1d272ba10a6c",
+      "name": "pseudonym:restore-docx",
+      "kind": "IPC",
+      "namespace": "pseudonym",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已逐项核 pseudonym:restore-docx：DOCX and legacy DOC single restore; default DOC output uses actual LibreOffice conversion and strict DOC reread, while WPS explicitly offers DOCX。No DOC original-format branch missing. WPS original output is unsupported in the source Mac/LibreOffice branch and honestly rejected here; explicit DOCX is available. 保留现 I1，源许可运行 R0；当前全量门禁不能由既有定向证据代替。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "visual21_or_ui6",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "No DOC original-format branch missing. WPS original output is unsupported in the source Mac/LibreOffice branch and honestly rejected here; explicit DOCX is available.",
+      "boundaryClass": "Actual CFB DOC standalone default-original API/reread passed; browser picker differs from native save dialog; source R0.",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/team-sol-visual-final-implementation-map-20261015.json#IPC-1d272ba10a6c"
+      ]
+    },
+    {
+      "id": "IPC-24fe13c4efb6",
+      "name": "pseudonym:restore-docx-batch",
+      "kind": "IPC",
+      "namespace": "pseudonym",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已逐项核 pseudonym:restore-docx-batch：Per-file worker routes legacy DOC through legacy-restoration adapter, including default strict DOC export/reread; WPS can explicitly emit DOCX; partial rows and ZIP。No DOC original-format code branch missing: API dispatches legacy through adapter before core restoreBatch. WPS original output is source Mac unsupported and returns explicit failure. 保留现 I1，源许可运行 R0；当前全量门禁不能由既有定向证据代替。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "visual21_or_ui6",
+      "classification": "batch_legacy_default_original_doc_actual_api_verified",
+      "exactDifference": "No DOC original-format code branch missing: API dispatches legacy through adapter before core restoreBatch. WPS original output is source Mac unsupported and returns explicit failure.",
+      "boundaryClass": "Final V4 API: actual CFB DOC, omitted outputFormat, downloaded DOC and ZIP CFB/hash/normalized restored text validated; local source buffer unchanged. Native directory versus browser ZIP remains adaptation.",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-visual-final-implementation-map-20261015.json#IPC-24fe13c4efb6",
+        "tests/restoration-batch-doc-default.integration.ts",
+        ".data/research/lawbot-2026-10-15/iteration039/final-batch-doc-api-final.json"
+      ]
+    },
+    {
+      "id": "IPC-5c2a14961699",
+      "name": "pseudonym:restore-markdown",
+      "kind": "IPC",
+      "namespace": "pseudonym",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已逐项核 pseudonym:restore-markdown：uploaded Markdown mapped restore to separate protected artifact and download。No material public substitution branch identified; web protects original instead of source explicit overwrite. 保留现 I1，源许可运行 R0；当前全量门禁不能由既有定向证据代替。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "visual21_or_ui6",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "No material public substitution branch identified; web protects original instead of source explicit overwrite.",
+      "boundaryClass": "Native save path/overwrite semantics intentionally differ.",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/team-sol-visual-final-implementation-map-20261015.json#IPC-5c2a14961699"
+      ]
+    },
+    {
+      "id": "IPC-096d3ecc2554",
+      "name": "pseudonym:restore-markdown-batch",
+      "kind": "IPC",
+      "namespace": "pseudonym",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已逐项核 pseudonym:restore-markdown-batch：per-file worker restore, saved artifacts, progress and ZIP。No material MD batch processing branch identified; OS directory selection replaced with browser downloads. 保留现 I1，源许可运行 R0；当前全量门禁不能由既有定向证据代替。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "visual21_or_ui6",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "No material MD batch processing branch identified; OS directory selection replaced with browser downloads.",
+      "boundaryClass": "No native host output path; fresh full Edge pending.",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/team-sol-visual-final-implementation-map-20261015.json#IPC-096d3ecc2554"
+      ]
+    },
+    {
+      "id": "IPC-0fa110b8534b",
+      "name": "pseudonym:restore-progress",
+      "kind": "IPC",
+      "namespace": "pseudonym",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已逐项核 pseudonym:restore-progress：owner-scoped polling of worker progress, 0-99 during processing and 100 only after persistence。Electron push transport is replaced by browser polling; no progress semantic branch identified. 保留现 I1，源许可运行 R0；当前全量门禁不能由既有定向证据代替。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "visual21_or_ui6",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "Electron push transport is replaced by browser polling; no progress semantic branch identified.",
+      "boundaryClass": "Progress map is transient and expires; not a durable job journal.",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/team-sol-visual-final-implementation-map-20261015.json#IPC-0fa110b8534b"
+      ]
+    },
+    {
+      "id": "IPC-6f749dcd2e0f",
+      "name": "pseudonym:save-mapping",
+      "kind": "IPC",
+      "namespace": "pseudonym",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "未逐项评估；同业务域有能力不等于此通道已对齐。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "specific_own_interface_receipt_not_consolidated_in_ledger",
+      "exactDifference": "Ledger says 未逐项评估; C implementation gap review names domain implementation but does not provide a final per-ID completion receipt here. No absent public business node was confirmed.",
+      "suggestedStatusFromReport": null,
+      "evidencePointers": [
+        "contracts/team-sol-architecture-final-implementation-gaps-20261015.json",
+        "ledger.json#IPC-6f749dcd2e0f"
+      ]
+    },
+    {
+      "id": "IPC-37a279488720",
+      "name": "pseudonym:select-input-docx",
+      "kind": "IPC",
+      "namespace": "pseudonym",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已逐项核 pseudonym:select-input-docx：single browser file input with Word extensions。Native OS dialog path/cancel/filePath is absent; no current source renderer call found for this legacy selector. 保留现 I1，源许可运行 R0；当前全量门禁不能由既有定向证据代替。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "visual21_or_ui6",
+      "classification": "native_desktop_selection_adapted_to_browser",
+      "exactDifference": "Native OS dialog path/cancel/filePath is absent; no current source renderer call found for this legacy selector.",
+      "boundaryClass": "Browser File object/upload replaces host path.",
+      "suggestedStatusFromReport": "I3",
+      "evidencePointers": [
+        "contracts/team-sol-visual-final-implementation-map-20261015.json#IPC-37a279488720"
+      ]
+    },
+    {
+      "id": "IPC-f69ef883aa33",
+      "name": "pseudonym:select-input-docx-batch",
+      "kind": "IPC",
+      "namespace": "pseudonym",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已逐项核 pseudonym:select-input-docx-batch：multiple browser file input with Word extensions。Native OS dialog/cancel/filePaths absent; no current source renderer call found. 保留现 I1，源许可运行 R0；当前全量门禁不能由既有定向证据代替。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "visual21_or_ui6",
+      "classification": "native_desktop_selection_adapted_to_browser",
+      "exactDifference": "Native OS dialog/cancel/filePaths absent; no current source renderer call found.",
+      "boundaryClass": "Browser File objects replace host paths.",
+      "suggestedStatusFromReport": "I3",
+      "evidencePointers": [
+        "contracts/team-sol-visual-final-implementation-map-20261015.json#IPC-f69ef883aa33"
+      ]
+    },
+    {
+      "id": "IPC-7fe81107ae4d",
+      "name": "pseudonym:select-input-files",
+      "kind": "IPC",
+      "namespace": "pseudonym",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已逐项核 pseudonym:select-input-files：single/multiple browser mixed file inputs。Native append/replace OS path draft affordance is not identical; web files are selected through input, then user can reselect. 保留现 I1，源许可运行 R0；当前全量门禁不能由既有定向证据代替。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "visual21_or_ui6",
+      "classification": "native_desktop_selection_adapted_to_browser",
+      "exactDifference": "Native append/replace OS path draft affordance is not identical; web files are selected through input, then user can reselect.",
+      "boundaryClass": "No host filePath or Electron cancel event.",
+      "suggestedStatusFromReport": "I3",
+      "evidencePointers": [
+        "contracts/team-sol-visual-final-implementation-map-20261015.json#IPC-7fe81107ae4d"
+      ]
+    },
+    {
+      "id": "IPC-6dcdb71fa095",
+      "name": "pseudonym:select-input-markdown",
+      "kind": "IPC",
+      "namespace": "pseudonym",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已逐项核 pseudonym:select-input-markdown：single browser file input with MD/TXT extensions。Native OS dialog/cancel/filePath absent; no current source renderer call found. 保留现 I1，源许可运行 R0；当前全量门禁不能由既有定向证据代替。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "visual21_or_ui6",
+      "classification": "native_desktop_selection_adapted_to_browser",
+      "exactDifference": "Native OS dialog/cancel/filePath absent; no current source renderer call found.",
+      "boundaryClass": "Browser File object replaces host path.",
+      "suggestedStatusFromReport": "I3",
+      "evidencePointers": [
+        "contracts/team-sol-visual-final-implementation-map-20261015.json#IPC-6dcdb71fa095"
+      ]
+    },
+    {
+      "id": "IPC-93ba5dca8357",
+      "name": "pseudonym:select-input-markdown-batch",
+      "kind": "IPC",
+      "namespace": "pseudonym",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已逐项核 pseudonym:select-input-markdown-batch：multiple browser file input with MD/TXT extensions。Native OS dialog/cancel/filePaths absent; no current source renderer call found. 保留现 I1，源许可运行 R0；当前全量门禁不能由既有定向证据代替。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "visual21_or_ui6",
+      "classification": "native_desktop_selection_adapted_to_browser",
+      "exactDifference": "Native OS dialog/cancel/filePaths absent; no current source renderer call found.",
+      "boundaryClass": "Browser File objects replace host paths.",
+      "suggestedStatusFromReport": "I3",
+      "evidencePointers": [
+        "contracts/team-sol-visual-final-implementation-map-20261015.json#IPC-93ba5dca8357"
+      ]
+    },
+    {
+      "id": "IPC-a05e3b6af8e1",
+      "name": "review:add-feedback",
+      "kind": "IPC",
+      "namespace": "review",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "POST /api/feedback 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-a05e3b6af8e1"
+      ]
+    },
+    {
+      "id": "IPC-7d7beed074d0",
+      "name": "review:clear-all",
+      "kind": "IPC",
+      "namespace": "review",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "POST /api/feedback/clear-all 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-7d7beed074d0"
+      ]
+    },
+    {
+      "id": "IPC-e024a8242875",
+      "name": "review:export-audit-log",
+      "kind": "IPC",
+      "namespace": "review",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "POST /api/feedback/export 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-e024a8242875"
+      ]
+    },
+    {
+      "id": "IPC-bb6001e11068",
+      "name": "review:export-proof-lite",
+      "kind": "IPC",
+      "namespace": "review",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "POST /api/feedback/export 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-bb6001e11068"
+      ]
+    },
+    {
+      "id": "IPC-d3e5e1de12d2",
+      "name": "review:export-user-memories",
+      "kind": "IPC",
+      "namespace": "review",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "POST /api/feedback/export 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-d3e5e1de12d2"
+      ]
+    },
+    {
+      "id": "IPC-9dbd84b9715b",
+      "name": "review:get-blacklist",
+      "kind": "IPC",
+      "namespace": "review",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "GET /api/review-memory 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-9dbd84b9715b"
+      ]
+    },
+    {
+      "id": "IPC-72093dfff7bf",
+      "name": "review:get-feedbacks",
+      "kind": "IPC",
+      "namespace": "review",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "GET /api/feedback 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-72093dfff7bf"
+      ]
+    },
+    {
+      "id": "IPC-b199b300f630",
+      "name": "review:get-statistics",
+      "kind": "IPC",
+      "namespace": "review",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "GET /api/feedback/statistics 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-b199b300f630"
+      ]
+    },
+    {
+      "id": "IPC-9a7ac510f8c7",
+      "name": "review:get-whitelist",
+      "kind": "IPC",
+      "namespace": "review",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "GET /api/review-memory 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-9a7ac510f8c7"
+      ]
+    },
+    {
+      "id": "IPC-18da1e923824",
+      "name": "ruleset:create",
+      "kind": "IPC",
+      "namespace": "ruleset",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "POST /api/presets/rulesets 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-18da1e923824"
+      ]
+    },
+    {
+      "id": "IPC-620a9576690e",
+      "name": "ruleset:delete",
+      "kind": "IPC",
+      "namespace": "ruleset",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "DELETE /api/presets/rulesets/:id 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-620a9576690e"
+      ]
+    },
+    {
+      "id": "IPC-7754362b9148",
+      "name": "ruleset:download-excel-template",
+      "kind": "IPC",
+      "namespace": "ruleset",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "GET /api/presets/rulesets/template.xlsx 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-7754362b9148"
+      ]
+    },
+    {
+      "id": "IPC-337d01816990",
+      "name": "ruleset:export-excel",
+      "kind": "IPC",
+      "namespace": "ruleset",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "GET /api/presets/rulesets/:id/export.xlsx?revision=2 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-337d01816990"
+      ]
+    },
+    {
+      "id": "IPC-8bfb6ec9fcd8",
+      "name": "ruleset:get",
+      "kind": "IPC",
+      "namespace": "ruleset",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "GET /api/presets/rulesets/:id 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-8bfb6ec9fcd8"
+      ]
+    },
+    {
+      "id": "IPC-c17682083b52",
+      "name": "ruleset:import-excel",
+      "kind": "IPC",
+      "namespace": "ruleset",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "POST /api/presets/rulesets/:id/import?revision=2 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-c17682083b52"
+      ]
+    },
+    {
+      "id": "IPC-c04013aa6e1b",
+      "name": "ruleset:list",
+      "kind": "IPC",
+      "namespace": "ruleset",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "GET /api/presets/rulesets 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-c04013aa6e1b"
+      ]
+    },
+    {
+      "id": "IPC-2bdb599038fb",
+      "name": "ruleset:preview-workspace-promotion",
+      "kind": "IPC",
+      "namespace": "ruleset",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "POST /api/presets/rulesets/:id/promotion 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-2bdb599038fb"
+      ]
+    },
+    {
+      "id": "IPC-2187e949f831",
+      "name": "ruleset:set-active",
+      "kind": "IPC",
+      "namespace": "ruleset",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "PUT /api/presets/preferences 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-2187e949f831"
+      ]
+    },
+    {
+      "id": "IPC-9a6a89a8fb10",
+      "name": "ruleset:update",
+      "kind": "IPC",
+      "namespace": "ruleset",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "PUT /api/presets/rulesets/:id 已有逐名隔离调用/返回与持久结果证据；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "实际调用并检验返回字段、持久化与特定副作用",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-9a6a89a8fb10"
+      ]
+    },
+    {
+      "id": "IPC-ce03744a77ef",
+      "name": "window:before-close",
+      "kind": "IPC",
+      "namespace": "window",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S2",
+      "ledgerImplementationNote": "未逐项评估；同业务域有能力不等于此通道已对齐。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "native_or_external_runtime_boundary",
+      "classification": "specific_own_interface_receipt_not_consolidated_in_ledger",
+      "exactDifference": "Ledger says 未逐项评估; C implementation gap review names domain implementation but does not provide a final per-ID completion receipt here. No absent public business node was confirmed.",
+      "suggestedStatusFromReport": null,
+      "evidencePointers": [
+        "contracts/team-sol-architecture-final-implementation-gaps-20261015.json",
+        "ledger.json#IPC-ce03744a77ef"
+      ]
+    },
+    {
+      "id": "IPC-1e94f610b0e1",
+      "name": "window:resolve-close",
+      "kind": "IPC",
+      "namespace": "window",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S2",
+      "ledgerImplementationNote": "未逐项评估；同业务域有能力不等于此通道已对齐。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "native_or_external_runtime_boundary",
+      "classification": "specific_own_interface_receipt_not_consolidated_in_ledger",
+      "exactDifference": "Ledger says 未逐项评估; C implementation gap review names domain implementation but does not provide a final per-ID completion receipt here. No absent public business node was confirmed.",
+      "suggestedStatusFromReport": null,
+      "evidencePointers": [
+        "contracts/team-sol-architecture-final-implementation-gaps-20261015.json",
+        "ledger.json#IPC-1e94f610b0e1"
+      ]
+    },
+    {
+      "id": "IPC-e6a8f1b41825",
+      "name": "workspace:create-transfer",
+      "kind": "IPC",
+      "namespace": "workspace",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已按此稳定 ID 逐项审查保存/读回及调用副作用；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "受密码保护传输副本实际写入、重读、完整原件/状态/catalog保留；不覆盖旧文件",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-e6a8f1b41825"
+      ]
+    },
+    {
+      "id": "IPC-f53f8972c1a5",
+      "name": "workspace:discard-recovery",
+      "kind": "IPC",
+      "namespace": "workspace",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已按此稳定 ID 逐项审查保存/读回及调用副作用；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "真实owner+revision删除草稿，保留材料和已保存复核",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-f53f8972c1a5"
+      ]
+    },
+    {
+      "id": "IPC-3c8789ad9a8f",
+      "name": "workspace:forget-recent",
+      "kind": "IPC",
+      "namespace": "workspace",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已按此稳定 ID 逐项审查保存/读回及调用副作用；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "仅移除本人最近索引，不删除工程",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-3c8789ad9a8f"
+      ]
+    },
+    {
+      "id": "IPC-7e55b9d273b1",
+      "name": "workspace:list-recent",
+      "kind": "IPC",
+      "namespace": "workspace",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已按此稳定 ID 逐项审查保存/读回及调用副作用；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "20项MRU，lastSavedAt独立持久、加密显示名/材料数、原ey可复用数；未知明确known=false",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-7e55b9d273b1"
+      ]
+    },
+    {
+      "id": "IPC-be30d4526c26",
+      "name": "workspace:list-recoveries",
+      "kind": "IPC",
+      "namespace": "workspace",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已按此稳定 ID 逐项审查保存/读回及调用副作用；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "真实当前权限可读的本人恢复记录及版本",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-be30d4526c26"
+      ]
+    },
+    {
+      "id": "IPC-a80eb991f683",
+      "name": "workspace:list-recovery-prompts",
+      "kind": "IPC",
+      "namespace": "workspace",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已按此稳定 ID 逐项审查保存/读回及调用副作用；浏览器选择器/本机路径仍是原生边界，保留现 I 状态；云端业务适配已逐项核。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "native_browser_adaptation_explicit_boundary",
+      "exactDifference": "真实待恢复信息；不自动批准草稿; source filters prompts by incomplete PDF/previous unclean session, cloud exposes available dirty drafts rather than claiming native process-session parity",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-a80eb991f683"
+      ]
+    },
+    {
+      "id": "IPC-f417c3628886",
+      "name": "workspace:migrate-v1-to-v2",
+      "kind": "IPC",
+      "namespace": "workspace",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已按此稳定 ID 逐项审查保存/读回及调用副作用；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "V1/V2/V3真实字节转换、重读完整比较、源字节保留",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-f417c3628886"
+      ]
+    },
+    {
+      "id": "IPC-feb24aa50a4f",
+      "name": "workspace:open",
+      "kind": "IPC",
+      "namespace": "workspace",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已按此稳定 ID 逐项审查保存/读回及调用副作用；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "完整原件/旧复核字段保留、重新识别、显式恢复人工草稿；自动recent",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-feb24aa50a4f"
+      ]
+    },
+    {
+      "id": "IPC-86a65aa5ca0e",
+      "name": "workspace:open-dialog",
+      "kind": "IPC",
+      "namespace": "workspace",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已按此稳定 ID 逐项审查保存/读回及调用副作用；浏览器选择器/本机路径仍是原生边界，保留现 I 状态；云端业务适配已逐项核。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "native_browser_adaptation_explicit_boundary",
+      "exactDifference": "浏览器文件授权选择；非Electron本地对话框; native OS dialog itself is not executed by this cloud API proof",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-86a65aa5ca0e"
+      ]
+    },
+    {
+      "id": "IPC-8ed0acbb4144",
+      "name": "workspace:open-recovery",
+      "kind": "IPC",
+      "namespace": "workspace",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已按此稳定 ID 逐项审查保存/读回及调用副作用；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "owner/当前权限/revision/源hash+映射重核，返回草稿不伪批准",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-8ed0acbb4144"
+      ]
+    },
+    {
+      "id": "IPC-1d575f4ee880",
+      "name": "workspace:read-review-profile",
+      "kind": "IPC",
+      "namespace": "workspace",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已按此稳定 ID 逐项审查保存/读回及调用副作用；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "原ey完整算法提取启用更正/假名冲突及保留token",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-1d575f4ee880"
+      ]
+    },
+    {
+      "id": "IPC-70e09702200d",
+      "name": "workspace:receive-transfer",
+      "kind": "IPC",
+      "namespace": "workspace",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已按此稳定 ID 逐项审查保存/读回及调用副作用；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "受密码保护副本真实打开；本地keychain包无合法跨设备密钥不能伪解锁",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-70e09702200d"
+      ]
+    },
+    {
+      "id": "IPC-c356082df625",
+      "name": "workspace:save",
+      "kind": "IPC",
+      "namespace": "workspace",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已按此稳定 ID 逐项审查保存/读回及调用副作用；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "owner+session+requestId幂等、payload冲突、snapshotCAS、真实running/completed/failed、不可变密文字节",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-c356082df625"
+      ]
+    },
+    {
+      "id": "IPC-ff1d1193dc22",
+      "name": "workspace:save-as",
+      "kind": "IPC",
+      "namespace": "workspace",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已按此稳定 ID 逐项审查保存/读回及调用副作用；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "真实受保护导出/另存下载；不读写用户原生绝对路径",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-ff1d1193dc22"
+      ]
+    },
+    {
+      "id": "IPC-9be2a0784913",
+      "name": "workspace:save-recovery",
+      "kind": "IPC",
+      "namespace": "workspace",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已按此稳定 ID 逐项审查保存/读回及调用副作用；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "真实加密draft、revisionCAS、完整人工标记/页图/映射权限；不改变正式复核",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-9be2a0784913"
+      ]
+    },
+    {
+      "id": "IPC-1ad8e879614a",
+      "name": "workspace:save-result",
+      "kind": "IPC",
+      "namespace": "workspace",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已按此稳定 ID 逐项审查保存/读回及调用副作用；I4 仅为最终门禁后候选，现 I 状态不变；原生/源许可运行不由云测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "真实回执查询；1h/100缓存淘汰，重启遗留running明确interrupted，下载重新核当前权限/全部源hash/快照/byteshash",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-1ad8e879614a"
+      ]
+    },
+    {
+      "id": "IPC-98cb505df8ea",
+      "name": "workspace:select-review-profile",
+      "kind": "IPC",
+      "namespace": "workspace",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已按此稳定 ID 逐项审查保存/读回及调用副作用；浏览器选择器/本机路径仍是原生边界，保留现 I 状态；云端业务适配已逐项核。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "native_browser_adaptation_explicit_boundary",
+      "exactDifference": "真实原ey更正及假名完整导入；冲突显式选择、项目旧复核失效并重识别; uploaded profile apply is verified, source OS chooser is a platform adaptation",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/current-interface-handoff-C-20261015.json#IPC-98cb505df8ea"
+      ]
+    },
+    {
+      "id": "MCP-104bba767f9b",
+      "name": "resume_lawbot_task",
+      "kind": "MCP",
+      "namespace": "mcp-connectors",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "没有竞品MCP协议或本地AI交换任务实现。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "named_mcp_tool_actual_cloud_adaptation_source_protocol_boundary",
+      "exactDifference": "12 named MCP tools have real integration receipts in mcp-ai-collaboration-porting; current ledger note about no source MCP protocol is a native/protocol comparison, not absence of the cloud tool.",
+      "suggestedStatusFromReport": null,
+      "evidencePointers": [
+        "contracts/mcp-ai-collaboration-porting-20261014.json#MCP-104bba767f9b",
+        "contracts/team-sol-architecture-final-implementation-gaps-20261015.json"
+      ]
+    },
+    {
+      "id": "MCP-125a85961c76",
+      "name": "list_lawbot_saved_settings",
+      "kind": "MCP",
+      "namespace": "mcp-connectors",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "没有竞品MCP协议或本地AI交换任务实现。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "named_mcp_tool_actual_cloud_adaptation_source_protocol_boundary",
+      "exactDifference": "12 named MCP tools have real integration receipts in mcp-ai-collaboration-porting; current ledger note about no source MCP protocol is a native/protocol comparison, not absence of the cloud tool.",
+      "suggestedStatusFromReport": null,
+      "evidencePointers": [
+        "contracts/mcp-ai-collaboration-porting-20261014.json#MCP-125a85961c76",
+        "contracts/team-sol-architecture-final-implementation-gaps-20261015.json"
+      ]
+    },
+    {
+      "id": "MCP-08b4aa88f5db",
+      "name": "start_lawbot_redaction",
+      "kind": "MCP",
+      "namespace": "mcp-connectors",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "没有竞品MCP协议或本地AI交换任务实现。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "named_mcp_tool_actual_cloud_adaptation_source_protocol_boundary",
+      "exactDifference": "12 named MCP tools have real integration receipts in mcp-ai-collaboration-porting; current ledger note about no source MCP protocol is a native/protocol comparison, not absence of the cloud tool.",
+      "suggestedStatusFromReport": null,
+      "evidencePointers": [
+        "contracts/mcp-ai-collaboration-porting-20261014.json#MCP-08b4aa88f5db",
+        "contracts/team-sol-architecture-final-implementation-gaps-20261015.json"
+      ]
+    },
+    {
+      "id": "MCP-c498f8766b24",
+      "name": "start_lawbot_redaction_for_user_manual_review",
+      "kind": "MCP",
+      "namespace": "mcp-connectors",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "没有竞品MCP协议或本地AI交换任务实现。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "named_mcp_tool_actual_cloud_adaptation_source_protocol_boundary",
+      "exactDifference": "12 named MCP tools have real integration receipts in mcp-ai-collaboration-porting; current ledger note about no source MCP protocol is a native/protocol comparison, not absence of the cloud tool.",
+      "suggestedStatusFromReport": null,
+      "evidencePointers": [
+        "contracts/mcp-ai-collaboration-porting-20261014.json#MCP-c498f8766b24",
+        "contracts/team-sol-architecture-final-implementation-gaps-20261015.json"
+      ]
+    },
+    {
+      "id": "MCP-7b2d5f82cf39",
+      "name": "start_lawbot_restoration",
+      "kind": "MCP",
+      "namespace": "mcp-connectors",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "没有竞品MCP协议或本地AI交换任务实现。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "named_mcp_tool_actual_cloud_adaptation_source_protocol_boundary",
+      "exactDifference": "12 named MCP tools have real integration receipts in mcp-ai-collaboration-porting; current ledger note about no source MCP protocol is a native/protocol comparison, not absence of the cloud tool.",
+      "suggestedStatusFromReport": null,
+      "evidencePointers": [
+        "contracts/mcp-ai-collaboration-porting-20261014.json#MCP-7b2d5f82cf39",
+        "contracts/team-sol-architecture-final-implementation-gaps-20261015.json"
+      ]
+    },
+    {
+      "id": "MCP-9a4e24e9a1c0",
+      "name": "check_document_delivery",
+      "kind": "MCP",
+      "namespace": "mcp-connectors",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "没有竞品MCP协议或本地AI交换任务实现。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "named_mcp_tool_actual_cloud_adaptation_source_protocol_boundary",
+      "exactDifference": "12 named MCP tools have real integration receipts in mcp-ai-collaboration-porting; current ledger note about no source MCP protocol is a native/protocol comparison, not absence of the cloud tool.",
+      "suggestedStatusFromReport": null,
+      "evidencePointers": [
+        "contracts/mcp-ai-collaboration-porting-20261014.json#MCP-9a4e24e9a1c0",
+        "contracts/team-sol-architecture-final-implementation-gaps-20261015.json"
+      ]
+    },
+    {
+      "id": "MCP-dc810d5ca01a",
+      "name": "receive_sanitized_document",
+      "kind": "MCP",
+      "namespace": "mcp-connectors",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "没有竞品MCP协议或本地AI交换任务实现。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "named_mcp_tool_actual_cloud_adaptation_source_protocol_boundary",
+      "exactDifference": "12 named MCP tools have real integration receipts in mcp-ai-collaboration-porting; current ledger note about no source MCP protocol is a native/protocol comparison, not absence of the cloud tool.",
+      "suggestedStatusFromReport": null,
+      "evidencePointers": [
+        "contracts/mcp-ai-collaboration-porting-20261014.json#MCP-dc810d5ca01a",
+        "contracts/team-sol-architecture-final-implementation-gaps-20261015.json"
+      ]
+    },
+    {
+      "id": "MCP-1e302c2392c3",
+      "name": "submit_reviewed_document",
+      "kind": "MCP",
+      "namespace": "mcp-connectors",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "没有竞品MCP协议或本地AI交换任务实现。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "named_mcp_tool_actual_cloud_adaptation_source_protocol_boundary",
+      "exactDifference": "12 named MCP tools have real integration receipts in mcp-ai-collaboration-porting; current ledger note about no source MCP protocol is a native/protocol comparison, not absence of the cloud tool.",
+      "suggestedStatusFromReport": null,
+      "evidencePointers": [
+        "contracts/mcp-ai-collaboration-porting-20261014.json#MCP-1e302c2392c3",
+        "contracts/team-sol-architecture-final-implementation-gaps-20261015.json"
+      ]
+    },
+    {
+      "id": "MCP-a3d4f76a1a28",
+      "name": "open_lawbot_restore",
+      "kind": "MCP",
+      "namespace": "mcp-connectors",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "没有竞品MCP协议或本地AI交换任务实现。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "named_mcp_tool_actual_cloud_adaptation_source_protocol_boundary",
+      "exactDifference": "12 named MCP tools have real integration receipts in mcp-ai-collaboration-porting; current ledger note about no source MCP protocol is a native/protocol comparison, not absence of the cloud tool.",
+      "suggestedStatusFromReport": null,
+      "evidencePointers": [
+        "contracts/mcp-ai-collaboration-porting-20261014.json#MCP-a3d4f76a1a28",
+        "contracts/team-sol-architecture-final-implementation-gaps-20261015.json"
+      ]
+    },
+    {
+      "id": "MCP-8e8e605f0d93",
+      "name": "continue_current_document_review",
+      "kind": "MCP",
+      "namespace": "mcp-connectors",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "没有竞品MCP协议或本地AI交换任务实现。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "named_mcp_tool_actual_cloud_adaptation_source_protocol_boundary",
+      "exactDifference": "12 named MCP tools have real integration receipts in mcp-ai-collaboration-porting; current ledger note about no source MCP protocol is a native/protocol comparison, not absence of the cloud tool.",
+      "suggestedStatusFromReport": null,
+      "evidencePointers": [
+        "contracts/mcp-ai-collaboration-porting-20261014.json#MCP-8e8e605f0d93",
+        "contracts/team-sol-architecture-final-implementation-gaps-20261015.json"
+      ]
+    },
+    {
+      "id": "MCP-8fb696cd0f36",
+      "name": "get_lawbot_capabilities",
+      "kind": "MCP",
+      "namespace": "mcp-connectors",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "没有竞品MCP协议或本地AI交换任务实现。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "named_mcp_tool_actual_cloud_adaptation_source_protocol_boundary",
+      "exactDifference": "12 named MCP tools have real integration receipts in mcp-ai-collaboration-porting; current ledger note about no source MCP protocol is a native/protocol comparison, not absence of the cloud tool.",
+      "suggestedStatusFromReport": null,
+      "evidencePointers": [
+        "contracts/mcp-ai-collaboration-porting-20261014.json#MCP-8fb696cd0f36",
+        "contracts/team-sol-architecture-final-implementation-gaps-20261015.json"
+      ]
+    },
+    {
+      "id": "MCP-924f29e7e21d",
+      "name": "check_restore_completion",
+      "kind": "MCP",
+      "namespace": "mcp-connectors",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "没有竞品MCP协议或本地AI交换任务实现。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "C196",
+      "sourceFiniteClassification": "public_finite_closed",
+      "classification": "named_mcp_tool_actual_cloud_adaptation_source_protocol_boundary",
+      "exactDifference": "12 named MCP tools have real integration receipts in mcp-ai-collaboration-porting; current ledger note about no source MCP protocol is a native/protocol comparison, not absence of the cloud tool.",
+      "suggestedStatusFromReport": null,
+      "evidencePointers": [
+        "contracts/mcp-ai-collaboration-porting-20261014.json#MCP-924f29e7e21d",
+        "contracts/team-sol-architecture-final-implementation-gaps-20261015.json"
+      ]
+    },
+    {
+      "id": "UI-2c1712d35460",
+      "name": "entity-group-review",
+      "kind": "UI",
+      "namespace": "ui-workflow",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "当前材料独立分组、整组决定、单处例外；长值独立位置。 整组草稿决定已改为直接生效并支持撤销，不再弹出确认。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "visual21_or_ui6",
+      "classification": "ui_surface_or_acceptance_difference_no_named_missing_business_result",
+      "exactDifference": "No specific group business branch presently proven absent; new PDF page-focus wiring lacks fresh Edge proof.",
+      "boundaryClass": "Source Word/PDF/Image sidebar pixel layout and lifecycle are not runtime verified; source R0.",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-visual-final-implementation-map-20261015.json#UI-2c1712d35460"
+      ]
+    },
+    {
+      "id": "UI-3f01047e6b59",
+      "name": "full-text-search-scopes",
+      "kind": "UI",
+      "namespace": "ui-workflow",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "服务端完整原文筛选、跨窗口分页定位、草稿失效；竞品格式/性能未对照。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "visual21_or_ui6",
+      "classification": "ui_surface_or_acceptance_difference_no_named_missing_business_result",
+      "exactDifference": "Source PDF native PDF.js text search fallback and Word image overlay are not the same implementation path; no concrete text result counterexample yet. Current modified page-selection spec lacks fresh pass.",
+      "boundaryClass": "PDF.js native geometry and OCR recall are quality/platform leaves.",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-visual-final-implementation-map-20261015.json#UI-3f01047e6b59"
+      ]
+    },
+    {
+      "id": "UI-339d8e53408d",
+      "name": "review-preview-mode",
+      "kind": "UI",
+      "namespace": "ui-workflow",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已有DOCX结构版式预览：段落/run、表格、受支持本地图片、实体定位与处理预览；新Word浏览器用例验证真实下载及ZIP正文。浏览器字体、分页、浮动/多节布局不保证与Word原版式像素一致，隐藏对象须另外审查；未完成竞品等价对齐。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "visual21_or_ui6",
+      "classification": "ui_surface_or_acceptance_difference_no_named_missing_business_result",
+      "exactDifference": "Source unified child setPreviewMode and delayed workspace snapshot/recovery presentation has no one-to-one web surface; own server draft flow differs.",
+      "boundaryClass": "Native encrypted workspace and renderer lifecycle cannot be claimed run; source R0.",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-visual-final-implementation-map-20261015.json#UI-339d8e53408d"
+      ]
+    },
+    {
+      "id": "UI-ad41d13c4a2d",
+      "name": "preview-policy-hierarchy",
+      "kind": "UI",
+      "namespace": "ui-workflow",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已逐项核 preview-policy-hierarchy：本品有项目方案与全项目统一假名界面及跨材料更新，文档内有整体/类型/同值/逐项处理策略，并按文本或页图展示当前材料处理预览。竞品协调器同样按当前文件格式切换预览；尚未找到可运行的处理动作或输出业务反例。混合 DOCX/Markdown/PDF/图像项目的新 E2E 本轮未验证，不写成未实现。保留现 I1、竞品 R0及原生界面/渲染边界。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "visual21_or_ui6",
+      "classification": "ui_surface_or_acceptance_difference_no_named_missing_business_result",
+      "exactDifference": "Source single coordinator presents a cross-format hierarchical preview/partial draft lifecycle; own policy editor is document-oriented and does not implement that exact centralized surface.",
+      "boundaryClass": "Source coordinator partial-mutation race and renderer pixel layout are not required to copy.",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-visual-final-implementation-map-20261015.json#UI-ad41d13c4a2d"
+      ]
+    },
+    {
+      "id": "UI-67e30cf66ad0",
+      "name": "known-entity-audit",
+      "kind": "UI",
+      "namespace": "ui-workflow",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "项目全材料已知实体查漏、完整集合版本CAS、same/other/uncovered/retained/conflict逐处列表、精确定位、单处补录、原子异类替换及非ready跳过均已实现。项目API3项及双页PDF几何/实际导出像素1项通过，最终447产品文件pnpm check为128文件/733单元通过。保留I1：当前完整Edge与线上发布仍待验收，竞品R0。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "visual21_or_ui6",
+      "classification": "ui_surface_or_acceptance_difference_no_named_missing_business_result",
+      "exactDifference": "Cross-file audit itself exists. Source Uf2/Rf2/Tf2/av2 offers per-match same/other/uncovered rows, file/occurrence locate, single/all missing add and replaceOther (remove conflicting type then add); project UI currently shows aggregate counts and only add-all-missing. Document UI has independent locate.",
+      "boundaryClass": "Source skips non-ready files; own route currently requires every listed project document state=review and rejects otherwise. Source PDF.js/OCR geometry remains a quality leaf. Project panel has no fresh Edge proof.",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-visual-final-implementation-map-20261015.json#UI-67e30cf66ad0"
+      ]
+    },
+    {
+      "id": "UI-32ce2fb60c5f",
+      "name": "manual-correction-scope",
+      "kind": "UI",
+      "namespace": "ui-workflow",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "当前材料 OCR/人工纠正与项目范围 preview/apply 已实现，按完整项目事实指纹和版本约束计划及写回；旧“未实现项目范围批量改字”已过时。保留 I1：跨格式可见交互和当前完整 Edge 验证尚未完成，不能声称竞品算法或原生流程等价。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "visual21_or_ui6",
+      "classification": "ui_surface_or_acceptance_difference_no_named_missing_business_result",
+      "exactDifference": "Old ledger claim that project scope is absent is stale. No remaining specific public correction branch proven absent; current-tree browser sequence and cross-format proof are outstanding.",
+      "boundaryClass": "Source cached plan race/partial apply need not be copied; own CAS/transaction and OCR quality differ.",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-visual-final-implementation-map-20261015.json#UI-32ce2fb60c5f"
+      ]
+    },
+    {
+      "id": "IPC-4dd20e80cae3",
+      "name": "image-review:batch-search",
+      "kind": "IPC",
+      "namespace": "image-review",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已逐项核 image-review:batch-search：document image-search API returns page and boxes; UI classifies in/out against current marks and corrections。No material public search branch identified; source cached q2 and own canonical OCR storage differ. 保留现 I1，源许可运行 R0；当前全量门禁不能由既有定向证据代替。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "visual21_or_ui6",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "No material public search branch identified; source cached q2 and own canonical OCR storage differ.",
+      "boundaryClass": "OCR geometry accuracy and source cache timing remain unproven.",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/team-sol-visual-final-implementation-map-20261015.json#IPC-4dd20e80cae3"
+      ]
+    },
+    {
+      "id": "IPC-ba07bb14e3df",
+      "name": "image-review:get-ocr-page",
+      "kind": "IPC",
+      "namespace": "image-review",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已逐项核 image-review:get-ocr-page：竞品短期 OCR 缓存缺页时可用 PDF buffer 在同一请求强制识别并共用进行中任务；本品检测阶段先完成全页 OCR，保存规范文本锚点、页图与 glyph 坐标图，复核页按版本读取并可直接选字。未发现已完成材料的 OCR 选取业务反例。多页 PDF 部分页可提前复核是可观察的流式就绪时序差异；是否要求先行复核待验收，不能据缺少同名 IPC 判定最终功能未实现。保留现 I1 和竞品 R0，OCR 引擎质量/流式部分页不由既有测试证明。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "visual21_or_ui6",
+      "classification": "ocr_lazy_to_eager_timing_adaptation_no_completed_document_counterexample",
+      "exactDifference": "Single get-page request has no source optional PDF-buffer cache-miss forced OCR/inflight promise branch; rerun is separate user action.",
+      "boundaryClass": "A different transaction and error behavior; actual OCR quality is outside proof.",
+      "suggestedStatusFromReport": "I1",
+      "evidencePointers": [
+        "contracts/team-sol-visual-final-implementation-map-20261015.json#IPC-ba07bb14e3df"
+      ]
+    },
+    {
+      "id": "IPC-910347ed48b5",
+      "name": "image-review:ocr-region",
+      "kind": "IPC",
+      "namespace": "image-review",
+      "ledgerImplementationStatus": "I1",
+      "ledgerStaticDepth": "S3",
+      "ledgerImplementationNote": "已逐项核 image-review:ocr-region：revision-bound page region OCR query returns text and box without mutating canonical text。No material public region selection branch identified; geometry source is own glyph map. 保留现 I1，源许可运行 R0；当前全量门禁不能由既有定向证据代替。",
+      "confirmedUnimplementedPublicBusinessNode": false,
+      "evidenceGroup": "visual21_or_ui6",
+      "classification": "bounded_implemented_candidate_pending_final_gates",
+      "exactDifference": "No material public region selection branch identified; geometry source is own glyph map.",
+      "boundaryClass": "Word fallback approximation and OCR accuracy are quality boundaries.",
+      "suggestedStatusFromReport": "I4",
+      "evidencePointers": [
+        "contracts/team-sol-visual-final-implementation-map-20261015.json#IPC-910347ed48b5"
+      ]
+    }
+  ],
+  "postReviewValidation": {
+    "finalV4BatchDocDefaultPassed": true,
+    "ledgerImplementationGradeChanged": false
+  }
+}

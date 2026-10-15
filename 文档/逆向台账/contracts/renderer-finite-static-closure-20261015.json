@@ -1,0 +1,555 @@
+{
+  "date": "2026-10-15",
+  "owner": "A complete_rules",
+  "sourceRuntime": "R0",
+  "scopeDefinitions": {
+    "UI-ad41d13c4a2d": "preview-policy-hierarchy original renderer5335; alias lifecycle is a dependency, not renamed ID",
+    "UI-2c1712d35460": "entity-group-review original renderer5054; sidebar/window are dependencies, not renamed ID"
+  },
+  "staticMeaning": "S3 only when the finite source application chain from actual UI caller through handler/dependencies, fields/errors, persistence/recovery and returned UI is accounted. Static S3 is independent of runtime R0 and own product I levels.",
+  "sources": [
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "bytes": 2771447,
+      "sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "bytes": 1996358,
+      "sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba"
+    }
+  ],
+  "nodes": [
+    {
+      "name": "EntityTreeSidebar",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 5054,
+      "endLine": 5313,
+      "bytes": 21165,
+      "sha256": "fa0ed79fed3954484d7b420ef0f24abc5ef1b64e3f3a1f6e4077b55f16e12336",
+      "role": "原UI-2c入口：type/text组、groupCount可选但无实际producer、实例排序、复选/确认/展开/删除事件",
+      "status": "read-complete"
+    },
+    {
+      "name": "Hp/Vp/Wp/qp",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 5314,
+      "endLine": 5334,
+      "bytes": 1555,
+      "sha256": "50b683d97c2fde7ad7e4b914daab18c73cd18229015178d1faa7636f9dfd2fe0",
+      "role": "动作和类型动作默认、mask null/partial wd/full码点/current or auto",
+      "status": "read-complete"
+    },
+    {
+      "name": "PseudonymPolicyList/PreviewRulesPanel",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 5335,
+      "endLine": 5403,
+      "bytes": 11701,
+      "sha256": "cb9d673a412b5d1f45e2d9bba26d7a7688ae4e420d2316a9206651977126d156",
+      "role": "原UI-ad入口：4模式、类型排序/组一致性、单项动作、blur/Enter/Escape/maxlength30",
+      "status": "read-complete"
+    },
+    {
+      "name": "Jl/UiConfirmHost",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 3631,
+      "endLine": 3671,
+      "bytes": 5287,
+      "sha256": "391980fbf5972675d19de27dbe7f516010bd759408c41107001b8d0f939d7191",
+      "role": "确认Promise替换会取消前确认；cancel/extra/confirm+Esc/backdrop",
+      "status": "read-complete"
+    },
+    {
+      "name": "jc+Lc",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 4404,
+      "endLine": 4490,
+      "bytes": 3425,
+      "sha256": "f8b747f1df5e02deeda62b57c6cd03d85013e8d661f2fc7445953546b055dfe3",
+      "role": "继承profile完整set/reserve/snapshot/tokenFor/apply",
+      "status": "read-complete"
+    },
+    {
+      "name": "organization canonical rules",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 5476,
+      "endLine": 5547,
+      "bytes": 6777,
+      "sha256": "582b41750fd0f014b44dcbd969c60d03f1aad0a6354b3e7a2971ec1688449b9d",
+      "role": "显式释义、后缀过滤、非泛化机构简称",
+      "status": "read-complete"
+    },
+    {
+      "name": "Mf/Af/Ef/Nf",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 5558,
+      "endLine": 5713,
+      "bytes": 7910,
+      "sha256": "88fd47bd05b9f078f5945dd834dd755a8b7d689e7c7bc4b701bb6dfa9e4d0d9e",
+      "role": "原呈现冲突图完整节点",
+      "status": "read-complete"
+    },
+    {
+      "name": "Kf",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 5800,
+      "endLine": 5868,
+      "bytes": 2581,
+      "sha256": "056700e77ef375e4e38df5e8e001587ce1de75d78557389cb980dca0c9ba08e3",
+      "role": "源UTF16分块/保护跨度/实测高度/binarywindow",
+      "status": "read-complete"
+    },
+    {
+      "name": "shared candidates+Canvas caller",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 6107,
+      "endLine": 6169,
+      "bytes": 4363,
+      "sha256": "71793b95a6201296a6f10a50b2e1f90e2a6544be17e2300ac8e55acdd901b470",
+      "role": "真实_2/Af/Ef/Ho2输入，不将默认measure8当实际字体",
+      "status": "read-complete"
+    },
+    {
+      "name": "xt2/kt2/St2",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 6300,
+      "endLine": 6361,
+      "bytes": 3791,
+      "sha256": "c988a239f999ddef21c5e7f68ff4baa7201e44bfff9f8825d5fca27eae96d5a5",
+      "role": "DOM/source/cell sourceoffset selection和虚拟跳转",
+      "status": "read-complete"
+    },
+    {
+      "name": "Ti2/Ei2",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 6973,
+      "endLine": 7051,
+      "bytes": 5402,
+      "sha256": "3612d7024b37fbb2a892c10dbc00a20b0bd007e458a9b5543be24507bb231133",
+      "role": "Word/MD fullName producer与继承apply，不伪造fresh NER fullname",
+      "status": "read-complete"
+    },
+    {
+      "name": "shared Bi2/zi2/Ui2",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 7108,
+      "endLine": 7153,
+      "bytes": 2771,
+      "sha256": "54e30e523d4c41ad4d6faa4c42088c52406ee2654b3a7d6083f54c66ff1c2e46",
+      "role": "Word/MD type/entry/reset；不同canonical同token需确认；dirtyemit/unified父回调",
+      "status": "read-complete"
+    },
+    {
+      "name": "Ao2/To2/Eo2",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 8795,
+      "endLine": 8832,
+      "bytes": 1911,
+      "sha256": "a8b8fd42755f4ddd598429467f68d33eba0e4eea24461ca3e5f2e10157f84bac",
+      "role": "实际呈现→window→type/query/roundedscore filter",
+      "status": "read-complete"
+    },
+    {
+      "name": "Ho2/Uo2 indexed links",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 8961,
+      "endLine": 9021,
+      "bytes": 3789,
+      "sha256": "50648ab6ebd1944109e1e8be5402a27d4cb2d1ac60b1c2eb3459fba0b077df98",
+      "role": "labels/targets/references容器范围+prefixEnds索引；processedpreview Pf另属root",
+      "status": "read-complete"
+    },
+    {
+      "name": "shared selection/delete/feedback",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 9568,
+      "endLine": 9688,
+      "bytes": 9483,
+      "sha256": "03afa49ef09611b86430240d8327350d0bf916934e436aa1c6c0e19f55a330a7",
+      "role": "Word/MD true select/delete/typehidden/useradded/tombstones/feedback无回滚",
+      "status": "read-complete"
+    },
+    {
+      "name": "PDF gl2/kl2/_l2/Sl2",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 24542,
+      "endLine": 24687,
+      "bytes": 10100,
+      "sha256": "7dd10003443ae018b4966dc3d175934250243f83f40357b53cf153d87347fd3d",
+      "role": "删除页剔除、locked全简称、类型/entry/reset、preview refresh",
+      "status": "read-complete"
+    },
+    {
+      "name": "Image A2/T2/E2/R2/D2/O2",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 26190,
+      "endLine": 26270,
+      "bytes": 5798,
+      "sha256": "da477deb380b48c21f93ff75c585ce48e5f06853aec1ba2a47af5aecdac09449",
+      "role": "bbox分组/类型actions/单项/重置/preview，不假设图像等同正文",
+      "status": "read-complete"
+    },
+    {
+      "name": "UK/VK/YK",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 29843,
+      "endLine": 30188,
+      "bytes": 27789,
+      "sha256": "1da2e7cce6ceb37425ee811376db8bad7ce2ddfab36b5f9fff485f851c07f6e9",
+      "role": "全snapshot/merge/style/token/override/occurrences/counters",
+      "status": "read-complete"
+    },
+    {
+      "name": "pt2",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 31058,
+      "endLine": 31060,
+      "bytes": 64,
+      "sha256": "5144b5f9242627bfc97ced83f6e9c8e46b0a4cda8c4bca269065e4eeb7fc0297",
+      "role": "真实profile selection→EU，不误读同名const",
+      "status": "read-complete"
+    },
+    {
+      "name": "Wl2/cu2/du2/fu2",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 32436,
+      "endLine": 32504,
+      "bytes": 4199,
+      "sha256": "f8ba3e49fd0c962292237032b241378841e78f2beba89cca47120c5f9686b6c5",
+      "role": "active snapshot ruleset优先、稳定ID、单Word canonical review/provenance/legacy绑定",
+      "status": "read-complete"
+    },
+    {
+      "name": "Du2/Ou2/Bu2",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 32600,
+      "endLine": 32669,
+      "bytes": 8748,
+      "sha256": "fa62c0ccba2539e0d59e2d5014cb00f9e601b0042eb16894ce00abfb5429a91e",
+      "role": "snapshot全/partial changedDocs稳定ID重键、所有原格式分流",
+      "status": "read-complete"
+    },
+    {
+      "name": "event debounce+preexport",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 32675,
+      "endLine": 32751,
+      "bytes": 3412,
+      "sha256": "c62703cfc0e879c19ceb7cf1930ab8ed77cfa5592580fdcc667dda7bab9a6302",
+      "role": "420ms child变更合并、save调用与flush前置",
+      "status": "read-complete"
+    },
+    {
+      "name": "lc2/Ec2",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 32798,
+      "endLine": 32849,
+      "bytes": 1584,
+      "sha256": "54d4e82f9cafd57292e4cea7ca7ca3338ad852b3518773c7a47c61aefa886fa7",
+      "role": "2s dirty recovery/serialprepare/save false与错误",
+      "status": "read-complete"
+    },
+    {
+      "name": "Gh2/Jh2/Qh2/Zh2/op2",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 33620,
+      "endLine": 33718,
+      "bytes": 6071,
+      "sha256": "9237467cd6970731cc10256b9c37e8ceea773f42b75cf5d230e76c756c858ce1",
+      "role": "request/session draft代际、防stale、rebuilt动作锁定/相同则skip、格式producer",
+      "status": "read-complete"
+    },
+    {
+      "name": "Mm2",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 34026,
+      "endLine": 34068,
+      "bytes": 3878,
+      "sha256": "47559ffa51c8d9f95ead5ca3fda9aad82cc5252d7d24b75a63caf3e72eb1d5e9",
+      "role": "四格式当前child草稿收拢、mask/viewport/rotations/deletedpages+style保留",
+      "status": "read-complete"
+    },
+    {
+      "name": "jm2/Km2/Hm2/Um2/Vm2/qm2+callbacks",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 34411,
+      "endLine": 34592,
+      "bytes": 9148,
+      "sha256": "632e9a9cf49bd81b871b0ad9998abd9a7b40f315dcf0e1df577f7f92748630b6",
+      "role": "dirty/full300ms、串行、failedrequeue、全部四renderer apply、10ms yield、scope/cancel/merge/reset/split",
+      "status": "read-complete"
+    },
+    {
+      "name": "mu/fu/vu serialization+store",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 3669,
+      "endLine": 3945,
+      "bytes": 15785,
+      "sha256": "1721d9e6e7bb80f320a1e94349dd736931ad50f19ea38f67645686d3fb016059",
+      "role": "snapshot/sourceRefs整形、save/saveAs串行、6×500ms未知receipt、project/revision保护、recovery/source重注册/open/clear",
+      "status": "read-complete"
+    },
+    {
+      "name": "main apply IPC+format dispatch",
+      "source": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 17409,
+      "endLine": 17810,
+      "bytes": 40990,
+      "sha256": "b0263013180a9a17d3399b9e4b89112f0110b8118d5172f5541294606d36db88",
+      "role": "许可gate、参数/取消/映射先持久化、format-specific Writer与真实异常返回",
+      "status": "read-complete",
+      "dependencyReport": "renderer-policy-dependencies-20261014.json RP06–09 + raster-source-mode-matrix-20261014.json + markdown-source-porting-20261014.json"
+    },
+    {
+      "name": "profile inherited schema+read return",
+      "source": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 18974,
+      "endLine": 18987,
+      "bytes": 956,
+      "sha256": "d2b43bc909e365a504aef8a09f0ae7362040458fcf252dd7cb35f67c8c111e6e",
+      "role": "原source entry/reserved上限与缺少深图验证明确，不虚构源码验证",
+      "status": "read-complete",
+      "dependencyReport": "iteration019-state-policy-20261014.json SP05–07"
+    },
+    {
+      "name": "main profile producer ey/readReviewProfile",
+      "source": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 20106,
+      "endLine": 20200,
+      "bytes": 7699,
+      "sha256": "f7d3c52cbbeff0e15975c897ba883d3692627fa6342c630b07e5703719154cae",
+      "role": "规范归并、current覆盖继承、multiple token冲突，不同canonical同token允许",
+      "status": "read-complete",
+      "dependencyReport": "workspace-renderer-lifecycle-20261015.json + iteration019-state-policy-20261014.json SP06"
+    },
+    {
+      "name": "Mu feedback write+singleton",
+      "source": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 13332,
+      "endLine": 13370,
+      "bytes": 2474,
+      "sha256": "83e23fa8184eddcb5ab759e2e88490f5f35eba8bef2c1839ccc25666115ce64e",
+      "role": "add/addBatch完整字段aliases，batch只save+audit，不调用updateMemoryFromFeedback",
+      "status": "read-complete"
+    },
+    {
+      "name": "Mu feedback disk recovery",
+      "source": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 13435,
+      "endLine": 13485,
+      "bytes": 3030,
+      "sha256": "982408a3c2bb8c5eb76f425768800c2004a1cd6cbc74746a4483925922b16d71",
+      "role": "save全feedback/memory/hints/audit1000；可选key才XOR存储；load失败吞并保空状态，不冒强加密",
+      "status": "read-complete"
+    },
+    {
+      "name": "feedback IPC handlers",
+      "source": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 18092,
+      "endLine": 18106,
+      "bytes": 651,
+      "sha256": "cc11ef3215459f036289385fd2228e0509da2c5b3ffd63062898e8cc2edc2cc5",
+      "role": "preload.addBatch→X2.addFeedbackBatch；success count/error受控，取高confidence memory的filter结果未消费，不创造学习",
+      "status": "read-complete"
+    },
+    {
+      "name": "workspace handlers",
+      "source": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 25657,
+      "endLine": 25728,
+      "bytes": 3562,
+      "sha256": "d9c7c0d5354a7a1ca56c754829dc5503e69f7aca6be680609c362328ecf76d34",
+      "role": "open保护路径s2、save sender-ownedrequestId/receipt缓存、saveRecovery未初始化明确error、saveAs取消null/错误",
+      "status": "read-complete"
+    }
+  ],
+  "remainingFinitePublicNodes": [],
+  "eligibleClosedSubchains": [
+    "jc all4set sites and inherited load/schema/canonical/token methods:019SP05–07 + A current concrete source ranges",
+    "YK unique applySnapshot and all three findTokenConflict parents:019SP07–08 + A actual callback range",
+    "Word/MD/PDF/image type/action/reset own-source bodies and their exact emit/debounce/flush/snapshot consumers",
+    "To2/Eo2/Kf/St2/Ho2 source algorithm and actualCanvas caller, own source data/selection guards",
+    "Feedback IPC addBatch→Mu actual persistence/recovery: source batch filter result unused, no automatic learning; source optional XOR is not our AEAD security claim."
+  ],
+  "perIdRecommendation": [
+    {
+      "id": "UI-ad41d13c4a2d",
+      "status": "S3-candidate-finite-public-static-callgraph-closed-parent-review-required",
+      "remainingIds": [],
+      "notBlockedBy": [
+        "No competitor licensed runtime (R0 stays separate)",
+        "No byte/pixel identical Vue/native platform runtime claim"
+      ],
+      "sourceRuntime": "R0",
+      "scope": "Only this exact UI stable ID and its enumerated finite dependencies; no bulk upgrade."
+    },
+    {
+      "id": "UI-2c1712d35460",
+      "status": "S3-candidate-finite-public-static-callgraph-closed-parent-review-required",
+      "remainingIds": [],
+      "sourceRuntime": "R0",
+      "scope": "Only this exact UI stable ID and its enumerated finite dependencies; no bulk upgrade."
+    }
+  ],
+  "sourceSafetyDifferences": [
+    "Source Hm2 failure may leave earlier in-memory drafts mutated; our durable materialization is transactional and emits pending/review-required, no fake rollback.",
+    "Source snapshot graph schema omits several deep checks; own graph import rejects malformed cycles/type/identity/reference data.",
+    "Source crosscanonical same-token may canonically restore; own arbitrary ambiguous text requires explicit occurrence or choice, while exact current output restores original forms.",
+    "Reference presentation normalizes unknown raw types toother, canonical raw identities and all-candidate review remain distinct.",
+    "Source external libraries/OS/authorization are explicit leaves, not privately obtained service implementation."
+  ],
+  "peerEvidence": [
+    {
+      "path": "文档/逆向台账/contracts/workspace-renderer-lifecycle-20261015.json",
+      "bytes": 25040,
+      "sha256": "bc32e3e220c0a0cb68aff485d7b311154d4d55c8a0cc7cd5d37a3be3bdc44563"
+    },
+    {
+      "path": "文档/逆向台账/contracts/workspace-interface-closure-20261015.json",
+      "bytes": 19809,
+      "sha256": "df62fff27d5461492fc15c05b3dc14ade42d8d323c74a37f3a8e32cb2ab330a5"
+    },
+    {
+      "path": "文档/逆向台账/contracts/deep-ui-parents-20261014.json",
+      "bytes": 40888,
+      "sha256": "b4a9529e9740c06116e36da34934d29dfc89a675d5b5fca4e9dee72b4a130bd0"
+    },
+    {
+      "path": "文档/逆向台账/contracts/iteration019-state-policy.json",
+      "bytes": 53409,
+      "sha256": "7fbc8d438542aecaad89c7f51bc5f540a64c965cf9467225ba3ec0a5140a4d3e"
+    },
+    {
+      "path": "文档/逆向台账/contracts/renderer-policy-dependencies-20261014.json",
+      "bytes": 44143,
+      "sha256": "e6fc594ba87768708578f7e985fa829f104a0fb7cc35e9ed1821b5083dea1613"
+    }
+  ],
+  "implementationProofSeparate": {
+    "unifiedUI": "iteration035/unified-alias-edge-fourth.log:1PASS38.3s naturalexit0",
+    "sourceUI": "not yet run; Canvas+link caller typecheckPASS and 3files6unitPASS; actual long-source spec awaits shared window"
+  },
+  "previousRemainingFinitePublicNodes": [
+    {
+      "id": "STATIC-SIDEBAR-IMAGE",
+      "owner": "B",
+      "entry": "UI-2c1712d35460",
+      "nodes": [
+        "actual Image Pa2 projection near26935",
+        "actual PDF Il2 complete scroll chain"
+      ],
+      "reason": "本轮A没有逐体闭合；B已接独立source静态补读，不能从我方manual/rotation API或同名方法判断closed。"
+    },
+    {
+      "id": "STATIC-DELETE-PARENTS",
+      "owner": "B",
+      "entry": "UI-2c1712d35460",
+      "nodes": [
+        "zf/_c/er2 all exact producer and delete consumers"
+      ],
+      "reason": "feedback.addBatch主处理→Mu.addBatch→save/load与未自动学习已A逐体闭合；B仍需补指定视觉/删除父caller全集。"
+    },
+    {
+      "id": "STATIC-SAVE-IPC",
+      "owner": "C/root",
+      "entry": "both",
+      "nodes": [
+        "source preload workspace save/saveRecovery/open handler exact edge",
+        "source receipt main handler→archive codec/key auth/fs→return to vu caller"
+      ],
+      "reason": "A已读完整vu与其父控制器；C源码codec/reader/controller报告已取得，但需final finite IPC/main edge报告交叉引用，不能由纯VM oracle冒Electron运行。"
+    }
+  ],
+  "peerFiniteClosureVerification": {
+    "reports": [
+      {
+        "path": "文档/逆向台账/contracts/visual-finite-source-chains-20261015.json",
+        "sha256": "ae694402d0516118042ddfdbd71e1f91c8a10e0b39cac0ff383eb6ca113491d3",
+        "nodes": 31,
+        "rangeErrors": []
+      },
+      {
+        "path": "文档/逆向台账/contracts/workspace-save-source-callgraph-20261015.json",
+        "sha256": "9a139873f695250820d7727c100f00b5befa140bb5d6e01e6071670c24da9e9e",
+        "nodes": 24,
+        "rangeErrors": []
+      }
+    ],
+    "verifiedRangeCount": 55,
+    "method": "Independent exact range and whole-source SHA256 recomputation; added RECENT-INDEX and KEY-SLOT-PRIMITIVES direct source body review, no competitor execution.",
+    "remainingUnlocated": [],
+    "receipt": ".data/research/lawbot-2026-10-15/iteration036/renderer-peer-source-range-verification-A-release.json",
+    "previousBExactBytes": ".data/research/lawbot-2026-10-15/iteration035/before/final-ui-evidence/文档/逆向台账/contracts/visual-finite-source-chains-20261015.json"
+  },
+  "feedbackOrderAndAdaptation": {
+    "sourceBatch": "Mu.addFeedbackBatch saves records before adding batch audit; that audit reaches disk only on a later save. IPC filtered memory result is discarded and does not train.",
+    "ownBatch": "Authenticated pending historical feedback is stored with transactional audit; canonical and corrected semantic values remain separate. Explicit safety adaptation, not identical persistence scheduling.",
+    "sourceFailureDedupe": "Pre-RPC dedupe keys remain occupied on false or rejected RPC; preserved. Our false/timeout reports zero success and never blocks review/auto-trains."
+  },
+  "actualFeedbackEvidence": {
+    "authorLog": ".data/research/lawbot-2026-10-15/iteration035/review-feedback-api-A-final-second.log",
+    "authorTests": 2,
+    "authorDurationMs": 13522.986542,
+    "independentLog": ".data/research/lawbot-2026-10-15/iteration036/review-feedback-independent-C.log",
+    "independentTests": 2,
+    "uiAcceptance": "Root main producer hooks mounted; final UI gate separate and not inferred from source closure."
+  },
+  "previousPeerFiniteClosureVerification": {
+    "reports": [
+      {
+        "path": "文档/逆向台账/contracts/visual-finite-source-chains-20261015.json",
+        "sha256": "f8a5e68005b26795debeea11c24b8e46b69de5c0bbf59952467f5b04de8adb37",
+        "nodes": 31,
+        "rangeErrors": []
+      },
+      {
+        "path": "文档/逆向台账/contracts/workspace-save-source-callgraph-20261015.json",
+        "sha256": "9a139873f695250820d7727c100f00b5befa140bb5d6e01e6071670c24da9e9e",
+        "nodes": 24,
+        "rangeErrors": []
+      }
+    ],
+    "verifiedRangeCount": 55,
+    "method": "Independent exact range and whole-source SHA256 recomputation; added RECENT-INDEX and KEY-SLOT-PRIMITIVES direct source body review, no competitor execution.",
+    "remainingUnlocated": []
+  },
+  "peerVerificationHistory": [
+    {
+      "reports": [
+        {
+          "path": "文档/逆向台账/contracts/visual-finite-source-chains-20261015.json",
+          "sha256": "ae694402d0516118042ddfdbd71e1f91c8a10e0b39cac0ff383eb6ca113491d3",
+          "nodes": 31,
+          "rangeErrors": []
+        },
+        {
+          "path": "文档/逆向台账/contracts/workspace-save-source-callgraph-20261015.json",
+          "sha256": "9a139873f695250820d7727c100f00b5befa140bb5d6e01e6071670c24da9e9e",
+          "nodes": 24,
+          "rangeErrors": []
+        }
+      ],
+      "verifiedRangeCount": 55,
+      "method": "Independent exact range and whole-source SHA256 recomputation; added RECENT-INDEX and KEY-SLOT-PRIMITIVES direct source body review, no competitor execution.",
+      "remainingUnlocated": [],
+      "receipt": ".data/research/lawbot-2026-10-15/iteration036/renderer-peer-source-range-verification-A-release.json",
+      "previousBExactBytes": ".data/research/lawbot-2026-10-15/iteration035/before/final-ui-evidence/文档/逆向台账/contracts/visual-finite-source-chains-20261015.json"
+    }
+  ],
+  "finalParentSuggestion": {
+    "staticIds": [
+      "UI-ad41d13c4a2d",
+      "UI-2c1712d35460"
+    ],
+    "decision": "Eligible finite-S3 for these exact original entries; source depth only, no global source runtime claim.",
+    "sourceScope": "34 own exact ranges plus55 peer ranges verified; overlapping ranges not claimed distinct functions.",
+    "sourceRuntime": "R0",
+    "ownImplementationSupplement": "Persistent type-hide now implements source processing-state/persistence; trusted birth/no-FP consumers and8codecs actually verified. Parent final UI gate separate.",
+    "supplementReports": [
+      "文档/逆向台账/contracts/review-per-id-status-proposal-by-rules-20261015.json",
+      "文档/逆向台账/contracts/final-rule-type-hide-boundaries-20261015.json",
+      "文档/逆向台账/contracts/review-feedback-raw-type-by-rules-20261015.json"
+    ]
+  }
+}

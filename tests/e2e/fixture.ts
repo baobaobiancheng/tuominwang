@@ -25,3 +25,6 @@ export const test = base.extend<{ account: void }>({
   }, { auto: true, timeout: 120000 }],
 });
 export { expect };
+// Preserve the actual assertion/transport error before browser/worker teardown,
+// including when a native module later prevents that worker from exiting.
+test.afterEach(async({},info)=>{for(const error of info.errors)console.error(JSON.stringify({failedTest:info.title,error:error.message,stack:error.stack}));});

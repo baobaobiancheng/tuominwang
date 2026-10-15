@@ -1,0 +1,2850 @@
+{
+  "schema": "tuominwang.visual-interface-closure.v1",
+  "date": "2026-10-15",
+  "baselineCommit": "5cee048",
+  "status": "implemented_actual_adapter_calls_independent_peer_review_passed",
+  "referenceRuntime": "R0",
+  "allSourceNativeChannelsExecuted": false,
+  "counts": {
+    "assignedExactIds": 24,
+    "actualCloudAdapterIds": 19,
+    "browserPickerIdsNotExecutedByApiPass": 5
+  },
+  "rows": [
+    {
+      "id": "IPC-e4cf3e6c3c0a",
+      "name": "desensitization:pause-seals",
+      "referenceRuntime": "R0",
+      "sourceNativeInvoked": false,
+      "actualAdapterInvoked": true,
+      "ownScope": "actual cloud protocol route, fields and side effects; not source Electron execution",
+      "proof": {
+        "id": "IPC-e4cf3e6c3c0a",
+        "channel": "desensitization:pause-seals",
+        "method": "POST",
+        "route": "/api/documents/305cbc59-8862-44d7-82ed-4f6825a2e551/visual-requests/0a1a3363-be0e-46a8-a72e-89650bac7ca9/pause-seals",
+        "status": 200,
+        "responseKeys": [
+          "paused",
+          "requestId",
+          "success"
+        ],
+        "responseSha256": "e7a6982a59684bc620d14bf04a81ba72a0d948c55814fcd380d87b7e71cb1191",
+        "assertions": [
+          "only owned active request;face continues;sealsPaused true;complete false"
+        ],
+        "sourceNativeInvoked": false,
+        "adapterInvoked": true
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 31236,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "startLine": 31236,
+            "endLine": 31254,
+            "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "sliceSha256": "e1fe81eea7b2678e39d9ec58ab842d5246e9cffcaa7187fd602a6272950f6a1d",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17158,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 17158,
+            "endLine": 17183,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "d2563fcbf512f34e10e2fceb4a1082d448bffb605284fd59edf670631325e32a",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17196,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 17196,
+            "endLine": 17368,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "2638cdd033f80ca824c5b838e0f23771bc0b26972708f2cb90964e6d167cd553",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        }
+      ],
+      "remaining": [
+        "Source licensed full processing remains unexecuted. Native file paths/session/OS events are adapted rather than reproduced."
+      ]
+    },
+    {
+      "id": "IPC-81f79eee361a",
+      "name": "desensitization:recognize-docx-images",
+      "referenceRuntime": "R0",
+      "sourceNativeInvoked": false,
+      "actualAdapterInvoked": true,
+      "ownScope": "actual cloud protocol route, fields and side effects; not source Electron execution",
+      "proof": {
+        "id": "IPC-81f79eee361a",
+        "channel": "desensitization:recognize-docx-images",
+        "method": "POST",
+        "route": "/api/documents/76ced00e-2350-4d2a-a2d5-431302b988f2/recognize-docx-images",
+        "status": 200,
+        "responseKeys": [
+          "candidateToken",
+          "canonicalDocument",
+          "contentHash",
+          "documentId",
+          "docxImageScan",
+          "docxStructuredInput",
+          "fileName",
+          "matches",
+          "ocrImageInfos",
+          "originalText",
+          "processingSourceHash",
+          "recognition",
+          "reviewRequired",
+          "revision",
+          "route",
+          "sourceHash",
+          "success"
+        ],
+        "responseSha256": "dc0c9304d38861b97a7d551ceccc32a3aad4c12e4dc2ce20b60e9f39b4fc1e2b",
+        "assertions": [
+          "fresh local OCR;actual image phone match not body email;all source field families present;candidate snapshot only;original/saved review unchanged"
+        ],
+        "sourceNativeInvoked": false,
+        "adapterInvoked": true
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17368,
+          "column": null,
+          "note": ""
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 35502,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "startLine": 35502,
+            "endLine": 35553,
+            "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "sliceSha256": "e812a36b620235f7e68527d8ee1d720fb47e912662da3ec31a18ff8b55ceef85",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17368,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 17368,
+            "endLine": 17409,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "9910197ef19c4365b810b6985fde9081295dd16014c25fa9a60e85d118969120",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 15718,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 15718,
+            "endLine": 15912,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "00e2bfffe1409ca7d258397075fe286926de2daa758f116005ac7fd2a39143fe",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        }
+      ],
+      "remaining": [
+        "Source licensed full processing remains unexecuted. Native file paths/session/OS events are adapted rather than reproduced."
+      ]
+    },
+    {
+      "id": "IPC-47ecc7525dfe",
+      "name": "image-review:clear-ocr-cache",
+      "referenceRuntime": "R0",
+      "sourceNativeInvoked": false,
+      "actualAdapterInvoked": true,
+      "ownScope": "actual cloud protocol route, fields and side effects; not source Electron execution",
+      "proof": {
+        "id": "IPC-47ecc7525dfe",
+        "channel": "image-review:clear-ocr-cache",
+        "method": "POST",
+        "route": "/api/documents/305cbc59-8862-44d7-82ed-4f6825a2e551/ocr-cache/clear",
+        "status": 200,
+        "responseKeys": [
+          "cleared",
+          "revision",
+          "success"
+        ],
+        "responseSha256": "dd8db8893ba10b6793fe2ede581c1a06c682f89783458dd9b94df34ad0609bd9",
+        "assertions": [
+          "own document query cache actually invalidated;subsequent cache miss"
+        ],
+        "sourceNativeInvoked": false,
+        "adapterInvoked": true
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 18308,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 18308,
+            "endLine": 18342,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "9a8edccef23ede20e759fbf2159321fbe03ebc37e6e7bbf278c90670c09c77ee",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 15335,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 15335,
+            "endLine": 15375,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "f69b32ca0f5dd85459ce10adc8fced173efd6f4d07ef7cd6a34333d721b22375",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 303,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+            "startLine": 303,
+            "endLine": 323,
+            "fileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+            "sliceSha256": "22691f8fa042abb98f6b2106f8335970a0562e725e7508fb97393913113d91e2",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        }
+      ],
+      "remaining": [
+        "Source licensed full processing remains unexecuted. Native file paths/session/OS events are adapted rather than reproduced."
+      ]
+    },
+    {
+      "id": "IPC-d3864dc80560",
+      "name": "image:export-labels",
+      "referenceRuntime": "R0",
+      "sourceNativeInvoked": false,
+      "actualAdapterInvoked": true,
+      "ownScope": "actual cloud protocol route, fields and side effects; not source Electron execution",
+      "proof": {
+        "id": "IPC-d3864dc80560",
+        "channel": "image:export-labels",
+        "method": "POST",
+        "route": "/api/documents/305cbc59-8862-44d7-82ed-4f6825a2e551/pages/0/labels",
+        "status": 200,
+        "responseKeys": [
+          "documentId",
+          "entities",
+          "exportedAt",
+          "image",
+          "imagePath",
+          "imageSize",
+          "revision",
+          "sourceHash",
+          "version"
+        ],
+        "responseSha256": "a1229f6239f9efc9f8780edef109094008264fc230bd3875e5cb2f08bfadb9eb",
+        "assertions": [
+          "real OCR mark plus manual label;source raw type>200;confidence0;true absolute and normalized boxes;annotations id/text/shape/opaque meta lossless"
+        ],
+        "sourceNativeInvoked": false,
+        "adapterInvoked": true
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 26985,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 26985,
+            "endLine": 27005,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "117815323a8206ba943ad915d719a48d9c8546e78981343765e8ed851e80efd9",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 37534,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "startLine": 37534,
+            "endLine": 37546,
+            "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "sliceSha256": "f665e5879a09172f9afdedb5b2c8a2951e92ca5f488d90c98a084656f24be0f3",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        }
+      ],
+      "remaining": [
+        "Source licensed full processing remains unexecuted. Native file paths/session/OS events are adapted rather than reproduced."
+      ]
+    },
+    {
+      "id": "IPC-5569a4344615",
+      "name": "image:save-annotations",
+      "referenceRuntime": "R0",
+      "sourceNativeInvoked": false,
+      "actualAdapterInvoked": true,
+      "ownScope": "actual cloud protocol route, fields and side effects; not source Electron execution",
+      "proof": {
+        "id": "IPC-5569a4344615",
+        "channel": "image:save-annotations",
+        "method": "POST",
+        "route": "/api/documents/305cbc59-8862-44d7-82ed-4f6825a2e551/pages/0/annotations",
+        "status": 200,
+        "responseKeys": [
+          "bboxes",
+          "documentId",
+          "image",
+          "imagePath",
+          "imageSize",
+          "revision",
+          "savedAt",
+          "sourceHash",
+          "version"
+        ],
+        "responseSha256": "5676041db16049aec542b0d64ba3bdb198c5c40a40c87334050d17b75a50e6f6",
+        "assertions": [
+          "real OCR mark plus manual label;source raw type>200;confidence0;true absolute and normalized boxes;annotations id/text/shape/opaque meta lossless"
+        ],
+        "sourceNativeInvoked": false,
+        "adapterInvoked": true
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 26985,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 26985,
+            "endLine": 27005,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "117815323a8206ba943ad915d719a48d9c8546e78981343765e8ed851e80efd9",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 37534,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "startLine": 37534,
+            "endLine": 37546,
+            "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "sliceSha256": "f665e5879a09172f9afdedb5b2c8a2951e92ca5f488d90c98a084656f24be0f3",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        }
+      ],
+      "remaining": [
+        "Source licensed full processing remains unexecuted. Native file paths/session/OS events are adapted rather than reproduced."
+      ]
+    },
+    {
+      "id": "IPC-0ecb1de9c806",
+      "name": "ocr:collect-diagnostic",
+      "referenceRuntime": "R0",
+      "sourceNativeInvoked": false,
+      "actualAdapterInvoked": true,
+      "ownScope": "actual cloud protocol route, fields and side effects; not source Electron execution",
+      "proof": {
+        "id": "IPC-0ecb1de9c806",
+        "channel": "ocr:collect-diagnostic",
+        "method": "POST",
+        "route": "/api/ocr/diagnostic",
+        "status": 200,
+        "responseKeys": [
+          "report",
+          "success",
+          "summary"
+        ],
+        "responseSha256": "bc32a9a893406971216ca6c95312574c7b09fcf22dec416327a590d721a0a46d",
+        "assertions": [
+          "actual model hashes/probe;network explicitly unmeasured;no private text/path/key"
+        ],
+        "sourceNativeInvoked": false,
+        "adapterInvoked": true
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 18761,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 18761,
+            "endLine": 18776,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "cde31061cd080181257b3346b588735b35a495ff3921b90f24a28e4cc5343f2d",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 4599,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 4599,
+            "endLine": 4659,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "00962d6e8a4d52af67bdc899f54908dd860dacc29da0270f5004df1597df0836",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 7954,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 7954,
+            "endLine": 8034,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "3d1543795439d0116deb624e113f36baf4879f188d7227f9a724fc588f13c60d",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 29301,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "startLine": 29301,
+            "endLine": 29318,
+            "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "sliceSha256": "4446ea4e737d85545a718656a60c579573d496692ec3b92f2453990eaf37e293",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        }
+      ],
+      "remaining": [
+        "Source licensed full processing remains unexecuted. Native file paths/session/OS events are adapted rather than reproduced."
+      ]
+    },
+    {
+      "id": "IPC-f02ad1fa2413",
+      "name": "ocr:health-check",
+      "referenceRuntime": "R0",
+      "sourceNativeInvoked": false,
+      "actualAdapterInvoked": true,
+      "ownScope": "actual cloud protocol route, fields and side effects; not source Electron execution",
+      "proof": {
+        "id": "IPC-f02ad1fa2413",
+        "channel": "ocr:health-check",
+        "method": "GET",
+        "route": "/api/ocr/health",
+        "status": 200,
+        "responseKeys": [
+          "available",
+          "diagnosticSummary"
+        ],
+        "responseSha256": "3280cb2403d5d4daa6aaa62968bbddefa5cacd118f1987f27fb2a2790e6c3c61",
+        "assertions": [
+          "actual pinned model and TEST123 runtime probe"
+        ],
+        "sourceNativeInvoked": false,
+        "adapterInvoked": true
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 18761,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 18761,
+            "endLine": 18776,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "cde31061cd080181257b3346b588735b35a495ff3921b90f24a28e4cc5343f2d",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 4599,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 4599,
+            "endLine": 4659,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "00962d6e8a4d52af67bdc899f54908dd860dacc29da0270f5004df1597df0836",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 7954,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 7954,
+            "endLine": 8034,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "3d1543795439d0116deb624e113f36baf4879f188d7227f9a724fc588f13c60d",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 31983,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "startLine": 31983,
+            "endLine": 31994,
+            "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "sliceSha256": "3a20e1f422fc9a68197b7d9ad191df3787836aad9be6f3e366533d4e3490fcfc",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        }
+      ],
+      "remaining": [
+        "Source licensed full processing remains unexecuted. Native file paths/session/OS events are adapted rather than reproduced."
+      ]
+    },
+    {
+      "id": "IPC-4dd20e80cae3",
+      "name": "image-review:batch-search",
+      "referenceRuntime": "R0",
+      "sourceNativeInvoked": false,
+      "actualAdapterInvoked": true,
+      "ownScope": "actual cloud protocol route, fields and side effects; not source Electron execution",
+      "proof": {
+        "id": "IPC-4dd20e80cae3",
+        "channel": "image-review:batch-search",
+        "method": "POST",
+        "route": "/api/documents/305cbc59-8862-44d7-82ed-4f6825a2e551/image-search",
+        "status": 200,
+        "responseKeys": [
+          "checkedPageNumbers",
+          "geometryBasis",
+          "query",
+          "results",
+          "revision",
+          "success"
+        ],
+        "responseSha256": "2aee4eab637a756ac42a4947ea2ca60b7199983c964a72683ce6abcbca70f16e",
+        "assertions": [
+          "actual one-page bbox;source pageNumber1;query with canonical glyph map"
+        ],
+        "sourceNativeInvoked": false,
+        "adapterInvoked": true
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 22975,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "startLine": 22975,
+            "endLine": 22999,
+            "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "sliceSha256": "546075f258a62a73bfd23809b30a49064979e1e058e67c4ff9d3144c83fd7505",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 18186,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 18186,
+            "endLine": 18273,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "dbd71a1b2ea82683ef86daacb7a8a8099045930bff739d9ff5fef023db1f9fd2",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 15335,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 15335,
+            "endLine": 15375,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "f69b32ca0f5dd85459ce10adc8fced173efd6f4d07ef7cd6a34333d721b22375",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 303,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+            "startLine": 303,
+            "endLine": 323,
+            "fileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+            "sliceSha256": "22691f8fa042abb98f6b2106f8335970a0562e725e7508fb97393913113d91e2",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        }
+      ],
+      "remaining": [
+        "Source licensed full processing remains unexecuted. Native file paths/session/OS events are adapted rather than reproduced."
+      ]
+    },
+    {
+      "id": "IPC-ba07bb14e3df",
+      "name": "image-review:get-ocr-page",
+      "referenceRuntime": "R0",
+      "sourceNativeInvoked": false,
+      "actualAdapterInvoked": true,
+      "ownScope": "actual cloud protocol route, fields and side effects; not source Electron execution",
+      "proof": {
+        "id": "IPC-ba07bb14e3df",
+        "channel": "image-review:get-ocr-page",
+        "method": "GET",
+        "route": "/api/documents/305cbc59-8862-44d7-82ed-4f6825a2e551/pages/0/ocr-text?revision=0",
+        "status": 200,
+        "responseKeys": [
+          "correctionRevision",
+          "glyphs",
+          "height",
+          "page",
+          "revision",
+          "text",
+          "width"
+        ],
+        "responseSha256": "efd8160aa56302c7383b37907fcce512e39fdf6ab588eb744e63b86d455d2efd",
+        "assertions": [
+          "all glyphs;canonical size;page0 adaptation of source page1;revision0"
+        ],
+        "sourceNativeInvoked": false,
+        "adapterInvoked": true
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 25622,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "startLine": 25622,
+            "endLine": 25655,
+            "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "sliceSha256": "16c833f39f088ac543e6b136c76abedef22e57cd8594e752b427e26dcd00893f",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 18308,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 18308,
+            "endLine": 18342,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "9a8edccef23ede20e759fbf2159321fbe03ebc37e6e7bbf278c90670c09c77ee",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 15335,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 15335,
+            "endLine": 15375,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "f69b32ca0f5dd85459ce10adc8fced173efd6f4d07ef7cd6a34333d721b22375",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 303,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+            "startLine": 303,
+            "endLine": 323,
+            "fileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+            "sliceSha256": "22691f8fa042abb98f6b2106f8335970a0562e725e7508fb97393913113d91e2",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        }
+      ],
+      "remaining": [
+        "Source licensed full processing remains unexecuted. Native file paths/session/OS events are adapted rather than reproduced."
+      ]
+    },
+    {
+      "id": "IPC-910347ed48b5",
+      "name": "image-review:ocr-region",
+      "referenceRuntime": "R0",
+      "sourceNativeInvoked": false,
+      "actualAdapterInvoked": true,
+      "ownScope": "actual cloud protocol route, fields and side effects; not source Electron execution",
+      "proof": {
+        "id": "IPC-910347ed48b5",
+        "channel": "image-review:ocr-region",
+        "method": "POST",
+        "route": "/api/documents/305cbc59-8862-44d7-82ed-4f6825a2e551/pages/0/ocr-region",
+        "status": 200,
+        "responseKeys": [
+          "approximate",
+          "cached",
+          "canonicalRegion",
+          "method",
+          "ocrBbox",
+          "page",
+          "revision",
+          "success",
+          "text"
+        ],
+        "responseSha256": "1d27984f81071f4e0c3e06cd017af2795522a07876b2e9c3a93fc902178ce52a",
+        "assertions": [
+          "true source-cache glyph centres;OCR bbox;no canonical text rewrite;second request cache hit"
+        ],
+        "sourceNativeInvoked": false,
+        "adapterInvoked": true
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 24171,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "startLine": 24171,
+            "endLine": 24200,
+            "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "sliceSha256": "f69fc9afdae1715ac3093293ac9c87964150e09211035f63486b3b464e4ac476",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 18273,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 18273,
+            "endLine": 18308,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "849d05143932393c1c71aabf3602a5dd65f04d57b91416ba04d9dce2a65e9422",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 303,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+            "startLine": 303,
+            "endLine": 323,
+            "fileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+            "sliceSha256": "22691f8fa042abb98f6b2106f8335970a0562e725e7508fb97393913113d91e2",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        }
+      ],
+      "remaining": [
+        "Source licensed full processing remains unexecuted. Native file paths/session/OS events are adapted rather than reproduced."
+      ]
+    },
+    {
+      "id": "IPC-bd4779635d5d",
+      "name": "pseudonym:inspect-restore-mapping",
+      "referenceRuntime": "R0",
+      "sourceNativeInvoked": false,
+      "actualAdapterInvoked": true,
+      "ownScope": "actual cloud protocol route, fields and side effects; not source Electron execution",
+      "proof": {
+        "id": "IPC-bd4779635d5d",
+        "channel": "pseudonym:inspect-restore-mapping",
+        "method": "POST",
+        "route": "/api/projects/227e3b09-279a-487b-bf27-aca4ea92fcb9/restoration/inspect",
+        "status": 200,
+        "responseKeys": [
+          "ambiguities",
+          "mappingCount",
+          "sourceVersion"
+        ],
+        "responseSha256": "927494ee653462f9cac0dbbe4a1882ce15a31ad2dfdb9270447019549c69bfed",
+        "assertions": [
+          "mappingCount1;no ambiguity;source version retained"
+        ],
+        "sourceNativeInvoked": false,
+        "adapterInvoked": true
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 18384,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 18384,
+            "end_line": 18384,
+            "slice_sha256": "f9f42ff0f527fa6a51beae2d3029d04023dc058257812eba403f945aa17532ce",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 32,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 32,
+            "end_line": 45,
+            "slice_sha256": "8ea90d1dcaff7ac82d3a02929672e323b8e062396d04a9c6046a87ce2025e559",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 14170,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 14170,
+            "end_line": 14262,
+            "slice_sha256": "d956ce3be8a0faf22ed06fc97da459ce942c571aa5d6acdf6757ed91638e7b08",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 15147,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 15147,
+            "end_line": 15234,
+            "slice_sha256": "a436c609c6ba93493ded1d37e778d289f2a3c55e7d17a4beb05daacdc9c311af",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16241,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 16241,
+            "end_line": 16267,
+            "slice_sha256": "b5009de16aefb53f72739cf265272657aeb75f0ced0b7f5e6cfceef2119cbd12",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16586,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 16586,
+            "end_line": 16628,
+            "slice_sha256": "5b37c53d4d240f3e4892e4c00e593fa37fe56cd0b41c94ce5c14e51729abbe13",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 18342,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 18342,
+            "end_line": 18535,
+            "slice_sha256": "94563e178d4e5b9d811d4c824188b86eab7faf65dc2a463d09f27b8d21fd1000",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 28618,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "start_line": 28618,
+            "end_line": 28824,
+            "slice_sha256": "d37a047ec4c5a059a64376ef7e60d37ec98af8bf9429875a53b1668d8dd0ef21",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 28757,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "start_line": 28757,
+            "end_line": 28757,
+            "slice_sha256": "cafdc5ebcd91085477140ef60678474c4ab4ee934433810c2457d6c95057d49d",
+            "note": "人工定位调用；完整上下文见所属family证据"
+          }
+        }
+      ],
+      "remaining": [
+        "Source licensed full processing remains unexecuted. Native file paths/session/OS events are adapted rather than reproduced."
+      ]
+    },
+    {
+      "id": "IPC-1d272ba10a6c",
+      "name": "pseudonym:restore-docx",
+      "referenceRuntime": "R0",
+      "sourceNativeInvoked": false,
+      "actualAdapterInvoked": true,
+      "ownScope": "actual cloud protocol route, fields and side effects; not source Electron execution",
+      "proof": {
+        "id": "IPC-1d272ba10a6c",
+        "channel": "pseudonym:restore-docx",
+        "method": "POST",
+        "route": "/api/projects/227e3b09-279a-487b-bf27-aca4ea92fcb9/restoration/files",
+        "status": 200,
+        "responseKeys": [
+          "downloadPath",
+          "format",
+          "id",
+          "stats"
+        ],
+        "responseSha256": "19b9bd738ea11941c48463a26685ec8720c65506c838945c3f135099dcf5974b",
+        "assertions": [
+          "real download restored original;crossrunWord/Markdown wrapper;separate encrypted artifact;original unchanged"
+        ],
+        "sourceNativeInvoked": false,
+        "adapterInvoked": true
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 18404,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 18404,
+            "end_line": 18404,
+            "slice_sha256": "96908668459509429f1d3e5949dbbe04342c7c4a1b4067e6c37a4776e14d15f2",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 32,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 32,
+            "end_line": 45,
+            "slice_sha256": "8ea90d1dcaff7ac82d3a02929672e323b8e062396d04a9c6046a87ce2025e559",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 14170,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 14170,
+            "end_line": 14262,
+            "slice_sha256": "d956ce3be8a0faf22ed06fc97da459ce942c571aa5d6acdf6757ed91638e7b08",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 15147,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 15147,
+            "end_line": 15234,
+            "slice_sha256": "a436c609c6ba93493ded1d37e778d289f2a3c55e7d17a4beb05daacdc9c311af",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16241,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 16241,
+            "end_line": 16267,
+            "slice_sha256": "b5009de16aefb53f72739cf265272657aeb75f0ced0b7f5e6cfceef2119cbd12",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16586,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 16586,
+            "end_line": 16628,
+            "slice_sha256": "5b37c53d4d240f3e4892e4c00e593fa37fe56cd0b41c94ce5c14e51729abbe13",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 18342,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 18342,
+            "end_line": 18535,
+            "slice_sha256": "94563e178d4e5b9d811d4c824188b86eab7faf65dc2a463d09f27b8d21fd1000",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 28618,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "start_line": 28618,
+            "end_line": 28824,
+            "slice_sha256": "d37a047ec4c5a059a64376ef7e60d37ec98af8bf9429875a53b1668d8dd0ef21",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 28782,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "start_line": 28782,
+            "end_line": 28782,
+            "slice_sha256": "b2df0442596cf344e78aacfb3fed7aba9d9bdb77725d727a0028b1b15751a0e7",
+            "note": "人工定位调用；完整上下文见所属family证据"
+          }
+        }
+      ],
+      "remaining": [
+        "Source licensed full processing remains unexecuted. Native file paths/session/OS events are adapted rather than reproduced."
+      ]
+    },
+    {
+      "id": "IPC-5c2a14961699",
+      "name": "pseudonym:restore-markdown",
+      "referenceRuntime": "R0",
+      "sourceNativeInvoked": false,
+      "actualAdapterInvoked": true,
+      "ownScope": "actual cloud protocol route, fields and side effects; not source Electron execution",
+      "proof": {
+        "id": "IPC-5c2a14961699",
+        "channel": "pseudonym:restore-markdown",
+        "method": "POST",
+        "route": "/api/projects/227e3b09-279a-487b-bf27-aca4ea92fcb9/restoration/files",
+        "status": 200,
+        "responseKeys": [
+          "downloadPath",
+          "format",
+          "id",
+          "stats"
+        ],
+        "responseSha256": "e8dc8ef1030f56bebddf7c8cbdc2bc753c66f8ae5183b0887bcb23665db15553",
+        "assertions": [
+          "real download restored original;crossrunWord/Markdown wrapper;separate encrypted artifact;original unchanged"
+        ],
+        "sourceNativeInvoked": false,
+        "adapterInvoked": true
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 18473,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 18473,
+            "end_line": 18473,
+            "slice_sha256": "3b6652844f57f9c5f99ae1b71dfbc7188c91074911c68d3a2230dcdbad0f3969",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 32,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 32,
+            "end_line": 45,
+            "slice_sha256": "8ea90d1dcaff7ac82d3a02929672e323b8e062396d04a9c6046a87ce2025e559",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 14170,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 14170,
+            "end_line": 14262,
+            "slice_sha256": "d956ce3be8a0faf22ed06fc97da459ce942c571aa5d6acdf6757ed91638e7b08",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 15147,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 15147,
+            "end_line": 15234,
+            "slice_sha256": "a436c609c6ba93493ded1d37e778d289f2a3c55e7d17a4beb05daacdc9c311af",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16241,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 16241,
+            "end_line": 16267,
+            "slice_sha256": "b5009de16aefb53f72739cf265272657aeb75f0ced0b7f5e6cfceef2119cbd12",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16586,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 16586,
+            "end_line": 16628,
+            "slice_sha256": "5b37c53d4d240f3e4892e4c00e593fa37fe56cd0b41c94ce5c14e51729abbe13",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 18342,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 18342,
+            "end_line": 18535,
+            "slice_sha256": "94563e178d4e5b9d811d4c824188b86eab7faf65dc2a463d09f27b8d21fd1000",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 28618,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "start_line": 28618,
+            "end_line": 28824,
+            "slice_sha256": "d37a047ec4c5a059a64376ef7e60d37ec98af8bf9429875a53b1668d8dd0ef21",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 28782,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "start_line": 28782,
+            "end_line": 28782,
+            "slice_sha256": "b2df0442596cf344e78aacfb3fed7aba9d9bdb77725d727a0028b1b15751a0e7",
+            "note": "人工定位调用；完整上下文见所属family证据"
+          }
+        }
+      ],
+      "remaining": [
+        "Source licensed full processing remains unexecuted. Native file paths/session/OS events are adapted rather than reproduced."
+      ]
+    },
+    {
+      "id": "IPC-24fe13c4efb6",
+      "name": "pseudonym:restore-docx-batch",
+      "referenceRuntime": "R0",
+      "sourceNativeInvoked": false,
+      "actualAdapterInvoked": true,
+      "ownScope": "actual cloud protocol route, fields and side effects; not source Electron execution",
+      "proof": {
+        "id": "IPC-24fe13c4efb6",
+        "channel": "pseudonym:restore-docx-batch",
+        "method": "POST",
+        "route": "/api/projects/227e3b09-279a-487b-bf27-aca4ea92fcb9/restoration/batch/file",
+        "status": 200,
+        "responseKeys": [
+          "downloadPath",
+          "fileName",
+          "format",
+          "hash",
+          "id",
+          "requestId",
+          "stats",
+          "success"
+        ],
+        "responseSha256": "0490ea84bec6a44cc2fa24ddf336fb387d4eaf5c0aee7359a12c64c3c8b7b772",
+        "assertions": [
+          "real worker completed file;actual stat1;artifact hash/download persists"
+        ],
+        "sourceNativeInvoked": false,
+        "adapterInvoked": true
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 18427,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 18427,
+            "end_line": 18427,
+            "slice_sha256": "e645604f816c11f08adce58efa961a09509a4f4939e18445ac2eaf0323221ba9",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 32,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 32,
+            "end_line": 45,
+            "slice_sha256": "8ea90d1dcaff7ac82d3a02929672e323b8e062396d04a9c6046a87ce2025e559",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 14170,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 14170,
+            "end_line": 14262,
+            "slice_sha256": "d956ce3be8a0faf22ed06fc97da459ce942c571aa5d6acdf6757ed91638e7b08",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 15147,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 15147,
+            "end_line": 15234,
+            "slice_sha256": "a436c609c6ba93493ded1d37e778d289f2a3c55e7d17a4beb05daacdc9c311af",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16241,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 16241,
+            "end_line": 16267,
+            "slice_sha256": "b5009de16aefb53f72739cf265272657aeb75f0ced0b7f5e6cfceef2119cbd12",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16586,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 16586,
+            "end_line": 16628,
+            "slice_sha256": "5b37c53d4d240f3e4892e4c00e593fa37fe56cd0b41c94ce5c14e51729abbe13",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 18342,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 18342,
+            "end_line": 18535,
+            "slice_sha256": "94563e178d4e5b9d811d4c824188b86eab7faf65dc2a463d09f27b8d21fd1000",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 28618,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "start_line": 28618,
+            "end_line": 28824,
+            "slice_sha256": "d37a047ec4c5a059a64376ef7e60d37ec98af8bf9429875a53b1668d8dd0ef21",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 28779,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "start_line": 28779,
+            "end_line": 28779,
+            "slice_sha256": "2adce67a5a0bdf20a36429408af63e5075ad33503cab6397202f5ed768632475",
+            "note": "人工定位调用；完整上下文见所属family证据"
+          }
+        }
+      ],
+      "remaining": [
+        "Source licensed full processing remains unexecuted. Native file paths/session/OS events are adapted rather than reproduced."
+      ]
+    },
+    {
+      "id": "IPC-096d3ecc2554",
+      "name": "pseudonym:restore-markdown-batch",
+      "referenceRuntime": "R0",
+      "sourceNativeInvoked": false,
+      "actualAdapterInvoked": true,
+      "ownScope": "actual cloud protocol route, fields and side effects; not source Electron execution",
+      "proof": {
+        "id": "IPC-096d3ecc2554",
+        "channel": "pseudonym:restore-markdown-batch",
+        "method": "POST",
+        "route": "/api/projects/227e3b09-279a-487b-bf27-aca4ea92fcb9/restoration/batch/file",
+        "status": 200,
+        "responseKeys": [
+          "downloadPath",
+          "fileName",
+          "format",
+          "hash",
+          "id",
+          "requestId",
+          "stats",
+          "success"
+        ],
+        "responseSha256": "ecf277503ce63deda65a962463863d536438cb0a3eedf4c302c3b0d718a722f2",
+        "assertions": [
+          "real worker completed file;actual stat1;artifact hash/download persists"
+        ],
+        "sourceNativeInvoked": false,
+        "adapterInvoked": true
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 18493,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 18493,
+            "end_line": 18493,
+            "slice_sha256": "dd129c0da0bbddae5ddafb05118a99ee0050eb6d1a28b0a651c587022919bf5d",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 32,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 32,
+            "end_line": 45,
+            "slice_sha256": "8ea90d1dcaff7ac82d3a02929672e323b8e062396d04a9c6046a87ce2025e559",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 14170,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 14170,
+            "end_line": 14262,
+            "slice_sha256": "d956ce3be8a0faf22ed06fc97da459ce942c571aa5d6acdf6757ed91638e7b08",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 15147,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 15147,
+            "end_line": 15234,
+            "slice_sha256": "a436c609c6ba93493ded1d37e778d289f2a3c55e7d17a4beb05daacdc9c311af",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16241,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 16241,
+            "end_line": 16267,
+            "slice_sha256": "b5009de16aefb53f72739cf265272657aeb75f0ced0b7f5e6cfceef2119cbd12",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16586,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 16586,
+            "end_line": 16628,
+            "slice_sha256": "5b37c53d4d240f3e4892e4c00e593fa37fe56cd0b41c94ce5c14e51729abbe13",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 18342,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 18342,
+            "end_line": 18535,
+            "slice_sha256": "94563e178d4e5b9d811d4c824188b86eab7faf65dc2a463d09f27b8d21fd1000",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 28618,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "start_line": 28618,
+            "end_line": 28824,
+            "slice_sha256": "d37a047ec4c5a059a64376ef7e60d37ec98af8bf9429875a53b1668d8dd0ef21",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 28779,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "start_line": 28779,
+            "end_line": 28779,
+            "slice_sha256": "2adce67a5a0bdf20a36429408af63e5075ad33503cab6397202f5ed768632475",
+            "note": "人工定位调用；完整上下文见所属family证据"
+          }
+        }
+      ],
+      "remaining": [
+        "Source licensed full processing remains unexecuted. Native file paths/session/OS events are adapted rather than reproduced."
+      ]
+    },
+    {
+      "id": "IPC-0fa110b8534b",
+      "name": "pseudonym:restore-progress",
+      "referenceRuntime": "R0",
+      "sourceNativeInvoked": false,
+      "actualAdapterInvoked": true,
+      "ownScope": "actual cloud protocol route, fields and side effects; not source Electron execution",
+      "proof": {
+        "id": "IPC-0fa110b8534b",
+        "channel": "pseudonym:restore-progress",
+        "method": "GET",
+        "route": "/api/projects/227e3b09-279a-487b-bf27-aca4ea92fcb9/restoration/progress/252a304c-744e-42db-8cac-0e76150d4a68",
+        "status": 200,
+        "responseKeys": [
+          "completed",
+          "events",
+          "persisted",
+          "requestId",
+          "state",
+          "success"
+        ],
+        "responseSha256": "62aa5487e495ff9a3f363d24457f3483794a0fb7a4217d17cb5f2e2353ddb550",
+        "assertions": [
+          "real worker0→99 before commit;100 only after successful persistence;owner/project scoped no filenames;no transaction lock deadlock"
+        ],
+        "sourceNativeInvoked": false,
+        "adapterInvoked": true
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 18424,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 18424,
+            "end_line": 18424,
+            "slice_sha256": "1474eca080017ce3e04714addd5f8cf75825b023b4c06dc8abeb75bfbdc31a01",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 18452,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 18452,
+            "end_line": 18452,
+            "slice_sha256": "5f89a142cb63a255932b3af07cf0bceee290f91c48040e2244038ebe39aa640b",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 18468,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 18468,
+            "end_line": 18468,
+            "slice_sha256": "6d7910e7d34ff3eccf2423f7908e06810252af1684ad2ac859151106ab33b166",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 18488,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 18488,
+            "end_line": 18488,
+            "slice_sha256": "3051697173d0afda2f4b9808f70b2b0c101c69a17dffcc11b85525642281c4a5",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 18527,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 18527,
+            "end_line": 18527,
+            "slice_sha256": "e7445cd607fe190507f6992df6ff61fca2834e7ca1a9ab2d57af372dd21fcc33",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 32,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 32,
+            "end_line": 45,
+            "slice_sha256": "8ea90d1dcaff7ac82d3a02929672e323b8e062396d04a9c6046a87ce2025e559",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 14170,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 14170,
+            "end_line": 14262,
+            "slice_sha256": "d956ce3be8a0faf22ed06fc97da459ce942c571aa5d6acdf6757ed91638e7b08",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 15147,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 15147,
+            "end_line": 15234,
+            "slice_sha256": "a436c609c6ba93493ded1d37e778d289f2a3c55e7d17a4beb05daacdc9c311af",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16241,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 16241,
+            "end_line": 16267,
+            "slice_sha256": "b5009de16aefb53f72739cf265272657aeb75f0ced0b7f5e6cfceef2119cbd12",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16586,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 16586,
+            "end_line": 16628,
+            "slice_sha256": "5b37c53d4d240f3e4892e4c00e593fa37fe56cd0b41c94ce5c14e51729abbe13",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 18342,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 18342,
+            "end_line": 18535,
+            "slice_sha256": "94563e178d4e5b9d811d4c824188b86eab7faf65dc2a463d09f27b8d21fd1000",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 28618,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "start_line": 28618,
+            "end_line": 28824,
+            "slice_sha256": "d37a047ec4c5a059a64376ef7e60d37ec98af8bf9429875a53b1668d8dd0ef21",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 28799,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "start_line": 28799,
+            "end_line": 28799,
+            "slice_sha256": "f199fb53bb1a056f541529447416237d45b829ae3f7609820e4b68101c2a9234",
+            "note": "人工定位调用；完整上下文见所属family证据"
+          }
+        }
+      ],
+      "remaining": [
+        "Source licensed full processing remains unexecuted. Native file paths/session/OS events are adapted rather than reproduced."
+      ]
+    },
+    {
+      "id": "IPC-37a279488720",
+      "name": "pseudonym:select-input-docx",
+      "referenceRuntime": "R0",
+      "sourceNativeInvoked": false,
+      "actualAdapterInvoked": false,
+      "ownScope": "browser file-input adaptation; no OS dialog invoked by this API pass",
+      "proof": null,
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 18352,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 18352,
+            "end_line": 18352,
+            "slice_sha256": "b9db22f503cb483e98ba9d63afb9ac5390764a0d745b2c0e5fafdba9fdeea9bd",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 32,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 32,
+            "end_line": 45,
+            "slice_sha256": "8ea90d1dcaff7ac82d3a02929672e323b8e062396d04a9c6046a87ce2025e559",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 14170,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 14170,
+            "end_line": 14262,
+            "slice_sha256": "d956ce3be8a0faf22ed06fc97da459ce942c571aa5d6acdf6757ed91638e7b08",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 15147,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 15147,
+            "end_line": 15234,
+            "slice_sha256": "a436c609c6ba93493ded1d37e778d289f2a3c55e7d17a4beb05daacdc9c311af",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16241,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 16241,
+            "end_line": 16267,
+            "slice_sha256": "b5009de16aefb53f72739cf265272657aeb75f0ced0b7f5e6cfceef2119cbd12",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16586,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 16586,
+            "end_line": 16628,
+            "slice_sha256": "5b37c53d4d240f3e4892e4c00e593fa37fe56cd0b41c94ce5c14e51729abbe13",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 18342,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 18342,
+            "end_line": 18535,
+            "slice_sha256": "94563e178d4e5b9d811d4c824188b86eab7faf65dc2a463d09f27b8d21fd1000",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 28618,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "start_line": 28618,
+            "end_line": 28824,
+            "slice_sha256": "d37a047ec4c5a059a64376ef7e60d37ec98af8bf9429875a53b1668d8dd0ef21",
+            "note": ""
+          }
+        }
+      ],
+      "remaining": [
+        "Native filePath/filePaths/focused-window/cancel result are not web capabilities. Source .doc/.wps selection/conversion is not supported by this DOCX/MD web restorer; no opaque conversion success is claimed.",
+        "Related existing browser file-input evidence is distinct from executing each named source picker."
+      ]
+    },
+    {
+      "id": "IPC-7fe81107ae4d",
+      "name": "pseudonym:select-input-files",
+      "referenceRuntime": "R0",
+      "sourceNativeInvoked": false,
+      "actualAdapterInvoked": false,
+      "ownScope": "browser file-input adaptation; no OS dialog invoked by this API pass",
+      "proof": null,
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 18372,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 18372,
+            "end_line": 18372,
+            "slice_sha256": "504073d3f422e9c130bb3eb22b99f8f82ef9e8bbc988de08b510f87aefd138c1",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 32,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 32,
+            "end_line": 45,
+            "slice_sha256": "8ea90d1dcaff7ac82d3a02929672e323b8e062396d04a9c6046a87ce2025e559",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 14170,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 14170,
+            "end_line": 14262,
+            "slice_sha256": "d956ce3be8a0faf22ed06fc97da459ce942c571aa5d6acdf6757ed91638e7b08",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 15147,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 15147,
+            "end_line": 15234,
+            "slice_sha256": "a436c609c6ba93493ded1d37e778d289f2a3c55e7d17a4beb05daacdc9c311af",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16241,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 16241,
+            "end_line": 16267,
+            "slice_sha256": "b5009de16aefb53f72739cf265272657aeb75f0ced0b7f5e6cfceef2119cbd12",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16586,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 16586,
+            "end_line": 16628,
+            "slice_sha256": "5b37c53d4d240f3e4892e4c00e593fa37fe56cd0b41c94ce5c14e51729abbe13",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 18342,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 18342,
+            "end_line": 18535,
+            "slice_sha256": "94563e178d4e5b9d811d4c824188b86eab7faf65dc2a463d09f27b8d21fd1000",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 28618,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "start_line": 28618,
+            "end_line": 28824,
+            "slice_sha256": "d37a047ec4c5a059a64376ef7e60d37ec98af8bf9429875a53b1668d8dd0ef21",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 28727,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "start_line": 28727,
+            "end_line": 28727,
+            "slice_sha256": "bc2d88a6316557590663f53363a36227329aa722a3cae9d21ceb476a6bdb96e1",
+            "note": "人工定位调用；完整上下文见所属family证据"
+          }
+        }
+      ],
+      "remaining": [
+        "Native filePath/filePaths/focused-window/cancel result are not web capabilities. Source .doc/.wps selection/conversion is not supported by this DOCX/MD web restorer; no opaque conversion success is claimed.",
+        "Related existing browser file-input evidence is distinct from executing each named source picker."
+      ]
+    },
+    {
+      "id": "IPC-6dcdb71fa095",
+      "name": "pseudonym:select-input-markdown",
+      "referenceRuntime": "R0",
+      "sourceNativeInvoked": false,
+      "actualAdapterInvoked": false,
+      "ownScope": "browser file-input adaptation; no OS dialog invoked by this API pass",
+      "proof": null,
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 18362,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 18362,
+            "end_line": 18362,
+            "slice_sha256": "d6e18d238cd4b9a1b4af04138a823931c1f64ad077bfc5c2673dbf8aa0a5681a",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 32,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 32,
+            "end_line": 45,
+            "slice_sha256": "8ea90d1dcaff7ac82d3a02929672e323b8e062396d04a9c6046a87ce2025e559",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 14170,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 14170,
+            "end_line": 14262,
+            "slice_sha256": "d956ce3be8a0faf22ed06fc97da459ce942c571aa5d6acdf6757ed91638e7b08",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 15147,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 15147,
+            "end_line": 15234,
+            "slice_sha256": "a436c609c6ba93493ded1d37e778d289f2a3c55e7d17a4beb05daacdc9c311af",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16241,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 16241,
+            "end_line": 16267,
+            "slice_sha256": "b5009de16aefb53f72739cf265272657aeb75f0ced0b7f5e6cfceef2119cbd12",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16586,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 16586,
+            "end_line": 16628,
+            "slice_sha256": "5b37c53d4d240f3e4892e4c00e593fa37fe56cd0b41c94ce5c14e51729abbe13",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 18342,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 18342,
+            "end_line": 18535,
+            "slice_sha256": "94563e178d4e5b9d811d4c824188b86eab7faf65dc2a463d09f27b8d21fd1000",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 28618,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "start_line": 28618,
+            "end_line": 28824,
+            "slice_sha256": "d37a047ec4c5a059a64376ef7e60d37ec98af8bf9429875a53b1668d8dd0ef21",
+            "note": ""
+          }
+        }
+      ],
+      "remaining": [
+        "Native filePath/filePaths/focused-window/cancel result are not web capabilities. Source .doc/.wps selection/conversion is not supported by this DOCX/MD web restorer; no opaque conversion success is claimed.",
+        "Related existing browser file-input evidence is distinct from executing each named source picker."
+      ]
+    },
+    {
+      "id": "IPC-f69ef883aa33",
+      "name": "pseudonym:select-input-docx-batch",
+      "referenceRuntime": "R0",
+      "sourceNativeInvoked": false,
+      "actualAdapterInvoked": false,
+      "ownScope": "browser file-input adaptation; no OS dialog invoked by this API pass",
+      "proof": null,
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 18357,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 18357,
+            "end_line": 18357,
+            "slice_sha256": "9b48e60aa255e1601d13d6b111985f50e50fe0c63e9517a8a3c87fa5817f3d83",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 32,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 32,
+            "end_line": 45,
+            "slice_sha256": "8ea90d1dcaff7ac82d3a02929672e323b8e062396d04a9c6046a87ce2025e559",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 14170,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 14170,
+            "end_line": 14262,
+            "slice_sha256": "d956ce3be8a0faf22ed06fc97da459ce942c571aa5d6acdf6757ed91638e7b08",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 15147,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 15147,
+            "end_line": 15234,
+            "slice_sha256": "a436c609c6ba93493ded1d37e778d289f2a3c55e7d17a4beb05daacdc9c311af",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16241,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 16241,
+            "end_line": 16267,
+            "slice_sha256": "b5009de16aefb53f72739cf265272657aeb75f0ced0b7f5e6cfceef2119cbd12",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16586,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 16586,
+            "end_line": 16628,
+            "slice_sha256": "5b37c53d4d240f3e4892e4c00e593fa37fe56cd0b41c94ce5c14e51729abbe13",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 18342,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 18342,
+            "end_line": 18535,
+            "slice_sha256": "94563e178d4e5b9d811d4c824188b86eab7faf65dc2a463d09f27b8d21fd1000",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 28618,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "start_line": 28618,
+            "end_line": 28824,
+            "slice_sha256": "d37a047ec4c5a059a64376ef7e60d37ec98af8bf9429875a53b1668d8dd0ef21",
+            "note": ""
+          }
+        }
+      ],
+      "remaining": [
+        "Native filePath/filePaths/focused-window/cancel result are not web capabilities. Source .doc/.wps selection/conversion is not supported by this DOCX/MD web restorer; no opaque conversion success is claimed.",
+        "Related existing browser file-input evidence is distinct from executing each named source picker."
+      ]
+    },
+    {
+      "id": "IPC-93ba5dca8357",
+      "name": "pseudonym:select-input-markdown-batch",
+      "referenceRuntime": "R0",
+      "sourceNativeInvoked": false,
+      "actualAdapterInvoked": false,
+      "ownScope": "browser file-input adaptation; no OS dialog invoked by this API pass",
+      "proof": null,
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 18367,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 18367,
+            "end_line": 18367,
+            "slice_sha256": "c766c9c32fe0cb889d90b9adadf3d537100eb017223db342645915d563b577ba",
+            "note": "注册/事件发送位置，同行可能包含多个handler"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 32,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 32,
+            "end_line": 45,
+            "slice_sha256": "8ea90d1dcaff7ac82d3a02929672e323b8e062396d04a9c6046a87ce2025e559",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 14170,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 14170,
+            "end_line": 14262,
+            "slice_sha256": "d956ce3be8a0faf22ed06fc97da459ce942c571aa5d6acdf6757ed91638e7b08",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 15147,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 15147,
+            "end_line": 15234,
+            "slice_sha256": "a436c609c6ba93493ded1d37e778d289f2a3c55e7d17a4beb05daacdc9c311af",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16241,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 16241,
+            "end_line": 16267,
+            "slice_sha256": "b5009de16aefb53f72739cf265272657aeb75f0ced0b7f5e6cfceef2119cbd12",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16586,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 16586,
+            "end_line": 16628,
+            "slice_sha256": "5b37c53d4d240f3e4892e4c00e593fa37fe56cd0b41c94ce5c14e51729abbe13",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 18342,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 18342,
+            "end_line": 18535,
+            "slice_sha256": "94563e178d4e5b9d811d4c824188b86eab7faf65dc2a463d09f27b8d21fd1000",
+            "note": ""
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 28618,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "start_line": 28618,
+            "end_line": 28824,
+            "slice_sha256": "d37a047ec4c5a059a64376ef7e60d37ec98af8bf9429875a53b1668d8dd0ef21",
+            "note": ""
+          }
+        }
+      ],
+      "remaining": [
+        "Native filePath/filePaths/focused-window/cancel result are not web capabilities. Source .doc/.wps selection/conversion is not supported by this DOCX/MD web restorer; no opaque conversion success is claimed.",
+        "Related existing browser file-input evidence is distinct from executing each named source picker."
+      ]
+    },
+    {
+      "id": "IPC-f5725b5e0d8a",
+      "name": "app:get-docx-safe-mode",
+      "referenceRuntime": "R0",
+      "sourceNativeInvoked": false,
+      "actualAdapterInvoked": true,
+      "ownScope": "actual cloud protocol route, fields and side effects; not source Electron execution",
+      "proof": {
+        "id": "IPC-f5725b5e0d8a",
+        "channel": "app:get-docx-safe-mode",
+        "method": "GET",
+        "route": "/api/preferences/docx-safe-mode",
+        "status": 200,
+        "responseKeys": [
+          "detail",
+          "reason",
+          "safeMode",
+          "time"
+        ],
+        "responseSha256": "d2d2ef98a51e1f3109ea3c9572f956d906faff1b4729eec1d638707a8adaa8d3",
+        "assertions": [
+          "same encrypted saved detail/time/reason after separate request"
+        ],
+        "sourceNativeInvoked": false,
+        "adapterInvoked": true
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 27032,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 27032,
+            "end_line": 27041,
+            "slice_sha256": "de7374f995165008dec3d046f8f4467ac482f18036b4f7632d44479149507965",
+            "note": "handler或事件发射/生命周期注册"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 307,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+            "start_line": 307,
+            "end_line": 315,
+            "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+            "note": "通用invoke桥；无通道白名单"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 226,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+            "start_line": 226,
+            "end_line": 226,
+            "slice_sha256": "bc8237a95188d6f1434baa9eafe58fc34c59c7e6270a2fec9ba97d7cbba92d30",
+            "note": "专用preload桥/事件订阅"
+          }
+        }
+      ],
+      "remaining": [
+        "Source licensed full processing remains unexecuted. Native file paths/session/OS events are adapted rather than reproduced."
+      ]
+    },
+    {
+      "id": "IPC-e25810712ab1",
+      "name": "app:set-docx-safe-mode",
+      "referenceRuntime": "R0",
+      "sourceNativeInvoked": false,
+      "actualAdapterInvoked": true,
+      "ownScope": "actual cloud protocol route, fields and side effects; not source Electron execution",
+      "proof": {
+        "id": "IPC-e25810712ab1",
+        "channel": "app:set-docx-safe-mode",
+        "method": "PUT",
+        "route": "/api/preferences/docx-safe-mode",
+        "status": 200,
+        "responseKeys": [
+          "detail",
+          "ok",
+          "reason",
+          "safeMode",
+          "time"
+        ],
+        "responseSha256": "f66f3737071c7326da64166481ee4e68690311f42b0c39887c62a700dbdf5d73",
+        "assertions": [
+          "ok;time ISO;arbitrary JSON reason lossless;detail exact JSON"
+        ],
+        "sourceNativeInvoked": false,
+        "adapterInvoked": true
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 27049,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 27049,
+            "end_line": 27056,
+            "slice_sha256": "4cfbe847dfcaac41e77621ef7b87a4fcc704a863e6d392e9d1680276d309cc8a",
+            "note": "handler或事件发射/生命周期注册"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 307,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+            "start_line": 307,
+            "end_line": 315,
+            "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+            "note": "通用invoke桥；无通道白名单"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 230,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+            "start_line": 230,
+            "end_line": 230,
+            "slice_sha256": "04849dee0fd500642a26bd48959a2136948592e343e37bc1ab35d19b53ca4813",
+            "note": "专用preload桥/事件订阅"
+          }
+        }
+      ],
+      "remaining": [
+        "Source licensed full processing remains unexecuted. Native file paths/session/OS events are adapted rather than reproduced."
+      ]
+    },
+    {
+      "id": "IPC-2e9ce1df9fec",
+      "name": "app:reset-docx-safe-mode",
+      "referenceRuntime": "R0",
+      "sourceNativeInvoked": false,
+      "actualAdapterInvoked": true,
+      "ownScope": "actual cloud protocol route, fields and side effects; not source Electron execution",
+      "proof": {
+        "id": "IPC-2e9ce1df9fec",
+        "channel": "app:reset-docx-safe-mode",
+        "method": "DELETE",
+        "route": "/api/preferences/docx-safe-mode",
+        "status": 200,
+        "responseKeys": [
+          "ok",
+          "safeMode"
+        ],
+        "responseSha256": "1ba384d713367a295538879e18b506e731e5f500f8b8e2066cba710c00c8c4b6",
+        "assertions": [
+          "idempotent own-user delete;other user does not reset owner"
+        ],
+        "sourceNativeInvoked": false,
+        "adapterInvoked": true
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 27042,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "start_line": 27042,
+            "end_line": 27048,
+            "slice_sha256": "7a22aaa0a22104cc5eee485d945118abb0e4d650df3e952e3df3059701e58c59",
+            "note": "handler或事件发射/生命周期注册"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 307,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+            "start_line": 307,
+            "end_line": 315,
+            "slice_sha256": "e1d300f143ef7348428a2b0561b7f3628878ce558e011e790d5bbee1dea93460",
+            "note": "通用invoke桥；无通道白名单"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 228,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+            "start_line": 228,
+            "end_line": 228,
+            "slice_sha256": "d529a557398dc1672a0d28661d7eaf0143f8ff14cd0faa1dc61fa3567636c9d7",
+            "note": "专用preload桥/事件订阅"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 7456,
+          "column": null,
+          "note": "人工核读调用、别名、控制分支或UI绑定",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "start_line": 7456,
+            "end_line": 7467,
+            "slice_sha256": "9c2d6c618724b031a3bc80d5586e64d4d949dabeec1893813ec7f8dff151a16a",
+            "file_sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "note": "人工核读调用、别名、控制分支或UI绑定"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 10352,
+          "column": null,
+          "note": "人工核读调用、别名、控制分支或UI绑定",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "start_line": 10352,
+            "end_line": 10352,
+            "slice_sha256": "4d586123f9f5e27d9ad7be7e1155b2e322111eb0acfa7060673a8b4f928d5e78",
+            "file_sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "note": "人工核读调用、别名、控制分支或UI绑定"
+          }
+        }
+      ],
+      "remaining": [
+        "Source licensed full processing remains unexecuted. Native file paths/session/OS events are adapted rather than reproduced."
+      ]
+    }
+  ],
+  "correctedFindings": [
+    {
+      "id": "WORD-IMAGE-OCR-WRONG-FACE-MAPPING",
+      "status": "fixed-actual-runtime",
+      "source": "main17368–17409",
+      "before": "Wrong handoff treated office-face-candidates as recognize-docx-images.",
+      "now": "Fresh complete detection callback with actual embedded image OCR and enabled policy/rules/NER; image_ocr candidates only. Full originalText/structured/canonical/scan/image-info field families returned. Explicit AEAD-bound apply rechecks current context/maps/previews, creates new revision, resets decisions, rebinds private annotation AEAD, requires fresh manual review; immutable original and old snapshots remain."
+    },
+    {
+      "id": "WORD-SAFE-MODE-MISCLASSIFIED-OS",
+      "status": "fixed-actual-protocol-browser-pending-parent",
+      "source": "main27032–27056",
+      "now": "Own-user persisted encrypted JSON time/reason/detail; real get/set/reset. Both preview paths consume mode, renderer-only failure may downgrade; explicit restore high-fidelity. Whole window offset/total preserved, no partial text called whole document. No native process-crash monitor claimed."
+    },
+    {
+      "id": "ANNOTATION-INVALID-BOX-500",
+      "status": "fixed-actual-400",
+      "evidence": "visual-interface-api-v3.log retains before500; v6 actual400 plus raw>200 type/id/source/zero-confidence/meta preservation"
+    },
+    {
+      "id": "COMPOSITE-MIXED-ALIASES",
+      "status": "fixed-unit-and-real-HTTP",
+      "source": "main14198/16586–16613 source overlap aggregation",
+      "now": "Balanced mixed wrapper+literal aliases; longest whole alias restoration across Word runs; only wrapper/between-wrapper whitespace normalized. Literal spaces stay exact. Components do not become known aliases. Unknown, queue/collision, Unicode, no-rescan, mapping authorization/version gates remain."
+    },
+    {
+      "id": "BATCH-PROGRESS-NO-EVENT-ADAPTER",
+      "status": "fixed-actual-event-route",
+      "now": "Owned requestId progress GET obtains real worker restore events. 100 from worker capped99 until outer DB transaction commits; final100 persisted=true only for stored success, failed state remains persisted=false. Observer drops old UI generations, aborts on scope/permission change. No original filename in event stream. Completed artifact verification/download remains separate."
+    },
+    {
+      "id": "RESTORATION-FILENAME-200-CAP",
+      "status": "fixed-actual-single-batch-ZIP",
+      "source": "main18427–18548 has no200 rule",
+      "now": "240ASCII names survive Word/MD single+batch+ZIP. Safety rejects separators, controls, malformedUnicode and final deduplicated UTF8ZIP entry above65535bytes; no truncation."
+    },
+    {
+      "id": "OCR-APPLY-CURRENT-SOURCE-INTEGRITY",
+      "severity": "P2",
+      "status": "closed-independent-3-source-variants409-no-state-change",
+      "discoveredBy": "complete_rules",
+      "beforeEvidence": ".data/research/lawbot-2026-10-15/iteration032/review-B-ocr-source-before.log",
+      "issue": "Valid candidate token could apply after storage original changed to different AEAD-authenticated bytes.",
+      "fix": "After token authentication, before any review/mapping write, verifiedDocumentSource rereads and hashes immutable original plus unlocked derivative; current encrypted canonical content is decrypted and hash checked too. Any failure SOURCE_MISMATCH409 with no revision/snapshot update.",
+      "archive": ".data/research/lawbot-2026-10-15/iteration032/before-source-integrity/apps/api/docx-image-ocr.ts",
+      "independentEvidence": {
+        "reviewer": "complete_rules",
+        "result": "1testPASS3.153s;original/canonical/unlocked tamper409 SOURCE_MISMATCH;revision0 unchanged",
+        "beforeLog": ".data/research/lawbot-2026-10-15/iteration032/review-B-ocr-source-before.log",
+        "afterLog": ".data/research/lawbot-2026-10-15/iteration032/review-B-ocr-source-after.log",
+        "exactEvidence": ".data/research/lawbot-2026-10-15/iteration032/ocr-apply-source-adversary-after.json",
+        "report": "文档/逆向台账/contracts/review-platform-visual-by-rules-20261015.json"
+      }
+    },
+    {
+      "id": "SOURCE-RAW-TRIM-ALIASES",
+      "severity": "P2",
+      "status": "closed-independent-actual-LPM-MD-crossrunWord",
+      "source": "hm16526/Mm16586–16613/Ad14170–14196 preserves raw string token and adds trimmed canonical spelling",
+      "fix": "Preserve exact leading/trailing whitespace raw aliases plus trimmed spellings, longest onepass, internal literal whitespace exact. Shared normalized occurrence cursor across raw/trim including Word metadata; different value/queue collisions hard reject. supplied keys retain100000 cap; derived spelling adds no artificial cap. Allblank/malformedUnicode/NUL/unknown-wrapper/auth/version gates retained.",
+      "sourceOracle": ".data/research/lawbot-2026-10-15/iteration032/mapping-library-whitespace-source.json",
+      "independentActual": {
+        "reviewer": "full_inventory_eval",
+        "result": "3testsPASS28.429s",
+        "log": ".data/research/lawbot-2026-10-15/iteration032/catalog-whitespace-final-api.log",
+        "scope": "source plain/wrapper/mixed raw+trim spellings: real saved protectedLPM→MD and crossrunWord exact text without extra whitespace"
+      }
+    }
+  ],
+  "verification": {
+    "actualApi": {
+      "result": "6testsPASS23.396s",
+      "log": ".data/research/lawbot-2026-10-15/iteration032/visual-interface-api-v6.log",
+      "exactEvidence": ".data/research/lawbot-2026-10-15/iteration032/visual-interface-actual-1792031405561-78354.json"
+    },
+    "units": {
+      "result": "6files31testsPASS4.02s",
+      "log": ".data/research/lawbot-2026-10-15/iteration032/restoration-final-units-v2.log",
+      "scope": "wrapper/mixed restore,100k large mapping,onepass/collision/occurrence/UTF16,auth/version,real-event browser observer,ZIPnames"
+    },
+    "typecheck": ".data/research/lawbot-2026-10-15/iteration032/visual-typecheck-v6.log",
+    "browser": "No Edge/cloud started by B this phase; parent owns new actual browser acceptance. No browser pass inferred from unit/API tests.",
+    "independentVisualApi": {
+      "reviewer": "complete_rules",
+      "result": "6testsPASS15.48s",
+      "log": ".data/research/lawbot-2026-10-15/iteration032/review-B-visual-independent-A.log",
+      "note": "Run before source-integrity fix; new adversarial recheck pending."
+    },
+    "peerReports": [
+      "文档/逆向台账/contracts/review-route-folder-by-visual-20261015.json",
+      "文档/逆向台账/contracts/review-mapping-library-by-visual-20261015.json"
+    ],
+    "mixedPublicStampEvaluation": {
+      "state": "complete786-success-no-partial-or-errors",
+      "report": "文档/逆向台账/contracts/public-stamp-validation-20261015.json",
+      "perImage": "文档/评估/混合公开印章全量验证20261015/per-image.json",
+      "quality": "TP316FP1496FN999 atIoU.5; precision17.44 recall24.03 F120.21 percent; insufficient for practical auto seal completion. Not blackwhitecommercial stratifiedgold."
+    },
+    "independentSourceIntegrity": {
+      "reviewer": "complete_rules",
+      "result": "1testPASS3.153s;original/canonical/unlocked tamper409 SOURCE_MISMATCH;revision0 unchanged",
+      "beforeLog": ".data/research/lawbot-2026-10-15/iteration032/review-B-ocr-source-before.log",
+      "afterLog": ".data/research/lawbot-2026-10-15/iteration032/review-B-ocr-source-after.log",
+      "exactEvidence": ".data/research/lawbot-2026-10-15/iteration032/ocr-apply-source-adversary-after.json",
+      "report": "文档/逆向台账/contracts/review-platform-visual-by-rules-20261015.json"
+    },
+    "unitsWhitespaceDelta": {
+      "result": "5files30testsPASS4.81s",
+      "log": ".data/research/lawbot-2026-10-15/iteration032/restoration-whitespace-units-v2.log",
+      "metadataOccurrenceProbe": ".data/research/lawbot-2026-10-15/iteration032/whitespace-word-metadata-probe.log"
+    }
+  },
+  "archive": {
+    "directory": ".data/research/lawbot-2026-10-15/iteration032/before",
+    "policy": "Every modified old pinned owned file preserved as exact before bytes; new files have no historical predecessor. Root also archived all baseline pins."
+  },
+  "files": [
+    {
+      "path": "apps/api/docx-safe-mode.ts",
+      "bytes": 1632,
+      "sha256": "19c512be7ab3b113aac64e99e84976d0a51c32f084804b01e466462a8f2e5c8b"
+    },
+    {
+      "path": "apps/web/docx-safe-mode.tsx",
+      "bytes": 2076,
+      "sha256": "942f868dcbf9e9900daf9b08c4a77d133a7546275f3ae575d43a9c8c38e7bcd3"
+    },
+    {
+      "path": "apps/web/docx-review.tsx",
+      "bytes": 13512,
+      "sha256": "be197defe33a8489a8b9e09745710f9ec136798da09914b7878d56e582d8437c"
+    },
+    {
+      "path": "apps/web/docx-paginated-review.tsx",
+      "bytes": 13777,
+      "sha256": "3e854a1b1e9e0577f3b2425cc96a9e5354ede2c6d22b85ada32760f0bf46eff7"
+    },
+    {
+      "path": "apps/api/docx-image-ocr.ts",
+      "bytes": 7372,
+      "sha256": "5c7d559160a4a0b8ccc159e9b677ab7a3bcf87150ba901f91fa1b73addb7c78d"
+    },
+    {
+      "path": "apps/web/docx-image-ocr.tsx",
+      "bytes": 3395,
+      "sha256": "dad8a108704337e0439bf35046820aeb46db66d2a84ea68600c8df3a2aabc69e"
+    },
+    {
+      "path": "packages/adapters/docx-image-ocr.ts",
+      "bytes": 3359,
+      "sha256": "facc97795736847d56c7d8e27ceca7fae19e529aadce9a10bc3a1cf12224ac3d"
+    },
+    {
+      "path": "apps/api/image-utilities.ts",
+      "bytes": 7187,
+      "sha256": "ab06d55a55341bd5b7a19a8a60e0c2d821bb0a0696a48d366a0981752fcdfb1a"
+    },
+    {
+      "path": "packages/core/image-utilities.ts",
+      "bytes": 7379,
+      "sha256": "ad353ef9afa185aca94d978b0865e2e6a17779fe29e84961180b63305bdfbab3"
+    },
+    {
+      "path": "apps/api/restoration-files.ts",
+      "bytes": 6028,
+      "sha256": "4b24cf6842e711c7f4863d656d2d85863414cf6ef97847031e38a73551f53305"
+    },
+    {
+      "path": "apps/api/restoration-batch.ts",
+      "bytes": 7426,
+      "sha256": "19ab05ff0c67f471f985f55f548e070ac0ad9fe8d4b475d6deec00071266bb6c"
+    },
+    {
+      "path": "apps/web/restoration-batch.tsx",
+      "bytes": 9071,
+      "sha256": "95a9b4662946c2f385612801eea8ec5fc24bb9caf2a126c4c60343184a72bead"
+    },
+    {
+      "path": "apps/web/restoration-progress.ts",
+      "bytes": 1067,
+      "sha256": "9487e4e167b1dabbdcf16b55cdcc376aa841e6bed10f16fde02f1d39425da6ac"
+    },
+    {
+      "path": "packages/contracts/alias-token.ts",
+      "bytes": 914,
+      "sha256": "88fb4930804b79a5044e25a3d17a9731b9a169904ca246bfb5da5889d065291e"
+    },
+    {
+      "path": "packages/core/restoration-files.ts",
+      "bytes": 27247,
+      "sha256": "5897b973162c56fa0bbe1b58a4932525bf2282adbb0eb3e44f4bb676f676859b"
+    },
+    {
+      "path": "packages/core/restoration-batch.ts",
+      "bytes": 2504,
+      "sha256": "9121b1d22f90d4233c5f1db0555728785b8cb591105ff2ee8b2c32232ad04f4c"
+    },
+    {
+      "path": "packages/core/document-unlock-word.ts",
+      "bytes": 16155,
+      "sha256": "8d3fe4bf49ffcb47301c0b34e5413d96046b5a3aa26ee9ada91b8addb0c079e8"
+    },
+    {
+      "path": "scripts/024.sql",
+      "bytes": 772,
+      "sha256": "f1a5f60e7adec2752919134aa18d7bf0c06fbf61fd55db5fca9e75878d3ac146"
+    },
+    {
+      "path": "tests/visual-interface-closure.integration.ts",
+      "bytes": 28011,
+      "sha256": "35a5d370c669c6709a3fb50495fb9565cfa3327b32cddbe4c4dcd27cc902a712"
+    },
+    {
+      "path": "tests/restoration-composite.test.ts",
+      "bytes": 7922,
+      "sha256": "6d41ea7aef6eb747d63831a9b3b59a900d980ca3dcc416a0a15cd2de946995db"
+    },
+    {
+      "path": "tests/restoration-progress.test.ts",
+      "bytes": 1435,
+      "sha256": "14332b7b0fb25cbe0e8eff37d7d1e600abf4dac51050d5da0c3b9cc2d7639cea"
+    }
+  ],
+  "boundaries": [
+    "No license/activation bypass; source processing R0 remains.",
+    "Fresh OCR engine is current locally pinned tool pipeline; API/field completeness is not numerical equivalence of a different source OCR backend.",
+    "No startup-model-loading or deployment resource-limit changes.",
+    "Black/white commercial seal real-gold search and licensing/access decisions are separate from synthetic source numerical oracle; see blackwhite-seal-gold-search-20261015.json.",
+    "Final ledger statuses and full release gates are root-owned; this report does not auto-upgrade related tests to exact native channel execution."
+  ]
+}

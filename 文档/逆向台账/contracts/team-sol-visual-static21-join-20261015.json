@@ -1,0 +1,1218 @@
+{
+  "date": "2026-10-15",
+  "scope": "21 C-delegated non-desensitization non-UI IDs plus two rules-group pending visual IDs; public application graph only",
+  "historicalPins": {
+    "visual-interface-closure-20261015.json": "1a6944a6d7902ee20ee0d10cd6ca6e25a284664564c63c1a63a47a8111b25815",
+    "pdfjs-worker-resource-static-by-visual-20261015.json": "380fac8a732a28cd036f26c35c177c230d701039ed81daed33619664147c5f22",
+    "source-finite-closure-C-20261015.json": "485167f23f097cac100b1df5e233a66bd8a70e727cbdddfb2755fe13f29fbfa1",
+    "team-sol-rules-static35-join-20261015.json": "2523c8ec5f8622f251fa40ce287536f5262f4645ad29a29dbc02bf62a465056d",
+    "root-ui-six-semantic-join-20261015.json": "60d65a13159e4c45218026b90e3e4d044abca5cae8add98e7113a342dd2aa2e1",
+    "deep-formats-20261014.md": "dea2bb876a7017e9edf1a4429618ace18920ea6f9fd17e4297898b73595aebd6"
+  },
+  "method": "Read source handler and actual renderer/engine helpers. Nodes hash complete UTF8 lines inclusive; prior exact reports referenced but not overwritten. No competitor activation or native runtime. S3 recommendation scoped to finite public application graph, declared third-party/native leaves remain. For image-review and PDF worker the preload edge is generic electron.ipcRenderer.invoke, not a named wrapper.",
+  "rows": [
+    {
+      "id": "IPC-a982d6d137ce",
+      "name": "get-pdfjs-worker-path",
+      "producer": "PDF Ju2 and project native-text vf2 worker setup",
+      "transport": "renderer uses window.electron.ipcRenderer.invoke generic bridge; no named worker preload method",
+      "handler": "main packaged/dev/unpacked/temp copy/cache/fallback resolver",
+      "applicationConsumer": "PDF loader+native search document creation, generation/unmount destroy",
+      "stateOrPersistence": "workerSrc in renderer process; temp copy cached by size/mtime",
+      "failurePath": "copy failure falls back source URL; setup failure clears workerSrc/returns load error; stale generation ignored",
+      "declaredLeaf": "FS/path/fileURL; PDF.js worker internals",
+      "sourceNodes": [
+        {
+          "label": "resolver",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 26715,
+          "endLine": 26740,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "4f0ad3609ac7d51fc82295e257aefd562fae15aeb5a74e1d03ea891adeca7cb1"
+        },
+        {
+          "label": "PDF Ju2",
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 25815,
+          "endLine": 25879,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "5c67bb5c3fb8e9594886ba4142184df70dc20b28fa4d288a02c4139b050f77fb"
+        },
+        {
+          "label": "search vf2",
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 34679,
+          "endLine": 34704,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "8401b508afc0edcf465210864b999951e0e6d91e43b3ba770d1e58b7b11796d1"
+        },
+        {
+          "label": "preload generic ipcRenderer.invoke",
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "startLine": 311,
+          "endLine": 315,
+          "fileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+          "sliceSha256": "4c45ea2f940d81de1604b758db9843526f8349359ba7a9b605445449ecbdd15c"
+        }
+      ],
+      "recommendation": "S3 bounded public application graph",
+      "competitorRuntime": "R0"
+    },
+    {
+      "id": "IPC-47ecc7525dfe",
+      "name": "image-review:clear-ocr-cache",
+      "producer": "review utility clear button",
+      "transport": "renderer uses window.electron.ipcRenderer.invoke generic bridge; no named imageReview preload method",
+      "handler": "main deletes q2 key",
+      "applicationConsumer": "subsequent get-page/search must miss and re-OCR if caller provides PDF buffer",
+      "stateOrPersistence": "q2 derived OCR cache only, not source/review",
+      "failurePath": "deleting absent key still success; key caller supplied",
+      "declaredLeaf": "in-memory Map",
+      "sourceNodes": [
+        {
+          "label": "cache delete",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 18335,
+          "endLine": 18342,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "76ca0922c6f7e9b90f274047ad77086151ceb8f4e063dc4d049ec16c0139a9b7"
+        },
+        {
+          "label": "review utility caller",
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 37534,
+          "endLine": 37546,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "f665e5879a09172f9afdedb5b2c8a2951e92ca5f488d90c98a084656f24be0f3"
+        },
+        {
+          "label": "preload generic ipcRenderer.invoke",
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "startLine": 311,
+          "endLine": 315,
+          "fileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+          "sliceSha256": "4c45ea2f940d81de1604b758db9843526f8349359ba7a9b605445449ecbdd15c"
+        },
+        {
+          "label": "q2 cache normalization/eviction producer",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 15335,
+          "endLine": 15376,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "a15e72eaed31f80bda309b6fef4f96527f740ab6decef27ab29bb5d38218df51"
+        }
+      ],
+      "recommendation": "S3 bounded public application graph",
+      "competitorRuntime": "R0"
+    },
+    {
+      "id": "IPC-d3864dc80560",
+      "name": "image:export-labels",
+      "producer": "Image annotation export action",
+      "transport": "preload image direct invoke",
+      "handler": "main serializes normalized+absolute boxes to labels JSON",
+      "applicationConsumer": "renderer handles save result/path",
+      "stateOrPersistence": "FS JSON at homedir datasets/images/labels",
+      "failurePath": "write exception success:false; source confidence 0 becomes 1 by ||",
+      "declaredLeaf": "FS/path, image dimensions caller",
+      "sourceNodes": [
+        {
+          "label": "export handler",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 26991,
+          "endLine": 27005,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "e000fd17ea7c918ce347586333e27f5c5e00b544c16ea250014750e8f2f71b29"
+        },
+        {
+          "label": "export caller",
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 37534,
+          "endLine": 37546,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "f665e5879a09172f9afdedb5b2c8a2951e92ca5f488d90c98a084656f24be0f3"
+        },
+        {
+          "label": "preload imageAnnotation bridge",
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "startLine": 241,
+          "endLine": 241,
+          "fileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+          "sliceSha256": "3719ba699a2b85fe1e8201ea33ef6476a94ad597d3fdfd0c16cef6cd7be8c80b"
+        }
+      ],
+      "recommendation": "S3 bounded public application graph",
+      "competitorRuntime": "R0"
+    },
+    {
+      "id": "IPC-5569a4344615",
+      "name": "image:save-annotations",
+      "producer": "Image annotation save action",
+      "transport": "preload image direct invoke",
+      "handler": "main writes sidecar JSON of bboxes",
+      "applicationConsumer": "renderer handles save result/path",
+      "stateOrPersistence": "adjacent basename .json with imagePath, empty imageSize, savedAt",
+      "failurePath": "write exception success:false; same basename path can collide",
+      "declaredLeaf": "FS/path",
+      "sourceNodes": [
+        {
+          "label": "save handler",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 26985,
+          "endLine": 26992,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "44945d6b6b73410972f696eebfbcbdf6ec6acfae5fd1be334127c413a2f6866b"
+        },
+        {
+          "label": "annotation caller",
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 37534,
+          "endLine": 37546,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "f665e5879a09172f9afdedb5b2c8a2951e92ca5f488d90c98a084656f24be0f3"
+        },
+        {
+          "label": "preload imageAnnotation bridge",
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "startLine": 240,
+          "endLine": 240,
+          "fileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+          "sliceSha256": "50c57df2cb9d1a64bee11b9e1eda9ee95bd3e3ab596d00c9698566b78392b794"
+        }
+      ],
+      "recommendation": "S3 bounded public application graph",
+      "competitorRuntime": "R0"
+    },
+    {
+      "id": "IPC-0ecb1de9c806",
+      "name": "ocr:collect-diagnostic",
+      "producer": "OCR diagnostic UI request",
+      "transport": "preload OCR direct invoke",
+      "handler": "main cs().collectDiagnosticInfo(reason)",
+      "applicationConsumer": "UI displays summary/path",
+      "stateOrPersistence": "diagnostic file written by OCR service, not review document",
+      "failurePath": "exception success:false; diagnostic can disclose local file path in source",
+      "declaredLeaf": "OCR runtime/model/service, FS",
+      "sourceNodes": [
+        {
+          "label": "diagnostic handler",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 18769,
+          "endLine": 18776,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "0fc20a249fc70022312d9ba1d1ecf0f2853c1f95ca773ef154a8f7ddd03dbfe7"
+        },
+        {
+          "label": "diagnostic UI",
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 29301,
+          "endLine": 29318,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "4446ea4e737d85545a718656a60c579573d496692ec3b92f2453990eaf37e293"
+        },
+        {
+          "label": "preload OCR bridge",
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "startLine": 304,
+          "endLine": 304,
+          "fileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+          "sliceSha256": "b77dc1e4464e08696a433fa951ae9a78b2c873cb07728f775fb6c193b2c8be93"
+        },
+        {
+          "label": "ss OCR runtime facade",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 4600,
+          "endLine": 4620,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "7a07d79d91bb66024861d66d979fabdf35c916fcc4b69c5644ec8c5b71d8d1d0"
+        },
+        {
+          "label": "processor diagnostic body",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 7954,
+          "endLine": 8034,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "3d1543795439d0116deb624e113f36baf4879f188d7227f9a724fc588f13c60d"
+        }
+      ],
+      "recommendation": "S3 bounded public application graph",
+      "competitorRuntime": "R0"
+    },
+    {
+      "id": "IPC-f02ad1fa2413",
+      "name": "ocr:health-check",
+      "producer": "OCR availability UI request",
+      "transport": "preload OCR direct invoke",
+      "handler": "main cs().checkAvailabilityWithDiagnostic()",
+      "applicationConsumer": "UI uses available/diagnosticSummary",
+      "stateOrPersistence": "runtime availability probe only",
+      "failurePath": "exception available:false summary",
+      "declaredLeaf": "OCR runtime/model/service",
+      "sourceNodes": [
+        {
+          "label": "health handler",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 18761,
+          "endLine": 18769,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "b629bd6b7d54173d422e909048b0cddcb90ebd6fd69fe81c2155297140bead1d"
+        },
+        {
+          "label": "health UI",
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 31983,
+          "endLine": 31994,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "3a20e1f422fc9a68197b7d9ad191df3787836aad9be6f3e366533d4e3490fcfc"
+        },
+        {
+          "label": "preload OCR bridge",
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "startLine": 302,
+          "endLine": 302,
+          "fileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+          "sliceSha256": "d02ba834a6dde027f453476b3c76c15b6a39bcdeebfde920ebbe2aac1d0a0db9"
+        },
+        {
+          "label": "ss OCR runtime facade",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 4600,
+          "endLine": 4620,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "7a07d79d91bb66024861d66d979fabdf35c916fcc4b69c5644ec8c5b71d8d1d0"
+        },
+        {
+          "label": "processor diagnostic body",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 7954,
+          "endLine": 8034,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "3d1543795439d0116deb624e113f36baf4879f188d7227f9a724fc588f13c60d"
+        }
+      ],
+      "recommendation": "S3 bounded public application graph",
+      "competitorRuntime": "R0"
+    },
+    {
+      "id": "IPC-4dd20e80cae3",
+      "name": "image-review:batch-search",
+      "producer": "Image/PDF query and scope UI",
+      "transport": "renderer uses window.electron.ipcRenderer.invoke generic bridge; no named imageReview preload method",
+      "handler": "main q2 cache search normalized charBoxes, word fallback, cross-line multibox",
+      "applicationConsumer": "returns results+checkedPageNumbers to scoped result/filter/navigation",
+      "stateOrPersistence": "read-only q2 OCR cache",
+      "failurePath": "missing parameters/cache failure; approximate word fallback; de-dup dd",
+      "declaredLeaf": "OCR cached geometry/Unicode normalization",
+      "sourceNodes": [
+        {
+          "label": "batch search",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 18186,
+          "endLine": 18273,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "dbd71a1b2ea82683ef86daacb7a8a8099045930bff739d9ff5fef023db1f9fd2"
+        },
+        {
+          "label": "search UI",
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 22975,
+          "endLine": 22999,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "546075f258a62a73bfd23809b30a49064979e1e058e67c4ff9d3144c83fd7505"
+        },
+        {
+          "label": "preload generic ipcRenderer.invoke",
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "startLine": 311,
+          "endLine": 315,
+          "fileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+          "sliceSha256": "4c45ea2f940d81de1604b758db9843526f8349359ba7a9b605445449ecbdd15c"
+        },
+        {
+          "label": "q2 cache normalization/eviction producer",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 15335,
+          "endLine": 15376,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "a15e72eaed31f80bda309b6fef4f96527f740ab6decef27ab29bb5d38218df51"
+        }
+      ],
+      "recommendation": "S3 bounded public application graph",
+      "competitorRuntime": "R0"
+    },
+    {
+      "id": "IPC-ba07bb14e3df",
+      "name": "image-review:get-ocr-page",
+      "producer": "PDF/page reviewer glyph and source caller",
+      "transport": "renderer uses window.electron.ipcRenderer.invoke generic bridge; no named imageReview preload method",
+      "handler": "main q2 lookup; optional forced OCR using PDF buffer with J2 inflight promise",
+      "applicationConsumer": "page lines/charBoxes consumed by canvas/selection",
+      "stateOrPersistence": "q2/J2 derived OCR state",
+      "failurePath": "missing page returns false; forced OCR rejection swallowed at this caller; stale page unresolved",
+      "declaredLeaf": "PDF/OCR engine and buffer",
+      "sourceNodes": [
+        {
+          "label": "get page",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 18308,
+          "endLine": 18342,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "9a8edccef23ede20e759fbf2159321fbe03ebc37e6e7bbf278c90670c09c77ee"
+        },
+        {
+          "label": "page UI",
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 25622,
+          "endLine": 25655,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "16c833f39f088ac543e6b136c76abedef22e57cd8594e752b427e26dcd00893f"
+        },
+        {
+          "label": "preload generic ipcRenderer.invoke",
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "startLine": 311,
+          "endLine": 315,
+          "fileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+          "sliceSha256": "4c45ea2f940d81de1604b758db9843526f8349359ba7a9b605445449ecbdd15c"
+        },
+        {
+          "label": "q2 cache normalization/eviction producer",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 15335,
+          "endLine": 15376,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "a15e72eaed31f80bda309b6fef4f96527f740ab6decef27ab29bb5d38218df51"
+        }
+      ],
+      "recommendation": "S3 bounded public application graph",
+      "competitorRuntime": "R0"
+    },
+    {
+      "id": "IPC-910347ed48b5",
+      "name": "image-review:ocr-region",
+      "producer": "Selected region query",
+      "transport": "renderer uses window.electron.ipcRenderer.invoke generic bridge; no named imageReview preload method",
+      "handler": "main maps canvas to OCR page, char center inclusion, uniform word fallback",
+      "applicationConsumer": "returns text+ocrBbox for user correction/copy",
+      "stateOrPersistence": "read-only q2 cache",
+      "failurePath": "missing cache/page returns false; approximate fallback",
+      "declaredLeaf": "OCR charBoxes and canvas dimensions",
+      "sourceNodes": [
+        {
+          "label": "ocr region",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 18273,
+          "endLine": 18308,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "849d05143932393c1c71aabf3602a5dd65f04d57b91416ba04d9dce2a65e9422"
+        },
+        {
+          "label": "region UI",
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 24171,
+          "endLine": 24200,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "f69fc9afdae1715ac3093293ac9c87964150e09211035f63486b3b464e4ac476"
+        },
+        {
+          "label": "preload generic ipcRenderer.invoke",
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "startLine": 311,
+          "endLine": 315,
+          "fileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+          "sliceSha256": "4c45ea2f940d81de1604b758db9843526f8349359ba7a9b605445449ecbdd15c"
+        },
+        {
+          "label": "q2 cache normalization/eviction producer",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 15335,
+          "endLine": 15376,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "a15e72eaed31f80bda309b6fef4f96527f740ab6decef27ab29bb5d38218df51"
+        }
+      ],
+      "recommendation": "S3 bounded public application graph",
+      "competitorRuntime": "R0"
+    },
+    {
+      "id": "IPC-bd4779635d5d",
+      "name": "pseudonym:inspect-restore-mapping",
+      "producer": "restore panel mapping/password step",
+      "transport": "preload pseudonym direct ipcRenderer invoke",
+      "handler": "main fe(sender,authToken), Pm map read and Ad ambiguity policy implicit",
+      "applicationConsumer": "panel gates next restore and refreshes token",
+      "stateOrPersistence": "read-only encrypted mapping under userData",
+      "failurePath": "AUTH_REQUIRED or map read error; ambiguities currently empty",
+      "declaredLeaf": "key hierarchy and FS",
+      "sourceNodes": [
+        {
+          "label": "inspect",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 18384,
+          "endLine": 18403,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "7e6beecc490f62af55df333cc5bb8913f4357df8f83f0957fb3dc3a59bc912fc"
+        },
+        {
+          "label": "Ad canonical policy",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 14170,
+          "endLine": 14212,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "f82b94f451e12578010830dc10387c774d58e79cfea7b733480a93637f614f9d"
+        },
+        {
+          "label": "restore panel state machine",
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 28695,
+          "endLine": 28804,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "15e1a07633eb1ca9c3c636741369cc1befa26dc24f435f5acbf81284ebb1896b"
+        },
+        {
+          "label": "preload pseudonym bridge",
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "startLine": 252,
+          "endLine": 252,
+          "fileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+          "sliceSha256": "92755ef4e92d6ea0ea22be644a18f452a92f614f1150f9462d2dcb31a7d3d2dd"
+        },
+        {
+          "label": "protected mapping store",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 15152,
+          "endLine": 15238,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "e07f92022a128e0c6c5401aa3cf7528ae125d6ff1c349a25599e791354121eb1"
+        },
+        {
+          "label": "Pm mapping loader",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 16625,
+          "endLine": 16629,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "c6d13eb267f61a725eeb052aae1e42094e2ee4b727bede9068c550b065c73f57"
+        }
+      ],
+      "recommendation": "S3 bounded public application graph",
+      "competitorRuntime": "R0"
+    },
+    {
+      "id": "IPC-32941c143267",
+      "name": "pseudonym:open-output-folder",
+      "producer": "restore success panel",
+      "transport": "preload pseudonym direct ipcRenderer invoke",
+      "handler": "main dirname(outputPath) shell.openPath",
+      "applicationConsumer": "panel reports opened/failed without changing artifact",
+      "stateOrPersistence": "none",
+      "failurePath": "shell error returns success:false",
+      "declaredLeaf": "Electron shell/path",
+      "sourceNodes": [
+        {
+          "label": "open folder",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 18528,
+          "endLine": 18537,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "7722704aac04f9ec5a553539dbe095e3ab051046e06a6a4f88de83d853216feb"
+        },
+        {
+          "label": "panel caller",
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 28790,
+          "endLine": 28799,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "a75a3f42923867781b3ca643581b97f7ff8bb9926c76712aa75d88d1ab455519"
+        },
+        {
+          "label": "preload pseudonym bridge",
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "startLine": 264,
+          "endLine": 264,
+          "fileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+          "sliceSha256": "4e7a46ed7e7779b12836b89b065751cafd3dbc44b9bbf51ca9d54a399583fe6b"
+        }
+      ],
+      "recommendation": "S3 bounded public application graph",
+      "competitorRuntime": "R0"
+    },
+    {
+      "id": "IPC-1d272ba10a6c",
+      "name": "pseudonym:restore-docx",
+      "producer": "single Word/WPS output",
+      "transport": "preload pseudonym direct ipcRenderer invoke",
+      "handler": "main fe/Pm/Ad; choose save path; Rp DOCX or legacy conversion",
+      "applicationConsumer": "panel sets success/partial/error and AI collaboration completion only after response",
+      "stateOrPersistence": "writes output file; source input untouched",
+      "failurePath": "auth/dependency/format/conversion/write error; preserveExistingOutput suffix",
+      "declaredLeaf": "python-docx preserver, legacy Office service, FS/dialog",
+      "sourceNodes": [
+        {
+          "label": "single docx",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 18404,
+          "endLine": 18427,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "8ae7dd40ac1e903d4fee7965c01a0a93086e41c1bf22356835a722bbbb2f752a"
+        },
+        {
+          "label": "Rp format conversion",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 16241,
+          "endLine": 16276,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "9337f6b5bba67de2fee66c8608d78a170f5110293590611d212800a48abeb98a"
+        },
+        {
+          "label": "restore panel state machine",
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 28695,
+          "endLine": 28804,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "15e1a07633eb1ca9c3c636741369cc1befa26dc24f435f5acbf81284ebb1896b"
+        },
+        {
+          "label": "preload pseudonym bridge",
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "startLine": 253,
+          "endLine": 253,
+          "fileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+          "sliceSha256": "be0756255725dbca464c1dfecd67daa65e5088201a1e910131f30e732fa83f9c"
+        },
+        {
+          "label": "protected mapping store",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 15152,
+          "endLine": 15238,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "e07f92022a128e0c6c5401aa3cf7528ae125d6ff1c349a25599e791354121eb1"
+        },
+        {
+          "label": "Pm mapping loader",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 16625,
+          "endLine": 16629,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "c6d13eb267f61a725eeb052aae1e42094e2ee4b727bede9068c550b065c73f57"
+        },
+        {
+          "label": "Python restore runner",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 13199,
+          "endLine": 13237,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "e7202de334a30b8f38b498e9cb3ba1a49e3bfe6e688300da9f4bdcf2a6ea3aac"
+        },
+        {
+          "label": "Ad source canonical policy",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 14170,
+          "endLine": 14208,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "c5eaf98ffa17ff52a751f9e24ee7e3c96a4ffe3649a84aa8f98308d4bbf3f6e1"
+        },
+        {
+          "label": "public bundled DOCX restore script; semantic read in deep-formats report",
+          "path": ".data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/scripts/docx/restore_pseudonym_docx.py",
+          "startLine": 1,
+          "endLine": 897,
+          "fileSha256": "e496c9a3583f25fb94689250779e59db0838878ec4773124e0977b8a9276376a",
+          "sliceSha256": "e496c9a3583f25fb94689250779e59db0838878ec4773124e0977b8a9276376a"
+        }
+      ],
+      "recommendation": "S3 bounded public application graph",
+      "competitorRuntime": "R0"
+    },
+    {
+      "id": "IPC-24fe13c4efb6",
+      "name": "pseudonym:restore-docx-batch",
+      "producer": "batch Word/WPS panel",
+      "transport": "preload pseudonym direct ipcRenderer invoke",
+      "handler": "main validates list/map/outdir then loops Rp with unique names",
+      "applicationConsumer": "per-file progress/results and final partial stats to panel",
+      "stateOrPersistence": "successful output files retained; failed output removed",
+      "failurePath": "missing inputs/dependency; one file failure does not stop others",
+      "declaredLeaf": "FS, python-docx, legacy Office",
+      "sourceNodes": [
+        {
+          "label": "batch docx",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 18427,
+          "endLine": 18473,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "824ba25dc935c5704c786d434d2e6efefa01bde18dfc86bf1df3a0f830271f4c"
+        },
+        {
+          "label": "Rp format conversion",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 16241,
+          "endLine": 16276,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "9337f6b5bba67de2fee66c8608d78a170f5110293590611d212800a48abeb98a"
+        },
+        {
+          "label": "restore panel state machine",
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 28695,
+          "endLine": 28804,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "15e1a07633eb1ca9c3c636741369cc1befa26dc24f435f5acbf81284ebb1896b"
+        },
+        {
+          "label": "preload pseudonym bridge",
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "startLine": 254,
+          "endLine": 254,
+          "fileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+          "sliceSha256": "daed7916c247a4cb4c5633f241b12fbb9720d1d18850d44e2894cc8b81537a33"
+        },
+        {
+          "label": "protected mapping store",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 15152,
+          "endLine": 15238,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "e07f92022a128e0c6c5401aa3cf7528ae125d6ff1c349a25599e791354121eb1"
+        },
+        {
+          "label": "Pm mapping loader",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 16625,
+          "endLine": 16629,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "c6d13eb267f61a725eeb052aae1e42094e2ee4b727bede9068c550b065c73f57"
+        },
+        {
+          "label": "Python restore runner",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 13199,
+          "endLine": 13237,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "e7202de334a30b8f38b498e9cb3ba1a49e3bfe6e688300da9f4bdcf2a6ea3aac"
+        },
+        {
+          "label": "Ad source canonical policy",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 14170,
+          "endLine": 14208,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "c5eaf98ffa17ff52a751f9e24ee7e3c96a4ffe3649a84aa8f98308d4bbf3f6e1"
+        },
+        {
+          "label": "public bundled DOCX restore script; semantic read in deep-formats report",
+          "path": ".data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/scripts/docx/restore_pseudonym_docx.py",
+          "startLine": 1,
+          "endLine": 897,
+          "fileSha256": "e496c9a3583f25fb94689250779e59db0838878ec4773124e0977b8a9276376a",
+          "sliceSha256": "e496c9a3583f25fb94689250779e59db0838878ec4773124e0977b8a9276376a"
+        }
+      ],
+      "recommendation": "S3 bounded public application graph",
+      "competitorRuntime": "R0"
+    },
+    {
+      "id": "IPC-5c2a14961699",
+      "name": "pseudonym:restore-markdown",
+      "producer": "single MD output",
+      "transport": "preload pseudonym direct ipcRenderer invoke",
+      "handler": "main fe/Pm/Ad; save dialog or explicit output; Td longest token replacement",
+      "applicationConsumer": "panel success/partial/error",
+      "stateOrPersistence": "UTF8 output written; source untouched",
+      "failurePath": "auth/cancel/read/write failure; source explicit output may overwrite unless preserve flag",
+      "declaredLeaf": "FS/dialog/RegExp",
+      "sourceNodes": [
+        {
+          "label": "single markdown",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 18473,
+          "endLine": 18493,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "c9184fce587a1a099b8fed2809841448be81afa83365a270d18ac8329764d6e2"
+        },
+        {
+          "label": "Td text replacement",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 14229,
+          "endLine": 14265,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "2e6e3c42ab87bd6afe3e4f141326078c8be0267fdda7ae9c0fe7482959247bec"
+        },
+        {
+          "label": "restore panel state machine",
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 28695,
+          "endLine": 28804,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "15e1a07633eb1ca9c3c636741369cc1befa26dc24f435f5acbf81284ebb1896b"
+        },
+        {
+          "label": "preload pseudonym bridge",
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "startLine": 255,
+          "endLine": 255,
+          "fileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+          "sliceSha256": "11c665360cf8de1ed08485cef191d57d0d18dd9a653aff1f48d72b49d0853804"
+        },
+        {
+          "label": "protected mapping store",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 15152,
+          "endLine": 15238,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "e07f92022a128e0c6c5401aa3cf7528ae125d6ff1c349a25599e791354121eb1"
+        },
+        {
+          "label": "Pm mapping loader",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 16625,
+          "endLine": 16629,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "c6d13eb267f61a725eeb052aae1e42094e2ee4b727bede9068c550b065c73f57"
+        },
+        {
+          "label": "Ad source canonical policy",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 14170,
+          "endLine": 14208,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "c5eaf98ffa17ff52a751f9e24ee7e3c96a4ffe3649a84aa8f98308d4bbf3f6e1"
+        }
+      ],
+      "recommendation": "S3 bounded public application graph",
+      "competitorRuntime": "R0"
+    },
+    {
+      "id": "IPC-096d3ecc2554",
+      "name": "pseudonym:restore-markdown-batch",
+      "producer": "batch MD panel",
+      "transport": "preload pseudonym direct ipcRenderer invoke",
+      "handler": "main validates list/map/outdir; loops Td with exclusive-name mode",
+      "applicationConsumer": "progress, per-file results and partial stats",
+      "stateOrPersistence": "successful outputs retained, one error does not abort all",
+      "failurePath": "invalid input/dir/auth; per-file error and partial receipt",
+      "declaredLeaf": "FS/RegExp",
+      "sourceNodes": [
+        {
+          "label": "batch markdown",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 18493,
+          "endLine": 18528,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "af0f99232e164d094d79423cca4d84b77f7d20800b11cd6b9a279979f4b88708"
+        },
+        {
+          "label": "Td text replacement",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 14229,
+          "endLine": 14265,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "2e6e3c42ab87bd6afe3e4f141326078c8be0267fdda7ae9c0fe7482959247bec"
+        },
+        {
+          "label": "restore panel state machine",
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 28695,
+          "endLine": 28804,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "15e1a07633eb1ca9c3c636741369cc1befa26dc24f435f5acbf81284ebb1896b"
+        },
+        {
+          "label": "preload pseudonym bridge",
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "startLine": 256,
+          "endLine": 256,
+          "fileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+          "sliceSha256": "dd5be70ae8878d1ff0973a3a6b4b3d89d6ff3e0e3f4fbf735ee570ffa81b075e"
+        },
+        {
+          "label": "protected mapping store",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 15152,
+          "endLine": 15238,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "e07f92022a128e0c6c5401aa3cf7528ae125d6ff1c349a25599e791354121eb1"
+        },
+        {
+          "label": "Pm mapping loader",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 16625,
+          "endLine": 16629,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "c6d13eb267f61a725eeb052aae1e42094e2ee4b727bede9068c550b065c73f57"
+        },
+        {
+          "label": "Ad source canonical policy",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 14170,
+          "endLine": 14208,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "c5eaf98ffa17ff52a751f9e24ee7e3c96a4ffe3649a84aa8f98308d4bbf3f6e1"
+        }
+      ],
+      "recommendation": "S3 bounded public application graph",
+      "competitorRuntime": "R0"
+    },
+    {
+      "id": "IPC-0fa110b8534b",
+      "name": "pseudonym:restore-progress",
+      "producer": "Word/MD single and batch handlers",
+      "transport": "main webContents.send to preload onRestoreProgress event",
+      "handler": "main sends progress while Rp/Td/batch loops",
+      "applicationConsumer": "panel listener updates percent/message; unmount removes listener",
+      "stateOrPersistence": "transient UI state; no durable progress object from this event",
+      "failurePath": "sender window destroyed suppresses event; no process guarantee",
+      "declaredLeaf": "Electron webContents/IPC",
+      "sourceNodes": [
+        {
+          "label": "Word progress",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 18420,
+          "endLine": 18428,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "19f6b2ba5d39fd6f632eca2bf642e3d5cedcfa5b764428f85b4efc9d5f067eb7"
+        },
+        {
+          "label": "batch progress",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 18445,
+          "endLine": 18474,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "f9c6f0819d3ff4da5d19a278075618f6676d3b93a9aaba2395a795b78680e4b1"
+        },
+        {
+          "label": "Markdown progress",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 18482,
+          "endLine": 18529,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "2c46a5f70617064d47388095457a022affb5b57839a8e461fe6400d194ed9d13"
+        },
+        {
+          "label": "panel listener",
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 28799,
+          "endLine": 28804,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "ab6f898d4cb6bd002b2e8b72efcd706ff5ebca27c39d3bde23366d50c5733eb5"
+        },
+        {
+          "label": "preload pseudonym bridge",
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "startLine": 257,
+          "endLine": 263,
+          "fileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+          "sliceSha256": "2c347628a2fc8cafda2e1efb52fa77289999ae4e467cf199e1faf9636e7cc363"
+        }
+      ],
+      "recommendation": "S3 bounded public application graph",
+      "competitorRuntime": "R0"
+    },
+    {
+      "id": "IPC-37a279488720",
+      "name": "pseudonym:select-input-docx",
+      "producer": "legacy single Word selector",
+      "transport": "preload pseudonym direct ipcRenderer invoke",
+      "handler": "main focused-window openDialog doc/docx/wps single",
+      "applicationConsumer": "no direct current renderer call found; current restore panel uses selectInputFiles",
+      "stateOrPersistence": "returns OS filePath only; no persisted state",
+      "failurePath": "no focused window/cancel",
+      "declaredLeaf": "Electron dialog/FS path",
+      "sourceNodes": [
+        {
+          "label": "single Word selector",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 18352,
+          "endLine": 18357,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "cbf20baa6f4bb5fce85e87456bd1f4ab1c5c640d3f6173e490ddeea6ee1b833c"
+        },
+        {
+          "label": "preload pseudonym bridge",
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "startLine": 247,
+          "endLine": 247,
+          "fileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+          "sliceSha256": "b696668ff80b316a215debaf7707220b5744620bbdc6c7303ddcdcbb85abca1a"
+        }
+      ],
+      "recommendation": "S3 bounded public application graph",
+      "competitorRuntime": "R0"
+    },
+    {
+      "id": "IPC-f69ef883aa33",
+      "name": "pseudonym:select-input-docx-batch",
+      "producer": "legacy batch Word selector",
+      "transport": "preload pseudonym direct ipcRenderer invoke",
+      "handler": "main focused-window openDialog doc/docx/wps multiple",
+      "applicationConsumer": "no direct current renderer call found; current restore panel uses selectInputFiles",
+      "stateOrPersistence": "returns OS filePaths only",
+      "failurePath": "no focused window/cancel",
+      "declaredLeaf": "Electron dialog/FS path",
+      "sourceNodes": [
+        {
+          "label": "batch Word selector",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 18357,
+          "endLine": 18362,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "052984e660980cffe985b7af9896b036aa024a84d417f520f7ae16060255ea51"
+        },
+        {
+          "label": "preload pseudonym bridge",
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "startLine": 248,
+          "endLine": 248,
+          "fileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+          "sliceSha256": "921fee3e5095f3504337c8714b3dcfd628b09939f842e06ac63f28819ce402e7"
+        }
+      ],
+      "recommendation": "S3 bounded public application graph",
+      "competitorRuntime": "R0"
+    },
+    {
+      "id": "IPC-7fe81107ae4d",
+      "name": "pseudonym:select-input-files",
+      "producer": "current mixed selector",
+      "transport": "preload pseudonym direct ipcRenderer invoke",
+      "handler": "main focused-window openDialog Word/WPS/MD mixed multiple",
+      "applicationConsumer": "restore panel se2 replace/append, then map selection",
+      "stateOrPersistence": "returns OS filePaths in UI draft only",
+      "failurePath": "no focused window/cancel; duplicate path handling in panel",
+      "declaredLeaf": "Electron dialog/FS path",
+      "sourceNodes": [
+        {
+          "label": "mixed selector",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 18372,
+          "endLine": 18378,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "5b49c21c58536dde1c245da88ddf86c96d3926dc9e9b1982527524cad8776239"
+        },
+        {
+          "label": "panel selection",
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 28725,
+          "endLine": 28743,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "b40d371cb6831785cbdfef5ae63a978a760bcfdf937c4c59f4897f152dfe0322"
+        },
+        {
+          "label": "preload pseudonym bridge",
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "startLine": 246,
+          "endLine": 246,
+          "fileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+          "sliceSha256": "4b21ad70512b6b4f623a7a779a0fde25d933de135c9545665b3df8c1d1a6923f"
+        }
+      ],
+      "recommendation": "S3 bounded public application graph",
+      "competitorRuntime": "R0"
+    },
+    {
+      "id": "IPC-6dcdb71fa095",
+      "name": "pseudonym:select-input-markdown",
+      "producer": "legacy single MD selector",
+      "transport": "preload pseudonym direct ipcRenderer invoke",
+      "handler": "main focused-window openDialog md/markdown single",
+      "applicationConsumer": "no direct current renderer call found; current restore panel uses selectInputFiles",
+      "stateOrPersistence": "returns OS filePath only",
+      "failurePath": "no focused window/cancel",
+      "declaredLeaf": "Electron dialog/FS path",
+      "sourceNodes": [
+        {
+          "label": "single MD selector",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 18362,
+          "endLine": 18367,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "12f04fe9de1ab5da25219a6f07a235b6f672eb0a1440742d221e157c303d376c"
+        },
+        {
+          "label": "preload pseudonym bridge",
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "startLine": 249,
+          "endLine": 249,
+          "fileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+          "sliceSha256": "95f0cf376f331d05b718e4cd6c35b9b9f632b7ebac5d5e0f4c7e28885f93de4a"
+        }
+      ],
+      "recommendation": "S3 bounded public application graph",
+      "competitorRuntime": "R0"
+    },
+    {
+      "id": "IPC-93ba5dca8357",
+      "name": "pseudonym:select-input-markdown-batch",
+      "producer": "legacy batch MD selector",
+      "transport": "preload pseudonym direct ipcRenderer invoke",
+      "handler": "main focused-window openDialog md/markdown multiple",
+      "applicationConsumer": "no direct current renderer call found; current restore panel uses selectInputFiles",
+      "stateOrPersistence": "returns OS filePaths only",
+      "failurePath": "no focused window/cancel",
+      "declaredLeaf": "Electron dialog/FS path",
+      "sourceNodes": [
+        {
+          "label": "batch MD selector",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 18367,
+          "endLine": 18372,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "58f9b982adbc2e4c7d0ba4ce336b117d3f06ad8a718ff05a38d88efd7c06cc5d"
+        },
+        {
+          "label": "preload pseudonym bridge",
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "startLine": 250,
+          "endLine": 250,
+          "fileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+          "sliceSha256": "5d12f8f74bb920037d428371b3a389042126b3cac01cbc3a37959c5b726c1ef0"
+        }
+      ],
+      "recommendation": "S3 bounded public application graph",
+      "competitorRuntime": "R0"
+    },
+    {
+      "id": "IPC-e4cf3e6c3c0a",
+      "name": "desensitization:pause-seals",
+      "producer": "Qt2 PDF single/batch pause control",
+      "transport": "preload166 direct invoke",
+      "handler": "main requestId lookup requires active detect-only engine and same sender; su.pauseSealDetection→Ne.pause",
+      "applicationConsumer": "PDF seal loops check paused and preserve completedPages; Qt2 generation checks then updates deferred sealProgress",
+      "stateOrPersistence": "task memory and review draft sealProgress; no cancellation of face/signature",
+      "failurePath": "missing/wrong sender/finished request success:false; current page await can finish",
+      "declaredLeaf": "Electron IPC, seal detector and PDF raster",
+      "sourceNodes": [
+        {
+          "label": "Qt2 UI and generation",
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 31227,
+          "endLine": 31255,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "1448b81b26ea5366450810316e36e90817ae252556b895d6e2c34e84945dca72"
+        },
+        {
+          "label": "preload",
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "startLine": 166,
+          "endLine": 166,
+          "fileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+          "sliceSha256": "d287f4dea4bd48050dd89553ea5fba9ce414838d4d514be5d316648b0504b3ff"
+        },
+        {
+          "label": "handler",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 17166,
+          "endLine": 17169,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "270a329ddcbb9ca23d128b4e3d3db5379cbb701b19b556f3875195733bb0f16b"
+        },
+        {
+          "label": "Ne pause/snapshot",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 198,
+          "endLine": 210,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "917acb3a239e4647cf08231fe2dc8ad0117a76390bd8a6fee88973c08ff41286"
+        },
+        {
+          "label": "engine",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 9016,
+          "endLine": 9024,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "19d1010d3d6bd061df06f89e5d2777e12bbe04089c14645b3861705cbc9722af"
+        },
+        {
+          "label": "seal loop",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 10139,
+          "endLine": 10155,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "c52adc0e10bee9c809c0b63711cdf7b0b0ab70f306216306d03471377ffe8c2d"
+        },
+        {
+          "label": "PDF detect consumer",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 10957,
+          "endLine": 11024,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "fe17209bde0fdeece79250084ac30e8e646b4c563cb935c326cac8f85b8a1168"
+        }
+      ],
+      "recommendation": "S3 bounded public application graph",
+      "competitorRuntime": "R0"
+    },
+    {
+      "id": "IPC-81f79eee361a",
+      "name": "desensitization:recognize-docx-images",
+      "producer": "Rv2 single and Ov2 batch Word image OCR actions",
+      "transport": "preload165 direct invoke",
+      "handler": "main activation gate, request registry/Abort, M2 sourceRef, rules/corrections then su.processDocx imageOcrOnly",
+      "applicationConsumer": "filters image_ocr matches; renderer appends candidates+OCR infos+canonical into single/batch draft then lc2 save",
+      "stateOrPersistence": "in-memory job/ocr infos and workspace draft after save; source bytes unchanged by detect-only",
+      "failurePath": "activation/source kind/dependency/abort/processing failure; UI keeps body review and marks image OCR error",
+      "declaredLeaf": "DOCX parser, OCR/model, FS source registry",
+      "sourceNodes": [
+        {
+          "label": "single/batch UI",
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "startLine": 35504,
+          "endLine": 35557,
+          "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+          "sliceSha256": "38f2c82c0fef713d2815c1b40d956618b8677037d56794d8266f2ad5cd36b143"
+        },
+        {
+          "label": "preload",
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "startLine": 165,
+          "endLine": 165,
+          "fileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+          "sliceSha256": "26613caef3b6a2f31badcbc2ccde8486007d2869262edb3a8b2b6e531590125b"
+        },
+        {
+          "label": "handler",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 17368,
+          "endLine": 17416,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "87174c11b964fc67cd5a64bbe1489c31aaca9c774f992a756eaceca0f24a7be4"
+        },
+        {
+          "label": "image OCR engine",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 10294,
+          "endLine": 10335,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "5eb4a89cfe6ef3fc8e9331a47e2e87e02d68beeaabb0fa5080e22a5b0585a24d"
+        },
+        {
+          "label": "image only result",
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "startLine": 10505,
+          "endLine": 10515,
+          "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+          "sliceSha256": "a517b606cc1e6a8c861e614da1cb6c12770a81716ba1bcf8bd9cfa5c527cf5de"
+        }
+      ],
+      "recommendation": "S3 bounded public application graph",
+      "competitorRuntime": "R0"
+    }
+  ],
+  "crossUiSix": {
+    "UI-2c1712d35460": "Word/PDF/Image sidebars join Mm2 draft/save; image OCR result append connects recognition chain. No extra unassigned public child found.",
+    "UI-ad41d13c4a2d": "RuleSet snapshot and enabled forceDetect entries used by recognize-docx-images; no new unassigned public child.",
+    "UI-3f01047e6b59": "PDF native search vf2 joins worker resolver; image search OCR cache and PDF forced OCR branch joins page/search UI.",
+    "UI-339d8e53408d": "Single/batch OCR writes candidate draft then lc2; source preview/save partial mutation boundary unchanged.",
+    "UI-67e30cf66ad0": "vf2 native PDF search joins pdfjs worker resolver; audit source/page search leaf unchanged.",
+    "UI-32ce2fb60c5f": "Image OCR candidate append and page/OCR helpers join manual correction scope; no new unassigned public child."
+  },
+  "runtime": "R0 for all source channels",
+  "ledgerChanged": false,
+  "productChanged": false,
+  "nativeOrThirdPartyExecutionClaimed": false,
+  "summary": {
+    "Cdelegated21": 21,
+    "rulesPendingJoined": 2,
+    "boundedS3Recommendations": 23,
+    "publicUnreadApplicationEdgesFound": 0
+  }
+}

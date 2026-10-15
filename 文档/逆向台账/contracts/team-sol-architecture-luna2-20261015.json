@@ -1,0 +1,155 @@
+{
+  "schema": "tuominwang.team-sol-architecture-luna2-review.v1",
+  "date": "2026-10-15",
+  "worktreeHeadAtReview": "5cee048dd637aeac69fc30b5350c5494d9386c00",
+  "mode": "read-only audit; report files only",
+  "conclusion": "038 terminal trigger and historical sweep cover new and preexisting terminal deliveries; isolated migration SQL test preserves and authentic-drains a live delivery; real SIGKILL and persistent-database readback remain untested",
+  "followUpReview": {
+    "date": "2026-10-15",
+    "migration": {
+      "path": "scripts/038.sql",
+      "lines": "1-20",
+      "sha256": "ef4e7715466ecc469ee1714385b3b79c8514973b1daa050693ca2c3ff2690f85",
+      "review": "BEFORE UPDATE OF status trigger; SECURITY DEFINER; fixed search_path pg_catalog,public; PUBLIC execute revoked; terminal transitions close acceptance and delete all generations; migration-time UPDATE plus DELETE sweep preexisting terminal rows"
+    },
+    "migrationRunner": {
+      "path": "scripts/migrate.ts",
+      "lines": "8-34",
+      "sha256": "fb30518dda29b345d6184713add14ee65354fbdeceff37532f29c4764c4b93e8",
+      "review": "038 appended after 037 and run transactionally with schema_migrations record"
+    },
+    "integrationTest": {
+      "path": "tests/automatic-runtime-terminal.integration.ts",
+      "lines": "16-104",
+      "sha256": "d6cb7f5f07664ac78a083c882f19db3ab26622fea98af77c4c644f57f9641b82",
+      "review": "actual API delivery followed by revoked/exhausted production claim_job and app-role cancel/success; both real transaction lock orders; isolated old-037 state runs actual 038 SQL and checks terminal deletion plus active payload preservation"
+    },
+    "scopeBoundary": "The test performs no processing and invokes no finally, but it does not SIGKILL a running worker; fixture comment and actual evidence explicitly say processingWorkerKilled=false.",
+    "terminalBranches": ["revoked -> cancelled", "attempt=3 expired -> failed", "app-role direct cancelled", "app-role direct succeeded"],
+    "observedEachTerminalBranch": {"runtime_rule_accepting": false, "temporaryDeliveries": 0},
+    "lockOrders": {"producerFirst": {"acknowledged": 1, "drained": 1}, "closeFirst": {"acknowledged": 0, "drained": 0}},
+    "actualEvidence": [
+      {"path": ".data/research/lawbot-2026-10-15/iteration037/automatic-runtime-terminal-schema038-sweep.log", "sha256": "19cdc6fa56c941376e6b52c4c1e27cb9ee8d3286c39dbd133c419e6a9904dfc7", "result": "3 PASS, 0 fail; duration 6504.071375ms; includes four terminal branches, both lock orders, and migration sweep"},
+      {"path": ".data/research/lawbot-2026-10-15/iteration037/automatic-runtime-terminal-actual.json", "sha256": "b40b5dbb7741cd05896b9ced6da8eb4b7718cfd8a93ebf51f729dc6028e6da5f", "sourceHashes": {"scripts/037.sql": "1be899fa1587f71ec29c180b6ed368a36fabe7452c57417fc340c003af6ee566", "scripts/038.sql": "ef4e7715466ecc469ee1714385b3b79c8514973b1daa050693ca2c3ff2690f85", "packages/adapters/automatic-runtime-rules.ts": "511c7fa83ea32ab469a6973c3042de9274a0474fd624aee85853001a4a75f45a", "apps/api/automatic-runtime-rules.ts": "a9652558a81684e736af88332991ecfa1d967b2a8356022b5a829469c99cf015"}},
+      {"path": ".data/research/lawbot-2026-10-15/iteration037/automatic-runtime-lock-orders-actual.json", "sha256": "481db6f3329cb0069e2df02b980209e3252a3f05860fc4c54f3f8662c8246906", "sourceHashes": {"scripts/037.sql": "1be899fa1587f71ec29c180b6ed368a36fabe7452c57417fc340c003af6ee566", "scripts/038.sql": "ef4e7715466ecc469ee1714385b3b79c8514973b1daa050693ca2c3ff2690f85", "packages/adapters/automatic-runtime-rules.ts": "511c7fa83ea32ab469a6973c3042de9274a0474fd624aee85853001a4a75f45a", "apps/api/automatic-runtime-rules.ts": "a9652558a81684e736af88332991ecfa1d967b2a8356022b5a829469c99cf015"}},
+      {"path": ".data/research/lawbot-2026-10-15/iteration037/automatic-runtime-migration-sweep-actual.json", "sha256": "eece12013f0d9f8008966a211340791c938badc5ed2f3e7cd9aa5223c3469f91", "sourceHashes": {"scripts/037.sql": "1be899fa1587f71ec29c180b6ed368a36fabe7452c57417fc340c003af6ee566", "scripts/038.sql": "ef4e7715466ecc469ee1714385b3b79c8514973b1daa050693ca2c3ff2690f85", "packages/adapters/automatic-runtime-rules.ts": "511c7fa83ea32ab469a6973c3042de9274a0474fd624aee85853001a4a75f45a", "apps/api/automatic-runtime-rules.ts": "a9652558a81684e736af88332991ecfa1d967b2a8356022b5a829469c99cf015"}, "result": {"preexistingTerminalDeleted": 1, "liveDeliveryPreserved": 1, "livePayloadStillAuthentic": true, "oldWindowClosed": true}}
+    ]
+  },
+  "migrationBackfillReview": {
+    "id": "RUNTIME-038-L2-002",
+    "status": "fixed and isolated migration SQL tested; persistent target state unverified",
+    "source": {"path": "scripts/038.sql", "lines": "17-20", "sha256": "ef4e7715466ecc469ee1714385b3b79c8514973b1daa050693ca2c3ff2690f85"},
+    "test": "Tests lines 85-104 recreate a terminal 037-era row by removing the 038 trigger in the isolated test DB, then execute the actual SQL in a transaction.",
+    "result": {"preexistingTerminalDeleted": 1, "liveDeliveryPreserved": 1, "livePayloadStillAuthentic": true, "oldWindowClosed": true},
+    "dataState": "No persistent database was queried; current stored legacy residue is unknown.",
+    "limitations": ["not a separate original-037 database snapshot", "migration ran through MIGRATION_DATABASE_URL, not app role", "sweep row count and lock duration not measured"]
+  },
+  "findings": [
+    {
+      "id": "RUNTIME-037-L2-001",
+      "severity": "data-retention / lifecycle",
+      "status": "fixed by scripts/038.sql; actual DB recovery coverage, no real SIGKILL",
+      "title": "037 terminal scheduler branches left generation deliveries behind after abrupt worker loss",
+      "source": {
+        "path": "scripts/037.sql",
+        "lines": "27-35",
+        "sha256": "1be899fa1587f71ec29c180b6ed368a36fabe7452c57417fc340c003af6ee566"
+      },
+      "relatedSources": [
+        {
+          "path": "apps/worker/main.ts",
+          "lines": "74-86,149-166",
+          "sha256": "17dfd38169070a0d5c61cc1ecf19688d2003eac6edd9e992181a37286318ff74"
+        },
+        {
+          "path": "packages/adapters/automatic-runtime-rules.ts",
+          "lines": "17-25",
+          "sha256": "511c7fa83ea32ab469a6973c3042de9274a0474fd624aee85853001a4a75f45a"
+        }
+      ],
+      "reproducibleControlFlow": [
+        "Create a delivery for a detect job in generation N.",
+        "Terminate worker process before its finally cleanup can execute.",
+        "Revoked case: invoke claim_job after the member is disabled; lines 27-28 cancel the job without deleting deliveries, and no later claim selects the cancelled job.",
+        "Exhausted case: set attempt=3 and let lease expire; lines 29-30 fail the job without deleting deliveries, and line 32 excludes it from retry claims.",
+        "No scheduled cleanup or TTL exists in scripts/037.sql; the row remains until external deletion/cascade or a manual owner cleanup."
+      ],
+      "evidenceType": "static inference from SQL branch and absence of a terminal cleanup path",
+      "impact": "This was a real 037 lifecycle gap. 038 status trigger now removes all deliveries for terminal jobs transactionally.",
+      "suggestedDirection": "Keep terminal trigger coverage. Add a real worker SIGKILL case if process-level failure acceptance is required.",
+      "fixedBy": "scripts/038.sql",
+      "notImplemented": false,
+      "remainingRisk": "Actual worker process termination and OS/host loss are not simulated by tests; DB-level no-finally boundary is exercised."
+    }
+  ],
+  "retainedPriorReport": {
+    "markdownPath": "文档/逆向台账/contracts/team-sol-architecture-luna2-20261015.pre038-sweep.md",
+    "markdownSha256": "167522aaf76366a616af7d8d65889c58284903cc6270771c661aaa5b853ae545",
+    "jsonPath": "文档/逆向台账/contracts/team-sol-architecture-luna2-20261015.pre038-sweep.json",
+    "jsonSha256": "d73fb4253e55fe9bcb641e63651eabaf825490f31afc96d99e068bd4be6ea370",
+    "note": "Byte-identical copies made before this sweep review update."
+  },
+  "sourceHashes": {
+    "apps/api/automatic-runtime-rules.ts": "a9652558a81684e736af88332991ecfa1d967b2a8356022b5a829469c99cf015",
+    "packages/adapters/automatic-runtime-rules.ts": "511c7fa83ea32ab469a6973c3042de9274a0474fd624aee85853001a4a75f45a",
+    "apps/worker/main.ts": "17dfd38169070a0d5c61cc1ecf19688d2003eac6edd9e992181a37286318ff74",
+    "packages/adapters/processing-worker.ts": "964cf0bb9cd3f174c3fcc1902bf5a62f03eb11da82b3a54022f7bbbf79474f03",
+    "packages/adapters/processing.ts": "11a81bb5ddf80e9c2ae6348798b5c76e2a95fad9a93cddc0315c9af44933b759",
+    "packages/adapters/runtime-rules-control.ts": "a78ca8bd179ef64b2a7c1d916a948df01c29875a01e5460cb494b74ffeab4c5b",
+    "scripts/037.sql": "1be899fa1587f71ec29c180b6ed368a36fabe7452c57417fc340c003af6ee566",
+    "tests/automatic-runtime-rules.integration.ts": "1135f85b034f058277dcf93810cc457b4c8ed3f61a7d98364d531c4836b99e28",
+    "tests/automatic-runtime-worker.integration.ts": "784dea5f074f130b42d3921ce7a24d5d4a2dc1fc6079be20ec3664acf9af52e8",
+    "scripts/migrate.ts": "fb30518dda29b345d6184713add14ee65354fbdeceff37532f29c4764c4b93e8",
+    "scripts/038.sql": "ef4e7715466ecc469ee1714385b3b79c8514973b1daa050693ca2c3ff2690f85",
+    "tests/automatic-runtime-terminal.integration.ts": "d6cb7f5f07664ac78a083c882f19db3ab26622fea98af77c4c644f57f9641b82",
+    "scripts/001.sql": "22a4a41b032a909494bb4d888311d817aa25003253f61113872d582fd53431ff",
+    "scripts/008.sql": "74d9122eb7ed1ba2f9699d53174a4c91bc52fc59bbc1ac36bd628b50b9a43d44"
+  },
+  "runtimeEvidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration037/automatic-runtime-api-actual-A.json",
+      "evidenceFileSha256": "2bda4b600965c461d10949decdd0ae1907da813a45ca5dc8e725391bd79a98a6",
+      "coverage": ["active file/project delivery", "closed job no-op", "audit fixed file", "spot no-op", "invalid span and stale revision rejected", "encrypted temporary payload", "ordered append", "worker pending marker", "no persistent whitelist", "source revision unchanged"],
+      "limitations": ["does not exercise lock race or abrupt worker death"]
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration037/automatic-runtime-retry-revoke-actual-A.json",
+      "evidenceFileSha256": "c51c5ac190d1fda616f59d71bf98f6b8c305cf1255042ca5fe00c70a1ca8cf13",
+      "coverage": ["real claim_job retry generation", "old payload purged by new claim", "old cleanup preserves new generation", "foreign owner cannot delete", "revoked owner cannot API inject/read", "revoked owner can own-cleanup"],
+      "limitations": ["tests owner cleanup while available; not claim_job revocation cleanup after worker disappearance", "does not exercise attempt=3 terminal lease expiry"]
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration037/automatic-runtime-worker-actual-B-1792046127104.json",
+      "evidenceFileSha256": "45a643931cf88573271d40f3dcc3813eae3f740d9ee29341a622666568c29106",
+      "coverage": ["actual API-created synthetic files", "production scheduler claim", "real detect worker/thread", "async producer commits before final drain", "two pending runtime matches", "late delivery zero", "temporary and persistent rows zero", "source review/dictionary/original unchanged"],
+      "limitations": ["single controlled order; no cancellation or forced death"]
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration037/automatic-runtime-worker-actual-B-1792046826236.json",
+      "evidenceFileSha256": "45a643931cf88573271d40f3dcc3813eae3f740d9ee29341a622666568c29106",
+      "coverage": ["byte-identical duplicate of prior worker evidence; not a second independent scenario"],
+      "limitations": ["same hash and content as prior B evidence"]
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration037/automatic-runtime-api-complete.log",
+      "evidenceFileSha256": "125854e19c5fbbe4debcca3e81b592863a37c14021876b71b962f4934e8e99e0",
+      "coverage": ["stored log says 3 passing tests, zero failures"],
+      "limitations": ["no hard-kill or terminal stale-payload scenario"]
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration037/automatic-runtime-worker-B.log",
+      "evidenceFileSha256": "b14ba636602e74e77c14f98b8b6cb34f5eb852ecb385c317999de8a32a62ef38",
+      "coverage": ["stored log says one actual worker integration passed"],
+      "limitations": ["single event timing, not concurrency stress or crash recovery"]
+    }
+  ],
+  "remainingValidation": [
+    "Run an actual processing worker and SIGKILL it after delivery commit but before finally; current test proves no-finally DB recovery without killing a worker.",
+    "Test terminal status trigger against producer/drain in a three-way row-lock race and repeat the controlled two orders under concurrency pressure.",
+    "Force rollback after the BEFORE trigger has run and verify both status and deliveries roll back atomically; exercise DB disconnect and recovery readback.",
+    "Read back terminal-delivery counts on an actual persistent 037-to-038 target; current migration witness is a new test fixture recreating the old state.",
+    "Measure migration-wide sweep rows/lock duration at production-scale table size.",
+    "New evidence binds 037, 038, automatic API, and adapter hashes, but not migration runner or integration test hashes at execution time."
+  ],
+  "competitorRuntime": "R0"
+}

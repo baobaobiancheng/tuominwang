@@ -1,0 +1,1215 @@
+{
+  "scope": "35 desensitization IDs only, no product or ledger write",
+  "inputs": {
+    "static35Sha256": "2523c8ec5f8622f251fa40ce287536f5262f4645ad29a29dbc02bf62a465056d",
+    "ruleInterfaceClosureSha256": "2a0148da26072df49b00e49290d7fd905b00342fce094053669210cfcc4d7f80",
+    "ledgerSha256": "ff2391e9026e15bd7d243d4d73e2c3db42afa10d4ecf73bde40d37a1cc66d2d6"
+  },
+  "evidenceLimit": "Existing isolated tests and code inspection only; no fresh tests; full current API is running, not claimed passed. Source native licensed runtime R0. 038 tested in isolated database, not target persistent migration.",
+  "rows": [
+    {
+      "id": "IPC-5a998529649c",
+      "name": "desensitization:apply",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I1",
+      "cloudContract": {
+        "code": [
+          "apps/api/main.ts",
+          "apps/worker/main.ts",
+          "packages/adapters/processing-worker.ts"
+        ],
+        "actualHttp": [
+          {
+            "method": "POST",
+            "path": "/documents/f74d414f-e6cd-49b5-9de4-b38b05084f74/export"
+          }
+        ],
+        "summary": "review/export single and folder adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": true,
+        "actualInvocations": 1,
+        "positiveInvocations": 1,
+        "negativeInvocations": 0,
+        "testReferences": [
+          "tests/rule-interface-closure.integration.ts:12",
+          "tests/e2e/porting-closure.spec.ts"
+        ]
+      },
+      "exactRemainingOrDifference": "Cloud review→export job→signed artifact/download is real; native per-format save-target, fallback and detailed failure receipt differ.",
+      "boundaryClass": "format/export/native",
+      "recommendedImplementationStatus": "I1",
+      "recommendationReason": "A related real cloud implementation exists, but listed source contract difference or current release gate prevents claiming full per-ID completion.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    },
+    {
+      "id": "IPC-88cd1d915682",
+      "name": "desensitization:cancel",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I1",
+      "cloudContract": {
+        "code": [
+          "apps/api/main.ts:492-510",
+          "packages/adapters/processing.ts"
+        ],
+        "actualHttp": [
+          {
+            "method": "POST",
+            "path": "/jobs/5af02937-0f27-4811-ae6a-303439711b20/cancel"
+          }
+        ],
+        "summary": "single/batch stop control adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": true,
+        "actualInvocations": 1,
+        "positiveInvocations": 1,
+        "negativeInvocations": 0,
+        "testReferences": [
+          "tests/rule-interface-closure.integration.ts:12"
+        ]
+      },
+      "exactRemainingOrDifference": "Cancel marks queued/running job cancelled; source requestId returns canceled:false for absent/finished and emits cancel progress; cloud returns JOB_NOT_ACTIVE and lacks that exact event/cleanup pairing.",
+      "boundaryClass": "contract/failure",
+      "recommendedImplementationStatus": "I1",
+      "recommendationReason": "A related real cloud implementation exists, but listed source contract difference or current release gate prevents claiming full per-ID completion.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    },
+    {
+      "id": "IPC-fd1ca8c6cb27",
+      "name": "desensitization:cleanup-paths",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I1",
+      "cloudContract": {
+        "code": [
+          "apps/api/processing-resources.ts:9",
+          "packages/adapters/processing-resources.ts"
+        ],
+        "actualHttp": [
+          {
+            "method": "POST",
+            "path": "/cleanup-outputs"
+          }
+        ],
+        "summary": "export rollback after failed/canceled output adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": true,
+        "actualInvocations": 1,
+        "positiveInvocations": 1,
+        "negativeInvocations": 0,
+        "testReferences": [
+          "tests/rule-interface-closure.integration.ts:12"
+        ]
+      },
+      "exactRemainingOrDifference": "Cloud removes authenticated temporary resource IDs; source accepts paths only for matching successful output receipts. Permanent artifact cleanup deliberately excluded.",
+      "boundaryClass": "native path/identity",
+      "recommendedImplementationStatus": "I1",
+      "recommendationReason": "A related real cloud implementation exists, but listed source contract difference or current release gate prevents claiming full per-ID completion.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    },
+    {
+      "id": "IPC-e8dcb4d0e8b3",
+      "name": "desensitization:create-folder-output",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I3",
+      "cloudContract": {
+        "code": [
+          "apps/api/folder-output.ts:11",
+          "packages/core/reference-folder.ts"
+        ],
+        "actualHttp": [
+          {
+            "method": "POST",
+            "path": "/api/projects/62e9eb4d-abef-4ab9-96a2-3bde21dc3759/folder-exports/e7e80c42-522a-4e8d-b5fd-9c6e4292bb3f"
+          }
+        ],
+        "summary": "folder batch export selection adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": true,
+        "actualInvocations": 1,
+        "positiveInvocations": 1,
+        "negativeInvocations": 0,
+        "testReferences": [
+          "tests/rule-interface-closure.integration.ts:12,36"
+        ]
+      },
+      "exactRemainingOrDifference": "Browser creates owner-scoped export session and output root; Electron createDirectory picker/absolute local target has no web equivalent.",
+      "boundaryClass": "native dialog",
+      "recommendedImplementationStatus": "I3",
+      "recommendationReason": "Web excludes native OS path/dialog contract; classified out of scope, cloud adaptation described separately.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    },
+    {
+      "id": "IPC-7d7d2d58da91",
+      "name": "desensitization:detect-only",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I1",
+      "cloudContract": {
+        "code": [
+          "apps/api/main.ts",
+          "apps/worker/main.ts",
+          "packages/adapters/processing-worker.ts"
+        ],
+        "actualHttp": [
+          {
+            "method": "POST",
+            "path": "/documents/f74d414f-e6cd-49b5-9de4-b38b05084f74/recognize"
+          }
+        ],
+        "summary": "single/batch incremental and review recognition adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": true,
+        "actualInvocations": 1,
+        "positiveInvocations": 1,
+        "negativeInvocations": 0,
+        "testReferences": [
+          "tests/rule-interface-closure.integration.ts:12,31",
+          "tests/automatic-runtime-worker.integration.ts"
+        ]
+      },
+      "exactRemainingOrDifference": "Real new recognition job/candidates; source inline request/session streaming, per-page matches and exact OCR/format engine behavior are not equivalent.",
+      "boundaryClass": "format/runtime",
+      "recommendedImplementationStatus": "I1",
+      "recommendationReason": "A related real cloud implementation exists, but listed source contract difference or current release gate prevents claiming full per-ID completion.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    },
+    {
+      "id": "IPC-42a70f50df5f",
+      "name": "desensitization:detect-route-only",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I1",
+      "cloudContract": {
+        "code": [
+          "apps/api/document-route.ts",
+          "packages/core/reference-route.ts",
+          "packages/core/reference-route-pdf.ts"
+        ],
+        "actualHttp": [
+          {
+            "method": "POST",
+            "path": "/documents/c21ade54-0dfd-408a-bc66-096b41630b05/detect-route-only"
+          },
+          {
+            "method": "POST",
+            "path": "/documents/473e53c6-7683-421e-9d02-ffadff63d028/detect-route-only"
+          },
+          {
+            "method": "POST",
+            "path": "/documents/7594e365-d1c3-4786-b855-50a7efdd690d/detect-route-only"
+          }
+        ],
+        "summary": "import and route switch adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": true,
+        "actualInvocations": 5,
+        "positiveInvocations": 5,
+        "negativeInvocations": 0,
+        "testReferences": [
+          "tests/rule-interface-closure.integration.ts:29",
+          "tests/reference-route.test.ts"
+        ]
+      },
+      "exactRemainingOrDifference": "Real route response for DOCX/PDF/MD/PNG; source native sourceRef/override dispatch and licensed runtime decision remain unverified.",
+      "boundaryClass": "format/runtime",
+      "recommendedImplementationStatus": "I1",
+      "recommendationReason": "A related real cloud implementation exists, but listed source contract difference or current release gate prevents claiming full per-ID completion.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    },
+    {
+      "id": "IPC-85f474cad97a",
+      "name": "desensitization:generate-reports",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I1",
+      "cloudContract": {
+        "code": [
+          "apps/api/processing-observability.ts:9-18",
+          "packages/core/processing-report.ts"
+        ],
+        "actualHttp": [
+          {
+            "method": "POST",
+            "path": "/processing-reports"
+          }
+        ],
+        "summary": "legacy/report export adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": true,
+        "actualInvocations": 1,
+        "positiveInvocations": 1,
+        "negativeInvocations": 0,
+        "testReferences": [
+          "tests/rule-interface-closure.integration.ts:12"
+        ]
+      },
+      "exactRemainingOrDifference": "Real JSON/HTML/MD/CSV/ZIP report is persisted; source embedded generator fields/proof wording and local asset path are not byte-identical.",
+      "boundaryClass": "format/native",
+      "recommendedImplementationStatus": "I1",
+      "recommendationReason": "A related real cloud implementation exists, but listed source contract difference or current release gate prevents claiming full per-ID completion.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    },
+    {
+      "id": "IPC-8c5afeb517e6",
+      "name": "desensitization:get-apply-result",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I1",
+      "cloudContract": {
+        "code": [
+          "apps/api/main.ts:511-521"
+        ],
+        "actualHttp": [
+          {
+            "method": "GET",
+            "path": "/documents/f74d414f-e6cd-49b5-9de4-b38b05084f74/outputs"
+          }
+        ],
+        "summary": "export timeout recovery adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": true,
+        "actualInvocations": 1,
+        "positiveInvocations": 1,
+        "negativeInvocations": 0,
+        "testReferences": [
+          "tests/rule-interface-closure.integration.ts:12"
+        ]
+      },
+      "exactRemainingOrDifference": "Concrete gap: /outputs returns only succeeded output roles; source requestId endpoint also exposes running/completed receipt and failed/canceled status.",
+      "boundaryClass": "public business gap",
+      "recommendedImplementationStatus": "I1",
+      "recommendationReason": "A related real cloud implementation exists, but listed source contract difference or current release gate prevents claiming full per-ID completion.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    },
+    {
+      "id": "IPC-9a8232e44fb9",
+      "name": "desensitization:get-default-output-dir",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I3",
+      "cloudContract": {
+        "code": [
+          "apps/web/main.tsx"
+        ],
+        "actualHttp": [],
+        "summary": "export location fallback adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": false,
+        "actualInvocations": 0,
+        "positiveInvocations": 0,
+        "negativeInvocations": 0,
+        "testReferences": [
+          "tests/e2e/porting-closure.spec.ts"
+        ]
+      },
+      "exactRemainingOrDifference": "Browser download destination is browser/OS controlled; source creates default local directory and returns home fallback.",
+      "boundaryClass": "native filesystem",
+      "recommendedImplementationStatus": "I3",
+      "recommendationReason": "Web excludes native OS path/dialog contract; classified out of scope, cloud adaptation described separately.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    },
+    {
+      "id": "IPC-a09f09579955",
+      "name": "desensitization:get-markdown-export-stats",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I1",
+      "cloudContract": {
+        "code": [
+          "apps/api/processing-observability.ts:19",
+          "packages/adapters/markdown-export-events.ts"
+        ],
+        "actualHttp": [
+          {
+            "method": "GET",
+            "path": "/markdown-export-stats"
+          }
+        ],
+        "summary": "Markdown export stats display adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": true,
+        "actualInvocations": 1,
+        "positiveInvocations": 1,
+        "negativeInvocations": 0,
+        "testReferences": [
+          "tests/rule-interface-closure.integration.ts:12"
+        ]
+      },
+      "exactRemainingOrDifference": "Actual manual draft event counted; source local markdown-export.log tail and its exact Zf aggregate/error contract differ from project-scoped DB.",
+      "boundaryClass": "native log",
+      "recommendedImplementationStatus": "I1",
+      "recommendationReason": "A related real cloud implementation exists, but listed source contract difference or current release gate prevents claiming full per-ID completion.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    },
+    {
+      "id": "IPC-7b3e67a5a715",
+      "name": "desensitization:get-resource-diagnostics",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I1",
+      "cloudContract": {
+        "code": [
+          "apps/api/processing-observability.ts:20"
+        ],
+        "actualHttp": [
+          {
+            "method": "GET",
+            "path": "/resource-diagnostics"
+          }
+        ],
+        "summary": "development-only diagnostics adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": true,
+        "actualInvocations": 1,
+        "positiveInvocations": 1,
+        "negativeInvocations": 0,
+        "testReferences": [
+          "tests/rule-interface-closure.integration.ts:12"
+        ]
+      },
+      "exactRemainingOrDifference": "Actual authorized project counts; source dev-only engine/sourceRef cache counters are unavailable and explicitly reported as such.",
+      "boundaryClass": "native cache",
+      "recommendedImplementationStatus": "I1",
+      "recommendationReason": "A related real cloud implementation exists, but listed source contract difference or current release gate prevents claiming full per-ID completion.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    },
+    {
+      "id": "IPC-3211d99d0f20",
+      "name": "desensitization:open-output-dir",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I3",
+      "cloudContract": {
+        "code": [
+          "apps/web/main.tsx"
+        ],
+        "actualHttp": [],
+        "summary": "export success open location adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": false,
+        "actualInvocations": 0,
+        "positiveInvocations": 0,
+        "negativeInvocations": 0,
+        "testReferences": [
+          "tests/e2e/porting-closure.spec.ts"
+        ]
+      },
+      "exactRemainingOrDifference": "Browser initiates download; cannot shell.openPath local output directory or return its shell error.",
+      "boundaryClass": "native shell",
+      "recommendedImplementationStatus": "I3",
+      "recommendationReason": "Web excludes native OS path/dialog contract; classified out of scope, cloud adaptation described separately.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    },
+    {
+      "id": "IPC-58567733591e",
+      "name": "desensitization:page-processed",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I1",
+      "cloudContract": {
+        "code": [
+          "apps/api/main.ts",
+          "packages/adapters/processing.ts",
+          "packages/adapters/processing-worker.ts"
+        ],
+        "actualHttp": [
+          {
+            "method": "GET",
+            "path": "/jobs/d1fdc78d-41c9-4218-bb24-69a6439267ec/events"
+          }
+        ],
+        "summary": "DOCX/PDF per-page review stream adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": true,
+        "actualInvocations": 1,
+        "positiveInvocations": 1,
+        "negativeInvocations": 0,
+        "testReferences": [
+          "tests/rule-interface-closure.integration.ts:31"
+        ]
+      },
+      "exactRemainingOrDifference": "Real preterminal page event with boxes/matches; source per-page engine matching differs from cloud whole-document context filtering and event envelope.",
+      "boundaryClass": "event/format",
+      "recommendedImplementationStatus": "I1",
+      "recommendationReason": "A related real cloud implementation exists, but listed source contract difference or current release gate prevents claiming full per-ID completion.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    },
+    {
+      "id": "IPC-e4cf3e6c3c0a",
+      "name": "desensitization:pause-seals",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I1",
+      "cloudContract": {
+        "code": [
+          "apps/api/visual.ts:10",
+          "apps/web/main.tsx:1002",
+          "packages/adapters/processing-worker.ts"
+        ],
+        "actualHttp": [],
+        "summary": "PDF seal review stop adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": false,
+        "actualInvocations": 0,
+        "positiveInvocations": 0,
+        "negativeInvocations": 0,
+        "testReferences": [
+          "tests/visual-interface-closure.integration.ts:45",
+          "tests/image-utilities.integration.ts:14"
+        ]
+      },
+      "exactRemainingOrDifference": "Active visual request pause works; source same-sender detect engine Ne.pause and PDF seal-loop completed-page preservation are not the same task/event model.",
+      "boundaryClass": "event/runtime",
+      "recommendedImplementationStatus": "I1",
+      "recommendationReason": "A related real cloud implementation exists, but listed source contract difference or current release gate prevents claiming full per-ID completion.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    },
+    {
+      "id": "IPC-c1cec3199992",
+      "name": "desensitization:process-file-main",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I1",
+      "cloudContract": {
+        "code": [
+          "apps/api/main.ts",
+          "apps/worker/main.ts",
+          "packages/adapters/processing-worker.ts"
+        ],
+        "actualHttp": [
+          {
+            "method": "POST",
+            "path": "/documents/f74d414f-e6cd-49b5-9de4-b38b05084f74/export"
+          }
+        ],
+        "summary": "legacy single file processing adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": true,
+        "actualInvocations": 1,
+        "positiveInvocations": 1,
+        "negativeInvocations": 0,
+        "testReferences": [
+          "tests/rule-interface-closure.integration.ts:12"
+        ]
+      },
+      "exactRemainingOrDifference": "Real per-document export exists; source legacy filePath single helper combines read/process/write/report with different error/format fallback.",
+      "boundaryClass": "format/native",
+      "recommendedImplementationStatus": "I1",
+      "recommendationReason": "A related real cloud implementation exists, but listed source contract difference or current release gate prevents claiming full per-ID completion.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    },
+    {
+      "id": "IPC-27dd16394cd6",
+      "name": "desensitization:process-files",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I1",
+      "cloudContract": {
+        "code": [
+          "apps/api/main.ts",
+          "apps/api/folder-output.ts",
+          "apps/worker/main.ts"
+        ],
+        "actualHttp": [
+          {
+            "method": "GET",
+            "path": "/upload-batches/570030c9-5056-4d9a-8876-61755826f2d2"
+          }
+        ],
+        "summary": "legacy batch byte intake adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": true,
+        "actualInvocations": 1,
+        "positiveInvocations": 1,
+        "negativeInvocations": 0,
+        "testReferences": [
+          "tests/rule-interface-closure.integration.ts:12,36"
+        ]
+      },
+      "exactRemainingOrDifference": "Concrete semantics difference: source process-files reads bytes and returns per-file results in one call; cloud batch manifest/job flow is asynchronous and returns job states.",
+      "boundaryClass": "public business adaptation",
+      "recommendedImplementationStatus": "I1",
+      "recommendationReason": "A related real cloud implementation exists, but listed source contract difference or current release gate prevents claiming full per-ID completion.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    },
+    {
+      "id": "IPC-8fc7e5c07051",
+      "name": "desensitization:progress",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I1",
+      "cloudContract": {
+        "code": [
+          "apps/api/main.ts",
+          "packages/adapters/processing.ts",
+          "packages/adapters/processing-worker.ts"
+        ],
+        "actualHttp": [
+          {
+            "method": "GET",
+            "path": "/jobs/d1fdc78d-41c9-4218-bb24-69a6439267ec/events"
+          }
+        ],
+        "summary": "detect/export/legacy progress channel adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": true,
+        "actualInvocations": 1,
+        "positiveInvocations": 1,
+        "negativeInvocations": 0,
+        "testReferences": [
+          "tests/rule-interface-closure.integration.ts:31"
+        ]
+      },
+      "exactRemainingOrDifference": "Real monotonic persisted job events; source direct webContents progress payload/heartbeat/cancel stage is not field-identical.",
+      "boundaryClass": "event/runtime",
+      "recommendedImplementationStatus": "I1",
+      "recommendationReason": "A related real cloud implementation exists, but listed source contract difference or current release gate prevents claiming full per-ID completion.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    },
+    {
+      "id": "IPC-a07c3fdcbe45",
+      "name": "desensitization:read-file",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I1",
+      "cloudContract": {
+        "code": [
+          "apps/api/main.ts",
+          "packages/adapters/storage.ts"
+        ],
+        "actualHttp": [
+          {
+            "method": "GET",
+            "path": "/documents/f74d414f-e6cd-49b5-9de4-b38b05084f74"
+          }
+        ],
+        "summary": "legacy raw path input adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": true,
+        "actualInvocations": 1,
+        "positiveInvocations": 1,
+        "negativeInvocations": 0,
+        "testReferences": [
+          "tests/rule-interface-closure.integration.ts:12"
+        ]
+      },
+      "exactRemainingOrDifference": "Authenticated immutable document read exists; source accepts raw local path and returns byte buffer/fileType without document scope.",
+      "boundaryClass": "native path/security",
+      "recommendedImplementationStatus": "I1",
+      "recommendationReason": "A related real cloud implementation exists, but listed source contract difference or current release gate prevents claiming full per-ID completion.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    },
+    {
+      "id": "IPC-f071ce7c965b",
+      "name": "desensitization:read-source",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I1",
+      "cloudContract": {
+        "code": [
+          "apps/api/processing-resources.ts:8",
+          "packages/adapters/processing-resources.ts"
+        ],
+        "actualHttp": [
+          {
+            "method": "GET",
+            "path": "/processing-resources/cc0e2ace-7420-45d8-8ba3-6676c85d4b0f"
+          }
+        ],
+        "summary": "registered source bytes for review adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": true,
+        "actualInvocations": 1,
+        "positiveInvocations": 1,
+        "negativeInvocations": 0,
+        "testReferences": [
+          "tests/rule-interface-closure.integration.ts:12"
+        ]
+      },
+      "exactRemainingOrDifference": "Source bytes authenticated by resource lease; sourceRef registry shape and in-session managed paths replaced by cloud ownership/version bindings.",
+      "boundaryClass": "native registry",
+      "recommendedImplementationStatus": "I1",
+      "recommendationReason": "A related real cloud implementation exists, but listed source contract difference or current release gate prevents claiming full per-ID completion.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    },
+    {
+      "id": "IPC-81f79eee361a",
+      "name": "desensitization:recognize-docx-images",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I1",
+      "cloudContract": {
+        "code": [
+          "apps/api/docx-image-ocr.ts:26-30",
+          "apps/web/main.tsx",
+          "packages/adapters/processing-worker.ts"
+        ],
+        "actualHttp": [],
+        "summary": "DOCX image OCR review adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": false,
+        "actualInvocations": 0,
+        "positiveInvocations": 0,
+        "negativeInvocations": 0,
+        "testReferences": [
+          "tests/visual-interface-closure.integration.ts:47",
+          "tests/e2e/porting-closure.spec.ts:14"
+        ]
+      },
+      "exactRemainingOrDifference": "Real separate DOCX image OCR and apply candidate flow; source direct callback appends image-only matches to active draft, cloud token/apply/revision flow differs.",
+      "boundaryClass": "event/format",
+      "recommendedImplementationStatus": "I1",
+      "recommendationReason": "A related real cloud implementation exists, but listed source contract difference or current release gate prevents claiming full per-ID completion.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    },
+    {
+      "id": "IPC-8f1caa190dda",
+      "name": "desensitization:register-source",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I1",
+      "cloudContract": {
+        "code": [
+          "apps/api/main.ts",
+          "apps/api/processing-resources.ts",
+          "packages/adapters/processing-resources.ts"
+        ],
+        "actualHttp": [
+          {
+            "method": "POST",
+            "path": "/api/projects/62e9eb4d-abef-4ab9-96a2-3bde21dc3759/files?batchId=570030c9-5056-4d9a-8876-61755826f2d2&requestId=abf40419-4421-4719-b764-7d5c8c20eaa5"
+          },
+          {
+            "method": "POST",
+            "path": "/api/projects/62e9eb4d-abef-4ab9-96a2-3bde21dc3759/files?batchId=570030c9-5056-4d9a-8876-61755826f2d2&requestId=c6b33656-af69-4906-9405-7142ef610ad3"
+          },
+          {
+            "method": "POST",
+            "path": "/api/projects/62e9eb4d-abef-4ab9-96a2-3bde21dc3759/files?batchId=570030c9-5056-4d9a-8876-61755826f2d2&requestId=2afb765f-e829-4384-99a9-9eec5f2f2f31"
+          }
+        ],
+        "summary": "file import and folder validation adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": true,
+        "actualInvocations": 4,
+        "positiveInvocations": 3,
+        "negativeInvocations": 1,
+        "testReferences": [
+          "tests/rule-interface-closure.integration.ts:12"
+        ]
+      },
+      "exactRemainingOrDifference": "Immutable uploaded source and owner resource lease work; source accepts filePath/fileBuffer and local registry ID.",
+      "boundaryClass": "native path/registry",
+      "recommendedImplementationStatus": "I1",
+      "recommendationReason": "A related real cloud implementation exists, but listed source contract difference or current release gate prevents claiming full per-ID completion.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    },
+    {
+      "id": "IPC-d9b14aa97589",
+      "name": "desensitization:release-sources",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I1",
+      "cloudContract": {
+        "code": [
+          "apps/api/processing-resources.ts:9",
+          "packages/adapters/processing-resources.ts"
+        ],
+        "actualHttp": [
+          {
+            "method": "POST",
+            "path": "/release-sources"
+          }
+        ],
+        "summary": "import replacement/close adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": true,
+        "actualInvocations": 1,
+        "positiveInvocations": 1,
+        "negativeInvocations": 0,
+        "testReferences": [
+          "tests/rule-interface-closure.integration.ts:12"
+        ]
+      },
+      "exactRemainingOrDifference": "Actual temporary lease release; source also removes local engine cache/managed source paths; cloud removedEngineCaches=0 truthfully.",
+      "boundaryClass": "native engine cache",
+      "recommendedImplementationStatus": "I1",
+      "recommendationReason": "A related real cloud implementation exists, but listed source contract difference or current release gate prevents claiming full per-ID completion.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    },
+    {
+      "id": "IPC-3bea45842355",
+      "name": "desensitization:resolve-folder-output-path",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I3",
+      "cloudContract": {
+        "code": [
+          "apps/api/folder-output.ts:13",
+          "packages/core/reference-folder.ts"
+        ],
+        "actualHttp": [
+          {
+            "method": "POST",
+            "path": "/api/projects/62e9eb4d-abef-4ab9-96a2-3bde21dc3759/folder-exports/e7e80c42-522a-4e8d-b5fd-9c6e4292bb3f/resolve"
+          }
+        ],
+        "summary": "folder batch path preparation adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": true,
+        "actualInvocations": 1,
+        "positiveInvocations": 1,
+        "negativeInvocations": 0,
+        "testReferences": [
+          "tests/rule-interface-closure.integration.ts:36"
+        ]
+      },
+      "exactRemainingOrDifference": "Validated relative ZIP path resolution works; source returns absolute local output path under selected directory.",
+      "boundaryClass": "native path",
+      "recommendedImplementationStatus": "I3",
+      "recommendationReason": "Web excludes native OS path/dialog contract; classified out of scope, cloud adaptation described separately.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    },
+    {
+      "id": "IPC-f1f713df2b98",
+      "name": "desensitization:save-file",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I1",
+      "cloudContract": {
+        "code": [
+          "apps/api/main.ts",
+          "apps/worker/main.ts"
+        ],
+        "actualHttp": [
+          {
+            "method": "POST",
+            "path": "/documents/f74d414f-e6cd-49b5-9de4-b38b05084f74/export"
+          }
+        ],
+        "summary": "legacy file output adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": true,
+        "actualInvocations": 1,
+        "positiveInvocations": 1,
+        "negativeInvocations": 0,
+        "testReferences": [
+          "tests/rule-interface-closure.integration.ts:12"
+        ]
+      },
+      "exactRemainingOrDifference": "Actual artifact written through export job; source generic arbitrary buffer/text local write and overwrite semantics are not exposed.",
+      "boundaryClass": "native generic file writer",
+      "recommendedImplementationStatus": "I1",
+      "recommendationReason": "A related real cloud implementation exists, but listed source contract difference or current release gate prevents claiming full per-ID completion.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    },
+    {
+      "id": "IPC-629ace0aecd1",
+      "name": "desensitization:save-markdown-draft",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I1",
+      "cloudContract": {
+        "code": [
+          "apps/api/markdown-manual-draft.ts:11-14",
+          "packages/core/markdown-manual-draft.ts"
+        ],
+        "actualHttp": [
+          {
+            "method": "POST",
+            "path": "/markdown-manual-drafts"
+          }
+        ],
+        "summary": "manual draft export adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": true,
+        "actualInvocations": 1,
+        "positiveInvocations": 1,
+        "negativeInvocations": 0,
+        "testReferences": [
+          "tests/rule-interface-closure.integration.ts:12"
+        ]
+      },
+      "exactRemainingOrDifference": "Real encrypted versioned draft/download exists; source local _待人工处理稿.md direct write differs in path naming/conflict policy.",
+      "boundaryClass": "native path",
+      "recommendedImplementationStatus": "I1",
+      "recommendationReason": "A related real cloud implementation exists, but listed source contract difference or current release gate prevents claiming full per-ID completion.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    },
+    {
+      "id": "IPC-9577d3a9d6d0",
+      "name": "desensitization:save-report",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I1",
+      "cloudContract": {
+        "code": [
+          "apps/api/processing-observability.ts:18",
+          "packages/core/processing-report.ts"
+        ],
+        "actualHttp": [
+          {
+            "method": "GET",
+            "path": "/processing-reports/ee0add86-5cd0-46ef-b65a-1a08e82ce338/download"
+          },
+          {
+            "method": "GET",
+            "path": "/processing-reports/ee0add86-5cd0-46ef-b65a-1a08e82ce338/download"
+          },
+          {
+            "method": "GET",
+            "path": "/processing-reports/ee0add86-5cd0-46ef-b65a-1a08e82ce338/download"
+          }
+        ],
+        "summary": "legacy report write adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": true,
+        "actualInvocations": 5,
+        "positiveInvocations": 5,
+        "negativeInvocations": 0,
+        "testReferences": [
+          "tests/rule-interface-closure.integration.ts:12"
+        ]
+      },
+      "exactRemainingOrDifference": "Real report download persists; source generic caller supplied report content/name written locally is not exposed as such.",
+      "boundaryClass": "native generic writer",
+      "recommendedImplementationStatus": "I1",
+      "recommendationReason": "A related real cloud implementation exists, but listed source contract difference or current release gate prevents claiming full per-ID completion.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    },
+    {
+      "id": "IPC-e29b03465bc3",
+      "name": "desensitization:scan-dropped-folder",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I1",
+      "cloudContract": {
+        "code": [
+          "apps/api/main.ts",
+          "apps/api/folder-output.ts"
+        ],
+        "actualHttp": [
+          {
+            "method": "POST",
+            "path": "/projects/62e9eb4d-abef-4ab9-96a2-3bde21dc3759/upload-batches"
+          }
+        ],
+        "summary": "drag/drop folder import adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": true,
+        "actualInvocations": 2,
+        "positiveInvocations": 1,
+        "negativeInvocations": 1,
+        "testReferences": [
+          "tests/rule-interface-closure.integration.ts:12,36"
+        ]
+      },
+      "exactRemainingOrDifference": "Cloud receives authenticated manifest with relative paths/hash; source scans OS folder tree and detects symlink/mtime itself.",
+      "boundaryClass": "native filesystem",
+      "recommendedImplementationStatus": "I1",
+      "recommendationReason": "A related real cloud implementation exists, but listed source contract difference or current release gate prevents claiming full per-ID completion.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    },
+    {
+      "id": "IPC-95d4f752bfb1",
+      "name": "desensitization:select-files",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I1",
+      "cloudContract": {
+        "code": [
+          "apps/api/main.ts",
+          "apps/web/main.tsx"
+        ],
+        "actualHttp": [
+          {
+            "method": "POST",
+            "path": "/projects/62e9eb4d-abef-4ab9-96a2-3bde21dc3759/upload-batches"
+          }
+        ],
+        "summary": "file picker import adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": true,
+        "actualInvocations": 1,
+        "positiveInvocations": 1,
+        "negativeInvocations": 0,
+        "testReferences": [
+          "tests/rule-interface-closure.integration.ts:12"
+        ]
+      },
+      "exactRemainingOrDifference": "Browser upload picker plus manifest/intake works; Electron showOpenDialog multiSelect local paths/filesInfo absent.",
+      "boundaryClass": "native dialog",
+      "recommendedImplementationStatus": "I1",
+      "recommendationReason": "A related real cloud implementation exists, but listed source contract difference or current release gate prevents claiming full per-ID completion.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    },
+    {
+      "id": "IPC-523337153cab",
+      "name": "desensitization:select-folder",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I1",
+      "cloudContract": {
+        "code": [
+          "apps/api/main.ts",
+          "apps/web/main.tsx"
+        ],
+        "actualHttp": [
+          {
+            "method": "POST",
+            "path": "/projects/62e9eb4d-abef-4ab9-96a2-3bde21dc3759/upload-batches"
+          }
+        ],
+        "summary": "legacy folder picker adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": true,
+        "actualInvocations": 1,
+        "positiveInvocations": 1,
+        "negativeInvocations": 0,
+        "testReferences": [
+          "tests/rule-interface-closure.integration.ts:12"
+        ]
+      },
+      "exactRemainingOrDifference": "Browser folder upload adaptation works; Electron openDirectory local path picker absent.",
+      "boundaryClass": "native dialog",
+      "recommendedImplementationStatus": "I1",
+      "recommendationReason": "A related real cloud implementation exists, but listed source contract difference or current release gate prevents claiming full per-ID completion.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    },
+    {
+      "id": "IPC-102f9010076c",
+      "name": "desensitization:select-output-dir",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I3",
+      "cloudContract": {
+        "code": [
+          "apps/web/main.tsx"
+        ],
+        "actualHttp": [],
+        "summary": "single/batch export location adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": false,
+        "actualInvocations": 0,
+        "positiveInvocations": 0,
+        "negativeInvocations": 0,
+        "testReferences": [
+          "tests/e2e/porting-closure.spec.ts"
+        ]
+      },
+      "exactRemainingOrDifference": "No server/browser API can choose an arbitrary OS output directory with Electron dialog semantics.",
+      "boundaryClass": "native dialog",
+      "recommendedImplementationStatus": "I3",
+      "recommendationReason": "Web excludes native OS path/dialog contract; classified out of scope, cloud adaptation described separately.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    },
+    {
+      "id": "IPC-7f07e8bd74ee",
+      "name": "desensitization:select-save-path",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I3",
+      "cloudContract": {
+        "code": [
+          "apps/web/main.tsx"
+        ],
+        "actualHttp": [],
+        "summary": "single export target adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": false,
+        "actualInvocations": 0,
+        "positiveInvocations": 0,
+        "negativeInvocations": 0,
+        "testReferences": [
+          "tests/e2e/porting-closure.spec.ts"
+        ]
+      },
+      "exactRemainingOrDifference": "Browser download filename may be suggested; native absolute save path picker and returned outputDir absent.",
+      "boundaryClass": "native dialog",
+      "recommendedImplementationStatus": "I3",
+      "recommendationReason": "Web excludes native OS path/dialog contract; classified out of scope, cloud adaptation described separately.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    },
+    {
+      "id": "IPC-d7d18b241f88",
+      "name": "desensitization:unlock-source",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I1",
+      "cloudContract": {
+        "code": [
+          "apps/api/document-unlock.ts",
+          "packages/adapters/processing-worker.ts"
+        ],
+        "actualHttp": [],
+        "summary": "password protected source import adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": false,
+        "actualInvocations": 0,
+        "positiveInvocations": 0,
+        "negativeInvocations": 0,
+        "testReferences": [
+          "tests/legacy-office.integration.ts:20",
+          "tests/legacy-office.integration.ts:25"
+        ]
+      },
+      "exactRemainingOrDifference": "Real password retry and immutable derived source for DOC/PDF are covered; source local sourceRef unlock format/errors differ, and full encrypted format matrix not proven.",
+      "boundaryClass": "format/native",
+      "recommendedImplementationStatus": "I1",
+      "recommendationReason": "A related real cloud implementation exists, but listed source contract difference or current release gate prevents claiming full per-ID completion.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    },
+    {
+      "id": "IPC-0ea3b09c375b",
+      "name": "desensitization:update-runtime-rules",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I1",
+      "cloudContract": {
+        "code": [
+          "apps/api/automatic-runtime-rules.ts:23",
+          "packages/adapters/automatic-runtime-rules.ts",
+          "packages/adapters/processing-worker.ts",
+          "scripts/037.sql",
+          "scripts/038.sql"
+        ],
+        "actualHttp": [
+          {
+            "method": "POST",
+            "path": "/runtime-rules"
+          }
+        ],
+        "summary": "manual OCR/page review mark producer adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": true,
+        "actualInvocations": 1,
+        "positiveInvocations": 1,
+        "negativeInvocations": 0,
+        "testReferences": [
+          "tests/automatic-runtime-rules.integration.ts:4,33,47",
+          "tests/automatic-runtime-worker.integration.ts",
+          "tests/automatic-runtime-terminal.integration.ts:36,63,85"
+        ],
+        "038": "isolated 3 PASS SQL terminal trigger/sweep; no target persistent database upgrade or real SIGKILL"
+      },
+      "exactRemainingOrDifference": "Real active detect temporary AEAD rules, owner revocation and terminal cleanup verified in isolation; source direct IPC task-window timing and licensed runtime remain R0. No concrete public producer omission remains after PageEditor fix.",
+      "boundaryClass": "runtime/native task identity",
+      "recommendedImplementationStatus": "I1",
+      "recommendationReason": "A related real cloud implementation exists, but listed source contract difference or current release gate prevents claiming full per-ID completion.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    },
+    {
+      "id": "IPC-96ccc7c0ce76",
+      "name": "desensitization:validate-folder-source",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I1",
+      "cloudContract": {
+        "code": [
+          "apps/api/folder-output.ts:14",
+          "packages/adapters/document-source.ts"
+        ],
+        "actualHttp": [
+          {
+            "method": "GET",
+            "path": "/upload-batches/570030c9-5056-4d9a-8876-61755826f2d2"
+          },
+          {
+            "method": "POST",
+            "path": "/api/projects/62e9eb4d-abef-4ab9-96a2-3bde21dc3759/folder-exports/e7e80c42-522a-4e8d-b5fd-9c6e4292bb3f/validate-source"
+          }
+        ],
+        "summary": "folder import TOCTOU check adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": true,
+        "actualInvocations": 2,
+        "positiveInvocations": 2,
+        "negativeInvocations": 0,
+        "testReferences": [
+          "tests/rule-interface-closure.integration.ts:36"
+        ]
+      },
+      "exactRemainingOrDifference": "Real SHA/bytes/owner recheck; source compares local lstat size/mtime/symlink against scan session, unavailable in cloud upload.",
+      "boundaryClass": "native filesystem",
+      "recommendedImplementationStatus": "I1",
+      "recommendationReason": "A related real cloud implementation exists, but listed source contract difference or current release gate prevents claiming full per-ID completion.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    },
+    {
+      "id": "IPC-e84cabdffc27",
+      "name": "desensitization:write-folder-manifest",
+      "staticDepthAtRead": "S3",
+      "referenceRuntime": "R0",
+      "currentImplementationStatus": "I1",
+      "cloudContract": {
+        "code": [
+          "apps/api/folder-output.ts:15-17",
+          "packages/core/reference-folder.ts"
+        ],
+        "actualHttp": [
+          {
+            "method": "POST",
+            "path": "/api/projects/62e9eb4d-abef-4ab9-96a2-3bde21dc3759/folder-exports/e7e80c42-522a-4e8d-b5fd-9c6e4292bb3f/manifest"
+          }
+        ],
+        "summary": "folder batch result manifest adapted to authorized cloud resources/jobs"
+      },
+      "existingEvidence": {
+        "historicRuleClosure": true,
+        "actualInvocations": 1,
+        "positiveInvocations": 1,
+        "negativeInvocations": 0,
+        "testReferences": [
+          "tests/rule-interface-closure.integration.ts:36"
+        ]
+      },
+      "exactRemainingOrDifference": "Real complete/status-verified manifest and ZIP; source local HTML wx file path differs from immutable cloud ZIP artifact.",
+      "boundaryClass": "native path/format",
+      "recommendedImplementationStatus": "I1",
+      "recommendationReason": "A related real cloud implementation exists, but listed source contract difference or current release gate prevents claiming full per-ID completion.",
+      "i4Gate": "Do not promote to I4 from S3 or historical isolated tests alone; current full API run is in progress, and source-specific gap must be either closed or explicitly accepted as web adaptation."
+    }
+  ],
+  "counts": {
+    "I1": 29,
+    "I3": 6,
+    "I4": 0
+  }
+}

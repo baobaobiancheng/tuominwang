@@ -1,0 +1,636 @@
+{
+  "version": 1,
+  "date": "2026-10-15",
+  "owner": "A complete_rules",
+  "scope": [
+    "UI-ad41d13c4a2d",
+    "UI-2c1712d35460"
+  ],
+  "source": {
+    "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+    "bytes": 2771447,
+    "sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc"
+  },
+  "depth": "finite-S3-candidate-for-two-exact-UI-IDs-parent-review-required-R0-separate",
+  "referenceRuntime": "R0",
+  "branches": [
+    {
+      "name": "cc/Lc/jc",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 4204,
+      "endLine": 4207,
+      "sha256": "ec97314e9c0374d6d7d826bfa38127e5afb60bf81154b3b41b4980f3224ecadc",
+      "bytes": 1233,
+      "semantics": "完整类型族归一；未知raw在我方canonical仍保命名空间",
+      "implementation": "packages/core/reference-alias-lifecycle.ts"
+    },
+    {
+      "name": "jc lifecycle",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 4404,
+      "endLine": 4490,
+      "sha256": "f8b747f1df5e02deeda62b57c6cd03d85013e8d661f2fc7445953546b055dfe3",
+      "bytes": 3425,
+      "semantics": "enabled/max/reserve/set/snapshot/canonicalKey/tokenFor/apply；继承reserved、旧locked与别名映射",
+      "implementation": "packages/core/reference-alias-lifecycle.ts"
+    },
+    {
+      "name": "organization af/rf/sf/of/uf",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 5476,
+      "endLine": 5547,
+      "sha256": "582b41750fd0f014b44dcbd969c60d03f1aad0a6354b3e7a2971ec1688449b9d",
+      "bytes": 6777,
+      "semantics": "64泛化词、合法后缀、当事人过滤、最长检测后缀、显式括号释义与最近位置",
+      "implementation": "packages/core/reference-alias-lifecycle.ts"
+    },
+    {
+      "name": "Mf/Af/Ef/Nf dependencies",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 5558,
+      "endLine": 5713,
+      "sha256": "88fd47bd05b9f078f5945dd834dd755a8b7d689e7c7bc4b701bb6dfa9e4d0d9e",
+      "bytes": 7910,
+      "semantics": "归一重复、组织全简称/语义位置容差、金额规范、手动/table优先、合成跨类型冲突图",
+      "implementation": "packages/core/reference-entity-conflicts.ts"
+    },
+    {
+      "name": "Kf",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 5800,
+      "endLine": 5868,
+      "sha256": "056700e77ef375e4e38df5e8e001587ce1de75d78557389cb980dca0c9ba08e3",
+      "bytes": 2581,
+      "semantics": "4096块、2048换行、CRLF/代理对、连续protected ranges、实测块高、binary索引与overscan",
+      "implementation": "packages/core/reference-sidebar.ts"
+    },
+    {
+      "name": "ReviewModeContainer v2/_2/S2",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 6107,
+      "endLine": 6141,
+      "sha256": "446f924dacdf9a3a09c8f27b8eece15be5ee9d8266e3ec291d036e41102afd3e",
+      "bytes": 1843,
+      "semantics": "排除deleted/invalid、人工图片保留例外，依Af/Ef输出参考可见候选；canonical全候选不删",
+      "implementation": "packages/core/reference-entity-conflicts.ts"
+    },
+    {
+      "name": "V2 Canvas/protected link caller",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 6164,
+      "endLine": 6169,
+      "sha256": "587f9587808473302fe46a3e28cdb7a7cb43a3199a8053011c07440b84c53ddb",
+      "bytes": 1049,
+      "semantics": "实际Canvas字体13px Consolas/MSYaHei/monospace，tab四空格；全部Ho2链接跨度加入Kf保护；虚拟门100000且无表格/查询",
+      "implementation": "apps/web/source-review.tsx"
+    },
+    {
+      "name": "Ho2/Uo2 source links index",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 8961,
+      "endLine": 9021,
+      "sha256": "50648ab6ebd1944109e1e8be5402a27d4cb2d1ac60b1c2eb3459fba0b077df98",
+      "bytes": 3789,
+      "semantics": "inline/reference labels、定义、容器范围、去重、prefixEnds binary区间定位；这里只索引不冒称Pf处理预览",
+      "implementation": "packages/core/reference-markdown-links.ts"
+    },
+    {
+      "name": "xt2/kt2/St2",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 6300,
+      "endLine": 6361,
+      "sha256": "c988a239f999ddef21c5e7f68ff4baa7201e44bfff9f8825d5fca27eae96d5a5",
+      "bytes": 3791,
+      "semantics": "同cell gap-free段映射、UTF16精确选区、唯一有界定位、虚拟块跳转/DOMRange定位",
+      "implementation": "apps/web/source-review.tsx"
+    },
+    {
+      "name": "Ti2/Ei2 fullName actual producer",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 6988,
+      "endLine": 7051,
+      "sha256": "4fa64b943265c8af25caa6844762ebc30f96d48d7d7e8fbd6baedf8be8f14c7d",
+      "bytes": 4158,
+      "semantics": "docx/Markdown显式括号释义生成meta.fullName；不猜PDF/image未有fullname",
+      "implementation": "packages/adapters/unified-aliases.ts"
+    },
+    {
+      "name": "Ao2/To2/Eo2",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 8795,
+      "endLine": 8832,
+      "sha256": "a8b8fd42755f4ddd598429467f68d33eba0e4eea24461ca3e5f2e10157f84bac",
+      "bytes": 1911,
+      "semantics": "手动呈现优先、containment窗口、精确类型、query trim/lower、Math.round后置信区间",
+      "implementation": "packages/core/reference-sidebar.ts"
+    },
+    {
+      "name": "UK/VK/YK",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 29843,
+      "endLine": 30188,
+      "sha256": "1da2e7cce6ceb37425ee811376db8bad7ce2ddfab36b5f9fff485f851c07f6e9",
+      "bytes": 27789,
+      "semantics": "完整键/分组、default/custom/consumer、合并历史、文件override、split/unsplit/style、register/unregister、snapshot全字段",
+      "implementation": "packages/core/reference-unified-aliases.ts"
+    },
+    {
+      "name": "jm2/Km2/Hm2/Um2/Vm2",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 34411,
+      "endLine": 34539,
+      "sha256": "1f23bec83dbed590c50bcdd734e20931d820e0703f568648695123a77cf17979",
+      "bytes": 5616,
+      "semantics": "300ms去抖、串行busy、dirty/full覆盖、失败整批requeue、导出前flush、ready/affectedfiles、4格式renderer apply",
+      "implementation": "packages/core/reference-alias-sync.ts;apps/api/unified-alias-materialization.ts"
+    },
+    {
+      "name": "conflict/change/reset/scope/merge/split callbacks",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 34540,
+      "endLine": 34590,
+      "sha256": "acfdbd87014859a9d6fb180fb13137c93b8aca38fa81ed0ee6dcb5db4c942f7d",
+      "bytes": 3492,
+      "semantics": "同token冲突、全部/当前文件scope、reset、merge、splitMerged、splitFile、splitToken、flush与autosave",
+      "implementation": "apps/api/unified-aliases.ts;apps/web/unified-aliases.tsx"
+    }
+  ],
+  "callers": [
+    {
+      "name": "OCR语义纠正org fullName",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 6035,
+      "endLine": 6040,
+      "sha256": "bf60cec118f6abbce881cd392c926a15aeee789a5e9af4e8b5b938b21efc9e38",
+      "bytes": 1266,
+      "semantics": "逐确切调用点静态证据；非licensed运行验证",
+      "implementation": "existing workspace/policy + alias materialization bridges"
+    },
+    {
+      "name": "PDF canonical+jc.apply",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 24566,
+      "endLine": 24589,
+      "sha256": "e5fe3d8f608d73dd543cd104401d90f86557b71ecbe6446d68364d4c2ae150c1",
+      "bytes": 1587,
+      "semantics": "逐确切调用点静态证据；非licensed运行验证",
+      "implementation": "existing workspace/policy + alias materialization bridges"
+    },
+    {
+      "name": "image jc.apply",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 26215,
+      "endLine": 26222,
+      "sha256": "488635bed49e3beef7108234548c0f09233a6336cdfee280d4dbcbe71a99e975",
+      "bytes": 748,
+      "semantics": "逐确切调用点静态证据；非licensed运行验证",
+      "implementation": "existing workspace/policy + alias materialization bridges"
+    },
+    {
+      "name": "Markdown jc.tokenFor",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 31014,
+      "endLine": 31026,
+      "sha256": "dd288a95089814641c73829fe47102c9c5365c276fc09db43dfb01a178651ff6",
+      "bytes": 723,
+      "semantics": "逐确切调用点静态证据；非licensed运行验证",
+      "implementation": "existing workspace/policy + alias materialization bridges"
+    },
+    {
+      "name": "preview toggle flush",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 32365,
+      "endLine": 32373,
+      "sha256": "84740c162de04ed9fd2bd4c3ee4a676c74dedd5652decd35f7f82528ffb799bb",
+      "bytes": 958,
+      "semantics": "逐确切调用点静态证据；非licensed运行验证",
+      "implementation": "existing workspace/policy + alias materialization bridges"
+    },
+    {
+      "name": "workspace inherited snapshot",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 32469,
+      "endLine": 32475,
+      "sha256": "4ad18255bc615ef470e0cbab78c2137920f96c91a6a0f302da444eacd7bd8e0b",
+      "bytes": 589,
+      "semantics": "逐确切调用点静态证据；非licensed运行验证",
+      "implementation": "existing workspace/policy + alias materialization bridges"
+    },
+    {
+      "name": "workspace save full snapshots",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 32600,
+      "endLine": 32658,
+      "sha256": "ecbfc8b1b5765ba2cb7063971dc95f8ce1567056b3a924dd90cc85701a7dc9a0",
+      "bytes": 8387,
+      "semantics": "逐确切调用点静态证据；非licensed运行验证",
+      "implementation": "existing workspace/policy + alias materialization bridges"
+    },
+    {
+      "name": "register dirty + preexport flush",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 32705,
+      "endLine": 32751,
+      "sha256": "9ad12c385a835a0172685444f5e1f244fdca60833990175f5ffeb3f7f0d8bcef",
+      "bytes": 2568,
+      "semantics": "逐确切调用点静态证据；非licensed运行验证",
+      "implementation": "existing workspace/policy + alias materialization bridges"
+    },
+    {
+      "name": "export flush",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 32909,
+      "endLine": 32917,
+      "sha256": "a0896aa4c2fba586cb7a72d62213e5bee23a43c25f4a09c864cb33ac8005e90d",
+      "bytes": 617,
+      "semantics": "逐确切调用点静态证据；非licensed运行验证",
+      "implementation": "existing workspace/policy + alias materialization bridges"
+    },
+    {
+      "name": "workspace inherited open+legacy custom/style",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 33251,
+      "endLine": 33284,
+      "sha256": "8a43ceed6afeca946bdb4e34e33c6a3ca073c13da095a9542610aba1ed2d90f9",
+      "bytes": 3553,
+      "semantics": "逐确切调用点静态证据；非licensed运行验证",
+      "implementation": "existing workspace/policy + alias materialization bridges"
+    },
+    {
+      "name": "new/open/detection register+flush",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 33375,
+      "endLine": 33455,
+      "sha256": "13df55822c9607a2f56fe0e48b3061058e8af096815b0b7701e33a0d8dee22ac",
+      "bytes": 7026,
+      "semantics": "逐确切调用点静态证据；非licensed运行验证",
+      "implementation": "existing workspace/policy + alias materialization bridges"
+    },
+    {
+      "name": "perdocument style",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 34015,
+      "endLine": 34027,
+      "sha256": "2478906b6673786ae36ff169365b6c20f2c8644886800f85f41ce05c8ae6a599",
+      "bytes": 770,
+      "semantics": "逐确切调用点静态证据；非licensed运行验证",
+      "implementation": "existing workspace/policy + alias materialization bridges"
+    },
+    {
+      "name": "mode/register/dirty",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 34337,
+      "endLine": 34346,
+      "sha256": "0f5529d1007400d7e3f68450147e085c3092241235bb657cffdc517d926aed26",
+      "bytes": 2087,
+      "semantics": "逐确切调用点静态证据；非licensed运行验证",
+      "implementation": "existing workspace/policy + alias materialization bridges"
+    },
+    {
+      "name": "batch register+flush",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 35027,
+      "endLine": 35035,
+      "sha256": "7e93cfa6fc230ed32634f52dff9e2dc36738e0104aa37914d1abf6b9e2d27685",
+      "bytes": 869,
+      "semantics": "逐确切调用点静态证据；非licensed运行验证",
+      "implementation": "existing workspace/policy + alias materialization bridges"
+    },
+    {
+      "name": "batch refresh register+flush",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 35120,
+      "endLine": 35127,
+      "sha256": "12a131d52b6d72ad1a10650909dc5c622b2522ece469ff9d1b7cfe9dbb4c3779",
+      "bytes": 374,
+      "semantics": "逐确切调用点静态证据；非licensed运行验证",
+      "implementation": "existing workspace/policy + alias materialization bridges"
+    },
+    {
+      "name": "mergeBack confirmation",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 35325,
+      "endLine": 35332,
+      "sha256": "65119ecc223aad9dab2af1aec89e7f3405128d0d2340eba8d44e0d8c5a75c92a",
+      "bytes": 708,
+      "semantics": "逐确切调用点静态证据；非licensed运行验证",
+      "implementation": "existing workspace/policy + alias materialization bridges"
+    },
+    {
+      "name": "batch register+flush",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 35380,
+      "endLine": 35387,
+      "sha256": "c43e0cbeb23dfe42442899c393432ac50500997b5946783a59d8b326cca3e79b",
+      "bytes": 663,
+      "semantics": "逐确切调用点静态证据；非licensed运行验证",
+      "implementation": "existing workspace/policy + alias materialization bridges"
+    },
+    {
+      "name": "register+flush/reset",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 35412,
+      "endLine": 35426,
+      "sha256": "c7edaa65cf1d82d3200448431975c1c404daade26224b235b62709931e47d017",
+      "bytes": 915,
+      "semantics": "逐确切调用点静态证据；非licensed运行验证",
+      "implementation": "existing workspace/policy + alias materialization bridges"
+    },
+    {
+      "name": "home reset registry",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 36169,
+      "endLine": 36178,
+      "sha256": "c5712b952109a21a12f0914a46df5c98b0a809aaa0c8574185a614c8c5ab6ca6",
+      "bytes": 1785,
+      "semantics": "逐确切调用点静态证据；非licensed运行验证",
+      "implementation": "existing workspace/policy + alias materialization bridges"
+    },
+    {
+      "name": "run reset registry",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 36445,
+      "endLine": 36450,
+      "sha256": "9c3acc6a52f51dbcbc35614784b7eb205891a560ce5ee895f3ce4c012b2be964",
+      "bytes": 1471,
+      "semantics": "逐确切调用点静态证据；非licensed运行验证",
+      "implementation": "existing workspace/policy + alias materialization bridges"
+    },
+    {
+      "name": "new run inherited profile",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 36554,
+      "endLine": 36563,
+      "sha256": "a182dff0906a08da31340e457f2b03cb34086c0fda61f518f6ffc4fde57bb9a5",
+      "bytes": 1151,
+      "semantics": "逐确切调用点静态证据；非licensed运行验证",
+      "implementation": "existing workspace/policy + alias materialization bridges"
+    }
+  ],
+  "implementationFiles": [
+    {
+      "path": "packages/core/reference-markdown-links.ts",
+      "bytes": 2682,
+      "sha256": "cd3c61b8cc949db42a51888e5827e813a3ed3b98426be7a4a462b2cb233d1c06"
+    },
+    {
+      "path": "tests/reference-markdown-links.test.ts",
+      "bytes": 711,
+      "sha256": "b17f5e1bf67cc9ffb41649f04f8973967d4b6bff3c1652166cc098569b16a3c9"
+    },
+    {
+      "path": "tests/fixtures/reference-markdown-links-source-golden.json",
+      "bytes": 23086,
+      "sha256": "0a211d14e468771575446662fa89af07576496e3ebf6f63a53c7117f64bf78b6"
+    },
+    {
+      "path": "tests/e2e/source-review.spec.ts",
+      "bytes": 4694,
+      "sha256": "2bcfc104af000a437b10b5a2f23b961de12fbae060deac62b8fc80422d262514"
+    },
+    {
+      "path": "packages/core/reference-alias-data.json",
+      "bytes": 3207,
+      "sha256": "fede746e6e3ebc7736f98ddca810b7ade03ed067586e3f4fba2a1ccf603e60de"
+    },
+    {
+      "path": "packages/core/reference-alias-lifecycle.ts",
+      "bytes": 9771,
+      "sha256": "c2957ec850b7dc1133fbc846e75a6c081fd40392dea874214ffcccae4c0bd90c"
+    },
+    {
+      "path": "packages/core/reference-unified-aliases.ts",
+      "bytes": 18630,
+      "sha256": "37f42459ae1b32ab597d29038c0ba1b999dfea6af492729523a3dd6b4af81a44"
+    },
+    {
+      "path": "packages/core/reference-alias-sync.ts",
+      "bytes": 3026,
+      "sha256": "0f47ae835e0ff693f5c5465958c84a1651e286bb6b2d56adf8370f2683a98e3d"
+    },
+    {
+      "path": "packages/core/reference-sidebar.ts",
+      "bytes": 6087,
+      "sha256": "2a643c9f805603ac4357ce43918d4b1d00ff1160f758b4459b34ca9c6995ab60"
+    },
+    {
+      "path": "packages/core/reference-entity-conflicts.ts",
+      "bytes": 8680,
+      "sha256": "e2777038ccbfb3590c97b85f39c2a5cc7467aa267ddd64cffd101b9d71f3c27d"
+    },
+    {
+      "path": "packages/core/reference-alias-state-schema.ts",
+      "bytes": 2755,
+      "sha256": "df10118dea9883b956f3b272a22d41972eac6368e1e829a97b7a9b574fa2975c"
+    },
+    {
+      "path": "packages/core/document-alias-restoration.ts",
+      "bytes": 1861,
+      "sha256": "6f18d88235331cd7abc89214a32477935d7f0b923f5a3b77fb446bd51d5b8908"
+    },
+    {
+      "path": "packages/core/review-mark-filter.ts",
+      "bytes": 1686,
+      "sha256": "01b5da4f41c15af24b1403a33b40d71abaf10957d3651dc52b885b4675fc1ccc"
+    },
+    {
+      "path": "packages/adapters/alias-groups.ts",
+      "bytes": 8808,
+      "sha256": "889d4eec2799e5c1614afb1211565e0800167b7e552555b7a47f7ff345acec84"
+    },
+    {
+      "path": "packages/adapters/unified-aliases.ts",
+      "bytes": 11455,
+      "sha256": "ad4918a42078710cea9f2bcdf5842380d7d254aa16b5f686913d5bb8a2575bd0"
+    },
+    {
+      "path": "packages/adapters/review-mark-filter.ts",
+      "bytes": 3001,
+      "sha256": "7ce9c1b066cf14251759b9f4e1eedb9d1d20694fbca147a6395f987216c3cc30"
+    },
+    {
+      "path": "apps/api/unified-aliases.ts",
+      "bytes": 6738,
+      "sha256": "f673b1f9437698a23576907acd290e1102af49277b7f2822b0428684441c81ff"
+    },
+    {
+      "path": "apps/api/unified-alias-materialization.ts",
+      "bytes": 6371,
+      "sha256": "6566d51ae83222da6a5197af16ebe4b16e2809395fc1f530efef25d79adb4d43"
+    },
+    {
+      "path": "apps/api/source-review.ts",
+      "bytes": 3359,
+      "sha256": "e910a9c19ca5ad2983d34054d4fef7f50344cf73286dd7b1f7b92f37dd7ad80a"
+    },
+    {
+      "path": "apps/api/entity-filter.ts",
+      "bytes": 2274,
+      "sha256": "ce6b72c7fce50781fb9769be20f8f5fac919937b4e69935514078acefa00d152"
+    },
+    {
+      "path": "apps/web/unified-aliases.tsx",
+      "bytes": 5875,
+      "sha256": "3c5cf311480e1edff64b15fa6e6ad4b6d5037c1e9555a79e31d618e9abc21975"
+    },
+    {
+      "path": "apps/web/source-review.tsx",
+      "bytes": 13089,
+      "sha256": "1a8b2c2c6a00aa8e3e1c5e9dd747ef64655a81aa6e17024178410da3447c8edf"
+    },
+    {
+      "path": "apps/web/entity-groups.tsx",
+      "bytes": 14414,
+      "sha256": "3953d7fd52d6a382ff1a999527ce2a9421b54d8359572adbddbcdcc96cad02db"
+    },
+    {
+      "path": "scripts/032.sql",
+      "bytes": 2407,
+      "sha256": "c2055843c56f74bb881af369ce9c70f1351704f9b6100db95dd08a52e7ef100c"
+    },
+    {
+      "path": "packages/core/review-entity-slots.ts",
+      "bytes": 6334,
+      "sha256": "c3ebe32fd54e63aba952cca98f823d1472b0b2be50c33cf41eebac437e9cf178"
+    },
+    {
+      "path": "packages/core/review-provenance.ts",
+      "bytes": 8203,
+      "sha256": "cdb82b161f33f97af0c549768bc62b3de784284cfff22110c9235b01906a57e9"
+    },
+    {
+      "path": "packages/core/review-provenance-rebind.ts",
+      "bytes": 2662,
+      "sha256": "e2613837207d88a03b2c5a831b46412d7908a5f7bed7b45cf0c5aa23d01c7c8a"
+    },
+    {
+      "path": "packages/adapters/review-provenance.ts",
+      "bytes": 3252,
+      "sha256": "57de071cddf0ffff2dfdba4e4212a6572833b08bde0083ccb1e2222bcc4e9e04"
+    },
+    {
+      "path": "packages/contracts/index.ts",
+      "bytes": 8182,
+      "sha256": "898770695ee6f8dd5096f002504d3e20476e6b16e8a340918fe549a0c932d236"
+    },
+    {
+      "path": "tests/review-entity-slots.test.ts",
+      "bytes": 3834,
+      "sha256": "4ebc24e7911f7051f830409021a9b0f4402d4232bcf3b9f67e6a428f9c9dd647"
+    },
+    {
+      "path": "tests/review-entity-slots.integration.ts",
+      "bytes": 5504,
+      "sha256": "d915b9adcefadb2473a2b78107791c33e0b1447322682e9bd0342683c4dad7e5"
+    },
+    {
+      "path": "tests/fixtures/reference-alias-lifecycle-source-golden.json",
+      "bytes": 470192,
+      "sha256": "b7440c792e47a74d3560d95baa99435b03a10bbd6c5de3ab909697625088d985"
+    },
+    {
+      "path": "tests/fixtures/reference-sidebar-source-golden.json",
+      "bytes": 31920,
+      "sha256": "ab31c77cc7310764c2062c84921e4694a492ca81836858ecccf3115ed1373e92"
+    },
+    {
+      "path": "tests/fixtures/reference-entity-conflicts-source-golden.json",
+      "bytes": 447427,
+      "sha256": "7a03b3d70287790f504054cd2ef73c95c2211f707b71ee6403e5497e9a8767cf"
+    },
+    {
+      "path": "tests/unified-aliases.integration.ts",
+      "bytes": 17532,
+      "sha256": "ffb1567bbb764e6fbf8cbcd3da84f2a55bfdd51b8667319914948a48732a1aa1"
+    },
+    {
+      "path": "tests/review-mark-filter.integration.ts",
+      "bytes": 4413,
+      "sha256": "ba1d1bc3cd7cfae8fd5150938a59c03910f127d2f98c63998ab016f3bdf32457"
+    },
+    {
+      "path": "tests/e2e/unified-aliases.spec.ts",
+      "bytes": 6293,
+      "sha256": "c947e015077493d416a6928f27ca6cfd307d44086529a8ef49fc804e119f00b7"
+    }
+  ],
+  "staticPureValidation": {
+    "aliasLifecycle": "2 scenarios, 56 method steps, each full snapshot/rows/jc compared; 4 explicit organization definitions",
+    "sidebar": "4 Kf recipes, 8 Ao2/To2/Eo2 fixtures; separate round95 bounds .9495/.9501 and manualmissing0 tests",
+    "markdownLinks": "6 source Ho2/Uo2 fixtures ×8 lookup windows, full output oracle; Canvas caller exact font/tab measure wired, awaiting real long-source UI",
+    "conflicts": "114 full Mf/Af/Ef/Nf/_2 scenarios, exact duplicate/synthetic sets+conflict records+candidates, no evidence mutation",
+    "limitations": "Pure source functions only; no activated competitor processing or Vue native app run"
+  },
+  "runtimeEvidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration035/provenance-slot-api-A-second.log",
+      "result": "1 actual API PASS8.968s, current opaqueID one-to-one/duplicate deletion/fresh no tombstone collision/internal unified enable/type-range edits/foreign409/ambiguous409/no persisted hints/hash unchanged"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration035/entity-filter-api-semantic.log",
+      "result": "1 actual API PASS6.694s after source-slot-aware filter bridge; original score/source/CAS/raw type/full canonical proofs unchanged"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration035/review-workspace-renderer-A.log",
+      "result": "independent C renderer actual API PASS15.687s, Word+Markdown complete server policy/provenance, native and three source codecs reopened"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration035/review-rotation-history-A.log",
+      "result": "3 independent actual API tests PASS28.523s; sourceimmutable geometry/OCR correction/036 provenance id actor chain/pending not accepted snapshot"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration035/unified-alias-api-final.log",
+      "result": "3 real isolated API tests PASS49.636s; immutable v1/v2/v3, mixed references, current occurrence restore, all-doc CAS, no-view_mapping review/export, event-read403, native backup/import, Markdown raw/scan/table mapping+tamper"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration035/entity-filter-api-second.log",
+      "result": "1 real API PASS6.734s; complete 7000+tail canonical query/raw __proto__/original indexes/manual confidence spoof stripped/CAS/RLS/hash/nonmutation"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration035/unified-alias-api-complete.log",
+      "result": "3 real isolated API tests PASS52.559s, expanded selective/inherit/split-merged and cycle400/no revision mutation, same existing v1/v2/v3/RLS/native/Markdown full flows"
+    }
+  ],
+  "frontend": {
+    "status": "unified-actual-Edge-pass-source-review-actual-pending",
+    "actualUnified": {
+      "log": ".data/research/lawbot-2026-10-15/iteration035/unified-alias-edge-fourth.log",
+      "result": "1PASS38.3s natural exit0; enable/global/file override undo/merge/split/reset/flush/review/actual TXT export/download/full occurrence restore; pageerrors[]"
+    },
+    "sourceReviewSpec": "tests/e2e/source-review.spec.ts",
+    "spec": "tests/e2e/unified-aliases.spec.ts",
+    "features": [
+      "enable/disable",
+      "full project token",
+      "document scope override",
+      "merge/unmerge/splitMerged",
+      "perfile split/splitToken/unsplit",
+      "reset/flush",
+      "default/custom/selective styles",
+      "source raw safe text + GFM cells",
+      "UTF16 source selection + virtual source blocks",
+      "all/reference/conflict candidates + exact markIndex",
+      "full-canonical worker type/query/roundedscore filtering; draft trust checks"
+    ]
+  },
+  "securityAdaptations": [
+    "All originals, old v1 rows, immutable group versions and signed artifacts retained; no latest version substitution.",
+    "Group state/forms/history are AEAD sealed. Version SELECT uses existing project access for backend verification; public listing still view_mapping.",
+    "Token/state semantic changes commit actual pending revisions before export REVIEW_REQUIRED; forms-only expansion retains legal old approval refs.",
+    "Multi-form/mixed-version restoration requires authenticated exact full current output occurrence plan. Arbitrary shortened text is rejected; single-valued legacy arbitrary restoration unchanged.",
+    "Graph affects reference renderer only; all candidates remain reviewable, hidden pending are not auto-approved.",
+    "Counter bigint avoids source JS overflow Infinity collisions. Portable malformed graph cycles fail before persistence.",
+    "Cloud durable all-document flush is atomic; source Vm2 may partially mutate in-memory draft before later renderer failure.",
+    "Opaque entity IDs are transport only and validated one-to-one against current server frame; absent identity for ambiguous duplicate histories fails closed; fresh IDs reserve all existing/tombstone identities.",
+    "Whole-record/span slot indexes process a 20,000-row legitimate bulk decision update without global pairwise matching.",
+    "Whole canonical worker filter keeps raw namespaces and real indexes; incoming score/source discarded by reviewMarks, human additions score0, immutable file anchor validation enforced."
+  ],
+  "remaining": [
+    "Licensed competitor processing remains R0.",
+    "Unified aliases actual Edge PASS38.3s; source Markdown long-source Canvas/link/selection spec still awaits serialized actual Edge window; no pixel-identical Vue presentation claim.",
+    "Reference graph raw_ literal names now follow exact source cc(other); canonical raw identity remains fully distinct and available through all-candidate review.",
+    "Organization fullName is from explicit source Ti2/gv producers, not global abbreviation inference.",
+    "Source graph normalizes unknown type families for reference presentation; canonical raw identities and all-candidate path remain separate."
+  ],
+  "finiteStaticClosureReport": "文档/逆向台账/contracts/renderer-finite-static-closure-20261015.json"
+}

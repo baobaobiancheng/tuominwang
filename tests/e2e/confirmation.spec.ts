@@ -27,6 +27,7 @@ test("PDF repeat applies once without native confirmation and one undo removes e
   await page.getByRole("combobox", { name: "区域用途", exact: true }).selectOption("印章");
   await page.getByLabel("结束页", { exact: true }).fill("2");
   await page.getByRole("button", { name: "应用到指定页", exact: true }).click();
+  await expect(page.getByRole("region",{name:"同位置批量标注结果",exact:true}).getByRole("status")).toContainText("已添加 2 个区域",{timeout:30000});
   await expect(page.getByRole("alertdialog", { name: "操作确认" })).toHaveCount(0);
   await expect(canvas.locator(".saved-region")).toHaveCount(1);
   await page.getByRole("button", { name: "下一页原件", exact: true }).click();
@@ -36,6 +37,7 @@ test("PDF repeat applies once without native confirmation and one undo removes e
   await page.getByRole("button", { name: "上一页原件", exact: true }).click();
   await expect(canvas.locator(".saved-region")).toHaveCount(0);
   await page.getByRole("button", { name: "应用到指定页", exact: true }).click();
+  await expect(page.getByRole("region",{name:"同位置批量标注结果",exact:true}).getByRole("status")).toContainText("已添加 2 个区域",{timeout:30000});
   await expect(canvas.locator(".saved-region")).toHaveCount(1);
   await page.getByRole("button", { name: "下一页原件", exact: true }).click();
   await expect(canvas.locator(".saved-region")).toHaveCount(1);

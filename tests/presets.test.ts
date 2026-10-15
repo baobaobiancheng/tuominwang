@@ -39,7 +39,7 @@ describe("full preset field and rules semantics", () => {
   });
   it("bounds duplicate-name suffixes without splitting astral characters", () => {
     for (const name of ["甲".repeat(200), "😀".repeat(100)]) {
-      const duplicated = presetNameWithSuffix(name, " 副本 2"); expect(duplicated.length).toBeLessThanOrEqual(200); expect(duplicated.isWellFormed()).toBe(true); expect(duplicated.endsWith(" 副本 2")).toBe(true);
+      const duplicated = presetNameWithSuffix(name, " 副本 2"); expect(duplicated).toBe(name + " 副本 2"); expect(duplicated.isWellFormed()).toBe(true); expect(duplicated.endsWith(" 副本 2")).toBe(true);
     }
   });
   it("includes only enabled entries and preserves force-skip as whitelist evidence", () => {

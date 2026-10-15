@@ -1,0 +1,195 @@
+{
+  "date": "2026-10-15",
+  "owner": "A /root/complete_rules",
+  "scope": "Explicit automatic Word/shared Markdown review add/delete feedback; cloud authenticated historical feedback adaptation. Does not generalize to PDF/image deletion or automatic learning.",
+  "sourceRuntime": "R0",
+  "sourceFiniteReport": "文档/逆向台账/contracts/visual-finite-source-chains-20261015.json",
+  "producerMatrix": [
+    {
+      "producer": "manual-add / audit-add",
+      "source": "gn2 / manual-add",
+      "feedback": "FN per actual new entity; empty/no actual addition noop"
+    },
+    {
+      "producer": "one-click-add",
+      "source": "one-click add / Mo2",
+      "feedback": "FN one representative with occurrence count"
+    },
+    {
+      "producer": "single-delete",
+      "source": "Ql2",
+      "feedback": "FP one representative for actual current live overlap deletion; prior ignore still a live entity"
+    },
+    {
+      "producer": "tree-delete",
+      "source": "eu2",
+      "feedback": "FP grouped by normalized type/text; user-added counter differs but feedback record still exists"
+    },
+    {
+      "producer": "type-hide",
+      "source": "tu2",
+      "feedback": "none; saveFeedback=false,countAsFp=false; canonical candidates retained"
+    },
+    {
+      "producer": "ordinary decision keep / noop / PDF / image",
+      "feedback": "none; no cause inferred from a generic diff"
+    }
+  ],
+  "sourceOrdering": {
+    "bridge": "Preload205 directly invokes feedback:add-batch; no payload filter or own catch.",
+    "batch": "Mu.addFeedbackBatch appends records, save(), then addAuditLog(); audit persists on a later save.",
+    "learning": "getAllMemories.filter result unused; no updateMemoryFromFeedback call.",
+    "storage": "Source JSON optional key XOR obfuscation; our AEAD/RLS is a declared safety adaptation.",
+    "dedupe": "Source reserves documentName|entityType|start|end|FPFN before RPC, retains keys on failure. Preserved; false/timeouts count zero success in our UI."
+  },
+  "ownContracts": {
+    "prepare": "Current permission, revision, server slot IDs, source/canonical hashes and strong UTF16 anchors. Before/after sanitized against trusted current records.",
+    "semantic": "Canonical source content and corrected semantic text stored separately; client cannot invent original text.",
+    "submit": "User-bound authenticated plan; current permissions and same source/canonical required. Prepared revision cannot be in future; later ordinary review revisions accepted as nonapproval historical feedback.",
+    "idempotency": "Immutable record IDs plus locked encrypted feedback state; same plan parallel submits do not duplicate.",
+    "save": "Dispatcher flush is bounded by independent15s transport, failure swallowed as failed receipt; approval is never fabricated and no learning occurs.",
+    "audit": "Transactional audit is deliberately not source save-before-audit scheduling.",
+    "typeHide": "Persistent ignore+hidden metadata retaining all slots; restore clears hidden flags and requires fresh pending confirmation. Final source birth checked server-side; no feedback for hide/restore."
+  },
+  "verification": {
+    "unit": "2 tests PASS",
+    "authorActual": "2 tests PASS / 13522.986542ms / 0skip",
+    "independentActual": "C 2 tests PASS / 13.53s / 0skip",
+    "cases": [
+      "manual/audit/one-click true additions",
+      "ignore actual deletion FP, ordinary keep no FP",
+      "immediate save and historical plan revision",
+      "parallel duplicate submit idempotent",
+      "semantic149 versus canonical138",
+      "source mismatch409, cross-tenant404, revoked review403",
+      "type-hide/noop/PDF no side effects",
+      "feedback persistence GET and no learned memory"
+    ],
+    "ui": "Root main producer hooks mounted. Final actual UI/gates recorded separately; not inferred from API.",
+    "additionalActual": "Word persistent hide forged-birth1API13.366s; eight codec roundtrips independently1API39.643s; trusted imported birth feedback counter1API3.737s"
+  },
+  "closedIndependentFindings": [
+    {
+      "id": "A-035-native-edit",
+      "before": "Legitimate prior PDF native OCR text edit caused entire page facts skipped via prefix check.",
+      "fix": "Exact span-origin frame, native/ocr/mixed/unknown per-range classification; no wholepage omission.",
+      "independentAfter": "1 API PASS22.058s; before failing log retained."
+    },
+    {
+      "id": "B-geometry",
+      "result": "Independent 2API PASS35.732s with real PNG/PDF/Word pixels and wrongmove RESIDUE_FOUND; no qualified new finding."
+    }
+  ],
+  "files": [
+    {
+      "path": "packages/core/reference-review-feedback.ts",
+      "bytes": 4283,
+      "sha256": "334e00538fd5cf5f4aa3026a4c8829944fc798c7f5bd06ea94e154ff1f270864"
+    },
+    {
+      "path": "packages/core/review-feedback.ts",
+      "bytes": 93,
+      "sha256": "02d53653f1ffc5c0a851b46adb7e88880cad8c1eaec6fc0df038a33d2e4928a6"
+    },
+    {
+      "path": "apps/api/review-feedback.ts",
+      "bytes": 7063,
+      "sha256": "087f985e4cc43fc84761fd16babb9f7e56461f6047f5c53894eb004b6c1d93f4"
+    },
+    {
+      "path": "apps/web/review-feedback.ts",
+      "bytes": 1535,
+      "sha256": "a4e3deefcb6f8bb55ffe5acca9e72e5b35e6a48b5fbff77741107b21afa8ac2b"
+    },
+    {
+      "path": "apps/web/entity-groups.tsx",
+      "bytes": 16721,
+      "sha256": "aea6b06df439bd1f5ea05f0ecc8764682538fd741942c296c354bb9f29f090fd"
+    },
+    {
+      "path": "tests/reference-review-feedback.test.ts",
+      "bytes": 2879,
+      "sha256": "1c2439f3f270f581ba6d08c668f73219d0e76240605130ad3ad555699ee3794a"
+    },
+    {
+      "path": "tests/review-feedback.integration.ts",
+      "bytes": 11820,
+      "sha256": "819093f0343d1e59233b5bf666453b54863bf429bf6d948c553fb46286af1575"
+    }
+  ],
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration035/review-feedback-unit.log",
+      "bytes": 220,
+      "sha256": "be166be4704f71a9fe753abe82e58f53ecc6a036e8c05d51af0b391e49566040"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration035/review-feedback-api-A-final-second.log",
+      "bytes": 413,
+      "sha256": "ef46a19319c253eb73beaab88e649e60db4c1538dd65c7bdc9fc32a21c1220b0"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration036/review-feedback-independent-C.log",
+      "bytes": 413,
+      "sha256": "19bed89036bdb1f4fa1171a7528633b087b60787b1e9c64fe15d225f7c115a33"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration035/review-correction-prior-native-edit-A-before.log",
+      "bytes": 2727,
+      "sha256": "08179b33aaff5f23f01df72a46f62e1df375c2dd68a86c9002b41d4d26753e02"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration035/review-correction-prior-native-edit-A-fixed.log",
+      "bytes": 254,
+      "sha256": "a74812051a6d4be72bd82c3f5113186f0de7bf7f536606b6b7d5510fa776a1e7"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration035/review-entity-corrections-complete-A.log",
+      "bytes": 794,
+      "sha256": "a88d3459b3889049bc4b198ed9439455ab0ea53d3d44d0963233131bd77a019b"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration035/review-entity-geometry-A.log",
+      "bytes": 548,
+      "sha256": "96eaceb9a1e4882729c453a310b10adae764e4d44c9df19a2b653118430519da"
+    }
+  ],
+  "previousFilesBeforePersistentHide": [
+    {
+      "path": "packages/core/reference-review-feedback.ts",
+      "bytes": 4283,
+      "sha256": "334e00538fd5cf5f4aa3026a4c8829944fc798c7f5bd06ea94e154ff1f270864"
+    },
+    {
+      "path": "packages/core/review-feedback.ts",
+      "bytes": 93,
+      "sha256": "02d53653f1ffc5c0a851b46adb7e88880cad8c1eaec6fc0df038a33d2e4928a6"
+    },
+    {
+      "path": "apps/api/review-feedback.ts",
+      "bytes": 7038,
+      "sha256": "f19534dc01067a8bd8605f4135a1fb0fbc63b117f6b09931dc627295f26b25df"
+    },
+    {
+      "path": "apps/web/review-feedback.ts",
+      "bytes": 1535,
+      "sha256": "a4e3deefcb6f8bb55ffe5acca9e72e5b35e6a48b5fbff77741107b21afa8ac2b"
+    },
+    {
+      "path": "apps/web/entity-groups.tsx",
+      "bytes": 16455,
+      "sha256": "e9ee9b2c7191b39d24c85906e66a57e9f83c05a501bacc223b3173ea00dbd3af"
+    },
+    {
+      "path": "tests/reference-review-feedback.test.ts",
+      "bytes": 2879,
+      "sha256": "1c2439f3f270f581ba6d08c668f73219d0e76240605130ad3ad555699ee3794a"
+    },
+    {
+      "path": "tests/review-feedback.integration.ts",
+      "bytes": 11820,
+      "sha256": "819093f0343d1e59233b5bf666453b54863bf429bf6d948c553fb46286af1575"
+    }
+  ],
+  "persistentHideSupplement": "文档/逆向台账/contracts/final-rule-type-hide-boundaries-20261015.json"
+}

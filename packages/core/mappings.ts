@@ -5,7 +5,7 @@ import policy from "./export-policy.generated.js";
 import {literalMatcher} from './literal-matcher.ts';
 import {inspectRestorationTokens} from './restoration-files.ts';
 
-export type Mapping = { id: string; token: string; version: 1; value: string; kind: Mark["kind"];rawEntityType?:string; scope?: string;ordinal?:number; inherited?:boolean; identities?:EntityIdentity[];forms?:string[] };
+export type Mapping = { id: string; token: string; version: number; value: string; kind: Mark["kind"];rawEntityType?:string; scope?: string;ordinal?:number; inherited?:boolean; identities?:EntityIdentity[];forms?:string[] };
 export function mappingMatchesEntity(mapping:Mapping,entity:EntityIdentity){return sameEntity(mapping,entity)||!!mapping.identities?.some(identity=>sameEntity(identity,entity));}
 export function mappingMatchesValue(mapping:Mapping,value:string){return mapping.value===value||!!mapping.forms?.includes(value);}
 export function validateMappingMarks(text: string, marks: Mark[], mappings: Mapping[]) {

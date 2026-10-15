@@ -5,10 +5,10 @@ import type { DocumentView, Mark } from "../../packages/contracts/index.ts";
 type Reference = Extract<NonNullable<Mark["replacement"]>, { mode: "alias" }>;
 type Calls = { run: (action: () => Promise<void>) => Promise<void>; api: <T>(path: string, method?: string, body?: unknown) => Promise<T> };
 
-export function MappingPicker({ doc, mark, assigned, run, api }: Calls & { doc: DocumentView; mark: Mark; assigned: (ref: Reference) => void }) {
+export function MappingPicker({ doc, mark, markIndex, assigned, run, api }: Calls & { doc: DocumentView; mark: Mark;markIndex?:number; assigned: (ref: Reference) => void }) {
   const confirmAction = useConfirmAction();
   const [proposals, setProposals] = useState<Reference[] | null>(null), requestId = useRef(crypto.randomUUID());
-  const body = { revision: doc.revision, start: mark.start, end: mark.end, kind: mark.kind,...mark.rawEntityType!==undefined?{rawEntityType:mark.rawEntityType}:{} };
+  const body = { revision: doc.revision, start: mark.start, end: mark.end, kind: mark.kind,...markIndex!==undefined?{markIndex}:{},...mark.rawEntityType!==undefined?{rawEntityType:mark.rawEntityType}:{} };
   return <div className="mapping-picker">
     {mark.replacement?.mode === "alias" && <p className="muted">项目假名：{mark.replacement.token}</p>}
     <button className="quiet" onClick={() => void run(async () => { const result = await api<{ proposals: Reference[] }>(`/documents/${doc.id}/mapping-proposals`, "POST", body); setProposals(result.proposals); })}>选择项目假名</button>

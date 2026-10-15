@@ -1,0 +1,138 @@
+{
+  "date": "2026-10-15",
+  "state": "both-official-candidates-complete786-research-not-productintegrated",
+  "currentProductSourceOpenCvUntouched": true,
+  "noStartupOrDeploymentResourceChanges": true,
+  "noTestThresholdTuning": true,
+  "candidates": [
+    {
+      "repo": "Ooredoo-Group/ooredoo-stamp-detection",
+      "url": "https://huggingface.co/Ooredoo-Group/ooredoo-stamp-detection",
+      "revision": "4576990c16edc1e67fe543768200e09cc3ee605e",
+      "weightLicense": "Apache-2.0 modelcard; hustvl/yolos-small base alsoApache-2.0",
+      "weightBytes": 122624672,
+      "weightSHA256": "eb767096894faeeb7d71ec45590aaba5fcac29a06f52b9ef2924a827e7f08634",
+      "training": "350images711boxes,Kaggle+HF source names not specified;80/15/5 split",
+      "boundary": "Original training image grants and overlap with786test not established; no blackwhite/Chinesecommercial strata",
+      "decision": "All786complete0error,IoU.5 modelF1=33.78%/combined28.28%; precision28.43%,recall41.60%,IoU.75F1=9.26% inadequate; notintegrated",
+      "resource": "Node3input parity peak883600KiB;1.9–3.6s/imageCPU; cannot infer cohosting safety",
+      "evidence": {
+        "path": "文档/逆向台账/contracts/ooredoo-stamp-validation-20261015.json",
+        "bytes": 23253,
+        "sha256": "3475d7be1cd5ddcb22c4989746d448047b6136bdf19f4e70e2982d2cafcfe983"
+      }
+    },
+    {
+      "repo": "PaddlePaddle/PP-DocLayout-S",
+      "url": "https://huggingface.co/PaddlePaddle/PP-DocLayout-S",
+      "revision": "8ac289e66575bb9bba6e15c53719d8b15cc9b3b2",
+      "weightLicense": "Apache-2.0 officialmodelcard",
+      "weightBytes": 4804904,
+      "weightSHA256": "491c3382d84ca04d2033afbee0c105942ed82fea392bb4a19170646adebe088a",
+      "training": "Self-built mixedChinese/English papers,contracts,etc;23layoutclasses includingseal16;original per-image training grants/overlap undisclosed",
+      "decision": "Own officialPaddle→ONNX17 and3tensorparitypass; all786test0errors model.5F1=13.87%,combined22.69%; no practicalcompletionclaim/no integration",
+      "preprocess": "Official interp2 explicitlyBICUBIC,RGB,480x480distort,ImageNetnormalize,scalefactor480/H,W; officialdraw_threshold.5 andgraphNMSscore.3/iou.5",
+      "onnx": {
+        "bytes": 4917852,
+        "sha256": "33688dbee1c23e34b81777e97cb428eb40f24b242c02b5f623484959e830aec8"
+      },
+      "evidence": {
+        "path": "文档/逆向台账/contracts/paddle-stamp-validation-20261015.json",
+        "bytes": 11081,
+        "sha256": "23c7c3ad179d87170be2714537a463e9ae206c7fee9196c8607fd5e76bc0a526"
+      }
+    },
+    {
+      "repo": "AlihanSDev/digital-inspector",
+      "url": "https://huggingface.co/AlihanSDev/digital-inspector",
+      "revision": "345327ca18b4b8a2a79a1f1bec95b69a3d71f913",
+      "weightLicense": "ModelcardApache-2.0; YOLOv8base licensing needs reconciliation rather than trusting conflicting metadata",
+      "training": "Private Russian/Kazakh hackathon businessdocuments; notpublic dueprivacy",
+      "decision": "Not downloaded weights/integrated; small3.2M but neither training nor upstreamlicense reconciliation established"
+    },
+    {
+      "repo": "nospotfer/stamp-detection",
+      "url": "https://github.com/nospotfer/stamp-detection",
+      "weightLicense": "Apache-2.0 repository code, not a blanket data grant",
+      "training": "RT-DETRv2L training recipe; sevenRoboflow datasets; imagepermissions separatelycheck",
+      "decision": "Public tree no trained weight delivery found; trainingrecipe not deployedmodel. No APIkey/authbypass"
+    },
+    {
+      "repo": "nethsith/sri-lankan-album-stamp-detector-yolo",
+      "url": "https://huggingface.co/nethsith/sri-lankan-album-stamp-detector-yolo",
+      "weightLicense": "MIT declared, YOLOupstream needscheck",
+      "training": "Philatelic postage stamps andpaperlabels onalbum pages",
+      "decision": "Wrongtask; no evidence about document seal localization, excluded not substituted"
+    },
+    {
+      "repo": "pike00/yolo-date-stamp-detector",
+      "url": "https://huggingface.co/pike00/yolo-date-stamp-detector",
+      "weightLicense": "AGPL-3.0",
+      "training": "Camera date digits on scanned old photos",
+      "decision": "Wrongtask, not a document seal detector"
+    },
+    {
+      "repo": "mahmodKhaled/Stamp-Detection",
+      "url": "https://github.com/mahmodKhaled/Stamp-Detection",
+      "weightLicense": "Code license does not resolve Kaggle imagesUnknown",
+      "training": "Auto-label300/1000 via colorHSV; excludes gray/blackwhite",
+      "decision": "Not independent graystamp gold, no permission-chain shortcut"
+    },
+    {
+      "repo": "stefanj0/PP-DocLayout-S-ONNX",
+      "url": "https://huggingface.co/stefanj0/PP-DocLayout-S-ONNX",
+      "weightLicense": "Apache-2.0 claimed inherited fromPaddle official",
+      "decision": "Third-party convertedONNX discovery only; own officialsource conversion prioritized; examplebilinear differsofficialBICUBIC andnotcopiedblindly"
+    }
+  ],
+  "retrievalEvidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/stamp-model-search/PaddlePaddle-PP-DocLayout-L-api.json",
+      "bytes": 955,
+      "sha256": "cb7dd10b9ed352f9a8ab530e1de70756c3e75f628c139d66e13b0e047b55ace1"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/stamp-model-search/PaddlePaddle-PP-DocLayout-M-api.json",
+      "bytes": 953,
+      "sha256": "7901f8cec75b3b760fc5cd9bd4de42f7f2efa76b2312159eaf29938ab119abc4"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/stamp-model-search/PaddlePaddle-PP-DocLayout-S-api.json",
+      "bytes": 952,
+      "sha256": "010524db04ab5191f0ccb225c7477c351071ad72f4bac007573e3828ce2391e5"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/stamp-model-search/digital-inspector-api.json",
+      "bytes": 2947,
+      "sha256": "16d3031427f4efe825b72c319a7919f5b2dc75d3498baf6ba6e65a1139a6d29c"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/stamp-model-search/ooredoo-stamp-detection-api.json",
+      "bytes": 1423,
+      "sha256": "f9f2d1296361a979a3752c7c81e0d1552430cdca6728beabad2d044beebaa401"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/stamp-model-search/paddlex-code-retrieval.json",
+      "bytes": 1073,
+      "sha256": "3b09d65737ba1abc2f893ccb4ce721cd812d7ff7aa7526d8810d74d7a3d769c3"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/stamp-model-search/paddlex-object_detection-predictor.py",
+      "bytes": 22234,
+      "sha256": "e7b1421d33c3f78d20e820c92df8c766ad978b8dbaeac8f0fdd1bbc3b1a9581e"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/stamp-model-search/paddlex-object_detection-processors.py",
+      "bytes": 32685,
+      "sha256": "de2bb4f14f01619435c65df09272d978619c045c915cba465990dc4c32ac3540"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/stamp-model-search/paddlex-vision-processors.py",
+      "bytes": 9431,
+      "sha256": "e6010780c1221990c989a1ad599b39bc471b96c286c35af2200b9e0552a66063"
+    }
+  ],
+  "ooredooParity": ".data/evals/stamp-model/ooredoo-onnx/parity-node.json",
+  "whole786Plan": ".data/research/lawbot-2026-10-15/iteration032/ooredoo-stamp-shard-plan.json",
+  "baselineQuality": "17.44%precision24.03%recall20.21%F1 atIoU.5, not completedpracticalquality"
+}

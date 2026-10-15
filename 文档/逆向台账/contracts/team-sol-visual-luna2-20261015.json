@@ -1,0 +1,292 @@
+{
+  "date": "2026-10-15",
+  "reviewer": "team-sol-visual-luna2",
+  "scope": "Read-only independent static review of page geometry, type hiding, corrections, source view, and save/export chain. Product files and ledger were not changed.",
+  "source": {
+    "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+    "bytes": 2771447,
+    "sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+    "runtime": "R0; public source static evidence only"
+  },
+  "preexistingEvidenceReviewed": [
+    "review-type-hide-source-by-visual-20261015.json",
+    "review-hidden-entity-corrections-by-visual-20261015.json",
+    "visual-finite-source-chains-20261015.json",
+    "renderer-finite-static-closure-20261015.json"
+  ],
+  "sourceNodes": [
+    {
+      "id": "SRC-PDF-er2-tr2",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "lines": [
+        23439,
+        23448
+      ],
+      "sha256": "d12def03dbac32e8cf7c9c3b15a761f99cc5edb30daa3c2a501695d6483fee73",
+      "finding": "getter consumes meta.bboxes, _splitBboxes, then bbox, filters pageNumber; tr2 exact-match tolerance <0.01 else first box. It does not itself produce geometry or rotate source boxes."
+    },
+    {
+      "id": "SRC-PDF-Po2",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "lines": [
+        24330,
+        24366
+      ],
+      "sha256": "3735460f0774787a0114da4d0e51d23922178938d1011ccab94c40dedf15a57c",
+      "finding": "filters deleted/suppressed/type/query/score, keeps original index, projects multi-box display geometry and normalized original text; UI list is derived view."
+    },
+    {
+      "id": "SRC-IMAGE-Si2-Ci2",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "lines": [
+        27304,
+        27348
+      ],
+      "sha256": "ee10481c965e22d772d39b98b7eb3f391f7625ebc4ac5e9459cf90e191250f83",
+      "finding": "single-item delete and keyboard delete use ordinary rejection flow; source UI does not establish persistent type-hide for Image."
+    },
+    {
+      "id": "SRC-WORD-gn2",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "lines": [
+        6536,
+        6570
+      ],
+      "sha256": "d3d7b77b0580e40a91c1dfe5359da5a78cb90f165185ff2e4cff911bf116b368",
+      "finding": "manual full-text additions deduplicate live spans and image path/line/occurrence; only actually added records write FN, no empty append."
+    },
+    {
+      "id": "SRC-WORD-Ql2-eu2-tu2",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "lines": [
+        9621,
+        9690
+      ],
+      "sha256": "ea4ffd3fccd63579cb485369c4a994bcb5ab1d86f95096657ea4ad8b8c309617",
+      "finding": "Ql2 ordinary single delete; eu2 type hide explicitly disables feedback/FP, while group/multi deletion performs aggregate FP; user-added removals decrement FN."
+    },
+    {
+      "id": "SRC-shared-xc-_c-Sc",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "lines": [
+        4270,
+        4288
+      ],
+      "sha256": "11f2b1dd33563d0b1ee3ad8c5e118c273c8ffe76e626c87e4c6d6ab82e799fcd",
+      "finding": "type hide is deleted tombstone + hiddenByType and captures user-added birth; restore yields pending or user-added and changes no feedback itself."
+    },
+    {
+      "id": "SRC-parent-Mm2",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "lines": [
+        34026,
+        34068
+      ],
+      "sha256": "47559ffa51c8d9f95ead5ca3fda9aad82cc5252d7d24b75a63caf3e72eb1d5e9",
+      "sha256Scope": "exact inclusive line slice UTF-8 bytes, newline retained"
+    },
+    {
+      "id": "SRC-parent-apply-four-formats",
+      "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "lines": [
+        34411,
+        34592
+      ],
+      "sha256": "632e9a9cf49bd81b871b0ad9998abd9a7b40f315dcf0e1df577f7f92748630b6",
+      "sha256Scope": "exact inclusive line slice UTF-8 bytes, newline retained"
+    }
+  ],
+  "localImplementation": {
+    "files": {
+      "apps/web/page-review.tsx": "ca0c2a0d2270405acfd0382d8a15cb475d61ccb91b2609cf901785b78a4a0fa0",
+      "apps/web/entity-geometry.tsx": "3687dc5fd22c9daf8cfd5e91d73c76a2a1826eb220fcdc27b2b7edf855eb5ffa",
+      "apps/web/region-edit.tsx": "986791cdf59dd5b3f9b266b03bae6d9442ff6c6912a7386bf91240b0b9b1776e",
+      "apps/web/main.tsx": "6eb32e179e4e3fdf89dc0b114680b954929b029c5e4cf294a8d53e56c2c5a773",
+      "apps/api/entity-geometry.ts": "b8e3b21679e0b3cd259cfae05ff3ea11443322cf59dbdb6f127a87a986dc5fd5",
+      "apps/api/reviews.ts": "de746f3b86b6164c2002144150a1c246512383dfe9bd8a2ddfbfc7644596debe",
+      "packages/adapters/entity-geometry.ts": "5935ee33245a1a67c319707e6f16cca0b54e09d1d87d97aae6dc47c2c0b6dacb",
+      "packages/adapters/page-export.ts": "5f7e7a19131fcd67b54a0c9c597012dfd4e4b469a6961df0b258ed49a2f02f02",
+      "packages/core/page-redaction.ts": "ace5716d6587a06d09ce8c893593a41dbebd41570334afbc5a6c1045324b24aa",
+      "packages/core/entity-corrections.ts": "1bcf10b4f70c72c3a3f1cd50b92e2be458da884383f4440bf7223399f308f809",
+      "apps/api/entity-corrections.ts": "f1cc9c6618c164816af8ec4a5b33857af2b956377bcfd0879c90577d8320c1a1",
+      "apps/api/source-review.ts": "a87c47db62c73fea36fc7c891879bd500b8c8ef996818afe0b1c22bb41a8cf40",
+      "apps/api/review-provenance.ts": "5c31a2377eb0d9066b118adde1c3fda34afe81a1b2e1f3d5df5a53496e5699f2",
+      "packages/core/reference-review-feedback.ts": "334e00538fd5cf5f4aa3026a4c8829944fc798c7f5bd06ea94e154ff1f270864"
+    },
+    "chain": [
+      "PageEditor text selection (apps/web/page-review.tsx) -> main.tsx onMarksChange -> changeMarks(..., manual-add) -> UI dirty state / feedback and automatic rule dispatch.",
+      "Entity geometry UI obtains opaque descriptor from POST /documents/:id/pages/:page/entity-geometries; drag/8 handles edit one box or union of multi-box geometry; page policy stays pending until review save.",
+      "POST review save (apps/api/reviews.ts -> saveReview) binds incoming marks to trusted provenance, validates geometry token against source/content/revision/page map+preview hashes and bounds, snapshots and increments revision.",
+      "Page export validates policy and marks, verifies original source and each page preview hash, computes boxes from glyph map plus authenticated geometry override, rasterizes, OCR-checks selected values, and reopens generated PDF to verify page count/pixels/metadata."
+    ],
+    "sourceReview": "Markdown source view requires view_original, exact revision, canonical content hash and verified sidecar; response returns source text and mapped candidate spans. Review-provenance endpoint also requires view_original and scopes tenant/project/document; inherited provenance is marked non-authoritative for local review.",
+    "corrections": "Correction code stores recognizedText/correctedText in correction frame and applies semantic display/search values separately from canonical text; original source hash is verified during source-dependent API paths."
+  },
+  "findings": [
+    {
+      "id": "VIS-L2-KNOWN-PENDING-PAGE-TEXT-PRODUCER",
+      "status": "known-in-root-work, not counted as new",
+      "observation": "Page selection checks duplicates only among non-ignore/non-hidden marks, then emits a new pending mark. This allows intentional re-add after ignore, but caller semantics depend on the producer label manual-add. Root reported this chain is being corrected and has not completed Edge verification; I did not re-report as a new finding.",
+      "minimalCounterexample": "Synthetic one-page text with one existing ignored mark; select identical text and add mark.",
+      "expected": "A deliberate re-add remains pending and yields one feedback FN event; no accidental duplicate parallel to a visible mark.",
+      "staticActual": "Handler appends the pending mark and main.tsx routes it through manual-add. API review-feedback de-duplicates occupied same-family offsets when computing FN; visible UI may temporarily contain old ignored record plus pending replacement until save.",
+      "impact": "Review state and feedback accounting; no source byte mutation implied.",
+      "runtime": "Not run; Edge pending."
+    },
+    {
+      "id": "VIS-L2-STATIC-NO-NEW-DEFECT",
+      "status": "no new statically provable product defect",
+      "observation": "Geometry guards reject out-of-page or stale page/map/preview/base geometry; multi-box overrides are represented as a list; hidden type marks are ignored by rendering/export decisions through decision=ignore; source hash and review revision gate original-source UI."
+    }
+  ],
+  "counterexampleCoverage": [
+    {
+      "case": "rotated stale bbox",
+      "static": "rotation endpoint rebases correction geometry and replaces canonical page/map data; entity geometry validation binds page mapHash, previewHash, base boxes, mark identity and revision. Existing portable/root geometry report reviewed.",
+      "runtime": "not run"
+    },
+    {
+      "case": "same text across pages/multiple boxes",
+      "static": "PDF getter filters boxes by page; projection preserves displayBboxes; local geometry descriptor and override bind page and multiple boxes. PDF `er2/tr2` is a geometry getter, not deletion-state producer.",
+      "runtime": "not run"
+    },
+    {
+      "case": "eight handles crossing sensitive glyph",
+      "static": "pointer edits update region; browser guard reports when out of page and server revalidates bounds. No visual assertion made.",
+      "runtime": "not run"
+    },
+    {
+      "case": "type hide/save/reopen/restore and feedback",
+      "static": "source xc/_c/Sc and Ql2/eu2/tu2 semantics confirmed; local type-hide feedback builder returns no records/counter delta, type-hidden marks project ignored. Existing codec/API evidence reviewed; no new Edge run.",
+      "runtime": "not run"
+    },
+    {
+      "case": "retain original, no FP; manual addition, FN",
+      "static": "builder excludes type-hide; manual-add emits FN only for newly occupied locations and reports additions. Existing report API receipts reviewed, not independently rerun.",
+      "runtime": "not run"
+    },
+    {
+      "case": "corrected dual text/type and immutable original",
+      "static": "correction frame retains recognized and corrected text; canonical `content`/source are not overwritten by correction application; existing integration report attests synthetic own-image bytes unchanged.",
+      "runtime": "not run"
+    },
+    {
+      "case": "cross-tenant/no original access; export",
+      "static": "source view route uses projectScope + view_original + revision/hash/sidecar checks; export requires separate export permission and verified source. No auth runtime attempt.",
+      "runtime": "not run"
+    },
+    {
+      "case": "tampered/old geometry restore",
+      "static": "geometry tokens seal document/project scope; source/content/revision/map/preview/base hashes, identity and bounds are checked at save/export.",
+      "runtime": "not run"
+    }
+  ],
+  "limitations": [
+    "No services, browser, Edge, or competitor runtime used.",
+    "Competitor runtime/license processing remains R0.",
+    "Source snippets were matched to the existing finite-source-chain ledger IDs and hashes; no new source node is proposed.",
+    "Parent Mm2 and four-format apply range is wider than the existing exact rows; only declared finite chain behavior is summarized, not every line in the interval."
+  ],
+  "reportFiles": [
+    "team-sol-visual-luna2-20261015.md",
+    "team-sol-visual-luna2-20261015.json"
+  ],
+  "geometryTypeHideFollowup": {
+    "status": "static chain resolves safely; combined integration coverage gap",
+    "files": [
+      {
+        "path": "packages/contracts/entity-geometry.ts",
+        "lines": [
+          19,
+          19
+        ],
+        "sha256": "81ee3c8cb960d717cc30859307d16d38907df0f4b4647d1d443ce9c507dcae0f",
+        "finding": "prune compares binding identity/start/end only; toggling hiddenByType/decision preserves same slot geometry."
+      },
+      {
+        "path": "packages/core/page-redaction.ts",
+        "lines": [
+          29,
+          45
+        ],
+        "sha256": "ace5716d6587a06d09ce8c893593a41dbebd41570334afbc5a6c1045324b24aa",
+        "finding": "ordinary regions omit geometry overrides; override is consumed only inside decision===redact branch, so ignore hidden mark does not clear pixels."
+      },
+      {
+        "path": "packages/adapters/entity-geometry.ts",
+        "lines": [
+          35,
+          35
+        ],
+        "sha256": "5935ee33245a1a67c319707e6f16cca0b54e09d1d87d97aae6dc47c2c0b6dacb",
+        "finding": "resolver authenticates retained geometry even when hidden, maps it by mark index; pageBoxes ignores map entry for ignore mark."
+      },
+      {
+        "path": "packages/core/visual-replacement.ts",
+        "lines": [
+          36,
+          57
+        ],
+        "sha256": "7442037bb7675ae4728d273dc2e459ad9202d5ac075f9399d61deb2bb621d4b6",
+        "finding": "shared preview/export plan gates erasure on redact decision; finalClear includes only non-geometry regions."
+      },
+      {
+        "path": "packages/adapters/office-images.ts",
+        "lines": [
+          28,
+          49
+        ],
+        "sha256": "82bcef115ddaee221b02b8b13878b388ece96a3875b78d36906e78ee7887519c",
+        "finding": "Word image plan calls pageBoxes with resolved geometry; image output goes through renderDocumentVisualPage using same plan semantics."
+      },
+      {
+        "path": "apps/api/reviews.ts",
+        "lines": [
+          11,
+          17
+        ],
+        "sha256": "de746f3b86b6164c2002144150a1c246512383dfe9bd8a2ddfbfc7644596debe",
+        "finding": "save validates identity link and re-signs geometry token for next revision."
+      },
+      {
+        "path": "tests/entity-geometry.test.ts",
+        "lines": [
+          4,
+          8
+        ],
+        "sha256": "b5683bcadc34d2a331ffbec9a46fa12a1f3ce2e615656cbc3b66d164135f8509",
+        "finding": "tests prune on removal/type identity changes and hidden descriptor filtering separately; no stored-region hide/restore case."
+      },
+      {
+        "path": "tests/entity-geometry.integration.ts",
+        "lines": [
+          7,
+          7
+        ],
+        "sha256": null,
+        "finding": "geometry export/residue is tested for visible redact mark; no hidden toggle."
+      },
+      {
+        "path": "tests/review-type-hide.integration.ts",
+        "lines": [
+          4,
+          4
+        ],
+        "sha256": "ebd7bd0e88c05641e4c46514f6d00a754fac39ff9e25ab9bc402cc7b4f0e4d5a",
+        "finding": "Word hide/save/export/restore lifecycle has no inline image geometry override."
+      },
+      {
+        "path": "tests/e2e/type-hide-persistence.spec.ts",
+        "lines": [
+          14,
+          17
+        ],
+        "sha256": null,
+        "finding": "browser hide/reload/restore lifecycle has no entityGeometryOverride."
+      }
+    ],
+    "restore": "restoreHiddenReviewEntities clears hidden flags and sets pending while preserving birth. Binding identity/start/end survives; next review save revalidates and re-signs to target revision. Geometry applies only after explicit redact.",
+    "finding": "No static evidence the retained override leaks as a generic region in PDF or Word image export. No existing test covers the combined hide/restore and geometry lifecycle; do not claim tested PASS.",
+    "counterexample": "Synthetic DOCX with OCR image and entity: save expanded geometry, hide type/save/reopen and confirm original pixels remain; restore/save and confirm pending plus same binding with next revision token; set redact and confirm adjusted geometry is used."
+  }
+}

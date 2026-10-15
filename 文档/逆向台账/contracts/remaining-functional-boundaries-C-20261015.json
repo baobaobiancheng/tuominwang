@@ -1,0 +1,309 @@
+{
+  "date": "2026-10-15",
+  "scope": "本轮功能剩余与非等价边界；报告，不改产品",
+  "knownOpenPublicBusinessDefectsInC66": [],
+  "allReverseEngineeringAndNativeEquivalenceComplete": false,
+  "licensedRuntime": "R0",
+  "productFrozen": true,
+  "c66IndividualStatus": {
+    "exactRows": 66,
+    "I4_candidates": 60,
+    "I1_explicitBoundaries": 6
+  },
+  "finitePublicSourceNodesRemainingInAReport": [],
+  "note": "精确实现/测试建议按66行独立列出；不是全258自动升级。平台/源主动下线/许可与可开发遗漏分开。当前无C范围已知未修公共业务反例；最终独立审查和全门禁属于发布前置。",
+  "items": [
+    {
+      "id": "BOUNDARY-LICENSED-RUNTIME",
+      "category": "runtime-not-authorized",
+      "remaining": "竞品许可证保护的完整处理链未执行，私有订单/授权服务实现未取得；所有相应R0保持。公开源码有限S3与我方I4不改变它。",
+      "evidence": [
+        "renderer-finite-static-closure-20261015.json",
+        "workspace-save-source-callgraph-20261015.json"
+      ],
+      "resolvedReports": [
+        {
+          "path": "文档/逆向台账/contracts/renderer-finite-static-closure-20261015.json",
+          "sha256": "a950126394e4eb8974b3cd45f3732f65fad3e1842d20406289ddb7d0cc05510f"
+        },
+        {
+          "path": "文档/逆向台账/contracts/workspace-save-source-callgraph-20261015.json",
+          "sha256": "9a139873f695250820d7727c100f00b5befa140bb5d6e01e6071670c24da9e9e"
+        }
+      ]
+    },
+    {
+      "id": "BOUNDARY-DESKTOP-SECURITY-DOMAIN",
+      "category": "declared-cloud-adaptation",
+      "remaining": "Electron sender/window、OS keychain/localCMK、桌面绝对filePath/fileExists、原生保存/打开对话框不宣称云端等价。路径不被当服务器读取。66行中6项I1明确保留。",
+      "exactI1Rows": [
+        {
+          "id": "IPC-d0b393b9e93d",
+          "name": "dictionary:select-import-file",
+          "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行"
+        },
+        {
+          "id": "IPC-8a12674fee54",
+          "name": "dictionary:select-export-path",
+          "boundary": "原生文件保存对话框未在云端执行；以真实 XLSX 下载交付"
+        },
+        {
+          "id": "IPC-7de3f60b8ed5",
+          "name": "dictionary:select-excel-import-file",
+          "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行"
+        },
+        {
+          "id": "IPC-a80eb991f683",
+          "name": "workspace:list-recovery-prompts",
+          "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0"
+        },
+        {
+          "id": "IPC-86a65aa5ca0e",
+          "name": "workspace:open-dialog",
+          "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0"
+        },
+        {
+          "id": "IPC-98cb505df8ea",
+          "name": "workspace:select-review-profile",
+          "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0"
+        }
+      ],
+      "evidence": [
+        "current-interface-handoff-C-20261015.json",
+        "workspace-save-source-callgraph-20261015.json"
+      ],
+      "resolvedReports": [
+        {
+          "path": "文档/逆向台账/contracts/current-interface-handoff-C-20261015.json",
+          "sha256": "f17bf198d47414d221e8964e0cef6a2dc9beed4dc4428b6102326d390420e27f"
+        },
+        {
+          "path": "文档/逆向台账/contracts/workspace-save-source-callgraph-20261015.json",
+          "sha256": "9a139873f695250820d7727c100f00b5befa140bb5d6e01e6071670c24da9e9e"
+        }
+      ]
+    },
+    {
+      "id": "BOUNDARY-TRANSFER-RECEIPTS",
+      "category": "security-adaptation",
+      "remaining": "源create-transfer自动随机生成口令；云端由调用者提供口令。源进程Map与sender绑定改为加密DB receipt+session；重启running明确interrupted/失败，payload冲突保护更严格。来源MRU native路径/exists为null，cloudId与持久lastSavedAt并存。",
+      "evidence": [
+        "workspace-save-source-callgraph-20261015.json",
+        "workspace-save-normalized-integrity-porting-20261015.json"
+      ],
+      "resolvedReports": [
+        {
+          "path": "文档/逆向台账/contracts/workspace-save-source-callgraph-20261015.json",
+          "sha256": "9a139873f695250820d7727c100f00b5befa140bb5d6e01e6071670c24da9e9e"
+        },
+        {
+          "path": "文档/逆向台账/contracts/workspace-save-normalized-integrity-porting-20261015.json",
+          "sha256": "5215bc45b883bdbae572a071b1b37f5a128e5e4625d490379840784488a3118e"
+        }
+      ]
+    },
+    {
+      "id": "BOUNDARY-RECOVERY-PROMPTS",
+      "category": "non-equivalent-native-session-policy",
+      "remaining": "源未正常退出session和不完整PDF恢复提示过滤不等于云端可用脏稿列表；已有加密CAS恢复流程不据此声称原生提示策略等价。",
+      "evidence": [
+        "current-interface-handoff-C-20261015.json"
+      ],
+      "resolvedReports": [
+        {
+          "path": "文档/逆向台账/contracts/current-interface-handoff-C-20261015.json",
+          "sha256": "f17bf198d47414d221e8964e0cef6a2dc9beed4dc4428b6102326d390420e27f"
+        }
+      ]
+    },
+    {
+      "id": "BOUNDARY-LEGACY-OFFICE",
+      "category": "source-platform-and-format",
+      "remaining": "云LibreOffice按源Mac普通DOC/WPS→DOCX默认；Windows Word/WPS原生桥未执行。WPS原格式输出按源不支持。可选DOC输出为额外严格回读验证能力。原件与归一副本双hash保留，不伪装原格式。",
+      "evidence": [
+        "legacy-office-lifecycle-20261015.json"
+      ],
+      "resolvedReports": [
+        {
+          "path": "文档/逆向台账/contracts/legacy-office-lifecycle-20261015.json",
+          "sha256": "043a606845bd3f9977d61f6c6f4d90f6395909b3f557c689b63e7b85098a85b5"
+        }
+      ]
+    },
+    {
+      "id": "BOUNDARY-PROFILE-20-VS-26",
+      "category": "source-format-expressivity",
+      "remaining": "源20开关不能独立表达自有6扩展类型；source按family投影+明确冲突，nativeProfileSnapshot无损保全部26。不能声称旧原版应用可独立控制这6项。",
+      "evidence": [
+        "project-entity-corrections-porting-20261015.json"
+      ],
+      "resolvedReports": [
+        {
+          "path": "文档/逆向台账/contracts/project-entity-corrections-porting-20261015.json",
+          "sha256": "0650ed6171a0751d0cc9b0d86a6d5417856ca0ff8ad8b8f08528680d138fba17"
+        }
+      ]
+    },
+    {
+      "id": "BOUNDARY-FOREIGN-GEOMETRY-HISTORY",
+      "category": "unverifiable-external-state",
+      "remaining": "跨服务器无旧AEAD key的几何token/历史actor不可凭可编辑ZIP认证，完整保留unresolved并要求当前真实实体显式重选，不自动赋审批。签名归一DOC/WPS witness同域可验并已真实往返。",
+      "evidence": [
+        "project-entity-corrections-porting-20261015.json",
+        "portable-type-hide-closure-20261015.json"
+      ],
+      "resolvedReports": [
+        {
+          "path": "文档/逆向台账/contracts/project-entity-corrections-porting-20261015.json",
+          "sha256": "0650ed6171a0751d0cc9b0d86a6d5417856ca0ff8ad8b8f08528680d138fba17"
+        },
+        {
+          "path": "文档/逆向台账/contracts/portable-type-hide-closure-20261015.json",
+          "sha256": "40419607025475a119df2c33b5c2ed49c3b8100c27dba6967895527922ba6631"
+        }
+      ]
+    },
+    {
+      "id": "BOUNDARY-PDF-ORIGIN",
+      "category": "unknown-historical-input",
+      "remaining": "已编辑历史PDF无可信origin frame仍unknown；跨native/OCR混合替换区间保mixed，不猜纯OCR。当前编辑精确origin段已接并由原失败反例独立关闭。",
+      "evidence": [
+        "project-entity-corrections-porting-20261015.json"
+      ],
+      "resolvedReports": [
+        {
+          "path": "文档/逆向台账/contracts/project-entity-corrections-porting-20261015.json",
+          "sha256": "0650ed6171a0751d0cc9b0d86a6d5417856ca0ff8ad8b8f08528680d138fba17"
+        }
+      ]
+    },
+    {
+      "id": "BOUNDARY-MARKDOWN-GV",
+      "category": "source-intentional-unsupported-branch",
+      "remaining": "源jf2既有视觉纠正排除Markdown，补录mutation loop也无Markdown分派。我方相应scope明确不支持，不虚构该源分支；完整MD解析/编辑/审核/导出另已实现。",
+      "evidence": [
+        "project-entity-corrections-porting-20261015.json"
+      ],
+      "resolvedReports": [
+        {
+          "path": "文档/逆向台账/contracts/project-entity-corrections-porting-20261015.json",
+          "sha256": "0650ed6171a0751d0cc9b0d86a6d5417856ca0ff8ad8b8f08528680d138fba17"
+        }
+      ]
+    },
+    {
+      "id": "BOUNDARY-RETIRED-LEARNER",
+      "category": "source-inactive-not-missing-algorithm",
+      "remaining": "源7 learner方法主动下线/no-op/明确错误，不伪造训练回滚。feedback不自动学习，legacy个人名单迁入后需显式启用。源无caller非诉54词表不伪造默认激活。",
+      "evidence": [
+        "rule-runtime-activation-20261014.json",
+        "feedback-raw-type-closure-20261015.json"
+      ],
+      "resolvedReports": [
+        {
+          "path": "文档/逆向台账/contracts/rule-runtime-activation-20261014.json",
+          "sha256": "047c3d72a02771611ade44430f2eaa62ec3a34169ab264a0718f18e5cb970276"
+        },
+        {
+          "path": "文档/逆向台账/contracts/feedback-raw-type-closure-20261015.json",
+          "sha256": "75d8ad093ee41f75ab11bca35804e623b8dfa74ff742eeac9004b41903f7ab45"
+        }
+      ]
+    },
+    {
+      "id": "BOUNDARY-MCP-EXTERNAL-CLIENTS",
+      "category": "external-runtime-not-verified",
+      "remaining": "43 exact云协议方法已实际矩阵，4外部客户端尚未由外部产品运行；源磁盘task修复只对应云AEAD诊断而非修竞品磁盘。外部AI provider无指定授权不执行材料外发。",
+      "evidence": [
+        "mcp-exact-method-runtime-20261014.json"
+      ],
+      "resolvedReports": [
+        {
+          "path": "文档/逆向台账/contracts/mcp-exact-method-runtime-20261014.json",
+          "sha256": "9ff58e3d45574a58f816d7c6f5fd8955a6b1dad77b037f47bff23e773d4cb441"
+        }
+      ]
+    },
+    {
+      "id": "BOUNDARY-NATIVE-UPDATE",
+      "category": "public-unavailable-and-platform",
+      "remaining": "源官方public更新feed实取404，不能归成私有或可用；原生安装/重启不伪造，云release状态/preferences/ack真实实现不等于桌面自动更新。",
+      "evidence": [
+        "apps/api/release-state.ts",
+        "tests/release-state.integration.ts",
+        ".data/research/lawbot-2026-10-15/iteration032/public-update-feed/error.json"
+      ],
+      "externalEvidence": ".data/research/lawbot-2026-10-15/iteration032/public-update-feed/error.json",
+      "resolvedReports": [
+        {
+          "path": "apps/api/release-state.ts",
+          "sha256": "9589b269c3e791811a79f864a08af6ccbac3d81a25e1728252bcfcf39d63976a"
+        },
+        {
+          "path": "tests/release-state.integration.ts",
+          "sha256": "e51464f5b61e0429be7f9741064cce86842f48f61d296a76b8589e8582fad1cf"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/public-update-feed/error.json",
+          "sha256": "47dc9707476d73e4ed132949b5d12eb36ec95e101f98a8563ecdd3224a978544"
+        }
+      ]
+    },
+    {
+      "id": "BOUNDARY-MODEL-ACCURACY",
+      "category": "measured-quality-not-source-equivalence",
+      "remaining": "Tesseract/OCR、NER跨域、签名模型与源Paddle/私有模型不声称数值等价；公开完整标注评估有真FP/FN。OpenImages5749含raw输入拒绝，1024派生预处理/缓存复用明确；黑白印章无完整真实独立gold。未获授权数据不替换为镜像/合成冒真实。",
+      "evidence": [
+        "visual-full-porting-20261014.json",
+        "public-face-validation-20261014.json"
+      ],
+      "resolvedReports": [
+        {
+          "path": "文档/逆向台账/contracts/visual-full-porting-20261014.json",
+          "sha256": "355131fe640cd785e767e73583ea47daa5223edcac0ce030a1411569ea5cc00b"
+        },
+        {
+          "path": "文档/逆向台账/contracts/public-face-validation-20261014.json",
+          "sha256": "75311ee1b039265bffc9978ad7ad4123a6958255c01af1fabd72e17d8b89ae27"
+        }
+      ]
+    },
+    {
+      "id": "BOUNDARY-SAFETY-GATES",
+      "category": "deliberate-stricter-safety",
+      "remaining": "源未知/歧义替换、畸形工程、隐文残留等部分宽松行为不照搬；保immutable原件/hash、完整覆盖、人工复核、AEAD/RLS与无歧义还原。未弱化Bend门。",
+      "evidence": [
+        "renderer-finite-static-closure-20261015.json"
+      ],
+      "resolvedReports": [
+        {
+          "path": "文档/逆向台账/contracts/renderer-finite-static-closure-20261015.json",
+          "sha256": "a950126394e4eb8974b3cd45f3732f65fad3e1842d20406289ddb7d0cc05510f"
+        }
+      ]
+    },
+    {
+      "id": "BOUNDARY-RELEASE-GATES",
+      "category": "pending-parent-acceptance",
+      "remaining": "本报告不是已部署声明。父级需在最终冻结快照完成完整单元/实际API/Edge/归档与pin验证，再独立核远端部署版本、健康和真实业务流程，不以局部日志替代。",
+      "evidence": [
+        "current-interface-handoff-C-20261015.json"
+      ],
+      "resolvedReports": [
+        {
+          "path": "文档/逆向台账/contracts/current-interface-handoff-C-20261015.json",
+          "sha256": "f17bf198d47414d221e8964e0cef6a2dc9beed4dc4428b6102326d390420e27f"
+        }
+      ]
+    }
+  ],
+  "completedThisNarrowPass": [
+    "source ruleset entries32769 full persistence+last-rule actual detection",
+    "source ruleset known-field normalization and actual general route consumption",
+    "persistent type hide native/V1/V2/V3 and source qU manual birth",
+    "corrected-hidden entity remains ignored; real new OCR supplement birth true",
+    "arbitrary raw feedback type storage/query/display and caller-specific statistics",
+    "normalized derived source verification at save receipt download"
+  ],
+  "peerClosureCompleteForCFollowups": true
+}

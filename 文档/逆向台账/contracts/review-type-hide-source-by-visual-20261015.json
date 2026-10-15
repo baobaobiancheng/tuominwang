@@ -1,0 +1,128 @@
+{
+  "date": "2026-10-15",
+  "reviewer": "complete_visual",
+  "source": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+  "sourceHash": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+  "rows": [
+    {
+      "symbol": "xc/_c/Sc",
+      "start": 4270,
+      "end": 4286,
+      "sha256": "737ddaea04d3f943292533bc5ebaf211e80e2e27a049d2df8b1c0accc06645ed",
+      "branches": "Type hiding is semantic tombstone deleted=true + hiddenByType + capturedmanualbirth; restore removesflags and chooses manual user-added or automaticpending; it is not local disclosure only."
+    },
+    {
+      "symbol": "Word.c2/d2/m2",
+      "start": 6085,
+      "end": 6101,
+      "sha256": "b16bc8b47518180210404b0c505986b6fe8c32ed2294e18089700de70bc7dcc0",
+      "branches": "Deleted means rejected; manual birth depends user-added or knownmanual/project producer IDs, not any user geometry/decision edit; reviewState writes actual entityId/status/operation"
+    },
+    {
+      "symbol": "Word.eu2/tu2",
+      "start": 9645,
+      "end": 9690,
+      "sha256": "e41b7bdaae32ce4feee29011ca52e92438171126d0bb7f62921ce048c465bddd",
+      "branches": "Type hide sends saveFeedback:false/countAsFp:false/typeHidden:true; manualbirth captured before tombstone; ordinarygroup deletion distinct FP/FN accounting"
+    },
+    {
+      "symbol": "VU/WU/qU",
+      "start": 30478,
+      "end": 30490,
+      "sha256": "d39cb3f4efc534fb9902d99d0fb9a27f2e44cdbfaeb22756f610e0d31088df14",
+      "branches": "Serializer persists deleted,hiddenByType,userAdded and reviewState; userAdded survives hidden via hiddenTypeWasUserAdded; deserialize reconstructs bothflags and user_added→user-added"
+    },
+    {
+      "symbol": "Parent.mu2/fu2",
+      "start": 32495,
+      "end": 32508,
+      "sha256": "c6d83ab43110b261e7a720001102bc6a6d99bd2cc34be9093a27527c660a5da6",
+      "branches": "Dirty/source workspace serialization hashes WU review content; hidden/userAdded fields included in saved review, not a session presentation option"
+    },
+    {
+      "symbol": "Parent source reopen qU",
+      "start": 33320,
+      "end": 33324,
+      "sha256": "89c9f86ebb8099a2c9d13ca81e507dc5a4a95872f7fd8bd7d27bb37c6d7a663b",
+      "branches": "Source docx workspace reopen consumes qU then applies actual restored draft"
+    },
+    {
+      "symbol": "Parent batch reopen qU",
+      "start": 33343,
+      "end": 33347,
+      "sha256": "33ec80819ef5cc438c1eb18f05f6ef693a7ac31855a5e367f99953fa2abf0dda",
+      "branches": "Source batch restored docx uses qU entities and persistent reviewDraft; active sensitiveCount excludes rejected"
+    }
+  ],
+  "sourceRuntime": "R0 unchanged; exactstatic bodies only",
+  "implementationAuditStatus": "Persistent type hiding, trusted birth normalization, geometry hide guard and feedback birth consumer implemented. Independent API and unit checks pass; new Edge spec prepared but not yet run.",
+  "securityRequirements": [
+    "Source deleted adapted to Mark.hiddenByType=true with decisionignore, rendering/export mustnotautomaticallyredacthiddenmarks",
+    "No FP/FN write for type-hide or restore; ordinary ignore≠typehide",
+    "Manual birth derives from trusted stored birth and 031 creation provenance, never generic user operations or incoming client booleans.",
+    "source/nativecodec preserveshidden andmanualbirth as pending unapproved inheriteddraft; no silentdrop/no prioraccepted revival"
+  ],
+  "plannedActualEdge": {
+    "path": "tests/e2e/type-hide-persistence.spec.ts",
+    "status": "preparednotrun",
+    "branches": [
+      "realDOCXphoneautocandidates",
+      "realUImanualrawCLIENTA birth+actualFN1baseline",
+      "hide/save/reloadstillhidden+ignore",
+      "restore/savepending for automaticandmanual preservingbirth",
+      "feedbackIDs byteequivalent before/after hides/restores",
+      "canonicaltext unchanged"
+    ]
+  },
+  "tests": {
+    "api": {
+      "log": ".data/research/lawbot-2026-10-15/iteration036/review-type-hide-api-B.log",
+      "result": "1PASS9663ms/0skip, total11588ms"
+    },
+    "units": {
+      "log": ".data/research/lawbot-2026-10-15/iteration036/review-type-hide-units-B.log",
+      "result": "3files9testsPASS815ms"
+    },
+    "codecs": {
+      "log": ".data/research/lawbot-2026-10-15/iteration036/review-type-hide-codecs-units-B.log",
+      "result": "3files10testsPASS1.14s; realfinalserializedreview→sourceqU/o2/d2 verifiesmanualuser-added,notconfirmed,automaticgenericmanualtracefalse"
+    },
+    "geometryGuard": {
+      "log": ".data/research/lawbot-2026-10-15/iteration036/type-hide-geometry-unit.log",
+      "result": "4unitsPASS153ms"
+    },
+    "feedbackBirth": {
+      "log": ".data/research/lawbot-2026-10-15/iteration036/review-feedback-birth-api-B.log",
+      "result": "1 PASS 2321.529917ms; total4221.883ms; 0skip; naturalexit0",
+      "cases": [
+        "automatic stored false + incoming true => FP1/FN0",
+        "trusted inherited true without entity-added history + incoming false => FP0/FN-1",
+        "ordinary deletion still really saves one raw FP record"
+      ]
+    }
+  },
+  "reviewedImplementation": [
+    "Locked save ignores incoming birth/origin, derives previous trustedprovenance exactlinks; newrealmanualentrytrue",
+    "031 entityid retained, type-hidden/type-restored actualactor events; hidden!=ordinaryignore",
+    "C codecs preservehiddenignore/manualbirth, ordinary ignore alone projectswhitelist; pendingconfirmation SQL keepshiddenignore",
+    "C finalserializedtopuser_added + meta liveuser-added survivesqU lastmeta merge and Wordd2 withoutgrantingconfirmed",
+    "B UIgeometry descriptors/overlay/commit suppress currenthidden only, ordinaryignoreunchanged"
+  ],
+  "closedConsumerCheck": {
+    "file": "apps/api/review-feedback.ts",
+    "case": "ImportedtrustedmanualuserAddedtrue + pendingstatus + no localentity-added event, aftertyperestore. Preparetree-delete must useactualcurrentbirth, notonlystatus/sourceChain",
+    "expected": "sourceeu2 counterDelta fp0 fn-1, stilloneFPrawrecord",
+    "status": "closed-independent-reproduction",
+    "implementation": "review-feedback.prepare derives existing entity birth from reviewEntityBirth(storedMark, trustedEntry); incoming userAdded cannot change counters.",
+    "evidence": "tests/review-feedback-birth.integration.ts; independent B run 1 PASS 2321.529917ms, total4221.883ms, 0skip, natural exit0",
+    "scope": "Isolated trusted storage fixture simulates saved source-reader birth. This is not another full TMM runtime test."
+  },
+  "currentProofHashes": {
+    "apps/api/review-feedback.ts": "087f985e4cc43fc84761fd16babb9f7e56461f6047f5c53894eb004b6c1d93f4",
+    "packages/core/review-entity-birth.ts": "053423aad8cf87cf8db37524b2f146a39b0a4ad59b1d64235bb77981ea871bcc",
+    "packages/contracts/entity-geometry.ts": "81ee3c8cb960d717cc30859307d16d38907df0f4b4647d1d443ce9c507dcae0f",
+    "apps/web/entity-geometry.tsx": "3687dc5fd22c9daf8cfd5e91d73c76a2a1826eb220fcdc27b2b7edf855eb5ffa",
+    "tests/review-feedback-birth.integration.ts": "7fa5f397a6fa967f965db551f11f34aadd60e620493540a3146c0aa4ea7fd562",
+    "tests/e2e/type-hide-persistence.spec.ts": "766ac467de123e7054eb642edad7ff795e89872ee24caad38d2a6afd07ab535a"
+  }
+}

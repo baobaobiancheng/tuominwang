@@ -1,0 +1,532 @@
+{
+  "date": "2026-10-15",
+  "scope": "21 visual/restore IPC IDs and six UI IDs; public 0.5.9 source static S3 is separate from own implementation and source runtime R0",
+  "decisionRule": "I4 is only a bounded per-interface recommendation where an independent own implementation and targeted actual evidence exist; it does not assert the current full API or Edge gate passed. I1 means an identified public behavior branch remains absent or current-tree UI verification is incomplete. I3 is a native desktop-only contract adapted to browser workflow.",
+  "releaseBoundary": "Root's complete API run is in progress; fresh full Edge has not passed. No ledger/product/deployment changes in this report.",
+  "sourceGraphs": [
+    "team-sol-visual-static21-join-20261015.json",
+    "root-ui-six-semantic-join-20261015.json",
+    "visual-interface-closure-20261015.json"
+  ],
+  "rows": [
+    {
+      "id": "IPC-a982d6d137ce",
+      "source": "get-pdfjs-worker-path",
+      "sourceContract": "native PDF.js worker URL resolution for packaged/dev/unpacked/temp paths and renderer loader",
+      "ownContract": "PDFium/Node page raster and OCR; web preview does not request Electron worker path",
+      "code": [
+        "packages/adapters/page-export.ts",
+        "apps/web/page-review.tsx"
+      ],
+      "evidence": [
+        "pdfjs-worker-resource-static-by-visual-20261015.json"
+      ],
+      "unportedPublicBranch": "No named Electron workerSrc resolver; it is native infrastructure, not a web-facing operation.",
+      "boundary": "PDF.js internal page/text fidelity and native worker lifecycle are leaves; source runtime R0.",
+      "recommendation": "I3",
+      "reason": "Desktop resource URL contract is outside the web deployment; own page review is a separate adaptation."
+    },
+    {
+      "id": "IPC-47ecc7525dfe",
+      "source": "image-review:clear-ocr-cache",
+      "sourceContract": "delete one q2 OCR cache key; subsequent OCR page/search may miss",
+      "ownContract": "revision and permission checked OCR cache clear with requery miss",
+      "code": [
+        "apps/api/image-utilities.ts",
+        "apps/web/image-utilities.tsx"
+      ],
+      "evidence": [
+        "visual-interface-closure-20261015.json",
+        "tests/image-utilities.integration.ts"
+      ],
+      "unportedPublicBranch": "No material public action branch identified; source caller-supplied key becomes authenticated document scope.",
+      "boundary": "In-memory cache semantics differ; no native OCR engine equivalence.",
+      "recommendation": "I4",
+      "reason": "Targeted real API clear/requery proof exists; bounded web contract implemented."
+    },
+    {
+      "id": "IPC-d3864dc80560",
+      "source": "image:export-labels",
+      "sourceContract": "serialize normalized and absolute boxes to host dataset labels JSON",
+      "ownContract": "permission-scoped labels JSON response downloaded from page UI; preserves long type, confidence zero and geometry",
+      "code": [
+        "apps/api/image-utilities.ts",
+        "apps/web/page-review.tsx",
+        "apps/web/image-utilities.tsx"
+      ],
+      "evidence": [
+        "visual-interface-closure-20261015.json",
+        "tests/image-utilities.integration.ts",
+        "tests/e2e/image-utilities.spec.ts"
+      ],
+      "unportedPublicBranch": "Host home-directory write path is replaced by browser download; no business data branch identified.",
+      "boundary": "Native file path and destination chooser unavailable; source confidence coercion is not copied.",
+      "recommendation": "I4",
+      "reason": "Real API payload and download path are implemented; fresh full Edge remains a release gate."
+    },
+    {
+      "id": "IPC-5569a4344615",
+      "source": "image:save-annotations",
+      "sourceContract": "write image sidecar JSON with boxes and metadata",
+      "ownContract": "authenticated page annotations JSON download with source metadata and geometry",
+      "code": [
+        "apps/api/image-utilities.ts",
+        "apps/web/page-review.tsx",
+        "apps/web/image-utilities.tsx"
+      ],
+      "evidence": [
+        "visual-interface-closure-20261015.json",
+        "tests/image-utilities.integration.ts",
+        "tests/e2e/image-utilities.spec.ts"
+      ],
+      "unportedPublicBranch": "Adjacent host sidecar path is browser download adaptation; no annotation field branch identified.",
+      "boundary": "No native adjacent basename sidecar or OS write error; output filename differs.",
+      "recommendation": "I4",
+      "reason": "Targeted actual API validates fields and downloadable artifact."
+    },
+    {
+      "id": "IPC-0ecb1de9c806",
+      "source": "ocr:collect-diagnostic",
+      "sourceContract": "OCR service diagnostic report with runtime/path/stderr written locally",
+      "ownContract": "authenticated diagnostic probe with redacted cloud summary",
+      "code": [
+        "apps/api/image-utilities.ts",
+        "apps/web/image-utilities.tsx"
+      ],
+      "evidence": [
+        "visual-interface-closure-20261015.json",
+        "tests/image-utilities.integration.ts"
+      ],
+      "unportedPublicBranch": "Local diagnostic path/stderr collection intentionally narrowed for cloud privacy; source private runtime detail is not portable.",
+      "boundary": "Does not prove native Python/Paddle installation or OCR quality.",
+      "recommendation": "I4",
+      "reason": "Actual own diagnostic endpoint and failure result are verified within the web contract."
+    },
+    {
+      "id": "IPC-f02ad1fa2413",
+      "source": "ocr:health-check",
+      "sourceContract": "OCR runtime availability and diagnostic summary",
+      "ownContract": "authenticated OCR model/probe health endpoint and UI action",
+      "code": [
+        "apps/api/image-utilities.ts",
+        "apps/web/image-utilities.tsx"
+      ],
+      "evidence": [
+        "visual-interface-closure-20261015.json",
+        "tests/image-utilities.integration.ts"
+      ],
+      "unportedPublicBranch": "No material public health action branch identified; native host probe is replaced by service probe.",
+      "boundary": "Health response does not establish accuracy, throughput or source private model parity.",
+      "recommendation": "I4",
+      "reason": "Actual probe result and failure response verified."
+    },
+    {
+      "id": "IPC-4dd20e80cae3",
+      "source": "image-review:batch-search",
+      "sourceContract": "multi-page OCR cache search, normalized char/word boxes and adjacent-line hits",
+      "ownContract": "document image-search API returns page and boxes; UI classifies in/out against current marks and corrections",
+      "code": [
+        "packages/core/image-batch-search.ts",
+        "apps/api/image-batch-search.ts",
+        "apps/web/image-batch-search.tsx",
+        "apps/web/page-review.tsx"
+      ],
+      "evidence": [
+        "visual-interface-closure-20261015.json",
+        "tests/image-batch-search.integration.ts",
+        "tests/e2e/image-batch-search.spec.ts"
+      ],
+      "unportedPublicBranch": "No material public search branch identified; source cached q2 and own canonical OCR storage differ.",
+      "boundary": "OCR geometry accuracy and source cache timing remain unproven.",
+      "recommendation": "I4",
+      "reason": "Targeted actual API and prior Edge workflow cover bounded web search; current full Edge still pending."
+    },
+    {
+      "id": "IPC-ba07bb14e3df",
+      "source": "image-review:get-ocr-page",
+      "sourceContract": "read q2 OCR page and, when PDF buffer supplied on cache miss, force OCR through shared inflight J2",
+      "ownContract": "read revision-bound canonical OCR page; separate OCR rerun action exists",
+      "code": [
+        "apps/api/ocr.ts",
+        "apps/api/image-utilities.ts",
+        "apps/web/page-review.tsx"
+      ],
+      "evidence": [
+        "visual-interface-closure-20261015.json",
+        "tests/image-utilities.integration.ts"
+      ],
+      "unportedPublicBranch": "Single get-page request has no source optional PDF-buffer cache-miss forced OCR/inflight promise branch; rerun is separate user action.",
+      "boundary": "A different transaction and error behavior; actual OCR quality is outside proof.",
+      "recommendation": "I1",
+      "reason": "Real page-read API is verified, but this exact public lazy-OCR branch is not one-to-one implemented."
+    },
+    {
+      "id": "IPC-910347ed48b5",
+      "source": "image-review:ocr-region",
+      "sourceContract": "selected canvas rectangle to OCR coordinates, character-center or word fallback text",
+      "ownContract": "revision-bound page region OCR query returns text and box without mutating canonical text",
+      "code": [
+        "apps/api/image-utilities.ts",
+        "apps/web/image-utilities.tsx",
+        "apps/web/page-review.tsx"
+      ],
+      "evidence": [
+        "visual-interface-closure-20261015.json",
+        "tests/image-utilities.integration.ts"
+      ],
+      "unportedPublicBranch": "No material public region selection branch identified; geometry source is own glyph map.",
+      "boundary": "Word fallback approximation and OCR accuracy are quality boundaries.",
+      "recommendation": "I4",
+      "reason": "Targeted real region query checks box/text and cache behavior."
+    },
+    {
+      "id": "IPC-bd4779635d5d",
+      "source": "pseudonym:inspect-restore-mapping",
+      "sourceContract": "read protected .lpm mapping, report count/ambiguities before restore",
+      "ownContract": "project restore mapping inspect with password/permission and ambiguity choice gate",
+      "code": [
+        "apps/api/restoration-files.ts",
+        "apps/web/restoration-files.tsx",
+        "apps/web/restoration-batch.tsx"
+      ],
+      "evidence": [
+        "visual-interface-closure-20261015.json",
+        "tests/restoration-batch.integration.ts"
+      ],
+      "unportedPublicBranch": "Source restoreChoices is inert and ambiguities empty; own meaningful ambiguity gate extends behavior.",
+      "boundary": "Native userData keychain mapping and private source key hierarchy are not transferable.",
+      "recommendation": "I4",
+      "reason": "Targeted actual mapping inspection and web decision gate are implemented."
+    },
+    {
+      "id": "IPC-32941c143267",
+      "source": "pseudonym:open-output-folder",
+      "sourceContract": "Electron shell opens dirname of successful output",
+      "ownContract": "browser artifact download and saved-artifact list",
+      "code": [
+        "apps/web/restoration-files.tsx",
+        "apps/web/restoration-batch.tsx",
+        "apps/api/restoration-batch.ts"
+      ],
+      "evidence": [
+        "visual-interface-closure-20261015.json"
+      ],
+      "unportedPublicBranch": "OS shell.openPath is absent by design in browser.",
+      "boundary": "Browser has no host output directory path.",
+      "recommendation": "I3",
+      "reason": "Native shell convenience only; download/list provides web workflow."
+    },
+    {
+      "id": "IPC-1d272ba10a6c",
+      "source": "pseudonym:restore-docx",
+      "sourceContract": "single Word/WPS mapping restore to chosen output, preserve input and report errors",
+      "ownContract": "DOCX and legacy DOC single restore; default DOC output uses actual LibreOffice conversion and strict DOC reread, while WPS explicitly offers DOCX",
+      "code": [
+        "apps/api/restoration-files.ts",
+        "packages/adapters/processing-worker.ts",
+        "packages/adapters/legacy-restoration.ts",
+        "packages/core/restoration-files.ts",
+        "apps/web/restoration-files.tsx"
+      ],
+      "evidence": [
+        "visual-interface-closure-20261015.json",
+        "tests/legacy-office.integration.ts:28-30",
+        "legacy-office-lifecycle-20261015.md"
+      ],
+      "unportedPublicBranch": "No DOC original-format branch missing. WPS original output is unsupported in the source Mac/LibreOffice branch and honestly rejected here; explicit DOCX is available.",
+      "boundary": "Actual CFB DOC standalone default-original API/reread passed; browser picker differs from native save dialog; source R0.",
+      "recommendation": "I4",
+      "reason": "Actual binary DOC default output, reread body, immutable original hash and encrypted source proof passed; prior I1 was false."
+    },
+    {
+      "id": "IPC-24fe13c4efb6",
+      "source": "pseudonym:restore-docx-batch",
+      "sourceContract": "batch Word/WPS, unique names, per-file progress and partial failures",
+      "ownContract": "Per-file worker routes legacy DOC through legacy-restoration adapter, including default strict DOC export/reread; WPS can explicitly emit DOCX; partial rows and ZIP",
+      "code": [
+        "apps/api/restoration-batch.ts",
+        "packages/adapters/processing-worker.ts",
+        "packages/adapters/legacy-restoration.ts",
+        "packages/core/restoration-batch.ts",
+        "apps/web/restoration-batch.tsx"
+      ],
+      "evidence": [
+        "visual-interface-closure-20261015.json",
+        "tests/legacy-office.integration.ts:15-19",
+        "tests/restoration-batch.integration.ts",
+        "legacy-office-lifecycle-20261015.md"
+      ],
+      "unportedPublicBranch": "No DOC original-format code branch missing: API dispatches legacy through adapter before core restoreBatch. WPS original output is source Mac unsupported and returns explicit failure.",
+      "boundary": "Actual DOC original output was verified on standalone route; batch DOC original follows the same adapter statically, but current recorded batch actual case covers explicit legacy-to-DOCX, not default original DOC. Browser ZIP output differs from native directory.",
+      "recommendation": "I1",
+      "reason": "Functional branch exists; keep I1 only until a targeted actual batch-default-DOC artifact/reread test, not as a missing implementation."
+    },
+    {
+      "id": "IPC-5c2a14961699",
+      "source": "pseudonym:restore-markdown",
+      "sourceContract": "single Markdown longest-token replacement and output file",
+      "ownContract": "uploaded Markdown mapped restore to separate protected artifact and download",
+      "code": [
+        "apps/api/restoration-files.ts",
+        "packages/core/restoration-files.ts",
+        "apps/web/restoration-files.tsx"
+      ],
+      "evidence": [
+        "visual-interface-closure-20261015.json",
+        "tests/restoration-batch.integration.ts"
+      ],
+      "unportedPublicBranch": "No material public substitution branch identified; web protects original instead of source explicit overwrite.",
+      "boundary": "Native save path/overwrite semantics intentionally differ.",
+      "recommendation": "I4",
+      "reason": "Actual cross-run mapping/output content verified; separate artifact is safer web adaptation."
+    },
+    {
+      "id": "IPC-096d3ecc2554",
+      "source": "pseudonym:restore-markdown-batch",
+      "sourceContract": "multiple MD files, unique output names and per-file partial outcomes",
+      "ownContract": "per-file worker restore, saved artifacts, progress and ZIP",
+      "code": [
+        "apps/api/restoration-batch.ts",
+        "packages/core/restoration-batch.ts",
+        "apps/web/restoration-batch.tsx"
+      ],
+      "evidence": [
+        "visual-interface-closure-20261015.json",
+        "tests/restoration-batch.integration.ts",
+        "tests/e2e/restoration-batch.spec.ts"
+      ],
+      "unportedPublicBranch": "No material MD batch processing branch identified; OS directory selection replaced with browser downloads.",
+      "boundary": "No native host output path; fresh full Edge pending.",
+      "recommendation": "I4",
+      "reason": "Actual batch artifacts and downloaded ZIP hash checked in targeted evidence."
+    },
+    {
+      "id": "IPC-0fa110b8534b",
+      "source": "pseudonym:restore-progress",
+      "sourceContract": "transient Electron webContents event while single/batch restore runs",
+      "ownContract": "owner-scoped polling of worker progress, 0-99 during processing and 100 only after persistence",
+      "code": [
+        "apps/api/restoration-batch.ts",
+        "apps/web/restoration-progress.ts",
+        "apps/web/restoration-batch.tsx"
+      ],
+      "evidence": [
+        "visual-interface-closure-20261015.json",
+        "tests/restoration-progress.test.ts",
+        "tests/restoration-batch.integration.ts"
+      ],
+      "unportedPublicBranch": "Electron push transport is replaced by browser polling; no progress semantic branch identified.",
+      "boundary": "Progress map is transient and expires; not a durable job journal.",
+      "recommendation": "I4",
+      "reason": "Real worker event and persistence ordering were verified."
+    },
+    {
+      "id": "IPC-37a279488720",
+      "source": "pseudonym:select-input-docx",
+      "sourceContract": "single native DOC/WPS/DOCX openDialog; legacy renderer unused",
+      "ownContract": "single browser file input with Word extensions",
+      "code": [
+        "apps/web/restoration-files.tsx"
+      ],
+      "evidence": [
+        "visual-interface-closure-20261015.json"
+      ],
+      "unportedPublicBranch": "Native OS dialog path/cancel/filePath is absent; no current source renderer call found for this legacy selector.",
+      "boundary": "Browser File object/upload replaces host path.",
+      "recommendation": "I3",
+      "reason": "Native picker contract outside web; functional selection exists."
+    },
+    {
+      "id": "IPC-f69ef883aa33",
+      "source": "pseudonym:select-input-docx-batch",
+      "sourceContract": "multiple native Word openDialog; legacy renderer unused",
+      "ownContract": "multiple browser file input with Word extensions",
+      "code": [
+        "apps/web/restoration-batch.tsx"
+      ],
+      "evidence": [
+        "visual-interface-closure-20261015.json"
+      ],
+      "unportedPublicBranch": "Native OS dialog/cancel/filePaths absent; no current source renderer call found.",
+      "boundary": "Browser File objects replace host paths.",
+      "recommendation": "I3",
+      "reason": "Native picker adaptation only."
+    },
+    {
+      "id": "IPC-7fe81107ae4d",
+      "source": "pseudonym:select-input-files",
+      "sourceContract": "current mixed native Word/MD openDialog with append/replace draft",
+      "ownContract": "single/multiple browser mixed file inputs",
+      "code": [
+        "apps/web/restoration-files.tsx",
+        "apps/web/restoration-batch.tsx"
+      ],
+      "evidence": [
+        "visual-interface-closure-20261015.json"
+      ],
+      "unportedPublicBranch": "Native append/replace OS path draft affordance is not identical; web files are selected through input, then user can reselect.",
+      "boundary": "No host filePath or Electron cancel event.",
+      "recommendation": "I3",
+      "reason": "Native selector interface is platform-specific; restore action remains available."
+    },
+    {
+      "id": "IPC-6dcdb71fa095",
+      "source": "pseudonym:select-input-markdown",
+      "sourceContract": "single native MD openDialog; legacy renderer unused",
+      "ownContract": "single browser file input with MD/TXT extensions",
+      "code": [
+        "apps/web/restoration-files.tsx"
+      ],
+      "evidence": [
+        "visual-interface-closure-20261015.json"
+      ],
+      "unportedPublicBranch": "Native OS dialog/cancel/filePath absent; no current source renderer call found.",
+      "boundary": "Browser File object replaces host path.",
+      "recommendation": "I3",
+      "reason": "Native picker adaptation only."
+    },
+    {
+      "id": "IPC-93ba5dca8357",
+      "source": "pseudonym:select-input-markdown-batch",
+      "sourceContract": "multiple native MD openDialog; legacy renderer unused",
+      "ownContract": "multiple browser file input with MD/TXT extensions",
+      "code": [
+        "apps/web/restoration-batch.tsx"
+      ],
+      "evidence": [
+        "visual-interface-closure-20261015.json"
+      ],
+      "unportedPublicBranch": "Native OS dialog/cancel/filePaths absent; no current source renderer call found.",
+      "boundary": "Browser File objects replace host paths.",
+      "recommendation": "I3",
+      "reason": "Native picker adaptation only."
+    },
+    {
+      "id": "UI-2c1712d35460",
+      "source": "entity-group-review",
+      "sourceContract": "per-format entity groups, filter/count/occurrence, focus/delete/type hide, parent save/recovery",
+      "ownContract": "group cards, bulk decisions, type hide/restore, current review save; PageEditor focusRange page jump now wired",
+      "code": [
+        "apps/web/entity-groups.tsx",
+        "apps/web/main.tsx",
+        "apps/web/page-review.tsx"
+      ],
+      "evidence": [
+        "root-ui-six-semantic-join-20261015.json",
+        "tests/e2e/entity-workflow.spec.ts",
+        "tests/type-hide-geometry.integration.ts"
+      ],
+      "unportedPublicBranch": "No specific group business branch presently proven absent; new PDF page-focus wiring lacks fresh Edge proof.",
+      "boundary": "Source Word/PDF/Image sidebar pixel layout and lifecycle are not runtime verified; source R0.",
+      "recommendation": "I1",
+      "reason": "Current-tree browser navigation/type-hide persistence gate is outstanding despite API proof."
+    },
+    {
+      "id": "UI-ad41d13c4a2d",
+      "source": "preview-policy-hierarchy",
+      "sourceContract": "unified overall/type/value/individual policy hierarchy and per-format preview/save coordination",
+      "ownContract": "document replacement policy editor with overall/type/value and per-mark override, review save/export preview",
+      "code": [
+        "apps/web/replacement-policies.tsx",
+        "apps/web/review-tools.tsx",
+        "apps/web/main.tsx"
+      ],
+      "evidence": [
+        "root-ui-six-semantic-join-20261015.json",
+        "tests/e2e/review-tools.spec.ts"
+      ],
+      "unportedPublicBranch": "Source single coordinator presents a cross-format hierarchical preview/partial draft lifecycle; own policy editor is document-oriented and does not implement that exact centralized surface.",
+      "boundary": "Source coordinator partial-mutation race and renderer pixel layout are not required to copy.",
+      "recommendation": "I1",
+      "reason": "Core policies exist, but the public unified policy/preview presentation and fresh cross-format Edge proof are incomplete."
+    },
+    {
+      "id": "UI-3f01047e6b59",
+      "source": "full-text-search-scopes",
+      "sourceContract": "all/in/out search across Word/MD/PDF native+OCR/Image with focus/navigation",
+      "ownContract": "revision-bound document text search and image multi-page search with all/in/out classification",
+      "code": [
+        "apps/web/review-tools.tsx",
+        "apps/api/review-tools.ts",
+        "packages/core/review-tools.ts",
+        "apps/web/image-batch-search.tsx",
+        "apps/web/page-review.tsx"
+      ],
+      "evidence": [
+        "root-ui-six-semantic-join-20261015.json",
+        "tests/e2e/review-tools.spec.ts",
+        "tests/e2e/page-selection-edit.spec.ts"
+      ],
+      "unportedPublicBranch": "Source PDF native PDF.js text search fallback and Word image overlay are not the same implementation path; no concrete text result counterexample yet. Current modified page-selection spec lacks fresh pass.",
+      "boundary": "PDF.js native geometry and OCR recall are quality/platform leaves.",
+      "recommendation": "I1",
+      "reason": "Search behavior exists, but per-format scope/navigation on current tree remains insufficiently verified."
+    },
+    {
+      "id": "UI-339d8e53408d",
+      "source": "review-preview-mode",
+      "sourceContract": "single/batch preview modes, child draft, delayed workspace save/recovery",
+      "ownContract": "review/download preview with server-persisted marks, page review and recovery draft",
+      "code": [
+        "apps/web/main.tsx",
+        "apps/web/docx-review.tsx",
+        "apps/web/page-review.tsx"
+      ],
+      "evidence": [
+        "root-ui-six-semantic-join-20261015.json",
+        "tests/e2e/review-tools.spec.ts",
+        "tests/e2e/source-review.spec.ts"
+      ],
+      "unportedPublicBranch": "Source unified child setPreviewMode and delayed workspace snapshot/recovery presentation has no one-to-one web surface; own server draft flow differs.",
+      "boundary": "Native encrypted workspace and renderer lifecycle cannot be claimed run; source R0.",
+      "recommendation": "I1",
+      "reason": "Preview and persistence work, but cross-format mode/recovery UI parity and current Edge are unverified."
+    },
+    {
+      "id": "UI-67e30cf66ad0",
+      "source": "known-entity-audit",
+      "sourceContract": "project ready-file known entity check, same/other/uncovered by format, add/remove into parent draft",
+      "ownContract": "Project-wide ready-document known-entity preview/apply with all-source seeds, revision CAS, one transaction, pending additions and project panel; current UI aggregates by document",
+      "code": [
+        "apps/api/project-entities.ts",
+        "apps/web/project-entities.tsx",
+        "packages/core/review-tools.ts",
+        "apps/api/review-tools.ts",
+        "apps/web/review-tools.tsx"
+      ],
+      "evidence": [
+        "root-ui-six-semantic-join-20261015.json",
+        "tests/project-search.integration.ts",
+        "tests/replacement-policies.integration.ts:45-61",
+        "tests/e2e/review-tools.spec.ts"
+      ],
+      "unportedPublicBranch": "Cross-file audit itself exists. Source Uf2/Rf2/Tf2/av2 offers per-match same/other/uncovered rows, file/occurrence locate, single/all missing add and replaceOther (remove conflicting type then add); project UI currently shows aggregate counts and only add-all-missing. Document UI has independent locate.",
+      "boundary": "Source skips non-ready files; own route currently requires every listed project document state=review and rejects otherwise. Source PDF.js/OCR geometry remains a quality leaf. Project panel has no fresh Edge proof.",
+      "recommendation": "I1",
+      "reason": "Corrected false project-wide-missing claim; remaining gap is per-match action granularity and ready-file skip policy, not project scan/CAS."
+    },
+    {
+      "id": "UI-32ce2fb60c5f",
+      "source": "manual-correction-scope",
+      "sourceContract": "occurrence/document/project correction and uncovered supplements across formats, plus same-position page edits",
+      "ownContract": "project OCR correction preview/apply with CAS, per-document correction records, saved manual regions, same-position geometry",
+      "code": [
+        "apps/web/entity-corrections.tsx",
+        "apps/api/entity-corrections.ts",
+        "packages/core/project-entity-corrections.ts",
+        "apps/web/page-review.tsx"
+      ],
+      "evidence": [
+        "root-ui-six-semantic-join-20261015.json",
+        "project-entity-corrections-porting-20261015.md",
+        "tests/e2e/entity-corrections.spec.ts",
+        "tests/e2e/manual-occurrences-geometry.spec.ts"
+      ],
+      "unportedPublicBranch": "Old ledger claim that project scope is absent is stale. No remaining specific public correction branch proven absent; current-tree browser sequence and cross-format proof are outstanding.",
+      "boundary": "Source cached plan race/partial apply need not be copied; own CAS/transaction and OCR quality differ.",
+      "recommendation": "I1",
+      "reason": "Project functionality is implemented, but fresh full Edge and all-format visible interaction evidence are pending."
+    }
+  ],
+  "revision": "review correction: default DOC original restoration and project-wide audit already implemented; original report bytes saved under iteration039/staged/report-before"
+}

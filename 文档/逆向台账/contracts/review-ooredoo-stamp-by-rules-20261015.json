@@ -1,0 +1,63 @@
+{
+  "scope": "independent metadata recomputation; NOT second inference",
+  "datasetImages": 786,
+  "unique": 786,
+  "goldBoxes": 1315,
+  "source": "文档/评估/Ooredoo印章全量候选验证20261015/per-image.json",
+  "sourceSha256": "71c70fb893a906658afaa3e8bad5e5856ce9fb031242431d2c7ebfe205de4de4",
+  "baselineSha256": "d67e89776ce90aabb3f7a502d59e4a22ad68da82105e7632fdd320b8e8e2f813",
+  "rowComparisons": 4716,
+  "rowDifferences": 0,
+  "sourceImagesAndLabelsAndGoldIdentical": true,
+  "partHashesVerified": [
+    "582b7e97f1c633bcf7061898d6c42da78d3b8021710aef2aefef02cff38b66af",
+    "5e876fd91ea4b86ef5670c39a701200eccd86b566db8a63bfba5258aad58c099",
+    "31e8ce30c097075c57ccae08d931769c2544452119d2fcae4b1d067517a1e811",
+    "b2eda1a9ed5450ab1a87e59662842cb81a52343fafe88f240d346ebfc2b542ee"
+  ],
+  "modelCandidates": 1924,
+  "combinedCandidates": 2772,
+  "metrics": {
+    "predictions": {
+      "0.25": {
+        "tp": 718,
+        "fp": 1206,
+        "fn": 597
+      },
+      "0.5": {
+        "tp": 547,
+        "fp": 1377,
+        "fn": 768
+      },
+      "0.75": {
+        "tp": 150,
+        "fp": 1774,
+        "fn": 1165
+      }
+    },
+    "combinedPredictions": {
+      "0.25": {
+        "tp": 800,
+        "fp": 1972,
+        "fn": 515
+      },
+      "0.5": {
+        "tp": 578,
+        "fp": 2194,
+        "fn": 737
+      },
+      "0.75": {
+        "tp": 159,
+        "fp": 2613,
+        "fn": 1156
+      }
+    }
+  },
+  "accuracyRowsExcluded": 0,
+  "latencyOnlyExcluded": 5,
+  "boundaries": [
+    "No second inference, threshold changes or training.",
+    "Original per-image upstream permission and model training overlap unresolved.",
+    "No independent commercial/blackwhite stratified gold."
+  ]
+}

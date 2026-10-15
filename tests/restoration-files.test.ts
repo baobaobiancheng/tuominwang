@@ -1,6 +1,6 @@
 import { expect, it } from "vitest";
 import { randomBytes } from "node:crypto";
-import { parseRestorationMapping, readRestorationMapping, restoreDocx, restoreMarkdown } from "../packages/core/restoration-files.ts";
+import { parseRestorationMapping, emittedRestorationTokens, readRestorationMapping, restoreDocx, restoreMarkdown } from "../packages/core/restoration-files.ts";
 import { writeProtectedPortable } from "../packages/core/workspace-portable.ts";
 import { officeFixture } from "./office-fixtures.ts";
 import { elements, readZip, xml } from "../packages/core/office-zip.ts";
@@ -89,4 +89,11 @@ it('keeps distinct user-defined plain aliases literal instead of normalizing the
 
 it('rejects XML1.0-invalid original values instead of calling a corrupt Word package restored, while Markdown stays a literal text path',async()=>{
  const token='【姓名001】',input=await officeFixture('docx',{'word/document.xml':`<w:document xmlns:w="${W}"><w:body><w:p><w:r><w:t>${token}</w:t></w:r></w:p></w:body></w:document>`});for(const invalid of ['\u0000','\u0001','\uFFFE','\uFFFF']){const plan=parseRestorationMapping({mappings:{[token]:'合成'+invalid+'原文'}});await expect(restoreDocx(input,plan)).rejects.toThrow('RESTORE_XML_VALUE_INVALID');const invalidInput=await officeFixture('docx',{'word/document.xml':`<w:document xmlns:w="${W}"><w:body><w:p><w:r><w:t>${token}${invalid}</w:t></w:r></w:p></w:body></w:document>`});await expect(restoreDocx(invalidInput,plan)).rejects.toThrow('RESTORE_XML_VALUE_INVALID');expect(restoreMarkdown(Buffer.from(token),plan).output.toString()).toBe('合成'+invalid+'原文');}
+});
+
+it("emitted-token discovery retains complete plain and composite keys without granting a component alias",()=>{
+ const known=['联系代号','【姓名001】【机构001】','前【邮箱001】后','  raw label  '];
+ expect(emittedRestorationTokens('联系代号；【姓名001】【机构001】；前【邮箱001】后；  raw label  ',known)).toEqual(known);
+ expect(emittedRestorationTokens('【姓名001】',known,true)).toEqual([]);
+ expect(emittedRestorationTokens('联系代号；【姓 名001】 \u200b【机构001】；前【邮 箱001】后',known,true)).toEqual(known.slice(0,3));
 });

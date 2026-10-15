@@ -1,0 +1,70 @@
+{
+  "date": "2026-10-15",
+  "reviewer": "complete_visual",
+  "target": "full_inventory_eval",
+  "findings": [
+    {
+      "id": "B-C-MAPPING-TZ-01",
+      "severity": "P2",
+      "status": "closed",
+      "issue": "Backup generated default table name in Asia/Shanghai but validation in UTC regenerated different name and rejected valid backup.",
+      "fix": "Recompile with existing data._meta.tableName when raw source provided no explicit name; preserve full raw input.",
+      "independentResult": {
+        "accepted": true,
+        "originalName": "合成材料.docx_假名表_20261015_0830",
+        "restoredName": "合成材料.docx_假名表_20261015_0830",
+        "rawInputPreserved": true
+      }
+    },
+    {
+      "id": "B-C-MAPPING-UI-02",
+      "severity": "P2",
+      "status": "closed",
+      "issue": "Permission disabled could leave prior original filenames until effect cleanup.",
+      "fix": "Immediate enabled=false render null and synchronous project/permission active ref guard before async completion.",
+      "verification": "Read current mapping-library.tsx; immediate guard and async guard present."
+    }
+  ],
+  "evidence": {
+    "timezoneProbe": ".data/research/lawbot-2026-10-15/iteration032/review-mapping-timezone-recheck.mjs",
+    "timezoneLog": ".data/research/lawbot-2026-10-15/iteration032/review-mapping-timezone-recheck.log"
+  },
+  "checks": [
+    "Forced user+tenant RLS",
+    "project permissions and row lock before LPM save/export",
+    "full raw input and name encrypted with AAD",
+    "stored mapping output hash and compiler invariants revalidated on backup import",
+    "whole/mixed composite source mapping portable restore compatibility independently tested by C"
+  ],
+  "remainingQualifiedFindings": 0,
+  "limits": [
+    "No source native library IPC executed.",
+    "C own library API tests are cited as author evidence only."
+  ],
+  "codeHashes": [
+    {
+      "path": "packages/core/mapping-library.ts",
+      "sha256": "d8f6f33077cb6c858c93b6627e06da99a56af267204c1039fbeaeae325c0c2e9"
+    },
+    {
+      "path": "packages/core/mapping-normalization.ts",
+      "sha256": "bd72f54c59a1882f0d7ba2997c558b32501f7545f632fdb98ecf5245911ee4c9"
+    },
+    {
+      "path": "packages/adapters/mapping-library.ts",
+      "sha256": "d75f5e7d49f88a1b0d312cae27ec8f595480c45b2f9555685d5c99b9b1591b12"
+    },
+    {
+      "path": "apps/api/mapping-library.ts",
+      "sha256": "6e4cb95781f39c67bda1641ac001719ac7a5cd50ffa2ebd8d0e4061e6f0609d4"
+    },
+    {
+      "path": "apps/web/mapping-library.tsx",
+      "sha256": "4ba5a4a1d4689dd5c4ac921849f61651a1c2289a0f288a7da5bad14d5ab53a43"
+    },
+    {
+      "path": "scripts/025.sql",
+      "sha256": "8cf7951ce90730be338e4c9d40612b9947ac2d2408ff3930d4c7985fe8b4ebe8"
+    }
+  ]
+}

@@ -1,0 +1,156 @@
+{
+  "date": "2026-10-15",
+  "status": "primary-search-complete-mixed-public-full-evaluation-complete",
+  "conclusion": "No independently licensed commercial blackwhite page-stamp bbox gold with explicit stratum was obtained. A real mixed public test is available and all786 are being evaluated; absence of independentblackwhitegold is not absence of any public corpus.",
+  "sources": [
+    {
+      "name": "mapo80/stamps",
+      "url": "https://huggingface.co/datasets/mapo80/stamps",
+      "access": "ungated public test.zip HTTP200; complete786images786labels downloaded",
+      "revision": "998243bde1262ccb57ca28ddd6868b05fd1ddf49",
+      "declaredLicense": "CC-BY-4.0 uploader card",
+      "task": "single stamp class YOLO page bounding boxes;661positive125negative1315GT",
+      "limitation": "No per-image original permission/attribution chain; six source families combined and resplit; no blackwhite/Chinesecommercial strata. Not independent commercialblackwhitegold.",
+      "decision": "Parent-authorized local whole786 evaluation unchanged; no images redistributed, no training/test tuning.",
+      "state": "all786complete-no-failures"
+    },
+    {
+      "name": "Stampa stamp detection v1",
+      "url": "https://universe.roboflow.com/stampa/stamp-detection-4jhgg/dataset/1",
+      "access": "Primary web catalog readable; direct local page/version/download requests allHTTP403",
+      "declaredLicense": "CC-BY-4.0 on primary catalog",
+      "task": "object detection; v1train1113,val106,test52;416x416preprocessing",
+      "limitation": "Dataset binary not obtained from official endpoint; no verified blackwhitecommercial stratum",
+      "decision": "Do not bypass403/auth/API-key; no evaluation claimed"
+    },
+    {
+      "name": "Kaggle signatures-and-stamps",
+      "url": "https://www.kaggle.com/datasets/igorkarayman/signatures-and-stamps",
+      "access": "Official anonymous dataset metadata HTTP200",
+      "declaredLicense": "licenseName Unknown in official API",
+      "task": "Russian documents with stamp/signature annotations",
+      "limitation": "Code mirror license does not grant dataset image permissions; no independently verified commercialblackwhite stratum",
+      "decision": "No corpus download/training/evaluation"
+    },
+    {
+      "name": "CHSAD",
+      "url": "https://github.com/usefulbbs/CHSAD",
+      "access": "Primary README HTTP200",
+      "declaredLicense": "No dataset license/download grant in fetched README",
+      "task": "605seal crops,18390real/forged authenticity pairs; test83",
+      "limitation": "Authenticity/crop classification not original document stamp bounding-box localization",
+      "decision": "Not used as bboxgold"
+    },
+    {
+      "name": "M6Doc",
+      "url": "https://github.com/HCIILAB/M6Doc",
+      "access": "Primary README HTTP200; full data encrypted/application, test published free without application/password",
+      "declaredLicense": "CC-BY-NC-ND4.0 research/noncommercial in primary README",
+      "task": "9080pages,74layout categories",
+      "limitation": "Not dedicated blackwhitecommercial seal bboxgold; noncommercial license not a product deployment image grant",
+      "decision": "Not downloaded or product integrated; did not misreport free test as gated"
+    },
+    {
+      "name": "ybli/yolo-stamp-segmentation-detection",
+      "url": "https://huggingface.co/datasets/ybli/yolo-stamp-segmentation-detection",
+      "access": "Card HTTP200; dataset empty, points to membership website",
+      "declaredLicense": "No verified dataset license grant",
+      "task": "Stamp segmentation/detection advertised",
+      "limitation": "No obtainable annotated split in repository",
+      "decision": "No member purchase/login or claim of gold evaluation"
+    },
+    {
+      "name": "nospotfer stamp-detection index",
+      "url": "https://github.com/nospotfer/stamp-detection",
+      "access": "Primary source index HTTP200 lists7Roboflow source projects",
+      "declaredLicense": "Index requests checking each dataset license; no blanket dataset grant",
+      "task": "Multiple stamp sources; not one fixed gold split",
+      "limitation": "Roboflow download APIkeys/auth requirements; mixedsources and unverified grayscale annotations",
+      "decision": "Retained discovery links, no bypass or fake aggregate evaluation"
+    },
+    {
+      "name": "FUNSD upstream negative image source",
+      "url": "https://guillaumejaume.github.io/FUNSD/download/",
+      "access": "Official dataset.zip HTTP20016838830bytes; only RAM ZIP license-entry inspection, no stored/redistributed images",
+      "declaredLicense": "Download page asks to read license, but no license in fetched ZIP; raw repo/LICENSE404; theme license is not dataset grant",
+      "task": "Document form understanding; negative images appear in mapo80combinedtest",
+      "limitation": "Original upstream grant unresolved; do not assert noncommercial from secondary posts",
+      "decision": "Explicit upstream licensing boundary carried into mapo80 evaluation"
+    }
+  ],
+  "retrievalEvidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/gold-search/CHSAD-readme.txt",
+      "bytes": 1685,
+      "sha256": "a1a1b0ac7447d9f5569d172a54672e0d0fef70c07fe185a412ec5d769211df49"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/gold-search/M6Doc-readme.txt",
+      "bytes": 9881,
+      "sha256": "c021fd82ffa42cce64492dc161b3fbd54d463cc3b7233f67ca96351fefa541ad"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/gold-search/funsd-package-license-retrieval.json",
+      "bytes": 216,
+      "sha256": "cb5890f3c9788675c58a6b3b259ac85cf18634a5fb3937682b052aabfcb84be4"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/gold-search/kaggle-source-metadata.txt",
+      "bytes": 5309,
+      "sha256": "412dc26c5f334965edec4629a2234181be6cb33a528cb364f6b3d4e112f81eed"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/gold-search/mapo80-metadata.txt",
+      "bytes": 1803,
+      "sha256": "2b2788fd5b2a73b9032baed8e828c53beddc6a7c2b94704cd7dbc15e33521d3d"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/gold-search/mapo80-readme.txt",
+      "bytes": 2802,
+      "sha256": "fdadaedc3d70d0a439eebeeff035538d6f946290b3b4f18a4de6812164c8ea06"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/gold-search/nospotfer-datasets.txt",
+      "bytes": 382,
+      "sha256": "179d4e775a1fa3b649dc82e155d6987dda3b37a68c7827de99ad3089c13bea47"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/gold-search/retrieval-extra.json",
+      "bytes": 887,
+      "sha256": "074d69f9156deb79aad32798fa1717dcfd1869859ecc316eadf85300ae1e2113"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/gold-search/retrieval.json",
+      "bytes": 3724,
+      "sha256": "1be0e0025787c94a52bc4cf36a1b45f0d6366e802f28da12c7bd5a01caebb652"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/gold-search/stampa-source-sdk.txt",
+      "bytes": 38153,
+      "sha256": "c47cfb7f06796e1ef9362bff9bd10451148ce08a7d87ab40cac724895fa8c787"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/gold-search/ybli-dataset-card.txt",
+      "bytes": 689,
+      "sha256": "48b2c1e0131a723d5e1431627d26d8646e96144c144c17c45639fc1037585e01"
+    }
+  ],
+  "evaluationPlan": ".data/research/lawbot-2026-10-15/iteration032/public-stamp-shard-plan.json",
+  "noBypass": true,
+  "noRawImagesRedistributed": true,
+  "noTrainingOrTestTuning": true,
+  "prohibitedInference": "Synthetic source26numeric cases do not measure real seal accuracy; mixed public oneclass metrics do not isolate blackwhitecommercial seals.",
+  "evaluation": {
+    "report": "文档/逆向台账/contracts/public-stamp-validation-20261015.json",
+    "perImage": "文档/评估/混合公开印章全量验证20261015/per-image.json",
+    "images": 786,
+    "GT": 1315,
+    "TP@0.5": 316,
+    "FP@0.5": 1496,
+    "FN@0.5": 999,
+    "precision": 0.17439293598233996,
+    "recall": 0.2403041825095057,
+    "f1": 0.2021106491845219,
+    "quality": "Insufficient to claim useful automatic seal detection completion; no dedicated commercialblackwhite stratum inferred."
+  }
+}

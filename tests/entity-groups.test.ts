@@ -66,3 +66,8 @@ test("long-value selection stays on its original position when the text window m
   expect(after.map(group => group.id)).toEqual(before.map(group => group.id));
   expect(after.find(group => group.id === before[0].id)?.indices).toEqual([0]);
 });
+
+
+test("distinct full, clear and reference variants report mixed group policies",()=>{for(const pair of [[{mode:'type'},{mode:'full'}],[{mode:'clear'},{mode:'full'}],[{mode:'reference-mask',variant:'default'},{mode:'reference-mask',variant:'detected'}]] as const){const marks=[mark(0,1,{replacement:pair[0]}),mark(1,2,{replacement:pair[1]})];expect(buildEntityGroups({text:'甲甲'},marks)[0].mixedReplacements).toBe(true);}});
+
+test('corrected semantic values group by their own exact slot, without changing the canonical original or merging a duplicate sibling',()=>{const marks=[mark(0,2),mark(0,2)],doc={text:'张三',entityCorrections:{version:1 as const,sourceHash:'a'.repeat(64),contentHash:'b'.repeat(64),capturedRevision:0,entries:[{id:'synthetic-correction',markIndex:0,start:0,end:2,kind:'姓名' as const,recognizedText:'张三',correctedText:'张四',originalType:'person',correctedType:'person',source:'highlight-context-menu' as const,correctedAt:'2026-10-15T00:00:00.000Z',actorId:'server-actor',page:0,lineIndex:0,occurrence:0,boxes:[{x:0,y:0,width:20,height:10}]}]}};const groups=buildEntityGroups(doc,marks);expect(groups.map(g=>({value:g.value,indices:g.indices}))).toEqual([{value:'张四',indices:[0]},{value:'张三',indices:[1]}]);expect(doc.text).toBe('张三');expect(marks).toEqual([mark(0,2),mark(0,2)]);});

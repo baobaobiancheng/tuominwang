@@ -1,0 +1,2838 @@
+{
+  "date": "2026-10-15",
+  "sourceVersion": "0.5.9",
+  "counts": {
+    "registered": 258,
+    "boundedPublicStaticClosed": 224,
+    "nativeExternalBoundary": 19,
+    "privateServiceBoundary": 15,
+    "exactUnreadPublicApplicationNodesIdentified": 0,
+    "competitorRuntimeR0": 258
+  },
+  "definition": "S3仅用于此JSON每行声明的公开有限应用合同及已命名库/OS调用边。不是未取得的服务端、平台库内部、未知版本或许可运行的全代码/行为证明。",
+  "allReverseEngineeringAndEquivalenceComplete": false,
+  "rows": [
+    {
+      "id": "IPC-540edc231d28",
+      "name": "ai-collab:attach-source",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Renderer/preload or local collaboration caller routes to the registered IPC handler; exact caller evidence is in C directSourceEvidence and the deep-collaboration row.",
+        "handler": "Public main.js IPC handler / collaboration service entry shown in direct_evidence.",
+        "consumer": "Expanded local service graph: .data/research/lawbot-2026-10-13/readable/main.js#qw.attachSelectedDocx."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-77baf8b1932c",
+      "name": "ai-collab:attach-sources",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Renderer/preload or local collaboration caller routes to the registered IPC handler; exact caller evidence is in C directSourceEvidence and the deep-collaboration row.",
+        "handler": "Public main.js IPC handler / collaboration service entry shown in direct_evidence.",
+        "consumer": "Expanded local service graph: .data/research/lawbot-2026-10-13/readable/main.js#qw.attachSelectedDocxPaths."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-9f9f62ce116e",
+      "name": "ai-collab:authorize",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Renderer/preload or local collaboration caller routes to the registered IPC handler; exact caller evidence is in C directSourceEvidence and the deep-collaboration row.",
+        "handler": "Public main.js IPC handler / collaboration service entry shown in direct_evidence.",
+        "consumer": "Expanded local service graph: .data/research/lawbot-2026-10-13/readable/main.js#qw.authorizeFromRenderer."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-224e4065477a",
+      "name": "ai-collab:cancel",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Renderer/preload or local collaboration caller routes to the registered IPC handler; exact caller evidence is in C directSourceEvidence and the deep-collaboration row.",
+        "handler": "Public main.js IPC handler / collaboration service entry shown in direct_evidence.",
+        "consumer": "Expanded local service graph: .data/research/lawbot-2026-10-13/readable/main.js#qw.cancelFromRenderer."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-7bc84b77bbab",
+      "name": "ai-collab:change-restore-directory",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Renderer/preload or local collaboration caller routes to the registered IPC handler; exact caller evidence is in C directSourceEvidence and the deep-collaboration row.",
+        "handler": "Public main.js IPC handler / collaboration service entry shown in direct_evidence.",
+        "consumer": "Expanded local service graph: .data/research/lawbot-2026-10-13/readable/main.js#qw.changeRestoreDirectoryFromRenderer."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-0e93232c5223",
+      "name": "ai-collab:consume-open-job",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "main 24436–24439 one-shot queue → renderer le2 30810–30945 → Kg2 36387–36455 → Nn2 31552–31567 → desensitization:register-source/release-sources (rules35); review flow cross-referenced B21/UI6",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-91a4aa41d44c",
+      "name": "ai-collab:diagnostic-event",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Renderer/preload or local collaboration caller routes to the registered IPC handler; exact caller evidence is in C directSourceEvidence and the deep-collaboration row.",
+        "handler": "Public main.js IPC handler / collaboration service entry shown in direct_evidence.",
+        "consumer": "Expanded local service graph: .data/research/lawbot-2026-10-13/readable/main.js#qw.recordRendererDiagnostic."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-3218ff56854c",
+      "name": "ai-collab:fail",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Renderer/preload or local collaboration caller routes to the registered IPC handler; exact caller evidence is in C directSourceEvidence and the deep-collaboration row.",
+        "handler": "Public main.js IPC handler / collaboration service entry shown in direct_evidence.",
+        "consumer": "Expanded local service graph: .data/research/lawbot-2026-10-13/readable/main.js#qw.failFromRenderer."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-2c93659b71ad",
+      "name": "ai-collab:finish-batch-export",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Renderer/preload or local collaboration caller routes to the registered IPC handler; exact caller evidence is in C directSourceEvidence and the deep-collaboration row.",
+        "handler": "Public main.js IPC handler / collaboration service entry shown in direct_evidence.",
+        "consumer": "Expanded local service graph: .data/research/lawbot-2026-10-13/readable/main.js#qw.finishBatchExportFromRenderer."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-0ee2339f025f",
+      "name": "ai-collab:list-pending",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Renderer/preload or local collaboration caller routes to the registered IPC handler; exact caller evidence is in C directSourceEvidence and the deep-collaboration row.",
+        "handler": "Public main.js IPC handler / collaboration service entry shown in direct_evidence.",
+        "consumer": "Expanded local service graph: .data/research/lawbot-2026-10-13/readable/main.js#qw.listPendingForRenderer."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-03b436a7c1b1",
+      "name": "ai-collab:open-job",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Renderer/preload or local collaboration caller routes to the registered IPC handler; exact caller evidence is in C directSourceEvidence and the deep-collaboration row.",
+        "handler": "Public main.js IPC handler / collaboration service entry shown in direct_evidence.",
+        "consumer": "Expanded local service graph: (no method)."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-d0d9bb1ba45b",
+      "name": "ai-collab:open-task",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Renderer/preload or local collaboration caller routes to the registered IPC handler; exact caller evidence is in C directSourceEvidence and the deep-collaboration row.",
+        "handler": "Public main.js IPC handler / collaboration service entry shown in direct_evidence.",
+        "consumer": "Expanded local service graph: .data/research/lawbot-2026-10-13/readable/main.js#qw.openTaskFromRenderer."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-208d016e6972",
+      "name": "ai-collab:prepare-export",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Renderer/preload or local collaboration caller routes to the registered IPC handler; exact caller evidence is in C directSourceEvidence and the deep-collaboration row.",
+        "handler": "Public main.js IPC handler / collaboration service entry shown in direct_evidence.",
+        "consumer": "Expanded local service graph: .data/research/lawbot-2026-10-13/readable/main.js#qw.prepareExportFromRenderer."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-40128ac5fccf",
+      "name": "ai-collab:release-export",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Renderer/preload or local collaboration caller routes to the registered IPC handler; exact caller evidence is in C directSourceEvidence and the deep-collaboration row.",
+        "handler": "Public main.js IPC handler / collaboration service entry shown in direct_evidence.",
+        "consumer": "Expanded local service graph: .data/research/lawbot-2026-10-13/readable/main.js#qw.releaseExportFromRenderer."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-121d180be5d8",
+      "name": "ai-collab:repair-task-storage",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Renderer/preload or local collaboration caller routes to the registered IPC handler; exact caller evidence is in C directSourceEvidence and the deep-collaboration row.",
+        "handler": "Public main.js IPC handler / collaboration service entry shown in direct_evidence.",
+        "consumer": "Expanded local service graph: .data/research/lawbot-2026-10-13/readable/main.js#qw.repairTaskStorageFromRenderer."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-412cb770febe",
+      "name": "ai-collab:report-statistics",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Renderer/preload or local collaboration caller routes to the registered IPC handler; exact caller evidence is in C directSourceEvidence and the deep-collaboration row.",
+        "handler": "Public main.js IPC handler / collaboration service entry shown in direct_evidence.",
+        "consumer": "Expanded local service graph: .data/research/lawbot-2026-10-13/readable/main.js#qw.recordStatisticsFromRenderer."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-fe44165e30fd",
+      "name": "ai-collab:restart-preparation",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Renderer/preload or local collaboration caller routes to the registered IPC handler; exact caller evidence is in C directSourceEvidence and the deep-collaboration row.",
+        "handler": "Public main.js IPC handler / collaboration service entry shown in direct_evidence.",
+        "consumer": "Expanded local service graph: .data/research/lawbot-2026-10-13/readable/main.js#qw.restartPreparationFromRenderer."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-0a8de5567b3c",
+      "name": "ai-collab:restore-completed",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Renderer/preload or local collaboration caller routes to the registered IPC handler; exact caller evidence is in C directSourceEvidence and the deep-collaboration row.",
+        "handler": "Public main.js IPC handler / collaboration service entry shown in direct_evidence.",
+        "consumer": "Expanded local service graph: .data/research/lawbot-2026-10-13/readable/main.js#qw.markRestoreCompletedFromRenderer."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-8b4556ee60d4",
+      "name": "ai-collab:restore-failed",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Renderer/preload or local collaboration caller routes to the registered IPC handler; exact caller evidence is in C directSourceEvidence and the deep-collaboration row.",
+        "handler": "Public main.js IPC handler / collaboration service entry shown in direct_evidence.",
+        "consumer": "Expanded local service graph: .data/research/lawbot-2026-10-13/readable/main.js#qw.markRestoreFailedFromRenderer."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-21f5af67811a",
+      "name": "ai-collab:restore-saved-task",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Renderer/preload or local collaboration caller routes to the registered IPC handler; exact caller evidence is in C directSourceEvidence and the deep-collaboration row.",
+        "handler": "Public main.js IPC handler / collaboration service entry shown in direct_evidence.",
+        "consumer": "Expanded local service graph: .data/research/lawbot-2026-10-13/readable/main.js#qw.restoreSavedTaskFromRenderer."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-b3931f25eb79",
+      "name": "ai-collab:resume-local-restore",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Renderer/preload or local collaboration caller routes to the registered IPC handler; exact caller evidence is in C directSourceEvidence and the deep-collaboration row.",
+        "handler": "Public main.js IPC handler / collaboration service entry shown in direct_evidence.",
+        "consumer": "Expanded local service graph: .data/research/lawbot-2026-10-13/readable/main.js#qw.resumeLocalRestoreFromRenderer."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-eceef0e6cff3",
+      "name": "ai-collab:retry-authorization",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Renderer/preload or local collaboration caller routes to the registered IPC handler; exact caller evidence is in C directSourceEvidence and the deep-collaboration row.",
+        "handler": "Public main.js IPC handler / collaboration service entry shown in direct_evidence.",
+        "consumer": "Expanded local service graph: .data/research/lawbot-2026-10-13/readable/main.js#qw.rollbackAuthorizationAfterImportFailure."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-6c981281c999",
+      "name": "ai-collab:retry-confirmation",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Renderer/preload or local collaboration caller routes to the registered IPC handler; exact caller evidence is in C directSourceEvidence and the deep-collaboration row.",
+        "handler": "Public main.js IPC handler / collaboration service entry shown in direct_evidence.",
+        "consumer": "Expanded local service graph: .data/research/lawbot-2026-10-13/readable/main.js#qw.retryRestoreConfirmationFromRenderer."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-2f0db8546650",
+      "name": "ai-collab:retry-restore",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Renderer/preload or local collaboration caller routes to the registered IPC handler; exact caller evidence is in C directSourceEvidence and the deep-collaboration row.",
+        "handler": "Public main.js IPC handler / collaboration service entry shown in direct_evidence.",
+        "consumer": "Expanded local service graph: .data/research/lawbot-2026-10-13/readable/main.js#qw.retryRestoreFromRenderer."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-3b4c9f7c2b97",
+      "name": "ai-collab:set-review-intent",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Renderer/preload or local collaboration caller routes to the registered IPC handler; exact caller evidence is in C directSourceEvidence and the deep-collaboration row.",
+        "handler": "Public main.js IPC handler / collaboration service entry shown in direct_evidence.",
+        "consumer": "Expanded local service graph: .data/research/lawbot-2026-10-13/readable/main.js#qw.setReviewIntentFromRenderer."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-a3eee81b75d4",
+      "name": "ai-collab:standalone-restore-completed",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Renderer/preload or local collaboration caller routes to the registered IPC handler; exact caller evidence is in C directSourceEvidence and the deep-collaboration row.",
+        "handler": "Public main.js IPC handler / collaboration service entry shown in direct_evidence.",
+        "consumer": "Expanded local service graph: .data/research/lawbot-2026-10-13/readable/main.js#qw.markStandaloneRestoreCompletedFromRenderer."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-b67938c0cb2f",
+      "name": "app:consume-open-path",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "Dashboard mounted从appRuntime一次消费冷启动.tmm路径，非空交Od2→store.openRecent；reject吞掉，后续仍订阅热启动onOpenPath。",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-7f4cfe68e159",
+      "name": "app:export-crash-log",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "本发布包未引用的暴露/注册端点，不能虚构UI按钮",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-f5725b5e0d8a",
+      "name": "app:get-docx-safe-mode",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "renderer没有docxSafeMode命名空间；profiles.get/rulesets.get和Map.get等同名方法已排除。",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-a26e3c125cb6",
+      "name": "app:get-env",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "case store.fetchEnvironment由AppHeader mounted触发，更新environment；LicenseView mounted另走window.ipc.invoke读取版本/mode，后读取授权状态。异常保留默认显示。",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-611ab311c5f6",
+      "name": "app:get-version",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "本发布包未引用的暴露/注册端点，不能虚构UI按钮",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-499bd8d4596b",
+      "name": "app:open-external",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "DOCX预览/文本预览点击http或https链接",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-a11af873aa1a",
+      "name": "app:open-path",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "OS open-file/second-instance→主进程app:open-path→appRuntime.onOpenPath→Dashboard mounted订阅→Od2(path)→workspace store.openRecent→恢复审查；打开失败刷新最近列表并显示错误。",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-5d7065a40d45",
+      "name": "app:read-legal-doc",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "应用菜单用户协议/产品介绍/隐私政策",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-65f32fe31f76",
+      "name": "app:read-onboarding-sample",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "导入页“导入示例文档”",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-2e9ce1df9fec",
+      "name": "app:reset-docx-safe-mode",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "DOCX安全预览提示“恢复高保真预览”",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-e25810712ab1",
+      "name": "app:set-docx-safe-mode",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "renderer没有docxSafeMode命名空间；Map.set等同名方法已排除。",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-28d93302bd32",
+      "name": "app:write-clipboard-text",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "应用菜单的传输副本弹窗“复制传输密码”",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-69f3f32b9683",
+      "name": "auth:change-password",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "应用菜单“修改密码”/确认新密码回车",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-4567d2cc2f1d",
+      "name": "auth:check-password",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "应用菜单修改密码“验证当前密码”/旧密码回车",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-ba48a535d0b1",
+      "name": "auth:get-capabilities",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "三处：菜单ve2检查是否配置密码；AuthDialog mounted R2选择系统/密码/设置/迁移阶段；Dashboard qa2在受保护操作前要求initialized/unlocked否则打开认证弹窗。",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-5f5d0e7e7171",
+      "name": "auth:has-password",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "workspace打开/保存前密钥状态检查；认证能力读取失败后的fallback",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-9ac7b5cfa48e",
+      "name": "auth:lock",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "auth.lock无调用；其他lock命中来自流/ZIP等三方对象，不能作为认证锁定入口。",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-1a2923d565e2",
+      "name": "auth:migrate-legacy-password",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "认证弹窗“验证并升级”/新密码输入回车",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-5634886c31f2",
+      "name": "auth:request-system-grant",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "认证弹窗“使用Touch ID或Mac密码”",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-82ace6842a00",
+      "name": "auth:restore-session-token",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "RestorePseudonymPanel mounted→ee2；自动回填ie2和用户重试前再次ee2。P2=window.anbao。成功保存authToken并设置已认证；失败清token、进入认证弹窗。",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-f96c39b98bc8",
+      "name": "auth:set-password",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "AuthDialog设置并继续按钮/Enter→F2：先校验最少4位及两次一致→i2.auth.setPassword；verify-or-setup再verifyPassword取得token；设置成功但授权失败不会报告全部成功。",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-251d99e85000",
+      "name": "auth:verify-password",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "认证弹窗确认/回车；verify-or-setup设密码后的授权回填",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-73870d051b3f",
+      "name": "debug:get-paths",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "本发布包未引用的暴露/注册端点，不能虚构UI按钮",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-25271d44841c",
+      "name": "dictionary:add-entry",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "本发布包未引用的暴露/注册端点，不能虚构UI按钮",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-3f0d71fadee4",
+      "name": "dictionary:download-excel-template",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "本发布包未引用的暴露/注册端点，不能虚构UI按钮",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-0f2d4d6b6262",
+      "name": "dictionary:export",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "本发布包未引用的暴露/注册端点，不能虚构UI按钮",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-22c459a29cd7",
+      "name": "dictionary:export-excel",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "本发布包未引用的暴露/注册端点，不能虚构UI按钮",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-acbca2a96370",
+      "name": "dictionary:get-entries",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "发布renderer没有该专用方法成员或通道字面调用；只有preload暴露和主进程注册，不能虚构对应按钮。",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-50d02c91469e",
+      "name": "dictionary:import",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "本发布包未引用的暴露/注册端点，不能虚构UI按钮",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-c19a241811ac",
+      "name": "dictionary:record-hint-action",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "发布renderer没有该专用方法成员或通道字面调用；只有preload暴露和主进程注册，不能虚构对应按钮。",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-80e954e3a669",
+      "name": "dictionary:remove-entry",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "发布renderer没有该专用方法成员或通道字面调用；只有preload暴露和主进程注册，不能虚构对应按钮。",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-9b9d5a0f489e",
+      "name": "dictionary:save-export-file",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "发布renderer没有该专用方法成员或通道字面调用；只有preload暴露和主进程注册，不能虚构对应按钮。",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-7de3f60b8ed5",
+      "name": "dictionary:select-excel-import-file",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "本发布包未引用的暴露/注册端点，不能虚构UI按钮",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-8a12674fee54",
+      "name": "dictionary:select-export-path",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "发布renderer没有该专用方法成员或通道字面调用；只有preload暴露和主进程注册，不能虚构对应按钮。",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-d0b393b9e93d",
+      "name": "dictionary:select-import-file",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "发布renderer没有该专用方法成员或通道字面调用；只有preload暴露和主进程注册，不能虚构对应按钮。",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-429f13ae0835",
+      "name": "electron:save-pdf-to-desensitized",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "本发布包未引用的暴露/注册端点，不能虚构UI按钮",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-d874c25112ba",
+      "name": "feedback:add",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "renderer实际使用feedback.addBatch；没有feedback.add。普通Set.add/Array等同名方法已排除。",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-6ff537a49940",
+      "name": "feedback:add-batch",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": null,
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-b828b79da058",
+      "name": "feedback:clear-all",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "发布renderer没有该专用方法成员或通道字面调用；只有preload暴露和主进程注册，不能虚构对应按钮。",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-b2c075e4afde",
+      "name": "feedback:delete-by-document",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "发布renderer没有该专用方法成员或通道字面调用；只有preload暴露和主进程注册，不能虚构对应按钮。",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-efc77b9d6c1d",
+      "name": "feedback:delete-by-id",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "发布renderer没有该专用方法成员或通道字面调用；只有preload暴露和主进程注册，不能虚构对应按钮。",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-196efa6b695b",
+      "name": "feedback:export-audit-report",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "本发布包未引用的暴露/注册端点，不能虚构UI按钮",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-14a3820628e8",
+      "name": "feedback:get-document-stats",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "本发布包未引用的暴露/注册端点，不能虚构UI按钮",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-9bb6c463b31f",
+      "name": "feedback:get-global-stats",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "发布renderer没有该专用方法成员或通道字面调用；只有preload暴露和主进程注册，不能虚构对应按钮。",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-feab6613b5ed",
+      "name": "feedback:query",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "query为路由/DOM/三方对象字段，未归属于anbao.feedback。",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-8018ac372ad7",
+      "name": "learner:get-high-confidence-memory-count",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "suggest S3, handler contract only",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-ca4c19558c55",
+      "name": "learner:get-snapshots",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "suggest S3, retired constant endpoint only",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-5457cc5660c4",
+      "name": "learner:get-stats",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": null,
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-caef950fe9a5",
+      "name": "learner:rollback",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "suggest S3, retired constant endpoint only",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-7fb83198252b",
+      "name": "learner:rollback-previous",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "suggest S3, registered but not exposed handler only",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-43e13058e656",
+      "name": "learner:rollback-to-previous",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "suggest S3, retired constant endpoint only",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-2c55a1969fb8",
+      "name": "learner:update-rules",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "suggest S3, retired constant endpoint only",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-7c61ecffef61",
+      "name": "log:renderer-error",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "DOCX预览失败、审查挂载异常、Vue捕获、window error/unhandledrejection；preload异常兜底",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-29896d043df3",
+      "name": "mcp-connectors:choose-folder",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Renderer/preload or local collaboration caller routes to the registered IPC handler; exact caller evidence is in C directSourceEvidence and the deep-collaboration row.",
+        "handler": "Public main.js IPC handler / collaboration service entry shown in direct_evidence.",
+        "consumer": "Expanded local service graph: .data/research/lawbot-2026-10-13/readable/main.js#ax.getAutomationSettings; .data/research/lawbot-2026-10-13/readable/main.js#ax.updateAutomationSettings."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-cf6cc425333d",
+      "name": "mcp-connectors:copy-setup",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Renderer/preload or local collaboration caller routes to the registered IPC handler; exact caller evidence is in C directSourceEvidence and the deep-collaboration row.",
+        "handler": "Public main.js IPC handler / collaboration service entry shown in direct_evidence.",
+        "consumer": "Expanded local service graph: .data/research/lawbot-2026-10-13/readable/main.js#ax.getSetupText; .data/research/lawbot-2026-10-13/readable/main.js#ax.prepareDshPlugin; .data/research/lawbot-2026-10-13/readable/main.js#ax.markSetupPrepared."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-d70108ef71d7",
+      "name": "mcp-connectors:get-status",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Renderer/preload or local collaboration caller routes to the registered IPC handler; exact caller evidence is in C directSourceEvidence and the deep-collaboration row.",
+        "handler": "Public main.js IPC handler / collaboration service entry shown in direct_evidence.",
+        "consumer": "Expanded local service graph: .data/research/lawbot-2026-10-13/readable/main.js#ax.getSnapshot."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-1c4d31759888",
+      "name": "mcp-connectors:open",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Renderer/preload or local collaboration caller routes to the registered IPC handler; exact caller evidence is in C directSourceEvidence and the deep-collaboration row.",
+        "handler": "Public main.js IPC handler / collaboration service entry shown in direct_evidence.",
+        "consumer": "Expanded local service graph: .data/research/lawbot-2026-10-13/readable/main.js#ax.openConnector."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-13b1b9cd954f",
+      "name": "mcp-connectors:retry",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Renderer/preload or local collaboration caller routes to the registered IPC handler; exact caller evidence is in C directSourceEvidence and the deep-collaboration row.",
+        "handler": "Public main.js IPC handler / collaboration service entry shown in direct_evidence.",
+        "consumer": "Expanded local service graph: .data/research/lawbot-2026-10-13/readable/main.js#ax.getSnapshot; .data/research/lawbot-2026-10-13/readable/main.js#px.start."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-7a1832cb9fe9",
+      "name": "mcp-connectors:update-automation",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Renderer/preload or local collaboration caller routes to the registered IPC handler; exact caller evidence is in C directSourceEvidence and the deep-collaboration row.",
+        "handler": "Public main.js IPC handler / collaboration service entry shown in direct_evidence.",
+        "consumer": "Expanded local service graph: .data/research/lawbot-2026-10-13/readable/main.js#ax.updateAutomationSettings."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-f8d8e4c7c379",
+      "name": "net:get-stats",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "Dashboard sn2→net.getStats读取计数/offline，更新在线状态；un2立即及每2秒轮询，visibilitychange隐藏时停轮询；失败保留前值。",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-539465a49a9b",
+      "name": "net:reset-stats",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "本发布包未引用的暴露/注册端点，不能虚构UI按钮",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-978012face0b",
+      "name": "net:set-offline",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "发布renderer没有该专用方法成员或通道字面调用；只有preload暴露和主进程注册，不能虚构对应按钮。",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-7b3025225249",
+      "name": "preference:record-successful-export",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "suggest S3, preference-recording contract only",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-3d307eb4bc00",
+      "name": "preference:set-default-profile",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "scoped S3",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-0b6b223f384f",
+      "name": "profile:create",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "suggest S3, profile-create API and UI flow only",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-7e8602707608",
+      "name": "profile:delete",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "suggest S3, profile-delete API and UI flow only",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-271b4728636e",
+      "name": "profile:duplicate",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "scoped S3",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-ddc5ff507c75",
+      "name": "profile:get",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "suggest S3, profile-read API and callers only",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-92e8c95a136b",
+      "name": "profile:list",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "suggest S3, profile-list API and caller only",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-59456f319530",
+      "name": "profile:update",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "suggest S3, profile-update API and UI flow only",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-420bf82d10ca",
+      "name": "pseudonym:list-mappings",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": null,
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-6f749dcd2e0f",
+      "name": "pseudonym:save-mapping",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": null,
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-a05e3b6af8e1",
+      "name": "review:add-feedback",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "发布renderer没有该专用方法成员或通道字面调用；只有preload暴露和主进程注册，不能虚构对应按钮。",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-7d7beed074d0",
+      "name": "review:clear-all",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "本发布包未引用的暴露/注册端点，不能虚构UI按钮",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-e024a8242875",
+      "name": "review:export-audit-log",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "发布renderer没有该专用方法成员或通道字面调用；只有preload暴露和主进程注册，不能虚构对应按钮。",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-bb6001e11068",
+      "name": "review:export-proof-lite",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "发布renderer没有该专用方法成员或通道字面调用；只有preload暴露和主进程注册，不能虚构对应按钮。",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-d3e5e1de12d2",
+      "name": "review:export-user-memories",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "发布renderer没有该专用方法成员或通道字面调用；只有preload暴露和主进程注册，不能虚构对应按钮。",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-9dbd84b9715b",
+      "name": "review:get-blacklist",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "发布renderer没有该专用方法成员或通道字面调用；只有preload暴露和主进程注册，不能虚构对应按钮。",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-72093dfff7bf",
+      "name": "review:get-feedbacks",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "本发布包未引用的暴露/注册端点，不能虚构UI按钮",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-b199b300f630",
+      "name": "review:get-statistics",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "发布renderer没有该专用方法成员或通道字面调用；只有preload暴露和主进程注册，不能虚构对应按钮。",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-9a7ac510f8c7",
+      "name": "review:get-whitelist",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "发布renderer没有该专用方法成员或通道字面调用；只有preload暴露和主进程注册，不能虚构对应按钮。",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-18da1e923824",
+      "name": "ruleset:create",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": null,
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-620a9576690e",
+      "name": "ruleset:delete",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": null,
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-7754362b9148",
+      "name": "ruleset:download-excel-template",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": null,
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-337d01816990",
+      "name": "ruleset:export-excel",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": null,
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-8bfb6ec9fcd8",
+      "name": "ruleset:get",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": null,
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-c17682083b52",
+      "name": "ruleset:import-excel",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": null,
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-c04013aa6e1b",
+      "name": "ruleset:list",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": null,
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-2bdb599038fb",
+      "name": "ruleset:preview-workspace-promotion",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": null,
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-2187e949f831",
+      "name": "ruleset:set-active",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": null,
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-9a6a89a8fb10",
+      "name": "ruleset:update",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": null,
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-e6a8f1b41825",
+      "name": "workspace:create-transfer",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "preload保留createTransfer；当前renderer没有createTransfer成员或该通道字面量，不能用页面传输文案推断此调用。",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-f53f8972c1a5",
+      "name": "workspace:discard-recovery",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": null,
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-3c8789ad9a8f",
+      "name": "workspace:forget-recent",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": null,
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-7e55b9d273b1",
+      "name": "workspace:list-recent",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": null,
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-be30d4526c26",
+      "name": "workspace:list-recoveries",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": null,
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-a80eb991f683",
+      "name": "workspace:list-recovery-prompts",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": null,
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-f417c3628886",
+      "name": "workspace:migrate-v1-to-v2",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "发布renderer没有该专用方法成员或通道字面调用；只有preload暴露和主进程注册，不能虚构对应按钮。",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-feb24aa50a4f",
+      "name": "workspace:open",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": null,
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-86a65aa5ca0e",
+      "name": "workspace:open-dialog",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": null,
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-8ed0acbb4144",
+      "name": "workspace:open-recovery",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": null,
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-1d575f4ee880",
+      "name": "workspace:read-review-profile",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": null,
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-70e09702200d",
+      "name": "workspace:receive-transfer",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": null,
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-d78ef82e46d5",
+      "name": "workspace:reveal",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "发布renderer没有该专用方法成员或通道字面调用；只有preload暴露和主进程注册，不能虚构对应按钮。",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-c356082df625",
+      "name": "workspace:save",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": null,
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-ff1d1193dc22",
+      "name": "workspace:save-as",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "renderer中saveAs属于vu工作区store。实际M2调用selectSavePath再N2/workspace.save；不是该旧save-as通道。",
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-9be2a0784913",
+      "name": "workspace:save-recovery",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": null,
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-1ad8e879614a",
+      "name": "workspace:save-result",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": null,
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-98cb505df8ea",
+      "name": "workspace:select-review-profile",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": null,
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-8b8d74411dc8",
+      "name": "workspace:select-save-path",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": null,
+      "runtime": "R0"
+    },
+    {
+      "id": "MCP-104bba767f9b",
+      "name": "resume_lawbot_task",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Published MCP tool handler in tools.js; it calls gateway.call for the named method. The stdio server dispatches the public tool and returns content/structured result; external MCP client invokes that stdio surface.",
+        "handler": "C037-MCP-SERVER -> tools.js handler -> C037-MCP-GATEWAYCLIENT -> local Gateway method.",
+        "consumer": "Gateway handler in main.js dispatches to .data/research/lawbot-2026-10-13/readable/main.js#qw.requestSessionResume; expanded service graph is recorded below."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "MCP-125a85961c76",
+      "name": "list_lawbot_saved_settings",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Published MCP tool handler in tools.js; it calls gateway.call for the named method. The stdio server dispatches the public tool and returns content/structured result; external MCP client invokes that stdio surface.",
+        "handler": "C037-MCP-SERVER -> tools.js handler -> C037-MCP-GATEWAYCLIENT -> local Gateway method.",
+        "consumer": "Gateway handler in main.js dispatches to .data/research/lawbot-2026-10-13/readable/main.js#qw.getConfigurationCatalog; expanded service graph is recorded below."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "MCP-08b4aa88f5db",
+      "name": "start_lawbot_redaction",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Published MCP tool handler in tools.js; it calls gateway.call for the named method. The stdio server dispatches the public tool and returns content/structured result; external MCP client invokes that stdio surface.",
+        "handler": "C037-MCP-SERVER -> tools.js handler -> C037-MCP-GATEWAYCLIENT -> local Gateway method.",
+        "consumer": "Gateway handler in main.js dispatches to .data/research/lawbot-2026-10-13/readable/main.js#qw.startSecureReview; expanded service graph is recorded below."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "MCP-c498f8766b24",
+      "name": "start_lawbot_redaction_for_user_manual_review",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Published MCP tool handler in tools.js; it calls gateway.call for the named method. The stdio server dispatches the public tool and returns content/structured result; external MCP client invokes that stdio surface.",
+        "handler": "C037-MCP-SERVER -> tools.js handler -> C037-MCP-GATEWAYCLIENT -> local Gateway method.",
+        "consumer": "Gateway handler in main.js dispatches to .data/research/lawbot-2026-10-13/readable/main.js#qw.startSecureReview; expanded service graph is recorded below."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "MCP-7b2d5f82cf39",
+      "name": "start_lawbot_restoration",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Published MCP tool handler in tools.js; it calls gateway.call for the named method. The stdio server dispatches the public tool and returns content/structured result; external MCP client invokes that stdio surface.",
+        "handler": "C037-MCP-SERVER -> tools.js handler -> C037-MCP-GATEWAYCLIENT -> local Gateway method.",
+        "consumer": "Gateway handler in main.js dispatches to .data/research/lawbot-2026-10-13/readable/main.js#qw.startLocalRestore; expanded service graph is recorded below."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "MCP-9a4e24e9a1c0",
+      "name": "check_document_delivery",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Published MCP tool handler in tools.js; it calls gateway.call for the named method. The stdio server dispatches the public tool and returns content/structured result; external MCP client invokes that stdio surface.",
+        "handler": "C037-MCP-SERVER -> tools.js handler -> C037-MCP-GATEWAYCLIENT -> local Gateway method.",
+        "consumer": "Gateway handler in main.js dispatches to .data/research/lawbot-2026-10-13/readable/main.js#qw.waitForReviewDelivery; expanded service graph is recorded below."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "MCP-dc810d5ca01a",
+      "name": "receive_sanitized_document",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Published MCP tool handler in tools.js; it calls gateway.call for the named method. The stdio server dispatches the public tool and returns content/structured result; external MCP client invokes that stdio surface.",
+        "handler": "C037-MCP-SERVER -> tools.js handler -> C037-MCP-GATEWAYCLIENT -> local Gateway method.",
+        "consumer": "Gateway handler in main.js dispatches to .data/research/lawbot-2026-10-13/readable/main.js#qw.getArtifact; .data/research/lawbot-2026-10-13/readable/main.js#qw.getReviewStatus; .data/research/lawbot-2026-10-13/readable/main.js#qw.allocateSlot; expanded service graph is recorded below."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "MCP-1e302c2392c3",
+      "name": "submit_reviewed_document",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Published MCP tool handler in tools.js; it calls gateway.call for the named method. The stdio server dispatches the public tool and returns content/structured result; external MCP client invokes that stdio surface.",
+        "handler": "C037-MCP-SERVER -> tools.js handler -> C037-MCP-GATEWAYCLIENT -> local Gateway method.",
+        "consumer": "Gateway handler in main.js dispatches to .data/research/lawbot-2026-10-13/readable/main.js#qw.submitResult; expanded service graph is recorded below."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "MCP-a3d4f76a1a28",
+      "name": "open_lawbot_restore",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Published MCP tool handler in tools.js; it calls gateway.call for the named method. The stdio server dispatches the public tool and returns content/structured result; external MCP client invokes that stdio surface.",
+        "handler": "C037-MCP-SERVER -> tools.js handler -> C037-MCP-GATEWAYCLIENT -> local Gateway method.",
+        "consumer": "Gateway handler in main.js dispatches to .data/research/lawbot-2026-10-13/readable/main.js#qw.requestRestore; expanded service graph is recorded below."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "MCP-8e8e605f0d93",
+      "name": "continue_current_document_review",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Published MCP tool handler in tools.js; it calls gateway.call for the named method. The stdio server dispatches the public tool and returns content/structured result; external MCP client invokes that stdio surface.",
+        "handler": "C037-MCP-SERVER -> tools.js handler -> C037-MCP-GATEWAYCLIENT -> local Gateway method.",
+        "consumer": "Gateway handler in main.js dispatches to .data/research/lawbot-2026-10-13/readable/main.js#qw.continueReview; expanded service graph is recorded below."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "MCP-8fb696cd0f36",
+      "name": "get_lawbot_capabilities",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": "suggest S3, static MCP capability response only",
+      "runtime": "R0"
+    },
+    {
+      "id": "MCP-924f29e7e21d",
+      "name": "check_restore_completion",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "Published MCP tool handler in tools.js; it calls gateway.call for the named method. The stdio server dispatches the public tool and returns content/structured result; external MCP client invokes that stdio surface.",
+        "handler": "C037-MCP-SERVER -> tools.js handler -> C037-MCP-GATEWAYCLIENT -> local Gateway method.",
+        "consumer": "Gateway handler in main.js dispatches to .data/research/lawbot-2026-10-13/readable/main.js#qw.waitForRestoreCompletion; expanded service graph is recorded below."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "GATEWAY-f21aa5c5dc19",
+      "name": "gateway_ping",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "External MCP/DSH client request via C037-MCP-GATEWAYCLIENT local socket; main.js validates caller/session and dispatches method.",
+        "handler": "main.js#ux dispatch; public request/response, access assertion, diagnostics and error conversion in main.js.",
+        "consumer": "Mapped local service: gateway_ping returns local readiness fields directly."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "GATEWAY-191fc60f0036",
+      "name": "get_configuration_catalog",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "External MCP/DSH client request via C037-MCP-GATEWAYCLIENT local socket; main.js validates caller/session and dispatches method.",
+        "handler": "main.js#ux dispatch; public request/response, access assertion, diagnostics and error conversion in main.js.",
+        "consumer": "Mapped local service: .data/research/lawbot-2026-10-13/readable/main.js#qw.getConfigurationCatalog."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "GATEWAY-cbd9ff60189a",
+      "name": "start_secure_review",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "External MCP/DSH client request via C037-MCP-GATEWAYCLIENT local socket; main.js validates caller/session and dispatches method.",
+        "handler": "main.js#ux dispatch; public request/response, access assertion, diagnostics and error conversion in main.js.",
+        "consumer": "Mapped local service: .data/research/lawbot-2026-10-13/readable/main.js#qw.startSecureReview."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "GATEWAY-95f7eda76ec2",
+      "name": "resume_secure_review",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "External MCP/DSH client request via C037-MCP-GATEWAYCLIENT local socket; main.js validates caller/session and dispatches method.",
+        "handler": "main.js#ux dispatch; public request/response, access assertion, diagnostics and error conversion in main.js.",
+        "consumer": "Mapped local service: .data/research/lawbot-2026-10-13/readable/main.js#qw.requestSessionResume."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "GATEWAY-325df91336a6",
+      "name": "start_local_restore",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "External MCP/DSH client request via C037-MCP-GATEWAYCLIENT local socket; main.js validates caller/session and dispatches method.",
+        "handler": "main.js#ux dispatch; public request/response, access assertion, diagnostics and error conversion in main.js.",
+        "consumer": "Mapped local service: .data/research/lawbot-2026-10-13/readable/main.js#qw.startLocalRestore."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "GATEWAY-257145c95a18",
+      "name": "get_review_status",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "External MCP/DSH client request via C037-MCP-GATEWAYCLIENT local socket; main.js validates caller/session and dispatches method.",
+        "handler": "main.js#ux dispatch; public request/response, access assertion, diagnostics and error conversion in main.js.",
+        "consumer": "Mapped local service: .data/research/lawbot-2026-10-13/readable/main.js#qw.getReviewStatus."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "GATEWAY-f41647c2a851",
+      "name": "wait_review_delivery",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "External MCP/DSH client request via C037-MCP-GATEWAYCLIENT local socket; main.js validates caller/session and dispatches method.",
+        "handler": "main.js#ux dispatch; public request/response, access assertion, diagnostics and error conversion in main.js.",
+        "consumer": "Mapped local service: .data/research/lawbot-2026-10-13/readable/main.js#qw.waitForReviewDelivery."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "GATEWAY-678e012848a8",
+      "name": "get_sanitized_artifact",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "External MCP/DSH client request via C037-MCP-GATEWAYCLIENT local socket; main.js validates caller/session and dispatches method.",
+        "handler": "main.js#ux dispatch; public request/response, access assertion, diagnostics and error conversion in main.js.",
+        "consumer": "Mapped local service: .data/research/lawbot-2026-10-13/readable/main.js#qw.getArtifact."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "GATEWAY-1abec6ed4302",
+      "name": "allocate_result_slot",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "External MCP/DSH client request via C037-MCP-GATEWAYCLIENT local socket; main.js validates caller/session and dispatches method.",
+        "handler": "main.js#ux dispatch; public request/response, access assertion, diagnostics and error conversion in main.js.",
+        "consumer": "Mapped local service: .data/research/lawbot-2026-10-13/readable/main.js#qw.allocateSlot."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "GATEWAY-9550960e5004",
+      "name": "submit_pseudonymized_result",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "External MCP/DSH client request via C037-MCP-GATEWAYCLIENT local socket; main.js validates caller/session and dispatches method.",
+        "handler": "main.js#ux dispatch; public request/response, access assertion, diagnostics and error conversion in main.js.",
+        "consumer": "Mapped local service: .data/research/lawbot-2026-10-13/readable/main.js#qw.submitResult."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "GATEWAY-269ba55489c6",
+      "name": "request_local_restore",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "External MCP/DSH client request via C037-MCP-GATEWAYCLIENT local socket; main.js validates caller/session and dispatches method.",
+        "handler": "main.js#ux dispatch; public request/response, access assertion, diagnostics and error conversion in main.js.",
+        "consumer": "Mapped local service: .data/research/lawbot-2026-10-13/readable/main.js#qw.requestRestore."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "GATEWAY-c67325f03fc7",
+      "name": "continue_review",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "External MCP/DSH client request via C037-MCP-GATEWAYCLIENT local socket; main.js validates caller/session and dispatches method.",
+        "handler": "main.js#ux dispatch; public request/response, access assertion, diagnostics and error conversion in main.js.",
+        "consumer": "Mapped local service: .data/research/lawbot-2026-10-13/readable/main.js#qw.continueReview."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "GATEWAY-32e1f2fdcacd",
+      "name": "get_completion_status",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "External MCP/DSH client request via C037-MCP-GATEWAYCLIENT local socket; main.js validates caller/session and dispatches method.",
+        "handler": "main.js#ux dispatch; public request/response, access assertion, diagnostics and error conversion in main.js.",
+        "consumer": "Mapped local service: .data/research/lawbot-2026-10-13/readable/main.js#qw.completion."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "GATEWAY-8f9ae82e2106",
+      "name": "wait_restore_completion",
+      "scope": "公开0.5.9逐入口有限应用合同，声明OS、外部和私有叶；不含其运行结果",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-architecture-C196-independent-join-20261015.json",
+      "detail": {
+        "producer": "External MCP/DSH client request via C037-MCP-GATEWAYCLIENT local socket; main.js validates caller/session and dispatches method.",
+        "handler": "main.js#ux dispatch; public request/response, access assertion, diagnostics and error conversion in main.js.",
+        "consumer": "Mapped local service: .data/research/lawbot-2026-10-13/readable/main.js#qw.waitForRestoreCompletion."
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-5a998529649c",
+      "name": "desensitization:apply",
+      "scope": "published finite application graph for this stable IPC ID only; external/native leaves declared, R0 unchanged",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-rules-static35-join-20261015.json",
+      "detail": {
+        "producer": "review/export single and folder",
+        "preload": "published preload desensitization bridge [(12438, 12496, 'b28ae386f99ecb0009a1f7bf178628a2c5ee8f850215a7be4f95455629fadfd3')]",
+        "main": "published IPC handler 17409–17933",
+        "businessConsumer": "32031-32075,33800-33910,36639-36780,36890-37164",
+        "persistenceOrState": "request receipt memory; document/mapping/Markdown/PDF/DOCX filesystem outputs",
+        "failureAndFormat": "activation; source identity/hash; receipt dedupe; cancellation cleanup; format fallback"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-88cd1d915682",
+      "name": "desensitization:cancel",
+      "scope": "published finite application graph for this stable IPC ID only; external/native leaves declared, R0 unchanged",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-rules-static35-join-20261015.json",
+      "detail": {
+        "producer": "single/batch stop control",
+        "preload": "published preload desensitization bridge [(12040, 12099, 'c6c17c441720adf04a8eb430a59c348a97403cf2ee106ea47cea283d75b2e14a')]",
+        "main": "published IPC handler 17169–17179",
+        "businessConsumer": "31235-31255,31620-31634,34245-34272",
+        "persistenceOrState": "task AbortController and progress event; no durable receipt",
+        "failureAndFormat": "missing/already-finished request returns canceled:false"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-fd1ca8c6cb27",
+      "name": "desensitization:cleanup-paths",
+      "scope": "published finite application graph for this stable IPC ID only; external/native leaves declared, R0 unchanged",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-rules-static35-join-20261015.json",
+      "detail": {
+        "producer": "export rollback after failed/canceled output",
+        "preload": "published preload desensitization bridge [(12242, 12308, '9ce5ba22fccff076ccf6bbfec9eb4569c14963885aba966cd7c56fdb50b8f358')]",
+        "main": "published IPC handler 17158–17165",
+        "businessConsumer": "33880-33905",
+        "persistenceOrState": "owned receipt output path removed once",
+        "failureAndFormat": "only exact completed receipt path; errors route through caller"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-e8dcb4d0e8b3",
+      "name": "desensitization:create-folder-output",
+      "scope": "published finite application graph for this stable IPC ID only; external/native leaves declared, R0 unchanged",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-rules-static35-join-20261015.json",
+      "detail": {
+        "producer": "folder batch export selection",
+        "preload": "published preload desensitization bridge [(9662, 9735, 'bf487509ec0c1edd283e29e631cd8217f109f4fae2fb4b752cb7f2cac251bb02')]",
+        "main": "published IPC handler 16900–16911",
+        "businessConsumer": "36967-37002",
+        "persistenceOrState": "export session/output root held in main memory",
+        "failureAndFormat": "missing root/canceled dialog/FS failure"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-7d7d2d58da91",
+      "name": "desensitization:detect-only",
+      "scope": "published finite application graph for this stable IPC ID only; external/native leaves declared, R0 unchanged",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-rules-static35-join-20261015.json",
+      "detail": {
+        "producer": "single/batch incremental and review recognition",
+        "preload": "published preload desensitization bridge [(11743, 11807, 'f9557dca2bcc0d4b9e39efd4479c674b9701deee02213027b3f19f6580ff2e93')]",
+        "main": "published IPC handler 17196–17367",
+        "businessConsumer": "31220-31227,34142-34352,35555-35980",
+        "persistenceOrState": "page/progress events; recognition result and review/workspace snapshot",
+        "failureAndFormat": "activation/source route/abort; per-format OCR and seal paths"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-42a70f50df5f",
+      "name": "desensitization:detect-route-only",
+      "scope": "published finite application graph for this stable IPC ID only; external/native leaves declared, R0 unchanged",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-rules-static35-join-20261015.json",
+      "detail": {
+        "producer": "import and route switch",
+        "preload": "published preload desensitization bridge [(12343, 12413, '350a05d0696cfd259b3246f621a0a684c822eb60a5820b728139e24c85c26dcf')]",
+        "main": "published IPC handler 17934–17949",
+        "businessConsumer": "36292-36360,36555-36620",
+        "persistenceOrState": "route key/confidence in review document",
+        "failureAndFormat": "source/override errors; UI general/screenshot fallback"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-85f474cad97a",
+      "name": "desensitization:generate-reports",
+      "scope": "published finite application graph for this stable IPC ID only; external/native leaves declared, R0 unchanged",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-rules-static35-join-20261015.json",
+      "detail": {
+        "producer": "legacy/report export",
+        "preload": "published preload desensitization bridge [(12634, 12703, '0df905bb51e876148935779bc70b64a8f33ef135f49b62bf680c4c8749a3c80e')]",
+        "main": "published IPC handler 18044–18095",
+        "businessConsumer": "no direct renderer call found in published renderer; main report handler consumes results[]",
+        "persistenceOrState": "report JSON/HTML/proof files",
+        "failureAndFormat": "per-result read failures and per-report file failures"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-8c5afeb517e6",
+      "name": "desensitization:get-apply-result",
+      "scope": "published finite application graph for this stable IPC ID only; external/native leaves declared, R0 unchanged",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-rules-static35-join-20261015.json",
+      "detail": {
+        "producer": "export timeout recovery",
+        "preload": "published preload desensitization bridge [(12530, 12599, '052c9b82f2dcc871cd252884e0bf4fa1acd6aea66abeec8857073610df81d9d1')]",
+        "main": "published IPC handler 17180–17182",
+        "businessConsumer": "33800-33849",
+        "persistenceOrState": "in-memory request state/receipt",
+        "failureAndFormat": "unknown/running/completed request"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-9a8232e44fb9",
+      "name": "desensitization:get-default-output-dir",
+      "scope": "published finite application graph for this stable IPC ID only; external/native leaves declared, R0 unchanged",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-rules-static35-join-20261015.json",
+      "detail": {
+        "producer": "export location fallback",
+        "preload": "published preload desensitization bridge [(11539, 11608, 'f3f5ffe1d405ce1c2e4660266b8d296c4a528f0852c8d687dfc0ae37c6d27588')]",
+        "main": "published IPC handler 17151–17157",
+        "businessConsumer": "36639-36664",
+        "persistenceOrState": "creates default result directory",
+        "failureAndFormat": "mkdir failure returns home fallback"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-a09f09579955",
+      "name": "desensitization:get-markdown-export-stats",
+      "scope": "published finite application graph for this stable IPC ID only; external/native leaves declared, R0 unchanged",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-rules-static35-join-20261015.json",
+      "detail": {
+        "producer": "Markdown export stats display",
+        "preload": "published preload desensitization bridge [(10826, 10898, '3b73672b4dbd8bca9c283eef99a46149749c65d115b84efa2887da57b84c38b6')]",
+        "main": "published IPC handler 17105–17116",
+        "businessConsumer": "no direct renderer call found in published renderer",
+        "persistenceOrState": "reads userData markdown-export.log tail",
+        "failureAndFormat": "missing log empty; other read errors thrown"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-7b3e67a5a715",
+      "name": "desensitization:get-resource-diagnostics",
+      "scope": "published finite application graph for this stable IPC ID only; external/native leaves declared, R0 unchanged",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-rules-static35-join-20261015.json",
+      "detail": {
+        "producer": "development-only diagnostics",
+        "preload": "published preload desensitization bridge [(10717, 10788, '60e11714b06d1eb5027bfca57e96f3bd575b06ffcfcf8929b789bcfe36666a22')]",
+        "main": "published IPC handler 17066–17072",
+        "businessConsumer": "no production renderer call found",
+        "persistenceOrState": "reads sourceRef/canonical registry counts and OCR cache counters",
+        "failureAndFormat": "registered only when !app.isPackaged"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-3211d99d0f20",
+      "name": "desensitization:open-output-dir",
+      "scope": "published finite application graph for this stable IPC ID only; external/native leaves declared, R0 unchanged",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-rules-static35-join-20261015.json",
+      "detail": {
+        "producer": "export success open location",
+        "preload": "published preload desensitization bridge [(11431, 11504, 'f3d3c9fc990021d152781a1ecb412e4af0ff588fc6eda40a4271574c91d1b100')]",
+        "main": "published IPC handler 17144–17150",
+        "businessConsumer": "28780-28799,31940-31952,37163-37172",
+        "persistenceOrState": "none; invokes shell",
+        "failureAndFormat": "empty path or shell failure"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-58567733591e",
+      "name": "desensitization:page-processed",
+      "scope": "published finite application graph for this stable IPC ID only; external/native leaves declared, R0 unchanged",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-rules-static35-join-20261015.json",
+      "detail": {
+        "producer": "DOCX/PDF per-page review stream",
+        "preload": "published preload desensitization bridge [(13163, 13230, 'd222c0f13a9cb57114c4714fb1a29d5eb8168a3b6d1580b339d7614ceb9d7812'), (13265, 13344, '0ed0dc9f76f34c0c24c3fa137a58c0f968e97857209e7f00bd5cf8fd0c45592a')]",
+        "main": "main emits event from detect/export worker branch; no invoke handler",
+        "businessConsumer": "33060-33090,34200-34218,35812-35833",
+        "persistenceOrState": "UI page matches/OCR cache/progress; later workspace snapshot",
+        "failureAndFormat": "request/session filter, docx_progress special branch"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-c1cec3199992",
+      "name": "desensitization:process-file-main",
+      "scope": "published finite application graph for this stable IPC ID only; external/native leaves declared, R0 unchanged",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-rules-static35-join-20261015.json",
+      "detail": {
+        "producer": "legacy single file processing",
+        "preload": "published preload desensitization bridge [(11643, 11713, '1316dc5c044a742c6f10adcf34823ca39738b8a4659517981a2c52df45d6d1a5')]",
+        "main": "published IPC handler 17950–18043",
+        "businessConsumer": "36929-37164 via folder batch/legacy processing parent",
+        "persistenceOrState": "single result + output file; progress event",
+        "failureAndFormat": "activation, source/file/format errors"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-27dd16394cd6",
+      "name": "desensitization:process-files",
+      "scope": "published finite application graph for this stable IPC ID only; external/native leaves declared, R0 unchanged",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-rules-static35-join-20261015.json",
+      "detail": {
+        "producer": "legacy batch byte intake",
+        "preload": "published preload desensitization bridge [(11031, 11100, 'c47e6ec006b95881ae3d59d8aeb84c37ffb60efb45af6fe379e5d23c27ac8d0f')]",
+        "main": "published IPC handler 17073–17092",
+        "businessConsumer": "Om2 34142-34400 and xy2 36890-37164 are modern parent; no direct invoke found",
+        "persistenceOrState": "creates output directory, returns read-byte result array",
+        "failureAndFormat": "activation; per-file errors accumulated"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-8fc7e5c07051",
+      "name": "desensitization:progress",
+      "scope": "published finite application graph for this stable IPC ID only; external/native leaves declared, R0 unchanged",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-rules-static35-join-20261015.json",
+      "detail": {
+        "producer": "detect/export/legacy progress channel",
+        "preload": "published preload desensitization bridge [(12816, 12877, 'dd246acc254f16a87ce2c9e05082ad02b30ea3f49c25cac999604787edde1c1a'), (12912, 12985, '47151dde72bbe52d0255ec5516fd2230ace015782a388f9e7ea00fda11cd4ff1')]",
+        "main": "main emits event from detect/export worker branch; no invoke handler",
+        "businessConsumer": "31255-31270,31800-31825,34142-34352,35746-36017",
+        "persistenceOrState": "UI stage/percent/sequence; workspace recognition progress",
+        "failureAndFormat": "request/session filter; stale event ignored"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-a07c3fdcbe45",
+      "name": "desensitization:read-file",
+      "scope": "published finite application graph for this stable IPC ID only; external/native leaves declared, R0 unchanged",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-rules-static35-join-20261015.json",
+      "detail": {
+        "producer": "legacy raw path input",
+        "preload": "published preload desensitization bridge [(10930, 10996, '5671393daccaaf84ed8dd5da03d25579d7a925808e43609c828cc12003861bf4')]",
+        "main": "published IPC handler 17066–17072",
+        "businessConsumer": "no direct renderer call found",
+        "persistenceOrState": "returns raw bytes only",
+        "failureAndFormat": "FS read error in success:false"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-f071ce7c965b",
+      "name": "desensitization:read-source",
+      "scope": "published finite application graph for this stable IPC ID only; external/native leaves declared, R0 unchanged",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-rules-static35-join-20261015.json",
+      "detail": {
+        "producer": "registered source bytes for review",
+        "preload": "published preload desensitization bridge [(10615, 10679, '21b9ced640c567c9fd25b146804666f9d3b530fdefde207203d5e3ff29a30936')]",
+        "main": "published IPC handler 17059–17065",
+        "businessConsumer": "34070-34097",
+        "persistenceOrState": "sourceRef registry read; no durable write",
+        "failureAndFormat": "unknown ref / read error returned"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-8f1caa190dda",
+      "name": "desensitization:register-source",
+      "scope": "published finite application graph for this stable IPC ID only; external/native leaves declared, R0 unchanged",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-rules-static35-join-20261015.json",
+      "detail": {
+        "producer": "file import and folder validation",
+        "preload": "published preload desensitization bridge [(10317, 10385, '9bc9b83d1ff5c3df8cdfa07412e6f819330cb0018023ab62357f4dff80d519b4')]",
+        "main": "published IPC handler 16981–17007",
+        "businessConsumer": "31545-31570,36437-36490",
+        "persistenceOrState": "sourceRef and managed bytes/path registry",
+        "failureAndFormat": "invalid input/path,folder validation,FS change"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-d9b14aa97589",
+      "name": "desensitization:release-sources",
+      "scope": "published finite application graph for this stable IPC ID only; external/native leaves declared, R0 unchanged",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-rules-static35-join-20261015.json",
+      "detail": {
+        "producer": "import replacement/close",
+        "preload": "published preload desensitization bridge [(10517, 10585, 'aff8620766fbd29b774864827c71a842ece9cf1ddcd9abeccb87206be29f4f76')]",
+        "main": "published IPC handler 17047–17058",
+        "businessConsumer": "31588-31602,36412-36492",
+        "persistenceOrState": "registry reference release and managed path cleanup",
+        "failureAndFormat": "best-effort UI release with catch"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-3bea45842355",
+      "name": "desensitization:resolve-folder-output-path",
+      "scope": "published finite application graph for this stable IPC ID only; external/native leaves declared, R0 unchanged",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-rules-static35-join-20261015.json",
+      "detail": {
+        "producer": "folder batch path preparation",
+        "preload": "published preload desensitization bridge [(9893, 9972, '0de95133f3a473e7ed444c11ec258f4d2e789f43b543d80b6b7d3f50803881d6')]",
+        "main": "published IPC handler 16926–16934",
+        "businessConsumer": "36176-36191,37040-37058",
+        "persistenceOrState": "session output root path resolution",
+        "failureAndFormat": "invalid traversal/expired session"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-f1f713df2b98",
+      "name": "desensitization:save-file",
+      "scope": "published finite application graph for this stable IPC ID only; external/native leaves declared, R0 unchanged",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-rules-static35-join-20261015.json",
+      "detail": {
+        "producer": "legacy file output",
+        "preload": "published preload desensitization bridge [(11128, 11190, 'f0f3f14cc455b52f4a336c2975565b1627b04f98d01f7d4db6c906e9ed32f3fb')]",
+        "main": "published IPC handler 17093–17104",
+        "businessConsumer": "no direct renderer call found",
+        "persistenceOrState": "writes one file in 已脱敏",
+        "failureAndFormat": "activation/FS error"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-629ace0aecd1",
+      "name": "desensitization:save-markdown-draft",
+      "scope": "published finite application graph for this stable IPC ID only; external/native leaves declared, R0 unchanged",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-rules-static35-join-20261015.json",
+      "detail": {
+        "producer": "manual draft export",
+        "preload": "published preload desensitization bridge [(11227, 11299, '1ecd623bf5531567f922ad24fc7de6d7965a6bf361be40dbb4277ba6a7fc3b50')]",
+        "main": "published IPC handler 17117–17131",
+        "businessConsumer": "31952-31965,37172-37189",
+        "persistenceOrState": "_待人工处理稿.md file",
+        "failureAndFormat": "activation/path extension/empty content/FS error"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-9577d3a9d6d0",
+      "name": "desensitization:save-report",
+      "scope": "published finite application graph for this stable IPC ID only; external/native leaves declared, R0 unchanged",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-rules-static35-join-20261015.json",
+      "detail": {
+        "producer": "legacy report write",
+        "preload": "published preload desensitization bridge [(11329, 11393, 'bc1420e09394a5960a8e54c866c58e313bfe72a99e34bee2f6031d26136bd65a')]",
+        "main": "published IPC handler 17132–17143",
+        "businessConsumer": "no direct renderer call found",
+        "persistenceOrState": "report file output",
+        "failureAndFormat": "activation/FS error"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-e29b03465bc3",
+      "name": "desensitization:scan-dropped-folder",
+      "scope": "published finite application graph for this stable IPC ID only; external/native leaves declared, R0 unchanged",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-rules-static35-join-20261015.json",
+      "detail": {
+        "producer": "drag/drop folder import",
+        "preload": "published preload desensitization bridge [(9552, 9624, 'e157fdd789195db76f495cf9ef0d7fb4a0f74fb241c0e54407360c99a8cded3f')]",
+        "main": "published IPC handler 16892–16899",
+        "businessConsumer": "36519-36538",
+        "persistenceOrState": "scan session and file metadata in main memory",
+        "failureAndFormat": "invalid/missing path/symlink scan exception"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-95d4f752bfb1",
+      "name": "desensitization:select-files",
+      "scope": "published finite application graph for this stable IPC ID only; external/native leaves declared, R0 unchanged",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-rules-static35-join-20261015.json",
+      "detail": {
+        "producer": "file picker import",
+        "preload": "published preload desensitization bridge [(9368, 9427, 'cd1be86275ad0fc4374c2a2fdf8560d8557dfd8e2e92f02711abdc351b7b198b')]",
+        "main": "published IPC handler 16876–16883",
+        "businessConsumer": "36445-36467",
+        "persistenceOrState": "selected file metadata; subsequent sourceRef registration",
+        "failureAndFormat": "cancel/stale/unreadable file"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-523337153cab",
+      "name": "desensitization:select-folder",
+      "scope": "published finite application graph for this stable IPC ID only; external/native leaves declared, R0 unchanged",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-rules-static35-join-20261015.json",
+      "detail": {
+        "producer": "legacy folder picker",
+        "preload": "published preload desensitization bridge [(9455, 9515, 'b26d110b52485514034606c3800ad2fa4b5f77b913becf3229cdafea3b5790a4')]",
+        "main": "published IPC handler 16884–16891",
+        "businessConsumer": "no direct renderer call found; drag/drop uses scan-dropped-folder",
+        "persistenceOrState": "folder path only",
+        "failureAndFormat": "cancel and scan exception"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-102f9010076c",
+      "name": "desensitization:select-output-dir",
+      "scope": "published finite application graph for this stable IPC ID only; external/native leaves declared, R0 unchanged",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-rules-static35-join-20261015.json",
+      "detail": {
+        "producer": "single/batch export location",
+        "preload": "published preload desensitization bridge [(10116, 10180, '226385d3e728fef8dac28a57ee5334634b0a6dda48c66a90e64aa6f6e06a21de')]",
+        "main": "published IPC handler 16975–16977",
+        "businessConsumer": "28760-28772,32031-32043,36647-36663",
+        "persistenceOrState": "none; selected outputDir",
+        "failureAndFormat": "cancel/dialog error"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-7f07e8bd74ee",
+      "name": "desensitization:select-save-path",
+      "scope": "published finite application graph for this stable IPC ID only; external/native leaves declared, R0 unchanged",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-rules-static35-join-20261015.json",
+      "detail": {
+        "producer": "single export target",
+        "preload": "published preload desensitization bridge [(10214, 10283, 'dda8bb754c664278475be80bb38f89b638d263808782b4a55d7fdb783b910e06')]",
+        "main": "published IPC handler 16978–16980",
+        "businessConsumer": "36635-36650",
+        "persistenceOrState": "none; selected filePath/outputDir",
+        "failureAndFormat": "cancel/dialog error"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-d7d18b241f88",
+      "name": "desensitization:unlock-source",
+      "scope": "published finite application graph for this stable IPC ID only; external/native leaves declared, R0 unchanged",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-rules-static35-join-20261015.json",
+      "detail": {
+        "producer": "password protected source import",
+        "preload": "published preload desensitization bridge [(10417, 10483, '1d46292a490cda5b7bb5f7060773021f85fc0e797e947d8c62f6bd5259c3bf2d')]",
+        "main": "published IPC handler 17008–17046",
+        "businessConsumer": "36245-36262",
+        "persistenceOrState": "unlocked sourceRef/bytes registry",
+        "failureAndFormat": "bad password/type/legacy format failure"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-0ea3b09c375b",
+      "name": "desensitization:update-runtime-rules",
+      "scope": "published finite application graph for this stable IPC ID only; external/native leaves declared, R0 unchanged",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-rules-static35-join-20261015.json",
+      "detail": {
+        "producer": "manual OCR/page review mark producer",
+        "preload": "published preload desensitization bridge [(12137, 12210, '7f38324cd87ea54f30f9256dd39968907b1113efbf0e92489a6ae1ef94ae067b')]",
+        "main": "published IPC handler 17183–17195",
+        "businessConsumer": "6180-6193,22360-22370,26603-26623",
+        "persistenceOrState": "temporary whitelist appended to active detect task; cleaned at window close",
+        "failureAndFormat": "request/session/sender/task phase/scope filter; blacklist deprecated, spot immediate"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-96ccc7c0ce76",
+      "name": "desensitization:validate-folder-source",
+      "scope": "published finite application graph for this stable IPC ID only; external/native leaves declared, R0 unchanged",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-rules-static35-join-20261015.json",
+      "detail": {
+        "producer": "folder import TOCTOU check",
+        "preload": "published preload desensitization bridge [(9775, 9850, '797aca9fa0be21443c7b62c8831a89ee81f67b6b718bdbf0a777fa72bca8efd4')]",
+        "main": "published IPC handler 16912–16925",
+        "businessConsumer": "31552-31563",
+        "persistenceOrState": "reads scan session metadata and live FS",
+        "failureAndFormat": "missing scan/path or size/mtime/symlink drift"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-e84cabdffc27",
+      "name": "desensitization:write-folder-manifest",
+      "scope": "published finite application graph for this stable IPC ID only; external/native leaves declared, R0 unchanged",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-rules-static35-join-20261015.json",
+      "detail": {
+        "producer": "folder batch result manifest",
+        "preload": "published preload desensitization bridge [(10011, 10085, 'a78e7e037220f096982bd21ee3c676403dc142ea9de25c3e3d3714d8edc77a2a')]",
+        "main": "published IPC handler 16935–16974",
+        "businessConsumer": "37100-37142",
+        "persistenceOrState": "new _处理清单 file with wx exclusive creation",
+        "failureAndFormat": "expired session/bad entries/collision/write error"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-a982d6d137ce",
+      "name": "get-pdfjs-worker-path",
+      "scope": "公开视觉／还原逐入口的有限应用图；OS文件系统、库和模型运行是声明叶",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-visual-static21-join-20261015.json",
+      "detail": {
+        "producer": "PDF Ju2 and project native-text vf2 worker setup",
+        "transport": "renderer uses window.electron.ipcRenderer.invoke generic bridge; no named worker preload method",
+        "handler": "main packaged/dev/unpacked/temp copy/cache/fallback resolver",
+        "applicationConsumer": "PDF loader+native search document creation, generation/unmount destroy",
+        "stateOrPersistence": "workerSrc in renderer process; temp copy cached by size/mtime",
+        "failurePath": "copy failure falls back source URL; setup failure clears workerSrc/returns load error; stale generation ignored",
+        "declaredLeaf": "FS/path/fileURL; PDF.js worker internals"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-47ecc7525dfe",
+      "name": "image-review:clear-ocr-cache",
+      "scope": "公开视觉／还原逐入口的有限应用图；OS文件系统、库和模型运行是声明叶",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-visual-static21-join-20261015.json",
+      "detail": {
+        "producer": "review utility clear button",
+        "transport": "renderer uses window.electron.ipcRenderer.invoke generic bridge; no named imageReview preload method",
+        "handler": "main deletes q2 key",
+        "applicationConsumer": "subsequent get-page/search must miss and re-OCR if caller provides PDF buffer",
+        "stateOrPersistence": "q2 derived OCR cache only, not source/review",
+        "failurePath": "deleting absent key still success; key caller supplied",
+        "declaredLeaf": "in-memory Map"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-d3864dc80560",
+      "name": "image:export-labels",
+      "scope": "公开视觉／还原逐入口的有限应用图；OS文件系统、库和模型运行是声明叶",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-visual-static21-join-20261015.json",
+      "detail": {
+        "producer": "Image annotation export action",
+        "transport": "preload image direct invoke",
+        "handler": "main serializes normalized+absolute boxes to labels JSON",
+        "applicationConsumer": "renderer handles save result/path",
+        "stateOrPersistence": "FS JSON at homedir datasets/images/labels",
+        "failurePath": "write exception success:false; source confidence 0 becomes 1 by ||",
+        "declaredLeaf": "FS/path, image dimensions caller"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-5569a4344615",
+      "name": "image:save-annotations",
+      "scope": "公开视觉／还原逐入口的有限应用图；OS文件系统、库和模型运行是声明叶",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-visual-static21-join-20261015.json",
+      "detail": {
+        "producer": "Image annotation save action",
+        "transport": "preload image direct invoke",
+        "handler": "main writes sidecar JSON of bboxes",
+        "applicationConsumer": "renderer handles save result/path",
+        "stateOrPersistence": "adjacent basename .json with imagePath, empty imageSize, savedAt",
+        "failurePath": "write exception success:false; same basename path can collide",
+        "declaredLeaf": "FS/path"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-0ecb1de9c806",
+      "name": "ocr:collect-diagnostic",
+      "scope": "公开视觉／还原逐入口的有限应用图；OS文件系统、库和模型运行是声明叶",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-visual-static21-join-20261015.json",
+      "detail": {
+        "producer": "OCR diagnostic UI request",
+        "transport": "preload OCR direct invoke",
+        "handler": "main cs().collectDiagnosticInfo(reason)",
+        "applicationConsumer": "UI displays summary/path",
+        "stateOrPersistence": "diagnostic file written by OCR service, not review document",
+        "failurePath": "exception success:false; diagnostic can disclose local file path in source",
+        "declaredLeaf": "OCR runtime/model/service, FS"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-f02ad1fa2413",
+      "name": "ocr:health-check",
+      "scope": "公开视觉／还原逐入口的有限应用图；OS文件系统、库和模型运行是声明叶",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-visual-static21-join-20261015.json",
+      "detail": {
+        "producer": "OCR availability UI request",
+        "transport": "preload OCR direct invoke",
+        "handler": "main cs().checkAvailabilityWithDiagnostic()",
+        "applicationConsumer": "UI uses available/diagnosticSummary",
+        "stateOrPersistence": "runtime availability probe only",
+        "failurePath": "exception available:false summary",
+        "declaredLeaf": "OCR runtime/model/service"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-4dd20e80cae3",
+      "name": "image-review:batch-search",
+      "scope": "公开视觉／还原逐入口的有限应用图；OS文件系统、库和模型运行是声明叶",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-visual-static21-join-20261015.json",
+      "detail": {
+        "producer": "Image/PDF query and scope UI",
+        "transport": "renderer uses window.electron.ipcRenderer.invoke generic bridge; no named imageReview preload method",
+        "handler": "main q2 cache search normalized charBoxes, word fallback, cross-line multibox",
+        "applicationConsumer": "returns results+checkedPageNumbers to scoped result/filter/navigation",
+        "stateOrPersistence": "read-only q2 OCR cache",
+        "failurePath": "missing parameters/cache failure; approximate word fallback; de-dup dd",
+        "declaredLeaf": "OCR cached geometry/Unicode normalization"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-ba07bb14e3df",
+      "name": "image-review:get-ocr-page",
+      "scope": "公开视觉／还原逐入口的有限应用图；OS文件系统、库和模型运行是声明叶",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-visual-static21-join-20261015.json",
+      "detail": {
+        "producer": "PDF/page reviewer glyph and source caller",
+        "transport": "renderer uses window.electron.ipcRenderer.invoke generic bridge; no named imageReview preload method",
+        "handler": "main q2 lookup; optional forced OCR using PDF buffer with J2 inflight promise",
+        "applicationConsumer": "page lines/charBoxes consumed by canvas/selection",
+        "stateOrPersistence": "q2/J2 derived OCR state",
+        "failurePath": "missing page returns false; forced OCR rejection swallowed at this caller; stale page unresolved",
+        "declaredLeaf": "PDF/OCR engine and buffer"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-910347ed48b5",
+      "name": "image-review:ocr-region",
+      "scope": "公开视觉／还原逐入口的有限应用图；OS文件系统、库和模型运行是声明叶",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-visual-static21-join-20261015.json",
+      "detail": {
+        "producer": "Selected region query",
+        "transport": "renderer uses window.electron.ipcRenderer.invoke generic bridge; no named imageReview preload method",
+        "handler": "main maps canvas to OCR page, char center inclusion, uniform word fallback",
+        "applicationConsumer": "returns text+ocrBbox for user correction/copy",
+        "stateOrPersistence": "read-only q2 cache",
+        "failurePath": "missing cache/page returns false; approximate fallback",
+        "declaredLeaf": "OCR charBoxes and canvas dimensions"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-bd4779635d5d",
+      "name": "pseudonym:inspect-restore-mapping",
+      "scope": "公开视觉／还原逐入口的有限应用图；OS文件系统、库和模型运行是声明叶",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-visual-static21-join-20261015.json",
+      "detail": {
+        "producer": "restore panel mapping/password step",
+        "transport": "preload pseudonym direct ipcRenderer invoke",
+        "handler": "main fe(sender,authToken), Pm map read and Ad ambiguity policy implicit",
+        "applicationConsumer": "panel gates next restore and refreshes token",
+        "stateOrPersistence": "read-only encrypted mapping under userData",
+        "failurePath": "AUTH_REQUIRED or map read error; ambiguities currently empty",
+        "declaredLeaf": "key hierarchy and FS"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-32941c143267",
+      "name": "pseudonym:open-output-folder",
+      "scope": "公开视觉／还原逐入口的有限应用图；OS文件系统、库和模型运行是声明叶",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-visual-static21-join-20261015.json",
+      "detail": {
+        "producer": "restore success panel",
+        "transport": "preload pseudonym direct ipcRenderer invoke",
+        "handler": "main dirname(outputPath) shell.openPath",
+        "applicationConsumer": "panel reports opened/failed without changing artifact",
+        "stateOrPersistence": "none",
+        "failurePath": "shell error returns success:false",
+        "declaredLeaf": "Electron shell/path"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-1d272ba10a6c",
+      "name": "pseudonym:restore-docx",
+      "scope": "公开视觉／还原逐入口的有限应用图；OS文件系统、库和模型运行是声明叶",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-visual-static21-join-20261015.json",
+      "detail": {
+        "producer": "single Word/WPS output",
+        "transport": "preload pseudonym direct ipcRenderer invoke",
+        "handler": "main fe/Pm/Ad; choose save path; Rp DOCX or legacy conversion",
+        "applicationConsumer": "panel sets success/partial/error and AI collaboration completion only after response",
+        "stateOrPersistence": "writes output file; source input untouched",
+        "failurePath": "auth/dependency/format/conversion/write error; preserveExistingOutput suffix",
+        "declaredLeaf": "python-docx preserver, legacy Office service, FS/dialog"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-24fe13c4efb6",
+      "name": "pseudonym:restore-docx-batch",
+      "scope": "公开视觉／还原逐入口的有限应用图；OS文件系统、库和模型运行是声明叶",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-visual-static21-join-20261015.json",
+      "detail": {
+        "producer": "batch Word/WPS panel",
+        "transport": "preload pseudonym direct ipcRenderer invoke",
+        "handler": "main validates list/map/outdir then loops Rp with unique names",
+        "applicationConsumer": "per-file progress/results and final partial stats to panel",
+        "stateOrPersistence": "successful output files retained; failed output removed",
+        "failurePath": "missing inputs/dependency; one file failure does not stop others",
+        "declaredLeaf": "FS, python-docx, legacy Office"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-5c2a14961699",
+      "name": "pseudonym:restore-markdown",
+      "scope": "公开视觉／还原逐入口的有限应用图；OS文件系统、库和模型运行是声明叶",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-visual-static21-join-20261015.json",
+      "detail": {
+        "producer": "single MD output",
+        "transport": "preload pseudonym direct ipcRenderer invoke",
+        "handler": "main fe/Pm/Ad; save dialog or explicit output; Td longest token replacement",
+        "applicationConsumer": "panel success/partial/error",
+        "stateOrPersistence": "UTF8 output written; source untouched",
+        "failurePath": "auth/cancel/read/write failure; source explicit output may overwrite unless preserve flag",
+        "declaredLeaf": "FS/dialog/RegExp"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-096d3ecc2554",
+      "name": "pseudonym:restore-markdown-batch",
+      "scope": "公开视觉／还原逐入口的有限应用图；OS文件系统、库和模型运行是声明叶",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-visual-static21-join-20261015.json",
+      "detail": {
+        "producer": "batch MD panel",
+        "transport": "preload pseudonym direct ipcRenderer invoke",
+        "handler": "main validates list/map/outdir; loops Td with exclusive-name mode",
+        "applicationConsumer": "progress, per-file results and partial stats",
+        "stateOrPersistence": "successful outputs retained, one error does not abort all",
+        "failurePath": "invalid input/dir/auth; per-file error and partial receipt",
+        "declaredLeaf": "FS/RegExp"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-0fa110b8534b",
+      "name": "pseudonym:restore-progress",
+      "scope": "公开视觉／还原逐入口的有限应用图；OS文件系统、库和模型运行是声明叶",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-visual-static21-join-20261015.json",
+      "detail": {
+        "producer": "Word/MD single and batch handlers",
+        "transport": "main webContents.send to preload onRestoreProgress event",
+        "handler": "main sends progress while Rp/Td/batch loops",
+        "applicationConsumer": "panel listener updates percent/message; unmount removes listener",
+        "stateOrPersistence": "transient UI state; no durable progress object from this event",
+        "failurePath": "sender window destroyed suppresses event; no process guarantee",
+        "declaredLeaf": "Electron webContents/IPC"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-37a279488720",
+      "name": "pseudonym:select-input-docx",
+      "scope": "公开视觉／还原逐入口的有限应用图；OS文件系统、库和模型运行是声明叶",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-visual-static21-join-20261015.json",
+      "detail": {
+        "producer": "legacy single Word selector",
+        "transport": "preload pseudonym direct ipcRenderer invoke",
+        "handler": "main focused-window openDialog doc/docx/wps single",
+        "applicationConsumer": "no direct current renderer call found; current restore panel uses selectInputFiles",
+        "stateOrPersistence": "returns OS filePath only; no persisted state",
+        "failurePath": "no focused window/cancel",
+        "declaredLeaf": "Electron dialog/FS path"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-f69ef883aa33",
+      "name": "pseudonym:select-input-docx-batch",
+      "scope": "公开视觉／还原逐入口的有限应用图；OS文件系统、库和模型运行是声明叶",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-visual-static21-join-20261015.json",
+      "detail": {
+        "producer": "legacy batch Word selector",
+        "transport": "preload pseudonym direct ipcRenderer invoke",
+        "handler": "main focused-window openDialog doc/docx/wps multiple",
+        "applicationConsumer": "no direct current renderer call found; current restore panel uses selectInputFiles",
+        "stateOrPersistence": "returns OS filePaths only",
+        "failurePath": "no focused window/cancel",
+        "declaredLeaf": "Electron dialog/FS path"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-7fe81107ae4d",
+      "name": "pseudonym:select-input-files",
+      "scope": "公开视觉／还原逐入口的有限应用图；OS文件系统、库和模型运行是声明叶",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-visual-static21-join-20261015.json",
+      "detail": {
+        "producer": "current mixed selector",
+        "transport": "preload pseudonym direct ipcRenderer invoke",
+        "handler": "main focused-window openDialog Word/WPS/MD mixed multiple",
+        "applicationConsumer": "restore panel se2 replace/append, then map selection",
+        "stateOrPersistence": "returns OS filePaths in UI draft only",
+        "failurePath": "no focused window/cancel; duplicate path handling in panel",
+        "declaredLeaf": "Electron dialog/FS path"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-6dcdb71fa095",
+      "name": "pseudonym:select-input-markdown",
+      "scope": "公开视觉／还原逐入口的有限应用图；OS文件系统、库和模型运行是声明叶",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-visual-static21-join-20261015.json",
+      "detail": {
+        "producer": "legacy single MD selector",
+        "transport": "preload pseudonym direct ipcRenderer invoke",
+        "handler": "main focused-window openDialog md/markdown single",
+        "applicationConsumer": "no direct current renderer call found; current restore panel uses selectInputFiles",
+        "stateOrPersistence": "returns OS filePath only",
+        "failurePath": "no focused window/cancel",
+        "declaredLeaf": "Electron dialog/FS path"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-93ba5dca8357",
+      "name": "pseudonym:select-input-markdown-batch",
+      "scope": "公开视觉／还原逐入口的有限应用图；OS文件系统、库和模型运行是声明叶",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-visual-static21-join-20261015.json",
+      "detail": {
+        "producer": "legacy batch MD selector",
+        "transport": "preload pseudonym direct ipcRenderer invoke",
+        "handler": "main focused-window openDialog md/markdown multiple",
+        "applicationConsumer": "no direct current renderer call found; current restore panel uses selectInputFiles",
+        "stateOrPersistence": "returns OS filePaths only",
+        "failurePath": "no focused window/cancel",
+        "declaredLeaf": "Electron dialog/FS path"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-e4cf3e6c3c0a",
+      "name": "desensitization:pause-seals",
+      "scope": "公开视觉／还原逐入口的有限应用图；OS文件系统、库和模型运行是声明叶",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-visual-static21-join-20261015.json",
+      "detail": {
+        "producer": "Qt2 PDF single/batch pause control",
+        "transport": "preload166 direct invoke",
+        "handler": "main requestId lookup requires active detect-only engine and same sender; su.pauseSealDetection→Ne.pause",
+        "applicationConsumer": "PDF seal loops check paused and preserve completedPages; Qt2 generation checks then updates deferred sealProgress",
+        "stateOrPersistence": "task memory and review draft sealProgress; no cancellation of face/signature",
+        "failurePath": "missing/wrong sender/finished request success:false; current page await can finish",
+        "declaredLeaf": "Electron IPC, seal detector and PDF raster"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "IPC-81f79eee361a",
+      "name": "desensitization:recognize-docx-images",
+      "scope": "公开视觉／还原逐入口的有限应用图；OS文件系统、库和模型运行是声明叶",
+      "semanticEvidence": "文档/逆向台账/contracts/team-sol-visual-static21-join-20261015.json",
+      "detail": {
+        "producer": "Rv2 single and Ov2 batch Word image OCR actions",
+        "transport": "preload165 direct invoke",
+        "handler": "main activation gate, request registry/Abort, M2 sourceRef, rules/corrections then su.processDocx imageOcrOnly",
+        "applicationConsumer": "filters image_ocr matches; renderer appends candidates+OCR infos+canonical into single/batch draft then lc2 save",
+        "stateOrPersistence": "in-memory job/ocr infos and workspace draft after save; source bytes unchanged by detect-only",
+        "failurePath": "activation/source kind/dependency/abort/processing failure; UI keeps body review and marks image OCR error",
+        "declaredLeaf": "DOCX parser, OCR/model, FS source registry"
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "UI-2c1712d35460",
+      "name": "entity-group-review",
+      "scope": "0.5.9 renderer application flow plus named preload/main/source/workspace contracts; browser/PDF.js/font/OS/private-provider internals are declared leaves",
+      "semanticEvidence": "文档/逆向台账/contracts/root-ui-six-semantic-join-20261015.json",
+      "detail": {
+        "chain": [
+          "Kp group/filter/count/occurrence -> Word/PDF/Image sidebar caller -> select/focus/delete/type-hide",
+          "format draft updates -> parent Mm2/Qu2/Ku2/Du2 -> Nu2 -> workspace store/main save/recovery -> open/child restoration"
+        ],
+        "failureAndOrdering": [
+          "no project transaction rollback; source deferred async/lifecycle limits retained",
+          "source Word feedback Co2 ordering and main Mu persistence distinct from type hide; opaque cloud IDs/approval are own adaptation"
+        ],
+        "peerReviews": [
+          "team-sol-rules-static35-join-20261015.json#peerUiSix",
+          "team-sol-visual-static21-join-20261015.json#crossUiSix"
+        ]
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "UI-ad41d13c4a2d",
+      "name": "preview-policy-hierarchy",
+      "scope": "0.5.9 renderer application flow plus named preload/main/source/workspace contracts; browser/PDF.js/font/OS/private-provider internals are declared leaves",
+      "semanticEvidence": "文档/逆向台账/contracts/root-ui-six-semantic-join-20261015.json",
+      "detail": {
+        "chain": [
+          "policy hierarchy -> type actions/selected keys -> normalization -> alias registry/version and per-format preview",
+          "parent unified coordinator -> format draft/child rendering -> persistence/recovery -> export-format contracts"
+        ],
+        "failureAndOrdering": [
+          "source coordinator can leave earlier mutations if later error; cloud snapshots do not claim native runtime",
+          "alias/historical mapping data flow joins source52-operation report and main restore consumers"
+        ],
+        "peerReviews": [
+          "team-sol-rules-static35-join-20261015.json#peerUiSix",
+          "team-sol-visual-static21-join-20261015.json#crossUiSix"
+        ]
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "UI-3f01047e6b59",
+      "name": "full-text-search-scopes",
+      "scope": "0.5.9 renderer application flow plus named preload/main/source/workspace contracts; browser/PDF.js/font/OS/private-provider internals are declared leaves",
+      "semanticEvidence": "文档/逆向台账/contracts/root-ui-six-semantic-join-20261015.json",
+      "detail": {
+        "chain": [
+          "query/scope -> shared Sr2/$r2 DOM matching and Word image OCR overlay; Markdown St2 loads virtual window for location",
+          "PDF Vn2 native text + Fa2 OCR bridge -> geometry/rotation helpers -> all/in/out and navigation",
+          "Image Ee2 -> local corrected entity matches then batch-search -> scoped results/focus"
+        ],
+        "failureAndOrdering": [
+          "PDF query/generation checks and incomplete native-page errors; Image stale-query response race and empty catch retained in source analysis",
+          "source PDF fallback _u2 uses OCR first, then native exact/item grouping, target-page LCS>=.7 fallback, catches -> null; coordinates remain heuristic"
+        ],
+        "peerReviews": [
+          "team-sol-rules-static35-join-20261015.json#peerUiSix",
+          "team-sol-visual-static21-join-20261015.json#crossUiSix"
+        ]
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "UI-339d8e53408d",
+      "name": "review-preview-mode",
+      "scope": "0.5.9 renderer application flow plus named preload/main/source/workspace contracts; browser/PDF.js/font/OS/private-provider internals are declared leaves",
+      "semanticEvidence": "文档/逆向台账/contracts/root-ui-six-semantic-join-20261015.json",
+      "detail": {
+        "chain": [
+          "Yo2/Jo2/Qo2 -> child setPreviewMode and unified Um2 coordinator",
+          "Mm2/Sm2/Zh2/Cm2 format draft -> Qu2 420ms -> Ku2/Du2/Nu2 -> workspace snapshot",
+          "lc2 recovery delay -> renderer store/preload -> main encrypted atomic save -> open recovery/provider -> child applyReviewDraft/refresh/unmount"
+        ],
+        "failureAndOrdering": [
+          "coordinator restores dirty requests on error; no whole-project rollback; dispose does not cancel an already running promise",
+          "main keychain/file provider is a static native leaf; close/save/missing-source/recovery retry and child generations joined to C/B exact contracts"
+        ],
+        "peerReviews": [
+          "team-sol-rules-static35-join-20261015.json#peerUiSix",
+          "team-sol-visual-static21-join-20261015.json#crossUiSix"
+        ]
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "UI-67e30cf66ad0",
+      "name": "known-entity-audit",
+      "scope": "0.5.9 renderer application flow plus named preload/main/source/workspace contracts; browser/PDF.js/font/OS/private-provider internals are declared leaves",
+      "semanticEvidence": "文档/逆向台账/contracts/root-ui-six-semantic-join-20261015.json",
+      "detail": {
+        "chain": [
+          "Kf2/Uf2 -> Rf2 current ready files -> Pf2 Word/MD/PDF/image matching -> Tf2 same/other/uncovered",
+          "av2 removeOther/add -> Wf2/qf2/Gf2 entity construction -> parent registry/Um2 -> draft events -> workspace persistence",
+          "vf2 native PDF -> Am2 source -> pdf-worker resolver -> PDF.js text/operator geometry; OCR -> batch-search main/backend contract"
+        ],
+        "failureAndOrdering": [
+          "source replaceOther deletes first and does not restore if later add returns false; project audit lacks query/revision epoch",
+          "vf2 destroys PDF document in finally; page failure/checkedPageNumbers and success:false asymmetry retained"
+        ],
+        "peerReviews": [
+          "team-sol-rules-static35-join-20261015.json#peerUiSix",
+          "team-sol-visual-static21-join-20261015.json#crossUiSix"
+        ]
+      },
+      "runtime": "R0"
+    },
+    {
+      "id": "UI-32ce2fb60c5f",
+      "name": "manual-correction-scope",
+      "scope": "0.5.9 renderer application flow plus named preload/main/source/workspace contracts; browser/PDF.js/font/OS/private-provider internals are declared leaves",
+      "semanticEvidence": "文档/逆向台账/contracts/root-ui-six-semantic-join-20261015.json",
+      "detail": {
+        "chain": [
+          "correction modal occurrence/document/project -> per-format local preview/apply or parent jf2",
+          "Word sn2/hs2 + PDF so2/Ul2/_u2 + Image Xe2/yi2 -> current insertion/correction and uncovered supplements",
+          "jf2 -> Pf2/Gf2/Wf2/qf2 -> register/Um2 -> parent snapshot/save; PDF same-position Rs2 -> Es2/Pb/Ib/As2/Ts2/Is2 -> one final batch emit and batch undo",
+          "manual Word/PDF/Image additions -> declared temporary runtime-rule producer -> active detect-only engine update contract"
+        ],
+        "failureAndOrdering": [
+          "source cached Df2 plan omits sourceAnchor/draft revision/file ID set and lacks invalidation; partial apply/no cross-file rollback retained",
+          "Rs2 checks timeout at loop boundary, cannot interrupt current page await; Es2 page metadata read races timeout and clears timer; pending cloud decisions/CAS are own adaptation"
+        ],
+        "peerReviews": [
+          "team-sol-rules-static35-join-20261015.json#peerUiSix",
+          "team-sol-visual-static21-join-20261015.json#crossUiSix"
+        ]
+      },
+      "runtime": "R0"
+    }
+  ],
+  "boundaries": [
+    {
+      "id": "IPC-243bf096202b",
+      "name": "auth:cancel-recovery",
+      "classification": "private_service_boundary",
+      "terminalLeaves": [
+        "Node crypto and Electron safeStorage standard API; actual device keychain/authentication execution R0",
+        "Private official recovery credential issuer/signing service, identity verification andrevocation; client import/verify source alreadyread."
+      ],
+      "review": "team-sol-architecture-C196-independent-join-20261015.json"
+    },
+    {
+      "id": "IPC-3484537f3350",
+      "name": "auth:complete-recovery",
+      "classification": "private_service_boundary",
+      "terminalLeaves": [
+        "Node crypto and Electron safeStorage standard API; actual device keychain/authentication execution R0",
+        "Private official recovery credential issuer/signing service, identity verification andrevocation; client import/verify source alreadyread."
+      ],
+      "review": "team-sol-architecture-C196-independent-join-20261015.json"
+    },
+    {
+      "id": "IPC-8f0322abb8b8",
+      "name": "auth:create-recovery-request",
+      "classification": "private_service_boundary",
+      "terminalLeaves": [
+        "Node crypto and Electron safeStorage standard API; actual device keychain/authentication execution R0",
+        "Private official recovery credential issuer/signing service, identity verification andrevocation; client import/verify source alreadyread."
+      ],
+      "review": "team-sol-architecture-C196-independent-join-20261015.json"
+    },
+    {
+      "id": "IPC-2a09a00cba17",
+      "name": "auth:import-recovery-file",
+      "classification": "private_service_boundary",
+      "terminalLeaves": [
+        "Node crypto and Electron safeStorage standard API; actual device keychain/authentication execution R0",
+        "Private official recovery credential issuer/signing service, identity verification andrevocation; client import/verify source alreadyread."
+      ],
+      "review": "team-sol-architecture-C196-independent-join-20261015.json"
+    },
+    {
+      "id": "IPC-34a47a0ff8e1",
+      "name": "auth:save-recovery-request",
+      "classification": "private_service_boundary",
+      "terminalLeaves": [
+        "Node crypto and Electron safeStorage standard API; actual device keychain/authentication execution R0",
+        "Private official recovery credential issuer/signing service, identity verification andrevocation; client import/verify source alreadyread."
+      ],
+      "review": "team-sol-architecture-C196-independent-join-20261015.json"
+    },
+    {
+      "id": "IPC-d79e3892b954",
+      "name": "license:activate",
+      "classification": "private_service_boundary",
+      "terminalLeaves": [
+        "Private license signing/activation backend; OS hardware command results R0"
+      ],
+      "review": "team-sol-architecture-C196-independent-join-20261015.json"
+    },
+    {
+      "id": "IPC-a70191351664",
+      "name": "license:get-machine-id",
+      "classification": "private_service_boundary",
+      "terminalLeaves": [
+        "Private license signing/activation backend; OS hardware command results R0"
+      ],
+      "review": "team-sol-architecture-C196-independent-join-20261015.json"
+    },
+    {
+      "id": "IPC-0dcec6bac9d5",
+      "name": "license:get-status",
+      "classification": "private_service_boundary",
+      "terminalLeaves": [
+        "Private license signing/activation backend; OS hardware command results R0"
+      ],
+      "review": "team-sol-architecture-C196-independent-join-20261015.json"
+    },
+    {
+      "id": "IPC-765d8b00f827",
+      "name": "license:get-summary",
+      "classification": "private_service_boundary",
+      "terminalLeaves": [
+        "Private license signing/activation backend; OS hardware command results R0"
+      ],
+      "review": "team-sol-architecture-C196-independent-join-20261015.json"
+    },
+    {
+      "id": "IPC-527f74c7a029",
+      "name": "license:refresh",
+      "classification": "private_service_boundary",
+      "terminalLeaves": [
+        "Private license signing/activation backend; OS hardware command results R0"
+      ],
+      "review": "team-sol-architecture-C196-independent-join-20261015.json"
+    },
+    {
+      "id": "IPC-1abcdf6d1a56",
+      "name": "software-update:acknowledge-whats-new",
+      "classification": "native_or_external_runtime_boundary",
+      "terminalLeaves": [
+        "Current public update metadata404, no live package install; Electron Squirrel/OS signature actualexecution remainsR0. Generic config only; unused GitHub/GitLab/Keygen/Linux providers not claimed as invoked."
+      ],
+      "review": "team-sol-architecture-C196-independent-join-20261015.json"
+    },
+    {
+      "id": "IPC-6099fda9db85",
+      "name": "software-update:check",
+      "classification": "native_or_external_runtime_boundary",
+      "terminalLeaves": [
+        "Current public update metadata404, no live package install; Electron Squirrel/OS signature actualexecution remainsR0. Generic config only; unused GitHub/GitLab/Keygen/Linux providers not claimed as invoked."
+      ],
+      "review": "team-sol-architecture-C196-independent-join-20261015.json"
+    },
+    {
+      "id": "IPC-1e8858b1ed43",
+      "name": "software-update:download",
+      "classification": "native_or_external_runtime_boundary",
+      "terminalLeaves": [
+        "Current public update metadata404, no live package install; Electron Squirrel/OS signature actualexecution remainsR0. Generic config only; unused GitHub/GitLab/Keygen/Linux providers not claimed as invoked."
+      ],
+      "review": "team-sol-architecture-C196-independent-join-20261015.json"
+    },
+    {
+      "id": "IPC-4e269deca69e",
+      "name": "software-update:get-state",
+      "classification": "native_or_external_runtime_boundary",
+      "terminalLeaves": [
+        "Current public update metadata404, no live package install; Electron Squirrel/OS signature actualexecution remainsR0. Generic config only; unused GitHub/GitLab/Keygen/Linux providers not claimed as invoked."
+      ],
+      "review": "team-sol-architecture-C196-independent-join-20261015.json"
+    },
+    {
+      "id": "IPC-67a324d00c09",
+      "name": "software-update:restart-and-install",
+      "classification": "native_or_external_runtime_boundary",
+      "terminalLeaves": [
+        "Current public update metadata404, no live package install; Electron Squirrel/OS signature actualexecution remainsR0. Generic config only; unused GitHub/GitLab/Keygen/Linux providers not claimed as invoked."
+      ],
+      "review": "team-sol-architecture-C196-independent-join-20261015.json"
+    },
+    {
+      "id": "IPC-a73b27802b39",
+      "name": "software-update:set-preferences",
+      "classification": "native_or_external_runtime_boundary",
+      "terminalLeaves": [
+        "Current public update metadata404, no live package install; Electron Squirrel/OS signature actualexecution remainsR0. Generic config only; unused GitHub/GitLab/Keygen/Linux providers not claimed as invoked."
+      ],
+      "review": "team-sol-architecture-C196-independent-join-20261015.json"
+    },
+    {
+      "id": "IPC-6cb1afcdadfc",
+      "name": "software-update:state",
+      "classification": "native_or_external_runtime_boundary",
+      "terminalLeaves": [
+        "Current public update metadata404, no live package install; Electron Squirrel/OS signature actualexecution remainsR0. Generic config only; unused GitHub/GitLab/Keygen/Linux providers not claimed as invoked."
+      ],
+      "review": "team-sol-architecture-C196-independent-join-20261015.json"
+    },
+    {
+      "id": "IPC-6f5f29f520a1",
+      "name": "task-power:get-state",
+      "classification": "native_or_external_runtime_boundary",
+      "terminalLeaves": [
+        "Electron powerMonitor suspend/resume actual OS events R0"
+      ],
+      "review": "team-sol-architecture-C196-independent-join-20261015.json"
+    },
+    {
+      "id": "IPC-cfbe72c62d81",
+      "name": "task-power:state",
+      "classification": "native_or_external_runtime_boundary",
+      "terminalLeaves": [
+        "Electron powerMonitor suspend/resume actual OS events R0"
+      ],
+      "review": "team-sol-architecture-C196-independent-join-20261015.json"
+    },
+    {
+      "id": "IPC-ce03744a77ef",
+      "name": "window:before-close",
+      "classification": "native_or_external_runtime_boundary",
+      "terminalLeaves": [
+        "OS window close; format-specific cancellation callbacks crossread by A/B"
+      ],
+      "review": "team-sol-architecture-C196-independent-join-20261015.json"
+    },
+    {
+      "id": "IPC-3a73e0100026",
+      "name": "window:close",
+      "classification": "native_or_external_runtime_boundary",
+      "terminalLeaves": [
+        "OS window close; format-specific cancellation callbacks crossread by A/B"
+      ],
+      "review": "team-sol-architecture-C196-independent-join-20261015.json"
+    },
+    {
+      "id": "IPC-ed495037f8dc",
+      "name": "window:is-maximized",
+      "classification": "native_or_external_runtime_boundary",
+      "terminalLeaves": [],
+      "review": "team-sol-architecture-C196-independent-join-20261015.json"
+    },
+    {
+      "id": "IPC-e436786bb1f7",
+      "name": "window:minimize",
+      "classification": "native_or_external_runtime_boundary",
+      "terminalLeaves": [],
+      "review": "team-sol-architecture-C196-independent-join-20261015.json"
+    },
+    {
+      "id": "IPC-1e94f610b0e1",
+      "name": "window:resolve-close",
+      "classification": "native_or_external_runtime_boundary",
+      "terminalLeaves": [
+        "OS window close; format-specific cancellation callbacks crossread by A/B"
+      ],
+      "review": "team-sol-architecture-C196-independent-join-20261015.json"
+    },
+    {
+      "id": "IPC-b148b8418b82",
+      "name": "window:toggle-maximize",
+      "classification": "native_or_external_runtime_boundary",
+      "terminalLeaves": [],
+      "review": "team-sol-architecture-C196-independent-join-20261015.json"
+    },
+    {
+      "id": "HTTP-39c99fc0f49b",
+      "name": "GET https://lis.lawbotai.cn/api/order/offer-{code}?sku={sku}",
+      "classification": "private_service_boundary",
+      "terminalLeaves": [
+        "Remote payment callbacks/signatures, authorization/order database,idempotency/refunds andlicense batch issuer are not published. No purchase/contact POST executed."
+      ],
+      "review": "team-sol-architecture-C196-independent-join-20261015.json"
+    },
+    {
+      "id": "HTTP-5b15967de5d7",
+      "name": "GET https://lis.lawbotai.cn/api/order/referral-{code}",
+      "classification": "private_service_boundary",
+      "terminalLeaves": [
+        "Remote payment callbacks/signatures, authorization/order database,idempotency/refunds andlicense batch issuer are not published. No purchase/contact POST executed."
+      ],
+      "review": "team-sol-architecture-C196-independent-join-20261015.json"
+    },
+    {
+      "id": "HTTP-c7b17225ac88",
+      "name": "POST https://lis.lawbotai.cn/api/order/create",
+      "classification": "private_service_boundary",
+      "terminalLeaves": [
+        "Remote payment callbacks/signatures, authorization/order database,idempotency/refunds andlicense batch issuer are not published. No purchase/contact POST executed."
+      ],
+      "review": "team-sol-architecture-C196-independent-join-20261015.json"
+    },
+    {
+      "id": "HTTP-d01c26128e34",
+      "name": "POST https://lis.lawbotai.cn/api/order/{orderId}/contact",
+      "classification": "private_service_boundary",
+      "terminalLeaves": [
+        "Remote payment callbacks/signatures, authorization/order database,idempotency/refunds andlicense batch issuer are not published. No purchase/contact POST executed."
+      ],
+      "review": "team-sol-architecture-C196-independent-join-20261015.json"
+    },
+    {
+      "id": "HTTP-5b5f45240232",
+      "name": "GET https://lis.lawbotai.cn/api/order/{orderId}",
+      "classification": "private_service_boundary",
+      "terminalLeaves": [
+        "Remote payment callbacks/signatures, authorization/order database,idempotency/refunds andlicense batch issuer are not published. No purchase/contact POST executed."
+      ],
+      "review": "team-sol-architecture-C196-independent-join-20261015.json"
+    },
+    {
+      "id": "HTTP-a71a256b3205",
+      "name": "GET https://downloading.lawbotai.cn/main/mac/stable/latest-mac.yml",
+      "classification": "native_or_external_runtime_boundary",
+      "terminalLeaves": [
+        "Current public update metadata404, no live package install; Electron Squirrel/OS signature actualexecution remainsR0. Generic config only; unused GitHub/GitLab/Keygen/Linux providers not claimed as invoked."
+      ],
+      "review": "team-sol-architecture-C196-independent-join-20261015.json"
+    },
+    {
+      "id": "HTTP-6d3c7c84fc7d",
+      "name": "GET {updateInfo.files[].url | updateInfo.path} resolved against update feed",
+      "classification": "native_or_external_runtime_boundary",
+      "terminalLeaves": [
+        "Current public update metadata404, no live package install; Electron Squirrel/OS signature actualexecution remainsR0. Generic config only; unused GitHub/GitLab/Keygen/Linux providers not claimed as invoked."
+      ],
+      "review": "team-sol-architecture-C196-independent-join-20261015.json"
+    },
+    {
+      "id": "LOCAL_HTTP-74413f3c6e71",
+      "name": "expected GET http://127.0.0.1:{port}/",
+      "classification": "native_or_external_runtime_boundary",
+      "terminalLeaves": [
+        "Current public update metadata404, no live package install; Electron Squirrel/OS signature actualexecution remainsR0. Generic config only; unused GitHub/GitLab/Keygen/Linux providers not claimed as invoked."
+      ],
+      "review": "team-sol-architecture-C196-independent-join-20261015.json"
+    },
+    {
+      "id": "LOCAL_HTTP-c7d0bee37342",
+      "name": "expected GET http://127.0.0.1:{port}/{128hex}.zip",
+      "classification": "native_or_external_runtime_boundary",
+      "terminalLeaves": [
+        "Current public update metadata404, no live package install; Electron Squirrel/OS signature actualexecution remainsR0. Generic config only; unused GitHub/GitLab/Keygen/Linux providers not claimed as invoked."
+      ],
+      "review": "team-sol-architecture-C196-independent-join-20261015.json"
+    }
+  ],
+  "implementationStatusChanged": false
+}

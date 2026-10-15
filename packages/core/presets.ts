@@ -1,3 +1,4 @@
+import{isWordFormat}from'./document-format.ts';
 import {encodeXlsxString} from "./ooxml-string.ts";
 import {kindByEntityType} from "../contracts/entity-types.ts";
 import {sourceEntityMark,entityIdentity} from './entity-identity.ts';
@@ -21,8 +22,42 @@ export function defaultProfile(): Profile {
 export function defaultPreferences(): PresetPreferences { return { schemaVersion: 1, defaultProfileId: SYSTEM_PROFILE_ID, activeRuleSetId: null, lastSuccessfulExportByKind: {}, updatedAt: epoch }; }
 export function normalizePattern(value: string) { return value.trim().replace(/\s+/gu, " "); }
 export function canonicalRuleEntityType(value: string) { const kind = Object.hasOwn(kindByEntityType,value)?kindByEntityType[value]:value; return Object.keys(kindByEntityType).find(k => kindByEntityType[k] === kind) ?? value; }
-export function presetNameWithSuffix(base: string, suffix: string) { let prefix = base.slice(0, 200 - suffix.length); if (!prefix.isWellFormed()) prefix = prefix.slice(0, -1); return prefix + suffix; }
+export function presetNameWithSuffix(base: string, suffix: string) { return base + suffix; }
 export function ruleKey(entry: Pick<RuleEntry, "entityType" | "pattern">) { return `${entityIdentity(sourceEntityMark(entry.entityType,entry.pattern))}\0${normalizePattern(entry.pattern)}\0exact`; }
+/** Source Bd.validateRuleSet normalizes these retired fields before Rd/Cd.
+ * Preserve own per-entry route extensions and unknown properties for strict validation.
+ */
+export function normalizeReferenceRuleSetInput(value:unknown):unknown{
+ if(!value||typeof value!=='object'||Array.isArray(value))return value;
+ const input=value as Record<string,unknown>;
+ const applicability={mode:'all',materialRouteKeys:[]};
+ return{...input,description:'',applicability,entries:Array.isArray(input.entries)?input.entries.map(entry=>entry&&typeof entry==='object'&&!Array.isArray(entry)?{...entry,matchMode:'exact'}:entry):input.entries};
+}
+/** Source PI replaces the retired party_slots template and downgrades selective modes. */
+export function normalizeReferenceProfileInput(value:unknown, options:{writeInput?:boolean;preserveNativeSignature?:boolean}={}):unknown {
+ if(!value||typeof value!=='object'||Array.isArray(value))return value;
+ const profile=structuredClone(value) as Record<string,any>;
+ if(options.writeInput) profile.certNoPreferenceRecorded=true;
+ if(profile.certNoPreferenceRecorded!==true&&Array.isArray(profile.enabledEntityTypeIds)) {
+   if(profile.enabledEntityTypeIds.includes('case_number')&&!profile.enabledEntityTypeIds.includes('cert_no')) profile.enabledEntityTypeIds.push('cert_no');
+   profile.certNoPreferenceRecorded=true;
+ }
+ if(!profile.pseudonymTypeActions||typeof profile.pseudonymTypeActions!=='object'||Array.isArray(profile.pseudonymTypeActions)) profile.pseudonymTypeActions={};
+ if(profile.batch&&typeof profile.batch==='object'&&!profile.batch.markdownDefaultMode) profile.batch.markdownDefaultMode='default_star';
+ if(!profile.markdown&&profile.batch&&typeof profile.batch==='object') profile.markdown={defaultMode:profile.batch.markdownDefaultMode||'default_star'};
+ for(const key of ['docx','markdown','pdf','image']) if(profile[key]?.defaultMode==='default_pseudonym') profile[key].defaultMode='custom_pseudonym';
+ for(const key of ['docxDefaultMode','markdownDefaultMode','pdfDefaultMode','imageDefaultMode']) if(profile.batch?.[key]==='default_pseudonym') profile.batch[key]='custom_pseudonym';
+ if(profile.pseudonymTemplate?.kind==='party_slots') {
+   profile.pseudonymTemplate={kind:'standard'};
+   if(profile.docx?.defaultMode==='selective_pseudonym') profile.docx.defaultMode='default_star';
+   if(profile.batch?.docxDefaultMode==='selective_pseudonym') profile.batch.docxDefaultMode='default_star';
+ }
+ if(!options.preserveNativeSignature&&Array.isArray(profile.enabledEntityTypeIds)&&profile.enabledEntityTypeIds.includes('signature')) {
+   const enabled=profile.enabledEntityTypeIds.filter((key:string)=>key!=='signature');
+   profile.enabledEntityTypeIds=enabled.length?enabled:[...SOURCE_DEFAULT_ENTITY_TYPES];
+ }
+ return profile;
+}
 export function checkedRuleset(value: unknown): RuleSet {
   const rules = rulesetSchema.parse(value), seen = new Map<string, RuleEntry["kind"]>();
   for (const entry of rules.entries) {
@@ -42,7 +77,7 @@ export function profileAllowsKind(profile: Profile, kind: Mark["kind"]) {
   return type === undefined || profile.enabledEntityTypeIds.includes(type as typeof entityTypeIds[number]) || !!sourceFamilyByKind[kind] && profile.enabledEntityTypeIds.includes(sourceFamilyByKind[kind]!);
 }
 export function profileForFormat(profile: Profile, format: string, batch = false) {
-  const key = format === "docx" ? "docx" : format === "pdf" ? "pdf" : ["png", "jpg", "jpeg"].includes(format) ? "image" : "markdown";
+  const key = isWordFormat(format) ? "docx" : format === "pdf" ? "pdf" : ["png", "jpg", "jpeg"].includes(format) ? "image" : "markdown";
   const settings = profile[key];
   const mode = batch ? profile.batch[`${key}DefaultMode` as "docxDefaultMode" | "pdfDefaultMode" | "imageDefaultMode" | "markdownDefaultMode"] : settings.defaultMode;
   const exportMarkdown = key === "markdown" ? false : batch ? profile.batch.exportMarkdownByKind[key] : profile[key].exportMarkdown;

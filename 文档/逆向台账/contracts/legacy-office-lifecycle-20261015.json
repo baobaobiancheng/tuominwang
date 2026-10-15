@@ -1,0 +1,486 @@
+{
+  "schema": "tuominwang.legacy-office.lifecycle-closure.v1",
+  "date": "2026-10-15",
+  "status": "implemented-and-author-actual-four-api-verified; independently verified by rules agent on final amd64 converter",
+  "referenceRuntime": "R0",
+  "referenceRuntimeAuthorized": false,
+  "sourceAdapterReport": "文档/逆向台账/contracts/legacy-office-closure-20261015.json",
+  "sourceMain": {
+    "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+    "sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+    "bytes": 1996358
+  },
+  "implementation": [
+    {
+      "path": "scripts/030.sql",
+      "sha256": "97085c698b35919b34b47ede3358c13dc2b02eeda6bfcb5c08fcdc7947d43c73",
+      "bytes": 1209
+    },
+    {
+      "path": "packages/core/document-format.ts",
+      "sha256": "a18dee1d202d0e5cc042e1941964a39eeea770af1351b49d27d549472556616a",
+      "bytes": 1015
+    },
+    {
+      "path": "packages/contracts/index.ts",
+      "sha256": "9d67a88f6a05aa7e9f03525f22b1b6d729a66dfcd0929d1df462a4c4ec3a2161",
+      "bytes": 7664
+    },
+    {
+      "path": "packages/contracts/document-policy.ts",
+      "sha256": "110fd3504be06f8089214327dd0d6c5544d8564789fd3383012078ba99132a70",
+      "bytes": 2026
+    },
+    {
+      "path": "packages/core/files.ts",
+      "sha256": "a013c04977cb6dde1aaf299273e0696521f9e2e6af3244ce420721e269875cb5",
+      "bytes": 9554
+    },
+    {
+      "path": "packages/core/export-gate.ts",
+      "sha256": "123efb0b9921fb2b98acad4e5605de75a7b15542fe430596d4f4fb411acf20f2",
+      "bytes": 9346
+    },
+    {
+      "path": "packages/core/presets.ts",
+      "sha256": "9f255314c21c8582cff97d1b7162dd654712450a71cf7eadd29e855ce2cd6f40",
+      "bytes": 13271
+    },
+    {
+      "path": "packages/core/restoration-batch.ts",
+      "sha256": "9bcafcacb2dfb5b0d0cc4a9731d73dd6bb5c4b07067c2233510c9104ebf37e13",
+      "bytes": 2663
+    },
+    {
+      "path": "packages/core/workspace-compat.ts",
+      "sha256": "110624b643c5cc29071c2dad8e3b6f308efd375d0d4c5eaab32bd227083649d6",
+      "bytes": 18039
+    },
+    {
+      "path": "packages/adapters/document-normalization.ts",
+      "sha256": "07c1a650625421e58d0545bb0dfb85cfba5019630943591016b266778f1f4df5",
+      "bytes": 5185
+    },
+    {
+      "path": "packages/adapters/document-source.ts",
+      "sha256": "3f7b141b5116543132f0e9c9402e44c19cc64b6e03e0ab1aba49a557b4ffab1f",
+      "bytes": 1489
+    },
+    {
+      "path": "packages/adapters/legacy-office-output.ts",
+      "sha256": "0f78a1d7311357672dcfad95df50d5e8c7a6867197ab289c6bd9cdfc26740b7d",
+      "bytes": 2519
+    },
+    {
+      "path": "packages/adapters/legacy-restoration.ts",
+      "sha256": "1ce812a213f54345d39cc699e09f9c4153caa6cc88b2e5973d6d1f8d3d141ec7",
+      "bytes": 2742
+    },
+    {
+      "path": "packages/adapters/processing-worker.ts",
+      "sha256": "74c993e0169b6e0c805aed56e15503ecc24ead4298bbec06ce371f5f8fffa793",
+      "bytes": 25414
+    },
+    {
+      "path": "packages/adapters/portable-draft.ts",
+      "sha256": "8268af8e055074c4ba4780d612a8f5d2dab650de3193faac65625c356ed5865d",
+      "bytes": 8288
+    },
+    {
+      "path": "packages/adapters/folder-output.ts",
+      "sha256": "c7f717d84b8ee525e71299f00ae78d1989093bbed707d91dda0846c9a8005963",
+      "bytes": 1919
+    },
+    {
+      "path": "packages/adapters/processing-resources.ts",
+      "sha256": "f9561a6df62686ad8173586eb3253b130cb3cd9dce1476e9860325f571f157cd",
+      "bytes": 3403
+    },
+    {
+      "path": "apps/api/document-normalization.ts",
+      "sha256": "04c375b40013e691afc558b3c993205205eabd5ee930a187d30f51a976ed6c79",
+      "bytes": 2394
+    },
+    {
+      "path": "apps/api/document-policy.ts",
+      "sha256": "419beb393aa67ed6aa4f44ab8fa4c8719b02c5db7b7612dc74e1e91c0e1af7cd",
+      "bytes": 6581
+    },
+    {
+      "path": "apps/api/docx-layout.ts",
+      "sha256": "b9a8b5174740176eb6074cb3332fb9518743e6795a4364c5f2089981ffa9809c",
+      "bytes": 1391
+    },
+    {
+      "path": "apps/api/docx-preview.ts",
+      "sha256": "59aa218150db8f249e7e91e6ca34cb85c3294f2e9e36077503b425a0cf4feba7",
+      "bytes": 1356
+    },
+    {
+      "path": "apps/api/docx-image-ocr.ts",
+      "sha256": "14e53a9dca0f88ee574422a24e7a59ea05a6a25941775c0ea446e25fc022cba4",
+      "bytes": 7444
+    },
+    {
+      "path": "apps/api/restoration-files.ts",
+      "sha256": "c6b21572105316183cf2f98b727c9a0b3c7a878382a34f4caa1bd0c0bd62e285",
+      "bytes": 7060
+    },
+    {
+      "path": "apps/api/restoration-batch.ts",
+      "sha256": "671524ab98cc6f4c453349ea33677ea9f0ef308e7917e651abaaed56afa4944c",
+      "bytes": 8044
+    },
+    {
+      "path": "apps/api/processing-resources.ts",
+      "sha256": "81854c329256707b7929b819036b42545b3025d1b1996972f91549835db9d027",
+      "bytes": 5400
+    },
+    {
+      "path": "apps/api/processing-observability.ts",
+      "sha256": "a2d72a92642a007b9b0c1f1c8175890ba21b326c4139b3781500c38a74d04504",
+      "bytes": 8499
+    },
+    {
+      "path": "apps/api/image-utilities.ts",
+      "sha256": "fb17a9fca25328649e1154d212230c2f8dd5fd4a6172c45265a124f1843b2f98",
+      "bytes": 7297
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration034/before/apps/api/workspace-portable.ts",
+      "sha256": "9d86e1ab3728099fd1eb2a4c699b259b5e324073446c0931581cf2e294d3193c",
+      "bytes": 38289,
+      "originalPath": "apps/api/workspace-portable.ts"
+    },
+    {
+      "path": "apps/worker/main.ts",
+      "sha256": "864dbc1dfe92cd529af062ee7cac33acefabe6865b907e8e5d64d24b118a98e1",
+      "bytes": 12146
+    },
+    {
+      "path": "apps/web/document-normalization.tsx",
+      "sha256": "dfe230ee90567ac9156f32055485205b7dac7a7dfefac03370bbaea30ee5e85c",
+      "bytes": 1866
+    },
+    {
+      "path": "apps/web/document-configuration.tsx",
+      "sha256": "2dfa0e513ef698efe4654670916fdceba18d79e7ccbe698772a947ddd73da448",
+      "bytes": 4904
+    },
+    {
+      "path": "apps/web/restoration-files.tsx",
+      "sha256": "31c5274b61eecae202e1d1a9fa43ac66cfd9bf245e5ec69687a81ab916ef9f9b",
+      "bytes": 5340
+    },
+    {
+      "path": "apps/web/restoration-batch.tsx",
+      "sha256": "6ac98435f85025e6d90109b9293fd82ff03f3562c7c51657982c802c9ca1e4b9",
+      "bytes": 9652
+    },
+    {
+      "path": "apps/web/uploads.tsx",
+      "sha256": "ba529b7d03f932a54e5a8f5f7dc294e29edf8cd315177364c0aa37d738a8349f",
+      "bytes": 12252
+    },
+    {
+      "path": "tests/legacy-office.integration.ts",
+      "sha256": "03251171069d68b1bb3f717936930b6f780652c811f3d62db75a8ec9e5d168b1",
+      "bytes": 19489
+    }
+  ],
+  "rootWiring": [
+    {
+      "path": "packages/adapters/processing.ts",
+      "sha256": "2b1301165a06eda4fe70fcd2f8facddf2357476c88f8ab831920fec4298d1708",
+      "bytes": 7444
+    },
+    {
+      "path": "apps/api/main.ts",
+      "sha256": "b88a2e4ccf5d9c4f22e07f369fd832d83cc1648dbcd964c562b3c3cfeb1d3204",
+      "bytes": 27787
+    },
+    {
+      "path": "apps/web/main.tsx",
+      "sha256": "e4313b2d593d5bf3b02292b4bc6a0c60f97da0091f89ab167f56dd0903e3ee40",
+      "bytes": 80772
+    },
+    {
+      "path": "scripts/migrate.ts",
+      "sha256": "164da2e05102d5474447d2851b1494a1b1ee08e929ca922c045985464f1fd506",
+      "bytes": 1507
+    }
+  ],
+  "flows": [
+    {
+      "id": "register-normalize",
+      "label": "原件上传／自动归一化",
+      "semantics": "upload manifest→immutable source DOC/WPS→detect worker normalizeStoredDocument→locked persistDocumentNormalization",
+      "implementation": [
+        "packages/adapters/document-normalization.ts",
+        "apps/worker/main.ts"
+      ],
+      "evidence": "4 actual APIs: tests 1,3"
+    },
+    {
+      "id": "password-retry",
+      "label": "已知密码重试",
+      "semantics": "POST /documents/:id/normalize: view_original+review+revision CAS→known-password local decrypt→CFB→UNO; clear request password; new detect job",
+      "implementation": [
+        "apps/api/document-normalization.ts"
+      ],
+      "evidence": "test3: no password terminal DOCUMENT_ENCRYPTED; wrong password400/no pointer/no revision change; correct password200→review; stale409; cross-tenant404"
+    },
+    {
+      "id": "immutable-read",
+      "label": "统一双源读取",
+      "semantics": "verifiedDocumentSource first hashes original; validates AEAD normalized metadata/AAD and original binding; hashes normalized DOCX; no unlocked alias",
+      "implementation": [
+        "packages/adapters/document-source.ts"
+      ],
+      "evidence": "tests1,3: format doc retained; source id/hash untouched; normalized id distinct; normalization metadata and normalized hash corruption rejected"
+    },
+    {
+      "id": "review-preview-layout",
+      "label": "原文审查／结构预览",
+      "semantics": "processingDocument projects processing format to DOCX, preserving original_source_format; layout/preview/read/gate use same verified source",
+      "implementation": [
+        "packages/core/document-format.ts",
+        "packages/core/export-gate.ts",
+        "apps/api/docx-layout.ts",
+        "apps/api/docx-preview.ts"
+      ],
+      "evidence": "tests1,3 actual layout/preview→save review→export"
+    },
+    {
+      "id": "route",
+      "label": "材料路由",
+      "semantics": "POST detect-route-only→processing boundary→verified normalized DOCX→source-compatible route extraction",
+      "implementation": [
+        "packages/adapters/processing.ts",
+        "packages/adapters/reference-route.ts"
+      ],
+      "evidence": "test3 actual route200 success"
+    },
+    {
+      "id": "image-ocr",
+      "label": "Word图像 OCR／应用",
+      "semantics": "recognize-docx-images candidate binds source/content/revision; apply revalidates verified source before canonical update; keeps original normalized object immutable",
+      "implementation": [
+        "apps/api/docx-image-ocr.ts"
+      ],
+      "evidence": "test3 actual OCR candidate200/apply200, fresh review required"
+    },
+    {
+      "id": "image-face",
+      "label": "Word嵌图人脸／标记",
+      "semantics": "office-face-candidates/visual pipeline uses projected DOCX and verified source; glyph/annotation validators recognize original DOC/WPS as Word",
+      "implementation": [
+        "apps/api/office-visual.ts",
+        "apps/api/image-utilities.ts"
+      ],
+      "evidence": "test3 actual office-face candidate200, no claim of new face accuracy"
+    },
+    {
+      "id": "normal-default",
+      "label": "普通脱敏默认导出",
+      "semantics": "DOC and WPS use DOCX by source Mac/LibreOffice ordinary caller (main17795–96,17870–89); no automatic DOC reserialization",
+      "implementation": [
+        "packages/adapters/legacy-office-output.ts"
+      ],
+      "evidence": "tests1,3 actual DOCX MIME/parse; sensitive phone absent"
+    },
+    {
+      "id": "strict-doc",
+      "label": "显式 DOC 原格式扩展",
+      "semantics": "Only explicit outputFormats doc: convert already verified DOCX→actual DOC→actual reread DOCX→seven-source-dimension compare PLUS verifyOffice full XML/attrs/filenames/image OCR residue; preserve immutable DOC bytes",
+      "implementation": [
+        "packages/adapters/legacy-office-output.ts",
+        "packages/adapters/processing-worker.ts"
+      ],
+      "evidence": "test3 actual doc primary + word-docx extra role; download DOC→real UNO reread→phone absent"
+    },
+    {
+      "id": "resources-reports",
+      "label": "临时资源／处理报告",
+      "semantics": "source leases report originalFormat/processingFormat separately; resources and reports authenticate both source objects; DOC bytes treated as binary",
+      "implementation": [
+        "apps/api/processing-resources.ts",
+        "apps/api/processing-observability.ts"
+      ],
+      "evidence": "test1 actual source lease+report; corrupted normalization metadata rejects report"
+    },
+    {
+      "id": "portable",
+      "label": "四种备份／重开",
+      "semantics": "native .tmw plus source V1/V2/V3 carry raw original separately from normalized DOCX, truthful legacyOffice metadata, normalized witness; same-server witness rebound to new doc AAD; all previews/maps immutable",
+      "implementation": [
+        "apps/api/workspace-portable.ts",
+        "packages/core/workspace-compat.ts"
+      ],
+      "evidence": "tests1,3 all4 formats actual export/import→detect review→portable-draft restore200; no old review autoapproval"
+    },
+    {
+      "id": "foreign-normalization",
+      "label": "跨服务器见证边界",
+      "semantics": "No matching HMAC: retain normalized bytes as encrypted opaque asset, report normalizationRequired, rerun conversion from original; never silently trust foreign normalized proof",
+      "implementation": [
+        "apps/api/workspace-portable.ts"
+      ],
+      "evidence": "Actual followup1API verifies altered/foreign-equivalent domain witness rejection, retained opaque copy export, truthful quota and source corruption; a separate external server was not started."
+    },
+    {
+      "id": "restore-docx-option",
+      "label": "单／批量旧 Word 另存 DOCX",
+      "semantics": "restorePlan approved mapping→normalize same raw bytes→restoreDocx→immutable derived result, encrypted dual-source proof",
+      "implementation": [
+        "packages/adapters/legacy-restoration.ts",
+        "apps/api/restoration-files.ts",
+        "apps/api/restoration-batch.ts"
+      ],
+      "evidence": "test2 actual DOC/WPS explicit DOCX body restored; protected legacy_sources saved; batch ZIP real download"
+    },
+    {
+      "id": "restore-original",
+      "label": "单 DOC 原格式还原",
+      "semantics": "Source restore Rp differs from ordinary default: default DOC restored output strict actual DOC and reread; WPS original unsupported, explicit DOCX available",
+      "implementation": [
+        "packages/adapters/legacy-restoration.ts"
+      ],
+      "evidence": "test4 actual CFB DOC→restore→DOC download→real reread correct body/no token/source SHA unchanged; test2 WPS original truthful failure"
+    },
+    {
+      "id": "storage-lifecycle",
+      "label": "存储归属／原件保护",
+      "semantics": "normalization objects owned by document; restoration original+normalized objects owned by project; never overwrite object; quota includes normalized and retained copies; AEAD private metadata only",
+      "implementation": [
+        "packages/adapters/document-normalization.ts",
+        "packages/adapters/legacy-restoration.ts",
+        "apps/api/workspace-portable.ts"
+      ],
+      "evidence": "actual immutable hash+AEAD tests; existing owned-object deletion lifecycle reused"
+    },
+    {
+      "id": "cancel",
+      "label": "取消与临时目录",
+      "semantics": "root parent records actual converter jobId before ack/RPC; cancel on worker termination; A service cancellation tombstone rejects late convert; own process/profile cleanup",
+      "implementation": [
+        "packages/adapters/processing.ts",
+        "packages/adapters/legacy-office-control.ts",
+        "services/legacy-office/server.py"
+      ],
+      "evidence": "A independent actual3 tests reported PASS: parent abort408ms, PID/profile0; cancel-before-convert; invalidUUID400; separate A report is authoritative"
+    }
+  ],
+  "actual": {
+    "tests": 4,
+    "pass": 4,
+    "fail": 0,
+    "skipped": 0,
+    "durationMs": 261555.996833,
+    "node": "26.6.0",
+    "transport": "Actual authenticated host-loopback HTTP byte RPC to isolated LibreOffice container; no mocks; no external materials",
+    "evidence": [
+      {
+        "path": ".data/research/lawbot-2026-10-15/iteration033/legacy-api-real-v6.log",
+        "sha256": "13f743de92bc6bfec20a182ad799d46044cc796d15573a8c0e75edaaa50da8f5",
+        "bytes": 863
+      },
+      {
+        "path": ".data/research/lawbot-2026-10-15/iteration033/legacy-api-actual-C-frozen.json",
+        "sha256": "d90b9505f9a917f45a8f28172c8212d2ab271d64aaa1a4af5f0d87cc76c15e98",
+        "bytes": 1083
+      },
+      {
+        "path": ".data/research/lawbot-2026-10-15/iteration033/typecheck-seventh.log",
+        "sha256": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92",
+        "bytes": 15
+      }
+    ]
+  },
+  "failureHistory": [
+    {
+      "run": "legacy-api-fastpath.log",
+      "result": "2/2 PASS before real CFB cases"
+    },
+    {
+      "run": "legacy-api-real.log",
+      "result": "Test helper invalid pageReview text-only; corrected to real raster schema, product untouched"
+    },
+    {
+      "run": "legacy-api-real-v2.log",
+      "result": "Public OOXML compatibility URI selected all-redact; existing namespace residue gate refused, not a legacy conversion corruption"
+    },
+    {
+      "run": "legacy-api-real-v3.log",
+      "result": "Same URI residue reproduced with exact synthetic marks; root subsequently added narrow public URI exclusion without weakening explicit manual selection gate"
+    },
+    {
+      "run": "legacy-api-real-v4.log",
+      "result": "Actual strict DOC business flow passed; test queried nonexistent artifacts.created_at; fixed to revision"
+    },
+    {
+      "run": "legacy-api-real-v5.log",
+      "result": "Real bug: derived_restorations.format CHECK excluded DOC; fixed in migration030. Encrypted-job test assertion also corrected error→error_code."
+    }
+  ],
+  "boundaries": [
+    "Licensed competitor handler runtime remains R0; source-static and own actual tests are distinct.",
+    "Cloud LibreOffice follows source Mac ordinary DOCX default. Windows native Word/WPS bridge not executed; own strict optional DOC export is explicitly additional.",
+    "Original WPS output remains source-unsupported; UI offers explicit reviewed DOCX alternative.",
+    "Source V2 reader explicitly accepts libreoffice while older Gm schema only word/wps; truthful engine metadata retained, no fabricated Windows engine.",
+    "Raw original bytes in native extension are an additional immutable safety feature; source desktop workspace stores normalized DOCX with legacy filename/metadata.",
+    "Full hidden XML and OCR residual gates remain; manual selection of public XML namespace URI still correctly cannot yield a safe mutated namespace artifact.",
+    "No model startup, memory/resource limit or other project modifications.",
+    "No cloud/server deployment performed by this report.",
+    "Product browser acceptance and root full release gates remain separately documented."
+  ],
+  "peerReview": {
+    "rules": {
+      "tests": 4,
+      "pass": 4,
+      "skipped": 0,
+      "durationMs": 98463,
+      "evidence": {
+        "path": ".data/research/lawbot-2026-10-15/iteration033/review-C-legacy-api-independent-A.log",
+        "sha256": "ed0aff87bc0365ff2639b04b1879f05be01bbe2697d1f36bfdae0b34ae882462"
+      },
+      "service": "A final iteration033 amd64 candidate at private loopback RPC, not a mock"
+    },
+    "visual": "requested read-only dual-source/permissions/AEAD lifecycle"
+  },
+  "allReverseEngineeringComplete": false,
+  "followup_034": {
+    "foreignWitness": {
+      "tests": 1,
+      "pass": 1,
+      "durationMs": 4923.849583,
+      "file": "tests/legacy-portable-integrity.integration.ts",
+      "log": ".data/research/lawbot-2026-10-15/iteration033/legacy-portable-integrity-v2.log",
+      "logSha256": "65ea1ac76aeed4504ac13f081b2b1bd59914bf616aae5b661758081d70578e0e",
+      "covers": [
+        "invalid normalization witness not trusted",
+        "owned opaque retained immutable copy survives export",
+        "original+fresh+retained actual bytes counted",
+        "NULL hash CHECK rejected",
+        "corrupted raw source refused"
+      ]
+    },
+    "referenceDraftGate": {
+      "finding": "B directhelper source mismatch accepted before verified-source gate; actual route consistency corrected",
+      "tests": 1,
+      "pass": 1,
+      "durationMs": 7170.631542,
+      "file": "tests/portable-draft-source-integrity.integration.ts",
+      "log": ".data/research/lawbot-2026-10-15/iteration034/reference-draft-source-integrity-v2.log",
+      "logSha256": "ac24ca40e167beb1a858ea1a2ed70663a65deb08e416864989eab3a0d3dfe361",
+      "fixtureBoundary": "Actual upload/normalization and actual encrypted DOCX unlock objects; source-generated old review deliberately seeded as private imported-state. Does not claim unprivileged ability to construct private normalized+reference state.",
+      "covers": [
+        "positive reference restore200",
+        "original mismatch409",
+        "normalized mismatch409",
+        "unlocked mismatch409",
+        "revision/content/marks unchanged on failure"
+      ]
+    }
+  }
+}

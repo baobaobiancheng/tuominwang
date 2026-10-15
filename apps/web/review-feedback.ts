@@ -1,0 +1,7 @@
+import type{ReviewFeedbackCause}from'../../packages/core/reference-review-feedback.ts';
+export type{ReviewFeedbackCause}from'../../packages/core/reference-review-feedback.ts';
+export type ReviewFeedbackReceipt={success:boolean;count:number;suppressed?:boolean};
+/** Source Co2 reserves keys before the write RPC and never rolls them back on
+ * failure. Preserve that session dedupe, but never increment a success count for
+ * success:false or a rejected request. Review mutation is independent. */
+export function createReviewFeedbackDispatcher(api:(path:string,method?:string,payload?:unknown)=>Promise<any>){const seen=new Set<string>(),pending=new Set<Promise<ReviewFeedbackReceipt>>();return{dispatch(documentId:string,revision:number,cause:ReviewFeedbackCause):Promise<ReviewFeedbackReceipt>{const task=(async()=>{try{const plan=await api(`/documents/${documentId}/review-feedback/prepare`,'POST',{revision,...cause}),keys=(plan.keys as string[]).filter(key=>!seen.has(`${documentId}:${key}`));if(!keys.length)return{success:true,count:0,suppressed:true};for(const key of keys)seen.add(`${documentId}:${key}`);const result=await api(`/documents/${documentId}/review-feedback/submit`,'POST',{planToken:plan.planToken,keys});return result?.success===true?{success:true,count:result.count}:{success:false,count:0};}catch{return{success:false,count:0};}})();pending.add(task);void task.finally(()=>pending.delete(task));return task;},async flush(){while(pending.size)await Promise.allSettled([...pending]);},clear(){seen.clear();}};}

@@ -1,0 +1,79 @@
+{
+  "schema": "tuominwang.review-paddle-stamp-independent-A.v1",
+  "date": "2026-10-15",
+  "metadataOnly": true,
+  "source": "文档/评估/Paddle印章全量候选验证20261015/per-image.json",
+  "sourceHash": "9d77aa4f3061411bf8bcf6b450e68717f2773e357eeb1ea6feb2428ad9ee7e40",
+  "rows": 786,
+  "uniqueRows": 786,
+  "gold": 1315,
+  "error": 0,
+  "baselineHash": "d67e89776ce90aabb3f7a502d59e4a22ad68da82105e7632fdd320b8e8e2f813",
+  "sameImageLabelAndGoldBindings": true,
+  "result": {
+    "predictions": {
+      "count": 113,
+      "metrics": {
+        "0.25": {
+          "tp": 99,
+          "fp": 14,
+          "fn": 1216,
+          "precision": 0.8761061946902655,
+          "recall": 0.0752851711026616,
+          "f1": 0.13865546218487396
+        },
+        "0.5": {
+          "tp": 99,
+          "fp": 14,
+          "fn": 1216,
+          "precision": 0.8761061946902655,
+          "recall": 0.0752851711026616,
+          "f1": 0.13865546218487396
+        },
+        "0.75": {
+          "tp": 66,
+          "fp": 47,
+          "fn": 1249,
+          "precision": 0.584070796460177,
+          "recall": 0.050190114068441066,
+          "f1": 0.09243697478991597
+        }
+      }
+    },
+    "combinedPredictions": {
+      "count": 1840,
+      "metrics": {
+        "0.25": {
+          "tp": 472,
+          "fp": 1368,
+          "fn": 843,
+          "precision": 0.2565217391304348,
+          "recall": 0.35893536121673003,
+          "f1": 0.29920760697305865
+        },
+        "0.5": {
+          "tp": 358,
+          "fp": 1482,
+          "fn": 957,
+          "precision": 0.19456521739130433,
+          "recall": 0.2722433460076046,
+          "f1": 0.22694136291600633
+        },
+        "0.75": {
+          "tp": 187,
+          "fp": 1653,
+          "fn": 1128,
+          "precision": 0.10163043478260869,
+          "recall": 0.14220532319391635,
+          "f1": 0.11854199683042789
+        }
+      }
+    }
+  },
+  "boundary": [
+    "Independent complete metadata recomputation only, not second inference.",
+    "No threshold/model changes, omission or new inference.",
+    "Mixed public split does not establish independent commercial/blackwhite strata, upstream per-image licensing or unknown training overlap.",
+    "Source licensed processor remains R0."
+  ]
+}

@@ -13,6 +13,9 @@ import {profileReplacementPolicies,finalizeProfileReplacements} from '../../pack
 import {applyReplacementPolicies} from '../../packages/core/replacement-policies.ts';
 import {resolvePolicyMappings} from './mappings.ts';
 import {unseal} from '../../packages/adapters/storage.ts';
+import {recordReboundReviewProvenance} from '../../packages/adapters/review-provenance-history.ts';
+import {rebindEntityCorrections,hydrateEntityCorrections} from '../../packages/adapters/entity-corrections.ts';
+import {semanticEntityValue} from '../../packages/core/entity-corrections.ts';
 const params = z.object({ id, page: z.coerce.number().int().min(0).max(299) });
 function fail(message: string, statusCode = 409): never { throw Object.assign(new Error(message), { statusCode }); }
 export function registerOcrRoutes(app: FastifyInstance) {
@@ -41,17 +44,21 @@ export function registerOcrRoutes(app: FastifyInstance) {
       try { result = await runProcessing({ kind: "ocr-correct", doc: d, page, correction }); }
       catch (e) { fail((e as Error).message, (e as Error).message === "OCR_TEXT_CONFLICT" ? 409 : 400); }
       if (!result.changed) return { revision: d.revision, changed: false };
+      const links=result.retainedBindings as{beforeIndex:number;afterIndex:number}[];
+      const rebound=rebindEntityCorrections(d,{...d,revision:d.revision+1,content_hash:result.hash,marks:result.marks},{links,mapGeometry:entry=>({page:entry.page,boxes:entry.boxes})});
+      const next={...d,revision:d.revision+1,content:result.content,content_hash:result.hash,marks:result.marks,anchors:result.anchors,page_data:result.pages,entity_corrections:rebound.stored};
       if(d.presetPolicy?.profile){
         const text=unseal(result.content,`${d.tenant_id}:${d.project_id}:${d.id}`),profile=d.presetPolicy.profile.settings,policies=profileReplacementPolicies(profile,d.source_format,d.batchMode,d.documentPolicy?.configuration.exportMode);
-        let plan=applyReplacementPolicies(text,result.marks,policies);
-        if(plan.aliasRequests.length){await requirePermission(db,d.project_id,['view_mapping']);const mappings=await resolvePolicyMappings(db,d,req.user.id,plan.aliasRequests);plan=applyReplacementPolicies(text,result.marks,policies,mappings);if(plan.aliasRequests.length)fail('MAPPING_MISMATCH',400);}
+        const semanticDoc=hydrateEntityCorrections(next),semanticValue=(mark:import('../../packages/contracts/index.ts').Mark,index:number)=>semanticEntityValue(semanticDoc,mark,text,index);let plan=applyReplacementPolicies(text,result.marks,policies,[],{semanticValue});
+        if(plan.aliasRequests.length){await requirePermission(db,d.project_id,['view_mapping']);const mappings=await resolvePolicyMappings(db,next,req.user.id,plan.aliasRequests);plan=applyReplacementPolicies(text,result.marks,policies,mappings,{semanticValue});if(plan.aliasRequests.length)fail('MAPPING_MISMATCH',400);}
         result.marks=finalizeProfileReplacements(plan.marks,result.anchors,profile,d.source_format,d.batchMode,d.documentPolicy?.configuration.exportMode);
       }
       // OCR edits change text, not page pixels. Keep the independently collected
       // visual scan diagnostics so a partial scan cannot silently become complete.
       if(d.recognition?.visual) result.recognition={...result.recognition,visual:d.recognition.visual};
       const storedPageReview=sealPageReview({...d,content_hash:result.hash},openPageReview(d),d.revision+1);
-      await rows(db, sql`UPDATE documents SET content=${result.content},content_hash=${result.hash},anchors=${JSON.stringify(result.anchors)}::jsonb,page_data=${JSON.stringify(result.pages)}::jsonb,marks=${JSON.stringify(result.marks)}::jsonb,recognition=${JSON.stringify(result.recognition)}::jsonb,page_review=${JSON.stringify(storedPageReview)}::jsonb,revision=revision+1 WHERE id=${doc}`);
+      await recordReboundReviewProvenance(db,d,{...next,marks:result.marks},{links,actorId:req.user.id,operation:'ocr-text-correction'});
+      await rows(db, sql`UPDATE documents SET content=${result.content},content_hash=${result.hash},anchors=${JSON.stringify(result.anchors)}::jsonb,page_data=${JSON.stringify(result.pages)}::jsonb,marks=${JSON.stringify(result.marks)}::jsonb,recognition=${JSON.stringify(result.recognition)}::jsonb,page_review=${JSON.stringify(storedPageReview)}::jsonb,entity_corrections=${rebound.stored},revision=revision+1 WHERE id=${doc}`);
       // A new content revision has no saved review snapshot. Already issued links keep their immutable artifact.
       await rows(db, sql`UPDATE attempts SET finished_at=now(),outcome='ocr_text_changed' WHERE finished_at IS NULL AND job_id IN (SELECT id FROM jobs WHERE document_id=${doc} AND status IN ('queued','running'))`);
       await rows(db, sql`UPDATE jobs SET status='cancelled',lease_until=NULL WHERE document_id=${doc} AND status IN ('queued','running')`);

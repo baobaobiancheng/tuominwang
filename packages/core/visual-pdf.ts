@@ -1,4 +1,5 @@
 import sharp from "sharp";
+import {rotatePageBox,quarterTurn} from "./page-rotation.ts";
 import { openPdf, PAGE_MAX_PIXELS } from "./pdf-reader.ts";
 import type { VisualCandidate } from "./visual-detection.ts";
 type Matrix = [number, number, number, number, number, number];
@@ -10,7 +11,8 @@ export function pdfImageSealShape(box: Pick<VisualCandidate, "x" | "y" | "width"
   return [box.x, box.y, box.width, box.height, width, height].every(Number.isFinite) && cx > width * .05 && cx < width * .95 && cy > height * .45 && box.width >= size && box.height >= size && box.width <= width * .45 && box.height <= height * .35 && box.width / box.height >= .5 && box.width / box.height <= 2;
 }
 // PDFium replaces the observed PDF.js operator walker. Both use transformed embedded-image rectangles in page coordinates.
-export async function detectPdfImageSeals(source: Buffer, pageIndex: number, preview: Buffer): Promise<VisualCandidate[]> {
+export async function detectPdfImageSeals(source: Buffer, pageIndex: number, preview: Buffer, additionalRotation = 0): Promise<VisualCandidate[]> {
+  additionalRotation=quarterTurn(additionalRotation);if(additionalRotation)preview=await sharp(preview).rotate(-additionalRotation).png().toBuffer();
   const pdf = await openPdf(source), p = pdf.module;
   let page = 0;
   const scratch = p.pdfium.wasmExports.malloc(64), heap = () => (p.pdfium as typeof p.pdfium & { HEAPU8: Uint8Array<ArrayBuffer> }).HEAPU8;
@@ -57,6 +59,6 @@ export async function detectPdfImageSeals(source: Buffer, pageIndex: number, pre
       for (let i = 0; i < raw.length; i += 3) { const r = raw[i], g = raw[i + 1], b = raw[i + 2]; if (r > 150 && r - Math.max(g, b) > 35 || b > 120 && b - Math.max(r, g) > 30) color++; }
       if (color / (cw * ch) >= .015) accepted.push(box);
     }
-    return accepted;
+    return additionalRotation ? accepted.map(box=>({...box,...rotatePageBox(box,width,height,additionalRotation)})) : accepted;
   } finally { if (page) p.FPDF_ClosePage(page); p.pdfium.wasmExports.free(scratch); pdf.close(); }
 }

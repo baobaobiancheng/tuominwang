@@ -53,22 +53,23 @@ export function docxSelection(root: HTMLElement, selection: Selection | null): D
 function css(style: DocxTextStyle): React.CSSProperties {
   return { fontFamily: style.font ? `"${style.font}", serif` : undefined, fontSize: style.size ? `${style.size}pt` : undefined, fontWeight: style.bold ? 700 : style.bold === false ? 400 : undefined, fontStyle: style.italic ? "italic" : undefined, textDecoration: [style.underline && "underline", (style.strike || style.deleted) && "line-through"].filter(Boolean).join(" ") || undefined, color: style.color, backgroundColor: style.background, verticalAlign: style.vertical === "super" ? "super" : style.vertical === "sub" ? "sub" : undefined };
 }
-type Props = { documentId: string; revision: number; marks: readonly Mark[]; api: <T>(path: string, method?: string, body?: unknown) => Promise<T>; disabled?: boolean; onSelect: (range: DocxSelection | null) => void; onMark?: (mark: Mark) => void; focusRange?: DocxSelection | null };
-export function DocxReview({ documentId, revision, marks, api, disabled = false, onSelect, onMark, focusRange }: Props) {
+type Props = { documentId: string; revision: number; marks: readonly Mark[]; api: <T>(path: string, method?: string, body?: unknown) => Promise<T>; disabled?: boolean; onSelect: (range: DocxSelection | null) => void; onMark?: (mark: Mark) => void; focusRange?: DocxSelection | null; safeMode?: boolean; canonicalText?: string; canonicalTextOffset?:number; canonicalTextLength?:number };
+export function DocxReview({ documentId, revision, marks, api, disabled = false, onSelect, onMark, focusRange, safeMode = false, canonicalText, canonicalTextOffset=0, canonicalTextLength }: Props) {
   const [layout, setLayout] = useState<DocxLayout | null>(null), [error, setError] = useState(""), [retry, setRetry] = useState(0), [zoom, setZoom] = useState(1), [selectionNote, setSelectionNote] = useState("");
   const highlights = useMemo(() => docxHighlights(marks), [marks]);
   const root = useRef<HTMLDivElement>(null), apiRef = useRef(api); apiRef.current = api;
   useEffect(() => {
+    if(safeMode&&canonicalText!==undefined){setLayout(null);setError("");onSelect(null);return;}
     let live = true; const controller = new AbortController(); setLayout(null); setError(""); onSelect(null);
     void processingRead(() => apiRef.current<DocxLayout>(`/documents/${documentId}/docx-layout?revision=${revision}`), controller.signal).then(value => { if (live) setLayout(value); }).catch(e => { if (live && e?.name !== "AbortError") setError(e?.message ?? "版式预览加载失败"); });
     return () => { live = false; controller.abort(); };
-  }, [documentId, revision, retry]);
+  }, [documentId, revision, retry, safeMode, canonicalText]);
   useEffect(() => {
-    if (!layout || !focusRange || !root.current) return;
+    if ((!layout&&!(safeMode&&canonicalText!==undefined)) || !focusRange || !root.current) return;
     const match = Array.from(root.current.querySelectorAll<HTMLElement>("[data-docx-start]")).find(el => Number(el.dataset.docxStart) <= focusRange.start && Number(el.dataset.docxEnd) > focusRange.start);
     match?.scrollIntoView({ block: "center", behavior: "smooth" });
     setSelectionNote(match ? "已定位对应原文。" : "此标记位于属性、图片文字或未展示对象，请在对象原文或图片审查区查看。");
-  }, [focusRange?.start, focusRange?.end, layout]);
+  }, [focusRange?.start, focusRange?.end, layout, safeMode, canonicalText]);
   function selected() {
     if (disabled || !root.current) return;
     const selection = window.getSelection(), range = docxSelection(root.current, selection); onSelect(range);
@@ -76,15 +77,21 @@ export function DocxReview({ documentId, revision, marks, api, disabled = false,
   }
   function renderBlocks(blocks: DocxBlock[], prefix: string): React.ReactNode {
     return blocks.map((block, index) => {
+      if (block.kind === "table" && safeMode) return <div key={`${prefix}:${index}`}>{block.rows.flatMap((r,i)=>r.cells.map((c,j)=><div key={`${i}:${j}`}>{renderBlocks(c.blocks,`${prefix}:${index}:${i}:${j}`)}</div>))}</div>;
       if (block.kind === "table") return <table key={`${prefix}:${index}`} className="docx-paper-table"><colgroup>{block.widths.map((w, i) => <col key={i} style={w ? { width: `${w}pt` } : undefined} />)}</colgroup><tbody>{block.rows.map((r, i) => <tr key={i}>{r.cells.map((c, j) => <td key={j} colSpan={c.span}>{c.merge === "continue" && <small className="docx-merge-note">纵向合并续格</small>}{renderBlocks(c.blocks, `${prefix}:${index}:${i}:${j}`)}</td>)}</tr>)}</tbody></table>;
-      const s = block.style;
+      const s = safeMode ? {} : block.style;
       return <p key={block.id} data-docx-paragraph={block.id} className={s.breakBefore ? "docx-paragraph docx-break-before" : "docx-paragraph"} style={{ textAlign: s.align, marginTop: `${s.before ?? 0}pt`, marginBottom: `${s.after ?? 8}pt`, marginLeft: `${s.left ?? 0}pt`, marginRight: `${s.right ?? 0}pt`, textIndent: `${s.indent ?? 0}pt`, lineHeight: s.line ?? 1.5 }}>{block.runs.length ? block.runs.map((run, i) => {
         if (run.kind === "break") return run.page ? <span key={i} className="docx-page-break" role="separator" aria-label="分页符" /> : <br key={i} />;
         if (run.kind === "tab") return <span key={i} className="docx-tab" aria-label="制表符">{"\t"}</span>;
+        if (run.kind === "image" && safeMode) return null;
         if (run.kind === "image") return <img key={i} className="docx-inline-image" draggable={false} alt={`文档图片 ${run.page + 1}，区域标注请使用图片审查区`} src={appUrl(`/api/documents/${documentId}/pages/${run.page}?revision=${revision}`)} style={{ width: run.width ? `${run.width}pt` : undefined, maxHeight: run.height ? `${run.height}pt` : undefined }} />;
-        return <span key={i} style={css(run.style)}>{runSegments(run, highlights).map(segment => <span key={segment.start} data-docx-start={segment.start} data-docx-end={segment.end} className={segment.mark ? `docx-mark docx-mark--${segment.mark.decision}` : undefined} style={segment.mark ? { "--docx-mark-color": typeColor(segment.mark.kind) } as React.CSSProperties : undefined} title={segment.mark ? `${entityLabel(segment.mark)} · ${segment.mark.decision === "redact" ? "脱敏" : segment.mark.decision === "ignore" ? "保留" : "待确认"}` : undefined} role={segment.mark ? "button" : undefined} tabIndex={segment.mark ? 0 : undefined} onClick={() => { if (segment.mark && window.getSelection()?.isCollapsed !== false) onMark?.(segment.mark); }} onKeyDown={e => { if (segment.mark && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); onMark?.(segment.mark); } }}>{segment.text}</span>)}</span>;
+        return <span key={i} style={safeMode ? undefined : css(run.style)}>{runSegments(run, highlights).map(segment => <span key={segment.start} data-docx-start={segment.start} data-docx-end={segment.end} className={segment.mark ? `docx-mark docx-mark--${segment.mark.decision}` : undefined} style={segment.mark ? { "--docx-mark-color": typeColor(segment.mark.kind) } as React.CSSProperties : undefined} title={segment.mark ? `${entityLabel(segment.mark)} · ${segment.mark.decision === "redact" ? "脱敏" : segment.mark.decision === "ignore" ? "保留" : "待确认"}` : undefined} role={segment.mark ? "button" : undefined} tabIndex={segment.mark ? 0 : undefined} onClick={() => { if (segment.mark && window.getSelection()?.isCollapsed !== false) onMark?.(segment.mark); }} onKeyDown={e => { if (segment.mark && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); onMark?.(segment.mark); } }}>{segment.text}</span>)}</span>;
       }) : <br />}</p>;
     });
+  }
+  if(safeMode&&canonicalText!==undefined){
+    const blocks:DocxBlock[]=[];let offset=canonicalTextOffset;for(const line of canonicalText.split('\n')){blocks.push({kind:'paragraph',id:`compat-${offset}`,part:'canonical',style:{},runs:line?[{kind:'text',text:line,start:offset,end:offset+line.length,style:{}}]:[]});offset+=line.length+1;}
+    return <section className="docx-review" aria-label="Word 兼容文字审查"><p className="muted">规范原文文字窗口 {canonicalTextOffset}–{canonicalTextOffset+canonicalText.length} / {canonicalTextLength??canonicalText.length}；其他内容请用原文翻页查看，复杂版式与图片请分别复核。</p><div className="docx-scroll" ref={root} onMouseUp={selected} onKeyUp={selected}>{renderBlocks(blocks,'compat')}</div>{selectionNote&&<p role="status">{selectionNote}</p>}</section>;
   }
   return <section className="docx-review" aria-label="Word 版式审查"><div className="docx-controls"><strong>Word 版式</strong><label>缩放 <select aria-label="Word 预览缩放" value={zoom} onChange={e => setZoom(Number(e.target.value))}>{[.6, .8, 1, 1.2, 1.5].map(n => <option key={n} value={n}>{Math.round(n * 100)}%</option>)}</select></label><span>只读原件</span></div>
     <p className="muted">按文档段落、字体和表格展示；浏览器字体、分页和浮动对象可能与 Word 不同。导出仍使用原始文件。</p>

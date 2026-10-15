@@ -1,0 +1,66 @@
+{
+  "result": {
+    "roundtrip": true,
+    "encryptedAtRest": true,
+    "firstFrameTamperExposedBytes": 0,
+    "truncatedFooterRejected": true,
+    "wrongExpectedHashRejected": true,
+    "crossObjectAadRejected": true,
+    "failedWriteObjectRemoved": true,
+    "cfbDirectoryCycleRejectedBeforeCfbRead": true
+  },
+  "codeHashes": [
+    {
+      "path": "packages/adapters/folder-storage.ts",
+      "sha256": "26b61216d6a6e6751a573b02ab92005f6861e9810f6a01708293497f67f906b9"
+    },
+    {
+      "path": "packages/adapters/folder-output.ts",
+      "sha256": "e0e65f7c9e6edf77a70618b12353124e57e31e72ac61a52a6d71fc7944dbc901"
+    },
+    {
+      "path": "apps/api/folder-output.ts",
+      "sha256": "f8cac8c041938d4733f54b558ae69fb3a8a932a37ac9abfc989b408a25698db2"
+    },
+    {
+      "path": "packages/core/reference-folder.ts",
+      "sha256": "119ee01ce02c133ff95b6fcd47f7d95e7301c4b77c86b71b33821fdf6bbff214"
+    },
+    {
+      "path": "packages/adapters/reference-route.ts",
+      "sha256": "296bb984be41562d4557f15358b6112cd69ad9906ef2e5bc843fd898b739590b"
+    },
+    {
+      "path": "packages/core/document-unlock-word.ts",
+      "sha256": "8d3fe4bf49ffcb47301c0b34e5413d96046b5a3aa26ee9ada91b8addb0c079e8"
+    }
+  ],
+  "date": "2026-10-15",
+  "reviewer": "complete_visual",
+  "target": "complete_rules",
+  "findings": [
+    {
+      "id": "B-A-CFB-01",
+      "severity": "P1",
+      "status": "closed",
+      "issue": "Route called CFB.read before raw directory/FAT validation; cyclic directory could expand native parser paths.",
+      "fix": "validateWordEncryptionContainer runs before CFB.read.",
+      "independentProbe": "Mutated genuine encrypted synthetic DOCX with directory cycle; FILE_INVALID and instrumented CFB.read call count 0."
+    }
+  ],
+  "evidence": {
+    "probe": ".data/research/lawbot-2026-10-15/iteration032/review-folder-stream-by-visual.mjs",
+    "log": ".data/research/lawbot-2026-10-15/iteration032/review-folder-stream-by-visual.log"
+  },
+  "readOnlyChecks": [
+    "owner_id session and tenant RLS enforced through projectScope with view_original/export",
+    "source/hash/currentrevision and issued artifact verification repeated before download",
+    "ZIP paths safe relative, no traversal, case-insensitive collision rejection, manifest text HTML-escaped",
+    "verifyFolderStream completes whole footer/count/size/SHA check before HTTP stream starts; second pass decrypt.final authenticates each frame before yield",
+    "No aggregate50MiB upload cap imposed on folder; framed writer does not collect whole ZIP plaintext"
+  ],
+  "limits": [
+    "Probe is storage/helper-level; actual permission/ZIP API evidence independently read from A tests, not relabelled as B executed.",
+    "No original native IPC or native OS folder picker was invoked."
+  ]
+}

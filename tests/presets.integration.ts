@@ -33,7 +33,7 @@ test("presets encrypt all payloads, isolate users and tenants, enforce CAS and i
   const copy = (await req("POST", `/api/presets/profiles/${preset.settings.id}/duplicate`, {})).json(); assert.equal(copy.settings.name, "合成测试方案 副本"); assert.equal(copy.settings.docx.removeImages, true);
   const copy2 = (await req("POST", `/api/presets/profiles/${preset.settings.id}/duplicate`, {})).json(); assert.equal(copy2.settings.name, "合成测试方案 副本 2");
   const longName = "😀".repeat(100), longPreset = (await req("POST", "/api/presets/profiles", { name: longName })).json();
-  const longCopy = await req("POST", `/api/presets/profiles/${longPreset.settings.id}/duplicate`, {}); assert.equal(longCopy.statusCode, 200); assert.ok(longCopy.json().settings.name.length <= 200); assert.ok(longCopy.json().settings.name.isWellFormed());
+  const longCopy = await req("POST", `/api/presets/profiles/${longPreset.settings.id}/duplicate`, {}); assert.equal(longCopy.statusCode, 200); assert.equal(longCopy.json().settings.name,longName + " 副本"); assert.ok(longCopy.json().settings.name.isWellFormed());
   const longCopy2 = await req("POST", `/api/presets/profiles/${longPreset.settings.id}/duplicate`, {}); assert.equal(longCopy2.statusCode, 200); assert.notEqual(longCopy.json().settings.name, longCopy2.json().settings.name); assert.equal((await req("GET", "/api/presets/profiles")).statusCode, 200);
   const r = (await req("POST", "/api/presets/rulesets", { name: "合成规则库" })).json();
   const entries = importedEntries([{ row: 2, pattern: "合成甲乙公司", entityType: "org_name", kind: "forceDetect", enabled: true }], "manual");

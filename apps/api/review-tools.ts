@@ -10,6 +10,8 @@ import { saveReview } from "./reviews.ts";
 import { isDeepStrictEqual } from "node:util";
 import { projectScope } from "./access.ts";
 import { reviewMarks } from "../../packages/core/redaction.ts";
+import {validateEntityGeometryPolicy}from'../../packages/adapters/entity-geometry.ts';
+import{readReviewProvenance,readReviewProvenanceArchive}from'../../packages/adapters/review-provenance.ts';import{addReviewEntityHints,type ReviewEntityHint}from'../../packages/core/review-entity-slots.ts';
 
 function fail(message: string, statusCode = 409): never { throw Object.assign(new Error(message), { statusCode }); }
 export function registerReviewTools(app: FastifyInstance) {
@@ -29,14 +31,15 @@ export function registerReviewTools(app: FastifyInstance) {
       const docs = await rows(db, sql`SELECT * FROM documents WHERE project_id=${project} AND id IN (${sql.join(ids.map(v => sql`${v}`), sql`,`)}) ORDER BY id`);
       const deadline = Date.now() + 60000, result: { id: string; revision: number; affected: number }[] = [];
       for (const d of docs) {
-        let affected = 0, next: Mark[] = (d.marks as Mark[]).map(m => {
+        const provenance=await readReviewProvenance(db,d);let affected = 0, next: ReviewEntityHint[] = addReviewEntityHints(provenance,d.marks).map(m => {
           if (m.decision !== "pending" || input.kind && !sameEntity(m,{kind:input.kind,rawEntityType:input.rawEntityType}) || input.whitelist && !m.sources?.some(s => s.code === "project-whitelist")) return m;
           affected++; return { ...m, decision: input.decision };
         });
         if (mode === "undo") {
           const [previous] = await rows(db, sql`SELECT * FROM review_snapshots WHERE document_id=${d.id} AND revision=${d.revision - 1}`);
           if (!previous || previous.content_hash !== d.content_hash || previous.parse_version !== d.parse_version || !isDeepStrictEqual(previous.recognition, d.recognition) || !isDeepStrictEqual(openPageReview({...d,revision:previous.revision,content_hash:previous.content_hash},previous.page_review),openPageReview(d)) || !isDeepStrictEqual(previous.page_data, d.page_data)) fail("SNAPSHOT_MISMATCH");
-          next = previous.marks; affected = next.length;
+          const historical=await readReviewProvenanceArchive(db,d,previous),activeIds=new Set(provenance.entries.filter(e=>e.active).map(e=>e.id)),priorByIndex=new Map(historical.frame.entries.filter(e=>e.active).map(e=>[e.markIndex,e.id]));
+          next = previous.marks.map((mark:Mark,index:number)=>{const id=priorByIndex.get(index);return{...mark,...id&&activeIds.has(id)?{reviewEntityId:id}:{}};}); affected = next.length;
         }
         if (mode === "preview") { result.push({ id: d.id, revision: d.revision, affected }); continue; }
         if (Date.now() >= deadline) fail("PROCESSING_TIMEOUT", 400);
@@ -55,7 +58,7 @@ export function registerReviewTools(app: FastifyInstance) {
       if (d.revision !== input.revision) fail("VERSION_CONFLICT");
       if (d.state !== "review") fail(d.state === "outdated" ? "POLICY_CHANGED" : "DETECTION_INCOMPLETE");
       const mappings = await mappingsForMarks(db, d, input.marks, req.user.id);
-      try { return { revision: d.revision, ...await runProcessing<object>({ kind: "preview", doc: d, marks: input.marks, mappings, offset: input.offset }) }; }
+      try { const policy=await validateEntityGeometryPolicy(db,d,input.marks,input.pageReview??openPageReview(d));return { revision: d.revision, ...await runProcessing<object>({ kind: "preview", doc: {...d,page_review:policy}, marks: input.marks, mappings, offset: input.offset }) }; }
       catch (e) { fail((e as Error).message, 400); }
     });
   });

@@ -1,0 +1,180 @@
+{
+  "date": "2026-10-15",
+  "scope": [
+    "UI-3f01047e6b59",
+    "UI-32ce2fb60c5f"
+  ],
+  "sourceRuntime": "R0: no licensed competitor execution; public static source/pure extracted functions only",
+  "staticDepth": "S2; not promoted to S3. Full broader client renderer call graph is not yet closed.",
+  "source": {
+    "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+    "sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+    "ranges": [
+      {
+        "symbols": "gC/en2/tn2/an2/rn2/sn2",
+        "start": 22301,
+        "end": 22671,
+        "rangeSha256": "39cfff0e839271da30881c3d60b140403fb556036d323f848570f0367c079368",
+        "observedBranches": "quarter-turn normalization; native plus pending/committed angles; current-page accumulation; manual-only commit; selected-page re-recognition request; failure keeps pending"
+      },
+      {
+        "symbols": "Vn2/Hn2/Un2/xa2/Fa2",
+        "start": 22740,
+        "end": 23018,
+        "rangeSha256": "0c67c808ff1ee5dedd42acae9af089c054ec30c43bc002b314ced1dfa217953d",
+        "observedBranches": "native PDF text transform through getViewport; OCR cache search; deleted-page exclusions; stale sequence guards; partial-source/error warnings; DOM offset projection"
+      },
+      {
+        "symbols": "Yi2/Qi2/Zi2/tr2/nr2/ar2/ir2/Li2",
+        "start": 23363,
+        "end": 23479,
+        "rangeSha256": "0e39d5656ee78956dffd2516f42b5facfd9ff364480f86a4626d1520f2fed74c",
+        "observedBranches": "DOM viewport offsets; native vs OCR coordinate units; additional rotation; legacy adjusted-box offsets; exact box selection"
+      },
+      {
+        "symbols": "fr2/vr2/gr2/yr2/br2/wr2/xr2/Ar2/Tr2",
+        "start": 23489,
+        "end": 23596,
+        "rangeSha256": "dd23ce89a58cf31f6a42cf135f1030d2f3e9b0a96e665a4dd932f80db6620537",
+        "observedBranches": "display inverse to canonical; move/resize; eight resize handles/min-size; forward width/height"
+      },
+      {
+        "symbols": "Ib/Pb/Rb + As2/Ts2/Es2/Is2/Rs2/Ds2",
+        "start": 23693,
+        "end": 23794,
+        "rangeSha256": "48b5f99f2d13cf24bbd5b1df24260faddb7f2fa435f95dabb3980a0f47a69ca1",
+        "observedBranches": "same angle and <=2.5% aspect deviation; normalized placement; exact rectangle union >=90%; three-second page lookup; 30s between-page batch budget; every-eight yield; cancel discards whole plan; per-batch metadata and undo"
+      },
+      {
+        "symbols": "so2/ro2",
+        "start": 23970,
+        "end": 24020,
+        "rangeSha256": "8bfc50e0349f5c4555a27815c8cc5a618190da3b53b9c3892d6882bfddec2540",
+        "observedBranches": "selected textual region combines native and OCR geometry and deduplicates results before manual annotation"
+      },
+      {
+        "symbols": "rl2/sl2",
+        "start": 24528,
+        "end": 24536,
+        "rangeSha256": "eb261666d12c86ec3cd85057cfdf6acce1982f5b767c6300e6d7a534c3e14642",
+        "observedBranches": "preview-only one-box median height smoothing and centering; not standalone rotation or crop conversion"
+      },
+      {
+        "symbols": "Mu2/Au2/Fu2/$u2/zu2/ju2/Uu2/Vu2",
+        "start": 25554,
+        "end": 25668,
+        "rangeSha256": "d5cace7e4872ca1ff137d962ffeb5089462ccd56dc1169ca1979b4f89147cffe",
+        "observedBranches": "visible-page selection; virtualization window; generation and render-task cancellation; OCR transparent selectable text overlay; unmount releases canvases"
+      },
+      {
+        "symbols": "Ju2/getReviewState/applyReviewState/markRotationRedetectComplete/Failed",
+        "start": 25815,
+        "end": 25948,
+        "rangeSha256": "e58f5d467b67c6e53a964ef99601c96d784e2d7ce060a5b3d0958f306a84cca5",
+        "observedBranches": "PDF worker loading; 45s timeout/destroy; committed-only persistence; viewport fields; success commits angles and clears manual-only; failure keeps pending"
+      },
+      {
+        "symbols": "mounted/unmounted callbacks",
+        "start": 25959,
+        "end": 25986,
+        "rangeSha256": "a0e9f1d5704f12172d66053d2eacff569bf26862841d6f3ef2f8a8523485af69",
+        "observedBranches": "body class/listener/ResizeObserver/wheel/scroll registration; task cancellation; timers/RAF/listener cleanup; canvas/text-layer release; async PDF cleanup/destroy"
+      },
+      {
+        "symbols": "Vu2/zv2/jv2/Kv2/Hv2",
+        "start": 35565,
+        "end": 35628,
+        "rangeSha256": "c7ebcf85de147f4b357d4c20f2742e04c377e24537e99831bea25d48656fcb80",
+        "observedBranches": "single/batch caller; source lease and active rules/corrections/snapshot/route forwarding; preserve untouched and selected manual entities; dedup new detections; success/failure cleanup"
+      },
+      {
+        "symbols": "Uf/Vf/Wf/qf/Xf + Word sn2/hs2 + Image Xe2/yi2",
+        "start": 5868,
+        "end": 5891,
+        "rangeSha256": "ac572ba7e1ca49738d2c9205bc3993a7bb91815fdf498f6647b9e6ac12fc8729",
+        "observedBranches": "format-specific normalization, UTF16 source-offset mapping, manual OCR corrections/raw type/shape metadata; distinct component scopes explicitly read"
+      }
+    ]
+  },
+  "implementation": {
+    "packages/contracts/page-rotation.ts": "e0f3a0ef322a96d0bfbc6514ac0996cbb3d6753d158cd1edc058199672f4a0d5",
+    "packages/contracts/repeated-regions.ts": "b63a4b62e30c4a3805b5638e48887e2b528acf533d8da61f5cc223f118921ae9",
+    "packages/core/page-rotation.ts": "e6cc1e9fd4587143cebe6fde4b03357553675aa7367ec08eb7a1d1ae1c0757cb",
+    "packages/adapters/page-rotation.ts": "3791eebd8b79cbe81e111433bc1f40d327d11606763c20b1d2f673008a46b472",
+    "packages/adapters/page-rotation-state.ts": "93e890ca8fa8a5fd966babac43b439caf06b06f0e3163a4976e3d6a1d9a125e9",
+    "packages/adapters/page-parser.ts": "52576b38035e217e19c326f6743dfc6769c02238b515c25b4db229350377e0e6",
+    "packages/adapters/processing-worker.ts": "4e7357e50a6bf72339615586400d92787822fd918f06586b20660261f4647465",
+    "packages/adapters/processing.ts": "31935a0844bdd77b55d99e1ae78d6361572bf1b8473f43d468087cf07130081c",
+    "packages/adapters/reference-pdf-table.ts": "b5fd6f761bc79b29cb3e4898e5136006edb8c11a378d6a05c0d514b052e2fd1f",
+    "packages/adapters/reference-visual-table.ts": "215dd428374da11cd06e55cc2fa6119027c93be5663741c0e8944633c102dd03",
+    "packages/core/visual-pdf.ts": "a4b76999d53e403136ca0a6805ed34974a321f52efc733fe036deb40f42ec3d8",
+    "apps/api/page-rotation.ts": "e065a82282a1a96ebc04220f1058a9ab9d7ea093e71bb301769f3251bca59de9",
+    "apps/web/page-rotation.tsx": "4be6f6d0c4e2c19ccadc3a10016ecd49a4c47dea89766af97e5c939a4ac13032",
+    "apps/web/page-review.tsx": "5228f0e392ab605bde9a8a3a410751c28ce737778c5408f1f0e2b52cfc97637e",
+    "scripts/033.sql": "6d54caba05eec6800d4f24559b6469fbc5f658bd903acee12e78dabc1c82a993",
+    "tests/page-rotation.integration.ts": "7683bd03998bada14c484cb6bdd6fe8ad41638c645cacacf67cfb36e742b523d",
+    "tests/page-rotation-vector.test.ts": "7facfcc88ee31bca6d090cb146c399e8be894236d59746b4f88719658bd87ffe",
+    "tests/page-rotation.test.ts": "c3f53b87f5f1e3d87d8445c12e57f8283b6cef7266d9ca3057cfceb3b2b01568",
+    "tests/repeated-regions.test.ts": "e365ca0f45bddb184f2b3d7e1c7f4233619ab639200cd883e5f88f03fa1baa59",
+    "tests/e2e/page-rotation-repeat.spec.ts": "3f0385e02e999716995db151c467131967908a56fe9c138d9caf3a7700ff5055",
+    "packages/contracts/entity-geometry.ts": "7204eb015278b9382d317fa44a05d1c6175f24004b0b79e7bdc6bcc03f30d266",
+    "packages/adapters/entity-geometry.ts": "5935ee33245a1a67c319707e6f16cca0b54e09d1d87d97aae6dc47c2c0b6dacb",
+    "packages/core/page-redaction.ts": "ace5716d6587a06d09ce8c893593a41dbebd41570334afbc5a6c1045324b24aa",
+    "packages/core/visual-replacement.ts": "7442037bb7675ae4728d273dc2e459ad9202d5ac075f9399d61deb2bb621d4b6",
+    "packages/adapters/visual-replacement.ts": "e2d626332e9e41a67fcfd18b6614d506b5dfb5ea9daefd386bc7e9584e10612c",
+    "packages/adapters/page-export.ts": "5f7e7a19131fcd67b54a0c9c597012dfd4e4b469a6961df0b258ed49a2f02f02",
+    "packages/adapters/office-images.ts": "82bcef115ddaee221b02b8b13878b388ece96a3875b78d36906e78ee7887519c",
+    "packages/adapters/profile-export.ts": "3b9dd92d304fa7bf89b8c55f0c4f5efbe58dae4b41daa243b0f33ea7a475a807",
+    "apps/api/entity-geometry.ts": "b8e3b21679e0b3cd259cfae05ff3ea11443322cf59dbdb6f127a87a986dc5fd5",
+    "apps/web/entity-geometry.tsx": "7b46a397bdf5501f67919d750bfd79db79bc342968afdee7903e248d17d4e38f",
+    "apps/web/region-edit.tsx": "986791cdf59dd5b3f9b266b03bae6d9442ff6c6912a7386bf91240b0b9b1776e",
+    "packages/contracts/manual-selection.ts": "473cd65f8a7b24fe6db52aeaed7d5066e98972e67e4a8d793222e35d16f2ddbf",
+    "packages/contracts/manual-occurrences.ts": "ad32bc5acc09f1e6a31a883a6789b80477e69626dffbc9d996f56d86f64509f0",
+    "packages/adapters/manual-occurrences.ts": "8bce99dee445a3ccb8ebf5681ec2e4b0f2aaefaf60e9cab3afd85f9b62482f99",
+    "apps/api/manual-occurrences.ts": "e96afb26eddff99b1e7407efd3a675cd1735be92fe8c7a1c14fbfe8c1fee6936",
+    "apps/web/manual-occurrences.tsx": "1a094e90a4b81c78d25dec3edd9c8bb5f126abdc9a4fb1bddb3c3d19802d5a23",
+    "packages/core/image-batch-search.ts": "39f69cd11e51c0b2148d3a38a18c7843ea5df13edb16614fbe4dc6381302de99",
+    "apps/web/page-search-entities.ts": "183b1a754ee9c9c383dfda11368723019ee520881ee3a34b5abd387a01cf2e7f"
+  },
+  "implemented": [
+    "Authenticated source-bound additional rotation state, separate immutable originals; 0-based web state and explicit manual-only pages",
+    "Real quarter-turn raster, native glyph and vector-table transforms. Raster render scale remains separate from canonical dimensions. Embedded-image seal candidates map through the same angle.",
+    "Selected-page actual OCR plus complete recognition pipeline; old manual OCR text/map retained and rotated with explicit warning because only whole-page edited state, not reversible edit history, is available",
+    "Simultaneous canonical edit pass rebinds untouched spans and metadata anchors; unchanged page resources remain exact; manual user provenance and explicit ignores retained",
+    "Manual rectangle/ellipse/private annotation metadata quarter-turn and AEAD rebound under new content/revision; no accepted snapshot is created; fresh review save is mandatory",
+    "New API verifies permissions, CAS, original/unlocked bytes, canonical hash, preview/map hashes; rechecks before persistence; abort signal; stale jobs/recoveries cancelled",
+    "Same-position batch uses source angle/aspect/coverage branches, structured skip summary, progress, timeout, cancellation and exact batch undo; stale doc/revision/permission/value generations never write partial candidates",
+    "Existing recognized entity actual multi-bbox outer/per-box move/resize via eight handles; server opaque current031 entity identity/source/content/map/preview/base glyph hashes bind override; common PNG/PDF/embeddedWord preview+export planner, wrongmove still fails original residue gate",
+    "Opaque-ID prune handles dirty reorder/delete/type changes; actor/time only actualgeometrychanges; pending031 history retained; marks and pageReview undo together",
+    "Transparent actual glyph text selection and manual region8handles; source in/out/all continuous glyph search scope; phone source subtype and035semantic query exactslot corrections",
+    "Per-format same-occurrence bodyWord literal/normalized overlapping, imageOCR line+up-to4 spatialline canonicalranges, PDFnative wholecasefold, correctioncurrentvalue and Image emptyIPCtypedregionfallback; crossing anchors produces explicit separate valid pending marks"
+  ],
+  "differences": [
+    "Source legacy -2px/-17.5px/-8px heuristics are not applied to our independently authenticated canonical glyphs; exact glyph bounds drive clear pixels.",
+    "Source rectangle-union helper treats ellipse bounding rectangles as coverage; our planner conservatively excludes ellipse coverage to prevent falsely treating outside-corner pixels as already cleared.",
+    "Pending angle UI accumulates changes and requires an explicit action before displaying the committed source preview; it does not delete current accepted marks merely because a local pending angle is clicked.",
+    "Recognition with manual OCR corrections runs fresh selected-page OCR but preserves user-corrected text/map with ROTATION_PRESERVED_MANUAL_OCR_TEXT; no invented correction edit history or silent correction loss."
+  ],
+  "remainingBroaderClientBranches": [
+    {
+      "symbols": "Word inlineimage iframe vs separate resource editor",
+      "difference": "All embedded resource OCR/selection/rectangle-ellipse/geometry/correction/preview/export operations reachable in main PageEditor; direct resource selector now actualEdge second→first tested. Source inline-DOM direct gesture is a presentation/entry difference, not missing editing business."
+    },
+    {
+      "symbols": "PDF continuous viewport vs page-specific verified raster",
+      "difference": "All pages reachable via direct page selector, prior/next and actual search focus; manual selection/edit/rotation/delete/preview/export present. Continuous PDF.js rendering/viewport pixel equality not claimed."
+    }
+  ],
+  "tests": {
+    "units": "035/visual-geometry-full-targeted-units.log7files22testsPASS; normalization followup3files8testsPASS600ms; root geometry031 independent2PASS257ms",
+    "api": "rotation final3API and A independent3PASS28.52s including036 IDs/actor history; manual3PASS39.334s with spatial disordered canonical actualranges; geometry2PASS44.34s actualcustom labels/3format pixels; A independently2PASS35.732s",
+    "adversarial": "A manual normalizedempty Word feedbackcase before200 fixed400 independent1PASS5.134s; geometrywrongmove exportRESIDUE_FOUND, tokenforeign/stalemap reject, clear allowed",
+    "browser": "New manual-occurrences-geometry two actualEdge cases PASS(5.9m), natural runner exit0; Word true2embeddedresources jump2→1/raw350same-occurrence+locate+save; PNGrecognizedentity8handles truegeometry/save+opaquebinding+reset. Browser teardown delay independently diagnosed: Edgecrashpad/updater inheritedstderr; no secondrun kill/force-exit by B. rotation earlier1PASS39s; page selection/edit1PASS20s."
+  },
+  "qualityBoundary": "No stamp model or thresholds changed. Complete public mixed786 results remain separate research; not independent commercial blackwhite gold.",
+  "checkpoint": "2026-10-15 iteration035; exact per-file hashes below; portable geometry/current Edge still in progress",
+  "finiteSourceExpansion": "visual-finite-source-chains-20261015.json31exactranges including verifiedasarpreload bridge",
+  "portableGeometry": "C12ordinary3formats×4codec branches1PASS166.92s; B independentlylegacy signedsourcehashbridge+3tamper1PASS20.572s/0skip. Confirm-revision036 exactslot history preserved, no accepted snapshot created.",
+  "automaticFeedback": "A/root producer implementation separately under final audit; finite sourcechain fully read includingasarpreload; not counted missing solelymanualpanel now.",
+  "teardownEvidence": ".data/research/lawbot-2026-10-15/iteration035/edge-manual-geometry-teardown-diagnosis.json"
+}

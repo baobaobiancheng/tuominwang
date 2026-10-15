@@ -1,0 +1,42 @@
+{
+  "date": "2026-10-15",
+  "reviewer": "A /root/complete_rules",
+  "scope": "Workspace saved receipt download normalized/unlocked derived source integrity delta",
+  "result": "1 independent actual API PASS5159.907792ms, 0 skip",
+  "findings": [],
+  "verified": [
+    "Current project permissions/session/receipt state/fingerprint gate retained.",
+    "All original/canonical/page artifact checks retained.",
+    "verifiedDocumentSource now rechecks normalized or unlocked source before returning immutable saved payload.",
+    "AEAD-valid wrong normalized bytes with unchanged DB hashes rejected SOURCE_MISMATCH409; original and receipt unchanged.",
+    "Restoring original derived ciphertext returns exactly prior receipt bytes."
+  ],
+  "sourceRuntime": "R0",
+  "files": [
+    {
+      "path": "apps/api/workspace-saves.ts",
+      "bytes": 8572,
+      "sha256": "402ea106fb582bff29e1f09a3ee77f5f7a9a0d2111a818b8a4a57a6a220f979e"
+    },
+    {
+      "path": "packages/adapters/document-source.ts",
+      "bytes": 1489,
+      "sha256": "3f7b141b5116543132f0e9c9402e44c19cc64b6e03e0ab1aba49a557b4ffab1f"
+    },
+    {
+      "path": "tests/workspace-save-normalized-integrity.integration.ts",
+      "bytes": 4607,
+      "sha256": "35ea7bbf41ae97c166be72f1e3b0a9655ba3ae952f3158d690bcc508e461c5ca"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration036/workspace-save-normalized-integrity-actual-A-frozen.json",
+      "bytes": 402,
+      "sha256": "c22fbaf608df892581e81bb9a3abcb77b21837c615486ec8ecc68b134af4449a"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration036/review-workspace-save-normalized-integrity-A.log",
+      "bytes": 309,
+      "sha256": "2d8f982bbab9f2337750c16da69766cab37149a699012fbdc832c2bf6aa1dc12"
+    }
+  ]
+}

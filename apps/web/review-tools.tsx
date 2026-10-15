@@ -4,9 +4,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { MAX_MARKS, type DocumentView, type Mark, type PageReview } from "../../packages/contracts/index.ts";
 import type { KnownEntityCheck, SearchScope } from "../../packages/core/review-tools.ts";
 
-export function ReviewTools({ doc, marks, pageReview, update, locate, run, api, disabled, canReview, canUseAliases, mode, showMarks, surface = "all" }: {
+export function ReviewTools({ doc, marks, pageReview, update, locate, run, api, disabled, canReview, canUseAliases, mode, showMarks, surface = "all", onAddMissing }: {
   doc: DocumentView; marks: Mark[]; update: (marks: Mark[]) => void; locate: (span: { start: number; end: number }) => Promise<void>;
   pageReview: PageReview;
+  onAddMissing?: (marks:Mark[])=>void;
   surface?: "all" | "search" | "actions";
   canUseAliases: boolean; mode: "marks" | "search" | "bulk" | "known"; showMarks: () => void;
   run: (action: () => Promise<void>) => Promise<void>; api: <T>(path: string, method?: string, body?: unknown) => Promise<T>; disabled: boolean; canReview: boolean;
@@ -68,7 +69,7 @@ export function ReviewTools({ doc, marks, pageReview, update, locate, run, api, 
   }
   function addMissing() {
     if (disabled || !canReview || !coverage?.additions.length || aliasBlocked) return;
-    update([...marks, ...coverage.additions]); setChecked(null); showMarks();
+    (onAddMissing??update)([...marks, ...coverage.additions]); setChecked(null); showMarks();
   }
   const aliasBlocked = !canUseAliases && coverage?.additions.some(mark => mark.replacement?.mode === "alias");
   return <section className="review-tools" aria-label="复核工具" hidden={mode === "marks"}>

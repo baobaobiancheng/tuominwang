@@ -1,0 +1,794 @@
+{
+  "date": "2026-10-15",
+  "phase": "034",
+  "scope": "UI-339d8e53408d source renderer serialization and cloud workspace lifecycle",
+  "sourceRuntime": "R0",
+  "allReverseEngineeringComplete": false,
+  "source": {
+    "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+    "sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+    "pureFunctionCount": 56,
+    "pureFunctions": [
+      {
+        "symbol": "oc",
+        "startLine": 4188,
+        "endLine": 4191,
+        "sha256": "34646fb83f624b229b9695a3379cb1b1e8aca7220ea6d776fb0e7750ee5a111d"
+      },
+      {
+        "symbol": "cc",
+        "startLine": 4204,
+        "endLine": 4207,
+        "sha256": "07ca068f275d992fd6464122b8a38bbcfa1705bc92876a225eee233f2a6a7cfb"
+      },
+      {
+        "symbol": "xc",
+        "startLine": 4270,
+        "endLine": 4272,
+        "sha256": "0ede1ab6228cc63949b3644a0a80c11df58b009e3cc7e4004cd69f52cab521fc"
+      },
+      {
+        "symbol": "Ac",
+        "startLine": 4288,
+        "endLine": 4290,
+        "sha256": "e427e744b316b9c416a36af4c1ff998c71ee3051b6e20294bbe300554600d23f"
+      },
+      {
+        "symbol": "Tc",
+        "startLine": 4291,
+        "endLine": 4295,
+        "sha256": "f04e07ca5867547b765466744f758685e34c9158048f163f4fca384049d3c976"
+      },
+      {
+        "symbol": "Ec",
+        "startLine": 4296,
+        "endLine": 4300,
+        "sha256": "21ce77244d377188ac41dbe3f6c6c3e0a1dd6361cef99a5fc08d30713db9ddb4"
+      },
+      {
+        "symbol": "Nc",
+        "startLine": 4301,
+        "endLine": 4303,
+        "sha256": "4906ea0f3649392c4dec065f5b8967fd5abace1a24ddf27e9ea66888856598b1"
+      },
+      {
+        "symbol": "Ic",
+        "startLine": 4304,
+        "endLine": 4306,
+        "sha256": "2245f86537cb04b77456e79f2015a8bf70a0cf995b40aef1b97af8f476bb9e48"
+      },
+      {
+        "symbol": "Pc",
+        "startLine": 4307,
+        "endLine": 4314,
+        "sha256": "d028ce4b3910a05c0f8bc72c98469a2a3f5e8814f6a80577743f084196cce64f"
+      },
+      {
+        "symbol": "Rc",
+        "startLine": 4315,
+        "endLine": 4317,
+        "sha256": "1017112f4528c060e5ce33b0108e95531ee0b2983dffde8e6528f8e72b4eb52a"
+      },
+      {
+        "symbol": "Dc",
+        "startLine": 4318,
+        "endLine": 4320,
+        "sha256": "5c2bfe8565b224b24b2eb8eb64d9e1aca5e3560262944734b22ddd0910af343a"
+      },
+      {
+        "symbol": "Oc",
+        "startLine": 4321,
+        "endLine": 4323,
+        "sha256": "520db6ddbeabfc1cd2ffe05010fab7aaab50961e980beebb1e5b53be8e4fdf3c"
+      },
+      {
+        "symbol": "Bc",
+        "startLine": 4324,
+        "endLine": 4360,
+        "sha256": "925cf979d8ca6ad5cb3aaefc5d98c14b1c3557cee891d7c8a88baf3224e64234"
+      },
+      {
+        "symbol": "Fc",
+        "startLine": 4361,
+        "endLine": 4364,
+        "sha256": "329cae4201f5a39afddb172e2178ceb025156193470c5e01517f07c37bdffdda"
+      },
+      {
+        "symbol": "$c",
+        "startLine": 4365,
+        "endLine": 4403,
+        "sha256": "0def6a34293f2bb98107ab9a5df735e3506a0efdd9a83f99f027146d63082a94"
+      },
+      {
+        "symbol": "wd",
+        "startLine": 4793,
+        "endLine": 4867,
+        "sha256": "1fe493f11a8d76b1f6cbf8efdbee171d62308fca109eda11f43564747cd89a0b"
+      },
+      {
+        "symbol": "Vp",
+        "startLine": 5318,
+        "endLine": 5323,
+        "sha256": "dfb1585eb9b885dad665aabf809c87b8ecd51b10d20a7408252f0beee60bb969"
+      },
+      {
+        "symbol": "dv",
+        "startLine": 6005,
+        "endLine": 6010,
+        "sha256": "f4aaf1025f7d35525984669618f9ec3f0a9cfa826d506bee9085272875c42333"
+      },
+      {
+        "symbol": "hv",
+        "startLine": 6011,
+        "endLine": 6014,
+        "sha256": "30dfbfdea7ff8bcb58afe0f4bc75bd35ab6aaaf723e7b38a9178aca5b1b6f6f3"
+      },
+      {
+        "symbol": "mv",
+        "startLine": 6019,
+        "endLine": 6024,
+        "sha256": "36aaec993027f2190a17b13d4a993f7974fc2d8039db0fb83cbfcac0e9b9a1a5"
+      },
+      {
+        "symbol": "yC",
+        "startLine": 22306,
+        "endLine": 22309,
+        "sha256": "d8fb007eec6b597faa8a26b1a528a1dccb9798e6bcde184d39eda345b7940820"
+      },
+      {
+        "symbol": "NU",
+        "startLine": 30401,
+        "endLine": 30407,
+        "sha256": "7e48751687ee1b1ba78390e70149925b1b6edcde2e64d8660f11662a16d9ddc4"
+      },
+      {
+        "symbol": "zU",
+        "startLine": 30448,
+        "endLine": 30452,
+        "sha256": "ee890bc402e615560f041c3ee820df4a97700e530ef8e507b0784a33ddd7c333"
+      },
+      {
+        "symbol": "jU",
+        "startLine": 30453,
+        "endLine": 30455,
+        "sha256": "b1f8668b56bf6045da018f35e82e206bb267dd33081fda434668dedc42132445"
+      },
+      {
+        "symbol": "KU",
+        "startLine": 30456,
+        "endLine": 30459,
+        "sha256": "bd3c9ecde24b4dab117a0fc54455f962a10295212bd4219eb89cffb5238ef680"
+      },
+      {
+        "symbol": "HU",
+        "startLine": 30460,
+        "endLine": 30464,
+        "sha256": "e51146014d879682534f0fdede4942b6c4e8a4d4e04250d79a2c2f92058af64f"
+      },
+      {
+        "symbol": "UU",
+        "startLine": 30465,
+        "endLine": 30477,
+        "sha256": "3840b596c6c6af5eb68af9744512117017d504af63c92adb5610bb70dcf0b3e4"
+      },
+      {
+        "symbol": "VU",
+        "startLine": 30478,
+        "endLine": 30481,
+        "sha256": "4711763d7a3b89987e91ff55a714c879b2e728e19c29f86e7086fccb2fc303d6"
+      },
+      {
+        "symbol": "WU",
+        "startLine": 30482,
+        "endLine": 30487,
+        "sha256": "3a9437def342b589502744ab80564783a31a96695d4bd52f0412a4f09c7182bb"
+      },
+      {
+        "symbol": "GU",
+        "startLine": 30491,
+        "endLine": 30493,
+        "sha256": "666f704bc3da61a65135993953c7e8066bf39923452040e5a1427edb7b0c835b"
+      },
+      {
+        "symbol": "YU",
+        "startLine": 30494,
+        "endLine": 30500,
+        "sha256": "05828c5952f6cb421a25e7f7ca6860daff525dc0353ccfd2b34d8ceb788e52e9"
+      },
+      {
+        "symbol": "XU",
+        "startLine": 30501,
+        "endLine": 30503,
+        "sha256": "a6fc99e277fe72ff5bba2a88fc3ff268ab16cad6c0c4647fc0398ea5301dc33e"
+      },
+      {
+        "symbol": "JU",
+        "startLine": 30504,
+        "endLine": 30508,
+        "sha256": "9262b5099b1fb181ae3a59bd31dd4b567f533bb9f213ae1335535e5b08cd6d09"
+      },
+      {
+        "symbol": "QU",
+        "startLine": 30509,
+        "endLine": 30513,
+        "sha256": "9071af03e58c6a86d272313ac90fc34025d7d37861f3105a5217e4f94cecc9e6"
+      },
+      {
+        "symbol": "ZU",
+        "startLine": 30514,
+        "endLine": 30518,
+        "sha256": "f12a3c5be544b47817014da096c77c23cfe8abd89bb3bd5436f3436011088ed3"
+      },
+      {
+        "symbol": "eV",
+        "startLine": 30519,
+        "endLine": 30561,
+        "sha256": "b36ed57c9cf938536347b55005091b112930adebc416b6c2c4b1fc3394775ef6"
+      },
+      {
+        "symbol": "tV",
+        "startLine": 30562,
+        "endLine": 30566,
+        "sha256": "01f307da41ba594b362495157c74b7bd2c78e79c70b6c1a53f1a2d6f3268b29a"
+      },
+      {
+        "symbol": "nV",
+        "startLine": 30567,
+        "endLine": 30569,
+        "sha256": "0bcd6a131e3aea8fe5d7945933c35a8362ecf61545f63dfafaab8694b546605d"
+      },
+      {
+        "symbol": "aV",
+        "startLine": 30570,
+        "endLine": 30573,
+        "sha256": "a173a4cb4b6b714d92b05491332da3a9e4c35c0f0f83cd6a96fa5dbf7c7c9ba0"
+      },
+      {
+        "symbol": "iV",
+        "startLine": 30574,
+        "endLine": 30576,
+        "sha256": "9f4476502b670825b6e1ea5d9ea6a90d797025e428ea5a8d091e818e3c7c11b9"
+      },
+      {
+        "symbol": "rV",
+        "startLine": 30577,
+        "endLine": 30580,
+        "sha256": "e821ced02839880348faa631f0c357454cbeeb3201173b5716f35b1131c19528"
+      },
+      {
+        "symbol": "sV",
+        "startLine": 30581,
+        "endLine": 30584,
+        "sha256": "897634a07da24cb66c3d46014d4565c1ea9f61ee4ff9ad6548c0c6cc484b40b9"
+      },
+      {
+        "symbol": "oV",
+        "startLine": 30585,
+        "endLine": 30603,
+        "sha256": "29ec4e42bbfa5816ed630dfada8b69e0abaf90cdf401a47e541d2e00296d0c2d"
+      },
+      {
+        "symbol": "uV",
+        "startLine": 30610,
+        "endLine": 30613,
+        "sha256": "9d848719e4e695c9fc7532d777c962e75e40a3257f422b2720c49b9d7e87faec"
+      },
+      {
+        "symbol": "dV",
+        "startLine": 30617,
+        "endLine": 30620,
+        "sha256": "826ee0ee4c3fc5c51834186e814172c763daa6b10f9c423f251713be365845ef"
+      },
+      {
+        "symbol": "hV",
+        "startLine": 30621,
+        "endLine": 30623,
+        "sha256": "4f99632e2e30471fad6f6594b0ff579c2d6d0487de7fd2cd50241595d2caa40d"
+      },
+      {
+        "symbol": "pV",
+        "startLine": 30624,
+        "endLine": 30628,
+        "sha256": "7039ff24e86e76cea6dbc20582502f32ee5fb2b15e20ea03236e6aaef0c1e8d8"
+      },
+      {
+        "symbol": "fV",
+        "startLine": 30630,
+        "endLine": 30632,
+        "sha256": "bbf8eb36fa195772e5f3df48ffd51ef858676a3bf5ba65cf3b5486fc4203d46d"
+      },
+      {
+        "symbol": "vV",
+        "startLine": 30633,
+        "endLine": 30638,
+        "sha256": "c3686a18695c23e73cf35e193ba09987ab0b83608f7c46d04500b676539c1fb4"
+      },
+      {
+        "symbol": "gV",
+        "startLine": 30639,
+        "endLine": 30643,
+        "sha256": "0064260954b39e29360fdc3543545b60acea63e07f1cbf60e235209fc942febe"
+      },
+      {
+        "symbol": "yV",
+        "startLine": 30644,
+        "endLine": 30649,
+        "sha256": "27c5f7e37aee44c303c05053c31588872810e7e0493f8c62b5899d41cb0ec058"
+      },
+      {
+        "symbol": "wV",
+        "startLine": 30694,
+        "endLine": 30700,
+        "sha256": "73960515635db72970d6b62e273e9be989c3783ed2c8892e62c7b4f03ddd8f41"
+      },
+      {
+        "symbol": "xV",
+        "startLine": 30701,
+        "endLine": 30704,
+        "sha256": "8036d4b6de33764d76cf4b4246f461a14e59893fcd94645442e727652c99ace6"
+      },
+      {
+        "symbol": "AV",
+        "startLine": 30730,
+        "endLine": 30736,
+        "sha256": "fbdd0d7e0fb6dc1a3521cba15ef0c4f1dbc47339a7b0554bf902c9ed504a4410"
+      },
+      {
+        "symbol": "TV",
+        "startLine": 30737,
+        "endLine": 30739,
+        "sha256": "ca4d09dc4b79fc65e6764a60a97a278f5da2cef08ce4d33b1dd2dfd634216eba"
+      },
+      {
+        "symbol": "EV",
+        "startLine": 30740,
+        "endLine": 30754,
+        "sha256": "b647fa6866f4fb9ba221b030943b1af740f755fafb4d4f895995c27a85eb603a"
+      }
+    ],
+    "controllerCallMap": [
+      {
+        "name": "hu2",
+        "scope": "",
+        "startLine": 32475,
+        "endLine": 32483,
+        "start": 2249838,
+        "end": 2250107,
+        "sha256": "b8063d0099477f084e85002c4e22190a77080ad6eb90458f951dea70b7a770e2",
+        "calls": []
+      },
+      {
+        "name": "pu2",
+        "scope": "",
+        "startLine": 32484,
+        "endLine": 32494,
+        "start": 2250110,
+        "end": 2250448,
+        "sha256": "7a8850147ab8a52c03307f246b62b5a00d017a625b7da3908a1559ef555d5b86",
+        "calls": [
+          "String"
+        ]
+      },
+      {
+        "name": "mu2",
+        "scope": "",
+        "startLine": 32495,
+        "endLine": 32498,
+        "start": 2250451,
+        "end": 2250894,
+        "sha256": "bb8663c71f7ec08e5d7dde4bd0de5a6df9e2495a77b62ba961bfaa4632090760",
+        "calls": [
+          "WU",
+          "_g2",
+          "hu2",
+          "pu2"
+        ]
+      },
+      {
+        "name": "Au2",
+        "scope": "",
+        "startLine": 32557,
+        "endLine": 32562,
+        "start": 2256811,
+        "end": 2258156,
+        "sha256": "449e7ec23431a9de40eaa37732e9c9197f8fef2920dc03dc3710ed8a2b099241",
+        "calls": [
+          "yu2"
+        ]
+      },
+      {
+        "name": "Tu2",
+        "scope": "",
+        "startLine": 32563,
+        "endLine": 32569,
+        "start": 2258159,
+        "end": 2258810,
+        "sha256": "7a3df7e66552c80320a6140874517ec64439e39818ff6f19091bd7adf3b85db4",
+        "calls": [
+          "Cb",
+          "bu2",
+          "gu2",
+          "yu2"
+        ]
+      },
+      {
+        "name": "Eu2",
+        "scope": "",
+        "startLine": 32570,
+        "endLine": 32575,
+        "start": 2258813,
+        "end": 2259573,
+        "sha256": "b3c73a077103cb9fd947dfed1b5ee522beb806d9c6635c0114efc8697c67d512",
+        "calls": [
+          "fp2",
+          "ty2"
+        ]
+      },
+      {
+        "name": "Nu2",
+        "scope": "",
+        "startLine": 32576,
+        "endLine": 32600,
+        "start": 2259576,
+        "end": 2264249,
+        "sha256": "3f799678f22653ee5bd5d2a51f93eef63df386585793fb776476fbe472435bb8",
+        "calls": [
+          "Au2",
+          "Eu2",
+          "Gh2",
+          "Mu2",
+          "Tn2",
+          "Tu2",
+          "Xd2",
+          "YU",
+          "dV",
+          "fp2",
+          "oV",
+          "ty2",
+          "uV",
+          "xV",
+          "yt"
+        ]
+      },
+      {
+        "name": "Iu2",
+        "scope": "",
+        "startLine": 32601,
+        "endLine": 32603,
+        "start": 2264252,
+        "end": 2265541,
+        "sha256": "ee5a50315bf93a95b4035cea51b9331e7e1159662ccf021ead88d4f60b253983",
+        "calls": [
+          "EV",
+          "Mb",
+          "hu2"
+        ]
+      },
+      {
+        "name": "Pu2",
+        "scope": "",
+        "startLine": 32604,
+        "endLine": 32606,
+        "start": 2265544,
+        "end": 2265607,
+        "sha256": "d6097f684e1557ef5cfc7e747cfac93877ce3bf72b2f3beca30db1dc8c5b6be2",
+        "calls": []
+      },
+      {
+        "name": "Ru2",
+        "scope": "",
+        "startLine": 32607,
+        "endLine": 32609,
+        "start": 2265610,
+        "end": 2265678,
+        "sha256": "870963c42d1fb31eb07664409e458b3b34e279acc9df485021da461845aa0a32",
+        "calls": [
+          "Oh2",
+          "Pu2"
+        ]
+      },
+      {
+        "name": "Du2",
+        "scope": "",
+        "startLine": 32610,
+        "endLine": 32634,
+        "start": 2265681,
+        "end": 2268593,
+        "sha256": "933948fdc598a479a3aefbedbc2fd48c31adb79219f034e465317530ede1b49c",
+        "calls": [
+          "$c",
+          "Boolean",
+          "Iu2",
+          "Mm2",
+          "Nu2",
+          "Ru2",
+          "Wl2",
+          "cu2",
+          "n4",
+          "pt2",
+          "yt"
+        ]
+      },
+      {
+        "name": "Ou2",
+        "scope": "",
+        "startLine": 32635,
+        "endLine": 32645,
+        "start": 2268596,
+        "end": 2269880,
+        "sha256": "3814a78676589f2cbc5c4ff96c7ea9ab364763fa50bfbe3e92b28809712e988d",
+        "calls": [
+          "Bu2",
+          "Cu2",
+          "Du2",
+          "Su2",
+          "Wl2",
+          "cu2",
+          "dV",
+          "du2",
+          "fu2",
+          "pt2",
+          "uV"
+        ]
+      },
+      {
+        "name": "Bu2",
+        "scope": "",
+        "startLine": 32646,
+        "endLine": 32657,
+        "start": 2269883,
+        "end": 2272578,
+        "sha256": "a5d609f49e4ef5698eb79b1ed1d75a94063456302be672874d84163fe5f5c2a5",
+        "calls": [
+          "$c",
+          "String",
+          "Vl2",
+          "Wl2",
+          "cu2",
+          "lO",
+          "pt2",
+          "ty2",
+          "vV",
+          "xV",
+          "yt"
+        ]
+      },
+      {
+        "name": "Xd2",
+        "scope": "",
+        "startLine": 33424,
+        "endLine": 33427,
+        "start": 2333911,
+        "end": 2335339,
+        "sha256": "3110879d4c510db17cab530be41fbd122658465fc563b3222349b5d01630eb0a",
+        "calls": [
+          "Vp",
+          "Zh2",
+          "_g2",
+          "at2",
+          "dp2",
+          "np2",
+          "ty2",
+          "up2"
+        ]
+      },
+      {
+        "name": "Gh2",
+        "scope": "",
+        "startLine": 33620,
+        "endLine": 33631,
+        "start": 2352436,
+        "end": 2353131,
+        "sha256": "cecf2a890e3e6cabffd7bdbbc6b77400cf06a50d74310c105fc2d9518955f5b8",
+        "calls": [
+          "Mf",
+          "qh2"
+        ]
+      },
+      {
+        "name": "Lg2",
+        "scope": "",
+        "startLine": 36346,
+        "endLine": 36348,
+        "start": 2549194,
+        "end": 2549379,
+        "sha256": "d4b42d0116c6f5394465cfcfa38b9b6fe7e3d5e30103ae366d10b5f1214d49b1",
+        "calls": []
+      }
+    ]
+  },
+  "implementation": [
+    {
+      "path": "packages/core/workspace-renderer.ts",
+      "sha256": "c5f3f0befd811e87248c9dfd6227637b328e8aa0d99d66ecf1c61a740b999dc6"
+    },
+    {
+      "path": "packages/core/workspace-compat.ts",
+      "sha256": "eb2a7363c037c7d350ddee2c771c95ec7254d3a520c77cdea61dbf826f0eaa3b"
+    },
+    {
+      "path": "packages/core/native-portable.ts",
+      "sha256": "a8a27a0d85f2018331018301e68f6aa90a50bbce17dfbd341a501f25a4bbe014"
+    },
+    {
+      "path": "packages/core/portable-mappings.ts",
+      "sha256": "9ff393f7788f299ce96a330caa437e51defabf3a17cd9d729a68ea3488d94c63"
+    },
+    {
+      "path": "packages/adapters/portable-draft.ts",
+      "sha256": "803995ddabc3ffbdd65cd7144dd619d3614d49850cc63ccdcc31986f5b2a41c5"
+    },
+    {
+      "path": "packages/adapters/reference-portable-draft.ts",
+      "sha256": "6f713c1b38757703af7709ad0b85adfdb5e0e9604499b76d9159c74dbbfdcb32"
+    },
+    {
+      "path": "apps/api/workspace-portable.ts",
+      "sha256": "e02b8b7a511f8a504390439fa1c767da63e350b7962d1569d90c3f63c38d98a4"
+    },
+    {
+      "path": "packages/core/reference/workspace-renderer-source.js",
+      "sha256": "66ceb98b66e62173a21ebe746f1edfd92a831bb9117cf3510a7bdc6649e3e8a5"
+    },
+    {
+      "path": "packages/core/reference/workspace-renderer-source-manifest.json",
+      "sha256": "dd6f245b1c04253b660bb03dea2ac87b5efbc8fbdd5c19c0a81f0a0f9d0cad43"
+    },
+    {
+      "path": "tests/workspace-renderer.test.ts",
+      "sha256": "52a3bc1271a9b3173e31e40c721cc2bcab2c0f726e39ac2d185ed9512f68a36a"
+    },
+    {
+      "path": "tests/workspace-renderer-source.test.ts",
+      "sha256": "3443ad056128e25bed96929c09aa2dc1e4845592308702b97e48a6d10341f48f"
+    },
+    {
+      "path": "tests/workspace-renderer.integration.ts",
+      "sha256": "9949eadf98aa50c4c6e46faee2e1a2a5456e424e8774d01e2cc9981ab3d60431"
+    },
+    {
+      "path": "tests/workspace-alias-history.integration.ts",
+      "sha256": "3e0687939106d66d2410ff3090c65702fc9b3220ce835b4d9817b75d0f93427f"
+    },
+    {
+      "path": "tests/portable-draft-source-integrity.integration.ts",
+      "sha256": "34440b38afc28dcedef700f30f9b2059411d313b7e5db8204ed8b32670258e98"
+    }
+  ],
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration034/workspace-renderer-final-unit-v2.log",
+      "sha256": "5722885185ed1aba1650e0a7653e25196693907ecce857ad7a34280ce8423786"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration034/workspace-renderer-api-final.log",
+      "sha256": "146f7478114cdc6dd158821f93ce437d313c40a29ab8d4e1874e7dcfbc58ab9c"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration034/workspace-alias-history-api-second.log",
+      "sha256": "8d95a77f2a2e6fc1ba2eb4a9c156dbc48d4301a8381dfdf037711a9315018a3e"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration034/reference-draft-public-roundtrip.log",
+      "sha256": "07c81f9c58aac96bb240e0e535b8cf34dcf2d4708814ddba5c4a6e2b70076c91"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration034/typecheck-third.log",
+      "sha256": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+    }
+  ],
+  "actualTests": [
+    {
+      "test": "renderer source goldens + actualformat projection + originalworkspace codecs",
+      "result": "32 passed in 3 files; 10.62s",
+      "log": ".data/research/lawbot-2026-10-15/iteration034/workspace-renderer-final-unit-v2.log"
+    },
+    {
+      "test": "Word/Markdown real upload/configuration/review→three source codecs→native reopen; realserveractor/fullhistory/canonical/flags",
+      "result": "1 passed; 18.878s; no skipped",
+      "log": ".data/research/lawbot-2026-10-15/iteration034/workspace-renderer-api-final.log"
+    },
+    {
+      "test": "unified v1 adoption/v2/v3/merge→native plus V1/V2/V3→freshversion/group IDs+full unifiedstate/rebounddocument IDs+pendingrestore",
+      "result": "1 passed;31.208s; no skipped",
+      "log": ".data/research/lawbot-2026-10-15/iteration034/workspace-alias-history-api-second.log"
+    },
+    {
+      "test": "public source V2 no nativeextension→normalizedDOC/encryptedDOCX import→recognize/unlock→draftrestore; original/normalized/unlocked tampering rejects",
+      "result": "1 passed;9.846s",
+      "log": ".data/research/lawbot-2026-10-15/iteration034/reference-draft-public-roundtrip.log"
+    }
+  ],
+  "sourceBusinessFields": {
+    "Word": [
+      "entities all source-supported regions",
+      "computed masked text",
+      "actual default/full/custom/selective mode",
+      "pertype actions",
+      "header/footer/images/comments",
+      "Markdown outputflag",
+      "canonical units/structured input",
+      "OCR images/lines/char geometry",
+      "classification route and confidence",
+      "legacyOffice actualnormalizedbytes metadata"
+    ],
+    "Markdown": [
+      "source and scan offsets",
+      "source sidecar/hash/length",
+      "full exportmode consistency",
+      "source extension including .markdown",
+      "review entity selection/custom/alias fields",
+      "source correction aggregation"
+    ],
+    "PDF/image": [
+      "all current glyph OCR lines/chars/full cache signature",
+      "typed/manualregions with circle/metadata",
+      "source 1based rotation/manualonly/deletedpage mapping",
+      "actual raster flags/type actions/PDF→DOCX/Markdown flags",
+      "actual incomplete coverage/progress"
+    ],
+    "nativeAndHistory": [
+      "immutable raw/normalized/unlocked sources and all hashes",
+      "all immutable aliasversion rows, adoption pointers, mapping exact version refs",
+      "full unifiedstate including customConsumers/fileOverrides/occurrences/documents cache signatures",
+      "current server reviewProvenance + historical snapshots canonicaltext once, inheritedonly afterimport",
+      "pageRotationState resealed withfreshdoc/sourcehash",
+      "full mapping library protectedLPM catalog"
+    ]
+  },
+  "cloudAdaptations": [
+    {
+      "source": "Du2 initialize/replaceContent and changedDocumentIds memorycache",
+      "ours": "projectscope/DBtransaction+CAS/full verifiedsource reads; does not reuse untrusted old PDFdetection cache",
+      "claim": "business state complete at savedrevision; no nativecache runtime claim"
+    },
+    {
+      "source": "Iu2 ignores preview/viewport/selectors, hashes full OCRcharcache",
+      "ours": "source EV full OCRsignature plus DB revision/content/source/hash validation; viewport is not authorization or required to save businessstate",
+      "claim": "source signature verified with original VM, own API lifecycle separately tested"
+    },
+    {
+      "source": "Nu2 sourceRef/absolute localpath/desktop renderer callbacks",
+      "ours": "owned encrypted immutable source objects+hashes; no arbitrary filesystemread",
+      "claim": "cloud secure adapter"
+    },
+    {
+      "source": "source WU sourceChain.map(String) may flatten objects",
+      "ours": "source stringcodes field plus full structured nativeReviewProvenance/sourceChain field, encrypted snapshotarchive contains full text once",
+      "claim": "structured history preserved, not [object Object]"
+    }
+  ],
+  "remainingBoundaries": [
+    "No source licensed processing runtime was executed (R0).",
+    "Native desktop lifecycle/cache/process/sourceRefs are not claimed as native executed equivalence.",
+    "Original Windows Word/WPS engine and OS keychain domains remain source-platform differences, unrelated to this cloud serializer test.",
+    "Current035 implemented jf2 correction and explicit source20/native26 projection; see project-entity-corrections-porting-20261015.json. Source-native independent six-type expressivity remains declared false."
+  ],
+  "failureHistory": [
+    {
+      "log": ".data/research/lawbot-2026-10-15/iteration034/workspace-renderer-bridge-unit.log",
+      "finding": "source double serialization lost confirmed metadata; fixed bridge merges current server review metadata after source serialization; immutable native frame unchanged"
+    },
+    {
+      "log": ".data/research/lawbot-2026-10-15/iteration034/workspace-alias-history-api-first.log",
+      "finding": "merged unified alias still had active unused group with sameform/differenttoken; source inherited profile now consumes actual unified sharedMapping and mergedInto rather than arbitrary latestrow"
+    },
+    {
+      "log": ".data/research/lawbot-2026-10-15/iteration034/C-unified-native-roundtrip.log",
+      "result": "independent A lifecycle firstcasepassed, secondcase failed at existing/root-owned PROCESSING_EVENT_WRITE_FAILED before nativebackup; not called full pass"
+    }
+  ],
+  "historicalRemainingBoundaries034": [
+    "No source licensed processing runtime was executed (R0).",
+    "Native desktop lifecycle/cache/process/sourceRefs are not claimed as native executed equivalence.",
+    "Source profile schema supports only20 source entity IDs; six additional product-only type toggles still need explicit source-compatible profile projection or a declared capability boundary rather than silently dropping fields.",
+    "Root jf2 project-wide OCR semantic correction is a separately confirmed current business gap assigned to C next; existing perpage canonical OCR editor is not counted as that feature.",
+    "Original Windows Word/WPS engine and OS keychain domains remain source-platform differences, unrelated to this cloud serializer test."
+  ],
+  "currentPhase035": {
+    "report": "文档/逆向台账/contracts/project-entity-corrections-porting-20261015.json",
+    "implementationAndRuntimeHistoricalPinsPreserved": true,
+    "sourceSaveIpcGraph": "文档/逆向台账/contracts/workspace-save-source-callgraph-20261015.json",
+    "status": "implemented; author and independent API evidence present; parent Edge/fullgate separate"
+  }
+}

@@ -1,6 +1,8 @@
 import { test, expect, type Page } from "@playwright/test";
+import { createHash } from "node:crypto";
 import type { DocumentView } from "../../packages/contracts/index.ts";
 import { permissionSchema } from "../../packages/contracts/index.ts";
+import { filterReviewMarkItems } from "../../packages/core/review-mark-filter.ts";
 
 const projectId = "11111111-1111-4111-8111-111111111111";
 const docId = "22222222-2222-4222-8222-222222222222";
@@ -38,12 +40,19 @@ async function workspace(page: Page, status = "succeeded", open = true) {
     if (path === "/api/ai-collab/tasks" && request.method()==="GET") return respond({items:[]});
     if (path === "/api/ai-collab/connectors" && request.method()==="GET") return respond({items:[]});
     if (path === "/api/presets/profiles" && request.method()==="GET") return respond({items:[]});
+    if (path === `/api/documents/${docId}/entity-filter` && request.method()==="POST") {
+      const input=request.postDataJSON(),marks=input.marks??state.doc.marks,offset=input.offset??0,limit=input.limit??50;
+      if(input.revision!==state.doc.revision)return respond({error:"VERSION_CONFLICT"},409);
+      const filtered=filterReviewMarkItems(state.doc,marks,input),items=filtered.slice(offset,offset+limit).map(({index,score})=>({index,score}));
+      return respond({revision:state.doc.revision,contentHash:createHash("sha256").update(state.doc.text).digest("hex"),total:filtered.length,items,offset,nextOffset:offset+items.length,hasMore:offset+limit<filtered.length});
+    }
     if (path === `/api/documents/${docId}/configuration` && request.method()==="GET") return respond({revision:state.doc.revision,configuration:{}});
     if (path === `/api/projects/${projectId}/workspace/recent` && request.method()==="POST") return respond({ok:true});
     if (path === `/api/documents/${docId}/recovery` && request.method()==="GET") return respond(null);
     if (path === `/api/documents/${docId}/recovery` && request.method()==="PUT") {const body=request.postDataJSON();state.recoveryWrites.push(body);await state.beforeRecovery?.();return respond({id:"draft",revision:body.recoveryRevision+1,documentRevision:state.doc.revision,savedAt:new Date().toISOString()});}
     if (path === `/api/documents/${docId}/outputs` && request.method()==="GET") return respond([]);
     if (path === `/api/documents/${docId}/portable-draft` && request.method()==="GET") return respond({available:false});
+    if (path === "/api/software-update/state" && request.method() === "GET") return respond({ supported: false, configured: false, currentVersion: "development", releaseId: null, phase: "unavailable", distribution: "web", capabilities: { checkDeployedRelease: true, nativeDownload: false, nativeInstall: false }, preferences: { setupCompleted: false, checkAutomatically: false, downloadAutomatically: false, installAutomatically: false } });
     if (path === "/api/session") return respond({ username: "回归测试" });
     if (path === "/api/projects") return respond([{ id: projectId, name: "回归项目", permissions: [...permissionSchema.options] }]);
     if (path === `/api/projects/${projectId}/upload-batches`) return respond([]);

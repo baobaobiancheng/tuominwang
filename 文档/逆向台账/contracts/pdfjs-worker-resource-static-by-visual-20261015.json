@@ -1,0 +1,128 @@
+{
+  "date": "2026-10-15",
+  "reviewer": "complete_visual",
+  "id": "IPC-a982d6d137ce",
+  "channel": "get-pdfjs-worker-path",
+  "args": [],
+  "return": "{type:fileUrl,fileUrl:string}; renderer additionally accepts historical string response",
+  "sourceRuntime": "R0 unchanged",
+  "declaredScope": "Worker-resource resolver, direct preload transport, both public renderer worker initialization sites and their lifecycle/error consumers; not the complete generic PDF.js library or all PDF business graphs",
+  "staticNodes": [
+    {
+      "node": "main.YI module directory",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 26323,
+      "endLine": 26323,
+      "coordinateSystem": "1-based inclusive UTF8 complete lines including newline",
+      "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "sliceSha256": "76c94c4e06c119ce49cea2f5624dc1595d98e07edd41e89c320331f3edb8cb0e",
+      "branches": "fileURLToPath/currentmodule dirname for development resolver"
+    },
+    {
+      "node": "main.get-pdfjs-worker-path",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 26715,
+      "endLine": 26740,
+      "coordinateSystem": "1-based inclusive UTF8 complete lines including newline",
+      "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "sliceSha256": "4f0ad3609ac7d51fc82295e257aefd562fae15aeb5a74e1d03ea891adeca7cb1",
+      "branches": "Packaged/unpacked path existence; development module-relative path; temp stat/cache/copy fallback; return fileUrl; outer error propagates"
+    },
+    {
+      "node": "preload.electron.ipcRenderer.invoke",
+      "path": ".data/research/lawbot-2026-10-15/iteration035/source-preload-index.js",
+      "startLine": 311,
+      "endLine": 315,
+      "coordinateSystem": "1-based inclusive UTF8 complete lines including newline",
+      "fileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+      "sliceSha256": "4c45ea2f940d81de1604b758db9843526f8349359ba7a9b605445449ecbdd15c",
+      "branches": "Direct channel/args proxy; no data conversion or channel-specific catch"
+    },
+    {
+      "node": "preload initialization catch",
+      "path": ".data/research/lawbot-2026-10-15/iteration035/source-preload-index.js",
+      "startLine": 317,
+      "endLine": 326,
+      "coordinateSystem": "1-based inclusive UTF8 complete lines including newline",
+      "fileSha256": "f593a0d62dbfd6296faa683b314b9cebb745908d997acd297c183d9c3d225f3b",
+      "sliceSha256": "c860750db816cbbfd0fbee71b0960d5c8f748fb542551a82c28ed58688a159eb",
+      "branches": "Bridge failure logged; renderer-error IPC best effort; no successful bridge fabricated"
+    },
+    {
+      "node": "PDF.Ju2 load",
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 25815,
+      "endLine": 25879,
+      "coordinateSystem": "1-based inclusive UTF8 complete lines including newline",
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "5c67bb5c3fb8e9594886ba4142184df70dc20b28fa4d288a02c4139b050f77fb",
+      "branches": "Cancel prior render tasks; long-load hint15s; skip existing workerSrc; require IPC/fileUrl or string; worker init failure resets empty; stalegeneration guard; previous task destroy3s; loading45s/destroy; currenttask check; firstpage scale/viewport; catches current error"
+    },
+    {
+      "node": "PDF mount/unmount",
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 25959,
+      "endLine": 25994,
+      "coordinateSystem": "1-based inclusive UTF8 complete lines including newline",
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "49576ec0e927010792abb10cd5b2187feccd7ac7eee7660608c393d75e6c9b48",
+      "branches": "Only nonempty bytes initialize; resize observers/listeners; failedinit log; generation invalidation, cancel render tasks, listeners/timers/cache/canvas/textlayer cleanup, task/document destroy"
+    },
+    {
+      "node": "project.vf2 native PDF search",
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 34679,
+      "endLine": 34743,
+      "coordinateSystem": "1-based inclusive UTF8 complete lines including newline",
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "5591aaee002f5de9b963d495c17945943d2b2a146f2c251f74c2cb4c57b28f01",
+      "branches": "Promise.withResolvers polyfill; original bytes via Am2; same path invoke with optionalbridge; fileUrl/string/emptyfallback; localPDF getDocument; native text glyphs/normalization/position; finally destroy loaded document"
+    },
+    {
+      "node": "project vf2 audit caller",
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 34851,
+      "endLine": 34860,
+      "coordinateSystem": "1-based inclusive UTF8 complete lines including newline",
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "ddc48c32347b27d7fad0bac604f2de806f6325a058d3bc7da9ed127bae39d30a",
+      "branches": "PDF text/hybrid or nonOCRonly search; catches fail into perfile reason, no fabricated match"
+    },
+    {
+      "node": "project.bv2 add caller",
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 35252,
+      "endLine": 35273,
+      "coordinateSystem": "1-based inclusive UTF8 complete lines including newline",
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "e3f1252e7c977a3bf16d2d97211fc6b9e151224bce9f0d2de7bf2dc2bdd04d3f",
+      "branches": "Native PDF search; position-backed derived entities; duplicate geometry check; native failure caught; continues OCR producer yv2"
+    },
+    {
+      "node": "project.wv2 text add caller",
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 35274,
+      "endLine": 35301,
+      "coordinateSystem": "1-based inclusive UTF8 complete lines including newline",
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "8f27aa409592b593590494c6d10e3882bdf00004743bf603b31ece8231b48538",
+      "branches": "Empty invalid input false; native search failure false; no matches false; actual match updates detected entities and count"
+    }
+  ],
+  "directInvokeLocations": [
+    25828,
+    34695
+  ],
+  "edges": [
+    "PDF mount/retry→Ju2→preload invoke→main resolver→GlobalWorkerOptions.workerSrc→U_(bytes)",
+    "project audit/bv2/wv2→vf2→preload invoke→same main resolver→U_(bytes)→finally destroy"
+  ],
+  "platformBoundary": "Handler has app.isPackaged branch, no Squirrel-specific branch or permission/license bypass. No inference from installer type. Packaged resource existence is checked; development file existence is deferred to copy/loader.",
+  "implementationMapping": [
+    "No server filesystem file:// URL endpoint is exposed to browser. Page preview uses authenticated server-generated PDFium raster/glyphs, resource choice not arbitrary client path.",
+    "Server Node PDF.js reference route uses pinned local pdfjs-dist legacy module and its Node-disabled-webworker/fake-worker local module path with useWorkerFetch:false/isEvalSupported:false, immutable verified source.",
+    "Viewport is page-specific verified raster instead of same Electron continuous PDF.js DOM; full interface pixel parity not claimed."
+  ],
+  "classification": "Evidence supplement only; do not promote unrelated S2 entries or any competitor runtime from this read. Parent decides bounded static depth per exact scope.",
+  "tests": "No test/deploy/browser run in this read-only supplement."
+}

@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-15",
+  "reviewer": "A complete_rules",
+  "status": "one-P2-found-and-independently-closed",
+  "findings": [
+    {
+      "id": "A-MANUAL-P2-01",
+      "priority": "P2",
+      "file": "packages/adapters/manual-occurrences.ts",
+      "scenario": "Actual DOCX embedded-image OCR: correct13800138000→14900149000, then query U+200B. norm(query) empty; correctedText.includes(empty) returns true and returns unrelated complete phone glyph candidate.",
+      "before": {
+        "path": ".data/research/lawbot-2026-10-15/iteration035/review-manual-empty-query-docx-A.log",
+        "bytes": 2252,
+        "sha256": "1c1a858ffcedf11d71f29ada8ba14d1464656c05ea1c617a093b7fa1249d4c28"
+      },
+      "status": "closed",
+      "fix": "Source ignored-character set validates visible query at API/worker/UI; return400 MANUAL_SELECTION_INVALID before any producer.",
+      "after": {
+        "path": ".data/research/lawbot-2026-10-15/iteration035/review-manual-empty-query-docx-A-fixed.log",
+        "bytes": 247,
+        "sha256": "18e4a828ea97025dd94e7eb142595fe6b68d343945a2ab2af06bdcb8637d4a36"
+      },
+      "proof": "Actual Word no invisible/soft-hyphen/ZWJ match; visible corrected phone still exactly1; stored content AEAD/content_hash/source_hash+revision identical; originalbytes unchanged."
+    }
+  ],
+  "notFindings": [
+    "PNG U+200B already failed closed409 IMAGE_SEARCH_INVALID; preserved log not classified as data match."
+  ],
+  "independentPositive": {
+    "path": ".data/research/lawbot-2026-10-15/iteration035/review-manual-occurrences-A.log",
+    "bytes": 427,
+    "sha256": "454163d80f78313fbebfa704500ce948a82c24d756d997291e2e5a51dfd21365",
+    "result": "2actual APIs PASS32.65s: Word overlapping/literal/normalized/cross-object anchors, PNG/PDF/embedded Word true glyphs, approved export/download black pixel checks/sourceimmutable/CAS/RLS"
+  },
+  "tests": [
+    {
+      "path": "tests/manual-occurrences-review.integration.ts",
+      "bytes": 4644,
+      "sha256": "da7e8a2ce750325481bcfe82ec64bad12d75ab16e551fac462191f851a027870"
+    }
+  ],
+  "boundary": "No competitor activated runtime; sourceR0. Positive baseline independent run preceded latest empty-query fix, latter separately actual1PASS5.616s. No assertion of full image accuracy."
+}

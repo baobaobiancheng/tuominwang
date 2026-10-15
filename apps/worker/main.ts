@@ -1,14 +1,18 @@
+import{hydrateEntityCorrections}from '../../packages/adapters/entity-corrections.ts';
+import{semanticEntityValue}from '../../packages/core/entity-corrections.ts';
+import{persistDocumentNormalization}from'../../packages/adapters/document-normalization.ts';
 import {sealPageReview,openPageReview} from "../../packages/adapters/page-review-storage.ts";
 import {appendProcessingEvent} from "../../packages/adapters/processing-events.ts";
 import {recordMarkdownExportEvent} from "../../packages/adapters/markdown-export-events.ts";
 import {expectsMarkdownExport,markdownSourceKind} from "../../packages/adapters/markdown-outcome.ts";
 import {getRuntimeWhitelists} from "../../packages/adapters/runtime-rule-update.ts";
+import {closeAndDrainAutomaticRuntimeRules,discardAutomaticRuntimeRules} from '../../packages/adapters/automatic-runtime-rules.ts';
 import { resolveDocumentPolicy } from "../../packages/adapters/document-policy.ts";
 import { applyReplacementPolicies } from "../../packages/core/replacement-policies.ts";
 import { profileReplacementPolicies, finalizeProfileReplacements } from "../../packages/core/profile-recognition.ts";
 import { resolvePolicyMappings } from "../api/mappings.ts";
 import { requirePermission } from "../api/access.ts";
-import { unseal } from "../../packages/adapters/storage.ts";
+import { unseal,seal } from "../../packages/adapters/storage.ts";
 import { readProjectPresets } from "../../packages/adapters/project-presets.ts";
 import { pathToFileURL } from "node:url";
 import {
@@ -59,6 +63,7 @@ async function processNext(signal?: AbortSignal, releaseHeavy = async () => {}) 
     ).then(result => { if (!result.length) controller.abort(); }).catch(() => controller.abort()).finally(() => { checking = false; });
   }, 1000);
   let doc:any;
+  let cleanupAutomaticRules:(()=>Promise<void>)|undefined;
   try {
     if (!(await scope(db => rows(db, sql`SELECT job_authorized(${job.id}) AS allowed`)))[0]?.allowed) throw new Error("PERMISSION_REVOKED");
     const [loadedDoc] = await scope((db) =>
@@ -66,6 +71,8 @@ async function processNext(signal?: AbortSignal, releaseHeavy = async () => {}) 
     );
     doc=loadedDoc;
     if (!doc || doc.revision !== job.revision) throw new Error("STALE_VERSION");
+    const runtimeBinding={job:job.id,generation:job.generation,tenant:job.tenant_id,project:job.project_id,user:job.user_id,document:doc.id,revision:job.revision,sourceHash:doc.source_hash,contentHash:doc.content_hash};
+    if(job.kind==='detect')cleanupAutomaticRules=()=>scope(db=>discardAutomaticRuntimeRules(db,runtimeBinding));
     {
       const [project] = await scope(db => rows(db, sql`SELECT id,tenant_id,dictionary,dictionary_revision,preset_policy,preset_revision FROM projects WHERE id=${doc.project_id}`));
       if (!project) throw new Error("STALE_VERSION");
@@ -76,7 +83,7 @@ async function processNext(signal?: AbortSignal, releaseHeavy = async () => {}) 
     if (job.kind === "export") {
       [snapshot] = await scope(db => rows(db, sql`SELECT * FROM review_snapshots WHERE document_id=${doc.id} AND revision=${job.revision}`));
     }
-    const result = await runProcessing<any>({ kind: job.kind, doc, snapshot }, { signal: controller.signal, heavySlotHeld: true, onEvent: envelope=>scope(db=>appendProcessingEvent(db,{job:job.id,generation:job.generation,tenant:doc.tenant_id,project:doc.project_id,user:job.user_id,document:doc.id,revision:job.revision,sourceHash:doc.source_hash,contentHash:doc.content_hash},envelope)).then(()=>{}) });
+    const result = await runProcessing<any>({ kind: job.kind, doc, snapshot }, { signal: controller.signal, heavySlotHeld: true, onEvent: envelope=>scope(db=>appendProcessingEvent(db,{job:job.id,generation:job.generation,tenant:doc.tenant_id,project:doc.project_id,user:job.user_id,document:doc.id,revision:job.revision,sourceHash:doc.source_hash,contentHash:doc.content_hash},envelope)).then(()=>{}),readRuntimeRules:job.kind==='detect'?()=>scope(db=>closeAndDrainAutomaticRuntimeRules(db,runtimeBinding)):undefined });
     // CPU worker is already terminated. Publish success only after releasing the processing slot.
     await releaseHeavy();
     const artifact = result.artifact as { id: string; hash: string; format?: string } | undefined;
@@ -96,17 +103,18 @@ async function processNext(signal?: AbortSignal, releaseHeavy = async () => {}) 
       if (!updated.length) throw new Error("LEASE_LOST");
       if (artifact) {
         for (const produced of [artifact,...(result.additionalArtifacts ?? [])]) await rows(db,
-          sql`INSERT INTO artifacts(id,tenant_id,project_id,document_id,job_id,revision,hash,output_format,output_role,output_name) VALUES(${produced.id},${doc.tenant_id},${doc.project_id},${doc.id},${job.id},${doc.revision},${produced.hash},${produced.format ?? doc.source_format},${produced.role ?? "primary"},${produced.name ?? null})`);
+          sql`INSERT INTO artifacts(id,tenant_id,project_id,document_id,job_id,revision,hash,output_format,output_role,output_name,legacy_verification) VALUES(${produced.id},${doc.tenant_id},${doc.project_id},${doc.id},${job.id},${doc.revision},${produced.hash},${produced.format ?? doc.source_format},${produced.role ?? "primary"},${produced.name ?? null},${produced.legacyVerification?seal(JSON.stringify(produced.legacyVerification),`${doc.tenant_id}:${doc.project_id}:${doc.id}:${produced.id}:legacy-artifact`):null})`);
         if([artifact,...(result.additionalArtifacts??[])].some(a=>(a.format??doc.source_format)==='md'))await recordMarkdownExportEvent(db,{tenant:doc.tenant_id,project:doc.project_id,user:job.user_id,document:doc.id,revision:job.revision,attemptKey:job.id},{event:'export-outcome',sourceKind:markdownSourceKind(doc.source_format),status:'success'});
       }
       else {
+        if(result.normalizedSource)await persistDocumentNormalization(db,doc,result.normalizedSource);
         if (doc.presetPolicy?.profile) {
           const text = unseal(result.content, `${doc.tenant_id}:${doc.project_id}:${doc.id}`), policies = profileReplacementPolicies(doc.presetPolicy.profile.settings, doc.source_format, doc.batchMode, doc.documentPolicy?.configuration.exportMode);
-          let plan = applyReplacementPolicies(text, result.marks, policies);
+          const semanticDoc=hydrateEntityCorrections({...doc,marks:result.marks,content_hash:result.hash,entity_corrections:result.entityCorrectionsStale?null:result.entityCorrectionsStored??doc.entity_corrections});let plan = applyReplacementPolicies(text, result.marks, policies,[],{semanticValue:(m,index)=>semanticEntityValue(semanticDoc,m,text,index)});
           if (plan.aliasRequests.length) {
             await requirePermission(db, doc.project_id, ["view_mapping"]);
-            const mappings = await resolvePolicyMappings(db, doc, job.user_id, plan.aliasRequests);
-            plan = applyReplacementPolicies(text, result.marks, policies, mappings);
+            const mappings = await resolvePolicyMappings(db, semanticDoc, job.user_id, plan.aliasRequests);
+            plan = applyReplacementPolicies(text, result.marks, policies, mappings,{semanticValue:(m,index)=>semanticEntityValue(semanticDoc,m,text,index)});
             if (plan.aliasRequests.length) throw new Error("MAPPING_MISMATCH");
           }
           result.marks = finalizeProfileReplacements(plan.marks,result.anchors,doc.presetPolicy.profile.settings,doc.source_format,doc.batchMode,doc.documentPolicy?.configuration.exportMode);
@@ -114,7 +122,7 @@ async function processNext(signal?: AbortSignal, releaseHeavy = async () => {}) 
         const storedPageReview=sealPageReview({...doc,content_hash:result.hash},result.pageReview,doc.revision);
         await rows(
           db,
-          sql`UPDATE documents SET content=${result.content},content_hash=${result.hash},parse_version=${result.parseVersion??doc.parse_version},marks=${JSON.stringify(result.marks)}::jsonb,anchors=${JSON.stringify(result.anchors)}::jsonb,coverage=${JSON.stringify(result.coverage)}::jsonb,page_data=${JSON.stringify(result.pages)}::jsonb,page_review=${JSON.stringify(storedPageReview)}::jsonb,visual_candidates=${JSON.stringify(result.visualCandidates ?? [])}::jsonb,recognition=${JSON.stringify(result.recognition)}::jsonb,state='review' WHERE id=${doc.id}`,
+          sql`UPDATE documents SET content=${result.content},content_hash=${result.hash},entity_corrections=${result.entityCorrectionsStored??null},parse_version=${result.parseVersion??doc.parse_version},marks=${JSON.stringify(result.marks)}::jsonb,anchors=${JSON.stringify(result.anchors)}::jsonb,coverage=${JSON.stringify(result.coverage)}::jsonb,page_data=${JSON.stringify(result.pages)}::jsonb,page_review=${JSON.stringify(storedPageReview)}::jsonb,visual_candidates=${JSON.stringify(result.visualCandidates ?? [])}::jsonb,recognition=${JSON.stringify(result.recognition)}::jsonb,state='review' WHERE id=${doc.id}`,
         );
         await rows(db, sql`INSERT INTO review_snapshots(document_id,revision,tenant_id,project_id,content_hash,parse_version,marks,rule_version,recognition,page_data,page_review)
           VALUES(${doc.id},${doc.revision},${doc.tenant_id},${doc.project_id},${result.hash},${result.parseVersion??doc.parse_version},${JSON.stringify(result.marks)}::jsonb,${result.recognition.rules},${JSON.stringify(result.recognition)}::jsonb,${JSON.stringify(result.pages)}::jsonb,${JSON.stringify(storedPageReview)}::jsonb)`);
@@ -154,6 +162,7 @@ async function processNext(signal?: AbortSignal, releaseHeavy = async () => {}) 
   } finally {
     clearInterval(heartbeat);
     signal?.removeEventListener("abort", abort);
+    await cleanupAutomaticRules?.();
   }
   return true;
 }

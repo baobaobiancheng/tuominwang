@@ -1,3 +1,28 @@
+import {withReviewEntityBirths}from'../../packages/core/review-entity-birth.ts';
+import {registerReviewFeedbackRoutes} from './review-feedback.ts';
+import {registerAutomaticRuntimeRuleRoutes} from './automatic-runtime-rules.ts';
+import {registerEntityFilterRoutes} from './entity-filter.ts';
+import {registerManualOccurrenceRoutes} from './manual-occurrences.ts';
+import {registerEntityGeometryRoutes}from'./entity-geometry.ts';
+import {validateEntityGeometryPolicy}from'../../packages/adapters/entity-geometry.ts';
+import {registerEntityCorrectionRoutes} from './entity-corrections.ts';
+import {readReviewProvenance} from '../../packages/adapters/review-provenance.ts';
+import {addReviewEntityHints} from '../../packages/core/review-entity-slots.ts';
+import {openEntityCorrections} from '../../packages/adapters/entity-corrections.ts';
+import {preflightUnifiedAliasExport,assertUnifiedAliasExportEpoch} from './unified-alias-export.ts';
+import {registerPageRotationRoutes} from './page-rotation.ts';
+import {readPageRotationState} from '../../packages/adapters/page-rotation-state.ts';
+import {registerSourceReviewRoutes} from './source-review.ts';
+import {registerUnifiedAliasRoutes} from './unified-aliases.ts';
+import {registerReviewProvenanceRoutes} from './review-provenance.ts';
+import {registerDocumentNormalizationRoutes} from './document-normalization.ts';
+import {documentProcessingFormat,isLegacyWordFormat} from '../../packages/core/document-format.ts';
+import {registerFolderOutputRoutes} from './folder-output.ts';
+import {registerReleaseStateRoutes} from './release-state.ts';
+import {registerMappingLibraryRoutes} from './mapping-library.ts';
+import {registerDocumentRouteRoutes} from "./document-route.ts";
+import {registerDocxSafeModeRoutes} from "./docx-safe-mode.ts";
+import {registerDocxImageOcrRoutes} from "./docx-image-ocr.ts";
 import {registerMarkdownReviewRoutes} from "./markdown-review.ts";
 import {openPageReview} from "../../packages/adapters/page-review-storage.ts";
 import {registerProcessingEventRoutes} from "./processing-events.ts";
@@ -130,7 +155,8 @@ export async function buildApp() {
   app.setErrorHandler((error, request, reply) => {
     const e = error as Error & { statusCode?: number };
     if ((e as any).cause?.message === "CAPACITY_EXCEEDED") return reply.code(409).send({ error: "CAPACITY_EXCEEDED" });
-    const status = e instanceof ZodError ? 400 : (e.statusCode ?? 500);
+    const businessStatus:Record<string,number>={PROCESSING_BUSY:409,ENTITY_GEOMETRY_STALE:409,ENTITY_GEOMETRY_INVALID:400,ENTITY_CORRECTION_STALE:409,ENTITY_CORRECTION_UNRESOLVED:409,ENTITY_CORRECTION_INVALID:400};
+    const status = e instanceof ZodError ? 400 : (e.statusCode ?? businessStatus[e.message] ?? 500);
     reply.code(status).send({
       error:
         status >= 500
@@ -224,6 +250,21 @@ export async function buildApp() {
   registerImageUtilityRoutes(app);
   registerDocxLayoutRoutes(app);
   registerDocxPreviewRoutes(app);
+  registerDocxSafeModeRoutes(app);
+  registerDocxImageOcrRoutes(app);
+  registerMappingLibraryRoutes(app);
+  registerReleaseStateRoutes(app);
+  registerFolderOutputRoutes(app);
+  registerDocumentNormalizationRoutes(app);
+  registerReviewProvenanceRoutes(app);
+  registerUnifiedAliasRoutes(app);
+  registerPageRotationRoutes(app);
+  registerSourceReviewRoutes(app);
+  registerEntityFilterRoutes(app);
+  registerManualOccurrenceRoutes(app);
+  registerEntityGeometryRoutes(app);
+  registerEntityCorrectionRoutes(app);
+  registerDocumentRouteRoutes(app);
   registerMappingExports(app);
   registerOcrRoutes(app);
   registerRecognitionRoutes(app, nerReady);
@@ -235,6 +276,8 @@ export async function buildApp() {
   registerRestorationFileRoutes(app);
   registerRestorationBatchRoutes(app);
   registerFeedbackRoutes(app);
+  registerReviewFeedbackRoutes(app);
+  registerAutomaticRuntimeRuleRoutes(app);
   registerSupportRoutes(app);
   registerDocumentPolicyRoutes(app);
   registerOfficeVisualRoutes(app);
@@ -346,14 +389,18 @@ export async function buildApp() {
         project_id: d.project_id,
         ...await runProcessing<object>({ kind: "view", doc: d, offset: page.offset }),
         revision: d.revision,
-        marks: d.marks,
+        marks: await(async()=>{const frame=await readReviewProvenance(db,d);return addReviewEntityHints(frame,withReviewEntityBirths(frame,d.marks));})(),
         state: d.state,
         name: d.source_name ? unseal(d.source_name, `${d.tenant_id}:${d.project_id}:${d.id}:name`) : undefined,
         format: d.source_format,
+        processingFormat: documentProcessingFormat(d),
+        normalization: isLegacyWordFormat(d.source_format) ? {ready:!!d.normalized_source_id,format:"docx",normalizedHash:d.normalized_source_hash??null} : null,
         parseVersion: d.parse_version,
         anchors: d.anchors,
         coverage: d.coverage,
+        ...(()=>{try{return{entityCorrections:openEntityCorrections(d),entityCorrectionsStale:false};}catch(error){if((error as Error).message==='ENTITY_CORRECTION_STALE')return{entityCorrections:null,entityCorrectionsStale:true};throw error;}})(),
         pageReview: openPageReview(d),
+        pageRotationState: d.source_format==='pdf'?readPageRotationState(d):undefined,
         pages: (d.page_data ?? []).map(({ index, width, height, rotation, confidence, part }: any) => ({ index, width, height, rotation, confidence, part })),
         job:job?{id:job.id,kind:job.kind,status:job.status,error_code:job.error_code,required_permissions:job.required_permissions,canObserveEvents:job.user_id===req.user.id}:undefined,
         canRunNer: nerReady,
@@ -387,7 +434,7 @@ export async function buildApp() {
       if (!d) fail("NOT_FOUND", 404);
       if (d.revision !== input.revision) fail("VERSION_CONFLICT", 409);
       if (d.state !== "review") fail("DETECTION_INCOMPLETE", 409);
-      try { return await runProcessing<Uint8Array>({ kind: "page-preview", doc: { ...d, page_review: input.pageReview ?? openPageReview(d) }, page, marks: input.marks }); }
+      try { const policy=await validateEntityGeometryPolicy(db,d,input.marks,input.pageReview??openPageReview(d));return await runProcessing<Uint8Array>({ kind: "page-preview", doc: { ...d, page_review: policy }, page, marks: input.marks }); }
       catch (e) { fail((e as Error).message, 400); }
     });
     return reply.type("image/png").send(Buffer.from(image));
@@ -409,7 +456,10 @@ export async function buildApp() {
   app.post("/api/documents/:id/export", async (req) => {
     const doc = id.parse((req.params as any).id);
     const { revision } = revisionSchema.parse(req.body);
-    return projectScope(req, { document: doc }, ["export"], async (db) => {
+    const unified=await preflightUnifiedAliasExport(req,doc,revision);
+    if(unified&&Object.keys(unified.changedDocuments).length)fail("UNIFIED_ALIAS_REVIEW_REQUIRED",409);
+    return projectScope(req, { document: doc }, ["export"], async (db,project) => {
+      await assertUnifiedAliasExportEpoch(db,project,unified);
       const [d] = await rows(
         db,
         sql`SELECT * FROM documents WHERE id=${doc} FOR UPDATE`,
@@ -469,7 +519,7 @@ export async function buildApp() {
   });
   app.post("/api/documents/:id/download-link", async (req) => {
     const doc = id.parse((req.params as any).id);
-    const { revision,role } = revisionSchema.extend({role:z.enum(["primary","markdown","pdf-docx"]).default("primary")}).parse(req.body);
+    const { revision,role } = revisionSchema.extend({role:z.enum(["primary","markdown","pdf-docx","word-docx"]).default("primary")}).parse(req.body);
     return projectScope(req, { document: doc }, ["export"], async (db) => {
       const [d] = await rows(
         db,
@@ -534,7 +584,7 @@ export async function buildApp() {
       fail("ARTIFACT_VERIFICATION_FAILED", 409);
     }
     return reply
-      .type(data.format === "pdf" ? "application/pdf" : data.format === "png" ? "image/png" : data.format === "docx" ? "application/vnd.openxmlformats-officedocument.wordprocessingml.document" : data.format === "xlsx" ? "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" : data.format === "csv" ? "text/csv; charset=utf-8" : "text/plain; charset=utf-8")
+      .type(data.format === "pdf" ? "application/pdf" : data.format === "png" ? "image/png" : data.format === "doc" ? "application/msword" : data.format === "docx" ? "application/vnd.openxmlformats-officedocument.wordprocessingml.document" : data.format === "xlsx" ? "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" : data.format === "csv" ? "text/csv; charset=utf-8" : "text/plain; charset=utf-8")
       .header("Content-Disposition", `attachment; filename="redacted.${data.format}"`)
       .send(typeof output === "string" ? output : Buffer.from(output));
   });

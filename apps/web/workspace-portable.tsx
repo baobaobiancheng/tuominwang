@@ -1,15 +1,30 @@
+import {businessError} from './business-errors.ts';
 import {TmmCompatibility} from "./tmm-compatibility.tsx";
 import React, { useEffect, useRef, useState } from "react";
 import { appUrl } from "./urls.ts";
 export async function fileBase64(file: File) { const bytes = new Uint8Array(await file.arrayBuffer()); let text = ""; for (let at = 0; at < bytes.length; at += 32768) text += String.fromCharCode(...bytes.subarray(at, at + 32768)); return btoa(text); }
-async function responseError(response: Response) { if (response.status === 401) window.dispatchEvent(new Event("session-expired")); const body = await response.json().catch(() => ({})); throw new Error(body.error ?? `HTTP ${response.status}`); }
-export async function downloadResponse(response: Response, name: string) { if (!response.ok) await responseError(response); const url = URL.createObjectURL(await response.blob()), a = document.createElement("a"); a.href = url; a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(url), 30000); }
+async function responseError(response: Response) { if (response.status === 401) window.dispatchEvent(new Event("session-expired")); const body = await response.json().catch(() => ({})); throw new Error(businessError(body.error ?? `HTTP ${response.status}`)); }
+export async function downloadResponse(response: Response, name: string, shouldContinue:()=>boolean=()=>true) { if (!response.ok) await responseError(response); const blob=await response.blob();if(!shouldContinue())return;const url = URL.createObjectURL(blob), a = document.createElement("a"); a.href = url; a.download = name; a.click(); setTimeout(() => URL.revokeObjectURL(url), 30000); }
 export function WorkspacePortable({ projectId, canExport,canApply=false,onApplied, onImported }: { projectId: string | null; canExport: boolean;canApply?:boolean;onApplied?:()=>Promise<void>; onImported: (projectId: string) => Promise<void> }) {
-  const [password, setPassword] = useState(""), [importPassword, setImportPassword] = useState(""), [name, setName] = useState(""), [file, setFile] = useState<File | null>(null), [busy, setBusy] = useState(false), [message, setMessage] = useState(""), generation = useRef(0);
-  useEffect(() => { generation.current++; setPassword(""); setImportPassword(""); setMessage(""); setBusy(false); return () => { generation.current++; }; }, [projectId]);
+  const [password, setPassword] = useState(""), [importPassword, setImportPassword] = useState(""), [name, setName] = useState(""), [file, setFile] = useState<File | null>(null), [busy, setBusy] = useState(false), [message, setMessage] = useState(""), generation = useRef(0), saveRequest=useRef<{project:string;password:string;requestId:string}|null>(null), allowed=useRef({projectId,canExport});
+  allowed.current={projectId,canExport};
+  useEffect(() => { generation.current++; setPassword(""); setImportPassword(""); setMessage(""); setBusy(false); saveRequest.current=null; return () => { generation.current++; }; }, [projectId,canExport]);
   async function exportProject() {
-    const current = generation.current; setBusy(true); setMessage("");
-    try { const response = await fetch(appUrl(`/api/projects/${projectId}/portable/export`), { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ password }) }); if (current !== generation.current) return; await downloadResponse(response, "脱敏汪工程备份.tmw"); setPassword(""); setMessage("工程备份已下载，请妥善保存密码。"); } catch (e) { if (current === generation.current) setMessage((e as Error).message); } finally { if (current === generation.current) setBusy(false); }
+    if(!projectId||!canExport)return;
+    const current = generation.current,project=projectId; setBusy(true); setMessage("");
+    const active=()=>current===generation.current&&allowed.current.projectId===project&&allowed.current.canExport;
+    const send=async(path:string,body:unknown)=>{const response=await fetch(appUrl(path),{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});if(!response.ok)await responseError(response);return response.json();};
+    if(saveRequest.current?.project!==project||saveRequest.current.password!==password)saveRequest.current={project,password,requestId:crypto.randomUUID()};
+    const request=saveRequest.current;
+    try {
+      let result=await send(`/api/projects/${project}/portable/save`,{requestId:request.requestId,password:request.password});
+      while(active()&&result.state==='running'){await new Promise(resolve=>setTimeout(resolve,400));if(!active())return;result=await send(`/api/projects/${project}/portable/save-result`,{requestId:request.requestId});}
+      if(!active())return;
+      if(result.state!=='completed'){saveRequest.current=null;throw new Error(businessError(result.error??'工程保存回执已失效，请重新保存。'));}
+      const response=await fetch(appUrl(`/api/projects/${project}/portable/saves/${result.receiptId}/download`));if(!active())return;
+      if(!response.ok&&[401,403,404,409,410].includes(response.status))saveRequest.current=null;
+      await downloadResponse(response,"脱敏汪工程备份.tmw",active);if(!active())return;saveRequest.current=null;setPassword("");setMessage("工程备份已下载，请妥善保存密码。");
+    } catch (e) { if (active()) setMessage((e as Error).message); } finally { if (current === generation.current) setBusy(false); }
   }
   async function importProject() {
     if (!file) return; const current = generation.current; setBusy(true); setMessage("");

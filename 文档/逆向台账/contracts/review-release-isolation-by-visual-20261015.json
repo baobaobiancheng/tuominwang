@@ -1,0 +1,102 @@
+{
+  "date": "2026-10-15",
+  "reviewer": "complete_visual",
+  "mode": "read-only; no deployment, Docker mutation, script changes or cloud access",
+  "findings": [
+    {
+      "id": "DEPLOY-WORKER-READINESS",
+      "priority": "P2",
+      "status": "closed-by-independent-read-and-mocked-control-flow",
+      "file": ".data/deploy/aliyun-20261015/iteration036/release/deploy-server.sh",
+      "lines": [
+        62,
+        82
+      ],
+      "summary": "Release success does not require the worker to become ready or remain running",
+      "evidence": "worker service has no healthcheck; up -d worker returns after creation, API/web/converter are checked; compose ps does not fail on a restarting/stopped worker before RELEASE_OK. check-runtime worker can fail separately, so healthy API does not prove queue consumer availability.",
+      "requiredChange": "Before RELEASE_OK verify current worker container and image/release, current-start worker ready signal and stable running/restart count; failures must enter rollback.",
+      "fixedProof": {
+        "implementation": "New worker expected image is inspected; same captured container must remain Running with RestartCount0; stderr DB error aborts; ready observed on three consecutive 5-second-spaced checks; timeout aborts. Receipt stored under private backup directory; gate executes under existing rollback ERR trap.",
+        "independentCases": ".data/research/lawbot-2026-10-15/iteration036/review-worker-ready-gate-B.json",
+        "cases": [
+          "ready accepted with stableChecks3",
+          "missing rejected",
+          "wrong image rejected",
+          "stopped rejected",
+          "restarted rejected",
+          "database error rejected",
+          "no ready times out"
+        ],
+        "scope": "Exact extracted Python block executed with all subprocess and sleep mocked. No Docker/deploy execution; not evidence of actual server worker readiness."
+      }
+    },
+    {
+      "id": "DEPLOY-MIGRATION-DATA-KEY",
+      "priority": "P1",
+      "status": "closed-by-root-reread",
+      "summary": "Migration lacked existing DATA_KEY needed by legacy metadata backfill",
+      "beforeProbe": {
+        "kind": "Synthetic migration mock, no database or private data",
+        "result": "DATA_KEY_REQUIRED after first query"
+      },
+      "fixedProof": "Candidate now passes DATA_KEY only to migrate in addition to original fields; prepare-compose explicitly asserts this one new field. Converter has only legacy-office.env and no application keys."
+    },
+    {
+      "id": "DEPLOY-CONVERTER-ZOMBIE-REAP",
+      "priority": "P2",
+      "status": "candidate-fixed-local-evidence-reviewed",
+      "summary": "Cancelled Office child can become zombie under service PID1 without init reaper",
+      "beforeEvidence": ".data/research/lawbot-2026-10-15/iteration036/legacy-cancel-orphan-zombie-before.txt",
+      "fixedProof": ".data/research/lawbot-2026-10-15/iteration036/review-converter-init-B.json",
+      "candidate": "legacy-office.init=true in generator and both candidate copies; unchanged image/network/privileges/mounts",
+      "remainingBoundary": "Repository services/legacy-office/compose.fragment.yml lacks init at review time; parent notified for equivalent configuration sync. Full release-init gate still in progress; no false pass."
+    }
+  ],
+  "verified": [
+    "Docker Compose fixed name tuominwang-aliyun, working directory /opt/tuominwang, no down/prune or neighbor stop commands",
+    "Only project api/worker/web/legacy-office restarted; database service and named data volumes unchanged",
+    "Existing service CPU/memory/tmpfs/ports/mounts equal baseline except authorized image/network/converter/migrate-key additions; no new deployment resource caps",
+    "Converter legacy internal network only, no host port, model/material mounts or database/session/data credentials",
+    "Backup pg_dump is root-private under umask077; original compose is copied; failure path preserves additive schema and restarts original application images; no automatic destructive DB restore",
+    "Token generated with secrets.token_hex, exclusive600 write, never printed; compose config --quiet avoids resolved secret dump",
+    "No model bytes copied or modified; existing readonly host model mount retained. Existing model initialization strategy unchanged",
+    "Pinned manifest digest, exact file enumeration including nested manifest names, per-file SHA/length and symlink/root containment guard; source readback added in running API",
+    "Web served assets verified by SHA and WeKnora/Semantica neighbor container id/restart/start/health/running compared before/after",
+    "Release refresher checks product freeze and excludes local state/model/credential files; build uses local images/network none",
+    "Worker ready gate now checks intended image/container, Running/zero-restarts, ready log on three successive checks, rejects DB error and timeout before RELEASE_OK; private receipt contains no credentials."
+  ],
+  "verification": {
+    "composeCandidateSha256": "10e651c9c4503abe1ade2976b5072a02283f87f77048a1fdab563424a031850b",
+    "baseComposeSha256": "21e827347696223d309ec77c99df01c31e3e93bd3f4dc2eda188eab5100a3525",
+    "syntax": "bash -n and Python ast.parse passed",
+    "semanticCompare": "Node24 parsed YAML existing service equality and converter isolation assertions passed",
+    "workerGate": "7 independent exact-block control-flow cases pass; all Docker subprocesses and sleeps mocked; Bash syntax passes",
+    "converterInit": ".data/research/lawbot-2026-10-15/iteration036/review-converter-init-B.json"
+  },
+  "limits": [
+    "Release source/html/runtime-delta/manifest are not populated yet; assembled archive and actual server readback remain required",
+    "Readonly review and syntax/semantic checks are not evidence that deployment ran or rollback was exercised",
+    "modelsUnchanged means release does not write models; current server model hashes still require runtime/actual readback evidence"
+  ],
+  "proofHashes": {
+    ".data/deploy/aliyun-20261015/iteration036/release/deploy-server.sh": "28ab6f1fcaa4df0c888b89622bc68822fbda102e64b7d95345d9060967dc7c87",
+    ".data/deploy/aliyun-20261015/iteration036/release/verify-release.py": "e2f9de17774ea26f18184ad7c3e45e22ff7bf22c1c5753a8ae54825c22c7f925",
+    ".data/deploy/aliyun-20261015/iteration036/release/compose-candidate.yaml": "10e651c9c4503abe1ade2976b5072a02283f87f77048a1fdab563424a031850b",
+    ".data/deploy/aliyun-20261015/iteration036/release/Dockerfile.runtime": "63ee96977378c2ef1ea47cdc0e0fee6e19371c290d0b7afe2d1fe97774c68f5a",
+    ".data/deploy/aliyun-20261015/iteration036/release/Dockerfile.web": "7a743063345e23939bbe3779276b966a0173131031cef120d98202ccb2408dfd",
+    ".data/deploy/aliyun-20261015/iteration036/refresh-release.py": "9716799ac7b51a575b9a5f7dbb61655e537758582d881136fd044d4f645c75d3",
+    ".data/deploy/aliyun-20261015/iteration036/prepare-compose.mts": "a0fdcf138115f34299b0408dfce92649fb3c57671470c4f5d7e22dff33004618"
+  },
+  "priorReportArchive": [
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration036/before/worker-ready-review/文档/逆向台账/contracts/review-release-isolation-by-visual-20261015.json",
+      "sha256": "92b6276fff46344debdb4151eb0cf5fcaad9b5f6f49017413b0e486b32863eaf",
+      "bytes": 4832
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration036/before/worker-ready-review/文档/逆向台账/contracts/review-release-isolation-by-visual-20261015.md",
+      "sha256": "ba7aae72d29f14205e78052885fd941173aff909445c5a0153b53af4f2ed7eec",
+      "bytes": 1554
+    }
+  ]
+}

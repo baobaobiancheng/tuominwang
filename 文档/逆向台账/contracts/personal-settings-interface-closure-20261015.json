@@ -1,0 +1,1435 @@
+{
+  "date": "2026-10-15",
+  "referenceRuntime": "R0",
+  "all_native_equivalent": false,
+  "counts": {
+    "exactIds": 49,
+    "actualCalls": 49,
+    "missing": []
+  },
+  "rows": [
+    {
+      "id": "IPC-0b6b223f384f",
+      "name": "profile:create",
+      "actualMethod": "POST",
+      "actualRoute": "/api/presets/profiles",
+      "status": 200,
+      "responseSha256": "d09250428e874389816f89c398f137a507822a7c4891a9a0d895f584005bc9cc",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-92e8c95a136b",
+      "name": "profile:list",
+      "actualMethod": "GET",
+      "actualRoute": "/api/presets/profiles",
+      "status": 200,
+      "responseSha256": "fcd10f0f33174fae605cab9f34831ac3b06bd8e02a39494819f85d9c4c130738",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-ddc5ff507c75",
+      "name": "profile:get",
+      "actualMethod": "GET",
+      "actualRoute": "/api/presets/profiles/:id",
+      "status": 200,
+      "responseSha256": "d09250428e874389816f89c398f137a507822a7c4891a9a0d895f584005bc9cc",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-59456f319530",
+      "name": "profile:update",
+      "actualMethod": "PUT",
+      "actualRoute": "/api/presets/profiles/:id",
+      "status": 200,
+      "responseSha256": "ec5419d99e6df7dad1561a62b4e3a45153a993659e06192790151ae06e99edf9",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-271b4728636e",
+      "name": "profile:duplicate",
+      "actualMethod": "POST",
+      "actualRoute": "/api/presets/profiles/:id/duplicate",
+      "status": 200,
+      "responseSha256": "62308500f0f30c8fcdf0f6ce67ad38a9f3c0e5e2b4bcd4ed8a8ee80e0e660f06",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-18da1e923824",
+      "name": "ruleset:create",
+      "actualMethod": "POST",
+      "actualRoute": "/api/presets/rulesets",
+      "status": 200,
+      "responseSha256": "1757b00de713a31c6fee8022bdc151845e7d509cafee7e1a55d32d38ee1a3565",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-c04013aa6e1b",
+      "name": "ruleset:list",
+      "actualMethod": "GET",
+      "actualRoute": "/api/presets/rulesets",
+      "status": 200,
+      "responseSha256": "85bd193615369c6056dc12e0eea002d326b9fe1c10bdb3d85bcd10fc4303dedf",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-8bfb6ec9fcd8",
+      "name": "ruleset:get",
+      "actualMethod": "GET",
+      "actualRoute": "/api/presets/rulesets/:id",
+      "status": 200,
+      "responseSha256": "1757b00de713a31c6fee8022bdc151845e7d509cafee7e1a55d32d38ee1a3565",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-9a6a89a8fb10",
+      "name": "ruleset:update",
+      "actualMethod": "PUT",
+      "actualRoute": "/api/presets/rulesets/:id",
+      "status": 200,
+      "responseSha256": "5dfe03f9a4db7263043a6e39fdb4bd557544395aac6b2959c8c23de30d385fff",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-7754362b9148",
+      "name": "ruleset:download-excel-template",
+      "actualMethod": "GET",
+      "actualRoute": "/api/presets/rulesets/template.xlsx",
+      "status": 200,
+      "responseSha256": "1cb21c02f7b0037dbad922be710009ef787c95ed0ccf2e449ba25b5bcf63dee6",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-337d01816990",
+      "name": "ruleset:export-excel",
+      "actualMethod": "GET",
+      "actualRoute": "/api/presets/rulesets/:id/export.xlsx?revision=2",
+      "status": 200,
+      "responseSha256": "1ba8168129262faa37d0f3c44807a50540d9362eba28d21a4640f1e9a6284fe9",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-c17682083b52",
+      "name": "ruleset:import-excel",
+      "actualMethod": "POST",
+      "actualRoute": "/api/presets/rulesets/:id/import?revision=2",
+      "status": 200,
+      "responseSha256": "49451f466716f247742f279c87eb522476fc020ec29878f4697dc7eebba7924d",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-3d307eb4bc00",
+      "name": "preference:set-default-profile",
+      "actualMethod": "PUT",
+      "actualRoute": "/api/presets/preferences",
+      "status": 200,
+      "responseSha256": "0e018ddf6aa74a026558214d37e697dddc249fc17d138bdf79dde6473f16c642",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-2187e949f831",
+      "name": "ruleset:set-active",
+      "actualMethod": "PUT",
+      "actualRoute": "/api/presets/preferences",
+      "status": 200,
+      "responseSha256": "b0331b7677b6b8dbf2a6c1d572761403cfb2be6cd733d22db690777e2422f968",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-7b3025225249",
+      "name": "preference:record-successful-export",
+      "actualMethod": "POST",
+      "actualRoute": "/api/presets/preferences/exports",
+      "status": 200,
+      "responseSha256": "a696bce228112218ff41708cc3b2d2a9a53c6d4646d43998f014d1df7b1d6c0d",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-2bdb599038fb",
+      "name": "ruleset:preview-workspace-promotion",
+      "actualMethod": "POST",
+      "actualRoute": "/api/presets/rulesets/:id/promotion",
+      "status": 200,
+      "responseSha256": "f9d03d6a396ffadcd8b05429e295b147510f78e86c0fd68790818e6824b39cf6",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-7e8602707608",
+      "name": "profile:delete",
+      "actualMethod": "DELETE",
+      "actualRoute": "/api/presets/profiles/:id",
+      "status": 200,
+      "responseSha256": "1b70b1c98c544d975c39049311ab1d24ed1d87aedc2874bdc946d39bd421b4b8",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-620a9576690e",
+      "name": "ruleset:delete",
+      "actualMethod": "DELETE",
+      "actualRoute": "/api/presets/rulesets/:id",
+      "status": 200,
+      "responseSha256": "1b70b1c98c544d975c39049311ab1d24ed1d87aedc2874bdc946d39bd421b4b8",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-d874c25112ba",
+      "name": "feedback:add",
+      "actualMethod": "POST",
+      "actualRoute": "/api/feedback",
+      "status": 200,
+      "responseSha256": "7ed2df9b68effdd8866fea8ba9c0b74fa7425ba0b623de7c1a5558ee6aabbfdd",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-a05e3b6af8e1",
+      "name": "review:add-feedback",
+      "actualMethod": "POST",
+      "actualRoute": "/api/feedback",
+      "status": 200,
+      "responseSha256": "fcad2b8c0e9b54eddc471c08f2de0294ded054bd89156114b2bf9f7f965aa9cc",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-6ff537a49940",
+      "name": "feedback:add-batch",
+      "actualMethod": "POST",
+      "actualRoute": "/api/feedback/batch",
+      "status": 200,
+      "responseSha256": "c933c6603e94b839ee967447e0b93281b1793cd46fbb8bd35e4425d59d6b0f50",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-feab6613b5ed",
+      "name": "feedback:query",
+      "actualMethod": "GET",
+      "actualRoute": "/api/feedback?documentName=case.docx",
+      "status": 200,
+      "responseSha256": "91f9047421785dcbbc88dbb14f82c5344b9f1749b0946817bc0a4bd785472c97",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-72093dfff7bf",
+      "name": "review:get-feedbacks",
+      "actualMethod": "GET",
+      "actualRoute": "/api/feedback",
+      "status": 200,
+      "responseSha256": "c977e8f9a6f2233b8a9c2f4776efca918284373f01e0706de7d5630aad2cd3dc",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-14a3820628e8",
+      "name": "feedback:get-document-stats",
+      "actualMethod": "GET",
+      "actualRoute": "/api/feedback/statistics?documentName=Case.DOCX",
+      "status": 200,
+      "responseSha256": "9df59d4c467776051e30503d8c0102219ed578d7af8f32b85ad7a3607b2cbafb",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-9bb6c463b31f",
+      "name": "feedback:get-global-stats",
+      "actualMethod": "GET",
+      "actualRoute": "/api/feedback/statistics",
+      "status": 200,
+      "responseSha256": "a460d354d169be0debac408780ab33576e673a4b2bbb6ef2eabe4469c9e534bc",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-b199b300f630",
+      "name": "review:get-statistics",
+      "actualMethod": "GET",
+      "actualRoute": "/api/feedback/statistics",
+      "status": 200,
+      "responseSha256": "a460d354d169be0debac408780ab33576e673a4b2bbb6ef2eabe4469c9e534bc",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-9dbd84b9715b",
+      "name": "review:get-blacklist",
+      "actualMethod": "GET",
+      "actualRoute": "/api/review-memory",
+      "status": 200,
+      "responseSha256": "5d2e8debeaf7b0d25a9149669c1dd8caa54496665cc0dc4e103671bc32117aa1",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-9a7ac510f8c7",
+      "name": "review:get-whitelist",
+      "actualMethod": "GET",
+      "actualRoute": "/api/review-memory",
+      "status": 200,
+      "responseSha256": "5d2e8debeaf7b0d25a9149669c1dd8caa54496665cc0dc4e103671bc32117aa1",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-5457cc5660c4",
+      "name": "learner:get-stats",
+      "actualMethod": "GET",
+      "actualRoute": "/api/learner/get-stats",
+      "status": 200,
+      "responseSha256": "77b61f5c27321170d64ffe1ad3e496e3d5ad0837728b00a7eaafedf247887d82",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-e024a8242875",
+      "name": "review:export-audit-log",
+      "actualMethod": "POST",
+      "actualRoute": "/api/feedback/export",
+      "status": 200,
+      "responseSha256": "649c8144cab05731249af065d060bd503faa0dfdd70353fd5cecff80fcc30402",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-bb6001e11068",
+      "name": "review:export-proof-lite",
+      "actualMethod": "POST",
+      "actualRoute": "/api/feedback/export",
+      "status": 200,
+      "responseSha256": "8770eab41ac727a6ac418aa4bc033e369dc37f4fcc141638ed7c2d0c129b7920",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-d3e5e1de12d2",
+      "name": "review:export-user-memories",
+      "actualMethod": "POST",
+      "actualRoute": "/api/feedback/export",
+      "status": 200,
+      "responseSha256": "687ab135ea668fb3b0bfa32690fcb0ebd4e9701575028d0f958295c99beaedf8",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-196efa6b695b",
+      "name": "feedback:export-audit-report",
+      "actualMethod": "POST",
+      "actualRoute": "/api/feedback/export",
+      "status": 200,
+      "responseSha256": "27c6cd89bc238a9469361af01903a3a5becba0a8b34044f28f3fa01beaf550da",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-b2c075e4afde",
+      "name": "feedback:delete-by-document",
+      "actualMethod": "POST",
+      "actualRoute": "/api/feedback/delete-by-document",
+      "status": 200,
+      "responseSha256": "2354bb497b2ad99d49874423b107b257a0ff445e639a8df37fc30d79c1ce3fa3",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-efc77b9d6c1d",
+      "name": "feedback:delete-by-id",
+      "actualMethod": "DELETE",
+      "actualRoute": "/api/feedback/:id",
+      "status": 200,
+      "responseSha256": "0b421979acab69151b414888dcaa8ecc9bf71e05fa8cb4e088b0a6acac6768f7",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-b828b79da058",
+      "name": "feedback:clear-all",
+      "actualMethod": "POST",
+      "actualRoute": "/api/feedback/clear-all",
+      "status": 200,
+      "responseSha256": "f8df67f7a9c24d6324e85fef9672ac68c72049fdb99012d8d36538098ae4ae7f",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-7d7beed074d0",
+      "name": "review:clear-all",
+      "actualMethod": "POST",
+      "actualRoute": "/api/feedback/clear-all",
+      "status": 200,
+      "responseSha256": "b3914426184a09df90ebd4c62d6125c3148184389296ed9710e1e85d230dd75a",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-25271d44841c",
+      "name": "dictionary:add-entry",
+      "actualMethod": "POST",
+      "actualRoute": "/api/review-memory",
+      "status": 200,
+      "responseSha256": "83d9a4f9541b66fe648bcfc77838d899d6bbcda30cb41c0d896be5b28afef922",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-acbca2a96370",
+      "name": "dictionary:get-entries",
+      "actualMethod": "GET",
+      "actualRoute": "/api/review-memory",
+      "status": 200,
+      "responseSha256": "5503e11409fb4c0d73a52e7159675cc8c1d096b3b60ce5461a560d95f280dd29",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-d0b393b9e93d",
+      "name": "dictionary:select-import-file",
+      "actualMethod": "POST",
+      "actualRoute": "/api/review-memory/import",
+      "status": 200,
+      "responseSha256": "367d9bbed86e4b99b6fff3ec4bb5ceac988ecbf3de7de03c7f8c5e1493d1c126",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "cloud file-byte/download adaptation, not native dialog execution",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I1",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-50d02c91469e",
+      "name": "dictionary:import",
+      "actualMethod": "POST",
+      "actualRoute": "/api/review-memory/import",
+      "status": 200,
+      "responseSha256": "45900acdc38185584a3ade2d217558eb7287409792f01df4ddf10b0f23eb9d2d",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-0f2d4d6b6262",
+      "name": "dictionary:export",
+      "actualMethod": "GET",
+      "actualRoute": "/api/review-memory/export",
+      "status": 200,
+      "responseSha256": "c2121598defc1928815b38cbc7ef22bccf75a8d64d270b2c3ec13a294f5c0351",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-8a12674fee54",
+      "name": "dictionary:select-export-path",
+      "actualMethod": "GET",
+      "actualRoute": "/api/review-memory/export",
+      "status": 200,
+      "responseSha256": "8bc19558ef8e0bb16c0e2ec564cc8261468db5f2ead0590d225aafb4516e2917",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "cloud file-byte/download adaptation, not native dialog execution",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "原生文件保存对话框未在云端执行；以真实 XLSX 下载交付",
+      "suggested_ledger_status": "I1",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-9b9d5a0f489e",
+      "name": "dictionary:save-export-file",
+      "actualMethod": "GET",
+      "actualRoute": "/api/review-memory/export",
+      "status": 200,
+      "responseSha256": "fa7172196cb70de375cf964442e8c0ae57e26ebce56916665e71ec0253bf3473",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-3f0d71fadee4",
+      "name": "dictionary:download-excel-template",
+      "actualMethod": "GET",
+      "actualRoute": "/api/projects/:id/reference-dictionary/template.xlsx",
+      "status": 200,
+      "responseSha256": "0bfa259dcaf3f5b65795557dd493d39e7108ad42b68176cb3924919523e5202c",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-22c459a29cd7",
+      "name": "dictionary:export-excel",
+      "actualMethod": "GET",
+      "actualRoute": "/api/projects/:id/reference-dictionary/export.xlsx",
+      "status": 200,
+      "responseSha256": "7304836b6be6eeb0c4ab773633403a528e5a7206fe5410031b355487312ca8df",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-7de3f60b8ed5",
+      "name": "dictionary:select-excel-import-file",
+      "actualMethod": "POST",
+      "actualRoute": "/api/projects/:id/reference-dictionary/import",
+      "status": 200,
+      "responseSha256": "369af8d33e13a7befe12bed82529d5f242d64af005ea47be53bca9969acf70ed",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "cloud file-byte/download adaptation, not native dialog execution",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I1",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-c19a241811ac",
+      "name": "dictionary:record-hint-action",
+      "actualMethod": "POST",
+      "actualRoute": "/api/projects/:id/reference-dictionary/hint-action",
+      "status": 200,
+      "responseSha256": "14e96c7c7a20e296cd8b6f8291cb0e1ac945723c426079033570ed8c9954b4e8",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    },
+    {
+      "id": "IPC-80e954e3a669",
+      "name": "dictionary:remove-entry",
+      "actualMethod": "DELETE",
+      "actualRoute": "/api/review-memory/:id",
+      "status": 200,
+      "responseSha256": "22752d657a773d2b619c1cdb80cbe173db0e1f0255edc0f0b1c887826e61748c",
+      "assertions": "Caller-specific persisted/derived result assertions passed; see executable test",
+      "scope": "exact named business contract via declared cloud adapter; no vendor runtime",
+      "current": "实际调用并检验返回字段、持久化与特定副作用",
+      "boundary": "只验证我方声明的云端业务合同；竞品许可链 R0，非原生进程运行",
+      "suggested_ledger_status": "I4",
+      "sourceEvidence": [],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-exact-runtime-C-frozen.json",
+          "sha256": "26dd53202972407980b7296d16c6515a2488a42723596ef750988fa5eb5dec67"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+          "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+        },
+        {
+          "path": "tests/personal-settings-interface-closure.integration.ts",
+          "sha256": "1199ce5b1babccff42f3a834f6d979437682db587a0244066869e0f028ae423a"
+        }
+      ]
+    }
+  ],
+  "implementation": [
+    {
+      "path": "apps/api/presets.ts",
+      "sha256": "9af83835b51c11c78f13b6d7895128e268e8218b5d97a924d4771fec7d087001"
+    },
+    {
+      "path": "packages/contracts/presets.ts",
+      "sha256": "ae359b6e0d99f39d8b004fef2f292eabd0e7a65289df27d49f2a1f41eedbdeef"
+    },
+    {
+      "path": "packages/core/presets.ts",
+      "sha256": "9802bd1ed408a98e7dbe217ada719176566c2b1608a16bbbfb3d0fdd954ea201"
+    },
+    {
+      "path": "apps/web/presets.tsx",
+      "sha256": "27575e2472b010d8a7ba9dc29a29f3e4656a56b843da756970730794e8e917fa"
+    },
+    {
+      "path": "apps/api/feedback.ts",
+      "sha256": "1eb67c6bda597b7eafb12310ad26eb84bffb3330169db5b914fa867a3bad4d2a"
+    },
+    {
+      "path": "packages/contracts/feedback.ts",
+      "sha256": "ae8b79d8b9e167beccc687ca379d4a4c6d059e760f8eeef144331e668b33dda9"
+    },
+    {
+      "path": "apps/web/feedback.tsx",
+      "sha256": "f8d05a59fd8c151a351dbad89af7ffeeae3734ab2bf15d2515f8052b0b701de7"
+    }
+  ],
+  "sourcePrecision": [
+    "Source Um/assertUniqueName has no200-name/2000-description cap. Removed API/schema/UI truncation; actual301-name,4002-description,301-template and full duplicate suffix.",
+    "Source manual dictionary export is version0.5 entries envelope; implemented encrypted own-user JSON export/import, separate from complete feedback memories export.",
+    "Single addFeedback preserves unknown source fields. Actual220001 entity/full context,300 raw type,2200 pattern survive real encrypted readback/export.",
+    "Source audit-report IPC passes fixed title; our optional report title is an extension, with no artificial200 cap. Proof/export engineVersion/rulesetHash source spread likewise untruncated.",
+    "Learner methods are deliberately inactive, not a missing learning implementation. Their exact six deprecated methods are separately exercised."
+  ],
+  "tests": [
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/personal-settings-final-api.log",
+      "sha256": "bd50bbf04b27ef8ef07834505763829b4b0a89674547307416b5c39d42696a38"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/catalog-presets-unit.log",
+      "sha256": "d71feaef893337d21e87f052a82cc482879715653d34904d0e12c1abd4d77c2e"
+    }
+  ],
+  "runtime": {
+    "independentC": "Node v26.6.0 + isolated PostgreSQL",
+    "parentFinalGate": "separate Node24/browser release gate; sourceR0 unchanged"
+  }
+}

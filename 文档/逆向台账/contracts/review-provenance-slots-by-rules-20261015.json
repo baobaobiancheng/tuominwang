@@ -1,0 +1,98 @@
+{
+  "version": 1,
+  "date": "2026-10-15",
+  "reviewer": "A complete_rules",
+  "mode": "independent-read-only-repro-then-parent-authorized-owned-fix",
+  "status": "closed-pure-and-real-API-and-independent-C-review",
+  "findings": [
+    {
+      "id": "A-PROVENANCE-SLOT-01",
+      "priority": "P2",
+      "file": "packages/core/review-provenance.ts",
+      "lines": "26-31",
+      "repro": "Same span/type marks A=pending/type, B=ignore/full. derive([A,B]); transition(before=[A,B],after=[B]) retains A entity ID and marks B entity ID removed. Reordering valid metadata.entries without changing markIndex likewise exchanges IDs on unchanged review.",
+      "impact": "Deletion of one independent slot can attach the surviving entry to another slot history/actor. Not authorization bypass or approval promotion.",
+      "expected": "Resolve exact prior active markIndex first; preserve unambiguous unchanged whole-record identity or explicit server validated slot refs; never bind metadata solely from per-key queue.",
+      "status": "closed"
+    },
+    {
+      "id": "A-PROVENANCE-SLOT-02",
+      "priority": "P2",
+      "file": "packages/core/review-provenance-rebind.ts",
+      "lines": "9-15",
+      "repro": "Same canonical/hash before=[A,B], after=[A,B], explicit links before1→after0. Retained old slot1 ID equals fresh derived after1 slot1 ID; rebind throws REVIEW_PROVENANCE_REBIND_INVALID.",
+      "impact": "Legitimate mutation preserving one duplicate occurrence while freshly detecting another cannot complete.",
+      "expected": "Allocate fresh entity IDs in a namespace avoiding every retained/tombstone ID, keeping exact trusted links.",
+      "status": "closed"
+    }
+  ],
+  "evidence": {
+    "probe": ".data/research/lawbot-2026-10-15/iteration035/provenance-slots-A-before.json",
+    "sha256": "c98f5ec8f06ccc4f3d07843c39f83b48300eec2853d0ebc67138b1d8a0526dfe",
+    "runner": ".data/research/lawbot-2026-10-15/iteration035/probe-provenance-slots-A-before.mts",
+    "runtime": "Node24, pure production helper calls; no product mutation"
+  },
+  "sourceFiles": [
+    {
+      "path": "packages/core/review-provenance.ts",
+      "sha256": "a1d39ffaa5597b43a0fbceb48a249db2a37e99bbfd113b46e97ab8a029224ff4"
+    },
+    {
+      "path": "packages/core/review-provenance-rebind.ts",
+      "sha256": "4d528c7048902503fe206e97b8a83bfd9eb103838811bd9062fca6152ebd4e7a"
+    }
+  ],
+  "notAFinding": "One single-slot delete then re-add intentionally reuses the same ID in existing tests; not reported alone as a defect.",
+  "fixedEvidence": {
+    "path": ".data/research/lawbot-2026-10-15/iteration035/provenance-slots-A.json",
+    "sha256": "0761bb68389db34ef0208f0d68a472a715ea5589843bb6620cd16eb0c3112a26",
+    "tests": "10 tests/3 files PASS368ms; before proof exact bytes reconstructed against archived original source and matches original hash"
+  },
+  "actualEvidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration035/provenance-slot-api-A-second.log",
+      "bytes": 278,
+      "sha256": "d615cc8fdf8db56a5ddc45ce877d017dadead5b1a52274fe93a1be3641949d07",
+      "result": "1actual API PASS8.968s: duplicate slots deletion/fresh resurrection, hints foreign/duplicate rejection409, type/range edits preserve preciseID, canonical sourcehash/no stored hints"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration035/C-review-slots-independent.log",
+      "bytes": 225,
+      "sha256": "b60534b489482f1c52dc13b29943af36cd40bfbe972ef68622038efd47ce5e1d",
+      "result": "C independent3files13tests PASS393ms; no additional qualified finding"
+    }
+  ],
+  "fixedFiles": [
+    {
+      "path": "packages/core/review-entity-slots.ts",
+      "bytes": 6334,
+      "sha256": "c3ebe32fd54e63aba952cca98f823d1472b0b2be50c33cf41eebac437e9cf178"
+    },
+    {
+      "path": "packages/core/review-provenance.ts",
+      "bytes": 8203,
+      "sha256": "cdb82b161f33f97af0c549768bc62b3de784284cfff22110c9235b01906a57e9"
+    },
+    {
+      "path": "packages/core/review-provenance-rebind.ts",
+      "bytes": 2662,
+      "sha256": "e2613837207d88a03b2c5a831b46412d7908a5f7bed7b45cf0c5aa23d01c7c8a"
+    },
+    {
+      "path": "packages/adapters/review-provenance.ts",
+      "bytes": 3252,
+      "sha256": "57de071cddf0ffff2dfdba4e4212a6572833b08bde0083ccb1e2222bcc4e9e04"
+    },
+    {
+      "path": "tests/review-entity-slots.test.ts",
+      "bytes": 3834,
+      "sha256": "4ebc24e7911f7051f830409021a9b0f4402d4232bcf3b9f67e6a428f9c9dd647"
+    },
+    {
+      "path": "tests/review-entity-slots.integration.ts",
+      "bytes": 5504,
+      "sha256": "d915b9adcefadb2473a2b78107791c33e0b1447322682e9bd0342683c4dad7e5"
+    }
+  ],
+  "followup": "Root optional geometry transform independently re-read: transform is server-created, validated with assertReviewProvenance again before seal; unchanged geometry creates no invented change. 20,000 independent same-key-aware bulk updates use indexes, not all-pairs matching. Source competitor runtime remainsR0; opaque review IDs are our durable safety adaptation."
+}

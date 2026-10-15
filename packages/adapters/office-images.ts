@@ -1,3 +1,4 @@
+import{resolveEntityGeometry}from'./entity-geometry.ts';
 import { normalizeOfficeMedia, type OfficeMediaFrame } from "../core/office-media.ts";
 import { renderDocumentVisualPage } from "./visual-replacement.ts";
 import { parseOffice, officeImagePart, type OfficeImages } from "../core/office.ts";
@@ -32,7 +33,7 @@ export async function officeImagePlan(d: any, text: string) {
     if (!page.part || !officeImagePart(page.part) || !anchor) throw new Error("SOURCE_MISMATCH");
     const map = await readArtifact(page.mapId);
     if (hash(map) !== page.mapHash) throw new Error("SOURCE_MISMATCH");
-    plans.push({ page, anchor, boxes: pageBoxes(text, d.marks, [{ ...anchor, kind: "page", page: page.index }], page, JSON.parse(map), policy) });
+    plans.push({ page, anchor, boxes: pageBoxes(text, d.marks, [{ ...anchor, kind: "page", page: page.index }], page, JSON.parse(map), policy,resolveEntityGeometry(d,d.marks,policy,page,JSON.parse(map),text)) });
   }
   return plans;
 }

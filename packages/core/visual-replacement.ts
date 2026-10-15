@@ -1,3 +1,4 @@
+import{hasEntityGeometry}from'../contracts/entity-geometry.ts';
 import sharp, {type OverlayOptions} from 'sharp';
 import {readFile,stat} from 'node:fs/promises';
 import {createHash} from 'node:crypto';
@@ -32,18 +33,19 @@ export function shouldDrawRasterReplacement(mark:Mark):boolean{
  return !(mark.replacementOrigin==='overall'&&(mode==='full'||mode==='reference-mask'));
 }
 /** Positions stay in canonical upright-page units; this is the single plan shared by preview and export. */
-export function visualReplacementPlan(text:string,marks:Mark[],anchors:Anchor[],page:Pick<ParsedPage,'index'|'width'|'height'>,glyphs:Glyph[],policy:PageReview):VisualReplacementPlan{
+export function visualReplacementPlan(text:string,marks:Mark[],anchors:Anchor[],page:Pick<ParsedPage,'index'|'width'|'height'>,glyphs:Glyph[],policy:PageReview,overrides:ReadonlyMap<number,Box[]>=new Map()):VisualReplacementPlan{
  validateMarks(text,marks,true);const anchor=anchors.find(a=>a.kind==='page'&&a.page===page.index);if(!anchor)throw new Error('PAGE_POSITION_MISSING');
  // Preserve the existing complete-glyph coverage and edge-clearing guarantees, without copying its replacement-mode restriction.
- const erase=pageBoxes(text,marks.map(m=>({...m,replacement:{mode:'full' as const}})),anchors,page,glyphs,policy),draws:VisualReplacementDraw[]=[],hiddenValues:string[]=[];
- for(const mark of marks.filter(m=>m.decision==='redact'&&m.start<anchor.end&&m.end>anchor.start)){
+ const erase=pageBoxes(text,marks.map(m=>({...m,replacement:{mode:'full' as const}})),anchors,page,glyphs,policy,overrides),draws:VisualReplacementDraw[]=[],hiddenValues:string[]=[];
+ for(const[markIndex,mark]of marks.entries()){
+  if(!(mark.decision==='redact'&&mark.start<anchor.end&&mark.end>anchor.start))continue;
   const original=text.slice(mark.start,mark.end),hidden=compact(original);if(hidden)hiddenValues.push(hidden);
   if(!shouldDrawRasterReplacement(mark))continue;
   const derived=replacementFor(text,mark);if(!derived.isWellFormed()||compact(derived).includes(hidden))throw new Error('INVALID_REPLACEMENT');
   if(!visibleRasterText(derived))continue;
   // A continued mark is already cleared on every page. Its label is drawn once, on the page containing its start.
   if(mark.start<anchor.start)continue;
-  const localStart=Math.max(mark.start,anchor.start)-anchor.start,localEnd=Math.min(mark.end,anchor.end)-anchor.start,positions=glyphs.filter(g=>g[0]<localEnd&&g[1]>localStart&&g[4]>0&&g[5]>0),lines=lineBounds(positions,page);if(!lines.length)throw new Error('PAGE_POSITION_MISSING');
+  const localStart=Math.max(mark.start,anchor.start)-anchor.start,localEnd=Math.min(mark.end,anchor.end)-anchor.start,positions=overrides.has(markIndex)?overrides.get(markIndex)!.map(b=>[localStart,localEnd,b.x,b.y,b.width,b.height]as Glyph):glyphs.filter(g=>g[0]<localEnd&&g[1]>localStart&&g[4]>0&&g[5]>0),lines=lineBounds(positions,page);if(!lines.length)throw new Error('PAGE_POSITION_MISSING');
   const points=[...derived],weights=lines.map(b=>Math.max(1,b.width/Math.max(1,b.height))),total=weights.reduce((a,b)=>a+b,0);let used=0,weight=0;
   for(let i=0;i<lines.length;i++){weight+=weights[i];const end=i===lines.length-1?points.length:Math.round(points.length*weight/total),fragment=points.slice(used,end).join('');used=end;if(!visibleRasterText(fragment))continue;const bounds=lines[i];
    // Clear the whole selected line rectangle before laying text over it; no original antialiasing remains between symbol boxes.
@@ -51,7 +53,7 @@ export function visualReplacementPlan(text:string,marks:Mark[],anchors:Anchor[],
   }
   if(used!==points.length)throw new Error('VISUAL_TEXT_FIT_FAILED');
  }
- const finalClear=policy.regions.filter(r=>r.page===page.index).map(({x,y,width,height,shape})=>({x,y,width,height,...shape?{shape}:{}}));
+ const finalClear=policy.regions.filter(r=>r.page===page.index&&!hasEntityGeometry(r)).map(({x,y,width,height,shape})=>({x,y,width,height,...shape?{shape}:{}}));
  return {canonical:{width:page.width,height:page.height},erase,draws,finalClear,hiddenValues:[...new Set(hiddenValues)]};
 }
 export async function verifyRenderFont(directory=resolve(process.env.RENDER_FONT_DIR??resolve(dirname(process.env.VISUAL_MODEL_DIR??'.data/models/visual'),'render'))){const lock=JSON.parse(await readFile(new URL('../../scripts/render-font-lock.json',import.meta.url),'utf8'));let font:Buffer|undefined;for(const[name,expected]of Object.entries(lock.files)){let bytes:Buffer;try{const info=await stat(resolve(directory,name));if(!info.isFile()||info.size!==lock.sizes[name])throw new Error('VISUAL_FONT_MISMATCH');bytes=await readFile(resolve(directory,name));}catch(e){if((e as Error).message==='VISUAL_FONT_MISMATCH')throw e;throw new Error('VISUAL_FONT_REQUIRED');}if(createHash('sha256').update(bytes).digest('hex')!==expected)throw new Error('VISUAL_FONT_MISMATCH');if(name==='NotoSansSC.ttf')font=bytes;}if(!font)throw new Error('VISUAL_FONT_REQUIRED');return{font,path:resolve(directory,'NotoSansSC.ttf'),family:lock.family as string};}

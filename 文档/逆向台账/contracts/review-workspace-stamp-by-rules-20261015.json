@@ -1,0 +1,114 @@
+{
+  "schema": "tuominwang.read-only-adversarial-review-A.v1",
+  "date": "2026-10-15",
+  "reviewer": "complete_rules",
+  "implementationEdited": false,
+  "workspace": {
+    "covered": [
+      "sender/session HMAC and request-input/password/format binding",
+      "immutable saved bytes and idempotent reuse",
+      "permission revocation, expiry, altered source hash, snapshot CAS",
+      "new buildApp startup orphan-running interruption and late result cannot overwrite terminal state",
+      "20-item MRU retention without material deletion; separate persisted lastSavedAt",
+      "source ey real manual/alias counts with known=false when uncomputable",
+      "portable import remembers recent only after real success"
+    ],
+    "tests": {
+      "files": 3,
+      "passed": 3,
+      "durationSeconds": 18.935,
+      "log": {
+        "path": ".data/research/lawbot-2026-10-15/iteration032/review-C-workspace-new-independent-A.log",
+        "bytes": 688,
+        "sha256": "ffc5f657ae2673293b2714be385fcc0b691282b5043cbb19e670c43a72a6bfc1"
+      }
+    },
+    "findings": [],
+    "boundary": "One API instance restart contract, not multi-replica liveness/election evidence."
+  },
+  "mixedStamp": {
+    "schema": "tuominwang.review-mixed-stamp-independent-A.v1",
+    "source": "文档/评估/混合公开印章全量验证20261015/per-image.json",
+    "sha256": "d67e89776ce90aabb3f7a502d59e4a22ad68da82105e7632fdd320b8e8e2f813",
+    "rows": 786,
+    "uniqueRows": 786,
+    "positive": 661,
+    "negative": 125,
+    "gold": 1315,
+    "predictions": 1812,
+    "failed": 0,
+    "metrics": {
+      "0.25": {
+        "tp": 444,
+        "fp": 1368,
+        "fn": 871,
+        "precision": 0.24503311258278146,
+        "recall": 0.3376425855513308,
+        "f1": 0.2839782539174928
+      },
+      "0.5": {
+        "tp": 316,
+        "fp": 1496,
+        "fn": 999,
+        "precision": 0.17439293598233996,
+        "recall": 0.2403041825095057,
+        "f1": 0.2021106491845219
+      },
+      "0.75": {
+        "tp": 153,
+        "fp": 1659,
+        "fn": 1162,
+        "precision": 0.08443708609271523,
+        "recall": 0.11634980988593156,
+        "f1": 0.09785737128237927
+      }
+    },
+    "boundary": "Metadata-only independent recomputation, not rerunning inference or resolving upstream licenses, training overlap or color/blackwhite/commercial strata."
+  },
+  "boundary": [
+    "Current context file hashes were captured after C started legacy integration; they do NOT assert these later bytes were the source used by the earlier 3 tests. The tested scope is 028/029 semantics enumerated above; legacy integration is separately reviewed.",
+    "Source licensed processor remains R0. Mixed stamp recomputation validates arithmetic, not usability or upstream licensing."
+  ],
+  "currentContextFiles": [
+    {
+      "path": "apps/api/workspace-saves.ts",
+      "bytes": 8317,
+      "sha256": "ac3cf38ae09b990c787d33d977de16df07a47865e1df1d3d651538f7d6f71657"
+    },
+    {
+      "path": "packages/adapters/workspace-recents.ts",
+      "bytes": 3421,
+      "sha256": "c6f99cf2d1135bdc235dc62bd51818550480f0e14c286df077e557f0af0b0dbb"
+    },
+    {
+      "path": "apps/api/workspace-recovery.ts",
+      "bytes": 6875,
+      "sha256": "7bfd189f4e393fc5965fadb8cb8bc9f528b0c4b908fbaf2c78a04fd6d7539d62"
+    },
+    {
+      "path": "apps/api/workspace-portable.ts",
+      "bytes": 38192,
+      "sha256": "412950c60c3cca2c8fd8224001cb5f43041fb941af4e6d6ca83532c03615797b"
+    },
+    {
+      "path": "apps/web/workspace-portable.tsx",
+      "bytes": 6503,
+      "sha256": "96002ed482086d40f728b10bd204230e79a9480df664c31632e34fae69c69e80"
+    },
+    {
+      "path": "apps/web/workspace-recovery.tsx",
+      "bytes": 5921,
+      "sha256": "11da150dc69301a788e0e39fc2f0b820778e21d663c96e402c1f5026e674ce43"
+    },
+    {
+      "path": "scripts/028.sql",
+      "bytes": 1362,
+      "sha256": "99e03f47a0d61b2ae7c0517b32ae99e7e37fe6bc9861ff576cf6958b59d6f2d9"
+    },
+    {
+      "path": "scripts/029.sql",
+      "bytes": 88,
+      "sha256": "77c8a1b89e59c49418ef7d714b67316e7e2e3c48518dfc9273fa80f01ce78d5e"
+    }
+  ]
+}

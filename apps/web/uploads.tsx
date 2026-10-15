@@ -11,7 +11,7 @@ const messages: Record<string, string> = {
   RATE_LIMITED: "请求过于频繁，请稍后重试。",
   INVALID_PATH: "文件路径不安全，请检查目录和文件名。",
   DUPLICATE_FILE: "同一批次不能包含重复路径。",
-  UNSUPPORTED_FORMAT: "文件类型不受支持，请使用 TXT、MD、CSV、DOCX、PDF、图片或 XLSX。",
+  UNSUPPORTED_FORMAT: "文件类型不受支持，请使用 TXT、MD、CSV、DOC、WPS、DOCX、PDF、图片或 XLSX。",
   FILE_HASH_MISMATCH: "文件内容已变化，请重新选择原文件，或作为新文件导入。",
   FILE_SIZE_MISMATCH: "文件大小不一致，请重新选择原文件。",
   IDEMPOTENCY_CONFLICT: "上传记录与文件不一致，请重新载入上传记录。",

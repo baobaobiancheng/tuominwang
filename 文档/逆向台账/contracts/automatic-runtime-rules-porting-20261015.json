@@ -1,0 +1,251 @@
+{
+  "date": "2026-10-15",
+  "iteration": "037",
+  "stableId": "IPC-0ea3b09c375b",
+  "name": "desensitization:update-runtime-rules",
+  "referenceRuntime": "R0",
+  "staticSource": [
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 9296,
+      "endLine": 9304,
+      "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "sliceSha256": "f8af378e8b84e52c337096e8a716d839d2fe2e2da85d8c341c39ad4864c704db",
+      "label": "runtime append engine mutator",
+      "coordinateSystem": "1-based inclusive whole UTF8 lines including newline"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "startLine": 9439,
+      "endLine": 9465,
+      "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+      "sliceSha256": "de3ae5e15d5971a9f0f62b7122f40543d32e6e2841692b284034d8c28a85394a",
+      "label": "literal variant finder/raw type/computed mask",
+      "coordinateSystem": "1-based inclusive whole UTF8 lines including newline"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 6185,
+      "endLine": 6191,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "c481d8396f7892367298122a40b7d1ccdf6b03a6a0f6eae24258a24d04ddd0c5",
+      "label": "Word runtime sender guard",
+      "coordinateSystem": "1-based inclusive whole UTF8 lines including newline"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 6572,
+      "endLine": 6574,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "0b7812ee59ca34e2764b788f6686841835e25f0809f2976585a567a1a6f5e140",
+      "label": "Word audit-add fixed file scope",
+      "coordinateSystem": "1-based inclusive whole UTF8 lines including newline"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 9951,
+      "endLine": 10018,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "23beb120b21a43b23bfa3fe8e9e97b597b8e77942a816148570c7f8edc3e4fec",
+      "label": "Word explicit add incl covered and confirmed no-add branches",
+      "coordinateSystem": "1-based inclusive whole UTF8 lines including newline"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 22364,
+      "endLine": 22371,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "6bce158b5085d0693c345588cdba3168a307fafd4963dfdadb15e2fe51f152e2",
+      "label": "PDF runtime sender guard",
+      "coordinateSystem": "1-based inclusive whole UTF8 lines including newline"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 24060,
+      "endLine": 24073,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "d8d8e8e65eaebd85478c8831455bf810d1d7782a7a9df77b1527e9d2e4bbbbe8",
+      "label": "PDF actual audit additions trigger runtime rule",
+      "coordinateSystem": "1-based inclusive whole UTF8 lines including newline"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 25309,
+      "endLine": 25330,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "d79530948f09e9872938622f188d16e67c1e06b80d3fb406708849d5d5b68413",
+      "label": "PDF batch selection sends whitelist even when all duplicates",
+      "coordinateSystem": "1-based inclusive whole UTF8 lines including newline"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+      "startLine": 26603,
+      "endLine": 26623,
+      "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+      "sliceSha256": "270ea23d5d332ec72be7d057be3ad41ec9b0fdabf2a524143fbecf501a454e34",
+      "label": "image actual-add runtime sender",
+      "coordinateSystem": "1-based inclusive whole UTF8 lines including newline"
+    }
+  ],
+  "originalGap": "Automatic add producers not connected; a separate manual dictionary/re-recognition UI did not implement the source live-engine side effect.",
+  "sourceSemantics": {
+    "payload": [
+      "requestId",
+      "sessionId",
+      "scope",
+      "entityType",
+      "pattern",
+      "ruleType"
+    ],
+    "whitelist": "literal + source space/bracket variants, raw entity types; exactorg_name An/address* Jn/otherwise****",
+    "lifecycle": "Only still-running detect-only engine(s); completed0; scope file request, project same session, spot no RPC. No durable rules or whole-document restart.",
+    "coveredNoAdd": "Word explicit selected active covered region and confirmed add paths; PDF batch sends even when duplicates. Audit fixed file; no generic edit/keep/delete inference."
+  },
+  "cloudAdaptation": {
+    "authentication": "same owner+tenant+project; view_original/review; current revision/source/canonical/031 slot identity and035 semantic proof",
+    "delivery": "037 AEAD ordered deliveries bound to job/generation/revision/hashes. Source in-memory side effect represented by encrypted task-ephemeral rows; never runtime_whitelists.",
+    "window": "parent serializes progress writes then closes/drains final matcher window under job lock before reply. This deliberately may apply an injected literal to earlier canonical spans as well as subsequent pages; no claim of vendor timing equality.",
+    "race": "accepted flag closed under same job lock as insert; retry claim opens new generation and purges old payload; old-generation discard cannot close new generation",
+    "cleanup": "own authenticated tenant/user/job/generation SECURITY DEFINER deletion works after permission revocation; no read/insert permission widened",
+    "safety": "manual source arrays sanitized/validated; invalid spans400; mismatch409; temporary AEAD corruption fails closed and transaction rolls back. Pending output remains unapproved.",
+    "ui": "file/project/spot explicit scope; true add side effect plus separately proven covered selection; saving waits bounded dispatcher flush; failure never claims application",
+    "sourceDifferences": "Source appends duplicates, cloud same-operation candidates dedup; independent requests retain order. No proprietary module redistributed."
+  },
+  "tests": [
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration037/automatic-runtime-api-complete.log",
+      "result": "3 tests PASS,0 skip,natural exit0,10.910s total"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration037/automatic-runtime-unit-final.log",
+      "result": "4 tests PASS including exact source Word RPC VM oracle and dispatcher flush/guard"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration037/automatic-runtime-worker-B.log",
+      "result": "B independent actual worker 1 PASS,3.562s; same unknown raw types and transient-only behavior"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration037/automatic-runtime-typecheck-final.log",
+      "result": "tsc noEmit exit0; root fresh full gates required"
+    }
+  ],
+  "files": [
+    {
+      "path": "scripts/037.sql",
+      "bytes": 4376,
+      "sha256": "1be899fa1587f71ec29c180b6ed368a36fabe7452c57417fc340c003af6ee566"
+    },
+    {
+      "path": "packages/core/reference-runtime-rule-producer.ts",
+      "bytes": 1682,
+      "sha256": "1b85d7659399d18fe9e39d67032cd34ab23e979557a29b7a2ba0f5c8fa88287e"
+    },
+    {
+      "path": "packages/adapters/automatic-runtime-rules.ts",
+      "bytes": 4555,
+      "sha256": "511c7fa83ea32ab469a6973c3042de9274a0474fd624aee85853001a4a75f45a"
+    },
+    {
+      "path": "apps/api/automatic-runtime-rules.ts",
+      "bytes": 5750,
+      "sha256": "a9652558a81684e736af88332991ecfa1d967b2a8356022b5a829469c99cf015"
+    },
+    {
+      "path": "apps/web/automatic-runtime-rules.ts",
+      "bytes": 1387,
+      "sha256": "b5cb101ac6107f7f917097dc6d40f5fdd13eca236ee6f5cb17ec8826dd83114b"
+    },
+    {
+      "path": "tests/reference-runtime-rule-producer.test.ts",
+      "bytes": 4843,
+      "sha256": "9e3ec51f2fc68f2a409334b6ebf954fe00dec9aaaecda19d16f4b6ecc31bb49d"
+    },
+    {
+      "path": "tests/automatic-runtime-rules.integration.ts",
+      "bytes": 15460,
+      "sha256": "1135f85b034f058277dcf93810cc457b4c8ed3f61a7d98364d531c4836b99e28"
+    },
+    {
+      "path": "tests/automatic-runtime-worker.integration.ts",
+      "bytes": 9823,
+      "sha256": "784dea5f074f130b42d3921ce7a24d5d4a2dc1fc6079be20ec3664acf9af52e8"
+    },
+    {
+      "path": "packages/adapters/runtime-rules-control.ts",
+      "bytes": 1232,
+      "sha256": "a78ca8bd179ef64b2a7c1d916a948df01c29875a01e5460cb494b74ffeab4c5b"
+    },
+    {
+      "path": "packages/adapters/processing.ts",
+      "bytes": 8634,
+      "sha256": "11a81bb5ddf80e9c2ae6348798b5c76e2a95fad9a93cddc0315c9af44933b759"
+    },
+    {
+      "path": "packages/adapters/processing-worker.ts",
+      "bytes": 27796,
+      "sha256": "964cf0bb9cd3f174c3fcc1902bf5a62f03eb11da82b3a54022f7bbbf79474f03"
+    },
+    {
+      "path": "apps/worker/main.ts",
+      "bytes": 13408,
+      "sha256": "17dfd38169070a0d5c61cc1ecf19688d2003eac6edd9e992181a37286318ff74"
+    },
+    {
+      "path": "apps/api/main.ts",
+      "bytes": 30455,
+      "sha256": "5da20747a3cf4b50a2ba67fffd2e8e84ef64b317055505fe59965a6a40bc32d7"
+    },
+    {
+      "path": "apps/web/main.tsx",
+      "bytes": 89000,
+      "sha256": "d4feb34dff5d6271b018c77096b5bc12dfcf028920a5d3ac26f5ffbea6bdf454"
+    },
+    {
+      "path": "packages/contracts/manual-occurrences.ts",
+      "bytes": 1989,
+      "sha256": "f22c41346f9e1693606b4d06a10fdb2677b67b993307bca53c8910a9a2328a46"
+    },
+    {
+      "path": "apps/web/manual-occurrences.tsx",
+      "bytes": 7655,
+      "sha256": "0158d74a0011f5f50af111d731b5b6ffc94094ed81fd6edb16dbb009281950b3"
+    },
+    {
+      "path": "scripts/migrate.ts",
+      "bytes": 1556,
+      "sha256": "a0f277e1f6de2d691d2b088d3ad69910fc35ef71c169a80f83e2f35b5d97811d"
+    }
+  ],
+  "proofs": [
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration037/automatic-runtime-api-actual-A.json",
+      "bytes": 327,
+      "sha256": "2bda4b600965c461d10949decdd0ae1907da813a45ca5dc8e725391bd79a98a6"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration037/automatic-runtime-retry-revoke-actual-A.json",
+      "bytes": 307,
+      "sha256": "c51c5ac190d1fda616f59d71bf98f6b8c305cf1255042ca5fe00c70a1ca8cf13"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration037/automatic-runtime-api-complete.log",
+      "bytes": 612,
+      "sha256": "125854e19c5fbbe4debcca3e81b592863a37c14021876b71b962f4934e8e99e0"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration037/automatic-runtime-unit-final.log",
+      "bytes": 223,
+      "sha256": "9e6aa77abbeb40e8ba4eaeec244a2b53ab545029a1bd618271126123b107beaf"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration037/automatic-runtime-typecheck-final.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "remaining": [
+    "Root full new snapshot pnpmcheck/API/Edge/deploy separate",
+    "New scope UI/covered producer requires actual Edge on fresh root snapshot; author tests did not run Edge",
+    "Competitor licensed task timing/whole-runtime remains R0"
+  ]
+}

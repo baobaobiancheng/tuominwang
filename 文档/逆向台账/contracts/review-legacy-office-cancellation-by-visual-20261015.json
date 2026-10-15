@@ -1,0 +1,65 @@
+{
+  "date": "2026-10-15",
+  "reviewer": "complete_visual",
+  "scope": "Additional cancel/tombstone delta after priorlegacy review",
+  "qualifiedFindings": [],
+  "conclusion": "ACK-before-transport, parentcancellation-beforeterminate, unknownUUID600s tombstone and queuedsecondcheck close cancellationordering race. No new qualifieddefect found.",
+  "staticChecks": [
+    "Worker beginLegacyOfficeJob waits exactjob ACK before RPC; parentregistersjob before ACK.",
+    "runThread.finish constructs cancellation Promises before workerterminate and awaitsallsettled; only jobs registered to that own worker.",
+    "Service cancellationrecords unknownvalidUUID for600seconds; convert checksbefore queue plus afterserializedqueue before UNO starts.",
+    "Canonical UUID validation in convert/cancel; no filenames/password/privatebytes in workercontrol.",
+    "Actual timeout and worker termination do not call global Officekill; UNOownprocessgroup and independentprofile cleanup."
+  ],
+  "independentActualExecution": {
+    "command": "LEGACY_OFFICE_CONTROL_TEST=1 Node24 vitest run tests/legacy-office-control.test.ts -t actual private service tombstone",
+    "selectedTests": 1,
+    "passed": 1,
+    "notSelected": 2,
+    "durationMs": 4300,
+    "assertions": [
+      "cancel-before-convert recorded true with no currentjob",
+      "sameUUIDconversion rejects PROCESSING_CANCELLED",
+      "malformedcancelUUID returns400",
+      "OfficePID/tempdir baselineunchanged"
+    ],
+    "log": {
+      "path": ".data/research/lawbot-2026-10-15/iteration033/review-control-tombstone-B.log",
+      "bytes": 237,
+      "sha256": "21605e37191f8a8669a787fd5a301029d997b314a33a4dabbaec54e292f611c8"
+    },
+    "boundary": "Other2 tests notselected, not claimedrerun; A parentabort actual3/3 evidence is separate."
+  },
+  "implementation": [
+    {
+      "path": "packages/adapters/legacy-office-control.ts",
+      "bytes": 982,
+      "sha256": "7d7beea263f9d55f0e6141bce8a5a96afd1883d2b3ab3651b7a88e4b13f293ab"
+    },
+    {
+      "path": "packages/adapters/legacy-office.ts",
+      "bytes": 9334,
+      "sha256": "348baed1d8ef760483714e2bc1c3b6040e80b523e66c085f2f568415642d19ad"
+    },
+    {
+      "path": "packages/adapters/processing.ts",
+      "bytes": 7444,
+      "sha256": "2b1301165a06eda4fe70fcd2f8facddf2357476c88f8ab831920fec4298d1708"
+    },
+    {
+      "path": "services/legacy-office/server.py",
+      "bytes": 3341,
+      "sha256": "ad009698da25d5ea3a43b57c683b9c5269cd9c02cc8164209f0cb3250888c216"
+    },
+    {
+      "path": "services/legacy-office/convert.py",
+      "bytes": 8171,
+      "sha256": "96edb9e638cd79cce160be8556678194f06cd21f9ec20e0245a2f01adcd6ade3"
+    },
+    {
+      "path": "tests/legacy-office-control.test.ts",
+      "bytes": 5751,
+      "sha256": "9d1236fb2c93f0f3b13edd3a3e2a81073fce40d839b232e5af415ee6bd66e920"
+    }
+  ]
+}

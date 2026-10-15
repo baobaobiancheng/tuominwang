@@ -39,7 +39,7 @@ let localHeavy = false;
 export async function withHeavySlot<T>(fn: (signal: AbortSignal) => Promise<T>): Promise<T> {
   if (localHeavy) throw new Error("PROCESSING_BUSY");
   localHeavy = true;
-  const client = new pg.Client({ connectionString: process.env.DATABASE_URL, connectionTimeoutMillis: 2000 });
+  const client = new pg.Client({ connectionString: process.env.DATABASE_URL, connectionTimeoutMillis: 10000 });
   const lost = new AbortController();
   client.on("error", () => lost.abort());
   let owned = false;

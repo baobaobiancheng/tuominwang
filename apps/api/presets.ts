@@ -3,7 +3,7 @@ import { randomUUID, createHmac } from "node:crypto";
 import { z } from "zod";
 import { id, markSchema, type Mark } from "../../packages/contracts/index.ts";
 import { profileSchema, rulesetSchema, preferencesSchema, projectPresetSchema, type Profile, type RuleSet, type PresetPreferences, type ProjectPresetPolicy, type StoredPreset } from "../../packages/contracts/presets.ts";
-import { defaultProfile, defaultPreferences, SYSTEM_PROFILE_ID, checkedRuleset, previewRuleImport, previewRulePromotion, importRulesWorkbook, exportRulesWorkbook, canonicalRuleEntityType, presetNameWithSuffix, type ImportRule } from "../../packages/core/presets.ts";
+import { defaultProfile, defaultPreferences, SYSTEM_PROFILE_ID, checkedRuleset, normalizeReferenceRuleSetInput, normalizeReferenceProfileInput, previewRuleImport, previewRulePromotion, importRulesWorkbook, exportRulesWorkbook, canonicalRuleEntityType, presetNameWithSuffix, type ImportRule } from "../../packages/core/presets.ts";
 import { scoped, rows, sql, type DB } from "../../packages/adapters/db.ts";
 import { seal, unseal } from "../../packages/adapters/storage.ts";
 import { projectScope } from "./access.ts";
@@ -64,11 +64,11 @@ export function registerPresetRoutes(app: FastifyInstance) {
       await getPreference(db, req); // Serialize this user's catalogue and name uniqueness operations.
       const now = new Date().toISOString(), target = randomUUID(); let value: Profile | RuleSet;
       if (kind === "profile") {
-        const input = z.object({ name: z.string().trim().min(1).max(200), description: z.string().max(2000).optional(), baseProfileId: userId.optional(), profile: profileSchema.optional() }).strict().parse(req.body);
-        const inherited = input.profile ?? (await getPreset<Profile>(db, req, "profile", input.baseProfileId ?? SYSTEM_PROFILE_ID)).settings;
+        const input = z.object({ name: z.string().trim().min(1).refine(v=>v.isWellFormed()&&!v.includes("\0")), description: z.string().refine(v=>v.isWellFormed()&&!v.includes("\0")).optional(), baseProfileId: userId.optional(), profile: z.unknown().optional() }).strict().parse(req.body);
+        const inherited = input.profile === undefined ? (await getPreset<Profile>(db, req, "profile", input.baseProfileId ?? SYSTEM_PROFILE_ID)).settings : profileSchema.parse(normalizeReferenceProfileInput(input.profile,{writeInput:true,preserveNativeSignature:true}));
         value = profileSchema.parse({ ...inherited, id: target, name: input.name, description: input.description ?? inherited.description, source: "user", readonly: false, createdAt: now, updatedAt: now, certNoPreferenceRecorded: true });
       } else {
-        const input = z.object({ name: z.string().trim().min(1).max(200) }).strict().parse(req.body);
+        const input = z.object({ name: z.string().trim().min(1).refine(v=>v.isWellFormed()&&!v.includes("\0")), description: z.unknown().optional(), applicability: z.unknown().optional() }).strict().parse(req.body);
         value = checkedRuleset({ id: target, schemaVersion: 1, name: input.name, description: "", source: "user", readonly: false, applicability: { mode: "all", materialRouteKeys: [] }, createdAt: now, updatedAt: now, entries: [] });
       }
       if ((await rows(db, sql`SELECT id FROM redaction_presets WHERE kind=${kind} AND name_hash=${nameHash(req, kind, value.name)}`)).length || kind === "profile" && value.name.toLocaleLowerCase("zh-CN") === defaultProfile().name.toLocaleLowerCase("zh-CN")) fail("PRESET_NAME_CONFLICT");
@@ -78,7 +78,7 @@ export function registerPresetRoutes(app: FastifyInstance) {
     app.put(`${base}/:id`, { bodyLimit: 64 * 1024 * 1024 }, req => scope(req, async db => {
       const target = userId.parse((req.params as any).id); if (target === SYSTEM_PROFILE_ID) fail("PRESET_READONLY", 403);
       await getPreference(db, req); const previous = await getPreset<Profile | RuleSet>(db, req, kind, target, true);
-      const input = z.object({ revision, settings: kind === "profile" ? profileSchema : rulesetSchema }).strict().parse(req.body);
+      const input = z.object({ revision, settings: kind === "profile" ? z.preprocess(value=>normalizeReferenceProfileInput(value,{writeInput:true,preserveNativeSignature:true}),profileSchema) : z.preprocess(normalizeReferenceRuleSetInput,rulesetSchema) }).strict().parse(req.body);
       if (input.revision !== previous.revision) fail("VERSION_CONFLICT");
       if (previous.settings.readonly) fail("PRESET_READONLY", 403);
       if (input.settings.id !== target) fail("INVALID_INPUT", 400);
@@ -89,7 +89,7 @@ export function registerPresetRoutes(app: FastifyInstance) {
       return { revision: previous.revision + 1, settings: value };
     }));
     app.post(`${base}/:id/duplicate`, req => scope(req, async db => {
-      await getPreference(db, req); const input = z.object({ name: z.string().trim().min(1).max(200).optional() }).strict().parse(req.body ?? {});
+      await getPreference(db, req); const input = z.object({ name: z.string().trim().min(1).refine(v=>v.isWellFormed()&&!v.includes("\0")).optional() }).strict().parse(req.body ?? {});
       const source = await getPreset(db, req, kind, userId.parse((req.params as any).id));
       let name = input.name ?? presetNameWithSuffix(source.settings.name, " 副本"), suffix = 2;
       const original = name;

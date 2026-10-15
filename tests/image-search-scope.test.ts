@@ -1,0 +1,7 @@
+import golden from'./fixtures/search-center-source-golden.json'with{type:'json'};
+import{it,expect}from'vitest';import{sourceCenterInside,classifyImageSearchHits}from'../packages/contracts/image-search-scope.ts';
+const hit=(x:number,pageNumber=1)=>({x,y:10,width:10,height:10,pageNumber,ocrImageWidth:100,ocrImageHeight:100,matchedLine:'Alpha',matchedLineSearchStart:0,matchedLineSearchEnd:5});
+it('source center-plus3 classification distinguishes inside/outside and stale corrected/deleted results',()=>{expect(sourceCenterInside({x:0,y:0,width:10,height:10},{x:8,y:8,width:10,height:10})).toBe(true);const entities=[{pageNumber:1,text:'A lpha',bboxes:[{x:0,y:0,width:20,height:30}]}];expect(classifyImageSearchHits([hit(0),hit(50),hit(0,2)],'ALPHA',entities,[1]).map(r=>r.inEntity)).toEqual([true,false]);expect(classifyImageSearchHits([hit(0)],'Alpha',[{...entities[0],text:'Beta',correctedFrom:'Alpha'}])).toEqual([]);});
+it('every multi-box result segment must belong to a matching entity, not an unrelated box',()=>{const h={...hit(0),bboxes:[{x:0,y:10,width:10,height:10},{x:50,y:10,width:10,height:10}]};expect(classifyImageSearchHits([h],'Alpha',[{pageNumber:1,text:'Alpha',bboxes:[h.bboxes[0]]}])[0].inEntity).toBe(false);expect(classifyImageSearchHits([h],'Alpha',[{pageNumber:1,text:'Alpha',bboxes:h.bboxes}])[0].inEntity).toBe(true);});
+
+it('matches55 original source Ca2 center-containment boundary cases',()=>{for(const row of golden)expect(sourceCenterInside(row.hit,row.entity)).toBe(row.expected);});

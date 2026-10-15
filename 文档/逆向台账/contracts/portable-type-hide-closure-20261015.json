@@ -1,0 +1,203 @@
+{
+  "date": "2026-10-15",
+  "scope": "C persistent type-hide archive/save/reopen and source renderer compatibility",
+  "status": "closed-independent-runtime-and-static-review",
+  "productFrozen": true,
+  "competitorRuntime": "R0",
+  "sourceEvidence": {
+    "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+    "nodes": [
+      {
+        "range": [
+          4276,
+          4286
+        ],
+        "contract": "_c deleted + meta.hiddenByType/hiddenTypeWasUserAdded; Sc pending/manual restoration"
+      },
+      {
+        "range": [
+          30488,
+          30490
+        ],
+        "contract": "qU source saved review reader; serialized user_added converts to live user-added, meta spread overrides"
+      },
+      {
+        "range": [
+          6047,
+          6060
+        ],
+        "contract": "Word source s2/o2 recognizes live user-added status"
+      },
+      {
+        "range": [
+          6088,
+          6092
+        ],
+        "contract": "Word source d2 manual birth classification"
+      }
+    ]
+  },
+  "implementation": [
+    "Native full Mark bool fields preserved; hidden decision stays ignore while all other inherited decisions require pending review",
+    "Source V1/V2/V3 bridge saves deleted/hidden metadata and precise original userAdded; pure copied serializers remain untouched",
+    "Source draft reads top/meta hidden and old source note, preserves hidden ignore and manual origin; normal deleted stays pending until local review",
+    "Source review profile original Yg excludes hidden entirely instead of creating forceSkip; ordinary ignored entities remain source forceSkip",
+    "Original native birth evaluated before generic imported trace using original indexed provenance/explicit bool; source-only userAdded retained directly",
+    "Final source manual-born pending has serialized top reviewState user_added and live meta reviewState user-added, preserving source qU/d2 without local approval",
+    "Legacy raw Markdown conversion and candidate confirm/resolve pending updates preserve hidden ignore, matching provenance history marks"
+  ],
+  "tests": {
+    "runtime": "v24.19.0",
+    "actualApi": {
+      "file": "tests/portable-type-hide.integration.ts",
+      "pass": 1,
+      "fail": 0,
+      "skip": 0,
+      "durationMs": 46226.809042,
+      "flows": 8,
+      "materialFormats": [
+        "md",
+        "docx"
+      ],
+      "archiveFormats": [
+        "native",
+        "legacy-zip",
+        "secure-v2",
+        "secure-v3"
+      ],
+      "sourceNativeExtensionRemoved": true,
+      "checks": [
+        "two hidden origins (automatic false/manual true) saved/read/restored",
+        "ordinary ignore does not become an imported approval",
+        "source hidden is absent from review-profile forceSkip",
+        "restore requires pending review and export INVALID_MARKS400",
+        "save restored marks then automatic birth still false/manual true, re-hide stays false",
+        "original source bytes immutable"
+      ]
+    },
+    "units": {
+      "files": [
+        "tests/portable-type-hide.test.ts",
+        "tests/workspace-renderer.test.ts",
+        "tests/reference-portable-draft.test.ts"
+      ],
+      "pass": 10,
+      "durationMs": 1120,
+      "visualScope": "PNG/PDF source projection/profile tests, not actual optical accuracy",
+      "sourceVm": "Real source qU/s2/o2/d2 final output readback and classification"
+    },
+    "typecheckExitCode": 0
+  },
+  "historicalAttempts": [
+    {
+      "log": ".data/research/lawbot-2026-10-15/iteration036/portable-type-hide-api-C-first.log",
+      "result": "fixture expected409 for pending but existing gate correctly returns400 INVALID_MARKS; corrected assertion, no product gate changed"
+    },
+    {
+      "log": ".data/research/lawbot-2026-10-15/iteration036/portable-type-hide-api-C-second.log",
+      "result": "8flows passed before precise userAdded birth additions; historical proof kept separately"
+    }
+  ],
+  "remainingBoundaries": [
+    "No competitor licensed processing run; R0 unchanged",
+    "Native OS keychain file dialogs are not claimed executed",
+    "Actual optical accuracy is outside this codec test scope"
+  ],
+  "evidence": [
+    {
+      "path": "packages/core/workspace-compat.ts",
+      "sha256": "4ab2b78afa4945a06a3284479c8dcb15b16fe8b3252fa04d01aab756e83a9c79",
+      "bytes": 21060
+    },
+    {
+      "path": "packages/core/workspace-renderer.ts",
+      "sha256": "288fe50eea6ff676f0a7d064786ae3f9ff5ad994b017b02887cac70bfb896745",
+      "bytes": 15078
+    },
+    {
+      "path": "packages/adapters/portable-draft.ts",
+      "sha256": "70a2caf33e5bf1af8b37db8b272f585ff66391c9ad77ac90f11f519ac5eab60d",
+      "bytes": 9206
+    },
+    {
+      "path": "packages/adapters/reference-portable-draft.ts",
+      "sha256": "c5d0407f3a196b0fbd77e0d5104057f2508647036611436bba380eeaf33266f7",
+      "bytes": 14519
+    },
+    {
+      "path": "apps/api/workspace-portable.ts",
+      "sha256": "808b95ed37143ea528edfa8d8a9eb34c64b9c3f139e1eb602d0086f70aa8dca3",
+      "bytes": 45758
+    },
+    {
+      "path": "tests/portable-type-hide.integration.ts",
+      "sha256": "cb154af10d19e103a3990f3d7b42532d6048c600d33b29e63bb93808ca955a29",
+      "bytes": 9247
+    },
+    {
+      "path": "tests/portable-type-hide.test.ts",
+      "sha256": "b1dd751053ec4f0448040c998022a5d6a27a4bcf9ac86adff070508492c8a03e",
+      "bytes": 4940
+    },
+    {
+      "path": "packages/core/review-type-hide.ts",
+      "sha256": "7a4c0ddb221c6f89090965526b963ae8d314fffebd5dd546422a4374862d1b8d",
+      "bytes": 1351
+    },
+    {
+      "path": "packages/core/review-entity-birth.ts",
+      "sha256": "053423aad8cf87cf8db37524b2f146a39b0a4ad59b1d64235bb77981ea871bcc",
+      "bytes": 1429
+    },
+    {
+      "path": "packages/contracts/index.ts",
+      "sha256": "f1a06bf0a81a1b07f0b469ba0254a09e09bc75965134511e021bb47c1a1d9f21",
+      "bytes": 8516
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration036/portable-type-hide-actual-C-frozen.json",
+      "sha256": "80cc6eecb6386689e3eec1d914857fb63b6ac316985a73229d04a4870fa0405d",
+      "bytes": 2437
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration036/portable-type-hide-api-C-final-frozen.log",
+      "sha256": "795da20dfb7682f65a98b77231a78bb5757db052bdc387d152dfb9886a87334d",
+      "bytes": 312
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration036/type-hide-codec-unit-C-final-frozen.log",
+      "sha256": "4abf577e1133dacedd2e82ce1368c30e02fe3e54c7344ae11598355640bb32a8",
+      "bytes": 225
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration036/typecheck-type-hide-C-final-frozen.log",
+      "sha256": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92",
+      "bytes": 15
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration036/type-hide-codec-delta-C.diff",
+      "sha256": "7433c36d58c6ce7401f9b098653bab7213dab57d2f8e887d01b677a114b25057",
+      "bytes": 41897
+    }
+  ],
+  "independentReview": {
+    "A": {
+      "file": "tests/portable-type-hide.integration.ts",
+      "pass": 1,
+      "flows": 8,
+      "durationMs": 39643,
+      "log": ".data/research/lawbot-2026-10-15/iteration036/review-portable-type-hide-A.log",
+      "proof": ".data/research/lawbot-2026-10-15/iteration036/portable-type-hide-actual-A-frozen.json",
+      "logSha256": "a80962a8fba956c3ddd4d7d26dcf6902f2cde9242a81c778c52d6174ae799f81",
+      "proofSha256": "80cc6eecb6386689e3eec1d914857fb63b6ac316985a73229d04a4870fa0405d"
+    },
+    "B": {
+      "scope": "5codec files read-only, real source qU/o2/d2 plus PNG/PDF profile",
+      "unitsPass": 10,
+      "durationMs": 1140,
+      "log": ".data/research/lawbot-2026-10-15/iteration036/review-type-hide-codecs-units-B.log",
+      "qualifiedFindings": [],
+      "logSha256": "9bcd8a53ef03ae573bb70e86cf892b5d73e90f3d5ef34abd4157bcf1cfc27c60"
+    }
+  }
+}

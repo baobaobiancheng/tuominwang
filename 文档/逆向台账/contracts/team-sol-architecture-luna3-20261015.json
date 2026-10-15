@@ -1,0 +1,107 @@
+{
+  "date": "2026-10-15",
+  "reviewer": "Luna3",
+  "scope": "read-only iteration036 release scripts/candidates and schema037; no build, deploy, SSH, credential read, service operation, or heavy gate",
+  "workingTree": {
+    "head": "5cee048dd637aeac69fc30b5350c5494d9386c00",
+    "dirty": true,
+    "releaseManifestPresent": false,
+    "online037EvidencePresent": false
+  },
+  "files": {
+    ".data/deploy/aliyun-20261015/iteration036/refresh-release.py": "142a744121e43b42eb6db0c3d66706c9b5485c89a8ae0bfdcfec1fe60b780b3e",
+    ".data/deploy/aliyun-20261015/iteration036/prepare-compose.mts": "a0fdcf138115f34299b0408dfce92649fb3c57671470c4f5d7e22dff33004618",
+    ".data/deploy/aliyun-20261015/iteration036/release/deploy-server.sh": "a3727016383cc285da21e42ad95bf1e995f27ea910e7c729e29e4aaf1b3faf89",
+    ".data/deploy/aliyun-20261015/iteration036/release/verify-release.py": "820e7ea02f38d2b1f0213e265f7f591a8073b53c73ffaa2eb134080c50056ab9",
+    ".data/deploy/aliyun-20261015/iteration036/compose-candidate.yaml": "10e651c9c4503abe1ade2976b5072a02283f87f77048a1fdab563424a031850b",
+    ".data/deploy/aliyun-20261015/iteration036/compose-candidate-proof.json": "ce0eaae7ce57dd4d5d49683cc608f4b230119cc13870f316c25959d232b2b596",
+    "scripts/037.sql": "1be899fa1587f71ec29c180b6ed368a36fabe7452c57417fc340c003af6ee566",
+    "services/legacy-office/compose.fragment.yml": "172f9db0ecaf45fd1c54fd31b8e3d01323bb26bc70611de0c47d451469ffe2d0"
+  },
+  "findings": [
+    {
+      "id": "REL-037-001",
+      "severity": "release-blocking-evidence-gap",
+      "finding": "Current release directory has only compose, deploy/verify scripts, and two Dockerfiles; manifest.json and packaged source/html/runtime delta are absent. verify-release.py requires manifest and deploy-server.sh requires its digest.",
+      "evidence": [
+        "refresh-release.py:6-13 copies apps/api, apps/worker, packages, scripts, licenses, vendor, html and runtime-delta only when executed",
+        "verify-release.py:7-19 requires and validates manifest.json",
+        "deploy-server.sh:5,10 requires manifest SHA and invokes verifier",
+        "find .data/deploy/aliyun-20261015/iteration036/release -maxdepth 2 -type f returned 5 files"
+      ],
+      "reproduction": "find .data/deploy/aliyun-20261015/iteration036/release -maxdepth 2 -type f -print | sort; test -e .data/deploy/aliyun-20261015/iteration036/release/manifest.json",
+      "classification": "static/current-filesystem observation; no execution of refresh or verifier"
+    },
+    {
+      "id": "REL-037-002",
+      "severity": "stale-evidence-pin",
+      "finding": "Old B iteration036 hashes do not pin current deploy-server.sh, verify-release.py, or refresh-release.py. These historical findings do not establish current 037 correctness. Compose and Dockerfile hashes still match.",
+      "oldPins": {
+        "deploy-server.sh": "28ab6f1fcaa4df0c888b89622bc68822fbda102e64b7d95345d9060967dc7c87",
+        "verify-release.py": "e2f9de17774ea26f18184ad7c3e45e22ff7bf22c1c5753a8ae54825c22c7f925",
+        "refresh-release.py": "9716799ac7b51a575b9a5f7dbb61655e537758582d881136fd044d4f645c75d3"
+      },
+      "currentPins": {
+        "deploy-server.sh": "a3727016383cc285da21e42ad95bf1e995f27ea910e7c729e29e4aaf1b3faf89",
+        "verify-release.py": "820e7ea02f38d2b1f0213e265f7f591a8073b53c73ffaa2eb134080c50056ab9",
+        "refresh-release.py": "142a744121e43b42eb6db0c3d66706c9b5485c89a8ae0bfdcfec1fe60b780b3e"
+      },
+      "unchangedComparedWithOldReview": {
+        "compose-candidate.yaml": "10e651c9c4503abe1ade2976b5072a02283f87f77048a1fdab563424a031850b",
+        "Dockerfile.runtime": "63ee96977378c2ef1ea47cdc0e0fee6e19371c290d0b7afe2d1fe97774c68f5a",
+        "Dockerfile.web": "7a743063345e23939bbe3779276b966a0173131031cef120d98202ccb2408dfd"
+      },
+      "reproduction": "sha256sum .data/deploy/aliyun-20261015/iteration036/{refresh-release.py,release/deploy-server.sh,release/verify-release.py,release/compose-candidate.yaml,release/Dockerfile.runtime,release/Dockerfile.web}"
+    },
+    {
+      "id": "REL-037-003",
+      "severity": "readback-scope-limitation",
+      "finding": "Neighbor snapshot enumerates docker ps containers by the weknora-semantica- name substring only, then compares captured IDs. It cannot establish unchanged state for neighbors outside that name filter.",
+      "evidence": [
+        "deploy-server.sh:20 captures docker ps -q --filter name=weknora-semantica-",
+        "deploy-server.sh:95-100 compares state only for IDs from that snapshot"
+      ],
+      "reproduction": "Inspect deploy-server.sh lines 20 and 95-100",
+      "classification": "static scope limitation; actual neighbor states not observed"
+    }
+  ],
+  "staticChecks": {
+    "composeCandidateSha256": "10e651c9c4503abe1ade2976b5072a02283f87f77048a1fdab563424a031850b",
+    "baseComposeSha256": "21e827347696223d309ec77c99df01c31e3e93bd3f4dc2eda188eab5100a3525",
+    "migrationSha256": "1be899fa1587f71ec29c180b6ed368a36fabe7452c57417fc340c003af6ee566",
+    "observations": [
+      "Compose generator adds DATA_KEY to migrate; app and worker retain their existing DATA_KEY runtime setting; converter gets only legacy-office.env.",
+      "Converter candidate has init:true and legacy-only internal network, no host port, database network, models/materials mount, DATA_KEY, or SESSION_KEY.",
+      "Web loopback binding and existing networks/volumes are inherited from iteration032 baseline; no added CPU/memory caps found; model mount remains read-only and startup strategy is unchanged in these files.",
+      "037 migration SQL is present and statically read; no real database migration or permission/concurrency validation was run.",
+      "Rollback logic was statically followed: pg_dump and old compose copy precede changes; error trap restores prior compose and app services while preserving additive schema. No rollback exercise or queue lease compatibility evidence exists."
+    ]
+  },
+  "oldEvidencePins": {
+    "reviewJson": {
+      "path": "文档/逆向台账/contracts/review-release-isolation-by-visual-20261015.json",
+      "sha256": "c6e15b76fce77d875ae4a9ad5dc1187ea20b141f81b2b9a8e4591f98c72839a6"
+    },
+    "reviewMarkdown": {
+      "path": "文档/逆向台账/contracts/review-release-isolation-by-visual-20261015.md",
+      "sha256": "8da9c7ea5c90a38531fe66bbb971bfbec086c710c91ceae4ceb37487348ef69a"
+    },
+    "archivedPreviousJson": {
+      "path": ".data/research/lawbot-2026-10-15/iteration036/before/worker-ready-review/文档/逆向台账/contracts/review-release-isolation-by-visual-20261015.json",
+      "sha256": "92b6276fff46344debdb4151eb0cf5fcaad9b5f6f49017413b0e486b32863eaf"
+    },
+    "archivedPreviousMarkdown": {
+      "path": ".data/research/lawbot-2026-10-15/iteration036/before/worker-ready-review/文档/逆向台账/contracts/review-release-isolation-by-visual-20261015.md",
+      "sha256": "ba7aae72d29f14205e78052885fd941173aff909445c5a0153b53af4f2ed7eec"
+    },
+    "lostEvidence": "No screenshot or 037 online readback is referenced by the old release review; none was found under the current iteration036 release package. The previous reports themselves are preserved in the archive paths above."
+  },
+  "requiredRemainingEvidence": [
+    "Frozen 037 release manifest, source file hashes, image IDs, and 037 schema binding",
+    "Offline image build/import and Compose parse result",
+    "Authorized online schema/version/source/served asset/worker image and readiness readback",
+    "Full neighbor container inventory and before/after state",
+    "Model hash readback and isolated failure/rollback/old-code compatibility exercise"
+  ],
+  "notExecuted": ["refresh-release.py", "verify-release.py", "Docker builds", "Compose activation", "migration", "SSH", "server readback", "rollback", "service or model start"]
+}

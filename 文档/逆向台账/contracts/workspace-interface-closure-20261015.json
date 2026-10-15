@@ -1,0 +1,447 @@
+{
+  "date": "2026-10-15",
+  "referenceRuntime": "R0",
+  "all_native_equivalent": false,
+  "rows": [
+    {
+      "id": "IPC-e6a8f1b41825",
+      "name": "workspace:create-transfer",
+      "current": "受密码保护传输副本实际写入、重读、完整原件/状态/catalog保留；不覆盖旧文件",
+      "actualRoute": "POST portable/export secure-v2/secure-v3",
+      "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0",
+      "suggested_ledger_status": "I1",
+      "source": [],
+      "evidence": [
+        {
+          "path": "tests/workspace-compat.integration.ts",
+          "sha256": "fa41c0210de0874c1cdb08ce2743fbda0dddb4ccedf13a9d59f20fcd1afda461"
+        },
+        {
+          "path": "tests/workspace-recovery-network.integration.ts",
+          "sha256": "72d39419c562093a3d0007d3b6539316d703b11047b96bafaaa23b8bffb65042"
+        },
+        {
+          "path": "tests/platform-interface-closure.integration.ts",
+          "sha256": "ce51032d342e95a82eff579af63640c4230699f4abc949cb2a55b1f8b6941952"
+        }
+      ]
+    },
+    {
+      "id": "IPC-f53f8972c1a5",
+      "name": "workspace:discard-recovery",
+      "current": "真实owner+revision删除草稿，保留材料和已保存复核",
+      "actualRoute": "DELETE document/recovery",
+      "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0",
+      "suggested_ledger_status": "I1",
+      "source": [],
+      "evidence": [
+        {
+          "path": "tests/workspace-compat.integration.ts",
+          "sha256": "fa41c0210de0874c1cdb08ce2743fbda0dddb4ccedf13a9d59f20fcd1afda461"
+        },
+        {
+          "path": "tests/workspace-recovery-network.integration.ts",
+          "sha256": "72d39419c562093a3d0007d3b6539316d703b11047b96bafaaa23b8bffb65042"
+        },
+        {
+          "path": "tests/platform-interface-closure.integration.ts",
+          "sha256": "ce51032d342e95a82eff579af63640c4230699f4abc949cb2a55b1f8b6941952"
+        }
+      ]
+    },
+    {
+      "id": "IPC-3c8789ad9a8f",
+      "name": "workspace:forget-recent",
+      "current": "仅移除本人最近索引，不删除工程",
+      "actualRoute": "DELETE project/workspace/recent",
+      "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0",
+      "suggested_ledger_status": "I1",
+      "source": [],
+      "evidence": [
+        {
+          "path": "tests/workspace-compat.integration.ts",
+          "sha256": "fa41c0210de0874c1cdb08ce2743fbda0dddb4ccedf13a9d59f20fcd1afda461"
+        },
+        {
+          "path": "tests/workspace-recovery-network.integration.ts",
+          "sha256": "72d39419c562093a3d0007d3b6539316d703b11047b96bafaaa23b8bffb65042"
+        },
+        {
+          "path": "tests/platform-interface-closure.integration.ts",
+          "sha256": "ce51032d342e95a82eff579af63640c4230699f4abc949cb2a55b1f8b6941952"
+        }
+      ]
+    },
+    {
+      "id": "IPC-7e55b9d273b1",
+      "name": "workspace:list-recent",
+      "current": "20项MRU，lastSavedAt独立持久、加密显示名/材料数、原ey可复用数；未知明确known=false",
+      "actualRoute": "GET workspace/recent",
+      "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0",
+      "suggested_ledger_status": "I1",
+      "source": [],
+      "evidence": [
+        {
+          "path": "tests/workspace-save-receipts.integration.ts",
+          "sha256": "47247ca8f8e8c304bf3a60b0803c4b3cd56866e58f898c3a9bb0bfe594d025aa"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/workspace-save-receipts-final-api.log",
+          "sha256": "6a5286304d857dcfabbd0fe94d1720153f839a7afe60024495aeb47289ae5df2"
+        }
+      ]
+    },
+    {
+      "id": "IPC-be30d4526c26",
+      "name": "workspace:list-recoveries",
+      "current": "真实当前权限可读的本人恢复记录及版本",
+      "actualRoute": "GET workspace/recoveries",
+      "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0",
+      "suggested_ledger_status": "I1",
+      "source": [],
+      "evidence": [
+        {
+          "path": "tests/workspace-compat.integration.ts",
+          "sha256": "fa41c0210de0874c1cdb08ce2743fbda0dddb4ccedf13a9d59f20fcd1afda461"
+        },
+        {
+          "path": "tests/workspace-recovery-network.integration.ts",
+          "sha256": "72d39419c562093a3d0007d3b6539316d703b11047b96bafaaa23b8bffb65042"
+        },
+        {
+          "path": "tests/platform-interface-closure.integration.ts",
+          "sha256": "ce51032d342e95a82eff579af63640c4230699f4abc949cb2a55b1f8b6941952"
+        }
+      ]
+    },
+    {
+      "id": "IPC-a80eb991f683",
+      "name": "workspace:list-recovery-prompts",
+      "current": "真实待恢复信息；不自动批准草稿",
+      "actualRoute": "GET workspace/recoveries + GET document/recovery",
+      "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0",
+      "suggested_ledger_status": "I1",
+      "source": [],
+      "evidence": [
+        {
+          "path": "tests/workspace-compat.integration.ts",
+          "sha256": "fa41c0210de0874c1cdb08ce2743fbda0dddb4ccedf13a9d59f20fcd1afda461"
+        },
+        {
+          "path": "tests/workspace-recovery-network.integration.ts",
+          "sha256": "72d39419c562093a3d0007d3b6539316d703b11047b96bafaaa23b8bffb65042"
+        },
+        {
+          "path": "tests/platform-interface-closure.integration.ts",
+          "sha256": "ce51032d342e95a82eff579af63640c4230699f4abc949cb2a55b1f8b6941952"
+        }
+      ]
+    },
+    {
+      "id": "IPC-f417c3628886",
+      "name": "workspace:migrate-v1-to-v2",
+      "current": "V1/V2/V3真实字节转换、重读完整比较、源字节保留",
+      "actualRoute": "POST portable/migrate",
+      "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0",
+      "suggested_ledger_status": "I1",
+      "source": [],
+      "evidence": [
+        {
+          "path": "tests/workspace-compat.integration.ts",
+          "sha256": "fa41c0210de0874c1cdb08ce2743fbda0dddb4ccedf13a9d59f20fcd1afda461"
+        },
+        {
+          "path": "tests/workspace-recovery-network.integration.ts",
+          "sha256": "72d39419c562093a3d0007d3b6539316d703b11047b96bafaaa23b8bffb65042"
+        },
+        {
+          "path": "tests/platform-interface-closure.integration.ts",
+          "sha256": "ce51032d342e95a82eff579af63640c4230699f4abc949cb2a55b1f8b6941952"
+        }
+      ]
+    },
+    {
+      "id": "IPC-feb24aa50a4f",
+      "name": "workspace:open",
+      "current": "完整原件/旧复核字段保留、重新识别、显式恢复人工草稿；自动recent",
+      "actualRoute": "POST portable/import + portable-draft/restore",
+      "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0",
+      "suggested_ledger_status": "I1",
+      "source": [],
+      "evidence": [
+        {
+          "path": "tests/workspace-compat.integration.ts",
+          "sha256": "fa41c0210de0874c1cdb08ce2743fbda0dddb4ccedf13a9d59f20fcd1afda461"
+        },
+        {
+          "path": "tests/workspace-recovery-network.integration.ts",
+          "sha256": "72d39419c562093a3d0007d3b6539316d703b11047b96bafaaa23b8bffb65042"
+        },
+        {
+          "path": "tests/platform-interface-closure.integration.ts",
+          "sha256": "ce51032d342e95a82eff579af63640c4230699f4abc949cb2a55b1f8b6941952"
+        }
+      ]
+    },
+    {
+      "id": "IPC-86a65aa5ca0e",
+      "name": "workspace:open-dialog",
+      "current": "浏览器文件授权选择；非Electron本地对话框",
+      "actualRoute": "browser file upload + POST portable/import",
+      "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0",
+      "suggested_ledger_status": "I1",
+      "source": [],
+      "evidence": [
+        {
+          "path": "tests/workspace-compat.integration.ts",
+          "sha256": "fa41c0210de0874c1cdb08ce2743fbda0dddb4ccedf13a9d59f20fcd1afda461"
+        },
+        {
+          "path": "tests/workspace-recovery-network.integration.ts",
+          "sha256": "72d39419c562093a3d0007d3b6539316d703b11047b96bafaaa23b8bffb65042"
+        },
+        {
+          "path": "tests/platform-interface-closure.integration.ts",
+          "sha256": "ce51032d342e95a82eff579af63640c4230699f4abc949cb2a55b1f8b6941952"
+        }
+      ]
+    },
+    {
+      "id": "IPC-8ed0acbb4144",
+      "name": "workspace:open-recovery",
+      "current": "owner/当前权限/revision/源hash+映射重核，返回草稿不伪批准",
+      "actualRoute": "POST document/recovery/open",
+      "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0",
+      "suggested_ledger_status": "I1",
+      "source": [],
+      "evidence": [
+        {
+          "path": "tests/workspace-compat.integration.ts",
+          "sha256": "fa41c0210de0874c1cdb08ce2743fbda0dddb4ccedf13a9d59f20fcd1afda461"
+        },
+        {
+          "path": "tests/workspace-recovery-network.integration.ts",
+          "sha256": "72d39419c562093a3d0007d3b6539316d703b11047b96bafaaa23b8bffb65042"
+        },
+        {
+          "path": "tests/platform-interface-closure.integration.ts",
+          "sha256": "ce51032d342e95a82eff579af63640c4230699f4abc949cb2a55b1f8b6941952"
+        }
+      ]
+    },
+    {
+      "id": "IPC-1d575f4ee880",
+      "name": "workspace:read-review-profile",
+      "current": "原ey完整算法提取启用更正/假名冲突及保留token",
+      "actualRoute": "POST portable/review-profile",
+      "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0",
+      "suggested_ledger_status": "I1",
+      "source": [],
+      "evidence": [
+        {
+          "path": "tests/workspace-compat.integration.ts",
+          "sha256": "fa41c0210de0874c1cdb08ce2743fbda0dddb4ccedf13a9d59f20fcd1afda461"
+        },
+        {
+          "path": "tests/workspace-recovery-network.integration.ts",
+          "sha256": "72d39419c562093a3d0007d3b6539316d703b11047b96bafaaa23b8bffb65042"
+        },
+        {
+          "path": "tests/platform-interface-closure.integration.ts",
+          "sha256": "ce51032d342e95a82eff579af63640c4230699f4abc949cb2a55b1f8b6941952"
+        }
+      ]
+    },
+    {
+      "id": "IPC-70e09702200d",
+      "name": "workspace:receive-transfer",
+      "current": "受密码保护副本真实打开；本地keychain包无合法跨设备密钥不能伪解锁",
+      "actualRoute": "POST portable/import",
+      "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0",
+      "suggested_ledger_status": "I1",
+      "source": [],
+      "evidence": [
+        {
+          "path": "tests/workspace-compat.integration.ts",
+          "sha256": "fa41c0210de0874c1cdb08ce2743fbda0dddb4ccedf13a9d59f20fcd1afda461"
+        },
+        {
+          "path": "tests/workspace-recovery-network.integration.ts",
+          "sha256": "72d39419c562093a3d0007d3b6539316d703b11047b96bafaaa23b8bffb65042"
+        },
+        {
+          "path": "tests/platform-interface-closure.integration.ts",
+          "sha256": "ce51032d342e95a82eff579af63640c4230699f4abc949cb2a55b1f8b6941952"
+        }
+      ]
+    },
+    {
+      "id": "IPC-c356082df625",
+      "name": "workspace:save",
+      "current": "owner+session+requestId幂等、payload冲突、snapshotCAS、真实running/completed/failed、不可变密文字节",
+      "actualRoute": "POST project/portable/save",
+      "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0",
+      "suggested_ledger_status": "I1",
+      "source": [],
+      "evidence": [
+        {
+          "path": "tests/workspace-save-receipts.integration.ts",
+          "sha256": "47247ca8f8e8c304bf3a60b0803c4b3cd56866e58f898c3a9bb0bfe594d025aa"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/workspace-save-receipts-final-api.log",
+          "sha256": "6a5286304d857dcfabbd0fe94d1720153f839a7afe60024495aeb47289ae5df2"
+        }
+      ]
+    },
+    {
+      "id": "IPC-ff1d1193dc22",
+      "name": "workspace:save-as",
+      "current": "真实受保护导出/另存下载；不读写用户原生绝对路径",
+      "actualRoute": "POST project/portable/export + browser download",
+      "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0",
+      "suggested_ledger_status": "I1",
+      "source": [],
+      "evidence": [
+        {
+          "path": "tests/workspace-compat.integration.ts",
+          "sha256": "fa41c0210de0874c1cdb08ce2743fbda0dddb4ccedf13a9d59f20fcd1afda461"
+        },
+        {
+          "path": "tests/workspace-recovery-network.integration.ts",
+          "sha256": "72d39419c562093a3d0007d3b6539316d703b11047b96bafaaa23b8bffb65042"
+        },
+        {
+          "path": "tests/platform-interface-closure.integration.ts",
+          "sha256": "ce51032d342e95a82eff579af63640c4230699f4abc949cb2a55b1f8b6941952"
+        }
+      ]
+    },
+    {
+      "id": "IPC-9be2a0784913",
+      "name": "workspace:save-recovery",
+      "current": "真实加密draft、revisionCAS、完整人工标记/页图/映射权限；不改变正式复核",
+      "actualRoute": "PUT document/recovery",
+      "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0",
+      "suggested_ledger_status": "I1",
+      "source": [],
+      "evidence": [
+        {
+          "path": "tests/workspace-compat.integration.ts",
+          "sha256": "fa41c0210de0874c1cdb08ce2743fbda0dddb4ccedf13a9d59f20fcd1afda461"
+        },
+        {
+          "path": "tests/workspace-recovery-network.integration.ts",
+          "sha256": "72d39419c562093a3d0007d3b6539316d703b11047b96bafaaa23b8bffb65042"
+        },
+        {
+          "path": "tests/platform-interface-closure.integration.ts",
+          "sha256": "ce51032d342e95a82eff579af63640c4230699f4abc949cb2a55b1f8b6941952"
+        }
+      ]
+    },
+    {
+      "id": "IPC-1ad8e879614a",
+      "name": "workspace:save-result",
+      "current": "真实回执查询；1h/100缓存淘汰，重启遗留running明确interrupted，下载重新核当前权限/全部源hash/快照/byteshash",
+      "actualRoute": "POST project/portable/save-result + GET saves/:receipt/download",
+      "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0",
+      "suggested_ledger_status": "I1",
+      "source": [],
+      "evidence": [
+        {
+          "path": "tests/workspace-save-receipts.integration.ts",
+          "sha256": "47247ca8f8e8c304bf3a60b0803c4b3cd56866e58f898c3a9bb0bfe594d025aa"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration032/workspace-save-receipts-final-api.log",
+          "sha256": "6a5286304d857dcfabbd0fe94d1720153f839a7afe60024495aeb47289ae5df2"
+        }
+      ]
+    },
+    {
+      "id": "IPC-98cb505df8ea",
+      "name": "workspace:select-review-profile",
+      "current": "真实原ey更正及假名完整导入；冲突显式选择、项目旧复核失效并重识别",
+      "actualRoute": "POST project/portable/review-profile",
+      "boundary": "原生路径/OSkeychain/窗口sender不是云端合同；filePath/fileExists明确null/cloud-project；竞品R0",
+      "suggested_ledger_status": "I1",
+      "source": [],
+      "evidence": [
+        {
+          "path": "tests/workspace-compat.integration.ts",
+          "sha256": "fa41c0210de0874c1cdb08ce2743fbda0dddb4ccedf13a9d59f20fcd1afda461"
+        },
+        {
+          "path": "tests/workspace-recovery-network.integration.ts",
+          "sha256": "72d39419c562093a3d0007d3b6539316d703b11047b96bafaaa23b8bffb65042"
+        },
+        {
+          "path": "tests/platform-interface-closure.integration.ts",
+          "sha256": "ce51032d342e95a82eff579af63640c4230699f4abc949cb2a55b1f8b6941952"
+        }
+      ]
+    }
+  ],
+  "newTests": {
+    "path": ".data/research/lawbot-2026-10-15/iteration032/workspace-save-receipts-final-api.log",
+    "sha256": "6a5286304d857dcfabbd0fe94d1720153f839a7afe60024495aeb47289ae5df2"
+  },
+  "source": [
+    "main.js19512-19560 _g: protected recent index, exists pruning, MRUmax20; sw22560-22675 exactey counts and automaticremember",
+    "main.js25678-25705 nI sender-ownedrequestId,100/1hpruning,promise receipt. rI only pending-save counter, no serialization queue."
+  ],
+  "cloudDifferences": [
+    "Source same sender/reusedrequestId returns oldpromise even inputchanged; cloud rejects differingpayload409 and binds currentsession/owner/tenant.",
+    "Single API topology: old-instance unfinished receipt becomes failed WORKSPACE_SAVE_INTERRUPTED, not a restartableworkerjob. Source Maprestart loses all entries; completed cloud bytes stay available untilTTL.",
+    "Source savedRevision scalar is replaced by snapshotHash over exact project/docs/mappings/catalog; unchanged source revision required to download.",
+    "Source20recent MRU applies onlyindex eviction; independent lastSavedAt survives receiptcacheexpiry. No servernativepath/file-existence assertion.",
+    "Exact reusable counts use nativeToReference then extracted sourceey. If valid projection is unavailable, fields omitted/knownfalse; never substitute allrules/allmapping count.",
+    "Source get-review-profile can remember standalone nativefile path; cloud profile inspection without project does not fabricate a durable nativefile bookmark. Project save/open/import auto-remembers the authorizedcloudproject."
+  ],
+  "implementation": [
+    {
+      "path": "apps/api/workspace-saves.ts",
+      "sha256": "ac3cf38ae09b990c787d33d977de16df07a47865e1df1d3d651538f7d6f71657"
+    },
+    {
+      "path": "apps/api/workspace-portable.ts",
+      "sha256": "717197fd52e0fdac8679395660d300e21d681846dc1d583d10f35945cae1f256"
+    },
+    {
+      "path": "apps/api/workspace-recovery.ts",
+      "sha256": "7bfd189f4e393fc5965fadb8cb8bc9f528b0c4b908fbaf2c78a04fd6d7539d62"
+    },
+    {
+      "path": "packages/adapters/workspace-recents.ts",
+      "sha256": "c6f99cf2d1135bdc235dc62bd51818550480f0e14c286df077e557f0af0b0dbb"
+    },
+    {
+      "path": "apps/web/workspace-portable.tsx",
+      "sha256": "96002ed482086d40f728b10bd204230e79a9480df664c31632e34fae69c69e80"
+    },
+    {
+      "path": "apps/web/workspace-recovery.tsx",
+      "sha256": "11da150dc69301a788e0e39fc2f0b820778e21d663c96e402c1f5026e674ce43"
+    },
+    {
+      "path": "scripts/028.sql",
+      "sha256": "99e03f47a0d61b2ae7c0517b32ae99e7e37fe6bc9861ff576cf6958b59d6f2d9"
+    },
+    {
+      "path": "scripts/029.sql",
+      "sha256": "77c8a1b89e59c49418ef7d714b67316e7e2e3c48518dfc9273fa80f01ce78d5e"
+    }
+  ],
+  "runtime": {
+    "independentC": "Node v26.6.0 + isolated PostgreSQL",
+    "parentFinalGate": "separate Node24/browser release gate; sourceR0 unchanged"
+  },
+  "actualFinalRun": {
+    "tests": 3,
+    "passed": 3,
+    "durationMs": 7623.312625,
+    "log": ".data/research/lawbot-2026-10-15/iteration032/workspace-save-receipts-final-api.log",
+    "newAssertions": "completed snapshot changes reject download409; restore exact original source snapshot restores same immutable receipt validity; UI clears deterministic download failure requestID so retry can start fresh"
+  }
+}

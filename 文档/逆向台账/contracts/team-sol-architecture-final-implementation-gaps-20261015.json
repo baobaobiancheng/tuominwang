@@ -1,0 +1,43 @@
+{
+  "date": "2026-10-15",
+  "scope": "C196 published public business branches versus current web/cloud implementation; read-only, no runtime or ledger promotion",
+  "result": "No findings",
+  "confirmedPublicBusinessBranchOmissions": [],
+  "coverage": {
+    "CStableIds": 196,
+    "currentPersonalWorkspaceHandoffIds": 66,
+    "currentPersonalWorkspaceI4Candidates": 60,
+    "currentPersonalWorkspaceDeclaredBrowserPickerBoundaries": 6,
+    "collaborationMcpPortingIds": 67,
+    "remainingIdsReviewedByDomain": 63,
+    "remainingNativeOrPrivateBoundaryIdsExcludedFromBusinessGapClaim": 25,
+    "remainingPublicIdsReviewedByDomain": 38,
+    "mcpActualNamedMethods": 43,
+    "personalSettingsActualCalls": 49
+  },
+  "pinnedEvidenceSha256": {
+    ".data/research/lawbot-2026-10-15/iteration032/checkpoint-history/current-work-input.json": "0846a5c6de149798386b5591171808e8aac2a8f5022f5a471f266e04c6071e4a",
+    "文档/逆向台账/contracts/current-interface-handoff-C-20261015.json": "f17bf198d47414d221e8964e0cef6a2dc9beed4dc4428b6102326d390420e27f",
+    "文档/逆向台账/contracts/personal-settings-interface-closure-20261015.json": "5c39aeb9bc76c58fe48ca5601affe3a1ccc103c33b183ebbd628e5a86b9eebdd",
+    "文档/逆向台账/contracts/workspace-interface-closure-20261015.json": "df62fff27d5461492fc15c05b3dc14ade42d8d323c74a37f3a8e32cb2ab330a5",
+    "文档/逆向台账/contracts/mcp-ai-collaboration-porting-20261014.json": "98bdb79606a370cc6afdceb47a8cdc47622f9dda9301ae649c5423a5f4d70d52",
+    "文档/逆向台账/contracts/mcp-exact-method-runtime-20261014.json": "9ff58e3d45574a58f816d7c6f5fd8955a6b1dad77b037f47bff23e773d4cb441",
+    "apps/api/mcp.ts": "2873f3464d5dc17d6bd8613fa8ac703b4a41f6368d4dfedc4508570abd626893",
+    "apps/api/support.ts": "0a40804cab551fe5c553325792f8fb6e2931def0fa84f2e7af918a751bdda9fe",
+    "apps/api/network-policy.ts": "4f035ce4af541a3ba32997918ccf659558fdc089efe78305b3ee3330431c37f7"
+  },
+  "examinedCounterexamples": [
+    {"ids": ["IPC-d0b393b9e93d", "IPC-8a12674fee54", "IPC-7de3f60b8ed5", "IPC-86a65aa5ca0e", "IPC-a80eb991f683", "IPC-98cb505df8ea"], "oldSignal": "I1 picker/prompt statuses", "currentEvidence": "personal-settings-interface-closure 49 actual calls; workspace-interface-closure 17 rows; apps/web/tmm-compatibility.tsx:20-21; apps/web/workspace-recovery.tsx:25-32; browser file upload, download and recovery UI", "decision": "platform interaction adapted; import/export, recovery and profile application business branch exists"},
+    {"ids": ["MCP-104bba767f9b", "MCP-125a85961c76", "MCP-08b4aa88f5db", "MCP-c498f8766b24", "MCP-7b2d5f82cf39", "MCP-9a4e24e9a1c0", "MCP-dc810d5ca01a", "MCP-1e302c2392c3", "MCP-a3d4f76a1a28", "MCP-8e8e605f0d93", "MCP-8fb696cd0f36", "MCP-924f29e7e21d"], "oldSignal": "iteration032 I1 / old matrix partial", "currentEvidence": "apps/api/mcp.ts:153-170 tool dispatch and :220-230 gateway; mcp-ai-collaboration-porting-20261014 exactNameCalledInRealIntegration=true for all 12", "decision": "named tool business branches implemented via uploaded documents and asynchronous jobs; source local paths and host execution are declared differences"},
+    {"ids": ["IPC-121d180be5d8"], "oldSignal": "repair-task-storage name versus repairPerformed:false", "currentEvidence": "source deep-collaboration-20261014 cx.isolateUnreadableIndex handles a local unreadable index after confirmation; apps/api/mcp.ts:199-204 checks AEAD task rows and truthfully returns repairPerformed:false and backupRequired", "decision": "no cloud local-index file exists to isolate; server database recovery remains a separately stated operational boundary, not evidence of an omitted applicable branch"},
+    {"ids": ["IPC-8018ac372ad7", "IPC-ca4c19558c55", "IPC-caef950fe9a5", "IPC-7fb83198252b", "IPC-43e13058e656", "IPC-2c55a1969fb8"], "oldSignal": "iteration032 I3", "currentEvidence": "source learner handlers are inactive/constant in source main.js:18179-18186; current handoff retains exact inert contract", "decision": "no hidden learning or rollback algorithm to port"},
+    {"ids": ["IPC-f8d8e4c7c379", "IPC-539465a49a9b", "IPC-978012face0b", "IPC-420bf82d10ca", "IPC-6f749dcd2e0f"], "oldSignal": "early network I1 and mapping field differences", "currentEvidence": "apps/api/network-policy.ts:7-16 and apps/web/network-policy.tsx:2-7; apps/api/mappings.ts:1-145 maps proposal, creation and list to project-scoped encrypted mappings", "decision": "source defaultSession counters map to cloud external-request control; mapping lifecycle has owner/project scope rather than local raw paths"},
+    {"ids": ["IPC-7f4cfe68e159", "IPC-5d7065a40d45", "IPC-65f32fe31f76", "IPC-f5725b5e0d8a", "IPC-2e9ce1df9fec", "IPC-e25810712ab1", "IPC-7c61ecffef61"], "oldSignal": "support and safe mode early I1", "currentEvidence": "apps/api/support.ts:9-12, packages/core/support.ts:2-14, apps/web/support.tsx:4-6, apps/api/docx-safe-mode.ts:1-19 and apps/web/docx-paginated-review.tsx:51-77", "decision": "support download/read, synthetic sample, error event, and safe-mode controls exist; legal agreement/privacy content remains explicitly draft for operator publication"}
+  ],
+  "limits": [
+    "This is a source-to-current-implementation gap review, not a new API or browser test run.",
+    "No implementation status or static-depth ledger upgrade is proposed solely because C196 source-static graphs close.",
+    "Owner/tenant scope, asynchronous job completion, browser download instead of native path, and deliberately absent local OS integration are evaluated as declared cloud contracts.",
+    "Actual release and end-to-end gates remain with the root reviewer; no claim of licensed competitor execution."
+  ]
+}

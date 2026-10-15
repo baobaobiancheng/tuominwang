@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-15",
+  "reviewer": "complete_visual",
+  "target": "full_inventory_eval",
+  "actualIndependentRun": {
+    "file": "tests/workspace-save-receipts.integration.ts",
+    "result": "2testsPASS3.140s",
+    "log": ".data/research/lawbot-2026-10-15/iteration032/review-workspace-receipts-by-visual.log"
+  },
+  "checks": [
+    "Same request reuses immutable exact saved bytes",
+    "Password/format/project changes conflict; owner/session isolated",
+    "Snapshot CAS refuses changed source project before serialization",
+    "Current permissions enforced again on result and download",
+    "Saved bytes encrypted at rest with owner/project/session/snapshot AAD",
+    "Payload/outputSHA check and original/current canonical/unlocked/page hash rechecks",
+    "TTL missing receipt, failed save never emits fakecompleted output"
+  ],
+  "qualifiedFindings": [],
+  "advisory": [
+    {
+      "item": "UI downloadResponse awaits blob after caller active check; project/permission can change during blob read. Sent author for cancellation guard.",
+      "status": "not counted as independently reproduced API security finding"
+    }
+  ],
+  "codeHashes": [
+    {
+      "path": "apps/api/workspace-saves.ts",
+      "sha256": "ac3cf38ae09b990c787d33d977de16df07a47865e1df1d3d651538f7d6f71657"
+    },
+    {
+      "path": "scripts/028.sql",
+      "sha256": "99e03f47a0d61b2ae7c0517b32ae99e7e37fe6bc9861ff576cf6958b59d6f2d9"
+    },
+    {
+      "path": "apps/api/workspace-portable.ts",
+      "sha256": "717197fd52e0fdac8679395660d300e21d681846dc1d583d10f35945cae1f256"
+    },
+    {
+      "path": "apps/web/workspace-portable.tsx",
+      "sha256": "33e657917927ce2cb30f8b476709cc3844ae59fff52a0b5f771e935b745c58c8"
+    }
+  ],
+  "limits": [
+    "No original native IPC invocation",
+    "Product save-result adaptation does not claim native local path delivery"
+  ]
+}

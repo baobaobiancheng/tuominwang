@@ -1,0 +1,31 @@
+{
+  "date": "2026-10-15",
+  "reviewer": "complete_visual",
+  "scope": "Final hidden OCR correction lifecycle only",
+  "result": "No new reproducible finding in reviewed delta",
+  "checks": [
+    "Existing corrected hidden entity remains hidden/ignore when another correction applies; existing automatic birth remains false",
+    "Native and source secure-v3 stripped-native draft restore retain both corrections, hidden origin false, other marks pending",
+    "Uncovered correction genuinely creates pending userAdded true, unlike existing automatic OCR edits",
+    "Immutable original bytes checked in real API fixture"
+  ],
+  "independentRun": {
+    "test": "tests/hidden-entity-corrections.integration.ts",
+    "log": ".data/research/lawbot-2026-10-15/iteration036/review-hidden-entity-corrections-api-B.log",
+    "pass": 1,
+    "fail": 0,
+    "skip": 0,
+    "testDurationMs": 16905.066041,
+    "totalDurationMs": 19168.522,
+    "naturalExitCode": 0
+  },
+  "codeHashes": {
+    "packages/core/entity-corrections.ts": "1bcf10b4f70c72c3a3f1cd50b92e2be458da884383f4440bf7223399f308f809",
+    "packages/core/review-entity-birth.ts": "053423aad8cf87cf8db37524b2f146a39b0a4ad59b1d64235bb77981ea871bcc",
+    "tests/hidden-entity-corrections.integration.ts": "9402ac6e4f8519365de08c83654d753dc10483ece965a67069e1bb6e6ea655ca"
+  },
+  "limits": [
+    "Synthetic own image; not competitor licensed runtime",
+    "No new Edge execution or promotion to source S3/R1"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "reviewer": "complete_visual",
+  "scope": "root geometry review / both preview routes / actual actor history / mark deletion and undo integration",
+  "findings": [],
+  "verified": [
+    "both preview routes check currentrevision and view_original then validateEntityGeometryPolicy before worker; no rawmeta grant",
+    "locked review save exact producer links and targetrevision; actorId from authenticated caller only",
+    "entityGeometryChanges emits only changed actualboxes; appendGeometryProvenance retains pending/does not mint approval; frame reasserted before seal",
+    "main update captures marks+pageReview in same undo entry, applies opaque-ID prune; history restores both together",
+    "prune index shifts handled by real opaqueID maps rather than stale markIndex; truelegacy noID fallback bounded"
+  ],
+  "tests": {
+    "log": ".data/research/lawbot-2026-10-15/iteration035/review-root-geometry-provenance-B.log",
+    "expected": "2 passed",
+    "priorActualIndependent": "A entity-geometry.integration2PASS35.732s; own2PASS44.34s real3formats"
+  },
+  "limitations": [
+    "sourcepublicstatic scope not native/license runtime; R0 unchanged",
+    "Cportable lifecycle author12branches and B independentlegacypositive+3tamperPASS; see review-portable-geometry-by-visual-20261015",
+    "newtwoactualEdge now2PASS5.9m naturalexit0; Edgecrashpad/updaterstderr delay documented, noforceexit"
+  ],
+  "codePins": [
+    {
+      "path": "apps/api/reviews.ts",
+      "sha256": "b8e7555ac7c54027be4b6db66083d61b9dc00324f2f418d56026deca982e5f65"
+    },
+    {
+      "path": "apps/api/review-tools.ts",
+      "sha256": "29e5a7b1c371aa5319a711e59f7349d36f71c0731b0407fdc25a35e449cef599"
+    },
+    {
+      "path": "apps/api/main.ts",
+      "sha256": "d7a59bce37db3c4c411d732fd23814bbed1a21dcfeed11a7d1b7ecb5b624d521"
+    },
+    {
+      "path": "apps/web/main.tsx",
+      "sha256": "8e8f6a4da58717accd84b34fe136314af8c4051c9ed770b83f40f43a6c35797b"
+    },
+    {
+      "path": "packages/core/review-geometry-provenance.ts",
+      "sha256": "4a6ce56e33178427ccff547bef8ed1ce1320e58043830f7c127d9df9eb3140e9"
+    },
+    {
+      "path": "packages/adapters/review-provenance.ts",
+      "sha256": "57de071cddf0ffff2dfdba4e4212a6572833b08bde0083ccb1e2222bcc4e9e04"
+    },
+    {
+      "path": "packages/contracts/entity-geometry.ts",
+      "sha256": "7204eb015278b9382d317fa44a05d1c6175f24004b0b79e7bdc6bcc03f30d266"
+    },
+    {
+      "path": "tests/review-geometry-provenance.test.ts",
+      "sha256": "363598e1f3b7d18e28b096bc60946c20674e5873576902399f0248b81d2f5fa6"
+    }
+  ]
+}

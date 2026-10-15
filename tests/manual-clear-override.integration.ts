@@ -15,7 +15,7 @@ import {readZip} from '../packages/core/office-zip.ts';
 import {safePageMarkdown} from '../packages/adapters/profile-export.ts';
 const admin=new pg.Pool({connectionString:process.env.MIGRATION_DATABASE_URL}),app=await buildApp();
 after(async()=>{await app.close();await pool.end();await admin.end();});
-test('PNG/PDF/DOCX actual exports apply manual rect and ellipse after explicit partial/full text drawings; cleared labels are absent from Markdown',{timeout:180000},async()=>{
+for(const format of ['png','pdf','docx']as const)test(`${format.toUpperCase()} actual exports apply manual rect and ellipse after explicit partial/full text drawings; cleared labels are absent from Markdown`,{timeout:180000},async()=>{
  assert.ok(new URL(process.env.DATABASE_URL!).pathname.startsWith('/tmw_test_'));
  const user=randomUUID(),tenant=randomUUID(),username='last-clear-'+randomUUID(),password='synthetic-last-clear';
  await admin.query('INSERT INTO users VALUES($1,$2,$3,$4)',[user,tenant,username,passwordHash(password)]);
@@ -23,7 +23,8 @@ test('PNG/PDF/DOCX actual exports apply manual rect and ellipse after explicit p
  const req=(method:any,url:string,payload?:any,binary=false)=>app.inject({method,url,payload,headers:{origin,cookie,...binary?{'content-type':'application/octet-stream'}:{}}});
  const project=(await req('POST','/api/projects',{name:'末次清除实际导出',applyDefaultPresets:true})).json().id,png=await readFile('tests/fixtures/image-utilities-synthetic.png'),pdf=new RasterPdf();
  pdf.add({index:0,width:600,height:200},await sharp(png).removeAlpha().raw().toBuffer(),600,200);
- for(const [format,source]of [['png',png],['pdf',pdf.finish()],['docx',await officeImageFixture(png)]]as const){
+ const source=format==='png'?png:format==='pdf'?pdf.finish():await officeImageFixture(png);
+ {
   const batch=randomUUID(),request=randomUUID();assert.equal((await req('POST',`/api/projects/${project}/upload-batches`,{id:batch,files:[{requestId:request,path:`last-clear.${format}`,size:source.length}]})).statusCode,200);
   const uploaded=await req('POST',`/api/projects/${project}/files?batchId=${batch}&requestId=${request}`,source,true);assert.equal(uploaded.statusCode,200,uploaded.body);
   const id=uploaded.json().id,url='/api/documents/'+id;await tick();let view=(await req('GET',url)).json();assert.equal(view.job.status,'succeeded',JSON.stringify(view.job));

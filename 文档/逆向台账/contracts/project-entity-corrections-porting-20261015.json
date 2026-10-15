@@ -1,0 +1,425 @@
+{
+  "date": "2026-10-15",
+  "phase": "035",
+  "scope": "jf2 semantic OCR entity correction and authenticated workspace geometry lifecycle",
+  "sourceRuntime": "R0",
+  "allReverseEngineeringAndNativeEquivalenceComplete": false,
+  "productFrozen": true,
+  "deploymentClaim": false,
+  "source": {
+    "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+    "sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+    "nodes": [
+      {
+        "symbol": "iv/rv/uv/cv/dv/hv/pv/mv/fv/vv",
+        "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+        "startLine": 5973,
+        "endLine": 6033,
+        "rangeSha256": "3ac9206ad15f39932c84b7df98615ccfc9ab7882a69b2db720618827a7b8a02b",
+        "behavior": "normalization, recognized/corrected form distinction, visual source selection and same-type identity",
+        "runtime": "R0"
+      },
+      {
+        "symbol": "gv",
+        "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+        "startLine": 6034,
+        "endLine": 6040,
+        "rangeSha256": "9b2e14bdd68f967a95cd0b5addf7a39a10356fc2a1928db445f15e40437e589c",
+        "behavior": "semantic text/type edit while physical geometry stays; source meta recognized/normalized/correction/reviewState/fullName",
+        "runtime": "R0"
+      },
+      {
+        "symbol": "Pf2",
+        "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+        "startLine": 34828,
+        "endLine": 34904,
+        "rangeSha256": "bb8342aa7a961142d1cb51ecbe270b648d1995afe3d690bf788151007a997461",
+        "behavior": "format-specific full text and OCR cache search, native/OCR dedup, source unavailable/skipped reasons",
+        "runtime": "R0"
+      },
+      {
+        "symbol": "Df2/Of2/Bf2/Ff2/$f2/Lf2",
+        "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+        "startLine": 34928,
+        "endLine": 34974,
+        "rangeSha256": "a61ff710dfa89b21db76893295f83e7445da8e10c5c519ec2cfc766ee70d623a",
+        "behavior": "request key, visual-only gate, exact imagePath/line/occurrence or bbox overlap, selected source exception and dedup",
+        "runtime": "R0"
+      },
+      {
+        "symbol": "jf2",
+        "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+        "startLine": 34975,
+        "endLine": 35043,
+        "rangeSha256": "740a45f884f0b1f0995db23542f6714d5755c94334b7cfa3180e0a4aa386c253",
+        "behavior": "three-pass preview/apply: existing candidates, uncovered recognized text, corrected-text supplements, per-file summary and manual source exception",
+        "runtime": "R0"
+      },
+      {
+        "symbol": "Wf2/qf2/Gf2",
+        "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+        "startLine": 35065,
+        "endLine": 35113,
+        "rangeSha256": "6d31b933a08b299dd6802e1d3f39d211aa66c574d3328486b468f53f8b79b7bc",
+        "behavior": "Word OCR/native and PDF/image supplement materialization and overlap dedup; Markdown apply has no call in jf2 loops",
+        "runtime": "R0"
+      }
+    ]
+  },
+  "flows": [
+    {
+      "id": "C035-PREVIEW",
+      "entry": "POST /api/projects/:id/ocr-entity-corrections/preview",
+      "implementation": [
+        "adapters/project-entity-corrections.ts correctionDocumentFacts",
+        "core/project-entity-corrections.ts three-pass planner"
+      ],
+      "asserted": "actual owned source/derived SHA, canonical SHA, authenticated page maps, indexed slot, scope+view_original+review, complete project fact fingerprint and skipped/conflict summary"
+    },
+    {
+      "id": "C035-APPLY",
+      "entry": "POST /api/projects/:id/ocr-entity-corrections/apply",
+      "implementation": [
+        "apps/api/entity-corrections.ts",
+        "adapters/entity-corrections.ts"
+      ],
+      "asserted": "user/project sealed plan+exact recompute, project/document lock, full-document CAS, atomic multi-document semantic frame and pending marks, immutable source/canonical/pixels, no accepted snapshot"
+    },
+    {
+      "id": "C035-CONSUME",
+      "entry": "recognize/review/alias/export/restore/filter",
+      "implementation": [
+        "processing-worker.ts",
+        "worker/main.ts",
+        "core/replacement-policies.ts",
+        "apps/api/mappings.ts",
+        "adapters/unified-aliases.ts"
+      ],
+      "asserted": "every semantic value lookup carries mark index; recognized/corrected forms both retained, alias value corrected; re-recognition exact physical span/original-type slots; stale state remains reviewable but export blocked; ordinary save/OCR/rotation trusted links only"
+    },
+    {
+      "id": "C035-RECORDS",
+      "entry": "GET/DELETE /api/documents/:id/entity-corrections",
+      "asserted": "current or explicitly stale inherited history visible only with permission; DELETE revision CAS resets outdated and requires real re-recognition; UI label does not pretend recognition queued"
+    },
+    {
+      "id": "C035-PORTABLE",
+      "entry": "native/V1/V2/V3 export/import/draftrestore",
+      "asserted": "full encrypted correction/native policy/provenance/history retained; source gv recovered against fresh glyphs without own frame or nativeextension; all marks pending; no imported approval"
+    },
+    {
+      "id": "C035-GEOMETRY",
+      "entry": "portable export/import/draftrestore/confirm-region/review/export",
+      "asserted": "old authenticated scope/source/canonical/glyph/slot geometry archive→fresh current031 entityId/newmap/newscope token; candidates still explicitly confirmed; confirm/pagecandidate/resolve revision changes preserve exact031/036 slots; unknown server/tamper retained as unresolved and export blocked"
+    },
+    {
+      "id": "C035-LEGACY-GEOMETRY",
+      "entry": "DOC/WPS normalized source → source-format archive",
+      "asserted": "only existing authenticated normalization attestation can translate old source hash to actual normalized source hash; canonical/glyph/slot checks remain exact; original historical token/actor remain authenticated and marked inherited"
+    },
+    {
+      "id": "C035-PDF-ORIGINS",
+      "entry": "per-page OCR edit→project correction/source serializer",
+      "asserted": "root pdf-text-origin helper binds source/hash/current page text/OCR revision/full UTF16 segments; facts classify each range native/ocr/mixed/unknown; native supplements survive unrelated native edits; no confidence-based origin inference"
+    },
+    {
+      "id": "C035-PROFILE",
+      "entry": "native/source codec profile snapshots",
+      "asserted": "all26 own switches/actions/settings immutable exact native snapshot; source20 family projection explicit, conflicts retained; actual four-codec six-only independent conflicting-action/long name+description roundtrip"
+    }
+  ],
+  "fieldSemantics": {
+    "recognizedText": "physical current canonical/glyph text; never overwritten by semantic OCR correction",
+    "correctedText": "semantic review/alias/restore value; original and corrected forms retained",
+    "restoreOriginal": "source semantic original remains corrected form through alias payload; raw recognized form retained separately and never hidden by a verification bypass",
+    "geometry": "existing glyph and manual region coordinates remain physical; visual-only target gate excludes native body except corrected-text supplements",
+    "fullName": "organization semantic fullName follows corrected value in source gv metadata",
+    "reviewState": "source-compatible editedText/editedType represent semantic correction; current approval status remains actual pending/confirmed/rejected, full native structured frame preserved separately",
+    "actorHistory": "server generated local event identity; imported history always inherited and not approval",
+    "offsets": "UTF16 exact current canonical range; markIndex prevents same-span different policy/type slot cross-assignment"
+  },
+  "actualGeometryRows": [
+    {
+      "archiveFormat": "native",
+      "materialFormat": "docx",
+      "sourceHash": "28329a918b50958f3f0ffe8d6fcd19326d659006d1de951750d140cd94032646",
+      "newScope": true,
+      "exactSlot": 5,
+      "pendingBeforeConfirmation": true,
+      "previewExport": true
+    },
+    {
+      "archiveFormat": "native",
+      "materialFormat": "pdf",
+      "sourceHash": "58bf0ed014606b9525c425d0a72f04b627d43838a257780e1c8eeb47673954a2",
+      "newScope": true,
+      "exactSlot": 0,
+      "pendingBeforeConfirmation": true,
+      "previewExport": true
+    },
+    {
+      "archiveFormat": "native",
+      "materialFormat": "png",
+      "sourceHash": "5fb27c5fb7062023579dff8bb5b50ae1ac910c64d9b37db8a8499c574753ee8b",
+      "newScope": true,
+      "exactSlot": 0,
+      "pendingBeforeConfirmation": true,
+      "previewExport": true
+    },
+    {
+      "archiveFormat": "legacy-zip",
+      "materialFormat": "docx",
+      "sourceHash": "28329a918b50958f3f0ffe8d6fcd19326d659006d1de951750d140cd94032646",
+      "newScope": true,
+      "exactSlot": 5,
+      "pendingBeforeConfirmation": true,
+      "previewExport": true
+    },
+    {
+      "archiveFormat": "legacy-zip",
+      "materialFormat": "pdf",
+      "sourceHash": "58bf0ed014606b9525c425d0a72f04b627d43838a257780e1c8eeb47673954a2",
+      "newScope": true,
+      "exactSlot": 0,
+      "pendingBeforeConfirmation": true,
+      "previewExport": true
+    },
+    {
+      "archiveFormat": "legacy-zip",
+      "materialFormat": "png",
+      "sourceHash": "5fb27c5fb7062023579dff8bb5b50ae1ac910c64d9b37db8a8499c574753ee8b",
+      "newScope": true,
+      "exactSlot": 0,
+      "pendingBeforeConfirmation": true,
+      "previewExport": true
+    },
+    {
+      "archiveFormat": "secure-v2",
+      "materialFormat": "docx",
+      "sourceHash": "28329a918b50958f3f0ffe8d6fcd19326d659006d1de951750d140cd94032646",
+      "newScope": true,
+      "exactSlot": 5,
+      "pendingBeforeConfirmation": true,
+      "previewExport": true
+    },
+    {
+      "archiveFormat": "secure-v2",
+      "materialFormat": "pdf",
+      "sourceHash": "58bf0ed014606b9525c425d0a72f04b627d43838a257780e1c8eeb47673954a2",
+      "newScope": true,
+      "exactSlot": 0,
+      "pendingBeforeConfirmation": true,
+      "previewExport": true
+    },
+    {
+      "archiveFormat": "secure-v2",
+      "materialFormat": "png",
+      "sourceHash": "5fb27c5fb7062023579dff8bb5b50ae1ac910c64d9b37db8a8499c574753ee8b",
+      "newScope": true,
+      "exactSlot": 0,
+      "pendingBeforeConfirmation": true,
+      "previewExport": true
+    },
+    {
+      "archiveFormat": "secure-v3",
+      "materialFormat": "docx",
+      "sourceHash": "28329a918b50958f3f0ffe8d6fcd19326d659006d1de951750d140cd94032646",
+      "newScope": true,
+      "exactSlot": 5,
+      "pendingBeforeConfirmation": true,
+      "previewExport": true
+    },
+    {
+      "archiveFormat": "secure-v3",
+      "materialFormat": "pdf",
+      "sourceHash": "58bf0ed014606b9525c425d0a72f04b627d43838a257780e1c8eeb47673954a2",
+      "newScope": true,
+      "exactSlot": 0,
+      "pendingBeforeConfirmation": true,
+      "previewExport": true
+    },
+    {
+      "archiveFormat": "secure-v3",
+      "materialFormat": "png",
+      "sourceHash": "5fb27c5fb7062023579dff8bb5b50ae1ac910c64d9b37db8a8499c574753ee8b",
+      "newScope": true,
+      "exactSlot": 0,
+      "pendingBeforeConfirmation": true,
+      "previewExport": true
+    }
+  ],
+  "actualLegacyHashEvidence": {
+    "author": {
+      "path": ".data/research/lawbot-2026-10-15/iteration035/C-final-evidence/before-independent-legacy-proof.json",
+      "sha256": "2cee04b2f14dde43edd03be1b208175ad283530932039539ebbd2b841df8f6d4"
+    },
+    "independentB": {
+      "path": ".data/research/lawbot-2026-10-15/iteration035/C-final-evidence/portable-legacy-geometry-actual.json",
+      "sha256": "2cee04b2f14dde43edd03be1b208175ad283530932039539ebbd2b841df8f6d4"
+    }
+  },
+  "evidence": [
+    {
+      "role": "author-035-full",
+      "path": ".data/research/lawbot-2026-10-15/iteration035/C-final-evidence/entity-corrections-api-node24-final.log",
+      "sha256": "b9c269418feb67f90bb86296205d7d4d633210fd54f10a2b166821dedead037c",
+      "passed": 3,
+      "durationSeconds": 75.952,
+      "scope": "actual PNG/scanPDF/embeddedWord; plan/CAS/scope/private raw+semantic; alias/export/restore; quarterturn; native/V1/V2/V3; source-only gv; manual region; six independent type/action long-profile projection"
+    },
+    {
+      "role": "author-geometry-full",
+      "path": ".data/research/lawbot-2026-10-15/iteration035/C-final-evidence/portable-entity-geometry-api-second.log",
+      "sha256": "13b65ac2e65ffa4f4261ab2b0bef94d709d27a7a1db63dfae5478aeb6f820116",
+      "passed": 1,
+      "durationSeconds": 169.811,
+      "scope": "12 exact material×codec paths freshdetect→draftrestore→newslot/031 token→confirm→preview→save→export→download and immutable original bytes"
+    },
+    {
+      "role": "author-legacy-geometry",
+      "path": ".data/research/lawbot-2026-10-15/iteration035/C-final-evidence/portable-legacy-geometry-api-first.log",
+      "sha256": "2123c0cd8d19031bfebb7c098b887c4f7750c57a603ecfaca1ee80a4e503ccb8",
+      "passed": 1,
+      "durationSeconds": 31.088,
+      "scope": "real VML inline normalization gives distinct original/normalized hashes; signed translation positive plus hash/signature/token tamper unresolved+blocked"
+    },
+    {
+      "role": "author-pdf-prior-edit",
+      "path": ".data/research/lawbot-2026-10-15/iteration035/C-final-evidence/prior-native-edit-C-fixed.log",
+      "sha256": "3e780be6cbacdb6110e983ef439e5c2ba6f3edab301a678719b89798a943955d",
+      "passed": 1,
+      "durationSeconds": 8.916,
+      "scope": "actual native PDF First→FIRST_EDITED canonical OCR edit; formerly skipped native supplement remains affected1"
+    },
+    {
+      "role": "independent-A-035",
+      "path": ".data/research/lawbot-2026-10-15/iteration035/C-final-evidence/review-entity-corrections-complete-A.log",
+      "sha256": "a88d3459b3889049bc4b198ed9439455ab0ea53d3d44d0963233131bd77a019b",
+      "passed": 3,
+      "durationSeconds": 68.42,
+      "scope": "independent full035 API file"
+    },
+    {
+      "role": "independent-B-legacy-geometry",
+      "path": ".data/research/lawbot-2026-10-15/iteration035/C-final-evidence/review-portable-legacy-geometry-B.log",
+      "sha256": "3810d9b65191b0f5140eba2e85770cbd5d597fe62bf1e34cb60c57f15f654fbd",
+      "passed": 1,
+      "durationSeconds": 27.223,
+      "scope": "independent signed hash-translation API and three negative cases"
+    },
+    {
+      "role": "author-final-units",
+      "path": ".data/research/lawbot-2026-10-15/iteration035/C-final-evidence/product-final-units.log",
+      "sha256": "98cd9bc4724504b325ec0e6e00e0aacac9a8dde36f55b9338e5b97e619e2dee1",
+      "passed": 18,
+      "durationSeconds": 2.56,
+      "scope": "five actual unit files; indexed duplicates/stale/strict data/source profile/metadata/source restoration"
+    },
+    {
+      "role": "author-typecheck",
+      "path": ".data/research/lawbot-2026-10-15/iteration035/C-final-evidence/typecheck-product-final.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "passed": null,
+      "durationSeconds": null,
+      "scope": "Node24 tsc --noEmit observed exit0, no diagnostic"
+    }
+  ],
+  "implementation": [
+    {
+      "path": "packages/contracts/entity-corrections.ts",
+      "sha256": "dd2575494c6b51de0f8a4d3ee3ad72e83632eda62b5b7cd32a5d070318fb0c47"
+    },
+    {
+      "path": "packages/core/entity-corrections.ts",
+      "sha256": "cd9f2831f52b33a207d1c83343ca284927634b0109aa11a3aaeec4f6b4f0b2c3"
+    },
+    {
+      "path": "packages/core/project-entity-corrections.ts",
+      "sha256": "ec7552d517b0085af08d8ae06166f21de008da8ab0614ef4d425baddbfcabc21"
+    },
+    {
+      "path": "packages/adapters/entity-corrections.ts",
+      "sha256": "6198e05e8c1dedc3711917c1d94fa5db4761621941576d10b4b2313ee736cf93"
+    },
+    {
+      "path": "packages/adapters/project-entity-corrections.ts",
+      "sha256": "a950999d707d4e71f6e1d569c16416930a8c8c43d9328407b272ac66f3b72e3b"
+    },
+    {
+      "path": "apps/api/entity-corrections.ts",
+      "sha256": "f1cc9c6618c164816af8ec4a5b33857af2b956377bcfd0879c90577d8320c1a1"
+    },
+    {
+      "path": "apps/web/entity-corrections.tsx",
+      "sha256": "7adce5ec14257db27695d46c8f0631b4ff4979d381a59fa63357ce7cb086bc8c"
+    },
+    {
+      "path": "packages/adapters/portable-entity-geometry.ts",
+      "sha256": "06ed341c60eb577925d4c58b8296ab63b48780e2d74451b0faf99b4516a2f944"
+    },
+    {
+      "path": "packages/adapters/reference-portable-draft.ts",
+      "sha256": "6cc735a8963536b0bcc72b6c896dc5459e02f38a8fc3390acbd9d494df8fa2de"
+    },
+    {
+      "path": "packages/adapters/portable-draft.ts",
+      "sha256": "a3d3b848201e786a79263691091e27db7cdcd7eb12569719dff96e2cdf94eb6d"
+    },
+    {
+      "path": "apps/api/workspace-portable.ts",
+      "sha256": "d3194f27903519368a7c5832f9725f69ee9ad135cde95ab5c89a8433a63bf21b"
+    },
+    {
+      "path": "packages/core/workspace-renderer.ts",
+      "sha256": "30e1837b1c8eb5a2ddc9c305d18ddd2644fe4841d4ce9500ace084d37d1e0d0b"
+    },
+    {
+      "path": "packages/core/workspace-source-profile.ts",
+      "sha256": "bc7e42dd83094d98a27fbb56ccce4b47f2e5074cf709888d4b2c8efcb39949af"
+    },
+    {
+      "path": "tests/entity-corrections.integration.ts",
+      "sha256": "d0521a21c9813c63f8b1ee2b7385e6ceb056b5e163a13ca338427bb3f995dbf4"
+    },
+    {
+      "path": "tests/entity-corrections-review.integration.ts",
+      "sha256": "672f55dcf91325cb6f94b6a93aded03be92c9dcdaff9ad06328b446c40161797"
+    },
+    {
+      "path": "tests/portable-entity-geometry.integration.ts",
+      "sha256": "be1fbcae2f65b29ce34946300aea7de478baa53d9db3ff51d87ee1247c0f43e3"
+    },
+    {
+      "path": "tests/portable-legacy-geometry.integration.ts",
+      "sha256": "1f728f56542571546a740b030e05b2bdea2217c0312e7269dfbdc0a99178be03"
+    },
+    {
+      "path": "tests/e2e/entity-corrections.spec.ts",
+      "sha256": "a2eb58da74be3c68eeb1e7dce8bfddea4e6487fce6bb4cb711c209d26c6fe64e"
+    }
+  ],
+  "failureHistory": [
+    {
+      "log": ".data/research/lawbot-2026-10-15/iteration035/portable-entity-geometry-api-first.log",
+      "finding": "C portable confirm-region revision advanced without immutable provenance record; subsequent preview correctly rejected ENTITY_GEOMETRY_STALE. Fixed all three candidate revision producers with exact same-index history; second full twelve-path API passes."
+    },
+    {
+      "log": ".data/research/lawbot-2026-10-15/iteration035/review-correction-prior-native-edit-A-before.log",
+      "finding": "origin prefix check skipped whole legitimate native-edited PDF page; replaced with authenticated per-range origins; author and independent actual case closes."
+    },
+    {
+      "log": ".data/research/lawbot-2026-10-15/iteration035/entity-corrections-api-node24-final.log",
+      "note": "Earlier source semantic text/500 stale/manual-only rotation regressions are preserved in historical first through sixth logs; final Node24 3API passes. Historical Node26 fifth run is not relabelled Node24."
+    }
+  ],
+  "remainingBoundaries": [
+    "No competitor license-protected processing chain executed; R0 remains.",
+    "Cloud user/project RLS, sealed metadata and immutable objects adapt desktop sender/path/keychain/cache lifecycles; native OS engines/security domains are not claimed executed equivalence.",
+    "Source jf2 explicitly excludes Markdown existing visual correction and does not apply Markdown supplements in its mutation loop; own API returns explicit unsupported scope for that source branch.",
+    "Source profile has only twenty switch IDs. Its original application cannot express six independent own extension choices; exact nativeProfileSnapshot and declared family projection preserve them for our reader without pretending source-native independent expressivity.",
+    "Edited historical PDF pages with no authenticated origin frame remain unknown; mixed-origin replacement ranges are not silently treated as pure OCR. Current newly edited pages preserve exact origins.",
+    "Cross-server geometry tokens without the old server key remain retained unresolved; user must explicitly select current real entity geometry. No old actor is trusted from editable ZIP fields.",
+    "Legacy geometry fixture is source-supported ZIP-labelled-DOC+real VML normalization, not a CFB/UNO model run; actual CFB/UNO evidence is separately in phase033 legacy lifecycle report.",
+    "Parent final full test suite and actual Edge035 interface acceptance remain separate gates; no deployment completion is claimed here."
+  ]
+}

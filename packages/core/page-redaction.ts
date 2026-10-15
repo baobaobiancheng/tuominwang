@@ -1,3 +1,4 @@
+import{hasEntityGeometry}from'../contracts/entity-geometry.ts';
 import sharp from "sharp";
 import { deflateSync } from "node:zlib";
 import { pageReviewSchema, type PageReview, type ParsedPage, type Anchor, type Mark } from "../contracts/index.ts";
@@ -21,14 +22,16 @@ export function validatePageReview(value: unknown, pages: Page[], final = false)
   if (final && policy.mode !== "raster") throw new Error("PAGE_CONVERSION_REQUIRED");
   return policy;
 }
-export function pageBoxes(text: string, marks: Mark[], anchors: Anchor[], page: Page, glyphs: Glyph[], policy: PageReview): Box[] {
+export function pageBoxes(text: string, marks: Mark[], anchors: Anchor[], page: Page, glyphs: Glyph[], policy: PageReview, overrides:ReadonlyMap<number,Box[]>=new Map()): Box[] {
   validateMarks(text, marks, true);
   const anchor = anchors.find(a => a.kind === "page" && a.page === page.index);
   if (!anchor) throw new Error("PAGE_POSITION_MISSING");
-  const boxes: Box[] = policy.regions.filter(r => r.page === page.index).map(({ x, y, width, height,shape }) => ({ x, y, width, height,...shape?{shape}:{} }));
+  const boxes: Box[] = policy.regions.filter(r => r.page === page.index&&!hasEntityGeometry(r)).map(({ x, y, width, height,shape }) => ({ x, y, width, height,...shape?{shape}:{} }));
   const localText = text.slice(anchor.start, anchor.end);
   if (glyphs.length > 200000 || glyphs.some(g => g.length !== 6 || !g.every(Number.isFinite) || !Number.isInteger(g[0]) || !Number.isInteger(g[1]) || g[0] < 0 || g[1] <= g[0] || g[1] > localText.length || g[4] < 0 || g[5] < 0)) throw new Error("PAGE_POSITION_MISSING");
-  for (const mark of marks.filter(m => m.decision === "redact" && m.start < anchor.end && m.end > anchor.start)) {
+  for (const [markIndex,mark] of marks.entries()) {
+    if(!(mark.decision === "redact" && mark.start < anchor.end && mark.end > anchor.start))continue;
+    const originalBoxStart=boxes.length;
     const start = Math.max(mark.start, anchor.start) - anchor.start, end = Math.min(mark.end, anchor.end) - anchor.start;
     const covered = new Uint8Array(end - start);
     for (const g of glyphs) if (g[0] < end && g[1] > start) {
@@ -39,6 +42,7 @@ export function pageBoxes(text: string, marks: Mark[], anchors: Anchor[], page: 
       boxes.push({ x, y, width: Math.min(page.width, g[2] + g[4] + 2) - x, height: Math.min(page.height, g[3] + g[5] + 2) - y });
     }
     for (let i = start; i < end; i++) if (!covered[i - start] && !/\s/u.test(localText[i])) throw new Error("PAGE_POSITION_MISSING");
+    const replacement=overrides.get(markIndex);if(replacement){if(!replacement.length||replacement.some(b=>![b.x,b.y,b.width,b.height].every(Number.isFinite)||b.x<0||b.y<0||b.width<=0||b.height<=0||b.x+b.width>page.width+1e-7||b.y+b.height>page.height+1e-7))throw Error('ENTITY_GEOMETRY_INVALID');boxes.splice(originalBoxStart);boxes.push(...replacement.map(b=>({...b})));}
   }
   return boxes;
 }

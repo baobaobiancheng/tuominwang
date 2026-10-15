@@ -1,0 +1,60 @@
+{
+  "reviewer": "complete_visual",
+  "scope": "A new alias lifecycle/unified sync + source conflict projection + canonical review filter",
+  "findings": [],
+  "codePins": [
+    {
+      "path": "packages/core/reference-alias-lifecycle.ts",
+      "sha256": "c2957ec850b7dc1133fbc846e75a6c081fd40392dea874214ffcccae4c0bd90c"
+    },
+    {
+      "path": "packages/core/reference-unified-aliases.ts",
+      "sha256": "37f42459ae1b32ab597d29038c0ba1b999dfea6af492729523a3dd6b4af81a44"
+    },
+    {
+      "path": "packages/core/reference-alias-sync.ts",
+      "sha256": "0f47ae835e0ff693f5c5465958c84a1651e286bb6b2d56adf8370f2683a98e3d"
+    },
+    {
+      "path": "packages/core/reference-entity-conflicts.ts",
+      "sha256": "e2777038ccbfb3590c97b85f39c2a5cc7467aa267ddd64cffd101b9d71f3c27d"
+    },
+    {
+      "path": "packages/adapters/review-mark-filter.ts",
+      "sha256": "7ce9c1b066cf14251759b9f4e1eedb9d1d20694fbca147a6395f987216c3cc30"
+    },
+    {
+      "path": "tests/reference-alias-lifecycle.test.ts",
+      "sha256": "3ea696537a0b5513dda80025d4a146d191258ee6afbde41a11a709b71a19ef76"
+    },
+    {
+      "path": "tests/reference-alias-sync.test.ts",
+      "sha256": "b72a1625fb62f75132692bf09dd19405972fd1cde8b3c1f9212e1e32fa19bb9f"
+    },
+    {
+      "path": "tests/reference-entity-conflicts.test.ts",
+      "sha256": "0973aa99c0ecdb41b0d6e94a4555b0d36badc8c00356edf7eb28bc278cb22e0f"
+    },
+    {
+      "path": "tests/review-mark-filter.integration.ts",
+      "sha256": "ba1d1bc3cd7cfae8fd5150938a59c03910f127d2f98c63998ab016f3bdf32457"
+    }
+  ],
+  "tests": {
+    "unitLog": ".data/research/lawbot-2026-10-15/iteration035/review-alias-conflict-by-visual.log",
+    "unitResult": "3files7testsPASS406ms; explicit nonexistent standalone unified test not counted, source machine exercised by lifecycle fixture",
+    "actualLog": ".data/research/lawbot-2026-10-15/iteration035/review-mark-filter-B.log",
+    "actualResult": "1PASS6818ms/0skip; total9597ms"
+  },
+  "reviewed": [
+    "inherited canonical/raw key normalization; BigInt reserved alias allocator; source organization definition nearest bounded producer",
+    "unified merge/unmerge/split/filecustom/default histories and durable snapshot field preservation; fresh detection filtering rejected without deleting canonical source",
+    "sync full/dirty queue, synchronous throw race prevention, failedbatch requeue, flush/dispose controls",
+    "conflict duplicate/synthetic/overlap presentation gates do not mutate canonical list",
+    "filter validates original source+contenthash+filemarks and exact035oldslot→draftslot mappings, pagination only after fullcanonical filter"
+  ],
+  "boundary": [
+    "sourcegolden pure test uses extracted public functions not competitor license runtime; no S3 promotion",
+    "this report does not replace A actual unified UI/DB lifecycle tests or attest every renderer caller"
+  ]
+}

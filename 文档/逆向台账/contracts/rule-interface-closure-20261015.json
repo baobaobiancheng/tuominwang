@@ -1,0 +1,4282 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-15",
+  "agent": "A complete_rules",
+  "scope": "28 exact desensitization method adapters; source static and public pure oracle only; competitor processing remainsR0",
+  "rows": [
+    {
+      "id": "IPC-5a998529649c",
+      "name": "desensitization:apply",
+      "sourceRuntime": "R0",
+      "nativeIPCInvoked": false,
+      "sourceContract": {
+        "inputAndFiltering": "sourceRef、matches、outputPath/outputDir、requestId；格式选项/假名/遮罩/删除页/旋转/approvedConflicts/Markdown reviewSnapshot。th 先过滤 signature/handwriting/handwritten_signature；不等于每个输入匹配均执行。exportMapping/mappingOutputPath 被拒绝。",
+        "outputContract": "success:true,result,outputPath,pseudonymMappingPath?,textPath?；result 含 matches、格式保留/文本层/Markdown报告、preserveOnCancel 等。失败含 error/errorCode、reviewTargets/draft 可能存在；canceled 是失败分支。",
+        "preconditions": "产品激活；有效 sourceRef；Markdown 快照源 hash 一致；格式和候选定位满足对应写回条件。自定义/default 假名 MD 要全部成功应用；保存映射失败阻断文档导出。",
+        "persistentAndMemoryEffects": "requestId/sender 回执去重；进度带 sequence/heartbeatAt，5秒心跳。PDF→gh.renderSecure 逐页画布遮罩后 JPEG 嵌入新 PDF；DOCX 优先 preserved buffer，允许生成式降级（legacy 有更严拒绝）；MD source writer 或 Gf exporter。假名 .lpm 先写，最终输出后记录 receipt。",
+        "failureAndCancellation": "重复 running 返回 APPLY_ALREADY_RUNNING，completed 返回旧 receipt；不是 compare-payload 幂等。取消触发 finally rm cleanupPaths（错误吞掉）；普通失败不执行同样全部输出清理，映射不随文档失败回滚。普通 A2 writeFile 可覆盖同名；MD 单独冲突策略，UI _nonInteractiveSave:true 时拒绝已存目标。成功/失败回执只在内存。"
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 171,
+          "column": 23,
+          "note": "renderer:invoke",
+          "observation_id": "jag_observation_d4985194f78fe1be1c2d7496e57bb6a1f61f0680f61c4444e80acfbe157570b3"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17409,
+          "column": null,
+          "note": ""
+        },
+        {
+          "path": "文档/逆向台账/contracts/ipc-contract-index.json",
+          "line": null,
+          "column": null,
+          "note": "desensitization:apply的参数/返回/异常/事件/捕获引用与调用位置"
+        },
+        {
+          "path": "文档/逆向台账/contracts/manual-workflow-contracts.json",
+          "line": null,
+          "column": null,
+          "note": "人工契约 desensitization:apply"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/manual-ledger-recommendations.json",
+          "line": null,
+          "column": null,
+          "note": "校验通过的逐项关系推荐；未视为S3/R2"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 32063,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "startLine": 32063,
+            "endLine": 32082,
+            "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "sliceSha256": "0a7dbf94874dfc8b93644fbb71e4f0a2d8b21217533cb7f8c5afeb34e4b8f9e2",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 33795,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "startLine": 33795,
+            "endLine": 33889,
+            "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "sliceSha256": "cd1df6458546083df32afca79d55cab286e9d538aa6ebbf306c86cb6af951272",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 14537,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 14537,
+            "endLine": 14549,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "2057d2129d8a6de57c64af4063894485ef1967fc44378521b8728d39cbeed121",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17409,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 17409,
+            "endLine": 17462,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "aa9a37d81fce61aefa28605da06878ddcfed676b9aba5bf5286cd0224aa1d64e",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17463,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 17463,
+            "endLine": 17526,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "7ca8f977d9a94a64f43a1faffcea1938e74f5b79f2dc00bfd2dd1d059dd0bd19",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17527,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 17527,
+            "endLine": 17789,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "28c074f2dd04325ee6dc1abaaf40ad59298db002e98c791d495994f9c73eef35",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17790,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 17790,
+            "endLine": 17934,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "784047a9badfad979e7490362a4f6bc43815b93c1d46abc46205664f8e401402",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16759,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 16759,
+            "endLine": 16789,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "a33caf4010e37c5626d2587adca7997065f68155e30af27f297cde1f17ac76ac",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16586,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 16586,
+            "endLine": 16638,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "d381bfd3a1127e3b24e54280185b1f6adbf511b46cf97fd93c5c527eb5df0cf2",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 14599,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 14599,
+            "endLine": 14777,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "b3c7682ffd0137dcf74cab3ef6e83ed47f70ceba9f9d55630de3f7283b1bc9c0",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 15718,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 15718,
+            "endLine": 15912,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "00e2bfffe1409ca7d258397075fe286926de2daa758f116005ac7fd2a39143fe",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017逐项递归契约/算法/异常与剩余边界，非运行证据"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-pdf-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017关联章节PDF08；局部补读非完整业务"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-supplement-formats-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017关联章节PSF01,PSF02,PSF03,PSF04,PSF06,PSF07,PSF08,PSF09,PSF10,PSF11；局部补读非完整业务"
+        },
+        {
+          "path": "文档/逆向台账/contracts/export-cancel-invariants-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-018条件化取消/覆盖/回执组合分析；未执行竞品"
+        }
+      ],
+      "adapterRuntime": "actual isolated HTTP method and bytes verified",
+      "actualInvocations": [
+        {
+          "id": "IPC-5a998529649c",
+          "name": "desensitization:apply",
+          "method": "POST",
+          "path": "/documents/f74d414f-e6cd-49b5-9de4-b38b05084f74/export",
+          "input": {
+            "revision": 2
+          },
+          "responseStatus": 200,
+          "responseSha256": "b32512fe457504d204c726e63e7ac64524eb2667c6ac533087a8d09d0e96ce73",
+          "responseBytes": 45,
+          "assertion": "Saved reviewed marks applied by actual export worker, verified signed artifact downloaded, original immutable; per-name cloud contract stated separately",
+          "positive": true
+        }
+      ],
+      "positiveInvocations": 1,
+      "negativeInvocations": 0,
+      "sourceDomainBoundary": "Native dialog/file absolute paths are represented by authorized immutable IDs/relative ZIP paths; no Electron/OS/native licensed processing runtime equivalence claim"
+    },
+    {
+      "id": "IPC-88cd1d915682",
+      "name": "desensitization:cancel",
+      "sourceRuntime": "R0",
+      "nativeIPCInvoked": false,
+      "sourceContract": {
+        "inputAndFiltering": "非空 requestId。",
+        "outputContract": "success:true,canceled:true 表示已 abort；不存在返回 canceled:false；空ID失败。",
+        "preconditions": "任务存在 n2；该 handler 没有 pause-seals/get-apply-result 的 sender 校验，需单列待审，不据此推断可利用。",
+        "persistentAndMemoryEffects": "AbortController.abort(Hp())；向原任务 sender 发 canceled progress；实际停止/清理要等底层检查 signal 与 finally。",
+        "failureAndCancellation": "abort 回执不是所有文件已删除/子进程已停止；detect 已发布缓存保留；apply aborted 删除登记 cleanupPaths 且 rm 错误吞掉。未注册 forced OCR 不受此入口管理。"
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+          "line": 1,
+          "column": 816577,
+          "note": "main:handle",
+          "observation_id": "jag_observation_0976b099fbf15cae7d47d5a8d9171a0a1bdf2ec4ea7ad92908ab41e30d0b6d27"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 167,
+          "column": 24,
+          "note": "renderer:invoke",
+          "observation_id": "jag_observation_ca11619fd9c2a207c86ac12a9e029c5a690fb81d6fcb7c25d688417446883f1a"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17169,
+          "column": null,
+          "note": ""
+        },
+        {
+          "path": "文档/逆向台账/contracts/ipc-contract-index.json",
+          "line": null,
+          "column": null,
+          "note": "desensitization:cancel的参数/返回/异常/事件/捕获引用与调用位置"
+        },
+        {
+          "path": "文档/逆向台账/contracts/manual-workflow-contracts.json",
+          "line": null,
+          "column": null,
+          "note": "人工契约 desensitization:cancel"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/manual-ledger-recommendations.json",
+          "line": null,
+          "column": null,
+          "note": "校验通过的逐项关系推荐；未视为S3/R2"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 31552,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "startLine": 31552,
+            "endLine": 31640,
+            "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "sliceSha256": "d088282b690a8c615db8a7f008772e91ab7bf889797b43474a0b1269cf88ee38",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 33795,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "startLine": 33795,
+            "endLine": 33889,
+            "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "sliceSha256": "cd1df6458546083df32afca79d55cab286e9d538aa6ebbf306c86cb6af951272",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17158,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 17158,
+            "endLine": 17183,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "d2563fcbf512f34e10e2fceb4a1082d448bffb605284fd59edf670631325e32a",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17790,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 17790,
+            "endLine": 17934,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "784047a9badfad979e7490362a4f6bc43815b93c1d46abc46205664f8e401402",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17196,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 17196,
+            "endLine": 17368,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "2638cdd033f80ca824c5b838e0f23771bc0b26972708f2cb90964e6d167cd553",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017逐项递归契约/算法/异常与剩余边界，非运行证据"
+        },
+        {
+          "path": "文档/逆向台账/contracts/export-cancel-invariants-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-018条件化取消/覆盖/回执组合分析；未执行竞品"
+        }
+      ],
+      "adapterRuntime": "actual isolated HTTP method and bytes verified",
+      "actualInvocations": [
+        {
+          "id": "IPC-88cd1d915682",
+          "name": "desensitization:cancel",
+          "method": "POST",
+          "path": "/jobs/5af02937-0f27-4811-ae6a-303439711b20/cancel",
+          "input": {},
+          "responseStatus": 200,
+          "responseSha256": "4062edaf750fb8074e7e83e0c9028c94e32468a8b6f1614774328ef045150f93",
+          "responseBytes": 11,
+          "assertion": "Queued request cancellation is persisted and excludes detection",
+          "positive": true
+        }
+      ],
+      "positiveInvocations": 1,
+      "negativeInvocations": 0,
+      "sourceDomainBoundary": "Native dialog/file absolute paths are represented by authorized immutable IDs/relative ZIP paths; no Electron/OS/native licensed processing runtime equivalence claim"
+    },
+    {
+      "id": "IPC-fd1ca8c6cb27",
+      "name": "desensitization:cleanup-paths",
+      "sourceRuntime": "R0",
+      "nativeIPCInvoked": false,
+      "sourceContract": {
+        "inputAndFiltering": "paths 数组，trim/filter；每条 resolve 后匹配成功 receipt.outputPath（小写比较）。",
+        "outputContract": "success:true,cleaned；rm 抛错可 reject。",
+        "preconditions": "同 sender、completed success、15分钟内、非 preserveOnCancel、未 cleanupUsed 的 receipt。",
+        "persistentAndMemoryEffects": "fs.rm(force:true) 删除匹配输出并标 cleanupUsed；不会接受任意没有回执的路径。",
+        "failureAndCancellation": "UI 报告 cleaned/requested 并提示人工核对未清理输出；不删除假名映射。路径大小写比较在大小写敏感文件系统行为未验证。"
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+          "line": 1,
+          "column": 815745,
+          "note": "main:handle",
+          "observation_id": "jag_observation_35c3c7b01dfffac9d96e8e5bd3280a8bf8b755866e003ecbbecc97c1eca7b564"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 169,
+          "column": 30,
+          "note": "renderer:invoke",
+          "observation_id": "jag_observation_d4f1f91552aa454ef344b4fc90f60ddcb8b20abbf35a8589c6c8e463e5d094d1"
+        },
+        {
+          "path": "文档/逆向台账/contracts/ipc-contract-index.json",
+          "line": null,
+          "column": null,
+          "note": "desensitization:cleanup-paths的参数/返回/异常/事件/捕获引用与调用位置"
+        },
+        {
+          "path": "文档/逆向台账/contracts/manual-workflow-contracts.json",
+          "line": null,
+          "column": null,
+          "note": "人工契约 desensitization:cleanup-paths"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/manual-ledger-recommendations.json",
+          "line": null,
+          "column": null,
+          "note": "校验通过的逐项关系推荐；未视为S3/R2"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 33889,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "startLine": 33889,
+            "endLine": 33908,
+            "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "sliceSha256": "8082e2d0463ffc825852578bb339f1300a6e381aa23ef8050ec6e49a9aad1ee9",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17158,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 17158,
+            "endLine": 17183,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "d2563fcbf512f34e10e2fceb4a1082d448bffb605284fd59edf670631325e32a",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17790,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 17790,
+            "endLine": 17934,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "784047a9badfad979e7490362a4f6bc43815b93c1d46abc46205664f8e401402",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017逐项递归契约/算法/异常与剩余边界，非运行证据"
+        },
+        {
+          "path": "文档/逆向台账/contracts/export-cancel-invariants-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-018条件化取消/覆盖/回执组合分析；未执行竞品"
+        }
+      ],
+      "adapterRuntime": "actual isolated HTTP method and bytes verified",
+      "actualInvocations": [
+        {
+          "id": "IPC-fd1ca8c6cb27",
+          "name": "desensitization:cleanup-paths",
+          "method": "POST",
+          "path": "/cleanup-outputs",
+          "input": {
+            "resourceIds": [
+              "94f73477-7f84-42b1-919e-a6d3ec0f7436"
+            ]
+          },
+          "responseStatus": 200,
+          "responseSha256": "1bf3c504aea948d334b777bdd23f8f305d13f3858a134f38d47fdc752983b056",
+          "responseBytes": 28,
+          "assertion": "Actual hash-checked successful temporary output deleted once; immutable signed artifact and original remain accessible",
+          "positive": true
+        }
+      ],
+      "positiveInvocations": 1,
+      "negativeInvocations": 0,
+      "sourceDomainBoundary": "Native dialog/file absolute paths are represented by authorized immutable IDs/relative ZIP paths; no Electron/OS/native licensed processing runtime equivalence claim"
+    },
+    {
+      "id": "IPC-e8dcb4d0e8b3",
+      "name": "desensitization:create-folder-output",
+      "sourceRuntime": "R0",
+      "nativeIPCInvoked": false,
+      "sourceContract": {
+        "inputAndFiltering": "scanSessionId 可选、sourceRootName 可覆盖来自扫描的根名；只要名字存在并非强制会话存在。",
+        "outputContract": "success:true,exportSessionId,outputRoot；选择取消 success:false,canceled:true；失败 error。",
+        "preconditions": "选择普通本地输出目录非符号链接，Wf realpath；有扫描 sourceRootPath 时检查源/目标不能互为祖先。",
+        "persistentAndMemoryEffects": "sanitize 根名并 mkdir(recursive:false) 创建 <name>_已脱敏；EEXIST 用时间/序号最多999，w2内存登记12小时会话。",
+        "failureAndCancellation": "无 cancel task；创建后调用者失败不会自动删新目录。缺扫描会话时源目录嵌套检查缺少 sourceRootPath。"
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 144,
+          "column": 36,
+          "note": "renderer:invoke",
+          "observation_id": "jag_observation_0be3d01712f11af15f746c867c95e600d153fa4f99ba760ae55672a2d027a797"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+          "line": 1,
+          "column": 801214,
+          "note": "main:handle",
+          "observation_id": "jag_observation_97d3ac9162f8291634ef3f7e83d7584a5521a50015a7d6e2b566b002780402b5"
+        },
+        {
+          "path": "文档/逆向台账/contracts/ipc-contract-index.json",
+          "line": null,
+          "column": null,
+          "note": "desensitization:create-folder-output的参数/返回/异常/事件/捕获引用与调用位置"
+        },
+        {
+          "path": "文档/逆向台账/contracts/manual-workflow-contracts.json",
+          "line": null,
+          "column": null,
+          "note": "人工契约 desensitization:create-folder-output"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/manual-ledger-recommendations.json",
+          "line": null,
+          "column": null,
+          "note": "校验通过的逐项关系推荐；未视为S3/R2"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16900,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 16900,
+            "endLine": 16911,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "855d67ff5023ec4aaf715176bfe6afc290566a9474c41e88a7f1b77baa9c8fb5",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 15385,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 15385,
+            "endLine": 15438,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "7234e66393eb1ac4c8c43ed7a9655a0cea37de6b5d064e8beeb7d9c041194edd",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 36986,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "startLine": 36986,
+            "endLine": 37001,
+            "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "sliceSha256": "105c81ab6f54632db267db217abd8dc842a016d43b3c4bc3ddf3e38694f57eab",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16633,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 16633,
+            "endLine": 16732,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "c5701a721ada5aa5e963fdb4dd74ec7e09555fd07b46f06c2bc9a3f0fa18cc1a",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017逐项递归契约/算法/异常与剩余边界，非运行证据"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-supplement-rules-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017关联章节DPS16；局部补读非完整业务"
+        }
+      ],
+      "adapterRuntime": "actual isolated HTTP method and bytes verified",
+      "actualInvocations": [
+        {
+          "id": "IPC-e8dcb4d0e8b3",
+          "name": "desensitization:create-folder-output",
+          "method": "POST",
+          "path": "/api/projects/62e9eb4d-abef-4ab9-96a2-3bde21dc3759/folder-exports/e7e80c42-522a-4e8d-b5fd-9c6e4292bb3f",
+          "input": {
+            "uploadBatchId": "570030c9-5056-4d9a-8876-61755826f2d2",
+            "sourceRootName": "合成<&目录"
+          },
+          "responseStatus": 200,
+          "responseSha256": "20dd60d54c3a97fcda6a029a7eec9084e7cec96b25a2b7aa5899e694088a27c5",
+          "responseBytes": 2069,
+          "assertion": "Created real owner-scoped12h export session and separate output root, not input manifest alias",
+          "positive": true
+        }
+      ],
+      "positiveInvocations": 1,
+      "negativeInvocations": 0,
+      "sourceDomainBoundary": "Native dialog/file absolute paths are represented by authorized immutable IDs/relative ZIP paths; no Electron/OS/native licensed processing runtime equivalence claim"
+    },
+    {
+      "id": "IPC-7d7d2d58da91",
+      "name": "desensitization:detect-only",
+      "sourceRuntime": "R0",
+      "nativeIPCInvoked": false,
+      "sourceContract": {
+        "inputAndFiltering": "sourceRef、enabledRules 数组、requestId/sessionId、route/hint/overrideDocType、ruleSetSnapshot/workspaceCorrections；可选 pageNumbers/manualPageRotations/sealsOnly/completedSealPages。打包版删除 debug 字段。",
+        "outputContract": "success、originalText、matches、route、canonicalDocument、format sidecars；PDF 可含 pdfOcrOutcome/sealProgress；事件 progress/page-processed 以 requestId 关联。debug only fields 打包时省略。",
+        "preconditions": "先 assertActivatedOrThrow；sourceRef 必须可 resolve；格式限 DOCX/legacy 已转换、PDF、jpg/jpeg/png、Markdown；sealsOnly 限 PDF。enabledRules 未提供会在 forEach 抛错。",
+        "persistentAndMemoryEffects": "n2 注册 AbortController；su 分派 DOCX/text-PDF/scanned-PDF/image/Markdown；OCR 页缓存、canonical Map、DOCX temp path、部分 engine sidecars/日志可落盘。成功只表示候选检测，不是脱敏文件交付。",
+        "failureAndCancellation": "传播到 handler 的 Kp 取消异常返回 success:false,canceled:true，finally 删除 task；processImage 底层 catch 会把异常转换 success:false/error，不能保证各格式取消都透传 canceled 标志。已发送页/缓存未 rollback。PDF OCR 部分失败有 failures；UI 可保留 incomplete 进度，不能按 done 认定每页成功。"
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 164,
+          "column": 28,
+          "note": "renderer:invoke",
+          "observation_id": "jag_observation_efe3d234f7fe9e27d1511700ae7963287b2a653985a0f2e4d864988517848df7"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17196,
+          "column": null,
+          "note": ""
+        },
+        {
+          "path": "文档/逆向台账/contracts/ipc-contract-index.json",
+          "line": null,
+          "column": null,
+          "note": "desensitization:detect-only的参数/返回/异常/事件/捕获引用与调用位置"
+        },
+        {
+          "path": "文档/逆向台账/contracts/manual-workflow-contracts.json",
+          "line": null,
+          "column": null,
+          "note": "人工契约 desensitization:detect-only"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/manual-ledger-recommendations.json",
+          "line": null,
+          "column": null,
+          "note": "校验通过的逐项关系推荐；未视为S3/R2"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 35912,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "startLine": 35912,
+            "endLine": 35962,
+            "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "sliceSha256": "5e11d7a02e6b1a879431f9491faa9f5cbcafcbff915e01f34158b0512a31bb8e",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17196,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 17196,
+            "endLine": 17368,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "2638cdd033f80ca824c5b838e0f23771bc0b26972708f2cb90964e6d167cd553",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 10236,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 10236,
+            "endLine": 10292,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "740c5adf2712aa44e4b00ce915a6537921f2ac80f3b6b172246443b4cd9167e1",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 10647,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 10647,
+            "endLine": 10675,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "d623c66e39e1df5247b87c3192e8e2e685b99a8ac5823751b57786644c97f272",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 12390,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 12390,
+            "endLine": 12476,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "21c64c7b2bf20eb5dab869d1fb589587ee4e495d0adb66468ea30bc2d21369ab",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 15718,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 15718,
+            "endLine": 15912,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "00e2bfffe1409ca7d258397075fe286926de2daa758f116005ac7fd2a39143fe",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 15335,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 15335,
+            "endLine": 15375,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "f69b32ca0f5dd85459ce10adc8fced173efd6f4d07ef7cd6a34333d721b22375",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017逐项递归契约/算法/异常与剩余边界，非运行证据"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-pdf-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017关联章节PDF01,PDF02,PDF03,PDF04,PDF05,PDF06,PDF07,PDF09；局部补读非完整业务"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-supplement-formats-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017关联章节PSF05；局部补读非完整业务"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-supplement-rules-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017关联章节DPS01,DPS02,DPS03,DPS04,DPS05,DPS06,DPS07,DPS09,DPS11,DPS12,DPS30,DPS31,DPS32,DPS33；局部补读非完整业务"
+        }
+      ],
+      "adapterRuntime": "actual isolated HTTP method and bytes verified",
+      "actualInvocations": [
+        {
+          "id": "IPC-7d7d2d58da91",
+          "name": "desensitization:detect-only",
+          "method": "POST",
+          "path": "/documents/f74d414f-e6cd-49b5-9de4-b38b05084f74/recognize",
+          "input": {
+            "revision": 0
+          },
+          "responseStatus": 200,
+          "responseSha256": "0e2e2185bfd005690e0ecaa68bd926dbbd57d42e64bed5429d0b0937b594a92f",
+          "responseBytes": 61,
+          "assertion": "Actual independent re-recognition worker produced fresh pending sensitive candidates without exporting",
+          "positive": true
+        }
+      ],
+      "positiveInvocations": 1,
+      "negativeInvocations": 0,
+      "sourceDomainBoundary": "Native dialog/file absolute paths are represented by authorized immutable IDs/relative ZIP paths; no Electron/OS/native licensed processing runtime equivalence claim"
+    },
+    {
+      "id": "IPC-42a70f50df5f",
+      "name": "desensitization:detect-route-only",
+      "sourceRuntime": "R0",
+      "nativeIPCInvoked": false,
+      "sourceContract": {
+        "inputAndFiltering": "sourceRef,fileName,overrideDocType；打包删除debug字段。",
+        "outputContract": "success,route,error,errorCode；不返回matches/脱敏输出。",
+        "preconditions": "有效sourceRef；本handler无直接激活断言。DOCX取Fe文字；纯文字PDF仅前1页/6000字符，MD scanText前6000；图片和非纯文字PDF用空文本+文件名/override选策略。",
+        "persistentAndMemoryEffects": "仅粗路由结果；异常可写crash.log；不会为了图片路由重新OCR。UI批量失败时可退general/screenshot。",
+        "failureAndCancellation": "无n2 task注册/取消；服务区分FILE_ENCRYPTED/TEXT_EMPTY/FILE_INVALID/FILE_READ_FAILED等。"
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 170,
+          "column": 33,
+          "note": "renderer:invoke",
+          "observation_id": "jag_observation_e0cd9959cafce9363471334d54ad597a8ffd26ab62852f4a23f33ee05845b9ea"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17934,
+          "column": null,
+          "note": ""
+        },
+        {
+          "path": "文档/逆向台账/contracts/ipc-contract-index.json",
+          "line": null,
+          "column": null,
+          "note": "desensitization:detect-route-only的参数/返回/异常/事件/捕获引用与调用位置"
+        },
+        {
+          "path": "文档/逆向台账/contracts/manual-workflow-contracts.json",
+          "line": null,
+          "column": null,
+          "note": "人工契约 desensitization:detect-route-only"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/manual-ledger-recommendations.json",
+          "line": null,
+          "column": null,
+          "note": "校验通过的逐项关系推荐；未视为S3/R2"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17934,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 17934,
+            "endLine": 17949,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "b9ae0a43a5c09056fd95f4e6af4462adf329222a453ede0e2c555b710a2044cd",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 10569,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 10569,
+            "endLine": 10600,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "e319163c034a637b78a70cce467e58a56a45d5c40876dd7377e63e5d39493b14",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 15718,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 15718,
+            "endLine": 15912,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "00e2bfffe1409ca7d258397075fe286926de2daa758f116005ac7fd2a39143fe",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 36511,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "startLine": 36511,
+            "endLine": 36544,
+            "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "sliceSha256": "30ebbfa46bfe8b8247cebe255b5117f0e6fffb23eda019121a56a12e7b8397e0",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017逐项递归契约/算法/异常与剩余边界，非运行证据"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-pdf-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017关联章节PDF02；局部补读非完整业务"
+        }
+      ],
+      "adapterRuntime": "actual isolated HTTP method and bytes verified",
+      "actualInvocations": [
+        {
+          "id": "IPC-42a70f50df5f",
+          "name": "desensitization:detect-route-only",
+          "method": "POST",
+          "path": "/documents/c21ade54-0dfd-408a-bc66-096b41630b05/detect-route-only",
+          "input": {
+            "revision": 0,
+            "format": "docx"
+          },
+          "responseStatus": 200,
+          "responseSha256": "58467252f56aaa5d5cb0c924cd057a94b2628deebc9712a97aa9d4dd5b6e505b",
+          "responseBytes": 1053,
+          "assertion": "Actual source extraction dispatch and every route output field returned, without detecting entities or persisting approval",
+          "positive": true
+        },
+        {
+          "id": "IPC-42a70f50df5f",
+          "name": "desensitization:detect-route-only",
+          "method": "POST",
+          "path": "/documents/473e53c6-7683-421e-9d02-ffadff63d028/detect-route-only",
+          "input": {
+            "revision": 0,
+            "format": "pdf"
+          },
+          "responseStatus": 200,
+          "responseSha256": "bb0ae8afa37037d3acbd614acc022418b0594013b13a82b82ac48b2f839ae29c",
+          "responseBytes": 934,
+          "assertion": "Actual source extraction dispatch and every route output field returned, without detecting entities or persisting approval",
+          "positive": true
+        },
+        {
+          "id": "IPC-42a70f50df5f",
+          "name": "desensitization:detect-route-only",
+          "method": "POST",
+          "path": "/documents/7594e365-d1c3-4786-b855-50a7efdd690d/detect-route-only",
+          "input": {
+            "revision": 0,
+            "format": "pdf"
+          },
+          "responseStatus": 200,
+          "responseSha256": "1b0772aa390a435254be5eea00ed89519f0e2f42dab1f28aa51aecb3a276edd4",
+          "responseBytes": 915,
+          "assertion": "Actual source extraction dispatch and every route output field returned, without detecting entities or persisting approval",
+          "positive": true
+        },
+        {
+          "id": "IPC-42a70f50df5f",
+          "name": "desensitization:detect-route-only",
+          "method": "POST",
+          "path": "/documents/14d2b0f7-06a9-4e1a-a34a-41513f81b4c3/detect-route-only",
+          "input": {
+            "revision": 0,
+            "format": "md"
+          },
+          "responseStatus": 200,
+          "responseSha256": "7494d7bc6d689e4e6bf46060278307aca2116e63fc99f2bb59ecf451f8825fe7",
+          "responseBytes": 769,
+          "assertion": "Actual source extraction dispatch and every route output field returned, without detecting entities or persisting approval",
+          "positive": true
+        },
+        {
+          "id": "IPC-42a70f50df5f",
+          "name": "desensitization:detect-route-only",
+          "method": "POST",
+          "path": "/documents/7663859c-4064-488e-9323-af447064e409/detect-route-only",
+          "input": {
+            "revision": 0,
+            "format": "png"
+          },
+          "responseStatus": 200,
+          "responseSha256": "f7a571cb1da0b31c9e06e5c353b33053719ff31e7b24154b34866db044f6bc3d",
+          "responseBytes": 935,
+          "assertion": "Actual source extraction dispatch and every route output field returned, without detecting entities or persisting approval",
+          "positive": true
+        }
+      ],
+      "positiveInvocations": 5,
+      "negativeInvocations": 0,
+      "sourceDomainBoundary": "Native dialog/file absolute paths are represented by authorized immutable IDs/relative ZIP paths; no Electron/OS/native licensed processing runtime equivalence claim"
+    },
+    {
+      "id": "IPC-85f474cad97a",
+      "name": "desensitization:generate-reports",
+      "sourceRuntime": "R0",
+      "nativeIPCInvoked": false,
+      "sourceContract": {
+        "inputAndFiltering": "results[],outputDir。",
+        "outputContract": "success:true,report,outputDir；catch success:false,error。",
+        "preconditions": "本handler无直接激活断言；输出目录可写。",
+        "persistentAndMemoryEffects": "su.generateReport/HtmlReport/ProcessingProof写JSON/HTML/MD；append userData/support/validation_log.csv。copy_export_test=blocked、page_continuity_check=pass、manual_ops_count=0为固定字段；OCR均值只来自输入results。",
+        "failureAndCancellation": "多文件顺序写，无事务；后一个失败前面的可能已存在；CSV错误吞掉。无任务取消。"
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 173,
+          "column": 33,
+          "note": "renderer:invoke",
+          "observation_id": "jag_observation_9637dd1275e1523b2a519709e64e891608e41c80446a6654bc500caf50ac07d5"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 18044,
+          "column": null,
+          "note": ""
+        },
+        {
+          "path": "文档/逆向台账/contracts/ipc-contract-index.json",
+          "line": null,
+          "column": null,
+          "note": "desensitization:generate-reports的参数/返回/异常/事件/捕获引用与调用位置"
+        },
+        {
+          "path": "文档/逆向台账/contracts/manual-workflow-contracts.json",
+          "line": null,
+          "column": null,
+          "note": "人工契约 desensitization:generate-reports"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/manual-ledger-recommendations.json",
+          "line": null,
+          "column": null,
+          "note": "校验通过的逐项关系推荐；未视为S3/R2"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 18044,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 18044,
+            "endLine": 18092,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "e7159c655e0fd6fe0cd780f008b0f581ab9165de7c63ffdd22715e6d39526c3b",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16759,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 16759,
+            "endLine": 16789,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "a33caf4010e37c5626d2587adca7997065f68155e30af27f297cde1f17ac76ac",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/ui-closure-b.json",
+          "line": null,
+          "column": null,
+          "note": "完整发布renderer入口专项逐项调查；当前快照已分类，S2/R0/I状态不提升"
+        },
+        {
+          "path": "文档/逆向台账/入口闭合交叉审查-20261013.md",
+          "line": null,
+          "column": null,
+          "note": "独立集合、调用及同名误匹配交叉审查；7个负向探针"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017逐项递归契约/算法/异常与剩余边界，非运行证据"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-supplement-rules-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017关联章节DPS10；局部补读非完整业务"
+        }
+      ],
+      "adapterRuntime": "actual isolated HTTP method and bytes verified",
+      "actualInvocations": [
+        {
+          "id": "IPC-85f474cad97a",
+          "name": "desensitization:generate-reports",
+          "method": "POST",
+          "path": "/processing-reports",
+          "input": {
+            "documents": [
+              {
+                "id": "f74d414f-e6cd-49b5-9de4-b38b05084f74",
+                "revision": 2
+              }
+            ]
+          },
+          "responseStatus": 200,
+          "responseSha256": "a37deccbd5d8dd02454ade27e6942668d50b0a22a8103016b4f7022bf0e0104e",
+          "responseBytes": 2794,
+          "assertion": "Real >1000-character valid relative path, source/output hash and actual successful artifact report persisted",
+          "positive": true
+        }
+      ],
+      "positiveInvocations": 1,
+      "negativeInvocations": 0,
+      "sourceDomainBoundary": "Native dialog/file absolute paths are represented by authorized immutable IDs/relative ZIP paths; no Electron/OS/native licensed processing runtime equivalence claim"
+    },
+    {
+      "id": "IPC-8c5afeb517e6",
+      "name": "desensitization:get-apply-result",
+      "sourceRuntime": "R0",
+      "nativeIPCInvoked": false,
+      "sourceContract": {
+        "inputAndFiltering": "requestId trim。",
+        "outputContract": "state:running/completed(receipt)/unknown。",
+        "preconditions": "receipt senderId 必须等于调用窗口 senderId。",
+        "persistentAndMemoryEffects": "仅内存回执查询，无写入；完成回执在后续写入时清理超15分钟/超过100项记录。",
+        "failureAndCancellation": "UI 传输中断匹配错误后 4 次500ms查询；未知则 APPLY_RESULT_UNCONFIRMED，锁住重复导出，可人工核对后解除。unknown 不代表无产物。"
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+          "line": 1,
+          "column": 817009,
+          "note": "main:handle",
+          "observation_id": "jag_observation_469037e2ce68c1576291a89517a562e0283fbdf85883f99ef1215685b09c3b33"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 172,
+          "column": 32,
+          "note": "renderer:invoke",
+          "observation_id": "jag_observation_7162b0b7926e88bed3b98680b9232f05d76b88b48c0ae10fe1d2e9440fbfe847"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17180,
+          "column": null,
+          "note": ""
+        },
+        {
+          "path": "文档/逆向台账/contracts/ipc-contract-index.json",
+          "line": null,
+          "column": null,
+          "note": "desensitization:get-apply-result的参数/返回/异常/事件/捕获引用与调用位置"
+        },
+        {
+          "path": "文档/逆向台账/contracts/manual-workflow-contracts.json",
+          "line": null,
+          "column": null,
+          "note": "人工契约 desensitization:get-apply-result"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/manual-ledger-recommendations.json",
+          "line": null,
+          "column": null,
+          "note": "校验通过的逐项关系推荐；未视为S3/R2"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 33795,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "startLine": 33795,
+            "endLine": 33889,
+            "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "sliceSha256": "cd1df6458546083df32afca79d55cab286e9d538aa6ebbf306c86cb6af951272",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17158,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 17158,
+            "endLine": 17183,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "d2563fcbf512f34e10e2fceb4a1082d448bffb605284fd59edf670631325e32a",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17409,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 17409,
+            "endLine": 17462,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "aa9a37d81fce61aefa28605da06878ddcfed676b9aba5bf5286cd0224aa1d64e",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017逐项递归契约/算法/异常与剩余边界，非运行证据"
+        },
+        {
+          "path": "文档/逆向台账/contracts/export-cancel-invariants-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-018条件化取消/覆盖/回执组合分析；未执行竞品"
+        }
+      ],
+      "adapterRuntime": "actual isolated HTTP method and bytes verified",
+      "actualInvocations": [
+        {
+          "id": "IPC-8c5afeb517e6",
+          "name": "desensitization:get-apply-result",
+          "method": "GET",
+          "path": "/documents/f74d414f-e6cd-49b5-9de4-b38b05084f74/outputs",
+          "input": {
+            "revision": 2
+          },
+          "responseStatus": 200,
+          "responseSha256": "63b701c9fbfe089a3e41398c5a64687169f32c370f65a190a525e72a42129233",
+          "responseBytes": 35,
+          "assertion": "Actual completed output-role receipts read after worker publication",
+          "positive": true
+        }
+      ],
+      "positiveInvocations": 1,
+      "negativeInvocations": 0,
+      "sourceDomainBoundary": "Native dialog/file absolute paths are represented by authorized immutable IDs/relative ZIP paths; no Electron/OS/native licensed processing runtime equivalence claim"
+    },
+    {
+      "id": "IPC-a09f09579955",
+      "name": "desensitization:get-markdown-export-stats",
+      "sourceRuntime": "R0",
+      "nativeIPCInvoked": false,
+      "sourceContract": {
+        "inputAndFiltering": "无参数。",
+        "outputContract": "Zf统计对象；读取缺失文件返回Zf([])，其他错误throw。",
+        "preconditions": "读userData/markdown-export.log，尾部最多2MiB；有截断时弃首条可能不完整行。",
+        "persistentAndMemoryEffects": "打开/关闭文件并聚合，不重新审查文档。",
+        "failureAndCancellation": "ENOENT不是故障；finally关闭handle，无取消。"
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+          "line": 1,
+          "column": 813518,
+          "note": "main:handle",
+          "observation_id": "jag_observation_52df9720fcd05ebfceed0dfdba292f1c7e81c0f72c1ab1e1ec6c9d9c56c1dc13"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 155,
+          "column": 36,
+          "note": "renderer:invoke",
+          "observation_id": "jag_observation_d93f92e84b5c767cc1eee3297814507b577790e3bab1008c81bd17345462cf60"
+        },
+        {
+          "path": "文档/逆向台账/contracts/ipc-contract-index.json",
+          "line": null,
+          "column": null,
+          "note": "desensitization:get-markdown-export-stats的参数/返回/异常/事件/捕获引用与调用位置"
+        },
+        {
+          "path": "文档/逆向台账/contracts/manual-workflow-contracts.json",
+          "line": null,
+          "column": null,
+          "note": "人工契约 desensitization:get-markdown-export-stats"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/manual-ledger-recommendations.json",
+          "line": null,
+          "column": null,
+          "note": "校验通过的逐项关系推荐；未视为S3/R2"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17059,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 17059,
+            "endLine": 17117,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "351c5015e4ea2c4a16b67bc13d513c6edf8b9fc71e221dd410d3953db9f92b3d",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/ui-closure-b.json",
+          "line": null,
+          "column": null,
+          "note": "完整发布renderer入口专项逐项调查；当前快照已分类，S2/R0/I状态不提升"
+        },
+        {
+          "path": "文档/逆向台账/入口闭合交叉审查-20261013.md",
+          "line": null,
+          "column": null,
+          "note": "独立集合、调用及同名误匹配交叉审查；7个负向探针"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017逐项递归契约/算法/异常与剩余边界，非运行证据"
+        },
+        {
+          "path": "文档/逆向台账/contracts/small-open-dependencies-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-018 SD04日志和统计补读"
+        }
+      ],
+      "adapterRuntime": "actual isolated HTTP method and bytes verified",
+      "actualInvocations": [
+        {
+          "id": "IPC-a09f09579955",
+          "name": "desensitization:get-markdown-export-stats",
+          "method": "GET",
+          "path": "/markdown-export-stats",
+          "input": {},
+          "responseStatus": 200,
+          "responseSha256": "7f3221beb551040f44ff7326aefbccc209209efdf7297e4ea638d2c7452cdc9a",
+          "responseBytes": 149,
+          "assertion": "Actual manual draft operation counted once, not a synthesized event",
+          "positive": true
+        }
+      ],
+      "positiveInvocations": 1,
+      "negativeInvocations": 0,
+      "sourceDomainBoundary": "Native dialog/file absolute paths are represented by authorized immutable IDs/relative ZIP paths; no Electron/OS/native licensed processing runtime equivalence claim"
+    },
+    {
+      "id": "IPC-7b3e67a5a715",
+      "name": "desensitization:get-resource-diagnostics",
+      "sourceRuntime": "R0",
+      "nativeIPCInvoked": false,
+      "sourceContract": {
+        "inputAndFiltering": "无参数。",
+        "outputContract": "sourceRefs/canonicalDocuments数量、managedSourcePaths、engineOcrCache、ocrDataCache(files/estimatedBytes/maxBytes)裸对象。",
+        "preconditions": "仅 !app.isPackaged 时注册；preload可暴露不代表生产可调用。",
+        "persistentAndMemoryEffects": "读内存统计，无持久写。",
+        "failureAndCancellation": "打包版没有handler，调用可能reject；无取消。"
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 154,
+          "column": 36,
+          "note": "renderer:invoke",
+          "observation_id": "jag_observation_3045301d3032b1907f1b05793a4203d6e0cba7f2690193b693c3c3ffb30aa650"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+          "line": 1,
+          "column": 811562,
+          "note": "main:handle",
+          "observation_id": "jag_observation_bc1c16fb659b5d0c3a4f014a4b1b483af3f465c9bfbc7fc134a5c3fbdabc281e"
+        },
+        {
+          "path": "文档/逆向台账/contracts/ipc-contract-index.json",
+          "line": null,
+          "column": null,
+          "note": "desensitization:get-resource-diagnostics的参数/返回/异常/事件/捕获引用与调用位置"
+        },
+        {
+          "path": "文档/逆向台账/contracts/manual-workflow-contracts.json",
+          "line": null,
+          "column": null,
+          "note": "人工契约 desensitization:get-resource-diagnostics"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/manual-ledger-recommendations.json",
+          "line": null,
+          "column": null,
+          "note": "校验通过的逐项关系推荐；未视为S3/R2"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17059,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 17059,
+            "endLine": 17117,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "351c5015e4ea2c4a16b67bc13d513c6edf8b9fc71e221dd410d3953db9f92b3d",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 15718,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 15718,
+            "endLine": 15912,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "00e2bfffe1409ca7d258397075fe286926de2daa758f116005ac7fd2a39143fe",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 15335,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 15335,
+            "endLine": 15375,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "f69b32ca0f5dd85459ce10adc8fced173efd6f4d07ef7cd6a34333d721b22375",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/ui-closure-a.json",
+          "line": null,
+          "column": null,
+          "note": "完整发布renderer入口专项逐项调查；当前快照已分类，S2/R0/I状态不提升"
+        },
+        {
+          "path": "文档/逆向台账/入口闭合交叉审查-20261013.md",
+          "line": null,
+          "column": null,
+          "note": "独立集合、调用及同名误匹配交叉审查；7个负向探针"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017逐项递归契约/算法/异常与剩余边界，非运行证据"
+        }
+      ],
+      "adapterRuntime": "actual isolated HTTP method and bytes verified",
+      "actualInvocations": [
+        {
+          "id": "IPC-7b3e67a5a715",
+          "name": "desensitization:get-resource-diagnostics",
+          "method": "GET",
+          "path": "/resource-diagnostics",
+          "input": {},
+          "responseStatus": 200,
+          "responseSha256": "09edcdc9f2676687701cda09d384cbd58b98f0fb3237d0d5fc70e6535af29e65",
+          "responseBytes": 739,
+          "assertion": "Real authorized document/job/page counts; absent native caches explicitly unavailable and server paths not disclosed",
+          "positive": true
+        }
+      ],
+      "positiveInvocations": 1,
+      "negativeInvocations": 0,
+      "sourceDomainBoundary": "Native dialog/file absolute paths are represented by authorized immutable IDs/relative ZIP paths; no Electron/OS/native licensed processing runtime equivalence claim"
+    },
+    {
+      "id": "IPC-58567733591e",
+      "name": "desensitization:page-processed",
+      "sourceRuntime": "R0",
+      "nativeIPCInvoked": false,
+      "sourceContract": {
+        "inputAndFiltering": "main→renderer；requestId/fileName/pageNumber、phase/matches/ocrCachePage等随格式变化。",
+        "outputContract": "preload onPageProcessed 转发并提供unsubscribe。",
+        "preconditions": "订阅存在；正式检测以任务ID匹配，旧处理未附ID。",
+        "persistentAndMemoryEffects": "主进程Af保存OCR页后发送；UI逐页合并检测结果供提前审查。",
+        "failureAndCancellation": "发送失败不撤销cache；取消可能已保留页结果；回调异常存在吞掉分支。"
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 184,
+          "column": 8,
+          "note": "renderer:on",
+          "observation_id": "jag_observation_541e9fc9484f02e7e5d015d57a5c8c862eb0f7414c651fc50b1b0cb8d5f474bc"
+        },
+        {
+          "path": "文档/逆向台账/contracts/ipc-contract-index.json",
+          "line": null,
+          "column": null,
+          "note": "desensitization:page-processed的参数/返回/异常/事件/捕获引用与调用位置"
+        },
+        {
+          "path": "文档/逆向台账/contracts/manual-workflow-contracts.json",
+          "line": null,
+          "column": null,
+          "note": "人工契约 desensitization:page-processed"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/manual-ledger-recommendations.json",
+          "line": null,
+          "column": null,
+          "note": "校验通过的逐项关系推荐；未视为S3/R2"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 34203,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "startLine": 34203,
+            "endLine": 34226,
+            "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "sliceSha256": "0e04a2b5f4fdfdd01da9208bb5da6ac33610a6de8de873b6ebe78aabc58a8852",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17196,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 17196,
+            "endLine": 17368,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "2638cdd033f80ca824c5b838e0f23771bc0b26972708f2cb90964e6d167cd553",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17950,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 17950,
+            "endLine": 18043,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "f762b488f3ebb763a49c532d68e5ec8fca78cc3bbcbde7d433e8a874b88b104b",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017逐项递归契约/算法/异常与剩余边界，非运行证据"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-pdf-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017关联章节PDF03,PDF04,PDF05；局部补读非完整业务"
+        }
+      ],
+      "adapterRuntime": "actual isolated HTTP method and bytes verified",
+      "actualInvocations": [
+        {
+          "id": "IPC-58567733591e",
+          "name": "desensitization:page-processed",
+          "method": "GET",
+          "path": "/jobs/d1fdc78d-41c9-4218-bb24-69a6439267ec/events",
+          "input": {
+            "limit": 1000
+          },
+          "responseStatus": 200,
+          "responseSha256": "9d5868ce9c3e5c4f66eec5c5075f18e8d1730de3ead57907571f61118599ddfd",
+          "responseBytes": 4320,
+          "assertion": "True running callbacks persisted before terminal completion; exact page payload, OCR boxes and pending matches, monotonic sequence, source/version/owner bound",
+          "positive": true
+        }
+      ],
+      "positiveInvocations": 1,
+      "negativeInvocations": 0,
+      "sourceDomainBoundary": "Native dialog/file absolute paths are represented by authorized immutable IDs/relative ZIP paths; no Electron/OS/native licensed processing runtime equivalence claim"
+    },
+    {
+      "id": "IPC-c1cec3199992",
+      "name": "desensitization:process-file-main",
+      "sourceRuntime": "R0",
+      "nativeIPCInvoked": false,
+      "sourceContract": {
+        "inputAndFiltering": "filePath、enabledRules、enableOCR/outputDir/mode/matches、可选假名/route/fullRedactRules；th过滤签名类。",
+        "outputContract": "success:true,result 或 false,error,result?；不保证提供实际outputPath。",
+        "preconditions": "直接激活断言；裸路径读取；仅docx/pdf/jpg/jpeg/png；enabledRules需forEach。",
+        "persistentAndMemoryEffects": "su处理；PDF事件发getAllWindows()[0]而非当前sender且无requestId；有desensitizedText/outputDir时尝试生成并写文件。",
+        "failureAndCancellation": "最终输出写入catch为空，仍可success:true；无n2注册/cancelSignal；不能用成功结果推断已生成文件。"
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 163,
+          "column": 33,
+          "note": "renderer:invoke",
+          "observation_id": "jag_observation_3ee564c39d161f3d24d73285be20bc50fd5af90ed08d853d4ded89127d1c3b06"
+        },
+        {
+          "path": "文档/逆向台账/contracts/ipc-contract-index.json",
+          "line": null,
+          "column": null,
+          "note": "desensitization:process-file-main的参数/返回/异常/事件/捕获引用与调用位置"
+        },
+        {
+          "path": "文档/逆向台账/contracts/manual-workflow-contracts.json",
+          "line": null,
+          "column": null,
+          "note": "人工契约 desensitization:process-file-main"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/manual-ledger-recommendations.json",
+          "line": null,
+          "column": null,
+          "note": "校验通过的逐项关系推荐；未视为S3/R2"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17950,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 17950,
+            "endLine": 18043,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "f762b488f3ebb763a49c532d68e5ec8fca78cc3bbcbde7d433e8a874b88b104b",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 14537,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 14537,
+            "endLine": 14549,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "2057d2129d8a6de57c64af4063894485ef1967fc44378521b8728d39cbeed121",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16759,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 16759,
+            "endLine": 16789,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "a33caf4010e37c5626d2587adca7997065f68155e30af27f297cde1f17ac76ac",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/ui-closure-b.json",
+          "line": null,
+          "column": null,
+          "note": "完整发布renderer入口专项逐项调查；当前快照已分类，S2/R0/I状态不提升"
+        },
+        {
+          "path": "文档/逆向台账/入口闭合交叉审查-20261013.md",
+          "line": null,
+          "column": null,
+          "note": "独立集合、调用及同名误匹配交叉审查；7个负向探针"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017逐项递归契约/算法/异常与剩余边界，非运行证据"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-pdf-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017关联章节PDF01,PDF02,PDF03,PDF04,PDF05,PDF06,PDF07,PDF08,PDF09；局部补读非完整业务"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-supplement-rules-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017关联章节DPS01,DPS02,DPS03,DPS04,DPS05,DPS06,DPS07,DPS09,DPS11,DPS12,DPS13,DPS14,DPS18,DPS19,DPS30,DPS31,DPS32,DPS33；局部补读非完整业务"
+        }
+      ],
+      "adapterRuntime": "actual isolated HTTP method and bytes verified",
+      "actualInvocations": [
+        {
+          "id": "IPC-c1cec3199992",
+          "name": "desensitization:process-file-main",
+          "method": "POST",
+          "path": "/documents/f74d414f-e6cd-49b5-9de4-b38b05084f74/export",
+          "input": {
+            "revision": 2
+          },
+          "responseStatus": 200,
+          "responseSha256": "b32512fe457504d204c726e63e7ac64524eb2667c6ac533087a8d09d0e96ce73",
+          "responseBytes": 45,
+          "assertion": "Saved reviewed marks applied by actual export worker, verified signed artifact downloaded, original immutable; per-name cloud contract stated separately",
+          "positive": true
+        }
+      ],
+      "positiveInvocations": 1,
+      "negativeInvocations": 0,
+      "sourceDomainBoundary": "Native dialog/file absolute paths are represented by authorized immutable IDs/relative ZIP paths; no Electron/OS/native licensed processing runtime equivalence claim"
+    },
+    {
+      "id": "IPC-27dd16394cd6",
+      "name": "desensitization:process-files",
+      "sourceRuntime": "R0",
+      "nativeIPCInvoked": false,
+      "sourceContract": {
+        "inputAndFiltering": "filePaths,options.outputDir；解构在内层处理 try 外。",
+        "outputContract": "success:true,outputDir,results[fileName,fileType,filePath,buffer或error]；可部分失败。",
+        "preconditions": "直接激活断言；本地文件可读。",
+        "persistentAndMemoryEffects": "创建时间戳输出目录与已脱敏子目录，只 readFile 并返回字节；这里没有执行检测/脱敏。",
+        "failureAndCancellation": "逐文件失败被收集；建目录后读取失败不会删除目录；无 requestId/cancel。"
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 157,
+          "column": 33,
+          "note": "renderer:invoke",
+          "observation_id": "jag_observation_425961299a1444788e5cc96a3191c9a109db99cee5dea353dff3d676617efc27"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+          "line": 1,
+          "column": 812151,
+          "note": "main:handle",
+          "observation_id": "jag_observation_a6a375768ac373237699c08af61f94771ab831cf413340543171c89553875bd3"
+        },
+        {
+          "path": "文档/逆向台账/contracts/ipc-contract-index.json",
+          "line": null,
+          "column": null,
+          "note": "desensitization:process-files的参数/返回/异常/事件/捕获引用与调用位置"
+        },
+        {
+          "path": "文档/逆向台账/contracts/manual-workflow-contracts.json",
+          "line": null,
+          "column": null,
+          "note": "人工契约 desensitization:process-files"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/manual-ledger-recommendations.json",
+          "line": null,
+          "column": null,
+          "note": "校验通过的逐项关系推荐；未视为S3/R2"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17073,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 17073,
+            "endLine": 17107,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "e5a9d260ae3b6280c130ecd09191f3b1d3ba072798ff7184014ff1886f95cf62",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/ui-closure-a.json",
+          "line": null,
+          "column": null,
+          "note": "完整发布renderer入口专项逐项调查；当前快照已分类，S2/R0/I状态不提升"
+        },
+        {
+          "path": "文档/逆向台账/入口闭合交叉审查-20261013.md",
+          "line": null,
+          "column": null,
+          "note": "独立集合、调用及同名误匹配交叉审查；7个负向探针"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017逐项递归契约/算法/异常与剩余边界，非运行证据"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-pdf-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017关联章节PDF01,PDF04,PDF05；局部补读非完整业务"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-supplement-rules-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017关联章节DPS01,DPS02,DPS03,DPS04,DPS05,DPS06,DPS07,DPS09,DPS11,DPS12,DPS13,DPS14；局部补读非完整业务"
+        }
+      ],
+      "adapterRuntime": "actual isolated HTTP method and bytes verified",
+      "actualInvocations": [
+        {
+          "id": "IPC-27dd16394cd6",
+          "name": "desensitization:process-files",
+          "method": "GET",
+          "path": "/upload-batches/570030c9-5056-4d9a-8876-61755826f2d2",
+          "input": {},
+          "responseStatus": 200,
+          "responseSha256": "2abe5a40b4ccfe35f33b51885ca96f943b2e2c10190852bf7e764fe544978641",
+          "responseBytes": 1743,
+          "assertion": "Three real file jobs resolve to detected/detected/cancelled under one authorized batch; not merely manifest registration",
+          "positive": true
+        }
+      ],
+      "positiveInvocations": 1,
+      "negativeInvocations": 0,
+      "sourceDomainBoundary": "Native dialog/file absolute paths are represented by authorized immutable IDs/relative ZIP paths; no Electron/OS/native licensed processing runtime equivalence claim"
+    },
+    {
+      "id": "IPC-8fc7e5c07051",
+      "name": "desensitization:progress",
+      "sourceRuntime": "R0",
+      "nativeIPCInvoked": false,
+      "sourceContract": {
+        "inputAndFiltering": "main→renderer事件，不是invoke请求；payload格式随检测/导出/旧单文件流程变化。",
+        "outputContract": "preload listener转发(_event,update)，返回unsubscribe移除listener。",
+        "preconditions": "renderer注册监听；UI常按requestId/fileName筛选，apply按sequence去重。",
+        "persistentAndMemoryEffects": "更新UI进度、Markdown增量候选、心跳；无通道自身持久写。",
+        "failureAndCancellation": "发送异常多数吞掉；done不是最终落盘回执；旧process-file-main无requestId会被现行过滤忽略。"
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 176,
+          "column": 8,
+          "note": "renderer:on",
+          "observation_id": "jag_observation_af0e7cfeaab8e82891753d2d0d283595af21de3946de7ede500226b8390bc3d7"
+        },
+        {
+          "path": "文档/逆向台账/contracts/ipc-contract-index.json",
+          "line": null,
+          "column": null,
+          "note": "desensitization:progress的参数/返回/异常/事件/捕获引用与调用位置"
+        },
+        {
+          "path": "文档/逆向台账/contracts/manual-workflow-contracts.json",
+          "line": null,
+          "column": null,
+          "note": "人工契约 desensitization:progress"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/manual-ledger-recommendations.json",
+          "line": null,
+          "column": null,
+          "note": "校验通过的逐项关系推荐；未视为S3/R2"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 31803,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "startLine": 31803,
+            "endLine": 31835,
+            "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "sliceSha256": "746f726fd5f38af7e1ecf0780a2f10468217c5821cd1764ac2c178a329999a55",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17196,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 17196,
+            "endLine": 17368,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "2638cdd033f80ca824c5b838e0f23771bc0b26972708f2cb90964e6d167cd553",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17409,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 17409,
+            "endLine": 17462,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "aa9a37d81fce61aefa28605da06878ddcfed676b9aba5bf5286cd0224aa1d64e",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17950,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 17950,
+            "endLine": 18043,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "f762b488f3ebb763a49c532d68e5ec8fca78cc3bbcbde7d433e8a874b88b104b",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017逐项递归契约/算法/异常与剩余边界，非运行证据"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-pdf-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017关联章节PDF01,PDF03,PDF04；局部补读非完整业务"
+        }
+      ],
+      "adapterRuntime": "actual isolated HTTP method and bytes verified",
+      "actualInvocations": [
+        {
+          "id": "IPC-8fc7e5c07051",
+          "name": "desensitization:progress",
+          "method": "GET",
+          "path": "/jobs/d1fdc78d-41c9-4218-bb24-69a6439267ec/events",
+          "input": {
+            "limit": 1000
+          },
+          "responseStatus": 200,
+          "responseSha256": "9d5868ce9c3e5c4f66eec5c5075f18e8d1730de3ead57907571f61118599ddfd",
+          "responseBytes": 4320,
+          "assertion": "True running callbacks persisted before terminal completion; exact page payload, OCR boxes and pending matches, monotonic sequence, source/version/owner bound",
+          "positive": true
+        }
+      ],
+      "positiveInvocations": 1,
+      "negativeInvocations": 0,
+      "sourceDomainBoundary": "Native dialog/file absolute paths are represented by authorized immutable IDs/relative ZIP paths; no Electron/OS/native licensed processing runtime equivalence claim"
+    },
+    {
+      "id": "IPC-a07c3fdcbe45",
+      "name": "desensitization:read-file",
+      "sourceRuntime": "R0",
+      "nativeIPCInvoked": false,
+      "sourceContract": {
+        "inputAndFiltering": "裸 filePath 字符串。",
+        "outputContract": "success:true,data:Uint8Array,fileName,fileType；失败success:false,error。",
+        "preconditions": "fs.readFile可访问；无sourceRef/直接激活/本handler sender检查。",
+        "persistentAndMemoryEffects": "读整个文件进内存，复制buffer给renderer；无持久写。",
+        "failureAndCancellation": "fs异常包装；无大小上限/取消任务见于此handler。"
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+          "line": 1,
+          "column": 811812,
+          "note": "main:handle",
+          "observation_id": "jag_observation_4df0d23383d979907fb18a0c2b7a7c9773bb528e59cce3b426ed7554de0aeacc"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 156,
+          "column": 30,
+          "note": "renderer:invoke",
+          "observation_id": "jag_observation_51e4925d2fab663c0f2b4905031016b6d4cad7bc23acee7f6b1d8cc78460361a"
+        },
+        {
+          "path": "文档/逆向台账/contracts/ipc-contract-index.json",
+          "line": null,
+          "column": null,
+          "note": "desensitization:read-file的参数/返回/异常/事件/捕获引用与调用位置"
+        },
+        {
+          "path": "文档/逆向台账/contracts/manual-workflow-contracts.json",
+          "line": null,
+          "column": null,
+          "note": "人工契约 desensitization:read-file"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/manual-ledger-recommendations.json",
+          "line": null,
+          "column": null,
+          "note": "校验通过的逐项关系推荐；未视为S3/R2"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17059,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 17059,
+            "endLine": 17117,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "351c5015e4ea2c4a16b67bc13d513c6edf8b9fc71e221dd410d3953db9f92b3d",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/ui-closure-b.json",
+          "line": null,
+          "column": null,
+          "note": "完整发布renderer入口专项逐项调查；当前快照已分类，S2/R0/I状态不提升"
+        },
+        {
+          "path": "文档/逆向台账/入口闭合交叉审查-20261013.md",
+          "line": null,
+          "column": null,
+          "note": "独立集合、调用及同名误匹配交叉审查；7个负向探针"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017逐项递归契约/算法/异常与剩余边界，非运行证据"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-supplement-rules-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017关联章节DPS17；局部补读非完整业务"
+        }
+      ],
+      "adapterRuntime": "actual isolated HTTP method and bytes verified",
+      "actualInvocations": [
+        {
+          "id": "IPC-a07c3fdcbe45",
+          "name": "desensitization:read-file",
+          "method": "GET",
+          "path": "/documents/f74d414f-e6cd-49b5-9de4-b38b05084f74",
+          "input": {},
+          "responseStatus": 200,
+          "responseSha256": "2c70e4b013af7cb95d5a6ac69d1f8c31d56ba5d97edeeede77d42cd4bd11cf96",
+          "responseBytes": 2101,
+          "assertion": "Authorized canonical document and pending recognition candidates loaded",
+          "positive": true
+        }
+      ],
+      "positiveInvocations": 1,
+      "negativeInvocations": 0,
+      "sourceDomainBoundary": "Native dialog/file absolute paths are represented by authorized immutable IDs/relative ZIP paths; no Electron/OS/native licensed processing runtime equivalence claim"
+    },
+    {
+      "id": "IPC-f071ce7c965b",
+      "name": "desensitization:read-source",
+      "sourceRuntime": "R0",
+      "nativeIPCInvoked": false,
+      "sourceContract": {
+        "inputAndFiltering": "sourceRef.id 必填；可指定展示用 fileName；registry 不接受裸路径作为 resolve 替代。",
+        "outputContract": "success:true,fileName,data:Uint8Array（独立 buffer slice）；失败 success:false,error。",
+        "preconditions": "registry 记录有效；provider 流读取必须恰好满足登记 size；受保护 provider 下游可能要求解锁。",
+        "persistentAndMemoryEffects": "UI 单/批预览缓存 originalBuffer；registry 更新时间/hash；缺临时源时可能重新复制原路径。",
+        "failureAndCancellation": "UI 30 秒 readSource timeout 未取消文件读取；错误不应被解释为空文档。"
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+          "line": 1,
+          "column": 811229,
+          "note": "main:handle",
+          "observation_id": "jag_observation_5ac0902583a90e5a580a181cd3946eeba100b53d546cb7fc758679252792d477"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 153,
+          "column": 28,
+          "note": "renderer:invoke",
+          "observation_id": "jag_observation_894e2233a27b5d8180c236a2d6d9522b151c2d85900fe1b2f01dcb56be3b1986"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17059,
+          "column": null,
+          "note": ""
+        },
+        {
+          "path": "文档/逆向台账/contracts/ipc-contract-index.json",
+          "line": null,
+          "column": null,
+          "note": "desensitization:read-source的参数/返回/异常/事件/捕获引用与调用位置"
+        },
+        {
+          "path": "文档/逆向台账/contracts/manual-workflow-contracts.json",
+          "line": null,
+          "column": null,
+          "note": "人工契约 desensitization:read-source"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/manual-ledger-recommendations.json",
+          "line": null,
+          "column": null,
+          "note": "校验通过的逐项关系推荐；未视为S3/R2"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 34071,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "startLine": 34071,
+            "endLine": 34095,
+            "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "sliceSha256": "84f3824072f5b0dfc1e9c6c24b5d6d4cf07be69ee0318c8c1661527448cbec88",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 3733,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "startLine": 3733,
+            "endLine": 3887,
+            "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "sliceSha256": "490ab412fc5ae7126742321540c92bf276e48ccbacf761dbcad916e15c651e83",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16981,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 16981,
+            "endLine": 17072,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "df3afed3fa99ed243b8228beaf6f2f5443dd7050c4142514b2f211eca305e727",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 15718,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 15718,
+            "endLine": 15912,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "00e2bfffe1409ca7d258397075fe286926de2daa758f116005ac7fd2a39143fe",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017逐项递归契约/算法/异常与剩余边界，非运行证据"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-supplement-rules-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017关联章节DPS15；局部补读非完整业务"
+        }
+      ],
+      "adapterRuntime": "actual isolated HTTP method and bytes verified",
+      "actualInvocations": [
+        {
+          "id": "IPC-f071ce7c965b",
+          "name": "desensitization:read-source",
+          "method": "GET",
+          "path": "/processing-resources/cc0e2ace-7420-45d8-8ba3-6676c85d4b0f",
+          "input": {},
+          "responseStatus": 200,
+          "responseSha256": "906e3f60deebc2df90b19647e0d76f648cd0c2f9b3c1df8c4960b99ea4c684c6",
+          "responseBytes": 23,
+          "assertion": "Actual authenticated original bytes, exact name and source SHA returned through session-bound lease",
+          "positive": true
+        }
+      ],
+      "positiveInvocations": 1,
+      "negativeInvocations": 0,
+      "sourceDomainBoundary": "Native dialog/file absolute paths are represented by authorized immutable IDs/relative ZIP paths; no Electron/OS/native licensed processing runtime equivalence claim"
+    },
+    {
+      "id": "IPC-8f1caa190dda",
+      "name": "desensitization:register-source",
+      "sourceRuntime": "R0",
+      "nativeIPCInvoked": false,
+      "sourceContract": {
+        "inputAndFiltering": "filePath 或非空 fileBuffer，fileName；路径 normalize；bytes 支持 Buffer/ArrayBuffer/view/array。legacy .doc/.wps 可转换为内部 DOCX。",
+        "outputContract": "success:true,sourceRef；可带 needsPassword/legacyOffice/internalDocxReused；失败 error 与可选 errorCode。",
+        "preconditions": "路径必须 stat.isFile；buffer 必须非空；本 handler 无直接激活断言。",
+        "persistentAndMemoryEffects": "普通路径复制进 safeTemp/lawbot-source-registry/<pid-uuid>；bytes 写临时文件并 SHA256；路径重复登记复用 Map 引用，并不重新复制。legacy 元信息另存 Map。",
+        "failureAndCancellation": "异常包装失败；resolve 时临时文件缺失可从原路径重复制并清空旧 hash，因此 sourceRef 不等同永久内容寻址。登记中途 I/O 失败的孤立临时文件清理未证闭合。"
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+          "line": 1,
+          "column": 807484,
+          "note": "main:handle",
+          "observation_id": "jag_observation_2b4162a70e86f9dc33383d468b7d385c2b92d188d9431c7bf4baefe204ae23dc"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 150,
+          "column": 32,
+          "note": "renderer:invoke",
+          "observation_id": "jag_observation_6b72ea03dcc1d86ecc3c122487a86ee65978e2d0fb2365a52082686b39baad41"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16981,
+          "column": null,
+          "note": ""
+        },
+        {
+          "path": "文档/逆向台账/contracts/ipc-contract-index.json",
+          "line": null,
+          "column": null,
+          "note": "desensitization:register-source的参数/返回/异常/事件/捕获引用与调用位置"
+        },
+        {
+          "path": "文档/逆向台账/contracts/manual-workflow-contracts.json",
+          "line": null,
+          "column": null,
+          "note": "人工契约 desensitization:register-source"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/manual-ledger-recommendations.json",
+          "line": null,
+          "column": null,
+          "note": "校验通过的逐项关系推荐；未视为S3/R2"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 31552,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "startLine": 31552,
+            "endLine": 31640,
+            "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "sliceSha256": "d088282b690a8c615db8a7f008772e91ab7bf889797b43474a0b1269cf88ee38",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16981,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 16981,
+            "endLine": 17072,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "df3afed3fa99ed243b8228beaf6f2f5443dd7050c4142514b2f211eca305e727",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 15718,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 15718,
+            "endLine": 15912,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "00e2bfffe1409ca7d258397075fe286926de2daa758f116005ac7fd2a39143fe",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017逐项递归契约/算法/异常与剩余边界，非运行证据"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-supplement-rules-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017关联章节DPS15,DPS18；局部补读非完整业务"
+        }
+      ],
+      "adapterRuntime": "actual isolated HTTP method and bytes verified",
+      "actualInvocations": [
+        {
+          "id": "IPC-8f1caa190dda",
+          "name": "desensitization:register-source",
+          "method": "POST",
+          "path": "/api/projects/62e9eb4d-abef-4ab9-96a2-3bde21dc3759/files?batchId=570030c9-5056-4d9a-8876-61755826f2d2&requestId=abf40419-4421-4719-b764-7d5c8c20eaa5",
+          "input": {
+            "sourceHash": "7afe4e1a404af34cf73b8f3e9e00060ecaf628fdf63e8e47de8f0e1ef867b2e3"
+          },
+          "responseStatus": 400,
+          "responseSha256": "d96b1d26cb1fa6742d93e5561d272daace79d5bb07302f6e604fdf65e98cf71f",
+          "responseBytes": 30,
+          "assertion": "Declared SHA binds exact immutable source bytes; mismatch rejected",
+          "positive": false
+        },
+        {
+          "id": "IPC-8f1caa190dda",
+          "name": "desensitization:register-source",
+          "method": "POST",
+          "path": "/api/projects/62e9eb4d-abef-4ab9-96a2-3bde21dc3759/files?batchId=570030c9-5056-4d9a-8876-61755826f2d2&requestId=abf40419-4421-4719-b764-7d5c8c20eaa5",
+          "input": {
+            "bytes": 23,
+            "sha256": "906e3f60deebc2df90b19647e0d76f648cd0c2f9b3c1df8c4960b99ea4c684c6"
+          },
+          "responseStatus": 200,
+          "responseSha256": "d31e35286ad8e15dfd54784749407c67170a1344720f16a990bedc3b7bfaebb3",
+          "responseBytes": 45,
+          "assertion": "Actual upload persisted immutable source and queued detect job",
+          "positive": true
+        },
+        {
+          "id": "IPC-8f1caa190dda",
+          "name": "desensitization:register-source",
+          "method": "POST",
+          "path": "/api/projects/62e9eb4d-abef-4ab9-96a2-3bde21dc3759/files?batchId=570030c9-5056-4d9a-8876-61755826f2d2&requestId=c6b33656-af69-4906-9405-7142ef610ad3",
+          "input": {
+            "bytes": 26,
+            "sha256": "35980df2d14c368a6b8bce628dbcb033f7a4eab207f02764061ab69aba38dbf7"
+          },
+          "responseStatus": 200,
+          "responseSha256": "3127bf12bb4e079038da9485a37d0da2235611e4c84c6bf869f40d609f781e1f",
+          "responseBytes": 45,
+          "assertion": "Actual upload persisted immutable source and queued detect job",
+          "positive": true
+        },
+        {
+          "id": "IPC-8f1caa190dda",
+          "name": "desensitization:register-source",
+          "method": "POST",
+          "path": "/api/projects/62e9eb4d-abef-4ab9-96a2-3bde21dc3759/files?batchId=570030c9-5056-4d9a-8876-61755826f2d2&requestId=2afb765f-e829-4384-99a9-9eec5f2f2f31",
+          "input": {
+            "bytes": 23,
+            "sha256": "906e3f60deebc2df90b19647e0d76f648cd0c2f9b3c1df8c4960b99ea4c684c6"
+          },
+          "responseStatus": 200,
+          "responseSha256": "144d5bc4efa6d373f335d03f9e95ee332d74cbd43efca220a59fb38085738ab5",
+          "responseBytes": 45,
+          "assertion": "Actual upload persisted immutable source and queued detect job",
+          "positive": true
+        }
+      ],
+      "positiveInvocations": 3,
+      "negativeInvocations": 1,
+      "sourceDomainBoundary": "Native dialog/file absolute paths are represented by authorized immutable IDs/relative ZIP paths; no Electron/OS/native licensed processing runtime equivalence claim"
+    },
+    {
+      "id": "IPC-d9b14aa97589",
+      "name": "desensitization:release-sources",
+      "sourceRuntime": "R0",
+      "nativeIPCInvoked": false,
+      "sourceContract": {
+        "inputAndFiltering": "sourceIds 数组，经字符串归一化。",
+        "outputContract": "success:true,released,removedEngineCaches；provider.close 抛错可直接 reject（handler 无统一 catch）。",
+        "preconditions": "按 registry ID；本层未显示 sender 归属检查。",
+        "persistentAndMemoryEffects": "移除 registry/path Map，关闭 provider、删除 managedPath；清理 canonical/legacy/originalPath、source OCR 和相应 engine 缓存；不会删除原始路径。",
+        "failureAndCancellation": "registry 先移除再 provider.close；close 失败可中断后续清理；临时文件 rm 失败仅 warn。UI Bn2 catch 返回 0，不能据 0 判断已恢复原状态。"
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 152,
+          "column": 32,
+          "note": "renderer:invoke",
+          "observation_id": "jag_observation_a56b64daa45e44e8b43d6122a5c11c335668d4acc641eaca8151be0563846fc7"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+          "line": 1,
+          "column": 810727,
+          "note": "main:handle",
+          "observation_id": "jag_observation_ebfb487f1936169e6c75852bf9f8b38520ae6916c2dedabd3c2b4751f463ac5d"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17047,
+          "column": null,
+          "note": ""
+        },
+        {
+          "path": "文档/逆向台账/contracts/ipc-contract-index.json",
+          "line": null,
+          "column": null,
+          "note": "desensitization:release-sources的参数/返回/异常/事件/捕获引用与调用位置"
+        },
+        {
+          "path": "文档/逆向台账/contracts/manual-workflow-contracts.json",
+          "line": null,
+          "column": null,
+          "note": "人工契约 desensitization:release-sources"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/manual-ledger-recommendations.json",
+          "line": null,
+          "column": null,
+          "note": "校验通过的逐项关系推荐；未视为S3/R2"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 31552,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "startLine": 31552,
+            "endLine": 31640,
+            "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "sliceSha256": "d088282b690a8c615db8a7f008772e91ab7bf889797b43474a0b1269cf88ee38",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16981,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 16981,
+            "endLine": 17072,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "df3afed3fa99ed243b8228beaf6f2f5443dd7050c4142514b2f211eca305e727",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 15718,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 15718,
+            "endLine": 15912,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "00e2bfffe1409ca7d258397075fe286926de2daa758f116005ac7fd2a39143fe",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017逐项递归契约/算法/异常与剩余边界，非运行证据"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-supplement-rules-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017关联章节DPS15；局部补读非完整业务"
+        }
+      ],
+      "adapterRuntime": "actual isolated HTTP method and bytes verified",
+      "actualInvocations": [
+        {
+          "id": "IPC-d9b14aa97589",
+          "name": "desensitization:release-sources",
+          "method": "POST",
+          "path": "/release-sources",
+          "input": {
+            "resourceIds": [
+              "cc0e2ace-7420-45d8-8ba3-6676c85d4b0f"
+            ]
+          },
+          "responseStatus": 200,
+          "responseSha256": "5117e97d59af7b9603dcb7eb698404788cd19eb323ddf418c9489e5429f87c8b",
+          "responseBytes": 53,
+          "assertion": "Only session-owned temporary source reference released once; native engine cache count truthfully zero",
+          "positive": true
+        }
+      ],
+      "positiveInvocations": 1,
+      "negativeInvocations": 0,
+      "sourceDomainBoundary": "Native dialog/file absolute paths are represented by authorized immutable IDs/relative ZIP paths; no Electron/OS/native licensed processing runtime equivalence claim"
+    },
+    {
+      "id": "IPC-3bea45842355",
+      "name": "desensitization:resolve-folder-output-path",
+      "sourceRuntime": "R0",
+      "nativeIPCInvoked": false,
+      "sourceContract": {
+        "inputAndFiltering": "exportSessionId,relativePath；Uf拒绝空/NUL/绝对路径/盘符、空组件/./../非法字符和根外解析。",
+        "outputContract": "success:true,outputPath；会话过期或路径非法 success:false,error。",
+        "preconditions": "w2 中12小时内输出会话。",
+        "persistentAndMemoryEffects": "仅字符串路径解析，无创建目录或写文件。",
+        "failureAndCancellation": "没有任务取消；会话失效提示重选保存位置。"
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 146,
+          "column": 41,
+          "note": "renderer:invoke",
+          "observation_id": "jag_observation_191765946dee1004ba50f2000c7f768700f5af6279fe79b4110dee079d872e14"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+          "line": 1,
+          "column": 802483,
+          "note": "main:handle",
+          "observation_id": "jag_observation_5f177611f8dc38f8b6d3907a58b9dfc36862c01bc312ee91c2c1a588f9356036"
+        },
+        {
+          "path": "文档/逆向台账/contracts/ipc-contract-index.json",
+          "line": null,
+          "column": null,
+          "note": "desensitization:resolve-folder-output-path的参数/返回/异常/事件/捕获引用与调用位置"
+        },
+        {
+          "path": "文档/逆向台账/contracts/manual-workflow-contracts.json",
+          "line": null,
+          "column": null,
+          "note": "人工契约 desensitization:resolve-folder-output-path"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/manual-ledger-recommendations.json",
+          "line": null,
+          "column": null,
+          "note": "校验通过的逐项关系推荐；未视为S3/R2"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16926,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 16926,
+            "endLine": 16974,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "e7aa001fd07e9e10df69b158c4b914018342664dff9b138086b20b25e51e9b9e",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 15385,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 15385,
+            "endLine": 15438,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "7234e66393eb1ac4c8c43ed7a9655a0cea37de6b5d064e8beeb7d9c041194edd",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 36182,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "startLine": 36182,
+            "endLine": 36186,
+            "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "sliceSha256": "cec88f26a2fee701c642d4aa111fe8bbcd24269f7b76778ca9cb77817630091d",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017逐项递归契约/算法/异常与剩余边界，非运行证据"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-supplement-rules-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017关联章节DPS16；局部补读非完整业务"
+        }
+      ],
+      "adapterRuntime": "actual isolated HTTP method and bytes verified",
+      "actualInvocations": [
+        {
+          "id": "IPC-3bea45842355",
+          "name": "desensitization:resolve-folder-output-path",
+          "method": "POST",
+          "path": "/api/projects/62e9eb4d-abef-4ab9-96a2-3bde21dc3759/folder-exports/e7e80c42-522a-4e8d-b5fd-9c6e4292bb3f/resolve",
+          "input": {
+            "revision": 0,
+            "relativePath": "材料/电话.txt"
+          },
+          "responseStatus": 200,
+          "responseSha256": "8e8630e03d933675dab5e721127770599e2f69a57680f1816be3e63a433e8246",
+          "responseBytes": 109,
+          "assertion": "Actual session-root joined logical ZIP path, strict safe relative-path semantics without server path",
+          "positive": true
+        }
+      ],
+      "positiveInvocations": 1,
+      "negativeInvocations": 0,
+      "sourceDomainBoundary": "Native dialog/file absolute paths are represented by authorized immutable IDs/relative ZIP paths; no Electron/OS/native licensed processing runtime equivalence claim"
+    },
+    {
+      "id": "IPC-f1f713df2b98",
+      "name": "desensitization:save-file",
+      "sourceRuntime": "R0",
+      "nativeIPCInvoked": false,
+      "sourceContract": {
+        "inputAndFiltering": "outputDir,fileName,content,type(buffer/text)。",
+        "outputContract": "success:true,outputPath 或 false,error。",
+        "preconditions": "直接激活断言。",
+        "persistentAndMemoryEffects": "A2 写 outputDir/已脱敏/fileName；不自己核验输入 content 已脱敏。",
+        "failureAndCancellation": "写入失败返回错误；默认 writeFile 可覆盖同名，无取消/回执。"
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+          "line": 1,
+          "column": 813089,
+          "note": "main:handle",
+          "observation_id": "jag_observation_18d9a11baa5448dce7779d4638c52d2a8153b44af60308337b77ad952ec0ee28"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 158,
+          "column": 26,
+          "note": "renderer:invoke",
+          "observation_id": "jag_observation_37ef9ea34cf3f2567dffd56903371a82bd481e8dd07974e8e9c3f93666f14133"
+        },
+        {
+          "path": "文档/逆向台账/contracts/ipc-contract-index.json",
+          "line": null,
+          "column": null,
+          "note": "desensitization:save-file的参数/返回/异常/事件/捕获引用与调用位置"
+        },
+        {
+          "path": "文档/逆向台账/contracts/manual-workflow-contracts.json",
+          "line": null,
+          "column": null,
+          "note": "人工契约 desensitization:save-file"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/manual-ledger-recommendations.json",
+          "line": null,
+          "column": null,
+          "note": "校验通过的逐项关系推荐；未视为S3/R2"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17073,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 17073,
+            "endLine": 17107,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "e5a9d260ae3b6280c130ecd09191f3b1d3ba072798ff7184014ff1886f95cf62",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16759,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 16759,
+            "endLine": 16789,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "a33caf4010e37c5626d2587adca7997065f68155e30af27f297cde1f17ac76ac",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/ui-closure-b.json",
+          "line": null,
+          "column": null,
+          "note": "完整发布renderer入口专项逐项调查；当前快照已分类，S2/R0/I状态不提升"
+        },
+        {
+          "path": "文档/逆向台账/入口闭合交叉审查-20261013.md",
+          "line": null,
+          "column": null,
+          "note": "独立集合、调用及同名误匹配交叉审查；7个负向探针"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017逐项递归契约/算法/异常与剩余边界，非运行证据"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-supplement-rules-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017关联章节DPS17；局部补读非完整业务"
+        }
+      ],
+      "adapterRuntime": "actual isolated HTTP method and bytes verified",
+      "actualInvocations": [
+        {
+          "id": "IPC-f1f713df2b98",
+          "name": "desensitization:save-file",
+          "method": "POST",
+          "path": "/documents/f74d414f-e6cd-49b5-9de4-b38b05084f74/export",
+          "input": {
+            "revision": 2
+          },
+          "responseStatus": 200,
+          "responseSha256": "b32512fe457504d204c726e63e7ac64524eb2667c6ac533087a8d09d0e96ce73",
+          "responseBytes": 45,
+          "assertion": "Saved reviewed marks applied by actual export worker, verified signed artifact downloaded, original immutable; per-name cloud contract stated separately",
+          "positive": true
+        }
+      ],
+      "positiveInvocations": 1,
+      "negativeInvocations": 0,
+      "sourceDomainBoundary": "Native dialog/file absolute paths are represented by authorized immutable IDs/relative ZIP paths; no Electron/OS/native licensed processing runtime equivalence claim"
+    },
+    {
+      "id": "IPC-629ace0aecd1",
+      "name": "desensitization:save-markdown-draft",
+      "sourceRuntime": "R0",
+      "nativeIPCInvoked": false,
+      "sourceContract": {
+        "inputAndFiltering": "outputPath 需 .md，content 字符串非空；重命名 _待人工处理稿.md。",
+        "outputContract": "success:true,outputPath 或 false,error。",
+        "preconditions": "直接激活断言。",
+        "persistentAndMemoryEffects": "prepend 未通过自动脱敏检查警告，A2 写文件，Cp 记录 degraded/manual-draft。",
+        "failureAndCancellation": "若写后日志失败可回失败而文件已存在；这份草稿不等同安全脱敏结果，无 task cancel。"
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 159,
+          "column": 35,
+          "note": "renderer:invoke",
+          "observation_id": "jag_observation_197b3b83bbcb7c0dad9f8f8f5b79724249fb5b243450b79e558dee1579444f4c"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+          "line": 1,
+          "column": 813999,
+          "note": "main:handle",
+          "observation_id": "jag_observation_a59cd0068dd37df6bc18984ee740802562fdc10e9edb526b998618d8a696f966"
+        },
+        {
+          "path": "文档/逆向台账/contracts/ipc-contract-index.json",
+          "line": null,
+          "column": null,
+          "note": "desensitization:save-markdown-draft的参数/返回/异常/事件/捕获引用与调用位置"
+        },
+        {
+          "path": "文档/逆向台账/contracts/manual-workflow-contracts.json",
+          "line": null,
+          "column": null,
+          "note": "人工契约 desensitization:save-markdown-draft"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/manual-ledger-recommendations.json",
+          "line": null,
+          "column": null,
+          "note": "校验通过的逐项关系推荐；未视为S3/R2"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17117,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 17117,
+            "endLine": 17132,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "18fcd28c0852b3ad33e8da673f4cd8e41eab1fd18ff110ba33f8b160ba4c7d44",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16759,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 16759,
+            "endLine": 16789,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "a33caf4010e37c5626d2587adca7997065f68155e30af27f297cde1f17ac76ac",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/ui-closure-a.json",
+          "line": null,
+          "column": null,
+          "note": "完整发布renderer入口专项逐项调查；当前快照已分类，S2/R0/I状态不提升"
+        },
+        {
+          "path": "文档/逆向台账/入口闭合交叉审查-20261013.md",
+          "line": null,
+          "column": null,
+          "note": "独立集合、调用及同名误匹配交叉审查；7个负向探针"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 31953,
+          "column": null,
+          "note": "人工核读调用、别名、控制分支或UI绑定",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "start_line": 31953,
+            "end_line": 31969,
+            "slice_sha256": "8bfa14c175531dd8998c02a66e21642a804810b9c728af5f2432f49e5b8ad336",
+            "file_sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "note": "人工核读调用、别名、控制分支或UI绑定"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 37175,
+          "column": null,
+          "note": "人工核读调用、别名、控制分支或UI绑定",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "start_line": 37175,
+            "end_line": 37198,
+            "slice_sha256": "4876eb8cd670e98fe41c6fc1302bece17aed844fc10526b397950157070e25d0",
+            "file_sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "note": "人工核读调用、别名、控制分支或UI绑定"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 37531,
+          "column": null,
+          "note": "人工核读调用、别名、控制分支或UI绑定",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "start_line": 37531,
+            "end_line": 37531,
+            "slice_sha256": "296ad3602700f65291a3e53e9fdd91dd17b65f1dc774ca9c7fef37ca99efe411",
+            "file_sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "note": "人工核读调用、别名、控制分支或UI绑定"
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017逐项递归契约/算法/异常与剩余边界，非运行证据"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-supplement-formats-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017关联章节PSF08；局部补读非完整业务"
+        },
+        {
+          "path": "文档/逆向台账/contracts/small-open-dependencies-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-018 SD04日志和统计补读"
+        }
+      ],
+      "adapterRuntime": "actual isolated HTTP method and bytes verified",
+      "actualInvocations": [
+        {
+          "id": "IPC-629ace0aecd1",
+          "name": "desensitization:save-markdown-draft",
+          "method": "POST",
+          "path": "/markdown-manual-drafts",
+          "input": {
+            "basis": {
+              "kind": "original-markdown",
+              "hash": "35980df2d14c368a6b8bce628dbcb033f7a4eab207f02764061ab69aba38dbf7"
+            },
+            "acknowledged": true
+          },
+          "responseStatus": 200,
+          "responseSha256": "5d90202e00b95d2b19d3ee449a321d33e7af8c70d8a7d648ef07f11e17f587b8",
+          "responseBytes": 468,
+          "assertion": "Actual immutable manual Markdown draft persisted and warning-bearing bytes downloaded; never counted as verified redacted artifact",
+          "positive": true
+        }
+      ],
+      "positiveInvocations": 1,
+      "negativeInvocations": 0,
+      "sourceDomainBoundary": "Native dialog/file absolute paths are represented by authorized immutable IDs/relative ZIP paths; no Electron/OS/native licensed processing runtime equivalence claim"
+    },
+    {
+      "id": "IPC-9577d3a9d6d0",
+      "name": "desensitization:save-report",
+      "sourceRuntime": "R0",
+      "nativeIPCInvoked": false,
+      "sourceContract": {
+        "inputAndFiltering": "outputDir,fileName,content。",
+        "outputContract": "success:true,reportPath 或 false,error/requiresActivation。",
+        "preconditions": "assertActivatedOrThrow。",
+        "persistentAndMemoryEffects": "A2写outputDir/fileName UTF8；不验证报告对应真实运行结果。",
+        "failureAndCancellation": "catch包装；默认writeFile可覆盖，失败可留下部分文件，无任务cancel。"
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 160,
+          "column": 28,
+          "note": "renderer:invoke",
+          "observation_id": "jag_observation_708eb5674dd3ed8bdcbee1c6fb28f2d91bc2501a262019893cd47cb8266492f9"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+          "line": 1,
+          "column": 814833,
+          "note": "main:handle",
+          "observation_id": "jag_observation_8660a6dc731f0ce39cfbf689fb3b77d15f0666444c1672882198e7548f7b80a1"
+        },
+        {
+          "path": "文档/逆向台账/contracts/ipc-contract-index.json",
+          "line": null,
+          "column": null,
+          "note": "desensitization:save-report的参数/返回/异常/事件/捕获引用与调用位置"
+        },
+        {
+          "path": "文档/逆向台账/contracts/manual-workflow-contracts.json",
+          "line": null,
+          "column": null,
+          "note": "人工契约 desensitization:save-report"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/manual-ledger-recommendations.json",
+          "line": null,
+          "column": null,
+          "note": "校验通过的逐项关系推荐；未视为S3/R2"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17132,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 17132,
+            "endLine": 17157,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "34e8f9ef4704cb72beb6b07b1ddb3911e6586cc5dc46d272142596d813139c57",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16759,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 16759,
+            "endLine": 16789,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "a33caf4010e37c5626d2587adca7997065f68155e30af27f297cde1f17ac76ac",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/ui-closure-b.json",
+          "line": null,
+          "column": null,
+          "note": "完整发布renderer入口专项逐项调查；当前快照已分类，S2/R0/I状态不提升"
+        },
+        {
+          "path": "文档/逆向台账/入口闭合交叉审查-20261013.md",
+          "line": null,
+          "column": null,
+          "note": "独立集合、调用及同名误匹配交叉审查；7个负向探针"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017逐项递归契约/算法/异常与剩余边界，非运行证据"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-supplement-rules-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017关联章节DPS10；局部补读非完整业务"
+        }
+      ],
+      "adapterRuntime": "actual isolated HTTP method and bytes verified",
+      "actualInvocations": [
+        {
+          "id": "IPC-9577d3a9d6d0",
+          "name": "desensitization:save-report",
+          "method": "GET",
+          "path": "/processing-reports/ee0add86-5cd0-46ef-b65a-1a08e82ce338/download",
+          "input": {
+            "format": "json"
+          },
+          "responseStatus": 200,
+          "responseSha256": "8a552928188d451454f6b5261b4cbf23ec04cacf8d90cde69ad17c462d3e6886",
+          "responseBytes": 2659,
+          "assertion": "Actual persisted report download in requested format, ZIP contains complete four-file report set",
+          "positive": true
+        },
+        {
+          "id": "IPC-9577d3a9d6d0",
+          "name": "desensitization:save-report",
+          "method": "GET",
+          "path": "/processing-reports/ee0add86-5cd0-46ef-b65a-1a08e82ce338/download",
+          "input": {
+            "format": "html"
+          },
+          "responseStatus": 200,
+          "responseSha256": "33a02c48e8627a4cc49d67d9f69aab0f4a98e87cc63516b5738985d925aa095b",
+          "responseBytes": 2246,
+          "assertion": "Actual persisted report download in requested format, ZIP contains complete four-file report set",
+          "positive": true
+        },
+        {
+          "id": "IPC-9577d3a9d6d0",
+          "name": "desensitization:save-report",
+          "method": "GET",
+          "path": "/processing-reports/ee0add86-5cd0-46ef-b65a-1a08e82ce338/download",
+          "input": {
+            "format": "md"
+          },
+          "responseStatus": 200,
+          "responseSha256": "196d447ae0f7cf9b7927e14732826adde7ac552b8e76433f499367ee0aa01122",
+          "responseBytes": 1688,
+          "assertion": "Actual persisted report download in requested format, ZIP contains complete four-file report set",
+          "positive": true
+        },
+        {
+          "id": "IPC-9577d3a9d6d0",
+          "name": "desensitization:save-report",
+          "method": "GET",
+          "path": "/processing-reports/ee0add86-5cd0-46ef-b65a-1a08e82ce338/download",
+          "input": {
+            "format": "csv"
+          },
+          "responseStatus": 200,
+          "responseSha256": "85c759966906e3e70ad32f1cc7fbc333d01fc2e955928c83b2c0e3dda09dd9d4",
+          "responseBytes": 322,
+          "assertion": "Actual persisted report download in requested format, ZIP contains complete four-file report set",
+          "positive": true
+        },
+        {
+          "id": "IPC-9577d3a9d6d0",
+          "name": "desensitization:save-report",
+          "method": "GET",
+          "path": "/processing-reports/ee0add86-5cd0-46ef-b65a-1a08e82ce338/download",
+          "input": {
+            "format": "zip"
+          },
+          "responseStatus": 200,
+          "responseSha256": "91add918c79d35df2ab14f1c9559311b1460f244f108b0d9ba16abfe228d9fe8",
+          "responseBytes": 3179,
+          "assertion": "Actual persisted report download in requested format, ZIP contains complete four-file report set",
+          "positive": true
+        }
+      ],
+      "positiveInvocations": 5,
+      "negativeInvocations": 0,
+      "sourceDomainBoundary": "Native dialog/file absolute paths are represented by authorized immutable IDs/relative ZIP paths; no Electron/OS/native licensed processing runtime equivalence claim"
+    },
+    {
+      "id": "IPC-e29b03465bc3",
+      "name": "desensitization:scan-dropped-folder",
+      "sourceRuntime": "R0",
+      "nativeIPCInvoked": false,
+      "sourceContract": {
+        "inputAndFiltering": "folderPath 非空字符串；UI 限单一文件夹且不能与文件混拖。服务 lstat/realpath 检查普通目录、跳过符号链接/目录环/根外路径和不支持文件。",
+        "outputContract": "canceled:false、sessionId、sourceRootName/scannedAt、files（包含 sourceRef）、skipped、totalDiscovered/supportedBytes/counts；失败 canceled:false,error。没有 success 字段。",
+        "preconditions": "可访问本地普通目录；没有激活前置调用。",
+        "persistentAndMemoryEffects": "b2 内存记录扫描结果，12 小时按访问清理；末尾逐文件再次 lstat 检查后调用 S2 登记并复制受管源，返回 sourceRef。UI 用扫描清单构造批量项目。",
+        "failureAndCancellation": "扫描报错 UI 保留当前审查；已登记的部分 sourceRefs 未见此处成组回滚。_2 调用未传 AbortSignal，不能归为可取消检测任务。"
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 143,
+          "column": 35,
+          "note": "renderer:invoke",
+          "observation_id": "jag_observation_7eef1982cd733ba9094507e73fae8db5d282b598f0def520d7d5f893cb34f586"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+          "line": 1,
+          "column": 800937,
+          "note": "main:handle",
+          "observation_id": "jag_observation_a75f1c008affb85730f1809054f87cb83146cf9c479adcc0adbe0a7740ea20de"
+        },
+        {
+          "path": "文档/逆向台账/contracts/ipc-contract-index.json",
+          "line": null,
+          "column": null,
+          "note": "desensitization:scan-dropped-folder的参数/返回/异常/事件/捕获引用与调用位置"
+        },
+        {
+          "path": "文档/逆向台账/contracts/manual-workflow-contracts.json",
+          "line": null,
+          "column": null,
+          "note": "人工契约 desensitization:scan-dropped-folder"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/manual-ledger-recommendations.json",
+          "line": null,
+          "column": null,
+          "note": "校验通过的逐项关系推荐；未视为S3/R2"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 36511,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "startLine": 36511,
+            "endLine": 36544,
+            "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "sliceSha256": "30ebbfa46bfe8b8247cebe255b5117f0e6fffb23eda019121a56a12e7b8397e0",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16633,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 16633,
+            "endLine": 16732,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "c5701a721ada5aa5e963fdb4dd74ec7e09555fd07b46f06c2bc9a3f0fa18cc1a",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16876,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 16876,
+            "endLine": 16901,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "cb3a9baec00b6db62cead96aaa356b0d9a2e1e758c450019778622efb08906b1",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017逐项递归契约/算法/异常与剩余边界，非运行证据"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-supplement-rules-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017关联章节DPS16；局部补读非完整业务"
+        }
+      ],
+      "adapterRuntime": "actual isolated HTTP method and bytes verified",
+      "actualInvocations": [
+        {
+          "id": "IPC-e29b03465bc3",
+          "name": "desensitization:scan-dropped-folder",
+          "method": "POST",
+          "path": "/projects/62e9eb4d-abef-4ab9-96a2-3bde21dc3759/upload-batches",
+          "input": {
+            "id": "570030c9-5056-4d9a-8876-61755826f2d2",
+            "files": [
+              {
+                "requestId": "abf40419-4421-4719-b764-7d5c8c20eaa5",
+                "path": "0aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/1aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/2aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/3aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/4aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/long.txt",
+                "size": 23,
+                "sha256": "906e3f60deebc2df90b19647e0d76f648cd0c2f9b3c1df8c4960b99ea4c684c6"
+              },
+              {
+                "requestId": "c6b33656-af69-4906-9405-7142ef610ad3",
+                "path": "材料/合同.md",
+                "size": 26,
+                "sha256": "35980df2d14c368a6b8bce628dbcb033f7a4eab207f02764061ab69aba38dbf7"
+              },
+              {
+                "requestId": "2afb765f-e829-4384-99a9-9eec5f2f2f31",
+                "path": "材料/取消.txt",
+                "size": 23,
+                "sha256": "906e3f60deebc2df90b19647e0d76f648cd0c2f9b3c1df8c4960b99ea4c684c6"
+              }
+            ]
+          },
+          "responseStatus": 200,
+          "responseSha256": "a526319a751b4f6192b83f426d27479f4fc1645d5758d181a0d31241fb166c13",
+          "responseBytes": 45,
+          "assertion": "Exact authorized relative-path list, sizes and source SHA accepted as cloud selection/intake adaptation; local OS picker/recursive filesystem enumeration is not claimed",
+          "positive": true
+        },
+        {
+          "id": "IPC-e29b03465bc3",
+          "name": "desensitization:scan-dropped-folder",
+          "method": "POST",
+          "path": "/upload-batches",
+          "input": {
+            "path": "../outside.txt"
+          },
+          "responseStatus": 400,
+          "responseSha256": "24cbe7835b59cc0e475992c5a02fa5081b15d222014c32365e88ff8e36c9e4bc",
+          "responseBytes": 24,
+          "assertion": "Traversal rejected as a whole before any upload",
+          "positive": false
+        }
+      ],
+      "positiveInvocations": 1,
+      "negativeInvocations": 1,
+      "sourceDomainBoundary": "Native dialog/file absolute paths are represented by authorized immutable IDs/relative ZIP paths; no Electron/OS/native licensed processing runtime equivalence claim"
+    },
+    {
+      "id": "IPC-95d4f752bfb1",
+      "name": "desensitization:select-files",
+      "sourceRuntime": "R0",
+      "nativeIPCInvoked": false,
+      "sourceContract": {
+        "inputAndFiltering": "无参数；系统选择器 openFile/multiSelections，扩展名过滤；renderer 再以 Fg2(name) 过滤。",
+        "outputContract": "取消返回 canceled:true,filePaths:[]；成功返回 filePaths 和 fileInfos(path,name,size,ext)。",
+        "preconditions": "需要 Electron 文件选择器；本 handler 无直接授权码断言。",
+        "persistentAndMemoryEffects": "只选择并 stat；UI 转成 pending 文件项，不等于已经检测。",
+        "failureAndCancellation": "UI 将取消返回 null；选择/stat 抛错由 UI catch 显示失败；不更改已有审查。"
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+          "line": 1,
+          "column": 799928,
+          "note": "main:handle",
+          "observation_id": "jag_observation_11040e16ff114d6754b18cc043e57bfba97e820296437458260450573b60c03d"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 141,
+          "column": 25,
+          "note": "renderer:invoke",
+          "observation_id": "jag_observation_1a87f84297a92bfb44634395ea4e5d535db000ee3d929135d2427b71055b043e"
+        },
+        {
+          "path": "文档/逆向台账/contracts/ipc-contract-index.json",
+          "line": null,
+          "column": null,
+          "note": "desensitization:select-files的参数/返回/异常/事件/捕获引用与调用位置"
+        },
+        {
+          "path": "文档/逆向台账/contracts/manual-workflow-contracts.json",
+          "line": null,
+          "column": null,
+          "note": "人工契约 desensitization:select-files"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/manual-ledger-recommendations.json",
+          "line": null,
+          "column": null,
+          "note": "校验通过的逐项关系推荐；未视为S3/R2"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 36449,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "startLine": 36449,
+            "endLine": 36468,
+            "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "sliceSha256": "3e674042f9861a26f10428aeddbcb232c7213a3c1b517c47bb07afe4957dc991",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16876,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 16876,
+            "endLine": 16901,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "cb3a9baec00b6db62cead96aaa356b0d9a2e1e758c450019778622efb08906b1",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017逐项递归契约/算法/异常与剩余边界，非运行证据"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-supplement-rules-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017关联章节DPS17；局部补读非完整业务"
+        }
+      ],
+      "adapterRuntime": "actual isolated HTTP method and bytes verified",
+      "actualInvocations": [
+        {
+          "id": "IPC-95d4f752bfb1",
+          "name": "desensitization:select-files",
+          "method": "POST",
+          "path": "/projects/62e9eb4d-abef-4ab9-96a2-3bde21dc3759/upload-batches",
+          "input": {
+            "id": "570030c9-5056-4d9a-8876-61755826f2d2",
+            "files": [
+              {
+                "requestId": "abf40419-4421-4719-b764-7d5c8c20eaa5",
+                "path": "0aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/1aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/2aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/3aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/4aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/long.txt",
+                "size": 23,
+                "sha256": "906e3f60deebc2df90b19647e0d76f648cd0c2f9b3c1df8c4960b99ea4c684c6"
+              },
+              {
+                "requestId": "c6b33656-af69-4906-9405-7142ef610ad3",
+                "path": "材料/合同.md",
+                "size": 26,
+                "sha256": "35980df2d14c368a6b8bce628dbcb033f7a4eab207f02764061ab69aba38dbf7"
+              },
+              {
+                "requestId": "2afb765f-e829-4384-99a9-9eec5f2f2f31",
+                "path": "材料/取消.txt",
+                "size": 23,
+                "sha256": "906e3f60deebc2df90b19647e0d76f648cd0c2f9b3c1df8c4960b99ea4c684c6"
+              }
+            ]
+          },
+          "responseStatus": 200,
+          "responseSha256": "a526319a751b4f6192b83f426d27479f4fc1645d5758d181a0d31241fb166c13",
+          "responseBytes": 45,
+          "assertion": "Exact authorized relative-path list, sizes and source SHA accepted as cloud selection/intake adaptation; local OS picker/recursive filesystem enumeration is not claimed",
+          "positive": true
+        }
+      ],
+      "positiveInvocations": 1,
+      "negativeInvocations": 0,
+      "sourceDomainBoundary": "Native dialog/file absolute paths are represented by authorized immutable IDs/relative ZIP paths; no Electron/OS/native licensed processing runtime equivalence claim"
+    },
+    {
+      "id": "IPC-523337153cab",
+      "name": "desensitization:select-folder",
+      "sourceRuntime": "R0",
+      "nativeIPCInvoked": false,
+      "sourceContract": {
+        "inputAndFiltering": "无参数；Electron openDirectory。",
+        "outputContract": "选择取消 canceled:true；成功 canceled:false,sessionId,files[sourceRef],skipped/counts；失败 canceled:false,error。",
+        "preconditions": "普通目录可读，scan 服务校验链接/根路径；无直接激活断言。",
+        "persistentAndMemoryEffects": "复用 _2 全扫描+逐文件再次检查并 S2 登记受管副本；b2 保存扫描会话。",
+        "failureAndCancellation": "取消选择没有扫描；扫描中途失败可能已登记部分源，无任务取消/成组回滚。"
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 142,
+          "column": 26,
+          "note": "renderer:invoke",
+          "observation_id": "jag_observation_37e03b7cbb1dbdbe1dad836a09a476b5ef3f86f74e970362d44f010f1a9fe48b"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+          "line": 1,
+          "column": 800625,
+          "note": "main:handle",
+          "observation_id": "jag_observation_c4284d5181b23afe354083fc52d481b7748cddc0fefc2004f69902311fdc321e"
+        },
+        {
+          "path": "文档/逆向台账/contracts/ipc-contract-index.json",
+          "line": null,
+          "column": null,
+          "note": "desensitization:select-folder的参数/返回/异常/事件/捕获引用与调用位置"
+        },
+        {
+          "path": "文档/逆向台账/contracts/manual-workflow-contracts.json",
+          "line": null,
+          "column": null,
+          "note": "人工契约 desensitization:select-folder"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/manual-ledger-recommendations.json",
+          "line": null,
+          "column": null,
+          "note": "校验通过的逐项关系推荐；未视为S3/R2"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16876,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 16876,
+            "endLine": 16901,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "cb3a9baec00b6db62cead96aaa356b0d9a2e1e758c450019778622efb08906b1",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16633,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 16633,
+            "endLine": 16732,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "c5701a721ada5aa5e963fdb4dd74ec7e09555fd07b46f06c2bc9a3f0fa18cc1a",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 15718,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 15718,
+            "endLine": 15912,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "00e2bfffe1409ca7d258397075fe286926de2daa758f116005ac7fd2a39143fe",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/ui-closure-a.json",
+          "line": null,
+          "column": null,
+          "note": "完整发布renderer入口专项逐项调查；当前快照已分类，S2/R0/I状态不提升"
+        },
+        {
+          "path": "文档/逆向台账/入口闭合交叉审查-20261013.md",
+          "line": null,
+          "column": null,
+          "note": "独立集合、调用及同名误匹配交叉审查；7个负向探针"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017逐项递归契约/算法/异常与剩余边界，非运行证据"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-supplement-rules-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017关联章节DPS16；局部补读非完整业务"
+        }
+      ],
+      "adapterRuntime": "actual isolated HTTP method and bytes verified",
+      "actualInvocations": [
+        {
+          "id": "IPC-523337153cab",
+          "name": "desensitization:select-folder",
+          "method": "POST",
+          "path": "/projects/62e9eb4d-abef-4ab9-96a2-3bde21dc3759/upload-batches",
+          "input": {
+            "id": "570030c9-5056-4d9a-8876-61755826f2d2",
+            "files": [
+              {
+                "requestId": "abf40419-4421-4719-b764-7d5c8c20eaa5",
+                "path": "0aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/1aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/2aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/3aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/4aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/long.txt",
+                "size": 23,
+                "sha256": "906e3f60deebc2df90b19647e0d76f648cd0c2f9b3c1df8c4960b99ea4c684c6"
+              },
+              {
+                "requestId": "c6b33656-af69-4906-9405-7142ef610ad3",
+                "path": "材料/合同.md",
+                "size": 26,
+                "sha256": "35980df2d14c368a6b8bce628dbcb033f7a4eab207f02764061ab69aba38dbf7"
+              },
+              {
+                "requestId": "2afb765f-e829-4384-99a9-9eec5f2f2f31",
+                "path": "材料/取消.txt",
+                "size": 23,
+                "sha256": "906e3f60deebc2df90b19647e0d76f648cd0c2f9b3c1df8c4960b99ea4c684c6"
+              }
+            ]
+          },
+          "responseStatus": 200,
+          "responseSha256": "a526319a751b4f6192b83f426d27479f4fc1645d5758d181a0d31241fb166c13",
+          "responseBytes": 45,
+          "assertion": "Exact authorized relative-path list, sizes and source SHA accepted as cloud selection/intake adaptation; local OS picker/recursive filesystem enumeration is not claimed",
+          "positive": true
+        }
+      ],
+      "positiveInvocations": 1,
+      "negativeInvocations": 0,
+      "sourceDomainBoundary": "Native dialog/file absolute paths are represented by authorized immutable IDs/relative ZIP paths; no Electron/OS/native licensed processing runtime equivalence claim"
+    },
+    {
+      "id": "IPC-0ea3b09c375b",
+      "name": "desensitization:update-runtime-rules",
+      "sourceRuntime": "R0",
+      "nativeIPCInvoked": false,
+      "sourceContract": {
+        "inputAndFiltering": "requestId/sessionId,entityType,pattern必非空；scope project/spot/否则file；ruleType blacklist/否则whitelist。",
+        "outputContract": "success和appliedToTasks/added/whitelistApplied；blacklist返回deprecated:true,0；spot返回immediateOnly:true,0。",
+        "preconditions": "project用sessionId筛detect-only且有engine；file按requestId；handler没按sender再筛。",
+        "persistentAndMemoryEffects": "调用engine.applyRuntimeRuleUpdate，修改现有任务内存规则；不写规则集库。",
+        "failureAndCancellation": "UI调用catch吞异常，不代表已更新；0可能无任务或降级分支。无额外取消。"
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+          "line": 1,
+          "column": 817261,
+          "note": "main:handle",
+          "observation_id": "jag_observation_02ac09c69399ccdb4fad7007ed164beacdbb1af5c04e7f11023c8fa531ef99b2"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 168,
+          "column": 36,
+          "note": "renderer:invoke",
+          "observation_id": "jag_observation_0725d2d244bbfda68efd44bd28e63f72d79fba6f10e22290acd66028f894dfdb"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17183,
+          "column": null,
+          "note": ""
+        },
+        {
+          "path": "文档/逆向台账/contracts/ipc-contract-index.json",
+          "line": null,
+          "column": null,
+          "note": "desensitization:update-runtime-rules的参数/返回/异常/事件/捕获引用与调用位置"
+        },
+        {
+          "path": "文档/逆向台账/contracts/manual-workflow-contracts.json",
+          "line": null,
+          "column": null,
+          "note": "人工契约 desensitization:update-runtime-rules"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/manual-ledger-recommendations.json",
+          "line": null,
+          "column": null,
+          "note": "校验通过的逐项关系推荐；未视为S3/R2"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 17183,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 17183,
+            "endLine": 17195,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "36aa6de88e6de22a9d85df600284f75cc4e1d560097ac0a7c30903c07ab1d59f",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 6185,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "startLine": 6185,
+            "endLine": 6193,
+            "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "sliceSha256": "3234b338ab8f63866918798ae5c0593a8471091df0757a4ddc4051eb3637d9c7",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017逐项递归契约/算法/异常与剩余边界，非运行证据"
+        }
+      ],
+      "adapterRuntime": "actual isolated HTTP method and bytes verified",
+      "actualInvocations": [
+        {
+          "id": "IPC-0ea3b09c375b",
+          "name": "desensitization:update-runtime-rules",
+          "method": "POST",
+          "path": "/runtime-rules",
+          "input": {
+            "entityType": "__proto__",
+            "pattern": "合成",
+            "scope": "file"
+          },
+          "responseStatus": 200,
+          "responseSha256": "01b02e65b4aef3281a4f66427782d6353e55c9e48346b65be95ef5815f54e043",
+          "responseBytes": 274,
+          "assertion": "Raw unknown entity type survives storage and actual worker candidate output without prototype collision",
+          "positive": true
+        }
+      ],
+      "positiveInvocations": 1,
+      "negativeInvocations": 0,
+      "sourceDomainBoundary": "Native dialog/file absolute paths are represented by authorized immutable IDs/relative ZIP paths; no Electron/OS/native licensed processing runtime equivalence claim"
+    },
+    {
+      "id": "IPC-96ccc7c0ce76",
+      "name": "desensitization:validate-folder-source",
+      "sourceRuntime": "R0",
+      "nativeIPCInvoked": false,
+      "sourceContract": {
+        "inputAndFiltering": "scanSessionId、relativePath（反斜线转 /）；须是该扫描结果已有相对路径。",
+        "outputContract": "success:true 或 success:false,error。",
+        "preconditions": "扫描会话有效；普通文件非符号链接，size 相同、mtimeMs 差不超过 1ms。",
+        "persistentAndMemoryEffects": "只读元信息；没有内容 hash 比对。UI Nn2 仅无 sourceRef 且有 path/relativePath/scanSessionId 时在 registerSource 前调用；已有 sourceRef 会先返回，正常扫描已登记文件不一定再走此校验。",
+        "failureAndCancellation": "会话失效/文件变动/删除返回失败并阻止本次登记；不恢复原文件。"
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+          "line": 1,
+          "column": 801869,
+          "note": "main:handle",
+          "observation_id": "jag_observation_1a754d417f1cd6244b003b2631b92fcb4f1d9011917d7ade31336c05553dfdc0"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 145,
+          "column": 38,
+          "note": "renderer:invoke",
+          "observation_id": "jag_observation_41dd634ecb4f343cc69eef4f4ce12f537976ee65ab5c9875cca51f74a7e02c1b"
+        },
+        {
+          "path": "文档/逆向台账/contracts/ipc-contract-index.json",
+          "line": null,
+          "column": null,
+          "note": "desensitization:validate-folder-source的参数/返回/异常/事件/捕获引用与调用位置"
+        },
+        {
+          "path": "文档/逆向台账/contracts/manual-workflow-contracts.json",
+          "line": null,
+          "column": null,
+          "note": "人工契约 desensitization:validate-folder-source"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/manual-ledger-recommendations.json",
+          "line": null,
+          "column": null,
+          "note": "校验通过的逐项关系推荐；未视为S3/R2"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16912,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 16912,
+            "endLine": 16927,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "ff6c53833a8395185e499596becc4bcfd8ad73d11225737eba2a1530e65d7aec",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 31552,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "startLine": 31552,
+            "endLine": 31640,
+            "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "sliceSha256": "d088282b690a8c615db8a7f008772e91ab7bf889797b43474a0b1269cf88ee38",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16633,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 16633,
+            "endLine": 16732,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "c5701a721ada5aa5e963fdb4dd74ec7e09555fd07b46f06c2bc9a3f0fa18cc1a",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017逐项递归契约/算法/异常与剩余边界，非运行证据"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-supplement-rules-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017关联章节DPS16；局部补读非完整业务"
+        }
+      ],
+      "adapterRuntime": "actual isolated HTTP method and bytes verified",
+      "actualInvocations": [
+        {
+          "id": "IPC-96ccc7c0ce76",
+          "name": "desensitization:validate-folder-source",
+          "method": "GET",
+          "path": "/upload-batches/570030c9-5056-4d9a-8876-61755826f2d2",
+          "input": {},
+          "responseStatus": 200,
+          "responseSha256": "2abe5a40b4ccfe35f33b51885ca96f943b2e2c10190852bf7e764fe544978641",
+          "responseBytes": 1743,
+          "assertion": "Persisted source metadata returned for the exact registered batch; actual source-lease read below rechecks stored source SHA",
+          "positive": true
+        },
+        {
+          "id": "IPC-96ccc7c0ce76",
+          "name": "desensitization:validate-folder-source",
+          "method": "POST",
+          "path": "/api/projects/62e9eb4d-abef-4ab9-96a2-3bde21dc3759/folder-exports/e7e80c42-522a-4e8d-b5fd-9c6e4292bb3f/validate-source",
+          "input": {
+            "revision": 0,
+            "sourceRelativePath": "0aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/1aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/2aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/3aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/4aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/long.txt"
+          },
+          "responseStatus": 200,
+          "responseSha256": "eeacc7295393395cb4bcad2511d5b6930af6962ce0773682af54efe49ace458a",
+          "responseBytes": 1209,
+          "assertion": "Fresh authenticated original SHA and byte length bound to exact registered relative path, not just metadata lookup",
+          "positive": true
+        }
+      ],
+      "positiveInvocations": 2,
+      "negativeInvocations": 0,
+      "sourceDomainBoundary": "Native dialog/file absolute paths are represented by authorized immutable IDs/relative ZIP paths; no Electron/OS/native licensed processing runtime equivalence claim"
+    },
+    {
+      "id": "IPC-e84cabdffc27",
+      "name": "desensitization:write-folder-manifest",
+      "sourceRuntime": "R0",
+      "nativeIPCInvoked": false,
+      "sourceContract": {
+        "inputAndFiltering": "exportSessionId,batchName,entries；每项 sourceRelativePath 必须字符串；存在 outputRelativePath 则 Uf 校验。status 等枚举未在 handler 全部验证。",
+        "outputContract": "success:true,manifestPath,outputRoot；失败 success:false,error。",
+        "preconditions": "有效w2会话；目标清单文件不能已存在（wx）。",
+        "persistentAndMemoryEffects": "Hf转义单元格，生成 脱敏处理清单.html；统计来自调用者entries，不重新检查输出文件。",
+        "failureAndCancellation": "重复写EEXIST返回失败；部分写失败未见删除半成品。无检测任务取消；清单说明本身明确不是质量证明。"
+      },
+      "sourceEvidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js",
+          "line": 1,
+          "column": 802817,
+          "note": "main:handle",
+          "observation_id": "jag_observation_9a20a8131ed506edaa6da14369564fba80fdff363f1f0372be3b471724d755d3"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/extracted/dist/preload/index.js",
+          "line": 147,
+          "column": 37,
+          "note": "renderer:invoke",
+          "observation_id": "jag_observation_b7753fb8297e9b73be0e10e11e2f0c7df06357310529647429d24ec1116daee4"
+        },
+        {
+          "path": "文档/逆向台账/contracts/ipc-contract-index.json",
+          "line": null,
+          "column": null,
+          "note": "desensitization:write-folder-manifest的参数/返回/异常/事件/捕获引用与调用位置"
+        },
+        {
+          "path": "文档/逆向台账/contracts/manual-workflow-contracts.json",
+          "line": null,
+          "column": null,
+          "note": "人工契约 desensitization:write-folder-manifest"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/manual-ledger-recommendations.json",
+          "line": null,
+          "column": null,
+          "note": "校验通过的逐项关系推荐；未视为S3/R2"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 16926,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 16926,
+            "endLine": 16974,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "e7aa001fd07e9e10df69b158c4b914018342664dff9b138086b20b25e51e9b9e",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+          "line": 15385,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+            "startLine": 15385,
+            "endLine": 15438,
+            "fileSha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba",
+            "sliceSha256": "7234e66393eb1ac4c8c43ed7a9655a0cea37de6b5d064e8beeb7d9c041194edd",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+          "line": 37101,
+          "column": null,
+          "note": "人工核读来源",
+          "source_range": {
+            "path": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+            "startLine": 37101,
+            "endLine": 37111,
+            "fileSha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+            "sliceSha256": "7430aa40031737ab4a197edbfb0fb1c0856e12f4e79aeb6d09be886ce6406334",
+            "coordinateSystem": "1-based inclusive whole lines; UTF-8 bytes including newline"
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017逐项递归契约/算法/异常与剩余边界，非运行证据"
+        },
+        {
+          "path": "文档/逆向台账/contracts/deep-processing-supplement-rules-20261014.json",
+          "line": null,
+          "column": null,
+          "note": "ITER-017关联章节DPS16；局部补读非完整业务"
+        }
+      ],
+      "adapterRuntime": "actual isolated HTTP method and bytes verified",
+      "actualInvocations": [
+        {
+          "id": "IPC-e84cabdffc27",
+          "name": "desensitization:write-folder-manifest",
+          "method": "POST",
+          "path": "/api/projects/62e9eb4d-abef-4ab9-96a2-3bde21dc3759/folder-exports/e7e80c42-522a-4e8d-b5fd-9c6e4292bb3f/manifest",
+          "input": {
+            "revision": 0,
+            "entries": [
+              {
+                "sourceRelativePath": "0aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/1aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/2aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/3aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/4aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa/long.txt",
+                "outputRelativePath": "已处理/电话.txt",
+                "status": "success",
+                "documentId": "f74d414f-e6cd-49b5-9de4-b38b05084f74",
+                "revision": 2,
+                "artifactId": "487205bb-c8ef-46d3-a138-d0c671101fa6"
+              },
+              {
+                "sourceRelativePath": "材料/合同.md",
+                "status": "skipped",
+                "reason": "等待人工复核"
+              },
+              {
+                "sourceRelativePath": "材料/取消.txt",
+                "status": "canceled"
+              },
+              {
+                "sourceRelativePath": "材料/空目录",
+                "entryType": "empty_directory",
+                "status": "skipped",
+                "reasonCode": "EMPTY_DIRECTORY",
+                "reason": "空文件夹未处理，也未创建。"
+              },
+              {
+                "sourceRelativePath": "材料/不支持.exe",
+                "reason": "<script>not executed</script>",
+                "entryType": "file",
+                "status": "skipped"
+              }
+            ]
+          },
+          "responseStatus": 200,
+          "responseSha256": "7b2554f6e8c150415ac3c82d438ba28825b542e519f7246a4c53718aded3ff9a",
+          "responseBytes": 292,
+          "assertion": "Actual verified output ZIP written once with full source-relative status HTML and truthful empty-directory handling",
+          "positive": true
+        }
+      ],
+      "positiveInvocations": 1,
+      "negativeInvocations": 0,
+      "sourceDomainBoundary": "Native dialog/file absolute paths are represented by authorized immutable IDs/relative ZIP paths; no Electron/OS/native licensed processing runtime equivalence claim"
+    }
+  ],
+  "counts": {
+    "selectedExactIds": 28,
+    "actualPositiveExactIds": 28,
+    "missingExactIds": []
+  },
+  "tests": {
+    "actualApi": {
+      "tests": 5,
+      "pass": 5,
+      "durationMs": 33392.817833
+    },
+    "sourcePure": {
+      "tests": 6,
+      "pass": 6,
+      "routes": 1200,
+      "pdfSampleCases": 1688,
+      "wordNormalizations": 34,
+      "pdfLayouts": 140,
+      "pdfVectorCases": 18,
+      "rawCFBGraphBeforeThirdPartyRead": true
+    },
+    "aggregateZip": {
+      "aggregateBytes": 54543172,
+      "aboveIndividual50MiBLimit": true,
+      "inputs": [
+        {
+          "bytes": 27262976,
+          "hash": "a7f24ebdbe22662a2772212a9fa93e7b22acc36dd4e5aaad80089b8bcf49529a"
+        },
+        {
+          "bytes": 27262976,
+          "hash": "803c5609da254edf1af5d7bb29003452f71807ae38e3e520e2d91c19599beccd"
+        }
+      ],
+      "zipHash": "4771b70dbc0dc5b87aef36b25717a082f75e5a825015b97eaeb1e34d9ca34768",
+      "downloadHash": "4771b70dbc0dc5b87aef36b25717a082f75e5a825015b97eaeb1e34d9ca34768",
+      "entries": [
+        "完整目录_已脱敏/large-0.png",
+        "完整目录_已脱敏/large-1.png",
+        "完整目录_已脱敏/脱敏处理清单.html"
+      ],
+      "tamperRejected": true,
+      "immutableOriginals": true
+    },
+    "independentReviewByA": {
+      "BVisualActual": {
+        "tests": 6,
+        "pass": 6,
+        "durationMs": 15480.664542
+      },
+      "CPlatformActual": {
+        "tests": 3,
+        "pass": 3,
+        "durationMs": 12214.860125
+      },
+      "CWorkspaceSaveActual": {
+        "tests": 2,
+        "pass": 2,
+        "durationMs": 3072.837042
+      },
+      "CSourceCombinationFuzz": {
+        "cases": 2500,
+        "fullOutputDifferences": 0
+      },
+      "BOcrSourceTamper": {
+        "tests": 1,
+        "pass": 1,
+        "originalCanonicalAndDerived409": true,
+        "revisionUnchanged": true
+      },
+      "CPersonalActual": {
+        "exactIds": 49,
+        "tests": 4,
+        "pass": 4,
+        "durationMs": 34865.933667,
+        "longHintEntityType": 300,
+        "longHintPattern": 2200
+      }
+    }
+  },
+  "fixes": [
+    {
+      "id": "A-032-P2-01",
+      "title": "route-only mapped to configuration reader without classification",
+      "status": "fixed-actual",
+      "evidence": "actual DOCX Mammoth/PDF text-only sample/MD6000/imageempty routing; full output oracle"
+    },
+    {
+      "id": "A-032-P2-02",
+      "title": "folder output/session/manifest business semantics missing",
+      "status": "fixed-actual",
+      "evidence": "new026+ownerAEAD12h+CAS+verified artifacts+complete escaped status HTML+stream ZIP"
+    },
+    {
+      "id": "A-032-P2-03",
+      "title": "valid1013-character file path failed report due arbitrary1000 cap",
+      "status": "fixed-actual"
+    },
+    {
+      "id": "A-032-P2-04",
+      "title": "source hint action raw entity/pattern blocked at200/2000",
+      "status": "fixed; independent49-method C matrix supplies true long-field evidence"
+    },
+    {
+      "id": "B-032-P2-CFB",
+      "title": "CFB raw directory validation needed before cfb.read",
+      "status": "fixed; independent spy confirms third-party read zero"
+    },
+    {
+      "id": "ROOT-032-P2-ZIP",
+      "title": "aggregate folder ZIP incorrectly inherited per-upload50MiB guard",
+      "status": "fixed; two legal26MiB artifacts54,543,172-byte real ZIP; per-frame encrypted streams; tamper rejected"
+    },
+    {
+      "id": "A-032-P2-OCR-SOURCE",
+      "title": "apply OCR candidate accepted after original hash changed",
+      "status": "closed after authorB fix; independent actual3tamper vectors409/revision0"
+    },
+    {
+      "id": "A-032-P2-SAVE-RETRY",
+      "title": "terminal failed save UI reused same failed request forever",
+      "status": "closed; authorC clears request only on confirmed terminal failure/missing; network failures retain idempotent recovery"
+    }
+  ],
+  "sourcePrecisionCorrections": [
+    "PDF maxChars6000 is checked after each whole page; route-only maxPages1 retains full first-page text even when >6000, not within-page truncation",
+    "actual router constructor threshold .5 although standalone default .75",
+    "explicit known override confidence1 scores allzero; unknown override other confidence1/scores.other1",
+    "PDF sampling20%,min3/max20, text ratio>=.6/scanned<=.1/else hybrid; no raster OCR for route-only"
+  ],
+  "boundaries": [
+    "R0 competitor processing unchanged; no license bypass",
+    "Native picker/recursive OS enumeration/output-dir and physical mtime contracts remain different from authorized HTTP intake and immutable hash/relative ZIP adapters",
+    "Legacy .doc/.wps conversion is not implemented by this route-only DOCX path; root separately records native business difference",
+    "Browser UI acceptance and full release gates belong to root; API/pure evidence here is not UI acceptance",
+    "Per-upload50MiB, HTTP envelope and512MiB worker are existing transport/runtime contracts, not new rule caps; aggregate folder ZIP has no separate50MiB cap"
+  ],
+  "implementation": [
+    {
+      "path": "apps/api/document-route.ts",
+      "bytes": 1355,
+      "sha256": "764be665d4e9a7794a8f86e78b155bbeafd51a39efdabed0e952ebe4efac1061"
+    },
+    {
+      "path": "apps/api/folder-output.ts",
+      "bytes": 13788,
+      "sha256": "f8cac8c041938d4733f54b558ae69fb3a8a932a37ac9abfc989b408a25698db2"
+    },
+    {
+      "path": "apps/web/document-route.tsx",
+      "bytes": 2473,
+      "sha256": "ab83639546e70eb7175c251bee259f9659358755c33fe4bac09c56be94c9e648"
+    },
+    {
+      "path": "apps/web/folder-output.tsx",
+      "bytes": 4719,
+      "sha256": "aed5a3be30119a2f9c5e00770418e8e66a2bfb772fa064b87862ee33047c7e99"
+    },
+    {
+      "path": "packages/core/reference-route.ts",
+      "bytes": 6403,
+      "sha256": "0acff925387367d45c388c1cc84a79a1acba9774272d20437d830309e31c054f"
+    },
+    {
+      "path": "packages/core/reference-route-pdf.ts",
+      "bytes": 9431,
+      "sha256": "c759e0a834bafb6815a26cb711c62ff4a472254b847d9ed3847921805b905ef6"
+    },
+    {
+      "path": "packages/core/reference-folder.ts",
+      "bytes": 4571,
+      "sha256": "119ee01ce02c133ff95b6fcd47f7d95e7301c4b77c86b71b33821fdf6bbff214"
+    },
+    {
+      "path": "packages/core/processing-report.ts",
+      "bytes": 7690,
+      "sha256": "e9bf37c677717d10e723a2744a18bd721bf9c8e4fe015566a157f1c97b5c53c7"
+    },
+    {
+      "path": "packages/adapters/reference-route.ts",
+      "bytes": 7764,
+      "sha256": "296bb984be41562d4557f15358b6112cd69ad9906ef2e5bc843fd898b739590b"
+    },
+    {
+      "path": "packages/adapters/folder-output.ts",
+      "bytes": 1907,
+      "sha256": "e0e65f7c9e6edf77a70618b12353124e57e31e72ac61a52a6d71fc7944dbc901"
+    },
+    {
+      "path": "packages/adapters/folder-storage.ts",
+      "bytes": 4392,
+      "sha256": "26b61216d6a6e6751a573b02ab92005f6861e9810f6a01708293497f67f906b9"
+    },
+    {
+      "path": "apps/api/reference-dictionary.ts",
+      "bytes": 3091,
+      "sha256": "e35d0799bc360d74829cc9711c28b9e4fbb2c316619775cb9921e6f69d1f1a6b"
+    },
+    {
+      "path": "scripts/026.sql",
+      "bytes": 1693,
+      "sha256": "a530ade723df90a6a3076e824b486c746655236128ee6789b6ad78fc062975d5"
+    },
+    {
+      "path": "tests/rule-interface-closure.integration.ts",
+      "bytes": 31051,
+      "sha256": "e1ee6b27ca80a6a9d49013b773f9e4eb87d4f1c2744c4d890413979e7c406cba"
+    },
+    {
+      "path": "tests/reference-route.test.ts",
+      "bytes": 3093,
+      "sha256": "ea501733d9a46bd4b8b11690b04075aa9d9736194a9074b91e000b5d083a144b"
+    },
+    {
+      "path": "tests/fixtures/reference-route-source-golden.json",
+      "bytes": 4055038,
+      "sha256": "d426f50f3aefcdbcf361f4bf164c741b179bc71e38853242ec151ff48447666d"
+    },
+    {
+      "path": "tests/rule-adversarial-review.integration.ts",
+      "bytes": 4383,
+      "sha256": "3314073a3fa2f8d8b8a993f4467e9ca2d9bbe3f791c81566c1a0183a6c87e16a"
+    }
+  ],
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/rule-interface-folder-final.log",
+      "bytes": 922,
+      "sha256": "0eadf6a56a74170f45870b5de48f1f50987a0b9450e87b5be8c217408674dcd5"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/rule-interface-actual.json",
+      "bytes": 35531,
+      "sha256": "337a3c387578a66cd48c72e7239ace97ddd35055b4053d4179c07e07ad0386c8"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/folder-aggregate-actual.json",
+      "bytes": 705,
+      "sha256": "83447307118d533936a26b2b50589b3e554d85b52ed49f1f5c78371fd8e7f3d3"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/route-source-oracle.log",
+      "bytes": 160,
+      "sha256": "f3e4a218c087323a04b224e5b75ff5cf1d83103554de9d2d81765f32bf2a5caf"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/route-pure-final.log",
+      "bytes": 224,
+      "sha256": "6079bcd40338a7c89ed55548e6dd701dba3c92e2667257c220107164291654f3"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/rule-interface-typecheck.log",
+      "bytes": 15,
+      "sha256": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/review-B-visual-independent-A.log",
+      "bytes": 1201,
+      "sha256": "22c6278f5c0a6dd57993ce3346f64e572979af5996c9f3b8bf9d53ce1a637acc"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/review-B-ocr-source-before.log",
+      "bytes": 1082,
+      "sha256": "08fe89e81523f83907cfc2f10dda4d540cb68178322ff8a8381ee946466caf70"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/review-B-ocr-source-after.log",
+      "bytes": 266,
+      "sha256": "c964f3c38976eb269e55ca9a716315fd955c5d4b0b8f28e956c4bcc0fe0db74a"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/ocr-apply-source-adversary-after.json",
+      "bytes": 224,
+      "sha256": "fc59b33ce6a3e33a6c2b01d4ca692c8b511d035f73991b4eefe0ed9f8c999a10"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/review-C-platform-independent-A.log",
+      "bytes": 710,
+      "sha256": "a449f5ef1bddeb76a3a6b470565844e4d4f07e42bcf6efa85d388590e1edc14a"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/review-mapping-source-fuzz.mts",
+      "bytes": 2216,
+      "sha256": "80c99c05124a4ccdd9c299f39a6adfb517c74978c2326276dd0148c0c6639cd5"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/review-mapping-source-fuzz.json",
+      "bytes": 24,
+      "sha256": "cde01152cf1282bfc200049f8bc3591e2a4170aa519ff1124b2b87790a0be04a"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/review-C-workspace-save-independent-A.log",
+      "bytes": 497,
+      "sha256": "6ed444de6c88a6cc1351364811084e74d7b6d68a5f794528ff936b1c61211886"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/review-C-personal-independent-A.log",
+      "bytes": 805,
+      "sha256": "44ee1054839f256533700604d73d22363d7e267318f9e24d03c4224c0ac64863"
+    }
+  ],
+  "oldBytesPreserved": [
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/before/packages/core/processing-report.ts",
+      "bytes": 7714,
+      "sha256": "8a23050d2ebceb3f13054afd2bb0ff8aa6ce8ed2cf2566106a9b88d6d28318f0"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/before/apps/api/reference-dictionary.ts",
+      "bytes": 3051,
+      "sha256": "44af1feca3005ea1b5fbe69bae1012fced1fc20a01f270631fc3f689181d9431"
+    }
+  ]
+}

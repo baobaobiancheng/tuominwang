@@ -1,0 +1,69 @@
+{
+  "date": "2026-10-15",
+  "scope": "completed workspace receipt current normalized-source integrity",
+  "referenceRuntime": "R0",
+  "finding": {
+    "priority": "P2",
+    "path": "apps/api/workspace-saves.ts",
+    "cause": "Final download readback gated decrypted derivatives but did not read the newly introduced immutable normalized DOC/WPS derivative. A current derived object could be AEAD-valid but wrong bytes while DB hashes and receipt fingerprint remained unchanged.",
+    "fix": "unlocked_source_id OR normalized_source_id invokes existing verifiedDocumentSource; local mismatch rejects SOURCE_MISMATCH409. Immutable original, receipt bytes/hash, permissions, session, snapshot fingerprint and page gates unchanged.",
+    "status": "closed-author-and-independent-actual"
+  },
+  "tests": [
+    {
+      "role": "author",
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "runtime": "Node24.19.0",
+      "durationSeconds": 6.208,
+      "path": ".data/research/lawbot-2026-10-15/iteration036/C-final-save-evidence/workspace-save-normalized-integrity-C-fixed.log",
+      "sha256": "f1de74f6774f0a33864a2133b7c34db5bd6e95906282b9ce550562aa50458a75"
+    },
+    {
+      "role": "independent-A",
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "runtime": "Node24.19.0",
+      "durationSeconds": 5.16,
+      "path": ".data/research/lawbot-2026-10-15/iteration036/C-final-save-evidence/review-workspace-save-normalized-integrity-A.log",
+      "sha256": "2d8f982bbab9f2337750c16da69766cab37149a699012fbdc832c2bf6aa1dc12"
+    }
+  ],
+  "assertions": [
+    "Real source-supported ZIP-labelled DOC normalize→worker→actual save receipt completed→authenticated download200",
+    "Change only normalized object ciphertext to a valid AEAD of wrong bytes; DB source/derived hashes untouched",
+    "Current download returns409 SOURCE_MISMATCH, original source bytes unchanged, persisted completed receipt payload/hash unchanged",
+    "Restore exact previous normalized ciphertext; same receipt returns byte-for-byte identical saved backup",
+    "No private material or source/model limits altered"
+  ],
+  "firstFailure": {
+    "path": ".data/research/lawbot-2026-10-15/iteration036/C-final-save-evidence/workspace-save-normalized-integrity-C.log",
+    "sha256": "9f28130ad3325f60750d5afb0d5e6b078994b0dae69ec1b41fc7ddc035f89af3"
+  },
+  "firstFailureMeaning": "New gate rejected corrupted data but uncaught Error was500; local adapter now exposes explicit integrity409. Original immutable saved backup never changed.",
+  "typecheck": {
+    "exitCode": 0,
+    "path": ".data/research/lawbot-2026-10-15/iteration036/C-final-save-evidence/typecheck-save-normalized-final-second.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "currentFiles": [
+    {
+      "path": "apps/api/workspace-saves.ts",
+      "sha256": "402ea106fb582bff29e1f09a3ee77f5f7a9a0d2111a818b8a4a57a6a220f979e"
+    },
+    {
+      "path": "tests/workspace-save-normalized-integrity.integration.ts",
+      "sha256": "35ea7bbf41ae97c166be72f1e3b0a9655ba3ae952f3158d690bcc508e461c5ca"
+    }
+  ],
+  "proof": {
+    "path": ".data/research/lawbot-2026-10-15/iteration036/C-final-save-evidence/workspace-save-normalized-integrity-actual-A-frozen.json",
+    "sha256": "c22fbaf608df892581e81bb9a3abcb77b21837c615486ec8ecc68b134af4449a"
+  },
+  "remaining": [
+    "Parent final full suite/browser/release gates are separate",
+    "No licensed vendor processing runtime executed or native OS platform equivalence claimed"
+  ]
+}

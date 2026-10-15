@@ -1,0 +1,55 @@
+{
+  "reviewer": "complete_visual",
+  "findings": [],
+  "scope": "C complete geometry portable lifecycle and same-server signed legacy source-normalization bridge",
+  "test": {
+    "path": "tests/portable-legacy-geometry.integration.ts",
+    "log": ".data/research/lawbot-2026-10-15/iteration035/review-portable-legacy-geometry-B.log",
+    "result": "1PASS20572ms/0skip, total27223ms",
+    "branch": "genuine ZIP-labelled-DOC inlineVML→DOCX normalization; source hash changes and is signed; not CFB/UNO runtime test",
+    "positive": "source secureV2 stripped nativeextension ->fresh sourcehash=normalizedhash ->exactproducer slot ->newscope token ->manualregionconfirm ->actualpagepreview200",
+    "negative": [
+      "witnesssourcehash tampered =>fullregion retained unresolved/coverageblocked",
+      "witnesssignature tampered =>unresolved/blocked",
+      "originaltoken edited =>unresolved/blocked"
+    ],
+    "originalBytes": "byteexact unchanged"
+  },
+  "sourceReview": [
+    "ordinary3formats×4codecs authoractual12roundtrips reviewed (not rerun here); exactrestoredMarkIndices bridge oldslots to actualfresh031IDs, no same-value guess",
+    "normalization bridge authenticates existing v3 HMAC witness old immutable originalSHA→current verifiednormalizedbytesSHA; canonical/baseglyphhash and currententity identity remain strict",
+    "confirmation/pagecandidate/resolve mutations record036 immutable pendingmetadata before revision+1, no acceptedreview_snapshot minted",
+    "crossserver/unknown/mismatched token retains complete region as unresolved; does not grant historicalactor by ZIPmetadata possession"
+  ],
+  "authorEvidence": ".data/research/lawbot-2026-10-15/iteration035/portable-entity-geometry-api-second.log12branches1PASS166.92s; independentlegacy branch above",
+  "pins": [
+    {
+      "path": "packages/adapters/portable-entity-geometry.ts",
+      "sha256": "06ed341c60eb577925d4c58b8296ab63b48780e2d74451b0faf99b4516a2f944"
+    },
+    {
+      "path": "packages/adapters/entity-geometry.ts",
+      "sha256": "5935ee33245a1a67c319707e6f16cca0b54e09d1d87d97aae6dc47c2c0b6dacb"
+    },
+    {
+      "path": "packages/adapters/document-normalization.ts",
+      "sha256": "07c1a650625421e58d0545bb0dfb85cfba5019630943591016b266778f1f4df5"
+    },
+    {
+      "path": "apps/api/workspace-portable.ts",
+      "sha256": "d3194f27903519368a7c5832f9725f69ee9ad135cde95ab5c89a8433a63bf21b"
+    },
+    {
+      "path": "packages/adapters/reference-portable-draft.ts",
+      "sha256": "6cc735a8963536b0bcc72b6c896dc5459e02f38a8fc3390acbd9d494df8fa2de"
+    },
+    {
+      "path": "packages/core/workspace-renderer.ts",
+      "sha256": "30e1837b1c8eb5a2ddc9c305d18ddd2644fe4841d4ce9500ace084d37d1e0d0b"
+    },
+    {
+      "path": "tests/portable-legacy-geometry.integration.ts",
+      "sha256": "1f728f56542571546a740b030e05b2bdea2217c0312e7269dfbdc0a99178be03"
+    }
+  ]
+}

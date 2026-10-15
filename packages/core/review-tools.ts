@@ -1,3 +1,4 @@
+import {findProjectEntity} from './reference-project-search.ts';
 import {sameEntity,entityIdentity} from './entity-identity.ts';
 import { isDeepStrictEqual } from "node:util";
 import { MAX_MARKS, type Anchor, type Mark, type SourceFormat } from "../contracts/index.ts";
@@ -50,23 +51,23 @@ export function checkKnownEntities(text: string, marks: Mark[], format: SourceFo
   for (const seed of known.values()) {
     const value=seed.value, sameMarks=seed.mark.rawEntityType===undefined?null:marks.filter(m=>sameEntity(m,seed.mark)),seedMarked=sameMarks?intervals(sameMarks.filter(m=>!retained(m))):marked,seedPreserved=sameMarks?intervals(sameMarks.filter(retained)):preserved;
     const entity: KnownEntityCheck["entities"][number] = { value, kind: seed.mark.kind,...seed.mark.rawEntityType!==undefined?{rawEntityType:seed.mark.rawEntityType}:{}, ambiguous: seed.ambiguous, matches: [] };
-    let from = 0;
-    while (true) {
-      const start = text.indexOf(value, from);
-      if (start < 0) break;
+    // The renderer project check searches whitespace/parenthesis variants for
+    // text-bearing documents. Structured cells retain their literal policy.
+    const hits=findProjectEntity(text,value,{literalOnly:['csv','xlsx'].includes(format),maxMatches:MAX_MARKS-count});
+    for(const {start,end} of hits){
       if (++count > MAX_MARKS) throw new Error("MARK_LIMIT");
-      const end = start + value.length, markOverlap = marked.overlaps(start, end), retainedOverlap = preserved.overlaps(start, end);
+      const markOverlap = marked.overlaps(start, end), retainedOverlap = preserved.overlaps(start, end);
       const match: typeof entity.matches[number] = { start, end, status: "missing" };
       if (seedMarked.contains(start, end) && !retainedOverlap) match.status = "marked";
       else if (seedPreserved.contains(start, end) && !markOverlap) match.status = "retained";
       else if (markOverlap || retainedOverlap || seed.ambiguous) match.status = "conflict";
-      const candidate: Mark = { start, end, kind: seed.mark.kind,...seed.mark.rawEntityType!==undefined?{rawEntityType:seed.mark.rawEntityType}:{}, decision: "pending", ...(seed.mark.replacement && { replacement: seed.mark.replacement }), sources: [{ layer: "manual", code: "known-entity-check" }] };
+      const candidate: Mark = { start, end, kind: seed.mark.kind,...seed.mark.rawEntityType!==undefined?{rawEntityType:seed.mark.rawEntityType}:{}, decision: "pending", ...(seed.mark.replacement && (seed.mark.replacement.mode!=="alias"||text.slice(start,end)===value) && { replacement: seed.mark.replacement }), sources: [{ layer: "manual", code: "known-entity-check" }] };
       if (!markOverlap && !retainedOverlap) {
         try { validateFileMarks(text, [candidate], format, anchors); }
         catch (error) { if (["CROSS_CELL_MARK", "CROSS_OBJECT_MARK"].includes((error as Error).message)) match.status = "conflict"; else throw error; }
         candidates.push({ match, mark: candidate });
       }
-      entity.matches.push(match); from = start + 1;
+      entity.matches.push(match);
     }
     entities.push(entity);
   }

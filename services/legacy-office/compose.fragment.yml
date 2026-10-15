@@ -1,0 +1,19 @@
+# Merge only after the API joins legacy-conversion. No host published ports,
+# database network, DATA_KEY, document/data volume or host filesystem mounts.
+services:
+  legacy-office:
+    build: ./services/legacy-office
+    image: tuominwang-legacy-office:local
+    environment:
+      LEGACY_OFFICE_TOKEN: ${LEGACY_OFFICE_TOKEN:?conversion service token required}
+    networks: [legacy-conversion]
+    read_only: true
+    init: true
+    tmpfs: [/tmp:mode=1777]
+    user: '10001:10001'
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    restart: unless-stopped
+networks:
+  legacy-conversion:
+    internal: true

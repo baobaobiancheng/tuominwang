@@ -1,0 +1,1564 @@
+{
+  "scope": "Public extracted pure Mm/Pd/kd/lo/normalization only; no application/license/filesystem engine",
+  "source": [
+    {
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "sha256": "40542891ebcf0f880ff19f8232430b0d3cf49f5b2808b87591281ef9e0d621ba"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/extracted/dist/main/chunks/D9V2C_Ir.js",
+      "sha256": "8f67c6cacca517411e66daf6f6708cf1d6f8fea02cc7f95937064a4ebf229133"
+    }
+  ],
+  "createdAt": "2026-10-15T00:00:00.000Z",
+  "cases": [
+    {
+      "input": {
+        "tableName": "黄金 / 表",
+        "scope": "single",
+        "sourceFile": "fixture.docx",
+        "matches": [
+          {
+            "type": "name_cn",
+            "original": "张 三",
+            "masked": "【姓名001】",
+            "meta": {
+              "pseudonym": true
+            }
+          },
+          {
+            "type": "name_cn",
+            "original": "张 三",
+            "masked": "【姓名001】",
+            "meta": {
+              "pseudonym": true
+            }
+          }
+        ]
+      },
+      "expected": {
+        "_meta": {
+          "version": "0.6",
+          "createdAt": "2026-10-15T00:00:00.000Z",
+          "sourceFile": "fixture.docx",
+          "totalMappings": 1,
+          "byType": {
+            "name_cn": 1
+          },
+          "restoreStrategy": "token-canonical",
+          "restoreTextPolicy": "entity-formatting-v2",
+          "scope": "single",
+          "tableName": "黄金 _ 表"
+        },
+        "mappings": {
+          "【姓名001】": "张三"
+        },
+        "details": [
+          {
+            "entityType": "name_cn",
+            "normalized": "张三",
+            "pseudonym": "【姓名001】",
+            "createdAt": 1792022400000,
+            "occurrences": 2,
+            "forms": [
+              {
+                "original": "张 三",
+                "role": "original",
+                "count": 2
+              }
+            ]
+          }
+        ],
+        "entityMap": {
+          "【姓名001】": {
+            "canonical": "张三",
+            "entityType": "name_cn",
+            "forms": [
+              {
+                "original": "张 三",
+                "role": "original",
+                "count": 2
+              }
+            ]
+          }
+        },
+        "occurrences": [
+          {
+            "token": "【姓名001】",
+            "original": "张 三",
+            "entityType": "name_cn",
+            "role": "original",
+            "sourceFile": "fixture.docx"
+          },
+          {
+            "token": "【姓名001】",
+            "original": "张 三",
+            "entityType": "name_cn",
+            "role": "original",
+            "sourceFile": "fixture.docx"
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "tableName": "黄金 / 表",
+        "scope": "single",
+        "sourceFile": "fixture.docx",
+        "matches": [
+          {
+            "type": "org_name",
+            "original": "甲 乙 （ 有限公司 ）",
+            "masked": "【姓名001】",
+            "meta": {
+              "pseudonym": true
+            }
+          },
+          {
+            "type": "org_name",
+            "original": "甲 乙 （ 有限公司 ）",
+            "masked": "【姓名001】",
+            "meta": {
+              "pseudonym": true
+            }
+          }
+        ]
+      },
+      "expected": {
+        "_meta": {
+          "version": "0.6",
+          "createdAt": "2026-10-15T00:00:00.000Z",
+          "sourceFile": "fixture.docx",
+          "totalMappings": 1,
+          "byType": {
+            "org_name": 1
+          },
+          "restoreStrategy": "token-canonical",
+          "restoreTextPolicy": "entity-formatting-v2",
+          "scope": "single",
+          "tableName": "黄金 _ 表"
+        },
+        "mappings": {
+          "【姓名001】": "甲乙（有限公司）"
+        },
+        "details": [
+          {
+            "entityType": "org_name",
+            "normalized": "甲乙(有限公司)",
+            "pseudonym": "【姓名001】",
+            "createdAt": 1792022400000,
+            "occurrences": 2,
+            "forms": [
+              {
+                "original": "甲 乙 （ 有限公司 ）",
+                "role": "original",
+                "count": 2
+              }
+            ]
+          }
+        ],
+        "entityMap": {
+          "【姓名001】": {
+            "canonical": "甲乙（有限公司）",
+            "entityType": "org_name",
+            "forms": [
+              {
+                "original": "甲 乙 （ 有限公司 ）",
+                "role": "original",
+                "count": 2
+              }
+            ]
+          }
+        },
+        "occurrences": [
+          {
+            "token": "【姓名001】",
+            "original": "甲 乙 （ 有限公司 ）",
+            "entityType": "org_name",
+            "role": "original",
+            "sourceFile": "fixture.docx"
+          },
+          {
+            "token": "【姓名001】",
+            "original": "甲 乙 （ 有限公司 ）",
+            "entityType": "org_name",
+            "role": "original",
+            "sourceFile": "fixture.docx"
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "tableName": "黄金 / 表",
+        "scope": "single",
+        "sourceFile": "fixture.docx",
+        "matches": [
+          {
+            "type": "phone",
+            "original": "138 0013 8000",
+            "masked": "【姓名001】",
+            "meta": {
+              "pseudonym": true
+            }
+          },
+          {
+            "type": "phone",
+            "original": "138 0013 8000",
+            "masked": "【姓名001】",
+            "meta": {
+              "pseudonym": true
+            }
+          }
+        ]
+      },
+      "expected": {
+        "_meta": {
+          "version": "0.6",
+          "createdAt": "2026-10-15T00:00:00.000Z",
+          "sourceFile": "fixture.docx",
+          "totalMappings": 1,
+          "byType": {
+            "phone": 1
+          },
+          "restoreStrategy": "token-canonical",
+          "restoreTextPolicy": "entity-formatting-v2",
+          "scope": "single",
+          "tableName": "黄金 _ 表"
+        },
+        "mappings": {
+          "【姓名001】": "13800138000"
+        },
+        "details": [
+          {
+            "entityType": "phone",
+            "normalized": "13800138000",
+            "pseudonym": "【姓名001】",
+            "createdAt": 1792022400000,
+            "occurrences": 2,
+            "forms": [
+              {
+                "original": "138 0013 8000",
+                "role": "original",
+                "count": 2
+              }
+            ]
+          }
+        ],
+        "entityMap": {
+          "【姓名001】": {
+            "canonical": "13800138000",
+            "entityType": "phone",
+            "forms": [
+              {
+                "original": "138 0013 8000",
+                "role": "original",
+                "count": 2
+              }
+            ]
+          }
+        },
+        "occurrences": [
+          {
+            "token": "【姓名001】",
+            "original": "138 0013 8000",
+            "entityType": "phone",
+            "role": "original",
+            "sourceFile": "fixture.docx"
+          },
+          {
+            "token": "【姓名001】",
+            "original": "138 0013 8000",
+            "entityType": "phone",
+            "role": "original",
+            "sourceFile": "fixture.docx"
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "tableName": "黄金 / 表",
+        "scope": "single",
+        "sourceFile": "fixture.docx",
+        "matches": [
+          {
+            "type": "id_card",
+            "original": "123 456 789012345",
+            "masked": "【姓名001】",
+            "meta": {
+              "pseudonym": true
+            }
+          },
+          {
+            "type": "id_card",
+            "original": "123 456 789012345",
+            "masked": "【姓名001】",
+            "meta": {
+              "pseudonym": true
+            }
+          }
+        ]
+      },
+      "expected": {
+        "_meta": {
+          "version": "0.6",
+          "createdAt": "2026-10-15T00:00:00.000Z",
+          "sourceFile": "fixture.docx",
+          "totalMappings": 1,
+          "byType": {
+            "id_card": 1
+          },
+          "restoreStrategy": "token-canonical",
+          "restoreTextPolicy": "entity-formatting-v2",
+          "scope": "single",
+          "tableName": "黄金 _ 表"
+        },
+        "mappings": {
+          "【姓名001】": "123456789012345"
+        },
+        "details": [
+          {
+            "entityType": "id_card",
+            "normalized": "123456789012345",
+            "pseudonym": "【姓名001】",
+            "createdAt": 1792022400000,
+            "occurrences": 2,
+            "forms": [
+              {
+                "original": "123 456 789012345",
+                "role": "original",
+                "count": 2
+              }
+            ]
+          }
+        ],
+        "entityMap": {
+          "【姓名001】": {
+            "canonical": "123456789012345",
+            "entityType": "id_card",
+            "forms": [
+              {
+                "original": "123 456 789012345",
+                "role": "original",
+                "count": 2
+              }
+            ]
+          }
+        },
+        "occurrences": [
+          {
+            "token": "【姓名001】",
+            "original": "123 456 789012345",
+            "entityType": "id_card",
+            "role": "original",
+            "sourceFile": "fixture.docx"
+          },
+          {
+            "token": "【姓名001】",
+            "original": "123 456 789012345",
+            "entityType": "id_card",
+            "role": "original",
+            "sourceFile": "fixture.docx"
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "tableName": "黄金 / 表",
+        "scope": "single",
+        "sourceFile": "fixture.docx",
+        "matches": [
+          {
+            "type": "bank_card",
+            "original": "123456 789012",
+            "masked": "【姓名001】",
+            "meta": {
+              "pseudonym": true
+            }
+          },
+          {
+            "type": "bank_card",
+            "original": "123456 789012",
+            "masked": "【姓名001】",
+            "meta": {
+              "pseudonym": true
+            }
+          }
+        ]
+      },
+      "expected": {
+        "_meta": {
+          "version": "0.6",
+          "createdAt": "2026-10-15T00:00:00.000Z",
+          "sourceFile": "fixture.docx",
+          "totalMappings": 1,
+          "byType": {
+            "bank_card": 1
+          },
+          "restoreStrategy": "token-canonical",
+          "restoreTextPolicy": "entity-formatting-v2",
+          "scope": "single",
+          "tableName": "黄金 _ 表"
+        },
+        "mappings": {
+          "【姓名001】": "123456789012"
+        },
+        "details": [
+          {
+            "entityType": "bank_card",
+            "normalized": "123456789012",
+            "pseudonym": "【姓名001】",
+            "createdAt": 1792022400000,
+            "occurrences": 2,
+            "forms": [
+              {
+                "original": "123456 789012",
+                "role": "original",
+                "count": 2
+              }
+            ]
+          }
+        ],
+        "entityMap": {
+          "【姓名001】": {
+            "canonical": "123456789012",
+            "entityType": "bank_card",
+            "forms": [
+              {
+                "original": "123456 789012",
+                "role": "original",
+                "count": 2
+              }
+            ]
+          }
+        },
+        "occurrences": [
+          {
+            "token": "【姓名001】",
+            "original": "123456 789012",
+            "entityType": "bank_card",
+            "role": "original",
+            "sourceFile": "fixture.docx"
+          },
+          {
+            "token": "【姓名001】",
+            "original": "123456 789012",
+            "entityType": "bank_card",
+            "role": "original",
+            "sourceFile": "fixture.docx"
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "tableName": "黄金 / 表",
+        "scope": "single",
+        "sourceFile": "fixture.docx",
+        "matches": [
+          {
+            "type": "uscc",
+            "original": "ABC 123456789012345",
+            "masked": "【姓名001】",
+            "meta": {
+              "pseudonym": true
+            }
+          },
+          {
+            "type": "uscc",
+            "original": "ABC 123456789012345",
+            "masked": "【姓名001】",
+            "meta": {
+              "pseudonym": true
+            }
+          }
+        ]
+      },
+      "expected": {
+        "_meta": {
+          "version": "0.6",
+          "createdAt": "2026-10-15T00:00:00.000Z",
+          "sourceFile": "fixture.docx",
+          "totalMappings": 1,
+          "byType": {
+            "uscc": 1
+          },
+          "restoreStrategy": "token-canonical",
+          "restoreTextPolicy": "entity-formatting-v2",
+          "scope": "single",
+          "tableName": "黄金 _ 表"
+        },
+        "mappings": {
+          "【姓名001】": "ABC123456789012345"
+        },
+        "details": [
+          {
+            "entityType": "uscc",
+            "normalized": "ABC123456789012345",
+            "pseudonym": "【姓名001】",
+            "createdAt": 1792022400000,
+            "occurrences": 2,
+            "forms": [
+              {
+                "original": "ABC 123456789012345",
+                "role": "original",
+                "count": 2
+              }
+            ]
+          }
+        ],
+        "entityMap": {
+          "【姓名001】": {
+            "canonical": "ABC123456789012345",
+            "entityType": "uscc",
+            "forms": [
+              {
+                "original": "ABC 123456789012345",
+                "role": "original",
+                "count": 2
+              }
+            ]
+          }
+        },
+        "occurrences": [
+          {
+            "token": "【姓名001】",
+            "original": "ABC 123456789012345",
+            "entityType": "uscc",
+            "role": "original",
+            "sourceFile": "fixture.docx"
+          },
+          {
+            "token": "【姓名001】",
+            "original": "ABC 123456789012345",
+            "entityType": "uscc",
+            "role": "original",
+            "sourceFile": "fixture.docx"
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "tableName": "黄金 / 表",
+        "scope": "single",
+        "sourceFile": "fixture.docx",
+        "matches": [
+          {
+            "type": "email",
+            "original": "x @ example . test",
+            "masked": "【姓名001】",
+            "meta": {
+              "pseudonym": true
+            }
+          },
+          {
+            "type": "email",
+            "original": "x @ example . test",
+            "masked": "【姓名001】",
+            "meta": {
+              "pseudonym": true
+            }
+          }
+        ]
+      },
+      "expected": {
+        "_meta": {
+          "version": "0.6",
+          "createdAt": "2026-10-15T00:00:00.000Z",
+          "sourceFile": "fixture.docx",
+          "totalMappings": 1,
+          "byType": {
+            "email": 1
+          },
+          "restoreStrategy": "token-canonical",
+          "restoreTextPolicy": "entity-formatting-v2",
+          "scope": "single",
+          "tableName": "黄金 _ 表"
+        },
+        "mappings": {
+          "【姓名001】": "x@example.test"
+        },
+        "details": [
+          {
+            "entityType": "email",
+            "normalized": "x@example.test",
+            "pseudonym": "【姓名001】",
+            "createdAt": 1792022400000,
+            "occurrences": 2,
+            "forms": [
+              {
+                "original": "x @ example . test",
+                "role": "original",
+                "count": 2
+              }
+            ]
+          }
+        ],
+        "entityMap": {
+          "【姓名001】": {
+            "canonical": "x@example.test",
+            "entityType": "email",
+            "forms": [
+              {
+                "original": "x @ example . test",
+                "role": "original",
+                "count": 2
+              }
+            ]
+          }
+        },
+        "occurrences": [
+          {
+            "token": "【姓名001】",
+            "original": "x @ example . test",
+            "entityType": "email",
+            "role": "original",
+            "sourceFile": "fixture.docx"
+          },
+          {
+            "token": "【姓名001】",
+            "original": "x @ example . test",
+            "entityType": "email",
+            "role": "original",
+            "sourceFile": "fixture.docx"
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "tableName": "黄金 / 表",
+        "scope": "single",
+        "sourceFile": "fixture.docx",
+        "matches": [
+          {
+            "type": "website_url",
+            "original": "https://example.\ntest",
+            "masked": "【姓名001】",
+            "meta": {
+              "pseudonym": true
+            }
+          },
+          {
+            "type": "website_url",
+            "original": "https://example.\ntest",
+            "masked": "【姓名001】",
+            "meta": {
+              "pseudonym": true
+            }
+          }
+        ]
+      },
+      "expected": {
+        "_meta": {
+          "version": "0.6",
+          "createdAt": "2026-10-15T00:00:00.000Z",
+          "sourceFile": "fixture.docx",
+          "totalMappings": 1,
+          "byType": {
+            "website_url": 1
+          },
+          "restoreStrategy": "token-canonical",
+          "restoreTextPolicy": "entity-formatting-v2",
+          "scope": "single",
+          "tableName": "黄金 _ 表"
+        },
+        "mappings": {
+          "【姓名001】": "https://example.test"
+        },
+        "details": [
+          {
+            "entityType": "website_url",
+            "normalized": "https://example.test",
+            "pseudonym": "【姓名001】",
+            "createdAt": 1792022400000,
+            "occurrences": 2,
+            "forms": [
+              {
+                "original": "https://example.\ntest",
+                "role": "original",
+                "count": 2
+              }
+            ]
+          }
+        ],
+        "entityMap": {
+          "【姓名001】": {
+            "canonical": "https://example.test",
+            "entityType": "website_url",
+            "forms": [
+              {
+                "original": "https://example.\ntest",
+                "role": "original",
+                "count": 2
+              }
+            ]
+          }
+        },
+        "occurrences": [
+          {
+            "token": "【姓名001】",
+            "original": "https://example.\ntest",
+            "entityType": "website_url",
+            "role": "original",
+            "sourceFile": "fixture.docx"
+          },
+          {
+            "token": "【姓名001】",
+            "original": "https://example.\ntest",
+            "entityType": "website_url",
+            "role": "original",
+            "sourceFile": "fixture.docx"
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "tableName": "黄金 / 表",
+        "scope": "single",
+        "sourceFile": "fixture.docx",
+        "matches": [
+          {
+            "type": "contract_amount",
+            "original": "人民币 1,000 元",
+            "masked": "【姓名001】",
+            "meta": {
+              "pseudonym": true
+            }
+          },
+          {
+            "type": "contract_amount",
+            "original": "人民币 1,000 元",
+            "masked": "【姓名001】",
+            "meta": {
+              "pseudonym": true
+            }
+          }
+        ]
+      },
+      "expected": {
+        "_meta": {
+          "version": "0.6",
+          "createdAt": "2026-10-15T00:00:00.000Z",
+          "sourceFile": "fixture.docx",
+          "totalMappings": 1,
+          "byType": {
+            "contract_amount": 1
+          },
+          "restoreStrategy": "token-canonical",
+          "restoreTextPolicy": "entity-formatting-v2",
+          "scope": "single",
+          "tableName": "黄金 _ 表"
+        },
+        "mappings": {
+          "【姓名001】": "人民币1,000元"
+        },
+        "details": [
+          {
+            "entityType": "contract_amount",
+            "normalized": "人民币1,000元",
+            "pseudonym": "【姓名001】",
+            "createdAt": 1792022400000,
+            "occurrences": 2,
+            "forms": [
+              {
+                "original": "人民币 1,000 元",
+                "role": "original",
+                "count": 2
+              }
+            ]
+          }
+        ],
+        "entityMap": {
+          "【姓名001】": {
+            "canonical": "人民币1,000元",
+            "entityType": "contract_amount",
+            "forms": [
+              {
+                "original": "人民币 1,000 元",
+                "role": "original",
+                "count": 2
+              }
+            ]
+          }
+        },
+        "occurrences": [
+          {
+            "token": "【姓名001】",
+            "original": "人民币 1,000 元",
+            "entityType": "contract_amount",
+            "role": "original",
+            "sourceFile": "fixture.docx"
+          },
+          {
+            "token": "【姓名001】",
+            "original": "人民币 1,000 元",
+            "entityType": "contract_amount",
+            "role": "original",
+            "sourceFile": "fixture.docx"
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "tableName": "黄金 / 表",
+        "scope": "single",
+        "sourceFile": "fixture.docx",
+        "matches": [
+          {
+            "type": "case_number",
+            "original": "(2026) 京01号",
+            "masked": "【姓名001】",
+            "meta": {
+              "pseudonym": true
+            }
+          },
+          {
+            "type": "case_number",
+            "original": "(2026) 京01号",
+            "masked": "【姓名001】",
+            "meta": {
+              "pseudonym": true
+            }
+          }
+        ]
+      },
+      "expected": {
+        "_meta": {
+          "version": "0.6",
+          "createdAt": "2026-10-15T00:00:00.000Z",
+          "sourceFile": "fixture.docx",
+          "totalMappings": 1,
+          "byType": {
+            "case_number": 1
+          },
+          "restoreStrategy": "token-canonical",
+          "restoreTextPolicy": "entity-formatting-v2",
+          "scope": "single",
+          "tableName": "黄金 _ 表"
+        },
+        "mappings": {
+          "【姓名001】": "（2026）京01号"
+        },
+        "details": [
+          {
+            "entityType": "case_number",
+            "normalized": "(2026)京01号",
+            "pseudonym": "【姓名001】",
+            "createdAt": 1792022400000,
+            "occurrences": 2,
+            "forms": [
+              {
+                "original": "(2026) 京01号",
+                "role": "original",
+                "count": 2
+              }
+            ]
+          }
+        ],
+        "entityMap": {
+          "【姓名001】": {
+            "canonical": "（2026）京01号",
+            "entityType": "case_number",
+            "forms": [
+              {
+                "original": "(2026) 京01号",
+                "role": "original",
+                "count": 2
+              }
+            ]
+          }
+        },
+        "occurrences": [
+          {
+            "token": "【姓名001】",
+            "original": "(2026) 京01号",
+            "entityType": "case_number",
+            "role": "original",
+            "sourceFile": "fixture.docx"
+          },
+          {
+            "token": "【姓名001】",
+            "original": "(2026) 京01号",
+            "entityType": "case_number",
+            "role": "original",
+            "sourceFile": "fixture.docx"
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "tableName": "黄金 / 表",
+        "scope": "single",
+        "sourceFile": "fixture.docx",
+        "matches": [
+          {
+            "type": "other",
+            "original": "原 文",
+            "masked": "【姓名001】",
+            "meta": {
+              "pseudonym": true
+            }
+          },
+          {
+            "type": "other",
+            "original": "原 文",
+            "masked": "【姓名001】",
+            "meta": {
+              "pseudonym": true
+            }
+          }
+        ]
+      },
+      "expected": {
+        "_meta": {
+          "version": "0.6",
+          "createdAt": "2026-10-15T00:00:00.000Z",
+          "sourceFile": "fixture.docx",
+          "totalMappings": 1,
+          "byType": {
+            "other": 1
+          },
+          "restoreStrategy": "token-canonical",
+          "restoreTextPolicy": "entity-formatting-v2",
+          "scope": "single",
+          "tableName": "黄金 _ 表"
+        },
+        "mappings": {
+          "【姓名001】": "原 文"
+        },
+        "details": [
+          {
+            "entityType": "other",
+            "normalized": "原文",
+            "pseudonym": "【姓名001】",
+            "createdAt": 1792022400000,
+            "occurrences": 2,
+            "forms": [
+              {
+                "original": "原 文",
+                "role": "original",
+                "count": 2
+              }
+            ]
+          }
+        ],
+        "entityMap": {
+          "【姓名001】": {
+            "canonical": "原 文",
+            "entityType": "other",
+            "forms": [
+              {
+                "original": "原 文",
+                "role": "original",
+                "count": 2
+              }
+            ]
+          }
+        },
+        "occurrences": [
+          {
+            "token": "【姓名001】",
+            "original": "原 文",
+            "entityType": "other",
+            "role": "original",
+            "sourceFile": "fixture.docx"
+          },
+          {
+            "token": "【姓名001】",
+            "original": "原 文",
+            "entityType": "other",
+            "role": "original",
+            "sourceFile": "fixture.docx"
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "tableName": "简称",
+        "matches": [
+          {
+            "type": "org_name",
+            "original": "甲乙",
+            "masked": "【机构001】",
+            "meta": {
+              "pseudonym": true,
+              "fullName": "甲乙有限公司"
+            }
+          },
+          {
+            "type": "org_name",
+            "original": "甲乙有限公司",
+            "masked": "【机构001】",
+            "meta": {
+              "pseudonym": true
+            }
+          }
+        ]
+      },
+      "expected": {
+        "_meta": {
+          "version": "0.6",
+          "createdAt": "2026-10-15T00:00:00.000Z",
+          "totalMappings": 1,
+          "byType": {
+            "org_name": 1
+          },
+          "restoreStrategy": "token-canonical",
+          "restoreTextPolicy": "entity-formatting-v2",
+          "scope": "single",
+          "tableName": "简称"
+        },
+        "mappings": {
+          "【机构001】": "甲乙有限公司"
+        },
+        "details": [
+          {
+            "entityType": "org_name",
+            "normalized": "甲乙有限公司",
+            "pseudonym": "【机构001】",
+            "createdAt": 1792022400000,
+            "occurrences": 2,
+            "forms": [
+              {
+                "original": "甲乙",
+                "role": "definedAlias",
+                "count": 1,
+                "aliasOf": "甲乙有限公司"
+              },
+              {
+                "original": "甲乙有限公司",
+                "role": "original",
+                "count": 1
+              }
+            ]
+          }
+        ],
+        "entityMap": {
+          "【机构001】": {
+            "canonical": "甲乙有限公司",
+            "entityType": "org_name",
+            "forms": [
+              {
+                "original": "甲乙",
+                "role": "definedAlias",
+                "count": 1,
+                "aliasOf": "甲乙有限公司"
+              },
+              {
+                "original": "甲乙有限公司",
+                "role": "original",
+                "count": 1
+              }
+            ]
+          }
+        },
+        "occurrences": [
+          {
+            "token": "【机构001】",
+            "original": "甲乙",
+            "entityType": "org_name",
+            "role": "definedAlias",
+            "aliasOf": "甲乙有限公司"
+          },
+          {
+            "token": "【机构001】",
+            "original": "甲乙有限公司",
+            "entityType": "org_name",
+            "role": "original"
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "tableName": "组合",
+        "matches": [
+          {
+            "type": "name_cn",
+            "original": "甲乙",
+            "masked": "【姓名001】",
+            "meta": {
+              "pseudonym": true
+            },
+            "position": {
+              "start": 0,
+              "end": 2
+            }
+          },
+          {
+            "type": "org_name",
+            "original": "乙丙",
+            "masked": "【机构002】",
+            "meta": {
+              "pseudonym": true
+            },
+            "position": {
+              "start": 1,
+              "end": 3
+            }
+          }
+        ]
+      },
+      "expected": {
+        "_meta": {
+          "version": "0.6",
+          "createdAt": "2026-10-15T00:00:00.000Z",
+          "totalMappings": 2,
+          "byType": {
+            "name_cn": 1,
+            "org_name": 1
+          },
+          "restoreStrategy": "token-canonical",
+          "restoreTextPolicy": "entity-formatting-v2",
+          "scope": "single",
+          "tableName": "组合"
+        },
+        "mappings": {
+          "【姓名001】": "甲乙",
+          "【机构002】": "乙丙",
+          "【姓名001】【机构002】": "甲乙丙"
+        },
+        "details": [
+          {
+            "entityType": "name_cn",
+            "normalized": "甲乙",
+            "pseudonym": "【姓名001】",
+            "createdAt": 1792022400000,
+            "occurrences": 1,
+            "forms": [
+              {
+                "original": "甲乙",
+                "role": "original",
+                "count": 1
+              }
+            ]
+          },
+          {
+            "entityType": "org_name",
+            "normalized": "乙丙",
+            "pseudonym": "【机构002】",
+            "createdAt": 1792022400000,
+            "occurrences": 1,
+            "forms": [
+              {
+                "original": "乙丙",
+                "role": "original",
+                "count": 1
+              }
+            ]
+          }
+        ],
+        "entityMap": {
+          "【姓名001】": {
+            "canonical": "甲乙",
+            "entityType": "name_cn",
+            "forms": [
+              {
+                "original": "甲乙",
+                "role": "original",
+                "count": 1
+              }
+            ]
+          },
+          "【机构002】": {
+            "canonical": "乙丙",
+            "entityType": "org_name",
+            "forms": [
+              {
+                "original": "乙丙",
+                "role": "original",
+                "count": 1
+              }
+            ]
+          }
+        },
+        "occurrences": [
+          {
+            "token": "【姓名001】",
+            "original": "甲乙",
+            "entityType": "name_cn",
+            "role": "original",
+            "position": {
+              "start": 0,
+              "end": 2
+            }
+          },
+          {
+            "token": "【机构002】",
+            "original": "乙丙",
+            "entityType": "org_name",
+            "role": "original",
+            "position": {
+              "start": 1,
+              "end": 3
+            }
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "tableName": "组合",
+        "matches": [
+          {
+            "type": "name_cn",
+            "original": "甲乙",
+            "masked": "CLIENT A",
+            "meta": {
+              "pseudonym": true
+            },
+            "position": {
+              "start": 0,
+              "end": 2
+            }
+          },
+          {
+            "type": "org_name",
+            "original": "乙丙",
+            "masked": "【机构002】",
+            "meta": {
+              "pseudonym": true
+            },
+            "position": {
+              "start": 1,
+              "end": 3
+            }
+          }
+        ]
+      },
+      "expected": {
+        "_meta": {
+          "version": "0.6",
+          "createdAt": "2026-10-15T00:00:00.000Z",
+          "totalMappings": 2,
+          "byType": {
+            "name_cn": 1,
+            "org_name": 1
+          },
+          "restoreStrategy": "token-canonical",
+          "restoreTextPolicy": "entity-formatting-v2",
+          "scope": "single",
+          "tableName": "组合"
+        },
+        "mappings": {
+          "CLIENT A": "甲乙",
+          "【机构002】": "乙丙",
+          "CLIENT A【机构002】": "甲乙丙"
+        },
+        "details": [
+          {
+            "entityType": "name_cn",
+            "normalized": "甲乙",
+            "pseudonym": "CLIENT A",
+            "createdAt": 1792022400000,
+            "occurrences": 1,
+            "forms": [
+              {
+                "original": "甲乙",
+                "role": "original",
+                "count": 1
+              }
+            ]
+          },
+          {
+            "entityType": "org_name",
+            "normalized": "乙丙",
+            "pseudonym": "【机构002】",
+            "createdAt": 1792022400000,
+            "occurrences": 1,
+            "forms": [
+              {
+                "original": "乙丙",
+                "role": "original",
+                "count": 1
+              }
+            ]
+          }
+        ],
+        "entityMap": {
+          "CLIENT A": {
+            "canonical": "甲乙",
+            "entityType": "name_cn",
+            "forms": [
+              {
+                "original": "甲乙",
+                "role": "original",
+                "count": 1
+              }
+            ]
+          },
+          "【机构002】": {
+            "canonical": "乙丙",
+            "entityType": "org_name",
+            "forms": [
+              {
+                "original": "乙丙",
+                "role": "original",
+                "count": 1
+              }
+            ]
+          }
+        },
+        "occurrences": [
+          {
+            "token": "CLIENT A",
+            "original": "甲乙",
+            "entityType": "name_cn",
+            "role": "original",
+            "position": {
+              "start": 0,
+              "end": 2
+            }
+          },
+          {
+            "token": "【机构002】",
+            "original": "乙丙",
+            "entityType": "org_name",
+            "role": "original",
+            "position": {
+              "start": 1,
+              "end": 3
+            }
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "tableName": "空白合法假名",
+        "matches": [
+          {
+            "type": "name_cn",
+            "original": "合成甲",
+            "masked": "unused",
+            "meta": {
+              "pseudonym": " CLIENT A "
+            }
+          }
+        ]
+      },
+      "expected": {
+        "_meta": {
+          "version": "0.6",
+          "createdAt": "2026-10-15T00:00:00.000Z",
+          "totalMappings": 1,
+          "byType": {
+            "name_cn": 1
+          },
+          "restoreStrategy": "token-canonical",
+          "restoreTextPolicy": "entity-formatting-v2",
+          "scope": "single",
+          "tableName": "空白合法假名"
+        },
+        "mappings": {
+          " CLIENT A ": "合成甲"
+        },
+        "details": [
+          {
+            "entityType": "name_cn",
+            "normalized": "合成甲",
+            "pseudonym": " CLIENT A ",
+            "createdAt": 1792022400000,
+            "occurrences": 1,
+            "forms": [
+              {
+                "original": "合成甲",
+                "role": "original",
+                "count": 1
+              }
+            ]
+          }
+        ],
+        "entityMap": {
+          " CLIENT A ": {
+            "canonical": "合成甲",
+            "entityType": "name_cn",
+            "forms": [
+              {
+                "original": "合成甲",
+                "role": "original",
+                "count": 1
+              }
+            ]
+          }
+        },
+        "occurrences": [
+          {
+            "token": " CLIENT A ",
+            "original": "合成甲",
+            "entityType": "name_cn",
+            "role": "original"
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "tableName": "空白合法假名",
+        "matches": [
+          {
+            "type": "name_cn",
+            "original": "合成甲",
+            "masked": "unused",
+            "meta": {
+              "pseudonym": " 【姓名001】 "
+            }
+          }
+        ]
+      },
+      "expected": {
+        "_meta": {
+          "version": "0.6",
+          "createdAt": "2026-10-15T00:00:00.000Z",
+          "totalMappings": 1,
+          "byType": {
+            "name_cn": 1
+          },
+          "restoreStrategy": "token-canonical",
+          "restoreTextPolicy": "entity-formatting-v2",
+          "scope": "single",
+          "tableName": "空白合法假名"
+        },
+        "mappings": {
+          " 【姓名001】 ": "合成甲"
+        },
+        "details": [
+          {
+            "entityType": "name_cn",
+            "normalized": "合成甲",
+            "pseudonym": " 【姓名001】 ",
+            "createdAt": 1792022400000,
+            "occurrences": 1,
+            "forms": [
+              {
+                "original": "合成甲",
+                "role": "original",
+                "count": 1
+              }
+            ]
+          }
+        ],
+        "entityMap": {
+          " 【姓名001】 ": {
+            "canonical": "合成甲",
+            "entityType": "name_cn",
+            "forms": [
+              {
+                "original": "合成甲",
+                "role": "original",
+                "count": 1
+              }
+            ]
+          }
+        },
+        "occurrences": [
+          {
+            "token": " 【姓名001】 ",
+            "original": "合成甲",
+            "entityType": "name_cn",
+            "role": "original"
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "tableName": "空白合法假名",
+        "matches": [
+          {
+            "type": "name_cn",
+            "original": "合成甲",
+            "masked": "unused",
+            "meta": {
+              "pseudonym": " CLIENT A【机构002】 "
+            }
+          }
+        ]
+      },
+      "expected": {
+        "_meta": {
+          "version": "0.6",
+          "createdAt": "2026-10-15T00:00:00.000Z",
+          "totalMappings": 1,
+          "byType": {
+            "name_cn": 1
+          },
+          "restoreStrategy": "token-canonical",
+          "restoreTextPolicy": "entity-formatting-v2",
+          "scope": "single",
+          "tableName": "空白合法假名"
+        },
+        "mappings": {
+          " CLIENT A【机构002】 ": "合成甲"
+        },
+        "details": [
+          {
+            "entityType": "name_cn",
+            "normalized": "合成甲",
+            "pseudonym": " CLIENT A【机构002】 ",
+            "createdAt": 1792022400000,
+            "occurrences": 1,
+            "forms": [
+              {
+                "original": "合成甲",
+                "role": "original",
+                "count": 1
+              }
+            ]
+          }
+        ],
+        "entityMap": {
+          " CLIENT A【机构002】 ": {
+            "canonical": "合成甲",
+            "entityType": "name_cn",
+            "forms": [
+              {
+                "original": "合成甲",
+                "role": "original",
+                "count": 1
+              }
+            ]
+          }
+        },
+        "occurrences": [
+          {
+            "token": " CLIENT A【机构002】 ",
+            "original": "合成甲",
+            "entityType": "name_cn",
+            "role": "original"
+          }
+        ]
+      }
+    },
+    {
+      "input": {
+        "tableName": "空表",
+        "matches": []
+      },
+      "expected": {
+        "_meta": {
+          "version": "0.6",
+          "createdAt": "2026-10-15T00:00:00.000Z",
+          "totalMappings": 0,
+          "byType": {},
+          "restoreStrategy": "token-canonical",
+          "restoreTextPolicy": "entity-formatting-v2",
+          "scope": "single",
+          "tableName": "空表"
+        },
+        "mappings": {},
+        "details": [],
+        "entityMap": {},
+        "occurrences": []
+      }
+    }
+  ]
+}

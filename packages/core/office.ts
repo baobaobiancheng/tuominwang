@@ -3,6 +3,7 @@ import type { Document, Element, Node } from "@xmldom/xmldom";
 import { posix } from "node:path";
 import { isDeepStrictEqual } from "node:util";
 import type { Anchor, Coverage, Mark } from "../contracts/index.ts";
+import {FILE_MAX_BYTES} from "../contracts/index.ts";
 import { readZip, writeZip, xml, xmlBytes, elements } from "./office-zip.ts";
 import { redact, validateMarks, replacementFor } from "./redaction.ts";
 
@@ -31,9 +32,11 @@ async function load(bytes: Buffer, format: Format, imageTexts?: Record<string, s
   const parts = await readZip(bytes), docs = new Map<string, Document>();
   const relationshipDocs = new Map<string, Document>();
   const coverage: Coverage[] = [{ id: "package", status: "complete", objects: [...parts.keys()].sort() }];
-  const bindings: Binding[] = [], values: string[] = []; let offset = 0;
+  const bindings: Binding[] = [], values: string[] = []; let offset = 0, canonicalBytes = 0;
   const add = (part: string, object: string, value: string, set: Binding["set"], cell?: { row: number; column: number }) => {
-    if (bindings.length >= 20000) throw new Error("OBJECT_LIMIT");
+    const nextBytes=canonicalBytes+Buffer.byteLength(value,'utf8')+(bindings.length?1:0);
+    if(nextBytes>FILE_MAX_BYTES)throw new Error("OFFICE_TEXT_LIMIT");
+    canonicalBytes=nextBytes;
     const anchor: Anchor = { kind: "object", part, object, start: offset, end: offset + value.length, ...cell };
     bindings.push({ anchor, value, set }); values.push(value); offset += value.length + 1;
   };

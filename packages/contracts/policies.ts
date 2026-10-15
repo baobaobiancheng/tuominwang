@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { markSchema, replacementSchema, MAX_MARKS } from "./index.ts";
+import { markSchema, reviewMarkSchema, replacementSchema, MAX_MARKS } from "./index.ts";
 export const policyDirectiveSchema = z.union([
   replacementSchema.options[0], replacementSchema.options[1], replacementSchema.options[2], replacementSchema.options[3], replacementSchema.options[4], replacementSchema.options[5],
   z.object({ mode: z.literal("alias") }).strict(),
@@ -12,4 +12,4 @@ export const replacementPoliciesSchema = z.object({
   keepExplicit: z.boolean().default(true),
 }).strict().refine(p => new Set(p.types.map(t => t.rawEntityType===undefined?t.kind:`raw:${JSON.stringify(t.rawEntityType)}`)).size === p.types.length, { message: "Duplicate type policies" });
 export type ReplacementPolicies = z.infer<typeof replacementPoliciesSchema>;
-export const policyRequestSchema = z.object({ revision: z.number().int().nonnegative(), marks: z.array(markSchema).max(MAX_MARKS), policies: replacementPoliciesSchema }).strict();
+export const policyRequestSchema = z.object({ revision: z.number().int().nonnegative(), marks: z.array(reviewMarkSchema).max(MAX_MARKS), policies: replacementPoliciesSchema }).strict();

@@ -1,3 +1,4 @@
+import{isWordFormat}from'./document-format.ts';
 import {parseReferenceMarkdown,exportReferenceMarkdown,verifyReferenceMarkdownPrivacy,type ReferenceMarkdown,type MarkdownBlockerReview} from './reference-markdown.ts';
 import { parse } from "csv-parse/sync";
 import { stringify } from "csv-stringify/sync";
@@ -54,7 +55,7 @@ export function parseFile(bytes: Buffer, format: SourceFormat, options:{fileName
   return { text: values.join("\n"), anchors, coverage: records.map((_, i) => ({ id: `row:${i + 1}`, status: "complete" as const })) };
 }
 export function validateFileMarks(text: string, marks: Mark[], format: SourceFormat, anchors: Anchor[], final = false) {
-  if (["docx", "xlsx"].includes(format)) return validateOfficeMarks(text, marks, anchors, final);
+  if (isWordFormat(format)||format==="xlsx") return validateOfficeMarks(text, marks, anchors, final);
   validateMarks(text, marks, final);
   if (format === "csv") for (const mark of marks) {
     let lo = 0, hi = anchors.length;
@@ -117,3 +118,9 @@ FILE_ERRORS.push('MARKDOWN_SOURCE_COMPATIBILITY_FORBIDDEN','MARKDOWN_CONTENT_MIS
 FILE_ERRORS.push('MARKDOWN_BLOCKERS_UNREVIEWED');
 
 FILE_ERRORS.push("OFFICE_XML_VALUE_INVALID");
+
+FILE_ERRORS.push('LEGACY_OFFICE_NORMALIZATION_REQUIRED','LEGACY_OFFICE_NORMALIZATION_INVALID','LEGACY_OFFICE_CLIENT_MISSING','LEGACY_OFFICE_INPUT_INVALID','LEGACY_OFFICE_DOCX_INVALID','LEGACY_OFFICE_RPC_INVALID','LEGACY_OFFICE_OUTPUT_INVALID','LEGACY_OFFICE_CONTENT_MISMATCH','LEGACY_OFFICE_ORIGINAL_EXPORT_UNSUPPORTED','LEGACY_OFFICE_CONVERSION_FAILED','LEGACY_OFFICE_LOAD_FAILED','LEGACY_OFFICE_PASSWORD_REQUIRED','LEGACY_OFFICE_PASSWORD_INCORRECT');
+
+FILE_ERRORS.push('DOCUMENT_ENCRYPTED');
+FILE_ERRORS.push('LEGACY_OFFICE_ROUNDTRIP_FAILED','LEGACY_OFFICE_REQUEST_INVALID','LEGACY_OFFICE_ENDPOINT_INVALID','OFFICE_TEXT_LIMIT');
+FILE_ERRORS.push('ENTITY_CORRECTION_STALE','ENTITY_CORRECTION_INVALID','ENTITY_CORRECTION_AMBIGUOUS','ENTITY_CORRECTION_UNRESOLVED');

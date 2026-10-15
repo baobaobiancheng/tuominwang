@@ -59,6 +59,6 @@ export function shiftOcrAnchors(anchors: Anchor[], target: Anchor, delta: number
 export function resetOcrMarks(marks: Mark[], start: number, end: number, delta: number): Mark[] {
   return marks.flatMap(m => {
     if (m.start < end && m.end > start || start === end && m.start < start && m.end > start) return [];
-    return [{ ...m, start: m.start >= end ? m.start + delta : m.start, end: m.start >= end ? m.end + delta : m.end, decision: "pending" as const }];
+    return [{ ...m, start: m.start >= end ? m.start + delta : m.start, end: m.start >= end ? m.end + delta : m.end, decision: m.hiddenByType ? "ignore" as const : "pending" as const }];
   });
 }

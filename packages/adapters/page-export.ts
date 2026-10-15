@@ -1,3 +1,4 @@
+import{resolveEntityGeometry}from'./entity-geometry.ts';
 import {verifiedDocumentSource} from "./document-source.ts";
 import { renderDocumentVisualPage } from "./visual-replacement.ts";
 import sharp from "sharp";
@@ -19,7 +20,7 @@ export async function validatePageExport(d: any, text: string) {
     let glyphs: Glyph[];
     try { glyphs = JSON.parse(map); if (!Array.isArray(glyphs) || glyphs.some(g => !Array.isArray(g))) throw new Error(); }
     catch { throw new Error("PAGE_POSITION_MISSING"); }
-    boxes.set(page.index, pageBoxes(text, d.marks, d.anchors, page, glyphs, policy));
+    boxes.set(page.index, pageBoxes(text, d.marks, d.anchors, page, glyphs, policy,resolveEntityGeometry(d,d.marks,policy,page,glyphs,text)));
   }
   return { pages, policy, boxes };
 }

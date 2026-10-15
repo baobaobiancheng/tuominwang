@@ -1,0 +1,82 @@
+{
+  "date": "2026-10-15",
+  "reviewer": "complete_visual",
+  "kind": "read-only-source-and-independent-pure-unit-review",
+  "qualifiedFindings": [],
+  "conclusion": "No new qualified defect found in reviewed current legacy converter modules. Own5puretests independently pass; A service execution read as external evidence only, not rerun by B.",
+  "checks": [
+    "Original and decrypted CFB raw validators run before officeCrypto parser; expected originalSHA checked before fastpath/conversion and original immutable rechecked.",
+    "Known password only, no guessing/bypass; password absent in RPC after local decrypted legacyCFB; byte-only RPC contains no source storage path/DB/DATA_KEY.",
+    "Source Tp/Sp/Op branches have fixed golden arrays and strict all-summary equality; known lossy textbox conversion rejects, WPS original export refused rather than forged.",
+    "RPC response job/source/output hashes, canonicalbase64, outputsize, macro0/update0/isolatedprofile/serverPathsAcceptedfalse all checked.",
+    "Configuredendpoint allows fixed local/private hostname only; no document-driven remote URI; Docker internal conversion network and no hostpath/material/key mount.",
+    "New isolated UNO profile/temp, macroexecution0/update0, abort interaction; cancel flag/timeout only process group started with start_new_session; finally TERM/wait/KILL ownprocess and temp cleanup.",
+    "Service token constanttime compare, strict requestkeys/base64/sourcehash; duplicatejob conflict and pending cancellation IDs retained10minutes, serialization checks cancellation again beforestart."
+  ],
+  "independentExecution": {
+    "test": "tests/legacy-office.test.ts",
+    "tests": 5,
+    "result": "PASS",
+    "log": {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/review-legacy-office-unit-B.log",
+      "bytes": 224,
+      "sha256": "8eb8278b7e69bceed3de8d122ed62ed9c888de1ce43806213964aafab1adb160"
+    },
+    "boundary": "Pure/golden+existingfixture tests, not new actual UNO/container execution."
+  },
+  "sourceRuntimeBoundary": "Original proprietary application/nativeWindows branch not executed; LibreOffice implementation is a documented independent adapter; source S2/R0 unchanged.",
+  "serviceEvidenceReadOnly": [
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/legacy-office/actual-uno-result.json",
+      "bytes": 3296,
+      "sha256": "e8cd4a82af2300da120c260d5b766bd96fc866dc884def3bfe85fae3a0310838"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/legacy-office/actual-uno-amd64-result.json",
+      "bytes": 3306,
+      "sha256": "16ac3c2ce234ce265e63135b2126748fc14f159ae0486f039ef1d7270344fda2"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/legacy-office/timeout-actual.log",
+      "bytes": 111,
+      "sha256": "c1e0bff8da1cfe1e0fe94fc714a9f1c035c2e9623f5775f888f617ad4d700926"
+    }
+  ],
+  "implementation": [
+    {
+      "path": "packages/core/legacy-office.ts",
+      "bytes": 10505,
+      "sha256": "601732c1fc0bd967b4e0467d198688d5b521e46bfc0fb974796ac7af49ce3416"
+    },
+    {
+      "path": "packages/adapters/legacy-office.ts",
+      "bytes": 9334,
+      "sha256": "348baed1d8ef760483714e2bc1c3b6040e80b523e66c085f2f568415642d19ad"
+    },
+    {
+      "path": "packages/adapters/legacy-office-control.ts",
+      "bytes": 982,
+      "sha256": "7d7beea263f9d55f0e6141bce8a5a96afd1883d2b3ab3651b7a88e4b13f293ab"
+    },
+    {
+      "path": "services/legacy-office/convert.py",
+      "bytes": 8171,
+      "sha256": "96edb9e638cd79cce160be8556678194f06cd21f9ec20e0245a2f01adcd6ade3"
+    },
+    {
+      "path": "services/legacy-office/server.py",
+      "bytes": 3341,
+      "sha256": "ad009698da25d5ea3a43b57c683b9c5269cd9c02cc8164209f0cb3250888c216"
+    },
+    {
+      "path": "services/legacy-office/Dockerfile",
+      "bytes": 655,
+      "sha256": "c02fc6d631782724752f9e73fe2bb262affc11fd9cd543f299809e519c5b2348"
+    },
+    {
+      "path": "services/legacy-office/compose.fragment.yml",
+      "bytes": 609,
+      "sha256": "58838281b66356c2b9e13871b4b276b69790a9535e1d1b312501c14e5f66f45d"
+    }
+  ]
+}

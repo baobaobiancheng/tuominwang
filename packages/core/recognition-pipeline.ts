@@ -1,4 +1,5 @@
 import type { Mark, Anchor, DictionaryEntry } from '../contracts/index.ts';
+import {isOfficeProtocolAttribute} from './office-protocol.ts';
 import { detect, mergeCandidates } from './redaction.ts';
 import { detectReferenceRules, filterReferenceNerCandidates, classifyReferenceDocumentDetail, REFERENCE_RULES_VERSION } from './reference-rules.ts';
 export const recognitionVersion = `cn-rules-3+${REFERENCE_RULES_VERSION}`;
@@ -9,7 +10,7 @@ export function detectComplete(text: string, anchors: Anchor[], dictionary: Dict
   const reference: Mark[] = [], original = detect(text, anchors, dictionary).filter(m => !anchors.length || anchors.some(a => a.start <= m.start && a.end >= m.end));
   const accountFields = original.filter(m => m.kind === "证券/资金账号" || m.kind === "证照/许可证号");
   for (const span of spans) for (const c of detectReferenceRules(text.slice(span.start, span.end), { ...context, documentType: classification.type, windowOffset: span.start })) {
-    if (c.kind === '网址' && span.kind === 'object' && /^word\/.+\.xml$/u.test(span.part ?? '') && /^attribute:\d+:uri$/u.test(span.object ?? '') && text.slice(span.start,span.end) === 'http://schemas.openxmlformats.org/drawingml/2006/picture') continue;
+    if (c.kind === '网址' && isOfficeProtocolAttribute(text,span)) continue;
     const field = c.kind === '银行账号' ? accountFields.find(f => c.start >= f.start && c.end <= f.end) : undefined;
     reference.push({ start: field?.start ?? c.start, end: field?.end ?? c.end, kind: field?.kind ?? c.kind, decision: 'pending', sources: c.sources.map(source=>({...source,score:c.confidence})) });
   }

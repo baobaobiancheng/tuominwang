@@ -1,0 +1,295 @@
+{
+  "date": "2026-10-15",
+  "state": "complete-786-research-quality-insufficient-not-product-integrated",
+  "model": {
+    "model": "PaddlePaddle/PP-DocLayout-S",
+    "revision": "8ac289e66575bb9bba6e15c53719d8b15cc9b3b2",
+    "weightSHA256": "491c3382d84ca04d2033afbee0c105942ed82fea392bb4a19170646adebe088a",
+    "onnxSHA256": "33688dbee1c23e34b81777e97cb428eb40f24b242c02b5f623484959e830aec8",
+    "onnxBytes": 4917852
+  },
+  "license": {
+    "model": "Official PaddlePaddle/PP-DocLayout-S cardApache-2.0",
+    "modelURL": "https://huggingface.co/PaddlePaddle/PP-DocLayout-S/tree/8ac289e66575bb9bba6e15c53719d8b15cc9b3b2",
+    "implementation": "OfficialPaddle3.3.1/paddle2onnx2.1.0 Apache2 conversion toONNX17; local-only",
+    "data": "mapo80/stamps uploaderCCBY4; originalimageupstream grants/attribution unverified; officialmixedlayouttrainingdetails/perimagegrants/overlapwith786unknown",
+    "noRedistribution": "Originalimages andtrainingweights not committed; metadata onlyreport. Not independentcommercialblackwhitebboxgold."
+  },
+  "dataset": {
+    "name": "mapo80/stamps mixed public test; upstream authorization and black/white strata NOT verified",
+    "revision": "998243bde1262ccb57ca28ddd6868b05fd1ddf49",
+    "url": "https://huggingface.co/datasets/mapo80/stamps",
+    "download": "https://huggingface.co/datasets/mapo80/stamps/resolve/998243bde1262ccb57ca28ddd6868b05fd1ddf49/test.zip",
+    "archiveHash": "c3942fd1dc8037649885c7cec7d5e1c8399b131fe75605083c39d50b674d5f4b",
+    "archiveBytes": 95060991,
+    "declaredLicense": "CC-BY-4.0 in uploader card; per-image original upstream permission/attribution chain unresolved",
+    "split": "all 786 published test images,661 positive125negative,1315class0 stamp boxes",
+    "selection": "complete sorted published split; no omissions; detector failures count all gold as FN",
+    "boundaries": [
+      "No color/black-white or Chinese-commercial stratum labels supplied. Cannot derive independent blackwhite/commercial accuracy.",
+      "Upstream combined resplit datasets; source-family/training overlap with any upstream models is not established.",
+      "No test tuning, thresholds changed, training, raw-image redistribution, or competitor activation."
+    ],
+    "readmeHash": "fdadaedc3d70d0a439eebeeff035538d6f946290b3b4f18a4de6812164c8ea06",
+    "yamlHash": "624e5aca1f044533ce15f0c66062353e2c175f6e7976f2b1876006ddcb1dbfdd"
+  },
+  "counts": {
+    "images": 786,
+    "GT": 1315,
+    "failed": 0,
+    "predictions": 113
+  },
+  "metrics": {
+    "0.25": {
+      "tp": 99,
+      "fp": 14,
+      "fn": 1216,
+      "precision": 0.8761061946902655,
+      "recall": 0.0752851711026616,
+      "f1": 0.13865546218487396
+    },
+    "0.5": {
+      "tp": 99,
+      "fp": 14,
+      "fn": 1216,
+      "precision": 0.8761061946902655,
+      "recall": 0.0752851711026616,
+      "f1": 0.13865546218487396
+    },
+    "0.75": {
+      "tp": 66,
+      "fp": 47,
+      "fn": 1249,
+      "precision": 0.584070796460177,
+      "recall": 0.050190114068441066,
+      "f1": 0.09243697478991597
+    }
+  },
+  "combinedMetrics": {
+    "0.25": {
+      "tp": 472,
+      "fp": 1368,
+      "fn": 843,
+      "precision": 0.2565217391304348,
+      "recall": 0.35893536121673003,
+      "f1": 0.29920760697305865
+    },
+    "0.5": {
+      "tp": 358,
+      "fp": 1482,
+      "fn": 957,
+      "precision": 0.19456521739130433,
+      "recall": 0.2722433460076046,
+      "f1": 0.22694136291600633
+    },
+    "0.75": {
+      "tp": 187,
+      "fp": 1653,
+      "fn": 1128,
+      "precision": 0.10163043478260869,
+      "recall": 0.14220532319391635,
+      "f1": 0.11854199683042789
+    }
+  },
+  "baselineIoU05": {
+    "tp": 316,
+    "fp": 1496,
+    "fn": 999,
+    "f1": 0.2021106491845219
+  },
+  "decision": "Singlemodel precision87.61% but recall7.53%; combinedF1.5=22.69% vsbaseline20.21%, small+2.48pp gain only. No claim practical automaticseal completion. Optionalpendingcandidate may be researched; no productionintegration yet.",
+  "fixedBeforeTest": {
+    "threshold": ".5 officialdraw_threshold",
+    "preprocess": "Official OpenCV4.10 INTER_CUBIC,RGB,distort480x480,ImageNet normalize,scale_factor480/H,W; exact3tensor Paddle/ONNX parity before fulltest",
+    "postprocess": "model-only official graphMultiClassNMS(score.3/iou.5/keep100),filterseal16 score>.5,pageclip; no addedNMS; combined unchanged existingper-reason globalNMS.3",
+    "noTrainingOrTestTuning": true,
+    "originalOpenCvUnchanged": true,
+    "noStartupOrDeploymentResourceChanges": true
+  },
+  "parity": {
+    "passed": true,
+    "node": "v24.19.0",
+    "onnxSHA256": "33688dbee1c23e34b81777e97cb428eb40f24b242c02b5f623484959e830aec8",
+    "onnxBytes": 4917852,
+    "beforeRss": 101335040,
+    "maxRssKiB": 196304,
+    "threshold": "official.5 unchanged; compares raw all23classes graphNMS output, not justseal",
+    "results": [
+      {
+        "name": "zero.f32",
+        "elapsedMs": 69.46033299999999,
+        "errors": {
+          "fetch_name_0": {
+            "shape": [
+              30,
+              6
+            ],
+            "maxAbsolute": 0.000274658203125,
+            "meanAbsolute": 1.8978977782858742e-05
+          },
+          "fetch_name_1": {
+            "shape": [
+              1
+            ],
+            "maxAbsolute": 0,
+            "meanAbsolute": 0
+          }
+        },
+        "rssBytes": 169525248
+      },
+      {
+        "name": "square-synthetic.f32",
+        "elapsedMs": 81.44562499999995,
+        "errors": {
+          "fetch_name_0": {
+            "shape": [
+              100,
+              6
+            ],
+            "maxAbsolute": 0.0001220703125,
+            "meanAbsolute": 7.504721482594808e-06
+          },
+          "fetch_name_1": {
+            "shape": [
+              1
+            ],
+            "maxAbsolute": 0,
+            "meanAbsolute": 0
+          }
+        },
+        "rssBytes": 195395584
+      },
+      {
+        "name": "published-image.f32",
+        "elapsedMs": 74.98287499999992,
+        "errors": {
+          "fetch_name_0": {
+            "shape": [
+              100,
+              6
+            ],
+            "maxAbsolute": 0.000732421875,
+            "meanAbsolute": 1.5018507838249207e-05
+          },
+          "fetch_name_1": {
+            "shape": [
+              1
+            ],
+            "maxAbsolute": 0,
+            "meanAbsolute": 0
+          }
+        },
+        "rssBytes": 194478080
+      }
+    ]
+  },
+  "execution": {
+    "node": "v24.19.0",
+    "beforeRss": 161431552,
+    "maxNodeRssKiB": 331552,
+    "pythonPreprocessorMaxRss": 264929280,
+    "pythonRssUnit": "bytes on macOS,KiB Linux",
+    "sessionReuse": "One localresearch session acrossfullsplit; product-per-job resource bound must be separately measured beforeintegration",
+    "wallStart": "2026-10-15T03:33:28.720Z",
+    "wallEnd": "2026-10-15T03:34:40.848Z",
+    "totalRowSeconds": 66.75930067400012,
+    "p50Ms": 73.070334,
+    "p95Ms": 149.1451249999991,
+    "maxMs": 1377.224667,
+    "timingBoundary": "Includes officialPython image decode/resize+IPC+Nodeinference+perimagehashread; no SIGSTOP during thisPaddle786run. Model-only3input timing separately pinned.",
+    "resourceBoundary": "Full researchNode includes baselineJSON/row accumulation and model loading; Pythonopencvpreprocessor separateprocess. Singleproductworker with productiondecoder/preprocess and constrained memory not measured; do not addmemorynumbers as ifjointsimultaneousRSSpeak."
+  },
+  "independentReview": {
+    "state": "PASS",
+    "reviewer": "complete_rules",
+    "scope": "All786unique/1315GT/0errors, image+labelSHA/gold same completebaseline,786x3thresholdx2counts zero differences",
+    "boundary": "Metadata recomputation only; not secondinference/notcommercialblackwhitegold/licensevalidation",
+    "report": {
+      "path": "文档/逆向台账/contracts/review-paddle-stamp-by-rules-20261015.json",
+      "bytes": 2270,
+      "sha256": "0b1d38ca3450cf4c91a1624e83cb02e90ed354eb0f7c3a506bf2135b3bb810af"
+    }
+  },
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/paddle-stamp-validation.json",
+      "bytes": 1622020,
+      "sha256": "63abef988e557752f3e8a385e42b9f66c01ec37fbc7a005d0bf76babd27961f0"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/paddle-stamp-full786.log",
+      "bytes": 120879,
+      "sha256": "a5f882b977407abab69911c65f1493ea76de500604a6652b2a6a1195f70c1f96"
+    },
+    {
+      "path": "文档/评估/Paddle印章全量候选验证20261015/per-image.json",
+      "bytes": 1572335,
+      "sha256": "9d77aa4f3061411bf8bcf6b450e68717f2773e357eeb1ea6feb2428ad9ee7e40"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/paddle-stamp-export.log",
+      "bytes": 818,
+      "sha256": "ff00099ebecdabcdb9236dfe0d5e77bac4b1db02bcc3be74d501ad6ed3165986"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/paddle-reference-parity.log",
+      "bytes": 1358,
+      "sha256": "6eaef177c55b399889b838512b8655823c27c73fa3accdd681a02ac86ffab211"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/paddle-onnx-parity.log",
+      "bytes": 7803,
+      "sha256": "7585793f9973c9b0f6e9311536742aeabbff52e003d542dad965ab6dbb786b4f"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/paddle-stamp-install-report.json",
+      "bytes": 150123,
+      "sha256": "16709b009b5686dcc1a026907b8dbbabb608c1cbe217f2ee184deb81786d12f0"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration032/paddle-stamp-install-packaging.json",
+      "bytes": 4722,
+      "sha256": "ef380092524d8d6fcde9ab9a949e21cfc2feebbd772653da837f34064755b0af"
+    },
+    {
+      "path": ".data/evals/stamp-model/paddle-source/README.md",
+      "bytes": 7298,
+      "sha256": "d8d4f20e0d2c2e091f87adbf62b99ccbcd5230ef2239ee09dfc3056b0e0999f2"
+    },
+    {
+      "path": ".data/evals/stamp-model/paddle-source/config.json",
+      "bytes": 4715,
+      "sha256": "45f5757daf01694c4adba0eba7ff2854caf011f02c91bdbd2ef6eb06d7a0f488"
+    },
+    {
+      "path": ".data/evals/stamp-model/paddle-source/inference.json",
+      "bytes": 339876,
+      "sha256": "ac09e931895d4c442e5379ab3b7e9b583baf288e816ab7675ca519da9eb2a9d7"
+    },
+    {
+      "path": ".data/evals/stamp-model/paddle-source/retrieval.json",
+      "bytes": 900,
+      "sha256": "fe42e6e3f260754de71e151aa0865139d383714ed90415aaa724da0753efe7f4"
+    },
+    {
+      "path": "scripts/evaluate-paddle-stamp.ts",
+      "bytes": 8959,
+      "sha256": "647247763b1ce7270563d9d10745515954868061fc34156b93a2ff9829b64a33"
+    },
+    {
+      "path": "scripts/paddle-stamp-preprocess.py",
+      "bytes": 1066,
+      "sha256": "ce230215e9d07035d36f565bc549eb37f48f46416dd44cc3f2a01479ddbdaf3a"
+    },
+    {
+      "path": "scripts/check-paddle-stamp-parity.ts",
+      "bytes": 2325,
+      "sha256": "c9eea4fb994a2444f2eef261c29361dcd66827ed7da0e67a0928c8fc1ac66507"
+    },
+    {
+      "path": "scripts/check-paddle-stamp-reference.py",
+      "bytes": 2714,
+      "sha256": "196f92adaa08d1a886eb56da9eedbae90f697097632c12370263c654d938ed50"
+    }
+  ]
+}

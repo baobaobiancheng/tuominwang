@@ -1,3 +1,4 @@
+import{resolveEntityGeometry}from'./entity-geometry.ts';
 import type { Profile } from "../contracts/presets.ts";
 import type { Anchor, Mark, ParsedPage } from "../contracts/index.ts";
 import type { Glyph } from "../core/ocr.ts";
@@ -8,7 +9,7 @@ import { validatePageReview } from "../core/page-redaction.ts";
 import { visualReplacementPlan,visibleVisualReplacementDraws,rectangleTouchesBox } from "../core/visual-replacement.ts";
 import { readArtifact, hash } from "./storage.ts";
 
-export type ProfileArtifact = { role: "primary" | "markdown" | "pdf-docx"; name: string; format: string; bytes: Buffer };
+export type ProfileArtifact = { role: "primary" | "markdown" | "pdf-docx" | "word-docx"; name: string; format: string; bytes: Buffer };
 export type ProfileExportInput = {
   document: { source_format?: string; anchors: Anchor[]; marks: Mark[]; page_data?: ParsedPage[]; page_review?: unknown };
   // Supplied only after the existing source/snapshot/coverage/mapping and artifact verification gates succeed.
@@ -30,7 +31,7 @@ export async function safePageMarkdown(document: ProfileExportInput["document"],
     const anchor = document.anchors.find(a => a.kind === "page" && a.page === page.index);
     if (!anchor) throw new Error("PAGE_POSITION_MISSING");
     const rawMap = await readArtifact(page.mapId); if (hash(rawMap) !== page.mapHash) throw new Error("SOURCE_MISMATCH");
-    const glyphs: Glyph[] = JSON.parse(rawMap), plan = visualReplacementPlan(text, document.marks, document.anchors, page, glyphs, policy), boxes = plan.erase, hidden = new Uint8Array(anchor.end - anchor.start);
+    const glyphs: Glyph[] = JSON.parse(rawMap), plan = visualReplacementPlan(text, document.marks, document.anchors, page, glyphs, policy,resolveEntityGeometry(document,document.marks,policy,page,glyphs,text)), boxes = plan.erase, hidden = new Uint8Array(anchor.end - anchor.start);
     // Include every glyph touched by a manual/automatic clearing box, even if no text mark was created.
     for (const glyph of glyphs) if (boxes.some(b => rectangleTouchesBox({x:glyph[2],y:glyph[3],width:glyph[4],height:glyph[5]},b))) hidden.fill(1, glyph[0], glyph[1]);
     for (const m of document.marks) if (m.decision === "redact" && m.start < anchor.end && m.end > anchor.start) hidden.fill(1, Math.max(m.start, anchor.start) - anchor.start, Math.min(m.end, anchor.end) - anchor.start);

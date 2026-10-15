@@ -1,0 +1,103 @@
+{
+  "scope": "035 correction × persistent type-hide and manual birth",
+  "status": "closed-independent-runtime-and-read-only-review",
+  "sourceEvidence": {
+    "file": ".data/research/lawbot-2026-10-13/readable/renderer.js",
+    "ranges": [
+      [
+        6034,
+        6040
+      ],
+      [
+        32155,
+        32156
+      ],
+      [
+        34660,
+        34678
+      ],
+      [
+        35021,
+        35037
+      ],
+      [
+        35065,
+        35113
+      ],
+      [
+        35294,
+        35299
+      ]
+    ],
+    "contract": "Existing gv preserves manual birth; new Wf2/qf2/Gf2→nr2 produces user-added. Hidden items remain excluded from later unrelated correction."
+  },
+  "change": "correctedMark preserves hidden ignore; existing birth uses reviewEntityBirth, new uncovered/supplement creation userAdded=true; local decisions remain pending unless already hidden ignore.",
+  "tests": {
+    "api": 1,
+    "pass": 1,
+    "fail": 0,
+    "skip": 0,
+    "durationMs": 14676.507042,
+    "caseDurationMs": 12704.11,
+    "runtime": "v24.19.0",
+    "flows": [
+      "existing auto corrected then type-hidden",
+      "apply another exact OCR correction, full frame hydration remains hidden ignore",
+      "native and source V3 without own extension reopen with hidden/corrections/source bytes intact",
+      "real cleared/uncovered OCR insertion creates manual-born pending mark"
+    ],
+    "pure": "8 correction tests; combined feedback regression14 tests passed",
+    "typecheckExitCode": 0
+  },
+  "evidence": [
+    {
+      "path": "packages/core/entity-corrections.ts",
+      "sha256": "1bcf10b4f70c72c3a3f1cd50b92e2be458da884383f4440bf7223399f308f809",
+      "bytes": 5783
+    },
+    {
+      "path": "tests/hidden-entity-corrections.integration.ts",
+      "sha256": "9402ac6e4f8519365de08c83654d753dc10483ece965a67069e1bb6e6ea655ca",
+      "bytes": 8044
+    },
+    {
+      "path": "tests/entity-corrections.test.ts",
+      "sha256": "acf99bbd230381cb6803f3a633db577579e20b606251430003e9df9b7b03a6ae",
+      "bytes": 6380
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration036/hidden-entity-corrections-api-C-final.log",
+      "sha256": "d3fb9a309299a7cb822c219b2336858ed8e78a2c7543a37aa930ce0cac5f9f41",
+      "bytes": 290
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration036/hidden-entity-corrections-actual-C-frozen.json",
+      "sha256": "b0b66f2b72c574d7b7e9c1a8106ec97b6bfed9c9994b6a7c10a87e401c6b65a7",
+      "bytes": 506
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration036/correction-feedback-unit-C-final.log",
+      "sha256": "8f1d28fbd7c17e0de183c14f52cb4f101d56e6e7dc038db29629fef419501961",
+      "bytes": 225
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration036/typecheck-C-final-followups.log",
+      "sha256": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92",
+      "bytes": 15
+    }
+  ],
+  "productFrozen": true,
+  "competitorLicensedRuntime": "R0",
+  "proofScope": "Own synthetic isolated runtime plus finite public static source, not licensed competitor execution",
+  "independentReview": {
+    "reviewer": "B",
+    "status": "closed-no-qualified-findings",
+    "testsPass": 1,
+    "durationMs": 19169,
+    "caseDurationMs": 16905,
+    "log": ".data/research/lawbot-2026-10-15/iteration036/review-hidden-entity-corrections-api-B.log",
+    "report": "文档/逆向台账/contracts/review-hidden-entity-corrections-by-visual-20261015.json",
+    "logSha256": "8bdf3e1320e17ef758305d1df51b24cefdf9defb2d7c855e33e1fce7452ab4be",
+    "reportSha256": "670b9460db028390578c98eb097f44cf56747fd7ace495f08fc75aa966e8e61c"
+  }
+}

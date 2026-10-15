@@ -1,0 +1,140 @@
+{
+  "scope": "Single feedback arbitrary source string type and per-caller statistical contracts",
+  "status": "closed-independent-runtime-and-read-only-review",
+  "sourceEvidence": {
+    "file": ".data/research/lawbot-2026-10-13/readable/main.js",
+    "ranges": [
+      [
+        13344,
+        13356
+      ],
+      [
+        13427,
+        13430
+      ],
+      [
+        18107,
+        18132
+      ],
+      [
+        18817,
+        18817
+      ],
+      [
+        18909,
+        18909
+      ]
+    ],
+    "contract": "Single add preserves raw type; query lower-case exact; document/global lower-case substring classification; audit/proof/review statistics exact enum equality; batch only FP else FN unchanged."
+  },
+  "api": {
+    "single": "POST /api/feedback",
+    "query": "GET /api/feedback?type=...",
+    "globalDocumentStats": "GET /api/feedback/statistics?documentName=...",
+    "reviewExactStats": "GET /api/feedback/review-statistics",
+    "exports": "POST /api/feedback/export"
+  },
+  "changes": [
+    "Preserve any well-formed no-NUL string without trimming/case conversion or new per-field length cap",
+    "Display unknown type verbatim safely via own-property UI fallback; Markdown escaped unknown label",
+    "Separate statistics caller semantics; prior combined stats endpoint keeps global confirmed and nests exact reviewStatistics",
+    "Raw values remain encrypted owner-scoped; no automatic learning; normal three values and source batch mapping preserved"
+  ],
+  "tests": {
+    "pass": 1,
+    "fail": 0,
+    "skip": 0,
+    "durationMs": 2610.790875,
+    "caseDurationMs": 659.751458,
+    "runtime": "v24.19.0",
+    "types": [
+      "RESEARCH_FALSE_POSITIVE",
+      "research_confirmed",
+      "false_positive",
+      "false_negative",
+      "confirmed",
+      "__proto__"
+    ],
+    "freshApiInstanceReadback": true,
+    "exports": [
+      "json",
+      "csv",
+      "jsonl",
+      "md",
+      "proof-lite"
+    ],
+    "globalStats": {
+      "fp": 2,
+      "fn": 1,
+      "confirmed": 2
+    },
+    "reviewAuditProofExactStats": {
+      "fp": 1,
+      "fn": 1,
+      "confirmed": 1
+    },
+    "typecheckExitCode": 0
+  },
+  "evidence": [
+    {
+      "path": "packages/contracts/feedback.ts",
+      "sha256": "e9f79b4d028bcac80afcedb7b2f10bfc219508de5d8de26b6802ad43015cccf9",
+      "bytes": 3702
+    },
+    {
+      "path": "packages/core/feedback.ts",
+      "sha256": "1712e7fdd9641f11a765b94aae0aeac79ef31552e442a0dccc32d8f19352f089",
+      "bytes": 10121
+    },
+    {
+      "path": "apps/api/feedback.ts",
+      "sha256": "064b9c6393e0e955090c99c969575d07600b73e0e3d0db24b92f43832c0d8463",
+      "bytes": 15286
+    },
+    {
+      "path": "apps/web/feedback.tsx",
+      "sha256": "dfdfc053f07237e307f8384a130506b9deb4bf5125f3ce361f44e10ab8132fed",
+      "bytes": 12232
+    },
+    {
+      "path": "tests/feedback-raw-type.integration.ts",
+      "sha256": "91a602b60ac07262d85053ec2956993db53d5df264781ec2c16ed6c3243db0b6",
+      "bytes": 4944
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-api-C-first.log",
+      "sha256": "a8f04abaaf774b885d1e416137273f1ecaf2c7ba7aecc4275822ed733918f853",
+      "bytes": 295
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-actual-C-frozen.json",
+      "sha256": "3a48152048bbc1f25651751014e2a22cb94021111061a7e71ac1b69bd0bcfb1d",
+      "bytes": 639
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration036/correction-feedback-unit-C-final.log",
+      "sha256": "8f1d28fbd7c17e0de183c14f52cb4f101d56e6e7dc038db29629fef419501961",
+      "bytes": 225
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-15/iteration036/typecheck-C-final-followups.log",
+      "sha256": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92",
+      "bytes": 15
+    }
+  ],
+  "productFrozen": true,
+  "competitorLicensedRuntime": "R0",
+  "proofScope": "Own synthetic isolated runtime plus finite public static source, not licensed competitor execution",
+  "independentReview": {
+    "reviewer": "A",
+    "status": "closed-no-qualified-findings",
+    "testsPass": 1,
+    "durationMs": 3143,
+    "log": ".data/research/lawbot-2026-10-15/iteration036/review-feedback-raw-type-A.log",
+    "proof": ".data/research/lawbot-2026-10-15/iteration036/feedback-raw-type-actual-A-frozen.json",
+    "report": "文档/逆向台账/contracts/review-feedback-raw-type-by-rules-20261015.json",
+    "logSha256": "674ab8ad77681a0c1ff90a0ee99a4228484ee9525b3de1b08990e55471e4b3fd",
+    "proofSha256": "3a48152048bbc1f25651751014e2a22cb94021111061a7e71ac1b69bd0bcfb1d",
+    "reportSha256": "2e9e86b420fa46aa180b233fae89b30d6f29aca0a15df8d333c024a155f108c0"
+  }
+}

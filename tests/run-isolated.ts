@@ -1,7 +1,7 @@
 import pg from "pg";
 import { randomUUID, randomBytes } from "node:crypto";
 import { spawnSync } from "node:child_process";
-import { mkdir, mkdtemp, rm } from "node:fs/promises";
+import { mkdir, mkdtemp, rm, readdir } from "node:fs/promises";
 import { resolve } from "node:path";
 
 process.loadEnvFile(".env");
@@ -24,7 +24,9 @@ env.ADMIN_PASSWORD = env.E2E_PASSWORD = randomBytes(24).toString("hex");
 // Forces Playwright to start its own services; refuses occupied business ports.
 if (mode === "e2e") { env.CI = "1"; env.NER_ENABLED = "1"; }
 try {
-  const integrationFiles=testFilter?[testFilter]:["tests/integration.ts", "tests/files.integration.ts", "tests/resources.integration.ts", "tests/jobs.integration.ts", "tests/recognition.integration.ts", "tests/ner.integration.ts", "tests/mappings.integration.ts", "tests/pages.integration.ts", "tests/ocr.integration.ts", "tests/access.integration.ts", "tests/lifecycle.integration.ts", "tests/presets.integration.ts", "tests/replacement-policies.integration.ts", "tests/portable.integration.ts", "tests/mcp.integration.ts", "tests/office-media.integration.ts", "tests/document-unlock.integration.ts", "tests/contextual-recognition.integration.ts", "tests/portable-unlocked.integration.ts", "tests/default-profile.integration.ts", "tests/feedback.integration.ts", "tests/support.integration.ts", "tests/image-utilities.integration.ts", "tests/restoration-batch.integration.ts", "tests/processing-observability.integration.ts", "tests/workspace-recovery-network.integration.ts", "tests/markdown-manual-draft.integration.ts", "tests/entity-identity.integration.ts", "tests/workspace-compat.integration.ts", "tests/page-review-storage.integration.ts", "tests/circle-redaction.integration.ts", "tests/processing-resources.integration.ts", "tests/reference-markdown.integration.ts", "tests/image-batch-search.integration.ts", "tests/mapping-capacity.integration.ts", "tests/mcp-complete-matrix.integration.ts", "tests/manual-clear-override.integration.ts", "tests/custom-replacement.integration.ts", "tests/custom-visual.integration.ts"];
+  // Every checked-in integration suite participates; newly ported features
+  // cannot silently fall outside the full release gate.
+  const integrationFiles=testFilter?[testFilter]:["tests/integration.ts",...(await readdir("tests")).filter(file=>/^[a-z-]+\.integration\.ts$/.test(file)).sort().map(file=>"tests/"+file)];
   const commands = mode==='e2e' ? [
     ["--import", "tsx", "scripts/migrate.ts"],
     ["--import", "tsx", "scripts/admin.ts"], ["node_modules/@playwright/test/cli.js", "test", ...testFilter ? [testFilter] : []],
