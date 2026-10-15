@@ -17,11 +17,15 @@ test("desktop project dictionary changes invalidate review and drive a new candi
   await page.getByRole("button", { name: "项目词表", exact: true }).click();
   await page.getByLabel("名称或代号", { exact: true }).fill("北京甲乙科技有限公司");
   await page.getByRole("button", { name: "添加词条", exact: true }).click();
+  const savedDictionary = page.waitForResponse(response => response.request().method() === "PUT" && /\/api\/projects\/[a-f0-9-]{36}\/dictionary$/.test(new URL(response.url()).pathname));
   await page.getByRole("button", { name: "保存词表", exact: true }).click();
   await page.getByRole("alertdialog", { name: "操作确认" }).getByRole("button", { name: "确认执行", exact: true }).click();
+  const saved = await savedDictionary;
+  expect(saved.status()).toBe(200);
+  expect(await saved.json()).toMatchObject({ revision: 1 });
   await expect(page.getByText("需重新识别", { exact: true })).toBeVisible();
   await page.getByRole("button", { name: /文本 1/ }).click();
-  await expect(page.getByText("项目词表已更新，请重新识别后复核。原有复核记录仍保留。", { exact: true })).toBeVisible();
+  await expect(page.getByRole("alert").filter({ hasText: "材料的处理状态已变化，请重新识别后复核。原有复核记录仍保留。" })).toBeVisible();
   await expect(page.getByRole("button", { name: "导出已选标记的处理副本", exact: true })).toBeDisabled();
   await page.getByRole("button", { name: "重新识别", exact: true }).click();
   await page.getByRole("alertdialog", { name: "操作确认" }).getByRole("button", { name: "确认执行", exact: true }).click();

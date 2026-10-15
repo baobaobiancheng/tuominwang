@@ -31,12 +31,19 @@ async function workspace(page: Page, status = "succeeded", open = true) {
     beforeSubmit: undefined as (() => Promise<void>) | undefined,
     recoveryWrites: [] as any[],
     beforeRecovery: undefined as (() => Promise<void>) | undefined,
+    recoveryRevision: 0,
+    recoveryReceipt: null as null | {id:string;projectId:string;documentId:string;revision:number;documentRevision:number;savedAt:string},
+    writerEpoch: 0,
+    writer: null as null | {writerId:string;token:string;epoch:number;sequence:number;closed:boolean},
     reviews: [] as { revision: number; marks: DocumentView["marks"] }[],
     downloads: [] as { revision: number }[],
   };
   await page.route("**/api/**", async route => {
     const request = route.request(), path = new URL(request.url()).pathname;
     const respond = (body: unknown, status = 200) => route.fulfill({ status, json: body });
+    // The current workspace reads these even when the recent-workspaces drawer
+    // stays closed. A clean synthetic account has no resumable checkpoint.
+    if (path === "/api/workspace/recovery-prompts" && request.method()==="GET") return respond([]);
     if (path === "/api/ai-collab/tasks" && request.method()==="GET") return respond({items:[]});
     if (path === "/api/ai-collab/connectors" && request.method()==="GET") return respond({items:[]});
     if (path === "/api/presets/profiles" && request.method()==="GET") return respond({items:[]});
@@ -48,8 +55,36 @@ async function workspace(page: Page, status = "succeeded", open = true) {
     }
     if (path === `/api/documents/${docId}/configuration` && request.method()==="GET") return respond({revision:state.doc.revision,configuration:{}});
     if (path === `/api/projects/${projectId}/workspace/recent` && request.method()==="POST") return respond({ok:true});
-    if (path === `/api/documents/${docId}/recovery` && request.method()==="GET") return respond(null);
-    if (path === `/api/documents/${docId}/recovery` && request.method()==="PUT") {const body=request.postDataJSON();state.recoveryWrites.push(body);await state.beforeRecovery?.();return respond({id:"draft",revision:body.recoveryRevision+1,documentRevision:state.doc.revision,savedAt:new Date().toISOString()});}
+    // A saved draft remains readable after the document advances; the stored
+    // documentRevision stays at the version actually acknowledged by PUT.
+    if (path === `/api/documents/${docId}/recovery` && request.method()==="GET") return respond(state.recoveryReceipt ? structuredClone(state.recoveryReceipt) : null);
+    if (path === `/api/documents/${docId}/recovery/writer` && request.method()==="POST") {
+      const body=request.postDataJSON();
+      if(body.recoveryRevision!==state.recoveryRevision)return respond({error:"RECOVERY_CONFLICT"},409);
+      const epoch=++state.writerEpoch;
+      state.writer={writerId:`44444444-4444-4444-8444-${epoch.toString(16).padStart(12,'0')}`,token:epoch.toString(16).padStart(64,'a'),epoch,sequence:0,closed:false};
+      return respond({writerId:state.writer.writerId,token:state.writer.token,epoch,sequence:0,recoveryRevision:state.recoveryRevision,leaseSeconds:45});
+    }
+    const writerRoute=path===`/api/documents/${docId}/recovery/writer/heartbeat`||path===`/api/documents/${docId}/recovery/writer/close`;
+    if(writerRoute&&request.method()==="POST"){
+      const body=request.postDataJSON(),wire=body.writer;
+      if(!state.writer||!wire||Object.keys(wire).sort().join(',')!=="epoch,sequence,token,writerId"||wire.writerId!==state.writer.writerId||wire.token!==state.writer.token||wire.epoch!==state.writer.epoch||wire.sequence!==state.writer.sequence||body.recoveryRevision!==state.recoveryRevision)return respond({error:"RECOVERY_WRITER_CONFLICT"},409);
+      if(path.endsWith('/close')){
+        const result={ok:true,clean:true,ackedRevision:state.recoveryRevision,ackedSequence:state.writer.sequence};
+        state.writer.closed=true; // Repeated identical close is idempotent; heartbeat and PUT remain barred.
+        return respond(result);
+      }
+      if(state.writer.closed)return respond({error:"RECOVERY_WRITER_CONFLICT"},409);
+      return respond({ok:true,leaseSeconds:45});
+    }
+    if (path === `/api/documents/${docId}/recovery` && request.method()==="PUT") {
+      const body=request.postDataJSON();state.recoveryWrites.push(body);await state.beforeRecovery?.();
+      if(body.draft.revision!==state.doc.revision)return respond({error:"VERSION_CONFLICT"},409);
+      if(!state.writer||state.writer.closed||body.recoveryRevision!==state.recoveryRevision||!body.writer||Object.keys(body.writer).sort().join(',')!=="epoch,sequence,token,writerId"||body.writer.writerId!==state.writer.writerId||body.writer.token!==state.writer.token||body.writer.epoch!==state.writer.epoch||body.writer.sequence!==state.writer.sequence+1)return respond({error:"RECOVERY_WRITER_CONFLICT"},409);
+      state.writer.sequence=body.writer.sequence;state.recoveryRevision++;
+      state.recoveryReceipt={id:"55555555-5555-4555-8555-555555555555",projectId,documentId:docId,revision:state.recoveryRevision,documentRevision:body.draft.revision,savedAt:new Date().toISOString()};
+      return respond(structuredClone(state.recoveryReceipt));
+    }
     if (path === `/api/documents/${docId}/outputs` && request.method()==="GET") return respond([]);
     if (path === `/api/documents/${docId}/portable-draft` && request.method()==="GET") return respond({available:false});
     if (path === "/api/software-update/state" && request.method() === "GET") return respond({ supported: false, configured: false, currentVersion: "development", releaseId: null, phase: "unavailable", distribution: "web", capabilities: { checkDeployedRelease: true, nativeDownload: false, nativeInstall: false }, preferences: { setupCompleted: false, checkAutomatically: false, downloadAutomatically: false, installAutomatically: false } });

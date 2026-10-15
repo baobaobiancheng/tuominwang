@@ -45,3 +45,38 @@ it('retains short NER locations as uncertain pending evidence to preserve existi
  expect(filterReferenceNerCandidates(text,[{...entity,start:0}],objects)).toEqual([]);
  expect(()=>filterReferenceNerCandidates(text,[entity],[{start:-1,end:text.length,kind:'cell'}])).toThrow('REFERENCE_POSITION_INVALID');
  });
+
+// Append to tests/reference-rules.test.ts after the existing amount-family block.
+// Fixed source-line fixtures; no rule-data lookup is used as a test oracle.
+describe('five independently effective source amount branches',()=>{
+ const positive=[
+  {line:2037,text:'😀 合同金额：壹仟万元整',start:8,end:13,value:'壹仟万元整',ruleId:'AMOUNT-label',confidence:.93},
+  {line:2049,text:'😀 RMB 20000',start:3,end:12,value:'RMB 20000',ruleId:'AMOUNT-currency',confidence:.92},
+  {line:2054,text:'😀 人民币30000元',start:3,end:12,value:'人民币30000元',ruleId:'AMOUNT-currency',confidence:.92},
+  {line:2059,text:'😀 合同金额：（壹万元整）',start:8,end:14,value:'（壹万元整）',ruleId:'AMOUNT-uppercase',confidence:.91},
+  {line:2078,text:'😀 20000元人民币',start:3,end:12,value:'20000元人民币',ruleId:'AMOUNT-currency',confidence:.9},
+ ] as const;
+ for(const row of positive)it(`main.js L${row.line} emits the exact pending span`,()=>{
+  const found=detectReferenceAmounts(row.text);
+  expect(found).toHaveLength(1);
+  expect(found[0]).toEqual({start:row.start,end:row.end,kind:'金额',referenceType:'contract_amount',ruleId:row.ruleId,confidence:row.confidence,decision:'pending',sources:[{layer:'rules',code:row.ruleId}]});
+  expect(row.text.slice(found[0].start,found[0].end)).toBe(row.value);
+  expect(Object.hasOwn(found[0],'masked')).toBe(false);
+  expect(Object.hasOwn(found[0],'approval')).toBe(false);
+  expect(Object.hasOwn(found[0],'replacement')).toBe(false);
+ });
+ for(const [line,text] of [
+  [2037,'😀 合同金额：壹万元整'],
+  [2049,'😀 RMB 2'],
+  [2054,'😀 人民币3平方米'],
+  [2059,'😀 （壹万元整）'],
+ ] as const)it(`main.js L${line} rejects its focused boundary`,()=>expect(detectReferenceAmounts(text)).toEqual([]));
+ it('main.js L2078 needs at least three digits while 12元 stays valid standalone_yuan',()=>{
+  const text='😀 12元人民币',found=detectReferenceAmounts(text);
+  expect(found).toEqual([{start:3,end:6,kind:'金额',referenceType:'contract_amount',ruleId:'AMOUNT-standalone_yuan',confidence:.8,decision:'pending',sources:[{layer:'rules',code:'AMOUNT-standalone_yuan'}]}]);
+  expect(text.slice(found[0].start,found[0].end)).toBe('12元');
+  expect(Object.hasOwn(found[0],'masked')).toBe(false);
+  expect(Object.hasOwn(found[0],'approval')).toBe(false);
+  expect(Object.hasOwn(found[0],'replacement')).toBe(false);
+ });
+});
