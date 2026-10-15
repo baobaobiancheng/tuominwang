@@ -1,0 +1,37 @@
+{
+  "kind": "real-edge-isolated-task-storage-quarantine",
+  "receipt": ".data/research/lawbot-2026-10-15/iteration051/task-storage-formal-edge-attempt02-receipt.json",
+  "receiptSha256": "4e0ed8ff04d3c31a7b8152a23dc0943203ced4a6f9558aefef07bb313d1a18ff",
+  "testSha256": "085a2e9b0821b75ea35a8ba056ccad05390718d10f993a5a9813ec50905cd90a",
+  "inputFiles": 854,
+  "inputsUnchanged": true,
+  "exitCode": 0,
+  "passed": 1,
+  "failed": 0,
+  "logSha256": "08db3cada6ab61c0038a07c291971be5de808c943d75b59b4ccebf6f20c37763",
+  "scope": "real Microsoft Edge, standard fresh isolated DB/user, API/worker fixture setup; controlled one-row ciphertext injection then real UI confirmations; original DB rows, receipts and three download hashes asserted",
+  "screenshots": [
+    {
+      "state": "issue",
+      "source": ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/e2e/task-storage-issue-a8be1066-59b5-4724-a5ec-b9ea28bfab77.png",
+      "destination": "文档/使用指南/截图-20261015/AI任务坏记录提示-051.png",
+      "sha256": "c9fdff71cb1a02285bd7e736865cfbd016ca3611d8a5bcc9f629f26183110b6c",
+      "bytes": 91517
+    },
+    {
+      "state": "isolated",
+      "source": ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/e2e/task-storage-isolated-8e0d0b60-9e18-49f6-876b-4eb184a10851.png",
+      "destination": "文档/使用指南/截图-20261015/AI任务隔离回执-051.png",
+      "sha256": "205ea2967f8b1f393fd0a9779d3f2e74d304f615f1b4edf9fa861ccca20e6024",
+      "bytes": 87777
+    },
+    {
+      "state": "recovered",
+      "source": ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/e2e/task-storage-recovered-ef0a6782-8d38-4984-b703-94890c7c7e64.png",
+      "destination": "文档/使用指南/截图-20261015/AI任务同版本恢复-051.png",
+      "sha256": "2460450a7af33c067734fbd1a38f3a333275788152570b3091ed90d8c02c9796",
+      "bytes": 93496
+    }
+  ],
+  "historicalFailedAttemptScreenshotsUsed": false
+}

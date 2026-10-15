@@ -1,5 +1,5 @@
 {
-  "ledger_sha256": "be1cf3cf84604c554763848d9b561555b92bae3eb14c1f424bf32aae8093a08b",
+  "ledger_sha256": "45b524875de33e2955a31bd3d6f02cfc1735cf7e78c34c9fb2fc3aa7f716cec5",
   "reference_version": "0.5.9",
   "interface_count": 258,
   "flow_count": 37,
@@ -7,10 +7,10 @@
   "historical_ipc_missing": [],
   "unmapped_interfaces": [],
   "empty_evidence_interfaces": [],
-  "evidence_reference_count": 4789,
-  "evidence_file_count": 3344,
-  "evidence_baseline_at": "2026-10-15T18:52:41.462497+00:00",
-  "evidence_baseline_note": "这些哈希是2026-10-13本轮从当前现存文件建立的内容基线，只用于此后漂移检测；不能反向证明基线建立前的文件内容、原始发布完整性或过去运行结论。专有源码未修改。 ITER-012/013追加人工契约、交叉审查、新版指南及明确列举的子路径源码；旧文件哈希继续保留。已批准源码和主分析文档的哈希变更逐项记录previous/current，不扫描部署凭据。 ITER-014仅显式更新最终应用Compose及新增部署结果文件，保留真实OOM与未验证边界，未纳入密钥或环境凭据。 ITER-015仅补115项UI入口、两处动态桥调用集合、交叉审查/核验脚本及新增OpenJPEG发布证据；保留此前应用和部署文件的哈希，正在进行的前端修复漂移由后续迭代单独复核。 ITER-016：仅将本轮明确修改的前端/测试/部署/文档及验收回执更新基线，事件保存旧新哈希；无业务材料或凭据入账。 ITER-017新增分组/增补契约、交叉审查及npm原生签名差异证据；仅maintain新增71解释及维护规则旧动态数量文案的历史hash显式更新。未纳入凭据、未改竞品文件或应用。下载tarball及原生比较的逐项SHA保存在专项报告，不自动扩大成算法可信声明。 ITER-020：补我方Word结构预览、页内OCR改字、视觉候选的实现/验收与规则交接；显式更新5项应用pin，previous/current与原ledger备份保留；早期UI/26例与旧交接独审仅为历史阶段，不代表最终功能或最终文档全部被独审。竞品S2/R0、全部I级别不变，未据本地验证声明公网发布。 ITER-022显式更新进度检查点应用pin；main87基线原字节和旧新hash逐项保留，新能力未一律提级，未发布服务。 ITER-023仅显式进度检查点，28项原pin旧字节归档；有失败日志和新阶段未完成事项，未整体升格。 ITER-030显式逐ID更新，所有漂移旧字节保留并精确验hash；竞品运行R0保持不变。 ITER-031发布及真实OOM影响补证；README和指南文本旧字节精确保留；7张历史截图原字节缺失明确列出，旧hash保留且不声称历史图全部可验证。 ITER038静态语义逐ID合并；旧漂移逐一有精确字节归档，未覆盖掉历史证据。 ITER039握手故障独立复现；变更旧字节逐一验hash并归档，未以定向通过推全量或发布。 ITER040保留全部旧pin字节；逐ID/流程说明CAS更正，等级不变；实际门禁与服务器发布分别记录。 ITER040补5个已存在的新引用当前哈希；不反推其建立基线前内容。新增Edge截图调用保留此前精确字节，尚未运行。 ITER041逐文件真实variant与前后testSHA/logSHA固定；历史结果不冒称当前单次全量。两项测试修正保留旧字节及独立源裁定。 ITER042：首轮真实Edge失败原样保留；18项新旧字节逐一固定，4项产品修复待重新运行，等级不变。 ITER043最终本地：所有旧pin精确字节均找到并归档；API/Edge逐variant保留，无单次全量虚称；13条备注校准不改等级，图文实际核对；部署另证。 ITER044上线：首次真实OOM/回滚与恢复、二次发布、TXT/PNG实产物、指南补丁分别保留；无新增资源限制或模型读取改动；证据变更先核旧字节，S/I/R不变。 ITER-050首次检查点新增审查和实际反例，不变更已有pin及S/I/R，修复与发布尚待。 ITER-050终版：明确更新14路径及文档pin，旧字节按SHA归档；保留失败/跳过/反驳与最终同源层次。258R0及S/I不升级；未把本地验收写为已发布。 ITER-050发布：4文档旧字节先归档，追加最小部署与公网只读证据，保留历史状态而不升级S/I/R。 ITER-051反例检查点：状态文件旧字节先归档；固定已结束实测而不固定仍运行日志；不升级S/I/R。 ITER-051第一批：旧源码Git7ef93d6精确字节归档后显式转移pin；772单元及Edge2为第一批实测，签名/进度/MCP后续未验，竞品R0/线上050记录保持。 051第二批本地checkpoint：显式pin转换及事前旧字节归档；777完整单元、定向API/Edge与跨组反驳；95文件API仍执行、活动日志不pin、未部署。 051第三批本地checkpoint：显式旧pin归档转换，851完整check、分层API/Edge、27图；104全API仍执行，未部署，S/I/R不升。",
+  "evidence_reference_count": 4794,
+  "evidence_file_count": 3462,
+  "evidence_baseline_at": "2026-10-15T19:29:11.399847+00:00",
+  "evidence_baseline_note": "这些哈希是2026-10-13本轮从当前现存文件建立的内容基线，只用于此后漂移检测；不能反向证明基线建立前的文件内容、原始发布完整性或过去运行结论。专有源码未修改。 ITER-012/013追加人工契约、交叉审查、新版指南及明确列举的子路径源码；旧文件哈希继续保留。已批准源码和主分析文档的哈希变更逐项记录previous/current，不扫描部署凭据。 ITER-014仅显式更新最终应用Compose及新增部署结果文件，保留真实OOM与未验证边界，未纳入密钥或环境凭据。 ITER-015仅补115项UI入口、两处动态桥调用集合、交叉审查/核验脚本及新增OpenJPEG发布证据；保留此前应用和部署文件的哈希，正在进行的前端修复漂移由后续迭代单独复核。 ITER-016：仅将本轮明确修改的前端/测试/部署/文档及验收回执更新基线，事件保存旧新哈希；无业务材料或凭据入账。 ITER-017新增分组/增补契约、交叉审查及npm原生签名差异证据；仅maintain新增71解释及维护规则旧动态数量文案的历史hash显式更新。未纳入凭据、未改竞品文件或应用。下载tarball及原生比较的逐项SHA保存在专项报告，不自动扩大成算法可信声明。 ITER-020：补我方Word结构预览、页内OCR改字、视觉候选的实现/验收与规则交接；显式更新5项应用pin，previous/current与原ledger备份保留；早期UI/26例与旧交接独审仅为历史阶段，不代表最终功能或最终文档全部被独审。竞品S2/R0、全部I级别不变，未据本地验证声明公网发布。 ITER-022显式更新进度检查点应用pin；main87基线原字节和旧新hash逐项保留，新能力未一律提级，未发布服务。 ITER-023仅显式进度检查点，28项原pin旧字节归档；有失败日志和新阶段未完成事项，未整体升格。 ITER-030显式逐ID更新，所有漂移旧字节保留并精确验hash；竞品运行R0保持不变。 ITER-031发布及真实OOM影响补证；README和指南文本旧字节精确保留；7张历史截图原字节缺失明确列出，旧hash保留且不声称历史图全部可验证。 ITER038静态语义逐ID合并；旧漂移逐一有精确字节归档，未覆盖掉历史证据。 ITER039握手故障独立复现；变更旧字节逐一验hash并归档，未以定向通过推全量或发布。 ITER040保留全部旧pin字节；逐ID/流程说明CAS更正，等级不变；实际门禁与服务器发布分别记录。 ITER040补5个已存在的新引用当前哈希；不反推其建立基线前内容。新增Edge截图调用保留此前精确字节，尚未运行。 ITER041逐文件真实variant与前后testSHA/logSHA固定；历史结果不冒称当前单次全量。两项测试修正保留旧字节及独立源裁定。 ITER042：首轮真实Edge失败原样保留；18项新旧字节逐一固定，4项产品修复待重新运行，等级不变。 ITER043最终本地：所有旧pin精确字节均找到并归档；API/Edge逐variant保留，无单次全量虚称；13条备注校准不改等级，图文实际核对；部署另证。 ITER044上线：首次真实OOM/回滚与恢复、二次发布、TXT/PNG实产物、指南补丁分别保留；无新增资源限制或模型读取改动；证据变更先核旧字节，S/I/R不变。 ITER-050首次检查点新增审查和实际反例，不变更已有pin及S/I/R，修复与发布尚待。 ITER-050终版：明确更新14路径及文档pin，旧字节按SHA归档；保留失败/跳过/反驳与最终同源层次。258R0及S/I不升级；未把本地验收写为已发布。 ITER-050发布：4文档旧字节先归档，追加最小部署与公网只读证据，保留历史状态而不升级S/I/R。 ITER-051反例检查点：状态文件旧字节先归档；固定已结束实测而不固定仍运行日志；不升级S/I/R。 ITER-051第一批：旧源码Git7ef93d6精确字节归档后显式转移pin；772单元及Edge2为第一批实测，签名/进度/MCP后续未验，竞品R0/线上050记录保持。 051第二批本地checkpoint：显式pin转换及事前旧字节归档；777完整单元、定向API/Edge与跨组反驳；95文件API仍执行、活动日志不pin、未部署。 051第三批本地checkpoint：显式旧pin归档转换，851完整check、分层API/Edge、27图；104全API仍执行，未部署，S/I/R不升。 051第四批前停点：104文件执行35，61过1测试期望失败；无条件安全断言重验1/1，假名与模型导航补齐，未部署。 051第四批checkpoint：SQL044及Edge1/1、854 check134/783、28节30图；105完整API仍运行，未部署，旧pin精确字节归档。",
   "evidence_files": {
     ".data/deploy/aliyun-20261013/before/api-main.ts": {
       "sha256": "407f5d0b16b0a03b7d4d43db9a72b692e2b0d671262907793ade5838f559a016",
@@ -7232,6 +7232,16 @@
       "bytes": 747,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-15/iteration051/archive-corruption-revoke-formal-attempt01-receipt.json": {
+      "sha256": "9ca4ff8bca0b641bad06e93a1bc674c20e7be2b944fc3c79b4cd0e47d65ab96f",
+      "bytes": 540,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/archive-corruption-revoke-formal-attempt01.log": {
+      "sha256": "a8136bcbbacbe5203d730903f289144fe4ad2227e6f314d013ac965acdc02d34",
+      "bytes": 517,
+      "matches_baseline": true
+    },
     ".data/research/lawbot-2026-10-15/iteration051/archive-edge-terminal-receipt.json": {
       "sha256": "1fdee4182425ac91eaf0aa4d5cbee08c5fe2309ea9e3b29804f783b298d2cfef",
       "bytes": 564,
@@ -7287,6 +7297,11 @@
       "bytes": 11068,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-15/iteration051/before-archive-fallback-pins.json": {
+      "sha256": "4c1c1cf6cbf3ad34b889a89075c6b1ed2d951ef0822140a3c42a0b2857b7ab91",
+      "bytes": 614,
+      "matches_baseline": true
+    },
     ".data/research/lawbot-2026-10-15/iteration051/before-contract-recovery-fixes/apps/api/mcp.ts": {
       "sha256": "4b8c5f740962c8cef269e21319369be6349065312e821fe27c76878a41c3d8c5",
       "bytes": 64333,
@@ -7317,6 +7332,51 @@
       "bytes": 15952,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-15/iteration051/before-formal-revoke-race-test.json": {
+      "sha256": "c3abbaf4df5ba852673325ab3a7292367fc1dc39650fc99cb31028cad8e7ce8c",
+      "bytes": 296,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-formal-revoke-race-test/tests/mcp-archive-revoke-race.integration.ts": {
+      "sha256": "8408d3a13efa2d002fa3723e4c60c507ed8b8f83f9b78df0f0735582f4927b26",
+      "bytes": 8710,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-fourthbatch-integration.json": {
+      "sha256": "887786d6ca3235b8330a841779101058b64af9f6831a817be7abbf846c4d7865",
+      "bytes": 1437,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-fourthbatch-integration/apps/api/mcp.ts": {
+      "sha256": "bb9d7ef2584ab37e7033fdd54ad8f666a4c1d83289b7207a16de7bd23045984a",
+      "bytes": 73500,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-fourthbatch-integration/apps/web/ai-collab.tsx": {
+      "sha256": "7899aba2b1aa071459396517215a642b4d459408e2342a0192038607aeb27569",
+      "bytes": 13046,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-fourthbatch-integration/scripts/migrate.ts": {
+      "sha256": "513263534b4190e5055275409565f0e855e5b423b70623b26b3ad3b80c429f34",
+      "bytes": 1598,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-fourthbatch-integration/文档/待办与完成状态-20261015.md": {
+      "sha256": "9db9cf7250f1e00c0e13ad5b6bd2340e8cba20dedc21e5e718847d573a51ebb2",
+      "bytes": 18796,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-fourthbatch-status-final.json": {
+      "sha256": "1f528595b0229cf1f131fcb75d000a83df7ccba345d69e5a88b32e12375ae747",
+      "bytes": 290,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-fourthbatch-status-final/文档/待办与完成状态-20261015.md": {
+      "sha256": "046fd0afcd3223b3aa114b1a0764c0990234707e6d3922d53c5247798d92a56b",
+      "bytes": 19722,
+      "matches_baseline": true
+    },
     ".data/research/lawbot-2026-10-15/iteration051/before-mcp-irreversible-v3.ts": {
       "sha256": "1c2ef953439c59e6ddcf525f0c658febd812a4141be3b6a7e64f3f5e28b4d537",
       "bytes": 65703,
@@ -7330,6 +7390,16 @@
     ".data/research/lawbot-2026-10-15/iteration051/before-mcp-standalone-v4.ts": {
       "sha256": "ce0dbfc4e388c96f7bf9082a62e7eb62d9df81737e634dd0c3fe434356808537",
       "bytes": 68470,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-readme-044.json": {
+      "sha256": "335c9d304f8621036fe57deb223ae3dd46985942b52beb7f945ed655109a29df",
+      "bytes": 214,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-readme-044/README.md": {
+      "sha256": "7ff48453cff6066dd33a3a6aedee5f91e28e86111ef52f2233a726ac3fae3060",
+      "bytes": 13055,
       "matches_baseline": true
     },
     ".data/research/lawbot-2026-10-15/iteration051/before-recovery-checkpoint-integration/apps/api/workspace-recovery.ts": {
@@ -7465,6 +7535,16 @@
     ".data/research/lawbot-2026-10-15/iteration051/before-signature-integration/tests/e2e/cancel-response-loss.spec.ts": {
       "sha256": "02f76df0d3422e4044eb03b0c0bba1eb8ad5a7c0846d3db8f17a53b3df7ebb32",
       "bytes": 6863,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-task-storage-preisolation-read/packages/adapters/ai-result-archive.ts": {
+      "sha256": "aa97808233a8b1a5a6bcc08e8596bc28882755737deb056209229519257ce934",
+      "bytes": 4208,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-task-storage-preisolation-read/tests/mcp-result-archive.integration.ts": {
+      "sha256": "9912b13b666d70e6247dfc9353752aa30d12d76611f8820efbcd9e7a782daffd",
+      "bytes": 20548,
       "matches_baseline": true
     },
     ".data/research/lawbot-2026-10-15/iteration051/before-thirdbatch-guide/文档/使用指南/README.md": {
@@ -7647,6 +7727,61 @@
       "bytes": 374,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-15/iteration051/fourthbatch-final-api-controlled-stop.json": {
+      "sha256": "4c52cd1a9185f1cc6176265ce4c6f1361ece706377b3840b2fe57c0ed42a790c",
+      "bytes": 453,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/fourthbatch-final-api-receipt.json": {
+      "sha256": "f36ddebb3414d41ce0f587fc73842138e33dfc92bc2679f68734eabfee2a68ba",
+      "bytes": 498,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/fourthbatch-final-api.log": {
+      "sha256": "e09bf69cfa35f2a7e6b1703b5c705ce23263f0171d03bafa7e0f46de99891f6e",
+      "bytes": 2385,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/fourthbatch-final-check-receipt.json": {
+      "sha256": "9bd2e4871ca042586c06d056a9b5bca1b7f438c851ba4312e8c36cc404d28000",
+      "bytes": 500,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/fourthbatch-final-check.log": {
+      "sha256": "2e36f09cf96f0bc1d38a28c40baf27432575c4511879688e40fe99145a6ccdd5",
+      "bytes": 1657,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/fourthbatch-final-inputs.json": {
+      "sha256": "16d2ad1a6d25535df43fd81576c8519ad15036f81c0590f983e5e0fa2ef7f7c3",
+      "bytes": 144025,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/fourthbatch-pin-transition.json": {
+      "sha256": "b6e1e1f4625166dd4cc42ce7551574e76e7d845fbc677bdceff52da225c61bc5",
+      "bytes": 5054,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/fourthbatch-v3-final-api-planned.json": {
+      "sha256": "03a48685a74f49a6a4e935e5e707976890d5a789f1ee8af5eececa5352108bea",
+      "bytes": 4719,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/fourthbatch-v3-final-inputs.json": {
+      "sha256": "11e3b84437755d648a6d4df2e117710880154179bcc76b1c86a883cf7afa3e01",
+      "bytes": 144025,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/fourthbatch-v3-runtime-equivalence.json": {
+      "sha256": "accd6a96e3b8975a25a55ea0a741964caa09c32341ffe456063d4be52509ca14",
+      "bytes": 594,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/fourthbatch-v3-typecheck.log": {
+      "sha256": "0b857071a5233a787593895c74f564a40b06efcdada180b0db0f8198f8fdb78e",
+      "bytes": 213,
+      "matches_baseline": true
+    },
     ".data/research/lawbot-2026-10-15/iteration051/frontend/e2e/cancel-reloaded-b5a60495-4ca.png": {
       "sha256": "ae41159d95b498e3d08e86ea93fa21c589b865dd2508653092885ef8340b7a84",
       "bytes": 165588,
@@ -7752,6 +7887,11 @@
       "bytes": 11141,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-15/iteration051/guide-archive-fourthbatch.png": {
+      "sha256": "d5636da83d0db5f64dab611be61f792989d09dd99c2a957163c470832a0327aa",
+      "bytes": 192324,
+      "matches_baseline": true
+    },
     ".data/research/lawbot-2026-10-15/iteration051/guide-archive-image-provenance-051.json": {
       "sha256": "312949e5677c154e3338c4816a07e64560b04436058d2da59d217e530dd584ea",
       "bytes": 467,
@@ -7772,6 +7912,11 @@
       "bytes": 246,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-15/iteration051/guide-browser-proof-fourthbatch.json": {
+      "sha256": "5518b0a36b06a0426bf7be8b00f66317f26f8f7bf1a2daacad7e016e7cc6bb46",
+      "bytes": 246,
+      "matches_baseline": true
+    },
     ".data/research/lawbot-2026-10-15/iteration051/guide-browser-proof-thirdbatch.json": {
       "sha256": "6a8ea3ad67ef78fb00cded6fece6fef87bd7fe899437a1207816e07e51d0bc85",
       "bytes": 246,
@@ -7782,9 +7927,24 @@
       "bytes": 233804,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-15/iteration051/guide-fourthbatch-check.log": {
+      "sha256": "a8971564cfaa17796bc9bc052b9789e40207882d259f2e1b3b69d0d64aff8390",
+      "bytes": 83,
+      "matches_baseline": true
+    },
     ".data/research/lawbot-2026-10-15/iteration051/guide-image-provenance-051.json": {
       "sha256": "712810d728095d5030620a60f933587c6f61994e6bba0acab5a403cec4e5d389",
       "bytes": 1671,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/guide-quarantine-fourthbatch.png": {
+      "sha256": "49aae6bb7c1cd7195bdbb3dd381e46a543fe51cb5a3d783cada751a31e5d814f",
+      "bytes": 263324,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/guide-recovery-fourthbatch.png": {
+      "sha256": "0d76b2bb23343cb592d6d09fb0eed8770bfae9e840d67837bf8854ba1f175786",
+      "bytes": 228156,
       "matches_baseline": true
     },
     ".data/research/lawbot-2026-10-15/iteration051/guide-recovery-image-provenance-051.json": {
@@ -7810,6 +7970,16 @@
     ".data/research/lawbot-2026-10-15/iteration051/local-health-restored.json": {
       "sha256": "fffa56fb7db7e40cf405cca86a1d895d0a693572d63529146f0358a539af8560",
       "bytes": 103,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/local-migrate-044-attempt02.log": {
+      "sha256": "6be5c718a1f07951c83fd903f7cb2b9191008ce4aeb90f15a431a5e66b8e1450",
+      "bytes": 22,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/local-migrate-044.log": {
+      "sha256": "589086d67b2bf7d0c8eaaab0fb75bdb688179bda25ca1c53b9b12d29be485496",
+      "bytes": 803,
       "matches_baseline": true
     },
     ".data/research/lawbot-2026-10-15/iteration051/main-before-firstbatch-regression-repair.tsx": {
@@ -8042,6 +8212,11 @@
       "bytes": 57411,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/arch/archive-corruption-revoke-formal-cross-review.md": {
+      "sha256": "c7d47b5f8cd7272daac1a0e0b13ba8c4151f044f097cf045a582080669b407a9",
+      "bytes": 2515,
+      "matches_baseline": true
+    },
     ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/arch/archive-formal-merge-readonly-review.md": {
       "sha256": "4e3e38c8ccb0ea667db3e5f05e64301a0985b858e93f8e181b894273ccb986bc",
       "bytes": 1601,
@@ -8092,6 +8267,26 @@
       "bytes": 59779,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/arch/task-storage-quarantine-cross-review-final.md": {
+      "sha256": "65320abf70116104b9c4f707ea9db548481674472fd2fafe81e28ed444765813",
+      "bytes": 5452,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/arch/task-storage-quarantine-cross-review-v1.md": {
+      "sha256": "49678eb9b2b7fe14d49918e475d3e03a110ca72f09606e0b9631e6e199b20039",
+      "bytes": 5911,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/arch/task-storage-quarantine-cross-review-v26.md": {
+      "sha256": "1a3f05e7e976f23ecf8315de770c01cc836de316283994d2344535b9e89fe11c",
+      "bytes": 2600,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/arch/task-storage-quarantine-cross-review-v27.md": {
+      "sha256": "a634d963fb79fc6b8d2844c0372d5f99b5985705d85811637a76a8f290c18a50",
+      "bytes": 3146,
+      "matches_baseline": true
+    },
     ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/arch/task-storage-repair-cloud-design.md": {
       "sha256": "c021d4aaf7302f06a4df8bf5a65d22e411433ac0ada5a2e41e59635da36f4ba9",
       "bytes": 4139,
@@ -8107,6 +8302,91 @@
       "bytes": 3843,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/before-guide28-and-rule044-051/manifest.json": {
+      "sha256": "ce06c0498124b901017da05136aa80705adf8476ddd739925ff1133e2441f31c",
+      "bytes": 1585,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/before-guide28-and-rule044-051/文档/使用指南/README.md": {
+      "sha256": "a631beb2eea7547fc6ff80832d93bfc78eca50f2e8c3b08ca7e6a17748e8eaf6",
+      "bytes": 1878,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/before-guide28-and-rule044-051/文档/使用指南/公开功能补齐操作-20261015.html": {
+      "sha256": "cd33971497dfdfb5d72090f0160eecc3ff8adfbf9f2d3b3c9fd35274288b46e8",
+      "bytes": 42063,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/before-guide28-and-rule044-051/文档/使用指南/公开功能补齐操作-20261015.md": {
+      "sha256": "2e4c2bd3eafb306e2b4f77f313cc1a3c7f6936d846f12160ac4088ccc6eb1c31",
+      "bytes": 31808,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/before-guide28-and-rule044-051/文档/脱敏规则完整技术交接-迭代023.md": {
+      "sha256": "a23516051e5298bc3c771bba90cd24c6e4831b62af0a60049391112c5edb79ca",
+      "bytes": 378344,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/before-rule-handoff-navigation-051/manifest.json": {
+      "sha256": "03d2fbcd94acfe3a13b538149f02585bbbdbe1da90cbad18280dd02efb581004",
+      "bytes": 442,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/before-rule-handoff-navigation-051/navigation-selfcheck.json": {
+      "sha256": "0da452e80a74e1053cd4fc96b7dcf283eb668435f0b2618157f18dba44b20def",
+      "bytes": 783,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/before-rule-handoff-navigation-051/脱敏规则完整技术交接-迭代023.md": {
+      "sha256": "b084d0a62773e40270ba6a12216d2e0afad7c418632b4e3d961a140d3c44897c",
+      "bytes": 367838,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/e2e/task-storage-isolated-8e0d0b60-9e18-49f6-876b-4eb184a10851.png": {
+      "sha256": "205ea2967f8b1f393fd0a9779d3f2e74d304f615f1b4edf9fa861ccca20e6024",
+      "bytes": 87777,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/e2e/task-storage-issue-a8be1066-59b5-4724-a5ec-b9ea28bfab77.png": {
+      "sha256": "c9fdff71cb1a02285bd7e736865cfbd016ca3611d8a5bcc9f629f26183110b6c",
+      "bytes": 91517,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/e2e/task-storage-quarantine-edge-plan.md": {
+      "sha256": "335d6bb91195e05be1502dd882efaae43e92ae2fcefbf3118f8dc46dc2610985",
+      "bytes": 3938,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/e2e/task-storage-quarantine-v2-plan.md": {
+      "sha256": "51620298b418a493870da5707c0708d40dbc67630572f94f4d68ab355c9ceb4d",
+      "bytes": 3548,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/e2e/task-storage-quarantine-v2.candidate.spec.ts": {
+      "sha256": "6a56acc21ca8148da9336901db22235be1c2b5f33d16c1f46fcd4195d4c8f97c",
+      "bytes": 15571,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/e2e/task-storage-quarantine-v3-diff.md": {
+      "sha256": "028627ca6949d2f03b3d379768a62a0630c9807ca47e6463c4781aa90a4f01fd",
+      "bytes": 1578,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/e2e/task-storage-quarantine-v3.candidate.spec.ts": {
+      "sha256": "085a2e9b0821b75ea35a8ba056ccad05390718d10f993a5a9813ec50905cd90a",
+      "bytes": 15571,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/e2e/task-storage-quarantine.candidate.spec.ts": {
+      "sha256": "8b649ccb6f3efdee45e5bccd9a1b01e2ebe88e442a0e31ca4fe4ce6f803045a8",
+      "bytes": 14251,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/e2e/task-storage-recovered-ef0a6782-8d38-4984-b703-94890c7c7e64.png": {
+      "sha256": "2460450a7af33c067734fbd1a38f3a333275788152570b3091ed90d8c02c9796",
+      "bytes": 93496,
+      "matches_baseline": true
+    },
     ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/frontend-52-audit.json": {
       "sha256": "a0c5d7b44bc3c91debe530d8cfcdb0f267a045077c784de38c6209a6fcad1e35",
       "bytes": 73482,
@@ -8120,6 +8400,11 @@
     ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/guide-23-24-readonly-review.md": {
       "sha256": "cd3c8902f3659e6ddd4933b22830364e8d0df10786b3160c0e6fc19ebbedae63",
       "bytes": 2933,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/guide28-rule044-selfcheck.json": {
+      "sha256": "55361798b68a599600399bd629123fbc66402eb3c699941a387aa1b204f8e361",
+      "bytes": 3037,
       "matches_baseline": true
     },
     ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/mcp-irreversible-v3-cross-review.md": {
@@ -8145,6 +8430,11 @@
     ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/recovery-undo-candidate.patch": {
       "sha256": "c1f712bb679ac08eb82f64c7fa27693e4f83f828077244318d9f3a961e33cd94",
       "bytes": 50375,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/rule-handoff-051-readonly-review.md": {
+      "sha256": "ffe85f8beede78d9b1185d2ac84bafe06799aba3f9658fcedf97a3aa36a794fa",
+      "bytes": 6953,
       "matches_baseline": true
     },
     ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules-sol051-20261016/audit.json": {
@@ -8180,6 +8470,206 @@
     ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/purple-overlay/REVIEW.md": {
       "sha256": "1bc4d0c6575d56f6f45a573e5552d9ff3d46a2299b6e9c42fa94e97337166a83",
       "bytes": 2540,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/REPORT.md": {
+      "sha256": "3e01e4f2532d70d067a38cbf314722a3102759077bbd68b9baeb3c96af955b29",
+      "bytes": 7499,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/V27.md": {
+      "sha256": "7d44c5c2798ed40ea4fbaaffd06b4679098589f58d3321035a773dfb44b0110b",
+      "bytes": 2860,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/task-storage-quarantine-attempt01.log": {
+      "sha256": "5abb57cc9b5b56630cfeaed34fa2a909a9de341a1be5b1bba6012b193f5ecedf",
+      "bytes": 1605,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/task-storage-quarantine-attempt02.log": {
+      "sha256": "e6215c8a6972b83cdeba91c7893d8efeb37e173dcaf4b13d464a33291c1d1922",
+      "bytes": 280,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/task-storage-quarantine-attempt03.log": {
+      "sha256": "b27397b004eb54fe5af77282dd5d991e96739c17903762423d31820273459dfa",
+      "bytes": 1218,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/task-storage-quarantine-attempt04.log": {
+      "sha256": "6781f54a450bbea943d7a9629cdd5794ef6887551563ed8ccf0f57ecf2a19b84",
+      "bytes": 281,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/task-storage-quarantine-attempt05.log": {
+      "sha256": "d679b90a930ff7602cd1839efb00efb7f268d8431883e4cc202506c048e21766",
+      "bytes": 281,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/task-storage-quarantine-attempt06.log": {
+      "sha256": "d7a181fdc4415a8a099b262d7c242b9ec9ca096ce41bfa2784534d95dc3984dd",
+      "bytes": 281,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/task-storage-quarantine-attempt07.log": {
+      "sha256": "9c6cf8953c2161dce30f31f76d64a11c970936a9ffddde10a6d66c99e126751c",
+      "bytes": 280,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/task-storage-quarantine-attempt08.log": {
+      "sha256": "76f40b979ce8aa76cab43955e25df80a02c56e8119f9ff490c2f82b84fba4c4f",
+      "bytes": 278,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/task-storage-quarantine-attempt09.log": {
+      "sha256": "dc81f1fa0492a69b3bbdf04f9f0eb4a4e0720f116c19cb5b2886c7df2952d8fb",
+      "bytes": 281,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/task-storage-quarantine-attempt10.log": {
+      "sha256": "bfe6b88a9fbb1d73efa0c19da7791a6cb1fe641ade44cdd50c1829e731ee1a9d",
+      "bytes": 281,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/task-storage-quarantine-attempt11.log": {
+      "sha256": "1548b6c3b92c697ee8d28307a3fa6deb1ce2b2eea3d15578a6b23fe3a2d90f19",
+      "bytes": 1290,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/task-storage-quarantine-attempt12.log": {
+      "sha256": "1b2637c9072d2fb0f6131d60816498ee4527961340faf731cc047dd861ecd815",
+      "bytes": 1294,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/task-storage-quarantine-attempt13.log": {
+      "sha256": "b6647fc5c236ce65d0067e0da1a1ded25b4955306246e8de83423323063731bc",
+      "bytes": 1935,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/task-storage-quarantine-attempt14.log": {
+      "sha256": "a68cbda4944974e219c75c97f0608bc816f6b8ea8fbc22f5c1a876191c598470",
+      "bytes": 398,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/task-storage-quarantine-attempt15.log": {
+      "sha256": "5325bc1a3c36ccc2774d4d07066297d0ccc365d67488a1deefcf493f21f5158a",
+      "bytes": 1329,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/task-storage-quarantine-attempt16.log": {
+      "sha256": "70c405abc93662f1100c8f072166ddcf2406b2c11b3a2d9c746386a6538f86db",
+      "bytes": 399,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/task-storage-quarantine-attempt17.log": {
+      "sha256": "7a0a5e098135e777e3149add6536c51003c1bffe8705d2c707ab6721ecc15222",
+      "bytes": 399,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/task-storage-quarantine-attempt18.log": {
+      "sha256": "02225fa98150f37245fc2a9c3dbebae88dbe99e83e4ff66c1826772c4a6b89c0",
+      "bytes": 1321,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/task-storage-quarantine-attempt19.log": {
+      "sha256": "3402fa0206c8b87adb20ae246650aa8c6cba440b5ed744c603b845a62b1f0db8",
+      "bytes": 1339,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/task-storage-quarantine-attempt20.log": {
+      "sha256": "d089a5c010a7bdb7deac602996a9dc1f790bb096c946d855fdd5129ce5c9600f",
+      "bytes": 1136,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/task-storage-quarantine-attempt21.log": {
+      "sha256": "edca90f16dc978b65361451b9672a704c3c8ceb01a1fcd26dbd2b7c50a86d88f",
+      "bytes": 397,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/task-storage-quarantine-attempt22.log": {
+      "sha256": "0722372a1ead5c860ac0bd495e7c665f744b3cbf589e9241fb6a604b7c025dd9",
+      "bytes": 399,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/task-storage-quarantine-attempt23.log": {
+      "sha256": "8ad377c8b09e5a87aed3e86343a0509fea0b01422adb5fbbed3e6cce7eec103e",
+      "bytes": 400,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/task-storage-quarantine-attempt24.log": {
+      "sha256": "f1a5676189f44835183614b45a9a40d11f14443f20235c79cd91d326814ea0fd",
+      "bytes": 399,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/task-storage-quarantine-attempt25.log": {
+      "sha256": "5beb15c0445fb5374f087068277bb9be9bc029794e078daef6a93fc5f7565117",
+      "bytes": 399,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/task-storage-quarantine-attempt26.log": {
+      "sha256": "084f523f3fd5e2924e4132bb47565ce20569e5d5cce87dcf0e6635490872b508",
+      "bytes": 397,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/task-storage-quarantine-candidate.patch": {
+      "sha256": "9411747c60c2db1c815277f4ed82c3edfb134aef3ece21793b11519e16b7b3d4",
+      "bytes": 105425,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/task-storage-quarantine-v27-after.log": {
+      "sha256": "d6e4b615e90b9fd356b68c3eb6efa9e34dfed183a5868fde3c9a7829cf9090b1",
+      "bytes": 397,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/task-storage-quarantine-v27-after2.log": {
+      "sha256": "2f7d93e99c5fdd237008cdc2114475866c62f868de977f3104231a7752346f02",
+      "bytes": 398,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/task-storage-quarantine-v27-before.log": {
+      "sha256": "fd37c61d1bd322851d3cd8b74205bc7595ab299ead9bdc85016701785c9eaa5f",
+      "bytes": 1301,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/task-storage-quarantine-v27-final.log": {
+      "sha256": "7c343f5aceadaef81c9742374de745607b775710809d889695715f52c868e00d",
+      "bytes": 399,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/task-storage-quarantine-v27.delta.patch": {
+      "sha256": "8c46deac3bbf82d76ae91edb0e18ae727623cff94e36a6281a4959541a73f35c",
+      "bytes": 10761,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/v26-freeze/REPORT.md": {
+      "sha256": "3e01e4f2532d70d067a38cbf314722a3102759077bbd68b9baeb3c96af955b29",
+      "bytes": 7499,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/v26-freeze/candidate.patch": {
+      "sha256": "9411747c60c2db1c815277f4ed82c3edfb134aef3ece21793b11519e16b7b3d4",
+      "bytes": 105425,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/v26-freeze/mcp.ts": {
+      "sha256": "f5653bb54205e432aa6ad1a0b6928b2513ac42ee74c1526bba7b078040fef423",
+      "bytes": 93213,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/task-storage-quarantine/v26-freeze/task-storage-quarantine.integration.ts": {
+      "sha256": "c96ab531fd7d48591d4145e8f9bdda72fdf257286f000802bae87845e909ccb1",
+      "bytes": 40353,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/revoke-race-unconditional-formal-receipt.json": {
+      "sha256": "05ec34fdb248f55ad3a264b7b1e86a5ca88c2c8e3e34bab9251eb97a87a918c1",
+      "bytes": 550,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/revoke-race-unconditional-formal.log": {
+      "sha256": "84214387670f23cd7292b6222e28e254a08f7ca0c58aa4ee2646a19e12829f65",
+      "bytes": 469,
       "matches_baseline": true
     },
     ".data/research/lawbot-2026-10-15/iteration051/root-import/api-probe-ordinary-v4.json": {
@@ -8417,6 +8907,61 @@
       "bytes": 15793,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-15/iteration051/task-storage-formal-api-attempt01-receipt.json": {
+      "sha256": "66ea82fa9424614bfc9e702e195bafc3700286812b9699e3d49ba89d789e9525",
+      "bytes": 334,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/task-storage-formal-api-attempt01.log": {
+      "sha256": "c01d251b65b5a5df8caf546a101b5fe22640ec92c66333d9c4b70ee5b7d89db6",
+      "bytes": 399,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/task-storage-formal-edge-attempt01.log": {
+      "sha256": "be590cdda682ffc3d71d1b04555124e1cc604e4a83916ed874d4cb1d945ffa71",
+      "bytes": 7976,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/task-storage-formal-edge-attempt02-receipt.json": {
+      "sha256": "4e0ed8ff04d3c31a7b8152a23dc0943203ced4a6f9558aefef07bb313d1a18ff",
+      "bytes": 1478,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/task-storage-formal-edge-attempt02.log": {
+      "sha256": "08db3cada6ab61c0038a07c291971be5de808c943d75b59b4ccebf6f20c37763",
+      "bytes": 2795,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/task-storage-formal-merge-inputs.json": {
+      "sha256": "aaa6a1e431af97e0bb8dc0ed5dbbd44554e765bcad503fb6bb4021dbdfaa1622",
+      "bytes": 745,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/task-storage-v27-formal-merge-inputs.json": {
+      "sha256": "2df3d4d005d6c3e4987d250452332f6122975fa5d3dd2185f4282f5c8ae03a0f",
+      "bytes": 477,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/test-stop-navigation-pin-transition.json": {
+      "sha256": "e5a7973d99f10f67cd1b3aa8919a4dc7672eed567eaf8b8b8e2cca36671a76df",
+      "bytes": 1439,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/thirdbatch-final-api-planned.json": {
+      "sha256": "e37c58830430e3aec507a1cafd1a3876fadc2fdffd94733b4d35fc98693acf03",
+      "bytes": 4669,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/thirdbatch-final-api-receipt.json": {
+      "sha256": "67d693097acfbd84d3ef796254cbd9acebb688f052e6f1d2d056113484d40a7d",
+      "bytes": 500,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/thirdbatch-final-api.log": {
+      "sha256": "1a57ff49ef5ebed277e71da03c3a9adaaafc2f009d037d7625f2249a6d4f13f6",
+      "bytes": 17351,
+      "matches_baseline": true
+    },
     ".data/research/lawbot-2026-10-15/iteration051/thirdbatch-final-check-receipt.json": {
       "sha256": "f21ece753d8979b695c8df18caf6bc0fd7c974ee7acba33817f450b1db528d98",
       "bytes": 513,
@@ -8425,6 +8970,11 @@
     ".data/research/lawbot-2026-10-15/iteration051/thirdbatch-final-check.log": {
       "sha256": "6c4b1d4576ada6578b6b867d50c70a808fe096476015113f7fbc17e8589a8818",
       "bytes": 1855,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/thirdbatch-final-generated-manifest.json": {
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "bytes": 3,
       "matches_baseline": true
     },
     ".data/research/lawbot-2026-10-15/iteration051/thirdbatch-final-inputs.json": {
@@ -8488,8 +9038,8 @@
       "matches_baseline": true
     },
     "README.md": {
-      "sha256": "7ff48453cff6066dd33a3a6aedee5f91e28e86111ef52f2233a726ac3fae3060",
-      "bytes": 13055,
+      "sha256": "17693b918de57ad03f535cf2ac36f0fd10ce45ed7950af4532bc567679c18523",
+      "bytes": 13162,
       "matches_baseline": true
     },
     "apps/api/access.ts": {
@@ -8628,8 +9178,8 @@
       "matches_baseline": true
     },
     "apps/api/mcp.ts": {
-      "sha256": "bb9d7ef2584ab37e7033fdd54ad8f666a4c1d83289b7207a16de7bd23045984a",
-      "bytes": 73500,
+      "sha256": "401dc740af450f57203768716ce60b602ae95d8bfa1faeaca032090b2364142d",
+      "bytes": 93355,
       "matches_baseline": true
     },
     "apps/api/members.ts": {
@@ -8793,8 +9343,8 @@
       "matches_baseline": true
     },
     "apps/web/ai-collab.tsx": {
-      "sha256": "7899aba2b1aa071459396517215a642b4d459408e2342a0192038607aeb27569",
-      "bytes": 13046,
+      "sha256": "579bf5a73788f755c2035e15619b25e1e4b07a49cec2675c2b1913d7dabb0a38",
+      "bytes": 18017,
       "matches_baseline": true
     },
     "apps/web/automatic-runtime-rules.ts": {
@@ -9313,8 +9863,8 @@
       "matches_baseline": true
     },
     "packages/adapters/ai-result-archive.ts": {
-      "sha256": "aa97808233a8b1a5a6bcc08e8596bc28882755737deb056209229519257ce934",
-      "bytes": 4208,
+      "sha256": "f2b6cdec062f1b7a91e4e45bed0aac032c4a396f38649d961f8481b008f9d5d9",
+      "bytes": 4277,
       "matches_baseline": true
     },
     "packages/adapters/alias-groups.ts": {
@@ -10622,6 +11172,11 @@
       "bytes": 1944,
       "matches_baseline": true
     },
+    "scripts/044.sql": {
+      "sha256": "0bb2db6fd4ffde694c062f5c25d3f9a7d17aa1c2b196c5f3b0a050cd514d08ff",
+      "bytes": 5495,
+      "matches_baseline": true
+    },
     "scripts/admin.ts": {
       "sha256": "32cbcc90a31f7cb59be8b45de64ccf5979b08bbe8f1505388c67fb57ae20cb3f",
       "bytes": 1702,
@@ -10798,8 +11353,8 @@
       "matches_baseline": true
     },
     "scripts/migrate.ts": {
-      "sha256": "513263534b4190e5055275409565f0e855e5b423b70623b26b3ad3b80c429f34",
-      "bytes": 1598,
+      "sha256": "eaf9d2753babd9ec826eaff36457b6f8cf5dbc584ac0bc065d94e1499a4fbf95",
+      "bytes": 1605,
       "matches_baseline": true
     },
     "scripts/ner-models.ts": {
@@ -11260,6 +11815,11 @@
     "tests/e2e/source-review.spec.ts": {
       "sha256": "6a7d14e4157f6d7c8d0c61354509000ff709872a5299c3a74ac6240dbfa20113",
       "bytes": 5589,
+      "matches_baseline": true
+    },
+    "tests/e2e/task-storage-quarantine.spec.ts": {
+      "sha256": "085a2e9b0821b75ea35a8ba056ccad05390718d10f993a5a9813ec50905cd90a",
+      "bytes": 15571,
       "matches_baseline": true
     },
     "tests/e2e/type-hide-persistence.spec.ts": {
@@ -11878,8 +12438,8 @@
       "matches_baseline": true
     },
     "tests/mcp-archive-revoke-race.integration.ts": {
-      "sha256": "8408d3a13efa2d002fa3723e4c60c507ed8b8f83f9b78df0f0735582f4927b26",
-      "bytes": 8710,
+      "sha256": "fb34a9a2c020fdee129057edd1f939e6c17b0560da3ad9727b15eaebf077c8a7",
+      "bytes": 8346,
       "matches_baseline": true
     },
     "tests/mcp-capabilities-contract.integration.ts": {
@@ -11913,8 +12473,8 @@
       "matches_baseline": true
     },
     "tests/mcp-result-archive.integration.ts": {
-      "sha256": "9912b13b666d70e6247dfc9353752aa30d12d76611f8820efbcd9e7a782daffd",
-      "bytes": 20548,
+      "sha256": "ce33c595447c47b955d3ecfa226657097d31e4d343175824b9944b31b5679ae7",
+      "bytes": 21647,
       "matches_baseline": true
     },
     "tests/mcp-resume-selection.integration.ts": {
@@ -12622,6 +13182,11 @@
       "bytes": 1096,
       "matches_baseline": true
     },
+    "tests/task-storage-quarantine.integration.ts": {
+      "sha256": "15e4b76062012a97d5855b8f5014034abfafe480fd04fe32893ff3b7032be6a7",
+      "bytes": 42015,
+      "matches_baseline": true
+    },
     "tests/text-highlights.test.ts": {
       "sha256": "8aa3a7feaaadd52f2c1dc280f02ae48f30dca73548deed85c14f4c6ec1a1fabb",
       "bytes": 4068,
@@ -12768,8 +13333,8 @@
       "matches_baseline": true
     },
     "文档/使用指南/README.md": {
-      "sha256": "a631beb2eea7547fc6ff80832d93bfc78eca50f2e8c3b08ca7e6a17748e8eaf6",
-      "bytes": 1878,
+      "sha256": "fe1570e930168c03b71c71472397ce31df7972a540ce16b0047bf634ecb35176",
+      "bytes": 2207,
       "matches_baseline": true
     },
     "文档/使用指南/build-result.json": {
@@ -12793,13 +13358,13 @@
       "matches_baseline": true
     },
     "文档/使用指南/公开功能补齐操作-20261015.html": {
-      "sha256": "cd33971497dfdfb5d72090f0160eecc3ff8adfbf9f2d3b3c9fd35274288b46e8",
-      "bytes": 42063,
+      "sha256": "2f304d77ced900218a821ef1b1301009e2242c4d77844cea3c711369a6407e03",
+      "bytes": 45420,
       "matches_baseline": true
     },
     "文档/使用指南/公开功能补齐操作-20261015.md": {
-      "sha256": "2e4c2bd3eafb306e2b4f77f313cc1a3c7f6936d846f12160ac4088ccc6eb1c31",
-      "bytes": 31808,
+      "sha256": "8f4bef9d6ffea6dca72c4866abbe0688bc4d475cd310a88b79c9deb0322246e8",
+      "bytes": 34766,
       "matches_baseline": true
     },
     "文档/使用指南/功能核对清单.md": {
@@ -12815,6 +13380,26 @@
     "文档/使用指南/导出核验.json": {
       "sha256": "400f26ce609e62dbe3209d05de16d84baab4b20d7a73ae1e087cce37d97bc3f8",
       "bytes": 17986,
+      "matches_baseline": true
+    },
+    "文档/使用指南/截图-20261015/AI任务同版本恢复-051.png": {
+      "sha256": "2460450a7af33c067734fbd1a38f3a333275788152570b3091ed90d8c02c9796",
+      "bytes": 93496,
+      "matches_baseline": true
+    },
+    "文档/使用指南/截图-20261015/AI任务坏记录提示-051.png": {
+      "sha256": "c9fdff71cb1a02285bd7e736865cfbd016ca3611d8a5bcc9f629f26183110b6c",
+      "bytes": 91517,
+      "matches_baseline": true
+    },
+    "文档/使用指南/截图-20261015/AI任务隔离回执-051.png": {
+      "sha256": "205ea2967f8b1f393fd0a9779d3f2e74d304f615f1b4edf9fa861ccca20e6024",
+      "bytes": 87777,
+      "matches_baseline": true
+    },
+    "文档/使用指南/截图-20261015/AI任务隔离恢复-051-截图来源.json": {
+      "sha256": "c0b517d32b6e2963af3a3db851ebc3442da049939e1ea8feb193d65059534dd5",
+      "bytes": 2018,
       "matches_baseline": true
     },
     "文档/使用指南/截图-20261015/AI返回稿归档-051.png": {
@@ -14103,8 +14688,8 @@
       "matches_baseline": true
     },
     "文档/待办与完成状态-20261015.md": {
-      "sha256": "9db9cf7250f1e00c0e13ad5b6bd2340e8cba20dedc21e5e718847d573a51ebb2",
-      "bytes": 18796,
+      "sha256": "de6da67252935cd08a1925ab970f21bd10250b1e61166ea48b05dcf59281474b",
+      "bytes": 20983,
       "matches_baseline": true
     },
     "文档/按钮确认交互修复与验收.md": {
@@ -14128,8 +14713,8 @@
       "matches_baseline": true
     },
     "文档/脱敏规则完整技术交接-迭代023.md": {
-      "sha256": "b084d0a62773e40270ba6a12216d2e0afad7c418632b4e3d961a140d3c44897c",
-      "bytes": 367838,
+      "sha256": "2b7f896adc8592f90df561d767fe187a4dc26e54f33f82a5a7230ec4247aae09",
+      "bytes": 382606,
       "matches_baseline": true
     },
     "文档/脱敏规则技术交接-20261014.md": {
@@ -16265,6 +16850,11 @@
     "文档/逆向台账/contracts/supplement-collaboration-renderer-events-20261014.md": {
       "sha256": "b294bc81d55f468181e2e344628ad059b08daa10db2dbe0f6b457be57a8d61e4",
       "bytes": 11722,
+      "matches_baseline": true
+    },
+    "文档/逆向台账/contracts/task-storage-recovery-051-20261016.md": {
+      "sha256": "46494ee98733e1afcad8ebe34dc3faf94b87db7a68244d5ac1ef48988ae66021",
+      "bytes": 6341,
       "matches_baseline": true
     },
     "文档/逆向台账/contracts/team-luna-named-input-review-20261015.md": {

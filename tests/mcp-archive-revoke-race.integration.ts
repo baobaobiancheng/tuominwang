@@ -64,10 +64,9 @@ test('review revocation after committed preflight cannot mutate invalid UTF-8 AI
   }finally{release();}
   const response=await submission;const after=(await admin.query('SELECT revision,payload,updated_at FROM ai_collab_tasks WHERE id=$1',[taskUUID(job)])).rows[0];
   const archives=(await admin.query('SELECT count(*)::integer AS n FROM ai_result_archives WHERE task_id=$1',[taskUUID(job)])).rows[0].n;
-  const fixed=process.env.EXPECT_FIXED==='1';
-  assert.equal(response.statusCode,fixed?403:400,response.body);
-  if(fixed){assert.deepEqual(after,before,'revoked review cannot change task row or frozen slot');assert.equal(archives,0);}
-  else{assert.equal(after.revision,before.revision+1);assert.notEqual(after.payload,before.payload);assert.equal(archives,0);const changed=(await req('GET',`/api/ai-collab/tasks/${job}`)).json();assert.equal(changed.state,'ai_result_rejected');assert.equal(changed.rounds[0].validated,false);}
-  console.log(JSON.stringify({fixed,status:response.statusCode,beforeRevision:before.revision,afterRevision:after.revision,frozenState:frozen.state,archives,committedPreflight:true,revokedBeforeCatch:true}));
+  assert.equal(response.statusCode,403,response.body);
+  assert.deepEqual(after,before,'revoked review cannot change task row or frozen slot');
+  assert.equal(archives,0);
+  console.log(JSON.stringify({status:response.statusCode,beforeRevision:before.revision,afterRevision:after.revision,frozenState:frozen.state,archives,committedPreflight:true,revokedBeforeCatch:true}));
  }finally{if(app)await app.close();await pool.end();await admin.end();}
 });

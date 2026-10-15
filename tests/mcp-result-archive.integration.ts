@@ -189,6 +189,13 @@ test('validated AI return archives immutable project receipt and verified privat
   await admin.query('INSERT INTO ai_result_archives(id,tenant_id,project_id,owner_id,task_id,round_id,payload) VALUES($1,$2,$3,$4,$5,$6,$7)',[memberReceiptId,tenant,project,other.uid,memberTaskId,received.roundId,seal(JSON.stringify(memberMetadata),`ai-result-archive:v1:${tenant}:${project}:${other.uid}:${memberTaskId}:${received.roundId}:${memberReceiptId}`)]);
   assert.equal((await other.request('GET',`/api/ai-collab/tasks/${memberJob}/archives`)).json().items.length,1);
   assert.equal((await other.request('GET',`/api/ai-collab/tasks/${memberJob}/archives/${received.roundId}/download`)).statusCode,200);
+  // Exercise the immutable-receipt fallback under the same real permission
+  // revocation; corruption cannot turn it into an authorization bypass.
+  const damagedMemberCipher='synthetic damaged member task before quarantine';
+  await admin.query('UPDATE ai_collab_tasks SET payload=$2 WHERE id=$1',[memberTaskId,damagedMemberCipher]);
+  const damagedBefore=(await admin.query('SELECT revision,payload,updated_at FROM ai_collab_tasks WHERE id=$1',[memberTaskId])).rows[0];
+  const memberArchiveUrl=`/api/ai-collab/tasks/${memberJob}/archives/${received.roundId}/download`,memberResultUrl=`/api/ai-collab/tasks/${memberJob}/results/${received.roundId}`;
+  for(const path of [memberArchiveUrl,memberResultUrl]){const response=await other.request('GET',path);assert.equal(response.statusCode,200,response.body);assert.equal(hash(response.rawPayload),metadata.resultSha256);}
   const revoke=await req('PUT',`/api/projects/${project}/members/${other.uid}`,{revision:grant.json().revision,permissions:['view_original','export','view_mapping']});
   assert.equal(revoke.statusCode,200,revoke.body);
   const revokedSubmit=await otherTool('submit_reviewed_document',{job_id:realMemberJob,round_id:memberDelivery.roundId,slot_id:memberDelivery.slotId,sha256:hash(memberBytes),suggested_name:'revoked.md'});
@@ -201,6 +208,8 @@ test('validated AI return archives immutable project receipt and verified privat
   assert.equal((await admin.query('SELECT count(*)::integer AS n FROM ai_result_archives WHERE task_id=$1',[taskUUID(realMemberJob)])).rows[0].n,0);
   assert.equal((await other.request('GET',`/api/ai-collab/tasks/${memberJob}/archives`)).statusCode,403);
   assert.equal((await other.request('GET',`/api/ai-collab/tasks/${memberJob}/archives/${received.roundId}/download`)).statusCode,403);
+  assert.equal((await other.request('GET',memberResultUrl)).statusCode,403);
+  assert.deepEqual((await admin.query('SELECT revision,payload,updated_at FROM ai_collab_tasks WHERE id=$1',[memberTaskId])).rows[0],damagedBefore);
   assert.equal((await admin.query('SELECT count(*)::integer AS n FROM ai_result_archives WHERE task_id=$1',[memberTaskId])).rows[0].n,1);
   console.log(JSON.stringify({archiveId:receipt.archiveId,roundId:receipt.roundId,sourceSha256:receipt.sourceSha256,resultSha256:receipt.sha256,revision,other:404,cross:404}));
  }finally{if(app)await app.close();await pool.end();await admin.end();}

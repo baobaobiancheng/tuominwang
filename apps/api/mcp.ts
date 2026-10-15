@@ -42,7 +42,24 @@ function implicitResumeTask(tasks:PrivateTask[]){
 }
 function aad(req:FastifyRequest,target:string){return `${req.user.tenant_id}:${req.user.id}:ai-collab:${target}`;}
 function decode(value:string){const b=Buffer.from(bytesSchema.parse(value),'base64');if(b.length>20*1024*1024||b.toString('base64')!==value)fail('RESULT_BYTES_INVALID',400);return b;}
-function privateRead(row:any,req:FastifyRequest):PrivateTask{const t=JSON.parse(unseal(row.payload,aad(req,row.id)));if(t.revision!==row.revision||taskUUID(t.jobId)!==row.id)fail('TASK_STORAGE_INVALID',409);return t;}
+const storedCaller=z.object({sessionId:z.string(),adapterId:z.string(),displayName:z.string()}).passthrough();
+const storedAdvanced=z.object({pseudonymRules:z.array(z.object({entityType:z.string(),action:z.enum(['pseudonym','mask']).optional(),prefix:z.string().optional()}).passthrough()).optional(),entityTypes:z.array(z.string()).optional(),exportMode:z.string().optional()}).passthrough();
+const storedFileSetting=z.object({advanced:storedAdvanced.optional(),output_formats:z.array(z.string()).optional(),masking_mode:z.string().optional(),source_path:z.string().optional()}).passthrough();
+const storedTaskShape=z.object({
+ jobId:job,revision:rev,projectId:id,state:z.enum(taskStates),caller:storedCaller,previousCaller:storedCaller.optional(),pendingResume:storedCaller.optional(),resumeState:z.enum(taskStates).optional(),
+ options:z.object({file_settings:z.array(storedFileSetting).optional(),output_formats:z.array(z.string()).optional(),advanced:storedAdvanced.optional(),task_mode:z.enum(['redact_only','ai_process','ai_process_restore']).optional(),standaloneRestoration:z.boolean().optional(),manualReview:z.boolean().optional(),output_formats_explicit:z.boolean().optional(),use_profile_mode_default:z.boolean().optional(),unified_pseudonyms:z.boolean().optional()}).passthrough(),
+ sources:z.array(z.object({documentId:id,hash:sha,revision:z.number().int().nonnegative()}).passthrough()),
+ deliveries:z.array(z.object({documentId:id,artifactId:id,format:z.string(),role:z.enum(['primary','markdown','pdf-docx','word-docx']),revision:z.number().int().nonnegative(),hash:sha}).passthrough()),
+ rounds:z.array(z.object({roundId:round,slotId:slot,format:z.enum(['docx','md']),resultKind:z.enum(['reviewed_document','derived_report']),artifactId:z.string(),objectId:id.optional(),sha256:sha.optional(),validated:z.boolean().optional(),reviewed:z.boolean().optional(),restoredArtifactId:id.optional()}).passthrough()),
+ combined:z.object({id:id,hash:sha}).passthrough().optional(),recognitionJobIds:z.array(id).optional(),exportJobIds:z.array(id).optional(),resolvedOutputs:z.record(z.string(),z.array(z.string())).optional(),mappingReferences:z.array(z.object({id,token:z.string(),version:z.number().int().positive().optional()}).passthrough()).optional(),allowedTokens:z.array(z.string()).optional(),
+ mapping:z.record(z.string(),z.unknown()).optional(),authorization:authorization.passthrough().optional(),intent:z.record(z.string(),z.unknown()).optional(),statistics:z.record(z.string(),z.number()).optional(),eventLog:z.array(z.object({at:z.string(),event:z.string(),code:z.string().optional()}).passthrough()).optional(),
+ createdAt:z.string(),updatedAt:z.string(),failureCode:z.string().optional(),openRequested:z.boolean().optional(),
+}).passthrough();
+function privateRead(row:any,req:FastifyRequest):PrivateTask{
+ let plaintext:string;try{plaintext=unseal(row.payload,aad(req,row.id));}catch(error){if((error as Error).message==='DATA_KEY_REQUIRED')throw error;fail('TASK_STORAGE_INVALID',409);}
+ try{const t=storedTaskShape.parse(JSON.parse(plaintext));if(t.revision!==row.revision||taskUUID(t.jobId)!==row.id||t.projectId!==row.project_id)fail('TASK_STORAGE_INVALID',409);return t as PrivateTask;}catch{fail('TASK_STORAGE_INVALID',409);}
+}
+function unreadable(error:unknown){if((error as Error).message==='DATA_KEY_REQUIRED')throw error;return true;}
 function checkCaller(t:PrivateTask,c?:Caller){if(c&&(t.caller.sessionId!==c.sessionId||t.caller.adapterId!==c.adapterId||t.pendingResume))fail('SESSION_AUTHORIZATION_REQUIRED',403);}
 function note(t:PrivateTask,event:string,code?:string){t.updatedAt=new Date().toISOString();t.eventLog=[...(t.eventLog??[]),{at:t.updatedAt,event,...code?{code}:{}}];}
 function state(t:PrivateTask,states:string[]){if(!states.includes(t.state))fail('INVALID_STATE',409);}
@@ -109,17 +126,96 @@ export function registerMcpRoutes(app:FastifyInstance,applyConfiguration?:Collab
  const headers=(req:FastifyRequest)=>({origin:process.env.APP_ORIGIN??'http://127.0.0.1:5178',cookie:req.headers.cookie??''});
  async function internal(req:FastifyRequest,method:any,url:string,payload?:any){const r=await app.inject({method,url,headers:headers(req),payload});if(r.statusCode>=400)fail(r.json().error??'COLLAB_ACTION_FAILED',r.statusCode);return r;}
  function humanTask(t:PrivateTask){const {mapping,mappingReferences,resolvedOutputs,combined,...shown}=t;return {...shown,...combined?{combined:{sha256:combined.hash}}:{}};}
+ async function saveSnapshot(db:DB,row:{id:string;tenant_id:string;project_id:string;owner_id:string},revision:number,payload:string){await rows(db,sql`INSERT INTO ai_collab_task_snapshot(task_id,tenant_id,project_id,owner_id,revision,payload_ciphertext,payload_sha256) VALUES(${row.id},${row.tenant_id},${row.project_id},${row.owner_id},${revision},${payload},${hash(payload)})`);}
  async function cancelOwnedJobs(db:DB,target:string){
   const canceled=await rows(db,sql`UPDATE jobs SET status='cancelled',lease_until=NULL WHERE collab_task_id=${taskUUID(target)} AND status IN('queued','running') RETURNING id,document_id,revision,kind`);
   for(const j of canceled){await rows(db,sql`UPDATE attempts SET finished_at=now(),outcome='cancelled' WHERE job_id=${j.id} AND finished_at IS NULL`);if(j.kind==='detect')await rows(db,sql`UPDATE documents SET state='outdated',revision=revision+1 WHERE id=${j.document_id} AND revision=${j.revision} AND state='queued'`);}
  }
- async function load(req:FastifyRequest,target:string,c?:Caller){return scoped(req.user.id,req.user.tenant_id,async db=>{const [row]=await rows(db,sql`SELECT * FROM ai_collab_tasks WHERE id=${taskUUID(job.parse(target))}`);if(!row)fail('NOT_FOUND',404);const [project]=await rows(db,sql`SELECT id FROM projects WHERE id=${row.project_id} FOR SHARE`);if(!project)fail('NOT_FOUND',404);await requirePermission(db,row.project_id,['view_original']);const t=privateRead(row,req);checkCaller(t,c);return t;});}
+ async function load(req:FastifyRequest,target:string,c?:Caller){return scoped(req.user.id,req.user.tenant_id,async db=>{const [row]=await rows(db,sql`SELECT * FROM ai_collab_tasks WHERE id=${taskUUID(job.parse(target))}`);if(!row)fail('NOT_FOUND',404);const [project]=await rows(db,sql`SELECT id FROM projects WHERE id=${row.project_id} FOR SHARE`);if(!project)fail('NOT_FOUND',404);await requirePermission(db,row.project_id,['view_original']);const [isolated]=await rows(db,sql`SELECT q.receipt_id FROM ai_collab_task_quarantine q LEFT JOIN ai_collab_task_recovery r ON r.receipt_id=q.receipt_id WHERE q.task_id=${row.id} AND r.receipt_id IS NULL`);if(isolated)fail('TASK_QUARANTINED',409);const t=privateRead(row,req);checkCaller(t,c);return t;});}
  async function change<T>(req:FastifyRequest,target:string,expected:number|undefined,c:Caller|undefined,action:(t:PrivateTask,db:DB)=>Promise<T>|T){return scoped(req.user.id,req.user.tenant_id,async db=>{
   const [locator]=await rows(db,sql`SELECT project_id FROM ai_collab_tasks WHERE id=${taskUUID(job.parse(target))}`);if(!locator)fail('NOT_FOUND',404);
   const [p]=await rows(db,sql`SELECT id FROM projects WHERE id=${locator.project_id} FOR UPDATE`);if(!p)fail('NOT_FOUND',404);await requirePermission(db,p.id,['view_original']);
-  const [row]=await rows(db,sql`SELECT * FROM ai_collab_tasks WHERE id=${taskUUID(target)} FOR UPDATE`);if(!row)fail('NOT_FOUND',404);const t=privateRead(row,req);if(expected!==undefined&&expected!==t.revision)fail('VERSION_CONFLICT',409);checkCaller(t,c);const result=await action(t,db);if(result===UNCHANGED)return {result,task:t};t.revision++;note(t,'task_updated');await rows(db,sql`UPDATE ai_collab_tasks SET revision=${t.revision},updated_at=now(),payload=${seal(JSON.stringify(t),aad(req,row.id))} WHERE id=${row.id} AND revision=${row.revision}`);return {result,task:t};
+  const [row]=await rows(db,sql`SELECT * FROM ai_collab_tasks WHERE id=${taskUUID(target)} FOR UPDATE`);if(!row)fail('NOT_FOUND',404);const [isolated]=await rows(db,sql`SELECT q.receipt_id FROM ai_collab_task_quarantine q LEFT JOIN ai_collab_task_recovery r ON r.receipt_id=q.receipt_id WHERE q.task_id=${row.id} AND r.receipt_id IS NULL`);if(isolated)fail('TASK_QUARANTINED',409);const t=privateRead(row,req);if(expected!==undefined&&expected!==t.revision)fail('VERSION_CONFLICT',409);checkCaller(t,c);const result=await action(t,db);if(result===UNCHANGED)return {result,task:t};t.revision++;note(t,'task_updated');const payload=seal(JSON.stringify(t),aad(req,row.id));await rows(db,sql`UPDATE ai_collab_tasks SET revision=${t.revision},updated_at=now(),payload=${payload} WHERE id=${row.id} AND revision=${row.revision}`);await saveSnapshot(db,row,t.revision,payload);return {result,task:t};
  });}
- async function list(req:FastifyRequest){return scoped(req.user.id,req.user.tenant_id,async db=>(await rows(db,sql`SELECT * FROM ai_collab_tasks WHERE project_permission(project_id,'view_original') ORDER BY updated_at DESC,id`)).map(r=>privateRead(r,req)));}
+ type StorageIssue={jobId:string;projectId:string;revision:number;payloadSha256:string;error:'TASK_STORAGE_INVALID'};
+ async function scan(req:FastifyRequest){return scoped(req.user.id,req.user.tenant_id,async db=>{
+  const records=await rows(db,sql`SELECT t.*,q.receipt_id FROM ai_collab_tasks t LEFT JOIN ai_collab_task_quarantine q ON q.task_id=t.id AND NOT EXISTS(SELECT 1 FROM ai_collab_task_recovery r WHERE r.receipt_id=q.receipt_id) WHERE project_permission(t.project_id,'view_original') ORDER BY t.updated_at DESC,t.id`);
+  const items:PrivateTask[]=[],issues:StorageIssue[]=[],isolated:Array<{jobId:string;projectId:string;receiptId:string;revision:number;payloadSha256:string}>=[];
+  for(const r of records){const jobId=`lbj_${r.id.replaceAll('-','')}`;
+   if(r.receipt_id){isolated.push({jobId,projectId:r.project_id,receiptId:r.receipt_id,revision:r.revision,payloadSha256:hash(r.payload)});continue;}
+   try{items.push(privateRead(r,req));}catch(error){unreadable(error);issues.push({jobId,projectId:r.project_id,revision:r.revision,payloadSha256:hash(r.payload),error:'TASK_STORAGE_INVALID'});}
+  }
+  return {items,recoveryRequired:issues.length>0,issues,isolated,complete:issues.length===0&&isolated.length===0};
+ });}
+ async function list(req:FastifyRequest){return (await scan(req)).items;}
+ async function isolateTask(req:FastifyRequest,target:string,input:{revision:number;payloadSha256:string;requestId:string;confirm:true}){return scoped(req.user.id,req.user.tenant_id,async db=>{
+  const taskId=taskUUID(job.parse(target));const [locator]=await rows(db,sql`SELECT project_id FROM ai_collab_tasks WHERE id=${taskId}`);if(!locator)fail('NOT_FOUND',404);
+  const [project]=await rows(db,sql`SELECT id FROM projects WHERE id=${locator.project_id} FOR UPDATE`);if(!project)fail('NOT_FOUND',404);await requirePermission(db,project.id,['view_original']);
+  const [row]=await rows(db,sql`SELECT * FROM ai_collab_tasks WHERE id=${taskId} FOR UPDATE`);if(!row)fail('NOT_FOUND',404);
+  const [prior]=await rows(db,sql`SELECT q.* FROM ai_collab_task_quarantine q LEFT JOIN ai_collab_task_recovery r ON r.receipt_id=q.receipt_id WHERE q.task_id=${taskId} AND r.receipt_id IS NULL`);
+  if(prior){if(prior.request_id===input.requestId&&prior.task_revision===input.revision&&prior.payload_sha256===input.payloadSha256)return {receiptId:prior.receipt_id,jobId:target,status:'isolated',payloadSha256:prior.payload_sha256,revision:prior.task_revision};fail('TASK_ALREADY_QUARANTINED',409);}
+  if(row.revision!==input.revision||hash(row.payload)!==input.payloadSha256)fail('VERSION_CONFLICT',409);
+  try{privateRead(row,req);fail('TASK_STORAGE_HEALTHY',409);}catch(error){if((error as Error).message==='TASK_STORAGE_HEALTHY')throw error;unreadable(error);}
+  const receiptId=randomUUID();const [saved]=await rows(db,sql`INSERT INTO ai_collab_task_quarantine(receipt_id,task_id,tenant_id,project_id,owner_id,actor_id,request_id,task_revision,payload_ciphertext,payload_sha256,task_created_at,task_updated_at,failure_code) VALUES(${receiptId},${row.id},${row.tenant_id},${row.project_id},${row.owner_id},${req.user.id},${input.requestId},${row.revision},${row.payload},${input.payloadSha256},${row.created_at},${row.updated_at},'TASK_STORAGE_INVALID') RETURNING receipt_id`);
+  if(!saved)fail('TASK_QUARANTINE_BACKUP_FAILED',409);
+  return {receiptId,jobId:target,status:'isolated',payloadSha256:input.payloadSha256,revision:input.revision};
+ });}
+ async function recoveryCandidate(db:DB,req:FastifyRequest,row:any,quarantine:any){
+  if(row.revision!==quarantine.task_revision||hash(row.payload)!==quarantine.payload_sha256||row.payload!==quarantine.payload_ciphertext)return undefined;
+  const [snapshot]=await rows(db,sql`SELECT * FROM ai_collab_task_snapshot WHERE task_id=${row.id} AND revision=${row.revision}`);
+  if(!snapshot||snapshot.tenant_id!==row.tenant_id||snapshot.project_id!==row.project_id||snapshot.owner_id!==row.owner_id||hash(snapshot.payload_ciphertext)!==snapshot.payload_sha256)return undefined;
+  let task:PrivateTask;
+  try{task=privateRead({id:row.id,project_id:row.project_id,revision:row.revision,payload:snapshot.payload_ciphertext},req);}catch(error){unreadable(error);return undefined;}
+  if(task.projectId!==row.project_id)return undefined;
+  for(const [index,source] of task.sources.entries()){
+   const [document]=await rows(db,sql`SELECT project_id,revision,state,source_hash,content_hash FROM documents WHERE id=${source.documentId}`);
+   if(!document||document.project_id!==row.project_id||(document.source_hash??document.content_hash)!==source.hash)return undefined;
+   const detectionJob=task.recognitionJobIds?.[index];
+   if(detectionJob){const [linked]=await rows(db,sql`SELECT id,status,created_at FROM jobs WHERE id=${detectionJob} AND collab_task_id=${row.id} AND document_id=${source.documentId} AND project_id=${row.project_id} AND revision=${source.revision} AND kind='detect'`);if(!linked)return undefined;if(linked.status!=='succeeded'&&!task.deliveries.some(d=>d.documentId===source.documentId)){
+    if(!['failed','cancelled'].includes(linked.status)||document.revision<source.revision||document.state!=='review')return undefined;
+    const [review]=await rows(db,sql`SELECT revision FROM review_snapshots WHERE document_id=${source.documentId} AND revision=${document.revision}`);if(!review)return undefined;
+    const [retry]=await rows(db,sql`SELECT j.id FROM jobs j JOIN audit a ON a.object_id=j.id AND a.event='job_retried' AND a.tenant_id=j.tenant_id AND a.project_id=j.project_id AND a.user_id=j.user_id WHERE j.document_id=${source.documentId} AND j.project_id=${row.project_id} AND j.revision=${source.revision} AND j.kind='detect' AND j.status='succeeded' AND j.created_at>=${linked.created_at} ORDER BY j.created_at DESC,j.id DESC LIMIT 1`);
+    if(!retry)return undefined;
+   }}
+   else if(document.revision!==source.revision&&!task.options.standaloneRestoration)return undefined;
+   if(task.deliveries.length&&!detectionJob)return undefined;
+  }
+  const scope=archiveScope(req,task),expectedArchives=new Set<string>();
+  for(const delivery of task.deliveries){
+   const [record]=await rows(db,sql`SELECT a.id,a.project_id,a.document_id,a.revision,a.hash,a.output_format,a.output_role,d.source_format,j.status,j.collab_task_id FROM artifacts a JOIN jobs j ON j.id=a.job_id JOIN documents d ON d.id=a.document_id WHERE a.id=${delivery.artifactId}`);
+   if(!record||record.project_id!==row.project_id||record.document_id!==delivery.documentId||record.revision!==delivery.revision||record.hash!==delivery.hash||(record.output_format??record.source_format??'txt')!==delivery.format||record.output_role!==delivery.role||record.status!=='succeeded'||record.collab_task_id&&record.collab_task_id!==row.id)return undefined;
+   try{if(hash(await artifactBytes(delivery))!==delivery.hash)return undefined;}catch(error){unreadable(error);return undefined;}
+  }
+  if(task.combined){try{if(hash(await readOriginal(task.combined.id))!==task.combined.hash)return undefined;}catch(error){unreadable(error);return undefined;}}
+  for(const round of task.rounds){
+   if(!!round.objectId!==!!round.sha256)return undefined;
+   if(round.objectId){try{const bytes=await readOriginal(round.objectId);if(hash(bytes)!==round.sha256)return undefined;if(round.validated){if(round.format==='docx')await parseOffice(bytes,'docx');else new TextDecoder('utf8',{fatal:true}).decode(bytes);}}catch(error){unreadable(error);return undefined;}}
+   if(round.validated){if(!round.objectId||!round.sha256)return undefined;if(!task.options.standaloneRestoration){
+    let archive:Awaited<ReturnType<typeof readAiResultArchive>>;try{archive=await readAiResultArchive(db,scope,round.roundId);}catch(error){unreadable(error);return undefined;}
+    try{const sourceSha=await sourceForArchive(task,round.artifactId);if(archive){const m=archive.metadata;if(m.slotId!==round.slotId||m.sourceArtifactId!==round.artifactId||m.sourceSha256!==sourceSha||m.resultObjectId!==round.objectId||m.resultSha256!==round.sha256||m.format!==round.format||m.resultKind!==round.resultKind||m.fileName!==round.suggestedName||m.validation.unknownTokenCount!==(round.unknownTokenCount??0)||m.validation.newCandidateCount!==(round.newCandidateCount??0))return undefined;expectedArchives.add(round.roundId);}}catch(error){unreadable(error);return undefined;}
+   }}
+   if(round.restoredArtifactId){const [derived]=await rows(db,sql`SELECT hash FROM derived_restorations WHERE id=${round.restoredArtifactId} AND project_id=${row.project_id} AND owner_id=${req.user.id}`);if(!derived)return undefined;try{if(hash(await readOriginal(round.restoredArtifactId))!==derived.hash)return undefined;}catch(error){unreadable(error);return undefined;}}
+  }
+  const archived=await rows(db,sql`SELECT round_id FROM ai_result_archives WHERE task_id=${row.id}`);if(archived.length!==expectedArchives.size||archived.some(a=>!expectedArchives.has(a.round_id)))return undefined;
+  return {task,snapshot};
+ }
+ async function recoverTask(req:FastifyRequest,receiptId:string,input:{revision:number;snapshotSha256:string;requestId:string;confirm:true}){return scoped(req.user.id,req.user.tenant_id,async db=>{
+  const [locator]=await rows(db,sql`SELECT task_id,project_id FROM ai_collab_task_quarantine WHERE receipt_id=${receiptId}`);if(!locator)fail('NOT_FOUND',404);
+  const [project]=await rows(db,sql`SELECT id FROM projects WHERE id=${locator.project_id} FOR UPDATE`);if(!project)fail('NOT_FOUND',404);await requirePermission(db,project.id,['view_original']);
+  const [row]=await rows(db,sql`SELECT * FROM ai_collab_tasks WHERE id=${locator.task_id} FOR UPDATE`);if(!row)fail('NOT_FOUND',404);
+  const [quarantine]=await rows(db,sql`SELECT * FROM ai_collab_task_quarantine WHERE receipt_id=${receiptId}`);if(!quarantine)fail('NOT_FOUND',404);
+  const [prior]=await rows(db,sql`SELECT * FROM ai_collab_task_recovery WHERE receipt_id=${receiptId}`);
+  if(prior){if(prior.request_id===input.requestId&&prior.from_revision===input.revision&&prior.snapshot_sha256===input.snapshotSha256)return {receiptId,jobId:`lbj_${row.id.replaceAll('-','')}`,status:'recovered',revision:prior.to_revision};fail('TASK_ALREADY_RECOVERED',409);}
+  if(row.revision!==input.revision)fail('VERSION_CONFLICT',409);
+  const candidate=await recoveryCandidate(db,req,row,quarantine);if(!candidate)fail('TASK_RECOVERY_UNAVAILABLE',409);
+  if(candidate.snapshot.payload_sha256!==input.snapshotSha256)fail('VERSION_CONFLICT',409);
+  const task=candidate.task;task.revision=row.revision+1;note(task,'storage_recovered');const payload=seal(JSON.stringify(task),aad(req,row.id));
+  await rows(db,sql`UPDATE ai_collab_tasks SET revision=${task.revision},payload=${payload},updated_at=now() WHERE id=${row.id} AND revision=${row.revision}`);
+  await rows(db,sql`INSERT INTO ai_collab_task_recovery(receipt_id,task_id,tenant_id,project_id,owner_id,actor_id,request_id,from_revision,to_revision,snapshot_sha256) VALUES(${receiptId},${row.id},${row.tenant_id},${row.project_id},${row.owner_id},${req.user.id},${input.requestId},${row.revision},${task.revision},${input.snapshotSha256})`);
+  await saveSnapshot(db,row,task.revision,payload);
+  return {receiptId,jobId:task.jobId,status:'recovered',revision:task.revision};
+ });}
+
  async function start(req:FastifyRequest,input:Record<string,any>,caller:Caller,manual=false){
   const useProfileModeDefault=input.masking_mode===undefined&&input.advanced?.exportMode===undefined,outputFormatsExplicit=input.output_formats!==undefined;
   input={purpose:'contract_review',task_mode:'ai_process_restore',document_type:'auto',masking_mode:'pseudonym',output_formats:['original','md'],unified_pseudonyms:true,batch_result_mode:'individual',...input,use_profile_mode_default:useProfileModeDefault,output_formats_explicit:outputFormatsExplicit};
@@ -135,7 +231,7 @@ export function registerMcpRoutes(app:FastifyInstance,applyConfiguration?:Collab
   const project=input.project_id??(docs.length?await scoped(req.user.id,req.user.tenant_id,async db=>(await rows(db,sql`SELECT project_id FROM documents WHERE id=${docs[0]}`))[0]?.project_id):undefined);if(!project)fail('PROJECT_REQUIRED',400);id.parse(project);
   return projectScope(req,{project},input.standaloneRestoration?['view_original','restore','view_mapping']:['view_original','review','export'],async db=>{
    await rows(db,sql`SELECT pg_advisory_xact_lock(hashtext(${req.user.id}::text),13013)`);
-   if(input.request_id){const [old]=await rows(db,sql`SELECT * FROM ai_collab_tasks WHERE request_id=${id.parse(input.request_id)}`);if(old){const t=privateRead(old,req);checkCaller(t,caller);if(t.projectId!==project||canonical(t.options)!==canonical({...input,manualReview:manual}))fail('REQUEST_ID_CONFLICT',409);return externalTask(t);}}
+   if(input.request_id){const [old]=await rows(db,sql`SELECT * FROM ai_collab_tasks WHERE request_id=${id.parse(input.request_id)}`);if(old){const [isolated]=await rows(db,sql`SELECT q.receipt_id FROM ai_collab_task_quarantine q LEFT JOIN ai_collab_task_recovery r ON r.receipt_id=q.receipt_id WHERE q.task_id=${old.id} AND r.receipt_id IS NULL`);if(isolated)fail('TASK_QUARANTINED',409);const t=privateRead(old,req);checkCaller(t,caller);if(t.projectId!==project||canonical(t.options)!==canonical({...input,manualReview:manual}))fail('REQUEST_ID_CONFLICT',409);return externalTask(t);}}
    const sources=[];for(const documentId of docs){const [d]=await rows(db,sql`SELECT id,source_hash,content_hash,revision FROM documents WHERE id=${documentId} AND project_id=${project}`);if(!d)fail('SOURCE_NOT_FOUND',404);sources.push({documentId,hash:d.source_hash??d.content_hash,revision:d.revision});}
    // Resolve the actual selected project/file profile before inserting a task. The
    // same check runs again at authorization and attachment if a preset changes.
@@ -143,9 +239,9 @@ export function registerMcpRoutes(app:FastifyInstance,applyConfiguration?:Collab
     const preflight={projectId:project,options:input,sources} as PrivateTask;
     for(const source of sources)await checkedConfiguration(db,req,preflight,source.documentId);
    }
-   for(const old of await rows(db,sql`SELECT * FROM ai_collab_tasks WHERE project_id=${project} AND created_at>now()-interval '5 minutes' ORDER BY created_at DESC`)){const t=privateRead(old,req);if(t.caller.sessionId===caller.sessionId&&['waiting_for_session_authorization','waiting_for_user_file_selection','waiting_for_human_review','building_sanitized_artifact','waiting_for_task_selection','sanitized_artifact_ready'].includes(t.state)&&JSON.stringify(t.sources.map(x=>x.documentId))===JSON.stringify(docs)&&JSON.stringify(t.options)===JSON.stringify({...input,manualReview:manual}))return externalTask(t);}
+   for(const old of await rows(db,sql`SELECT t.* FROM ai_collab_tasks t LEFT JOIN ai_collab_task_quarantine q ON q.task_id=t.id AND NOT EXISTS(SELECT 1 FROM ai_collab_task_recovery r WHERE r.receipt_id=q.receipt_id) WHERE t.project_id=${project} AND t.created_at>now()-interval '5 minutes' AND q.task_id IS NULL ORDER BY t.created_at DESC`)){let t:PrivateTask;try{t=privateRead(old,req);}catch(error){unreadable(error);continue;}if(t.caller.sessionId===caller.sessionId&&['waiting_for_session_authorization','waiting_for_user_file_selection','waiting_for_human_review','building_sanitized_artifact','waiting_for_task_selection','sanitized_artifact_ready'].includes(t.state)&&JSON.stringify(t.sources.map(x=>x.documentId))===JSON.stringify(docs)&&JSON.stringify(t.options)===JSON.stringify({...input,manualReview:manual}))return externalTask(t);}
    const now=new Date().toISOString(),jobId=newOpaqueId('lbj'),t:PrivateTask={jobId,revision:1,projectId:project,state:'waiting_for_session_authorization',caller,options:{...input,manualReview:manual},sources,deliveries:[],rounds:[],createdAt:now,updatedAt:now};
-   await rows(db,sql`INSERT INTO ai_collab_tasks(id,tenant_id,owner_id,project_id,revision,payload,request_id) VALUES(${taskUUID(jobId)},${req.user.tenant_id},${req.user.id},${project},1,${seal(JSON.stringify(t),aad(req,taskUUID(jobId)))},${input.request_id??null})`);return {...externalTask(t),reviewUrl:`?collab=${jobId}`};
+   const taskId=taskUUID(jobId),payload=seal(JSON.stringify(t),aad(req,taskId));await rows(db,sql`INSERT INTO ai_collab_tasks(id,tenant_id,owner_id,project_id,revision,payload,request_id) VALUES(${taskId},${req.user.tenant_id},${req.user.id},${project},1,${payload},${input.request_id??null})`);await saveSnapshot(db,{id:taskId,tenant_id:req.user.tenant_id,owner_id:req.user.id,project_id:project},1,payload);return {...externalTask(t),reviewUrl:`?collab=${jobId}`};
   });
  }
  async function authorize(req:FastifyRequest,target:string,expected:number,input:Authorization){const approved=(await change(req,target,expected,undefined,async(t,db)=>{
@@ -327,7 +423,7 @@ export function registerMcpRoutes(app:FastifyInstance,applyConfiguration?:Collab
   }
   if(name==='start_lawbot_redaction'||name==='start_lawbot_redaction_for_user_manual_review')return start(req,a,caller,name.endsWith('_for_user_manual_review'));
   if(name==='resume_lawbot_task'){
-  const t=a.job_id?await load(req,a.job_id):implicitResumeTask(await list(req));if(!t)fail('TASK_NOT_FOUND',404);if(terminal.has(t.state))fail('INVALID_STATE',409);if((t.pendingResume||t.state==='client_disconnected')&&!validResumeState(t.resumeState))fail('RESUME_STATE_UNAVAILABLE',409);
+  const visible=a.job_id?undefined:await scan(req);if(visible?.recoveryRequired)fail('TASK_STORAGE_RECOVERY_REQUIRED',409);const t=a.job_id?await load(req,a.job_id):implicitResumeTask(visible!.items);if(!t)fail('TASK_NOT_FOUND',404);if(terminal.has(t.state))fail('INVALID_STATE',409);if((t.pendingResume||t.state==='client_disconnected')&&!validResumeState(t.resumeState))fail('RESUME_STATE_UNAVAILABLE',409);
   const samePending=(task:PrivateTask)=>task.pendingResume?.sessionId===caller.sessionId&&task.pendingResume.adapterId===caller.adapterId;
   if(samePending(t)&&t.state==='waiting_for_session_authorization')return {...externalTask(t),resumeRequested:true};
   const update=await change(req,t.jobId,undefined,undefined,task=>{
@@ -378,10 +474,35 @@ export function registerMcpRoutes(app:FastifyInstance,applyConfiguration?:Collab
   }
   return {closed:true};
  });
- app.get('/api/ai-collab/tasks',async req=>({items:(await list(req)).map(humanTask)}));
- app.get('/api/ai-collab/tasks/:job',async req=>humanTask(await load(req,job.parse((req.params as any).job))));
- app.get('/api/ai-collab/tasks/:job/archives',async req=>{const t=await load(req,job.parse((req.params as any).job));if(t.options.standaloneRestoration)return {items:[]};return projectScope(req,{project:t.projectId},['view_original','review'],async db=>({items:await listAiResultArchives(db,archiveScope(req,t))}));});
- app.get('/api/ai-collab/tasks/:job/archives/:round/download',async(req,reply)=>{const t=await load(req,job.parse((req.params as any).job));if(t.options.standaloneRestoration)fail('RESULT_NOT_FOUND',404);const roundId=round.parse((req.params as any).round);const result=await projectScope(req,{project:t.projectId},['view_original','review'],async db=>{const archive=await readAiResultArchive(db,archiveScope(req,t),roundId);if(!archive)fail('RESULT_NOT_FOUND',404);const r=t.rounds.find(x=>x.roundId===roundId),m=archive.metadata;if(!r?.validated||r.slotId!==m.slotId||r.artifactId!==m.sourceArtifactId||r.objectId!==m.resultObjectId||r.sha256!==m.resultSha256||r.format!==m.format||r.resultKind!==m.resultKind||r.suggestedName!==m.fileName)fail('AI_RESULT_ARCHIVE_CONFLICT',409);const bytes=await readOriginal(m.resultObjectId);if(hash(bytes)!==m.resultSha256)fail('RESULT_HASH_MISMATCH',409);return {bytes,metadata:m};});return reply.type(result.metadata.format==='docx'?'application/vnd.openxmlformats-officedocument.wordprocessingml.document':'text/markdown; charset=utf-8').header('Content-Disposition',`attachment; filename="archive.${result.metadata.format}"; filename*=UTF-8''${encodeURIComponent(result.metadata.fileName)}`).send(result.bytes);});
+ app.get('/api/ai-collab/tasks',async req=>{const found=await scan(req);return {...found,items:found.items.map(humanTask)};});
+ app.post('/api/ai-collab/tasks/:job/quarantine',async req=>{const a=z.object({revision:rev,payloadSha256:sha,requestId:id,confirm:z.literal(true)}).strict().parse(req.body);return isolateTask(req,job.parse((req.params as any).job),a);});
+ app.get('/api/ai-collab/storage-status',async req=>{const found=await scan(req);return {recoveryRequired:found.recoveryRequired,complete:found.complete,issues:found.issues,isolated:found.isolated,healthyCount:found.items.length};});
+ app.get('/api/ai-collab/quarantine/:receipt',async req=>{const receipt=id.parse((req.params as any).receipt);return scoped(req.user.id,req.user.tenant_id,async db=>{
+  const [q]=await rows(db,sql`SELECT * FROM ai_collab_task_quarantine WHERE receipt_id=${receipt}`);if(!q)fail('NOT_FOUND',404);
+  const [p]=await rows(db,sql`SELECT id FROM projects WHERE id=${q.project_id} FOR SHARE`);if(!p)fail('NOT_FOUND',404);await requirePermission(db,p.id,['view_original']);
+  const [recovered]=await rows(db,sql`SELECT to_revision,recovered_at FROM ai_collab_task_recovery WHERE receipt_id=${receipt}`);
+  const [row]=await rows(db,sql`SELECT * FROM ai_collab_tasks WHERE id=${q.task_id}`);
+  const candidate=!recovered&&row?await recoveryCandidate(db,req,row,q):undefined;
+  return {receiptId:q.receipt_id,jobId:`lbj_${q.task_id.replaceAll('-','')}`,projectId:q.project_id,revision:q.task_revision,payloadSha256:q.payload_sha256,status:recovered?'recovered':'isolated',failureCode:q.failure_code,confirmedAt:q.confirmed_at,recoveryAvailable:!!candidate,...candidate?{snapshotSha256:candidate.snapshot.payload_sha256}:{}};
+ });});
+ app.post('/api/ai-collab/quarantine/:receipt/recover',async req=>{const a=z.object({revision:rev,snapshotSha256:sha,requestId:id,confirm:z.literal(true)}).strict().parse(req.body);return recoverTask(req,id.parse((req.params as any).receipt),a);});
+ app.get('/api/ai-collab/tasks/:job',async(req,reply)=>{const target=job.parse((req.params as any).job);try{return humanTask(await load(req,target));}catch(error){if((error as Error).message!=='TASK_QUARANTINED')throw error;const [q]=await scoped(req.user.id,req.user.tenant_id,db=>rows(db,sql`SELECT q.receipt_id FROM ai_collab_task_quarantine q LEFT JOIN ai_collab_task_recovery r ON r.receipt_id=q.receipt_id WHERE q.task_id=${taskUUID(target)} AND r.receipt_id IS NULL`));return reply.code(409).send({error:'TASK_QUARANTINED',receiptId:q?.receipt_id});}});
+ async function archiveAccess(req:FastifyRequest,db:DB,target:string){
+  const taskId=taskUUID(job.parse(target)),[row]=await rows(db,sql`SELECT * FROM ai_collab_tasks WHERE id=${taskId}`);if(!row)fail('NOT_FOUND',404);
+  const [p]=await rows(db,sql`SELECT id FROM projects WHERE id=${row.project_id} FOR SHARE`);if(!p)fail('NOT_FOUND',404);await requirePermission(db,p.id,['view_original','review']);
+  const [q]=await rows(db,sql`SELECT q.receipt_id FROM ai_collab_task_quarantine q LEFT JOIN ai_collab_task_recovery r ON r.receipt_id=q.receipt_id WHERE q.task_id=${taskId} AND r.receipt_id IS NULL`);
+  let task:PrivateTask|undefined;
+  if(!q){try{task=privateRead(row,req);}catch(error){if((error as Error).message!=='TASK_STORAGE_INVALID')throw error;}}
+  if(task?.options.standaloneRestoration)fail('RESULT_NOT_FOUND',404);
+  return {task,scope:{tenantId:req.user.tenant_id,projectId:row.project_id,ownerId:req.user.id,taskId} as AiResultArchiveScope};
+ }
+ app.get('/api/ai-collab/tasks/:job/archives',async req=>scoped(req.user.id,req.user.tenant_id,async db=>{const {scope}=await archiveAccess(req,db,(req.params as any).job);return {items:await listAiResultArchives(db,scope)};}));
+ app.get('/api/ai-collab/tasks/:job/archives/:round/download',async(req,reply)=>{const result=await scoped(req.user.id,req.user.tenant_id,async db=>{
+  const {task,scope}=await archiveAccess(req,db,(req.params as any).job),roundId=round.parse((req.params as any).round),archive=await readAiResultArchive(db,scope,roundId);
+  if(!archive)fail('RESULT_NOT_FOUND',404);const m=archive.metadata;
+  if(task){const r=task.rounds.find(x=>x.roundId===roundId);if(!r?.validated||r.slotId!==m.slotId||r.artifactId!==m.sourceArtifactId||r.objectId!==m.resultObjectId||r.sha256!==m.resultSha256||r.format!==m.format||r.resultKind!==m.resultKind||r.suggestedName!==m.fileName)fail('AI_RESULT_ARCHIVE_CONFLICT',409);}
+  const bytes=await readOriginal(m.resultObjectId);if(hash(bytes)!==m.resultSha256)fail('RESULT_HASH_MISMATCH',409);return {bytes,metadata:m};
+ });return reply.type(result.metadata.format==='docx'?'application/vnd.openxmlformats-officedocument.wordprocessingml.document':'text/markdown; charset=utf-8').header('Content-Disposition',`attachment; filename="archive.${result.metadata.format}"; filename*=UTF-8''${encodeURIComponent(result.metadata.fileName)}`).send(result.bytes);});
  app.post('/api/ai-collab/tasks/:job/authorize',async req=>{const a=z.object({revision:rev,authorization}).strict().parse(req.body);return humanTask(await authorize(req,job.parse((req.params as any).job),a.revision,a.authorization));});
  app.post('/api/ai-collab/tasks/:job/attach-sources',async req=>{const a=z.object({revision:rev,documentIds:z.array(id).min(1).max(100)}).strict().parse(req.body);return humanTask(await attach(req,job.parse((req.params as any).job),a.revision,a.documentIds));});
  app.post('/api/ai-collab/tasks/:job/prepare-export',async req=>{const a=z.object({revision:rev}).strict().parse(req.body);return humanTask(await prepare(req,job.parse((req.params as any).job),a.revision));});
@@ -390,7 +511,15 @@ export function registerMcpRoutes(app:FastifyInstance,applyConfiguration?:Collab
  app.post('/api/ai-collab/tasks/:job/review-result',async req=>{const a=z.object({revision:rev,roundId:round,approved:z.literal(true)}).strict().parse(req.body),target=job.parse((req.params as any).job);const approved=(await change(req,target,a.revision,undefined,async(t,db)=>{await requirePermission(db,t.projectId,['review']);state(t,['waiting_for_restore_approval']);const r=t.rounds.at(-1);if(!r||r.roundId!==a.roundId)fail('ROUND_NOT_CURRENT',409);if(!r.validated)fail('RESULT_NOT_VALIDATED',409);r.reviewed=true;if(t.options.task_mode==='ai_process')t.state='round_completed';return externalTask(t);})).task;
   if(approved.authorization?.autoRestoreAfterValidation&&approved.options.task_mode==='ai_process_restore')return humanTask(await restore(req,target,approved.revision,a.roundId));return humanTask(approved);
  });
- app.get('/api/ai-collab/tasks/:job/results/:round',async(req,reply)=>{const t=await load(req,job.parse((req.params as any).job)),r=t.rounds.find(x=>x.roundId===round.parse((req.params as any).round));if(!r?.objectId)fail('RESULT_NOT_FOUND',404);await scoped(req.user.id,req.user.tenant_id,db=>requirePermission(db,t.projectId,[t.options.standaloneRestoration?'restore':'review']));const b=await readOriginal(r.objectId);if(hash(b)!==r.sha256)fail('RESULT_HASH_MISMATCH',409);return reply.type(r.format==='docx'?'application/vnd.openxmlformats-officedocument.wordprocessingml.document':'text/markdown; charset=utf-8').header('Content-Disposition',`attachment; filename="reviewed.${r.format}"`).send(b);});
+ app.get('/api/ai-collab/tasks/:job/results/:round',async(req,reply)=>{
+  const target=job.parse((req.params as any).job),roundId=round.parse((req.params as any).round);
+  let result:{bytes:Buffer;format:'docx'|'md'};
+  try{const t=await load(req,target),r=t.rounds.find(x=>x.roundId===roundId);if(!r?.objectId)fail('RESULT_NOT_FOUND',404);await scoped(req.user.id,req.user.tenant_id,db=>requirePermission(db,t.projectId,[t.options.standaloneRestoration?'restore':'review']));const bytes=await readOriginal(r.objectId);if(hash(bytes)!==r.sha256)fail('RESULT_HASH_MISMATCH',409);result={bytes,format:r.format};}
+  catch(error){if(!['TASK_QUARANTINED','TASK_STORAGE_INVALID'].includes((error as Error).message))throw error;
+   result=await scoped(req.user.id,req.user.tenant_id,async db=>{const {task,scope}=await archiveAccess(req,db,target);if(task)fail('TASK_STORAGE_INVALID',409);const archive=await readAiResultArchive(db,scope,roundId);if(!archive)fail('RESULT_NOT_FOUND',404);const bytes=await readOriginal(archive.metadata.resultObjectId);if(hash(bytes)!==archive.metadata.resultSha256)fail('RESULT_HASH_MISMATCH',409);return {bytes,format:archive.metadata.format};});
+  }
+  return reply.type(result.format==='docx'?'application/vnd.openxmlformats-officedocument.wordprocessingml.document':'text/markdown; charset=utf-8').header('Content-Disposition',`attachment; filename="reviewed.${result.format}"`).send(result.bytes);
+ });
  app.post('/api/ai-collab/tasks/:job/authorize-restoration',async req=>{const a=z.object({revision:rev,allowRestorePath:z.literal(true)}).strict().parse(req.body),target=job.parse((req.params as any).job);const approved=(await change(req,target,a.revision,undefined,async(t,db)=>{state(t,['waiting_for_restore_approval','round_completed']);const latest=t.rounds.at(-1);if(t.state==='round_completed'&&(t.options.task_mode!=='ai_process'||!latest?.validated||!latest.reviewed||latest.restoredArtifactId))fail('INVALID_STATE',409);await requirePermission(db,t.projectId,['restore','view_mapping']);if(!t.mappingReferences?.length)fail('RESTORE_NO_TOKENS',409);const records=(await getProjectMappingRows(db,t.projectId,{historical:true})).filter(m=>t.mappingReferences!.some(r=>r.id===m.id&&r.token===m.token&&(r.version??1)===m.version));if(records.length!==t.mappingReferences.length)fail('DELIVERED_MAPPING_MISSING',409);t.mapping=snapshotMapping(records,t.projectId);if(!t.authorization)fail('AUTHORIZATION_REQUIRED',409);t.authorization.allowRestorePath=true;return externalTask(t);})).task;return humanTask(approved);});
  app.post('/api/ai-collab/tasks/:job/restore',async req=>{const a=z.object({revision:rev,roundId:round}).strict().parse(req.body);return humanTask(await restore(req,job.parse((req.params as any).job),a.revision,a.roundId));});
  app.post('/api/ai-collab/tasks/:job/action',async req=>{
@@ -401,7 +530,7 @@ export function registerMcpRoutes(app:FastifyInstance,applyConfiguration?:Collab
   if(a.method==='release-export'||a.method==='finish-batch-export')return humanTask(await release(req,target,a.revision));
   if(a.method==='retry-restore'||a.method==='resume-local-restore'){if(!a.roundId)fail('ROUND_REQUIRED',400);return humanTask(await restore(req,target,a.revision,a.roundId));}
   if(a.method==='change-restore-directory')fail('CLOUD_DIRECTORY_OVERRIDE_UNSUPPORTED',400);
-  if(a.method==='list-pending'){await load(req,target);return {items:(await list(req)).filter(t=>!terminal.has(t.state)).map(humanTask)};}
+  if(a.method==='list-pending'){await load(req,target);const found=await scan(req);return {items:found.items.filter(t=>!terminal.has(t.state)).map(humanTask),recoveryRequired:found.recoveryRequired,complete:found.complete,issues:found.issues,isolatedCount:found.isolated.length};}
   if(a.method==='repair-task-storage'){
    const diagnostics=await scoped(req.user.id,req.user.tenant_id,async db=>{const records=await rows(db,sql`SELECT * FROM ai_collab_tasks ORDER BY id`);return records.map(r=>{try{privateRead(r,req);return {id:`lbj_${r.id.replaceAll('-','')}`,valid:true};}catch{return {id:`lbj_${r.id.replaceAll('-','')}`,valid:false,error:'TASK_STORAGE_INVALID'};}});});
    return {checked:diagnostics.length,valid:diagnostics.every(x=>x.valid),diagnostics,repairPerformed:false,backupRequired:diagnostics.some(x=>!x.valid)};

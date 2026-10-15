@@ -19,7 +19,7 @@ TypeScript、PostgreSQL 和独立 worker 的电脑网页版脱敏工具。已接
 
 ## 本机启动
 
-已有环境升级本版本时，先停止旧 API/worker，执行 `pnpm db:migrate`（增量迁移至 038），再启动。不要用旧 worker 处理新上传文件。
+已有环境升级本版本时，先停止旧 API/worker，执行 `pnpm db:migrate`（当前源码增量迁移至 044），再启动。不要用旧 worker 处理新上传文件。线上版本以[当前状态](文档/待办与完成状态-20261015.md)的发布记录为准。
 
 要求 Node 24 LTS、pnpm 11.21.0、Docker。应用与数据库只监听本机回环地址，不要把开发服务直接暴露到公网。
 
