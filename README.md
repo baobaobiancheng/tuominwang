@@ -8,11 +8,13 @@ TypeScript、PostgreSQL 和独立 worker 的电脑网页版脱敏工具。已接
 
 ## 操作指南与逆向进度
 
-- [053工程恢复路由修复](文档/逆向台账/contracts/portable-filename-053-20261016.md)：补齐原文件名上下文；定向API、真实PDF Edge及完整794单元通过，发布另证。
+- [053最新上线及验收](文档/逆向台账/contracts/aliyun-release053-verification-20261016.md)：工程恢复文件名路由修复已部署，397运行文件与网页资源核对，5个相邻容器未变。
 
-- [052页面与规则补证](文档/逆向台账/contracts/reliability-052-edge-rules-20261016.md)：原83项完整排查、87项分层覆盖、金额五分支变异及四条实际操作截图；运行版本仍为051e。
+- [053工程恢复路由修复](文档/逆向台账/contracts/portable-filename-053-20261016.md)：补齐原文件名上下文；定向API、真实PDF Edge及完整794单元通过，053已部署。
 
-- [051最新上线及验收](文档/逆向台账/contracts/aliyun-release051-verification-20261016.md)：schema044、任务隔离恢复及28节30图指南；105文件接口分段证据和明确边界。
+- [052页面与规则补证](文档/逆向台账/contracts/reliability-052-edge-rules-20261016.md)：原83项完整排查、87项分层覆盖、金额五分支变异及四条实际操作截图；该052检查点运行版本为051e。
+
+- [051历史上线及验收](文档/逆向台账/contracts/aliyun-release051-verification-20261016.md)：schema044、任务隔离恢复及28节30图指南；105文件接口分段证据和明确边界。
 
 - [036线上发布及验收](文档/发布记录-20261015-036.md)：公网版本已更新，TXT与PNG完整流程实测；包括首次OOM、恢复与相邻项目核验。
 

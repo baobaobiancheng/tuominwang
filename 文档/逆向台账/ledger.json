@@ -38775,7 +38775,7 @@
       ],
       "flow_mapping": "本发布包无前端调用，局部服务关系已核",
       "implementation_status": "I1",
-      "implementation_note": "desensitization:process-file-main 的云端对应合同已逐项定位并有既有定向证据；Real per-document export exists; source legacy filePath single helper combines read/process/write/report with different error/format fallback. 保留现 I1，源许可运行 R0，当前全量 API 仍需独立结果。 047银行帐号触发词补齐；worker/OCR纠错/portable fresh识别的场景route上下文仍有具体待办。 048worker与OCR纠错均传真实sourceFormat和明文材料route，隔离API合成缓存验证通过；完整合并门禁仍进行中。 051第二批本地checkpoint：签名分格整组与逻辑姓名规则、项目方案发布、Office native绑定/图片索引、取消旧进度与隐式接续优先已补；133文件777单元/Bend11/13/类型构建通过，定向API与Edge分层有证据。95文件API仍执行，未部署，S/I/R不提升。 052末轮对抗复核新发现：工程草稿恢复的 freshPortableMarks 未传入原文件名，自动类型为 auto 时，民事判决书.pdf 可能重新加入本应被法律材料路由抑制的 SCENE-form 候选。worker／OCR 已有文件名上下文；portable fresh 属真实遗漏，053候选修复与隔离回归准备中，尚未合入或上线。 053正式补齐portable fresh原文件名；定向真实API和PDF Edge、794单元通过，原件字节及pending验证；未把本地结果当竞品运行或服务器发布。",
+      "implementation_note": "desensitization:process-file-main 的云端对应合同已逐项定位并有既有定向证据；Real per-document export exists; source legacy filePath single helper combines read/process/write/report with different error/format fallback. 保留现 I1，源许可运行 R0，当前全量 API 仍需独立结果。 047银行帐号触发词补齐；worker/OCR纠错/portable fresh识别的场景route上下文仍有具体待办。 048worker与OCR纠错均传真实sourceFormat和明文材料route，隔离API合成缓存验证通过；完整合并门禁仍进行中。 051第二批本地checkpoint：签名分格整组与逻辑姓名规则、项目方案发布、Office native绑定/图片索引、取消旧进度与隐式接续优先已补；133文件777单元/Bend11/13/类型构建通过，定向API与Edge分层有证据。95文件API仍执行，未部署，S/I/R不提升。 052末轮对抗复核新发现：工程草稿恢复的 freshPortableMarks 未传入原文件名，自动类型为 auto 时，民事判决书.pdf 可能重新加入本应被法律材料路由抑制的 SCENE-form 候选。worker／OCR 已有文件名上下文；portable fresh 属真实遗漏，053候选修复与隔离回归准备中，尚未合入或上线。 053正式补齐portable fresh原文件名；定向真实API和PDF Edge、794单元通过，原件字节及pending验证；未把本地结果当竞品运行或服务器发布。 053已实际部署并读回397运行文件和所有网页资源，5相邻容器未变；公网只读admin0项目，业务链仍以隔离合成验证为证。",
       "implementation_evidence": [
         {
           "path": "文档/逆向台账/contracts/current-interface-handoff-20261014.json",
@@ -38808,6 +38808,9 @@
         },
         {
           "path": "文档/逆向台账/contracts/portable-filename-053-20261016.md"
+        },
+        {
+          "path": "文档/逆向台账/contracts/aliyun-release053-verification-20261016.md"
         }
       ],
       "next_actions": [
@@ -116609,6 +116612,9 @@
         },
         {
           "path": "文档/逆向台账/contracts/portable-filename-053-20261016.md"
+        },
+        {
+          "path": "文档/逆向台账/contracts/aliyun-release053-verification-20261016.md"
         }
       ],
       "runtime_status": "R0",
@@ -119229,6 +119235,9 @@
         },
         {
           "path": "文档/逆向台账/contracts/portable-filename-053-20261016.md"
+        },
+        {
+          "path": "文档/逆向台账/contracts/aliyun-release053-verification-20261016.md"
         }
       ],
       "runtime_status": "R0",
@@ -131936,10 +131945,68 @@
           "path": ".data/research/lawbot-2026-10-16/iteration053/merged-review.md"
         }
       ]
+    },
+    {
+      "id": "ITER-053-ALIYUN-DEPLOYMENT",
+      "date": "2026-10-16",
+      "action": "053正式上线及公网Edge只读验收",
+      "summary": "发布350b049/schema044，部署进程0；438清单文件、397实际API运行文件及所有服务网页资源hash核验。worker ready稳定3次重启0，5邻居容器ID/启动/重启/running/health完全未变。公网Edge登录admin读回053、存储可读，admin0项目/0任务；指南28节30图全加载无溢出及页面错误。",
+      "verification": "数据库dump与配置备份留服务器；未人为触发生产回滚、不写业务测试项目、不改模型加载/资源限制。3文档旧字节归档后更新，十JSON不变。S/I/R不升级，竞品258R0及质量/原生/私有边界保持；private Git最终双ref另读回。",
+      "affected_ids": [
+        "IPC-c1cec3199992",
+        "FLOW-workspace",
+        "FLOW-detect"
+      ],
+      "evidence": [
+        {
+          "path": "文档/逆向台账/contracts/aliyun-release053-verification-20261016.md"
+        },
+        {
+          "path": ".data/deploy/aliyun-20261016/iteration053/deploy-receipt.json"
+        },
+        {
+          "path": ".data/deploy/aliyun-20261016/iteration053/release-verification.json"
+        },
+        {
+          "path": ".data/deploy/aliyun-20261016/iteration053/online-readonly-proof.json"
+        },
+        {
+          "path": ".data/deploy/aliyun-20261016/iteration053/release-ledger-transition.json"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-16/iteration053/local-doc-review.md"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-16/iteration053/deploy-template-review-delta.md"
+        }
+      ]
+    },
+    {
+      "id": "ITER-053-RELEASE-CROSS-REVIEW",
+      "date": "2026-10-16",
+      "action": "053发布文档独立复核及冻结读回",
+      "summary": "架构组独立核对053合同、README、状态、交接与原始服务器和公网回执，未发现当前态冲突；运行源相对发布350b049无漂移，856输入保持。私有仓库可见性现场为PRIVATE；双ref最终推送在本次文档提交后读回，不提前冒称。",
+      "verification": "不再扩展可选测试；部署进程0、397运行文件/438manifest/5邻居/worker0重启及公网admin0项目范围均保持原证据。原件/人工复核、258R0和质量/原生/私有边界不变；未改既有pin、S/I/R或产品代码。",
+      "affected_ids": [
+        "IPC-c1cec3199992",
+        "FLOW-workspace",
+        "FLOW-detect"
+      ],
+      "evidence": [
+        {
+          "path": ".data/research/lawbot-2026-10-16/iteration053/release-doc-review.md"
+        },
+        {
+          "path": ".data/deploy/aliyun-20261016/iteration053/final-readback-receipt.json"
+        },
+        {
+          "path": ".data/deploy/aliyun-20261016/iteration053/private-github-visibility.json"
+        }
+      ]
     }
   ],
   "evidence_snapshot": {
-    "baseline_at": "2026-10-15T21:31:01.367949+00:00",
+    "baseline_at": "2026-10-15T21:37:36.361511+00:00",
     "note": "这些哈希是2026-10-13本轮从当前现存文件建立的内容基线，只用于此后漂移检测；不能反向证明基线建立前的文件内容、原始发布完整性或过去运行结论。专有源码未修改。 ITER-012/013追加人工契约、交叉审查、新版指南及明确列举的子路径源码；旧文件哈希继续保留。已批准源码和主分析文档的哈希变更逐项记录previous/current，不扫描部署凭据。 ITER-014仅显式更新最终应用Compose及新增部署结果文件，保留真实OOM与未验证边界，未纳入密钥或环境凭据。 ITER-015仅补115项UI入口、两处动态桥调用集合、交叉审查/核验脚本及新增OpenJPEG发布证据；保留此前应用和部署文件的哈希，正在进行的前端修复漂移由后续迭代单独复核。 ITER-016：仅将本轮明确修改的前端/测试/部署/文档及验收回执更新基线，事件保存旧新哈希；无业务材料或凭据入账。 ITER-017新增分组/增补契约、交叉审查及npm原生签名差异证据；仅maintain新增71解释及维护规则旧动态数量文案的历史hash显式更新。未纳入凭据、未改竞品文件或应用。下载tarball及原生比较的逐项SHA保存在专项报告，不自动扩大成算法可信声明。 ITER-020：补我方Word结构预览、页内OCR改字、视觉候选的实现/验收与规则交接；显式更新5项应用pin，previous/current与原ledger备份保留；早期UI/26例与旧交接独审仅为历史阶段，不代表最终功能或最终文档全部被独审。竞品S2/R0、全部I级别不变，未据本地验证声明公网发布。 ITER-022显式更新进度检查点应用pin；main87基线原字节和旧新hash逐项保留，新能力未一律提级，未发布服务。 ITER-023仅显式进度检查点，28项原pin旧字节归档；有失败日志和新阶段未完成事项，未整体升格。 ITER-030显式逐ID更新，所有漂移旧字节保留并精确验hash；竞品运行R0保持不变。 ITER-031发布及真实OOM影响补证；README和指南文本旧字节精确保留；7张历史截图原字节缺失明确列出，旧hash保留且不声称历史图全部可验证。 ITER038静态语义逐ID合并；旧漂移逐一有精确字节归档，未覆盖掉历史证据。 ITER039握手故障独立复现；变更旧字节逐一验hash并归档，未以定向通过推全量或发布。 ITER040保留全部旧pin字节；逐ID/流程说明CAS更正，等级不变；实际门禁与服务器发布分别记录。 ITER040补5个已存在的新引用当前哈希；不反推其建立基线前内容。新增Edge截图调用保留此前精确字节，尚未运行。 ITER041逐文件真实variant与前后testSHA/logSHA固定；历史结果不冒称当前单次全量。两项测试修正保留旧字节及独立源裁定。 ITER042：首轮真实Edge失败原样保留；18项新旧字节逐一固定，4项产品修复待重新运行，等级不变。 ITER043最终本地：所有旧pin精确字节均找到并归档；API/Edge逐variant保留，无单次全量虚称；13条备注校准不改等级，图文实际核对；部署另证。 ITER044上线：首次真实OOM/回滚与恢复、二次发布、TXT/PNG实产物、指南补丁分别保留；无新增资源限制或模型读取改动；证据变更先核旧字节，S/I/R不变。 ITER-050首次检查点新增审查和实际反例，不变更已有pin及S/I/R，修复与发布尚待。 ITER-050终版：明确更新14路径及文档pin，旧字节按SHA归档；保留失败/跳过/反驳与最终同源层次。258R0及S/I不升级；未把本地验收写为已发布。 ITER-050发布：4文档旧字节先归档，追加最小部署与公网只读证据，保留历史状态而不升级S/I/R。 ITER-051反例检查点：状态文件旧字节先归档；固定已结束实测而不固定仍运行日志；不升级S/I/R。 ITER-051第一批：旧源码Git7ef93d6精确字节归档后显式转移pin；772单元及Edge2为第一批实测，签名/进度/MCP后续未验，竞品R0/线上050记录保持。 051第二批本地checkpoint：显式pin转换及事前旧字节归档；777完整单元、定向API/Edge与跨组反驳；95文件API仍执行、活动日志不pin、未部署。 051第三批本地checkpoint：显式旧pin归档转换，851完整check、分层API/Edge、27图；104全API仍执行，未部署，S/I/R不升。 051第四批前停点：104文件执行35，61过1测试期望失败；无条件安全断言重验1/1，假名与模型导航补齐，未部署。 051第四批checkpoint：SQL044及Edge1/1、854 check134/783、28节30图；105完整API仍运行，未部署，旧pin精确字节归档。 051e终态：105文件209项分段通过、854输入不变、044上线/397运行文件和web资源/5邻居/公网Edge/28节30图，源R0及I级保持。 052显式归档9处旧pin后更新；完整83失败/分层87成功、793单元及规则和质量边界分别保留，208条过期门禁等待清理不提升状态。",
     "files": {
       ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js": {
@@ -134351,8 +134418,8 @@
         "bytes": 423
       },
       "文档/脱敏规则完整技术交接-迭代023.md": {
-        "sha256": "1684989b1a1e0be14219342d0c19179e9fd878e195091c921438c91d632e1ef2",
-        "bytes": 385631
+        "sha256": "e77a1176d4dcb1bee16a920ad117b7f146f076e7f0559cc379b4d97d2651910c",
+        "bytes": 386135
       },
       "文档/逆向台账/contracts/build-complete-rule-handoff-20261014.py": {
         "sha256": "c5d6db581eb6019ba761fe2adb9ba66b41c4a611162c32e54729baf3fa9810e6",
@@ -137311,8 +137378,8 @@
         "bytes": 119700
       },
       "README.md": {
-        "sha256": "f47f8314a2b201cac3c121d56088e6fdb1973f0f62abea4f1be555cf841ea8d8",
-        "bytes": 13906
+        "sha256": "f46be699601e063de5b63f207f972aee2a9c99ba2b87bd3dc1802452fe1d4de1",
+        "bytes": 14134
       },
       "licenses/sax-LICENSE.md": {
         "sha256": "8a1af140fdfbf5afd3df27f7e662f989c5b963a300020dfafce42033cae9e004",
@@ -137927,8 +137994,8 @@
         "bytes": 4676926
       },
       "文档/待办与完成状态-20261015.md": {
-        "sha256": "4da770893808185f7826fa63b649f3597afc60dad5a3a1314db73e4c57736871",
-        "bytes": 25306
+        "sha256": "ceaba0bed5cb66c0ecf6aa7551c736abd82a32bab737755390e8db596b426682",
+        "bytes": 26186
       },
       ".data/research/lawbot-2026-10-15/iteration036/checkpoint-history/current/apps/api/main.ts": {
         "sha256": "4c36dad476012af090cb8649de2b991235d41e4c5d946a4a411404680935b011",
@@ -147605,6 +147672,1902 @@
       "文档/逆向台账/contracts/portable-filename-053-20261016.md": {
         "sha256": "f802fa1854d6f36384face5abac6fa554c90dddfab4308e0bdc38619bcdd98a4",
         "bytes": 4342
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release-verification.json": {
+        "sha256": "ec2009aa48c32294321996cecb9cfe033bd55226c0d8a2fb67e4ce42639b646a",
+        "bytes": 1269
+      },
+      ".data/deploy/aliyun-20261016/iteration053/stage.log": {
+        "sha256": "612494aa0ec8601547efddba1b32ef9ce76bb9a74326d7814b0df007eb60080d",
+        "bytes": 56
+      },
+      ".data/deploy/aliyun-20261016/iteration053/online-workbench-private.png": {
+        "sha256": "e348b4807812d1f05d359196a4752fbda7e726503bee11b5badf1a0508ba02ad",
+        "bytes": 48406
+      },
+      ".data/deploy/aliyun-20261016/iteration053/online-guide.png": {
+        "sha256": "444497bafbc58522de6528e907092dd351fe8540e97dd380021e931a77b1a2a1",
+        "bytes": 6572565
+      },
+      ".data/deploy/aliyun-20261016/iteration053/online-readonly-proof.json": {
+        "sha256": "c84e4e7f14ce776d7b2426c7896a4214513d54d219b6b59981cd59d0ec8edef6",
+        "bytes": 1128
+      },
+      ".data/deploy/aliyun-20261016/iteration053/write-release-docs.py": {
+        "sha256": "51916c8748edd00a098c4112e3c527e6e58c678e4d32aca4d53090d4aaef6a2f",
+        "bytes": 11145
+      },
+      ".data/deploy/aliyun-20261016/iteration053/online-readonly.log": {
+        "sha256": "792961467acf9021886655af435957824b9fef9fe0fae1455e6c1a8cab689ff5",
+        "bytes": 882
+      },
+      ".data/deploy/aliyun-20261016/iteration053/deploy-receipt.json": {
+        "sha256": "4cd5c41d074478294ee8af88c559d991f541f18125946820a3d3708364de180e",
+        "bytes": 298
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release-portable.tar.gz": {
+        "sha256": "e73a67595393b94f4b20962e3f1bc4704331a9e77a5c0c9f584d90e611bfa9ac",
+        "bytes": 7732312
+      },
+      ".data/deploy/aliyun-20261016/iteration053/verify-online-readonly.mjs": {
+        "sha256": "7460f3276d7704e9f61fe3a72f12564b6b3cdafd6772e915ce487b704150215d",
+        "bytes": 3877
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release-ledger-transition.json": {
+        "sha256": "04d66d99e6e3fff79b734f52810d55e9dd97769a4426b4c5743e9e580bfb3542",
+        "bytes": 2609
+      },
+      ".data/deploy/aliyun-20261016/iteration053/deploy.log": {
+        "sha256": "8f810570a1c540fc366ad8de39732059d4602b8e24d2984346d0471049767749",
+        "bytes": 4509
+      },
+      ".data/deploy/aliyun-20261016/iteration053/collect-verification.py": {
+        "sha256": "64cc343888dbef15845eb9476cb321447c455b2797f043ab968facac5594a639",
+        "bytes": 2386
+      },
+      ".data/deploy/aliyun-20261016/iteration053/archive-receipt.json": {
+        "sha256": "05967d9b6e70092469a0fe73c7cca5769a7a232f36e7970b00e9b9e52df141fa",
+        "bytes": 353
+      },
+      ".data/deploy/aliyun-20261016/iteration053/web-build.log": {
+        "sha256": "8f32d1d6c16ded6129de51677060baaa5b98eb0089fd9a69f99a4510a6c5489e",
+        "bytes": 477
+      },
+      ".data/deploy/aliyun-20261016/iteration053/prepare.py": {
+        "sha256": "789186a28801d81b226c48f5d471b3d1e695e979d5f55c8f12fb208042ad0aae",
+        "bytes": 4565
+      },
+      ".data/deploy/aliyun-20261016/iteration053/before-release-docs/README.md": {
+        "sha256": "f47f8314a2b201cac3c121d56088e6fdb1973f0f62abea4f1be555cf841ea8d8",
+        "bytes": 13906
+      },
+      ".data/deploy/aliyun-20261016/iteration053/before-release-docs/文档/待办与完成状态-20261015.md": {
+        "sha256": "4da770893808185f7826fa63b649f3597afc60dad5a3a1314db73e4c57736871",
+        "bytes": 25306
+      },
+      ".data/deploy/aliyun-20261016/iteration053/before-release-docs/文档/脱敏规则完整技术交接-迭代023.md": {
+        "sha256": "1684989b1a1e0be14219342d0c19179e9fd878e195091c921438c91d632e1ef2",
+        "bytes": 385631
+      },
+      ".data/deploy/aliyun-20261016/iteration053/before-release-docs/文档/逆向台账/ledger.json": {
+        "sha256": "bdb002499dc8bad690133c9a2b6c3ae9fc13a44c1afb95bdced4cd2cacf0e6d5",
+        "bytes": 7247162
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/verify-release.py": {
+        "sha256": "b1878ea04d93549d23734425fe7db48f9f4ab6e38036c82a5cfaaf1ccca9ac23",
+        "bytes": 1370
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/neighbor-state.py": {
+        "sha256": "a2f3db04885f19f8855596ff307b23a5cd8dc83d3bb8c1b0aefaafdf8030462e",
+        "bytes": 923
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/pnpm-lock.yaml": {
+        "sha256": "db391b9650426a8d71ee136ba9a818d8156666ed177732a6dcb3a6f7576a02c4",
+        "bytes": 106359
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/Dockerfile.runtime": {
+        "sha256": "138db368f5b8ae7b52fdfc427f59412a9c0a8b6f57816aa5c684ba3524c8bd31",
+        "bytes": 454
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/Dockerfile.web": {
+        "sha256": "cb54eb46d594f32e748c340f9c25d7b06f1ede9e34945e52b0ea5746d332d51b",
+        "bytes": 84
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/package.json": {
+        "sha256": "521413e09d74b900115a378668ee846732eabfa72463b40e5c81b40c84db20f1",
+        "bytes": 2534
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/manifest.json": {
+        "sha256": "034bdd0ea3d912b997178fdcc350b76115886fc6967355ff54931f7a9d56f85e",
+        "bytes": 67147
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/compose-candidate.yaml": {
+        "sha256": "02e97c2ab005c8cfa4994d6bd49d4c9003d2a5bc424e0a42e96a97729dad71ef",
+        "bytes": 6429
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/deploy-server.sh": {
+        "sha256": "28055d186bee3001706df0286ea49b8b0e8ae215f895981a500a926904364f4f",
+        "bytes": 7507
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/licenses/visual-font-OFL.txt": {
+        "sha256": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2",
+        "bytes": 4301
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/licenses/OpenCV-4.10.0-zlib-LICENSE.txt": {
+        "sha256": "d106dcdb2a0b3087cb3a2380b9f00a0bbadc7eb835cd80408f94a2d78d69727d",
+        "bytes": 5317
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/licenses/adler-32-LICENSE": {
+        "sha256": "c542ba7851b5d39a5face477e47a27cb7c00a9759e321b66824e79718bffe1ac",
+        "bytes": 11355
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/licenses/docx-preview-Apache-2.0.txt": {
+        "sha256": "8668bf4417d161e4eb4d47d6044526e4914d9eb3c748573d9bb7e87708c1253f",
+        "bytes": 11558
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/licenses/Bend-Apache-2.0.txt": {
+        "sha256": "0beb288abd3d067e231f3fbe7df1f8ee37344061fc67f22018150a19e4b26c35",
+        "bytes": 11344
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/licenses/xmlbuilder-LICENSE": {
+        "sha256": "e368bc4263b466cf98c225af15e300549e00da8859416a4536109e9654d434a8",
+        "bytes": 1101
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/licenses/cfb-LICENSE": {
+        "sha256": "279ce5f639ecd1767f96948f9fbe6f0aa8145cb280cf98473fb366eab5e6de26",
+        "bytes": 11355
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/licenses/officecrypto-tool-LICENSE": {
+        "sha256": "99281521af99dde690572b8604b05aa70d327131106b018f9579faa7cc63938f",
+        "bytes": 1089
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/licenses/OpenCV-4.10.0-flatbuffers-LICENSE.txt": {
+        "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "bytes": 11358
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/licenses/bmp-js-MIT.txt": {
+        "sha256": "9f165f5bd2b462122cacb8c6dc32028be1abb4d8ad0322e9a332f30b2ebdb833",
+        "bytes": 1077
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/licenses/crc-32-LICENSE": {
+        "sha256": "c542ba7851b5d39a5face477e47a27cb7c00a9759e321b66824e79718bffe1ac",
+        "bytes": 11355
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/licenses/sax-LICENSE.md": {
+        "sha256": "8a1af140fdfbf5afd3df27f7e662f989c5b963a300020dfafce42033cae9e004",
+        "bytes": 1552
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/licenses/crypto-js-LICENSE": {
+        "sha256": "f729d14b7e1bf8adca0dcc38b93b929d14d53fcd5db56c3d1c9b2daa7aa69396",
+        "bytes": 1169
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/licenses/OpenCV-4.10.0-protobuf-LICENSE.txt": {
+        "sha256": "6e5e117324afd944dcf67f36cf329843bc1a92229a8cd9bb573d7a83130fea7d",
+        "bytes": 1732
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/licenses/OpenCV-4.10.0-LICENSE.txt": {
+        "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+        "bytes": 11358
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/licenses/xml2js-LICENSE": {
+        "sha256": "c51452ef1dfd5606c9fe266930fa6bf7e8a534d52973b6475df5bf212cad5b0a",
+        "bytes": 1079
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/index.html": {
+        "sha256": "cf2760f4b4655b0e0af7a729d28ab3445ac2b661c72d0a142a38ba9aa3b249f3",
+        "bytes": 430
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/guide/index.html": {
+        "sha256": "c3e28621786dabcd297a77f212305628536e727eaf3a1bf0ff754f7594004e27",
+        "bytes": 43143
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/guide/images/p12.png": {
+        "sha256": "39bd7a2b9703902e7e63ce099f97fe0ef848be546bb43317fd30d4fca90acbae",
+        "bytes": 191640
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/guide/images/p06.png": {
+        "sha256": "27465d4ca6b4b0acc247ca95172df53b8310f6bed700cbdc1d2194f1c6598bb1",
+        "bytes": 37400
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/guide/images/p07.png": {
+        "sha256": "7ee1d5cb7ac858b88840cca7199d235e4b9d9d2e9972dd6220c024679df4022a",
+        "bytes": 41845
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/guide/images/p13.png": {
+        "sha256": "3399065ad8e708184bc676898196faf067e368d1d306d9ee9df6f02914bcb7df",
+        "bytes": 100526
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/guide/images/p05.png": {
+        "sha256": "01ace3b94c23c8d14a5fd214bae9149c4cfbf6b70721fb7a5a448170c5f2c702",
+        "bytes": 206940
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/guide/images/p11.png": {
+        "sha256": "4bc05450c3a3bbcd0fba3762fbe43df86fb452d95da481ea7cfbb3e557829ef3",
+        "bytes": 171221
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/guide/images/p10.png": {
+        "sha256": "97a3ba68b7f2a1b081f4754fc1e9a502695ea64a2351c2212b52e297b2792c7d",
+        "bytes": 88608
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/guide/images/p04.png": {
+        "sha256": "b88448cc783e9b9f17a5f5548f7ac876b5b30cbd3b05bf703bdafcd0e83e8a29",
+        "bytes": 46774
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/guide/images/p28.png": {
+        "sha256": "c9fdff71cb1a02285bd7e736865cfbd016ca3611d8a5bcc9f629f26183110b6c",
+        "bytes": 91517
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/guide/images/p14.png": {
+        "sha256": "d8d3792a94f9874444ac7ed1e3c79b5a1726ec00408b0724c105719089b8430e",
+        "bytes": 86176
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/guide/images/p15.png": {
+        "sha256": "539207f874c94d4ca0656d4f721e8e988cab6865ca379e74fb6d3a39b9486cfa",
+        "bytes": 188781
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/guide/images/p01.png": {
+        "sha256": "c595f75e21fa5b150d728dbbc86526e65e103b5a7ebc8e0b00c6b41f5e8aaddf",
+        "bytes": 198620
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/guide/images/p29.png": {
+        "sha256": "205ea2967f8b1f393fd0a9779d3f2e74d304f615f1b4edf9fa861ccca20e6024",
+        "bytes": 87777
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/guide/images/p17.png": {
+        "sha256": "9e700c442cd0314227d97184b55a53f11bdc0e39d097aeaa1da3714255df6cea",
+        "bytes": 161236
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/guide/images/p03.png": {
+        "sha256": "e2fae40c991c7b77f8e80b555d7f6fdf2d76cce0c885df9503f306fa366db36f",
+        "bytes": 32279
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/guide/images/p02.png": {
+        "sha256": "8b3bfe3e12f69f00d107e55571c6c2cf7f11dbf6d0c49cd862e2d08033dfcc39",
+        "bytes": 24965
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/guide/images/p16.png": {
+        "sha256": "cc00832f4088cd86fa842173d4f851895115c10d7178b2da7827f541d45779be",
+        "bytes": 192928
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/guide/images/p27.png": {
+        "sha256": "3e9317975387475f2393e249fcbff1c62a420934056a918f2e970242fd95b3d9",
+        "bytes": 35412
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/guide/images/p26.png": {
+        "sha256": "e964956798cb1fa7c0a316b4f3de5bcbdf2bf8cddafa526d4f99001e674c187b",
+        "bytes": 184228
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/guide/images/p24.png": {
+        "sha256": "4bb55901456f1d0e62edf54ba969238c7cfa72436ac938c7250e2182ab76fb12",
+        "bytes": 164308
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/guide/images/p30.png": {
+        "sha256": "2460450a7af33c067734fbd1a38f3a333275788152570b3091ed90d8c02c9796",
+        "bytes": 93496
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/guide/images/p18.png": {
+        "sha256": "e3caa382dae59cb77a0b8e7f8724b0a846f9d088a9fa065ad4d6a315e8ed7020",
+        "bytes": 71062
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/guide/images/p19.png": {
+        "sha256": "ff0a89558605e48482b546a0fde55a1eac93cf293efbbc3582be717d7e53f8a5",
+        "bytes": 54104
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/guide/images/p25.png": {
+        "sha256": "e3aaaf9aab641b3360192cfa1ac783463ee5e76139122f30ee1bb5ac95a1f36e",
+        "bytes": 175624
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/guide/images/p09.png": {
+        "sha256": "746392049d85054183b0478f8303f19af0e4428493e60cee15c907a940635933",
+        "bytes": 28267
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/guide/images/p21.png": {
+        "sha256": "0b81b7018c8f9e9b6ed569bed620c5ef52bb359332033a32a5a72430c0a2e1ff",
+        "bytes": 154474
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/guide/images/p20.png": {
+        "sha256": "7a9d09239e7d05d442fd62f4b55180a449dff0db8d36f073d5d05ba56d24cc72",
+        "bytes": 104235
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/guide/images/p08.png": {
+        "sha256": "e332fbf780657522bef1f7d09559055b31533ca683d9c730be4b136ce07f4e3c",
+        "bytes": 93558
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/guide/images/p22.png": {
+        "sha256": "4609bfd51e888044994a9e20dbb6d1893256d397e64eec3d50cf144f29b9c60e",
+        "bytes": 152306
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/guide/images/p23.png": {
+        "sha256": "531b03894f6bde385269dacd23cab8f00bd41441d05c62f0b03e7f4709519068",
+        "bytes": 151263
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/assets/index-BpaOIlmq.css": {
+        "sha256": "fdc4f14c584a12ecbb1e2fde9ac36abf8e4652f25fd6aa953254f482eb112f3c",
+        "bytes": 36016
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/assets/index-D3mXRzSG.js": {
+        "sha256": "96c3f81673e35d8dc7332b8ed2be77e5b426312fc35dacb2a9c53879139d33fd",
+        "bytes": 664570
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/html/assets/docx-preview-CpWdxP89.js": {
+        "sha256": "9cd2d6d130abcfc20e4ad453b42263a240396746c9d9c540653bafbc76ab47c0",
+        "bytes": 172379
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/check-offline.ts": {
+        "sha256": "fa98e418c4681bfa0e3858007427e4776a34106ad6fa0c1b732b40a93896b0aa",
+        "bytes": 1900
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/040.sql": {
+        "sha256": "e652c2fd0c4c5f1eae294468e567b7e81ca191451da36923f276f7f86f8a8242",
+        "bytes": 3161
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/stamp-candidate-preprocess.py": {
+        "sha256": "38db11589205c9e9c13e584a5fe54ff479d9c7f74a7e25ed42ac0b7f2e67013c",
+        "bytes": 1147
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/check-stamp-candidate-parity.ts": {
+        "sha256": "ed1746ed1ae6f394e5b07a76d1bae50fffc882b0a95236ad46db36c1f1945d9e",
+        "bytes": 2146
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/041.sql": {
+        "sha256": "082311672c983e6e4d0932050c0a52b85ab08839e741c4ca1bbdbfaf74fbecfc",
+        "bytes": 6351
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/recognition-eval.ts": {
+        "sha256": "983edadb65e86f63ae5dfbb022000009b6f2649f81a8cebf4ee678d0aaf1e492",
+        "bytes": 3782
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/eval-porting.ts": {
+        "sha256": "4abbfd24126153377fa3c6db94bb866240bf56265568cecb602e80016912362b",
+        "bytes": 10082
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/evaluate-reference-seal.ts": {
+        "sha256": "379da18f80efcd1958a175856b2b1b75b0d937bb0aa930960ffdb47d8a1df307",
+        "bytes": 5668
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/check-runtime.ts": {
+        "sha256": "8fc0961c93d06cc08378a2b61c56a5ccd1c6d47f6a5cd545bdbc099fde2fbf30",
+        "bytes": 3118
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/043.sql": {
+        "sha256": "50420197d67ac480505f0dcb2e61c1ba18122df3ae59f427091771a4c9370eae",
+        "bytes": 1944
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/migrate.ts": {
+        "sha256": "eaf9d2753babd9ec826eaff36457b6f8cf5dbc584ac0bc065d94e1499a4fbf95",
+        "bytes": 1605
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/042.sql": {
+        "sha256": "232f7cff1a00e8365b8f394d43473b005b7c29d7ec5660ddaa1b7665014660b7",
+        "bytes": 1829
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/paddle-stamp-preprocess.py": {
+        "sha256": "ce230215e9d07035d36f565bc549eb37f48f46416dd44cc3f2a01479ddbdaf3a",
+        "bytes": 1066
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/evaluate-office-media.ts": {
+        "sha256": "e9c1a377b3ea3a4a7c973d0d20f215bf3198976b55d664c3dbe74e0c33aa6277",
+        "bytes": 1941
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/mcp-stdio.ts": {
+        "sha256": "81a714cece832b3e418e51ca0582d87c611418ddbfb3158b32b82b6276d334b5",
+        "bytes": 2507
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/face-box-metrics.ts": {
+        "sha256": "56ae4d73a255b3314ff0d8d68a9f6a92aa81ad55dac17051bd32c52ad4b46dc9",
+        "bytes": 1167
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/evaluate-stamp-candidate.ts": {
+        "sha256": "58a013141185f632c37f33580b35fd093dcebf5f0e70d9838a22735e6de4be19",
+        "bytes": 8984
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/bend-lock.json": {
+        "sha256": "2f579efff67a493117c8645ac06c31ef260561be0236e2f79e4ae25f75875aee",
+        "bytes": 457
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/setup-release.ts": {
+        "sha256": "5ac5e8e92a948af3271adbc9a9a96f305178202c0664a5adf7cccf751e6a445e",
+        "bytes": 1073
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/correct-openimages-group-coverage.py": {
+        "sha256": "6d0a0b3af48d4136dcb3af90f78a5c66e76b86220d0e33d0d0b91edd1e806d57",
+        "bytes": 4526
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/ner-models.ts": {
+        "sha256": "fbb688cf122f3d74e0a43e0d654b6eb9ae04dfa54e091337b53f4378b9e9e094",
+        "bytes": 1937
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/export-signature-model.py": {
+        "sha256": "8cae9b427db1fc84890465f347cb334373595087e11de92dac3e5d46511e6b22",
+        "bytes": 2108
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/check-paddle-stamp-parity.ts": {
+        "sha256": "c9eea4fb994a2444f2eef261c29361dcd66827ed7da0e67a0928c8fc1ac66507",
+        "bytes": 2325
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/dev.ts": {
+        "sha256": "fa261f7224a65af03744400203628e48ebf8c64659c604b83baafa6c03793f3b",
+        "bytes": 777
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/export-stamp-candidate.py": {
+        "sha256": "d42dca79b51cd5160362ccbf2f558f2610dab45b783f53b7c4af46f15a891974",
+        "bytes": 3521
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/download-openimages-face.py": {
+        "sha256": "43b9b9813e8f84c93e601286ceb9841169b9e76aadf4273d01b8128714210805",
+        "bytes": 4104
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/044.sql": {
+        "sha256": "0bb2db6fd4ffde694c062f5c25d3f9a7d17aa1c2b196c5f3b0a050cd514d08ff",
+        "bytes": 5495
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/check-ner.ts": {
+        "sha256": "1c280ca57d55a36f399ff79086051033273a9044990d8340a2682c2a5067cb80",
+        "bytes": 1821
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/export-ner.py": {
+        "sha256": "8718f137e4e83bc16a943357db67a7ebe6f36b10b63a227dde1dc3026026ddd9",
+        "bytes": 5223
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/037.sql": {
+        "sha256": "1be899fa1587f71ec29c180b6ed368a36fabe7452c57417fc340c003af6ee566",
+        "bytes": 4376
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/023.sql": {
+        "sha256": "9f1d3933febf3efa76fdb8290b508a4fe536adffebc47f7fb013100768f4727e",
+        "bytes": 185
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/check-release.ts": {
+        "sha256": "e4e7e399c75a2fd59ca3acd9392b658576ec151143458e3dc4d8a56821a76df8",
+        "bytes": 8819
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/verify-openimages-face.py": {
+        "sha256": "4118a858fd3b3d6902ed7cc42c33c193ecba94f91faf8328c11f31126a2c8bb3",
+        "bytes": 5189
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/022.sql": {
+        "sha256": "c00416c1b269d270a41205c6c519815cbc30d00d3aedff26f74ac92766be7898",
+        "bytes": 2484
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/036.sql": {
+        "sha256": "e9c7907f17307dfb45485e95c69b6bead54514bf049d54dfe55e4c61b92d8052",
+        "bytes": 1084
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/signature-export-requirements.txt": {
+        "sha256": "241decf37986235c492ce5dadb2d9bebe30550b6b45089f5e8d29b2d8b0f7d4a",
+        "bytes": 505
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/check-office-render.ts": {
+        "sha256": "92fd1db33dcdf2012fc0beace314d287c2b3eeea91c577d9e4e1e93253687bcf",
+        "bytes": 3632
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/ocr-models.ts": {
+        "sha256": "1bf9e229134d400660e0aa45be5c76b915ddcdb553677aa4caa00904a2cdda47",
+        "bytes": 1597
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/008.sql": {
+        "sha256": "74d9122eb7ed1ba2f9699d53174a4c91bc52fc59bbc1ac36bd628b50b9a43d44",
+        "bytes": 14625
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/020.sql": {
+        "sha256": "a46b29df94913a464055d1202c4ab2c724ed51464c64365b7856a11ac20a369a",
+        "bytes": 886
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/034.sql": {
+        "sha256": "ed981b72725d4a66ae8de781f6e9b63b190c5ac5dc0c7be3a2c9f59de6291fb7",
+        "bytes": 2286
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/035.sql": {
+        "sha256": "886bbff26656c0f52b1ad4dd27bc5b74cc088c85093808809427f87313d098de",
+        "bytes": 251
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/021.sql": {
+        "sha256": "6019d721f9361b62c07358933854d6b8174fc1fffeaea0cd0780ea591f640dda",
+        "bytes": 3110
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/009.sql": {
+        "sha256": "ec452ec38bebf73cb40f24d3fbacb4389323de8608ac49d225bc5594e7c90772",
+        "bytes": 6618
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/ner-source-lock.json": {
+        "sha256": "8baff979b1f4101ea28936a043f12ba0792b4766ac8502c58f9c5346cc461e73",
+        "bytes": 844
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/check-paddle-stamp-reference.py": {
+        "sha256": "196f92adaa08d1a886eb56da9eedbae90f697097632c12370263c654d938ed50",
+        "bytes": 2714
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/admin.ts": {
+        "sha256": "32cbcc90a31f7cb59be8b45de64ccf5979b08bbe8f1505388c67fb57ae20cb3f",
+        "bytes": 1702
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/025.sql": {
+        "sha256": "8cf7951ce90730be338e4c9d40612b9947ac2d2408ff3930d4c7985fe8b4ebe8",
+        "bytes": 1074
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/031.sql": {
+        "sha256": "70722971fba042bf321555e1399feaa6def42a244da2e17e9d7adb34c35e8997",
+        "bytes": 217
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/019.sql": {
+        "sha256": "cd30fcc056e53fa6f495474c75c41f71ddc672378db4ed72f48b9f07b1083558",
+        "bytes": 3108
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/visual-lock.json": {
+        "sha256": "1c9306fe9fd05f97854e2e0d12cee5b49655c8c66683fff8ae16aacab401c33d",
+        "bytes": 505
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/build-mapping-library-golden.ts": {
+        "sha256": "77eddcc5d477f75d901b2a3ae17bd03f7c9c7d44f0410f8e429b981573186eb4",
+        "bytes": 3155
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/setup.ts": {
+        "sha256": "bbc1ce680607b2a551373706a7925349f42edd7091072643c2d6b979ffab995e",
+        "bytes": 689
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/018.sql": {
+        "sha256": "3c68d70f9ca2877330bd790f98372400af064be7ee9ce6b47d98e72ca34dfc3e",
+        "bytes": 3756
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/030.sql": {
+        "sha256": "97085c698b35919b34b47ede3358c13dc2b02eeda6bfcb5c08fcdc7947d43c73",
+        "bytes": 1209
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/024.sql": {
+        "sha256": "f1a5f60e7adec2752919134aa18d7bf0c06fbf61fd55db5fca9e75878d3ac146",
+        "bytes": 772
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/render-font-lock.json": {
+        "sha256": "8e489e5a7dbd5e751c8bf0d905ed528336c3652d07cb7327ef212a2cee7a90e2",
+        "bytes": 554
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/bend.ts": {
+        "sha256": "ee77374b44f0808e44e51f7e7e77df77af85220e98e2b3e7461339eeca00593e",
+        "bytes": 5188
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/codex-public-eval.ts": {
+        "sha256": "dda7c7e48138658cf83759f5ac835b898787202d1327d2e52ccbf85fce7ebbc3",
+        "bytes": 7319
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/032.sql": {
+        "sha256": "c2055843c56f74bb881af369ce9c70f1351704f9b6100db95dd08a52e7ef100c",
+        "bytes": 2407
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/026.sql": {
+        "sha256": "a530ade723df90a6a3076e824b486c746655236128ee6789b6ad78fc062975d5",
+        "bytes": 1693
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/027.sql": {
+        "sha256": "425e0ff9b64e6cdad5b8622ad06f698183578006dc3049ea73a0216370531dc6",
+        "bytes": 888
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/033.sql": {
+        "sha256": "6d54caba05eec6800d4f24559b6469fbc5f658bd903acee12e78dabc1c82a993",
+        "bytes": 59
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/package-models.ts": {
+        "sha256": "bbc4710941a29e03c0ee136a57c4b3d59e0ea0460ab2d19567bc40180c0c3e3a",
+        "bytes": 2010
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/ner-runtime-lock.json": {
+        "sha256": "c79fbaa6c50a3129fa897f8b04e3a2770039f4de7feb8d246423955fd98c3cfa",
+        "bytes": 692
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/calibrate-signature.ts": {
+        "sha256": "7ede1eb9eb47bfd59a881ef44bebbda64e12ca849661c565160b62cc7a698db4",
+        "bytes": 2319
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/016.sql": {
+        "sha256": "1fb20ee94e1656bee5153b5f6df2eee077ffb10c5f128e204082f60e15a21907",
+        "bytes": 1401
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/002.sql": {
+        "sha256": "84882bb79ddc2559504058cbe718f59939c988dee7f79aeaea94f51313312095",
+        "bytes": 2213
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/visual-models.ts": {
+        "sha256": "e842347f073413f34c3fa7265ab76224134fc31a0a981154b43ba5c25840b756",
+        "bytes": 1674
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/003.sql": {
+        "sha256": "bdaf6614db4381a463ebcecff1276cdb452c1dd04ad6ac959d7539d40199ac03",
+        "bytes": 1246
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/017.sql": {
+        "sha256": "316730e412109cae46e39a424f7c9f0639bc9e0ae0a135d08a1a9bc2a935bd05",
+        "bytes": 1972
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/evaluate-paddle-stamp.ts": {
+        "sha256": "647247763b1ce7270563d9d10745515954868061fc34156b93a2ff9829b64a33",
+        "bytes": 8959
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/merge-stamp-candidate-evaluation.ts": {
+        "sha256": "7fc04abf678098a9567bbf8c8751322c5e7e0a66f15f6841fc3f0b269c967333",
+        "bytes": 6360
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/029.sql": {
+        "sha256": "77c8a1b89e59c49418ef7d714b67316e7e2e3c48518dfc9273fa80f01ce78d5e",
+        "bytes": 88
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/001.sql": {
+        "sha256": "22a4a41b032a909494bb4d888311d817aa25003253f61113872d582fd53431ff",
+        "bytes": 6419
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/015.sql": {
+        "sha256": "e79ee573cd2066752d7e7bbe1c519a254803eb5d1b9a7b3096b878b05e8a46a1",
+        "bytes": 80
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/014.sql": {
+        "sha256": "8533c130eb33cc9575483966b9d7a626b04a5d8a97ff0f61b2d5b9e0fad680ec",
+        "bytes": 250
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/028.sql": {
+        "sha256": "99e03f47a0d61b2ae7c0517b32ae99e7e37fe6bc9861ff576cf6958b59d6f2d9",
+        "bytes": 1362
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/004.sql": {
+        "sha256": "0d9c02a1dc9f3011c1caa103fae74e369c8ebe56dffacf540a218753a8b85372",
+        "bytes": 72
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/010.sql": {
+        "sha256": "fa6af6036a6d90e42f951f4e78a9749338fedd9fbb21628904d9ce8e7ba6f96c",
+        "bytes": 1849
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/038.sql": {
+        "sha256": "ef4e7715466ecc469ee1714385b3b79c8514973b1daa050693ca2c3ff2690f85",
+        "bytes": 1016
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/039.sql": {
+        "sha256": "5ac129a7b1d89d90892bca7668f5f13cfaa2c9693db33ea1dbf0a8c34cf9ac26",
+        "bytes": 824
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/011.sql": {
+        "sha256": "05390926b11e4d0c96eb480927619201fcecc6ca87853cf374417f6589b62a72",
+        "bytes": 1158
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/005.sql": {
+        "sha256": "c25390335a866ddf9f2028cbb31786b445c0e5dccfcbb94b03b38938512d6c50",
+        "bytes": 361
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/ocr-lock.json": {
+        "sha256": "a816cbc7c9a70738373cef27ebe3c3ba61970a904f865d74d0343fec00236c79",
+        "bytes": 434
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/codex-events.ts": {
+        "sha256": "f766a2761a355892db7f0abcd0fd6704e6710d0525be8f941215f745938eb5ae",
+        "bytes": 1233
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/013.sql": {
+        "sha256": "8c4f9d5ddb9bac3005947ae06a7d4b9ec5702ac686ea3ef8f9f970eb98026233",
+        "bytes": 1046
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/007.sql": {
+        "sha256": "39201f5cc8b5e89d7402a4c1f31b48a34035c53bd2da9318e3c604f7a9d60e1a",
+        "bytes": 351
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/opencv-lock.json": {
+        "sha256": "019659065d13c54ecb143f9892d1c7bbeae8f026f3eb3f6d98f93a699d103909",
+        "bytes": 715
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/006.sql": {
+        "sha256": "f56089ed7788d29c10d30cda25979ef40f16f12a2e6147baf98ee5c3b5ba2335",
+        "bytes": 1373
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/012.sql": {
+        "sha256": "92cb77ccd5fab882db3453a2c7b27820abe746a13f044e5e3c8bc0482cc3f538",
+        "bytes": 257
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/evaluate-public-visual.ts": {
+        "sha256": "a24c62dc67cdaa8b11740c965eaf0a7955eb3c582f109ffc893b9ff77612ec10",
+        "bytes": 5834
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/package-openimages-face-report.py": {
+        "sha256": "614279bdf2196bea5813a54261bfdc6096e13179bee84a5b822d269ba0d43b2d",
+        "bytes": 9250
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/merge-public-stamp-evaluation.ts": {
+        "sha256": "4e5e4300d6b0ef3fcb3bf7a87b8f3eec3e6e717d8d7aee9e95553056e5e07253",
+        "bytes": 5254
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/evaluate-public-stamps.ts": {
+        "sha256": "8e414e22280364979de9d4f7a4e4b8068c78e6ea4334f6a8daeca4952dfe6cf8",
+        "bytes": 7292
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/evaluate-rf100-signature.ts": {
+        "sha256": "902f2047d7bc42b9850fef23cc22ceb668aa83d54bd66581172c3ae54345199c",
+        "bytes": 3345
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/signature-lock.json": {
+        "sha256": "7572393de78de8c5171de2f92aa419a6f870aa00feca9b4af1cd3a6a7d0dbd73",
+        "bytes": 1554
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/evaluate-openimages-normalized-variant.ts": {
+        "sha256": "a05812b5591d660e3d5058b9a02815eb45ec46abd084def3357a043d795f8ed5",
+        "bytes": 4892
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/scripts/evaluate-openimages-face.ts": {
+        "sha256": "e4c1ddde376f3d21782751b8ce1d94d3aa2d391d219b43697d91e3b8aa73b68c",
+        "bytes": 10864
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/types/bmp-js.d.ts": {
+        "sha256": "072f18aa21efc63f7eeed2d6f68b7b46542bea4fa2b94150c93188be7f99c650",
+        "bytes": 217
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/docx-vml-preview.ts": {
+        "sha256": "946fd088acaf451cbfae049800e30afc6979729822e317460e7d7d904ce5cae6",
+        "bytes": 6119
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/legacy-office.ts": {
+        "sha256": "601732c1fc0bd967b4e0467d198688d5b521e46bfc0fb974796ac7af49ce3416",
+        "bytes": 10505
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/entity-identity.ts": {
+        "sha256": "3f60a6b85405a0dfa3822d0d8b9a80b33a7eb7418cb775bb944dc1325df2ced2",
+        "bytes": 2283
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/mappings.ts": {
+        "sha256": "54fec8839883e85976fac2c9e7e4178898fa712feac8a40ea2c9ca845d8db2f4",
+        "bytes": 2598
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/export-policy.generated.js": {
+        "sha256": "23378f2702646d02c9d177a8f18f8e13441677f7f6cb76b796d8bc151e65654f",
+        "bytes": 3419
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/image-batch-search.ts": {
+        "sha256": "39f69cd11e51c0b2148d3a38a18c7843ea5df13edb16614fbe4dc6381302de99",
+        "bytes": 9196
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference-alias-state-schema.ts": {
+        "sha256": "df10118dea9883b956f3b272a22d41972eac6368e1e829a97b7a9b574fa2975c",
+        "bytes": 2755
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/processing-report.ts": {
+        "sha256": "e9bf37c677717d10e723a2744a18bd721bf9c8e4fe015566a157f1c97b5c53c7",
+        "bytes": 7690
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/restoration-files.ts": {
+        "sha256": "cc0494df959fbf62de95a278b6b55961d6d61d71ba73f53aed78170c29c1767b",
+        "bytes": 38688
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/page-redaction.ts": {
+        "sha256": "ace5716d6587a06d09ce8c893593a41dbebd41570334afbc5a6c1045324b24aa",
+        "bytes": 9902
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/review-group-ui.ts": {
+        "sha256": "70607c88e116381cae00c21e428b8ea268dcda46e4965adc97a2519a0711895e",
+        "bytes": 1136
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/office-media.ts": {
+        "sha256": "9852c1c96000c72f7b4fdcb9ef4f22e7f58a0ff1a58c85ff1f3a09cfa3b9b2a2",
+        "bytes": 9378
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/office-zip.ts": {
+        "sha256": "58287831b1d4b6d98e6efc345879935d4a9c9eac32468072e32403e2acb99a90",
+        "bytes": 9057
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference-markdown-progress.ts": {
+        "sha256": "afce313dbd0ecf37d795d4449a3829aef16c54ae3174decd838c430bb0818ef0",
+        "bytes": 1728
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference-folder.ts": {
+        "sha256": "119ee01ce02c133ff95b6fcd47f7d95e7301c4b77c86b71b33821fdf6bbff214",
+        "bytes": 4571
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/review-geometry-provenance.ts": {
+        "sha256": "4a6ce56e33178427ccff547bef8ed1ce1320e58043830f7c127d9df9eb3140e9",
+        "bytes": 2165
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/review-mark-filter.ts": {
+        "sha256": "01b5da4f41c15af24b1403a33b40d71abaf10957d3651dc52b885b4675fc1ccc",
+        "bytes": 1686
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/review-tools.ts": {
+        "sha256": "8d53b34de2ebc190e6a63e61c30aee5d4fe71eda4f2eafc85cb843134871f982",
+        "bytes": 9187
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference-visual-table.ts": {
+        "sha256": "25f2ecfb0d6117afcc2d6657e521c54e52a4cc8a671ba29595565fbce8061b8a",
+        "bytes": 17034
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/dictionary-workbook.ts": {
+        "sha256": "201584226d79277fd79bf368559174d786c2e2b921788d00ca5f294716ce3ff6",
+        "bytes": 5035
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/mapping-normalization.ts": {
+        "sha256": "bd72f54c59a1882f0d7ba2997c558b32501f7545f632fdb98ecf5245911ee4c9",
+        "bytes": 7895
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/signature-model.ts": {
+        "sha256": "03e4b3fc2bbbaed5f5569c37f7990f56705cba7ec665fe381fa945b7730d48af",
+        "bytes": 3774
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference-alias-data.json": {
+        "sha256": "fede746e6e3ebc7736f98ddca810b7ade03ed067586e3f4fba2a1ccf603e60de",
+        "bytes": 3207
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference-alias-lifecycle.ts": {
+        "sha256": "c2957ec850b7dc1133fbc846e75a6c081fd40392dea874214ffcccae4c0bd90c",
+        "bytes": 9771
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference-dictionary-workbook.ts": {
+        "sha256": "f7aa3da540e2d8c4f0945e5d1436e6c016386088e6031a08f09db012d0d58827",
+        "bytes": 7959
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/visual-detection.ts": {
+        "sha256": "821af10f7749341a978e6439e748ac7cdc1ddfe433f15e95e2fe9eaf68da3b8f",
+        "bytes": 10074
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/review-entity-slots.ts": {
+        "sha256": "c3ebe32fd54e63aba952cca98f823d1472b0b2be50c33cf41eebac437e9cf178",
+        "bytes": 6334
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/project-entity-corrections.ts": {
+        "sha256": "ec7552d517b0085af08d8ae06166f21de008da8ab0614ef4d425baddbfcabc21",
+        "bytes": 7242
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/entity-corrections.ts": {
+        "sha256": "1bcf10b4f70c72c3a3f1cd50b92e2be458da884383f4440bf7223399f308f809",
+        "bytes": 5783
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/visual-morphology.ts": {
+        "sha256": "0e146b6e745d48202876e97e4977783641c2b742236a7ca0f467b1232e510d36",
+        "bytes": 11354
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/docx-layout.ts": {
+        "sha256": "7c32cf9b40cb013743ed679f7aac1401b3fd8e7683b6197ef647b8e2dd190609",
+        "bytes": 13195
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/signature-group-policy.ts": {
+        "sha256": "261ea17a0aee86e54e5f276bb4854fd8b9091d7552fa12b95ffa4add0f65d489",
+        "bytes": 3535
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference-party.ts": {
+        "sha256": "5234da81ec08c99debd7a460261b60cfe3367dcb252302071992707bfd305150",
+        "bytes": 12054
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/workspace-renderer.ts": {
+        "sha256": "288fe50eea6ff676f0a7d064786ae3f9ff5ad994b017b02887cac70bfb896745",
+        "bytes": 15078
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/restoration-batch.ts": {
+        "sha256": "98293e0ace71fb02a617ececa4b8d0cd9c90eef52ff3a6bbacd2c8d4d0a6f2b6",
+        "bytes": 2717
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/export-policy.bend": {
+        "sha256": "50306ffa9d364e1ceb2fdb6b16adaf7d145a3fc685053c5c499c7fd68c52dfd0",
+        "bytes": 536
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/review-provenance.ts": {
+        "sha256": "263c488d02bd971cc480631339539c8728885a401080115f8b8031483f943464",
+        "bytes": 8910
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/ner.ts": {
+        "sha256": "8af70b1159c35ef6ef1c36d3ea4dd6e8b2e762cbb50ee3591cb34704b26d48f9",
+        "bytes": 5409
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/export-policy.generated.d.ts": {
+        "sha256": "0a3a7edde69a05a95fa470525f0d1670c5a461d0a877ab87b84438f2330da271",
+        "bytes": 311
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/review-type-hide.ts": {
+        "sha256": "7a4c0ddb221c6f89090965526b963ae8d314fffebd5dd546422a4374862d1b8d",
+        "bytes": 1351
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference-runtime-rule-producer.ts": {
+        "sha256": "1b85d7659399d18fe9e39d67032cd34ab23e979557a29b7a2ba0f5c8fa88287e",
+        "bytes": 1682
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference-table.ts": {
+        "sha256": "689d3ea8c0fc8585259d1ddf107c537b079aa90108fa54a087e82a3a7e0aeaa2",
+        "bytes": 36963
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/profile-export.ts": {
+        "sha256": "be674dc006e2ab5c1784282c3dec2abf8114aba93e796020808cd25b3c5a2790",
+        "bytes": 9279
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/markdown-export-stats.ts": {
+        "sha256": "eba8270f5c4e584a0e5c9272efca49f5bb4b8a81456f2104a499e3ce9c3dc392",
+        "bytes": 2061
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference-unified-aliases.ts": {
+        "sha256": "37f42459ae1b32ab597d29038c0ba1b999dfea6af492729523a3dd6b4af81a44",
+        "bytes": 18630
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/opencv-runtime.ts": {
+        "sha256": "7ee92faea1a9d7ab6029fd27caaee5feec226df805238e2091cb7c4851605fc3",
+        "bytes": 1228
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference-vector-table.ts": {
+        "sha256": "89bf0685493a40feceda72dadef2d5e4908422bd33be28f47223374af2ff890b",
+        "bytes": 5352
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/page-rotation.ts": {
+        "sha256": "e6cc1e9fd4587143cebe6fde4b03357553675aa7367ec08eb7a1d1ae1c0757cb",
+        "bytes": 1102
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/ocr.ts": {
+        "sha256": "028b581372437dcf88dbec259be9d8f99bd70d27644d01e20802bb05e2443e10",
+        "bytes": 2314
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/ooxml-string.ts": {
+        "sha256": "9b10986e73d98d0db87e5f5ee32bd15c5f1b6965eecb76944681de7a65a36f99",
+        "bytes": 1102
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/replacement-policies.ts": {
+        "sha256": "92cb4925bb4c4e10868fa1913810e6475dbdf7f8240327d9577856fa889f5f1d",
+        "bytes": 3992
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/image-utilities.ts": {
+        "sha256": "ad353ef9afa185aca94d978b0865e2e6a17779fe29e84961180b63305bdfbab3",
+        "bytes": 7379
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/document-alias-restoration.ts": {
+        "sha256": "6f18d88235331cd7abc89214a32477935d7f0b923f5a3b77fb446bd51d5b8908",
+        "bytes": 1861
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/workspace-portable.ts": {
+        "sha256": "3547cc4d08d33d156dda19fe01c66020ec4d1fe3243d6b8fdd650727e4976258",
+        "bytes": 36859
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/visual-replacement.ts": {
+        "sha256": "7442037bb7675ae4728d273dc2e459ad9202d5ac075f9399d61deb2bb621d4b6",
+        "bytes": 12008
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/mcp-tools.ts": {
+        "sha256": "0e437cd05716f95b2423968866dcf938522cf1ecd85fa3c0c5262037e19fe52c",
+        "bytes": 9153
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference-mask.ts": {
+        "sha256": "589d408f723e1fbf758e252d5f211ca5a10881a75c4ac3f6aceffde597a5ab41",
+        "bytes": 4040
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/workspace-compat.ts": {
+        "sha256": "4ab2b78afa4945a06a3284479c8dcb15b16fe8b3252fa04d01aab756e83a9c79",
+        "bytes": 21060
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference-detected-mask.ts": {
+        "sha256": "48983100188ec3920215958c7baaea9c1e889e59f29cf3351fdbb89445d02540",
+        "bytes": 10294
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/document-unlock-word.ts": {
+        "sha256": "8d3fe4bf49ffcb47301c0b34e5413d96046b5a3aa26ee9ada91b8addb0c079e8",
+        "bytes": 16155
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/package.json": {
+        "sha256": "2403fea91399e1b119e149076c33b08ec877b9659be4867f21d6564e26575924",
+        "bytes": 65
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/pdf-text-origin.ts": {
+        "sha256": "90ddf152057ece8aed5de8b8c98d1359ce5bf2288095e182f9ef9fec945a4f4f",
+        "bytes": 4251
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/text-window.ts": {
+        "sha256": "3adfc8feb168d911ad61fdbaeec5fbfda383a42d5e7c205807c337692ae86fdb",
+        "bytes": 666
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/mapping-export.ts": {
+        "sha256": "4c4866a85cab28a54c7de942696133ea9bda0f62af0cc8a9184a95592c734929",
+        "bytes": 3759
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference-seal.ts": {
+        "sha256": "e70671036acb127f0f79df19b8f82fc3de30dbe1c87e5d96a6afe37cc2f13b34",
+        "bytes": 10538
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference-spatial.ts": {
+        "sha256": "ce75477446f6716cfba412c8398b9aed8851d415dda5adcd48bdb36ec3cf1812",
+        "bytes": 11293
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference-review-feedback.ts": {
+        "sha256": "334e00538fd5cf5f4aa3026a4c8829944fc798c7f5bd06ea94e154ff1f270864",
+        "bytes": 4283
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference-route-pdf.ts": {
+        "sha256": "c759e0a834bafb6815a26cb711c62ff4a472254b847d9ed3847921805b905ef6",
+        "bytes": 9431
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/document-unlock.ts": {
+        "sha256": "e98d93a494866d812e85d341d95f0363227b5c0cb9e3aa19d1a122881f39de9e",
+        "bytes": 4070
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/feedback.ts": {
+        "sha256": "1712e7fdd9641f11a765b94aae0aeac79ef31552e442a0dccc32d8f19352f089",
+        "bytes": 10121
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference-alias-sync.ts": {
+        "sha256": "0f47ae835e0ff693f5c5465958c84a1651e286bb6b2d56adf8370f2683a98e3d",
+        "bytes": 3026
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/document-route.ts": {
+        "sha256": "e71793a73a7fc6e08acdc78b4d2f219ce81b17e6939655ba7cfb4d2657245d92",
+        "bytes": 1710
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/portable-mappings.ts": {
+        "sha256": "9ff393f7788f299ce96a330caa437e51defabf3a17cd9d729a68ea3488d94c63",
+        "bytes": 1929
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/review-entity-birth.ts": {
+        "sha256": "053423aad8cf87cf8db37524b2f146a39b0a4ad59b1d64235bb77981ea871bcc",
+        "bytes": 1429
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/recognition-pipeline.ts": {
+        "sha256": "0f13150c69c1bb9bf86d4172caa3df149fbbe1124f0c26d698ba39af2a0d2bfe",
+        "bytes": 2818
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/literal-matcher.ts": {
+        "sha256": "9d3e673fdde3138dedc8360ab34d225a9ee17792d52e0457d0e88f66a85872d4",
+        "bytes": 2567
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/presets.ts": {
+        "sha256": "ea28f23c0745e1cd58bcc6ea0c5a864272b82fc612016a882e3426f5c9095757",
+        "bytes": 16053
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/processing-events.ts": {
+        "sha256": "70f9958d48e07a1800a4d042732a105c7ceca7a228ac7a4609ed70120c84f51b",
+        "bytes": 7002
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/docx-preview.ts": {
+        "sha256": "4f4ae490cba90f960735f21a604687f526f2ff5c68a11e3df243f5ea8ff6a9df",
+        "bytes": 13751
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/document-format.ts": {
+        "sha256": "a18dee1d202d0e5cc042e1941964a39eeea770af1351b49d27d549472556616a",
+        "bytes": 1015
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference-rules.ts": {
+        "sha256": "6fd1f4e6f39f4ed09eecb827cf35fda71491e70a5db308d8d14b1a9c44c16576",
+        "bytes": 75454
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/visual-pdf.ts": {
+        "sha256": "a4b76999d53e403136ca0a6805ed34974a321f52efc733fe036deb40f42ec3d8",
+        "bytes": 5932
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/user-memory-rules.ts": {
+        "sha256": "e930a08d8020e0f824611f1250e94110a7f24d80512889586fb4def9f1cbc918",
+        "bytes": 3577
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/review-feedback.ts": {
+        "sha256": "02d53653f1ffc5c0a851b46adb7e88880cad8c1eaec6fc0df038a33d2e4928a6",
+        "bytes": 93
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference-entity-conflicts.ts": {
+        "sha256": "e2777038ccbfb3590c97b85f39c2a5cc7467aa267ddd64cffd101b9d71f3c27d",
+        "bytes": 8680
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/pdf-reader.ts": {
+        "sha256": "b119581cdd8e3a65808a6dbb86b7adaffdf36a90e8ecd4e1d4ea495fd73dc9c5",
+        "bytes": 5328
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/runtime-rule-update.ts": {
+        "sha256": "54c33f597746afdbf96404fc196ee4ca70d96f65084f51ffa9b5b2205d469b35",
+        "bytes": 2215
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/review-provenance-rebind.ts": {
+        "sha256": "e2613837207d88a03b2c5a831b46412d7908a5f7bed7b45cf0c5aa23d01c7c8a",
+        "bytes": 2662
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference-markdown.ts": {
+        "sha256": "e603ce30c3dcd1acaf499cf30b8aa32a416dad9e193ff24c6402a8c3081e340d",
+        "bytes": 46556
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference-sidebar.ts": {
+        "sha256": "2a643c9f805603ac4357ce43918d4b1d00ff1160f758b4459b34ca9c6995ab60",
+        "bytes": 6087
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/ai-candidates.ts": {
+        "sha256": "45d9ed97d0408a344a84fa55a7e5619dae773cfe516b04808182908795c59d06",
+        "bytes": 1664
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/ocr-correction.ts": {
+        "sha256": "7c781fce5440f02b6f192a86d59463487a7fc4b3ee046ef671eda7caa183a43a",
+        "bytes": 5167
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/mapping-library.ts": {
+        "sha256": "72a036c4884a7fa51ad4e68e157828eba6cd9b37a4b21ca887f8645ecf109b70",
+        "bytes": 9206
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/support.ts": {
+        "sha256": "fa07fe460d8fe46060fe9d788aa469aa2abfa95b38f38c28e068c54ad1d84aef",
+        "bytes": 4355
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference-project-search.ts": {
+        "sha256": "e612e9e3b628b7d43468c0c06de55d8fd2701fd372c6039a62de0ce7bab905d5",
+        "bytes": 1797
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/export-gate.ts": {
+        "sha256": "efaf40de1bfe62c390a738cf79990bef22c4486b5cc92e1f54458928ec002a6a",
+        "bytes": 9458
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/office-protocol.ts": {
+        "sha256": "361bf638230b1b4c4001e3c25d3f06003b22461ac25ab8d67a762f078d063dcb",
+        "bytes": 574
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/evidence-screenshot.ts": {
+        "sha256": "4a5a8a4029362c110bbcfac6c4d245c520dc4d8ae892ca0785ec06e164848a06",
+        "bytes": 9897
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/native-portable.ts": {
+        "sha256": "5ecf4ce82a94e00904503dee49d3bc6dcb0f503870085294916c1335920ff8b4",
+        "bytes": 3497
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/review-groups.ts": {
+        "sha256": "2d41a1bd597caaa5dd4f805cca15fe674b29d4e521e2d4aa40613bb3a6253f76",
+        "bytes": 4173
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/files.ts": {
+        "sha256": "140059604d8ec7d74d1d39354f2895d313b4f38f09c2afa6bfef254592c20431",
+        "bytes": 9874
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/office.ts": {
+        "sha256": "2312012851e4ce4a5a88fcb6a62f6e97d1c0b00963efad84eb9ad9ca1ae6f270",
+        "bytes": 22018
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/profile-recognition.ts": {
+        "sha256": "b0c5cd49a9b9cde0e170014c2123a34c0c4eff858d60bf55025cd17cb4743be5",
+        "bytes": 3867
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference-scenario-mask.ts": {
+        "sha256": "c6291bd9b12c4b4007b0dca2ff830cea2e7a06814deaa7aab61cb2a23e0d8048",
+        "bytes": 1759
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference-route.ts": {
+        "sha256": "0acff925387367d45c388c1cc84a79a1acba9774272d20437d830309e31c054f",
+        "bytes": 6403
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/redaction.ts": {
+        "sha256": "79fba90e68b8da9b7463fbc8199230c9df706e9bb7ff83595e97b981503ed0e7",
+        "bytes": 15157
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference-fragment.ts": {
+        "sha256": "8e07651fafba6744197b8835b6ff35a202a77644c16800a9c1dad72562b66f22",
+        "bytes": 4169
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/markdown-manual-draft.ts": {
+        "sha256": "22c0a028b8bc6da67dfdeab1a94491a666411c363ca15a8eac515f47db1937b2",
+        "bytes": 1521
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/workspace-source-profile.ts": {
+        "sha256": "bc7e42dd83094d98a27fbb56ccce4b47f2e5074cf709888d4b2c8efcb39949af",
+        "bytes": 1902
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/release-state.ts": {
+        "sha256": "e5eeda518cdeea1e2b13736a4a7cca4c93f6dc8a65d00aff1218f501da1eb5b1",
+        "bytes": 848
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference-markdown-links.ts": {
+        "sha256": "cd3c61b8cc949db42a51888e5827e813a3ed3b98426be7a4a462b2cb233d1c06",
+        "bytes": 2682
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference/source-manifest.json": {
+        "sha256": "b38349d13b2b1caf95bf79ab60d8fbba4f28c9e63ac941a45948e15d27e498b5",
+        "bytes": 6801
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference/workspace-renderer-source.d.ts": {
+        "sha256": "4e537fad542505f400a419d2f61c484c19cf6642a155836674b72b1ca9b61102",
+        "bytes": 744
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference/table-rule-data.json": {
+        "sha256": "30bb8b9f7f3e4c8462e82d4edb60c1c7a2b42e3d4c1076f1b0a5a1ea3a246b42",
+        "bytes": 21229
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference/workspace-renderer-source.js": {
+        "sha256": "66ceb98b66e62173a21ebe746f1edfd92a831bb9117cf3510a7bdc6649e3e8a5",
+        "bytes": 50776
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference/workspace-review-profile.js": {
+        "sha256": "a867fe4ea6a46fc50f85750a8a02f1490fbe5bb6a601265b67106cb21b4fc1a5",
+        "bytes": 9230
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference/rule-data.json": {
+        "sha256": "1f11c5d39de1fb78bebd68316809cc5b77ef9ee104930a28cab473bff76646b4",
+        "bytes": 134934
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference/mcp-tool-schemas.json": {
+        "sha256": "bdde806c4dc58073ac50cfec7238d30a358a2b30421c114ffc338c6653165982",
+        "bytes": 39775
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference/fragment-rule-data.json": {
+        "sha256": "3ba1a06438e07d2affc7f4368e0effdf83bdf340d36acdbf07f8757d6f3cb614",
+        "bytes": 10590
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference/reference-mask-data.json": {
+        "sha256": "de5bc4255716fe4a2c3ce3ddd5e7bacab9b870503baaeaf05526f3ef1b7850c6",
+        "bytes": 3304
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference/blacklists.json": {
+        "sha256": "369a14ee5c3f11f0a16a62228bc30b9c55d88a6d035450672011a6d60ab6ef0a",
+        "bytes": 64858
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference/workspace-snapshot-schema.js": {
+        "sha256": "d2d5cd42d2fb3ae51903ce853f69287d5ff1691fe8f88b0cc2a342c1a2cb2c0c",
+        "bytes": 31302
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference/workspace-snapshot-schema.d.ts": {
+        "sha256": "9832ff8cb77f799ed45659aa69ab9795835b1cf798dcfcd5cdadee2a370c6471",
+        "bytes": 144
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference/dictionary-template-data.json": {
+        "sha256": "b9591891108f99e8be46a84c64fa05141a445984870195d508e3c3bb121fa79e",
+        "bytes": 3208
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference/context-source-manifest.json": {
+        "sha256": "0ebd1188c39027e013189bfc80c6731e10f4f8f1ff724b0ced1bc41c3bdd911b",
+        "bytes": 6093
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference/workspace-renderer-source-manifest.json": {
+        "sha256": "dd6f245b1c04253b660bb03dea2ac87b5efbc8fbdd5c19c0a81f0a0f9d0cad43",
+        "bytes": 9539
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/core/reference/workspace-review-profile.d.ts": {
+        "sha256": "6fd5662786b3054fc3afc161b9addbc1e1f0c5dbb8f986af98ade594d6f7f78e",
+        "bytes": 508
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/contracts/policies.ts": {
+        "sha256": "f9e16ccf7a2a08db7e5966af3476871a43f0516e99f6e60d2398069e66d69087",
+        "bytes": 1522
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/contracts/entity-types.ts": {
+        "sha256": "7bb500519ada860afa31a23159cdd267813c4154ca0413731b018cdd674850e0",
+        "bytes": 753
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/contracts/entity-geometry.ts": {
+        "sha256": "81ee3c8cb960d717cc30859307d16d38907df0f4b4647d1d443ce9c507dcae0f",
+        "bytes": 4540
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/contracts/entity-corrections.ts": {
+        "sha256": "dd2575494c6b51de0f8a4d3ee3ad72e83632eda62b5b7cd32a5d070318fb0c47",
+        "bytes": 955
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/contracts/docx-layout.ts": {
+        "sha256": "734849b54023c31ff23f539f3edde7d3ac36560d30ba806937d14ab9c0da77a7",
+        "bytes": 1364
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/contracts/manual-selection.ts": {
+        "sha256": "473cd65f8a7b24fe6db52aeaed7d5066e98972e67e4a8d793222e35d16f2ddbf",
+        "bytes": 4886
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/contracts/alias-token.ts": {
+        "sha256": "88fb4930804b79a5044e25a3d17a9731b9a169904ca246bfb5da5889d065291e",
+        "bytes": 914
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/contracts/page-rotation.ts": {
+        "sha256": "e0f3a0ef322a96d0bfbc6514ac0996cbb3d6753d158cd1edc058199672f4a0d5",
+        "bytes": 996
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/contracts/ocr.ts": {
+        "sha256": "ed2d60de2bf73aa6cfa70809dbb5af379f3fc9913ff65a8caf37023b9bd3a9a7",
+        "bytes": 717
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/contracts/package.json": {
+        "sha256": "7500e6b9620b7be1ff12c1984fc1db674b70a8e554d3a1013d3e0e0b4fe27824",
+        "bytes": 70
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/contracts/image-search-scope.ts": {
+        "sha256": "58b1314e590fddbc4a5660f2419445c28310bbb4000896f8c6ae03596b9a56cb",
+        "bytes": 1558
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/contracts/manual-occurrences.ts": {
+        "sha256": "f22c41346f9e1693606b4d06a10fdb2677b67b993307bca53c8910a9a2328a46",
+        "bytes": 1989
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/contracts/feedback.ts": {
+        "sha256": "e9f79b4d028bcac80afcedb7b2f10bfc219508de5d8de26b6802ad43015cccf9",
+        "bytes": 3702
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/contracts/presets.ts": {
+        "sha256": "b96205488e580d937bd151f6f876963a161655068a5f87cdcb024bf88411f917",
+        "bytes": 4922
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/contracts/docx-preview.ts": {
+        "sha256": "910b97c5e35b2464cdb73ca7eab5423d343c28c1fc6d9147d0f45bf7a82bb352",
+        "bytes": 912
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/contracts/index.ts": {
+        "sha256": "bb190be8b657721c4bf3ea6e33127124ff23196526a25ddd111583464283c7f5",
+        "bytes": 8714
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/contracts/region-edit.ts": {
+        "sha256": "3807554b36506b77011282255e1fc96ea22ffef63de09414fd4a8f87037a7a16",
+        "bytes": 1954
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/contracts/document-policy.ts": {
+        "sha256": "110fd3504be06f8089214327dd0d6c5544d8564789fd3383012078ba99132a70",
+        "bytes": 2026
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/contracts/repeated-regions.ts": {
+        "sha256": "b63a4b62e30c4a3805b5638e48887e2b528acf533d8da61f5cc223f118921ae9",
+        "bytes": 5007
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/contracts/mapping-limits.ts": {
+        "sha256": "d91b27f2e72e1f027db23fa83804d3ed4097dc6ec8b1fc6fd8cf2251ebb49524",
+        "bytes": 118
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/contracts/ocr-selection.ts": {
+        "sha256": "a381ebb47311d0a65a9fdd7780040ed2beaf3a54f48fc8c693593eff3a69706e",
+        "bytes": 3644
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/legacy-office-output.ts": {
+        "sha256": "0f78a1d7311357672dcfad95df50d5e8c7a6867197ab289c6bd9cdfc26740b7d",
+        "bytes": 2519
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/legacy-office.ts": {
+        "sha256": "348baed1d8ef760483714e2bc1c3b6040e80b523e66c085f2f568415642d19ad",
+        "bytes": 9334
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/recognition-context.ts": {
+        "sha256": "f2ca4394181160258138b5113d78bfe6ae266a44695bfe4118433932e34bcfc6",
+        "bytes": 2936
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/image-batch-search.ts": {
+        "sha256": "3ee2fc35b89ad2bc7e37dffe0903de9dee1a83386219f40a962f0f421d31e940",
+        "bytes": 626
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/network-policy.ts": {
+        "sha256": "ec0b4736d73e58e76772d8cbc32c8a1f6f2bc5023e12601020d0e3cebcb79eff",
+        "bytes": 1832
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/unified-aliases.ts": {
+        "sha256": "ad4918a42078710cea9f2bcdf5842380d7d254aa16b5f686913d5bb8a2575bd0",
+        "bytes": 11455
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/ai-result-archive.ts": {
+        "sha256": "f2b6cdec062f1b7a91e4e45bed0aac032c4a396f38649d961f8481b008f9d5d9",
+        "bytes": 4277
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/processing-resources.ts": {
+        "sha256": "e30604b830690ff6979853f1e06ce098cca90ecad6b3c97e248a346ba56954cd",
+        "bytes": 3249
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/review-mark-filter.ts": {
+        "sha256": "7ce9c1b066cf14251759b9f4e1eedb9d1d20694fbca147a6395f987216c3cc30",
+        "bytes": 3001
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/processing.ts": {
+        "sha256": "19bf4821799890ad9fe573c090addb80a92c93efed904b7545c73a17c219ba7f",
+        "bytes": 9098
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/reference-visual-table.ts": {
+        "sha256": "215dd428374da11cd06e55cc2fa6119027c93be5663741c0e8944633c102dd03",
+        "bytes": 4655
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/entity-geometry.ts": {
+        "sha256": "5935ee33245a1a67c319707e6f16cca0b54e09d1d87d97aae6dc47c2c0b6dacb",
+        "bytes": 16615
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/workspace-import-journal.ts": {
+        "sha256": "40d7a2e39c95522a6e6568fee27021b4bf3fef52f3ab55d6bfe810ec772b2d06",
+        "bytes": 6378
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/deletions.ts": {
+        "sha256": "aa91a793e3c5f5556e57d4fbbaad2dc3379a5ff34389af2090bad724e8aa886d",
+        "bytes": 1364
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/project-entity-corrections.ts": {
+        "sha256": "8142069c928b3118d23c35479e1cea0abd3435863701b1f4bc9482a6c4519137",
+        "bytes": 9778
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/entity-corrections.ts": {
+        "sha256": "6198e05e8c1dedc3711917c1d94fa5db4761621941576d10b4b2313ee736cf93",
+        "bytes": 6089
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/legacy-office-control.ts": {
+        "sha256": "7d7beea263f9d55f0e6141bce8a5a96afd1883d2b3ab3651b7a88e4b13f293ab",
+        "bytes": 982
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/document-source.ts": {
+        "sha256": "3f7b141b5116543132f0e9c9402e44c19cc64b6e03e0ab1aba49a557b4ffab1f",
+        "bytes": 1489
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/docx-layout.ts": {
+        "sha256": "0540a9e2b0a638e5508f74d4e73df81929ef03381382dea38a97fa1e2bc159e6",
+        "bytes": 687
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/storage.ts": {
+        "sha256": "385b603fac2fbe81044cfb5b919352db0f6044f7e46499a715954011e8b52251",
+        "bytes": 5225
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/page-parser.ts": {
+        "sha256": "6d033016822df6f10eeaed2dc86d574056d4f75b25683a82d5bdddcf1f8c4ed4",
+        "bytes": 7779
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/review-provenance-history.ts": {
+        "sha256": "567294ef0b2d0c7a32ff72568b6fb5c7d12e5dbaea8ae38fd5bc14169af983e1",
+        "bytes": 2615
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/review-provenance.ts": {
+        "sha256": "57de071cddf0ffff2dfdba4e4212a6572833b08bde0083ccb1e2222bcc4e9e04",
+        "bytes": 3252
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/folder-output.ts": {
+        "sha256": "c7f717d84b8ee525e71299f00ae78d1989093bbed707d91dda0846c9a8005963",
+        "bytes": 1919
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/automatic-runtime-rules.ts": {
+        "sha256": "511c7fa83ea32ab469a6973c3042de9274a0474fd624aee85853001a4a75f45a",
+        "bytes": 4555
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/reference-table.ts": {
+        "sha256": "4bb59a1dc2b974fb1de9ca7657204d33399c7ff7534ea0afe56965d6953c4153",
+        "bytes": 10830
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/profile-export.ts": {
+        "sha256": "3b9dd92d304fa7bf89b8c55f0c4f5efbe58dae4b41daa243b0f33ea7a475a807",
+        "bytes": 6708
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/portable-source.ts": {
+        "sha256": "1a4c88ad10a46808157303e70a5270adffe6ee539cbd9544a87932f9a6d0e69d",
+        "bytes": 1563
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/portable-draft.ts": {
+        "sha256": "8deb4591554aa6b9faf22349a109847ba893e1006de962b9fbdef4e234e795ca",
+        "bytes": 11269
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/page-rotation.ts": {
+        "sha256": "3791eebd8b79cbe81e111433bc1f40d327d11606763c20b1d2f673008a46b472",
+        "bytes": 10962
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/markdown-export-events.ts": {
+        "sha256": "9af8b0fa46ec46d8c9131938de1678079510f5ad2e83b4b5a054f5fc5399c62d",
+        "bytes": 1396
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/reference-portable-draft.ts": {
+        "sha256": "16fcaea7adcdbc36739d081477452e7872ca792c6db35c6f80de8700198d9600",
+        "bytes": 15198
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/page-rotation-state.ts": {
+        "sha256": "93e890ca8fa8a5fd966babac43b439caf06b06f0e3163a4976e3d6a1d9a125e9",
+        "bytes": 929
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/page-review-storage.ts": {
+        "sha256": "ecf0f818a583f9e36c3b2e16cf73dfd55823b87f7ed051ac86db0b9578146966",
+        "bytes": 2584
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/image-utilities.ts": {
+        "sha256": "90937330ca1e39d5138be6e784903ed1dd8e4d0be33df51b63a6565e1cffcc7c",
+        "bytes": 4805
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/visual-replacement.ts": {
+        "sha256": "e2d626332e9e41a67fcfd18b6614d506b5dfb5ea9daefd386bc7e9584e10612c",
+        "bytes": 1772
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/project-presets.ts": {
+        "sha256": "d40e662304dfce38b4e1d7157a0b25958427c3fea7dd5d641e356d8d8b1847f4",
+        "bytes": 617
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/markdown-source.ts": {
+        "sha256": "8f7f8c5d23a259596c9c7acd951b4f747a5c19d83d3dac29725bdfe24b6d36c8",
+        "bytes": 2180
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/package.json": {
+        "sha256": "b720918671132cec468e5ed54fbacbf90650d8efeabede88cbfa923b18943372",
+        "bytes": 69
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/manual-occurrences.ts": {
+        "sha256": "8bce99dee445a3ccb8ebf5681ec2e4b0f2aaefaf60e9cab3afd85f9b62482f99",
+        "bytes": 10188
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/reference-spatial.ts": {
+        "sha256": "42e8ce4ac75c55c0d406f23c855f050b6a6d0d405cc6097b5643341dde6cc386",
+        "bytes": 1274
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/page-export.ts": {
+        "sha256": "5f7e7a19131fcd67b54a0c9c597012dfd4e4b469a6961df0b258ed49a2f02f02",
+        "bytes": 3878
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/document-normalization.ts": {
+        "sha256": "07c1a650625421e58d0545bb0dfb85cfba5019630943591016b266778f1f4df5",
+        "bytes": 5185
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/alias-groups.ts": {
+        "sha256": "889d4eec2799e5c1614afb1211565e0800167b7e552555b7a47f7ff345acec84",
+        "bytes": 8808
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/folder-storage.ts": {
+        "sha256": "26b61216d6a6e6751a573b02ab92005f6861e9810f6a01708293497f67f906b9",
+        "bytes": 4392
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/workspace-import.ts": {
+        "sha256": "1e39b6533e262087be698fe7d42456bd6fd1cd35ff8243fd844dc0dab46bb514",
+        "bytes": 8354
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/processing-events.ts": {
+        "sha256": "2a3a6297ab71c6624312e67f74b663f2925739516d356ba01e5a940f05c30bfa",
+        "bytes": 2275
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/runtime-rules-control.ts": {
+        "sha256": "a78ca8bd179ef64b2a7c1d916a948df01c29875a01e5460cb494b74ffeab4c5b",
+        "bytes": 1232
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/docx-preview.ts": {
+        "sha256": "7ccd661382d30f039650d09c8453ed6862a81605d0c47adc55aa07d9d4f1f002",
+        "bytes": 1285
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/markdown-outcome.ts": {
+        "sha256": "7929e8309d5b29a29988190f636a87473817dddf7a750e1c536cf89d4bb3e9d1",
+        "bytes": 560
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/feedback-store.ts": {
+        "sha256": "d5b7e5b73fa3ed7a99c28dbcc613096e6dc4dba3e83d1e560b34b11624e53ef0",
+        "bytes": 7599
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/pdf-ocr-checkpoints.ts": {
+        "sha256": "17475e3224dc427ee3ac738513706d11e097ca0269baeae882fc725612ef655d",
+        "bytes": 11694
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/page-review-migration.ts": {
+        "sha256": "778eb505741d83fc538c94ce3648f10a7be82937fa9fe795c7eac3e98c71cab2",
+        "bytes": 1314
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/document-policy.ts": {
+        "sha256": "6de394b57633d5d5c2e4165dfe81f0d8272ad68a0af27648b6368fbc72bee9b8",
+        "bytes": 920
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/runtime-rule-update.ts": {
+        "sha256": "233f7f95147bf2ef0dcbdfefba23bb69ca2241766311ed4271e3f74699b69197",
+        "bytes": 2536
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/ocr-correction.ts": {
+        "sha256": "ddcd8d1fc8bf3b8a70deff9d3f2ec8f72d917dd58fae904754265dce7ee4be90",
+        "bytes": 7456
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/portable-entity-geometry.ts": {
+        "sha256": "06ed341c60eb577925d4c58b8296ab63b48780e2d74451b0faf99b4516a2f944",
+        "bytes": 1540
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/mapping-library.ts": {
+        "sha256": "d75f5e7d49f88a1b0d312cae27ec8f595480c45b2f9555685d5c99b9b1591b12",
+        "bytes": 4341
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/docx-image-ocr.ts": {
+        "sha256": "facc97795736847d56c7d8e27ceca7fae19e529aadce9a10bc3a1cf12224ac3d",
+        "bytes": 3359
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/workspace-recents.ts": {
+        "sha256": "c6f99cf2d1135bdc235dc62bd51818550480f0e14c286df077e557f0af0b0dbb",
+        "bytes": 3421
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/office-visual.ts": {
+        "sha256": "422c1e662d09ddbc4199eb65b63a163f2a2b7e514471b8cc437bc94c7ccd0865",
+        "bytes": 3487
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/db.ts": {
+        "sha256": "d2640a95ef479f57e6c7894c8574395e404312f14a5676318f57efb97d7f7ec6",
+        "bytes": 2199
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/signature-source-gate.ts": {
+        "sha256": "98080721780a5216fe9282d30d75d2baa26fa9706f8c242356aba3f50d5d0ce8",
+        "bytes": 2684
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/reference-route.ts": {
+        "sha256": "296bb984be41562d4557f15358b6112cd69ad9906ef2e5bc843fd898b739590b",
+        "bytes": 7764
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/reference-pdf-table.ts": {
+        "sha256": "b5fd6f761bc79b29cb3e4898e5136006edb8c11a378d6a05c0d514b052e2fd1f",
+        "bytes": 5426
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/processing-worker.ts": {
+        "sha256": "40393b081e7715aba49781a5278df147d32775fdba9dd825b7a1786641d7c986",
+        "bytes": 28660
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/legacy-restoration.ts": {
+        "sha256": "af5ca554b74db45eec5f517d5a7255079b6ad4fa318a1f780b6d9df0181182cb",
+        "bytes": 2769
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/packages/adapters/office-images.ts": {
+        "sha256": "82bcef115ddaee221b02b8b13878b388ece96a3875b78d36906e78ee7887519c",
+        "bytes": 3845
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/markdown-review.ts": {
+        "sha256": "6742c02900670e0328f46725f4817050990cf64d131de5234deac1c03f637c7b",
+        "bytes": 4014
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/mappings.ts": {
+        "sha256": "d457a67be88869cb1506aa7551b1a356d58a27959c1072db3b96b387e049889f",
+        "bytes": 12654
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/workspace-saves.ts": {
+        "sha256": "402ea106fb582bff29e1f09a3ee77f5f7a9a0d2111a818b8a4a57a6a220f979e",
+        "bytes": 8572
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/image-batch-search.ts": {
+        "sha256": "cf167fec38ae2ae04c91a03b0bdbb2c4eb18e7722f3615830f3eba77bbeba20a",
+        "bytes": 1322
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/network-policy.ts": {
+        "sha256": "4f035ce4af541a3ba32997918ccf659558fdc089efe78305b3ee3330431c37f7",
+        "bytes": 2426
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/restoration-files.ts": {
+        "sha256": "7dc8e1ef6b657f6d0bad059ad7d3b84a574625fe131fe1628a831f17527a0dda",
+        "bytes": 7442
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/unified-aliases.ts": {
+        "sha256": "f673b1f9437698a23576907acd290e1102af49277b7f2822b0428684441c81ff",
+        "bytes": 6738
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/reference-dictionary.ts": {
+        "sha256": "e35d0799bc360d74829cc9711c28b9e4fbb2c316619775cb9921e6f69d1f1a6b",
+        "bytes": 3091
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/processing-resources.ts": {
+        "sha256": "81854c329256707b7929b819036b42545b3025d1b1996972f91549835db9d027",
+        "bytes": 5400
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/main.ts": {
+        "sha256": "dab4e9d0c2fa04f5ab5e070f3dcf6f8c3870b9124256d27921543c6269b97064",
+        "bytes": 31489
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/review-tools.ts": {
+        "sha256": "4fa4cf9734f3edb1fd3757c12801e46ad749bb01829376db0b7178b330da84f6",
+        "bytes": 8249
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/workspace-recovery.ts": {
+        "sha256": "20a865d84445a1cc16da304b846040f9cd05ee0410706d5d8c46dcf70ef9e019",
+        "bytes": 14815
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/review-feedback-entities.ts": {
+        "sha256": "b70bb67474b585aff6b89f7b21c04d0d28c397634f04d994095ff012355ff8f5",
+        "bytes": 2558
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/entity-geometry.ts": {
+        "sha256": "b8e3b21679e0b3cd259cfae05ff3ea11443322cf59dbdb6f127a87a986dc5fd5",
+        "bytes": 1004
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/docx-safe-mode.ts": {
+        "sha256": "19c512be7ab3b113aac64e99e84976d0a51c32f084804b01e466462a8f2e5c8b",
+        "bytes": 1632
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/visual.ts": {
+        "sha256": "9ee185c721887458b28a384742f9998775e62006c533f66b6a843bdac6147b67",
+        "bytes": 3349
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/entity-corrections.ts": {
+        "sha256": "f1cc9c6618c164816af8ec4a5b33857af2b956377bcfd0879c90577d8320c1a1",
+        "bytes": 14074
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/docx-layout.ts": {
+        "sha256": "b9a8b5174740176eb6074cb3332fb9518743e6795a4364c5f2089981ffa9809c",
+        "bytes": 1391
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/lifecycle.ts": {
+        "sha256": "b1aed8efa701d58d1d20f0553500c2b3fc22b838a3fb56fdac18226b97d7bc6f",
+        "bytes": 3542
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/restoration-batch.ts": {
+        "sha256": "671524ab98cc6f4c453349ea33677ea9f0ef308e7917e651abaaed56afa4944c",
+        "bytes": 8044
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/source-review.ts": {
+        "sha256": "a87c47db62c73fea36fc7c891879bd500b8c8ef996818afe0b1c22bb41a8cf40",
+        "bytes": 3359
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/review-provenance.ts": {
+        "sha256": "5c31a2377eb0d9066b118adde1c3fda34afe81a1b2e1f3d5df5a53496e5699f2",
+        "bytes": 4863
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/mcp.ts": {
+        "sha256": "401dc740af450f57203768716ce60b602ae95d8bfa1faeaca032090b2364142d",
+        "bytes": 93355
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/folder-output.ts": {
+        "sha256": "c55e1bd24b0f1a15dff307d0c4a7987520f812bdfd1d16b533e1d2daaaa14aa6",
+        "bytes": 14374
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/automatic-runtime-rules.ts": {
+        "sha256": "a9652558a81684e736af88332991ecfa1d967b2a8356022b5a829469c99cf015",
+        "bytes": 5750
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/entity-filter.ts": {
+        "sha256": "a743a23b08ee27e31846b706ee2d5140dbc14d96ac123840c45d64e4413e8432",
+        "bytes": 2369
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/page-rotation.ts": {
+        "sha256": "e065a82282a1a96ebc04220f1058a9ab9d7ea093e71bb301769f3251bca59de9",
+        "bytes": 8065
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/ocr.ts": {
+        "sha256": "2130b6142b7cca5873b94d5956c7e590d4f79530c9b18bfd6fa27dc90724ea80",
+        "bytes": 6908
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/runtime-rules.ts": {
+        "sha256": "cf184e0f10e745cc7054caad06142a5c57f459d939f424281c33b08c49a946f1",
+        "bytes": 4864
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/replacement-policies.ts": {
+        "sha256": "f0b016aee08494b147e53b7d775c6a616c2ec2717badfedee6759499348146c7",
+        "bytes": 2198
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/image-utilities.ts": {
+        "sha256": "fb17a9fca25328649e1154d212230c2f8dd5fd4a6172c45265a124f1843b2f98",
+        "bytes": 7297
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/workspace-portable.ts": {
+        "sha256": "2f77e71730e46d183cf923ec09c30f5f72dc605e15b3225497ed2c7170620e2c",
+        "bytes": 46339
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/unified-alias-materialization.ts": {
+        "sha256": "6566d51ae83222da6a5197af16ebe4b16e2809395fc1f530efef25d79adb4d43",
+        "bytes": 6371
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/package.json": {
+        "sha256": "58d813e897aa7dadca93c3db727272fbba39eeb3e08c3cfba503c4b26332ff16",
+        "bytes": 64
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/access.ts": {
+        "sha256": "092a09e566cdae5d008293761ed3e72da888be092263eb3c42d056e2e37b254d",
+        "bytes": 2104
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/mapping-export.ts": {
+        "sha256": "89147fb54ba541a536f87015032a2ce23610f2e7b56c5fa0ab584656109261c9",
+        "bytes": 4812
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/manual-occurrences.ts": {
+        "sha256": "e96afb26eddff99b1e7407efd3a675cd1735be92fe8c7a1c14fbfe8c1fee6936",
+        "bytes": 1298
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/document-normalization.ts": {
+        "sha256": "04c375b40013e691afc558b3c993205205eabd5ee930a187d30f51a976ed6c79",
+        "bytes": 2394
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/document-unlock.ts": {
+        "sha256": "edeaed3c149b3cc0302b82e12ac01ac6a1b3d322274dea9eb370336454522204",
+        "bytes": 2832
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/feedback.ts": {
+        "sha256": "064b9c6393e0e955090c99c969575d07600b73e0e3d0db24b92f43832c0d8463",
+        "bytes": 15286
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/unified-alias-export.ts": {
+        "sha256": "159e88d1fc87d6b19fe2f5e4c5f00c1cd358a6ea564c798f6ad898ff8aea9067",
+        "bytes": 2854
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/document-route.ts": {
+        "sha256": "764be665d4e9a7794a8f86e78b155bbeafd51a39efdabed0e952ebe4efac1061",
+        "bytes": 1355
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/presets.ts": {
+        "sha256": "66c93be6d12cbb43fa8b21af211a4552e54da702e7e3c228be21f09d2ca0c7ee",
+        "bytes": 22134
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/processing-events.ts": {
+        "sha256": "a023405d3b17a64e34b54f33549e78ce127cd70bc1c3feb8786b7c292a5cd520",
+        "bytes": 2269
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/job-queue.ts": {
+        "sha256": "e28215b4bb4108c75edef529249292b58bbb62650526b21dc9c5e4ba35ff84a5",
+        "bytes": 4047
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/docx-preview.ts": {
+        "sha256": "59aa218150db8f249e7e91e6ca34cb85c3294f2e9e36077503b425a0cf4feba7",
+        "bytes": 1356
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/members.ts": {
+        "sha256": "dcdaaafbc6da0e12024e31fb28ebda1d82ccc4567de219a23bd9f94740b16a5f",
+        "bytes": 7375
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/project-entities.ts": {
+        "sha256": "1942da021581ab05c5d565d9077e6cf59cb45039557f954df00b159243754a23",
+        "bytes": 20483
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/document-policy.ts": {
+        "sha256": "419beb393aa67ed6aa4f44ab8fa4c8719b02c5db7b7612dc74e1e91c0e1af7cd",
+        "bytes": 6581
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/review-feedback.ts": {
+        "sha256": "8184395e2e8d56a0ca4b38a8f691f7850bfaa9a3e20056982ca218473a9aea01",
+        "bytes": 6017
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/processing-observability.ts": {
+        "sha256": "a2d72a92642a007b9b0c1f1c8175890ba21b326c4139b3781500c38a74d04504",
+        "bytes": 8499
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/mapping-library.ts": {
+        "sha256": "6e4cb95781f39c67bda1641ac001719ac7a5cd50ffa2ebd8d0e4061e6f0609d4",
+        "bytes": 5443
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/support.ts": {
+        "sha256": "0a40804cab551fe5c553325792f8fb6e2931def0fa84f2e7af918a751bdda9fe",
+        "bytes": 2456
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/docx-image-ocr.ts": {
+        "sha256": "447afd56634b8c268abe5276f19d7a6f7745195c6d5c3fa60cf15f1db4366a61",
+        "bytes": 7953
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/office-visual.ts": {
+        "sha256": "2d0984af3fdfb9fcda22e7e98babd931af56726bb4da5457d9c859494b5b027c",
+        "bytes": 982
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/reviews.ts": {
+        "sha256": "2a3fb8bf332e4ff1b707aecd4388ec0cbcd5de791b0c1ffdba0ed0ae742f990b",
+        "bytes": 5605
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/files.ts": {
+        "sha256": "d8e22399a58e5c17a7cb69964d0616b23b80b8620b9faefa12eb999298bec9d9",
+        "bytes": 9307
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/recognition.ts": {
+        "sha256": "a1cf655e73e2d9d643c186e09fa66215c4d2f33385a5b7a775bc56392fec5d28",
+        "bytes": 5442
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/markdown-manual-draft.ts": {
+        "sha256": "69d7be955e633f49dbcf1f96534b98598d2a801a41dab63df218f4c163745f06",
+        "bytes": 10148
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/api/release-state.ts": {
+        "sha256": "9589b269c3e791811a79f864a08af6ccbac3d81a25e1728252bcfcf39d63976a",
+        "bytes": 2181
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/worker/main.ts": {
+        "sha256": "af765ce1a1f7cf7ce5626ea339a4abd8dc333b4d9574de0380cad6da8d4f1702",
+        "bytes": 15149
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/apps/worker/package.json": {
+        "sha256": "4d8f77ad3084cee992439b6fb0c38e4037c72ac66c51a58892781dce329bbb8d",
+        "bytes": 67
+      },
+      ".data/deploy/aliyun-20261016/iteration053/release/vendor/opencv/opencv-4.10.0.cjs": {
+        "sha256": "e9aa95159522347410aba2321a72b19a71764de737b29030a341439ab60ea724",
+        "bytes": 10378211
+      },
+      ".data/deploy/aliyun-20261016/iteration053/server-evidence/neighbors.after.json": {
+        "sha256": "c6f494e766e6d9940e9926e5a12661ad64d7692e49ec3eda5dd7ef25a82dddf0",
+        "bytes": 1024
+      },
+      ".data/deploy/aliyun-20261016/iteration053/server-evidence/neighbors.before.json": {
+        "sha256": "c6f494e766e6d9940e9926e5a12661ad64d7692e49ec3eda5dd7ef25a82dddf0",
+        "bytes": 1024
+      },
+      ".data/deploy/aliyun-20261016/iteration053/server-evidence/worker-ready.json": {
+        "sha256": "0138a34cd088750bcd7cbcf9d4aa67117e4aef9155f66f9cd1288f5a85d855b2",
+        "bytes": 295
+      },
+      ".data/deploy/aliyun-20261016/iteration053/server-evidence/release-readback.json": {
+        "sha256": "6941a33f72d4fedac7bc34f3dbd8458be603e7c7372252d57b05e8d27b8a62db",
+        "bytes": 342
+      },
+      ".data/research/lawbot-2026-10-16/iteration053/local-maintain-check.log": {
+        "sha256": "7f22b95b301e1b57e4d722364841bb06fc2a1efb2c67abca5c316a778f28ea9e",
+        "bytes": 842
+      },
+      ".data/research/lawbot-2026-10-16/iteration053/local-maintain-generate.log": {
+        "sha256": "f839591bdcb8983161f22234c71f5ca9bd7f79c24748bf333ba811f47ae207d9",
+        "bytes": 845
+      },
+      ".data/research/lawbot-2026-10-16/iteration053/private-git-local-checkpoint-refs.txt": {
+        "sha256": "5efa0e1f86a1fe8b634d1a1f136139c12f43368079c46e8b8a13a0a12d621fd8",
+        "bytes": 135
+      },
+      ".data/research/lawbot-2026-10-16/iteration053/local-doc-review.md": {
+        "sha256": "3ec5c2e561d5d8001d8300ac2d603a5e650a67c44cca56996cac747631274629",
+        "bytes": 3670
+      },
+      ".data/research/lawbot-2026-10-16/iteration053/deploy-template-review-delta.md": {
+        "sha256": "c5dcfd62779aaffc2f7d75dfaf227f4250645a6a0ba951be5b3f4d087e911fbe",
+        "bytes": 2445
+      },
+      ".data/research/lawbot-2026-10-16/iteration053/local-health-restored.json": {
+        "sha256": "fffa56fb7db7e40cf405cca86a1d895d0a693572d63529146f0358a539af8560",
+        "bytes": 103
+      },
+      "文档/逆向台账/contracts/aliyun-release053-verification-20261016.md": {
+        "sha256": "e263c8957b0ce0770395679b4313bc8953a6f07b5076baa7eeb1f78361d6a29b",
+        "bytes": 3767
+      },
+      ".data/research/lawbot-2026-10-16/iteration053/release-doc-review.md": {
+        "sha256": "df19ebb0fd5deed0876f00574dff5e48d150c7151aabc6afe71b4ccd418d2906",
+        "bytes": 4002
+      },
+      ".data/deploy/aliyun-20261016/iteration053/final-readback-receipt.json": {
+        "sha256": "5bb5c6187d21d4717c847766b9854e237f8d05d5bf24c5bba54f011126fc04e8",
+        "bytes": 425
+      },
+      ".data/deploy/aliyun-20261016/iteration053/private-github-visibility.json": {
+        "sha256": "90cdc9736971b13029d6af1805749870edea7bd69debc7a6368729a226f9f0ff",
+        "bytes": 124
+      },
+      ".data/deploy/aliyun-20261016/iteration053/finalise-ledger.py": {
+        "sha256": "6d8a1fe72341ec5b1dea7e7ad5af9d68643ae9791b2812a7ac3c075d7c4be5c8",
+        "bytes": 1846
       }
     },
     "unavailable_historical_screenshots": [
