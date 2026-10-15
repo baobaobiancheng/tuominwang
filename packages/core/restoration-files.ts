@@ -2,10 +2,11 @@ import {literalMatcher} from "./literal-matcher.ts";
 import {MAX_MAPPING_ENTRIES} from "../contracts/mapping-limits.ts";
 import {validAliasToken,normalizedWordAlias} from "../contracts/alias-token.ts";
 import type { Element, Node } from "@xmldom/xmldom";
+import { posix } from "node:path";
 import { readZip, writeZip, xml, xmlBytes, elements } from "./office-zip.ts";
 import { readProtectedPortable, type PortableCredentials, type PortableObject } from "./workspace-portable.ts";
 import { FILE_MAX_BYTES } from "../contracts/index.ts";
-const W = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", R = "http://schemas.openxmlformats.org/officeDocument/2006/relationships", RELS = "http://schemas.openxmlformats.org/package/2006/relationships", X = "http://www.w3.org/XML/1998/namespace";
+const W = "http://schemas.openxmlformats.org/wordprocessingml/2006/main", R = "http://schemas.openxmlformats.org/officeDocument/2006/relationships", RELS = "http://schemas.openxmlformats.org/package/2006/relationships", CT = "http://schemas.openxmlformats.org/package/2006/content-types", X = "http://www.w3.org/XML/1998/namespace";
 export type RestorationPlan = { mappings: Record<string, string>; occurrenceQueues: Record<string, string[]>; entityTypes: Record<string, string>; ambiguities: { token: string; originals: string[]; suggestedOriginal: string }[]; strategy: "token-canonical" | "occurrence"; sourceVersion: string };
 export type RestorationOptions = { strategy?: "token-canonical" | "occurrence"; choices?: Record<string, string>; allowCanonicalSelection?: boolean; allowNoMatches?: boolean; preserveUnknownTokens?: boolean };
 export type RestorationStats = { mappingEntries: number; tokensInDocument: number; totalReplacements: number; crossRunReplacements: number; normalizedMatches: number; storyReplacements: Record<string, number>; unknownTokens: string[]; residualTokens: string[]; hyperlinkReplacements: number };
@@ -172,18 +173,77 @@ function restorationXmlBytes(document: Parameters<typeof xmlBytes>[0]) {
   catch (error) { if (error instanceof Error && error.message === "OFFICE_XML_VALUE_INVALID") fail("RESTORE_XML_VALUE_INVALID"); throw error; }
 }
 function restorationXml(bytes: Buffer) { if(/[\x00-\x08\x0B\x0C\x0E-\x1F\uFFFE\uFFFF]/u.test(bytes.toString("utf8")))fail("RESTORE_XML_VALUE_INVALID");return xml(bytes); }
-type MetadataField = { text: string; set: (value: string) => void };
-/** The same non-namespace attribute/remaining-text surface inventoried by the
- * office adapter, plus package relationship attributes. Never fetch targets. */
-function metadataFields(document: ReturnType<typeof xml>, consumed: Set<Node>): MetadataField[] {
+type MetadataMode = "all" | "wrapped" | "none";
+type MetadataField = { text: string; mode: MetadataMode; set: (value: string) => void };
+const knownWrappedAlias = (token: string) => /^【[^【】]+】(?:【[^【】]+】)*$/u.test(token.trim());
+const EP = "http://schemas.openxmlformats.org/officeDocument/2006/extended-properties", VT = "http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes", DC = "http://purl.org/dc/elements/1.1/", CP = "http://schemas.openxmlformats.org/package/2006/metadata/core-properties", A = "http://schemas.openxmlformats.org/drawingml/2006/main", CHART = "http://schemas.openxmlformats.org/drawingml/2006/chart";
+function structuredOfficeNamespace(uri: string | null) {
+  return !!uri && (/^http:\/\/(?:schemas\.openxmlformats\.org|schemas\.microsoft\.com)\//u.test(uri) || /^urn:schemas-microsoft-com:/u.test(uri));
+}
+function isItemProperties(story: string) { return /^customXml\/itemProps[^/]*\.xml$/iu.test(story); }
+function freeWordAttribute(element: Element, local: string | null) {
+  if (element.namespaceURI === W) {
+    const field = `${element.localName}:${local}`;
+    if (["comment:author", "comment:initials", "ins:author", "del:author", "moveFrom:author", "moveTo:author", "hyperlink:tooltip", "alias:val", "tag:val", "docVar:val", "name:val", "description:val"].includes(field)) return true;
+  }
+  if (["docPr", "cNvPr"].includes(element.localName ?? "") && ["name", "descr", "title"].includes(local ?? "")) return true;
+  if (element.localName === "person" && ["author", "initials"].includes(local ?? "")) return true;
+  return false;
+}
+function metadataAttributeMode(story: string, element: Element, attr: { name: string; localName: string | null; namespaceURI: string | null }): MetadataMode {
+  if (story === "[Content_Types].xml") return "none";
+  if (story.endsWith(".rels")) {
+    return element.namespaceURI === RELS && element.localName === "Relationship" && attr.name === "Target" &&
+      element.getAttribute("TargetMode") === "External" && element.getAttribute("Type") === `${R}/hyperlink` ? "all" : "none";
+  }
+  if (attr.namespaceURI === X && attr.localName === "space") return "none";
+  if (isItemProperties(story)) return "wrapped";
+  if (story === "docProps/custom.xml" && element.localName === "property" && attr.localName === "name") return "all";
+  if (story.startsWith("word/") && freeWordAttribute(element, attr.localName)) return "all";
+  if ((story.startsWith("word/") || /^docProps\/(?:core|app|custom)\.xml$/u.test(story)) &&
+      (structuredOfficeNamespace(element.namespaceURI) || structuredOfficeNamespace(attr.namespaceURI) || attr.namespaceURI === X)) return "wrapped";
+  return "all";
+}
+function chartStringValue(node: Node) {
+  for (let parent = node.parentNode; parent; parent = parent.parentNode) if (parent.nodeType === 1 && (parent as Element).namespaceURI === CHART) {
+    if (["strCache", "strLit", "multiLvlStrCache"].includes((parent as Element).localName ?? "")) return true;
+    if (["numCache", "numLit"].includes((parent as Element).localName ?? "")) return false;
+  }
+  return false;
+}
+function metadataTextMode(story: string, node: Node): MetadataMode {
+  if (story === "[Content_Types].xml" || story.endsWith(".rels")) return "none";
+  if (isItemProperties(story)) return "wrapped";
+  const parent = node.parentNode?.nodeType === 1 ? node.parentNode as Element : null;
+  if (!parent) return "all";
+  const name = parent.localName ?? "", ns = parent.namespaceURI;
+  if (story === "docProps/app.xml") {
+    if (ns === EP) return ["Application", "Company", "Manager", "Template", "HyperlinkBase"].includes(name) ? "all" : "wrapped";
+    if (ns === VT) return ["lpstr", "lpwstr", "bstr"].includes(name) ? "all" : "wrapped";
+  }
+  if (story === "docProps/core.xml") {
+    if (ns === DC) return "all";
+    if (ns === CP) return ["keywords", "lastModifiedBy", "category", "contentStatus", "contentType", "identifier"].includes(name) ? "all" : "wrapped";
+    if (structuredOfficeNamespace(ns) || ns === "http://purl.org/dc/terms/") return "wrapped";
+  }
+  if (story === "docProps/custom.xml" && ns === VT) return ["lpstr", "lpwstr", "bstr"].includes(name) ? "all" : "wrapped";
+  if (story.startsWith("word/")) {
+    if (ns === W && ["t", "delText"].includes(name) || ns === A && name === "t" || ns === CHART && name === "v" && chartStringValue(node)) return "all";
+    if (structuredOfficeNamespace(ns)) return "wrapped";
+  }
+  return "all";
+}
+/** Package internals are never a restore surface. External hyperlink targets
+ * remain content; in Word XML, typed fields accept only whole known wrappers. */
+function metadataFields(document: ReturnType<typeof xml>, consumed: Set<Node>, story: string): MetadataField[] {
   const fields: MetadataField[] = [], pending: Node[] = [document];
   while (pending.length) {
     const node = pending.pop()!;
     if (node.nodeType === 1) for (const attr of Array.from((node as Element).attributes)) {
       if (attr.name === "xmlns" || attr.prefix === "xmlns") continue;
-      fields.push({ text: attr.value, set: value => { attr.value = value; attr.nodeValue = value; } });
+      fields.push({ text: attr.value, mode: metadataAttributeMode(story, node as Element, attr), set: value => { attr.value = value; attr.nodeValue = value; } });
     }
-    if ((node.nodeType === 3 || node.nodeType === 4) && !consumed.has(node)) fields.push({ text: node.nodeValue ?? "", set: value => { node.nodeValue = value; } });
+    if ((node.nodeType === 3 || node.nodeType === 4) && !consumed.has(node)) fields.push({ text: node.nodeValue ?? "", mode: metadataTextMode(story, node), set: value => { node.nodeValue = value; } });
     for (let child = node.lastChild; child; child = child.previousSibling) pending.push(child);
   }
   return fields;
@@ -196,15 +256,45 @@ function paragraphTextNodes(document: ReturnType<typeof xml>) {
   }
   return consumed;
 }
+function validateRestorationDocxPackage(parts: Map<string, Buffer>) {
+  const content = parts.get("[Content_Types].xml"), rootRelations = parts.get("_rels/.rels"), main = parts.get("word/document.xml");
+  if (!content || !rootRelations || !main) fail("INVALID_OFFICE");
+  const contentDoc = restorationXml(content!), mainDoc = restorationXml(main!);
+  if (contentDoc.documentElement?.namespaceURI !== CT || contentDoc.documentElement.localName !== "Types" ||
+      mainDoc.documentElement?.namespaceURI !== W || mainDoc.documentElement.localName !== "document") fail("INVALID_OFFICE");
+  const mainTypes = elements(contentDoc, CT, "Override").filter(item => item.getAttribute("PartName") === "/word/document.xml");
+  const xmlDefaults = elements(contentDoc, CT, "Default").filter(item => item.getAttribute("Extension")?.toLowerCase() === "xml");
+  if (mainTypes.length > 1 || xmlDefaults.length > 1) fail("INVALID_OFFICE");
+  const mainType = (mainTypes[0] ?? xmlDefaults[0])?.getAttribute("ContentType");
+  if (mainType !== "application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml") fail("INVALID_OFFICE");
+  let rootMain = 0, rootOfficeRelations = 0;
+  for (const [name, bytes] of parts) if (name.endsWith(".rels")) {
+    const document = restorationXml(bytes);
+    if (document.documentElement?.namespaceURI !== RELS || document.documentElement.localName !== "Relationships") fail("INVALID_OFFICE");
+    const ids = new Set<string>(), base = name === "_rels/.rels" ? "" : posix.dirname(posix.dirname(name));
+    for (const relation of elements(document, RELS, "Relationship")) {
+      const id = relation.getAttribute("Id") ?? "", type = relation.getAttribute("Type") ?? "", target = relation.getAttribute("Target") ?? "", mode = relation.getAttribute("TargetMode");
+      if (!id || ids.has(id) || !type || !target || mode && mode !== "Internal" && mode !== "External") fail("INVALID_OFFICE");
+      ids.add(id);
+      if (mode !== "External") {
+        let decoded: string; try { decoded = decodeURIComponent(target); } catch { return fail("INVALID_OFFICE"); }
+        const resolved = decoded.startsWith("/") ? posix.normalize(decoded.slice(1)) : posix.normalize(posix.join(base, decoded));
+        if (/[\\\x00-\x1f]/u.test(decoded) || decoded.startsWith("//") || resolved.startsWith("../") || !parts.has(resolved)) fail("INVALID_OFFICE");
+        if (name === "_rels/.rels" && type === `${R}/officeDocument`) { rootOfficeRelations++; if (resolved === "word/document.xml") rootMain++; }
+      }
+    }
+  }
+  if (rootMain !== 1 || rootOfficeRelations !== 1) fail("INVALID_OFFICE");
+}
 export async function restoreDocx(bytes: Buffer, plan: RestorationPlan, options: RestorationOptions = {}) {
-  assertPlan(plan); const parts = await readZip(bytes); if (!parts.has("word/document.xml")) fail("RESTORE_DOCX_REQUIRED");
+  assertPlan(plan); const parts = await readZip(bytes); if (!parts.has("word/document.xml")) fail("RESTORE_DOCX_REQUIRED"); validateRestorationDocxPackage(parts);
   // Inspect every XML part, including docProps, author attributes and hidden
   // text. ZIP paths, XML entities, depth and node limits are checked by helpers.
   const parsed = [...parts.keys()].filter(name => /\.(?:xml|rels)$/i.test(name)).sort((a, b) => a.localeCompare(b)).map(story => ({ story, document: restorationXml(parts.get(story)!) }));
-  const paragraphs = parsed.flatMap(({ story, document }) => elements(document, W, "p").map(p => ({ story, paragraph: p, nodes: paragraphNodes(p) })));
-  const metadata = parsed.map(part => ({ ...part, fields: metadataFields(part.document, paragraphTextNodes(part.document)) }));
+  const paragraphs = parsed.flatMap(({ story, document }) => story === "[Content_Types].xml" || story.endsWith(".rels") ? [] : elements(document, W, "p").map(p => ({ story, paragraph: p, nodes: paragraphNodes(p) })));
+  const metadata = parsed.map(part => ({ ...part, fields: metadataFields(part.document, paragraphTextNodes(part.document), part.story) }));
   const unknownTokens = checkRestorationTokens([...paragraphs.map(p => p.nodes.map(n => n.text).join("")), ...metadata.flatMap(p => p.fields.map(f => f.text))], plan, undefined, true, options.preserveUnknownTokens);
-  const matcher = wordTokenMatcher(Object.keys(plan.mappings)), value = resolver(plan), result = stats(plan), found = new Set<string>();
+  const matcher = wordTokenMatcher(Object.keys(plan.mappings)), wrappedMatcher = wordTokenMatcher(Object.keys(plan.mappings).filter(knownWrappedAlias)), value = resolver(plan), result = stats(plan), found = new Set<string>();
   result.unknownTokens = unknownTokens;
   // The office canonical order is paragraph content followed by metadata.
   // Resolve metadata first to avoid cloned run properties being restored twice,
@@ -213,8 +303,8 @@ export async function restoreDocx(bytes: Buffer, plan: RestorationPlan, options:
   for (const p of paragraphs) { for (const match of matcher.matches(p.nodes.map(n => n.text).join(""))) { const token = match.token; bodyCounts.set(token, (bodyCounts.get(token) ?? 0) + 1); } }
   const metadataValue = resolver(plan, bodyCounts);
   for (const { story, document, fields } of metadata) {
-    const expected = fields.map(field => { const output = matcher.replace(field.text, (matched, token) => { found.add(token); result.totalReplacements++; result.storyReplacements[story] = (result.storyReplacements[story] ?? 0) + 1; if (matched !== token) result.normalizedMatches++; return metadataValue(token); }); field.set(output); return output; });
-    const serialized = restorationXmlBytes(document), check = restorationXml(serialized), actual = metadataFields(check, paragraphTextNodes(check));
+    const expected = fields.map(field => { const whole = field.mode === "wrapped" && wrappedMatcher.matches(field.text).some(match => match.index === 0 && match[0].length === field.text.length); const selected = field.mode === "all" ? matcher : whole ? wrappedMatcher : null; const output = selected ? selected.replace(field.text, (matched, token) => { found.add(token); result.totalReplacements++; result.storyReplacements[story] = (result.storyReplacements[story] ?? 0) + 1; if (matched !== token) result.normalizedMatches++; return metadataValue(token); }) : field.text; field.set(output); return output; });
+    const serialized = restorationXmlBytes(document), check = restorationXml(serialized), actual = metadataFields(check, paragraphTextNodes(check), story);
     if (actual.length !== expected.length || actual.some((field, i) => field.text !== expected[i])) fail("RESTORE_LAYOUT_MISMATCH");
     parts.set(story, serialized);
   }
@@ -259,8 +349,8 @@ export async function restoreDocx(bytes: Buffer, plan: RestorationPlan, options:
   }
   // Relationship parts may have been updated by createHyperlink. Only body
   // parts need a second serialization after paragraph edits.
-  for (const { story, document } of parsed) if (elements(document, W, "p").length) parts.set(story, restorationXmlBytes(document));
+  for (const { story, document } of parsed) if (story !== "[Content_Types].xml" && !story.endsWith(".rels") && elements(document, W, "p").length) parts.set(story, restorationXmlBytes(document));
   // Independently serialize and reparse every changed story; corrupted OOXML never falls back to the input file.
-  const output = await writeZip(parts), verified = await readZip(output); for (const { story } of parsed) restorationXml(verified.get(story)!);
+  const output = await writeZip(parts), verified = await readZip(output); validateRestorationDocxPackage(verified); for (const { story } of parsed) restorationXml(verified.get(story)!);
   return { output, stats: result, ambiguities: plan.ambiguities, residualTokens: result.residualTokens };
 }

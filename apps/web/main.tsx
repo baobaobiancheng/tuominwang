@@ -947,7 +947,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
                   {dirty ? " · 未保存" : ""}
                 </span>
               </div>
-              {doc.state === "outdated" && <p className="error" role="alert">项目词表已更新，请重新识别后复核。原有复核记录仍保留。</p>}
+              {doc.state === "outdated" && <p className="error" role="alert">材料的处理状态已变化，请重新识别后复核。原有复核记录仍保留。</p>}
               <div className="actions">
                 <button className="secondary" disabled={!canReview || dirty || conflict || ["queued", "running"].includes(doc.job?.status ?? "")} onClick={async () => {
                   if (await confirmAction("重新识别将创建新复核版本，原有处理决定不会自动沿用。确定继续？")) void run(async () => { await api(`/documents/${doc.id}/recognize`, "POST", { revision: doc.revision, ner: false }); await openDoc(doc.id); });

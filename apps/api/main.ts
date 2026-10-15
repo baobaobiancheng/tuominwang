@@ -100,6 +100,7 @@ import { registerFileRoutes } from "./files.ts";
 import { assertExportable } from "../../packages/core/export-gate.ts";
 import { runProcessing } from "../../packages/adapters/processing.ts";
 import { registerRecognitionRoutes } from "./recognition.ts";
+import {queueExport} from "./job-queue.ts";
 import { registerReviewTools } from "./review-tools.ts";
 import { registerMappingRoutes } from "./mappings.ts";
 import { saveReview } from "./reviews.ts";
@@ -281,7 +282,7 @@ export async function buildApp() {
   registerSupportRoutes(app);
   registerDocumentPolicyRoutes(app);
   registerOfficeVisualRoutes(app);
-  registerMcpRoutes(app,applyDocumentConfiguration);
+  registerMcpRoutes(app,applyDocumentConfiguration,nerReady);
   registerMappingRoutes(app);
   registerMemberRoutes(app);
   app.get("/api/projects", (req) => {
@@ -454,40 +455,10 @@ export async function buildApp() {
     });
   });
   app.post("/api/documents/:id/export", async (req) => {
-    const doc = id.parse((req.params as any).id);
-    const { revision } = revisionSchema.parse(req.body);
+    const doc=id.parse((req.params as any).id),{revision}=revisionSchema.parse(req.body);
     const unified=await preflightUnifiedAliasExport(req,doc,revision);
     if(unified&&Object.keys(unified.changedDocuments).length)fail("UNIFIED_ALIAS_REVIEW_REQUIRED",409);
-    return projectScope(req, { document: doc }, ["export"], async (db,project) => {
-      await assertUnifiedAliasExportEpoch(db,project,unified);
-      const [d] = await rows(
-        db,
-        sql`SELECT * FROM documents WHERE id=${doc} FOR UPDATE`,
-      );
-      if (!d) fail("NOT_FOUND", 404);
-      if (d.revision !== revision) fail("VERSION_CONFLICT", 409);
-      const [presetProject] = await rows(db, sql`SELECT id,tenant_id,preset_policy,preset_revision FROM projects WHERE id=${d.project_id}`);
-      Object.assign(d,resolveDocumentPolicy(d,readProjectPresets(presetProject)));
-      const [snapshot] = await rows(db, sql`SELECT * FROM review_snapshots WHERE document_id=${doc} AND revision=${revision}`);
-      try {
-        await runProcessing({ kind: "gate", doc: d, snapshot });
-      } catch (e) {
-        const code = (e as Error).message;
-        fail(code, ["INVALID_MARKS", "OVERLAPPING_MARKS", "CROSS_CELL_MARK"].includes(code) ? 400 : 409);
-      }
-      const [existing] = await rows(
-        db,
-        sql`SELECT id FROM jobs WHERE document_id=${doc} AND kind='export' AND revision=${revision} AND status IN ('queued','running','succeeded') ORDER BY created_at DESC LIMIT 1`,
-      );
-      if (existing) return { id: existing.id };
-      const job = randomUUID();
-      await rows(
-        db,
-        sql`INSERT INTO jobs(id,tenant_id,project_id,document_id,user_id,kind,revision,required_permissions) VALUES(${job},${req.user.tenant_id},${d.project_id},${doc},${req.user.id},'export',${revision},ARRAY['export']::text[])`,
-      );
-      await audit(db, req.user, d.project_id, "export_requested", doc);
-      return { id: job };
-    });
+    return projectScope(req,{document:doc},["export"],db=>queueExport(db,req,doc,revision,unified));
   });
   app.post("/api/jobs/:id/cancel", async (req) => {
     const job = id.parse((req.params as any).id);
@@ -500,6 +471,11 @@ export async function buildApp() {
       );
       if (!j) fail("JOB_NOT_ACTIVE", 409);
       await rows(db, sql`UPDATE attempts SET finished_at=now(),outcome='cancelled' WHERE job_id=${job} AND finished_at IS NULL`);
+      if(target.kind==='detect'){
+        // The job and document transition share this transaction. A worker that
+        // already published wins first and makes the cancel return JOB_NOT_ACTIVE.
+        await rows(db,sql`UPDATE documents SET state='outdated',revision=revision+1 WHERE id=${target.document_id} AND revision=${target.revision} AND state='queued'`);
+      }
       if(target.kind==='export'){
         const [d]=await rows(db,sql`SELECT d.*,p.preset_policy,p.preset_revision FROM documents d JOIN projects p ON p.id=d.project_id WHERE d.id=${target.document_id}`);
         if(d){Object.assign(d,resolveDocumentPolicy(d,readProjectPresets({id:d.project_id,tenant_id:d.tenant_id,preset_revision:d.preset_revision,preset_policy:d.preset_policy})));if(expectsMarkdownExport(d))await recordMarkdownExportEvent(db,{tenant:d.tenant_id,project:d.project_id,user:req.user.id,document:d.id,revision:target.revision,attemptKey:job},{event:'export-outcome',sourceKind:markdownSourceKind(d.source_format),status:'cancelled'});}
@@ -509,17 +485,21 @@ export async function buildApp() {
     });
   });
   app.get("/api/documents/:id/outputs", async req => {
-    const doc = id.parse((req.params as any).id), {revision} = z.object({revision:z.coerce.number().int().nonnegative()}).parse(req.query);
+    const doc=id.parse((req.params as any).id),{revision,jobId}=z.object({revision:z.coerce.number().int().nonnegative(),jobId:id.optional()}).parse(req.query);
     return projectScope(req,{document:doc},["export"],async db=>{
-      const [d]=await rows(db,sql`SELECT revision,state FROM documents WHERE id=${doc}`);
-      if(!d || d.revision!==revision)fail("VERSION_CONFLICT",409);
+      const[d]=await rows(db,sql`SELECT revision,state FROM documents WHERE id=${doc}`);
+      if(!d||d.revision!==revision)fail("VERSION_CONFLICT",409);
       if(d.state!=="review")fail("POLICY_CHANGED",409);
-      return rows(db,sql`SELECT DISTINCT ON(a.output_role) a.output_role AS role,a.output_format AS format FROM artifacts a JOIN jobs j ON j.id=a.job_id WHERE a.document_id=${doc} AND a.revision=${revision} AND j.status='succeeded' ORDER BY a.output_role,j.created_at DESC`);
+      if(jobId){const[owned]=await rows(db,sql`SELECT j.id FROM jobs j JOIN ai_collab_tasks t ON t.id=j.collab_task_id WHERE j.id=${jobId} AND j.document_id=${doc} AND t.owner_id=${req.user.id}`);if(!owned)fail("NOT_FOUND",404);}
+      return jobId
+        ?rows(db,sql`SELECT DISTINCT ON(a.output_role) a.output_role AS role,a.output_format AS format FROM artifacts a JOIN jobs j ON j.id=a.job_id WHERE a.document_id=${doc} AND a.revision=${revision} AND j.id=${jobId} AND j.status='succeeded' ORDER BY a.output_role,j.created_at DESC`)
+        :rows(db,sql`SELECT DISTINCT ON(a.output_role) a.output_role AS role,a.output_format AS format FROM artifacts a JOIN jobs j ON j.id=a.job_id WHERE a.document_id=${doc} AND a.revision=${revision} AND j.status='succeeded' ORDER BY a.output_role,j.created_at DESC`);
     });
   });
   app.post("/api/documents/:id/download-link", async (req) => {
     const doc = id.parse((req.params as any).id);
-    const { revision,role } = revisionSchema.extend({role:z.enum(["primary","markdown","pdf-docx","word-docx"]).default("primary")}).parse(req.body);
+    const { revision,role,jobId,artifactId } = revisionSchema.extend({role:z.enum(["primary","markdown","pdf-docx","word-docx"]).default("primary"),jobId:id.optional(),artifactId:id.optional()}).parse(req.body);
+    if(jobId&&artifactId)fail("AMBIGUOUS_ARTIFACT",400);
     return projectScope(req, { document: doc }, ["export"], async (db) => {
       const [d] = await rows(
         db,
@@ -531,10 +511,12 @@ export async function buildApp() {
       Object.assign(d,resolveDocumentPolicy(d,readProjectPresets(presetProject)));
       const [snapshot] = await rows(db, sql`SELECT * FROM review_snapshots WHERE document_id=${doc} AND revision=${revision}`);
       try { await runProcessing({ kind: "gate", doc: d, snapshot }); } catch (e) { fail((e as Error).message, 409); }
-      const [a] = await rows(
-        db,
-        sql`SELECT a.* FROM artifacts a JOIN jobs j ON j.id=a.job_id WHERE a.document_id=${doc} AND a.revision=${d.revision} AND a.output_role=${role} AND j.status='succeeded' ORDER BY j.created_at DESC LIMIT 1`,
-      );
+      if(jobId||artifactId){const[owned]=await rows(db,sql`SELECT j.id FROM jobs j LEFT JOIN ai_collab_tasks t ON t.id=j.collab_task_id LEFT JOIN artifacts a ON a.job_id=j.id WHERE (j.collab_task_id IS NULL OR t.owner_id=${req.user.id}) AND j.document_id=${doc} AND (${jobId??null}::uuid IS NULL OR j.id=${jobId??null}) AND (${artifactId??null}::uuid IS NULL OR a.id=${artifactId??null}) LIMIT 1`);if(!owned)fail("NOT_FOUND",404);}
+      const[a]=jobId
+        ?await rows(db,sql`SELECT a.* FROM artifacts a JOIN jobs j ON j.id=a.job_id WHERE a.document_id=${doc} AND a.revision=${d.revision} AND a.output_role=${role} AND j.id=${jobId} AND j.status='succeeded' ORDER BY j.created_at DESC LIMIT 1`)
+        :artifactId
+        ?await rows(db,sql`SELECT a.* FROM artifacts a JOIN jobs j ON j.id=a.job_id WHERE a.document_id=${doc} AND a.revision=${d.revision} AND a.output_role=${role} AND a.id=${artifactId} AND j.status='succeeded' LIMIT 1`)
+        :await rows(db,sql`SELECT a.* FROM artifacts a JOIN jobs j ON j.id=a.job_id WHERE a.document_id=${doc} AND a.revision=${d.revision} AND a.output_role=${role} AND j.status='succeeded' ORDER BY j.created_at DESC LIMIT 1`);
       if (!a) fail("EXPORT_NOT_READY", 409);
       try {
         await runProcessing({ kind: "verify", doc: d, snapshot, artifact: a });

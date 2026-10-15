@@ -1,0 +1,68 @@
+{
+  "ended": "2026-10-15T15:37:34.789Z",
+  "sourceAndTestsSha256": "40acc1f8bf109269dd84ae9c20b0c1df83b1497166c9e10131daa8c808cd63b9",
+  "fileCount": 792,
+  "sourceAndTestsUnchanged": true,
+  "bend": {
+    "laws": 11,
+    "mutationsRejected": 13
+  },
+  "typecheck": true,
+  "build": true,
+  "unitFiles": 131,
+  "unitPassed": 764,
+  "skipped": 0,
+  "apiFiles": 3,
+  "apiPassed": 10,
+  "edgeFiles": 3,
+  "edgePassed": 3,
+  "results": [
+    {
+      "name": "check",
+      "exitCode": 0,
+      "passed": 764,
+      "logSha256": "8cb2be26ae5198ebd19ad1f2c6e9d44b7ee450ca3b2bab147bc210e713daf24a",
+      "summary": "$ pnpm bend:check && pnpm bend:test && pnpm typecheck && pnpm test && pnpm build\n$ tsx scripts/bend.ts check\nBend: 11 laws checked; runtime artifact matches proven source.\n$ tsx scripts/bend.ts mutations\nBend: all 13 valid-but-incorrect mutations rejected.\n$ tsc --noEmit\n$ vitest run\n\n RUN  v4.1.11 /Users/admin/FDE/脱敏工具/脱敏汪\n\nFontconfig error: Cannot load default config file: File not found\nFontconfig error: Cannot load default config file: File not found\nFontconfig error: Cannot load default config file: File not found\nFontconfig error: Cannot load default config file: File not found\n\n Test Files  131 passed (131)\n      Tests  764 passed (764)\n   Start at  23:33:31\n   Duration  154.24s (transform 2.01s, setup 0ms, import 16.65s, tests 124.39s, environment 6ms)\n\n$ tsc --noEmit && vite build --config apps/web/vite.config.ts\nvite v7.3.6 building client environment for production...\ntransforming...\n✓ 201 modules transformed.\nrendering chunks...\ncomputing gzip size...\n../../dist/web/index.html                         0.42 kB │ gzip:   0.31 kB\n../../dist/web/assets/index-BpaOIlmq.css         36.02 kB │ gzip:   7.68 kB\n../../dist/web/assets/docx-preview-eB0EpWIV.js  172.38 kB │ gzip:  50.45 kB\n../../dist/web/assets/index-DsUyTOoD.js         648.34 kB │ gzip: 203.70 kB\n\n(!) Some chunks are larger than 500 kB after minification. Consider:\n- Using dynamic import() to code-split the application\n- Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks\n- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.\n✓ built in 1.22s\n"
+    },
+    {
+      "name": "queue",
+      "exitCode": 0,
+      "passed": 6,
+      "logSha256": "898c1d5bcdc8fc586c4b1fc5f7c03da5e36d0dd532c184c1e7c6dfd84ecd16cf",
+      "summary": "数据库迁移完成\n✔ batch prepare rollback leaves no orphan export job (11319.909792ms)\n✔ cancel cannot leave a later detect job or queued document (1894.623583ms)\n✔ task cancel and release preserve independent export provenance (12503.952917ms)\n✔ legacy shared export is not canceled and remains releasable (5854.4615ms)\n✔ document downloads preserve project export access and restrict explicit task job selection (8555.042833ms)\n✔ ordinary reviewer cancel of task-owned detect is recoverable without canceling parent (5453.9815ms)\nℹ tests 6\nℹ suites 0\nℹ pass 6\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 48206.847958\n"
+    },
+    {
+      "name": "mcp",
+      "exitCode": 0,
+      "passed": 1,
+      "logSha256": "dd9f6e3be86c91cebe92cf08a656c11b29c97953423514054294cc4d33e10d4d",
+      "summary": "数据库迁移完成\n✔ MCP full human-approved redaction -> delivery -> result slot -> validation -> review -> actual restoration, isolation and revocation (202542.333458ms)\nℹ tests 1\nℹ suites 0\nℹ pass 1\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 205065.109917\n"
+    },
+    {
+      "name": "matrix",
+      "exitCode": 0,
+      "passed": 3,
+      "logSha256": "fc192bc505c44d87ed8cf7c8532f25bd8ef4a2f109068b9cde9f72857aa135d0",
+      "summary": "CT_METHOD_OK ai-collab:resume-local-restore idempotently returns existing gateway restoration artifact\nEXACT_METHOD_OK ai-collab:restore-completed server verifies actual completed artifact instead of trusting client counts\nEXACT_METHOD_OK ai-collab:retry-restore completed round retry is idempotent and retains restored artifact\nEXACT_METHOD_OK get_completion_status returns real artifact completion counters\nEXACT_METHOD_OK wait_restore_completion terminal wait observes actual restored round\nEXACT_METHOD_OK continue_review same persisted task returns to sanitized artifact review\nEXACT_METHOD_OK resume_secure_review resume requires a fresh explicit session authorization\nEXACT_METHOD_OK start_local_restore starts standalone restoration of actual sanitized material\nEXACT_METHOD_OK ai-collab:standalone-restore-completed confirms real standalone artifact with zero residual tokens\n✔ exact 14 gateway names and restore retry/report actions operate on real sanitized and restored bytes (12381.579959ms)\nEXACT_METHOD_OK mcp-connectors:copy-setup actual initialized session/configuration, no claim OS client installation or reachability\nEXACT_METHOD_OK mcp-connectors:get-status actual initialized session/configuration, no claim OS client installation or reachability\nEXACT_METHOD_OK mcp-connectors:retry actual initialized session/configuration, no claim OS client installation or reachability\nEXACT_METHOD_OK mcp-connectors:update-automation actual initialized session/configuration, no claim OS client installation or reachability\n✔ exact connector status/retry/setup/automation methods report real current protocol configuration (104.901917ms)\nℹ tests 3\nℹ suites 0\nℹ pass 3\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 37973.009292\n"
+    },
+    {
+      "name": "edge",
+      "exitCode": 0,
+      "passed": 3,
+      "logSha256": "64118e5bdce17141caf1902f7795752b1b18de7c29c80fecfd79e687ec395f84",
+      "summary": " \u001b[2m$ tsx scripts/dev.ts\u001b[22m\n[WebServer] (node:72217) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:72228) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:72243) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:72244) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:72245) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] 11:33:12 PM [vite] http proxy error: /api/health\n[WebServer] Error: connect ECONNREFUSED 127.0.0.1:4318\n[WebServer]     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1864:16)\n[WebServer] 11:33:14 PM [vite] http proxy error: /api/health\n[WebServer] Error: connect ECONNREFUSED 127.0.0.1:4318\n[WebServer]     at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1864:16)\n\nRunning 3 tests using 1 worker\n(node:72423) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:72423) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n···\n  3 passed (44.8s)\n"
+    }
+  ],
+  "boundaries": "not full 91-file API or full Edge run; competitor licensed runtime remains R0; old phase payload lacking business state safely rejects without data deletion",
+  "guide": {
+    "sections": 23,
+    "images": 20,
+    "badImages": [],
+    "horizontalOverflow": false,
+    "hasScript": false,
+    "pageErrors": [],
+    "browser": "155.0.4283.45",
+    "scope": "local static guide actual Edge rendering"
+  },
+  "productionReleaseAtThisCheckpoint": "049"
+}

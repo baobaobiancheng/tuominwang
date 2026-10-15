@@ -8,6 +8,7 @@ import { scoped, rows, sql } from "../../packages/adapters/db.ts";
 import { seal, unseal } from "../../packages/adapters/storage.ts";
 import { runProcessing } from "../../packages/adapters/processing.ts";
 import { projectScope, textArray } from "./access.ts";
+import {queueRecognition} from "./job-queue.ts";
 
 function fail(message: string, statusCode = 409): never { throw Object.assign(new Error(message), { statusCode }); }
 export function registerRecognitionRoutes(app: FastifyInstance, nerReady: boolean) {
@@ -64,18 +65,8 @@ export function registerRecognitionRoutes(app: FastifyInstance, nerReady: boolea
     });
   });
   app.post("/api/documents/:id/recognize", async req => {
-    const doc = id.parse((req.params as any).id), input = revisionSchema.extend({ ner: z.boolean().default(false) }).parse(req.body);
-    if (input.ner && !nerReady) fail("NER_MODEL_REQUIRED");
-    return projectScope(req, { document: doc }, input.ner ? ["review", "manage_models"] : ["review"], async db => {
-      const [d] = await rows(db, sql`SELECT * FROM documents WHERE id=${doc} FOR UPDATE`);
-      if (!d) fail("NOT_FOUND", 404);
-      if (d.revision !== input.revision) fail("VERSION_CONFLICT");
-      if ((await rows(db, sql`SELECT id FROM jobs WHERE document_id=${doc} AND status IN ('queued','running')`)).length) fail("JOB_ACTIVE");
-      await rows(db, sql`UPDATE documents SET revision=revision+1,state='queued',marks='[]',ner_enabled=${input.ner},recognition='{}' WHERE id=${doc}`);
-      const job = randomUUID();
-      await rows(db, sql`INSERT INTO jobs(id,tenant_id,project_id,document_id,user_id,kind,revision,required_permissions) VALUES(${job},${d.tenant_id},${d.project_id},${doc},${req.user.id},'detect',${d.revision + 1},${textArray(input.ner ? ["review", "manage_models"] : ["review"])})`);
-      await rows(db, sql`INSERT INTO audit(tenant_id,project_id,user_id,event,object_id) VALUES(${d.tenant_id},${d.project_id},${req.user.id},'recognition_requested',${doc})`);
-      return { revision: d.revision + 1, jobId: job };
-    });
+    const doc=id.parse((req.params as any).id),input=revisionSchema.extend({ner:z.boolean().default(false)}).parse(req.body);
+    if(input.ner&&!nerReady)fail("NER_MODEL_REQUIRED");
+    return projectScope(req,{document:doc},input.ner?["review","manage_models"]:["review"],db=>queueRecognition(db,req,doc,input.revision,input.ner,nerReady));
   });
 }
