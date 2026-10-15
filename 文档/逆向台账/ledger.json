@@ -411,7 +411,7 @@
       ],
       "flow_mapping": "本发布包无前端调用，局部服务关系已核",
       "implementation_status": "I4",
-      "implementation_note": "ai-collab:attach-source 已在隔离云端适配中逐方法实际调用成功；one uploaded document bound and queued。保留现 I4，不声称 Electron 本地管道/私有协议或竞品许可运行等价。 050发现Word结构或MCP恢复/取消/终态反例，候选审查中，尚未最终验收。 050终版合入并本地验收：131/764单元、Bend11/13、类型构建，queue6/MCP1/matrix3/Edge3同源通过；未全量API/Edge重跑，旧阶段缺失明确拒绝而不猜。正在发布，S/I/R不变。",
+      "implementation_note": "ai-collab:attach-source 已在隔离云端适配中逐方法实际调用成功；one uploaded document bound and queued。保留现 I4，不声称 Electron 本地管道/私有协议或竞品许可运行等价。 050发现Word结构或MCP恢复/取消/终态反例，候选审查中，尚未最终验收。 050终版合入并本地验收：131/764单元、Bend11/13、类型构建，queue6/MCP1/matrix3/Edge3同源通过；未全量API/Edge重跑，旧阶段缺失明确拒绝而不猜。正在发布，S/I/R不变。 050已发布并完成公网只读/运行源码资源哈希核验，既往本地待发布描述按本事件接续。",
       "implementation_evidence": [
         {
           "path": "文档/逆向台账/contracts/current-interface-handoff-20261014.json",
@@ -436,12 +436,16 @@
         {
           "path": "文档/逆向台账/contracts/reliability-050-verification.json",
           "note": "050同源本地分层门禁；非竞品许可运行/全量API覆盖"
+        },
+        {
+          "path": "文档/逆向台账/contracts/aliyun-release050-verification-20261015.md",
+          "note": "050源码/资源/运行版本及公网只读验收，非竞品运行或业务准确率证明"
         }
       ],
       "next_actions": [
         "源运行仍为R0：需合法授权后按此ID补实际运行，不能由我方测试替代。",
         "我方完成度按implementation_status和各自真实证据核定；当前全量API、Edge与发布门禁仍在进行。",
-        "050本地终版已验，待部署实际读回；许可/私有、原生Word及业务准确率边界保持"
+        "050已部署；许可/私有、原生Word及业务准确率边界保持"
       ],
       "contract_ref": {
         "path": "文档/逆向台账/contracts/ipc-contract-index.json",
@@ -1082,7 +1086,7 @@
       ],
       "flow_mapping": "本发布包无前端调用，局部服务关系已核",
       "implementation_status": "I4",
-      "implementation_note": "ai-collab:attach-sources 已在隔离云端适配中逐方法实际调用成功；second uploaded document bound and queued。保留现 I4，不声称 Electron 本地管道/私有协议或竞品许可运行等价。 050发现Word结构或MCP恢复/取消/终态反例，候选审查中，尚未最终验收。 050终版合入并本地验收：131/764单元、Bend11/13、类型构建，queue6/MCP1/matrix3/Edge3同源通过；未全量API/Edge重跑，旧阶段缺失明确拒绝而不猜。正在发布，S/I/R不变。",
+      "implementation_note": "ai-collab:attach-sources 已在隔离云端适配中逐方法实际调用成功；second uploaded document bound and queued。保留现 I4，不声称 Electron 本地管道/私有协议或竞品许可运行等价。 050发现Word结构或MCP恢复/取消/终态反例，候选审查中，尚未最终验收。 050终版合入并本地验收：131/764单元、Bend11/13、类型构建，queue6/MCP1/matrix3/Edge3同源通过；未全量API/Edge重跑，旧阶段缺失明确拒绝而不猜。正在发布，S/I/R不变。 050已发布并完成公网只读/运行源码资源哈希核验，既往本地待发布描述按本事件接续。",
       "implementation_evidence": [
         {
           "path": "文档/逆向台账/contracts/current-interface-handoff-20261014.json",
@@ -1107,12 +1111,16 @@
         {
           "path": "文档/逆向台账/contracts/reliability-050-verification.json",
           "note": "050同源本地分层门禁；非竞品许可运行/全量API覆盖"
+        },
+        {
+          "path": "文档/逆向台账/contracts/aliyun-release050-verification-20261015.md",
+          "note": "050源码/资源/运行版本及公网只读验收，非竞品运行或业务准确率证明"
         }
       ],
       "next_actions": [
         "源运行仍为R0：需合法授权后按此ID补实际运行，不能由我方测试替代。",
         "我方完成度按implementation_status和各自真实证据核定；当前全量API、Edge与发布门禁仍在进行。",
-        "050本地终版已验，待部署实际读回；许可/私有、原生Word及业务准确率边界保持"
+        "050已部署；许可/私有、原生Word及业务准确率边界保持"
       ],
       "contract_ref": {
         "path": "文档/逆向台账/contracts/ipc-contract-index.json",
@@ -1763,7 +1771,7 @@
       ],
       "flow_mapping": "已追踪局部关系",
       "implementation_status": "I4",
-      "implementation_note": "ai-collab:authorize 已在隔离云端适配中逐方法实际调用成功；real authorization creates source-selection task。保留现 I4，不声称 Electron 本地管道/私有协议或竞品许可运行等价。 047授权配置解析专项API通过；最终89文件API/70项Edge同源门禁待执行。 050发现Word结构或MCP恢复/取消/终态反例，候选审查中，尚未最终验收。 050终版合入并本地验收：131/764单元、Bend11/13、类型构建，queue6/MCP1/matrix3/Edge3同源通过；未全量API/Edge重跑，旧阶段缺失明确拒绝而不猜。正在发布，S/I/R不变。",
+      "implementation_note": "ai-collab:authorize 已在隔离云端适配中逐方法实际调用成功；real authorization creates source-selection task。保留现 I4，不声称 Electron 本地管道/私有协议或竞品许可运行等价。 047授权配置解析专项API通过；最终89文件API/70项Edge同源门禁待执行。 050发现Word结构或MCP恢复/取消/终态反例，候选审查中，尚未最终验收。 050终版合入并本地验收：131/764单元、Bend11/13、类型构建，queue6/MCP1/matrix3/Edge3同源通过；未全量API/Edge重跑，旧阶段缺失明确拒绝而不猜。正在发布，S/I/R不变。 050已发布并完成公网只读/运行源码资源哈希核验，既往本地待发布描述按本事件接续。",
       "implementation_evidence": [
         {
           "path": "文档/逆向台账/contracts/current-interface-handoff-20261014.json",
@@ -1791,13 +1799,17 @@
         {
           "path": "文档/逆向台账/contracts/reliability-050-verification.json",
           "note": "050同源本地分层门禁；非竞品许可运行/全量API覆盖"
+        },
+        {
+          "path": "文档/逆向台账/contracts/aliyun-release050-verification-20261015.md",
+          "note": "050源码/资源/运行版本及公网只读验收，非竞品运行或业务准确率证明"
         }
       ],
       "next_actions": [
         "源运行仍为R0：需合法授权后按此ID补实际运行，不能由我方测试替代。",
         "我方完成度按implementation_status和各自真实证据核定；当前全量API、Edge与发布门禁仍在进行。",
         "047授权配置解析专项API通过；最终89文件API/70项Edge同源门禁待执行。",
-        "050本地终版已验，待部署实际读回；许可/私有、原生Word及业务准确率边界保持"
+        "050已部署；许可/私有、原生Word及业务准确率边界保持"
       ],
       "contract_ref": {
         "path": "文档/逆向台账/contracts/ipc-contract-index.json",
@@ -2408,7 +2420,7 @@
       ],
       "flow_mapping": "已追踪局部关系",
       "implementation_status": "I4",
-      "implementation_note": "ai-collab:cancel 已在隔离云端适配中逐方法实际调用成功；task cancellation persists terminal state。保留现 I4，不声称 Electron 本地管道/私有协议或竞品许可运行等价。 050发现Word结构或MCP恢复/取消/终态反例，候选审查中，尚未最终验收。 050终版合入并本地验收：131/764单元、Bend11/13、类型构建，queue6/MCP1/matrix3/Edge3同源通过；未全量API/Edge重跑，旧阶段缺失明确拒绝而不猜。正在发布，S/I/R不变。",
+      "implementation_note": "ai-collab:cancel 已在隔离云端适配中逐方法实际调用成功；task cancellation persists terminal state。保留现 I4，不声称 Electron 本地管道/私有协议或竞品许可运行等价。 050发现Word结构或MCP恢复/取消/终态反例，候选审查中，尚未最终验收。 050终版合入并本地验收：131/764单元、Bend11/13、类型构建，queue6/MCP1/matrix3/Edge3同源通过；未全量API/Edge重跑，旧阶段缺失明确拒绝而不猜。正在发布，S/I/R不变。 050已发布并完成公网只读/运行源码资源哈希核验，既往本地待发布描述按本事件接续。",
       "implementation_evidence": [
         {
           "path": "文档/逆向台账/contracts/current-interface-handoff-20261014.json",
@@ -2433,12 +2445,16 @@
         {
           "path": "文档/逆向台账/contracts/reliability-050-verification.json",
           "note": "050同源本地分层门禁；非竞品许可运行/全量API覆盖"
+        },
+        {
+          "path": "文档/逆向台账/contracts/aliyun-release050-verification-20261015.md",
+          "note": "050源码/资源/运行版本及公网只读验收，非竞品运行或业务准确率证明"
         }
       ],
       "next_actions": [
         "源运行仍为R0：需合法授权后按此ID补实际运行，不能由我方测试替代。",
         "我方完成度按implementation_status和各自真实证据核定；当前全量API、Edge与发布门禁仍在进行。",
-        "050本地终版已验，待部署实际读回；许可/私有、原生Word及业务准确率边界保持"
+        "050已部署；许可/私有、原生Word及业务准确率边界保持"
       ],
       "contract_ref": {
         "path": "文档/逆向台账/contracts/ipc-contract-index.json",
@@ -4875,7 +4891,7 @@
       ],
       "flow_mapping": "已追踪局部关系",
       "implementation_status": "I4",
-      "implementation_note": "ai-collab:fail 已在隔离云端适配中逐方法实际调用成功；explicit failure code and failed state persist。保留现 I4，不声称 Electron 本地管道/私有协议或竞品许可运行等价。 050发现Word结构或MCP恢复/取消/终态反例，候选审查中，尚未最终验收。 050终版合入并本地验收：131/764单元、Bend11/13、类型构建，queue6/MCP1/matrix3/Edge3同源通过；未全量API/Edge重跑，旧阶段缺失明确拒绝而不猜。正在发布，S/I/R不变。",
+      "implementation_note": "ai-collab:fail 已在隔离云端适配中逐方法实际调用成功；explicit failure code and failed state persist。保留现 I4，不声称 Electron 本地管道/私有协议或竞品许可运行等价。 050发现Word结构或MCP恢复/取消/终态反例，候选审查中，尚未最终验收。 050终版合入并本地验收：131/764单元、Bend11/13、类型构建，queue6/MCP1/matrix3/Edge3同源通过；未全量API/Edge重跑，旧阶段缺失明确拒绝而不猜。正在发布，S/I/R不变。 050已发布并完成公网只读/运行源码资源哈希核验，既往本地待发布描述按本事件接续。",
       "implementation_evidence": [
         {
           "path": "文档/逆向台账/contracts/current-interface-handoff-20261014.json",
@@ -4900,12 +4916,16 @@
         {
           "path": "文档/逆向台账/contracts/reliability-050-verification.json",
           "note": "050同源本地分层门禁；非竞品许可运行/全量API覆盖"
+        },
+        {
+          "path": "文档/逆向台账/contracts/aliyun-release050-verification-20261015.md",
+          "note": "050源码/资源/运行版本及公网只读验收，非竞品运行或业务准确率证明"
         }
       ],
       "next_actions": [
         "源运行仍为R0：需合法授权后按此ID补实际运行，不能由我方测试替代。",
         "我方完成度按implementation_status和各自真实证据核定；当前全量API、Edge与发布门禁仍在进行。",
-        "050本地终版已验，待部署实际读回；许可/私有、原生Word及业务准确率边界保持"
+        "050已部署；许可/私有、原生Word及业务准确率边界保持"
       ],
       "contract_ref": {
         "path": "文档/逆向台账/contracts/ipc-contract-index.json",
@@ -8016,7 +8036,7 @@
       ],
       "flow_mapping": "已追踪局部关系",
       "implementation_status": "I4",
-      "implementation_note": "ai-collab:prepare-export 已在隔离云端适配中逐方法实际调用成功；queues real verified material export jobs。保留现 I4，不声称 Electron 本地管道/私有协议或竞品许可运行等价。 050发现Word结构或MCP恢复/取消/终态反例，候选审查中，尚未最终验收。 050终版合入并本地验收：131/764单元、Bend11/13、类型构建，queue6/MCP1/matrix3/Edge3同源通过；未全量API/Edge重跑，旧阶段缺失明确拒绝而不猜。正在发布，S/I/R不变。",
+      "implementation_note": "ai-collab:prepare-export 已在隔离云端适配中逐方法实际调用成功；queues real verified material export jobs。保留现 I4，不声称 Electron 本地管道/私有协议或竞品许可运行等价。 050发现Word结构或MCP恢复/取消/终态反例，候选审查中，尚未最终验收。 050终版合入并本地验收：131/764单元、Bend11/13、类型构建，queue6/MCP1/matrix3/Edge3同源通过；未全量API/Edge重跑，旧阶段缺失明确拒绝而不猜。正在发布，S/I/R不变。 050已发布并完成公网只读/运行源码资源哈希核验，既往本地待发布描述按本事件接续。",
       "implementation_evidence": [
         {
           "path": "文档/逆向台账/contracts/current-interface-handoff-20261014.json",
@@ -8041,12 +8061,16 @@
         {
           "path": "文档/逆向台账/contracts/reliability-050-verification.json",
           "note": "050同源本地分层门禁；非竞品许可运行/全量API覆盖"
+        },
+        {
+          "path": "文档/逆向台账/contracts/aliyun-release050-verification-20261015.md",
+          "note": "050源码/资源/运行版本及公网只读验收，非竞品运行或业务准确率证明"
         }
       ],
       "next_actions": [
         "源运行仍为R0：需合法授权后按此ID补实际运行，不能由我方测试替代。",
         "我方完成度按implementation_status和各自真实证据核定；当前全量API、Edge与发布门禁仍在进行。",
-        "050本地终版已验，待部署实际读回；许可/私有、原生Word及业务准确率边界保持"
+        "050已部署；许可/私有、原生Word及业务准确率边界保持"
       ],
       "contract_ref": {
         "path": "文档/逆向台账/contracts/ipc-contract-index.json",
@@ -71860,7 +71884,7 @@
       ],
       "flow_mapping": "已追踪局部关系",
       "implementation_status": "I1",
-      "implementation_note": "已逐项核 pseudonym:restore-docx：DOCX and legacy DOC single restore; default DOC output uses actual LibreOffice conversion and strict DOC reread, while WPS explicitly offers DOCX。No DOC original-format branch missing. WPS original output is unsupported in the source Mac/LibreOffice branch and honestly rejected here; explicit DOCX is available. 保留现 I1，源许可运行 R0；当前全量门禁不能由既有定向证据代替。 046核源DOCX no-op成功保留原字节，外部单件默认严格与源有差异；待暂存补丁正式验收。 047外部DOCX零匹配原字节已合入并专项验证，不代表Word原生排版等价。 049交叉审查确认外部未知标签或MCP轮次/真还原缺口；隔离候选验证中，主树尚未合入，详见后续可靠性报告。 049已合入，最新隔离候选MCP1/矩阵3、主树Edge2通过；完整048 Edge69过2失败，最终收尾仍待，不借用基线宣称049全量。 050发现Word结构或MCP恢复/取消/终态反例，候选审查中，尚未最终验收。 050终版合入并本地验收：131/764单元、Bend11/13、类型构建，queue6/MCP1/matrix3/Edge3同源通过；未全量API/Edge重跑，旧阶段缺失明确拒绝而不猜。正在发布，S/I/R不变。",
+      "implementation_note": "已逐项核 pseudonym:restore-docx：DOCX and legacy DOC single restore; default DOC output uses actual LibreOffice conversion and strict DOC reread, while WPS explicitly offers DOCX。No DOC original-format branch missing. WPS original output is unsupported in the source Mac/LibreOffice branch and honestly rejected here; explicit DOCX is available. 保留现 I1，源许可运行 R0；当前全量门禁不能由既有定向证据代替。 046核源DOCX no-op成功保留原字节，外部单件默认严格与源有差异；待暂存补丁正式验收。 047外部DOCX零匹配原字节已合入并专项验证，不代表Word原生排版等价。 049交叉审查确认外部未知标签或MCP轮次/真还原缺口；隔离候选验证中，主树尚未合入，详见后续可靠性报告。 049已合入，最新隔离候选MCP1/矩阵3、主树Edge2通过；完整048 Edge69过2失败，最终收尾仍待，不借用基线宣称049全量。 050发现Word结构或MCP恢复/取消/终态反例，候选审查中，尚未最终验收。 050终版合入并本地验收：131/764单元、Bend11/13、类型构建，queue6/MCP1/matrix3/Edge3同源通过；未全量API/Edge重跑，旧阶段缺失明确拒绝而不猜。正在发布，S/I/R不变。 050已发布并完成公网只读/运行源码资源哈希核验，既往本地待发布描述按本事件接续。",
       "implementation_evidence": [
         {
           "path": "文档/逆向台账/contracts/current-interface-handoff-20261014.json",
@@ -71898,6 +71922,10 @@
         {
           "path": "文档/逆向台账/contracts/reliability-050-verification.json",
           "note": "050同源本地分层门禁；非竞品许可运行/全量API覆盖"
+        },
+        {
+          "path": "文档/逆向台账/contracts/aliyun-release050-verification-20261015.md",
+          "note": "050源码/资源/运行版本及公网只读验收，非竞品运行或业务准确率证明"
         }
       ],
       "next_actions": [
@@ -71906,7 +71934,7 @@
         "047外部DOCX零匹配原字节已合入并专项验证，不代表Word原生排版等价。",
         "049候选待合入并完成受影响API/Edge；保持受管还原授权及最新轮边界。",
         "继续定位048两个Edge失败、完成合并版本门禁及发布。",
-        "050本地终版已验，待部署实际读回；许可/私有、原生Word及业务准确率边界保持"
+        "050已部署；许可/私有、原生Word及业务准确率边界保持"
       ],
       "contract_ref": {
         "path": "文档/逆向台账/contracts/ipc-contract-index.json",
@@ -72315,7 +72343,7 @@
       ],
       "flow_mapping": "已追踪局部关系",
       "implementation_status": "I1",
-      "implementation_note": "已逐项核 pseudonym:restore-docx-batch：Per-file worker routes legacy DOC through legacy-restoration adapter, including default strict DOC export/reread; WPS can explicitly emit DOCX; partial rows and ZIP。No DOC original-format code branch missing: API dispatches legacy through adapter before core restoreBatch. WPS original output is source Mac unsupported and returns explicit failure. 保留现 I1，源许可运行 R0；当前全量门禁不能由既有定向证据代替。 ITER043新增真实CFB DOC批量省略outputFormat，单件与ZIP最终CFB、内容及哈希已实测通过；本地源Buffer保持，I1和竞品R0不变。 049交叉审查确认外部未知标签或MCP轮次/真还原缺口；隔离候选验证中，主树尚未合入，详见后续可靠性报告。 049已合入，最新隔离候选MCP1/矩阵3、主树Edge2通过；完整048 Edge69过2失败，最终收尾仍待，不借用基线宣称049全量。 050发现Word结构或MCP恢复/取消/终态反例，候选审查中，尚未最终验收。 050终版合入并本地验收：131/764单元、Bend11/13、类型构建，queue6/MCP1/matrix3/Edge3同源通过；未全量API/Edge重跑，旧阶段缺失明确拒绝而不猜。正在发布，S/I/R不变。",
+      "implementation_note": "已逐项核 pseudonym:restore-docx-batch：Per-file worker routes legacy DOC through legacy-restoration adapter, including default strict DOC export/reread; WPS can explicitly emit DOCX; partial rows and ZIP。No DOC original-format code branch missing: API dispatches legacy through adapter before core restoreBatch. WPS original output is source Mac unsupported and returns explicit failure. 保留现 I1，源许可运行 R0；当前全量门禁不能由既有定向证据代替。 ITER043新增真实CFB DOC批量省略outputFormat，单件与ZIP最终CFB、内容及哈希已实测通过；本地源Buffer保持，I1和竞品R0不变。 049交叉审查确认外部未知标签或MCP轮次/真还原缺口；隔离候选验证中，主树尚未合入，详见后续可靠性报告。 049已合入，最新隔离候选MCP1/矩阵3、主树Edge2通过；完整048 Edge69过2失败，最终收尾仍待，不借用基线宣称049全量。 050发现Word结构或MCP恢复/取消/终态反例，候选审查中，尚未最终验收。 050终版合入并本地验收：131/764单元、Bend11/13、类型构建，queue6/MCP1/matrix3/Edge3同源通过；未全量API/Edge重跑，旧阶段缺失明确拒绝而不猜。正在发布，S/I/R不变。 050已发布并完成公网只读/运行源码资源哈希核验，既往本地待发布描述按本事件接续。",
       "implementation_evidence": [
         {
           "path": "文档/逆向台账/contracts/current-interface-handoff-20261014.json",
@@ -72347,6 +72375,10 @@
         {
           "path": "文档/逆向台账/contracts/reliability-050-verification.json",
           "note": "050同源本地分层门禁；非竞品许可运行/全量API覆盖"
+        },
+        {
+          "path": "文档/逆向台账/contracts/aliyun-release050-verification-20261015.md",
+          "note": "050源码/资源/运行版本及公网只读验收，非竞品运行或业务准确率证明"
         }
       ],
       "next_actions": [
@@ -72354,7 +72386,7 @@
         "我方完成度按implementation_status和各自真实证据核定；当前全量API、Edge与发布门禁仍在进行。",
         "049候选待合入并完成受影响API/Edge；保持受管还原授权及最新轮边界。",
         "继续定位048两个Edge失败、完成合并版本门禁及发布。",
-        "050本地终版已验，待部署实际读回；许可/私有、原生Word及业务准确率边界保持"
+        "050已部署；许可/私有、原生Word及业务准确率边界保持"
       ],
       "contract_ref": {
         "path": "文档/逆向台账/contracts/ipc-contract-index.json",
@@ -99570,7 +99602,7 @@
       ],
       "flow_mapping": "已追踪局部关系",
       "implementation_status": "I1",
-      "implementation_note": "没有竞品MCP协议或本地AI交换任务实现。 050发现Word结构或MCP恢复/取消/终态反例，候选审查中，尚未最终验收。 050终版合入并本地验收：131/764单元、Bend11/13、类型构建，queue6/MCP1/matrix3/Edge3同源通过；未全量API/Edge重跑，旧阶段缺失明确拒绝而不猜。正在发布，S/I/R不变。",
+      "implementation_note": "没有竞品MCP协议或本地AI交换任务实现。 050发现Word结构或MCP恢复/取消/终态反例，候选审查中，尚未最终验收。 050终版合入并本地验收：131/764单元、Bend11/13、类型构建，queue6/MCP1/matrix3/Edge3同源通过；未全量API/Edge重跑，旧阶段缺失明确拒绝而不猜。正在发布，S/I/R不变。 050已发布并完成公网只读/运行源码资源哈希核验，既往本地待发布描述按本事件接续。",
       "implementation_evidence": [
         {
           "path": "文档/逆向台账/contracts/current-interface-handoff-20261014.json",
@@ -99587,12 +99619,16 @@
         {
           "path": "文档/逆向台账/contracts/reliability-050-verification.json",
           "note": "050同源本地分层门禁；非竞品许可运行/全量API覆盖"
+        },
+        {
+          "path": "文档/逆向台账/contracts/aliyun-release050-verification-20261015.md",
+          "note": "050源码/资源/运行版本及公网只读验收，非竞品运行或业务准确率证明"
         }
       ],
       "next_actions": [
         "源运行仍为R0：需合法授权后按此ID补实际运行，不能由我方测试替代。",
         "我方完成度按implementation_status和各自真实证据核定；当前全量API、Edge与发布门禁仍在进行。",
-        "050本地终版已验，待部署实际读回；许可/私有、原生Word及业务准确率边界保持"
+        "050已部署；许可/私有、原生Word及业务准确率边界保持"
       ],
       "schema_syntax": "{ type: 'object', additionalProperties: false, properties: { job_id: jobId } }",
       "manualContractRef": {
@@ -102759,7 +102795,7 @@
       ],
       "flow_mapping": "已追踪局部关系",
       "implementation_status": "I1",
-      "implementation_note": "没有竞品MCP协议或本地AI交换任务实现。 049交叉审查确认外部未知标签或MCP轮次/真还原缺口；隔离候选验证中，主树尚未合入，详见后续可靠性报告。 049已合入，最新隔离候选MCP1/矩阵3、主树Edge2通过；完整048 Edge69过2失败，最终收尾仍待，不借用基线宣称049全量。 050发现Word结构或MCP恢复/取消/终态反例，候选审查中，尚未最终验收。 050终版合入并本地验收：131/764单元、Bend11/13、类型构建，queue6/MCP1/matrix3/Edge3同源通过；未全量API/Edge重跑，旧阶段缺失明确拒绝而不猜。正在发布，S/I/R不变。",
+      "implementation_note": "没有竞品MCP协议或本地AI交换任务实现。 049交叉审查确认外部未知标签或MCP轮次/真还原缺口；隔离候选验证中，主树尚未合入，详见后续可靠性报告。 049已合入，最新隔离候选MCP1/矩阵3、主树Edge2通过；完整048 Edge69过2失败，最终收尾仍待，不借用基线宣称049全量。 050发现Word结构或MCP恢复/取消/终态反例，候选审查中，尚未最终验收。 050终版合入并本地验收：131/764单元、Bend11/13、类型构建，queue6/MCP1/matrix3/Edge3同源通过；未全量API/Edge重跑，旧阶段缺失明确拒绝而不猜。正在发布，S/I/R不变。 050已发布并完成公网只读/运行源码资源哈希核验，既往本地待发布描述按本事件接续。",
       "implementation_evidence": [
         {
           "path": "文档/逆向台账/contracts/current-interface-handoff-20261014.json",
@@ -102779,6 +102815,10 @@
         {
           "path": "文档/逆向台账/contracts/reliability-050-verification.json",
           "note": "050同源本地分层门禁；非竞品许可运行/全量API覆盖"
+        },
+        {
+          "path": "文档/逆向台账/contracts/aliyun-release050-verification-20261015.md",
+          "note": "050源码/资源/运行版本及公网只读验收，非竞品运行或业务准确率证明"
         }
       ],
       "next_actions": [
@@ -102786,7 +102826,7 @@
         "我方完成度按implementation_status和各自真实证据核定；当前全量API、Edge与发布门禁仍在进行。",
         "049候选待合入并完成受影响API/Edge；保持受管还原授权及最新轮边界。",
         "继续定位048两个Edge失败、完成合并版本门禁及发布。",
-        "050本地终版已验，待部署实际读回；许可/私有、原生Word及业务准确率边界保持"
+        "050已部署；许可/私有、原生Word及业务准确率边界保持"
       ],
       "schema_syntax": "{ type: 'object', additionalProperties: false, properties: { job_id: jobId, round_id: roundId, slot_id: slotId, sha256: { type: 'string', pattern: '^[a-f0-9]{64}$' }, suggested_name: { type: 'string', minLength: 1, maxLength: 80 }, token_changes: { description: 'Deprecated compatibility field; ignored. No token change declaration is required.', type: 'array', maxItems: 1000, items: { type: 'object', additionalProperties: false, properties: { token: { type: 'string', minLength: 1, maxLength: 80 }, delta: { type: 'integer', minimum: -10000, maximum: 10000 }, reason: { type: 'string', minLength: 1, maxLength: 240 } }, required: ['token', 'delta', 'reason'] } } }, required: ['job_id', 'round_id', 'slot_id', 'sha256', 'suggested_name'] }",
       "manualContractRef": {
@@ -128960,11 +129000,74 @@
           "path": ".data/research/lawbot-2026-10-15/iteration050/final-pin-transition.json"
         }
       ]
+    },
+    {
+      "id": "ITER-050-ALIYUN-RELEASE-VERIFIED",
+      "date": "2026-10-15",
+      "action": "050发布与公网只读验收",
+      "summary": "源c2cbeb3，schema039，384运行文件和全部包内静态资源哈希一致，公网Edge登录/版本/23节20图通过，相邻5容器未变。",
+      "affected_ids": [
+        "IPC-1d272ba10a6c",
+        "IPC-24fe13c4efb6",
+        "MCP-1e302c2392c3",
+        "MCP-104bba767f9b",
+        "IPC-208d016e6972",
+        "IPC-224e4065477a",
+        "IPC-9f9f62ce116e",
+        "IPC-540edc231d28",
+        "IPC-77baf8b1932c",
+        "IPC-3218ff56854c"
+      ],
+      "verification": "无全量API/Edge或公网业务文档重跑；竞品258R0、S/I不升级。模型读取与生产资源限制未改。",
+      "evidence": [
+        {
+          "path": "文档/发布记录-20261015-050.md"
+        },
+        {
+          "path": "文档/逆向台账/contracts/aliyun-release050-verification-20261015.md"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-15/iteration050/publish-pin-transition.json"
+        },
+        {
+          "path": ".data/deploy/aliyun-20261015/iteration050/release/manifest.json"
+        },
+        {
+          "path": ".data/deploy/aliyun-20261015/iteration050/deploy.log"
+        },
+        {
+          "path": ".data/deploy/aliyun-20261015/iteration050/online-readonly-proof.json"
+        },
+        {
+          "path": ".data/deploy/aliyun-20261015/iteration050/server-readback/release-readback.json"
+        },
+        {
+          "path": ".data/deploy/aliyun-20261015/iteration050/server-readback/worker-ready.json"
+        },
+        {
+          "path": ".data/deploy/aliyun-20261015/iteration050/server-readback/neighbors.before.json"
+        },
+        {
+          "path": ".data/deploy/aliyun-20261015/iteration050/server-readback/neighbors.after.json"
+        },
+        {
+          "path": "文档/待办与完成状态-20261015.md"
+        },
+        {
+          "path": "文档/脱敏规则完整技术交接-迭代023.md"
+        },
+        {
+          "path": "文档/逆向台账/contracts/reliability-050-20261015.md"
+        },
+        {
+          "path": "文档/逆向台账/contracts/reliability-050-verification.json"
+        }
+      ]
     }
   ],
   "evidence_snapshot": {
-    "baseline_at": "2026-10-15T15:42:05.194737+00:00",
-    "note": "这些哈希是2026-10-13本轮从当前现存文件建立的内容基线，只用于此后漂移检测；不能反向证明基线建立前的文件内容、原始发布完整性或过去运行结论。专有源码未修改。 ITER-012/013追加人工契约、交叉审查、新版指南及明确列举的子路径源码；旧文件哈希继续保留。已批准源码和主分析文档的哈希变更逐项记录previous/current，不扫描部署凭据。 ITER-014仅显式更新最终应用Compose及新增部署结果文件，保留真实OOM与未验证边界，未纳入密钥或环境凭据。 ITER-015仅补115项UI入口、两处动态桥调用集合、交叉审查/核验脚本及新增OpenJPEG发布证据；保留此前应用和部署文件的哈希，正在进行的前端修复漂移由后续迭代单独复核。 ITER-016：仅将本轮明确修改的前端/测试/部署/文档及验收回执更新基线，事件保存旧新哈希；无业务材料或凭据入账。 ITER-017新增分组/增补契约、交叉审查及npm原生签名差异证据；仅maintain新增71解释及维护规则旧动态数量文案的历史hash显式更新。未纳入凭据、未改竞品文件或应用。下载tarball及原生比较的逐项SHA保存在专项报告，不自动扩大成算法可信声明。 ITER-020：补我方Word结构预览、页内OCR改字、视觉候选的实现/验收与规则交接；显式更新5项应用pin，previous/current与原ledger备份保留；早期UI/26例与旧交接独审仅为历史阶段，不代表最终功能或最终文档全部被独审。竞品S2/R0、全部I级别不变，未据本地验证声明公网发布。 ITER-022显式更新进度检查点应用pin；main87基线原字节和旧新hash逐项保留，新能力未一律提级，未发布服务。 ITER-023仅显式进度检查点，28项原pin旧字节归档；有失败日志和新阶段未完成事项，未整体升格。 ITER-030显式逐ID更新，所有漂移旧字节保留并精确验hash；竞品运行R0保持不变。 ITER-031发布及真实OOM影响补证；README和指南文本旧字节精确保留；7张历史截图原字节缺失明确列出，旧hash保留且不声称历史图全部可验证。 ITER038静态语义逐ID合并；旧漂移逐一有精确字节归档，未覆盖掉历史证据。 ITER039握手故障独立复现；变更旧字节逐一验hash并归档，未以定向通过推全量或发布。 ITER040保留全部旧pin字节；逐ID/流程说明CAS更正，等级不变；实际门禁与服务器发布分别记录。 ITER040补5个已存在的新引用当前哈希；不反推其建立基线前内容。新增Edge截图调用保留此前精确字节，尚未运行。 ITER041逐文件真实variant与前后testSHA/logSHA固定；历史结果不冒称当前单次全量。两项测试修正保留旧字节及独立源裁定。 ITER042：首轮真实Edge失败原样保留；18项新旧字节逐一固定，4项产品修复待重新运行，等级不变。 ITER043最终本地：所有旧pin精确字节均找到并归档；API/Edge逐variant保留，无单次全量虚称；13条备注校准不改等级，图文实际核对；部署另证。 ITER044上线：首次真实OOM/回滚与恢复、二次发布、TXT/PNG实产物、指南补丁分别保留；无新增资源限制或模型读取改动；证据变更先核旧字节，S/I/R不变。 ITER-050首次检查点新增审查和实际反例，不变更已有pin及S/I/R，修复与发布尚待。 ITER-050终版：明确更新14路径及文档pin，旧字节按SHA归档；保留失败/跳过/反驳与最终同源层次。258R0及S/I不升级；未把本地验收写为已发布。",
+    "baseline_at": "2026-10-15T15:48:41.465004+00:00",
+    "note": "这些哈希是2026-10-13本轮从当前现存文件建立的内容基线，只用于此后漂移检测；不能反向证明基线建立前的文件内容、原始发布完整性或过去运行结论。专有源码未修改。 ITER-012/013追加人工契约、交叉审查、新版指南及明确列举的子路径源码；旧文件哈希继续保留。已批准源码和主分析文档的哈希变更逐项记录previous/current，不扫描部署凭据。 ITER-014仅显式更新最终应用Compose及新增部署结果文件，保留真实OOM与未验证边界，未纳入密钥或环境凭据。 ITER-015仅补115项UI入口、两处动态桥调用集合、交叉审查/核验脚本及新增OpenJPEG发布证据；保留此前应用和部署文件的哈希，正在进行的前端修复漂移由后续迭代单独复核。 ITER-016：仅将本轮明确修改的前端/测试/部署/文档及验收回执更新基线，事件保存旧新哈希；无业务材料或凭据入账。 ITER-017新增分组/增补契约、交叉审查及npm原生签名差异证据；仅maintain新增71解释及维护规则旧动态数量文案的历史hash显式更新。未纳入凭据、未改竞品文件或应用。下载tarball及原生比较的逐项SHA保存在专项报告，不自动扩大成算法可信声明。 ITER-020：补我方Word结构预览、页内OCR改字、视觉候选的实现/验收与规则交接；显式更新5项应用pin，previous/current与原ledger备份保留；早期UI/26例与旧交接独审仅为历史阶段，不代表最终功能或最终文档全部被独审。竞品S2/R0、全部I级别不变，未据本地验证声明公网发布。 ITER-022显式更新进度检查点应用pin；main87基线原字节和旧新hash逐项保留，新能力未一律提级，未发布服务。 ITER-023仅显式进度检查点，28项原pin旧字节归档；有失败日志和新阶段未完成事项，未整体升格。 ITER-030显式逐ID更新，所有漂移旧字节保留并精确验hash；竞品运行R0保持不变。 ITER-031发布及真实OOM影响补证；README和指南文本旧字节精确保留；7张历史截图原字节缺失明确列出，旧hash保留且不声称历史图全部可验证。 ITER038静态语义逐ID合并；旧漂移逐一有精确字节归档，未覆盖掉历史证据。 ITER039握手故障独立复现；变更旧字节逐一验hash并归档，未以定向通过推全量或发布。 ITER040保留全部旧pin字节；逐ID/流程说明CAS更正，等级不变；实际门禁与服务器发布分别记录。 ITER040补5个已存在的新引用当前哈希；不反推其建立基线前内容。新增Edge截图调用保留此前精确字节，尚未运行。 ITER041逐文件真实variant与前后testSHA/logSHA固定；历史结果不冒称当前单次全量。两项测试修正保留旧字节及独立源裁定。 ITER042：首轮真实Edge失败原样保留；18项新旧字节逐一固定，4项产品修复待重新运行，等级不变。 ITER043最终本地：所有旧pin精确字节均找到并归档；API/Edge逐variant保留，无单次全量虚称；13条备注校准不改等级，图文实际核对；部署另证。 ITER044上线：首次真实OOM/回滚与恢复、二次发布、TXT/PNG实产物、指南补丁分别保留；无新增资源限制或模型读取改动；证据变更先核旧字节，S/I/R不变。 ITER-050首次检查点新增审查和实际反例，不变更已有pin及S/I/R，修复与发布尚待。 ITER-050终版：明确更新14路径及文档pin，旧字节按SHA归档；保留失败/跳过/反驳与最终同源层次。258R0及S/I不升级；未把本地验收写为已发布。 ITER-050发布：4文档旧字节先归档，追加最小部署与公网只读证据，保留历史状态而不升级S/I/R。",
     "files": {
       ".data/research/lawbot-2026-10-13/extracted/dist/main/index.js": {
         "sha256": "621dbee5f25f5cb0755f156488739e6bdde436e23ef3d3fef942c9e76695f691",
@@ -131375,8 +131478,8 @@
         "bytes": 423
       },
       "文档/脱敏规则完整技术交接-迭代023.md": {
-        "sha256": "f5b2c5798d2d8ad99efe7bd0b1c15a497bea8d4076fd1d034dc545a11394846d",
-        "bytes": 361869
+        "sha256": "5fbef0bbebb37f1da034726e36a36f66d08d50d6ee905e878ca7d3f618356236",
+        "bytes": 361956
       },
       "文档/逆向台账/contracts/build-complete-rule-handoff-20261014.py": {
         "sha256": "c5d6db581eb6019ba761fe2adb9ba66b41c4a611162c32e54729baf3fa9810e6",
@@ -134951,8 +135054,8 @@
         "bytes": 4676926
       },
       "文档/待办与完成状态-20261015.md": {
-        "sha256": "a404a219c9a5c0a7fd234a808a071ebc358ae8b1c024c7fb38e65c5c5469cb98",
-        "bytes": 13690
+        "sha256": "1712a246894ba0eff49d4c705dfef9277e1c75c410a8f938c82e24b8d53dab9f",
+        "bytes": 13780
       },
       ".data/research/lawbot-2026-10-15/iteration036/checkpoint-history/current/apps/api/main.ts": {
         "sha256": "4c36dad476012af090cb8649de2b991235d41e4c5d946a4a411404680935b011",
@@ -140071,8 +140174,8 @@
         "bytes": 1191
       },
       "文档/逆向台账/contracts/reliability-050-20261015.md": {
-        "sha256": "ff084554f2c93fc3f11966c0a478ccac7b8752989d30abfac43509a538a9f6d1",
-        "bytes": 5041
+        "sha256": "0c4d68b9a901f08af6110eb8e877824755599fc597eaeb699dd519d8dbda61c2",
+        "bytes": 5145
       },
       ".data/research/lawbot-2026-10-15/iteration050/arch/a.md": {
         "sha256": "012640521111a0ac32df7bf72e7b73a02e52c9e983b0dd738f7bc9e9823c55fd",
@@ -140123,8 +140226,8 @@
         "bytes": 445
       },
       "文档/逆向台账/contracts/reliability-050-verification.json": {
-        "sha256": "9f33b4dc3ba6630ea29a4e741ccc7774dece779f33fa63aeb8aa5c250a14e1d9",
-        "bytes": 8080
+        "sha256": "bc7f06e4e59c27bf236b684aa40a7ca9a24eba3b8491fa29032f1bd4126687da",
+        "bytes": 8684
       },
       "apps/api/job-queue.ts": {
         "sha256": "823bcbbbf6b79ddea7961896901d73da2f13ff280446f565c55906cfec6f7603",
@@ -140373,6 +140476,46 @@
       ".data/research/lawbot-2026-10-15/iteration050/final-pin-transition.json": {
         "sha256": "8afdb48615a0bf31d3e4f1299a0d34ca7776f86041342f0da11d4ab44259a5dc",
         "bytes": 5942
+      },
+      "文档/发布记录-20261015-050.md": {
+        "sha256": "bc8ab04c6ecddbaabe7a1444eb7829e462a51a7b5ae48212e1da8ce3803e54d8",
+        "bytes": 2299
+      },
+      "文档/逆向台账/contracts/aliyun-release050-verification-20261015.md": {
+        "sha256": "10814e90aaaf1cf900e76c0fc9fdd12e2501d9f9390dfb97b51e9921aef7df3a",
+        "bytes": 2218
+      },
+      ".data/research/lawbot-2026-10-15/iteration050/publish-pin-transition.json": {
+        "sha256": "3fd066a080412dd620633483c273ca4157842724b273056e31ea02737dafc21c",
+        "bytes": 1893
+      },
+      ".data/deploy/aliyun-20261015/iteration050/release/manifest.json": {
+        "sha256": "141e8e8d042952f85008ba6d97a9a202adacb77f565a3c00caf9f073a81ab283",
+        "bytes": 63662
+      },
+      ".data/deploy/aliyun-20261015/iteration050/deploy.log": {
+        "sha256": "f6b50bdf2e45d8d1a5b44cf602779cb8133c0f9f950827023c6dde50abf8562c",
+        "bytes": 4505
+      },
+      ".data/deploy/aliyun-20261015/iteration050/online-readonly-proof.json": {
+        "sha256": "9ca99cbdf09cf5a97b12021f331a9a87d9d27809a27f51a8a5e9970ae5a375b6",
+        "bytes": 999
+      },
+      ".data/deploy/aliyun-20261015/iteration050/server-readback/release-readback.json": {
+        "sha256": "aa97cdeed5fbec6e158b5c670aae69322eaf2e709cc5cda4416164e2fcbab16d",
+        "bytes": 342
+      },
+      ".data/deploy/aliyun-20261015/iteration050/server-readback/worker-ready.json": {
+        "sha256": "7ec92b89716955f8d174f7553061880e7e22f8f6110c9fb486fed3a43da4d285",
+        "bytes": 295
+      },
+      ".data/deploy/aliyun-20261015/iteration050/server-readback/neighbors.before.json": {
+        "sha256": "c6f494e766e6d9940e9926e5a12661ad64d7692e49ec3eda5dd7ef25a82dddf0",
+        "bytes": 1024
+      },
+      ".data/deploy/aliyun-20261015/iteration050/server-readback/neighbors.after.json": {
+        "sha256": "c6f494e766e6d9940e9926e5a12661ad64d7692e49ec3eda5dd7ef25a82dddf0",
+        "bytes": 1024
       }
     },
     "unavailable_historical_screenshots": [
