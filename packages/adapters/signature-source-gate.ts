@@ -7,6 +7,7 @@ import {effectiveSignatureGroups} from '../core/signature-group-policy.ts';
 import {processingDocument} from '../core/document-format.ts';
 import {rulesetMaterialRoute} from '../core/document-route.ts';
 import {assertSignatureGroups} from '../core/review-groups.ts';
+import {MARKDOWN_PARSE_VERSION} from '../core/reference-markdown.ts';
 const supported=new Set<SourceFormat>(['csv','docx','xlsx','md']);
 const fail=():never=>{throw Object.assign(new Error('SIGNATURE_GROUP_RECOGNITION_REQUIRED'),{statusCode:409});};
 export function assertStoredSignatureGroups(expected:readonly Mark[],actual:readonly Mark[]):void{
@@ -23,6 +24,7 @@ export function assertStoredSignatureGroups(expected:readonly Mark[],actual:read
  * Historical signed downloads are verified on their own immutable snapshot. */
 export async function assertTrustedSignatureGroups(d:any):Promise<void>{
  const projected=processingDocument(d);if(!supported.has(projected.source_format as SourceFormat))return;
+ if(projected.source_format==='md'&&d.parse_version!==MARKDOWN_PARSE_VERSION)throw Object.assign(new Error('MARKDOWN_RECOGNITION_REQUIRED'),{statusCode:409});
  const bytes=await verifiedDocumentSource(d),aad=`${d.tenant_id}:${d.project_id}:${d.id}`;
  const text=unseal(d.content,aad);if(hash(text)!==d.content_hash)throw new Error('SOURCE_MISMATCH');
  const raw=(await documentTableMarks(bytes,text,d.anchors as Anchor[],projected.source_format as SourceFormat)).marks.filter(m=>m.signatureGroup);

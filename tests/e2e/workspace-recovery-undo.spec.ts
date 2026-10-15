@@ -1,0 +1,74 @@
+// Copy to tests/e2e/workspace-recovery-undo.spec.ts after SQL041/042 integration.
+// Real browser actions and API responses; no DOM or network mocks.
+import {test,expect} from './fixture.ts';
+import {randomUUID} from 'node:crypto';
+import {mkdir,writeFile} from 'node:fs/promises';
+import pg from 'pg';
+import {hash,unseal} from '../../packages/adapters/storage.ts';
+
+test('Undo back to saved review writes a second acknowledged draft before clean close',async({page})=>{
+ test.setTimeout(120000);
+ await page.setViewportSize({width:1440,height:1000});
+ const dialogs:string[]=[];page.on('dialog',dialog=>{dialogs.push(dialog.type());void dialog.dismiss();});
+ const projectName='恢复撤销-'+randomUUID().slice(0,8),source='联系 13800138000，合成测试原件';
+ const pathOf=(r:import('@playwright/test').Response)=>new URL(r.url()).pathname;
+ const isSave=(r:import('@playwright/test').Response)=>r.request().method()==='PUT'&&/\/api\/documents\/[a-f0-9-]+\/recovery$/u.test(pathOf(r));
+ const isWriter=(r:import('@playwright/test').Response,suffix='')=>r.request().method()==='POST'&&new RegExp(`/api/documents/[a-f0-9-]+/recovery/writer${suffix}$`,'u').test(pathOf(r));
+ await page.goto('/');
+ await page.getByLabel('账号',{exact:true}).fill(process.env.E2E_USERNAME!);
+ await page.getByLabel('密码',{exact:true}).fill(process.env.E2E_PASSWORD!);
+ await page.getByRole('button',{name:'登录工作台'}).click();
+ await page.locator('.create-project summary').click();
+ await page.getByLabel('项目名称',{exact:true}).fill(projectName);
+ const projectResponse=page.waitForResponse(r=>r.request().method()==='POST'&&pathOf(r)==='/api/projects');
+ await page.getByRole('button',{name:'新建项目',exact:true}).click();
+ const projectId=(await(await projectResponse).json()).id as string;
+ await page.getByRole('button',{name:'导入材料',exact:true}).click();
+ await page.getByLabel('待处理文本',{exact:true}).fill(source);
+ const documentResponse=page.waitForResponse(r=>r.request().method()==='POST'&&pathOf(r)===`/api/projects/${projectId}/documents`);
+ await page.getByRole('button',{name:'提交并识别',exact:true}).click();
+ const documentId=(await(await documentResponse).json()).id as string;
+ await expect.poll(async()=>(await(await page.request.get(`/api/documents/${documentId}`)).json()).state,{timeout:45000}).toBe('review');
+ const original=(await(await page.request.get(`/api/documents/${documentId}`)).json());
+ const rawReview=async()=>{const db=new pg.Client({connectionString:process.env.MIGRATION_DATABASE_URL});await db.connect();try{return(await db.query('SELECT marks,revision,content,content_hash,source_id,source_hash,tenant_id FROM documents WHERE id=$1',[documentId])).rows[0];}finally{await db.end();}};
+ const rawBefore=await rawReview();
+ await page.getByRole('button',{name:'逐条复核',exact:true}).click();
+ const mark=page.getByLabel('标记 1 处理决定');await expect(mark).toBeVisible();
+ const claimed=page.waitForResponse(r=>isWriter(r));const firstSave=page.waitForResponse(isSave);
+ await mark.selectOption('redact');
+ expect((await claimed).status()).toBe(200);
+ const first=await firstSave;expect(first.status(),await first.text()).toBe(200);
+ expect((await first.json()).revision).toBe(1);
+ await expect(mark).toHaveValue('redact');
+ const undoSave=page.waitForResponse(isSave);
+ await page.getByRole('button',{name:'撤销修改'}).click();
+ const second=await undoSave;expect(second.status(),await second.text()).toBe(200);
+ expect((await second.json()).revision).toBe(2);
+ await expect(mark).toHaveValue(original.marks[0].decision);
+ const receipt=await(await page.request.get(`/api/documents/${documentId}/recovery`)).json();
+ expect(receipt.revision).toBe(2);
+ const opened=await page.request.post(`/api/documents/${documentId}/recovery/open`,{data:{recoveryRevision:2},headers:{origin:new URL(page.url()).origin}});
+ expect(opened.status(),await opened.text()).toBe(200);
+ const draft=(await opened.json()).draft;
+ expect(draft.revision).toBe(original.revision);
+ expect(draft.marks).toEqual(original.marks);
+ const close=page.waitForResponse(r=>isWriter(r,'/close'));
+ await expect(page.getByRole('button',{name:'结束自动保存会话'})).toBeEnabled();
+ await page.getByRole('button',{name:'结束自动保存会话'}).click();
+ const closed=await close;expect(closed.status(),await closed.text()).toBe(200);
+ const clean=await closed.json();expect(clean.clean).toBe(true);expect(clean.ackedRevision).toBe(2);expect(clean.ackedSequence).toBe(2);
+ const after=(await(await page.request.get(`/api/documents/${documentId}`)).json());
+ expect(after.revision).toBe(original.revision);expect(after.marks).toEqual(original.marks);
+ const rawAfter=await rawReview();expect(rawAfter).toEqual(rawBefore);
+ expect(rawAfter.content_hash).toBe(hash(source));expect(hash(unseal(rawAfter.content,`${rawAfter.tenant_id}:${projectId}:${documentId}`))).toBe(rawAfter.content_hash);
+ const db=new pg.Client({connectionString:process.env.MIGRATION_DATABASE_URL});await db.connect();
+ try{
+  const writer=(await db.query('SELECT clean_at,acked_recovery_revision,acked_sequence FROM workspace_recovery_writers WHERE document_id=$1',[documentId])).rows[0];
+  expect(writer.clean_at).not.toBeNull();expect(writer.acked_recovery_revision).toBe(2);expect(Number(writer.acked_sequence)).toBe(2);
+ }finally{await db.end();}
+ const listed=await page.request.get('/api/workspace/recoveries');expect(listed.status()).toBe(200);
+ expect((await listed.json()).some((r:{documentId:string;revision:number})=>r.documentId===documentId&&r.revision===2)).toBe(true);
+ expect(dialogs).toEqual([]);
+ const folder='.data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/e2e';
+ await mkdir(folder,{recursive:true});await writeFile(`${folder}/writer-undo-${randomUUID()}.png`,await page.screenshot({fullPage:true}));
+});

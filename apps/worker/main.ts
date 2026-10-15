@@ -1,3 +1,6 @@
+import {hash} from "../../packages/adapters/storage.ts";
+import {verifiedDocumentSource} from "../../packages/adapters/document-source.ts";
+import {loadPdfOcrCheckpointPages,pdfOcrRotationPlanHash,pdfOcrParserFingerprint,savePdfOcrCheckpoint,type PdfOcrBinding} from "../../packages/adapters/pdf-ocr-checkpoints.ts";
 import {cleanupWorkspaceImports} from '../../packages/adapters/workspace-import.ts';
 import{hydrateEntityCorrections}from '../../packages/adapters/entity-corrections.ts';
 import{semanticEntityValue}from '../../packages/core/entity-corrections.ts';
@@ -86,7 +89,14 @@ async function processNext(signal?: AbortSignal, releaseHeavy = async () => {}) 
     if (job.kind === "export") {
       [snapshot] = await scope(db => rows(db, sql`SELECT * FROM review_snapshots WHERE document_id=${doc.id} AND revision=${job.revision}`));
     }
-    const result = await runProcessing<any>({ kind: job.kind, doc, snapshot }, { signal: controller.signal, heavySlotHeld: true, onEvent: envelope=>scope(db=>appendProcessingEvent(db,{job:job.id,generation:job.generation,tenant:doc.tenant_id,project:doc.project_id,user:job.user_id,document:doc.id,revision:job.revision,sourceHash:doc.source_hash,contentHash:doc.content_hash},envelope)).then(()=>{}),readRuntimeRules:job.kind==='detect'?()=>scope(db=>closeAndDrainAutomaticRuntimeRules(db,runtimeBinding)):undefined });
+    let pdfOcrBinding:PdfOcrBinding|undefined;
+    let pdfOcrCheckpointPages;
+    if(job.kind==='detect'&&doc.source_format==='pdf'&&doc.source_id){
+      const processingHash=hash(await verifiedDocumentSource(doc)),rotationPlanHash=pdfOcrRotationPlanHash(doc),parserFingerprint=await pdfOcrParserFingerprint();
+      pdfOcrBinding={jobId:job.id,generation:job.generation,tenantId:doc.tenant_id,projectId:doc.project_id,userId:job.user_id,documentId:doc.id,revision:job.revision,sourceHash:doc.source_hash,contentHash:doc.content_hash,processingHash,rotationPlanHash,parserFingerprint,parseVersion:doc.parse_version};
+      pdfOcrCheckpointPages=await scope(db=>loadPdfOcrCheckpointPages(db,doc,processingHash,rotationPlanHash,pdfOcrBinding));
+    }
+    const result = await runProcessing<any>({ kind: job.kind, doc, snapshot, pdfOcrCheckpointPages }, { signal: controller.signal, heavySlotHeld: true, onCheckpoint:pdfOcrBinding?(frame)=>scope(db=>savePdfOcrCheckpoint(db,pdfOcrBinding!,frame)):undefined, onEvent: envelope=>scope(db=>appendProcessingEvent(db,{job:job.id,generation:job.generation,tenant:doc.tenant_id,project:doc.project_id,user:job.user_id,document:doc.id,revision:job.revision,sourceHash:doc.source_hash,contentHash:doc.content_hash},envelope)).then(()=>{}),readRuntimeRules:job.kind==='detect'?()=>scope(db=>closeAndDrainAutomaticRuntimeRules(db,runtimeBinding)):undefined });
     // CPU worker is already terminated. Publish success only after releasing the processing slot.
     await releaseHeavy();
     const artifact = result.artifact as { id: string; hash: string; format?: string } | undefined;
@@ -139,7 +149,7 @@ async function processNext(signal?: AbortSignal, releaseHeavy = async () => {}) 
     const known = [
       ...FILE_ERRORS,
       "STALE_VERSION",
-      "LEASE_LOST", "PROCESSING_EVENT_WRITE_FAILED",
+      "LEASE_LOST", "PROCESSING_EVENT_WRITE_FAILED", "PDF_OCR_CHECKPOINT_WRITE_FAILED", "PDF_OCR_CHECKPOINT_STALE",
       "PERMISSION_REVOKED",
       "INVALID_MARKS", "SIGNATURE_GROUP_INVALID", "SIGNATURE_GROUP_RECOGNITION_REQUIRED", "SIGNATURE_GROUP_RULE_CONFLICT",
       "OVERLAPPING_MARKS",

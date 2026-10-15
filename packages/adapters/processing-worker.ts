@@ -31,6 +31,7 @@ import { checkKnownEntities, previewText, searchText } from "../core/review-tool
 import { validateMappingMarks } from "../core/mappings.ts";
 import { parseOffice, exportOffice, verifyOffice } from "../core/office.ts";
 import { parsePages } from "./page-parser.ts";
+import type {PdfOcrCheckpoint} from "./pdf-ocr-checkpoints.ts";
 import { exportPages, validatePageExport } from "./page-export.ts";
 import { parseOfficeImages, officeImagePlan, exportOfficeImages } from "./office-images.ts";
 import { PAGED_FORMATS, validatePageReview, pageBoxes, clearPixels } from "../core/page-redaction.ts";
@@ -187,7 +188,7 @@ async function execute(input: ProcessingInput): Promise<any> {
         anchors = d.anchors; coverage = d.coverage; pages = d.page_data;
         for (const page of pages) if (hash(await readArtifact(page.mapId)) !== page.mapHash || hash(await readOriginal(page.previewId)) !== page.previewHash) throw new Error("SOURCE_MISMATCH");
       } else {
-      const paged = d.source_format === "docx" ? await parseOfficeImages(bytes,pageProcessed) : ["pdf", "png", "jpg", "jpeg"].includes(d.source_format) ? await parsePages(bytes, d.source_format,pageProcessed,{rotations:d.source_format==="pdf"?readPageRotationState(d).rotations:undefined,manualOnlyPages:d.source_format==="pdf"?readPageRotationState(d).manualOnlyPages:undefined}) : undefined;
+      const paged = d.source_format === "docx" ? await parseOfficeImages(bytes,pageProcessed) : ["pdf", "png", "jpg", "jpeg"].includes(d.source_format) ? await parsePages(bytes, d.source_format,pageProcessed,{rotations:d.source_format==="pdf"?readPageRotationState(d).rotations:undefined,manualOnlyPages:d.source_format==="pdf"?readPageRotationState(d).manualOnlyPages:undefined,cachedPages:d.source_format==="pdf"?input.pdfOcrCheckpointPages:undefined,onCheckpoint:d.source_format==="pdf"?(frame:PdfOcrCheckpoint)=>parentPort!.postMessage({type:"pdf-ocr-checkpoint",frame}):undefined}) : undefined;
       const parsed = paged ?? (office ? await parseOffice(bytes, d.source_format) : parseFile(bytes, d.source_format,{fileName:d.source_name?unseal(d.source_name,`${aad}:name`):undefined}));
       text = parsed.text; anchors = parsed.anchors; coverage = parsed.coverage;
       if("markdown" in parsed)markdown=parsed.markdown as ReferenceMarkdown|undefined;

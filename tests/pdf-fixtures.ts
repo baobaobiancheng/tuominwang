@@ -1,5 +1,5 @@
 // Minimal, deterministic, public synthetic PDFs; no private source documents.
-export function pdfFixture(options: { pages?: number; text?: string; rotation?: number; author?: string } = {}) {
+export function pdfFixture(options: { pages?: number; text?: string; rotation?: number; author?: string; x?: number; y?: number } = {}) {
   const count = options.pages ?? 1;
   const quote = (value: string) => value.replaceAll("\\", "\\\\").replaceAll("(", "\\(").replaceAll(")", "\\)");
   const objects = ["<< /Type /Catalog /Pages 2 0 R >>", "", "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>", `<< /Author (${quote(options.author ?? "public fixture")}) >>`];
@@ -7,7 +7,7 @@ export function pdfFixture(options: { pages?: number; text?: string; rotation?: 
   for (let page = 0; page < count; page++) {
     const pageId = objects.length + 1, streamId = pageId + 1;
     kids.push(`${pageId} 0 R`);
-    const content = `BT /F1 20 Tf 40 720 Td (${quote(options.text ?? "Phone 13800138000 - public synthetic sample")}) Tj ET`;
+    const content = `BT /F1 20 Tf ${options.x ?? 40} ${options.y ?? 720} Td (${quote(options.text ?? "Phone 13800138000 - public synthetic sample")}) Tj ET`;
     objects.push(`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Rotate ${options.rotation ?? 0} /Resources << /Font << /F1 3 0 R >> >> /Contents ${streamId} 0 R >>`);
     objects.push(`<< /Length ${Buffer.byteLength(content)} >>\nstream\n${content}\nendstream`);
   }

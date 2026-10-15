@@ -1,5 +1,5 @@
 {
-  "ledger_sha256": "fb27cee88b55034455efbd3e798fe126e1ce7c9ee6491ab2c49d1a21d70fd39c",
+  "ledger_sha256": "be1cf3cf84604c554763848d9b561555b92bae3eb14c1f424bf32aae8093a08b",
   "reference_version": "0.5.9",
   "interface_count": 258,
   "flow_count": 37,
@@ -7,10 +7,10 @@
   "historical_ipc_missing": [],
   "unmapped_interfaces": [],
   "empty_evidence_interfaces": [],
-  "evidence_reference_count": 4774,
-  "evidence_file_count": 3219,
-  "evidence_baseline_at": "2026-10-15T17:23:48.473197+00:00",
-  "evidence_baseline_note": "这些哈希是2026-10-13本轮从当前现存文件建立的内容基线，只用于此后漂移检测；不能反向证明基线建立前的文件内容、原始发布完整性或过去运行结论。专有源码未修改。 ITER-012/013追加人工契约、交叉审查、新版指南及明确列举的子路径源码；旧文件哈希继续保留。已批准源码和主分析文档的哈希变更逐项记录previous/current，不扫描部署凭据。 ITER-014仅显式更新最终应用Compose及新增部署结果文件，保留真实OOM与未验证边界，未纳入密钥或环境凭据。 ITER-015仅补115项UI入口、两处动态桥调用集合、交叉审查/核验脚本及新增OpenJPEG发布证据；保留此前应用和部署文件的哈希，正在进行的前端修复漂移由后续迭代单独复核。 ITER-016：仅将本轮明确修改的前端/测试/部署/文档及验收回执更新基线，事件保存旧新哈希；无业务材料或凭据入账。 ITER-017新增分组/增补契约、交叉审查及npm原生签名差异证据；仅maintain新增71解释及维护规则旧动态数量文案的历史hash显式更新。未纳入凭据、未改竞品文件或应用。下载tarball及原生比较的逐项SHA保存在专项报告，不自动扩大成算法可信声明。 ITER-020：补我方Word结构预览、页内OCR改字、视觉候选的实现/验收与规则交接；显式更新5项应用pin，previous/current与原ledger备份保留；早期UI/26例与旧交接独审仅为历史阶段，不代表最终功能或最终文档全部被独审。竞品S2/R0、全部I级别不变，未据本地验证声明公网发布。 ITER-022显式更新进度检查点应用pin；main87基线原字节和旧新hash逐项保留，新能力未一律提级，未发布服务。 ITER-023仅显式进度检查点，28项原pin旧字节归档；有失败日志和新阶段未完成事项，未整体升格。 ITER-030显式逐ID更新，所有漂移旧字节保留并精确验hash；竞品运行R0保持不变。 ITER-031发布及真实OOM影响补证；README和指南文本旧字节精确保留；7张历史截图原字节缺失明确列出，旧hash保留且不声称历史图全部可验证。 ITER038静态语义逐ID合并；旧漂移逐一有精确字节归档，未覆盖掉历史证据。 ITER039握手故障独立复现；变更旧字节逐一验hash并归档，未以定向通过推全量或发布。 ITER040保留全部旧pin字节；逐ID/流程说明CAS更正，等级不变；实际门禁与服务器发布分别记录。 ITER040补5个已存在的新引用当前哈希；不反推其建立基线前内容。新增Edge截图调用保留此前精确字节，尚未运行。 ITER041逐文件真实variant与前后testSHA/logSHA固定；历史结果不冒称当前单次全量。两项测试修正保留旧字节及独立源裁定。 ITER042：首轮真实Edge失败原样保留；18项新旧字节逐一固定，4项产品修复待重新运行，等级不变。 ITER043最终本地：所有旧pin精确字节均找到并归档；API/Edge逐variant保留，无单次全量虚称；13条备注校准不改等级，图文实际核对；部署另证。 ITER044上线：首次真实OOM/回滚与恢复、二次发布、TXT/PNG实产物、指南补丁分别保留；无新增资源限制或模型读取改动；证据变更先核旧字节，S/I/R不变。 ITER-050首次检查点新增审查和实际反例，不变更已有pin及S/I/R，修复与发布尚待。 ITER-050终版：明确更新14路径及文档pin，旧字节按SHA归档；保留失败/跳过/反驳与最终同源层次。258R0及S/I不升级；未把本地验收写为已发布。 ITER-050发布：4文档旧字节先归档，追加最小部署与公网只读证据，保留历史状态而不升级S/I/R。 ITER-051反例检查点：状态文件旧字节先归档；固定已结束实测而不固定仍运行日志；不升级S/I/R。 ITER-051第一批：旧源码Git7ef93d6精确字节归档后显式转移pin；772单元及Edge2为第一批实测，签名/进度/MCP后续未验，竞品R0/线上050记录保持。 051第二批本地checkpoint：显式pin转换及事前旧字节归档；777完整单元、定向API/Edge与跨组反驳；95文件API仍执行、活动日志不pin、未部署。",
+  "evidence_reference_count": 4789,
+  "evidence_file_count": 3344,
+  "evidence_baseline_at": "2026-10-15T18:52:41.462497+00:00",
+  "evidence_baseline_note": "这些哈希是2026-10-13本轮从当前现存文件建立的内容基线，只用于此后漂移检测；不能反向证明基线建立前的文件内容、原始发布完整性或过去运行结论。专有源码未修改。 ITER-012/013追加人工契约、交叉审查、新版指南及明确列举的子路径源码；旧文件哈希继续保留。已批准源码和主分析文档的哈希变更逐项记录previous/current，不扫描部署凭据。 ITER-014仅显式更新最终应用Compose及新增部署结果文件，保留真实OOM与未验证边界，未纳入密钥或环境凭据。 ITER-015仅补115项UI入口、两处动态桥调用集合、交叉审查/核验脚本及新增OpenJPEG发布证据；保留此前应用和部署文件的哈希，正在进行的前端修复漂移由后续迭代单独复核。 ITER-016：仅将本轮明确修改的前端/测试/部署/文档及验收回执更新基线，事件保存旧新哈希；无业务材料或凭据入账。 ITER-017新增分组/增补契约、交叉审查及npm原生签名差异证据；仅maintain新增71解释及维护规则旧动态数量文案的历史hash显式更新。未纳入凭据、未改竞品文件或应用。下载tarball及原生比较的逐项SHA保存在专项报告，不自动扩大成算法可信声明。 ITER-020：补我方Word结构预览、页内OCR改字、视觉候选的实现/验收与规则交接；显式更新5项应用pin，previous/current与原ledger备份保留；早期UI/26例与旧交接独审仅为历史阶段，不代表最终功能或最终文档全部被独审。竞品S2/R0、全部I级别不变，未据本地验证声明公网发布。 ITER-022显式更新进度检查点应用pin；main87基线原字节和旧新hash逐项保留，新能力未一律提级，未发布服务。 ITER-023仅显式进度检查点，28项原pin旧字节归档；有失败日志和新阶段未完成事项，未整体升格。 ITER-030显式逐ID更新，所有漂移旧字节保留并精确验hash；竞品运行R0保持不变。 ITER-031发布及真实OOM影响补证；README和指南文本旧字节精确保留；7张历史截图原字节缺失明确列出，旧hash保留且不声称历史图全部可验证。 ITER038静态语义逐ID合并；旧漂移逐一有精确字节归档，未覆盖掉历史证据。 ITER039握手故障独立复现；变更旧字节逐一验hash并归档，未以定向通过推全量或发布。 ITER040保留全部旧pin字节；逐ID/流程说明CAS更正，等级不变；实际门禁与服务器发布分别记录。 ITER040补5个已存在的新引用当前哈希；不反推其建立基线前内容。新增Edge截图调用保留此前精确字节，尚未运行。 ITER041逐文件真实variant与前后testSHA/logSHA固定；历史结果不冒称当前单次全量。两项测试修正保留旧字节及独立源裁定。 ITER042：首轮真实Edge失败原样保留；18项新旧字节逐一固定，4项产品修复待重新运行，等级不变。 ITER043最终本地：所有旧pin精确字节均找到并归档；API/Edge逐variant保留，无单次全量虚称；13条备注校准不改等级，图文实际核对；部署另证。 ITER044上线：首次真实OOM/回滚与恢复、二次发布、TXT/PNG实产物、指南补丁分别保留；无新增资源限制或模型读取改动；证据变更先核旧字节，S/I/R不变。 ITER-050首次检查点新增审查和实际反例，不变更已有pin及S/I/R，修复与发布尚待。 ITER-050终版：明确更新14路径及文档pin，旧字节按SHA归档；保留失败/跳过/反驳与最终同源层次。258R0及S/I不升级；未把本地验收写为已发布。 ITER-050发布：4文档旧字节先归档，追加最小部署与公网只读证据，保留历史状态而不升级S/I/R。 ITER-051反例检查点：状态文件旧字节先归档；固定已结束实测而不固定仍运行日志；不升级S/I/R。 ITER-051第一批：旧源码Git7ef93d6精确字节归档后显式转移pin；772单元及Edge2为第一批实测，签名/进度/MCP后续未验，竞品R0/线上050记录保持。 051第二批本地checkpoint：显式pin转换及事前旧字节归档；777完整单元、定向API/Edge与跨组反驳；95文件API仍执行、活动日志不pin、未部署。 051第三批本地checkpoint：显式旧pin归档转换，851完整check、分层API/Edge、27图；104全API仍执行，未部署，S/I/R不升。",
   "evidence_files": {
     ".data/deploy/aliyun-20261013/before/api-main.ts": {
       "sha256": "407f5d0b16b0a03b7d4d43db9a72b692e2b0d671262907793ade5838f559a016",
@@ -6317,6 +6317,11 @@
       "bytes": 445,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-15/iteration051/ai-result-archive-before.json": {
+      "sha256": "0a9eb9e2194df22894ebaefb9a6b9e47233ff69f503afd698668349b379c5708",
+      "bytes": 1392,
+      "matches_baseline": true
+    },
     ".data/research/lawbot-2026-10-15/iteration051/api-generated-checkpoint-manifest.json": {
       "sha256": "ab83826fa71661ec6e261359096877f365aebe134b154272f75a7d8d38fe8518",
       "bytes": 165,
@@ -7227,6 +7232,31 @@
       "bytes": 747,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-15/iteration051/archive-edge-terminal-receipt.json": {
+      "sha256": "1fdee4182425ac91eaf0aa4d5cbee08c5fe2309ea9e3b29804f783b298d2cfef",
+      "bytes": 564,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/archive-formal-before-catch-guard.json": {
+      "sha256": "3e707867de6da4451eec929c34a9da2919f2a5139e159d4d48f55f3d759c2bea",
+      "bytes": 426,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/archive-merged-typecheck.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/archive-v2-formal-api.log": {
+      "sha256": "7aae1f65180110c5162ad65684f9ceca44fc3398e1950d60f05ca5e02575ff46",
+      "bytes": 516,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/archive-v2-formal-edge-attempt01.log": {
+      "sha256": "4ed4f6e7c630686433742a29020d50af7cfa2134b2943cdee693556091ffefa7",
+      "bytes": 2027,
+      "matches_baseline": true
+    },
     ".data/research/lawbot-2026-10-15/iteration051/base-check-inputs.json": {
       "sha256": "6c3330345ee95e46ffd77618137c8772a2c28fc46b04f54d4ec78a9d71eee182",
       "bytes": 124459,
@@ -7252,9 +7282,94 @@
       "bytes": 2642,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-15/iteration051/before-ai-result-archive-v2/apps/web/ai-collab.tsx": {
+      "sha256": "cde5c9ed9241e20c82bafcb1a5e345e0c5faaa365d158528aced538158547c77",
+      "bytes": 11068,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-contract-recovery-fixes/apps/api/mcp.ts": {
+      "sha256": "4b8c5f740962c8cef269e21319369be6349065312e821fe27c76878a41c3d8c5",
+      "bytes": 64333,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-contract-recovery-fixes/apps/web/feedback.tsx": {
+      "sha256": "dfdfc053f07237e307f8384a130506b9deb4bf5125f3ce361f44e10ab8132fed",
+      "bytes": 12232,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-contract-recovery-fixes/apps/web/main.tsx": {
+      "sha256": "c38fd8328dce9ed3297880aa3068e7ac2c17d6e134f7d5c4c3439366d9809d45",
+      "bytes": 97397,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-contract-recovery-fixes/packages/adapters/signature-source-gate.ts": {
+      "sha256": "682f77cf5d78e9a3918ca780312606f29ee1201a2f0b9bc055f9865d2dc1eb0d",
+      "bytes": 2455,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-contract-recovery-fixes/tests/reference-markdown.integration.ts": {
+      "sha256": "865b172dba9000a7ebd681138ea2d68d753fbf449a74af226985ea8b6eb7774c",
+      "bytes": 13268,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-contract-recovery-fixes/文档/待办与完成状态-20261015.md": {
+      "sha256": "0cd6e5ea595f52309dedcad57cfa7b9a162f466ff7d5cf0eb7c94b49b9397cf3",
+      "bytes": 15952,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-mcp-irreversible-v3.ts": {
+      "sha256": "1c2ef953439c59e6ddcf525f0c658febd812a4141be3b6a7e64f3f5e28b4d537",
+      "bytes": 65703,
+      "matches_baseline": true
+    },
     ".data/research/lawbot-2026-10-15/iteration051/before-mcp-selection/apps/api/mcp.ts": {
       "sha256": "f03490b0131b8da5eba269ad5ec412d4ca9c22f69b0bb4f8b64906841148b726",
       "bytes": 63722,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-mcp-standalone-v4.ts": {
+      "sha256": "ce0dbfc4e388c96f7bf9082a62e7eb62d9df81737e634dd0c3fe434356808537",
+      "bytes": 68470,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-recovery-checkpoint-integration/apps/api/workspace-recovery.ts": {
+      "sha256": "7bfd189f4e393fc5965fadb8cb8bc9f528b0c4b908fbaf2c78a04fd6d7539d62",
+      "bytes": 6875,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-recovery-checkpoint-integration/apps/web/workspace-recovery.tsx": {
+      "sha256": "11da150dc69301a788e0e39fc2f0b820778e21d663c96e402c1f5026e674ce43",
+      "bytes": 5921,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-recovery-checkpoint-integration/apps/worker/main.ts": {
+      "sha256": "bef834140a60388e0b0cadf5d173cb1e3b9c9839599594a60f292fcfc612494c",
+      "bytes": 13892,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-recovery-checkpoint-integration/packages/adapters/page-parser.ts": {
+      "sha256": "52576b38035e217e19c326f6743dfc6769c02238b515c25b4db229350377e0e6",
+      "bytes": 6304,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-recovery-checkpoint-integration/packages/adapters/processing-worker.ts": {
+      "sha256": "9d214c9a818756cd6297d6264dbdfd218dedf3032662a27053bd07cc6ac645e3",
+      "bytes": 28390,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-recovery-checkpoint-integration/packages/adapters/processing.ts": {
+      "sha256": "11a81bb5ddf80e9c2ae6348798b5c76e2a95fad9a93cddc0315c9af44933b759",
+      "bytes": 8634,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-recovery-checkpoint-integration/scripts/migrate.ts": {
+      "sha256": "909d077f59b3b53a7a0a06f6e3ae70252272a17e844d351b471fbdd187fffac6",
+      "bytes": 1577,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-recovery-checkpoint-integration/tests/pdf-fixtures.ts": {
+      "sha256": "254456aecb75f535feefe78293b5c48978c930ffd68db3ce4378df4b15a41ac7",
+      "bytes": 1693,
       "matches_baseline": true
     },
     ".data/research/lawbot-2026-10-15/iteration051/before-signature-integration/apps/api/job-queue.ts": {
@@ -7352,6 +7467,31 @@
       "bytes": 6863,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-15/iteration051/before-thirdbatch-guide/文档/使用指南/README.md": {
+      "sha256": "6da62aa5d3aaf30590e732b813eee869d1e03312a5597a67e2ad211c081b8ca3",
+      "bytes": 1506,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-thirdbatch-guide/文档/使用指南/公开功能补齐操作-20261015.html": {
+      "sha256": "2de092ffa32c773a00f348454e009d901b026e308ebdbbf081043e1bcb69e777",
+      "bytes": 38544,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-thirdbatch-guide/文档/使用指南/公开功能补齐操作-20261015.md": {
+      "sha256": "cc7ad678eee688c4fe61814f0902463b5c88fe623d0a959180b7cfd282cb9808",
+      "bytes": 27793,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-thirdbatch-guide/文档/脱敏规则完整技术交接-迭代023.md": {
+      "sha256": "4de3f325fbdaca1739c637b296d08276edf9cbe3a0baa089f52bd9d050349856",
+      "bytes": 363996,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/contract-recovery-fixes-before.json": {
+      "sha256": "27888b9a80b5fd0850c289094e91bfe6bb1d106fd60a2967b24784137bc9bb27",
+      "bytes": 2479,
+      "matches_baseline": true
+    },
     ".data/research/lawbot-2026-10-15/iteration051/docs-before-base-integration/status.md": {
       "sha256": "6cbb975504942fb10bd543b815dbaa2e9e246a03b6c45bff1c68a1bb64859ef9",
       "bytes": 14300,
@@ -7440,6 +7580,11 @@
     ".data/research/lawbot-2026-10-15/iteration051/encoding-source-matrix.json": {
       "sha256": "cb9ab4cc19c32da0296a7d44b26ec11c93615053ee8164807847a2cbfd819675",
       "bytes": 11361,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/feedback-after-module-rename.log": {
+      "sha256": "f0725d6af7ef30483cec7a04398f2328c5d39ee082e43d9cf05f8b478fa4b1b4",
+      "bytes": 2027,
       "matches_baseline": true
     },
     ".data/research/lawbot-2026-10-15/iteration051/files-formal-api.log": {
@@ -7577,6 +7722,21 @@
       "bytes": 4062,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-15/iteration051/full-api-final-planned-files-e3f.json": {
+      "sha256": "f9caeefe7be381432b2688e88378879136da9bf01e2b450a1ea17c0bcb9d6dbb",
+      "bytes": 4244,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/full-api-final-receipt.json": {
+      "sha256": "7c76a983bfbedf591aedcfe85045fb0dbffecad2a45eaa457f55b8111222a07c",
+      "bytes": 582,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/full-api-final.log": {
+      "sha256": "c099d49baec21083254b75d241664a789db32ec38581b5d546de67fe7b08644a",
+      "bytes": 38249,
+      "matches_baseline": true
+    },
     ".data/research/lawbot-2026-10-15/iteration051/full-api-first-receipt.json": {
       "sha256": "8df8f5e24bb1231e111a6212c79fb07bb4d249ed0b4412b173b65df656ad0110",
       "bytes": 513,
@@ -7592,6 +7752,16 @@
       "bytes": 11141,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-15/iteration051/guide-archive-image-provenance-051.json": {
+      "sha256": "312949e5677c154e3338c4816a07e64560b04436058d2da59d217e530dd584ea",
+      "bytes": 467,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/guide-archive-thirdbatch.png": {
+      "sha256": "d5636da83d0db5f64dab611be61f792989d09dd99c2a957163c470832a0327aa",
+      "bytes": 192324,
+      "matches_baseline": true
+    },
     ".data/research/lawbot-2026-10-15/iteration051/guide-browser-check.log": {
       "sha256": "33b710c482437963da4c624a004d0102ee37908333811996f3db9310c29bfc51",
       "bytes": 83,
@@ -7599,6 +7769,11 @@
     },
     ".data/research/lawbot-2026-10-15/iteration051/guide-browser-proof-051.json": {
       "sha256": "be6f9319f77d87148ecdbc6c83433e15acc370d2345bdaeb33910edf71b4bdd1",
+      "bytes": 246,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/guide-browser-proof-thirdbatch.json": {
+      "sha256": "6a8ea3ad67ef78fb00cded6fece6fef87bd7fe899437a1207816e07e51d0bc85",
       "bytes": 246,
       "matches_baseline": true
     },
@@ -7612,9 +7787,24 @@
       "bytes": 1671,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-15/iteration051/guide-recovery-image-provenance-051.json": {
+      "sha256": "42a6345ccaccd3d36c3c861d20cc23e1ec50f4bcc966cfed88487971837dcced",
+      "bytes": 980,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/guide-recovery-thirdbatch.png": {
+      "sha256": "0d76b2bb23343cb592d6d09fb0eed8770bfae9e840d67837bf8854ba1f175786",
+      "bytes": 228156,
+      "matches_baseline": true
+    },
     ".data/research/lawbot-2026-10-15/iteration051/guide-signatures-051.png": {
       "sha256": "faf54efee38de5eabe172996bc6221395e50b6cfed49f239c98fc3d3dcc6695c",
       "bytes": 178613,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/guide-thirdbatch-check.log": {
+      "sha256": "73271064b42ab44e62c6117882701053f9f01ca25f550db431ed2170bd916a87",
+      "bytes": 83,
       "matches_baseline": true
     },
     ".data/research/lawbot-2026-10-15/iteration051/local-health-restored.json": {
@@ -7692,6 +7882,31 @@
       "bytes": 1563,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-15/iteration051/mcp-before-parse-catch-review-guard.ts": {
+      "sha256": "b4c4eab438afb2109a551c9a37d6fa0ec79871b2b74457d10057fab971301db5",
+      "bytes": 73397,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/mcp-capabilities-formal-attempt01.log": {
+      "sha256": "2395e08c76c64adb060efcee87d1f9bc59afafd477b61809b13d43b2e049a3fd",
+      "bytes": 247,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/mcp-complete-matrix-thirdbatch-formal.log": {
+      "sha256": "8c16a95b9d2acc2364859f5c29c1cc68cd2e1140151ba5629931e236796f78b4",
+      "bytes": 5354,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/mcp-irreversible-v3-formal.log": {
+      "sha256": "e25bc70eece3063a1c2aa8f3bb2b815fa388e219bc848a734bb9b949e8f43e8f",
+      "bytes": 357,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/mcp-matrix-thirdbatch-failure-runtime.json": {
+      "sha256": "2410c257ce31630d09373279319de460e190a61bad57077f9981e6cf2ec1584f",
+      "bytes": 26526,
+      "matches_baseline": true
+    },
     ".data/research/lawbot-2026-10-15/iteration051/mcp-pin-before.json": {
       "sha256": "f04e8e561c9bcf393f72dcec4b549d572c2683de892ae0f90563def7caabf5e0",
       "bytes": 253,
@@ -7707,6 +7922,11 @@
       "bytes": 1264,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-15/iteration051/mcp-resume-selection-thirdbatch-formal.log": {
+      "sha256": "13a0044c57d38724c88864593712196668cb62611b302d9e7436afdefc7990fa",
+      "bytes": 554,
+      "matches_baseline": true
+    },
     ".data/research/lawbot-2026-10-15/iteration051/mcp-selection-harness-attempt01.log": {
       "sha256": "f5c1eebc7ffec7a20113437a217d3777c419367b0b2ee5c5a2cf251b1911185d",
       "bytes": 1264,
@@ -7715,6 +7935,21 @@
     ".data/research/lawbot-2026-10-15/iteration051/mcp-selection-harness-attempt01.ts": {
       "sha256": "77fdb5721ff9b926201168956c220cfe5b7e323455fb2993e70d7bca75e23806",
       "bytes": 13434,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/mcp-thirdbatch-formal-attempt02.log": {
+      "sha256": "bc293303f7f0606efcda2f6c35239820a5f4980347ab155355c2b768920974a1",
+      "bytes": 295,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/mcp-thirdbatch-formal.log": {
+      "sha256": "9f1e40d60b29ddd8fd8d6e00f44b511157a4fc423bebcc31f74cca2c0222d674",
+      "bytes": 1195,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/mcp-v4-archive-v2-merged.ts": {
+      "sha256": "b4c4eab438afb2109a551c9a37d6fa0ec79871b2b74457d10057fab971301db5",
+      "bytes": 73397,
       "matches_baseline": true
     },
     ".data/research/lawbot-2026-10-15/iteration051/office-before-image-source-fix.ts": {
@@ -7742,6 +7977,41 @@
       "bytes": 164,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-15/iteration051/pdf-ocr-checkpoint-formal-attempt01.log": {
+      "sha256": "ef0320f00f50de6bd483125e7103e678cdc6bc8866735e11e44b47c62f56e2e5",
+      "bytes": 1057,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/pdf-ocr-resume-thirdbatch-formal.log": {
+      "sha256": "b7d1324e86fca911e81c1f5c8d4035fffd0c146a24705e7e7a1ab972633764a2",
+      "bytes": 233,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/recovery-integration-before.json": {
+      "sha256": "a4bd1586a403762836c068d610c8247875066e7abb344b2244bd97e527d982e6",
+      "bytes": 3335,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/recovery-merged-edge.log": {
+      "sha256": "60737929bfff2a29fd1f71605d984b2af6807dc506775002ff5507152edb7b12",
+      "bytes": 2994,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/recovery-merged-typecheck.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/recovery-undo-formal-edge.log": {
+      "sha256": "4b05a675365b4f0548d72ed8c26528d39d4cf4df1b5e4d7deff3598705b9e5c5",
+      "bytes": 2222,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/reference-markdown-fixed-attempt02.log": {
+      "sha256": "6330bad3cf97220ee0019d72aaf4f0cc411b0d97d517cb39732b18cdaa188985",
+      "bytes": 847,
+      "matches_baseline": true
+    },
     ".data/research/lawbot-2026-10-15/iteration051/remaining-api-receipt.json": {
       "sha256": "faf170cf3e78e3d8d8544d0fd5b8757eb664956ef8894be71bff0e09f55c3406",
       "bytes": 529,
@@ -7750,6 +8020,166 @@
     ".data/research/lawbot-2026-10-15/iteration051/remaining-api.log": {
       "sha256": "08d772129e800d39b94f52e6e5becb67bbcb2f73d281de64f4e837227c100408",
       "bytes": 33510,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/all-148-consolidated-baseline.json": {
+      "sha256": "216989f07df69a75acbe260730a8fbc1c54aaac9accd2c13568e8fbb6ccb4186",
+      "bytes": 254183,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/arch/ai-result-archive-v2-manifest.json": {
+      "sha256": "d223629b0d805445f2f71ac9fa7311ecca47b3c263fea7102f2086721704b23b",
+      "bytes": 1119,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/arch/ai-result-archive-v2-report.md": {
+      "sha256": "a85f256ace53d92177ea60f020fb30db3bebb33c407708d161df60a63a9fdce3",
+      "bytes": 2963,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/arch/ai-result-archive-v2.patch": {
+      "sha256": "8ef9d121975cb60a723d53d39cabeb066cd37a7563e01c598626bf49015853e5",
+      "bytes": 57411,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/arch/archive-formal-merge-readonly-review.md": {
+      "sha256": "4e3e38c8ccb0ea667db3e5f05e64301a0985b858e93f8e181b894273ccb986bc",
+      "bytes": 1601,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/arch/archive-parse-catch-review-guard-report.md": {
+      "sha256": "6da5c552485624307429da179ba3684f4bc27017752d7f8959937313ea72dfe9",
+      "bytes": 2156,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/arch/archive-parse-catch-review-guard.patch": {
+      "sha256": "4e1bf6a20ce87fc71d850521820338257680c91653c05e0495516b89fecc8424",
+      "bytes": 2566,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/arch/archive-revoke-race-formal-after.log": {
+      "sha256": "ae34bdf07efab6c69597de359f7ebae291b3bd57efbdfe1e3040dee8c8a9c92e",
+      "bytes": 482,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/arch/archive-revoke-race-formal-before.log": {
+      "sha256": "be013b0db120fde038c01b2bffa76bd3d89634f5407cfa44047dac0bb5bd1d69",
+      "bytes": 479,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/arch/archive-test-attempt09.log": {
+      "sha256": "db19c6956f1cfc96a0aafb0b1c3eee0579b28045db32fdca32ea76faff8fc35a",
+      "bytes": 517,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/arch/pdf-ocr-fingerprint-source-manifest.json": {
+      "sha256": "0bab432f57f080795820bc0eebe5343b70380280e9b92c9b08b44ac0967a32fa",
+      "bytes": 4102,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/arch/recovery-checkpoint-candidate-v2.patch": {
+      "sha256": "1b82ba0adce851e7369894444de8ad2f0670e54268322bcae3adfedc0a791aac",
+      "bytes": 58152,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/arch/recovery-checkpoint-v2-report.md": {
+      "sha256": "459102bf3f36ef202291d98569632c1187f43f6f6630ff24e1638748ee1e387a",
+      "bytes": 4070,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/arch/remaining-contract-audit.json": {
+      "sha256": "31e960b7c88d8b22d93c9da9551ebeb93fe1ad10398d9c6b541d81753e960d99",
+      "bytes": 59779,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/arch/task-storage-repair-cloud-design.md": {
+      "sha256": "c021d4aaf7302f06a4df8bf5a65d22e411433ac0ada5a2e41e59635da36f4ba9",
+      "bytes": 4139,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/ai-result-archive-v2-cross-review.md": {
+      "sha256": "2d1749724dadecae8168b47065b7a11e0f97be17600d4af0b43c8fd3e50757ac",
+      "bytes": 4057,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/archive-edge-exit-readonly-review.md": {
+      "sha256": "032715db03ef2619d1b526744c246eafaa08473db6aa6f4162ec6b39d2a60fbf",
+      "bytes": 3843,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/frontend-52-audit.json": {
+      "sha256": "a0c5d7b44bc3c91debe530d8cfcdb0f267a045077c784de38c6209a6fcad1e35",
+      "bytes": 73482,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/frontend-52-audit.md": {
+      "sha256": "c32a31bd5ff3dfd11f3636a310bb3085f04713e8f0db518647b6919c7f5cc142",
+      "bytes": 2771,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/guide-23-24-readonly-review.md": {
+      "sha256": "cd3c8902f3659e6ddd4933b22830364e8d0df10786b3160c0e6fc19ebbedae63",
+      "bytes": 2933,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/mcp-irreversible-v3-cross-review.md": {
+      "sha256": "fa0f7360db1eefa8853ffdf5c55ce867d7f04f7c58af089162a813ed479754f9",
+      "bytes": 3279,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/recovery-edge-run-QHN6Uk/manifest-final.json": {
+      "sha256": "2298e9e249027e5a7f53dbf304cc79950cfc5f5cc569a735ce2ee780d9d4d9f9",
+      "bytes": 5482,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/recovery-edge-run-QHN6Uk/manifest-history-note.md": {
+      "sha256": "24c446f895e6588c7ef907ffb2ac9065fc0ae54717e5f4d0dd35e7cb400e8983",
+      "bytes": 690,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/recovery-undo-candidate-review.md": {
+      "sha256": "f950e71d5e49b1bca430f8b74bedfc2bc030f0784f1d5e8bd08f015be11e474a",
+      "bytes": 3028,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/recovery-undo-candidate.patch": {
+      "sha256": "c1f712bb679ac08eb82f64c7fa27693e4f83f828077244318d9f3a961e33cd94",
+      "bytes": 50375,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules-sol051-20261016/audit.json": {
+      "sha256": "59d9d573d99e3ff376e7309cb82ab05e85f1bdd988daa37700a8f08b48f6247e",
+      "bytes": 75807,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/mcp-irreversible-v3/REVIEW.md": {
+      "sha256": "b04beb0a9031d3e2f8ba2299402d75586490cf3d9bc0926832d16cd2422797dd",
+      "bytes": 4075,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/mcp-irreversible-v3/mcp-irreversible-v3.patch": {
+      "sha256": "7d439256b40b14fd704da229d0d0cc81f10f1b51d8eee475bfd1f28b3dff5600",
+      "bytes": 17456,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/mcp-irreversible-v4/REVIEW.md": {
+      "sha256": "3a73c2a16bfc93d90fc3759401342761c40ce4e79437dda40f74c92ef4ec7cae",
+      "bytes": 2364,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/mcp-irreversible-v4/mcp-standalone-v4.patch": {
+      "sha256": "0a306e7694990fe08b4204eaf8064752dc6e8b3ec1b915c5827d1175fb6bcd6b",
+      "bytes": 2138,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/purple-overlay-attempt02.log": {
+      "sha256": "299a6212a8f4296b49edf1dd259ae1997e4c7f08b1cf6e7a8d07fa53b10f3bf9",
+      "bytes": 1145,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/rules/purple-overlay/REVIEW.md": {
+      "sha256": "1bc4d0c6575d56f6f45a573e5552d9ff3d46a2299b6e9c42fa94e97337166a83",
+      "bytes": 2540,
       "matches_baseline": true
     },
     ".data/research/lawbot-2026-10-15/iteration051/root-import/api-probe-ordinary-v4.json": {
@@ -7825,6 +8255,16 @@
     ".data/research/lawbot-2026-10-15/iteration051/secondbatch-pin-transition.json": {
       "sha256": "12088f693a35f91dbbb09aa7d1300febb74555612b16e3cd092556b4a20336b4",
       "bytes": 13457,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/server-pre-thirdbatch-health.json": {
+      "sha256": "fffa56fb7db7e40cf405cca86a1d895d0a693572d63529146f0358a539af8560",
+      "bytes": 103,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/server-pre-thirdbatch.txt": {
+      "sha256": "66597ef90cc1e04573f3a3392432ead7807a37005e2b77b7d7b2b3a9093c7961",
+      "bytes": 836,
       "matches_baseline": true
     },
     ".data/research/lawbot-2026-10-15/iteration051/signature-api-attempt01.ts": {
@@ -7962,6 +8402,66 @@
       "bytes": 6516,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-15/iteration051/tail-after-markdown-inputs.json": {
+      "sha256": "d1644914d37b9d3dbc7b04482281745af632bb33111632af42548d66cbd7b0be",
+      "bytes": 140457,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/tail-after-markdown-receipt.json": {
+      "sha256": "5e7a9305285e0d343280479873d420836f48577daca32ff48d9b142dbb71f2c4",
+      "bytes": 603,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/tail-after-markdown.log": {
+      "sha256": "103a27d3dbecea1e9163696c8e001b214f266645bae1d372b6026a0c6af4fe31",
+      "bytes": 15793,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/thirdbatch-final-check-receipt.json": {
+      "sha256": "f21ece753d8979b695c8df18caf6bc0fd7c974ee7acba33817f450b1db528d98",
+      "bytes": 513,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/thirdbatch-final-check.log": {
+      "sha256": "6c4b1d4576ada6578b6b867d50c70a808fe096476015113f7fbc17e8589a8818",
+      "bytes": 1855,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/thirdbatch-final-inputs.json": {
+      "sha256": "269527846239a6d34d018c52665e6eef7ae77e0334cef3bca87fa77db7c26638",
+      "bytes": 143518,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/thirdbatch-focused-terminal-receipts.json": {
+      "sha256": "c102f3306ea9b7ca3b452fa7c30862149ac556c0cb540daec06465f8a4de094e",
+      "bytes": 2400,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/thirdbatch-guide-before.json": {
+      "sha256": "045db3639580fe3884d87f870669616f5b53668f22cf3adc84ba3851c3275e02",
+      "bytes": 1669,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/thirdbatch-pin-transition.json": {
+      "sha256": "3e8dc88efdafa1cfe1497f5c7865c9e657693e399457fa6bf17a65bbe273eea7",
+      "bytes": 10286,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/thirdbatch-small-check-receipt.json": {
+      "sha256": "9cfaee853118b9b22933ba53644eb1a6b635a64c2c5e3fc3b5f6f8989d4076ae",
+      "bytes": 396,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/thirdbatch-small-check.log": {
+      "sha256": "62c28673529088b5110d1aaf1079ad08f5b993c7119dfb0d9971d4d1853a18f4",
+      "bytes": 1855,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/thirdbatch-small-inputs.json": {
+      "sha256": "32f441b4b1696c6eff8ff662858e83670e2d411de49440830ed4cf77bd67815b",
+      "bytes": 140775,
+      "matches_baseline": true
+    },
     ".data/research/lawbot-2026-10-15/iteration051/visual-interface-formal-api.log": {
       "sha256": "d1d45ba39ca997cb1144271cebace72e4691a142889ca9cfb79e0620aa3571da",
       "bytes": 1188,
@@ -7970,6 +8470,11 @@
     ".data/research/lawbot-2026-10-15/iteration051/workspace-import-formal-api.log": {
       "sha256": "fbe7ca27b722ee11ab422eb540a79184201e8385736c8c113a8f6074fad69a66",
       "bytes": 1164,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/workspace-prompts-formal-attempt01.log": {
+      "sha256": "708aedd842788e802bda37158de5c2c2bddb0d0718bcdb7859e019265d3689cb",
+      "bytes": 449,
       "matches_baseline": true
     },
     ".dockerignore": {
@@ -8123,8 +8628,8 @@
       "matches_baseline": true
     },
     "apps/api/mcp.ts": {
-      "sha256": "4b8c5f740962c8cef269e21319369be6349065312e821fe27c76878a41c3d8c5",
-      "bytes": 64333,
+      "sha256": "bb9d7ef2584ab37e7033fdd54ad8f666a4c1d83289b7207a16de7bd23045984a",
+      "bytes": 73500,
       "matches_baseline": true
     },
     "apps/api/members.ts": {
@@ -8278,8 +8783,8 @@
       "matches_baseline": true
     },
     "apps/api/workspace-recovery.ts": {
-      "sha256": "7bfd189f4e393fc5965fadb8cb8bc9f528b0c4b908fbaf2c78a04fd6d7539d62",
-      "bytes": 6875,
+      "sha256": "20a865d84445a1cc16da304b846040f9cd05ee0410706d5d8c46dcf70ef9e019",
+      "bytes": 14815,
       "matches_baseline": true
     },
     "apps/api/workspace-saves.ts": {
@@ -8288,8 +8793,8 @@
       "matches_baseline": true
     },
     "apps/web/ai-collab.tsx": {
-      "sha256": "cde5c9ed9241e20c82bafcb1a5e345e0c5faaa365d158528aced538158547c77",
-      "bytes": 11068,
+      "sha256": "7899aba2b1aa071459396517215a642b4d459408e2342a0192038607aeb27569",
+      "bytes": 13046,
       "matches_baseline": true
     },
     "apps/web/automatic-runtime-rules.ts": {
@@ -8403,13 +8908,18 @@
       "matches_baseline": true
     },
     "apps/web/feedback.tsx": {
-      "sha256": "dfdfc053f07237e307f8384a130506b9deb4bf5125f3ce361f44e10ab8132fed",
-      "bytes": 12232,
+      "sha256": "e6f6bde2326c9cea66336f3b3b3d2fec9fe7b8bca3c94762a10a331e37a0c59c",
+      "bytes": 12381,
       "matches_baseline": true
     },
     "apps/web/folder-output.tsx": {
       "sha256": "aed5a3be30119a2f9c5e00770418e8e66a2bfb772fa064b87862ee33047c7e99",
       "bytes": 4719,
+      "matches_baseline": true
+    },
+    "apps/web/http-client.ts": {
+      "sha256": "e82be249a561a5ee0d57071396a2403cd9460890e20ba3cdd9212c7fea1539fd",
+      "bytes": 1748,
       "matches_baseline": true
     },
     "apps/web/image-batch-search.tsx": {
@@ -8428,8 +8938,8 @@
       "matches_baseline": true
     },
     "apps/web/main.tsx": {
-      "sha256": "c38fd8328dce9ed3297880aa3068e7ac2c17d6e134f7d5c4c3439366d9809d45",
-      "bytes": 97397,
+      "sha256": "b5a4e19025b300986ae4da801205750f948333ed63ac62e8186e83667c5a671b",
+      "bytes": 97660,
       "matches_baseline": true
     },
     "apps/web/manual-occurrences.tsx": {
@@ -8663,13 +9173,13 @@
       "matches_baseline": true
     },
     "apps/web/workspace-recovery.tsx": {
-      "sha256": "11da150dc69301a788e0e39fc2f0b820778e21d663c96e402c1f5026e674ce43",
-      "bytes": 5921,
+      "sha256": "499926ec2020c1cec853b8eadb40f77fef118f98a5caf5f24a0ade7ebe857544",
+      "bytes": 14466,
       "matches_baseline": true
     },
     "apps/worker/main.ts": {
-      "sha256": "bef834140a60388e0b0cadf5d173cb1e3b9c9839599594a60f292fcfc612494c",
-      "bytes": 13892,
+      "sha256": "af765ce1a1f7cf7ce5626ea339a4abd8dc333b4d9574de0380cad6da8d4f1702",
+      "bytes": 15149,
       "matches_baseline": true
     },
     "apps/worker/package.json": {
@@ -8800,6 +9310,11 @@
     "package.json": {
       "sha256": "521413e09d74b900115a378668ee846732eabfa72463b40e5c81b40c84db20f1",
       "bytes": 2534,
+      "matches_baseline": true
+    },
+    "packages/adapters/ai-result-archive.ts": {
+      "sha256": "aa97808233a8b1a5a6bcc08e8596bc28882755737deb056209229519257ce934",
+      "bytes": 4208,
       "matches_baseline": true
     },
     "packages/adapters/alias-groups.ts": {
@@ -8963,8 +9478,8 @@
       "matches_baseline": true
     },
     "packages/adapters/page-parser.ts": {
-      "sha256": "52576b38035e217e19c326f6743dfc6769c02238b515c25b4db229350377e0e6",
-      "bytes": 6304,
+      "sha256": "6d033016822df6f10eeaed2dc86d574056d4f75b25683a82d5bdddcf1f8c4ed4",
+      "bytes": 7779,
       "matches_baseline": true
     },
     "packages/adapters/page-review-migration.ts": {
@@ -8985,6 +9500,11 @@
     "packages/adapters/page-rotation.ts": {
       "sha256": "3791eebd8b79cbe81e111433bc1f40d327d11606763c20b1d2f673008a46b472",
       "bytes": 10962,
+      "matches_baseline": true
+    },
+    "packages/adapters/pdf-ocr-checkpoints.ts": {
+      "sha256": "17475e3224dc427ee3ac738513706d11e097ca0269baeae882fc725612ef655d",
+      "bytes": 11694,
       "matches_baseline": true
     },
     "packages/adapters/portable-draft.ts": {
@@ -9013,13 +9533,13 @@
       "matches_baseline": true
     },
     "packages/adapters/processing-worker.ts": {
-      "sha256": "9d214c9a818756cd6297d6264dbdfd218dedf3032662a27053bd07cc6ac645e3",
-      "bytes": 28390,
+      "sha256": "40393b081e7715aba49781a5278df147d32775fdba9dd825b7a1786641d7c986",
+      "bytes": 28660,
       "matches_baseline": true
     },
     "packages/adapters/processing.ts": {
-      "sha256": "11a81bb5ddf80e9c2ae6348798b5c76e2a95fad9a93cddc0315c9af44933b759",
-      "bytes": 8634,
+      "sha256": "19bf4821799890ad9fe573c090addb80a92c93efed904b7545c73a17c219ba7f",
+      "bytes": 9098,
       "matches_baseline": true
     },
     "packages/adapters/profile-export.ts": {
@@ -9098,8 +9618,8 @@
       "matches_baseline": true
     },
     "packages/adapters/signature-source-gate.ts": {
-      "sha256": "682f77cf5d78e9a3918ca780312606f29ee1201a2f0b9bc055f9865d2dc1eb0d",
-      "bytes": 2455,
+      "sha256": "98080721780a5216fe9282d30d75d2baa26fa9706f8c242356aba3f50d5d0ce8",
+      "bytes": 2684,
       "matches_baseline": true
     },
     "packages/adapters/storage.ts": {
@@ -10087,6 +10607,21 @@
       "bytes": 3161,
       "matches_baseline": true
     },
+    "scripts/041.sql": {
+      "sha256": "082311672c983e6e4d0932050c0a52b85ab08839e741c4ca1bbdbfaf74fbecfc",
+      "bytes": 6351,
+      "matches_baseline": true
+    },
+    "scripts/042.sql": {
+      "sha256": "232f7cff1a00e8365b8f394d43473b005b7c29d7ec5660ddaa1b7665014660b7",
+      "bytes": 1829,
+      "matches_baseline": true
+    },
+    "scripts/043.sql": {
+      "sha256": "50420197d67ac480505f0dcb2e61c1ba18122df3ae59f427091771a4c9370eae",
+      "bytes": 1944,
+      "matches_baseline": true
+    },
     "scripts/admin.ts": {
       "sha256": "32cbcc90a31f7cb59be8b45de64ccf5979b08bbe8f1505388c67fb57ae20cb3f",
       "bytes": 1702,
@@ -10263,8 +10798,8 @@
       "matches_baseline": true
     },
     "scripts/migrate.ts": {
-      "sha256": "909d077f59b3b53a7a0a06f6e3ae70252272a17e844d351b471fbdd187fffac6",
-      "bytes": 1577,
+      "sha256": "513263534b4190e5055275409565f0e855e5b423b70623b26b3ad3b80c429f34",
+      "bytes": 1598,
       "matches_baseline": true
     },
     "scripts/ner-models.ts": {
@@ -10387,6 +10922,11 @@
       "bytes": 10115,
       "matches_baseline": true
     },
+    "tests/api-request.test.ts": {
+      "sha256": "aa6ce03cea61579feeeca87bc7566bed0b117628eb6ede5f4f7b3f2544eb3b27",
+      "bytes": 2732,
+      "matches_baseline": true
+    },
     "tests/automatic-runtime-rules.integration.ts": {
       "sha256": "1135f85b034f058277dcf93810cc457b4c8ed3f61a7d98364d531c4836b99e28",
       "bytes": 15460,
@@ -10502,6 +11042,11 @@
       "bytes": 4839,
       "matches_baseline": true
     },
+    "tests/e2e/ai-archive-error-recovery.spec.ts": {
+      "sha256": "b5b1cc0e287161ab307e66895178a826a5339c7185a9c12c4e27ef6d02221a7e",
+      "bytes": 10749,
+      "matches_baseline": true
+    },
     "tests/e2e/batch-review.spec.ts": {
       "sha256": "e92af469118720dd5e36349ec1af65220cdaf443d130423e275b6d9f2e34e3c2",
       "bytes": 4552,
@@ -10555,6 +11100,11 @@
     "tests/e2e/export-policy.spec.ts": {
       "sha256": "1a46f2296d002a5dc9aff4c0e79cf1d18efb42e61e62d3a6b29c1aa4a832a8fb",
       "bytes": 3737,
+      "matches_baseline": true
+    },
+    "tests/e2e/feedback-async-recovery.spec.ts": {
+      "sha256": "7b6a356f9203ad65dc3defe963264c4e148d46515e91dce45ac1c90334653a5d",
+      "bytes": 5222,
       "matches_baseline": true
     },
     "tests/e2e/files.spec.ts": {
@@ -10730,6 +11280,16 @@
     "tests/e2e/workbench.spec.ts": {
       "sha256": "e5e90f73a10421e0b720a986748b97195abc6fa631db47e5c2abaf455cddb0ae",
       "bytes": 4459,
+      "matches_baseline": true
+    },
+    "tests/e2e/workspace-recovery-undo.spec.ts": {
+      "sha256": "86b710a99a28adfe6e2a8750405a28f33fcfb332abbccc01ce364175952f1dbc",
+      "bytes": 5891,
+      "matches_baseline": true
+    },
+    "tests/e2e/workspace-recovery-writer.spec.ts": {
+      "sha256": "622af4a7c4ccc4b63c59a004b18646a00c6382f80fbbc5b97bd369aae6672eff",
+      "bytes": 6868,
       "matches_baseline": true
     },
     "tests/entity-corrections-review.integration.ts": {
@@ -11317,9 +11877,24 @@
       "bytes": 1080,
       "matches_baseline": true
     },
+    "tests/mcp-archive-revoke-race.integration.ts": {
+      "sha256": "8408d3a13efa2d002fa3723e4c60c507ed8b8f83f9b78df0f0735582f4927b26",
+      "bytes": 8710,
+      "matches_baseline": true
+    },
+    "tests/mcp-capabilities-contract.integration.ts": {
+      "sha256": "e8a1f0ca46c947003e2a0bdb78383a930eda4907faa07c8ec0a75b81b3bd58d9",
+      "bytes": 9412,
+      "matches_baseline": true
+    },
     "tests/mcp-complete-matrix.integration.ts": {
       "sha256": "5b38d7df0b4ab5c1d210316d2f80b9adbb6ae582d3e6b1cd183d32c143508ebe",
       "bytes": 17823,
+      "matches_baseline": true
+    },
+    "tests/mcp-irreversible-mask.integration.ts": {
+      "sha256": "a36a58ec7b619dd6dfc869948055999559e8711ccd1c71d6e13f30550f899191",
+      "bytes": 15830,
       "matches_baseline": true
     },
     "tests/mcp-profile-recovery.integration.ts": {
@@ -11327,14 +11902,29 @@
       "bytes": 7157,
       "matches_baseline": true
     },
+    "tests/mcp-purple-overlay.integration.ts": {
+      "sha256": "c109ed783f361b87f491383368c9cf9801b8f3f5ec34f2aca85ebaeab14c8632",
+      "bytes": 7952,
+      "matches_baseline": true
+    },
     "tests/mcp-queue-atomicity.integration.ts": {
       "sha256": "df5c7e69dfb7b07df4600cb6eb998102ad2cf83ef2ab5a2cd27b9fc9aeb8af4b",
       "bytes": 20147,
       "matches_baseline": true
     },
+    "tests/mcp-result-archive.integration.ts": {
+      "sha256": "9912b13b666d70e6247dfc9353752aa30d12d76611f8820efbcd9e7a782daffd",
+      "bytes": 20548,
+      "matches_baseline": true
+    },
     "tests/mcp-resume-selection.integration.ts": {
       "sha256": "5cb5b512c6075e3b372c28fb0d2e0cf2f93b1ec4107d2e1385bfe453521fc3bb",
       "bytes": 13439,
+      "matches_baseline": true
+    },
+    "tests/mcp-standalone-mode.integration.ts": {
+      "sha256": "bc0f5db069bbd1371d44c29a2794afd6103be510c5b60cfd227098b869a9ce20",
+      "bytes": 5739,
       "matches_baseline": true
     },
     "tests/mcp-tools.test.ts": {
@@ -11458,8 +12048,18 @@
       "matches_baseline": true
     },
     "tests/pdf-fixtures.ts": {
-      "sha256": "254456aecb75f535feefe78293b5c48978c930ffd68db3ce4378df4b15a41ac7",
-      "bytes": 1693,
+      "sha256": "17759e80da755961848855c68cbdfcf15250fe3bda46095d61e54ddd5513900c",
+      "bytes": 1749,
+      "matches_baseline": true
+    },
+    "tests/pdf-ocr-checkpoint.integration.ts": {
+      "sha256": "9350a47d3373879f234e96bb4a1373c18b844793ac10ad855361a45decec7c69",
+      "bytes": 12865,
+      "matches_baseline": true
+    },
+    "tests/pdf-ocr-resume.integration.ts": {
+      "sha256": "9cf36c07c936ae4b9de09a026803124623f012064605afd8ab0029d4a4a37059",
+      "bytes": 4440,
       "matches_baseline": true
     },
     "tests/pdf-text-origin.test.ts": {
@@ -11673,8 +12273,8 @@
       "matches_baseline": true
     },
     "tests/reference-markdown.integration.ts": {
-      "sha256": "865b172dba9000a7ebd681138ea2d68d753fbf449a74af226985ea8b6eb7774c",
-      "bytes": 13268,
+      "sha256": "cead8b947c19c24af7486d271e74728efd7d31d7255b44e8fa749a585d5852fe",
+      "bytes": 13894,
       "matches_baseline": true
     },
     "tests/reference-markdown.test.ts": {
@@ -12122,6 +12722,11 @@
       "bytes": 7387,
       "matches_baseline": true
     },
+    "tests/workspace-recovery-prompts.integration.ts": {
+      "sha256": "5f6931c5705f1237b2690ff514f7b7770668861d57a27693da61ff5955b3e8aa",
+      "bytes": 15596,
+      "matches_baseline": true
+    },
     "tests/workspace-renderer-source.test.ts": {
       "sha256": "3443ad056128e25bed96929c09aa2dc1e4845592308702b97e48a6d10341f48f",
       "bytes": 8355,
@@ -12163,8 +12768,8 @@
       "matches_baseline": true
     },
     "文档/使用指南/README.md": {
-      "sha256": "6da62aa5d3aaf30590e732b813eee869d1e03312a5597a67e2ad211c081b8ca3",
-      "bytes": 1506,
+      "sha256": "a631beb2eea7547fc6ff80832d93bfc78eca50f2e8c3b08ca7e6a17748e8eaf6",
+      "bytes": 1878,
       "matches_baseline": true
     },
     "文档/使用指南/build-result.json": {
@@ -12188,13 +12793,13 @@
       "matches_baseline": true
     },
     "文档/使用指南/公开功能补齐操作-20261015.html": {
-      "sha256": "2de092ffa32c773a00f348454e009d901b026e308ebdbbf081043e1bcb69e777",
-      "bytes": 38544,
+      "sha256": "cd33971497dfdfb5d72090f0160eecc3ff8adfbf9f2d3b3c9fd35274288b46e8",
+      "bytes": 42063,
       "matches_baseline": true
     },
     "文档/使用指南/公开功能补齐操作-20261015.md": {
-      "sha256": "cc7ad678eee688c4fe61814f0902463b5c88fe623d0a959180b7cfd282cb9808",
-      "bytes": 27793,
+      "sha256": "2e4c2bd3eafb306e2b4f77f313cc1a3c7f6936d846f12160ac4088ccc6eb1c31",
+      "bytes": 31808,
       "matches_baseline": true
     },
     "文档/使用指南/功能核对清单.md": {
@@ -12210,6 +12815,11 @@
     "文档/使用指南/导出核验.json": {
       "sha256": "400f26ce609e62dbe3209d05de16d84baab4b20d7a73ae1e087cce37d97bc3f8",
       "bytes": 17986,
+      "matches_baseline": true
+    },
+    "文档/使用指南/截图-20261015/AI返回稿归档-051.png": {
+      "sha256": "3e9317975387475f2393e249fcbff1c62a420934056a918f2e970242fd95b3d9",
+      "bytes": 35412,
       "matches_baseline": true
     },
     "文档/使用指南/截图-20261015/MCP接续确认客户端-050.png": {
@@ -12277,6 +12887,11 @@
       "bytes": 164308,
       "matches_baseline": true
     },
+    "文档/使用指南/截图-20261015/复核草稿自动保存-051.png": {
+      "sha256": "e3aaaf9aab641b3360192cfa1ac783463ee5e76139122f30ee1bb5ac95a1f36e",
+      "bytes": 175624,
+      "matches_baseline": true
+    },
     "文档/使用指南/截图-20261015/外部未匹配标签提示.png": {
       "sha256": "d8d3792a94f9874444ac7ed1e3c79b5a1726ec00408b0724c105719089b8430e",
       "bytes": 86176,
@@ -12295,6 +12910,11 @@
     "文档/使用指南/截图-20261015/批量还原结果-050.png": {
       "sha256": "e332fbf780657522bef1f7d09559055b31533ca683d9c730be4b136ce07f4e3c",
       "bytes": 93558,
+      "matches_baseline": true
+    },
+    "文档/使用指南/截图-20261015/撤销后草稿关闭确认-051.png": {
+      "sha256": "e964956798cb1fa7c0a316b4f3de5bcbdf2bf8cddafa526d4f99001e674c187b",
+      "bytes": 184228,
       "matches_baseline": true
     },
     "文档/使用指南/截图-20261015/方案损坏提示.png": {
@@ -13483,8 +14103,8 @@
       "matches_baseline": true
     },
     "文档/待办与完成状态-20261015.md": {
-      "sha256": "0cd6e5ea595f52309dedcad57cfa7b9a162f466ff7d5cf0eb7c94b49b9397cf3",
-      "bytes": 15952,
+      "sha256": "9db9cf7250f1e00c0e13ad5b6bd2340e8cba20dedc21e5e718847d573a51ebb2",
+      "bytes": 18796,
       "matches_baseline": true
     },
     "文档/按钮确认交互修复与验收.md": {
@@ -13508,8 +14128,8 @@
       "matches_baseline": true
     },
     "文档/脱敏规则完整技术交接-迭代023.md": {
-      "sha256": "4de3f325fbdaca1739c637b296d08276edf9cbe3a0baa089f52bd9d050349856",
-      "bytes": 363996,
+      "sha256": "b084d0a62773e40270ba6a12216d2e0afad7c418632b4e3d961a140d3c44897c",
+      "bytes": 367838,
       "matches_baseline": true
     },
     "文档/脱敏规则技术交接-20261014.md": {
@@ -14665,6 +15285,11 @@
     "文档/逆向台账/contracts/reliability-051-secondbatch-verification.json": {
       "sha256": "ed4fd15ebd9b47f8f8085fbc7da278c16d90385ad419801dd577e917f9578420",
       "bytes": 1709,
+      "matches_baseline": true
+    },
+    "文档/逆向台账/contracts/reliability-051-thirdbatch-20261016.md": {
+      "sha256": "8c0ebbea6b6c069e010e884ed637c4b6aff0f171aea5be7c8b5164a003204a78",
+      "bytes": 6568,
       "matches_baseline": true
     },
     "文档/逆向台账/contracts/remaining-completion-20261015.json": {

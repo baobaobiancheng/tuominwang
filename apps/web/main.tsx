@@ -1,3 +1,4 @@
+import {createApiRequest} from './http-client.ts';
 import {restoreHiddenReviewEntities}from'../../packages/core/review-type-hide.ts';
 import {createReviewFeedbackDispatcher} from './review-feedback.ts';
 import {createAutomaticRuntimeRuleDispatcher} from './automatic-runtime-rules.ts';
@@ -115,6 +116,16 @@ const messages: Record<string, string> = {
   ENCRYPTED_OFFICE: "文件已加密，请输入文件密码解锁。",
   RECOVERY_OUTDATED: "草稿所属材料版本已变化，请使用当前材料重新复核。",
   RECOVERY_CONFLICT: "自动草稿已被其他窗口更新，请重新打开材料。",
+  RECOVERY_WRITER_CONFLICT: "这份草稿已由另一个窗口接管，请重新打开最新记录。",
+  RECOVERY_CLOSE_UNCONFIRMED: "自动保存会话尚未确认结束，请重新打开最新草稿。",
+  PDF_OCR_CHECKPOINT_STALE: "材料或识别任务已变化，请重新载入后继续。",
+  PDF_OCR_CHECKPOINT_WRITE_FAILED: "识别进度保存失败，请重新载入查看可恢复的页面。",
+  IRREVERSIBLE_MASK: "当前星号或遮盖无法还原，请使用假名模式，或选择不还原的任务。",
+  PARTIALLY_IRREVERSIBLE_MASK: "部分标记使用了不可还原的替换，请全部改为假名，或选择不还原的任务。",
+  CONFLICTING_PSEUDONYM_RULES: "假名规则与导出模式冲突，请调整后重试。",
+  REVIEW_MARKS_INVALID: "复核标记格式异常，请重新打开材料并检查。",
+  AI_RESULT_ARCHIVE_INVALID: "返回稿归档记录校验失败，请重新打开任务并检查。",
+  AI_RESULT_ARCHIVE_CONFLICT: "此轮已归档的返回稿与本次提交不一致，请保留原文件并核对名称和内容。",
   DOCUMENT_PASSWORD_INCORRECT: "文件密码不正确，请重新输入。",
   DOCUMENT_INTEGRITY_MISMATCH: "加密文件完整性核验失败，请核对原文件。",
   DOCUMENT_ENCRYPTION_UNSUPPORTED: "此文件加密方式暂不支持。",
@@ -193,29 +204,7 @@ const messages: Record<string, string> = {
   MAPPING_NOT_FOUND: '所选材料没有已确认的假名，请先复核并保存假名替换',
   CONFIG_MODE_CONFLICT: '当前替换模式与逐类规则不一致，请核对设置',
 };
-async function apiRequest<T>(
-  path: string,
-  method = "GET",
-  body?: unknown,
-  signal?: AbortSignal,
-): Promise<T> {
-  const r = await fetch(appUrl("/api" + path), {
-    method,
-    headers: body ? { "Content-Type": "application/json" } : undefined,
-    body: body ? JSON.stringify(body) : undefined,
-    signal,
-  });
-  const data = await r.json();
-  signal?.throwIfAborted();
-  if (r.status === 401) window.dispatchEvent(new Event("session-expired"));
-  if (!r.ok) {
-    const retryAfter = r.headers.get("Retry-After");
-    const seconds = retryAfter !== null && /^(?:0|[1-9]\d?)$/u.test(retryAfter) ? Number(retryAfter) : NaN;
-    const retryAfterMs = r.status === 429 && Number.isInteger(seconds) && seconds <= 60 ? (seconds + 1) * 1000 : undefined;
-    throw Object.assign(new Error(messages[data.error] ?? data.error), { code: data.error, status: r.status, retryAfterMs });
-  }
-  return data;
-}
+const apiRequest = createApiRequest(messages);
 function waitForRateWindow(ms: number, signal: AbortSignal): Promise<void> {
   return new Promise((resolve, reject) => {
     if (signal.aborted) { reject(signal.reason); return; }

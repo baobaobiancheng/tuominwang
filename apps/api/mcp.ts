@@ -15,11 +15,12 @@ import {MCP_PROTOCOL,taskStates,mcpDispatch,externalTask,cloudDocumentIds,newOpa
 import {parseOffice} from '../../packages/core/office.ts';
 import {parseRestorationMapping,restoreDocx,restoreMarkdown,inspectRestorationTokens,emittedRestorationTokens,type RestorationPlan} from '../../packages/core/restoration-files.ts';
 import {getPreset,getProfileCatalogue,getProjectPresetPolicy} from './presets.ts';
-import {defaultProfile} from '../../packages/core/presets.ts';
+import {defaultProfile,profileForFormat} from '../../packages/core/presets.ts';
 import type {Profile} from '../../packages/contracts/presets.ts';
 import {detectComplete} from '../../packages/core/recognition-pipeline.ts';
 import {queueExport,queueRecognition} from './job-queue.ts';
 import {preflightUnifiedAliasExport} from './unified-alias-export.ts';
+import {readAiResultArchive,listAiResultArchives,writeAiResultArchive,type AiResultArchiveMetadata,type AiResultArchiveScope} from '../../packages/adapters/ai-result-archive.ts';
 
 export type CollabConfigurationHook=(db:DB,req:FastifyRequest,documentId:string,settings:Record<string,any>)=>Promise<{revision:number}>;
 type PrivateTask=CollabTask&{recognitionJobIds?:string[];resolvedOutputs?:Record<string,string[]>;mapping?:RestorationPlan;combined?:{id:string;hash:string};pendingResume?:Caller;resumeState?:PrivateTask['state'];allowedTokens?:string[];mappingReferences?:Array<{id:string;token:string;version?:number}>};
@@ -48,8 +49,33 @@ function state(t:PrivateTask,states:string[]){if(!states.includes(t.state))fail(
 function canonical(value:any):string{return JSON.stringify(value&&typeof value==='object'?Array.isArray(value)?value.map(v=>JSON.parse(canonical(v))):Object.fromEntries(Object.keys(value).filter(k=>value[k]!==undefined).sort().map(k=>[k,JSON.parse(canonical(value[k]))])):value??null);}
 function normalizeToken(s:string){return s.replace(/[\s\u200b-\u200d\ufeff]/gu,'');}
 function config(t:PrivateTask,documentId:string){
- const o=t.options,per=(o.file_settings??[]).find((p:any)=>p.source_path===`document:${documentId}`)??{},a={...(o.advanced??{}),...(per.advanced??{})},mask=per.masking_mode??o.masking_mode??'pseudonym';
- return {documentType:per.document_type??o.document_type??'auto',profileId:a.profile,rulesetId:per.rule_set??o.rule_set,exportMode:a.exportMode??((o.use_profile_mode_default===true&&per.masking_mode===undefined&&!a.pseudonymRules?.length)?undefined:(a.pseudonymRules?.some((r:any)=>r.action==='mask')?'selective_pseudonym':a.pseudonymRules?.length?'custom_pseudonym':mask==='full_star'?'full_star':mask==='default_mask'?'default_star':'default_pseudonym')),entityTypes:a.entityTypes,pseudonymRules:a.pseudonymRules?Object.fromEntries(a.pseudonymRules.map((r:any)=>[r.entityType,r.action??'pseudonym'])):undefined,pseudonymPrefixes:a.pseudonymRules?Object.fromEntries(a.pseudonymRules.filter((r:any)=>r.prefix).map((r:any)=>[r.entityType,r.prefix])):undefined,maskStyle:a.maskStyle??(mask==='purple_overlay'?'purple':undefined),removeImages:a.removeImages,removeHeaderFooter:a.removeHeaderFooter,commentHandlingMode:a.commentHandlingMode,outputFormats:per.output_formats??o.output_formats??['original','md'],unifiedPseudonyms:o.unified_pseudonyms??true,batchResultMode:o.batch_result_mode??'individual'};
+ const o=t.options,per=(o.file_settings??[]).find((p:any)=>p.source_path===`document:${documentId}`)??{},local=per.advanced??{},a={...(o.advanced??{}),...local},mask=per.masking_mode??o.masking_mode??'pseudonym';
+ // Public optionsForSource clears inherited export mode and rules when a file selects its own mask.
+ if(per.masking_mode!==undefined&&local.exportMode===undefined){delete a.exportMode;if(local.pseudonymRules===undefined)delete a.pseudonymRules;}
+ if(local.pseudonymRules!==undefined&&local.exportMode===undefined)delete a.exportMode;
+ return {documentType:per.document_type??o.document_type??'auto',profileId:a.profile,rulesetId:per.rule_set??o.rule_set,exportMode:a.exportMode??((o.use_profile_mode_default===true&&per.masking_mode===undefined&&!a.pseudonymRules?.length)?undefined:(a.pseudonymRules?.some((r:any)=>r.action==='mask')?'selective_pseudonym':a.pseudonymRules?.length?'custom_pseudonym':mask==='full_star'?'full_star':mask==='default_mask'||mask==='purple_overlay'?'default_star':'default_pseudonym')),entityTypes:a.entityTypes,pseudonymRules:a.pseudonymRules?Object.fromEntries(a.pseudonymRules.map((r:any)=>[r.entityType,r.action??'pseudonym'])):undefined,pseudonymPrefixes:a.pseudonymRules?Object.fromEntries(a.pseudonymRules.filter((r:any)=>r.prefix).map((r:any)=>[r.entityType,r.prefix])):undefined,maskStyle:a.maskStyle??(mask==='purple_overlay'?'purple':undefined),removeImages:a.removeImages,removeHeaderFooter:a.removeHeaderFooter,commentHandlingMode:a.commentHandlingMode,outputFormats:per.output_formats??o.output_formats??['original','md'],unifiedPseudonyms:o.unified_pseudonyms??true,batchResultMode:o.batch_result_mode??'individual'};
+}
+function assertRestorable(t:PrivateTask,c:ReturnType<typeof config>,profile:Profile,format:string){
+ if(t.options.task_mode!=='ai_process_restore')return;
+ const mode=c.exportMode??profileForFormat(profile,format,true).defaultMode;
+ if(c.pseudonymRules&&Object.values(c.pseudonymRules).some(action=>action!=='pseudonym'))fail('PARTIALLY_IRREVERSIBLE_MASK',400);
+ // Family switches and force-detect rules can surface a type absent from the
+ // enabled list. A selective profile containing any non-alias action cannot
+ // promise complete restoration across all authorized source marks.
+ if(mode==='selective_pseudonym'&&!c.pseudonymRules&&Object.values(profile.pseudonymTypeActions).some(action=>action!=='pseudonym'))fail('PARTIALLY_IRREVERSIBLE_MASK',400);
+ if(!['default_pseudonym','custom_pseudonym','selective_pseudonym'].includes(mode))fail('IRREVERSIBLE_MASK',400);
+}
+function assertExplicitRestoreMode(input:Record<string,any>){
+ if(input.task_mode!=='ai_process_restore')return;
+ const rules=input.advanced?.pseudonymRules??[];
+ if(rules.some((r:any)=>r.action==='mask'))fail('PARTIALLY_IRREVERSIBLE_MASK',400);
+ const mode=input.advanced?.exportMode??(rules.length?'custom_pseudonym':input.use_profile_mode_default?undefined:input.masking_mode);
+ if(mode!==undefined&&!['pseudonym','default_pseudonym','custom_pseudonym','selective_pseudonym'].includes(mode))fail('IRREVERSIBLE_MASK',400);
+}
+function assertReviewedMarksRestorable(t:PrivateTask,marks:unknown){
+ if(t.options.task_mode!=='ai_process_restore')return;
+ if(!Array.isArray(marks)||marks.some(m=>!m||typeof m!=='object'))fail('REVIEW_MARKS_INVALID',409);
+ if(marks.some(m=>m.decision==='redact'&&m.replacement?.mode!=='alias'))fail('PARTIALLY_IRREVERSIBLE_MASK',409);
 }
 function snapshotMapping(records:any[],projectId:string){const details=records.map(m=>{const original=JSON.parse(unseal(m.payload,`${m.tenant_id}:${projectId}:${m.id}:mapping:${m.version}`));return{pseudonym:m.token,normalized:original.value,entityType:original.kind==='邮箱'?'email':original.kind==='网址'?'website_url':entityLabel(original),forms:(original.forms??[]).map((value:string)=>({original:value}))};});return parseRestorationMapping({_meta:{version:'tuominwang-1'},details});}
 async function artifactBytes(a:Delivery){return isBinaryFormat(a.format)?readOriginal(a.artifactId):Buffer.from(await readArtifact(a.artifactId),'utf8');}
@@ -72,6 +98,7 @@ async function checkedConfiguration(db:DB,req:FastifyRequest,t:PrivateTask,docum
  c.profileId=await resolve('profile',c.profileId);c.rulesetId=await resolve('ruleset',c.rulesetId);
  const [project]=await rows(db,sql`SELECT * FROM projects WHERE id=${t.projectId}`);if(!project)fail('NOT_FOUND',404);
  const profile:Profile=c.profileId?(await getPreset<Profile>(db,req,'profile',c.profileId)).settings:getProjectPresetPolicy(project).profile?.settings??defaultProfile();
+ assertRestorable(t,c,profile,d.source_format);
  const per=(t.options.file_settings??[]).find((p:any)=>p.source_path===`document:${documentId}`);
  if(d.source_format==='pdf'&&t.options.output_formats_explicit!==true&&per?.output_formats===undefined&&profile.pdf.exportPdfAsDocx)c.outputFormats=[...c.outputFormats,'docx'];
  c.outputFormats=[...new Set(c.outputFormats.map((f:string)=>f==='original'?(['jpg','jpeg'].includes(d.source_format)?'png':isLegacyWordFormat(d.source_format)?'docx':d.source_format):f))];
@@ -101,15 +128,21 @@ export function registerMcpRoutes(app:FastifyInstance,applyConfiguration?:Collab
   if((input.batch_result_mode??'individual')==='combined'&&input.unified_pseudonyms===false)fail('COMBINED_REQUIRES_UNIFIED_PSEUDONYMS',400);
   if(new Set((input.file_settings??[]).map((f:any)=>f.source_path)).size!==(input.file_settings??[]).length)fail('FILE_SETTINGS_DUPLICATE',400);
   for(const f of input.file_settings??[])if(!docs.includes(cloudDocumentIds({source_path:f.source_path})[0]!))fail('FILE_SETTINGS_SOURCE_MISMATCH',400);
-  function checkedAdvanced(options:Record<string,any>){const a=options.advanced??{},rules=a.pseudonymRules??[];if(a.entityTypes!==undefined&&!a.entityTypes.length)fail('ENTITY_TYPES_EMPTY',400);if(new Set(rules.map((r:any)=>r.entityType)).size!==rules.length||rules.some((r:any)=>r.prefix!==undefined&&!/^[\p{L}_-]{1,20}$/u.test(r.prefix))||new Set(rules.filter((r:any)=>r.prefix).map((r:any)=>r.prefix)).size!==rules.filter((r:any)=>r.prefix).length)fail('PSEUDONYM_RULES_INVALID',400);if(rules.length&&(['default_star','full_star'].includes(a.exportMode)||['default_mask','full_star'].includes(options.masking_mode)))fail('REDACTION_OPTIONS_CONFLICT',400);}
-  checkedAdvanced(input);for(const f of input.file_settings??[])checkedAdvanced({...input,...f,advanced:{...input.advanced,...f.advanced}});
-  if(input.unified_pseudonyms!==false&&docs.length>1){const signatures=docs.map(documentId=>{const per=(input.file_settings??[]).find((f:any)=>f.source_path===`document:${documentId}`),rules=per?.advanced?.pseudonymRules??input.advanced?.pseudonymRules??[];return JSON.stringify(rules.filter((r:any)=>r.prefix).map((r:any)=>[r.entityType,r.prefix]).sort());});if(new Set(signatures).size>1)fail('UNIFIED_PREFIX_CONFLICT',400);}
+  function checkedAdvanced(options:Record<string,any>){const a=options.advanced??{},rules=a.pseudonymRules??[];if(a.entityTypes!==undefined&&!a.entityTypes.length)fail('ENTITY_TYPES_EMPTY',400);if(new Set(rules.map((r:any)=>r.entityType)).size!==rules.length||rules.some((r:any)=>r.prefix!==undefined&&!/^[\p{L}_-]{1,20}$/u.test(r.prefix))||new Set(rules.filter((r:any)=>r.prefix).map((r:any)=>r.prefix)).size!==rules.filter((r:any)=>r.prefix).length)fail('PSEUDONYM_RULES_INVALID',400);if(rules.length&&a.exportMode&&a.exportMode!==(rules.some((r:any)=>r.action==='mask')?'selective_pseudonym':'custom_pseudonym'))fail('CONFLICTING_PSEUDONYM_RULES',400);}
+  checkedAdvanced(input);assertExplicitRestoreMode(input);for(const f of input.file_settings??[]){const local=f.advanced??{},a={...input.advanced,...local};if(f.masking_mode!==undefined&&local.exportMode===undefined){delete a.exportMode;if(local.pseudonymRules===undefined)delete a.pseudonymRules;}if(local.pseudonymRules!==undefined&&local.exportMode===undefined)delete a.exportMode;checkedAdvanced({...input,...f,advanced:a});}
+  if(input.unified_pseudonyms!==false&&docs.length>1){const validationTask={options:input} as PrivateTask;const signatures=docs.map(documentId=>JSON.stringify(Object.entries(config(validationTask,documentId).pseudonymPrefixes??{}).sort()));if(new Set(signatures).size>1)fail('UNIFIED_PREFIX_CONFLICT',400);}
 
   const project=input.project_id??(docs.length?await scoped(req.user.id,req.user.tenant_id,async db=>(await rows(db,sql`SELECT project_id FROM documents WHERE id=${docs[0]}`))[0]?.project_id):undefined);if(!project)fail('PROJECT_REQUIRED',400);id.parse(project);
   return projectScope(req,{project},input.standaloneRestoration?['view_original','restore','view_mapping']:['view_original','review','export'],async db=>{
    await rows(db,sql`SELECT pg_advisory_xact_lock(hashtext(${req.user.id}::text),13013)`);
    if(input.request_id){const [old]=await rows(db,sql`SELECT * FROM ai_collab_tasks WHERE request_id=${id.parse(input.request_id)}`);if(old){const t=privateRead(old,req);checkCaller(t,caller);if(t.projectId!==project||canonical(t.options)!==canonical({...input,manualReview:manual}))fail('REQUEST_ID_CONFLICT',409);return externalTask(t);}}
    const sources=[];for(const documentId of docs){const [d]=await rows(db,sql`SELECT id,source_hash,content_hash,revision FROM documents WHERE id=${documentId} AND project_id=${project}`);if(!d)fail('SOURCE_NOT_FOUND',404);sources.push({documentId,hash:d.source_hash??d.content_hash,revision:d.revision});}
+   // Resolve the actual selected project/file profile before inserting a task. The
+   // same check runs again at authorization and attachment if a preset changes.
+   if(!input.standaloneRestoration){
+    const preflight={projectId:project,options:input,sources} as PrivateTask;
+    for(const source of sources)await checkedConfiguration(db,req,preflight,source.documentId);
+   }
    for(const old of await rows(db,sql`SELECT * FROM ai_collab_tasks WHERE project_id=${project} AND created_at>now()-interval '5 minutes' ORDER BY created_at DESC`)){const t=privateRead(old,req);if(t.caller.sessionId===caller.sessionId&&['waiting_for_session_authorization','waiting_for_user_file_selection','waiting_for_human_review','building_sanitized_artifact','waiting_for_task_selection','sanitized_artifact_ready'].includes(t.state)&&JSON.stringify(t.sources.map(x=>x.documentId))===JSON.stringify(docs)&&JSON.stringify(t.options)===JSON.stringify({...input,manualReview:manual}))return externalTask(t);}
    const now=new Date().toISOString(),jobId=newOpaqueId('lbj'),t:PrivateTask={jobId,revision:1,projectId:project,state:'waiting_for_session_authorization',caller,options:{...input,manualReview:manual},sources,deliveries:[],rounds:[],createdAt:now,updatedAt:now};
    await rows(db,sql`INSERT INTO ai_collab_tasks(id,tenant_id,owner_id,project_id,revision,payload,request_id) VALUES(${taskUUID(jobId)},${req.user.tenant_id},${req.user.id},${project},1,${seal(JSON.stringify(t),aad(req,taskUUID(jobId)))},${input.request_id??null})`);return {...externalTask(t),reviewUrl:`?collab=${jobId}`};
@@ -136,7 +169,7 @@ export function registerMcpRoutes(app:FastifyInstance,applyConfiguration?:Collab
   }t.state='waiting_for_human_review';return externalTask(t);
  })).task;}
  async function prepare(req:FastifyRequest,target:string,expected:number){const t=await load(req,target);if(t.revision!==expected)fail('VERSION_CONFLICT',409);state(t,['waiting_for_human_review','building_sanitized_artifact']);if(!t.authorization?.allowSanitizedDelivery)fail('SANITIZED_DELIVERY_AUTHORIZATION_REQUIRED',403);if(!t.sources.length)fail('SOURCE_REQUIRED',400);
-  const preflight:Array<{documentId:string;revision:number;epoch:Awaited<ReturnType<typeof preflightUnifiedAliasExport>>}>=[];for(const source of t.sources){const d=(await internal(req,'GET',`/api/documents/${source.documentId}`)).json();if(d.state!=='review')fail('RECOGNITION_INCOMPLETE',409);const epoch=await preflightUnifiedAliasExport(req,source.documentId,d.revision);if(epoch&&Object.keys(epoch.changedDocuments).length)fail('UNIFIED_ALIAS_REVIEW_REQUIRED',409);preflight.push({documentId:source.documentId,revision:d.revision,epoch});}
+  const preflight:Array<{documentId:string;revision:number;epoch:Awaited<ReturnType<typeof preflightUnifiedAliasExport>>}>=[];for(const source of t.sources){const d=(await internal(req,'GET',`/api/documents/${source.documentId}`)).json();if(d.state!=='review')fail('RECOGNITION_INCOMPLETE',409);assertReviewedMarksRestorable(t,d.marks);const epoch=await preflightUnifiedAliasExport(req,source.documentId,d.revision);if(epoch&&Object.keys(epoch.changedDocuments).length)fail('UNIFIED_ALIAS_REVIEW_REQUIRED',409);preflight.push({documentId:source.documentId,revision:d.revision,epoch});}
   return (await change(req,target,expected,undefined,async(task,db)=>{state(task,['waiting_for_human_review','building_sanitized_artifact']);if(!task.authorization?.allowSanitizedDelivery)fail('SANITIZED_DELIVERY_AUTHORIZATION_REQUIRED',403);if(task.sources.length!==preflight.length||task.sources.some((x,i)=>x.documentId!==preflight[i]!.documentId))fail('VERSION_CONFLICT',409);
    const jobs:string[]=[];for(const item of preflight){const job=await queueExport(db,req,item.documentId,item.revision,item.epoch,taskUUID(target));jobs.push(job.id);}task.exportJobIds=jobs;task.state='building_sanitized_artifact';return externalTask(task);
   })).task;
@@ -146,7 +179,7 @@ export function registerMcpRoutes(app:FastifyInstance,applyConfiguration?:Collab
    const linkedJob=t.exportJobIds?.[sourceIndex];if(!linkedJob)fail('EXPORT_NOT_READY',409);
    const linked=await scoped(req.user.id,req.user.tenant_id,async db=>(await rows(db,sql`SELECT collab_task_id FROM jobs WHERE id=${linkedJob} AND document_id=${s.documentId}`))[0]);if(!linked)fail('EXPORT_NOT_READY',409);
    const owner=linked.collab_task_id;if(owner&&owner!==taskUUID(target))fail('EXPORT_JOB_NOT_OWNED',409);
-   const ownJob=owner===taskUUID(target),d=(await internal(req,'GET',`/api/documents/${s.documentId}`)).json(),outputs=(await internal(req,'GET',`/api/documents/${s.documentId}/outputs?revision=${d.revision}${ownJob?`&jobId=${linkedJob}`:''}`)).json();if(!outputs.length)fail('EXPORT_NOT_READY',409);
+   const ownJob=owner===taskUUID(target),d=(await internal(req,'GET',`/api/documents/${s.documentId}`)).json();assertReviewedMarksRestorable(t,d.marks);const outputs=(await internal(req,'GET',`/api/documents/${s.documentId}/outputs?revision=${d.revision}${ownJob?`&jobId=${linkedJob}`:''}`)).json();if(!outputs.length)fail('EXPORT_NOT_READY',409);
    for(const m of d.marks??[])if(m.decision==='redact'&&m.replacement?.mode==='alias')aliasReferences.set(m.replacement.mappingId,{token:m.replacement.token,version:m.replacement.version});
    const wanted=t.resolvedOutputs?.[s.documentId]??config(t,s.documentId).outputFormats;for(const output of outputs){if(output.role==='primary'&&!wanted.includes('original')&&!wanted.includes(output.format)||output.role==='markdown'&&!wanted.includes('md')||['pdf-docx','word-docx'].includes(output.role)&&!wanted.includes('docx'))continue;
     await internal(req,'POST',`/api/documents/${s.documentId}/download-link`,{revision:d.revision,role:output.role,...ownJob?{jobId:linkedJob}:{}});
@@ -175,16 +208,30 @@ export function registerMcpRoutes(app:FastifyInstance,applyConfiguration?:Collab
   const update=await change(req,target,t.revision,caller,task=>{if(active){const old=task.rounds.at(-1);if(!old||old.slotId!==args.replace_slot_id||old.artifactId!==artifactId||old.validated!==undefined)fail('SLOT_REPLACEMENT_INVALID',409);const slotId=newOpaqueId('lbs');task.rounds[task.rounds.length-1]={...old,slotId,format,resultKind,objectId:undefined,sha256:undefined};task.state='analyzing_by_ai';return {roundId:old.roundId,slotId};}state(task,['sanitized_artifact_ready']);const next=task.rounds.length+1;if(next>9999)fail('ROUND_LIMIT',409);const roundId=`lbr_${String(next).padStart(4,'0')}`,slotId=newOpaqueId('lbs');task.rounds.push({roundId,slotId,format,resultKind,artifactId});task.state='analyzing_by_ai';return {roundId,slotId};});
   return {...externalTask(update.task),...update.result,artifactId,format:t.combined?'md':requested,filename:`sanitized.${t.combined?'md':requested}`,sha256:hash(b),bytesBase64:b.toString('base64'),slotUploadPath:`/api/ai-collab/tasks/${target}/slots/${update.result.slotId}`};
  }
- async function storeResult(req:FastifyRequest,target:string,slotId:string,bytes:Buffer,caller?:Caller){const t=await load(req,target,caller),r=t.rounds.at(-1);if(!r||r.slotId!==slot.parse(slotId))fail('SLOT_NOT_AVAILABLE',409);state(t,['analyzing_by_ai','ai_result_rejected']);if(r.objectId&&t.state!=='ai_result_rejected')fail('SLOT_ALREADY_FROZEN',409);const object=randomUUID();await writeOriginal(object,bytes,t.projectId);return (await change(req,target,t.revision,caller,task=>{const x=task.rounds.at(-1);if(!x||x.slotId!==slotId)fail('SLOT_NOT_AVAILABLE',409);if(x.objectId&&task.state!=='ai_result_rejected')fail('SLOT_ALREADY_FROZEN',409);x.objectId=object;x.sha256=hash(bytes);x.validated=undefined;x.reviewed=undefined;x.unknownTokenCount=undefined;x.newCandidateCount=undefined;task.failureCode=undefined;task.state='analyzing_by_ai';return {sha256:x.sha256};})).result;}
+ async function storeResult(req:FastifyRequest,target:string,slotId:string,bytes:Buffer,caller?:Caller){const t=await load(req,target,caller),r=t.rounds.at(-1);if(!r||r.slotId!==slot.parse(slotId))fail('SLOT_NOT_AVAILABLE',409);state(t,['analyzing_by_ai','ai_result_rejected']);if(r.objectId&&t.state!=='ai_result_rejected')fail('SLOT_ALREADY_FROZEN',409);if(!t.options.standaloneRestoration)await projectScope(req,{project:t.projectId},['view_original','review'],async()=>null);const object=randomUUID();await writeOriginal(object,bytes,t.projectId);return (await change(req,target,t.revision,caller,async(task,db)=>{if(!task.options.standaloneRestoration)await requirePermission(db,task.projectId,['review']);const x=task.rounds.at(-1);if(!x||x.slotId!==slotId)fail('SLOT_NOT_AVAILABLE',409);if(x.objectId&&task.state!=='ai_result_rejected')fail('SLOT_ALREADY_FROZEN',409);x.objectId=object;x.sha256=hash(bytes);x.validated=undefined;x.reviewed=undefined;x.unknownTokenCount=undefined;x.newCandidateCount=undefined;task.failureCode=undefined;task.state='analyzing_by_ai';return {sha256:x.sha256};})).result;}
+ function archiveScope(req:FastifyRequest,t:PrivateTask):AiResultArchiveScope{return{tenantId:req.user.tenant_id,projectId:t.projectId,ownerId:req.user.id,taskId:taskUUID(t.jobId)};}
+ async function sourceForArchive(t:PrivateTask,sourceArtifactId:string){
+  if(t.combined&&sourceArtifactId===`lba_${t.combined.id.replaceAll('-','')}`){const bytes=await readOriginal(t.combined.id);if(hash(bytes)!==t.combined.hash)fail('STALE_ARTIFACT',409);return t.combined.hash;}
+  const source=t.deliveries.find(a=>sourceArtifactId===`lba_${a.artifactId.replaceAll('-','')}`);if(!source)fail('STALE_ARTIFACT',409);
+  if(hash(await artifactBytes(source))!==source.hash)fail('STALE_ARTIFACT',409);return source.hash;
+ }
+ async function validatedReceipt(req:FastifyRequest,t:PrivateTask,r:PrivateTask['rounds'][number],requestedName:string){
+  const archived=t.options.standaloneRestoration?undefined:await projectScope(req,{project:t.projectId},['view_original','review'],async db=>{
+   const value=await readAiResultArchive(db,archiveScope(req,t),r.roundId);
+   if(value&&(value.metadata.slotId!==r.slotId||value.metadata.sourceArtifactId!==r.artifactId||value.metadata.sourceSha256!==await sourceForArchive(t,r.artifactId)||value.metadata.resultObjectId!==r.objectId||value.metadata.resultSha256!==r.sha256||value.metadata.format!==r.format||value.metadata.resultKind!==r.resultKind||value.metadata.fileName!==r.suggestedName||value.metadata.fileName!==requestedName||value.metadata.validation.unknownTokenCount!==(r.unknownTokenCount??0)||value.metadata.validation.newCandidateCount!==(r.newCandidateCount??0)))fail('AI_RESULT_ARCHIVE_CONFLICT',409);
+   return value;
+  });
+  return {...externalTask(t),validation:{valid:true,unknownTokenCount:r.unknownTokenCount??0,newCandidateCount:r.newCandidateCount??0,humanReviewRequired:true},restorationStarted:t.state==='restoring',...archived?{archivedResult:archived.receipt}:{}};
+ }
  async function submit(req:FastifyRequest,target:string,args:Record<string,any>,caller?:Caller){
   let t=await load(req,target,caller),r=t.rounds.at(-1);const requestedRound=round.parse(args.round_id),requestedSlot=slot.parse(args.slot_id);
+  if(!t.options.standaloneRestoration)await projectScope(req,{project:t.projectId},['view_original','review'],async()=>null);
   if(!r||r.roundId!==requestedRound||r.slotId!==requestedSlot)fail('SLOT_NOT_AVAILABLE',409);
   const requestedHash=sha.parse(args.sha256),name=safeName.parse(args.suggested_name);
   if(!name.toLowerCase().endsWith(`.${r.format}`))fail('RESULT_FORMAT_MISMATCH',400);
   const inline=args.bytes_base64?decode(args.bytes_base64):undefined;
   if(inline&&hash(inline)!==requestedHash)fail('RESULT_HASH_MISMATCH',409);
-  const receipt=(task:PrivateTask,latest:PrivateTask['rounds'][number])=>({...externalTask(task),validation:{valid:true,unknownTokenCount:latest.unknownTokenCount??0,newCandidateCount:latest.newCandidateCount??0,humanReviewRequired:true},restorationStarted:task.state==='restoring'});
-  if(r.validated===true&&r.objectId&&r.sha256===requestedHash&&['waiting_for_restore_approval','restoring','restore_failed','round_completed','completed'].includes(t.state))return receipt(t,r);
+  if(r.validated===true&&r.objectId&&r.sha256===requestedHash&&['waiting_for_restore_approval','restoring','restore_failed','round_completed','completed'].includes(t.state))return validatedReceipt(req,t,r,name);
   state(t,['analyzing_by_ai','ai_result_rejected','validating_ai_result']);
   // A persisted validating state from an older process has a frozen input but
   // no completed validation. Re-run only that same current round and hash.
@@ -199,10 +246,26 @@ export function registerMcpRoutes(app:FastifyInstance,applyConfiguration?:Collab
   if(hash(b)!==requestedHash)fail('RESULT_HASH_MISMATCH',409);
   let text:string;
   try{if(resultFormat==='docx'){const parsed=await parseOffice(b,'docx');if(!t.options.standaloneRestoration&&parsed.coverage.some(c=>c.status!=='complete'))fail('RESULT_DOCUMENT_COVERAGE_INCOMPLETE',409);text=parsed.text;}else{text=new TextDecoder('utf8',{fatal:true}).decode(b);}}
-  catch(e){const code=/^[A-Z0-9_]{1,100}$/.test((e as Error).message)?(e as Error).message:'RESULT_ENCODING_OR_FORMAT_INVALID';await change(req,target,t.revision,caller,task=>{state(task,['analyzing_by_ai','ai_result_rejected','validating_ai_result']);const rejected=task.rounds.at(-1);if(!rejected||rejected.roundId!==requestedRound||rejected.slotId!==requestedSlot||rejected.objectId!==objectId||rejected.sha256!==requestedHash)fail('SLOT_NOT_AVAILABLE',409);rejected.validated=false;rejected.reviewed=false;task.state='ai_result_rejected';task.failureCode=code;return null;});fail(code,400);}
+  catch(e){const code=/^[A-Z0-9_]{1,100}$/.test((e as Error).message)?(e as Error).message:'RESULT_ENCODING_OR_FORMAT_INVALID';await change(req,target,t.revision,caller,async(task,db)=>{if(!task.options.standaloneRestoration)await requirePermission(db,task.projectId,['review']);state(task,['analyzing_by_ai','ai_result_rejected','validating_ai_result']);const rejected=task.rounds.at(-1);if(!rejected||rejected.roundId!==requestedRound||rejected.slotId!==requestedSlot||rejected.objectId!==objectId||rejected.sha256!==requestedHash)fail('SLOT_NOT_AVAILABLE',409);rejected.validated=false;rejected.reviewed=false;task.state='ai_result_rejected';task.failureCode=code;return null;});fail(code,400);}
   const knownTokens=t.allowedTokens??Object.keys(t.mapping?.mappings??{}),known=new Set(knownTokens.map(normalizeToken)),variants=resultFormat==='md'?knownTokens.flatMap(token=>[token,token.replace(/([\\`*_{}\[\]()#+.!>|~<>-])/g,'\\$1'),token.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')]):knownTokens,tokens=[...text.matchAll(/【[^】]{1,256}】/gu)].filter(m=>resultFormat==='docx'?known.has(normalizeToken(m[0])):variants.includes(m[0])),unknown=inspectRestorationTokens(text,variants,resultFormat==='docx').length;
   const tokenSpans=tokens.map(m=>({start:m.index,end:m.index+m[0].length})),candidates=detectComplete(text,[]).marks.filter(m=>!tokenSpans.some(s=>m.start>=s.start&&m.end<=s.end));
-  return (await change(req,target,t.revision,caller,task=>{state(task,['analyzing_by_ai','ai_result_rejected','validating_ai_result']);const x=task.rounds.at(-1);if(!x||x.roundId!==requestedRound||x.slotId!==requestedSlot||x.objectId!==objectId||x.sha256!==requestedHash)fail('SLOT_NOT_AVAILABLE',409);x.unknownTokenCount=unknown;x.newCandidateCount=candidates.length;x.suggestedName=`reviewed.${resultFormat}`;x.validated=unknown===0&&(task.options.standaloneRestoration||candidates.length===0);x.reviewed=false;task.state=x.validated?'waiting_for_restore_approval':'ai_result_rejected';task.failureCode=x.validated?undefined:unknown?'RESULT_UNKNOWN_TOKENS':'RESULT_NEW_SENSITIVE_CANDIDATES';note(task,'result_validated',task.failureCode);return {...externalTask(task),validation:{valid:x.validated,unknownTokenCount:unknown,newCandidateCount:candidates.length,humanReviewRequired:true},restorationStarted:false};})).result;
+  let replayed=false;
+  const changed=await change(req,target,undefined,caller,async(task,db)=>{
+   if(!task.options.standaloneRestoration)await requirePermission(db,task.projectId,['review']);
+   const x=task.rounds.at(-1);if(!x||x.roundId!==requestedRound||x.slotId!==requestedSlot||x.objectId!==objectId||x.sha256!==requestedHash)fail('SLOT_NOT_AVAILABLE',409);
+   if(x.validated===true&&['waiting_for_restore_approval','restoring','restore_failed','round_completed','completed'].includes(task.state)){replayed=true;return UNCHANGED;}
+   state(task,['analyzing_by_ai','ai_result_rejected','validating_ai_result']);
+   x.unknownTokenCount=unknown;x.newCandidateCount=candidates.length;x.suggestedName=name;x.validated=unknown===0&&(task.options.standaloneRestoration||candidates.length===0);x.reviewed=false;
+   let archivedResult;
+   if(x.validated&&!task.options.standaloneRestoration){
+    const sourceSha256=await sourceForArchive(task,x.artifactId);
+    const metadata:AiResultArchiveMetadata={version:1,taskJobId:task.jobId,roundId:x.roundId,slotId:x.slotId,sourceArtifactId:x.artifactId,sourceSha256,resultObjectId:x.objectId!,resultSha256:x.sha256!,format:x.format,resultKind:x.resultKind,fileName:name,actorId:req.user.id,validation:{knownTokenCount:tokens.length,unknownTokenCount:unknown,newCandidateCount:candidates.length},humanReviewed:false};
+    archivedResult=await writeAiResultArchive(db,archiveScope(req,task),metadata);
+   }
+   task.state=x.validated?'waiting_for_restore_approval':'ai_result_rejected';task.failureCode=x.validated?undefined:unknown?'RESULT_UNKNOWN_TOKENS':'RESULT_NEW_SENSITIVE_CANDIDATES';note(task,'result_validated',task.failureCode);
+   return {...externalTask(task),validation:{valid:x.validated,unknownTokenCount:unknown,newCandidateCount:candidates.length,humanReviewRequired:true},restorationStarted:false,...archivedResult?{archivedResult}:{}};
+  });
+  return replayed?validatedReceipt(req,changed.task,changed.task.rounds.at(-1)!,name):changed.result;
  }
  async function restore(req:FastifyRequest,target:string,expected:number,roundId:string,caller?:Caller){
   const requestedRound=round.parse(roundId),taskId=taskUUID(job.parse(target));
@@ -241,8 +304,27 @@ export function registerMcpRoutes(app:FastifyInstance,applyConfiguration?:Collab
   while(Date.now()<end&&!terminal.has(t.state)&&!(restoration?['round_completed','restore_failed','ai_result_rejected']:['sanitized_artifact_ready','analyzing_by_ai','ai_result_rejected','round_completed','waiting_for_restore_approval']).includes(t.state)&&t.updatedAt===initial){await new Promise(r=>setTimeout(r,500));t=await load(req,target,caller);checkRound();}const ready=(restoration?['round_completed','restore_failed','ai_result_rejected']:['sanitized_artifact_ready','analyzing_by_ai','ai_result_rejected','round_completed','waiting_for_restore_approval']).includes(t.state)||terminal.has(t.state),timedOut=Date.now()>=end&&!ready&&t.updatedAt===initial;return {...externalTask(t),timedOut,...timedOut?{retryAfterSeconds:2}:{}};
  }
  async function callTool(req:FastifyRequest,name:string,a:Record<string,any>,caller:Caller):Promise<any>{
-  if(name==='get_lawbot_capabilities')return {product:'tuominwang',protocolVersion:MCP_PROTOCOL,tools:12,gatewayMethods:[...gatewayMethods],secureReview:true,restoration:true,cloudUploadRequired:true,externalProvider:'not_configured',autoInvokeExternalAI:false,formats:['docx','md'],osConnectors:{dsh:'configuration_only',workbuddy:'configuration_only',qwenwork:'configuration_only'}};
-  if(name==='list_lawbot_saved_settings'){const p=(await internal(req,'GET','/api/presets/profiles')).json(),r=(await internal(req,'GET','/api/presets/rulesets')).json();return {profiles:p.items.map((x:any)=>({id:x.settings.id,name:x.settings.name,revision:x.revision,readonly:x.settings.readonly})),ruleSets:r.items.map((x:any)=>({id:x.settings.id,name:x.settings.name,revision:x.revision})),defaults:{defaultProfileId:p.preferences.settings.defaultProfileId,activeRuleSetId:p.preferences.settings.activeRuleSetId}};}
+  if(name==='get_lawbot_capabilities')return {
+   interfaces:['review','file','restore','configuration'],
+   reviewModes:['human_review'],
+   inputFormats:['docx','doc','wps','md','markdown','pdf','jpg','jpeg','png'],
+   taskModes:['redact_only','ai_process','ai_process_restore'],
+   safetyBoundary:'MCP returns only approved sanitized artifacts. It does not return originals, mappings, or restored outputs, and cannot restrict an external AI assistant own shell or filesystem tools.',
+   documentTypes:['auto','general','contract','disclosure','judgment','pleading','official_letter','screenshot'],
+   maskingModes:['pseudonym','default_mask','full_star','purple_overlay'],
+   outputFormats:['original','md'],
+   batch:{maxFiles:100,unifiedPseudonyms:true},
+   file:{defaults:'project_redaction_policy',outputOverride:'none_browser_managed',archiveValidatedAiResult:true,archiveLocation:'private_cloud_project',validatedResultStorage:'private_cloud_project_archive_downloadable',sourceReference:'document:<uploaded document UUID>'},
+   product:'tuominwang',protocolVersion:MCP_PROTOCOL,tools:12,gatewayMethods:[...gatewayMethods],secureReview:true,restoration:true,cloudUploadRequired:true,externalProvider:'not_configured',autoInvokeExternalAI:false,formats:['docx','md'],osConnectors:{dsh:'configuration_only',workbuddy:'configuration_only',qwenwork:'configuration_only'}
+  };
+  if(name==='list_lawbot_saved_settings'){
+   const p=(await internal(req,'GET','/api/presets/profiles')).json(),r=(await internal(req,'GET','/api/presets/rulesets')).json();
+   const label=(value:unknown)=>[...String(value)].filter(ch=>ch.charCodeAt(0)>=32).join('').slice(0,120);
+   return {profiles:p.items.slice(0,200).map((x:any)=>({id:String(x.settings.id).slice(0,120),name:label(x.settings.name),revision:x.revision,readonly:x.settings.readonly})),
+    ruleSets:r.items.slice(0,200).map((x:any)=>({id:String(x.settings.id).slice(0,120),name:label(x.settings.name),revision:x.revision})),
+    instructions:'仅提供已保存设置的标识和名称，不提供黑白名单内容、文件路径或密码。使用用户指定的准确名称或标识；找不到时告知用户，不得猜测替代。',
+    defaults:{defaultProfileId:p.preferences.settings.defaultProfileId,activeRuleSetId:p.preferences.settings.activeRuleSetId}};
+  }
   if(name==='start_lawbot_redaction'||name==='start_lawbot_redaction_for_user_manual_review')return start(req,a,caller,name.endsWith('_for_user_manual_review'));
   if(name==='resume_lawbot_task'){
   const t=a.job_id?await load(req,a.job_id):implicitResumeTask(await list(req));if(!t)fail('TASK_NOT_FOUND',404);if(terminal.has(t.state))fail('INVALID_STATE',409);if((t.pendingResume||t.state==='client_disconnected')&&!validResumeState(t.resumeState))fail('RESUME_STATE_UNAVAILABLE',409);
@@ -298,6 +380,8 @@ export function registerMcpRoutes(app:FastifyInstance,applyConfiguration?:Collab
  });
  app.get('/api/ai-collab/tasks',async req=>({items:(await list(req)).map(humanTask)}));
  app.get('/api/ai-collab/tasks/:job',async req=>humanTask(await load(req,job.parse((req.params as any).job))));
+ app.get('/api/ai-collab/tasks/:job/archives',async req=>{const t=await load(req,job.parse((req.params as any).job));if(t.options.standaloneRestoration)return {items:[]};return projectScope(req,{project:t.projectId},['view_original','review'],async db=>({items:await listAiResultArchives(db,archiveScope(req,t))}));});
+ app.get('/api/ai-collab/tasks/:job/archives/:round/download',async(req,reply)=>{const t=await load(req,job.parse((req.params as any).job));if(t.options.standaloneRestoration)fail('RESULT_NOT_FOUND',404);const roundId=round.parse((req.params as any).round);const result=await projectScope(req,{project:t.projectId},['view_original','review'],async db=>{const archive=await readAiResultArchive(db,archiveScope(req,t),roundId);if(!archive)fail('RESULT_NOT_FOUND',404);const r=t.rounds.find(x=>x.roundId===roundId),m=archive.metadata;if(!r?.validated||r.slotId!==m.slotId||r.artifactId!==m.sourceArtifactId||r.objectId!==m.resultObjectId||r.sha256!==m.resultSha256||r.format!==m.format||r.resultKind!==m.resultKind||r.suggestedName!==m.fileName)fail('AI_RESULT_ARCHIVE_CONFLICT',409);const bytes=await readOriginal(m.resultObjectId);if(hash(bytes)!==m.resultSha256)fail('RESULT_HASH_MISMATCH',409);return {bytes,metadata:m};});return reply.type(result.metadata.format==='docx'?'application/vnd.openxmlformats-officedocument.wordprocessingml.document':'text/markdown; charset=utf-8').header('Content-Disposition',`attachment; filename="archive.${result.metadata.format}"; filename*=UTF-8''${encodeURIComponent(result.metadata.fileName)}`).send(result.bytes);});
  app.post('/api/ai-collab/tasks/:job/authorize',async req=>{const a=z.object({revision:rev,authorization}).strict().parse(req.body);return humanTask(await authorize(req,job.parse((req.params as any).job),a.revision,a.authorization));});
  app.post('/api/ai-collab/tasks/:job/attach-sources',async req=>{const a=z.object({revision:rev,documentIds:z.array(id).min(1).max(100)}).strict().parse(req.body);return humanTask(await attach(req,job.parse((req.params as any).job),a.revision,a.documentIds));});
  app.post('/api/ai-collab/tasks/:job/prepare-export',async req=>{const a=z.object({revision:rev}).strict().parse(req.body);return humanTask(await prepare(req,job.parse((req.params as any).job),a.revision));});

@@ -1,0 +1,62 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {mkdtemp,rm} from 'node:fs/promises';
+import {tmpdir} from 'node:os';
+import {join,resolve} from 'node:path';
+import {randomBytes,randomUUID} from 'node:crypto';
+import {pdfFixture} from './pdf-fixtures.ts';
+import {parsePages} from '../packages/adapters/page-parser.ts';
+import {setObjectOwner} from '../packages/adapters/storage.ts';
+import type {PdfOcrCheckpoint} from '../packages/adapters/pdf-ocr-checkpoints.ts';
+
+test('two-page PDF resumes after durable page one and OCRs only the missing page',async()=>{
+ const dir=await mkdtemp(join(tmpdir(),'pdf-ocr-resume-'));
+ const before={dataDir:process.env.DATA_DIR,dataKey:process.env.DATA_KEY,ocrModelDir:process.env.OCR_MODEL_DIR};
+ process.env.DATA_DIR=dir;process.env.DATA_KEY=randomBytes(32).toString('hex');
+ process.env.OCR_MODEL_DIR??=resolve(import.meta.dirname,'../.data/models/ocr');
+ setObjectOwner(randomUUID());
+ try{
+  const source=pdfFixture({pages:2,text:'Phone 13800138000 - synthetic page'});
+  const saved:PdfOcrCheckpoint[]=[];
+  await assert.rejects(parsePages(source,'pdf',undefined,{onCheckpoint:frame=>{saved.push(frame);throw Error('interrupt-after-durable-page');}}),/interrupt-after-durable-page/);
+  assert.deepEqual(saved.map(f=>f.page.index),[0]);
+  assert.ok(saved[0].text.includes('13800138000'));
+  assert.ok(saved[0].glyphs.length>0);
+  const resumed:PdfOcrCheckpoint[]=[];
+  const result=await parsePages(source,'pdf',undefined,{cachedPages:saved,onCheckpoint:frame=>{resumed.push(frame);}});
+  assert.deepEqual(resumed.map(f=>f.page.index),[1]);
+  assert.deepEqual(result.pages.map(p=>p.index),[0,1]);
+  assert.equal(result.pages[0].previewId,saved[0].page.previewId);
+  assert.deepEqual(result.coverage.filter(c=>c.id.startsWith('page:')).map(c=>c.id),['page:0','page:1']);
+  assert.ok(result.text.includes('13800138000'));
+  assert.equal(result.glyphCount,saved[0].glyphs.length+resumed[0].glyphs.length);
+  const fresh=await parsePages(source,'pdf');
+  assert.equal(result.text,fresh.text);
+  assert.deepEqual(result.anchors,fresh.anchors);
+  assert.deepEqual(result.coverage,fresh.coverage);
+  assert.equal(result.glyphCount,fresh.glyphCount);
+  await assert.rejects(parsePages(source,'pdf',undefined,{cachedPages:[{...saved[0],totalPages:3},resumed[0]]}),/PDF_OCR_CHECKPOINT_INVALID/);
+  await assert.rejects(parsePages(source,'pdf',undefined,{cachedPages:[saved[0],saved[0]]}),/PDF_OCR_CHECKPOINT_INVALID/);
+  const sourceChanged=pdfFixture({pages:2,text:'Changed 13800138000 - synthetic page'});
+  await assert.rejects(parsePages(sourceChanged,'pdf',undefined,{cachedPages:[saved[0]]}),/PDF_OCR_CHECKPOINT_INVALID/);
+  await assert.rejects(parsePages(source,'pdf',undefined,{cachedPages:[{...saved[0],parserFingerprint:'0'.repeat(64)}]}),/PDF_OCR_CHECKPOINT_INVALID/);
+  await assert.rejects(parsePages(source,'pdf',undefined,{cachedPages:[saved[0]],rotations:{'0':90}}),/PDF_OCR_CHECKPOINT_INVALID/);
+  const brokenGlyphs=[...saved[0].glyphs];brokenGlyphs[0]=[...brokenGlyphs[0].slice(0,4),-1,5] as typeof brokenGlyphs[number];
+  await assert.rejects(parsePages(source,'pdf',undefined,{cachedPages:[{...saved[0],glyphs:brokenGlyphs}]}),/PDF_OCR_CHECKPOINT_INVALID/);
+  const offPage=pdfFixture({pages:1,x:-20,text:'Phone 13800138000 - synthetic page'});
+  const offPageFrames:PdfOcrCheckpoint[]=[];
+  const offPageResult=await parsePages(offPage,'pdf',undefined,{onCheckpoint:frame=>{offPageFrames.push(frame);}});
+  assert.ok(offPageFrames[0].glyphs.some(g=>g[2]<0));
+  assert.ok(offPageResult.text.includes('13800138000'));
+  const offPageCached=await parsePages(offPage,'pdf',undefined,{cachedPages:offPageFrames,onCheckpoint:()=>{throw Error('offpage-recomputed');}});
+  assert.equal(offPageCached.text,offPageResult.text);
+  const allCached=await parsePages(source,'pdf',undefined,{cachedPages:[saved[0],resumed[0]],onCheckpoint:()=>{throw Error('unexpected-new-ocr');}});
+  assert.equal(allCached.text,fresh.text);
+  assert.equal(allCached.glyphCount,fresh.glyphCount);
+ }finally{
+  if(before.dataDir===undefined)delete process.env.DATA_DIR;else process.env.DATA_DIR=before.dataDir;
+  if(before.dataKey===undefined)delete process.env.DATA_KEY;else process.env.DATA_KEY=before.dataKey;
+  if(before.ocrModelDir===undefined)delete process.env.OCR_MODEL_DIR;else process.env.OCR_MODEL_DIR=before.ocrModelDir;
+  await rm(dir,{recursive:true,force:true});
+ }
+});

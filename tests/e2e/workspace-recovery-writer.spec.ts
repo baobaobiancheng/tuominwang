@@ -1,0 +1,91 @@
+// Copy to tests/e2e/workspace-recovery-writer.spec.ts after integrating SQL041/042.
+// Real browser and API, no mocked DOM or fake recovery response.
+import {test,expect} from './fixture.ts';
+import {randomUUID} from 'node:crypto';
+import {mkdir,writeFile} from 'node:fs/promises';
+import pg from 'pg';
+import {hash,unseal} from '../../packages/adapters/storage.ts';
+
+test('editor writer acknowledges save, heartbeat and close; existing draft needs explicit choice',async({page})=>{
+ test.setTimeout(120000);
+ await page.setViewportSize({width:1440,height:1000});
+ // Reloading a dirty review invokes the app's beforeunload guard.
+ page.on('dialog',dialog=>void dialog.accept());
+ const projectName='恢复写入-'+randomUUID().slice(0,8),source='联系 13800138000，合成测试原件';
+ const isWriter=(r:import('@playwright/test').Response,suffix='')=>r.request().method()==='POST'&&new RegExp(`/api/documents/[a-f0-9-]+/recovery/writer${suffix}$`,'u').test(new URL(r.url()).pathname);
+ const recoverySave=(r:import('@playwright/test').Response)=>r.request().method()==='PUT'&&/\/api\/documents\/[a-f0-9-]+\/recovery$/u.test(new URL(r.url()).pathname);
+ await page.goto('/');
+ await page.getByLabel('账号',{exact:true}).fill(process.env.E2E_USERNAME!);
+ await page.getByLabel('密码',{exact:true}).fill(process.env.E2E_PASSWORD!);
+ await page.getByRole('button',{name:'登录工作台'}).click();
+ await page.locator('.create-project summary').click();
+ await page.getByLabel('项目名称',{exact:true}).fill(projectName);
+ const projectResponse=page.waitForResponse(r=>r.request().method()==='POST'&&new URL(r.url()).pathname==='/api/projects');
+ await page.getByRole('button',{name:'新建项目',exact:true}).click();
+ const projectId=(await(await projectResponse).json()).id as string;
+ await page.getByRole('button',{name:'导入材料',exact:true}).click();
+ await page.getByLabel('待处理文本',{exact:true}).fill(source);
+ const documentResponse=page.waitForResponse(r=>r.request().method()==='POST'&&new URL(r.url()).pathname===`/api/projects/${projectId}/documents`);
+ await page.getByRole('button',{name:'提交并识别',exact:true}).click();
+ const documentId=(await(await documentResponse).json()).id as string;
+ await expect.poll(async()=>(await(await page.request.get(`/api/documents/${documentId}`)).json()).state,{timeout:45000}).toBe('review');
+ const original=(await(await page.request.get(`/api/documents/${documentId}`)).json());
+ await page.getByRole('button',{name:'逐条复核',exact:true}).click();
+ const mark=page.getByLabel('标记 1 处理决定');await expect(mark).toBeVisible();
+ const claimed=page.waitForResponse(r=>isWriter(r));
+ const saved=page.waitForResponse(recoverySave);
+ await mark.selectOption('redact');
+ expect((await claimed).status()).toBe(200);
+ const firstSave=await saved;expect(firstSave.status(),await firstSave.text()).toBe(200);
+ const firstReceipt=await firstSave.json();expect(firstReceipt.revision).toBe(1);
+ await expect.poll(async()=>(await(await page.request.get(`/api/documents/${documentId}/recovery`)).json())?.revision).toBe(1);
+ // This is the actual 15 s browser heartbeat, including its strict four-field writer body.
+ const beat=await page.waitForResponse(r=>isWriter(r,'/heartbeat'),{timeout:25000});
+ expect(beat.status(),await beat.text()).toBe(200);
+ const close=page.waitForResponse(r=>isWriter(r,'/close'));
+ await page.getByRole('button',{name:'结束自动保存会话'}).click();
+ const closeResult=await close;expect(closeResult.status(),await closeResult.text()).toBe(200);
+ expect((await closeResult.json()).clean).toBe(true);
+ expect((await(await page.request.get(`/api/documents/${documentId}/recovery`)).json()).revision).toBe(1);
+ const openMaterial=async()=>{
+  await page.reload();
+  await page.getByRole('navigation',{name:'项目列表'}).getByRole('button',{name:projectName}).click();
+  await page.getByRole('region',{name:'材料列表'}).getByRole('button').first().click();
+  await page.getByRole('button',{name:'逐条复核',exact:true}).click();
+  await expect(page.getByLabel('标记 1 处理决定')).toBeVisible();
+ };
+ await openMaterial();
+ await expect(page.getByRole('button',{name:'恢复复核草稿'})).toBeVisible();
+ const opened=page.waitForResponse(r=>r.request().method()==='POST'&&new URL(r.url()).pathname===`/api/documents/${documentId}/recovery/open`);
+ const restoredSave=page.waitForResponse(recoverySave);
+ await page.getByRole('button',{name:'恢复复核草稿'}).click();
+ expect((await opened).status()).toBe(200);
+ expect((await restoredSave).status()).toBe(200);
+ await expect(mark).toHaveValue('redact');
+ const restoredRevision=(await(await page.request.get(`/api/documents/${documentId}/recovery`)).json()).revision as number;
+ const secondClose=page.waitForResponse(r=>isWriter(r,'/close'));
+ await page.getByRole('button',{name:'结束自动保存会话'}).click();
+ expect((await secondClose).status()).toBe(200);
+ await openMaterial();
+ const takeover=page.getByRole('button',{name:'以当前编辑覆盖旧草稿并开始自动保存'});
+ const takeoverSave=page.waitForResponse(recoverySave);
+ await mark.selectOption('ignore');
+ await expect(takeover).toBeVisible();
+ expect((await(await page.request.get(`/api/documents/${documentId}/recovery`)).json()).revision).toBe(restoredRevision);
+ await takeover.click();
+ const takeoverResponse=await takeoverSave;expect(takeoverResponse.status(),await takeoverResponse.text()).toBe(200);
+ expect((await takeoverResponse.json()).revision).toBe(restoredRevision+1);
+ await expect(page.getByRole('button',{name:'丢弃自动恢复记录'})).toHaveCount(0);
+ const after=(await(await page.request.get(`/api/documents/${documentId}`)).json());
+ expect(after.revision).toBe(original.revision);
+ expect(after.marks).toEqual(original.marks);
+ const db=new pg.Client({connectionString:process.env.MIGRATION_DATABASE_URL});await db.connect();
+ try{const row=(await db.query('SELECT content,content_hash,tenant_id FROM documents WHERE id=$1',[documentId])).rows[0];expect(row.content_hash).toBe(hash(source));expect(hash(unseal(row.content,`${row.tenant_id}:${projectId}:${documentId}`))).toBe(row.content_hash);}finally{await db.end();}
+ const listed=await page.request.get('/api/workspace/recoveries');expect(listed.status()).toBe(200);
+ expect((await listed.json()).some((r:{documentId:string})=>r.documentId===documentId)).toBe(true);
+ const folder='.data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/e2e';
+ await mkdir(folder,{recursive:true});await writeFile(`${folder}/writer-recovery-${randomUUID()}.png`,await page.screenshot({fullPage:true}));
+ await page.reload();
+ await page.locator('summary').filter({hasText:'最近打开与待恢复草稿'}).click();
+ await expect(page.getByRole('button',{name:/打开待恢复草稿/})).toBeVisible();
+});
