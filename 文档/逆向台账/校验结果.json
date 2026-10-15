@@ -1,5 +1,5 @@
 {
-  "ledger_sha256": "ce16c85fbaea0adc549cb2f88e273ca54421e20ddd76272641ac4cb02bb80b26",
+  "ledger_sha256": "fee8bb4a429a8d16cb944d02fc7b330081860928fdf57228618c623c1e49045a",
   "reference_version": "0.5.9",
   "interface_count": 258,
   "flow_count": 37,
@@ -8,8 +8,8 @@
   "unmapped_interfaces": [],
   "empty_evidence_interfaces": [],
   "evidence_reference_count": 4716,
-  "evidence_file_count": 2754,
-  "evidence_baseline_at": "2026-10-15T14:36:12.814218+00:00",
+  "evidence_file_count": 2776,
+  "evidence_baseline_at": "2026-10-15T14:41:38.502661+00:00",
   "evidence_baseline_note": "这些哈希是2026-10-13本轮从当前现存文件建立的内容基线，只用于此后漂移检测；不能反向证明基线建立前的文件内容、原始发布完整性或过去运行结论。专有源码未修改。 ITER-012/013追加人工契约、交叉审查、新版指南及明确列举的子路径源码；旧文件哈希继续保留。已批准源码和主分析文档的哈希变更逐项记录previous/current，不扫描部署凭据。 ITER-014仅显式更新最终应用Compose及新增部署结果文件，保留真实OOM与未验证边界，未纳入密钥或环境凭据。 ITER-015仅补115项UI入口、两处动态桥调用集合、交叉审查/核验脚本及新增OpenJPEG发布证据；保留此前应用和部署文件的哈希，正在进行的前端修复漂移由后续迭代单独复核。 ITER-016：仅将本轮明确修改的前端/测试/部署/文档及验收回执更新基线，事件保存旧新哈希；无业务材料或凭据入账。 ITER-017新增分组/增补契约、交叉审查及npm原生签名差异证据；仅maintain新增71解释及维护规则旧动态数量文案的历史hash显式更新。未纳入凭据、未改竞品文件或应用。下载tarball及原生比较的逐项SHA保存在专项报告，不自动扩大成算法可信声明。 ITER-020：补我方Word结构预览、页内OCR改字、视觉候选的实现/验收与规则交接；显式更新5项应用pin，previous/current与原ledger备份保留；早期UI/26例与旧交接独审仅为历史阶段，不代表最终功能或最终文档全部被独审。竞品S2/R0、全部I级别不变，未据本地验证声明公网发布。 ITER-022显式更新进度检查点应用pin；main87基线原字节和旧新hash逐项保留，新能力未一律提级，未发布服务。 ITER-023仅显式进度检查点，28项原pin旧字节归档；有失败日志和新阶段未完成事项，未整体升格。 ITER-030显式逐ID更新，所有漂移旧字节保留并精确验hash；竞品运行R0保持不变。 ITER-031发布及真实OOM影响补证；README和指南文本旧字节精确保留；7张历史截图原字节缺失明确列出，旧hash保留且不声称历史图全部可验证。 ITER038静态语义逐ID合并；旧漂移逐一有精确字节归档，未覆盖掉历史证据。 ITER039握手故障独立复现；变更旧字节逐一验hash并归档，未以定向通过推全量或发布。 ITER040保留全部旧pin字节；逐ID/流程说明CAS更正，等级不变；实际门禁与服务器发布分别记录。 ITER040补5个已存在的新引用当前哈希；不反推其建立基线前内容。新增Edge截图调用保留此前精确字节，尚未运行。 ITER041逐文件真实variant与前后testSHA/logSHA固定；历史结果不冒称当前单次全量。两项测试修正保留旧字节及独立源裁定。 ITER042：首轮真实Edge失败原样保留；18项新旧字节逐一固定，4项产品修复待重新运行，等级不变。 ITER043最终本地：所有旧pin精确字节均找到并归档；API/Edge逐variant保留，无单次全量虚称；13条备注校准不改等级，图文实际核对；部署另证。 ITER044上线：首次真实OOM/回滚与恢复、二次发布、TXT/PNG实产物、指南补丁分别保留；无新增资源限制或模型读取改动；证据变更先核旧字节，S/I/R不变。",
   "evidence_files": {
     ".data/deploy/aliyun-20261013/before/api-main.ts": {
@@ -150,6 +150,86 @@
     ".data/deploy/aliyun-20261015/iteration036/server-redeploy.log": {
       "sha256": "b7ab437be5e6970bada955a83e9272ee3b7e57ca8c2265b344ced78e44eced37",
       "bytes": 4838,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261015/iteration049/deploy-exit.json": {
+      "sha256": "e153f5bd2ee7416d77570b30ba1de5bb9196c55f8d145e34df9dab12190ffe43",
+      "bytes": 16,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261015/iteration049/deploy-second-exit.json": {
+      "sha256": "75b3294d633bef21607031c1717fe80d3359faf1ab87d836c91369cc0e726f6b",
+      "bytes": 106,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261015/iteration049/deploy-second.log": {
+      "sha256": "01567893e8a32c663205c176366af7b4dff11b30b133ed689c59f0c54c28f856",
+      "bytes": 4574,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261015/iteration049/deploy.log": {
+      "sha256": "1ffdfce8c054c969807f63c94492cf3e14a9290cf7ed9424c742595b10005d32",
+      "bytes": 267,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261015/iteration049/first-package-difference.json": {
+      "sha256": "be15d8f581d822f694c11c1c10583218ca8a13beec903839033646c09c70e944",
+      "bytes": 158,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261015/iteration049/online-readonly-proof.json": {
+      "sha256": "ad736e41b29287d43159cbdf1a6b85595daf237564d151d33cbb2dc1cf8619e5",
+      "bytes": 945,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261015/iteration049/online-readonly.log": {
+      "sha256": "73b5b56eedd6aefc4dbfc539583cfa8484a5d666027a0db90b743f6707c57d94",
+      "bytes": 748,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261015/iteration049/online-workbench-private.png": {
+      "sha256": "e348b4807812d1f05d359196a4752fbda7e726503bee11b5badf1a0508ba02ad",
+      "bytes": 48406,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261015/iteration049/prepare-release-result.json": {
+      "sha256": "58e6560204d4692d34faaa335aeb7ea1e26a50796d975affe2e52bf976ea0f56",
+      "bytes": 224,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261015/iteration049/prepare-release.py": {
+      "sha256": "e0217e51c4d3b9106d1e12ed9b8da4ea34213c93977e319581442208eb6dfb71",
+      "bytes": 2982,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261015/iteration049/release/compose-candidate.yaml": {
+      "sha256": "c2138f6649b392460a5c18c1f3b67f86b033ef262d22f327c5434b70797a4815",
+      "bytes": 6429,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261015/iteration049/release/deploy-server.sh": {
+      "sha256": "aadc55877a68f168d2240e18316c731a4893ae433b46e05a4040f086b5f2759f",
+      "bytes": 7409,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261015/iteration049/release/manifest.json": {
+      "sha256": "6713b7911cf9d7efffe797e93ea7f480de3d2a4a74c4fe824d69b779e06219e3",
+      "bytes": 62933,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261015/iteration049/server-readback.json": {
+      "sha256": "fe8075ce9efc626f25529781d2c8ab5d1e886911810ce1ff577b98c2ee990654",
+      "bytes": 2971,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261015/iteration049/verified-manifest.sha256": {
+      "sha256": "990574ba1421c4d5d441a6c06e668d68f2ac98c218c36a485459127f81af8ef4",
+      "bytes": 65,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261015/iteration049/verify-online-readonly.mjs": {
+      "sha256": "a7a02d1c7cc1cf983d34a0c0f07573d301875acd64966dd6f81af11d1b522d1a",
+      "bytes": 2654,
       "matches_baseline": true
     },
     ".data/deploy/session-sync-20261013/admin-session-after.png": {
@@ -5457,6 +5537,11 @@
       "bytes": 65971,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-15/iteration049/deployment-pin-transition.json": {
+      "sha256": "f9d1e8d2e36137032c2a6fc671452829e7b006b57e650f60eb2951a73cb81f89",
+      "bytes": 1326,
+      "matches_baseline": true
+    },
     ".data/research/lawbot-2026-10-15/iteration049/edge-first/edge.log": {
       "sha256": "abf07dda98609f850dc4e77da494732afcb7f79e70b3f0c947dd88cf9e8eddeb",
       "bytes": 2406,
@@ -5632,6 +5717,21 @@
       "bytes": 6499,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-15/iteration049/github-default-branch-comparison.json": {
+      "sha256": "c9b361ff035c928bc53e5f39a58a8c89a50245035a8e7cd9b05981df7e870357",
+      "bytes": 148,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/github-final-preflight.json": {
+      "sha256": "1831527eff54c69da000af78102c7ad17d0b499f55e3c85ef0fdebbfa94f88b9",
+      "bytes": 118,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/github-release-readback.log": {
+      "sha256": "7cda6df28f80b9d7ac807c03bc999a2762256b4f74893b0eb1f522f2acac8fa5",
+      "bytes": 135,
+      "matches_baseline": true
+    },
     ".data/research/lawbot-2026-10-15/iteration049/guide-image-provenance.json": {
       "sha256": "85d9755c977f6a89234590bed1e6fe07f5b8e61012cdccc891027bebe022fd29",
       "bytes": 2121,
@@ -5760,6 +5860,11 @@
     ".data/research/lawbot-2026-10-15/iteration049/overwritten-image-old-proof-search.json": {
       "sha256": "284e44908e8b8826886fd8b65dc5ba0c60b11bbf6edcd51b032055ead4e889fa",
       "bytes": 1237,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration049/release-web-build-identity.log": {
+      "sha256": "715a2096e2080415fa88aad362abac2fb751a03234180f83cb8ee46c911743ad",
+      "bytes": 1191,
       "matches_baseline": true
     },
     ".data/research/lawbot-2026-10-15/iteration049/review-pin-transition.json": {
@@ -11188,8 +11293,8 @@
       "matches_baseline": true
     },
     "文档/发布记录-20261015-049.md": {
-      "sha256": "2c0fd4d24566237605c375c174a80682cb0c81f0474e7a21a629045e279e2de7",
-      "bytes": 1270,
+      "sha256": "af6c29e2bcdbe73431794cb60863dd756db4fd3dc93ee508b2ffd3a2971f96b8",
+      "bytes": 1597,
       "matches_baseline": true
     },
     "文档/完整移植验收-20261014.md": {
@@ -11198,8 +11303,8 @@
       "matches_baseline": true
     },
     "文档/待办与完成状态-20261015.md": {
-      "sha256": "b60b09c60420361d5b885eb570d29e93902a8f7a29a0a6d92b655f96694c523b",
-      "bytes": 12131,
+      "sha256": "22eb764b338e04e9c3d33ed1d8d6a436e076b76d8e32f1714c4d66e5563d8299",
+      "bytes": 12217,
       "matches_baseline": true
     },
     "文档/按钮确认交互修复与验收.md": {
@@ -11223,8 +11328,8 @@
       "matches_baseline": true
     },
     "文档/脱敏规则完整技术交接-迭代023.md": {
-      "sha256": "eba8915426cd19d2a8a0ffe43c506a560a8deb66f160c6285acac9339b1c7bcd",
-      "bytes": 354477,
+      "sha256": "edcd4393ca8670957641a359af85b739001ee5585455b0c856b8193aec236da5",
+      "bytes": 354973,
       "matches_baseline": true
     },
     "文档/脱敏规则技术交接-20261014.md": {
@@ -11320,6 +11425,11 @@
     "文档/逆向台账/contracts/aliyun-release036-verification-20261015.md": {
       "sha256": "423266de99a10fd3d417be283b2261db1195f4fbf44eeaa3e18bbdaf7c020c5e",
       "bytes": 5920,
+      "matches_baseline": true
+    },
+    "文档/逆向台账/contracts/aliyun-release049-verification-20261015.md": {
+      "sha256": "beb4125c6a367558099e59eae28b3badf36b9d592a82c7c96e027801f547d92d",
+      "bytes": 2846,
       "matches_baseline": true
     },
     "文档/逆向台账/contracts/api-85-evidence-layers-final-20261015.json": {
@@ -11548,8 +11658,8 @@
       "matches_baseline": true
     },
     "文档/逆向台账/contracts/continuation-reliability-20261015.md": {
-      "sha256": "e356e6b17d5bf2c2f24bee9a596adf55673234256817e68a3f0867b8806f4448",
-      "bytes": 16882,
+      "sha256": "e3e2b78dd4abbb747c8dbe33573d6c326d58243920fdce1d0348351caf0004a8",
+      "bytes": 17579,
       "matches_baseline": true
     },
     "文档/逆向台账/contracts/cross-review-entry-closure.mjs": {
