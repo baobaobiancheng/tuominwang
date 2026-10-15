@@ -7,7 +7,7 @@ import {buildApp} from '../apps/api/main.ts';
 import {registerWorkspacePortableRoutes} from '../apps/api/workspace-portable.ts';
 import {tick} from '../apps/worker/main.ts';
 import {pool} from '../packages/adapters/db.ts';
-import {hash,passwordHash,seal,writeOriginal,writeArtifact,unseal} from '../packages/adapters/storage.ts';
+import {hash,passwordHash,seal,writeOriginal,writeArtifact,readOriginal,unseal} from '../packages/adapters/storage.ts';
 import {pdfFixture} from './pdf-fixtures.ts';
 
 // Candidate path when applied: tests/scenario-routing.integration.ts.
@@ -126,4 +126,50 @@ test('actual PDF/image worker, OCR correction and portable fresh recognition hon
  assert.equal(unseal(restoredRow.content,`${tenant}:${importedProject}:${fresh.id}`),receipt);
  assert.ok(hasCode(restoredRow),JSON.stringify(restoredRow.marks));
  assert.ok(restoredRow.marks.every((m:any)=>m.decision==='pending'));
+
+ // A legal filename alone changes automatic PDF scene routing. Portable
+ // restoration must use the same trusted filename as the worker and OCR edit.
+ const formText='姓名：张三\n金额：1000元\n银行帐号：12345678\n手机号：13800138000';
+ const hasForm=(document:any)=>document.marks.some((m:any)=>m.sources?.some((s:any)=>s.code?.startsWith('SCENE-form-')));
+ const namedLegal=await upload('pdf',pdf,'民事判决书.pdf');await seedOcrCache(namedLegal,project,formText);
+ let namedView=await runJob(namedLegal);
+ assert.equal(namedView.recognition.classification.type,'judgment');
+ assert.ok(namedView.recognition.classification.confidence>=.75);
+ assert.equal(hasForm(namedView),false,'auto legal filename suppresses PDF form scene before portable export');
+ const namedBefore=(await admin.query('SELECT source_id,source_hash FROM documents WHERE id=$1',[namedLegal])).rows[0];
+ assert.deepEqual(await readOriginal(namedBefore.source_id),pdf);
+ const namedBackup=await req('POST',`/api/projects/${project}/portable/export`,{password:'synthetic-filename-backup'});
+ assert.equal(namedBackup.statusCode,200,namedBackup.body);
+ const generic=await upload('pdf',pdf,'普通材料.pdf');await seedOcrCache(generic,project,formText);
+ const genericView=await runJob(generic);
+ assert.equal(hasForm(genericView),true,'generic filename retains automatic PDF form scene');
+ namedView=await configure(namedLegal,namedView.revision,'screenshot');
+ assert.equal(hasForm(namedView),true,'explicit screenshot overrides legal filename');
+
+ const importedNamedResponse=await req('POST','/api/portable/import',{name:'053 文件名场景复核',password:'synthetic-filename-backup',bytesBase64:namedBackup.rawPayload.toString('base64')});
+ assert.equal(importedNamedResponse.statusCode,200,importedNamedResponse.body);
+ const namedProject=importedNamedResponse.json().id as string;
+ const candidates=(await admin.query('SELECT id,source_id,source_name,source_hash FROM documents WHERE project_id=$1',[namedProject])).rows;
+ const importedNamed=candidates.find((row:any)=>unseal(row.source_name,`${tenant}:${namedProject}:${row.id}:name`)==='民事判决书.pdf');
+ assert.ok(importedNamed,'portable import retains the original filename');
+ assert.equal(importedNamed.source_hash,namedBefore.source_hash);
+ assert.deepEqual(await readOriginal(importedNamed.source_id),pdf);
+ await seedOcrCache(importedNamed.id,namedProject,formText);
+ await admin.query("UPDATE jobs SET available_at=now()-interval '1 hour' WHERE document_id=$1 AND kind='detect'",[importedNamed.id]);
+ const importedNamedView=await runJob(importedNamed.id);
+ assert.equal(importedNamedView.recognition.classification.type,'judgment');
+ assert.ok(importedNamedView.recognition.classification.confidence>=.75);
+ assert.equal(hasForm(importedNamedView),false,'fresh worker recognition retains legal filename classification');
+ const restoredNamed=await req('POST',`/api/documents/${importedNamed.id}/portable-draft/restore`,{revision:importedNamedView.revision});
+ assert.equal(restoredNamed.statusCode,200,restoredNamed.body);
+ const restoredNamedRow=(await admin.query('SELECT marks,content,source_id,source_hash FROM documents WHERE id=$1',[importedNamed.id])).rows[0];
+ assert.equal(unseal(restoredNamedRow.content,`${tenant}:${namedProject}:${importedNamed.id}`),formText);
+ assert.equal(restoredNamedRow.source_hash,namedBefore.source_hash);
+ assert.deepEqual(await readOriginal(restoredNamedRow.source_id),pdf);
+ assert.equal(hasForm(restoredNamedRow),false,'portable fresh marks may not re-add form scene hidden by a legal filename');
+ const phoneStart=formText.indexOf('13800138000'),phone=restoredNamedRow.marks.find((m:any)=>m.start===phoneStart&&m.end===phoneStart+11&&m.kind==='手机号');
+ assert.ok(phone,'non-form mobile mark survives portable restoration at its exact UTF-16 span');
+ assert.equal(phone.decision,'pending');
+ assert.ok(phone.sources?.length>0&&!phone.sources.some((s:any)=>s.code?.startsWith('SCENE-form-')),'mobile source is present and is not a form-scene invention');
+ assert.ok(restoredNamedRow.marks.every((m:any)=>m.decision==='pending'));
 });

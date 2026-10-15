@@ -130,4 +130,25 @@ describe('public 0.5.9 evidence screenshot scene contract',()=>{
   const landline:Mark={...phone,sources:[{layer:'rules',code:'INT-phone',score:.8}]};
   expect(applyEvidenceScene(text,anchors,[mobile,landline],route).filter(m=>m.kind==='手机号'||m.kind==='固定电话').map(m=>m.kind)).toEqual(['手机号','固定电话']);
  });
+ it('binds portable fresh PDF form scene to the trusted filename and retains explicit route priority',()=>{
+  const text='姓名：张三\n金额：1000元\n银行帐号：12345678',anchors:Anchor[]=[{kind:'page',page:0,start:0,end:text.length}];
+  const policy=(documentType:'auto'|'screenshot')=>({configuration:{documentType}} as DocumentPolicy);
+  const fresh=(filename:string,documentType:'auto'|'screenshot')=>freshPortableMarks(text,anchors,[],{},'pdf',policy(documentType),1,filename);
+  const form=(marks:Mark[])=>marks.filter(m=>m.sources?.some(s=>s.code.startsWith('SCENE-form-'))).map(m=>({start:m.start,end:m.end,text:text.slice(m.start,m.end),kind:m.kind,decision:m.decision,sources:m.sources?.filter(s=>s.code.startsWith('SCENE-form-'))}));
+  const expected=[
+   {start:3,end:5,text:'张三',kind:'姓名',decision:'pending',sources:[{layer:'rules',code:'SCENE-form-name_cn',score:.95}]},
+   {start:9,end:14,text:'1000元',kind:'金额',decision:'pending',sources:[{layer:'rules',code:'SCENE-form-contract_amount',score:.95}]},
+   {start:20,end:28,text:'12345678',kind:'银行账号',decision:'pending',sources:[{layer:'rules',code:'SCENE-form-bank_card',score:.95}]},
+  ];
+  const autoLegal=fresh('民事判决书.pdf','auto');
+  expect(form(autoLegal)).toEqual([]);
+  expect(autoLegal.every(m=>m.decision==='pending')).toBe(true);
+  const generic=fresh('普通材料.pdf','auto'),explicit=fresh('民事判决书.pdf','screenshot');
+  expect(form(generic)).toEqual(expected);
+  expect(form(explicit)).toEqual(expected);
+  expect(generic.every(m=>m.decision==='pending')).toBe(true);
+  expect(explicit.every(m=>m.decision==='pending')).toBe(true);
+  expect(freshPortableMarks(text,anchors,[],{},'pdf',policy('auto'),1)).toEqual(fresh('', 'auto'));
+  expect(form(fresh('', 'auto'))).toEqual(expected);
+ });
 });

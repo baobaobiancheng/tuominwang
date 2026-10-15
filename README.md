@@ -8,6 +8,8 @@ TypeScript、PostgreSQL 和独立 worker 的电脑网页版脱敏工具。已接
 
 ## 操作指南与逆向进度
 
+- [053工程恢复路由修复](文档/逆向台账/contracts/portable-filename-053-20261016.md)：补齐原文件名上下文；定向API、真实PDF Edge及完整794单元通过，发布另证。
+
 - [052页面与规则补证](文档/逆向台账/contracts/reliability-052-edge-rules-20261016.md)：原83项完整排查、87项分层覆盖、金额五分支变异及四条实际操作截图；运行版本仍为051e。
 
 - [051最新上线及验收](文档/逆向台账/contracts/aliyun-release051-verification-20261016.md)：schema044、任务隔离恢复及28节30图指南；105文件接口分段证据和明确边界。
