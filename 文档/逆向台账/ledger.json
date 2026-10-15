@@ -132318,6 +132318,37 @@
           "path": ".data/deploy/aliyun-20261016/iteration054/private-github-visibility.json"
         }
       ]
+    },
+    {
+      "id": "ITER-054-ONLINE-DEPLOYMENT",
+      "date": "2026-10-16",
+      "action": "ITER-054-ONLINE-DEPLOYMENT",
+      "summary": "054运行代码commitA c1dbe57已部署；398运行文件/网页资源、worker三次ready重启0、五邻居完全同。公网Edge只读登录读回054，指南28节30图正常；admin零项目零任务，未在线上处理业务材料。",
+      "verification": "deploy exit0、server release verification与online-readonly-proof逐项核验；上线前本地112 API/222及六格式另1、135文件798单元、Bend11/13证据分层保留。054文档提交commitB后续另记；055仅研究候选，S/I/R未升级。",
+      "affected_ids": [
+        "FLOW-workspace",
+        "FLOW-entity-group-review"
+      ],
+      "evidence": [
+        {
+          "path": "文档/逆向台账/contracts/aliyun-release054-verification-20261016.md"
+        },
+        {
+          "path": ".data/deploy/aliyun-20261016/iteration054/deploy-receipt.json"
+        },
+        {
+          "path": ".data/deploy/aliyun-20261016/iteration054/release-verification.json"
+        },
+        {
+          "path": ".data/deploy/aliyun-20261016/iteration054/online-readonly-proof.json"
+        },
+        {
+          "path": ".data/deploy/aliyun-20261016/iteration054/release/manifest.json"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-16/iteration054/before-online-doc-final/manifest.json"
+        }
+      ]
     }
   ],
   "evidence_snapshot": {
@@ -134733,8 +134764,8 @@
         "bytes": 423
       },
       "文档/脱敏规则完整技术交接-迭代023.md": {
-        "sha256": "f73fe3fc49b29b1be21aed43f421ab08ad864aa9ef8e70c2c78f36d332914930",
-        "bytes": 390911
+        "sha256": "97ca7524f4da5a223a98a007e6f05de45d3309f0e9095547273c9a2bab656f38",
+        "bytes": 391085
       },
       "文档/逆向台账/contracts/build-complete-rule-handoff-20261014.py": {
         "sha256": "c5d6db581eb6019ba761fe2adb9ba66b41c4a611162c32e54729baf3fa9810e6",
@@ -137693,8 +137724,8 @@
         "bytes": 119700
       },
       "README.md": {
-        "sha256": "bdf49984bf765f3da1c405c71f8ff9edcb90f8d025d3c663727b829d6ec55710",
-        "bytes": 14551
+        "sha256": "8318a37ff1240a0cc8e8f1e4df167a8adb9e40fc82c49398ecfca989e5fbfde7",
+        "bytes": 14811
       },
       "licenses/sax-LICENSE.md": {
         "sha256": "8a1af140fdfbf5afd3df27f7e662f989c5b963a300020dfafce42033cae9e004",
@@ -138309,8 +138340,8 @@
         "bytes": 4676926
       },
       "文档/待办与完成状态-20261015.md": {
-        "sha256": "d0ae3ad2c5729ff075076039503f25f58d447d5f744f91fd1ee788787370df8f",
-        "bytes": 27618
+        "sha256": "f33582bf0fcd994d18f19a756e06c0895afae36559df2bc37870c00512925f51",
+        "bytes": 28074
       },
       ".data/research/lawbot-2026-10-15/iteration036/checkpoint-history/current/apps/api/main.ts": {
         "sha256": "4c36dad476012af090cb8649de2b991235d41e4c5d946a4a411404680935b011",
@@ -149909,8 +149940,8 @@
         "bytes": 11504
       },
       "文档/逆向台账/contracts/policy-ocr-portable-054-20261016.md": {
-        "sha256": "e74a65f9671e6cf73619202951c224e2b1f6d35aebcee8ec392b4528a8c0e501",
-        "bytes": 15618
+        "sha256": "c2d3018fda52aace6ed8eb6711a3a7b6b0da533267a5dcd33246112b59c1a581",
+        "bytes": 15983
       },
       ".data/research/lawbot-2026-10-16/iteration054/before-checkpoint-ledger.json": {
         "sha256": "19d40f5ff97b2eaa8f9d66dd699cdac8b67acd12fc20eaa46c0ba154fb78b36c",
@@ -151239,6 +151270,82 @@
       ".data/deploy/aliyun-20261016/iteration054/private-github-visibility.json": {
         "sha256": "516d8f8a8621d6b3be1fc5ae6b20d16472649a2d95745d8a03bbc7a297598653",
         "bytes": 270
+      },
+      "文档/逆向台账/contracts/aliyun-release054-verification-20261016.md": {
+        "sha256": "08128bfcd88dd061a9f9e62ebfa6a0876fdd25b960a372d0a810845cf77cc7ad",
+        "bytes": 3387
+      },
+      ".data/deploy/aliyun-20261016/iteration054/deploy-receipt.json": {
+        "sha256": "46f3aa9ddba9dd3ae8568c6a6a9ef887f353fe5653e1116bc398b56c467d2b93",
+        "bytes": 583
+      },
+      ".data/deploy/aliyun-20261016/iteration054/release-verification.json": {
+        "sha256": "c87e49de38aaaaf8a424f6f986d44f40d830e95a37d9661636123a1631d71451",
+        "bytes": 1269
+      },
+      ".data/deploy/aliyun-20261016/iteration054/online-readonly-proof.json": {
+        "sha256": "22f53e600d22b796a106d6dd4797a4c7e352bb2b224b5734cf36d82e98957268",
+        "bytes": 1128
+      },
+      ".data/deploy/aliyun-20261016/iteration054/release/manifest.json": {
+        "sha256": "7acef563377579b34cae3b89b4cdd134de0bf01b367e2742987bde76cb0dc07d",
+        "bytes": 67334
+      },
+      ".data/deploy/aliyun-20261016/iteration054/archive-receipt.json": {
+        "sha256": "cdf5c8e60c1b0359bb1e4a1fe31b6b2f532542af9dcb0755baa9f2c5cf08f4a5",
+        "bytes": 353
+      },
+      ".data/deploy/aliyun-20261016/iteration054/deploy.log": {
+        "sha256": "3443493f5bf3f29cf0d2956bf6d5a57aa367d9e9a02e6c3c8f484959f9287a0d",
+        "bytes": 4520
+      },
+      ".data/research/lawbot-2026-10-16/iteration054/before-online-doc-final/manifest.json": {
+        "sha256": "81f831fca9bfda7b2e7e967117bc58fabdece54e16af6bbd8a529d22a5c43197",
+        "bytes": 2034
+      },
+      ".data/research/lawbot-2026-10-16/iteration054/before-online-doc-final/README.md": {
+        "sha256": "bdf49984bf765f3da1c405c71f8ff9edcb90f8d025d3c663727b829d6ec55710",
+        "bytes": 14551
+      },
+      ".data/research/lawbot-2026-10-16/iteration054/before-online-doc-final/文档/待办与完成状态-20261015.md": {
+        "sha256": "d0ae3ad2c5729ff075076039503f25f58d447d5f744f91fd1ee788787370df8f",
+        "bytes": 27618
+      },
+      ".data/research/lawbot-2026-10-16/iteration054/before-online-doc-final/文档/脱敏规则完整技术交接-迭代023.md": {
+        "sha256": "f73fe3fc49b29b1be21aed43f421ab08ad864aa9ef8e70c2c78f36d332914930",
+        "bytes": 390911
+      },
+      ".data/research/lawbot-2026-10-16/iteration054/before-online-doc-final/文档/逆向台账/contracts/policy-ocr-portable-054-20261016.md": {
+        "sha256": "e74a65f9671e6cf73619202951c224e2b1f6d35aebcee8ec392b4528a8c0e501",
+        "bytes": 15618
+      },
+      ".data/research/lawbot-2026-10-16/iteration054/before-online-doc-final/文档/逆向台账/ledger.json": {
+        "sha256": "4b3c2d30f1180c10968ef64e92d06e344ec0b25d9601c7469f34bf47b0b1c3c6",
+        "bytes": 7439407
+      },
+      ".data/research/lawbot-2026-10-16/iteration054/before-online-doc-final/文档/逆向台账/README.md": {
+        "sha256": "abb35860a99928240993cc02847e9aef13d5c75d624573336d99747ef8163762",
+        "bytes": 15767
+      },
+      ".data/research/lawbot-2026-10-16/iteration054/before-online-doc-final/文档/逆向台账/变更日志.md": {
+        "sha256": "7f98f9c7653c5227ff61de952fb8e94bfaf98005c5746a395dfaa6e0b6267987",
+        "bytes": 52909
+      },
+      ".data/research/lawbot-2026-10-16/iteration054/before-online-doc-final/文档/逆向台账/待办清单.csv": {
+        "sha256": "6c58860d60749de41e4efa0cda77275df98bc2aa0b06affd2f9b266e11309d70",
+        "bytes": 160432
+      },
+      ".data/research/lawbot-2026-10-16/iteration054/before-online-doc-final/文档/逆向台账/接口台账.csv": {
+        "sha256": "82dbd407ac149ed6d3e7ed76668377bc8999f514793029e332ffc3d87c148310",
+        "bytes": 555389
+      },
+      ".data/research/lawbot-2026-10-16/iteration054/before-online-doc-final/文档/逆向台账/校验结果.json": {
+        "sha256": "959718ae7d5551231c09dbb85c81311b6b070df348549947c7edfe96751021e9",
+        "bytes": 1093748
+      },
+      ".data/research/lawbot-2026-10-16/iteration054/before-online-doc-final/文档/逆向台账/链路台账.csv": {
+        "sha256": "37d1401c87261b21f0d7ab2903ebcfd0ed156db34caf380abf5f9d4f7b96bf4b",
+        "bytes": 59053
       }
     },
     "unavailable_historical_screenshots": [

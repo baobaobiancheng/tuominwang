@@ -1,6 +1,6 @@
 # 054：材料设置、OCR 与工程恢复检查点
 
-日期：2026-10-16。054本地验收已形成最终分层回执，线上维持已验收的053；尚未部署054。本地通过不能代替全部格式组合、竞品合法激活后的运行验收或054公网读回。
+日期：2026-10-16。054本地验收形成分层回执后已部署并完成公网只读验收，见[054上线结果](aliyun-release054-verification-20261016.md)。本地通过不能代替全部格式组合、竞品合法激活后的运行验收或线上业务材料处理。以下原始阶段记录按发生时状态保留。
 
 ## 本地最终结论与证据范围
 
@@ -13,7 +13,7 @@
 
 复制树112终态见 `iteration054/arch/copied-api-112-terminal-review.md` 及原始receipt/log；六格式代表模式见 `rules/cross-format-run-v2-attempt04-output-proof.json`；正式check见 `final-check-v4-receipt.json`、`final-check-v4.log` 与独立复核；输入合并见 `final-source-merge.json`、`final-inputs-v4.json`；浏览器原失败见 `full-edge-v2-receipt.json`。上述路径均位于 `.data/research/lawbot-2026-10-16/iteration054/`。模型读取、资源限制、原件和既有签发对象保持；258个入口的R0、S/I及业务金标边界不升级。
 
-本地发布准备另有 `iteration054/web-build-v4-receipt.json`、`final-runtime-stage-precommit.json`、`private-github-visibility.json`：前端构建、398个运行文件的本地预提交路径/哈希与私有仓库可见性已核。这些是本地打包准备回执，未执行服务器变更，也不构成054上线验收。三文件位于 `.data/deploy/aliyun-20261016/iteration054/`。
+本地发布准备另有 `iteration054/web-build-v4-receipt.json`、`final-runtime-stage-precommit.json`、`private-github-visibility.json`：前端构建、398个运行文件的本地预提交路径/哈希与私有仓库可见性已核。这些是服务器变更前的本地打包准备回执，单独不能构成054上线验收；实际部署与公网回执见[发布记录](aliyun-release054-verification-20261016.md)。三文件位于 `.data/deploy/aliyun-20261016/iteration054/`。
 
 ```mermaid
 flowchart LR
@@ -43,7 +43,7 @@ flowchart LR
 - CSV contextual、Markdown sidecar、OCR 改字后的非空密封页审查/历史纠错、新 glyph map 的失败清理仍在专项检查。已发现导入后的识别可能清除不匹配内容 hash 的旧纠错帧，尚待真实 PNG 链确认及修复。
 - 恢复旧人工草稿保持待复核，未等同普通发布 worker 的替换策略最终化；旧页样式保留，也不能直接声称当前方案页样式完全一致。
 - 258 个入口仍全部竞品 R0，224 S3/34 S2；34 个原生/外部/私有实现边界、真实语料金标、视觉质量、原生 Word 和部分外部调用验收继续保留。
-- 未更改模型读取、模型阈值、自动批准规则、原件或线上资源限制；未发布 054。
+- 未更改模型读取、模型阈值、自动批准规则、原件或线上资源限制；本条写于054发布前，实际发布结果见文首链接。
 
 ## 证据索引
 
@@ -76,7 +76,7 @@ callback 回滚见证首次因 test-only sequence 未授权 tmw_app 而 is_calle
 
 ## 完整浏览器终态、六项复验通过与新定位反例
 
-054 尚未发布，线上仍053。根组已实际观察完整 `pnpm check` 终态0：134文件794单元、Bend11法律/13变异、类型及构建通过；865锁定输入前后相同。其收据父进程曾为避免覆盖浏览器截图而暂停，浏览器终态后精确核PID/cwd恢复；不是凭子日志推断终态。
+以下为发布前阶段检查点，当时线上仍053；现054已部署。根组已实际观察完整 `pnpm check` 终态0：134文件794单元、Bend11法律/13变异、类型及构建通过；865锁定输入前后相同。其收据父进程曾为避免覆盖浏览器截图而暂停，浏览器终态后精确核PID/cwd恢复；不是凭子日志推断终态。
 
 | 本次门禁 | 实际结果 | 范围与剩余 |
 |---|---|---|
@@ -98,7 +98,7 @@ callback 回滚见证首次因 test-only sequence 未授权 tmw_app 而 is_calle
 S/I/R和未授权竞品运行边界不升级；TXT三模式产物专项与其他格式静态接线仍区分。规则组新增六格式候选正在独立实测，旧夹具队列与缺少锁定OpenCV runtime的失败均保留，不能称六格式完成。模型读取、原件和生产部署配置保持原值。
 
 
-## 112接口回归、CRLF与正式合并检查点（054尚未发布）
+## 112接口回归、CRLF与正式合并检查点（发布前历史）
 
 独立复制树标准runner单次完成112个API测试文件：222 pass、0 fail、0 skip，进程实际终态0。正式与复制树旧865输入以及额外合成加密DOC夹具前后均无漂移。865包含843个四目录项目输入和22条Vite缓存；不是865个手写源码。原copied manifest误把main.js的SHA配给handoff JSON，原字节保持，另存三份source/copy实际哈希纠正说明，不影响实际执行。
 
@@ -115,4 +115,4 @@ S/I/R和未授权竞品运行边界不升级；TXT三模式产物专项与其他
 
 根组已归档7份正式旧源码后合入11文件（4新增）。新847清单重扫apps/packages/scripts/tests+7个根Bend/配置文件，排除全部node_modules路径与Python缓存；旧865清单永久保留。旧843到新847仅7处web/测试变化、4新增，API/runtime零变化；vendor/licenses/services由发布manifest、clean HEAD及固定转换器image另验。最终pnpm check已按847终态0：135文件798单元、Bend11/13、类型及构建通过；477份历史/研究产物新字节先归档、旧字节恢复，前后无漂移。
 
-054仍未提交/推送/部署；线上只读刷新为健康053。055材料规则权限与有效值候选另记，不夹带本次发布。258R0、224S3/34S2及I等级不升级；真实业务金标、印章/签名质量、复杂Word与私有/许可原生边界保持。模型读取、生产资源配置和旧原件/已签发对象未变。
+本段形成时054尚未提交/推送/部署；目前运行代码commitA已部署、公网只读054已核，文档提交commitB另行记录。055材料规则权限与有效值候选另记，不夹带本次发布。258R0、224S3/34S2及I等级不升级；真实业务金标、印章/签名质量、复杂Word与私有/许可原生边界保持。模型读取、生产资源配置和旧原件/已签发对象未变。

@@ -1,5 +1,5 @@
 {
-  "ledger_sha256": "4b3c2d30f1180c10968ef64e92d06e344ec0b25d9601c7469f34bf47b0b1c3c6",
+  "ledger_sha256": "47a1677f1f887727fb60680ba7708d321399313c94dfc798a0e16f28af820186",
   "reference_version": "0.5.9",
   "interface_count": 258,
   "flow_count": 37,
@@ -8,7 +8,7 @@
   "unmapped_interfaces": [],
   "empty_evidence_interfaces": [],
   "evidence_reference_count": 4853,
-  "evidence_file_count": 4729,
+  "evidence_file_count": 4748,
   "evidence_baseline_at": "2026-10-15T23:43:46.294394+00:00",
   "evidence_baseline_note": "这些哈希是2026-10-13本轮从当前现存文件建立的内容基线，只用于此后漂移检测；不能反向证明基线建立前的文件内容、原始发布完整性或过去运行结论。专有源码未修改。 ITER-012/013追加人工契约、交叉审查、新版指南及明确列举的子路径源码；旧文件哈希继续保留。已批准源码和主分析文档的哈希变更逐项记录previous/current，不扫描部署凭据。 ITER-014仅显式更新最终应用Compose及新增部署结果文件，保留真实OOM与未验证边界，未纳入密钥或环境凭据。 ITER-015仅补115项UI入口、两处动态桥调用集合、交叉审查/核验脚本及新增OpenJPEG发布证据；保留此前应用和部署文件的哈希，正在进行的前端修复漂移由后续迭代单独复核。 ITER-016：仅将本轮明确修改的前端/测试/部署/文档及验收回执更新基线，事件保存旧新哈希；无业务材料或凭据入账。 ITER-017新增分组/增补契约、交叉审查及npm原生签名差异证据；仅maintain新增71解释及维护规则旧动态数量文案的历史hash显式更新。未纳入凭据、未改竞品文件或应用。下载tarball及原生比较的逐项SHA保存在专项报告，不自动扩大成算法可信声明。 ITER-020：补我方Word结构预览、页内OCR改字、视觉候选的实现/验收与规则交接；显式更新5项应用pin，previous/current与原ledger备份保留；早期UI/26例与旧交接独审仅为历史阶段，不代表最终功能或最终文档全部被独审。竞品S2/R0、全部I级别不变，未据本地验证声明公网发布。 ITER-022显式更新进度检查点应用pin；main87基线原字节和旧新hash逐项保留，新能力未一律提级，未发布服务。 ITER-023仅显式进度检查点，28项原pin旧字节归档；有失败日志和新阶段未完成事项，未整体升格。 ITER-030显式逐ID更新，所有漂移旧字节保留并精确验hash；竞品运行R0保持不变。 ITER-031发布及真实OOM影响补证；README和指南文本旧字节精确保留；7张历史截图原字节缺失明确列出，旧hash保留且不声称历史图全部可验证。 ITER038静态语义逐ID合并；旧漂移逐一有精确字节归档，未覆盖掉历史证据。 ITER039握手故障独立复现；变更旧字节逐一验hash并归档，未以定向通过推全量或发布。 ITER040保留全部旧pin字节；逐ID/流程说明CAS更正，等级不变；实际门禁与服务器发布分别记录。 ITER040补5个已存在的新引用当前哈希；不反推其建立基线前内容。新增Edge截图调用保留此前精确字节，尚未运行。 ITER041逐文件真实variant与前后testSHA/logSHA固定；历史结果不冒称当前单次全量。两项测试修正保留旧字节及独立源裁定。 ITER042：首轮真实Edge失败原样保留；18项新旧字节逐一固定，4项产品修复待重新运行，等级不变。 ITER043最终本地：所有旧pin精确字节均找到并归档；API/Edge逐variant保留，无单次全量虚称；13条备注校准不改等级，图文实际核对；部署另证。 ITER044上线：首次真实OOM/回滚与恢复、二次发布、TXT/PNG实产物、指南补丁分别保留；无新增资源限制或模型读取改动；证据变更先核旧字节，S/I/R不变。 ITER-050首次检查点新增审查和实际反例，不变更已有pin及S/I/R，修复与发布尚待。 ITER-050终版：明确更新14路径及文档pin，旧字节按SHA归档；保留失败/跳过/反驳与最终同源层次。258R0及S/I不升级；未把本地验收写为已发布。 ITER-050发布：4文档旧字节先归档，追加最小部署与公网只读证据，保留历史状态而不升级S/I/R。 ITER-051反例检查点：状态文件旧字节先归档；固定已结束实测而不固定仍运行日志；不升级S/I/R。 ITER-051第一批：旧源码Git7ef93d6精确字节归档后显式转移pin；772单元及Edge2为第一批实测，签名/进度/MCP后续未验，竞品R0/线上050记录保持。 051第二批本地checkpoint：显式pin转换及事前旧字节归档；777完整单元、定向API/Edge与跨组反驳；95文件API仍执行、活动日志不pin、未部署。 051第三批本地checkpoint：显式旧pin归档转换，851完整check、分层API/Edge、27图；104全API仍执行，未部署，S/I/R不升。 051第四批前停点：104文件执行35，61过1测试期望失败；无条件安全断言重验1/1，假名与模型导航补齐，未部署。 051第四批checkpoint：SQL044及Edge1/1、854 check134/783、28节30图；105完整API仍运行，未部署，旧pin精确字节归档。 051e终态：105文件209项分段通过、854输入不变、044上线/397运行文件和web资源/5邻居/公网Edge/28节30图，源R0及I级保持。 052显式归档9处旧pin后更新；完整83失败/分层87成功、793单元及规则和质量边界分别保留，208条过期门禁等待清理不提升状态。",
   "evidence_files": {
@@ -2772,14 +2772,44 @@
       "bytes": 11145,
       "matches_baseline": true
     },
+    ".data/deploy/aliyun-20261016/iteration054/archive-receipt.json": {
+      "sha256": "cdf5c8e60c1b0359bb1e4a1fe31b6b2f532542af9dcb0755baa9f2c5cf08f4a5",
+      "bytes": 353,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261016/iteration054/deploy-receipt.json": {
+      "sha256": "46f3aa9ddba9dd3ae8568c6a6a9ef887f353fe5653e1116bc398b56c467d2b93",
+      "bytes": 583,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261016/iteration054/deploy.log": {
+      "sha256": "3443493f5bf3f29cf0d2956bf6d5a57aa367d9e9a02e6c3c8f484959f9287a0d",
+      "bytes": 4520,
+      "matches_baseline": true
+    },
     ".data/deploy/aliyun-20261016/iteration054/final-runtime-stage-precommit.json": {
       "sha256": "9d509bb9adc9579508aa40ba4871bdc7ef8084785081c3de5c8e6745c6772af0",
       "bytes": 232,
       "matches_baseline": true
     },
+    ".data/deploy/aliyun-20261016/iteration054/online-readonly-proof.json": {
+      "sha256": "22f53e600d22b796a106d6dd4797a4c7e352bb2b224b5734cf36d82e98957268",
+      "bytes": 1128,
+      "matches_baseline": true
+    },
     ".data/deploy/aliyun-20261016/iteration054/private-github-visibility.json": {
       "sha256": "516d8f8a8621d6b3be1fc5ae6b20d16472649a2d95745d8a03bbc7a297598653",
       "bytes": 270,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261016/iteration054/release-verification.json": {
+      "sha256": "c87e49de38aaaaf8a424f6f986d44f40d830e95a37d9661636123a1631d71451",
+      "bytes": 1269,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261016/iteration054/release/manifest.json": {
+      "sha256": "7acef563377579b34cae3b89b4cdd134de0bf01b367e2742987bde76cb0dc07d",
+      "bytes": 67334,
       "matches_baseline": true
     },
     ".data/deploy/aliyun-20261016/iteration054/web-build-v4-receipt.json": {
@@ -13897,6 +13927,66 @@
       "bytes": 13152,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-16/iteration054/before-online-doc-final/README.md": {
+      "sha256": "bdf49984bf765f3da1c405c71f8ff9edcb90f8d025d3c663727b829d6ec55710",
+      "bytes": 14551,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-online-doc-final/manifest.json": {
+      "sha256": "81f831fca9bfda7b2e7e967117bc58fabdece54e16af6bbd8a529d22a5c43197",
+      "bytes": 2034,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-online-doc-final/文档/待办与完成状态-20261015.md": {
+      "sha256": "d0ae3ad2c5729ff075076039503f25f58d447d5f744f91fd1ee788787370df8f",
+      "bytes": 27618,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-online-doc-final/文档/脱敏规则完整技术交接-迭代023.md": {
+      "sha256": "f73fe3fc49b29b1be21aed43f421ab08ad864aa9ef8e70c2c78f36d332914930",
+      "bytes": 390911,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-online-doc-final/文档/逆向台账/README.md": {
+      "sha256": "abb35860a99928240993cc02847e9aef13d5c75d624573336d99747ef8163762",
+      "bytes": 15767,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-online-doc-final/文档/逆向台账/contracts/policy-ocr-portable-054-20261016.md": {
+      "sha256": "e74a65f9671e6cf73619202951c224e2b1f6d35aebcee8ec392b4528a8c0e501",
+      "bytes": 15618,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-online-doc-final/文档/逆向台账/ledger.json": {
+      "sha256": "4b3c2d30f1180c10968ef64e92d06e344ec0b25d9601c7469f34bf47b0b1c3c6",
+      "bytes": 7439407,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-online-doc-final/文档/逆向台账/变更日志.md": {
+      "sha256": "7f98f9c7653c5227ff61de952fb8e94bfaf98005c5746a395dfaa6e0b6267987",
+      "bytes": 52909,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-online-doc-final/文档/逆向台账/待办清单.csv": {
+      "sha256": "6c58860d60749de41e4efa0cda77275df98bc2aa0b06affd2f9b266e11309d70",
+      "bytes": 160432,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-online-doc-final/文档/逆向台账/接口台账.csv": {
+      "sha256": "82dbd407ac149ed6d3e7ed76668377bc8999f514793029e332ffc3d87c148310",
+      "bytes": 555389,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-online-doc-final/文档/逆向台账/校验结果.json": {
+      "sha256": "959718ae7d5551231c09dbb85c81311b6b070df348549947c7edfe96751021e9",
+      "bytes": 1093748,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-16/iteration054/before-online-doc-final/文档/逆向台账/链路台账.csv": {
+      "sha256": "37d1401c87261b21f0d7ab2903ebcfd0ed156db34caf380abf5f9d4f7b96bf4b",
+      "bytes": 59053,
+      "matches_baseline": true
+    },
     ".data/research/lawbot-2026-10-16/iteration054/before-policy-matrix-doc/文档/逆向台账/contracts/policy-ocr-portable-054-20261016.md": {
       "sha256": "f475d83460ad74db77f95e7ca8d6b2e0f7d5075fcdfd1e6ea18cfd3dc785df1e",
       "bytes": 5581,
@@ -15238,8 +15328,8 @@
       "matches_baseline": true
     },
     "README.md": {
-      "sha256": "bdf49984bf765f3da1c405c71f8ff9edcb90f8d025d3c663727b829d6ec55710",
-      "bytes": 14551,
+      "sha256": "8318a37ff1240a0cc8e8f1e4df167a8adb9e40fc82c49398ecfca989e5fbfde7",
+      "bytes": 14811,
       "matches_baseline": true
     },
     "apps/api/access.ts": {
@@ -20983,8 +21073,8 @@
       "matches_baseline": true
     },
     "文档/待办与完成状态-20261015.md": {
-      "sha256": "d0ae3ad2c5729ff075076039503f25f58d447d5f744f91fd1ee788787370df8f",
-      "bytes": 27618,
+      "sha256": "f33582bf0fcd994d18f19a756e06c0895afae36559df2bc37870c00512925f51",
+      "bytes": 28074,
       "matches_baseline": true
     },
     "文档/按钮确认交互修复与验收.md": {
@@ -21008,8 +21098,8 @@
       "matches_baseline": true
     },
     "文档/脱敏规则完整技术交接-迭代023.md": {
-      "sha256": "f73fe3fc49b29b1be21aed43f421ab08ad864aa9ef8e70c2c78f36d332914930",
-      "bytes": 390911,
+      "sha256": "97ca7524f4da5a223a98a007e6f05de45d3309f0e9095547273c9a2bab656f38",
+      "bytes": 391085,
       "matches_baseline": true
     },
     "文档/脱敏规则技术交接-20261014.md": {
@@ -21130,6 +21220,11 @@
     "文档/逆向台账/contracts/aliyun-release053-verification-20261016.md": {
       "sha256": "e263c8957b0ce0770395679b4313bc8953a6f07b5076baa7eeb1f78361d6a29b",
       "bytes": 3767,
+      "matches_baseline": true
+    },
+    "文档/逆向台账/contracts/aliyun-release054-verification-20261016.md": {
+      "sha256": "08128bfcd88dd061a9f9e62ebfa6a0876fdd25b960a372d0a810845cf77cc7ad",
+      "bytes": 3387,
       "matches_baseline": true
     },
     "文档/逆向台账/contracts/api-105-layered-coverage-051-20261016.md": {
@@ -22048,8 +22143,8 @@
       "matches_baseline": true
     },
     "文档/逆向台账/contracts/policy-ocr-portable-054-20261016.md": {
-      "sha256": "e74a65f9671e6cf73619202951c224e2b1f6d35aebcee8ec392b4528a8c0e501",
-      "bytes": 15618,
+      "sha256": "c2d3018fda52aace6ed8eb6711a3a7b6b0da533267a5dcd33246112b59c1a581",
+      "bytes": 15983,
       "matches_baseline": true
     },
     "文档/逆向台账/contracts/portable-filename-053-20261016.md": {
