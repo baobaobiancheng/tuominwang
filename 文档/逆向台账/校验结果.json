@@ -1,5 +1,5 @@
 {
-  "ledger_sha256": "e3ac19e105724b249324672644c7d34b5a6bf9b5a44e2c4a0c3ef960d9a058d8",
+  "ledger_sha256": "64a9fbdee7a433624699598992c81679906c1bcc083602960ba4a3f92bdcad06",
   "reference_version": "0.5.9",
   "interface_count": 258,
   "flow_count": 37,
@@ -7,10 +7,10 @@
   "historical_ipc_missing": [],
   "unmapped_interfaces": [],
   "empty_evidence_interfaces": [],
-  "evidence_reference_count": 4800,
-  "evidence_file_count": 3528,
-  "evidence_baseline_at": "2026-10-15T20:03:07.787894+00:00",
-  "evidence_baseline_note": "这些哈希是2026-10-13本轮从当前现存文件建立的内容基线，只用于此后漂移检测；不能反向证明基线建立前的文件内容、原始发布完整性或过去运行结论。专有源码未修改。 ITER-012/013追加人工契约、交叉审查、新版指南及明确列举的子路径源码；旧文件哈希继续保留。已批准源码和主分析文档的哈希变更逐项记录previous/current，不扫描部署凭据。 ITER-014仅显式更新最终应用Compose及新增部署结果文件，保留真实OOM与未验证边界，未纳入密钥或环境凭据。 ITER-015仅补115项UI入口、两处动态桥调用集合、交叉审查/核验脚本及新增OpenJPEG发布证据；保留此前应用和部署文件的哈希，正在进行的前端修复漂移由后续迭代单独复核。 ITER-016：仅将本轮明确修改的前端/测试/部署/文档及验收回执更新基线，事件保存旧新哈希；无业务材料或凭据入账。 ITER-017新增分组/增补契约、交叉审查及npm原生签名差异证据；仅maintain新增71解释及维护规则旧动态数量文案的历史hash显式更新。未纳入凭据、未改竞品文件或应用。下载tarball及原生比较的逐项SHA保存在专项报告，不自动扩大成算法可信声明。 ITER-020：补我方Word结构预览、页内OCR改字、视觉候选的实现/验收与规则交接；显式更新5项应用pin，previous/current与原ledger备份保留；早期UI/26例与旧交接独审仅为历史阶段，不代表最终功能或最终文档全部被独审。竞品S2/R0、全部I级别不变，未据本地验证声明公网发布。 ITER-022显式更新进度检查点应用pin；main87基线原字节和旧新hash逐项保留，新能力未一律提级，未发布服务。 ITER-023仅显式进度检查点，28项原pin旧字节归档；有失败日志和新阶段未完成事项，未整体升格。 ITER-030显式逐ID更新，所有漂移旧字节保留并精确验hash；竞品运行R0保持不变。 ITER-031发布及真实OOM影响补证；README和指南文本旧字节精确保留；7张历史截图原字节缺失明确列出，旧hash保留且不声称历史图全部可验证。 ITER038静态语义逐ID合并；旧漂移逐一有精确字节归档，未覆盖掉历史证据。 ITER039握手故障独立复现；变更旧字节逐一验hash并归档，未以定向通过推全量或发布。 ITER040保留全部旧pin字节；逐ID/流程说明CAS更正，等级不变；实际门禁与服务器发布分别记录。 ITER040补5个已存在的新引用当前哈希；不反推其建立基线前内容。新增Edge截图调用保留此前精确字节，尚未运行。 ITER041逐文件真实variant与前后testSHA/logSHA固定；历史结果不冒称当前单次全量。两项测试修正保留旧字节及独立源裁定。 ITER042：首轮真实Edge失败原样保留；18项新旧字节逐一固定，4项产品修复待重新运行，等级不变。 ITER043最终本地：所有旧pin精确字节均找到并归档；API/Edge逐variant保留，无单次全量虚称；13条备注校准不改等级，图文实际核对；部署另证。 ITER044上线：首次真实OOM/回滚与恢复、二次发布、TXT/PNG实产物、指南补丁分别保留；无新增资源限制或模型读取改动；证据变更先核旧字节，S/I/R不变。 ITER-050首次检查点新增审查和实际反例，不变更已有pin及S/I/R，修复与发布尚待。 ITER-050终版：明确更新14路径及文档pin，旧字节按SHA归档；保留失败/跳过/反驳与最终同源层次。258R0及S/I不升级；未把本地验收写为已发布。 ITER-050发布：4文档旧字节先归档，追加最小部署与公网只读证据，保留历史状态而不升级S/I/R。 ITER-051反例检查点：状态文件旧字节先归档；固定已结束实测而不固定仍运行日志；不升级S/I/R。 ITER-051第一批：旧源码Git7ef93d6精确字节归档后显式转移pin；772单元及Edge2为第一批实测，签名/进度/MCP后续未验，竞品R0/线上050记录保持。 051第二批本地checkpoint：显式pin转换及事前旧字节归档；777完整单元、定向API/Edge与跨组反驳；95文件API仍执行、活动日志不pin、未部署。 051第三批本地checkpoint：显式旧pin归档转换，851完整check、分层API/Edge、27图；104全API仍执行，未部署，S/I/R不升。 051第四批前停点：104文件执行35，61过1测试期望失败；无条件安全断言重验1/1，假名与模型导航补齐，未部署。 051第四批checkpoint：SQL044及Edge1/1、854 check134/783、28节30图；105完整API仍运行，未部署，旧pin精确字节归档。",
+  "evidence_reference_count": 4819,
+  "evidence_file_count": 3566,
+  "evidence_baseline_at": "2026-10-15T20:23:40.249875+00:00",
+  "evidence_baseline_note": "这些哈希是2026-10-13本轮从当前现存文件建立的内容基线，只用于此后漂移检测；不能反向证明基线建立前的文件内容、原始发布完整性或过去运行结论。专有源码未修改。 ITER-012/013追加人工契约、交叉审查、新版指南及明确列举的子路径源码；旧文件哈希继续保留。已批准源码和主分析文档的哈希变更逐项记录previous/current，不扫描部署凭据。 ITER-014仅显式更新最终应用Compose及新增部署结果文件，保留真实OOM与未验证边界，未纳入密钥或环境凭据。 ITER-015仅补115项UI入口、两处动态桥调用集合、交叉审查/核验脚本及新增OpenJPEG发布证据；保留此前应用和部署文件的哈希，正在进行的前端修复漂移由后续迭代单独复核。 ITER-016：仅将本轮明确修改的前端/测试/部署/文档及验收回执更新基线，事件保存旧新哈希；无业务材料或凭据入账。 ITER-017新增分组/增补契约、交叉审查及npm原生签名差异证据；仅maintain新增71解释及维护规则旧动态数量文案的历史hash显式更新。未纳入凭据、未改竞品文件或应用。下载tarball及原生比较的逐项SHA保存在专项报告，不自动扩大成算法可信声明。 ITER-020：补我方Word结构预览、页内OCR改字、视觉候选的实现/验收与规则交接；显式更新5项应用pin，previous/current与原ledger备份保留；早期UI/26例与旧交接独审仅为历史阶段，不代表最终功能或最终文档全部被独审。竞品S2/R0、全部I级别不变，未据本地验证声明公网发布。 ITER-022显式更新进度检查点应用pin；main87基线原字节和旧新hash逐项保留，新能力未一律提级，未发布服务。 ITER-023仅显式进度检查点，28项原pin旧字节归档；有失败日志和新阶段未完成事项，未整体升格。 ITER-030显式逐ID更新，所有漂移旧字节保留并精确验hash；竞品运行R0保持不变。 ITER-031发布及真实OOM影响补证；README和指南文本旧字节精确保留；7张历史截图原字节缺失明确列出，旧hash保留且不声称历史图全部可验证。 ITER038静态语义逐ID合并；旧漂移逐一有精确字节归档，未覆盖掉历史证据。 ITER039握手故障独立复现；变更旧字节逐一验hash并归档，未以定向通过推全量或发布。 ITER040保留全部旧pin字节；逐ID/流程说明CAS更正，等级不变；实际门禁与服务器发布分别记录。 ITER040补5个已存在的新引用当前哈希；不反推其建立基线前内容。新增Edge截图调用保留此前精确字节，尚未运行。 ITER041逐文件真实variant与前后testSHA/logSHA固定；历史结果不冒称当前单次全量。两项测试修正保留旧字节及独立源裁定。 ITER042：首轮真实Edge失败原样保留；18项新旧字节逐一固定，4项产品修复待重新运行，等级不变。 ITER043最终本地：所有旧pin精确字节均找到并归档；API/Edge逐variant保留，无单次全量虚称；13条备注校准不改等级，图文实际核对；部署另证。 ITER044上线：首次真实OOM/回滚与恢复、二次发布、TXT/PNG实产物、指南补丁分别保留；无新增资源限制或模型读取改动；证据变更先核旧字节，S/I/R不变。 ITER-050首次检查点新增审查和实际反例，不变更已有pin及S/I/R，修复与发布尚待。 ITER-050终版：明确更新14路径及文档pin，旧字节按SHA归档；保留失败/跳过/反驳与最终同源层次。258R0及S/I不升级；未把本地验收写为已发布。 ITER-050发布：4文档旧字节先归档，追加最小部署与公网只读证据，保留历史状态而不升级S/I/R。 ITER-051反例检查点：状态文件旧字节先归档；固定已结束实测而不固定仍运行日志；不升级S/I/R。 ITER-051第一批：旧源码Git7ef93d6精确字节归档后显式转移pin；772单元及Edge2为第一批实测，签名/进度/MCP后续未验，竞品R0/线上050记录保持。 051第二批本地checkpoint：显式pin转换及事前旧字节归档；777完整单元、定向API/Edge与跨组反驳；95文件API仍执行、活动日志不pin、未部署。 051第三批本地checkpoint：显式旧pin归档转换，851完整check、分层API/Edge、27图；104全API仍执行，未部署，S/I/R不升。 051第四批前停点：104文件执行35，61过1测试期望失败；无条件安全断言重验1/1，假名与模型导航补齐，未部署。 051第四批checkpoint：SQL044及Edge1/1、854 check134/783、28节30图；105完整API仍运行，未部署，旧pin精确字节归档。 051e终态：105文件209项分段通过、854输入不变、044上线/397运行文件和web资源/5邻居/公网Edge/28节30图，源R0及I级保持。",
   "evidence_files": {
     ".data/deploy/aliyun-20261013/before/api-main.ts": {
       "sha256": "407f5d0b16b0a03b7d4d43db9a72b692e2b0d671262907793ade5838f559a016",
@@ -322,9 +322,34 @@
       "bytes": 1460,
       "matches_baseline": true
     },
+    ".data/deploy/aliyun-20261016/iteration051e/online-guide.png": {
+      "sha256": "444497bafbc58522de6528e907092dd351fe8540e97dd380021e931a77b1a2a1",
+      "bytes": 6572565,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261016/iteration051e/online-readonly-proof.json": {
+      "sha256": "3b78c54b4da4759d79fa2f491d489c29702647670dba612bf232d4b66e25a602",
+      "bytes": 1130,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261016/iteration051e/online-readonly.log": {
+      "sha256": "f9ddabf159c4eaac5ffe3ca0abe18c1bccdf5a024c574260cb3f391f2c0b4e86",
+      "bytes": 884,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261016/iteration051e/online-workbench-private.png": {
+      "sha256": "e348b4807812d1f05d359196a4752fbda7e726503bee11b5badf1a0508ba02ad",
+      "bytes": 48406,
+      "matches_baseline": true
+    },
     ".data/deploy/aliyun-20261016/iteration051e/portable-archive-receipt.json": {
       "sha256": "1bc35b89145c0ba76b3ecd869669e027edc64dc3673d5d165b332568857904e0",
       "bytes": 365,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261016/iteration051e/release-verification.json": {
+      "sha256": "fd798bc737aded5ff498b970b1fc794a6098acc032c72a1678c36de051e15e41",
+      "bytes": 1022,
       "matches_baseline": true
     },
     ".data/deploy/aliyun-20261016/iteration051e/release/deploy-server.sh": {
@@ -340,6 +365,46 @@
     ".data/deploy/aliyun-20261016/iteration051e/rollback-mock-receipt.json": {
       "sha256": "279466814b8c23d559f9941c55eb510d880095d4accdbe6b63e99eab594b71eb",
       "bytes": 1075,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261016/iteration051e/server-backup-path.txt": {
+      "sha256": "fcddfba0c737308c9a3fbe287cbe15f1584bea93e38f57673376c15d809592d9",
+      "bytes": 72,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261016/iteration051e/server-deploy.log": {
+      "sha256": "9410e2c58ded4287a9e5bb25945ff334e995f03ce7a2648989c03578fe9c56bc",
+      "bytes": 4430,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261016/iteration051e/server-evidence/neighbors.after.json": {
+      "sha256": "c6f494e766e6d9940e9926e5a12661ad64d7692e49ec3eda5dd7ef25a82dddf0",
+      "bytes": 1024,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261016/iteration051e/server-evidence/neighbors.before.json": {
+      "sha256": "c6f494e766e6d9940e9926e5a12661ad64d7692e49ec3eda5dd7ef25a82dddf0",
+      "bytes": 1024,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261016/iteration051e/server-evidence/release-readback.json": {
+      "sha256": "5840c9227a3007f56704684d7d0c676da8b54d81fe4d7aa31485fa37115e9b80",
+      "bytes": 343,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261016/iteration051e/server-evidence/worker-ready.json": {
+      "sha256": "be962d9a7bc3d176cf28dbcccc9a2f922a79787ded4c800cdc9763160272ed72",
+      "bytes": 295,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261016/iteration051e/server-postactivation-readonly.txt": {
+      "sha256": "969d29d1262aa93b7e394655591ec4b62add267ae6d647a3a9ceac1f066920a3",
+      "bytes": 272,
+      "matches_baseline": true
+    },
+    ".data/deploy/aliyun-20261016/iteration051e/server-preactivation-readonly.txt": {
+      "sha256": "e418d1c99d130a8468340a83e68cf150968ccf5c52e1149c307e6f229e9ce0aa",
+      "bytes": 350,
       "matches_baseline": true
     },
     ".data/deploy/aliyun-20261016/iteration051e/server-stage-build.log": {
@@ -6427,6 +6492,11 @@
       "bytes": 445,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-15/iteration051/aggregate-profilefixed-api.py": {
+      "sha256": "cf96b27d4e97c4355a3419e8e29d6e29e4ff316962b5106f6fcb263b8c81195b",
+      "bytes": 3497,
+      "matches_baseline": true
+    },
     ".data/research/lawbot-2026-10-15/iteration051/ai-result-archive-before.json": {
       "sha256": "0a9eb9e2194df22894ebaefb9a6b9e47233ff69f503afd698668349b379c5708",
       "bytes": 1392,
@@ -6465,6 +6535,11 @@
     ".data/research/lawbot-2026-10-15/iteration051/arch/a/import-rollback-synthetic-io.json": {
       "sha256": "910d82a21e704caab9cfd7cb10da5749316b63d655fb7c7dfac055b0b69e2474",
       "bytes": 93681,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/arch/api105-terminal-review.md": {
+      "sha256": "dad717a78aa5c189f26871e6940b1ebed10df625925c015034f653dd656552d8",
+      "bytes": 2977,
       "matches_baseline": true
     },
     ".data/research/lawbot-2026-10-15/iteration051/arch/b/queue-worker-cancel-atomicity-review.md": {
@@ -7627,6 +7702,36 @@
       "bytes": 1693,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-15/iteration051/before-release051-final-docs.json": {
+      "sha256": "0a95f069e49bf5758351bc878fd8818f8d17ba6eee11b5ddf3710f74d127e77e",
+      "bytes": 1492,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-release051-final-docs/README.md": {
+      "sha256": "17693b918de57ad03f535cf2ac36f0fd10ce45ed7950af4532bc567679c18523",
+      "bytes": 13162,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-release051-final-docs/deploy/aliyun/部署状态.md": {
+      "sha256": "f18b715afe3cacdf164d258e3bba630ff1f5ea77f7456d4bf4d07325548c2f45",
+      "bytes": 6935,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-release051-final-docs/文档/待办与完成状态-20261015.md": {
+      "sha256": "b2baf8283166ae857978426eae92ea922d15966367380372bda4c8098d2eee75",
+      "bytes": 21588,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-release051-final-docs/文档/脱敏规则完整技术交接-迭代023.md": {
+      "sha256": "a4374b3492f2d02686c458f2b16db2ba0a2d2210a301c2526ed041ca171a34f8",
+      "bytes": 382757,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/before-release051-final-docs/文档/逆向台账/contracts/task-storage-recovery-051-20261016.md": {
+      "sha256": "62f04e6b4ad1e0092b2a1280df1151d70bc55152c86b02f420110544084579ff",
+      "bytes": 8337,
+      "matches_baseline": true
+    },
     ".data/research/lawbot-2026-10-15/iteration051/before-signature-integration/apps/api/job-queue.ts": {
       "sha256": "823bcbbbf6b79ddea7961896901d73da2f13ff280446f565c55906cfec6f7603",
       "bytes": 4021,
@@ -7897,6 +8002,11 @@
       "bytes": 140457,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-15/iteration051/finalize-profilefixed-tail-api.py": {
+      "sha256": "8b2448b7f738c7b67e14010ddc2d57cb1819301eefb72528b447745aef298122",
+      "bytes": 2632,
+      "matches_baseline": true
+    },
     ".data/research/lawbot-2026-10-15/iteration051/findings-pin-transition.json": {
       "sha256": "a6d972b74e63a87125d967a3c1d38a0690bd102ffb5e4183f77cf9ec4a9cafa5",
       "bytes": 421,
@@ -8162,6 +8272,11 @@
       "bytes": 83,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-15/iteration051/local-health-after-release051.json": {
+      "sha256": "7e0e4f1a9c3a236197e5f3976ae10ce0268d99d822cc1bc8b0bcad6937f8a680",
+      "bytes": 138,
+      "matches_baseline": true
+    },
     ".data/research/lawbot-2026-10-15/iteration051/local-health-restored.json": {
       "sha256": "fffa56fb7db7e40cf405cca86a1d895d0a693572d63529146f0358a539af8560",
       "bytes": 103,
@@ -8367,6 +8482,16 @@
       "bytes": 141,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-15/iteration051/private-git-preactivation-push.log": {
+      "sha256": "1bf25e7526c89ef78065f19365b8988bd8daa0daeba18a50e94e705bc130840e",
+      "bytes": 142,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/private-git-preactivation-readback.txt": {
+      "sha256": "c9493f5838cf953476c10f20cf1299d65c552767dd731658b7dc02af692aae14",
+      "bytes": 135,
+      "matches_baseline": true
+    },
     ".data/research/lawbot-2026-10-15/iteration051/private-git-profile-preflight-push.log": {
       "sha256": "d507bba2dacf88e564bfda6e7f20f10fd2797bbcf8ac6e23f167c3d988b49dbe",
       "bytes": 142,
@@ -8375,6 +8500,11 @@
     ".data/research/lawbot-2026-10-15/iteration051/private-git-profile-preflight-readback.txt": {
       "sha256": "2ec3e01c99d9fbf3c2709cb8304499be9770cf2e1f601773988842fb99039220",
       "bytes": 135,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/private-git-release051-visibility.json": {
+      "sha256": "e3910dd3ae34dd83864f3e21cb40164fea2ab81f0b8076947494c16be5ae2e4b",
+      "bytes": 99,
       "matches_baseline": true
     },
     ".data/research/lawbot-2026-10-15/iteration051/profile-preflight-formal-receipt.json": {
@@ -8397,9 +8527,19 @@
       "bytes": 213,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-15/iteration051/profilefixed-api-105-layered-coverage.json": {
+      "sha256": "2a81fe1b3ebc2edaa8fdf775180027e9cc3058156733eed4a7e3da48ca80fe35",
+      "bytes": 42588,
+      "matches_baseline": true
+    },
     ".data/research/lawbot-2026-10-15/iteration051/profilefixed-final-api-planned.json": {
       "sha256": "03a48685a74f49a6a4e935e5e707976890d5a789f1ee8af5eececa5352108bea",
       "bytes": 4719,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/profilefixed-final-generated-manifest.json": {
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "bytes": 3,
       "matches_baseline": true
     },
     ".data/research/lawbot-2026-10-15/iteration051/profilefixed-final-inputs.json": {
@@ -8415,6 +8555,16 @@
     ".data/research/lawbot-2026-10-15/iteration051/profilefixed-tail-api-planned.json": {
       "sha256": "3785715b81260100cc21ff66e69ecc9d154da20c4c8b18ccfba23f7c6e1404f4",
       "bytes": 3017,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/profilefixed-tail-api-receipt.json": {
+      "sha256": "84ae1f9a3f7c24fb3a6ac1c84b8f1baf3c09fd9d9cb14801208c59636ae681c7",
+      "bytes": 500,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/profilefixed-tail-api.log": {
+      "sha256": "99520c9aec7c5018777f7aebad1c9bc68b3c8d35393bddb8adb0eb19ba82c95c",
+      "bytes": 40321,
       "matches_baseline": true
     },
     ".data/research/lawbot-2026-10-15/iteration051/recovery-integration-before.json": {
@@ -8440,6 +8590,16 @@
     ".data/research/lawbot-2026-10-15/iteration051/reference-markdown-fixed-attempt02.log": {
       "sha256": "6330bad3cf97220ee0019d72aaf4f0cc411b0d97d517cb39732b18cdaa188985",
       "bytes": 847,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/release051-final-doc-check.json": {
+      "sha256": "85605ebd8ca16e46bc4fc3faf619218ee5480e28366e800b0ec36e30fd21010e",
+      "bytes": 332,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/release051-final-pin-transition.json": {
+      "sha256": "286414e5686b9e14b191cd9767c0449fc532fc12c0fbaf51aa73ac3a30e595e2",
+      "bytes": 2276,
       "matches_baseline": true
     },
     ".data/research/lawbot-2026-10-15/iteration051/remaining-api-receipt.json": {
@@ -8570,6 +8730,16 @@
     ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/arch/task-storage-repair-cloud-design.md": {
       "sha256": "c021d4aaf7302f06a4df8bf5a65d22e411433ac0ada5a2e41e59635da36f4ba9",
       "bytes": 4139,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/051e-final-package-review.md": {
+      "sha256": "9a48f9790a52912a64944d849662439de8de4debd05b7b8b4854498e025f7018",
+      "bytes": 4802,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/051e-online-docs-review.md": {
+      "sha256": "07772fa5b0727ea0a641ed0dbd391632c497b18c702f5756aa4a6c123e6e6e21",
+      "bytes": 2486,
       "matches_baseline": true
     },
     ".data/research/lawbot-2026-10-15/iteration051/remaining-contract-audit/frontend/ai-result-archive-v2-cross-review.md": {
@@ -9067,6 +9237,11 @@
       "bytes": 2263,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-15/iteration051/run-profilefixed-tail.py": {
+      "sha256": "74703dab4904854cb7a2e4fc7ff6f204ed4570e68112c45292b09a166281a8fb",
+      "bytes": 737,
+      "matches_baseline": true
+    },
     ".data/research/lawbot-2026-10-15/iteration051/secondbatch-pin-transition.json": {
       "sha256": "12088f693a35f91dbbb09aa7d1300febb74555612b16e3cd092556b4a20336b4",
       "bytes": 13457,
@@ -9352,6 +9527,11 @@
       "bytes": 449,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-15/iteration051/write-release051-final-docs.py": {
+      "sha256": "a604dae7e2632fbc731e88fa4e242ec48cb3162539ac5b8a35bec449c9a30ad9",
+      "bytes": 10525,
+      "matches_baseline": true
+    },
     ".dockerignore": {
       "sha256": "59df9b03430248faa476958d45963401dd77fbe890db757e11a093ac4dde11a5",
       "bytes": 466,
@@ -9363,8 +9543,8 @@
       "matches_baseline": true
     },
     "README.md": {
-      "sha256": "17693b918de57ad03f535cf2ac36f0fd10ce45ed7950af4532bc567679c18523",
-      "bytes": 13162,
+      "sha256": "d4d893762bd3087fb6550ce307baf30d9a509393b3211a606222894bc58718ac",
+      "bytes": 13366,
       "matches_baseline": true
     },
     "apps/api/access.ts": {
@@ -10098,8 +10278,8 @@
       "matches_baseline": true
     },
     "deploy/aliyun/部署状态.md": {
-      "sha256": "f18b715afe3cacdf164d258e3bba630ff1f5ea77f7456d4bf4d07325548c2f45",
-      "bytes": 6935,
+      "sha256": "bc97e76e41f1f97187189cbf3fc660ab67a49c399411bc721d10db75e398c745",
+      "bytes": 7575,
       "matches_baseline": true
     },
     "licenses/Bend-Apache-2.0.txt": {
@@ -15013,8 +15193,8 @@
       "matches_baseline": true
     },
     "文档/待办与完成状态-20261015.md": {
-      "sha256": "b2baf8283166ae857978426eae92ea922d15966367380372bda4c8098d2eee75",
-      "bytes": 21588,
+      "sha256": "ffa84dcf7304a430995a4bda8628691177110d11e83c3926b9e196dec57f790c",
+      "bytes": 22878,
       "matches_baseline": true
     },
     "文档/按钮确认交互修复与验收.md": {
@@ -15038,8 +15218,8 @@
       "matches_baseline": true
     },
     "文档/脱敏规则完整技术交接-迭代023.md": {
-      "sha256": "a4374b3492f2d02686c458f2b16db2ba0a2d2210a301c2526ed041ca171a34f8",
-      "bytes": 382757,
+      "sha256": "52cb60577c9f4ec631e3428b9008de3b645ec7af2af5b451485c673b77432bd3",
+      "bytes": 382910,
       "matches_baseline": true
     },
     "文档/脱敏规则技术交接-20261014.md": {
@@ -15150,6 +15330,16 @@
     "文档/逆向台账/contracts/aliyun-release050-verification-20261015.md": {
       "sha256": "10814e90aaaf1cf900e76c0fc9fdd12e2501d9f9390dfb97b51e9921aef7df3a",
       "bytes": 2218,
+      "matches_baseline": true
+    },
+    "文档/逆向台账/contracts/aliyun-release051-verification-20261016.md": {
+      "sha256": "c7af367cc5d1d299c4d3939f1e653b1a7a82e6f0f1af3bbb818c5ea6d78506a1",
+      "bytes": 3212,
+      "matches_baseline": true
+    },
+    "文档/逆向台账/contracts/api-105-layered-coverage-051-20261016.md": {
+      "sha256": "96e31536992930c309e660faea70cd026629f12b867b98ce9f23b3772914c590",
+      "bytes": 1657,
       "matches_baseline": true
     },
     "文档/逆向台账/contracts/api-85-evidence-layers-final-20261015.json": {
@@ -17183,8 +17373,8 @@
       "matches_baseline": true
     },
     "文档/逆向台账/contracts/task-storage-recovery-051-20261016.md": {
-      "sha256": "62f04e6b4ad1e0092b2a1280df1151d70bc55152c86b02f420110544084579ff",
-      "bytes": 8337,
+      "sha256": "bed084cb51b0d28e7525dbbaa98ef95d01dc212ff8d596e46e710349239e3a23",
+      "bytes": 8655,
       "matches_baseline": true
     },
     "文档/逆向台账/contracts/team-luna-named-input-review-20261015.md": {
