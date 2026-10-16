@@ -1,0 +1,261 @@
+{
+  "at": "2026-10-16T15:47:02.413212+00:00",
+  "kind": "mcp_all_sources_bounded_static_audit_checkpoint",
+  "formalSource": {
+    "path": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v11.json",
+    "sha256": "e9450aa71244e614fe1bfe248f84a065bec64b68b4e269b346462bf7413d11b8",
+    "inputs": 917,
+    "notIncludingLedgerOrHandoffDocs": true
+  },
+  "originalMcp": {
+    "sourceArtifactSha256": "3623c8e15d8bfbbc9f153a46bad429f1af7819cc568407f84d8a5e00024c6bd6",
+    "files": 7,
+    "javascriptFiles": 6,
+    "javascriptBytes": 85149,
+    "astNodes": 8588,
+    "parseFailures": 0,
+    "semanticUnknowns": 1690,
+    "cliExitCode": null,
+    "sourceBeforeAfterEqual": true,
+    "runtimeStatus": "R0"
+  },
+  "boundedFindings": [
+    {
+      "id": "batch_partial_child_delivery",
+      "status": "research_gap"
+    },
+    {
+      "id": "trusted_recognition_statistics_user_message",
+      "status": "candidate_v4_pure_5_of_5_api_not_run"
+    },
+    {
+      "id": "same_request_transport_retry",
+      "status": "original_gateway_no_global_request_id_dedupe_audit_only"
+    },
+    {
+      "id": "bounded_diagnostic_bundle",
+      "status": "research_gap"
+    }
+  ],
+  "old913Storage": {
+    "edgeReceipt": ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-final-v8/terminal-receipt.json",
+    "edgeReceiptSha256": "651ec0cb733d58612fa40c9d813a58f82c355491e93a3771a63a3ab1ae8d09ec",
+    "failureContext": ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-last-three-overlay-v1/evidence/quarantine-error-context.md",
+    "failureContextSha256": "d781acda21c192e1f90d7df897f5aa4349d30aa3f23594e0bd09168e1f17880f",
+    "targetedCandidateReceipt": ".data/research/lawbot-2026-10-16/iteration056/rules/api-v8-quarantine-recovery-candidate-v2/targeted-terminal-receipt.json",
+    "targetedCandidateExitCode": 0,
+    "notFinal917Validation": true
+  },
+  "runningSnapshot": {
+    "path": ".data/research/lawbot-2026-10-16/iteration056/rules/ledger108-candidate-v1/live-prefix-snapshot-v1.json",
+    "sha256": "25df70a302f83a1c597fda41e73a8c5ac80a446b9f2ea06d33373ef893d2d3d4",
+    "apiV11CompletedFiles": 30,
+    "apiV11PlannedFiles": 133,
+    "edgeV10HighestStartedCase": 60,
+    "edgeV10PlannedCases": 105,
+    "old913Remaining82Completed": 77,
+    "old913Remaining82Planned": 82,
+    "allNonterminal": true
+  },
+  "oldArchive": {
+    "path": ".data/research/lawbot-2026-10-16/iteration056/before-mcp-all-sources-ledger108-v1/manifest.json",
+    "sha256": "73b8de339bd3ed78957c038b2e84fc014fc78791d260218f278ce43a7c477855",
+    "files": 9
+  },
+  "documentChanges": [
+    {
+      "path": "文档/待办与完成状态-20261015.md",
+      "beforeSha256": "f0e4c5ab4e691ee39fd29ff0a14f0b6f16fb747a5bc2f5e4e3ab94f9edebd5be",
+      "afterSha256": "e59fb58233f9bd26e19a1a39deb86b2cfce609f0e260531f6b6e7acfad07cdb6"
+    },
+    {
+      "path": "文档/脱敏规则完整技术交接-迭代023.md",
+      "beforeSha256": "cd0a31489c9d413585b414315992870bd2b7e47907fd3c19b6a07c0a75ecc257",
+      "afterSha256": "99c21459294e6e7a30029b94f8c11daeb262fc039a86268211a1199542f34979"
+    }
+  ],
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/rules/ledger108-candidate-v1/live-prefix-snapshot-v1.json",
+      "sha256": "25df70a302f83a1c597fda41e73a8c5ac80a446b9f2ea06d33373ef893d2d3d4",
+      "bytes": 1602
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/rea-upgrade/mcp-all-sources-6.5.0-v1/summary-receipt.json",
+      "sha256": "520d6868f76f755c39936cac80d094350dfcec4a83070295a1297a5dabacf9c9",
+      "bytes": 5773
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/rea-upgrade/mcp-all-sources-6.5.0-v1/analysis.json",
+      "sha256": "7e333925979f77c858f81c71eac2f2158af96033e256788b4d16bfc3f0e3f65b",
+      "bytes": 11113549
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/rea-upgrade/mcp-all-sources-6.5.0-v1/unknown-source-locations.csv",
+      "sha256": "85ad2e9c587b37c049024c6c6653d7d826b7aafce5eea40b8a0dfefc32989c66",
+      "bytes": 646044
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/rules/mcp-all-sources-crossfile-readonly-v1.json",
+      "sha256": "9849a9ef069591a817a48b133d48b2a20131049e9736e1b7279c453547c74689",
+      "bytes": 5898
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/rules/mcp-all-sources-crossfile-readonly-v1.md",
+      "sha256": "d91590c3b7301f227144e8b8f3413fd088afa5b64e3877c258f26bb076fa9d03",
+      "bytes": 8462
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/transport-original-idempotency-audit-v1/report.json",
+      "sha256": "8a7a4b812aa7ef5cd649cd0a85962b95e05828a3fd74ddc2fecd71c106afb974",
+      "bytes": 2317
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/rules/mcp-recognition-notice-candidate-v3/candidate-manifest-v3.json",
+      "sha256": "53221ab5fccaf85fecd6fdb428f89a8692bf7c10aaa033c07f9df9ae07df5a62",
+      "bytes": 1872
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-final-v8/terminal-receipt.json",
+      "sha256": "651ec0cb733d58612fa40c9d813a58f82c355491e93a3771a63a3ab1ae8d09ec",
+      "bytes": 116465
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-last-three-overlay-v1/evidence/quarantine-error-context.md",
+      "sha256": "d781acda21c192e1f90d7df897f5aa4349d30aa3f23594e0bd09168e1f17880f",
+      "bytes": 7391
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/rules/api-v8-quarantine-recovery-candidate-v2/targeted-terminal-receipt.json",
+      "sha256": "4ab73fc24400aef17c2486ba6fbd813d95c257e9b5a66145e7e70c1ab5378dbe",
+      "bytes": 1419
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/rules/api-v8-quarantine-recovery-candidate-v2/candidate-manifest.json",
+      "sha256": "3e880145c560740c1098d937756de02d5c8818557a0b621b6c7203679840844c",
+      "bytes": 2104
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/before-mcp-all-sources-ledger108-v1/manifest.json",
+      "sha256": "73b8de339bd3ed78957c038b2e84fc014fc78791d260218f278ce43a7c477855",
+      "bytes": 1686
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v11.json",
+      "sha256": "e9450aa71244e614fe1bfe248f84a065bec64b68b4e269b346462bf7413d11b8",
+      "bytes": 155046
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/final-check-v14-receipt.json",
+      "sha256": "aa95f15bb51c9fef5084ae53fe457015600793264edfaae834fe8363f95b2953",
+      "bytes": 2790
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v10-access-wait-v1/candidate-manifest.json",
+      "sha256": "2aff19961838d847835c5f1c437af80436d443ee1bec9bebce22961834ff9ded",
+      "bytes": 857
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v10-entity-correction-clear-wait-v1/candidate-manifest.json",
+      "sha256": "57828d443850a55bd42b4ae56dcb0ee5cdd4a31d09073223b26fee9b5721c7a5",
+      "bytes": 1001
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v10-entity-window-wait-v1/candidate-manifest.json",
+      "sha256": "cca066c102be39c116887c0bd57ba1682c2ae3d8b706c884c05ff763041b4174",
+      "bytes": 896
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v10-files-docx-save-wait-v1/candidate-manifest.json",
+      "sha256": "c4ab087f330fb6bf2dfde6026609bf2c570470fbbfb25bcba34fb80e6fa5fbf7",
+      "bytes": 816
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v10-mappings-save-wait-v1/candidate-manifest.json",
+      "sha256": "e8d025c1b6f56cece24aebc9efd0b117649eaa12e53c9564fe1daeb8303001c4",
+      "bytes": 1188
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v10-markdown-export-ready-v1/candidate-manifest.json",
+      "sha256": "7d5ccc71eed17c956eab6ed53965af4075561f11aa5adc0d704f8ef6b01aac5e",
+      "bytes": 1271
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v10-page-redaction-save-wait-v1/candidate-manifest.json",
+      "sha256": "18d5fe65df1a8728ae22431954ebf2ca8992b78c20d53f93f4e40f130f86206b",
+      "bytes": 856
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v10-pdf-ocr-pause-readback-v1/candidate-manifest.json",
+      "sha256": "1c30db036d7df8dfcf391d957b0c9ca561f3680ffac1ff78d7baa8460f49c5e8",
+      "bytes": 929
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v10-docx-layout-save-wait-v2/candidate-manifest.json",
+      "sha256": "ef23bb4c812ae9ae67656815338723e1dcc1f2677ac2bc50384f14042effee5e",
+      "bytes": 1098
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v10-docx-layout-save-wait-v2/peer-review.json",
+      "sha256": "10f14ef77ba13a5eb3a5d7fbbdae1088ba587c1ab970df8d6994f6d51dd29891",
+      "bytes": 1208
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/cancel-recovery-lock-wait-peer-review-v1.json",
+      "sha256": "cd616d25c36c87f78c136fd550d03c710b3292e88d443bbff0806a5d170dd6f3",
+      "bytes": 1969
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/before-mcp-all-sources-ledger108-v1/文档/逆向台账/ledger.json",
+      "sha256": "d752fe96eab274becc7256d6cd12ce4c3363ea145dc7cda927a68ba7e1ea9f35",
+      "bytes": 7708107
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/before-mcp-all-sources-ledger108-v1/文档/逆向台账/接口台账.csv",
+      "sha256": "5904b34e63c5ff7ba8edd36e1a525b635bf716b0348dd68990d0879315af464d",
+      "bytes": 553318
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/before-mcp-all-sources-ledger108-v1/文档/逆向台账/链路台账.csv",
+      "sha256": "44cf6487d1850b9ea8689684eac57a319168c53bb75d5dfe4da8aeffaa8093fa",
+      "bytes": 59809
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/before-mcp-all-sources-ledger108-v1/文档/逆向台账/待办清单.csv",
+      "sha256": "bcc955ebcf5c4a18c7c0e38c69e01252124ac4c320ac69b281efed14bf150f0f",
+      "bytes": 160280
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/before-mcp-all-sources-ledger108-v1/文档/逆向台账/校验结果.json",
+      "sha256": "49706653d10b06226fffcba4f776a531ef4cff69b7c49d3ef72c49285cb57bfa",
+      "bytes": 1302189
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/before-mcp-all-sources-ledger108-v1/文档/逆向台账/README.md",
+      "sha256": "9469aa7c7ca3649f74ce589d976dca802c997584a72eed86d98091eee362c1a6",
+      "bytes": 19134
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/before-mcp-all-sources-ledger108-v1/文档/逆向台账/变更日志.md",
+      "sha256": "6780ff1177b68c8039c96c64b6c2af610d34a5825ac93cfa88542665eb443d4a",
+      "bytes": 74293
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/before-mcp-all-sources-ledger108-v1/文档/待办与完成状态-20261015.md",
+      "sha256": "f0e4c5ab4e691ee39fd29ff0a14f0b6f16fb747a5bc2f5e4e3ab94f9edebd5be",
+      "bytes": 40779
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/before-mcp-all-sources-ledger108-v1/文档/脱敏规则完整技术交接-迭代023.md",
+      "sha256": "cd0a31489c9d413585b414315992870bd2b7e47907fd3c19b6a07c0a75ecc257",
+      "bytes": 405058
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/rules/mcp-recognition-notice-candidate-v4/candidate-manifest-v4.json",
+      "sha256": "8edcd7ceedb6dd7014904c8929187d165162fcc54b21f47d9a886a0a7e50421a",
+      "bytes": 1872
+    }
+  ],
+  "classificationChange": false,
+  "server": "054; not deployed"
+}

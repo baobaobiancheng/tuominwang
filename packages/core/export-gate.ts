@@ -17,10 +17,12 @@ type Document = {
 type Snapshot = {
   document_id: string; tenant_id: string; project_id: string; revision: number;
   parse_version: number; content_hash: string; marks: unknown; recognition?: unknown; page_review?: unknown; page_data?: unknown;
+  review_mode?: 'legacy'|'human_review'|'automatic';automatic_task_id?:string|null;automatic_actor_id?:string|null;
+  automatic_source_revision?:number|null;automatic_source_hash?:string|null;automatic_policy_version?:string|null;
 };
 const anchorsSchema = z.array(z.object({
   kind: z.enum(["text", "cell", "object", "page"]), start: z.number().int().nonnegative(), end: z.number().int().nonnegative(),
-  page: z.number().int().min(0).max(299).optional(),
+  page: z.number().int().nonnegative().optional(),
   row: z.number().int().positive().optional(), column: z.number().int().positive().optional(),
   part: z.string().min(1).optional(), object: z.string().min(1).optional(),
 })).max(20000);
@@ -93,19 +95,26 @@ export function coverageComplete(d: Document, textLength: number) {
   return end === textLength && expected.size === seen.size && [...expected].every(id => seen.has(id));
 }
 
-export function assertExportable(d: Document, revision: number, textLength: number, actualHash: string, snapshot: Snapshot | undefined) {
+export function assertExportable(d: Document, revision: number, textLength: number, actualHash: string, snapshot: Snapshot | undefined, automaticBinding?:{taskId:string|null;actorId:string}) {
   const marks = z.array(markSchema).max(MAX_MARKS).safeParse(d.marks);
   const ready = d.state === "review";
   const version = Number.isSafeInteger(revision) && revision >= 0 && revision === d.revision;
   const covered = coverageComplete(d, textLength);
-  const reviewed = marks.success && marks.data.every(mark => mark.decision !== "pending");
+  const decided = marks.success && marks.data.every(mark => mark.decision !== "pending");
   if(marks.success)assertSignatureGroups(marks.data);
   const bound = !!snapshot && snapshot.document_id === d.id && snapshot.tenant_id === d.tenant_id && snapshot.project_id === d.project_id
     && snapshot.revision === d.revision && snapshot.parse_version === d.parse_version && Number.isSafeInteger(d.parse_version) && d.parse_version >= 1
     && snapshot.content_hash === d.content_hash && actualHash === d.content_hash && isDeepStrictEqual(snapshot.marks, d.marks)
     && isDeepStrictEqual(snapshot.recognition ?? {}, d.recognition ?? {}) && isDeepStrictEqual(snapshot.page_review ?? null, d.page_review ?? null)
     && isDeepStrictEqual(snapshot.page_data ?? [], d.page_data ?? []);
-  if (policy.eligible(ready, version, covered, reviewed, bound) === true) return;
-  const code = !version ? "VERSION_CONFLICT" : !ready ? "DETECTION_INCOMPLETE" : !covered ? "COVERAGE_INCOMPLETE" : !reviewed ? "INVALID_MARKS" : !bound ? "SNAPSHOT_MISMATCH" : "EXPORT_POLICY_FAILED";
+  const automatic=snapshot?.review_mode==='automatic';
+  const origin=!!automaticBinding?.taskId&&snapshot?.automatic_task_id===automaticBinding.taskId&&
+    snapshot.automatic_actor_id===automaticBinding.actorId&&
+    snapshot.automatic_source_hash===(d.source_hash??d.content_hash)&&
+    Number.isSafeInteger(snapshot.automatic_source_revision)&&snapshot.automatic_source_revision!<d.revision&&
+    snapshot.automatic_policy_version==='automatic-source-decisions-1';
+  if(automatic?policy.automaticEligible(ready,version,covered,decided,bound,origin):
+    policy.eligible(ready,version,covered,decided,bound))return;
+  const code = !version ? "VERSION_CONFLICT" : !ready ? "DETECTION_INCOMPLETE" : !covered ? "COVERAGE_INCOMPLETE" : !decided ? "INVALID_MARKS" : !bound ? "SNAPSHOT_MISMATCH" : automatic&&!origin ? "AUTOMATIC_ORIGIN_MISMATCH" : "EXPORT_POLICY_FAILED";
   throw Object.assign(new Error(code), { statusCode: code === "INVALID_MARKS" ? 400 : 409 });
 }

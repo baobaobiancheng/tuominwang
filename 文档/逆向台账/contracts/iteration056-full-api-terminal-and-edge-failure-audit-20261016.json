@@ -1,0 +1,485 @@
+{
+  "schema": "iteration056-api-terminal-edge-audit",
+  "previousLedgerSha256": "0f330e853d33839c2fb7f51d70a55a23bd2f7b4c325bd40e38debdf0d57801f6",
+  "previousLedgerArchive": ".data/research/lawbot-2026-10-16/iteration056/before-full-api-terminal-and-edge-failure-audit-v1/ledger.json",
+  "evidence": {
+    "文档/待办与完成状态-20261015.md": {
+      "sha256": "4406a8a8593e4ec369295daafa00a941a8364bc48760f156eaf2d1d31502dfc3",
+      "bytes": 32814
+    },
+    "文档/脱敏规则完整技术交接-迭代023.md": {
+      "sha256": "f111e87e42abb5f1dd5407e602efadf110f19e634c91e42b32a2670d48a09d01",
+      "bytes": 398434
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/before-full-api-terminal-and-edge-failure-audit-v1/待办与完成状态-20261015.md": {
+      "sha256": "e8e3c88e13938f0fe9811e8952d710d38b59edf725000fbf1cf239ead4161bf0",
+      "bytes": 32005
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/before-full-api-terminal-and-edge-failure-audit-v1/脱敏规则完整技术交接-迭代023.md": {
+      "sha256": "de0a56f05e916e39d8ee26510f00553e066f2a8ce8df476d1353cf6d59a4f3dd",
+      "bytes": 397625
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/before-full-api-terminal-and-edge-failure-audit-v1/document-transitions.json": {
+      "sha256": "b134d002c9b29f2ca629e18fda855858ff57f50c38a1eaffea8b148d3d9292c6",
+      "bytes": 799
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v2/pdf-cross-chain-observed.partial.trace": {
+      "sha256": "02bb203491b3b12ae406e93fa594bdd4ef4c11510a082820ca71d1618c30cc79",
+      "bytes": 1135294
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v2/observation.json": {
+      "sha256": "0a7abd15e8d7bbc10aefc242c4f081dc328b847b8133255802ac12ab629ad492",
+      "bytes": 7749
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v2/step-3-observed.partial.log": {
+      "sha256": "73a9e253dead323ba0c2ebe77993acb31deeff884cd1b30ec43b31c8c85f45e8",
+      "bytes": 56824
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v2/results/pdf-cross-chain-Edge-two-p-75ffc-d-downloads-verified-pixels/error-context.md": {
+      "sha256": "651dc7d91ef1f5e63fec8161394fa16bdc61bc4e38af4311df015442cf996aa9",
+      "bytes": 22065
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v2/results/cancel-recovery-cancelled--ada45-nd-reruns-at-a-new-revision/trace.zip": {
+      "sha256": "b56acf5175578c5049e082d56b7e52842b6f6af481338abcfe2fb34c14410f74",
+      "bytes": 1059524
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v2/results/cancel-recovery-cancelled--ada45-nd-reruns-at-a-new-revision/error-context.md": {
+      "sha256": "40c493139836f7810a3e9f6b893507dc56ce0eb41f49f5a7b6b13cba22669da4",
+      "bytes": 9064
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v2/results/cancel-response-loss-cance-e41c9-oads-without-repeating-POST/trace.zip": {
+      "sha256": "34273de20367b5cbd3aaeeae38b40c46b0d90ada90603f1fa1124eaaae878b38",
+      "bytes": 1173844
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v2/results/cancel-response-loss-cance-e41c9-oads-without-repeating-POST/error-context.md": {
+      "sha256": "855dab26c3d6156cbbbf8276a182bc68d6d7522eeb2ba25aaa176935377ba1b1",
+      "bytes": 9112
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v2/results/automatic-mcp-real-edge-de-ef651-ins-human-reviewed-after-it/trace.zip": {
+      "sha256": "7c498e2638b599e5abbc84b576e9a036f742d382ddd9fc5998fab4b7fc63e696",
+      "bytes": 467761
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v2/results/automatic-mcp-real-edge-de-ef651-ins-human-reviewed-after-it/error-context.md": {
+      "sha256": "7e9a610f8d0cf2cc9bfa788c7abe6220ce2d0170e21bb0741164af92c63dfe3d",
+      "bytes": 6854
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v2/results/batch-review-desktop-XLSX--4e9c1--touch-only-confirmed-scope/trace.zip": {
+      "sha256": "feb38eee1f2dfd25a2d1a518aac9e8121f6c22a327c361666ce82e21ac914c98",
+      "bytes": 952574
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v2/results/batch-review-desktop-XLSX--4e9c1--touch-only-confirmed-scope/error-context.md": {
+      "sha256": "600cf6a1e8396e1761ec8274e632cbe65efddd6141b6d0e75f83e8ca935d1831",
+      "bytes": 8095
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v2/results/mcp-ai-process-restore-ai--252c1-ownloadable-reviewed-result/trace.zip": {
+      "sha256": "4d52148af045acd66654cb4e3387cd0cf7ef2e870f174704ce5d6b1e897f614c",
+      "bytes": 727590
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v2/results/mcp-ai-process-restore-ai--252c1-ownloadable-reviewed-result/error-context.md": {
+      "sha256": "a58a0047b8feca139565e080384ddea264acc4cdc5d4880c246f83a9a129d178",
+      "bytes": 6884
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v2/results/ocr-correction-OCR-correct-e23aa-aining-the-original-preview/trace.zip": {
+      "sha256": "b6b6109259ad5f845d3dad9e1d068ada4a187219d6c3ff688f0b39a982ecad97",
+      "bytes": 2135980
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v2/results/ocr-correction-OCR-correct-e23aa-aining-the-original-preview/error-context.md": {
+      "sha256": "602c70ea10c473c16ccbe8cdffc2edd506b2e3c4fcbb7d4c4cbd42897624d21d",
+      "bytes": 18753
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v2/results/docx-layout-Word-layout-li-53689-ects-stale-anonymous-layout/trace.zip": {
+      "sha256": "f0d14ae99c4fb9029c2b61439239c84dfc224f8f68eb5b01596c2f43590178c8",
+      "bytes": 2477030
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v2/results/docx-layout-Word-layout-li-53689-ects-stale-anonymous-layout/error-context.md": {
+      "sha256": "22c53e733b55be4f4abbddc859a83a86fc988a59f85980d9d20d9cc7f514f35f",
+      "bytes": 40008
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v2/results/automatic-mcp-real-edge-au-82f16--records-human-intervention/trace.zip": {
+      "sha256": "3e993a1905ba48f57a0364ecab55c327fe56532df53f635ed1224e1497b0f8db",
+      "bytes": 452010
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v2/results/automatic-mcp-real-edge-au-82f16--records-human-intervention/error-context.md": {
+      "sha256": "58c68c8e9f02981a98ea63ddb5063a0f867fd8461a5c0ef229f29382bed644b0",
+      "bytes": 6870
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v3/observation.json": {
+      "sha256": "ff0f7467dd19767df6909495a537d9264686bb0f1a8e6b9e7de7e949113b7bff",
+      "bytes": 3104
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v3/step-3-observed.partial.log": {
+      "sha256": "2efbeb678d35e9fdef50d382f89861a5448cf2f3483bfae3ac0fd457a1f2f833",
+      "bytes": 77813
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v3/results/pdf-seal-runtime-flow-Edge-8e3c2-and-supplemental-completion/trace.zip": {
+      "sha256": "644d2f0f830f34d98084daa10693a5013777064491f7f2e3fc29cd49b3827ee3",
+      "bytes": 2728854
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v3/results/pdf-seal-runtime-flow-Edge-8e3c2-and-supplemental-completion/error-context.md": {
+      "sha256": "9021e39e2aefa2d79da8d8c15fab85a983adc2a86d0d0605b51338205a2e5bdc",
+      "bytes": 59275
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v3/results/pdf-cross-chain-Edge-two-p-75ffc-d-downloads-verified-pixels/trace.zip": {
+      "sha256": "8d9aa05130c998ebda1fc232100b998c6fe8ea6fdb59121e40250ad1b891a448",
+      "bytes": 8737994
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v3/results/pdf-cross-chain-Edge-two-p-75ffc-d-downloads-verified-pixels/error-context.md": {
+      "sha256": "651dc7d91ef1f5e63fec8161394fa16bdc61bc4e38af4311df015442cf996aa9",
+      "bytes": 22065
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v3/results/cancel-recovery-cancelled--ada45-nd-reruns-at-a-new-revision/trace.zip": {
+      "sha256": "b56acf5175578c5049e082d56b7e52842b6f6af481338abcfe2fb34c14410f74",
+      "bytes": 1059524
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v3/results/cancel-recovery-cancelled--ada45-nd-reruns-at-a-new-revision/error-context.md": {
+      "sha256": "40c493139836f7810a3e9f6b893507dc56ce0eb41f49f5a7b6b13cba22669da4",
+      "bytes": 9064
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v3/results/cancel-response-loss-cance-e41c9-oads-without-repeating-POST/trace.zip": {
+      "sha256": "34273de20367b5cbd3aaeeae38b40c46b0d90ada90603f1fa1124eaaae878b38",
+      "bytes": 1173844
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v3/results/cancel-response-loss-cance-e41c9-oads-without-repeating-POST/error-context.md": {
+      "sha256": "855dab26c3d6156cbbbf8276a182bc68d6d7522eeb2ba25aaa176935377ba1b1",
+      "bytes": 9112
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v3/results/automatic-mcp-real-edge-de-ef651-ins-human-reviewed-after-it/trace.zip": {
+      "sha256": "7c498e2638b599e5abbc84b576e9a036f742d382ddd9fc5998fab4b7fc63e696",
+      "bytes": 467761
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v3/results/automatic-mcp-real-edge-de-ef651-ins-human-reviewed-after-it/error-context.md": {
+      "sha256": "7e9a610f8d0cf2cc9bfa788c7abe6220ce2d0170e21bb0741164af92c63dfe3d",
+      "bytes": 6854
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v3/results/batch-review-desktop-XLSX--4e9c1--touch-only-confirmed-scope/trace.zip": {
+      "sha256": "feb38eee1f2dfd25a2d1a518aac9e8121f6c22a327c361666ce82e21ac914c98",
+      "bytes": 952574
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v3/results/batch-review-desktop-XLSX--4e9c1--touch-only-confirmed-scope/error-context.md": {
+      "sha256": "600cf6a1e8396e1761ec8274e632cbe65efddd6141b6d0e75f83e8ca935d1831",
+      "bytes": 8095
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v3/results/mcp-ai-process-restore-ai--252c1-ownloadable-reviewed-result/trace.zip": {
+      "sha256": "4d52148af045acd66654cb4e3387cd0cf7ef2e870f174704ce5d6b1e897f614c",
+      "bytes": 727590
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v3/results/mcp-ai-process-restore-ai--252c1-ownloadable-reviewed-result/error-context.md": {
+      "sha256": "a58a0047b8feca139565e080384ddea264acc4cdc5d4880c246f83a9a129d178",
+      "bytes": 6884
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v3/results/ocr-correction-OCR-correct-e23aa-aining-the-original-preview/trace.zip": {
+      "sha256": "b6b6109259ad5f845d3dad9e1d068ada4a187219d6c3ff688f0b39a982ecad97",
+      "bytes": 2135980
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v3/results/ocr-correction-OCR-correct-e23aa-aining-the-original-preview/error-context.md": {
+      "sha256": "602c70ea10c473c16ccbe8cdffc2edd506b2e3c4fcbb7d4c4cbd42897624d21d",
+      "bytes": 18753
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v3/results/docx-layout-Word-layout-li-53689-ects-stale-anonymous-layout/trace.zip": {
+      "sha256": "f0d14ae99c4fb9029c2b61439239c84dfc224f8f68eb5b01596c2f43590178c8",
+      "bytes": 2477030
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v3/results/docx-layout-Word-layout-li-53689-ects-stale-anonymous-layout/error-context.md": {
+      "sha256": "22c53e733b55be4f4abbddc859a83a86fc988a59f85980d9d20d9cc7f514f35f",
+      "bytes": 40008
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v3/results/pdf-ocr-runtime-page-flow--aeb88-tion-and-merges-into-review/trace.zip": {
+      "sha256": "0c48179140d635b11df87c38cbee936825e6f510caad38058de20924cf3c63d7",
+      "bytes": 928059
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v3/results/pdf-ocr-runtime-page-flow--aeb88-tion-and-merges-into-review/error-context.md": {
+      "sha256": "2245b2fc20feb1c3aa0e304664c257ff24f1b477c7a6ce0919e8dded5bfa5634",
+      "bytes": 11378
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v3/results/automatic-mcp-real-edge-au-82f16--records-human-intervention/trace.zip": {
+      "sha256": "3e993a1905ba48f57a0364ecab55c327fe56532df53f635ed1224e1497b0f8db",
+      "bytes": 452010
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-failures-observed-v3/results/automatic-mcp-real-edge-au-82f16--records-human-intervention/error-context.md": {
+      "sha256": "58c68c8e9f02981a98ea63ddb5063a0f867fd8461a5c0ef229f29382bed644b0",
+      "bytes": 6870
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-worker-recovery-v1/no-signal-natural-progress-receipt.json": {
+      "sha256": "57ced9f119d5b96c59340cfb6df90b0d34d73c584d4ddb678fc02da266c8a6b7",
+      "bytes": 1958
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-worker-recovery-v1/step-3-after-natural-worker-exit.partial.log": {
+      "sha256": "b116cc99639a8bfe4144dedd3af4daf14bca6f9ba22f84be1e11ac5d771dc65a",
+      "bytes": 63750
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-worker-recovery-v1/pdf-cross-chain-after-natural-exit/pdf-restored-double-geometry-preview.png": {
+      "sha256": "9a4a77b45c15ba767e8f9741cfa2cf9ed7e72e43fc9341eb57b54f947f7d73c8",
+      "bytes": 196406
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-worker-recovery-v1/pdf-cross-chain-after-natural-exit/trace.zip": {
+      "sha256": "8d9aa05130c998ebda1fc232100b998c6fe8ea6fdb59121e40250ad1b891a448",
+      "bytes": 8737994
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-worker-recovery-v1/pdf-cross-chain-after-natural-exit/error-context.md": {
+      "sha256": "651dc7d91ef1f5e63fec8161394fa16bdc61bc4e38af4311df015442cf996aa9",
+      "bytes": 22065
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-four-failures-review-v1/evidence-manifest.json": {
+      "sha256": "0230e95a8e90abafeef30baf0ea6ac2f3f45dc57b33b81926ca4e2c45f6c7454",
+      "bytes": 7880
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-four-failures-review-v1/analysis.json": {
+      "sha256": "6fdb5396f114692599a56a05e733a3663c546a8068149a829a283f4ef5773484",
+      "bytes": 4046
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-four-failures-review-v1/evidence/cancel-response-loss/trace.zip": {
+      "sha256": "34273de20367b5cbd3aaeeae38b40c46b0d90ada90603f1fa1124eaaae878b38",
+      "bytes": 1173844
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-four-failures-review-v1/evidence/cancel-response-loss/log-excerpt.txt": {
+      "sha256": "bb0f96b714e0850f00e460769b2e4b42faa58444765837e31b6c9c98fc8d17a8",
+      "bytes": 4047
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-four-failures-review-v1/evidence/cancel-response-loss/error-context.md": {
+      "sha256": "855dab26c3d6156cbbbf8276a182bc68d6d7522eeb2ba25aaa176935377ba1b1",
+      "bytes": 9112
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-four-failures-review-v1/evidence/cancel-recovery/trace.zip": {
+      "sha256": "b56acf5175578c5049e082d56b7e52842b6f6af481338abcfe2fb34c14410f74",
+      "bytes": 1059524
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-four-failures-review-v1/evidence/cancel-recovery/log-excerpt.txt": {
+      "sha256": "42a335924576f4cb518185e369dc638e0cd4c0a6194d354addaf1f8b24a2a180",
+      "bytes": 3894
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-four-failures-review-v1/evidence/cancel-recovery/error-context.md": {
+      "sha256": "40c493139836f7810a3e9f6b893507dc56ce0eb41f49f5a7b6b13cba22669da4",
+      "bytes": 9064
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-four-failures-review-v1/evidence/docx-layout/trace.zip": {
+      "sha256": "f0d14ae99c4fb9029c2b61439239c84dfc224f8f68eb5b01596c2f43590178c8",
+      "bytes": 2477030
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-four-failures-review-v1/evidence/docx-layout/log-excerpt.txt": {
+      "sha256": "023366f014d294b8ef45300c41535a05d0e8e4a31bbfa40a6aa878efbe1cb7b1",
+      "bytes": 2584
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-four-failures-review-v1/evidence/docx-layout/error-context.md": {
+      "sha256": "22c53e733b55be4f4abbddc859a83a86fc988a59f85980d9d20d9cc7f514f35f",
+      "bytes": 40008
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-four-failures-review-v1/evidence/batch-review/trace.zip": {
+      "sha256": "feb38eee1f2dfd25a2d1a518aac9e8121f6c22a327c361666ce82e21ac914c98",
+      "bytes": 952574
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-four-failures-review-v1/evidence/batch-review/log-excerpt.txt": {
+      "sha256": "3329bac0c390ec7474820b9fe9800820ff959b1b07590d3bf5f0df546575150c",
+      "bytes": 3842
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-four-failures-review-v1/evidence/batch-review/error-context.md": {
+      "sha256": "600cf6a1e8396e1761ec8274e632cbe65efddd6141b6d0e75f83e8ca935d1831",
+      "bytes": 8095
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-four-failures-test-overlay-v2/overlay-manifest.json": {
+      "sha256": "95a01462e0ee6fe7b05d3e6c5a88d1c744f13e75f18f2c98795768d944aa0638",
+      "bytes": 2503
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-four-failures-test-overlay-v2/validation-private-root.txt": {
+      "sha256": "c4d73f1b4cadde0312cd5125aee356b4d726f5ac2dffeb853439e02f0140f72d",
+      "bytes": 83
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-four-failures-test-overlay-v2/tests/e2e/cancel-recovery.spec.ts": {
+      "sha256": "8e045725f2bd7eecb728ca0063f1b215d3aa43116ae51da55c51822d2f83ceec",
+      "bytes": 5807
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-four-failures-test-overlay-v2/tests/e2e/docx-layout.spec.ts": {
+      "sha256": "f6587bfc4432fe37edd7c6b2e5d579e2478bd02b2ec9ed2bd69318c4bf053495",
+      "bytes": 9702
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-four-failures-test-overlay-v2/tests/e2e/review-regressions.spec.ts": {
+      "sha256": "bd33b6ad26950f5d91809716c3cd8850b71d226fb8b88d5b225006c834539bb9",
+      "bytes": 20681
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-four-failures-test-overlay-v2/tests/e2e/batch-review.spec.ts": {
+      "sha256": "e52c4425fa0b15d3552688e49c2468eb5c78ea930f3bc248a9a2e6832cd6b718",
+      "bytes": 4678
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-four-failures-test-overlay-v2/tests/e2e/cancel-response-loss.spec.ts": {
+      "sha256": "c85579d4d5c14d9888e468dac67353e26e459326b48e849cbe58ab877d01a9f4",
+      "bytes": 7685
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-four-failures-test-overlay-v2/diffs/cancel-recovery.spec.ts.diff": {
+      "sha256": "5d5f0ae1f78d9cadfd58f037b11434cfca7843376c050962a974719ea9724497",
+      "bytes": 896
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-four-failures-test-overlay-v2/diffs/cancel-response-loss.spec.ts.diff": {
+      "sha256": "e21ba0d38ccc357a2cacdc531b0c700b3db2d3086e862f1e93ba01a405aba90b",
+      "bytes": 979
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-four-failures-test-overlay-v2/diffs/review-regressions.spec.ts.diff": {
+      "sha256": "1fa3c3539c9948f5031ee10f84a8514b65660940c78ccb84eb9c799380e9ed00",
+      "bytes": 1288
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-four-failures-test-overlay-v2/diffs/batch-review.spec.ts.diff": {
+      "sha256": "4f685f0239204fd2fa1fc76b90a8abb57768aac64958d7e62fd6e9ecf1d2826a",
+      "bytes": 1661
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-four-failures-test-overlay-v2/diffs/docx-layout.spec.ts.diff": {
+      "sha256": "8a9e6f301d3e56225b930d0e9b96eef97ec255fa823174899094cc229f660cb9",
+      "bytes": 710
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-four-failures-test-overlay-v2/validation/typecheck.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-four-failures-test-overlay-v2/validation/list-full.log": {
+      "sha256": "0060fd73b1336c5326ebb04794e9292ee2081d22b659c5b3b1721f9362bb7f5a",
+      "bytes": 13631
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-four-failures-test-overlay-v2/validation/list-overlay.log": {
+      "sha256": "9b43681f43383212206b3fe8b64e6513079ba85f9ca8cff2213e03dd984f804b",
+      "bytes": 1612
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-four-failures-test-overlay-v2/validation/receipt.json": {
+      "sha256": "cf5764e6adcd90a258f97547d38b319890fec8c398f04c43c0b09cede4bc4b97",
+      "bytes": 1461
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-pdf-failures-review-v1/evidence-manifest.json": {
+      "sha256": "6208f25660e3d51d83a2ba9123145359b1a10468aa97e3850af2f64a44126cb6",
+      "bytes": 4462
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-pdf-failures-review-v1/analysis.json": {
+      "sha256": "ce335fd2f2b36f2f392ae1a9bae98662bc113017a78ec4968c4ebec755ef6212",
+      "bytes": 3198
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-pdf-failures-review-v1/evidence/pdf-ocr-runtime-page-flow/trace.zip": {
+      "sha256": "0c48179140d635b11df87c38cbee936825e6f510caad38058de20924cf3c63d7",
+      "bytes": 928059
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-pdf-failures-review-v1/evidence/pdf-ocr-runtime-page-flow/log-excerpt.txt": {
+      "sha256": "9c79d3eeaccbe85f71e8e0eb1d43e061eddba669b2970af1d7bcea9d49ad1709",
+      "bytes": 4800
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-pdf-failures-review-v1/evidence/pdf-ocr-runtime-page-flow/error-context.md": {
+      "sha256": "2245b2fc20feb1c3aa0e304664c257ff24f1b477c7a6ce0919e8dded5bfa5634",
+      "bytes": 11378
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-pdf-failures-review-v1/evidence/pdf-seal-runtime-flow/trace.zip": {
+      "sha256": "644d2f0f830f34d98084daa10693a5013777064491f7f2e3fc29cd49b3827ee3",
+      "bytes": 2728854
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-pdf-failures-review-v1/evidence/pdf-seal-runtime-flow/log-excerpt.txt": {
+      "sha256": "370e6a66af532d57a8cb6dcfd96e60430da873c7721e68009dea69593a6f53e4",
+      "bytes": 7660
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-v8-pdf-failures-review-v1/evidence/pdf-seal-runtime-flow/error-context.md": {
+      "sha256": "9021e39e2aefa2d79da8d8c15fab85a983adc2a86d0d0605b51338205a2e5bdc",
+      "bytes": 59275
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/pdf-cross-chain-download-test-candidate-v1/candidate-manifest.json": {
+      "sha256": "61258d712ec96476865548e90fc3960988b355b45b93dbbb9f0a44a5287ff86b",
+      "bytes": 1044
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/pdf-cross-chain-download-test-candidate-v1/minimal-test.diff": {
+      "sha256": "cd60bd3092b607a0cf8b240263d76847b0423df191bf72ce77fdb7e9efb3e35c",
+      "bytes": 7038
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/pdf-cross-chain-download-test-candidate-v1/overlay/tests/e2e/pdf-cross-chain.spec.ts": {
+      "sha256": "05724bc82032fe61762bc6715e66942ebb0c7cc1f1346939401be9510bc8e07b",
+      "bytes": 23506
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/rules/edge-v8-two-case-test-candidate-v1/candidate-manifest.json": {
+      "sha256": "63e8ff7591a228d953ff018efa152089f25b62ace395bb3fece2a41a8a88db79",
+      "bytes": 1976
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/rules/edge-v8-two-case-test-candidate-v1/evidence/ocr/trace.zip": {
+      "sha256": "b6b6109259ad5f845d3dad9e1d068ada4a187219d6c3ff688f0b39a982ecad97",
+      "bytes": 2135980
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/rules/edge-v8-two-case-test-candidate-v1/evidence/ocr/error-context.md": {
+      "sha256": "602c70ea10c473c16ccbe8cdffc2edd506b2e3c4fcbb7d4c4cbd42897624d21d",
+      "bytes": 18753
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/rules/edge-v8-two-case-test-candidate-v1/evidence/mcp/trace.zip": {
+      "sha256": "4d52148af045acd66654cb4e3387cd0cf7ef2e870f174704ce5d6b1e897f614c",
+      "bytes": 727590
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/rules/edge-v8-two-case-test-candidate-v1/evidence/mcp/error-context.md": {
+      "sha256": "a58a0047b8feca139565e080384ddea264acc4cdc5d4880c246f83a9a129d178",
+      "bytes": 6884
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/rules/edge-v8-two-case-test-candidate-v1/tests/e2e/mcp-ai-process-restore.spec.ts": {
+      "sha256": "af137ee17d23d3175e4d6dfb107730c162d866017b8ff6d66060df4d65a0e1ef",
+      "bytes": 12824
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/rules/edge-v8-two-case-test-candidate-v1/tests/e2e/ocr-correction.spec.ts": {
+      "sha256": "e7f2e0ab0e83c99190cf820408ebdf5c7522399cfd35a79961a24247c48b596f",
+      "bytes": 4485
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/full-api-final-v8-receipt.json": {
+      "sha256": "fde38171ecacb7c97a0146ff9b896d9afd77a25715111a90773ed32a44d877d2",
+      "bytes": 45796
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/full-api-final-v8.log": {
+      "sha256": "9485f47ce71abce0703d35bf8b1abe17e24b2c7fe0b3cbe908152942bc3c4437",
+      "bytes": 27051
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/arch/full-edge-v8-case56-readonly-diagnosis-v1.json": {
+      "sha256": "a0bdf6671ea41e77f51af176c80ece665d28d5329f47cf576db3832b646d7f58",
+      "bytes": 4565
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/arch/pdf-cross-chain-download-candidate-v1-readonly-review.json": {
+      "sha256": "0df81d6535fbb6bbae34fe444b0234d732d16b44999215920f70a979bab4e410",
+      "bytes": 2495
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-final-v8/worker-79002-sample-v1.txt": {
+      "sha256": "bf5b3b5077a140728089440011f654c44e1c96cf3bc86af5fbbe7c3ab33127ab",
+      "bytes": 107688
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/arch/full-api-final-v9.py": {
+      "sha256": "8664c8bec10fa699919b78b8a5256dc5692457bb60a9ce5b1921ebc20ecbd84c",
+      "bytes": 14749
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/arch/full-api-final-v9-preparation.json": {
+      "sha256": "a7db0a88c465c0adce229599af9445ce82d57ebef02ee40d98cf7fd2f407a9a7",
+      "bytes": 9301
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/arch/run-isolated-all.ts": {
+      "sha256": "0628b57b2be48b0610276fa59aaddb88f3e2817ea8034b76bf422e4e5ec429b7",
+      "bytes": 6397
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/arch/run-isolated-all-minimal.diff": {
+      "sha256": "04c3ed4b02c54b036c5546be22889a484f21cc861b914e27784310f7d30f243c",
+      "bytes": 9404
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/arch/run-isolated-all-preparation.json": {
+      "sha256": "c1ead123067367dcf14c3b5386b6455f5244b699dd1ab5e154774e9055cc7515",
+      "bytes": 2850
+    }
+  },
+  "documentTransitions": [
+    {
+      "path": "文档/待办与完成状态-20261015.md",
+      "beforeSha256": "e8e3c88e13938f0fe9811e8952d710d38b59edf725000fbf1cf239ead4161bf0",
+      "archive": ".data/research/lawbot-2026-10-16/iteration056/before-full-api-terminal-and-edge-failure-audit-v1/待办与完成状态-20261015.md",
+      "afterSha256": "4406a8a8593e4ec369295daafa00a941a8364bc48760f156eaf2d1d31502dfc3"
+    },
+    {
+      "path": "文档/脱敏规则完整技术交接-迭代023.md",
+      "beforeSha256": "de0a56f05e916e39d8ee26510f00553e066f2a8ce8df476d1353cf6d59a4f3dd",
+      "archive": ".data/research/lawbot-2026-10-16/iteration056/before-full-api-terminal-and-edge-failure-audit-v1/脱敏规则完整技术交接-迭代023.md",
+      "afterSha256": "f111e87e42abb5f1dd5407e602efadf110f19e634c91e42b32a2670d48a09d01"
+    }
+  ],
+  "actualApi": {
+    "planned": 130,
+    "completedFiles": 48,
+    "pass": 90,
+    "fail": 1,
+    "notRunFiles": 82,
+    "exitCode": 1,
+    "sourceFixtureAssetDrift": false
+  },
+  "edge": "Same live104 run,11 reported failures by66. Not terminal. All available failed contexts and traces preserved. Earlier known2 was not total count.",
+  "worker": "79002 naturally exited before exact identity guard, no signal sent; parent advanced57 onwards.",
+  "confirmedProductGaps": "OCR live draft does not refresh on real ocr page-processed; repeated human review after adopted human receipt fails automatic detection lineage. Private fixes pending actual acceptance.",
+  "testCandidates": "Old UI labels and actual response synchronization prepared, all business/download/pixel assertions kept. Seal export gate correctly rejects20pending marks due test empty-control race. No product gates relaxed.",
+  "nextApi": "v9 onlyprepared131; research run-all control records each failure and continues, but migration/spawn/cleanup failures fatal. Fake control selftests not product pass.",
+  "jsonBlocksUnchanged": 10,
+  "statusChanges": "Formal913 unchanged while Edge running. No S/I/R promotion, model/resource/Git/deployment changes."
+}

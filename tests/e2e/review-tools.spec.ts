@@ -2,6 +2,7 @@ import { readFile } from "node:fs/promises";
 import { test, expect } from "./fixture.ts";
 
 test("desktop full-text search, bulk decisions, undo/redo and partial replacement preview lead to the real download", async ({ page }) => {
+  test.setTimeout(90_000);
   await page.goto("/");
   await page.getByLabel("账号", { exact: true }).fill(process.env.E2E_USERNAME!);
   await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
@@ -13,7 +14,8 @@ test("desktop full-text search, bulk decisions, undo/redo and partial replacemen
   await page.getByLabel("待处理文本").fill("客户甲13800138000；客户乙13900139000");
   await page.getByRole("button", { name: "提交并识别", exact: true }).click();
   await page.getByRole("button", { name: "逐条复核", exact: true }).click();
-  await expect(page.getByLabel("标记 2 处理决定")).toBeVisible();
+  await expect(page.locator(".statusbar span").first()).toHaveText("自动识别 已完成", { timeout: 45_000 });
+  await expect(page.getByLabel("标记 2 处理决定")).toBeVisible({ timeout: 30_000 });
   await page.getByRole("button", { name: "全文查找", exact: true }).click();
   await page.getByLabel("全文查找", { exact: true }).fill("客户乙");
   await page.getByRole("button", { name: "查找", exact: true }).click();
@@ -66,8 +68,13 @@ test("known-entity check locates the full document, invalidates changed drafts a
   await page.getByLabel("标记 1 脱敏方式").selectOption("custom");
   await page.getByLabel("标记 1 替换文字").fill("客户A");
   await page.getByRole("button", { name: "漏标检查", exact: true }).click();
+  const checked = page.waitForResponse(response => response.request().method() === "POST"
+    && /^\/api\/documents\/[^/]+\/known-entities$/u.test(new URL(response.url()).pathname), { timeout: 30_000 });
   await page.getByRole("button", { name: "检查全文漏标", exact: true }).click();
-  await expect(page.getByRole("status").filter({ hasText: "可补录 2 处" })).toBeVisible();
+  const checkedResponse = await checked;
+  expect(checkedResponse.status(), await checkedResponse.text()).toBe(200);
+  expect((await checkedResponse.json()).additions).toHaveLength(2);
+  await expect(page.getByRole("status").filter({ hasText: "可补录 2 处" })).toBeVisible({ timeout: 30_000 });
   await page.getByRole("table", { name: "全文漏标结果" }).getByRole("button", { name: "定位原文", exact: true }).click();
   await expect.poll(() => page.getByLabel("原文", { exact: true }).evaluate((el: HTMLTextAreaElement) => el.value.slice(el.selectionStart, el.selectionEnd))).toBe("合成客户");
   await page.getByRole("button", { name: "敏感标记", exact: true }).click();

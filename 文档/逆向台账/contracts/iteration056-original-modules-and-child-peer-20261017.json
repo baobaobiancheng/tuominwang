@@ -1,0 +1,103 @@
+{
+  "at": "2026-10-16T16:24:39.581891+00:00",
+  "policy": "直接复用可用原代码；仅现有网页/SQL适配，不扩展原设计。",
+  "formalManifestSha256": "e9450aa71244e614fe1bfe248f84a065bec64b68b4e269b346462bf7413d11b8",
+  "formalStatus": "917 frozen; API133 still running; new research layers not merged",
+  "originalReuse": [
+    {
+      "module": "batchDelivery.js",
+      "byteEqualOriginal": true,
+      "research": "arch/mcp-batch-real-child-v4",
+      "actualAPI": "first actual exit1 NER_MODEL_REQUIRED before 2 business cases; private asset setup pending correction"
+    },
+    {
+      "module": "aiDiagnostics.js",
+      "byteEqualOriginal": true,
+      "research": "frontend/connector-ai-diagnostics-original-v1",
+      "actualValidation": "6 synthetic stdio HTTP cases + Node24 tsc actual0; mutating backend replay separately tested transportv5, not these fixtures",
+      "openIssue": "mkdir/lstat I/O must not block main connector; fix pending"
+    }
+  ],
+  "resources": {
+    "change": "restore original empty resources/list + capability; auth/session gate preserved",
+    "candidate": "root/mcp-empty-resources-original-v2",
+    "actualUnitExit": 0,
+    "previousAttempt": "v1 test discovery exit1 retained",
+    "protocolVersionChanged": false
+  },
+  "peerFinding": {
+    "priority": "P1",
+    "description": "Combined parent restore completion wrongly rejects childJobIds; full combined restore test pending",
+    "report": "root/mcp-batch-v4-readonly-peer-v1.json"
+  },
+  "otherOpen": [
+    "distinct resumeSourceJobId request/approval lifecycle not yet ported",
+    "child full submit/restore/cancel/restart/resume integration not yet validated",
+    "protocol version negotiation differs from original; no arbitrary unsupported version echo copied",
+    "new notice/transport/cloud/connector/child layers need combined integration and full gates"
+  ],
+  "browser": "targeted7 diagnostic launched; no terminal claim; previous full105 85pass/20fail still applies",
+  "deployedVersion": "054 unchanged; no deployment claim",
+  "sourceRuntime": "all original licensed processing remains R0",
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/luna-source-modules-review-v1.json",
+      "sha256": "e1e9f3d76200b6edd3d5856526b402a58a9bcf7f3e0c300ab0133cd61f80538d",
+      "bytes": 9093
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/luna-mcp-protocol-compatibility-readonly-v1.json",
+      "sha256": "ee641aae48b00f9d012648e55526188412f6921793d62218402d6676e3040659",
+      "bytes": 9707
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/mcp-empty-resources-original-v2/candidate-manifest.json",
+      "sha256": "8b15d448f8bb06c06aef710dc837329d19dbe03ae73c50f4536a751e0250564b",
+      "bytes": 1277
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/mcp-empty-resources-original-v2/packages/core/mcp-tools.ts",
+      "sha256": "683fae192cc2f88b1e1ac65cec0f4d7a40caa6bd08718940eae2c8a58278ac26",
+      "bytes": 10189
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/mcp-empty-resources-original-v2/tests/mcp-empty-resources.test.ts",
+      "sha256": "0a77962054bcf478e699cf10fbac3ac52c7e7dae6aa902e7f441b24cf3c9313c",
+      "bytes": 976
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/mcp-empty-resources-original-v2/test.log",
+      "sha256": "a47772bec39b637e600cec1808e98c98717191bb086b3e4ae508e1e24f0f8b07",
+      "bytes": 305
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/mcp-batch-v4-readonly-peer-v1.json",
+      "sha256": "87bb7b789a36c6cd3111a30b501dde51e768d8ef71406951618a983c425de9ca",
+      "bytes": 2313
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/mcp-batch-real-child-v4/candidate-manifest-v4.json",
+      "sha256": "79e404067d7c8dbd5fe09aa20789cc2ae9c3cc3cb1d19914d2501bf0c0c5ba46",
+      "bytes": 2299
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/mcp-batch-real-child-v4/targeted-v4-terminal-receipt.json",
+      "sha256": "016aea7663e301369822743c28ca6dc8984854f2f878bd254541c7dc91002916",
+      "bytes": 2432
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/connector-ai-diagnostics-original-v1/candidate-manifest.json",
+      "sha256": "1b50da7275113ca3802e66a2ba53145ad68493457a02c895f17019f8e2bd6274",
+      "bytes": 1946
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/connector-ai-diagnostics-original-v1/evidence/validation-terminal-receipt.json",
+      "sha256": "17c1d4e40eb289ed4260bcf601d7639bdb70ba85b6c5768d7626ca97199176a1",
+      "bytes": 1030
+    }
+  ],
+  "oldArchive": {
+    "path": ".data/research/lawbot-2026-10-16/iteration056/before-original-reuse-ledger111-v1/manifest.json",
+    "sha256": "31dd4c3e9e54fabc0359da5e3e64c92d493e3dd28ef3a6806a35486aca3e2b79"
+  }
+}

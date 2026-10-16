@@ -86,13 +86,24 @@ test("Word layout links split-run marks and selections, keeps object view and or
   await page.getByLabel("标记 11 处理决定").selectOption("ignore");
   let savedBody: any;
   page.on('request', req => { if (req.method() === 'PUT' && req.url().endsWith('/review')) savedBody = req.postDataJSON(); });
+  const documentPath = endpoint.pathname.replace(/\/docx-layout$/u, '');
+  const documentId = documentPath.split('/').at(-1);
+  const saved = page.waitForResponse(response => response.request().method() === 'PUT'
+    && new URL(response.url()).pathname === `${documentPath}/review` && response.status() === 200, { timeout: 30_000 });
+  const versionOneReadback = page.waitForResponse(async response => {
+    if (response.request().method() !== 'GET' || new URL(response.url()).pathname !== documentPath || response.status() !== 200) return false;
+    const body = await response.json().catch(() => null);
+    return body?.id === documentId && body?.revision === 1;
+  }, { timeout: 30_000 });
   await page.getByRole("button", { name: "保存复核", exact: true }).click();
-  await expect(page.getByText("复核已保存", { exact: true })).toBeVisible();
+  expect((await saved).status()).toBe(200);
+  await versionOneReadback;
+  await expect(page.getByText("复核已保存", { exact: true })).toBeVisible({ timeout: 30_000 });
   expect(savedBody.marks.at(-1)).toMatchObject({ ...selected, kind: '自定义', decision: 'ignore' });
   await page.getByRole("button", { name: "对象原文", exact: true }).click();
   await expect(page.locator('textarea[aria-label="原文"]')).toBeVisible();
   await page.getByRole("button", { name: "Word 版式审查", exact: true }).click();
-  await expect(page.getByText("复核版本 1", { exact: true })).toBeVisible();
+  await expect(page.locator(".statusbar span").nth(1)).toHaveText("复核版本 1 · 人工复核已保存");
   const revisionOneLayout = page.waitForResponse(r => {
     if (r.request().method() !== "GET" || r.status() !== 200) return false;
     const url = new URL(r.url());

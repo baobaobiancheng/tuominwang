@@ -7,7 +7,11 @@ import {readOcrText} from './ocr-correction.ts';
 import {hash,readOriginal} from './storage.ts';
 import {verifiedDocumentSource} from './document-source.ts';
 import {canonicalImageBox,selectOcrRegion,type ImageBox} from '../core/image-utilities.ts';
-export type ImageUtilityInput={kind:'image-utility';operation:'region'|'rerun'|'verify';doc:any;page:number;region:ImageBox;canvas:{width:number;height:number}}|{kind:'image-utility';operation:'health'|'diagnostic';reason?:string};
+import {openPdf} from '../core/pdf-reader.ts';
+import {quarterTurn} from '../core/page-rotation.ts';
+import {readPageRotationState} from './page-rotation-state.ts';
+import {selectableOcrLines,type SelectableOcrPage} from '../core/selectable-ocr.ts';
+export type ImageUtilityInput={kind:'image-utility';operation:'region'|'rerun'|'verify';doc:any;page:number;region:ImageBox;canvas:{width:number;height:number}}|{kind:'image-utility';operation:'selectable-page';doc:any;page:number}|{kind:'image-utility';operation:'health'|'diagnostic';reason?:string};
 export async function imageUtility(input:ImageUtilityInput){
  if(input.operation==='health'||input.operation==='diagnostic'){
   let worker:Awaited<ReturnType<typeof createOcr>>|undefined,error:string|null=null,probe:null|{confidence:number;textLength:number}=null;
@@ -19,7 +23,23 @@ export async function imageUtility(input:ImageUtilityInput){
   return {success:true,summary:diagnosticSummary,report};
  }
  if(!('doc'in input))throw new Error('IMAGE_OPERATION_INVALID');
- const d=input.doc;await verifiedDocumentSource(d);const view=await readOcrText(d,input.page);
+ const d=input.doc;
+ if(input.operation==='selectable-page'){
+  if(d.source_format!=='pdf')throw Error('INVALID_PDF');
+  const bytes=await verifiedDocumentSource(d),pdf=await openPdf(bytes);let worker:Awaited<ReturnType<typeof createOcr>>|undefined;
+  try{
+   if(input.page<0||input.page>=pdf.count)throw Error('PAGE_NOT_READY');
+   const source=await pdf.page(input.page),rotation=quarterTurn(readPageRotationState(d).rotations[String(input.page)]??0);
+   const width=rotation%180?source.height:source.width,height=rotation%180?source.width:source.height;
+   const preview=rotation?await sharp(source.png).rotate(rotation).png().toBuffer():source.png;
+   const saved=d.page_data?.find((p:any)=>p.index===input.page);
+   if(saved&&(saved.width!==width||saved.height!==height||saved.rotation!==quarterTurn(source.rotation+rotation)||saved.previewHash!==hash(preview)))throw Error('SOURCE_MISMATCH');
+   worker=await createOcr();const result=await recognizePage(worker,preview,source.scale);
+   const page:SelectableOcrPage={revision:d.revision,page:input.page,pageWidth:width,pageHeight:height,rotation:quarterTurn(source.rotation+rotation),previewHash:hash(preview),selectionOnly:true,lines:selectableOcrLines(result,width,height)};
+   return page;
+  }finally{await worker?.terminate();pdf.close();}
+ }
+ await verifiedDocumentSource(d);const view=await readOcrText(d,input.page);
  if(input.operation==='verify')return {verified:true,revision:d.revision};
  if(input.operation==='region')return selectOcrRegion(view,input.region,input.canvas);
  const region=canonicalImageBox(input.region,input.canvas,view),page=d.page_data.find((p:any)=>p.index===input.page),preview=await readOriginal(page.previewId);if(hash(preview)!==page.previewHash)throw new Error('SOURCE_MISMATCH');

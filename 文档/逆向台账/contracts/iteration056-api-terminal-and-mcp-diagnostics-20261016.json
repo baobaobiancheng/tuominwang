@@ -1,0 +1,87 @@
+{
+  "schema": "iteration056-api-terminal-and-mcp-diagnostics",
+  "previousLedgerSha256": "93f3b8e9e11eae5c466b2e1d0b48b9bd673a5ac85ca40e3c04025dc267a0b5ea",
+  "previousLedgerArchive": ".data/research/lawbot-2026-10-16/iteration056/before-api-terminal-checkpoint-v1/ledger.json",
+  "evidence": {
+    ".data/research/lawbot-2026-10-16/iteration056/full-api-final-v7-receipt.json": {
+      "sha256": "1842aa39dfa4b504f8f2cf32d4a38a8a3995104e8e3ce4c8d30caa5b33ffbade",
+      "bytes": 29107
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/full-api-final-v7.log": {
+      "sha256": "eb0da7b5f4ac65634d04344905e4d831319c5bd86c98521bd50db2cffe2dc40a",
+      "bytes": 22291
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/full-api-final-v7-partial-result-index-v1.json": {
+      "sha256": "aa6c49ea4ac83edf8f2103b1b021117a446f926142fbbb11f9eee6165479ff9d",
+      "bytes": 16147
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/caps-automatic-contract-overlay-v1/actual-run-receipt.json": {
+      "sha256": "10d3a8bb54ae2cba39ea980aa0f046882eb6ccc8fe175053c0248ac9bb6f0b16",
+      "bytes": 1243
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/caps-automatic-contract-overlay-v1/post-run-integrity-receipt.json": {
+      "sha256": "de190a9975cea9b6da6bf7f4e1d68dc3c592c383e1310716f8f2ce77f038444b",
+      "bytes": 2068
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/caps-automatic-contract-overlay-v1/mcp-capabilities-contract.integration.ts": {
+      "sha256": "ff3dfe51d9932d40f31cb193edf80d004192cedaf443f8a49ad81404e823015c",
+      "bytes": 9419
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/rules/mcp-visual-fallback-v4-readonly-review.json": {
+      "sha256": "a6864ad35f98b08ef7f344e90dbc041ea73f9a86484a3371e58b1d4778fed3b1",
+      "bytes": 4391
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/mcp-delivery-format-regression-review-v1.json": {
+      "sha256": "ec2a8cca29417dfb079546c9c26f53372eb3c0932852d61f333511fba3402f80",
+      "bytes": 5112
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/arch/mcp-visual-fallback-v6/targeted-v6-receipt.json": {
+      "sha256": "e296cc055a2ffebfdf830a72749a50ba732473b7a1cce13514ce28154f3a2256",
+      "bytes": 1311
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/arch/mcp-visual-fallback-v6/targeted-v6.log": {
+      "sha256": "529d0c732624402a89fdbffdfcfe04d5e264cb192b096be62507e25baae7ec65",
+      "bytes": 7162
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/arch/mcp-visual-fallback-v7/targeted-v7-receipt.json": {
+      "sha256": "0a651d397a8e2d44982d153bb05d36949dc309a4be6efcadcc81eacf5c8cbf86",
+      "bytes": 1310
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/arch/mcp-visual-fallback-v7/targeted-v7.log": {
+      "sha256": "2cb282f8a245338d0ab6e17724ab2b6a2151f163977691d5a438a8b20d247010",
+      "bytes": 4109
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/arch/mcp-visual-fallback-v8/targeted-v8-receipt.json": {
+      "sha256": "85eb03f39e8dace4ac915aea32de099f0894eb65c799f905bf7c28a9d313ae4a",
+      "bytes": 1310
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/arch/mcp-visual-fallback-v8/targeted-v8.log": {
+      "sha256": "967a44a8d82aca09862b0b32ae1e94f9d5f0038268a4ef178b0dbc67cde188fe",
+      "bytes": 7387
+    }
+  },
+  "fullAPI": {
+    "actualExit": 1,
+    "plannedFiles": 129,
+    "completedFiles": 46,
+    "passedFiles": 45,
+    "passedCases": 85,
+    "failedCases": 1,
+    "notRunFiles": 83,
+    "originalReceiptPreserved": true
+  },
+  "capsCorrection": "two expectations reflect approved automatic + human_review; private actual1/1, not merged",
+  "mcpTargets": {
+    "v6": "actual0/7; fixture lifecycle errors",
+    "v7": "actual3/7; four PDF PROCESSING_FAILED",
+    "v8": "actual3/7; owned-job diagnostics establish worker failures, not mere backoff wait"
+  },
+  "rootCausePendingConfirmation": "worker ordinary PDF draft merger calls helper on collab jobs, helper correctly rejects lineage; next candidate guards ordinary job only, retains protected helper",
+  "handoffTransition": {
+    "beforeSha256": "b4971148ccef8a5e5fd4b76b43b93551e8400d9692878cacc25b526d13ecef3f",
+    "afterSha256": "245195868bc4f75c66ac4ad0fc45037e470b517d836e3d1bef4b58c3519f350b",
+    "archive": ".data/research/lawbot-2026-10-16/iteration056/before-api-terminal-checkpoint-v1/脱敏规则完整技术交接-迭代023.md",
+    "jsonBlocksUnchanged": 10
+  },
+  "statusChanges": "none; formal912 unchanged, no deployment; original vendor258R0"
+}

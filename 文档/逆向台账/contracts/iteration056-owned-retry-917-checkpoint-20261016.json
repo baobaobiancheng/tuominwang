@@ -1,0 +1,153 @@
+{
+  "at": "2026-10-16T15:01:26.071324+00:00",
+  "status": "formal_917_engineering_check_passed_full_api_edge_pending",
+  "sourceManifestSha256": "276fb8ed376563ca07803006854f7ac360ea192478fb10ac679666fa5387cb75",
+  "sourceInputCount": 917,
+  "mergeReceiptSha256": "d1992bbf071c2ade7de1ed34e3017e8696f412b455b669ef8ae68240c207ed58",
+  "paths": [
+    {
+      "path": "apps/api/mcp.ts",
+      "oldSha256": "1ad866523e33459ddc2d751567b4e2d523d80fb4c6f1afa9bd6860dcc79214d3",
+      "newSha256": "3dfc41d636836e8b61e01ecad88d4c33c04f462dfd7fc8f00b44c605dcab64cc",
+      "oldPinned": true,
+      "oldArchive": ".data/research/lawbot-2026-10-16/iteration056/before-owned-retry-v5-formal-merge-v1/apps/api/mcp.ts"
+    },
+    {
+      "path": "apps/api/files.ts",
+      "oldSha256": "eb1754b2e6d16541c155b481b69b13df1a4817b3490ef7dbe02f9ec170d126ef",
+      "newSha256": "e966e1259ad07aa1df043b2493e0571cc45dc28b36de28d134b5c53e35e45676",
+      "oldPinned": true,
+      "oldArchive": ".data/research/lawbot-2026-10-16/iteration056/before-owned-retry-v5-formal-merge-v1/apps/api/files.ts"
+    },
+    {
+      "path": "tests/mcp-owned-retry.integration.ts",
+      "oldSha256": null,
+      "newSha256": "25f410dd703749fd01ee6e0ac93a3b0d89bf27abb551f0a296cfc6f96720bab6",
+      "oldPinned": false,
+      "oldArchive": null
+    }
+  ],
+  "check": {
+    "receiptSha256": "07c1166d60e1ea82bc2aa071a181aecf2e951e25518d2878b4238dea4f406af5",
+    "exitCode": 0,
+    "unitFiles": 146,
+    "unitPassed": 824,
+    "bendLaws": 18,
+    "bendMutations": 21,
+    "protectedHistoricalPaths": 477,
+    "inputsUnchanged": true
+  },
+  "targeted": {
+    "ownedRetry": {
+      "receiptSha256": "e53ccbbfb23e1c29d854b9c31374aaf97a29f3ed58a52ddfdf28eec5d3f3c66e",
+      "passed": 1,
+      "failed": 0
+    },
+    "storageRecovery": {
+      "receiptSha256": "d0bb93a29f46cb2dbd28147143f5e5ffbce4f0de4c59f15e9955c15f3430d8ce",
+      "passed": 2,
+      "failed": 0
+    },
+    "failureInjection": "Synthetic isolated DB sets original job status failed, then real MCP poll/retry and worker; no actual model failure proven."
+  },
+  "review": {
+    "v4Sha256": "45b0e541b265bbb8a6e05f2a653140e082d553721931a51836a9145077f80f7f",
+    "v5Sha256": "b6ed8dc0bdddd96a93d9eb8fb13764ec5b0264cd9cee82dba38aedd4154686cc",
+    "permissionBoundary": "Task RLS owner+view_original and original job required_permissions remain; removed check was redundant."
+  },
+  "oldCompleteGates": {
+    "sourceInputs": 913,
+    "api": {
+      "plannedFiles": 130,
+      "completedFiles": 48,
+      "pass": 90,
+      "fail": 1,
+      "notRun": 82
+    },
+    "edge": {
+      "planned": 104,
+      "pass": 86,
+      "fail": 18
+    }
+  },
+  "runningSnapshot": {
+    "sha256": "6860a86593c88766b807bbc6b6ac0deb699acf4a1e85a454f89234e93a723c4b",
+    "apiRemaining82": {
+      "baselineInputs": 913,
+      "completed": 26,
+      "planned": 82,
+      "terminalAtSnapshot": false
+    },
+    "targetedEdge": {
+      "sourceInputs": 916,
+      "highestStartedIndex": 9,
+      "planned": 10,
+      "observedFailures": [
+        "tests/e2e/automatic-mcp-real-edge.spec.ts:6:1 › automatic MCP consent waits for initial detection, produces real source-labelled review and downloadable bytes, then records human intervention",
+        "tests/e2e/pdf-ocr-runtime-page-flow.spec.ts:23:1 › Edge PDF completed pages can be paused, human drafted, resumed, reviewed and downloaded",
+        "tests/e2e/pdf-seal-runtime-flow.spec.ts:25:1 › Edge PDF seal pause, retained pages, human review, deferred ACK, refresh and supplemental completion"
+      ],
+      "terminalAtSnapshot": false
+    },
+    "notFull917Acceptance": true
+  },
+  "documentBeforeAfter": [
+    {
+      "path": "文档/待办与完成状态-20261015.md",
+      "beforeSha256": "c0221f2ed81ab5b0a38ab783eca281005e2ec6ca421449d14b7b36e0eea6057a",
+      "afterSha256": "673bc7b7a7c9a1c463cc0363667577323cc1043d81775ed8b27ee4f05a09ed2e"
+    },
+    {
+      "path": "文档/脱敏规则完整技术交接-迭代023.md",
+      "beforeSha256": "0ae9c20dc6e941c35f39f96fdc2bc1e2717848b16f5c139fff1807138be90f47",
+      "afterSha256": "133998516150a4bec822233aa0dc1c44c92db32ab0e6d24a8af6e99d3128e662"
+    }
+  ],
+  "rulesJsonBlocks": {
+    "count": 10,
+    "unchanged": true,
+    "sha256": "c8029aa486ed12850c4e0d368da49b933821bb09c8c2f4aea7c6cd4b709782d8"
+  },
+  "serverVersion": "054",
+  "serverDeployed917": false,
+  "signedHistoricalArtifactsPreserved": true,
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v10.json",
+      "sha256": "276fb8ed376563ca07803006854f7ac360ea192478fb10ac679666fa5387cb75"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root-owned-retry-v5-formal-merge-v1-receipt.json",
+      "sha256": "d1992bbf071c2ade7de1ed34e3017e8696f412b455b669ef8ae68240c207ed58"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/final-check-v13-receipt.json",
+      "sha256": "07c1166d60e1ea82bc2aa071a181aecf2e951e25518d2878b4238dea4f406af5"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/mcp-owned-retry-v5/candidate-manifest.json",
+      "sha256": "f4c17f14b6b2ef913abadbbf177c353ccd9ef1f9a89535710c6a9992e428f79f"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/mcp-owned-retry-v5/targeted-terminal-receipt.json",
+      "sha256": "e53ccbbfb23e1c29d854b9c31374aaf97a29f3ed58a52ddfdf28eec5d3f3c66e"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/mcp-owned-retry-v5/storage-terminal-receipt.json",
+      "sha256": "d0bb93a29f46cb2dbd28147143f5e5ffbce4f0de4c59f15e9955c15f3430d8ce"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/mcp-owned-retry-v4-adversarial-review-v1.json",
+      "sha256": "45b0e541b265bbb8a6e05f2a653140e082d553721931a51836a9145077f80f7f"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/mcp-owned-retry-v5-adversarial-review-v1.json",
+      "sha256": "b6ed8dc0bdddd96a93d9eb8fb13764ec5b0264cd9cee82dba38aedd4154686cc"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/rules/iteration056-917-live-diagnostics-snapshot-v1.json",
+      "sha256": "6860a86593c88766b807bbc6b6ac0deb699acf4a1e85a454f89234e93a723c4b"
+    }
+  ],
+  "staticRuntimeImplementationStatusesChanged": false
+}

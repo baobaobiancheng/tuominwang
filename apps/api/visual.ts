@@ -13,7 +13,7 @@ export function registerVisualRoutes(app: FastifyInstance) {
     current.paused=true;current.seal?.abort();return {success:true,requestId,paused:true};
   });
   app.post("/api/documents/:id/pages/:page/visual-candidates", async req => {
-    const doc = id.parse((req.params as any).id), page = z.coerce.number().int().min(0).max(299).parse((req.params as any).page);
+    const doc = id.parse((req.params as any).id), page = z.coerce.number().int().nonnegative().parse((req.params as any).page);
     const input = z.object({ revision: z.number().int().nonnegative(), requestId:id.optional(), detectors: z.array(z.enum(["face", "seal", "signature"])).min(1).max(3).refine(values => new Set(values).size === values.length, "duplicate detector") }).strict().parse(req.body);
     return projectScope(req, { document: doc }, ["view_original", "review"], async db => {
       const [d] = await rows(db, sql`SELECT * FROM documents WHERE id=${doc}`);

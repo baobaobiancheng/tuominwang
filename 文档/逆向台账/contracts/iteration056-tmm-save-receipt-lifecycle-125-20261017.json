@@ -1,0 +1,210 @@
+{
+  "at": "2026-10-16T18:41:18.994389+00:00",
+  "formalSource": "v13/944 unchanged; no cloud release",
+  "scope": "research save payload/storage lifecycle candidate; actual format producer and full API/Web pending",
+  "userConstraint": "reuse usable original code; necessary platform adaptation only; no silent V3 substitution for V1/V2",
+  "proof": {
+    "typecheckActualExitCode": 0,
+    "payloadUnitTests": 2,
+    "payloadUnitActualExitCode": 0,
+    "payloadBytesActuallyTested": 53477377,
+    "cleanupIntegrationTests": 3,
+    "cleanupActualExitCode": 0,
+    "workerRealDetectionDespitePoisonQueue": true,
+    "sourceAndOwnerPreserved": true,
+    "privateAndFormalSourceDrift": []
+  },
+  "adversarialFixes": [
+    "mkdtemp inside background try",
+    "nested finally always attempts private plaintext rm",
+    "receipt UUID is both object ID and owner, durable before object write",
+    "schema055 DELETE trigger queue survives TTL and project cascade",
+    "worker idle tick reclaims expired bytes without a new save request",
+    "failed cleanup retains identity with 1-minute retry; normal detection continues",
+    "auth session expiry checked against clock_timestamp before and after generation"
+  ],
+  "historicalTestFixtureFailures": [
+    "v2/v3 repeated uuid/text parameter42P08, no product assertion passed there",
+    "v4 wrapped42501 assertion mismatch; other2 cleanup cases including worker passed",
+    "v5 corrected fixture/causal-code check, all3 actual0"
+  ],
+  "notCompleted": [
+    "4-format stream producer/import/export/save/download API and Web",
+    "V1 source-error/abort and full-buffer checksum peer blockers",
+    "latest combined final check/API/Edge",
+    "local schema055/business migration and deployment"
+  ],
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-save-stream-v5/candidate-manifest.json",
+      "sha256": "27c44abc277465b087299de9d6ac14cadf70f66844ca1f7b35d31eaaeb821651",
+      "bytes": 5513
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-save-stream-v5/terminal-receipt.json",
+      "sha256": "af5d8b204d025778bc0150cc456bbcd9c88a3de450ce033f51f2b0264c6efae6",
+      "bytes": 762
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-save-stream-v5/typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-save-stream-v5/cleanup-integration.log",
+      "sha256": "661d5b3174b039802c4577ec559bf06b0c68a13f9e7ed50ae6d4f290053fe11b",
+      "bytes": 731
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-save-stream-v3/terminal-receipt.json",
+      "sha256": "39c6e9c78e83a211ea5744d4c796bed3139f17d6584450fba0f51d705900a1d2",
+      "bytes": 817
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-save-stream-v3/payload-unit.log",
+      "sha256": "2645e5ab1bb7035d1697dc7ee1a3c3d497b0329d347b2e1e1ae838ce7a33420b",
+      "bytes": 222
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-save-stream-v2/terminal-receipt.json",
+      "sha256": "a253f1d4c61df42411e2a1c434cd98ab8b1dcabbab4f3a7b337302c1967c0fe2",
+      "bytes": 795
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-save-stream-v4/cleanup-terminal-receipt.json",
+      "sha256": "12c8f423afceac0d0fcf2ab2f3306d0e43ada24cbda64edb2a41fff357b459a5",
+      "bytes": 409
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/workspace-save-stream-v1-readonly-peer-v1.json",
+      "sha256": "ea35cc54721cde4e2f5d2943a65bd9adcf5d5b2ac6932f33e82bc74dca1d8df5",
+      "bytes": 5278
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/workspace-save-stream-v2-readonly-peer-v1.json",
+      "sha256": "820fdacf8d1a7b94572c4995a227d99a091c0708be9a11e634dabd5bae58fdc1",
+      "bytes": 4445
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/workspace-save-stream-v3-readonly-peer-v1.json",
+      "sha256": "ba433193d3be8f491397bef37eddba0a4ae387aebcb3ddece236ac7520dcf12e",
+      "bytes": 3452
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-legacy-core-v1-readonly-peer-v1.json",
+      "sha256": "4764ce9675451ac5afa6b027b3140730f2356fe8492f3a79f1e9cda9e693722a",
+      "bytes": 1446
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-save-stream-v5/overlay/apps/api/workspace-saves.ts",
+      "sha256": "270850a1532a10d314f235a099edb994c839519ab1f812c718bfda2f630693a7",
+      "bytes": 12556
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-save-stream-v5/overlay/apps/worker/main.ts",
+      "sha256": "4bdf5f34b3b3b8bbefc36b766cdf9127da4382827ff6e152017b4522594cd744",
+      "bytes": 20459
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-save-stream-v5/overlay/packages/adapters/deletions.ts",
+      "sha256": "1eef67786c77bbdeb78b31663dc829e82c10c6ffe72ad682371927b97f4a3d79",
+      "bytes": 2940
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-save-stream-v5/overlay/packages/adapters/workspace-save-payload.ts",
+      "sha256": "a29caa8028479dcf09ff9387406747ac1ed26bc08006be45d2eb5591c36322d9",
+      "bytes": 2636
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-save-stream-v5/overlay/scripts/055.sql",
+      "sha256": "fa3368e93434fd25172f3b8381ff82a46f7c2493c8325bd9a73392b03df5b502",
+      "bytes": 2197
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-save-stream-v5/overlay/scripts/migrate.ts",
+      "sha256": "fe710ff06a96b091dd47da4d48c47c96d8c538175069b75da84468e6266beac2",
+      "bytes": 1682
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-save-stream-v5/overlay/tests/workspace-save-cleanup.integration.ts",
+      "sha256": "3cc4210da088d96ff716ecfed42337151e9609c341657748ba4d309a21d0e985",
+      "bytes": 5683
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-save-stream-v5/overlay/tests/workspace-save-payload.test.ts",
+      "sha256": "42d6c90c0446c4e1f9adbf3117f9064215c199e6a92a3cfdde63586fe81afe90",
+      "bytes": 4714
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-save-stream-v5/dependency-snapshot/apps/api/workspace-export-stream.ts",
+      "sha256": "83528eb1923d2c0a87f8ae2ebd308637b8b3890902d74b8cd4e569e01157f679",
+      "bytes": 11648
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-save-stream-v5/dependency-snapshot/packages/adapters/workspace-original-stream.ts",
+      "sha256": "4f203b6c5923344b7f19e98d0d46f1734a7ffc0e22c9b41cadeefc3b32e43052",
+      "bytes": 8561
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-save-stream-v5/dependency-snapshot/packages/core/reference/tmm-original-predicates.d.ts",
+      "sha256": "524ea4ba50441dc4c80052443ef0fa2126e1f18f8b43fbbd194eefc9d1747bab",
+      "bytes": 131
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-save-stream-v5/dependency-snapshot/packages/core/reference/tmm-original-predicates.js",
+      "sha256": "f6c9274b0ccf780971a1e17015e6de89d9861379e238d263692c996f373abcc7",
+      "bytes": 1256
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-save-stream-v5/dependency-snapshot/packages/core/workspace-compat.ts",
+      "sha256": "37a3eab596a3e555f3911bb28de4da3ac228822722d76fd5d0a7c8f972a0a3c0",
+      "bytes": 23910
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-save-stream-v5/dependency-snapshot/packages/core/workspace-legacy-stream.ts",
+      "sha256": "302c737d58fbff5261ca75bc9f510607dcbc75de738d6d508e2f59412814ce4d",
+      "bytes": 9544
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-save-stream-v5/dependency-snapshot/packages/core/workspace-portable-stream.ts",
+      "sha256": "6cfccb502b4174a231ef1ea08321427ab312aeee4b85000e6f3e64ba8837b9f1",
+      "bytes": 38145
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-save-stream-v5/dependency-snapshot/packages/core/workspace-portable.ts",
+      "sha256": "3547cc4d08d33d156dda19fe01c66020ec4d1fe3243d6b8fdd650727e4976258",
+      "bytes": 36859
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-save-stream-v5/dependency-snapshot/packages/core/workspace-renderer.ts",
+      "sha256": "74dd64d5ec357e7ca24728003db398568d05794b23889c99b4a3581ec476e619",
+      "bytes": 15109
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-save-stream-v5/dependency-snapshot/packages/core/workspace-secure-stream.ts",
+      "sha256": "9a593c19679cd912a77347ae54e0a106bbadd552e461e933488b2512cadac19e",
+      "bytes": 14560
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-save-stream-v5/dependency-snapshot/packages/core/workspace-zip-stream.ts",
+      "sha256": "c92ef51cc031b68f4a60086fcfc33d8faf8c0f1b7b22e31a83a3a9bebb104862",
+      "bytes": 8705
+    }
+  ],
+  "updatedPin": {
+    "path": "文档/待办与完成状态-20261015.md",
+    "previous": {
+      "sha256": "9edbb8e615d234955944c8fe26b2db2472239508443cb1e3ae4fabe10538666d",
+      "bytes": 56200
+    },
+    "current": {
+      "sha256": "d9bbbab0d9a62165fb6ac721b7dd4251de2afdfd00ae768433865d8a1a297116",
+      "bytes": 58184
+    }
+  },
+  "oldArchive": {
+    "path": ".data/research/lawbot-2026-10-16/iteration056/before-save-receipt-ledger125-v1/manifest.json",
+    "sha256": "758a5fe91eb8cf94e5a6e6c0bb5add1b89c20f9f3895446bcd256e8d25e50b85",
+    "bytes": 1394
+  }
+}

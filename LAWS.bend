@@ -68,3 +68,55 @@ law restore_ambiguous_denied:
 
 law restore_complete_allowed:
   {Policy.restoreAllowed(True{}, True{}, True{}, True{}) == True{} : Bool}
+
+# Automatic decisions require an independently bound machine origin.
+law auto_ready_denied:
+  for version: Bool
+  for covered: Bool
+  for decided: Bool
+  for snapshot: Bool
+  for origin: Bool
+  {Policy.automaticEligible(False{}, version, covered, decided, snapshot, origin) == False{} : Bool}
+
+law auto_version_denied:
+  for ready: Bool
+  for covered: Bool
+  for decided: Bool
+  for snapshot: Bool
+  for origin: Bool
+  {Policy.automaticEligible(ready, False{}, covered, decided, snapshot, origin) == False{} : Bool}
+
+law auto_covered_denied:
+  for ready: Bool
+  for version: Bool
+  for decided: Bool
+  for snapshot: Bool
+  for origin: Bool
+  {Policy.automaticEligible(ready, version, False{}, decided, snapshot, origin) == False{} : Bool}
+
+law auto_decided_denied:
+  for ready: Bool
+  for version: Bool
+  for covered: Bool
+  for snapshot: Bool
+  for origin: Bool
+  {Policy.automaticEligible(ready, version, covered, False{}, snapshot, origin) == False{} : Bool}
+
+law auto_snapshot_denied:
+  for ready: Bool
+  for version: Bool
+  for covered: Bool
+  for decided: Bool
+  for origin: Bool
+  {Policy.automaticEligible(ready, version, covered, decided, False{}, origin) == False{} : Bool}
+
+law auto_origin_denied:
+  for ready: Bool
+  for version: Bool
+  for covered: Bool
+  for decided: Bool
+  for snapshot: Bool
+  {Policy.automaticEligible(ready, version, covered, decided, snapshot, False{}) == False{} : Bool}
+
+law auto_complete_allowed:
+  {Policy.automaticEligible(True{}, True{}, True{}, True{}, True{}, True{}) == True{} : Bool}

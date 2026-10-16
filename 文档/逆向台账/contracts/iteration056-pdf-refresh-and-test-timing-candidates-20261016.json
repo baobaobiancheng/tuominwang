@@ -1,0 +1,63 @@
+{
+  "schema": "iteration056-pdf-refresh-and-test-timing-candidates",
+  "previousLedgerSha256": "87b92af171f46b29647dbf480d99a9a2350c44995ffa942b7b5bd7afc4494eea",
+  "previousLedgerArchive": ".data/research/lawbot-2026-10-16/iteration056/before-pdf-refresh-candidate-v1/ledger.json",
+  "evidence": {
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/pdf-runtime-two-fixes-overlay-v1/overlay-manifest.json": {
+      "sha256": "f8d90174492710873d10b12e1395674eef2bb8968c2ad19bb76e338bfee1edf7",
+      "bytes": 1073
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/pdf-runtime-two-fixes-overlay-v1/validation-private-root.txt": {
+      "sha256": "a0e1a639cbdaa27031f96fa46131be39e7d06fede1cdc9c5d8166898725d8d96",
+      "bytes": 41
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/pdf-runtime-two-fixes-overlay-v1/tests/e2e/pdf-seal-runtime-flow.spec.ts": {
+      "sha256": "883912532f0067998ce1921e2215895e2e23d224e9577c3d05cbd02222fadfcd",
+      "bytes": 12956
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/pdf-runtime-two-fixes-overlay-v1/diffs/pdf-seal-runtime-flow.spec.ts.diff": {
+      "sha256": "bd6bb3a1732996870b2e3a8bc90a081624dc54c57595f7f8ff2c286d1de7a196",
+      "bytes": 6014
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/pdf-runtime-two-fixes-overlay-v1/diffs/pdf-ocr-live-draft.tsx.diff": {
+      "sha256": "0298bc995032fce7f9bc7c299b1d3409a339e9f432864aaaa2194b73f546b73c",
+      "bytes": 4958
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/pdf-runtime-two-fixes-overlay-v1/apps/web/pdf-ocr-live-draft.tsx": {
+      "sha256": "4dc23b8b5c491ec879e9a595c0a0dc4229743526d58bd0875b3e119648fe2d1a",
+      "bytes": 13466
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/pdf-runtime-two-fixes-overlay-v1/validation/typecheck.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/pdf-runtime-two-fixes-overlay-v1/validation/list-full.log": {
+      "sha256": "0060fd73b1336c5326ebb04794e9292ee2081d22b659c5b3b1721f9362bb7f5a",
+      "bytes": 13631
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/pdf-runtime-two-fixes-overlay-v1/validation/list-pdf.log": {
+      "sha256": "30662600c0aea6461c587e586d8ee3c70a9b585ff381fbb93af8833eed610c5a",
+      "bytes": 564
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/pdf-runtime-two-fixes-overlay-v1/validation/receipt.json": {
+      "sha256": "0636777a3ebe6b7eed4d5cf024c8bfb36b0cf91810143830087fea33c4826d6d",
+      "bytes": 1393
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/arch/session-expiry-poll-v1/minimal-test-only.diff": {
+      "sha256": "6fdd9bc24813e11ad13759b160eed69c97ef0152140a7aa2ed01c0a1e1044e22",
+      "bytes": 639
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/arch/session-expiry-poll-v1/readonly-diagnosis.json": {
+      "sha256": "6d59cb57caa4799b35ea6235d325e9c9ddc8be9140eb61943fdbad5f39f305f0",
+      "bytes": 3051
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/arch/session-expiry-poll-v1/tests/e2e/review-regressions.spec.ts": {
+      "sha256": "8c612d882b9fb307067f6aca8cbc50f88e8a47eac9007318dd83bb2193c00c58",
+      "bytes": 20666
+    }
+  },
+  "rootReview": "Diff read: OCR page-processed now triggers existing throttled draft refresh; recognize-only candidate folding unchanged. Seal test waits for actual20 mark controls and asserts saved request has no pending. Existing export gate unchanged.",
+  "executionBoundary": "Private Node24 tsc0 and Playwright--list105/63 only. No actual Edge on this candidate, no formal source merge. Current104 run stilllive.",
+  "sessionExpiry": "Independent trace shows only initialGET200 and fake clock800ms<real3000ms poll, no401/DELETE. Minimal test clock3200 prepared retains dialog cancellation/noDELETE assertions, not runtime pass.",
+  "statusChanges": "No S/I/R/model/resource/Git/deployment changes."
+}

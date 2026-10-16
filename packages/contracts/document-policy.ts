@@ -14,5 +14,8 @@ export const documentConfigurationSchema=z.object({
   unifiedPseudonyms:z.boolean().optional(),batchResultMode:z.enum(['individual','combined']).optional(),
 }).strict().refine(c => !c.pseudonymPrefixes || new Set(Object.values(c.pseudonymPrefixes)).size === Object.values(c.pseudonymPrefixes).length, {message:"Duplicate pseudonym prefixes"});
 export type DocumentConfiguration=z.infer<typeof documentConfigurationSchema>;
-export const documentPolicySchema=z.object({revision:z.number().int().positive(),profile:profileSchema,ruleset:rulesetSchema.nullable(),configuration:documentConfigurationSchema,batch:z.boolean()}).strict();
+export const documentPolicySchema=z.object({revision:z.number().int().positive(),profile:profileSchema,baseProfile:profileSchema.optional(),ruleset:rulesetSchema.nullable(),configuration:documentConfigurationSchema,batch:z.boolean()}).strict().refine(
+  policy=>!policy.baseProfile||!policy.configuration.profileId||policy.baseProfile.id===policy.configuration.profileId,
+  {message:'PROFILE_BASE_MISMATCH'},
+);
 export type DocumentPolicy=z.infer<typeof documentPolicySchema>;

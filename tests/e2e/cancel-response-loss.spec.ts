@@ -93,7 +93,7 @@ test('cancel commits despite a lost POST response and failed readback, then relo
     await page.getByRole('button', { name: '重新载入最新复核', exact: true }).click();
     await expect(page.getByText('材料的处理状态已变化，请重新识别后复核。原有复核记录仍保留。', { exact: true })).toBeVisible();
     await expect(page.getByText('自动识别 需重新识别', { exact: false })).toBeVisible();
-    await expect(page.getByText('复核版本 1', { exact: true })).toBeVisible();
+    await expect(page.locator('.statusbar span').nth(1)).toHaveText('复核版本 1 · 尚无已保存审定');
     await expect(page.getByRole('button', { name: '重新载入最新复核', exact: true })).toHaveCount(0);
     await expect(page.getByRole('button', { name: '重试任务', exact: true })).toHaveCount(0);
     await expect(page.getByRole('button', { name: '重新识别', exact: true })).toBeEnabled();

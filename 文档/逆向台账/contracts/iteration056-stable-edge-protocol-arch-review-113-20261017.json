@@ -1,0 +1,164 @@
+{
+  "atUtc": "2026-10-16T16:38:25.559822+00:00",
+  "eventId": "ITER-056-STABLE-EDGE-PROTOCOL-ARCH-113",
+  "beforeLedgerSha256": "f1ed09da0028cf0b4d3ae0be948294f5fb4c723b7166f33816f06d91463798a2",
+  "oldViewsArchive": {
+    "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/ledger-event113-prior-views/manifest.json",
+    "sha256": "c672c507526c2fbb9f7e35a41dd148bbcf35182fc0ccfb7e99f61b57b9a3a4b8",
+    "count": 7,
+    "byteIdentical": true
+  },
+  "targeted3": {
+    "scope": "3 named visual save cases, real isolated msedge; no full 105 or targeted7 uplift",
+    "actual": 3,
+    "passed": 3,
+    "failed": 0,
+    "skipped": 0,
+    "retry": 0,
+    "childExitCode": 0,
+    "wrapperActualExitCode": 0,
+    "cleanupDatabaseAbsent": true,
+    "normalDev": "historical service restore snapshot recorded after the targeted run; no live process/log or current-health claim pinned"
+  },
+  "protocol": {
+    "privateApiInjectActualExitCode": 0,
+    "privateWholeTypecheckActualExitCode": 0,
+    "offers": [
+      "2025-06-18",
+      "2025-11-25",
+      "unknown",
+      "missing"
+    ],
+    "boundaries": "real isolated Fastify app.inject and synthetic stdio; not SDK certification or production deployment",
+    "default": "missing selects current November, which differs from original missing June; client protocolVersion is required by MCP lifecycle"
+  },
+  "archV7": {
+    "actualCases": 5,
+    "pass": 3,
+    "fail": 2,
+    "actualExitCode": 1,
+    "passedCombined": "combined parent reached real restoration and download before resume test stopped on denial code assertion",
+    "resumeFailure": "pre-approval second session got SESSION_AUTHORIZATION_REQUIRED rather than test expected JOB_NOT_AVAILABLE; both deny access",
+    "restartFailure": "HTTP 400 INVALID_INPUT; UUID reproduction confirms old hash slice invalid and fixed version/variant valid, business API v8 unverified",
+    "approvalScopeGap": "independent delivered resume is gated by new-redaction/folder consent in v7; source approveSessionResume requires restore-path permission only when restorable",
+    "uiGap": "after approval selected request can remain focused; v8 pending"
+  },
+  "rea": {
+    "snapshotVersion": "6.5.0",
+    "snapshotOnly": true
+  },
+  "status": {
+    "interfaceCount": 258,
+    "static": {
+      "S3": 250,
+      "S2": 8
+    },
+    "referenceRuntimeR0": 258,
+    "implementationLevelsUnchanged": true,
+    "online": "054 unchanged",
+    "formal917": "unchanged; full or partial separately evidenced gates only",
+    "v8": "pending; no pass claim"
+  },
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/targeted3-visual-save-v1/evidence/attempt-6gCau9/terminal-receipt.json",
+      "sha256": "14fc553857714ee672db6706e80821275e08729eb8c8b0f8432d30737f7d4a6a",
+      "bytes": 5233
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/targeted3-visual-save-v1/stable-evidence-manifest.json",
+      "sha256": "62af92d8a1c062f38186cf975d7b6112f8c0ccb1d11fa08a8e1d04782077c63e",
+      "bytes": 3223
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/targeted3-visual-save-v1/evidence/attempt-6gCau9/cleanup-terminal.json",
+      "sha256": "24f384078afb2feb256b675aaff57ddf18fd7d095bdd34f3b1ac5638c324e85a",
+      "bytes": 201
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/targeted3-visual-save-v1/launcher-attempt01/wrapper-terminal.json",
+      "sha256": "14d674a72135269e3c428df365c34d350a8b760731897fac9a8631eace0a16e0",
+      "bytes": 624
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/mcp-version-api-inject-v2/candidate-manifest.json",
+      "sha256": "9df6799b5d1124f8831e372f82f9a8fae492dab6c7ea0a09f643e10ade8f947c",
+      "bytes": 366933
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/mcp-version-api-inject-v2/api-inject-terminal-receipt.json",
+      "sha256": "d32ad8ddf7a860875c29336c61142ac12ce54f520af91bed8be22c3f7344dfd6",
+      "bytes": 1177
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/mcp-version-api-inject-v2/typecheck-terminal-receipt.json",
+      "sha256": "52bb990992e7e1893cabba3f9d02412744b06a9e448d47062462b06508aa2707",
+      "bytes": 439
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/arch-v7-resume-independent-review-v1.json",
+      "sha256": "513b730874b0d299f57ea9f935f1928faee106a59ff620f59ae0f0035b9fe24a",
+      "bytes": 5363
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/restart-request-uuid-validation-v1.json",
+      "sha256": "2ad0d9c59f70a8d92788f3df3587fdaa0ba58fca74996ee83a92efae7a308b42",
+      "bytes": 550
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/mcp-batch-v7-resume-ui-readonly-peer-v1.json",
+      "sha256": "16259b1cd0daf8b90493a46286f3cddfecf06d2ffc7c0ab8f66206118ff73e58",
+      "bytes": 1427
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/mcp-batch-real-child-v7/targeted-v7-terminal-receipt.json",
+      "sha256": "564dd65878e81d244e14aadf0c9cbfdcfcd3af803acd0facac8312a8b76a7850",
+      "bytes": 2432
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/rea-upgrade/stable-recheck-20261017-v2.json",
+      "sha256": "43d7aa83ee83978b21e6ee7f9037cb7cd852ca67d79c3fbb5df83a0a3c75ee30",
+      "bytes": 577
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/ledger-event113-prior-views/manifest.json",
+      "sha256": "c672c507526c2fbb9f7e35a41dd148bbcf35182fc0ccfb7e99f61b57b9a3a4b8",
+      "bytes": 1288
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/ledger-event113-prior-views/README.md",
+      "sha256": "31856375ac5570919c54aca6e8b2a99ab4ce1e59091b88c1f423b027cebd88ea",
+      "bytes": 20046
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/ledger-event113-prior-views/接口台账.csv",
+      "sha256": "5904b34e63c5ff7ba8edd36e1a525b635bf716b0348dd68990d0879315af464d",
+      "bytes": 553318
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/ledger-event113-prior-views/链路台账.csv",
+      "sha256": "44cf6487d1850b9ea8689684eac57a319168c53bb75d5dfe4da8aeffaa8093fa",
+      "bytes": 59809
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/ledger-event113-prior-views/待办清单.csv",
+      "sha256": "bcc955ebcf5c4a18c7c0e38c69e01252124ac4c320ac69b281efed14bf150f0f",
+      "bytes": 160280
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/ledger-event113-prior-views/校验结果.json",
+      "sha256": "fa04bfe44f79da911ed30875108a0a424e7ba7adc2da5290797d265ed869e98d",
+      "bytes": 1330405
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/ledger-event113-prior-views/台账校验回归.json",
+      "sha256": "85ec2c188feba6fce5df55cdbd9c28a2bfe3e41465d741a09f9c665b4ac597c5",
+      "bytes": 1230
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/ledger-event113-prior-views/变更日志.md",
+      "sha256": "bf4960c8b5dcb9333e370a2bde2844d966f4c51d0b26a5f9a32c3f478ebec86d",
+      "bytes": 78340
+    }
+  ]
+}

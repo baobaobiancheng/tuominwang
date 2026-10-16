@@ -1,0 +1,56 @@
+import {test,after} from 'node:test';
+import assert from 'node:assert/strict';
+import {randomUUID} from 'node:crypto';
+import pg from 'pg';
+import {buildApp} from '../apps/api/main.ts';
+import {tick} from '../apps/worker/main.ts';
+import {pool} from '../packages/adapters/db.ts';
+import {passwordHash} from '../packages/adapters/storage.ts';
+import {MCP_PROTOCOL} from '../packages/core/mcp-tools.ts';
+import {pdfFixture} from './pdf-fixtures.ts';
+
+assert.ok(new URL(process.env.MIGRATION_DATABASE_URL!).pathname.startsWith('/tmw_test_'));
+const admin=new pg.Pool({connectionString:process.env.MIGRATION_DATABASE_URL}),app=await buildApp();
+after(async()=>{await app.close();await pool.end();await admin.end();});
+
+test('document job publishes only eligible ordinary PDF UI capability while MCP PDF controls stay protected',async()=>{
+ const id=randomUUID(),tenant=randomUUID(),username='pdf-boundary-'+id,password='public-test-password',origin=process.env.APP_ORIGIN!;
+ await admin.query('INSERT INTO users VALUES($1,$2,$3,$4)',[id,tenant,username,passwordHash(password)]);
+ const login=await app.inject({method:'POST',url:'/api/login',headers:{origin},payload:{username,password}});
+ assert.equal(login.statusCode,200,login.body);
+ const cookie=String(login.headers['set-cookie']).split(';')[0];
+ const req=(method:'GET'|'POST',url:string,payload?:any,extra:Record<string,string>={})=>app.inject({method,url,payload,headers:{origin,cookie,...extra}});
+ const projectResponse=await req('POST','/api/projects',{name:'普通 PDF UI 边界'});assert.equal(projectResponse.statusCode,200,projectResponse.body);
+ const project=projectResponse.json().id as string;
+ const txtResponse=await req('POST',`/api/projects/${project}/documents`,{text:'公开合成文本 电话13800138000',requestId:randomUUID()});assert.equal(txtResponse.statusCode,200,txtResponse.body);
+ const txt=(await req('GET',`/api/documents/${txtResponse.json().id}`)).json();
+ assert.equal(txt.format,'txt');assert.equal(txt.job.kind,'detect');assert.equal(txt.job.ordinaryPdfDetection,false);assert.equal(txt.job.canObserveEvents,true);
+ await tick();
+ const bytes=pdfFixture({pages:1,text:'Synthetic PDF 13800138000'}),batch=randomUUID(),requestId=randomUUID();
+ assert.equal((await req('POST',`/api/projects/${project}/upload-batches`,{id:batch,files:[{requestId,path:'boundary.pdf',size:bytes.length}]})).statusCode,200);
+ const upload=await req('POST',`/api/projects/${project}/files?batchId=${batch}&requestId=${requestId}`,bytes,{'content-type':'application/octet-stream'});assert.equal(upload.statusCode,200,upload.body);
+ const document=upload.json().id as string;
+ const queued=(await req('GET',`/api/documents/${document}`)).json();
+ assert.equal(queued.format,'pdf');assert.equal(queued.state,'queued');assert.equal(queued.job.kind,'detect');assert.equal(queued.job.ordinaryPdfDetection,true);assert.equal(queued.job.canObserveEvents,true);
+ assert.equal((await req('GET',`/api/jobs/${queued.job.id}/pdf-ocr/progress`)).statusCode,200);
+ await tick();
+ const review=(await req('GET',`/api/documents/${document}`)).json();assert.equal(review.state,'review');assert.equal(review.job.ordinaryPdfDetection,true);
+ // UI only reads checkpoints while queued; ordinary completed same-revision draft remains eligible.
+ assert.equal(review.job.kind,'detect');assert.equal(review.job.status,'succeeded');assert.equal(review.job.canObserveEvents,true);
+ const init=await req('POST','/api/mcp',{jsonrpc:'2.0',id:1,method:'initialize',params:{protocolVersion:MCP_PROTOCOL,clientInfo:{name:'ordinary-boundary-client',version:'1'}}});assert.equal(init.statusCode,200,init.body);
+ const headers={'mcp-session-id':String(init.headers['mcp-session-id']),'mcp-protocol-version':MCP_PROTOCOL};
+ assert.equal((await req('POST','/api/mcp',{jsonrpc:'2.0',method:'notifications/initialized'},headers)).statusCode,202);
+ const started=await req('POST','/api/mcp',{jsonrpc:'2.0',id:2,method:'tools/call',params:{name:'start_lawbot_redaction_for_user_manual_review',arguments:{project_id:project,document_ids:[document],task_mode:'redact_only',masking_mode:'default_mask',output_formats:['original'],request_id:randomUUID()}}},headers);
+ assert.equal(started.statusCode,200,started.body);assert.equal(started.json().result.isError,false,started.body);
+ const taskId=started.json().result.structuredContent.jobId as string;
+ const task=(await req('GET',`/api/ai-collab/tasks/${taskId}`)).json();
+ const authorized=await req('POST',`/api/ai-collab/tasks/${taskId}/authorize`,{revision:task.revision,authorization:{allowRedactionPath:true,allowRestorePath:false,allowSanitizedDelivery:true,autoEnterReview:false,createExchangeFolder:true,autoRestoreAfterValidation:false}});
+ assert.equal(authorized.statusCode,200,authorized.body);
+ const mcp=(await req('GET',`/api/documents/${document}`)).json();
+ assert.equal(mcp.format,'pdf');assert.equal(mcp.state,'queued');assert.equal(mcp.job.kind,'detect');assert.equal(mcp.job.canObserveEvents,true);assert.equal(mcp.job.ordinaryPdfDetection,false);
+ const [link]=(await admin.query('SELECT collab_task_id FROM jobs WHERE id=$1',[mcp.job.id])).rows;assert.ok(link.collab_task_id);
+ assert.equal((await req('GET',`/api/jobs/${mcp.job.id}/pdf-ocr/progress`)).statusCode,404);
+ assert.equal((await req('GET',`/api/jobs/${mcp.job.id}/pdf-ocr/draft`)).statusCode,404);
+ assert.equal((await req('GET',`/api/jobs/${mcp.job.id}/pdf-seals/progress`)).statusCode,404);
+ assert.equal((await req('GET',`/api/jobs/${mcp.job.id}/events?limit=10`)).statusCode,200);
+});

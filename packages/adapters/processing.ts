@@ -19,7 +19,7 @@ import type { Mapping } from "../core/mappings.ts";
 import { withHeavySlot } from "./db.ts";
 // Native getenv in a worker observes the process environment, not only the JS worker's copy.
 process.env.ORT_DISABLE_TELEMETRY = "1";
-export type ProcessingInput = { kind: "detect" | "export" | "view" | "review" | "verify" | "gate" | "page" | "page-preview" | "preview" | "search" | "known-entities" | "mapping-value" | "visual-detect" | "docx-layout" | "docx-preview" | "ocr-text" | "ocr-correct" | "replacement-policies" | "entity-seeds" | "office-faces"; entitySeeds?: KnownEntitySeed[]; replacementPolicies?: ReplacementPolicies; doc: any; snapshot?: any; offset?: number; query?: string; searchScope?: SearchScope; searchSpans?: SearchSpan[]; detectors?: ("face" | "seal" | "signature")[]; correction?: OcrCorrectionInput; page?: number; marks?: Mark[]; mappings?: Mapping[]; artifact?: { id: string; hash: string; output_role?: "primary"|"markdown"|"pdf-docx"|"word-docx" }; pdfOcrCheckpointPages?:PdfOcrCheckpoint[] }
+export type ProcessingInput = { kind: "detect" | "export" | "view" | "review" | "verify" | "gate" | "page" | "page-preview" | "preview" | "search" | "known-entities" | "mapping-value" | "visual-detect" | "docx-layout" | "docx-preview" | "ocr-text" | "ocr-correct" | "replacement-policies" | "entity-seeds" | "office-faces"; entitySeeds?: KnownEntitySeed[]; replacementPolicies?: ReplacementPolicies; doc: any; snapshot?: any; automaticBinding?:{taskId:string|null;actorId:string}; offset?: number; query?: string; searchScope?: SearchScope; searchSpans?: SearchSpan[]; detectors?: ("face" | "seal" | "signature")[]; correction?: OcrCorrectionInput; page?: number; marks?: Mark[]; mappings?: Mapping[]; artifact?: { id: string; hash: string; output_role?: "primary"|"markdown"|"pdf-docx"|"word-docx" }; pdfOcrCheckpointPages?:PdfOcrCheckpoint[] }
   | { kind: "download"; artifact: { id: string; hash: string; format?: string } }
   | {kind:"restoration-batch-file";file:RestorationBatchFile;plan:RestorationPlan}
   | {kind:"image-batch-search";doc:any;query:string;pageIndex?:number}
@@ -36,7 +36,7 @@ export type ProcessingInput = { kind: "detect" | "export" | "view" | "review" | 
   | { kind: "dictionary-export"; entries: DictionaryEntry[] };
 
 // A real worker thread keeps parser/crypto CPU work away from HTTP and lease heartbeats.
-type ProcessingOptions = { signal?: AbortSignal; timeoutMs?: number; heavySlotHeld?: boolean; onEvent?: (event: ProcessingEventEnvelope) => void | Promise<void>; onCheckpoint?: (frame:PdfOcrCheckpoint) => void | Promise<void>; readRuntimeRules?:()=>Promise<RuntimeWhitelist[]> };
+type ProcessingOptions = { signal?: AbortSignal; timeoutMs?: number; heavySlotHeld?: boolean; onEvent?: (event: ProcessingEventEnvelope) => void | Promise<void>; onCheckpoint?: (frame:PdfOcrCheckpoint) => void | Promise<void>; readRuntimeRules?:()=>Promise<RuntimeWhitelist[]>; readPdfSealPause?:()=>Promise<boolean> };
 export function runProcessing<T>(input: ProcessingInput, options: ProcessingOptions = {}): Promise<T> {
   if (!options.heavySlotHeld && ["manual-occurrences", "entity-filter", "page-rotation", "legacy-office-normalize", "folder-output", "folder-output-read", "document-route", "docx-image-ocr", "image-batch-search", "restoration-batch-file", "image-utility", "document-unlock", "office-faces", "docx-layout", "docx-preview", "ocr-correct", "visual-detect", "detect", "export", "verify", "page-preview", "search", "known-entities", "dictionary-import", "dictionary-export"].includes(input.kind)) return withHeavySlot(signal => runThread<T>(input, { ...options, signal: options.signal ? AbortSignal.any([signal, options.signal]) : signal }));
   return runThread<T>(input, options);
@@ -46,7 +46,7 @@ function runThread<T>(input: ProcessingInput, options: ProcessingOptions): Promi
   return new Promise((resolve, reject) => {
     if (options.signal?.aborted) { reject(new Error("PROCESSING_CANCELLED")); return; }
     const worker = new Worker(new URL("./processing-worker.ts", import.meta.url), {
-      workerData: {...input, legacyOfficeControl:true, processingEventStream: !!options.onEvent, liveRuntimeRules: input.kind==='detect'&&!!options.readRuntimeRules}, execArgv: [], resourceLimits: { maxOldGenerationSizeMb: 512, maxYoungGenerationSizeMb: 32 },
+      workerData: {...input, legacyOfficeControl:true, processingEventStream: !!options.onEvent, liveRuntimeRules: input.kind==='detect'&&!!options.readRuntimeRules, livePdfSealPause: input.kind==='detect'&&'doc' in input&&input.doc?.source_format==='pdf'&&!!options.readPdfSealPause}, execArgv: [], resourceLimits: { maxOldGenerationSizeMb: 512, maxYoungGenerationSizeMb: 32 },
       env: { LEGACY_OFFICE_URL: process.env.LEGACY_OFFICE_URL ?? "", LEGACY_OFFICE_TOKEN: process.env.LEGACY_OFFICE_TOKEN ?? "", ORT_DISABLE_TELEMETRY: "1", DATA_KEY: process.env.DATA_KEY ?? "", DATA_DIR: process.env.DATA_DIR ?? ".data/files", VISUAL_MODEL_DIR: process.env.VISUAL_MODEL_DIR ?? ".data/models/visual", SIGNATURE_MODEL_DIR: process.env.SIGNATURE_MODEL_DIR ?? ".data/models/signature", OCR_MODEL_DIR: process.env.OCR_MODEL_DIR ?? ".data/models/ocr", NER_MODEL_DIR: process.env.NER_MODEL_DIR ?? ".data/models/ner" },
     });
     let settled = false, receivedResult = false;
@@ -63,8 +63,13 @@ function runThread<T>(input: ProcessingInput, options: ProcessingOptions): Promi
     const abort = () => void finish(new Error("PROCESSING_CANCELLED"));
     const timer = setTimeout(() => void finish(new Error("PROCESSING_TIMEOUT")), options.timeoutMs ?? (input.kind==="legacy-office-normalize" ? 150000 : input.kind==="restoration-batch-file" && ["doc","wps"].includes(input.file.format) ? 1800000 : "doc" in input && ["detect", "export", "verify"].includes(input.kind) && ["pdf", "docx", "doc", "wps"].includes(input.doc.source_format) ? 1800000 : 120000));
     options.signal?.addEventListener("abort", abort, { once: true });
-    worker.on("message", (message: ProcessingEventEnvelope | {type:'runtime-rules-request';requestId:string} | {type:"legacy-office-job";action:"start"|"end";jobId:string} | { type?: "processing-result"; ok: boolean; value?: T; code?: string } | {type:"pdf-ocr-checkpoint";frame:PdfOcrCheckpoint}) => {
+    worker.on("message", (message: ProcessingEventEnvelope | {type:'runtime-rules-request';requestId:string} | {type:'pdf-seal-pause-request';requestId:string} | {type:"legacy-office-job";action:"start"|"end";jobId:string} | { type?: "processing-result"; ok: boolean; value?: T; code?: string } | {type:"pdf-ocr-checkpoint";frame:PdfOcrCheckpoint}) => {
       if(settled)return;
+      if(message.type==='pdf-seal-pause-request'){
+        if(input.kind!=='detect'||!options.readPdfSealPause)return;
+        eventWrites=eventWrites.then(async()=>{if(settled)return;const paused=await options.readPdfSealPause!();if(!settled)worker.postMessage({type:'pdf-seal-pause-reply',requestId:message.requestId,paused});});
+        void eventWrites.catch(()=>finish(new Error('PDF_SEAL_CONTROL_FAILED')));return;
+      }
       if(message.type==='runtime-rules-request'){
         if(input.kind!=='detect'||!options.readRuntimeRules)return;
         eventWrites=eventWrites.then(async()=>{if(settled)return;const rules=await options.readRuntimeRules!();if(!settled)worker.postMessage({type:'runtime-rules-reply',requestId:message.requestId,rules});});

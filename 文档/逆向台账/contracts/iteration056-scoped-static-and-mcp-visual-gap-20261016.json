@@ -1,0 +1,278 @@
+{
+  "schema": "iteration056-scoped-static-and-mcp-visual-gap",
+  "previousLedgerSha256": "f98ff600f720afaa724fb59d2243b940623425ab6f01a226fe5ba4a15c1558b1",
+  "previousLedgerArchive": ".data/research/lawbot-2026-10-16/iteration056/before-scoped-static-and-mcp-visual-gap/ledger.json",
+  "evidence": {
+    ".data/research/lawbot-2026-10-16/iteration056/arch/unknown17-s3-26-readonly-assessment-v1.json": {
+      "sha256": "b7ddad91e324907f7b43fbc1fd46700a26002ff94f0cc0dbae141f2571a45724",
+      "bytes": 41042
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/rules/s2-direct-static-supplement-056-v9.json": {
+      "sha256": "8315839147d7c6eb78707ebe3c9abdfa90c1e2250eff05fd6c60739c388aca24",
+      "bytes": 20395
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/rules/s2-static-chain-audit-056-v4.md": {
+      "sha256": "e94afab443f5757b33644e223ef15bb22bada4a81b2fcefbb00aa882dbb9d69c",
+      "bytes": 7579
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/bounded72-frontend-exposure-review-v1.json": {
+      "sha256": "9bcee67c138483bc8b20c3f8cf4bbe4785993f1dc2da154aa8966b28a6d5c969",
+      "bytes": 10177
+    }
+  },
+  "staticTransitions": [
+    {
+      "id": "IPC-6f5f29f520a1",
+      "previousStaticDepth": "S2",
+      "previousStaticSummary": "ITER-017分组契约与关联补证：snapshot浅拷贝{suspended,suspendedAt,totalSleepMs,revision}；不表示任务已保存。。其余分支及未闭合边界见文档/逆向台账/contracts/deep-system-20261014.json；S2/R0，不代表完整业务逆向。",
+      "currentStaticDepth": "S3",
+      "scope": "individual_handler_or_response_branch_only",
+      "boundary": "Electron IPC and clock"
+    },
+    {
+      "id": "IPC-cfbe72c62d81",
+      "previousStaticDepth": "S2",
+      "previousStaticSummary": "ITER-017分组契约与关联补证：darwin suspend/resume状态真实变更才广播；suspend暂停登记timer并从remaining扣除已运行时间；resume累计totalSleepMs后按保留的remaining重新arm，睡眠不消耗定时器预算；重复事件不增加revision。。其余分支及未闭合边界见文档/逆向台账/contracts/deep-system-20261014.json；S2/R0，不代表完整业务逆向。",
+      "currentStaticDepth": "S3",
+      "scope": "individual_handler_or_response_branch_only",
+      "boundary": "OS power event and filesystem persistence"
+    },
+    {
+      "id": "IPC-a70191351664",
+      "previousStaticDepth": "S2",
+      "previousStaticSummary": "ITER-017分组契约与关联补证：机器标识有磁盘缓存及进程缓存；Mac先IOPlatformUUID命令，再MAC，再固定fallback。getStatus缓存直到refresh或activate清空。；签名、机器绑定、版本范围、撤销表、授权类型和更新期限分别判断；activate与validateLicense的版本/到期分支不同，不能视为同一契约。；clockRecord/maxVersion/机器缓存持久化异常被吞；activate写license.dat后生成cachedStatus，如后续日期转换抛错可报告未确认且文件已落盘。。其余分支及未闭合边界见文档/逆向台账/contracts/deep-system-20261014.json；S2/R0，不代表完整业务逆向。",
+      "currentStaticDepth": "S3",
+      "scope": "individual_handler_or_response_branch_only",
+      "boundary": "platform device APIs and filesystem"
+    },
+    {
+      "id": "IPC-d79e3892b954",
+      "previousStaticDepth": "S2",
+      "previousStaticSummary": "ITER-017分组契约与关联补证：机器标识有磁盘缓存及进程缓存；Mac先IOPlatformUUID命令，再MAC，再固定fallback。getStatus缓存直到refresh或activate清空。；签名、机器绑定、版本范围、撤销表、授权类型和更新期限分别判断；activate与validateLicense的版本/到期分支不同，不能视为同一契约。；clockRecord/maxVersion/机器缓存持久化异常被吞；activate写license.dat后生成cachedStatus，如后续日期转换抛错可报告未确认且文件已落盘。。其余分支及未闭合边界见文档/逆向台账/contracts/deep-system-20261014.json；S2/R0，不代表完整业务逆向。",
+      "currentStaticDepth": "S3",
+      "scope": "individual_handler_or_response_branch_only",
+      "boundary": "private issuer of signed license input"
+    },
+    {
+      "id": "IPC-0dcec6bac9d5",
+      "previousStaticDepth": "S2",
+      "previousStaticSummary": "ITER-017分组契约与关联补证：机器标识有磁盘缓存及进程缓存；Mac先IOPlatformUUID命令，再MAC，再固定fallback。getStatus缓存直到refresh或activate清空。；签名、机器绑定、版本范围、撤销表、授权类型和更新期限分别判断；activate与validateLicense的版本/到期分支不同，不能视为同一契约。；clockRecord/maxVersion/机器缓存持久化异常被吞；activate写license.dat后生成cachedStatus，如后续日期转换抛错可报告未确认且文件已落盘。。其余分支及未闭合边界见文档/逆向台账/contracts/deep-system-20261014.json；S2/R0，不代表完整业务逆向。",
+      "currentStaticDepth": "S3",
+      "scope": "individual_handler_or_response_branch_only",
+      "boundary": "private issuer and filesystem"
+    },
+    {
+      "id": "IPC-765d8b00f827",
+      "previousStaticDepth": "S2",
+      "previousStaticSummary": "ITER-017分组契约与关联补证：机器标识有磁盘缓存及进程缓存；Mac先IOPlatformUUID命令，再MAC，再固定fallback。getStatus缓存直到refresh或activate清空。；签名、机器绑定、版本范围、撤销表、授权类型和更新期限分别判断；activate与validateLicense的版本/到期分支不同，不能视为同一契约。；clockRecord/maxVersion/机器缓存持久化异常被吞；activate写license.dat后生成cachedStatus，如后续日期转换抛错可报告未确认且文件已落盘。。其余分支及未闭合边界见文档/逆向台账/contracts/deep-system-20261014.json；S2/R0，不代表完整业务逆向。",
+      "currentStaticDepth": "S3",
+      "scope": "individual_handler_or_response_branch_only",
+      "boundary": "handler only; no UI-use claim"
+    },
+    {
+      "id": "IPC-527f74c7a029",
+      "previousStaticDepth": "S2",
+      "previousStaticSummary": "ITER-017分组契约与关联补证：机器标识有磁盘缓存及进程缓存；Mac先IOPlatformUUID命令，再MAC，再固定fallback。getStatus缓存直到refresh或activate清空。；签名、机器绑定、版本范围、撤销表、授权类型和更新期限分别判断；activate与validateLicense的版本/到期分支不同，不能视为同一契约。；clockRecord/maxVersion/机器缓存持久化异常被吞；activate写license.dat后生成cachedStatus，如后续日期转换抛错可报告未确认且文件已落盘。。其余分支及未闭合边界见文档/逆向台账/contracts/deep-system-20261014.json；S2/R0，不代表完整业务逆向。",
+      "currentStaticDepth": "S3",
+      "scope": "individual_handler_or_response_branch_only",
+      "boundary": "handler only; no UI-use claim"
+    },
+    {
+      "id": "IPC-e436786bb1f7",
+      "previousStaticDepth": "S2",
+      "previousStaticSummary": "ITER-017分组契约与关联补证：fromWebContents查窗口，无窗口false，有窗口minimize并true；调用异常无catch。。其余分支及未闭合边界见文档/逆向台账/contracts/deep-system-20261014.json；S2/R0，不代表完整业务逆向。",
+      "currentStaticDepth": "S3",
+      "scope": "individual_handler_or_response_branch_only",
+      "boundary": "Electron native window effect"
+    },
+    {
+      "id": "IPC-b148b8418b82",
+      "previousStaticDepth": "S2",
+      "previousStaticSummary": "ITER-017分组契约与关联补证：按isMaximized切换；返回true是已调用API，并非等候状态改变完成。。其余分支及未闭合边界见文档/逆向台账/contracts/deep-system-20261014.json；S2/R0，不代表完整业务逆向。",
+      "currentStaticDepth": "S3",
+      "scope": "individual_handler_or_response_branch_only",
+      "boundary": "Electron native window effect"
+    },
+    {
+      "id": "IPC-ed495037f8dc",
+      "previousStaticDepth": "S2",
+      "previousStaticSummary": "ITER-017分组契约与关联补证：无窗口返回false，否则布尔化isMaximized。。其余分支及未闭合边界见文档/逆向台账/contracts/deep-system-20261014.json；S2/R0，不代表完整业务逆向。",
+      "currentStaticDepth": "S3",
+      "scope": "individual_handler_or_response_branch_only",
+      "boundary": "Electron native state; no inferred PDF/image visual effect"
+    },
+    {
+      "id": "IPC-3a73e0100026",
+      "previousStaticDepth": "S2",
+      "previousStaticSummary": "ITER-017分组契约与关联补证：hI状态idle/waiting-renderer/allow-once；重复close聚焦现有请求；resolve忽略旧requestId，allow只允许下一次close，cancel/failed保持窗口。；resolve-close先标记会话clean再close，markSessionClean异常吞掉；关闭获准后Vp取消任务。无renderer答复超时，卡住时一直waiting-renderer。。其余分支及未闭合边界见文档/逆向台账/contracts/deep-system-20261014.json；S2/R0，不代表完整业务逆向。",
+      "currentStaticDepth": "S3",
+      "scope": "individual_handler_or_response_branch_only",
+      "boundary": "Electron close event/effect"
+    },
+    {
+      "id": "IPC-ce03744a77ef",
+      "previousStaticDepth": "S2",
+      "previousStaticSummary": "ITER-017分组契约与关联补证：hI状态idle/waiting-renderer/allow-once；重复close聚焦现有请求；resolve忽略旧requestId，allow只允许下一次close，cancel/failed保持窗口。；resolve-close先标记会话clean再close，markSessionClean异常吞掉；关闭获准后Vp取消任务。无renderer答复超时，卡住时一直waiting-renderer。。其余分支及未闭合边界见文档/逆向台账/contracts/deep-system-20261014.json；S2/R0，不代表完整业务逆向。",
+      "currentStaticDepth": "S3",
+      "scope": "individual_handler_or_response_branch_only",
+      "boundary": "workspace save filesystem and Electron close"
+    },
+    {
+      "id": "IPC-1e94f610b0e1",
+      "previousStaticDepth": "S2",
+      "previousStaticSummary": "ITER-017分组契约与关联补证：hI状态idle/waiting-renderer/allow-once；重复close聚焦现有请求；resolve忽略旧requestId，allow只允许下一次close，cancel/failed保持窗口。；resolve-close先标记会话clean再close，markSessionClean异常吞掉；关闭获准后Vp取消任务。无renderer答复超时，卡住时一直waiting-renderer。。其余分支及未闭合边界见文档/逆向台账/contracts/deep-system-20261014.json；S2/R0，不代表完整业务逆向。",
+      "currentStaticDepth": "S3",
+      "scope": "individual_handler_or_response_branch_only",
+      "boundary": "Electron close/update native effect"
+    },
+    {
+      "id": "IPC-1abcdf6d1a56",
+      "previousStaticDepth": "S2",
+      "previousStaticSummary": "ITER-017分组契约与关联补证：仅darwin supported；打包feed要求HTTPS固定host/path、无端口/凭证/query/hash/百分号/回退路径，publisherName含Developer ID Application。开发localhost另有分支。；preferences逐字段仅接受true；check/download各自用Promise去重。状态checking→available→downloading→ready；异常置error，finally清活动标记；网络放行仅活动期同host同feed子路径。；update-available先走license entitlement，永久授权允许，其余要求releaseDate<=expiry；check监听处理Promise，但下载流程并非全局串行事务。。其余分支及未闭合边界见文档/逆向台账/contracts/deep-system-20261014.json；S2/R0，不代表完整业务逆向。",
+      "currentStaticDepth": "S3",
+      "scope": "individual_handler_or_response_branch_only",
+      "boundary": "local filesystem"
+    },
+    {
+      "id": "IPC-6099fda9db85",
+      "previousStaticDepth": "S2",
+      "previousStaticSummary": "ITER-017分组契约与关联补证：仅darwin supported；打包feed要求HTTPS固定host/path、无端口/凭证/query/hash/百分号/回退路径，publisherName含Developer ID Application。开发localhost另有分支。；preferences逐字段仅接受true；check/download各自用Promise去重。状态checking→available→downloading→ready；异常置error，finally清活动标记；网络放行仅活动期同host同feed子路径。；update-available先走license entitlement，永久授权允许，其余要求releaseDate<=expiry；check监听处理Promise，但下载流程并非全局串行事务。。其余分支及未闭合边界见文档/逆向台账/contracts/deep-system-20261014.json；S2/R0，不代表完整业务逆向。",
+      "currentStaticDepth": "S3",
+      "scope": "individual_handler_or_response_branch_only",
+      "boundary": "remote feed and Electron network"
+    },
+    {
+      "id": "IPC-1e8858b1ed43",
+      "previousStaticDepth": "S2",
+      "previousStaticSummary": "ITER-017分组契约与关联补证：仅darwin supported；打包feed要求HTTPS固定host/path、无端口/凭证/query/hash/百分号/回退路径，publisherName含Developer ID Application。开发localhost另有分支。；preferences逐字段仅接受true；check/download各自用Promise去重。状态checking→available→downloading→ready；异常置error，finally清活动标记；网络放行仅活动期同host同feed子路径。；update-available先走license entitlement，永久授权允许，其余要求releaseDate<=expiry；check监听处理Promise，但下载流程并非全局串行事务。。其余分支及未闭合边界见文档/逆向台账/contracts/deep-system-20261014.json；S2/R0，不代表完整业务逆向。",
+      "currentStaticDepth": "S3",
+      "scope": "individual_handler_or_response_branch_only",
+      "boundary": "remote CDN, Electron network, filesystem"
+    },
+    {
+      "id": "IPC-4e269deca69e",
+      "previousStaticDepth": "S2",
+      "previousStaticSummary": "ITER-017分组契约与关联补证：仅darwin supported；打包feed要求HTTPS固定host/path、无端口/凭证/query/hash/百分号/回退路径，publisherName含Developer ID Application。开发localhost另有分支。；preferences逐字段仅接受true；check/download各自用Promise去重。状态checking→available→downloading→ready；异常置error，finally清活动标记；网络放行仅活动期同host同feed子路径。；update-available先走license entitlement，永久授权允许，其余要求releaseDate<=expiry；check监听处理Promise，但下载流程并非全局串行事务。。其余分支及未闭合边界见文档/逆向台账/contracts/deep-system-20261014.json；S2/R0，不代表完整业务逆向。",
+      "currentStaticDepth": "S3",
+      "scope": "individual_handler_or_response_branch_only",
+      "boundary": "updater event input may be remote/native"
+    },
+    {
+      "id": "IPC-67a324d00c09",
+      "previousStaticDepth": "S2",
+      "previousStaticSummary": "ITER-017分组契约与关联补证：仅darwin supported；打包feed要求HTTPS固定host/path、无端口/凭证/query/hash/百分号/回退路径，publisherName含Developer ID Application。开发localhost另有分支。；preferences逐字段仅接受true；check/download各自用Promise去重。状态checking→available→downloading→ready；异常置error，finally清活动标记；网络放行仅活动期同host同feed子路径。；update-available先走license entitlement，永久授权允许，其余要求releaseDate<=expiry；check监听处理Promise，但下载流程并非全局串行事务。。其余分支及未闭合边界见文档/逆向台账/contracts/deep-system-20261014.json；S2/R0，不代表完整业务逆向。",
+      "currentStaticDepth": "S3",
+      "scope": "individual_handler_or_response_branch_only",
+      "boundary": "Electron/Squirrel native installation"
+    },
+    {
+      "id": "IPC-a73b27802b39",
+      "previousStaticDepth": "S2",
+      "previousStaticSummary": "ITER-017分组契约与关联补证：仅darwin supported；打包feed要求HTTPS固定host/path、无端口/凭证/query/hash/百分号/回退路径，publisherName含Developer ID Application。开发localhost另有分支。；preferences逐字段仅接受true；check/download各自用Promise去重。状态checking→available→downloading→ready；异常置error，finally清活动标记；网络放行仅活动期同host同feed子路径。；update-available先走license entitlement，永久授权允许，其余要求releaseDate<=expiry；check监听处理Promise，但下载流程并非全局串行事务。。其余分支及未闭合边界见文档/逆向台账/contracts/deep-system-20261014.json；S2/R0，不代表完整业务逆向。",
+      "currentStaticDepth": "S3",
+      "scope": "individual_handler_or_response_branch_only",
+      "boundary": "filesystem/timer/updater network"
+    },
+    {
+      "id": "IPC-6cb1afcdadfc",
+      "previousStaticDepth": "S2",
+      "previousStaticSummary": "ITER-017分组契约与关联补证：仅darwin supported；打包feed要求HTTPS固定host/path、无端口/凭证/query/hash/百分号/回退路径，publisherName含Developer ID Application。开发localhost另有分支。；preferences逐字段仅接受true；check/download各自用Promise去重。状态checking→available→downloading→ready；异常置error，finally清活动标记；网络放行仅活动期同host同feed子路径。；update-available先走license entitlement，永久授权允许，其余要求releaseDate<=expiry；check监听处理Promise，但下载流程并非全局串行事务。。其余分支及未闭合边界见文档/逆向台账/contracts/deep-system-20261014.json；S2/R0，不代表完整业务逆向。",
+      "currentStaticDepth": "S3",
+      "scope": "individual_handler_or_response_branch_only",
+      "boundary": "electron-updater event origin/remote feed/native install"
+    },
+    {
+      "id": "IPC-8f0322abb8b8",
+      "previousStaticDepth": "S2",
+      "previousStaticSummary": "ITER-017分组契约与关联补证：申请绑定license/installation/device/recoverySlot与32字节challenge，最长7日；导出状态持久化后才允许导入官方恢复文件。导入限普通文件且<=64KiB。；恢复文件检查受信Ed25519公钥、排序payload签名、目的/版本、最长2日、未来时差60秒、申请绑定；complete再次验证，再调用redeemer和device slot重包新密码，最后清除申请。；打包代码实际注入Q_，redeem固定返回redeemed:true；虽payload要求maxUses=1，本客户端没有持久化已兑付token表。不能写成已证明远端一次性兑付。。其余分支及未闭合边界见文档/逆向台账/contracts/deep-system-20261014.json；S2/R0，不代表完整业务逆向。",
+      "currentStaticDepth": "S3",
+      "scope": "original_individual_local_IPC_handler_with_all_called_package_code_to_external_input_or_OS_boundary",
+      "boundary": "private issuer of subsequent signed recovery token; local filesystem"
+    },
+    {
+      "id": "IPC-34a47a0ff8e1",
+      "previousStaticDepth": "S2",
+      "previousStaticSummary": "ITER-017分组契约与关联补证：申请绑定license/installation/device/recoverySlot与32字节challenge，最长7日；导出状态持久化后才允许导入官方恢复文件。导入限普通文件且<=64KiB。；恢复文件检查受信Ed25519公钥、排序payload签名、目的/版本、最长2日、未来时差60秒、申请绑定；complete再次验证，再调用redeemer和device slot重包新密码，最后清除申请。；打包代码实际注入Q_，redeem固定返回redeemed:true；虽payload要求maxUses=1，本客户端没有持久化已兑付token表。不能写成已证明远端一次性兑付。。其余分支及未闭合边界见文档/逆向台账/contracts/deep-system-20261014.json；S2/R0，不代表完整业务逆向。",
+      "currentStaticDepth": "S3",
+      "scope": "original_individual_local_IPC_handler_with_all_called_package_code_to_external_input_or_OS_boundary",
+      "boundary": "Electron dialog and filesystem; official acceptance not in package"
+    },
+    {
+      "id": "IPC-243bf096202b",
+      "previousStaticDepth": "S2",
+      "previousStaticSummary": "ITER-017分组契约与关联补证：申请绑定license/installation/device/recoverySlot与32字节challenge，最长7日；导出状态持久化后才允许导入官方恢复文件。导入限普通文件且<=64KiB。；恢复文件检查受信Ed25519公钥、排序payload签名、目的/版本、最长2日、未来时差60秒、申请绑定；complete再次验证，再调用redeemer和device slot重包新密码，最后清除申请。；打包代码实际注入Q_，redeem固定返回redeemed:true；虽payload要求maxUses=1，本客户端没有持久化已兑付token表。不能写成已证明远端一次性兑付。。其余分支及未闭合边界见文档/逆向台账/contracts/deep-system-20261014.json；S2/R0，不代表完整业务逆向。",
+      "currentStaticDepth": "S3",
+      "scope": "original_individual_local_IPC_handler_with_all_called_package_code_to_external_input_or_OS_boundary",
+      "boundary": "filesystem; no remote revocation implied"
+    },
+    {
+      "id": "IPC-2a09a00cba17",
+      "previousStaticDepth": "S2",
+      "previousStaticSummary": "ITER-017分组契约与关联补证：申请绑定license/installation/device/recoverySlot与32字节challenge，最长7日；导出状态持久化后才允许导入官方恢复文件。导入限普通文件且<=64KiB。；恢复文件检查受信Ed25519公钥、排序payload签名、目的/版本、最长2日、未来时差60秒、申请绑定；complete再次验证，再调用redeemer和device slot重包新密码，最后清除申请。；打包代码实际注入Q_，redeem固定返回redeemed:true；虽payload要求maxUses=1，本客户端没有持久化已兑付token表。不能写成已证明远端一次性兑付。。其余分支及未闭合边界见文档/逆向台账/contracts/deep-system-20261014.json；S2/R0，不代表完整业务逆向。",
+      "currentStaticDepth": "S3",
+      "scope": "original_individual_local_IPC_handler_with_all_called_package_code_to_external_input_or_OS_boundary",
+      "boundary": "private issuer of token and Electron filesystem"
+    },
+    {
+      "id": "LOCAL_HTTP-74413f3c6e71",
+      "previousStaticDepth": "S2",
+      "previousStaticSummary": "ITER-017分组契约与关联补证：实际按URL分支，任何method均未被显式拒绝。 / 检查Basic。。其余分支及未闭合边界见文档/逆向台账/contracts/deep-collaboration-20261014.json；S2/R0，不代表完整业务逆向。",
+      "currentStaticDepth": "S3",
+      "scope": "local_HTTP_response_branch_only_to_Electron_native_boundary",
+      "boundary": "Squirrel native consumer/install effect remains R0 and outside local HTTP response contract"
+    },
+    {
+      "id": "LOCAL_HTTP-c7d0bee37342",
+      "previousStaticDepth": "S2",
+      "previousStaticSummary": "ITER-017分组契约与关联补证：实际按URL分支，任何method均未被显式拒绝。 随机zip路径startsWith接受，无独立Basic校验。。其余分支及未闭合边界见文档/逆向台账/contracts/deep-collaboration-20261014.json；S2/R0，不代表完整业务逆向。",
+      "currentStaticDepth": "S3",
+      "scope": "local_HTTP_response_branch_only_to_Electron_native_boundary",
+      "boundary": "Squirrel native consumer/install effect remains R0 and outside local HTTP response contract"
+    }
+  ],
+  "staticMeaning": "individual package handler/response chain to explicitly declared platform/private boundary only; not whole product behavior",
+  "remainingS2": [
+    "IPC-3484537f3350",
+    "HTTP-39c99fc0f49b",
+    "HTTP-5b15967de5d7",
+    "HTTP-c7b17225ac88",
+    "HTTP-d01c26128e34",
+    "HTTP-5b5f45240232",
+    "HTTP-a71a256b3205",
+    "HTTP-6d3c7c84fc7d"
+  ],
+  "confirmedCodeGap": {
+    "id": "MCP-dc810d5ca01a",
+    "name": "receive_sanitized_document",
+    "classification": "confirmed_visible_branch_gap",
+    "originalAnchor": {
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "line": 22694
+    },
+    "currentAnchor": {
+      "path": "apps/api/mcp.ts",
+      "line": 546,
+      "symbolOrRoute": "(symbol receive_sanitized_document)"
+    },
+    "sourceCallChain": "tools.js:273-289 verifies batch child artifact selector, resolves child job, fetches sanitized artifact then allocates result slot; visual input forces derived report DOCX and attachments.",
+    "assessment": "Original tools.js:282-295 treats PDF/image or attachment artifacts as visual, forces derived_report and DOCX slot, and forwards every attachment exchange path. Current mcp.ts delivery has no attachment branch and uses output_format md/docx selection only.",
+    "minimalNecessaryWork": "Add the original visual/attachment branch using existing verified artifacts and derived_report slot, then test real PDF/image plus mixed attachment delivery, hash and authorization; keep local exchangePath adaptation explicit.",
+    "sourceRuntime": "R0",
+    "validationLimit": "Code and test presence inspected; final-source full API/Edge receipts are not claimed by this assessment."
+  },
+  "frontendExposure": "17IDs no new confirmed missing Web entry; money dedicatedEdge missing and being prepared separately, full104 unchanged",
+  "handbookTransition": {
+    "path": "文档/脱敏规则完整技术交接-迭代023.md",
+    "oldSha256": "5c8dd688726a8e5a3d5cc402b0862abcf688494ba64be5cf3b797b1113d1ae81",
+    "archive": ".data/research/lawbot-2026-10-16/iteration056/before-scoped-static-and-mcp-visual-gap/脱敏规则完整技术交接-迭代023.md",
+    "newSha256": "b4971148ccef8a5e5fd4b76b43b93551e8400d9692878cacc25b526d13ecef3f",
+    "jsonBlocksUnchanged": 10
+  },
+  "gates": "formal912 check passed; fullAPI129 live; fullEdge104 not started",
+  "boundaries": [
+    "R0 all258 unchanged",
+    "I counts unchanged",
+    "MCP gap remains open until true regression receipts",
+    "formal912 code not edited; no deployment"
+  ]
+}

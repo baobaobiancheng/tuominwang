@@ -1,0 +1,41 @@
+import {test,after} from 'node:test';
+import assert from 'node:assert/strict';
+import {randomUUID} from 'node:crypto';
+import pg from 'pg';
+import {buildApp} from '../apps/api/main.ts';
+import {tick} from '../apps/worker/main.ts';
+import {pool} from '../packages/adapters/db.ts';
+import {passwordHash} from '../packages/adapters/storage.ts';
+import {MCP_PROTOCOL} from '../packages/core/mcp-tools.ts';
+
+const admin=new pg.Pool({connectionString:process.env.MIGRATION_DATABASE_URL}),app=await buildApp();
+after(async()=>{await app.close();await pool.end();await admin.end();});
+const origin=process.env.APP_ORIGIN!;
+
+test('delivery statistics are read from this task successful detection snapshot, not client report or another document',async()=>{
+ const tenant=randomUUID(),user=randomUUID(),username='mcp-stats-'+randomUUID(),password='synthetic-notice-password';
+ await admin.query('INSERT INTO users VALUES($1,$2,$3,$4)',[user,tenant,username,passwordHash(password)]);
+ const login=await app.inject({method:'POST',url:'/api/login',headers:{origin},payload:{username,password}});assert.equal(login.statusCode,200,login.body);
+ const cookie=String(login.headers['set-cookie']).split(';')[0];
+ const req=(method:any,url:string,payload?:any,headers:Record<string,string>={})=>app.inject({method,url,headers:{origin,cookie,...headers},payload});
+ const initialized=await req('POST','/api/mcp',{jsonrpc:'2.0',id:1,method:'initialize',params:{protocolVersion:MCP_PROTOCOL,clientInfo:{name:'codex',version:'1'}}});assert.equal(initialized.statusCode,200,initialized.body);
+ const mcpHeaders={'mcp-session-id':String(initialized.headers['mcp-session-id']),'mcp-protocol-version':MCP_PROTOCOL};
+ await req('POST','/api/mcp',{jsonrpc:'2.0',method:'notifications/initialized'},mcpHeaders);
+ let seq=1;const tool=async(name:string,args:any)=>{const response=await req('POST','/api/mcp',{jsonrpc:'2.0',id:++seq,method:'tools/call',params:{name,arguments:args}},mcpHeaders);assert.equal(response.statusCode,200,response.body);const result=response.json().result;assert.equal(result.isError,false,JSON.stringify(result));return result.structuredContent;};
+ const project=(await req('POST','/api/projects',{name:'synthetic notice'})).json().id as string;
+ const create=async(text:string)=>{const response=await req('POST',`/api/projects/${project}/documents`,{text,requestId:randomUUID()});assert.equal(response.statusCode,200,response.body);const doc=response.json().id as string;for(let attempt=0;attempt<20;attempt++){const [job]=(await admin.query("SELECT status FROM jobs WHERE document_id=$1 AND kind='detect' AND collab_task_id IS NULL ORDER BY created_at DESC LIMIT 1",[doc])).rows;if(job?.status==='succeeded')return doc;assert.notEqual(job?.status,'failed');await tick();}throw new Error('INITIAL_DETECTION_NOT_COMPLETE');};
+ const documentId=await create('合成电话 13800138000'),unrelated=await create('另一个材料 13900139000');assert.notEqual(documentId,unrelated);
+ const started=await tool('start_lawbot_redaction',{project_id:project,document_ids:[documentId],masking_mode:'default_mask',task_mode:'redact_only',output_formats:['original','md'],request_id:randomUUID()});const jobId=started.jobId as string;
+ const current=()=>req('GET',`/api/ai-collab/tasks/${jobId}`);
+ const consent={allowRedactionPath:true,allowRestorePath:false,allowSanitizedDelivery:true,autoEnterReview:false,createExchangeFolder:true,autoRestoreAfterValidation:false};
+ const authorized=await req('POST',`/api/ai-collab/tasks/${jobId}/authorize`,{revision:(await current()).json().revision,authorization:consent});assert.equal(authorized.statusCode,200,authorized.body);
+ const early=await tool('check_document_delivery',{job_id:jobId,wait_seconds:0});assert.equal(early.statistics,undefined,'queued detection must not be counted as complete');assert.equal(early.nextAction,'continue_automatically');assert.deepEqual(early.wait,{timedOut:true,retry:true});
+ await tick();
+ const task=(await current()).json(),spoofed=await req('POST',`/api/ai-collab/tasks/${jobId}/action`,{revision:task.revision,method:'report-statistics',statistics:{entityCount:999,lowConfidenceCount:999}});assert.equal(spoofed.statusCode,200,spoofed.body);
+ const result=await tool('check_document_delivery',{job_id:jobId,wait_seconds:0});
+ const [detect]=(await admin.query('SELECT j.id,j.document_id,j.status,s.marks FROM jobs j JOIN review_snapshots s ON s.document_id=j.document_id AND s.revision=j.revision WHERE j.collab_task_id=$1 AND j.kind=$2',[jobId.slice(4).replace(/^(.{8})(.{4})(.{4})(.{4})(.{12})$/,'$1-$2-$3-$4-$5'),'detect'])).rows;
+ assert.equal(detect.document_id,documentId);assert.equal(detect.status,'succeeded');
+ assert.equal(result.statistics.documentCount,1);assert.equal(result.statistics.totalDocumentCount,1);assert.equal(result.statistics.failedDocumentCount,0);assert.equal(result.statistics.entityCount,detect.marks.length);assert.equal(result.statistics.humanReviewed,false);assert.notEqual(result.statistics.entityCount,999);assert.match(result.userMessage,/低置信实体/);assert.match(result.userMessage,/自动流程无需等待人工确认/);assert.equal(result.humanReviewRecommended,true);assert.equal(result.nextAction,'continue_automatically');assert.equal(result.failedDocumentCount,0);assert.equal(result.visualFallbackCount,0);assert.notEqual(result.status,'failed');
+ const terminated=async(method:'fail'|'cancel')=>{const fresh=await tool('start_lawbot_redaction',{project_id:project,document_ids:[documentId],masking_mode:'default_mask',task_mode:'redact_only',output_formats:['original'],request_id:randomUUID()});const before=(await req('GET',`/api/ai-collab/tasks/${fresh.jobId}`)).json();const action=await req('POST',`/api/ai-collab/tasks/${fresh.jobId}/action`,{revision:before.revision,method,...method==='fail'?{failureCode:'SYNTHETIC_NOTICE_FAILURE'}:{}});assert.equal(action.statusCode,200,action.body);const reply=await tool('check_document_delivery',{job_id:fresh.jobId,wait_seconds:0});assert.equal(reply.statistics,undefined);assert.equal(reply.nextAction,'report_failed_documents');assert.deepEqual(reply.wait,{timedOut:false,retry:false});assert.match(reply.userMessage,/失败文档未交付给 AI/);assert.match(reply.instructions,/不要继续轮询/);return reply;};
+ await terminated('fail');await terminated('cancel');
+});

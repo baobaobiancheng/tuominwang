@@ -1,0 +1,78 @@
+{
+  "at": "2026-10-16T19:13:01.762838+00:00",
+  "state": "research, formal v13 unchanged, no release",
+  "compatV1": {
+    "tsc": 2,
+    "newTests": {
+      "pass": 2,
+      "exit": 0
+    },
+    "oldUnmodifiedWorkspaceCompat": {
+      "pass": 3,
+      "fail": 2,
+      "exit": 1
+    }
+  },
+  "compatV2": {
+    "tsc": 0,
+    "newTests": {
+      "pass": 2,
+      "exit": 0
+    },
+    "oldUnmodifiedWorkspaceCompat": {
+      "pass": 3,
+      "fail": 2,
+      "exit": 1
+    }
+  },
+  "diagnosis": "V2 and V3 sourceName(indexDocument) accesses detection.markdownSourceSidecar before loading document state; genuine Markdown reader regression, not closed",
+  "minimalAdaptation": "Old own-native explicit manifest format uses old reader; new native streamed extension uses file reader plus authenticated source materialization to preserve existing Buffer return; references retain original full PortableWorkspace return",
+  "next": [
+    "fix stream Markdown reader using original state/source path contract",
+    "same unchanged 5 old workspace compatibility tests",
+    "producer bigint source_bytes and no-source original comparison fixes",
+    "full API and five Edge cases continue"
+  ],
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-buffer-compat-v1/terminal-receipt.json",
+      "sha256": "5abb9aac5b0c47cd9690235fb3155a3bbc7250062b4a360e3d7cdb2a530afa51",
+      "bytes": 469
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-buffer-compat-v1/old-unit.log",
+      "sha256": "399e35585fd71e2cabd8f78fe70af9433956722c3208372a93dea6260d78ddd9",
+      "bytes": 2769
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-buffer-compat-v2/candidate-manifest.json",
+      "sha256": "0be2dc24ae3f97cb46ef69b7d1e9e4ee93ceaf85bdcb73f7b20db0b8d97a7139",
+      "bytes": 460
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-buffer-compat-v2/terminal-receipt.json",
+      "sha256": "af27c8f985a94442cdcb71f21e2cf50e1c0928027f75081198d9ed54f2b35e06",
+      "bytes": 469
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-buffer-compat-v2/old-unit.log",
+      "sha256": "0111f766684e2e8e17abd7cd92864636db345b397ad8dfee5b96ebeab38cd8e2",
+      "bytes": 2769
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-buffer-compat-v2/unit.log",
+      "sha256": "e6f83fd2ef9ce09d747c7b4dc2f78e93744bf6300c3302b235787d8e0f1e0eb0",
+      "bytes": 332
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-buffer-compat-v2/tsc.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/workspace-tmm-capacity-v1/candidate-file-open-v1/manifest.json",
+      "sha256": "b268461443935fbf2a4fa3d8b389dc6ca818fcbc96b00e7d3c668df5232b051d",
+      "bytes": 2968
+    }
+  ]
+}

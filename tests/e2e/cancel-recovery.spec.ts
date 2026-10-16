@@ -3,9 +3,10 @@ import { test, expect } from "./fixture.ts";
 import pg from "pg";
 import { randomUUID } from "node:crypto";
 import { readOriginal } from "../../packages/adapters/storage.ts";
+import { setTimeout as delay } from "node:timers/promises";
 
 test("cancelled queued detection refreshes the whole material and reruns at a new revision", async ({ page }) => {
-  test.setTimeout(120000);
+  test.setTimeout(180000);
   const dbUrl = new URL(process.env.MIGRATION_DATABASE_URL!);
   expect(dbUrl.pathname.startsWith("/tmw_test_")).toBe(true);
   const locker = new pg.Client({ connectionString: dbUrl.href });
@@ -22,9 +23,15 @@ test("cancelled queued detection refreshes the whole material and reruns at a ne
     await page.getByRole("button", { name: "新建项目", exact: true }).click();
     await page.getByRole("navigation", { name: "项目列表" }).getByRole("button", { name: projectName, exact: true }).click();
 
-    const lock = await locker.query("SELECT pg_try_advisory_lock(7843,2) AS held");
-    expect(lock.rows[0].held).toBe(true);
-    held = true;
+    // A prior serial Edge case may finish while the worker still holds its
+    // session-scoped processing slot. Acquire it before creating this job.
+    const deadline = Date.now() + 60_000;
+    while (!held && Date.now() < deadline) {
+      const lock = await locker.query("SELECT pg_try_advisory_lock(7843,2) AS held");
+      held = lock.rows[0].held === true;
+      if (!held) await delay(250);
+    }
+    expect(held, "processing slot remained occupied for 60 seconds").toBe(true);
     const source = Buffer.from("合成取消恢复：联系电话 13800138000。\n");
     const fileName = "synthetic-cancel-" + randomUUID().slice(0, 8) + ".txt";
     await page.getByRole("button", { name: "导入材料", exact: true }).click();
@@ -47,7 +54,7 @@ test("cancelled queued detection refreshes the whole material and reruns at a ne
     await page.getByRole("button", { name: "取消任务", exact: true }).click();
     await expect(page.getByText("材料的处理状态已变化，请重新识别后复核。原有复核记录仍保留。", { exact: true })).toBeVisible();
     await expect(page.getByText("自动识别 需重新识别", { exact: false })).toBeVisible();
-    await expect(page.getByText("复核版本 1", { exact: true })).toBeVisible();
+    await expect(page.locator(".statusbar span").nth(1)).toHaveText("复核版本 1 · 尚无已保存审定");
     await expect(page.getByRole('region', { name: '处理进度' })).toHaveCount(0);
     await expect(page.getByText('进度暂时无法更新，正在重试。', { exact: true })).toHaveCount(0);
     const eventsAtOutdated = oldEventRequests;

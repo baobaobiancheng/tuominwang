@@ -1,0 +1,604 @@
+{
+  "at": "2026-10-16T10:31:27.868166+00:00",
+  "formalManifest": "final-inputs-v4.json",
+  "sourceClaim": "Current development candidate only; no I/R promotion or deployed equivalence",
+  "changes": [
+    {
+      "path": "apps/api/main.ts",
+      "previous": {
+        "sha256": "dab4e9d0c2fa04f5ab5e070f3dcf6f8c3870b9124256d27921543c6269b97064",
+        "bytes": 31489
+      },
+      "current": {
+        "sha256": "5e1b51769e8d53b83ba2dee69ca8b1e285fe565757522581559f04f53d59feca",
+        "bytes": 33671
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/apps/api/main.ts"
+    },
+    {
+      "path": "apps/web/main.tsx",
+      "previous": {
+        "sha256": "fcc56ded479fa4f179d803eb897c1b24d5254c4d0fcad6b1654447aa88d710cb",
+        "bytes": 99399
+      },
+      "current": {
+        "sha256": "6bcdff0c38ae239e05cbc5593e82681dbccc0187a338ea342c31f48de41ccac7",
+        "bytes": 100617
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/apps/web/main.tsx"
+    },
+    {
+      "path": "apps/web/uploads.tsx",
+      "previous": {
+        "sha256": "ba529b7d03f932a54e5a8f5f7dc294e29edf8cd315177364c0aa37d738a8349f",
+        "bytes": 12252
+      },
+      "current": {
+        "sha256": "dcad78befad54374a85caf55586140d056caa9f7796d5ce216b311590ee2d4c1",
+        "bytes": 13434
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/apps/web/uploads.tsx"
+    },
+    {
+      "path": "apps/worker/main.ts",
+      "previous": {
+        "sha256": "af765ce1a1f7cf7ce5626ea339a4abd8dc333b4d9574de0380cad6da8d4f1702",
+        "bytes": 15149
+      },
+      "current": {
+        "sha256": "dad7ad5cdf01c21854f2b19a3bd1b97237e56efbfe79684a01465a77cb0d1bd1",
+        "bytes": 17267
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/apps/worker/main.ts"
+    },
+    {
+      "path": "packages/adapters/processing-worker.ts",
+      "previous": {
+        "sha256": "92ed9c27136ec145438eaf14e09fed0ff599b7b8cf311de9defd1c17f14410b0",
+        "bytes": 27202
+      },
+      "current": {
+        "sha256": "ae89df211fb87f471d1be03f8facf5ee2745c197db195ea3747fc883ac61cbf9",
+        "bytes": 27268
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/packages/adapters/processing-worker.ts"
+    },
+    {
+      "path": "apps/web/style.css",
+      "previous": {
+        "sha256": "e6ba8eaadafba9068c75dea90ee5cb6d6c2e0505b173dbf71cfd115e58c0a8e8",
+        "bytes": 39003
+      },
+      "current": {
+        "sha256": "8e214ab9d66d296abc055d7d7e7e6623be458bf643f96dfd0dab230a9928a495",
+        "bytes": 39118
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/apps/web/style.css"
+    },
+    {
+      "path": "apps/web/revision-history.tsx",
+      "previous": {
+        "sha256": "c9b061ca0568460b39f660c69a90067aa649a2be6dae274de466ab3ad67c9fb2",
+        "bytes": 1149
+      },
+      "current": {
+        "sha256": "642e9101127b701a58969af8f1241c5092b10a579a1d3b93029dc3dc239593f8",
+        "bytes": 1398
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/apps/web/revision-history.tsx"
+    },
+    {
+      "path": "packages/adapters/processing.ts",
+      "previous": {
+        "sha256": "19bf4821799890ad9fe573c090addb80a92c93efed904b7545c73a17c219ba7f",
+        "bytes": 9098
+      },
+      "current": {
+        "sha256": "6d41b09f7a8fa8dbc1209a4a7f05185819d1fce33ec40ce84bd7d78ce2bc491d",
+        "bytes": 9153
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/packages/adapters/processing.ts"
+    },
+    {
+      "path": "scripts/bend.ts",
+      "previous": {
+        "sha256": "ee77374b44f0808e44e51f7e7e77df77af85220e98e2b3e7461339eeca00593e",
+        "bytes": 5188
+      },
+      "current": {
+        "sha256": "133b227122c92d549ad9059ccd4d9925181861521c02736c6d66688b38a6821e",
+        "bytes": 5784
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/scripts/bend.ts"
+    },
+    {
+      "path": "scripts/migrate.ts",
+      "previous": {
+        "sha256": "eaf9d2753babd9ec826eaff36457b6f8cf5dbc584ac0bc065d94e1499a4fbf95",
+        "bytes": 1605
+      },
+      "current": {
+        "sha256": "204f5fb4e7cf8f2f5183bdfe1c5738f7ca25ce51ea6a1977b445b94366fd28e9",
+        "bytes": 1626
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/scripts/migrate.ts"
+    },
+    {
+      "path": "apps/web/ai-collab.tsx",
+      "previous": {
+        "sha256": "579bf5a73788f755c2035e15619b25e1e4b07a49cec2675c2b1913d7dabb0a38",
+        "bytes": 18017
+      },
+      "current": {
+        "sha256": "2a64200834e1621b0fa87c11e65927a599462b1264285f8775d22c6d96cda3ad",
+        "bytes": 20251
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/apps/web/ai-collab.tsx"
+    },
+    {
+      "path": "packages/adapters/recognition-context.ts",
+      "previous": {
+        "sha256": "f2ca4394181160258138b5113d78bfe6ae266a44695bfe4118433932e34bcfc6",
+        "bytes": 2936
+      },
+      "current": {
+        "sha256": "788871b2b3e27d61399ab395f8c265ea0d76eff4f3d321e3038edd500e038620",
+        "bytes": 2874
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/packages/adapters/recognition-context.ts"
+    },
+    {
+      "path": "tests/custom-visual.test.ts",
+      "previous": {
+        "sha256": "f345d5fd2642f7a6636cd6de2c900e3b6a23f0b14b6cbc328cfaeae88f9c3174",
+        "bytes": 3293
+      },
+      "current": {
+        "sha256": "801d4206913e5d1d7e7fecfdb9353827e4f6a4e80d7741a4ad0b9554eea878a6",
+        "bytes": 3309
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/tests/custom-visual.test.ts"
+    },
+    {
+      "path": "packages/adapters/deletions.ts",
+      "previous": {
+        "sha256": "aa91a793e3c5f5556e57d4fbbaad2dc3379a5ff34389af2090bad724e8aa886d",
+        "bytes": 1364
+      },
+      "current": {
+        "sha256": "e964413fa1723190fa0ba723a6b027b60441df21a192087877a95d27c2d10316",
+        "bytes": 1967
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/packages/adapters/deletions.ts"
+    },
+    {
+      "path": "packages/contracts/document-policy.ts",
+      "previous": {
+        "sha256": "110fd3504be06f8089214327dd0d6c5544d8564789fd3383012078ba99132a70",
+        "bytes": 2026
+      },
+      "current": {
+        "sha256": "9e5c8e3302575b34cccd21d6ff796df5455ef3620f7eb5b29008769c6efffb42",
+        "bytes": 2230
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/packages/contracts/document-policy.ts"
+    },
+    {
+      "path": "packages/adapters/profile-export.ts",
+      "previous": {
+        "sha256": "3b9dd92d304fa7bf89b8c55f0c4f5efbe58dae4b41daa243b0f33ea7a475a807",
+        "bytes": 6708
+      },
+      "current": {
+        "sha256": "1518a5c971acdf116cb9b139498562cf17e28050b5978c5822a3cb2217ac8dde",
+        "bytes": 7378
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/packages/adapters/profile-export.ts"
+    },
+    {
+      "path": "packages/core/export-policy.generated.d.ts",
+      "previous": {
+        "sha256": "0a3a7edde69a05a95fa470525f0d1670c5a461d0a877ab87b84438f2330da271",
+        "bytes": 311
+      },
+      "current": {
+        "sha256": "b6030459b2232b10e3ad94a24e94eb7dd6b56d96e7ffcb508175ee3f411c5038",
+        "bytes": 447
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/packages/core/export-policy.generated.d.ts"
+    },
+    {
+      "path": "packages/core/recognition-pipeline.ts",
+      "previous": {
+        "sha256": "0f13150c69c1bb9bf86d4172caa3df149fbbe1124f0c26d698ba39af2a0d2bfe",
+        "bytes": 2818
+      },
+      "current": {
+        "sha256": "abf51342502ee25ac4e591af80c64c6a661c85e10948b0fd7521434bc99d67cf",
+        "bytes": 2940
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/packages/core/recognition-pipeline.ts"
+    },
+    {
+      "path": "tests/e2e/workbench.spec.ts",
+      "previous": {
+        "sha256": "e5e90f73a10421e0b720a986748b97195abc6fa631db47e5c2abaf455cddb0ae",
+        "bytes": 4459
+      },
+      "current": {
+        "sha256": "680d44f021a281682bc15ee3a79d8605a86c54c97a26e65ae9b2b920545c0990",
+        "bytes": 5587
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/tests/e2e/workbench.spec.ts"
+    },
+    {
+      "path": "packages/core/export-gate.ts",
+      "previous": {
+        "sha256": "efaf40de1bfe62c390a738cf79990bef22c4486b5cc92e1f54458928ec002a6a",
+        "bytes": 9458
+      },
+      "current": {
+        "sha256": "6af0e62d5612ce53c7825170f45e0a311f516e40f093832b34e88df26cbcda00",
+        "bytes": 10330
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/packages/core/export-gate.ts"
+    },
+    {
+      "path": "apps/web/document-configuration.tsx",
+      "previous": {
+        "sha256": "b60b6f016192193c9844c51de94b0c40ab9a4959b3523defc7474808a0abc12b",
+        "bytes": 7119
+      },
+      "current": {
+        "sha256": "fc0b131049189fd9511769f876b519e3ec47c13ab9e67e631cd6530536f7cb95",
+        "bytes": 24669
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/apps/web/document-configuration.tsx"
+    },
+    {
+      "path": "packages/core/export-policy.bend",
+      "previous": {
+        "sha256": "50306ffa9d364e1ceb2fdb6b16adaf7d145a3fc685053c5c499c7fd68c52dfd0",
+        "bytes": 536
+      },
+      "current": {
+        "sha256": "d074721d516111bea294cd36085794d16ee9df750774efaa177cb90990b6ef33",
+        "bytes": 798
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/packages/core/export-policy.bend"
+    },
+    {
+      "path": "tests/manual-clear-override.test.ts",
+      "previous": {
+        "sha256": "cf50b1acaf5baf87499658776a997142abd9601a5270fe9696160d250bc4b339",
+        "bytes": 8655
+      },
+      "current": {
+        "sha256": "256c1cf29a6a9c6e0cb4eefd8dbc54d439766fb46b7e04298fb35c01757fd647",
+        "bytes": 9445
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/tests/manual-clear-override.test.ts"
+    },
+    {
+      "path": "apps/api/mappings.ts",
+      "previous": {
+        "sha256": "d457a67be88869cb1506aa7551b1a356d58a27959c1072db3b96b387e049889f",
+        "bytes": 12654
+      },
+      "current": {
+        "sha256": "952c6033f9fd772a7dfa1120d8b6fd2e494bbb584aae3ab510e489cd03e591c3",
+        "bytes": 13100
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/apps/api/mappings.ts"
+    },
+    {
+      "path": "apps/api/reviews.ts",
+      "previous": {
+        "sha256": "2a3fb8bf332e4ff1b707aecd4388ec0cbcd5de791b0c1ffdba0ed0ae742f990b",
+        "bytes": 5605
+      },
+      "current": {
+        "sha256": "2d89d8f8ec3c5b8faaf242a867a7f21b235b25dd06b6dd2b1b8f9974b2b0ed6e",
+        "bytes": 6308
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/apps/api/reviews.ts"
+    },
+    {
+      "path": "apps/web/mapping-export.tsx",
+      "previous": {
+        "sha256": "14b260ce1cd25872406488b101bf4573122b48052a1eaa553591bba4f34bdc1f",
+        "bytes": 2953
+      },
+      "current": {
+        "sha256": "a828de3d88c121390c2cca84037576792c7a41fd7d8ff0602cdd78447eb99341",
+        "bytes": 7649
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/apps/web/mapping-export.tsx"
+    },
+    {
+      "path": "packages/contracts/index.ts",
+      "previous": {
+        "sha256": "bb190be8b657721c4bf3ea6e33127124ff23196526a25ddd111583464283c7f5",
+        "bytes": 8714
+      },
+      "current": {
+        "sha256": "dbc655a6d9f636ce097ecf5f9b7cb180c54b8d68f44a4875b8492054dd0933a8",
+        "bytes": 8902
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/packages/contracts/index.ts"
+    },
+    {
+      "path": "packages/core/document-route.ts",
+      "previous": {
+        "sha256": "e71793a73a7fc6e08acdc78b4d2f219ce81b17e6939655ba7cfb4d2657245d92",
+        "bytes": 1710
+      },
+      "current": {
+        "sha256": "17b4b334f463b84fbc2d1d826fe7446ab7928b6a99e8154950df22e4dba10167",
+        "bytes": 2116
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/packages/core/document-route.ts"
+    },
+    {
+      "path": "apps/web/presets.tsx",
+      "previous": {
+        "sha256": "af0e3947e7f1d1cd687af6960ac557a1f85899fdae24d3e86fd597e8694f6e20",
+        "bytes": 23171
+      },
+      "current": {
+        "sha256": "5ad173215ed4215d47bf085dc0b117e8fc5199dc6b44cc921dd5e750a9af7849",
+        "bytes": 23178
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/apps/web/presets.tsx"
+    },
+    {
+      "path": "apps/api/document-policy.ts",
+      "previous": {
+        "sha256": "9869c7beda3cdadacccbb97567be3652d223571b8a406e6d63b0b352cd81fe59",
+        "bytes": 7272
+      },
+      "current": {
+        "sha256": "d2ec33f6748a38481fdfce736643e695f67e6d53b382149e5ecb85c3b34c5417",
+        "bytes": 11018
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/apps/api/document-policy.ts"
+    },
+    {
+      "path": "apps/api/mapping-export.ts",
+      "previous": {
+        "sha256": "89147fb54ba541a536f87015032a2ce23610f2e7b56c5fa0ab584656109261c9",
+        "bytes": 4812
+      },
+      "current": {
+        "sha256": "fd115490e47626130dd38e7f6b590fedaaaea87687ac7bf55de2c56e5e2e0c48",
+        "bytes": 5478
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/apps/api/mapping-export.ts"
+    },
+    {
+      "path": "packages/core/export-policy.generated.js",
+      "previous": {
+        "sha256": "23378f2702646d02c9d177a8f18f8e13441677f7f6cb76b796d8bc151e65654f",
+        "bytes": 3419
+      },
+      "current": {
+        "sha256": "cd077d1a85ff8f5b65a50bd01dad188684e8f3491546cbb5554ef16616c7ca83",
+        "bytes": 3770
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/packages/core/export-policy.generated.js"
+    },
+    {
+      "path": "packages/core/mcp-tools.ts",
+      "previous": {
+        "sha256": "0e437cd05716f95b2423968866dcf938522cf1ecd85fa3c0c5262037e19fe52c",
+        "bytes": 9153
+      },
+      "current": {
+        "sha256": "7254aa7634d9c0323201a0b5a6965180f1ad7318c7a2f2ea2b738fedfa209600",
+        "bytes": 10072
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/packages/core/mcp-tools.ts"
+    },
+    {
+      "path": "apps/api/files.ts",
+      "previous": {
+        "sha256": "d8e22399a58e5c17a7cb69964d0616b23b80b8620b9faefa12eb999298bec9d9",
+        "bytes": 9307
+      },
+      "current": {
+        "sha256": "8db0c77f0ebaded19b05b0a079c7d6f97ad702406746235bf2114cd6db35b27c",
+        "bytes": 10905
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/apps/api/files.ts"
+    },
+    {
+      "path": "tests/e2e/processing-observability.spec.ts",
+      "previous": {
+        "sha256": "c9d998083c28433e7c69989fac794e31319a2b16129fc3a60ed217b6def89135",
+        "bytes": 3538
+      },
+      "current": {
+        "sha256": "2a66a65c770461eec05c59d131f095f9f979bdab2412aa5dc3eaee85c9cab2c4",
+        "bytes": 6405
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/tests/e2e/processing-observability.spec.ts"
+    },
+    {
+      "path": "apps/api/mcp.ts",
+      "previous": {
+        "sha256": "401dc740af450f57203768716ce60b602ae95d8bfa1faeaca032090b2364142d",
+        "bytes": 93355
+      },
+      "current": {
+        "sha256": "90cd44e4e84aed8ec065994ef2c52fdbda88333f07fe07d0f4a89a0227659860",
+        "bytes": 108231
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/apps/api/mcp.ts"
+    },
+    {
+      "path": "apps/api/folder-output.ts",
+      "previous": {
+        "sha256": "c55e1bd24b0f1a15dff307d0c4a7987520f812bdfd1d16b533e1d2daaaa14aa6",
+        "bytes": 14374
+      },
+      "current": {
+        "sha256": "64f2f728002950c04ce049a415003aa208d317d3d909f5db93f765ffb9b4a4e8",
+        "bytes": 21847
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/apps/api/folder-output.ts"
+    },
+    {
+      "path": "apps/web/folder-output.tsx",
+      "previous": {
+        "sha256": "aed5a3be30119a2f9c5e00770418e8e66a2bfb772fa064b87862ee33047c7e99",
+        "bytes": 4719
+      },
+      "current": {
+        "sha256": "8ad93c4d398fe2de2aca273b65470dbd32c917a0ffaa68039223e783243310bc",
+        "bytes": 7837
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/apps/web/folder-output.tsx"
+    },
+    {
+      "path": "packages/adapters/folder-storage.ts",
+      "previous": {
+        "sha256": "26b61216d6a6e6751a573b02ab92005f6861e9810f6a01708293497f67f906b9",
+        "bytes": 4392
+      },
+      "current": {
+        "sha256": "e3484959218b83788e441c485bd7dd47b1845b37885f8dfa7ea419595363dadc",
+        "bytes": 5206
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/packages/adapters/folder-storage.ts"
+    },
+    {
+      "path": "packages/core/reference-folder.ts",
+      "previous": {
+        "sha256": "119ee01ce02c133ff95b6fcd47f7d95e7301c4b77c86b71b33821fdf6bbff214",
+        "bytes": 4571
+      },
+      "current": {
+        "sha256": "5288d9b2b62aa1351238c81c056a9539ed97cc7fedbd8ef2617da9105f91fe7c",
+        "bytes": 5078
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/packages/core/reference-folder.ts"
+    },
+    {
+      "path": "tests/e2e/unified-aliases.spec.ts",
+      "previous": {
+        "sha256": "c947e015077493d416a6928f27ca6cfd307d44086529a8ef49fc804e119f00b7",
+        "bytes": 6293
+      },
+      "current": {
+        "sha256": "fef2af7ee9a338097fdb8350f5b348689a30619494b246292b91d88fab1c19b0",
+        "bytes": 7282
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/tests/e2e/unified-aliases.spec.ts"
+    },
+    {
+      "path": "tests/e2e/type-hide-persistence.spec.ts",
+      "previous": {
+        "sha256": "6b07c3716b04b2253b91c0cee7521333500a62bc4aea00f7a585a8bae85c011f",
+        "bytes": 10840
+      },
+      "current": {
+        "sha256": "9da971b507c443291d34dd64de0f4a38aa6fee768157e8be5ffcc65cc0c4d6e0",
+        "bytes": 12400
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/tests/e2e/type-hide-persistence.spec.ts"
+    },
+    {
+      "path": "apps/api/job-queue.ts",
+      "previous": {
+        "sha256": "e28215b4bb4108c75edef529249292b58bbb62650526b21dc9c5e4ba35ff84a5",
+        "bytes": 4047
+      },
+      "current": {
+        "sha256": "d2f41465fc85850053c60854a84a985de794cd4a21e1967c66234e8d534fcfc9",
+        "bytes": 5456
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/apps/api/job-queue.ts"
+    },
+    {
+      "path": "tests/mcp-queue-atomicity.integration.ts",
+      "previous": {
+        "sha256": "df5c7e69dfb7b07df4600cb6eb998102ad2cf83ef2ab5a2cd27b9fc9aeb8af4b",
+        "bytes": 20147
+      },
+      "current": {
+        "sha256": "d2d00abd4f4cf0d77d7d629e5c5f6555bad5485d06a3c1d4282b83a715d14019",
+        "bytes": 20276
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/tests/mcp-queue-atomicity.integration.ts"
+    },
+    {
+      "path": "tests/document-policy-portable.integration.ts",
+      "previous": {
+        "sha256": "49ea16c98ed61f186547f16958a528101e084e1f71ae2a3beb68b0b100c74e65",
+        "bytes": 10304
+      },
+      "current": {
+        "sha256": "7062d065f6a0a5cdb92f3e832da24984bc7631192fa7f3ca0d15b585d2723be3",
+        "bytes": 11790
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/tests/document-policy-portable.integration.ts"
+    },
+    {
+      "path": "tests/e2e/document-configuration-load.spec.ts",
+      "previous": {
+        "sha256": "ad7f34debf6f889668b54c1ed2b38c9420c51afb0b3a44dc648265434d1065be",
+        "bytes": 8133
+      },
+      "current": {
+        "sha256": "25e7c307aa2db36a5da945c67bb29cacf938ba3a5269a19d584e98603f38bf0c",
+        "bytes": 8282
+      },
+      "previousArchive": ".data/research/lawbot-2026-10-16/iteration056/before-056-code-pin-refresh/tests/e2e/document-configuration-load.spec.ts"
+    }
+  ],
+  "originalEvidenceRestored": [
+    {
+      "path": ".data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/pdf-render-runtime/pdf-render-worker.cjs",
+      "source": ".data/research/lawbot-2026-10-16/iteration056/evidence-readonly-mount/Lawbot脱敏猫.app/Contents/Resources/pdf-render-runtime/pdf-render-worker.cjs",
+      "sha256": "c98b834e2d3eb93a87f40073d3bdf161de6d7e3d4d9380592e522e1ae1f598cc",
+      "bytes": 16346
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/scripts/docx/redact_docx_inplace.py",
+      "source": ".data/research/lawbot-2026-10-16/iteration056/evidence-readonly-mount/Lawbot脱敏猫.app/Contents/Resources/scripts/docx/redact_docx_inplace.py",
+      "sha256": "3237b3f457cc89be2e2373f2e63ef401df6288d952f3ea51cb7b2e074ef5d6d2",
+      "bytes": 109992
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/scripts/docx/restore_pseudonym_docx.py",
+      "source": ".data/research/lawbot-2026-10-16/iteration056/evidence-readonly-mount/Lawbot脱敏猫.app/Contents/Resources/scripts/docx/restore_pseudonym_docx.py",
+      "sha256": "e496c9a3583f25fb94689250779e59db0838878ec4773124e0977b8a9276376a",
+      "bytes": 38157
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/scripts/markdown/convert_markitdown.py",
+      "source": ".data/research/lawbot-2026-10-16/iteration056/evidence-readonly-mount/Lawbot脱敏猫.app/Contents/Resources/scripts/markdown/convert_markitdown.py",
+      "sha256": "ae9d5153f5557970d3f5e01c188037627f865b44a271b7dc423c86a96f306017",
+      "bytes": 3608
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/scripts/ocr/unlock_protected_pdf.py",
+      "source": ".data/research/lawbot-2026-10-16/iteration056/evidence-readonly-mount/Lawbot脱敏猫.app/Contents/Resources/scripts/ocr/unlock_protected_pdf.py",
+      "sha256": "e6cfa591f9a8ee12d47393247f7bcf7df59ebc894847f80b70b22ca64baa0080",
+      "bytes": 1506
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/scripts/ocr/vision_ocr.swift",
+      "source": ".data/research/lawbot-2026-10-16/iteration056/evidence-readonly-mount/Lawbot脱敏猫.app/Contents/Resources/scripts/ocr/vision_ocr.swift",
+      "sha256": "e9a47bdf4f793012703a85f8be48bde735a7458e4ccb7f3713be810be15b2a25",
+      "bytes": 5004
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-13/runtime-mount/Lawbot脱敏猫.app/Contents/Resources/support/models/visual-sensitive-v1/face_yunet.onnx",
+      "source": ".data/research/lawbot-2026-10-16/iteration056/evidence-readonly-mount/Lawbot脱敏猫.app/Contents/Resources/support/models/visual-sensitive-v1/face_yunet.onnx",
+      "sha256": "8f2383e4dd3cfbb4553ea8718107fc0423210dc964f9f4280604804ed2552fa4",
+      "bytes": 232589
+    }
+  ],
+  "readonlyDmg": ".data/research/lawbot-2026-10-13/Lawbot-0.5.9-arm64.dmg"
+}

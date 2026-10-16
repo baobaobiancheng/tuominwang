@@ -1,0 +1,74 @@
+{
+  "schema": "iteration056-minimal-adaptation-review",
+  "at": "2026-10-16T14:09:20.790346+00:00",
+  "previousLedgerSha256": "ea3fb076896eceb94103f0cc1a20d25c3f37972e280608e922ee92033acb8ebc",
+  "previousLedgerArchive": ".data/research/lawbot-2026-10-16/iteration056/before-minimal-adaptation-review-v1/ledger.json",
+  "userDirection": "可直接复用的原始代码优先直接复用，只做现有架构必要适配，不超出原设计。",
+  "evidence": {
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/ordinary-pdf-ui-boundary-overlay-v1/manifest.json": {
+      "sha256": "0c34949f41eabb76f4af16a0d939aef03c9983695c25e8dc9e40ff589aaccfbc",
+      "bytes": 3455
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/ordinary-pdf-ui-boundary-overlay-v1/minimal-source.diff": {
+      "sha256": "48b1cfbc2bd621507a2d401e4f03aa686edcda0d370636240058c8ce940c09d6",
+      "bytes": 17119
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/arch/ordinary-pdf-ui-boundary-readonly-review-v1.json": {
+      "sha256": "869b5f1dae87cdb642a0b9a53a95db4a90f3b5b8fa1f8bf98903995b627bfb61",
+      "bytes": 4921
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/rules/guide-29-readonly-review-v1.json": {
+      "sha256": "b493a2852074255a650594fd00d737478f63ec628a35a4212ca50c9dd898b300",
+      "bytes": 3680
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/minimal-adaptation-live-observation-v1.json": {
+      "sha256": "3667b58a76049b0d20754f70d43082e5ebb4d5495eb67b4c4726e3195b2caeb9",
+      "bytes": 1221
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/ordinary-pdf-ui-boundary-overlay-v1/overlay/tests/ordinary-pdf-ui-boundary.integration.ts": {
+      "sha256": "8ac0af3bf7a5c5682569e1aa4c109f1b2d0e4ad162c06d3f60d09dab0e8e1fc9",
+      "bytes": 5548
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/ordinary-pdf-ui-boundary-overlay-v1/overlay/tests/e2e/ordinary-pdf-ui-boundary.spec.ts": {
+      "sha256": "aa4b64b303fe91bf1852dc6de811d38e0f63f7ce7fbbd9305bd3ea809645787f",
+      "bytes": 7604
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/ordinary-pdf-ui-boundary-overlay-v1/overlay/packages/contracts/index.ts": {
+      "sha256": "6a4b560b154320905480ff8028779eefc36b309b170c3660e7d14341a6806c14",
+      "bytes": 9010
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/ordinary-pdf-ui-boundary-overlay-v1/overlay/apps/web/main.tsx": {
+      "sha256": "911858bc1cced358e85dac793591fb2355dcc5511f70e822ac53dacef751949c",
+      "bytes": 109309
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/ordinary-pdf-ui-boundary-overlay-v1/overlay/apps/web/processing-progress.tsx": {
+      "sha256": "ff1feece742f93df287e18289f86b177280672c3ec04d75b25264c37cbfb814d",
+      "bytes": 4263
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/ordinary-pdf-ui-boundary-overlay-v1/overlay/apps/api/main.ts": {
+      "sha256": "d48bfa573fdfd6ad83196744d63a7dbc4b0bfe7092c8bf9fb022a3a1573d4fbf",
+      "bytes": 35172
+    },
+    ".data/deploy/aliyun-20261016/iteration056/read-only-backup-capabilities-v1.py": {
+      "sha256": "75aa86f65980ccd5fd5cf62870f1bf3c4a83812a71f8d0f531cea99cdda87cc3",
+      "bytes": 2130
+    },
+    ".data/deploy/aliyun-20261016/iteration056/read-only-backup-capabilities-v1.json": {
+      "sha256": "1fdf7cfba0d7a9a15031d9e22e993d15b6a7201022e1b41af74e38386af94b00",
+      "bytes": 478
+    },
+    ".data/deploy/aliyun-20261016/iteration056/read-only-backup-capabilities-v2.py": {
+      "sha256": "020fd36eda7e0803b38f0cd1f4485f74f19b0207a26eb084ee02abb3a8340270",
+      "bytes": 2175
+    },
+    ".data/deploy/aliyun-20261016/iteration056/read-only-backup-capabilities-v2.json": {
+      "sha256": "54a08238b34c43df723f33020291f7d4568cee63ceac29f1530dd46b20e03fa8",
+      "bytes": 920
+    }
+  },
+  "pdfUiCandidate": "4 production paths + isolated API test + real Edge case prepared privately. Independent source review reports no introduced findings. Runtime claim in candidate manifest awaits durable raw receipt archival; Edge --list only, not runtime pass. Formal913 unchanged.",
+  "guideReview": "Candidate numbered26–29 independent readonly review found no proven text/UI contract defects; kept private pending actual full-flow screenshot verification. No new fake web attachments controls.",
+  "serverReadOnly": "v1 Python3.6 incompatible subprocess API failed before inspection; preserved. v2 actualSSH exit0 confirmed own compose project/materials writable volume and GNUtar/pg_dump/pg_restore availability, no writes or backup/stop/deploy.",
+  "runningGates": "Immutable live snapshot formal913 drift[], 37 completed API groups/62 cases passed/0 failed so far; full130 not complete. Edge last started56/104, known early2 failures, no terminal.",
+  "statusChanges": "No S/I/R promotion; no production source merge, models/resources/Git/deployment changes."
+}

@@ -92,11 +92,13 @@ for (const format of ["docx", "xlsx"] as const) test(`${format} upload, object r
   // cn-rules-3 also reports the real hyperlink/defined-name URL values.
   const count = format === "docx" ? 10 : 7;
   await page.getByRole("button", { name: "逐条复核", exact: true }).click();
+  // Upload persistence precedes recognition and the subsequent document-window readback.
+  await expect(page.locator(".statusbar span").first()).toHaveText("自动识别 已完成", { timeout: 45000 });
+  await expect(page.locator('.mark select[aria-label$="处理决定"]')).toHaveCount(count, { timeout: 30000 });
   await expect(page.getByLabel(`标记 ${count} 处理决定`)).toBeVisible();
-  await expect(page.locator('.mark select[aria-label$="处理决定"]')).toHaveCount(count);
   for (let i = 1; i <= count; i++) await page.getByLabel(`标记 ${i} 处理决定`).selectOption("redact");
   await page.getByRole("button", { name: "保存复核", exact: true }).click();
-  await expect(page.getByText("复核已保存", { exact: true })).toBeVisible();
+  await expect(page.getByText("复核已保存", { exact: true })).toBeVisible({ timeout: 30_000 });
   const button = await submitExportAndWait(page, format.toUpperCase());
   const download = page.waitForEvent("download"); await button.click();
   const parts = await readZip(await readFile((await (await download).path())!));
@@ -215,7 +217,7 @@ test("resume after response loss and reload verifies content and skips stored or
   await page.getByLabel("补选原文件", { exact: true }).setInputFiles(changed);
   await expect(page.getByRole("alert")).toContainText("路径或内容不一致");
   await expect(page.getByRole("button", { name: "上传文件", exact: true })).toBeDisabled();
-  await page.getByLabel("补选原文件", { exact: true }).setInputFiles([first, second]);
+  await page.getByLabel("补选原文件", { exact: true }).setInputFiles(second);
   await expect(page.getByText("待上传", { exact: true })).toHaveCount(1);
   await page.setViewportSize({ width: 1440, height: 900 });
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);

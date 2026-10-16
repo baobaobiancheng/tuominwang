@@ -1,9 +1,12 @@
 import { useConfirmAction } from "./confirm-action.tsx";
 import { appUrl } from "./urls.ts";
 import React, { useEffect, useRef, useState } from "react";
-import { BATCH_MAX_FILES, FILE_MAX_BYTES, type UploadBatchView, type UploadEntry } from "../../packages/contracts/index.ts";
+import { FILE_MAX_BYTES, type UploadBatchView, type UploadEntry } from "../../packages/contracts/index.ts";
+import { folderDirectorySkip, folderSkip, type SkippedFolderEntry } from "../../packages/core/folder-scan.ts";
 
 type LocalEntry = UploadEntry & { file?: File; status: string };
+type SelectedFile = { file: File; path: string };
+type DirectoryHandle = { name: string; entries(): AsyncIterable<[string, DirectoryHandle | { kind: 'file'; getFile(): Promise<File> }]>; kind: 'directory' };
 const PAGE_SIZE = 10;
 const messages: Record<string, string> = {
   CAPACITY_EXCEEDED: "组织材料容量或文件数已达上限，请联系管理员。",
@@ -44,7 +47,8 @@ export function Uploads({ project, signal, run, refresh, onPending }: { project:
   };
   const [batch, setBatch] = useState<string>(() => crypto.randomUUID());
   const [files, setFiles] = useState<LocalEntry[]>([]);
-  const [resuming, setResuming] = useState(false), [error, setError] = useState("");
+  const [folderScan, setFolderScan] = useState<{sourceRootName:string;skippedEntries:SkippedFolderEntry[];emptyDirectories:string[]}|null>(null);
+  const [resuming, setResuming] = useState(false), [manifestLocked, setManifestLocked] = useState(false), [error, setError] = useState("");
   const [history, setHistory] = useState<UploadBatchView[]>([]), [more, setMore] = useState(false);
   const [historyError, setHistoryError] = useState(""), [loading, setLoading] = useState(true);
   const historyRequest = useRef(0);
@@ -72,43 +76,56 @@ export function Uploads({ project, signal, run, refresh, onPending }: { project:
     } catch { if (request === historyRequest.current) setHistoryError("无法读取上传记录，请重试。"); }
     finally { if (request === historyRequest.current) setLoading(false); }
   }
-  async function select(list: File[], resume: boolean) {
-    if (!project || !list.length) return;
+  async function select(list: SelectedFile[], resume: boolean, directory = false, emptyDirectories: string[] = [], skippedDirectories:SkippedFolderEntry[] = []) {
+    if (!project || (!list.length && !directory)) return;
     if (!resume && pending && !await confirmAction("当前仍有文件未上传。重新选择后，已建立的批次可从上传记录继续。确定继续？")) return;
     setError("");
-    if (list.length > BATCH_MAX_FILES || list.some(f => !f.size || f.size > FILE_MAX_BYTES)) {
-      setError("每批最多 20 个非空文件，单文件不能超过 50 MB。"); return;
+    if (!directory && list.some(({file}) => file.size > FILE_MAX_BYTES)) {
+      setError("单文件不能超过 50 MB。"); return;
     }
-    const selected: LocalEntry[] = [], paths = new Set<string>();
-    for (const file of list) {
-      const path = (file.webkitRelativePath || file.name).normalize("NFC");
+    const selected: LocalEntry[] = [], skippedEntries:SkippedFolderEntry[] = skippedDirectories.map(item=>({...item,sourceRelativePath:item.sourceRelativePath.normalize('NFC')})), normalizedEmptyDirectories=emptyDirectories.map(path=>path.normalize('NFC')), paths = new Set<string>();
+    for (const item of list) {
+      const file=item.file,path=item.path.normalize("NFC");
       if (paths.has(path)) { setError(messages.DUPLICATE_FILE); return; }
       paths.add(path);
+      if (directory) { const skipped=file.size>FILE_MAX_BYTES?{sourceRelativePath:path,reasonCode:'FILE_SIZE_LIMIT',reason:'单文件超过 50 MB，未处理'}:folderSkip(path,file.name,file.size); if(skipped){skippedEntries.push(skipped);continue;} }
+      else if(!file.size){setError("文件不能为空。");return;}
       const sha256 = await digest(file);
       const expected = resume ? files.find(entry => entry.path === path) : undefined;
       if (resume && (!expected || expected.size !== file.size || expected.sha256 !== sha256)) {
         setError(`“${path}”与原批次的路径或内容不一致。请选择原文件和原目录；如已修改，请新建上传。`); return;
       }
-      selected.push({ file, path, sha256, size: file.size, requestId: expected?.requestId ?? crypto.randomUUID(), status: expected?.status === "已保存" ? "已保存" : "待上传" });
+      selected.push({ file, path, sha256, size: file.size, requestId: expected?.requestId ?? crypto.randomUUID(), documentType: expected?.documentType, status: expected?.status === "已保存" ? "已保存" : "待上传" });
     }
+    const observed=[...paths,...skippedDirectories.map(item=>item.sourceRelativePath.normalize('NFC')),...normalizedEmptyDirectories];
+    if(new Set(observed).size!==observed.length){setError(messages.DUPLICATE_FILE);return;}
+    if(!selected.length){
+      if(directory&&!resume){setFiles([]);setFolderScan({sourceRootName:(list[0]?.path.split('/')[0]??normalizedEmptyDirectories[0]?.split('/')[0]??skippedEntries[0]?.sourceRelativePath.split('/')[0]??'文件夹').normalize('NFC'),skippedEntries,emptyDirectories:normalizedEmptyDirectories});}
+      setError("这个目录及其子目录中没有可处理的文档。已跳过的条目不会建立上传批次。");return;
+    }
+    if(resume&&folderScan&&selected.length!==files.length){setError("原目录中的可处理文件与上传记录不一致，请选择原目录。");return;}
     if (resume) setFiles(current => current.map(entry => selected.find(file => file.requestId === entry.requestId) ?? entry));
-    else { setBatch(crypto.randomUUID()); setResuming(false); setFiles(selected); }
+    else { setBatch(crypto.randomUUID()); setResuming(false); setManifestLocked(false); setFiles(selected);setFolderScan(directory?{sourceRootName:(selected[0].path.split('/')[0]??'文件夹').normalize('NFC'),skippedEntries,emptyDirectories:normalizedEmptyDirectories}:null); }
   }
   const status = (requestId: string, value: string) => setFiles(current => current.map(f => f.requestId === requestId ? { ...f, status: value } : f));
   async function resume(id: string) {
     if (pending && !await confirmAction("切换后需重新选择尚未上传的本地文件，确定继续？")) return;
     setError("");
     const saved: UploadBatchView = await checked(await fetch(`${base}/${id}`, { signal: AbortSignal.timeout(20000) }));
-    setBatch(saved.id); setResuming(true);
+    setBatch(saved.id); setResuming(true); setManifestLocked(true);
+    setFolderScan(saved.sourceRootName?{sourceRootName:saved.sourceRootName,skippedEntries:saved.skippedEntries??[],emptyDirectories:saved.emptyDirectories??[]}:null);
     setFiles(saved.files.map(entry => ({ ...entry, status: entry.documentId ? "已保存" : "请重新选择文件" })));
   }
   async function upload() {
     setError("");
+    // Once the first immutable manifest may have reached the API, route choices
+    // cannot be changed during retry or resume even if its response was lost.
+    setManifestLocked(true);
     try {
       // Repeating this immutable manifest is safe even when the previous response was lost.
       await checked(await fetch(base, {
         method: "POST", headers: { "Content-Type": "application/json" }, signal: AbortSignal.timeout(20000),
-        body: JSON.stringify({ id: batch, files: files.map(({ path, requestId, size, sha256 }) => ({ path, requestId, size, sha256 })) }),
+        body: JSON.stringify({ id: batch, files: files.map(({ path, requestId, size, sha256, documentType }) => ({ path, requestId, size, sha256, ...(documentType && documentType !== 'auto' ? { documentType } : {}) })),...folderScan }),
       }));
       const saved: UploadBatchView = await checked(await fetch(`${base}/${batch}`, { signal: AbortSignal.timeout(20000) }));
       for (const entry of files) {
@@ -132,27 +149,51 @@ export function Uploads({ project, signal, run, refresh, onPending }: { project:
   const legacy = resuming && files.some(file => file.status !== "已保存" && !file.sha256);
   async function startNew() {
     if (pending && !await confirmAction("当前批次仍有文件未上传，可稍后从上传记录继续。确定新建上传？")) return;
-    setBatch(crypto.randomUUID()); setFiles([]); setResuming(false); setError("");
+    setBatch(crypto.randomUUID()); setFiles([]); setFolderScan(null); setResuming(false); setManifestLocked(false); setError("");
+  }
+  async function scanDirectory(handle:DirectoryHandle,resume:boolean){
+    const list:SelectedFile[]=[],emptyDirectories:string[]=[],skipped:SkippedFolderEntry[]=[];
+    async function visit(dir:DirectoryHandle,path:string){
+      let count=0;
+      try{for await(const[name,entry]of dir.entries()){
+        signal.throwIfAborted();count++;
+        const relative=`${path}/${name}`;
+        const hidden=folderDirectorySkip(relative,name);
+        if(hidden){skipped.push(hidden);continue;}
+        if(entry.kind==='directory')await visit(entry as DirectoryHandle,relative);
+        else try{list.push({file:await entry.getFile(),path:relative});}catch{skipped.push({sourceRelativePath:relative,reasonCode:'unreadable',reason:'无法读取该文件'});}
+      }}catch(e){if(signal.aborted)throw e;skipped.push({sourceRelativePath:path,reasonCode:'unreadable',reason:'无权读取该目录'});return;}
+      if(!count)emptyDirectories.push(path);
+    }
+    await visit(handle,handle.name);
+    await select(list,resume,true,emptyDirectories,skipped);
   }
   function picker(directory: boolean, resume: boolean) {
     const name = resume ? (directory ? "补选原目录" : "补选原文件") : (directory ? "选择目录" : "选择文件");
-    return <label>{name}<input disabled={!project || (resume && legacy)} aria-label={name} type="file" multiple
+    return <label onClick={async e=>{
+      if(!directory||!('showDirectoryPicker' in window)||!e.isTrusted||!project||(resume&&legacy))return;
+      e.preventDefault();
+      try{const handle=await (window as unknown as {showDirectoryPicker():Promise<DirectoryHandle>}).showDirectoryPicker();void run(()=>scanDirectory(handle,resume));}
+      catch(error){if((error as Error).name!=='AbortError')setError('无法读取目录，请重新选择。');}
+    }}>{name}<input disabled={!project || (resume && legacy)} aria-label={name} type="file" multiple
       ref={el => { if (directory) el?.setAttribute("webkitdirectory", ""); }} onChange={e => {
         const selected = Array.from(e.target.files ?? []); e.target.value = "";
-        void run(() => select(selected, resume));
+        void run(() => select(selected.map(file=>({file,path:file.webkitRelativePath||file.name})), resume, directory));
       }} /></label>;
   }
   return <section className="panel upload-panel">
     <div className="upload-heading"><h2>{resuming ? "继续上传" : "导入文件"}</h2>{resuming && <button className="quiet" onClick={startNew}>新建上传</button>}</div>
     <p className="muted">支持 TXT、Markdown、CSV、DOCX、XLSX、PDF、PNG 和 JPEG。文本文件请使用 UTF-8 编码。PDF 导出需确认转换为不可选字的图片型副本；图片导出为 PNG。存在未处理内容时将阻止导出。</p>
     {!resuming && <div className="upload-choices">{picker(false, false)}{picker(true, false)}</div>}
+    <p className="muted">部分浏览器选择目录时不会包含空文件夹；其他文件和跳过项仍会逐项记录。</p>
     {error && <p role="alert" className="error">{error}</p>}
+    {!!folderScan&&(!!folderScan.skippedEntries.length||!!folderScan.emptyDirectories.length)&&<p className="muted" role="status">目录扫描：跳过 {folderScan.skippedEntries.length} 项，空目录 {folderScan.emptyDirectories.length} 个；结果清单会逐项记录。</p>}
     {resuming && pending && <>
       <p className="muted">请重新选择尚未上传的原文件，目录上传需选择同一个目录。已保存文件会自动跳过。</p>
       {legacy ? <p role="alert" className="error">此批次未记录文件内容校验，不能安全续传。请点击“新建上传”重新选择未上传的文件；已保存文件仍在材料列表中。</p> : <div className="upload-choices">{picker(false, true)}{picker(true, true)}</div>}
     </>}
-    {files.length > 0 && <ul className="upload-list" aria-label="本次上传文件">{files.map(f => <li key={f.requestId}><span title={f.path}>{f.path}</span><span role="status">{f.status}</span></li>)}</ul>}
-    <div className="actions"><span className="muted">每批最多 20 个文件 · 单文件不超过 50 MB</span><button disabled={!project || legacy || !files.some(f => f.file && f.status !== "已保存")} onClick={() => void run(upload)}>上传文件</button></div>
+    {files.length > 0 && <ul className="upload-list" aria-label="本次上传文件">{files.map(f => <li key={f.requestId}><span title={f.path}>{f.path}</span><label>材料类型<select aria-label={`${f.path} 的导入材料类型`} value={f.documentType??'auto'} disabled={manifestLocked||resuming||f.status==='已保存'} onChange={e=>setFiles(current=>current.map(entry=>entry.requestId===f.requestId?{...entry,documentType:e.target.value as UploadEntry['documentType']}:entry))}><option value="auto">自动判断</option><option value="judgment">裁判文书</option><option value="pleading">诉讼文书</option><option value="contract">合同与协议</option><option value="disclosure">信披与公司文件</option><option value="official_letter">函件与证明</option><option value="screenshot">证据截图与凭证</option><option value="general">其他材料</option></select></label><span role="status">{f.status}</span></li>)}</ul>}
+    <div className="actions"><span className="muted">单文件不超过 50 MB</span><button disabled={!project || legacy || !files.some(f => f.file && f.status !== "已保存")} onClick={() => void run(upload)}>上传文件</button></div>
     <section className="upload-history" aria-label="上传记录">
       <div className="upload-heading"><h3>上传记录</h3><button className="quiet" onClick={() => void run(() => loadHistory())}>刷新记录</button></div>
       {loading && <p className="muted">正在读取上传记录…</p>}

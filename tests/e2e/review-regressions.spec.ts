@@ -134,7 +134,7 @@ test("in-flight polling cannot rebase a dirty review onto a newer revision", asy
   const state = await workspace(page, "running");
   const poll = deferred();
   state.beforeGet = () => poll.promise;
-  await page.clock.runFor(800);
+  await page.clock.runFor(3000);
   await expect.poll(() => state.getCount).toBe(2);
   await page.getByLabel("标记 1 处理决定").selectOption("redact");
   state.doc.revision = 2;
@@ -142,7 +142,7 @@ test("in-flight polling cannot rebase a dirty review onto a newer revision", asy
   state.doc.job!.status = "cancelled";
   poll.resolve();
   await page.clock.runFor(1600);
-  await expect(page.getByText("复核版本 1 · 未保存")).toBeVisible();
+  await expect(page.locator(".statusbar span").nth(1)).toHaveText("复核版本 1 · 当前修改未保存 · 上一版本：尚无已保存审定");
   await expect(page.getByLabel("标记 1 处理决定")).toHaveValue("redact");
   await page.getByRole("button", { name: "保存复核", exact: true }).click();
   await expect(page.getByRole("alert")).toContainText("内容已在其他窗口更新");
@@ -151,7 +151,7 @@ test("in-flight polling cannot rebase a dirty review onto a newer revision", asy
   await expect(page.getByLabel("标记 1 处理决定")).toHaveValue("redact");
   await page.getByRole("button", { name: "重新载入最新复核" }).click();
   await page.getByRole("alertdialog", { name: "操作确认" }).getByRole("button", { name: "确认执行", exact: true }).click();
-  await expect(page.getByText("复核版本 2", { exact: true })).toBeVisible();
+  await expect(page.locator(".statusbar span").nth(1)).toHaveText("复核版本 2 · 尚无已保存审定");
   await expect(page.getByLabel("标记 2 处理决定")).toHaveValue("redact");
 });
 
@@ -285,7 +285,8 @@ test("session expiry from background polling cancels an App-owned destructive co
   });
   await page.getByRole("button", { name: "删除材料", exact: true }).click();
   await expect(page.getByRole("alertdialog", { name: "操作确认" })).toBeVisible();
-  await page.clock.runFor(800);
+  // The document background poll runs every 3000 ms; advance past one full interval.
+  await page.clock.runFor(3200);
   await expect.poll(() => expiredPolls).toBe(1);
   await expect(page.getByRole("alertdialog", { name: "操作确认" })).toHaveCount(0);
   const account = page.getByLabel("账号", { exact: true });

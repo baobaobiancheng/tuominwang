@@ -1,0 +1,61 @@
+{
+  "schema": "iteration056-pdf-ui-isolated-api-validation",
+  "previousLedgerSha256": "e3e639c07f6aa8179005e5e23e1d756dbce851394812b66695c7ff1e8c2ea923",
+  "previousLedgerArchive": ".data/research/lawbot-2026-10-16/iteration056/before-pdf-ui-api-validation-v1/ledger.json",
+  "evidence": {
+    "文档/待办与完成状态-20261015.md": {
+      "sha256": "e8e3c88e13938f0fe9811e8952d710d38b59edf725000fbf1cf239ead4161bf0",
+      "bytes": 32005
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/before-pdf-ui-api-validation-v1/待办与完成状态-20261015.md": {
+      "sha256": "c98bcf8503a792ece62f35293ea13b242c7c46fcd7ff42692f9720552e9919ad",
+      "bytes": 31870
+    },
+    "文档/脱敏规则完整技术交接-迭代023.md": {
+      "sha256": "de0a56f05e916e39d8ee26510f00553e066f2a8ce8df476d1353cf6d59a4f3dd",
+      "bytes": 397625
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/before-pdf-ui-api-validation-v1/脱敏规则完整技术交接-迭代023.md": {
+      "sha256": "4502345c5f68771aaafa1b95dc99e5801f6d3f344fe06382f839863879ea53c6",
+      "bytes": 397454
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/ordinary-pdf-ui-boundary-validation-v2/early-attempts-observed-output.txt": {
+      "sha256": "50ecd4e3896cf54984252c62773aa306d6daf1eefdc9dcb09d86887fb479e852",
+      "bytes": 748
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/ordinary-pdf-ui-boundary-validation-v2/edge-list.log": {
+      "sha256": "7106d9e80cfbc4617769b1a541ffef41e42486b053ecc7da55be0bb6fa05a8f3",
+      "bytes": 176
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/ordinary-pdf-ui-boundary-validation-v2/node24-tsc.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/ordinary-pdf-ui-boundary-validation-v2/terminal-receipt.json": {
+      "sha256": "c0801685e567ddd28da268e83607131db365e6206d15c9368b5d1f35b3614b36",
+      "bytes": 3062
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/ordinary-pdf-ui-boundary-validation-v2/isolated-api.log": {
+      "sha256": "59b1cfe17f2f68ee46068e20b749b89d3e8bfb47532d1a3ae778fba72538f762",
+      "bytes": 260
+    }
+  },
+  "documentTransitions": [
+    {
+      "path": "文档/待办与完成状态-20261015.md",
+      "beforeSha256": "c98bcf8503a792ece62f35293ea13b242c7c46fcd7ff42692f9720552e9919ad",
+      "archive": ".data/research/lawbot-2026-10-16/iteration056/before-pdf-ui-api-validation-v1/待办与完成状态-20261015.md",
+      "afterSha256": "e8e3c88e13938f0fe9811e8952d710d38b59edf725000fbf1cf239ead4161bf0"
+    },
+    {
+      "path": "文档/脱敏规则完整技术交接-迭代023.md",
+      "beforeSha256": "4502345c5f68771aaafa1b95dc99e5801f6d3f344fe06382f839863879ea53c6",
+      "archive": ".data/research/lawbot-2026-10-16/iteration056/before-pdf-ui-api-validation-v1/脱敏规则完整技术交接-迭代023.md",
+      "afterSha256": "de0a56f05e916e39d8ee26510f00553e066f2a8ce8df476d1353cf6d59a4f3dd"
+    }
+  ],
+  "actualResults": "Node24 tsc0; isolated DB API1/1 pass0fail/skip/cancel/todo, naturalexit0; Edge--list1case exit0 only. Stable raw logs and source overlay manifest binding independently checked.",
+  "runtimeLimits": "No actual Edge browser run for this candidate, no merge/formal913 source change, no server update. Both early diagnostics retained as tool-output excerpts; no original raw logs available for them.",
+  "jsonBlocksUnchanged": 10,
+  "statusChanges": "No S/I/R promotion."
+}

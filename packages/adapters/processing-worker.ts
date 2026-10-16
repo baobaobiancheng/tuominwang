@@ -38,12 +38,13 @@ import { PAGED_FORMATS, validatePageReview, pageBoxes, clearPixels } from "../co
 import type { ParsedPage, Anchor } from "../contracts/index.ts";
 import { hash, unseal, seal, readOriginal, readArtifact, writeArtifact, setObjectOwner } from "./storage.ts";
 import {scanVisualCandidates} from './visual-scan.ts';
+import {pdfSealPauseRequested} from './pdf-seal-control.ts';
 import type { ProcessingInput } from "./processing.ts";
 
 let eventSequence=0,eventStage='initializing';
 const eventsEnabled=!!workerData.processingEventStream;
 function processingEvent(event:ProcessingEvent){if(!eventsEnabled)return;eventStage=event.stage;parentPort!.postMessage(eventEnvelope(event,++eventSequence));}
-function pageProcessed(page:ParsedPage,text:string,glyphs:import('../core/ocr.ts').Glyph[],totalPages:number){processingEvent({type:'page-processed',stage:'ocr',pageNumber:page.index+1,totalPages,ocrCompleted:true,ocrCachePage:{text,width:page.width,height:page.height,previewHash:page.previewHash,mapHash:page.mapHash,glyphs},coordinateSpace:'canonical-raster'});processingEvent({type:'progress',stage:'ocr',percent:Math.round(50*(page.index+1)/totalPages),message:`已完成 ${page.index+1} / ${totalPages} 页图像文字读取`});}
+function pageProcessed(page:ParsedPage,text:string,glyphs:import('../core/ocr.ts').Glyph[],totalPages:number,matches?:import('../contracts/index.ts').Mark[]){processingEvent({type:'page-processed',stage:'ocr',pageNumber:page.index+1,totalPages,ocrCompleted:true,ocrCachePage:{text,width:page.width,height:page.height,previewHash:page.previewHash,mapHash:page.mapHash,glyphs},...matches?{matches,provisional:true as const}:{},coordinateSpace:'canonical-raster'});processingEvent({type:'progress',stage:'ocr',percent:Math.round(50*(page.index+1)/totalPages),message:`已完成 ${page.index+1} / ${totalPages} 页图像文字读取`});}
 async function profileOutputs(d: any, text: string, bytes: Buffer, format: string, imageTexts?: Record<string,string>,convertLegacy=true) {
   if (!d.presetPolicy?.profile) {const outputs=[{role:"primary" as const,name:`redacted.${format}`,format,bytes}];return convertLegacy?legacyOutputArtifacts(d,text,outputs):outputs;}
   const {buildProfileArtifacts} = await import("./profile-export.ts");
@@ -181,6 +182,18 @@ async function execute(input: ProcessingInput): Promise<any> {
   if (input.kind === "detect") {
     let anchors: Anchor[] = [{ kind: "text", start: 0, end: text.length }], coverage: any[] = [{ id: "text", status: "complete" }], pages: ParsedPage[] = [];
     let detectBytes:Buffer=Buffer.alloc(0),markdown:ReferenceMarkdown|undefined;
+    const dictionary = d.dictionary ? JSON.parse(unseal(d.dictionary, `${d.tenant_id}:${d.project_id}:dictionary`)) : [];
+    const sourceName=d.source_name?unseal(d.source_name,`${aad}:name`):"";
+    const manualOnlyPages=new Set<number>(d.source_format==='pdf'?readPageRotationState(d).manualOnlyPages:[]);
+    const pdfPageMatches=(pageIndex:number,pageText:string)=>{
+      if(manualOnlyPages.has(pageIndex))return [];
+      const pageAnchors:Anchor[]=[{kind:'page',page:pageIndex,start:0,end:pageText.length}];
+      const preview=detectComplete(pageText,pageAnchors,activeDictionary(dictionary,d.presetPolicy),{filename:sourceName,ocr:true,sourceFormat:'pdf',configuration:d.documentPolicy?.configuration});
+      return applyDocumentRoute(pageText,pageAnchors,preview.marks,d.documentPolicy?.configuration,{suppressEvidenceScene:preview.evidenceScene.controlled});
+    };
+    const pdfPageProcessed=(page:ParsedPage,pageText:string,glyphs:import('../core/ocr.ts').Glyph[],totalPages:number)=>{
+      pageProcessed(page,pageText,glyphs,totalPages,pdfPageMatches(page.index,pageText));
+    };
     if (d.source_id) {
       const bytes = await verifiedDocumentSource(d);detectBytes=bytes;
       if(["docx","xlsx"].includes(d.source_format)&&bytes.subarray(0,8).equals(Buffer.from("d0cf11e0a1b11ae1","hex")))throw new Error("ENCRYPTED_OFFICE");
@@ -189,7 +202,7 @@ async function execute(input: ProcessingInput): Promise<any> {
         anchors = d.anchors; coverage = d.coverage; pages = d.page_data;
         for (const page of pages) if (hash(await readArtifact(page.mapId)) !== page.mapHash || hash(await readOriginal(page.previewId)) !== page.previewHash) throw new Error("SOURCE_MISMATCH");
       } else {
-      const paged = d.source_format === "docx" ? await parseOfficeImages(bytes,pageProcessed) : ["pdf", "png", "jpg", "jpeg"].includes(d.source_format) ? await parsePages(bytes, d.source_format,pageProcessed,{rotations:d.source_format==="pdf"?readPageRotationState(d).rotations:undefined,manualOnlyPages:d.source_format==="pdf"?readPageRotationState(d).manualOnlyPages:undefined,cachedPages:d.source_format==="pdf"?input.pdfOcrCheckpointPages:undefined,onCheckpoint:d.source_format==="pdf"?(frame:PdfOcrCheckpoint)=>parentPort!.postMessage({type:"pdf-ocr-checkpoint",frame}):undefined}) : undefined;
+      const paged = d.source_format === "docx" ? await parseOfficeImages(bytes,pageProcessed) : ["pdf", "png", "jpg", "jpeg"].includes(d.source_format) ? await parsePages(bytes, d.source_format,d.source_format==='pdf'?pdfPageProcessed:pageProcessed,{rotations:d.source_format==="pdf"?readPageRotationState(d).rotations:undefined,manualOnlyPages:d.source_format==="pdf"?readPageRotationState(d).manualOnlyPages:undefined,cachedPages:d.source_format==="pdf"?input.pdfOcrCheckpointPages:undefined,onCheckpoint:d.source_format==="pdf"?(frame:PdfOcrCheckpoint)=>parentPort!.postMessage({type:"pdf-ocr-checkpoint",frame:{...frame,provisionalMatches:pdfPageMatches(frame.page.index,frame.text)}}):undefined}) : undefined;
       const parsed = paged ?? (office ? await parseOffice(bytes, d.source_format) : parseFile(bytes, d.source_format,{fileName:d.source_name?unseal(d.source_name,`${aad}:name`):undefined}));
       text = parsed.text; anchors = parsed.anchors; coverage = parsed.coverage;
       if("markdown" in parsed)markdown=parsed.markdown as ReferenceMarkdown|undefined;
@@ -199,15 +212,20 @@ async function execute(input: ProcessingInput): Promise<any> {
     }
     if(d.source_format==='pdf')validateRotationPages(readPageRotationState(d),pages);
     processingEvent({type:'progress',stage:'recognize',message:'正在核对文字中的敏感信息',processedTextEnd:0,totalTextLength:text.length});
-    const dictionary = d.dictionary ? JSON.parse(unseal(d.dictionary, `${d.tenant_id}:${d.project_id}:dictionary`)) : [];
     const complete = detectComplete(text, anchors, activeDictionary(dictionary, d.presetPolicy), { filename: d.source_name ? unseal(d.source_name, `${aad}:name`) : "", ocr: pages.length > 0, sourceFormat:d.source_format,configuration:d.documentPolicy?.configuration });
     let marks = applyDocumentRoute(text, anchors, complete.marks, d.documentPolicy?.configuration,{suppressEvidenceScene:complete.evidenceScene.controlled}), nerVersion: string | null = null;
     if(markdown)await createMarkdownMatchPublisher(text.length,"rules",processingEvent)({processedTextEnd:text.length,totalTextLength:text.length,matches:marks});
     const markdownNer=markdown?createMarkdownMatchPublisher(text.length,"ner",processingEvent):undefined;
+    const pdfNer=d.source_format==='pdf'&&pages.length&&eventsEnabled?async(event:{processedTextEnd:number;totalTextLength:number;matches:import('../contracts/index.ts').Mark[]})=>{
+      for(const page of pages){const anchor=anchors.find(a=>a.kind==='page'&&a.page===page.index);if(!anchor||manualOnlyPages.has(page.index))continue;
+        const matches=event.matches.filter(m=>m.start>=anchor.start&&m.end<=anchor.end);
+        if(matches.length)processingEvent({type:'page-processed',stage:'recognize',pageNumber:page.index+1,totalPages:pages.length,ocrCompleted:true,matches,coordinateSpace:'canonical-raster'});
+      }
+    }:undefined;
     if(pages.length) marks = mergeCandidates(text,marks,await documentSpatialMarks(text,anchors,pages));
     if (d.ner_enabled) {
       const ner = await (await import("../core/ner.ts")).createNer();
-      try { marks = mergeCandidates(text, marks, filterCompleteNer(text, await ner.detect(text, anchors,markdownNer?{onProgress:markdownNer}:{}), anchors)); nerVersion = `${ner.version}:${ner.weights}`; marks=await contextualDocumentMarks(detectBytes,text,anchors,pages,d.source_format,marks,{ner:(t,a)=>ner.detect(t,a),configuration:d.documentPolicy?.configuration,documentType:contextualDocumentType(complete.classification.type,d.documentPolicy?.configuration)}); }
+      try { marks = mergeCandidates(text, marks, filterCompleteNer(text, await ner.detect(text, anchors,markdownNer||pdfNer?{onProgress:markdownNer??pdfNer}:{}), anchors)); nerVersion = `${ner.version}:${ner.weights}`; marks=await contextualDocumentMarks(detectBytes,text,anchors,pages,d.source_format,marks,{ner:(t,a)=>ner.detect(t,a),configuration:d.documentPolicy?.configuration,documentType:contextualDocumentType(complete.classification.type,d.documentPolicy?.configuration)}); }
       finally { await ner.close(); }
     }
     if(!d.ner_enabled)marks=await contextualDocumentMarks(detectBytes,text,anchors,pages,d.source_format,marks,{configuration:d.documentPolicy?.configuration,documentType:contextualDocumentType(complete.classification.type,d.documentPolicy?.configuration)});
@@ -216,22 +234,24 @@ async function execute(input: ProcessingInput): Promise<any> {
     const liveRules=await readLiveRuntimeRules();
     marks=mergeCandidates(text,marks,runtimeWhitelistCandidates(text,anchors,marks,[...(d.runtimeWhitelists??[]),...liveRules]));
     marks=enabledProfileMarks(applyRulesPreservingSignatureGroups(text,anchors,marks,d.presetPolicy?.ruleset?.settings,rulesetMaterialRoute(complete.classification.type,d.documentPolicy?.configuration)),d.presetPolicy?.profile?.settings);
+    if(manualOnlyPages.size)marks=marks.filter(mark=>!anchors.some(anchor=>anchor.kind==='page'&&manualOnlyPages.has(anchor.page!)&&mark.start>=anchor.start&&mark.end<=anchor.end));
     assertSignaturePolicyGroups(marks);
     let entityCorrectionsStale=false;try{Object.assign(d,hydrateEntityCorrections({...d,content_hash:hash(text)}));if(d.entityCorrections){assertEntityCorrections(d.entityCorrections,{...d,content_hash:hash(text)});const materialized=materializeEntityCorrections(d,text,marks);marks=materialized.marks;d.entityCorrections=materialized.frame;d.entity_corrections=sealEntityCorrections({...d,content_hash:hash(text)},materialized.frame!);}}catch(error){if((error as Error).message!=='ENTITY_CORRECTION_STALE')throw error;const archived=archiveEntityCorrections(d);if(!archived||archived.frame.sourceHash!==d.source_hash)throw Error('ENTITY_CORRECTION_INVALID');entityCorrectionsStale=true;d.entityCorrections=null;coverage.push({id:'entity-corrections',status:'blocked',reason:'ENTITY_CORRECTION_STALE'});}
     if(markdown)await createMarkdownMatchPublisher(text.length,"contextual",processingEvent)({processedTextEnd:text.length,totalTextLength:text.length,matches:marks});
     const profile=d.presetPolicy?.profile?.settings, style=profile ? profileForFormat(profile, d.source_format === "docx" ? "png" : d.source_format, d.batchMode) : undefined;
-    const {visualCandidates,visualPages}=await scanVisualCandidates(d,text,pages,profile);
+    const visual=await scanVisualCandidates(d,text,pages,profile,{sealPaused:pdfSealPauseRequested,onSealPage:(page,candidates,warnings,totalPages)=>processingEvent({type:'pdf-seal-page',stage:'visual',pageNumber:page.index+1,totalPages,previewHash:page.previewHash,candidates:candidates.map(c=>({...c,page:page.index})),warnings})}),visualCandidates=visual.visualCandidates.filter(candidate=>!manualOnlyPages.has(candidate.page)),visualPages=visual.visualPages;
     for(const page of pages){const anchor=anchors.find(a=>d.source_format==='docx'?a.kind==='object'&&a.object==='image-text'&&a.part===page.part:a.kind==='page'&&a.page===page.index);if(anchor)processingEvent({type:'page-processed',stage:'recognize',pageNumber:page.index+1,totalPages:pages.length,ocrCompleted:true,matches:marks.filter(m=>m.start>=anchor.start&&m.end<=anchor.end),canonicalHash:hash(text),coordinateSpace:'canonical-raster'});}
     processingEvent({type:'progress',stage:'recognize',percent:100,message:'识别已完成，请人工复核',processedTextEnd:text.length,totalTextLength:text.length});
     const pageReview=pages.length && style && "maskStyle" in style ? {mode:"unselected",maskStyle:style.maskStyle,regions:[],deletedPages:[]} : null;
     const markdownMetadata=markdown?await storeMarkdownSource(markdown,d.id):undefined;
-    return { ...normalizedSource?{normalizedSource}:{},entityCorrectionsStale,entityCorrectionsStored:d.entity_corrections??null,parseVersion:markdown?2:d.parse_version,visualCandidates, pageReview, content: seal(text, aad), hash: hash(text), marks, anchors, coverage, pages, classification: complete.classification, recognition: { ...markdownMetadata?{markdown:markdownMetadata}:{}, rules: recognitionVersion, dictionaryRevision: d.dictionary_revision ?? 0, presetRevision: d.presetPolicy?.revision ?? 0, documentPolicyRevision:d.documentPolicy?.revision??0, documentType:d.documentPolicy?.configuration.documentType??"auto", classification: complete.classification, visual:{complete:visualPages.every(p=>!p.warnings.length),pages:visualPages}, ner: nerVersion, ai: null } };
+    return { ...normalizedSource?{normalizedSource}:{},entityCorrectionsStale,entityCorrectionsStored:d.entity_corrections??null,parseVersion:markdown?2:d.parse_version,visualCandidates, pageReview, content: seal(text, aad), hash: hash(text), marks, anchors, coverage, pages, classification: complete.classification, recognition: { ...markdownMetadata?{markdown:markdownMetadata}:{}, rules: recognitionVersion, dictionaryRevision: d.dictionary_revision ?? 0, presetRevision: d.presetPolicy?.revision ?? 0, documentPolicyRevision:d.documentPolicy?.revision??0, documentType:d.documentPolicy?.configuration.documentType??"auto", classification: complete.classification, visual:{complete:visualPages.every(p=>!p.warnings.length),pages:visualPages,...visual.sealProgress?{sealProgress:visual.sealProgress}:{}}, ner: nerVersion, ai: null } };
   }
   if(d.entityCorrections?.entries.some((e:any)=>e.active===false))throw Error('ENTITY_CORRECTION_UNRESOLVED');
   const digest = hash(text);
   if(d.source_format==="md"&&d.parse_version<2&&input.kind!=="verify")throw new Error("MARKDOWN_RECOGNITION_REQUIRED");
   const markdown=d.source_format==="md"&&d.parse_version===2?await loadMarkdownSource(d,text):undefined;
-  assertExportable(d, d.revision, text.length, digest, "snapshot" in input?input.snapshot:undefined);
+  assertExportable(d, d.revision, text.length, digest, "snapshot" in input?input.snapshot:undefined,
+    "automaticBinding" in input?input.automaticBinding:undefined);
   if(input.kind!=="verify")await assertTrustedSignatureGroups(d);
   if (input.kind === "gate") { validateFileMarks(text, d.marks, d.source_format, d.anchors, true); if (paged) await validatePageExport(d, text); if (embedded) await officeImagePlan(d, text); return {}; }
   if (paged) {

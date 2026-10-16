@@ -6,7 +6,7 @@ import { crc32 } from "node:zlib";
 import type { Readable } from "node:stream";
 
 export const ZIP_LIMITS = { entries: 10000, expanded: 256 * 1024 * 1024, entry: 50 * 1024 * 1024, nodes: 500000, depth: 128 };
-export function readZip(bytes: Buffer): Promise<Map<string, Buffer>> {
+export function readZip(bytes: Buffer, limits = ZIP_LIMITS): Promise<Map<string, Buffer>> {
   if (bytes.length > FILE_MAX_BYTES) return Promise.reject(new Error("FILE_SIZE_LIMIT"));
   return new Promise((resolve, reject) => {
     yauzl.fromBuffer(bytes, { lazyEntries: true, validateEntrySizes: true, strictFileNames: true }, (error, zip) => {
@@ -19,7 +19,7 @@ export function readZip(bytes: Buffer): Promise<Map<string, Buffer>> {
       zip.on("entry", entry => {
         if (settled) return;
         const name: string = entry.fileName;
-        if (++count > ZIP_LIMITS.entries || entry.uncompressedSize > ZIP_LIMITS.entry || total + entry.uncompressedSize > ZIP_LIMITS.expanded) { fail("ZIP_LIMIT"); return; }
+        if (++count > limits.entries || entry.uncompressedSize > limits.entry || total + entry.uncompressedSize > limits.expanded) { fail("ZIP_LIMIT"); return; }
         if (names.has(name.toLowerCase()) || /[\\\x00-\x1f]/.test(name) || name.startsWith("/") || name.split("/").some(p => p === "." || p === "..") || entry.isEncrypted() || ((entry.externalFileAttributes >>> 16) & 0xf000) === 0xa000) { fail("INVALID_OFFICE"); return; }
         names.add(name.toLowerCase());
         if (name.endsWith("/")) { if (entry.uncompressedSize) fail("INVALID_OFFICE"); else zip.readEntry(); return; }
@@ -29,7 +29,7 @@ export function readZip(bytes: Buffer): Promise<Map<string, Buffer>> {
           stream.on("error", () => fail("INVALID_OFFICE"));
           stream.on("data", (chunk: Buffer) => {
             size += chunk.length; total += chunk.length; checksum = crc32(chunk, checksum);
-            if (size > ZIP_LIMITS.entry || total > ZIP_LIMITS.expanded) { stream.destroy(); fail("ZIP_LIMIT"); } else chunks.push(chunk);
+            if (size > limits.entry || total > limits.expanded) { stream.destroy(); fail("ZIP_LIMIT"); } else chunks.push(chunk);
           });
           stream.on("end", () => {
             if (settled) return;

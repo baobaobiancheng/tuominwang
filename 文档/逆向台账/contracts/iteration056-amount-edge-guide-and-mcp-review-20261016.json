@@ -1,0 +1,129 @@
+{
+  "schema": "iteration056-amount-edge-guide-and-mcp-review",
+  "previousLedgerSha256": "f9a62a175e13d38a3771e101e338db1f41a55a2be12e5cf2e5375309891c8685",
+  "previousLedgerArchive": ".data/research/lawbot-2026-10-16/iteration056/before-amount-edge-guide-pin-refresh/ledger.json",
+  "evidence": {
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/amount-real-edge-v2/terminal-receipt.json": {
+      "sha256": "f351f3c29c85122c72e0f4cede9ba4c97b5cac9b5c50c51c1f78b399b6f5b4c1",
+      "bytes": 3551
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/amount-real-edge-v2/evidence/evidence-manifest.json": {
+      "sha256": "f79d1434e69c98018a338ef7f07cc755c4154318d566eb4a5211fca7f0e37bb0",
+      "bytes": 1947
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/amount-real-edge-overlay-v2/amount-real-flow.spec.ts": {
+      "sha256": "10409b9b5d3fc14ad7296c580ca457586a75f6368bc1a52589105f483dda4295",
+      "bytes": 4532
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/normal-dev-service-after-amount-edge-v1/readiness-receipt.json": {
+      "sha256": "6c673c9926c4279310fd41349b9f107fc056d4b27f4fd7a616cd4d2a452cc6bf",
+      "bytes": 988
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/rules/mcp-visual-fallback-v1-v2-readonly-review.json": {
+      "sha256": "089c8586cb16062faf4d3ce69dc0069ace8a82e1971e8ad1d29f22c6efd35ae2",
+      "bytes": 5131
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/before-amount-guide-v1/update-receipt.json": {
+      "sha256": "074920b64bed6d71eb2e38c8ddc2ab6f3bc471b98dd7a3f443b9e96e43b22cfa",
+      "bytes": 2751
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/amount-real-edge-v2/evidence/amount-real-review.png": {
+      "sha256": "9eff22cf3add660942ea248a3b282f0bfb3d61d8331f88119edda0529e2ace7a",
+      "bytes": 150060
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/amount-real-edge-v2/evidence/amount-real-export.png": {
+      "sha256": "93c7329fb440219bb590265db0d29417e0e9349edfb5d8e3aa2818bf9b1d218c",
+      "bytes": 143293
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/amount-real-edge-v2/evidence/server-export-matching-downloaded-assertion.txt": {
+      "sha256": "40bc5096f25764e2574ed7e822282b6c1384e45617274963cbb9318732890bda",
+      "bytes": 158
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/amount-real-edge-v2/evidence/playwright-results.json": {
+      "sha256": "ba796c939e898665989aae756961241f43de8c3d28f6ce4196561893efd9a3c3",
+      "bytes": 3122
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/amount-real-edge-v2/evidence/terminal-receipt.json": {
+      "sha256": "f351f3c29c85122c72e0f4cede9ba4c97b5cac9b5c50c51c1f78b399b6f5b4c1",
+      "bytes": 3551
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/amount-real-edge-v2/evidence/wrapper-terminal.json": {
+      "sha256": "37bad2a6602eb94ea2dd413287a2c23fccc0c4bf53daebf813468bc4eb819819",
+      "bytes": 621
+    },
+    "文档/使用指南/截图-20261016/056-金额规则复核.png": {
+      "sha256": "9eff22cf3add660942ea248a3b282f0bfb3d61d8331f88119edda0529e2ace7a",
+      "bytes": 150060
+    },
+    "文档/使用指南/截图-20261016/056-金额生成副本.png": {
+      "sha256": "93c7329fb440219bb590265db0d29417e0e9349edfb5d8e3aa2818bf9b1d218c",
+      "bytes": 143293
+    },
+    "文档/使用指南/示例产物-20261016/056-金额规则-服务端导出.txt": {
+      "sha256": "40bc5096f25764e2574ed7e822282b6c1384e45617274963cbb9318732890bda",
+      "bytes": 158
+    }
+  },
+  "amountEdge": {
+    "actualExit": 0,
+    "cases": 1,
+    "skipped": 0,
+    "flaky": 0,
+    "sourceInputs": 912,
+    "sourceAndAssetsDrift": [],
+    "assertions": [
+      "2 exact money marks/code/kind",
+      "4 exclusion samples unchanged",
+      "redact custom first andignore second viaUI",
+      "save and real TXTdownload exacttext",
+      "original canonical text unchanged"
+    ],
+    "downloadProvenance": "browser temp download read/asserted duringtest andcleaned bycontext; preservedTXT independentlyunsealed from same isolatedserverexport, notbrowserpath",
+    "rootVisualInspection": "two PNGs inspected; firstrow visible andtemporarybusybuttons captions calibrated"
+  },
+  "guide": {
+    "sections": 29,
+    "assets": [
+      {
+        "source": ".data/research/lawbot-2026-10-16/iteration056/frontend/amount-real-edge-v2/evidence/amount-real-review.png",
+        "path": "文档/使用指南/截图-20261016/056-金额规则复核.png",
+        "sha256": "9eff22cf3add660942ea248a3b282f0bfb3d61d8331f88119edda0529e2ace7a",
+        "bytes": 150060
+      },
+      {
+        "source": ".data/research/lawbot-2026-10-16/iteration056/frontend/amount-real-edge-v2/evidence/amount-real-export.png",
+        "path": "文档/使用指南/截图-20261016/056-金额生成副本.png",
+        "sha256": "93c7329fb440219bb590265db0d29417e0e9349edfb5d8e3aa2818bf9b1d218c",
+        "bytes": 143293
+      },
+      {
+        "source": ".data/research/lawbot-2026-10-16/iteration056/frontend/amount-real-edge-v2/evidence/server-export-matching-downloaded-assertion.txt",
+        "path": "文档/使用指南/示例产物-20261016/056-金额规则-服务端导出.txt",
+        "sha256": "40bc5096f25764e2574ed7e822282b6c1384e45617274963cbb9318732890bda",
+        "bytes": 158
+      }
+    ],
+    "transitions": [
+      {
+        "path": "文档/使用指南/公开功能补齐操作-20261015.md",
+        "beforeSha256": "9b84f9bc8c77d448fc6b24f2874df9165cf00874759aa3ca94e11494c89fd99e",
+        "afterSha256": "56df169acf6d10c569e1e139d2dd37680c08a8b366f4e3e7097be4636c0d1295",
+        "bytes": 36916,
+        "archive": ".data/research/lawbot-2026-10-16/iteration056/before-amount-guide-v1/公开功能补齐操作-20261015.md"
+      },
+      {
+        "path": "文档/使用指南/公开功能补齐操作-20261015.html",
+        "beforeSha256": "14f48c3778b13cf674c0ec6ef9080371ab91e3c3a23ca8d596de008643afe06d",
+        "afterSha256": "e0f7553c4f8c5ae5bd1936a103310c28c15cb14fa1845119a9af037fc0c26103",
+        "bytes": 48100,
+        "archive": ".data/research/lawbot-2026-10-16/iteration056/before-amount-guide-v1/公开功能补齐操作-20261015.html"
+      }
+    ],
+    "localLinksMissing": [],
+    "scope": "supplement only; previous guide retained, online054 unchanged"
+  },
+  "normalDevelopment": "restored supervisor24194/child24199; API200 rules/NERready; web200; DB052",
+  "mcpAdversarial": "two P1 in privatev1/v2: source format vsresultslot confusion; combined attachments/child revalidation missing. archv3 fixing; no merge or pass claim",
+  "fullGates": "129 API still live;104 Edge notrun",
+  "statusChanges": "noS/I/R upgrades"
+}

@@ -72,9 +72,19 @@ export async function buildProfileArtifacts(input: ProfileExportInput): Promise<
   }
   return artifacts;
 }
-export function pseudonymTableNames(profile: Profile, filenames: string[], batchMode: "singleDocument" | "unifiedBatch" | "independentBatch", extension = ".xlsx") {
+export function pseudonymTableNames(profile: Profile, filenames: string[], batchMode: "singleDocument" | "unifiedBatch" | "independentBatch", extension = ".xlsx", overrides?: readonly (string | undefined)[]) {
   if (!filenames.length || batchMode === "singleDocument" && filenames.length !== 1) throw new Error("INVALID_EXPORT_NAME");
-  const template = profile.batch.pseudonymTableNameTemplates[batchMode], wanted = batchMode === "unifiedBatch" ? [safeExportName(template, filenames[0], extension)] : filenames.map(name => safeExportName(template, name, extension));
+  const expected = batchMode === "unifiedBatch" ? 1 : filenames.length;
+  if (overrides && overrides.length !== expected) throw new Error("INVALID_EXPORT_NAME");
+  const tableName=(value:string|undefined,filename:string)=>{
+    if(value===undefined)return safeExportName(profile.batch.pseudonymTableNameTemplates[batchMode],filename,extension);
+    // A one-off name is literal. Only saved profile templates expand {fileName}.
+    if(!value.isWellFormed()||!value.trim()||value.length>80||/[<>:"/\\|?*\x00-\x1f\x7f]/u.test(value)||value==='.'||value==='..')throw new Error('INVALID_EXPORT_NAME');
+    return (/^(CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(?:\.|$)/iu.test(value)?'_':'')+value+extension;
+  };
+  const wanted = batchMode === "unifiedBatch"
+    ? [tableName(overrides?.[0],filenames[0])]
+    : filenames.map((name,i) => tableName(overrides?.[i],name));
   // Deterministic collision suffixes preserve every independent table rather than overwriting one.
   const used = new Set<string>();
   return wanted.map(original => { let result = original, suffix = 2; while (used.has(result.toLocaleLowerCase("zh-CN"))) result = original.slice(0, -extension.length) + `_${suffix++}` + extension; used.add(result.toLocaleLowerCase("zh-CN")); return result; });

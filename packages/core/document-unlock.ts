@@ -1,7 +1,7 @@
 import {init} from '@embedpdf/pdfium';
 import {createHash} from 'node:crypto';
 import {FILE_MAX_BYTES} from '../contracts/index.ts';
-import {PDF_MAX_PAGES,checkPixels} from './pdf-reader.ts';
+import {checkPixels} from './pdf-reader.ts';
 export type UnlockedDocument={format:'pdf';bytes:Buffer;sourceHash:string;derivedHash:string;pages:number};
 const hash=(b:Buffer)=>createHash('sha256').update(b).digest('hex');
 function fail(code:string):never{throw new Error(code);}
@@ -16,7 +16,7 @@ export async function unlockPdfDocument(original:Buffer,password:string):Promise
  try{
   heap().set(original,source);document=p.FPDF_LoadMemDocument(source,original.length,password);
   if(!document){const error=p.FPDF_GetLastError();fail(error===4?'DOCUMENT_PASSWORD_INVALID':error===5?'DOCUMENT_ENCRYPTION_UNSUPPORTED':'DOCUMENT_UNLOCK_FAILED');}
-  const pages=p.FPDF_GetPageCount(document);if(pages<1||pages>PDF_MAX_PAGES)fail('PAGE_LIMIT');
+  const pages=p.FPDF_GetPageCount(document);if(!Number.isSafeInteger(pages)||pages<1)fail('PAGE_LIMIT');
   function geometryAndText(doc:number){const results=[];for(let index=0;index<pages;index++){const page=p.FPDF_LoadPage(doc,index);if(!page)fail('DOCUMENT_UNLOCK_FAILED');let textPage=0;try{const width=p.FPDF_GetPageWidthF(page),height=p.FPDF_GetPageHeightF(page);checkPixels(Math.ceil(width),Math.ceil(height));textPage=p.FPDFText_LoadPage(page);if(!textPage)fail('DOCUMENT_UNLOCK_FAILED');const count=p.FPDFText_CountChars(textPage);if(count<0||count>100000)fail('PDF_TEXT_LIMIT');let text='';for(let n=0;n<count;n++){const cp=p.FPDFText_GetUnicode(textPage,n);if(cp===0)continue;if(cp>0x10ffff||cp>=0xd800&&cp<=0xdfff)fail('INVALID_PDF_TEXT');text+=String.fromCodePoint(cp);}results.push({width,height,rotation:p.FPDFPage_GetRotation(page),text});}finally{if(textPage)p.FPDFText_ClosePage(textPage);p.FPDF_ClosePage(page);}}return results;}
   const expected=geometryAndText(document),attachments=p.FPDFDoc_GetAttachmentCount(document),scripts=p.FPDFDoc_GetJavaScriptActionCount(document);
   writer=p.PDFiumExt_OpenFileWriter();if(!writer)fail('DOCUMENT_UNLOCK_FAILED');

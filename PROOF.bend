@@ -97,3 +97,84 @@ def Laws.restore_ambiguous_denied(authorized, current, known):
 
 def Laws.restore_complete_allowed():
   {==}
+
+def Laws.auto_ready_denied(version, covered, decided, snapshot, origin):
+  {==}
+
+def Laws.auto_version_denied(ready, covered, decided, snapshot, origin):
+  match ready:
+    case False{}:
+      {==}
+    case True{}:
+      {==}
+
+def Laws.auto_covered_denied(ready, version, decided, snapshot, origin):
+  match ready:
+    case False{}:
+      {==}
+    case True{}:
+      match version:
+        case False{}:
+          {==}
+        case True{}:
+          {==}
+
+def Laws.auto_decided_denied(ready, version, covered, snapshot, origin):
+  match ready:
+    case False{}:
+      {==}
+    case True{}:
+      match version:
+        case False{}:
+          {==}
+        case True{}:
+          match covered:
+            case False{}:
+              {==}
+            case True{}:
+              {==}
+
+def Laws.auto_snapshot_denied(ready, version, covered, decided, origin):
+  match ready:
+    case False{}:
+      {==}
+    case True{}:
+      match version:
+        case False{}:
+          {==}
+        case True{}:
+          match covered:
+            case False{}:
+              {==}
+            case True{}:
+              match decided:
+                case False{}:
+                  {==}
+                case True{}:
+                  {==}
+
+def Laws.auto_origin_denied(ready, version, covered, decided, snapshot):
+  match ready:
+    case False{}:
+      {==}
+    case True{}:
+      match version:
+        case False{}:
+          {==}
+        case True{}:
+          match covered:
+            case False{}:
+              {==}
+            case True{}:
+              match decided:
+                case False{}:
+                  {==}
+                case True{}:
+                  match snapshot:
+                    case False{}:
+                      {==}
+                    case True{}:
+                      {==}
+
+def Laws.auto_complete_allowed():
+  {==}

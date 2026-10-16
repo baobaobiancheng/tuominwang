@@ -16,7 +16,7 @@ import {unseal} from '../../packages/adapters/storage.ts';
 import {recordReboundReviewProvenance} from '../../packages/adapters/review-provenance-history.ts';
 import {rebindEntityCorrections,hydrateEntityCorrections} from '../../packages/adapters/entity-corrections.ts';
 import {semanticEntityValue} from '../../packages/core/entity-corrections.ts';
-const params = z.object({ id, page: z.coerce.number().int().min(0).max(299) });
+const params = z.object({ id, page: z.coerce.number().int().nonnegative() });
 function fail(message: string, statusCode = 409): never { throw Object.assign(new Error(message), { statusCode }); }
 export function registerOcrRoutes(app: FastifyInstance) {
   app.get("/api/documents/:id/pages/:page/ocr-text", async req => {

@@ -1,0 +1,213 @@
+{
+  "at": "2026-10-16T16:02:34.783793+00:00",
+  "kind": "mcp_backend_transport_diagnostics_static_checkpoint",
+  "formalSource": {
+    "path": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v11.json",
+    "sha256": "e9450aa71244e614fe1bfe248f84a065bec64b68b4e269b346462bf7413d11b8",
+    "inputs": 917,
+    "notIncludingLedgerDocs": true
+  },
+  "originalBackend": {
+    "methodsIndexed": 86,
+    "report": ".data/research/lawbot-2026-10-16/iteration056/rules/mcp-backend-service-readonly-v1/method-index-and-findings.json",
+    "sha256": "b71ac94047a999301fd60fa383472c6b38398264d1524018277f78522585b52a",
+    "runtime": "R0",
+    "methodNamesNotClosure": true,
+    "confirmedDifferences": [
+      "parent_child_resume_verification",
+      "failed_child_restart_new_linked_task"
+    ],
+    "otherCandidateBoundaries": [
+      "batch_partial_delivery",
+      "trusted_statistics_notice",
+      "diagnostics_bundle"
+    ]
+  },
+  "transport": {
+    "v3ActualExitCode": 0,
+    "v3Receipt": ".data/research/lawbot-2026-10-16/iteration056/root/transport-retry-candidate-v3/api-terminal-receipt.json",
+    "v3ReceiptSha256": "d0284d507f6ff11e7db2947cd7379b6f85a71f35660a3afa32b40eac9ae01e94",
+    "scope": "four isolated sequential cases, not full API",
+    "v4ProductionStaticReview": ".data/research/lawbot-2026-10-16/iteration056/rules/transport-retry-v4-independent-review-v1.json",
+    "v5Manifest": ".data/research/lawbot-2026-10-16/iteration056/root/transport-retry-candidate-v5/manifest.json",
+    "v5LaunchOnly": ".data/research/lawbot-2026-10-16/iteration056/root/transport-retry-candidate-v5/api-launch.json",
+    "v5TerminalAtSnapshot": false
+  },
+  "diagnostics": {
+    "v1Manifest": ".data/research/lawbot-2026-10-16/iteration056/frontend/ai-diagnostics-cloud-candidate-v1/candidate-manifest.json",
+    "v1IndependentReview": ".data/research/lawbot-2026-10-16/iteration056/rules/ai-diagnostics-cloud-v1-independent-review.json",
+    "knownP1": "053 not listed in static migrate array",
+    "v2Status": "separate research validation pending; no final acceptance"
+  },
+  "old913Remaining82": {
+    "receipt": ".data/research/lawbot-2026-10-16/iteration056/rules/api-v8-remaining82-baseline-v1/terminal-receipt.json",
+    "receiptSha256": "94a1ffc3611d24f36545e5bf25fdf6107cf9239d3f797cb98cb12e0a1453458b",
+    "completed": 82,
+    "notRun": 0,
+    "failedFiles": [
+      "tests/task-storage-quarantine.integration.ts"
+    ],
+    "childExitCode": 1,
+    "notFinal917": true
+  },
+  "observation": {
+    "path": ".data/research/lawbot-2026-10-16/iteration056/rules/ledger109-candidate-v1/immutable-observation.json",
+    "sha256": "dc00957bcad65d34a372b199c3460a90b1778900b7bedde3a2a5321a84c38492"
+  },
+  "oldArchive": {
+    "path": ".data/research/lawbot-2026-10-16/iteration056/before-mcp-backend-transport-ledger109-v1/manifest.json",
+    "sha256": "a2f73833700de2094157bee3cc78bc617c6925a6e2bf089ca5bc4330059b7652",
+    "files": 9
+  },
+  "documentChanges": [
+    {
+      "path": "文档/待办与完成状态-20261015.md",
+      "beforeSha256": "e59fb58233f9bd26e19a1a39deb86b2cfce609f0e260531f6b6e7acfad07cdb6",
+      "afterSha256": "cb27a0b5f94bbaaabe70d9471f67bf8d22ab9dc2f10e652180eaa9a4ba1122b1"
+    },
+    {
+      "path": "文档/脱敏规则完整技术交接-迭代023.md",
+      "beforeSha256": "99c21459294e6e7a30029b94f8c11daeb262fc039a86268211a1199542f34979",
+      "afterSha256": "87853e4ebc3dbc314d7f67da401d08ba39143847f62d7d6c265d2c9d560f93d2"
+    }
+  ],
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/rules/mcp-backend-service-readonly-v1/method-index-and-findings.json",
+      "sha256": "b71ac94047a999301fd60fa383472c6b38398264d1524018277f78522585b52a",
+      "bytes": 31730
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/rules/mcp-backend-service-readonly-v1/README.md",
+      "sha256": "9bc1f976a772f0c6c582501eda9fccf6936601c8d71c1e7df56abd2aab2e3181",
+      "bytes": 7941
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/rules/transport-retry-v2-independent-review-v1.json",
+      "sha256": "66233ca41da8f1168c0cb2d3a8a1968b282e5d464aaa9b9e70cbba3fba1919dd",
+      "bytes": 5515
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/rules/transport-retry-v3-independent-review-v1.json",
+      "sha256": "d57b88d3f984bccf326c05e6997f17fbcd10b7da949e86268db2082fd2d60397",
+      "bytes": 4188
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/rules/transport-retry-v4-independent-review-v1.json",
+      "sha256": "bce74fb12fba09b1fdffb50a2dd3543411e7cba15e697082f1db6563f64a51d7",
+      "bytes": 2610
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/transport-retry-candidate-v2/manifest.json",
+      "sha256": "eaefc592f6862c23bac43cfbf98339438acb14852b51eebfc1be95c2538fabf8",
+      "bytes": 2108
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/transport-retry-candidate-v3/manifest.json",
+      "sha256": "f99eaba73444511f5947df3a7a6fa6a49d56434487dd0ba3deb12ef38a7f03be",
+      "bytes": 3326
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/transport-retry-candidate-v4/manifest.json",
+      "sha256": "7e6c57809b8d3b3a30ea6a59761b258cd17cd9a7058b4d98de730beb08eeb674",
+      "bytes": 1961
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/transport-retry-candidate-v5/manifest.json",
+      "sha256": "cb521f4ffcad6194f6086c5225c56c74155f92fc83fa54e54de93818f69da11a",
+      "bytes": 2507
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/transport-retry-candidate-v3/api-terminal-receipt.json",
+      "sha256": "d0284d507f6ff11e7db2947cd7379b6f85a71f35660a3afa32b40eac9ae01e94",
+      "bytes": 101010
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/transport-retry-candidate-v5/api-launch.json",
+      "sha256": "591593c75be3c8ce745c548daa45f1347584c0c4cca8c56d905f00d0e3765d63",
+      "bytes": 153
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/rules/ai-diagnostics-cloud-v1-independent-review.json",
+      "sha256": "3d6e4f94df32e5bcaa333392a1b1471874b1b9d29084ffa05f11f9cac8cf2c93",
+      "bytes": 4100
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/ai-diagnostics-cloud-candidate-v1/candidate-manifest.json",
+      "sha256": "959813ef3ae3dfbc310e42b5a9773b250c6eea3dcb2bd230e75f9eca1cc33407",
+      "bytes": 2426
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/rules/api-v8-remaining82-baseline-v1/terminal-receipt.json",
+      "sha256": "94a1ffc3611d24f36545e5bf25fdf6107cf9239d3f797cb98cb12e0a1453458b",
+      "bytes": 18105
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/rules/ledger109-candidate-v1/immutable-observation.json",
+      "sha256": "dc00957bcad65d34a372b199c3460a90b1778900b7bedde3a2a5321a84c38492",
+      "bytes": 1222
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/before-mcp-backend-transport-ledger109-v1/manifest.json",
+      "sha256": "a2f73833700de2094157bee3cc78bc617c6925a6e2bf089ca5bc4330059b7652",
+      "bytes": 1694
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v11.json",
+      "sha256": "e9450aa71244e614fe1bfe248f84a065bec64b68b4e269b346462bf7413d11b8",
+      "bytes": 155046
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/final-check-v14-receipt.json",
+      "sha256": "aa95f15bb51c9fef5084ae53fe457015600793264edfaae834fe8363f95b2953",
+      "bytes": 2790
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/before-mcp-backend-transport-ledger109-v1/文档/逆向台账/ledger.json",
+      "sha256": "dbecbe1cffc5c882f3541f52d1bb3399c6a1365c04fe28562876269f0a3253dd",
+      "bytes": 7715968
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/before-mcp-backend-transport-ledger109-v1/文档/逆向台账/接口台账.csv",
+      "sha256": "5904b34e63c5ff7ba8edd36e1a525b635bf716b0348dd68990d0879315af464d",
+      "bytes": 553318
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/before-mcp-backend-transport-ledger109-v1/文档/逆向台账/链路台账.csv",
+      "sha256": "44cf6487d1850b9ea8689684eac57a319168c53bb75d5dfe4da8aeffaa8093fa",
+      "bytes": 59809
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/before-mcp-backend-transport-ledger109-v1/文档/逆向台账/待办清单.csv",
+      "sha256": "bcc955ebcf5c4a18c7c0e38c69e01252124ac4c320ac69b281efed14bf150f0f",
+      "bytes": 160280
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/before-mcp-backend-transport-ledger109-v1/文档/逆向台账/校验结果.json",
+      "sha256": "a091622ed6a2b5602b37734992eb80f7c35d55fec0d62ca965573aa0451468be",
+      "bytes": 1309515
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/before-mcp-backend-transport-ledger109-v1/文档/逆向台账/README.md",
+      "sha256": "1964f1cc305e895dbe9ec2bd0efe75037ded263ad17c22df86bb36e31344790d",
+      "bytes": 19310
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/before-mcp-backend-transport-ledger109-v1/文档/逆向台账/变更日志.md",
+      "sha256": "7d70e6a5b0a5e585c5ddc0a688481c192872078ce7a48104ea2d0223dfe3c3fb",
+      "bytes": 75275
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/before-mcp-backend-transport-ledger109-v1/文档/待办与完成状态-20261015.md",
+      "sha256": "e59fb58233f9bd26e19a1a39deb86b2cfce609f0e260531f6b6e7acfad07cdb6",
+      "bytes": 42370
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/before-mcp-backend-transport-ledger109-v1/文档/脱敏规则完整技术交接-迭代023.md",
+      "sha256": "99c21459294e6e7a30029b94f8c11daeb262fc039a86268211a1199542f34979",
+      "bytes": 406435
+    }
+  ],
+  "classificationChange": false,
+  "server": "054 not deployed"
+}

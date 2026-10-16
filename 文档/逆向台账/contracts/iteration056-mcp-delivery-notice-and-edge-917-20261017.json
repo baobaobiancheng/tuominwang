@@ -1,0 +1,212 @@
+{
+  "at": "2026-10-16T16:14:34.398581+00:00",
+  "kind": "mcp_delivery_notice_diagnostics_and_edge_terminal",
+  "formalSource": {
+    "path": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v11.json",
+    "sha256": "e9450aa71244e614fe1bfe248f84a065bec64b68b4e269b346462bf7413d11b8",
+    "inputs": 917,
+    "notIncludingLedgerDocs": true
+  },
+  "notice": {
+    "candidate": ".data/research/lawbot-2026-10-16/iteration056/rules/mcp-recognition-notice-candidate-v6/candidate-manifest-v6.json",
+    "sha256": "26fc0b5a43d1f9ab67cd03cf441981114d7e39b4d36292c07579c54152f3ad78",
+    "apiReceipt": ".data/research/lawbot-2026-10-16/iteration056/rules/mcp-recognition-notice-candidate-v6/isolated-api-terminal-receipt.json",
+    "apiReceiptSha256": "fd36d132b48e9b17af6bbfdf6e35f1770cd9579d912e2b539c8739930b2820a5",
+    "scope": "single task 1/1; batch children pending"
+  },
+  "diagnostics": {
+    "candidate": ".data/research/lawbot-2026-10-16/iteration056/frontend/ai-diagnostics-cloud-candidate-v4/candidate-manifest.json",
+    "peer": ".data/research/lawbot-2026-10-16/iteration056/rules/ai-diagnostics-cloud-v4-independent-review.json",
+    "scope": "research v4; cloud arrived calls only"
+  },
+  "transport": {
+    "receipt": ".data/research/lawbot-2026-10-16/iteration056/root/transport-retry-candidate-v5/api-terminal-receipt.json",
+    "sha256": "5cca86b592de9fe01fa4b24d8c23d4ac53a1e4b8d8a28062248b3eb5c7e8c72b",
+    "actualExitCode": 0,
+    "scope": "private 5 cases, not full gate"
+  },
+  "fullEdge": {
+    "receipt": ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-final-v10/terminal-receipt.json",
+    "sha256": "90c27a757b3daaf64ca293a384d9ff60580c1d7d4cf759f07988dcfb733d562c",
+    "planned": 105,
+    "expected": 85,
+    "unexpected": 20,
+    "skipped": 0,
+    "childExitCode": 1,
+    "archive": ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-final-v10/failed-traces-archive-manifest.json",
+    "archiveSha256": "6491bb8171aefa4f6793a1a3fca240d7512336dcf68a6bc215fe2194cab29cce",
+    "testOnlyCandidate": ".data/research/lawbot-2026-10-16/iteration056/root/edge-v10-visual-and-workbench-waits-v1/manifest.json",
+    "peer": ".data/research/lawbot-2026-10-16/iteration056/rules/edge-v10-visual-and-workbench-waits-independent-review-v1.json",
+    "candidateExecuted": false
+  },
+  "fullApi": {
+    "observation": ".data/research/lawbot-2026-10-16/iteration056/rules/ledger110-candidate-v1/immutable-observation.json",
+    "sha256": "c8a3d59c69018ac6322c0ff5db2221b894f13c7354754fa9832d200c9fea06b9",
+    "prefixLog": ".data/research/lawbot-2026-10-16/iteration056/rules/ledger110-candidate-v1/full-api-v11-prefix.log",
+    "prefixSha256": "b082cf7823cbe0b152065d0daea332641c1b4f4da3906f55905cf3101abb8a13",
+    "completedPrefixFiles": 51,
+    "prefixFails": [],
+    "status": "running_at_observation_not_final"
+  },
+  "normalDev": {
+    "launcher": ".data/research/lawbot-2026-10-16/iteration056/frontend/normal-dev-service-after-full-edge-v10-v1/launcher.json",
+    "healthObservation": ".data/research/lawbot-2026-10-16/iteration056/rules/ledger110-candidate-v1/normal-dev-health-observation.json",
+    "scope": "momentary local 4318/5178 200, not deployment"
+  },
+  "oldArchive": {
+    "path": ".data/research/lawbot-2026-10-16/iteration056/before-mcp-delivery-diagnostics-ledger110-v1/manifest.json",
+    "sha256": "ae2d5d8ea792d3a020c34a684534b05bb26b4f1ab34398956c25d47ad10665dd",
+    "files": 9
+  },
+  "documentChanges": [
+    {
+      "path": "文档/待办与完成状态-20261015.md",
+      "beforeSha256": "cb27a0b5f94bbaaabe70d9471f67bf8d22ab9dc2f10e652180eaa9a4ba1122b1",
+      "afterSha256": "620cbca53383f5cef08c1e244158237dbfe322384b97ac1b9cb041322fa95e0f"
+    },
+    {
+      "path": "文档/脱敏规则完整技术交接-迭代023.md",
+      "beforeSha256": "87853e4ebc3dbc314d7f67da401d08ba39143847f62d7d6c265d2c9d560f93d2",
+      "afterSha256": "32fdc47af0a49cdd84af0165ba19dc33a3a1fa4e0a4e4d772c6eeb33e9407d77"
+    }
+  ],
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v11.json",
+      "sha256": "e9450aa71244e614fe1bfe248f84a065bec64b68b4e269b346462bf7413d11b8",
+      "bytes": 155046
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/final-check-v14-receipt.json",
+      "sha256": "aa95f15bb51c9fef5084ae53fe457015600793264edfaae834fe8363f95b2953",
+      "bytes": 2790
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/rules/mcp-recognition-notice-candidate-v6/candidate-manifest-v6.json",
+      "sha256": "26fc0b5a43d1f9ab67cd03cf441981114d7e39b4d36292c07579c54152f3ad78",
+      "bytes": 1419
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/rules/mcp-recognition-notice-candidate-v6/isolated-api-terminal-receipt.json",
+      "sha256": "fd36d132b48e9b17af6bbfdf6e35f1770cd9579d912e2b539c8739930b2820a5",
+      "bytes": 879
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/rules/mcp-recognition-notice-candidate-v6/source-field-coverage.md",
+      "sha256": "21cd69faa3b7906195d2cc384478f4546d5efc22dae931809f589d56b31e1ff4",
+      "bytes": 1897
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/ai-diagnostics-cloud-candidate-v4/candidate-manifest.json",
+      "sha256": "6da5585fcd9273eb9650722863c63e149828203480b0ed0bf08b83175e932946",
+      "bytes": 3256
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/rules/ai-diagnostics-cloud-v4-independent-review.json",
+      "sha256": "671bab81d6eff703a27186bbddbc9e3e899d735ef82b8cccd427f5cebb0b8fd6",
+      "bytes": 1185
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/transport-retry-candidate-v5/api-terminal-receipt.json",
+      "sha256": "5cca86b592de9fe01fa4b24d8c23d4ac53a1e4b8d8a28062248b3eb5c7e8c72b",
+      "bytes": 101010
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/transport-retry-candidate-v5/manifest.json",
+      "sha256": "cb521f4ffcad6194f6086c5225c56c74155f92fc83fa54e54de93818f69da11a",
+      "bytes": 2507
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-final-v10/terminal-receipt.json",
+      "sha256": "90c27a757b3daaf64ca293a384d9ff60580c1d7d4cf759f07988dcfb733d562c",
+      "bytes": 120807
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-final-v10/failed-traces-archive-manifest.json",
+      "sha256": "6491bb8171aefa4f6793a1a3fca240d7512336dcf68a6bc215fe2194cab29cce",
+      "bytes": 9946
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/edge-v10-visual-and-workbench-waits-v1/manifest.json",
+      "sha256": "c5e76296838a60f0834b601ff4ec0aa6afaa65c2bb1d21ac5d4abb8d2062fa2d",
+      "bytes": 4976
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/rules/edge-v10-visual-and-workbench-waits-independent-review-v1.json",
+      "sha256": "ad43af160c91320376a7f9ec313ad3c49a16835ea40778fb2485015f586b89a2",
+      "bytes": 1317
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/rules/ledger110-candidate-v1/immutable-observation.json",
+      "sha256": "c8a3d59c69018ac6322c0ff5db2221b894f13c7354754fa9832d200c9fea06b9",
+      "bytes": 2886
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/rules/ledger110-candidate-v1/full-api-v11-prefix.log",
+      "sha256": "b082cf7823cbe0b152065d0daea332641c1b4f4da3906f55905cf3101abb8a13",
+      "bytes": 35182
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/rules/ledger110-candidate-v1/normal-dev-health-observation.json",
+      "sha256": "57278bac3d93a53d666945df64dae65af0033d1ab160e190997f275cc1ecc436",
+      "bytes": 812
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/normal-dev-service-after-full-edge-v10-v1/launcher.json",
+      "sha256": "192be6f636689f19a2c42be0beecb746b72368229d7366c711f585b070e1c4a6",
+      "bytes": 330
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/before-mcp-delivery-diagnostics-ledger110-v1/manifest.json",
+      "sha256": "ae2d5d8ea792d3a020c34a684534b05bb26b4f1ab34398956c25d47ad10665dd",
+      "bytes": 1685
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/before-mcp-delivery-diagnostics-ledger110-v1/文档/逆向台账/ledger.json",
+      "sha256": "74dc0dfbfa42017a44691a1a19bef5d8e0b20b9b447b94f2c9fa346c6c1d869b",
+      "bytes": 7723512
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/before-mcp-delivery-diagnostics-ledger110-v1/文档/逆向台账/接口台账.csv",
+      "sha256": "5904b34e63c5ff7ba8edd36e1a525b635bf716b0348dd68990d0879315af464d",
+      "bytes": 553318
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/before-mcp-delivery-diagnostics-ledger110-v1/文档/逆向台账/链路台账.csv",
+      "sha256": "44cf6487d1850b9ea8689684eac57a319168c53bb75d5dfe4da8aeffaa8093fa",
+      "bytes": 59809
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/before-mcp-delivery-diagnostics-ledger110-v1/文档/逆向台账/待办清单.csv",
+      "sha256": "bcc955ebcf5c4a18c7c0e38c69e01252124ac4c320ac69b281efed14bf150f0f",
+      "bytes": 160280
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/before-mcp-delivery-diagnostics-ledger110-v1/文档/逆向台账/校验结果.json",
+      "sha256": "b22b50d831ce3a96cef6c1b093fad50011bb5ea8410cebc76f00db88f7413c47",
+      "bytes": 1316553
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/before-mcp-delivery-diagnostics-ledger110-v1/文档/逆向台账/README.md",
+      "sha256": "ed80c851696c6874fbf54a9701d05cc095e2ba580d969b6e52b2b02d2632d93d",
+      "bytes": 19543
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/before-mcp-delivery-diagnostics-ledger110-v1/文档/逆向台账/变更日志.md",
+      "sha256": "55e533d8abcd44c49e665cf2f13df757b69e8f2017908f7a30d7e4441062254a",
+      "bytes": 76196
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/before-mcp-delivery-diagnostics-ledger110-v1/文档/待办与完成状态-20261015.md",
+      "sha256": "cb27a0b5f94bbaaabe70d9471f67bf8d22ab9dc2f10e652180eaa9a4ba1122b1",
+      "bytes": 43816
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/before-mcp-delivery-diagnostics-ledger110-v1/文档/脱敏规则完整技术交接-迭代023.md",
+      "sha256": "87853e4ebc3dbc314d7f67da401d08ba39143847f62d7d6c265d2c9d560f93d2",
+      "bytes": 407614
+    }
+  ],
+  "classificationChange": false,
+  "server": "054 not deployed"
+}

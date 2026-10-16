@@ -6,6 +6,7 @@ import {detectReferencePartyReferences} from '../core/reference-party.ts';
 import {detectReferenceFragments} from '../core/reference-fragment.ts';
 import type {ReferenceOptions} from '../core/reference-rules.ts';
 import type {DocumentConfiguration} from '../contracts/document-policy.ts';
+import {effectiveReferenceDocumentType} from '../core/document-route.ts';
 import {documentTableMarks,referenceTableNerAdapter} from './reference-table.ts';
 import {documentVisualTableMarks} from './reference-visual-table.ts';
 /** Reuse the caller's NER session. Actual cells and authenticated glyphs bind
@@ -27,6 +28,5 @@ export async function contextualDocumentMarks(bytes:Buffer,text:string,anchors:A
 }
 
 export function contextualDocumentType(classification:NonNullable<ReferenceOptions['documentType']>,configuration?:DocumentConfiguration){
- const route=configuration?.documentType;if(!route||route==='auto')return classification;
- return route==='pleading'?'complaint':route==='general'||route==='disclosure'||route==='screenshot'?'other':route;
+ return effectiveReferenceDocumentType(classification,configuration);
 }

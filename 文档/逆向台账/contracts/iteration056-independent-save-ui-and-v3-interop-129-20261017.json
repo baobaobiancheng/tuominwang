@@ -1,0 +1,161 @@
+{
+  "at": "2026-10-16T19:24:32.291384+00:00",
+  "formalSource": "v13/944 untouched; no release",
+  "validatedResearchAssembly": {
+    "files": 965,
+    "tsc": 0,
+    "independentUnit": {
+      "pass": 12,
+      "fail": 0,
+      "testsUnchanged": true
+    },
+    "realApi": {
+      "receiptCases": 3,
+      "normalizedIntegrityCases": 1,
+      "actualExitCodes": [
+        0,
+        0
+      ],
+      "independentDatabasesDropped": true
+    },
+    "notProven": [
+      "new-source full pnpm check",
+      "new-source API140",
+      "new-source Edge106",
+      "original-format complete interoperability",
+      "multipart and above50MiB full chain"
+    ]
+  },
+  "compatEvolution": {
+    "v4OldWorkspaceTests": "4 pass/1 timeout at original5000ms; extra old-file password probe",
+    "v5": "original Buffer decrypt/readZip reused; old5 actual0 with original timeout and assertions; streamed native wire version2/3 explicit dispatch"
+  },
+  "targetedEdge": {
+    "originalFull106": "96pass/10fail, raw preserved",
+    "targeted10": "5pass/5fail",
+    "targetedDownstream5": "5pass/0fail, no skips, actual HTTP200 and full ZIP bytes",
+    "combinedNewSourceFull106": "not run",
+    "normalDevRestore": "72614 historical snapshot, 4318/5178 health200"
+  },
+  "adversarialFindings": {
+    "batchV2": "alias preflight before owned detection/source validation can commit side effects; protocol v3 restores original order, pending own gates",
+    "secureV3": "original main.js:22149 rejects every undeclared ZIP entry; producer2 secure-v3 shares native extra-asset/descriptor layout and must be corrected to original declared layout. Self-read/API green does not prove interop"
+  },
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/save-v9-validated-assembly-v1/manifest.json",
+      "sha256": "9cd5e1eaeea160886fcb98868d2ed81a506064cefda2fdbae503658fea3a7d07",
+      "bytes": 163064
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/save-v9-validated-assembly-v1/terminal-receipt.json",
+      "sha256": "d41f1eeca1a0fcd7a51913a0e5c25a6d899ec941e72c30f6ba029b8d1b48784c",
+      "bytes": 1333
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-core-v5-independent-v1/terminal-receipt.json",
+      "sha256": "05711b573497382e0c0d42c7ee0f747ae17b9e88941035766d29e44904845f26",
+      "bytes": 552
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-core-v5-independent-v1/old-unit.log",
+      "sha256": "8d2221278310c65dbb55ded8dc3ae03c33a7b3bceb5816245078eddb7997042b",
+      "bytes": 1730
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-buffer-compat-v3/terminal-receipt.json",
+      "sha256": "42e64d21d1453e5670ab072c1f8d450b5a767a6478920c6176750f7f709fa6a9",
+      "bytes": 870
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-buffer-compat-v4/terminal-receipt.json",
+      "sha256": "4bfe591cfd5257d008c71e65143bd58605c9befc5abdbfc8d2d01e716dacffc9",
+      "bytes": 870
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-buffer-compat-v4/old5.log",
+      "sha256": "d31e0a98d1745ba187c0978c0024e32ed590a75f5e531029bf1a594c84cb387a",
+      "bytes": 904
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-buffer-compat-v5/candidate-manifest.json",
+      "sha256": "b4bd453ae0be8af08fe70ea6ed32625ab35e0ed5a857dbc7d1e77a3dc9db2710",
+      "bytes": 3258
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-buffer-compat-v5/terminal-receipt.json",
+      "sha256": "518091975df7b5d0b0d8e8751c280ca501fb57aecc9e5421567c3d6137ff16ff",
+      "bytes": 870
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-buffer-compat-v5/tsc.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-buffer-compat-v5/root7.log",
+      "sha256": "6ec368a1fe566033cc522495f473f6179d1181c39519413a5e05675ed495cac2",
+      "bytes": 864
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-buffer-compat-v5/old5.log",
+      "sha256": "5216aaaefd060088f9c6db313a648f5e5fa28fc98703e472d363cca7996303ab",
+      "bytes": 226
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-buffer-compat-v5/receipts.log",
+      "sha256": "b58a0098a010755f51a01a3c349ef2aef44f7ff31d1639ffa9f3935a419aaaa1",
+      "bytes": 824
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-buffer-compat-v5/normalized.log",
+      "sha256": "c40d7a2cf967661b23fb2deddd1ba90a2fce3ac6be6e0b5644e3bab3d1d2bb79",
+      "bytes": 448
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/workspace-tmm-capacity-v1/candidate-producer-v2/manifest.json",
+      "sha256": "2f7d789c451b5623a862b39f577827cebce68fa5d42778712efcd31653152098",
+      "bytes": 3184
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/workspace-tmm-capacity-v1/candidate-core-v5/manifest.json",
+      "sha256": "a8b3194e09068cfe0574f7d021d4f86e155ba63601e4902412be6fabe48d69ee",
+      "bytes": 2643
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/targeted5-v13-downstream-v1/terminal-receipt.json",
+      "sha256": "44aa06e36b2cd08027b23858bb80b145ddd30014fa834bb98e37a13e5462d88f",
+      "bytes": 7218
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/targeted5-v13-downstream-v1/successful-evidence-v1/evidence-manifest.json",
+      "sha256": "2f5689fadf476e1762edf259329f0175d6c469844a0e54ce60d37a70c4f1c9b1",
+      "bytes": 1743
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/normal-dev-service-after-targeted5-v13-v1/restore-receipt.json",
+      "sha256": "3d69353b2737e0d71233d968939aa027251478f9a08c4d9125ef74bfe8bab5eb",
+      "bytes": 834
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/full106-test-only-assembly-v1/candidate-manifest.json",
+      "sha256": "818ab6d5822212e4bc34c7cea8cffc005c2f65940d2b47dd582760be9f5220d2",
+      "bytes": 5844
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/targeted5-v13-downstream-v1/latency-observation-v1.json",
+      "sha256": "bcd3b5984562f1a605919c7852e338be31b763e5cb6aed1a8878426fc44d130f",
+      "bytes": 1590
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/workspace-stream-peer-review-v1/review.json",
+      "sha256": "d6dd0d9c8702202a39c3580836c0e49ef0974ec0f39b8f5046846e47a776ba82",
+      "bytes": 5152
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/batch-atomic-buffer-v5-peer-v1/review.json",
+      "sha256": "25af14286b3bf76105549085b334733bd04d916c441cef5f3c59ee06e0efb537",
+      "bytes": 3701
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "schema": "iteration056-seal-full-target-and-preview-failure-v1",
+  "date": "2026-10-16",
+  "previousLedgerSha256": "b2682ae2ab2e47ef40f1e1de6bed07a9445fed593c0aa9c23980562540946b0e",
+  "previousLedgerArchive": ".data/research/lawbot-2026-10-16/iteration056/before-seal-full-target-and-preview-failure-v1/ledger.json",
+  "formalSourceManifest": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v6.json",
+  "evidence": {
+    ".data/research/lawbot-2026-10-16/iteration056/arch/pdf-seal-pause-v14/green-v1-receipt.json": {
+      "sha256": "0d943f649200fdce850f451811caeedf04a42168c3dda7aaf6d9ce5aa432a1ea",
+      "bytes": 2932
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/arch/pdf-seal-pause-v14/green-v1.log": {
+      "sha256": "61ba687564ad0d0bb5253c64f0d5c06ebce8d4e003c63dde5417dfdf25215f92",
+      "bytes": 234
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/arch/pdf-seal-pause-v15/green-v1-receipt.json": {
+      "sha256": "a575fd47cb6dc722492aa65a472c26cdfe07f589103382900ebe8deb465f9905",
+      "bytes": 2932
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/arch/pdf-seal-pause-v15/green-v1.log": {
+      "sha256": "35b1cbff811c3ddd6ec8a09a92ef0d6a3a799e5c770576c509d08a56fc252c89",
+      "bytes": 325
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/arch/pdf-seal-pause-v16/candidate-manifest-v16.json": {
+      "sha256": "34be57da39dd938fb791e728f333f1a11951566dc7609847038b92d47e7a8220",
+      "bytes": 2540
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/arch/luna-seal-witness-review-v1/luna-seal-witness-review-v1.json": {
+      "sha256": "812df6c03c6a5b9cdeec7ec27bcf1860136b1da38575d76a31d94025c34c12d0",
+      "bytes": 5674
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/arch/luna-seal-witness-review-v1/luna-seal-witness-review-v1-supplement.json": {
+      "sha256": "8a4d8496425d9650e86f35fe94fd42d49f4e7505c83ba83b0d854d95a56b5145",
+      "bytes": 3797
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/ahead-preview-csp-v1/terminal-receipt.json": {
+      "sha256": "6848eb785ab4f4c7c021678544171e6a252769ec28009aaead6ee012731bb27d",
+      "bytes": 1718
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/rules/get-ocr-page-v8-control/terminal-receipt.json": {
+      "sha256": "502636e71207cdefafe66128c477a27de90c42676fdca369ab0e58d2632e4bac",
+      "bytes": 1494
+    }
+  },
+  "actualResults": {
+    "sealV14": {
+      "exit": 0,
+      "cases": 1,
+      "scope": "human edits/deleted page preserved, supplement, authorized reviewer manual ACK/export and export-only after complete"
+    },
+    "sealV15": {
+      "exit": 0,
+      "cases": 2,
+      "scope": "same complete chain plus separate first-OCR-checkpoint pause before seal page; all20 OCR frames continue after pause"
+    },
+    "sealV16": {
+      "typecheckExit": 0,
+      "pureTests": 3,
+      "pureExit": 0,
+      "api": "not run; copied partial green-v1.log is not evidence"
+    },
+    "independentReview": {
+      "soleBlocker": "withdrawn in supplement: automatic deferred gate is required; original report retained"
+    },
+    "csp": {
+      "actualEdge": "155.0.4283.45",
+      "mainAndWorkerWasm": "old blocked/new allowed",
+      "scriptEval": "blocked under both",
+      "scope": "isolated HTTP CSP probe, not complete PDF decoding"
+    },
+    "ocrAheadV8": {
+      "exit": 1,
+      "actualError": "Invalid workerSrc type",
+      "scope": "real browser failed before page choices/canvas; no65second or429 acceptance claim",
+      "next": "static Vite worker URL import in separate v9 candidate, runtime verification pending"
+    }
+  },
+  "reusePolicy": "Directly reuse available extracted logic, wording and layout; only necessary browser/server adaptations. No invented page priority or new panel.",
+  "boundaries": [
+    "private candidates only; formal895 source unchanged",
+    "no server deployment",
+    "all source R0 and existing S/I levels unchanged",
+    "full same-source check/API/Edge pending"
+  ]
+}

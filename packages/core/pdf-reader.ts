@@ -4,7 +4,6 @@ import type { Glyph } from "./ocr.ts";
 import { FILE_MAX_BYTES } from "../contracts/index.ts";
 
 export const PAGE_MAX_PIXELS = 25000000;
-export const PDF_MAX_PAGES = 300;
 export function checkPixels(width: number, height: number) {
   if (![width, height].every(n => Number.isFinite(n) && n > 0 && n <= 20000) || width * height > PAGE_MAX_PIXELS) throw new Error("PIXEL_LIMIT");
 }
@@ -21,7 +20,7 @@ export async function openPdf(bytes: Buffer) {
   const close = () => { if (doc) p.FPDF_CloseDocument(doc); free(source); p.FPDF_DestroyLibrary(); };
   if (!doc) { const code = p.FPDF_GetLastError(); close(); throw new Error(code === 4 ? "ENCRYPTED_PDF" : "INVALID_PDF"); }
   const count = p.FPDF_GetPageCount(doc);
-  if (count < 1 || count > PDF_MAX_PAGES) { close(); throw new Error("PAGE_LIMIT"); }
+  if (!Number.isSafeInteger(count) || count < 1) { close(); throw new Error("PAGE_LIMIT"); }
   const meta: Record<string, string> = {};
   for (const key of ["Title", "Author", "Subject", "Keywords", "Creator", "Producer", "CreationDate", "ModDate"]) {
     const length = p.FPDF_GetMetaText(doc, key, 0, 0);
@@ -32,6 +31,7 @@ export async function openPdf(bytes: Buffer) {
     module: p, doc, count, meta, close,
     attachments: p.FPDFDoc_GetAttachmentCount(doc), scripts: p.FPDFDoc_GetJavaScriptActionCount(doc),
     async page(index: number, scale = 2) {
+      if (!Number.isSafeInteger(index) || index < 0 || index >= count) throw new Error("INVALID_PDF_PAGE");
       const page = p.FPDF_LoadPage(doc, index); if (!page) throw new Error("INVALID_PDF_PAGE");
       let textPage = 0, bitmap = 0;
       const scratch = alloc(40);

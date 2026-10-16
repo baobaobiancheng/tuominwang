@@ -1,0 +1,80 @@
+{
+  "schema": "iteration056-formal-v7-check-green",
+  "previousLedgerSha256": "0aee6308dff091e7a8b586b129fd4dba21e4361b5094f9c5b1128df81c09ea2c",
+  "previousLedgerArchive": ".data/research/lawbot-2026-10-16/iteration056/before-formal-v7-check-green/ledger.json",
+  "evidence": {
+    ".data/research/lawbot-2026-10-16/iteration056/final-check-v10-receipt.json": {
+      "sha256": "bb2423ef89302e05d3b8239c0d1cde932f6da8d9534af4214af46b477c640042",
+      "bytes": 2789
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/final-check-v10.log": {
+      "sha256": "e08d3f0113e00d3a24c85529c383884fe5e2a00e9adfe075bb161c5a26d626f0",
+      "bytes": 1805
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/run-final-check-v10.py": {
+      "sha256": "275753afe72006ce78c07ca2c0631bee26935adff1e9a2624bcf7538cb387e1c",
+      "bytes": 5255
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/rules/pdf-seal-final-v7-readonly-cross-review.md": {
+      "sha256": "7874db1d65fe9376073edb95c2960fbe5cacbbbd4972bb18225456b9c506b77a",
+      "bytes": 4475
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/arch/full-api-final-v7.py": {
+      "sha256": "136aeb8c843ecc626dbc75e31987856f6b565218661bf613b5775d81de630af3",
+      "bytes": 13327
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/full-api-final-v7-copy/copied-validation-manifest.json": {
+      "sha256": "ec8069a56ec7886efc942e271f49c97084b457e7d67040fc3a7f621185bca075",
+      "bytes": 17699
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-final-v7/preparation-manifest.json": {
+      "sha256": "7bfe491e293dde1c6088e7baa096a787f3536c51df06ce3cc10aad767824f6cb",
+      "bytes": 1442
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-final-v7/readback-receipt.json": {
+      "sha256": "9277a14c9f3bfdc08437b73b0dac2ab7dca726fab3e5cf2b5ad1f86a568d3f4a",
+      "bytes": 2072
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-final-v7-control/planned-ids.json": {
+      "sha256": "73bf976d948585d51b3ffac37113cbeb170c7bb427be13026ab8cd8db7862765",
+      "bytes": 25791
+    }
+  },
+  "check": {
+    "exit": 0,
+    "node": "v24.19.0",
+    "unitFiles": 146,
+    "unitTests": 824,
+    "BendLaws": 18,
+    "rejectedValidWrongMutations": 21,
+    "typecheck": "passed",
+    "productionBuild": "passed",
+    "formalInputs": 912,
+    "sourceDrift": [],
+    "historicalProtected": 477,
+    "historicalGeneratedRestored": 3
+  },
+  "independentReview": "specified seal geometry/failure/ACK/human-draft paths: no proven static blocker; no dynamic equivalence claim",
+  "api": {
+    "plannedFiles": 129,
+    "old127Preserved": true,
+    "runtimeAssets": 28,
+    "fixtures": 3,
+    "locks": 6,
+    "supervisorPidAtObservation": 9572,
+    "childPidVerifiedLive": 9586,
+    "terminal": "not yet present; no pass claim"
+  },
+  "edge": {
+    "actualListExit": 0,
+    "specs": 62,
+    "cases": 104,
+    "old101IDsPreserved": true,
+    "started": false
+  },
+  "boundaries": [
+    "full API and Edge not passed yet",
+    "not deployed",
+    "all source R0 and S/I unchanged"
+  ]
+}

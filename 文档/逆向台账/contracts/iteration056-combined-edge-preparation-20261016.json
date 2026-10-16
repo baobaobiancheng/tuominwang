@@ -1,0 +1,84 @@
+{
+  "schema": "iteration056-combined-edge-preparation",
+  "previousLedgerSha256": "949a4bf26526923f9475c9181335bbc57631ec3ce79ac3c16017097b386e794f",
+  "previousLedgerArchive": ".data/research/lawbot-2026-10-16/iteration056/before-combined-edge-preparation-v1/ledger.json",
+  "evidence": {
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/combined-edge-v9-candidate-v1/private-root.txt": {
+      "sha256": "cb5b6eb97a6831a4db76d338d082b9d3919ef6616ed7bbc8d1b3faba1d9be7ef",
+      "bytes": 47
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/combined-edge-v9-candidate-v1/launch-full.py": {
+      "sha256": "442bc6a7d3138386c4824c698b68782322f2b1b7f4159074bcea6d5b74590383",
+      "bytes": 1046
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/combined-edge-v9-candidate-v1/runtime-assets-preflight.json": {
+      "sha256": "8c0753793ef11b871a63f471bf67c33c5f7f9b6008b9d260ee926f060edb202b",
+      "bytes": 4927
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/combined-edge-v9-candidate-v1/candidate-inputs-v1.json": {
+      "sha256": "4fc8fc3eded8d17b5bea8947b9607b69ea1729284a54e476c74e294b8dcb8bac",
+      "bytes": 154218
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/combined-edge-v9-candidate-v1/six-runtime-locks.json": {
+      "sha256": "47ac68aa82f08718b8c8a4b726739b2da186109b5254f8f38d62bd49f0740a44",
+      "bytes": 1424
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/combined-edge-v9-candidate-v1/launch-targeted.py": {
+      "sha256": "0fea02bd158377a84bee93aba1ce5255bd71e6380d8ddafea9cac1694752ec22",
+      "bytes": 1058
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/combined-edge-v9-candidate-v1/preparation-manifest.json": {
+      "sha256": "7d62b4958daed71b30444ca67fef1795f8e839f03613bb14eb487a1b0e49a679",
+      "bytes": 3068
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/combined-edge-v9-candidate-v1/preparation-receipt-v2.json": {
+      "sha256": "dfdf1ca1fd9b76b5bc77382cde5a289ae8b0eaa12b7561ccfb1dac38149c9bf4",
+      "bytes": 3896
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/combined-edge-v9-candidate-v1/control/run-verified-full-edge.mjs": {
+      "sha256": "9fc58d620493e619ea555ff7b7a2a557dfa94d1c34f7a28ec1af3f920dfe58d0",
+      "bytes": 13152
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/combined-edge-v9-candidate-v1/control/run-detached-full.py": {
+      "sha256": "3901a27fdb3c75ebf7b747444a6d90d234c4bda8358d32b16cf0fc3210ebb950",
+      "bytes": 1440
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/combined-edge-v9-candidate-v1/control/run-verified-targeted-edge.mjs": {
+      "sha256": "462244be14f2b6460e20a20125c95c26fced9e6ce6ba703ad6dad45056c537a2",
+      "bytes": 13331
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/combined-edge-v9-candidate-v1/control/targeted-ids.json": {
+      "sha256": "5c788c91dcf16858153a7e28fa70d3da07b17d79f89f2a541ab2bbef72df4435",
+      "bytes": 861
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/combined-edge-v9-candidate-v1/control/run-detached-targeted.py": {
+      "sha256": "d19fa09c93ea37378a5863a8823555ae24879a208f57bcf0b54da67dcd521af4",
+      "bytes": 1453
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/combined-edge-v9-candidate-v1/control/playwright.config.ts": {
+      "sha256": "ecd722dbefb8b19159b36206df0922959929b86cdd8222b9c1fb899afcea9303",
+      "bytes": 928
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/combined-edge-v9-candidate-v1/control/planned-ids.json": {
+      "sha256": "c23bf28faa7f870d4aad32d0082290e4fbc403755a4019de1703fbe04704f15c",
+      "bytes": 26047
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/combined-edge-v9-candidate-v1/control/targeted-planned-cli.json": {
+      "sha256": "cf43f3b4c3c7240681996968dae760cc1cb602a107c4e4c3ae2c63cc481d782a",
+      "bytes": 4101
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/combined-edge-v9-candidate-v1/control/edge-planned-cli.json": {
+      "sha256": "0aae24a7a1ad41d41bd3298b08f5d114a8f57145a58c02243bc2f08e67510213",
+      "bytes": 77727
+    }
+  },
+  "rootReadback": {
+    "candidateInputs": 915,
+    "privateSourceDrift": [],
+    "allControlHashesMatch": true
+  },
+  "scope": "Formal913 baseline + four minimal production paths + corrected two MCP test group locators + new isolated API case + new Edge case. No design/layout additions.",
+  "plans": "Old104 and historical101 retained, plus1 newcase=105 across63specs; targeted3 cases/2specs. Prepared/listed only, no actual browser or port use.",
+  "binding": "Candidate manifest4fc8fc3eded8d17b5bea8947b9607b69ea1729284a54e476c74e294b8dcb8bac. Full formal913 still frozen for running gates.",
+  "statusChanges": "No implementation/runtime promotion or Git/deploy; start only after current real Edge terminal and port release."
+}

@@ -3,6 +3,8 @@ import type { Readable } from "node:stream";
 import yazl from "yazl";
 import { readZip, writeZip } from "./office-zip.ts";
 import { FILE_MAX_BYTES } from "../contracts/index.ts";
+import { assertSourceWorkspaceV1, assertSourceWorkspaceV2 } from "./reference/workspace-snapshot-schema.js";
+import { migrateSourceWorkspaceV1 } from "./reference/tmm-original-v1-migrate.js";
 export type PortableObject = Record<string, any>;
 export type PortableFormat = "legacy-zip" | "secure-v2" | "secure-v3";
 export type PortableCredentials = { password?: string; dek?: Buffer; signal?: AbortSignal; kdf?: { N: number; r: number; p: number }; keySlots?: PortableObject[] };
@@ -16,11 +18,11 @@ const fail = (code: string): never => { throw new Error(code); };
 const object = (x: unknown): x is PortableObject => !!x && typeof x === "object" && !Array.isArray(x);
 const hash = (b: Buffer) => createHash("sha256").update(b).digest("hex");
 const abort = (o: PortableCredentials) => { if (o.signal?.aborted) fail("PORTABLE_ABORTED"); };
-function safeJsonTree(value: unknown) {
+export function safeJsonTree(value: unknown, maxNodes = 1000000) {
   const stack: [unknown, number][] = [[value, 0]]; let nodes = 0;
-  while (stack.length) { const [v, depth] = stack.pop()!; if (++nodes > 1000000 || depth > 64) fail("PORTABLE_JSON_LIMIT"); if (typeof v === "number" && !Number.isFinite(v)) fail("PORTABLE_JSON_INVALID"); if (object(v)) { for (const [key, item] of Object.entries(v)) { if (["__proto__", "prototype", "constructor"].includes(key)) fail("PORTABLE_JSON_UNSAFE_KEY"); stack.push([item, depth + 1]); } } else if (Array.isArray(v)) for (const item of v) stack.push([item, depth + 1]); }
+  while (stack.length) { const [v, depth] = stack.pop()!; if (++nodes > maxNodes || depth > 64) fail("PORTABLE_JSON_LIMIT"); if (typeof v === "number" && !Number.isFinite(v)) fail("PORTABLE_JSON_INVALID"); if (object(v)) { for (const [key, item] of Object.entries(v)) { if (["__proto__", "prototype", "constructor"].includes(key)) fail("PORTABLE_JSON_UNSAFE_KEY"); stack.push([item, depth + 1]); } } else if (Array.isArray(v)) for (const item of v) stack.push([item, depth + 1]); }
 }
-function parse(bytes: Buffer): any { try { const result = JSON.parse(new TextDecoder("utf8", { fatal: true }).decode(bytes)); safeJsonTree(result); return result; } catch (e) { if ((e as Error).message.startsWith("PORTABLE_")) throw e; return fail("PORTABLE_JSON_INVALID"); } }
+function parse(bytes: Buffer, maxNodes = 1000000): any { try { const result = JSON.parse(new TextDecoder("utf8", { fatal: true }).decode(bytes)); safeJsonTree(result, maxNodes); return result; } catch (e) { if ((e as Error).message.startsWith("PORTABLE_")) throw e; return fail("PORTABLE_JSON_INVALID"); } }
 function json(value: unknown) { let bytes: Buffer; try { bytes = Buffer.from(JSON.stringify(value)); } catch { return fail("PORTABLE_JSON_INVALID"); } if (bytes.length > FILE_MAX_BYTES) fail("FILE_SIZE_LIMIT"); parse(bytes); return bytes; }
 function canonical(value: any): string { if (Array.isArray(value)) return `[${value.map(canonical).join(",")}]`; if (object(value)) return `{${Object.keys(value).sort().map(key => `${JSON.stringify(key)}:${canonical(value[key])}`).join(",")}}`; return JSON.stringify(value); }
 function b64(value: any, size: number) { if (typeof value !== "string") return fail("PORTABLE_KEY_SLOT_INVALID"); const b = Buffer.from(value, "base64"); if (b.length !== size || b.toString("base64") !== value) fail("PORTABLE_KEY_SLOT_INVALID"); return b; }
@@ -85,8 +87,8 @@ export async function writeProtectedPortable(plaintext: Buffer, objectType: stri
     return Buffer.concat(chunks);
   } finally { key.fill(0); }
 }
-export function validatePortableSnapshot(s: PortableObject) {
-  safeJsonTree(s); if (![1, 2].includes(s.schemaVersion)) fail("PORTABLE_SNAPSHOT_VERSION");
+export function validatePortableSnapshot(s: PortableObject, maxNodes = 1000000) {
+  safeJsonTree(s, maxNodes); if (![1, 2].includes(s.schemaVersion)) fail("PORTABLE_SNAPSHOT_VERSION");
   id(s.projectId); for (const key of ["projectName", "createdAt", "updatedAt"]) if (typeof s[key] !== "string") fail("PORTABLE_SNAPSHOT_INVALID"); integer(s.contentRevision);
   if (!Array.isArray(s.documents) || s.documents.length > 10000 || !Array.isArray(s.reviewDecisionEvents) || !Array.isArray(s.workspaceCorrections)) fail("PORTABLE_SNAPSHOT_INVALID");
   const ids = new Set<string>();
@@ -118,24 +120,39 @@ export async function readPortableWorkspace(bytes: Buffer, options: PortableCred
   abort(options); let plaintext = bytes, secureHeader: PortableObject | undefined;
   if (bytes.subarray(0, 8).toString("ascii") === MAGIC) { const decrypted = await readProtectedPortable(bytes, options); plaintext = decrypted.plaintext; secureHeader = decrypted.header; if (!["tmm-workspace", "tmm-transfer"].includes(secureHeader!.objectType)) fail("PORTABLE_CONTAINER_TYPE_INVALID"); }
   let parts: Map<string, Buffer>;
-  try { parts = await readZip(plaintext); } finally { if (secureHeader) plaintext.fill(0); }
+  // This Buffer compatibility path is bounded by its JSON caller; full TMM
+  // capacities use the existing file readers. Do not apply Office ZIP limits.
+  try { parts = await readZip(plaintext, { entries: 250000, entry: 268435456, expanded: 1073741824, nodes: 500000, depth: 128 }); } finally { if (secureHeader) plaintext.fill(0); }
   const manifest = readJson(parts, "manifest.json"); if (!object(manifest) || manifest.format !== "lawbot-tmm" || ![1, 2, 3].includes(manifest.schemaVersion)) fail("PORTABLE_MANIFEST_INVALID");
   integer(manifest.documentCount); if (!object(manifest) || manifest.documentCount > 10000) fail("PORTABLE_MANIFEST_INVALID");
   let snapshot: PortableObject; const sources = new Map<string, Buffer>(), declared = new Set<string>(["manifest.json"]);
   if (parts.has("workspace.json")) {
+    if (parts.size > 2000) fail("WORKSPACE_ENTRY_LIMIT");
+    let expanded = 0;
+    for (const bytes of parts.values()) {
+      if (bytes.length > 268435456) fail("WORKSPACE_ENTRY_TOO_LARGE");
+      expanded += bytes.length;
+      if (expanded > 1073741824) fail("WORKSPACE_TOTAL_SIZE_LIMIT");
+    }
     if (manifest.schemaVersion === 3 || !object(manifest.checksums)) fail("PORTABLE_MANIFEST_INVALID");
     for (const [entry, expected] of Object.entries(manifest.checksums)) if (hash(requirePart(parts, path(entry))) !== expected) fail("PORTABLE_CHECKSUM_MISMATCH");
     if (manifest.schemaVersion === 2) for (const entry of parts.keys()) if (entry !== "manifest.json" && !Object.hasOwn(manifest.checksums, entry)) fail("PORTABLE_CHECKSUM_MISSING");
-    snapshot = readJson(parts, "workspace.json"); snapshot.reviewDecisionEvents ??= []; snapshot.workspaceCorrections ??= []; validatePortableSnapshot(snapshot);
+    snapshot = readJson(parts, "workspace.json"); snapshot.reviewDecisionEvents ??= []; snapshot.workspaceCorrections ??= [];
+    try {
+      if (manifest.schemaVersion === 1) { assertSourceWorkspaceV1(snapshot); snapshot = migrateSourceWorkspaceV1(snapshot); }
+      assertSourceWorkspaceV2(snapshot);
+    } catch { fail("PORTABLE_SNAPSHOT_INVALID"); }
+    validatePortableSnapshot(snapshot);
     for (const d of snapshot.documents) { const entry = d.sourceEntry.endsWith("/source") ? sourceName(d) : d.sourceEntry; sources.set(entry, requirePart(parts, entry)); d.sourceEntry = entry; if (d.fileKind === "markdown") { const sidecar = readJson(parts, `documents/${d.id}/markdown-source.json`); if (canonical(sidecar) !== canonical(d.detection.markdownSourceSidecar)) fail("PORTABLE_MARKDOWN_SIDECAR_MISMATCH"); const source = sources.get(entry)!; if (hash(source) !== sidecar.sourceSha256) fail("PORTABLE_MARKDOWN_SOURCE_MISMATCH"); } }
   } else {
     if (!secureHeader || ![2, 3].includes(manifest.schemaVersion)) fail("PORTABLE_SECURE_CONTAINER_REQUIRED");
     if (!Array.isArray(manifest.documents)) fail("PORTABLE_MANIFEST_INVALID");
     const v3 = manifest.schemaVersion === 3, index = readJson(parts, "workspace/index.json"), rules = readJson(parts, "project/rules.json"); declared.add("workspace/index.json"); declared.add("project/rules.json"); declared.add("project/profile.json");
-    if (index.schemaVersion !== manifest.schemaVersion || manifest.projectId !== index.projectId || manifest.documentCount !== manifest.documents?.length || (v3 ? index.documents?.length : index.documentIds?.length) !== manifest.documentCount || secureHeader!.objectId !== manifest.projectId) fail("PORTABLE_INDEX_INVALID");
+    const workspaceSchemaVersion = !v3 && index.workspaceSchemaVersion === undefined ? 1 : index.workspaceSchemaVersion;
+    if (index.schemaVersion !== manifest.schemaVersion || (v3 && index.workspaceSchemaVersion !== 2) || manifest.projectId !== index.projectId || manifest.documentCount !== manifest.documents?.length || (v3 ? index.documents?.length : index.documentIds?.length) !== manifest.documentCount || secureHeader!.objectId !== manifest.projectId) fail("PORTABLE_INDEX_INVALID");
     const indexIds = v3 ? index.documents.map((d: any) => d.id) : index.documentIds;
     if (new Set(indexIds).size !== indexIds.length || manifest.documents.some((d: any, i: number) => d.id !== indexIds[i] || v3 && (d.fileName !== index.documents[i].fileName || d.fileKind !== index.documents[i].fileKind)) || manifest.containerVersion !== 1) fail("PORTABLE_INDEX_INVALID");
-    snapshot = { ...index, schemaVersion: index.workspaceSchemaVersion, projectId: index.projectId, projectName: index.projectName, createdAt: index.createdAt, updatedAt: index.updatedAt, activeDocumentId: index.activeDocumentId, contentRevision: index.contentRevision, documents: [], profileSnapshot: readJson(parts, "project/profile.json"), ...rules, ...(index.folderBatch ? { folderBatch: index.folderBatch } : {}) };
+    snapshot = { ...index, schemaVersion: workspaceSchemaVersion, projectId: index.projectId, projectName: index.projectName, createdAt: index.createdAt, updatedAt: index.updatedAt, activeDocumentId: index.activeDocumentId, contentRevision: index.contentRevision, documents: [], profileSnapshot: readJson(parts, "project/profile.json"), ...rules, ...(index.folderBatch ? { folderBatch: index.folderBatch } : {}) };
     const modeEntry = v3 ? "project/project-mode-base.json" : "project/project-mode.json"; declared.add(modeEntry); snapshot.projectModeSnapshot = readJson(parts, modeEntry);
     if (v3) {
       if (!object(manifest.global)) fail("PORTABLE_MANIFEST_INVALID");
@@ -168,7 +185,14 @@ export async function readPortableWorkspace(bytes: Buffer, options: PortableCred
     }
     delete snapshot.documentIds; delete snapshot.workspaceSchemaVersion;
     if (v3) for (const [name, lookup] of Object.entries(manifest.global.projectModeLookups ?? {}) as [string, any][]) for (const bucket of lookup.buckets ?? []) { if (!PROJECT_COLLECTIONS.includes(name)) fail("PORTABLE_LOOKUP_INVALID"); const entry = `project/lookups/${name}/${path(bucket.name)}`, b = requirePart(parts, entry); if (b.length !== bucket.bytes || hash(b) !== bucket.sha256) fail("PORTABLE_LOOKUP_INVALID"); declared.add(entry); }
-    for (const name of parts.keys()) if (!declared.has(name)) fail("PORTABLE_UNDECLARED_ENTRY"); validatePortableSnapshot(snapshot);
+    for (const name of parts.keys()) if (!declared.has(name)) fail("PORTABLE_UNDECLARED_ENTRY");
+    if (!v3) {
+      if (![1, 2].includes(workspaceSchemaVersion)) fail("PORTABLE_SNAPSHOT_VERSION");
+      if (workspaceSchemaVersion === 1 && snapshot.inheritedPseudonymProfile === null) delete snapshot.inheritedPseudonymProfile;
+      try { if (workspaceSchemaVersion === 1) { assertSourceWorkspaceV1(snapshot); snapshot = migrateSourceWorkspaceV1(snapshot); } assertSourceWorkspaceV2(snapshot); }
+      catch { fail("PORTABLE_SNAPSHOT_INVALID"); }
+    }
+    validatePortableSnapshot(snapshot);
   }
   if (manifest.sourceBytes !== undefined && manifest.sourceBytes !== [...sources.values()].reduce((n, b) => n + b.length, 0) || manifest.ocrPages !== undefined && manifest.ocrPages !== snapshot.documents.reduce((n: number, d: any) => n + (d.detection.ocrCachePages?.length ?? 0), 0) || manifest.entityCount !== undefined && manifest.entityCount !== snapshot.documents.reduce((n: number, d: any) => n + (d.detection.entities?.length ?? 0), 0)) fail("PORTABLE_DECLARATION_INVALID");
   if (snapshot.projectId !== manifest.projectId || snapshot.documents.length !== manifest.documentCount) fail("PORTABLE_MANIFEST_MISMATCH");
@@ -209,12 +233,12 @@ export async function writePortableWorkspace(input: PortableObject, sources: Map
       }
       for (const name of DOCUMENT_COLLECTIONS) { const [group, field] = name.split("."); if (Array.isArray(state[group as "review" | "detection"][field]) && state[group as "review" | "detection"][field].length) { collections[name] = segments(state[group as "review" | "detection"][field], `${prefix}/state/${name.replace(".", "/")}`); delete state[group as "review" | "detection"][field]; } }
       const baseEntry = `${prefix}/state/base.json`, shellEntry = `${prefix}/state/shell.json`; add(baseEntry, state); add(shellEntry, { detection: {}, review: {}, exportState: d.exportState });
-      documents.push({ id: d.id, fileName: d.fileName, fileKind: d.fileKind, sourceEntry: d.sourceEntry, sourceBytes: bytes.length, metaEntry: `${prefix}/meta.json`, baseStateEntry: baseEntry, baseStateBytes: parts.get(baseEntry)!.length, shellStateEntry: shellEntry, shellStateBytes: parts.get(shellEntry)!.length, payloads, collections, entityCount: d.detection.entities?.length ?? 0, reviewEntityCount: d.review.kind === "image" ? (d.review.activeBBoxes?.length ?? 0) + (d.review.deletedBBoxes?.length ?? 0) : d.review.entities?.length ?? 0, ocrPageCount: d.detection.ocrCachePages?.length ?? 0 });
+      documents.push({ id: d.id, fileName: d.fileName, fileKind: d.fileKind, sourceEntry: d.sourceEntry, sourceBytes: bytes.length, sourceSha256: hash(bytes), metaEntry: `${prefix}/meta.json`, baseStateEntry: baseEntry, baseStateBytes: parts.get(baseEntry)!.length, shellStateEntry: shellEntry, shellStateBytes: parts.get(shellEntry)!.length, payloads, collections, entityCount: d.detection.entities?.length ?? 0, reviewEntityCount: d.review.kind === "image" ? (d.review.activeBBoxes?.length ?? 0) + (d.review.deletedBBoxes?.length ?? 0) : d.review.entities?.length ?? 0, ocrPageCount: d.detection.ocrCachePages?.length ?? 0 });
     } else { const ocrSegments = segments(state.detection.ocrCachePages ?? [], `${prefix}/ocr`, true); delete state.detection.ocrCachePages; add(`${prefix}/state.json`, state); documents.push({ id: d.id, fileName: d.fileName, fileKind: d.fileKind, sourceEntry: d.sourceEntry, sourceBytes: bytes.length, metaEntry: `${prefix}/meta.json`, stateEntry: `${prefix}/state.json`, ocrSegments }); }
   }
   const root = { ...snapshot }; for (const name of ["documents", "rulesetSnapshot", "workspaceCorrections", "inheritedPseudonymProfile", "profileSnapshot", "projectModeSnapshot", "reviewDecisionEvents", "auditEvents"]) delete root[name];
   add("workspace/index.json", { ...root, schemaVersion: version, workspaceSchemaVersion: snapshot.schemaVersion, ...(v3 ? { documents: snapshot.documents.map((d: PortableObject) => ({ id: d.id, fileName: d.fileName, fileKind: d.fileKind })) } : { documentIds: snapshot.documents.map((d: PortableObject) => d.id) }) });
-  add("project/rules.json", { rulesetSnapshot: snapshot.rulesetSnapshot ?? null, workspaceCorrections: snapshot.workspaceCorrections, inheritedPseudonymProfile: snapshot.inheritedPseudonymProfile ?? null }); add("project/profile.json", snapshot.profileSnapshot ?? null);
+  add("project/rules.json", { rulesetSnapshot: snapshot.rulesetSnapshot ?? null, workspaceCorrections: snapshot.workspaceCorrections, ...(snapshot.inheritedPseudonymProfile === undefined ? {} : { inheritedPseudonymProfile: snapshot.inheritedPseudonymProfile }) }); add("project/profile.json", snapshot.profileSnapshot ?? null);
   const global: PortableObject = {};
   if (v3) {
     const mode = snapshot.projectModeSnapshot ? parse(json(snapshot.projectModeSnapshot)) : null, projectModeCollections: PortableObject = {};

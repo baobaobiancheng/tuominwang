@@ -1,0 +1,81 @@
+{
+  "schema": "iteration056-edge-locator-and-guide-candidates",
+  "previousLedgerSha256": "5f34413643e5b197fef51dfefa186af4f36f41790aef9399b9fcd1e86ffad015",
+  "previousLedgerArchive": ".data/research/lawbot-2026-10-16/iteration056/before-edge-locator-and-guide-candidates-v1/ledger.json",
+  "evidence": {
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/automatic-mcp-edge-v8-failure-review-v1.json": {
+      "sha256": "dac28359b7ee82cb2eda9d22e32a95c056f13dcb195099ca2ef11fb4a3e6a9e1",
+      "bytes": 4124
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/automatic-mcp-edge-v8-locator-overlay-v1/manifest.json": {
+      "sha256": "f8c44538a1c3dffef389fac6ff591f44576659adfc62771a8e141b1038e47c13",
+      "bytes": 2412
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/automatic-mcp-edge-v8-locator-overlay-v1/minimal.diff": {
+      "sha256": "45543bb9360a5b35414c8e2668426390bfec47550c167951622d7fb6c73fbdc8",
+      "bytes": 3009
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/guide-29-final-evidence-handoff-v1.json": {
+      "sha256": "8f726d33e5cf6531678ceb78e8039850dc7ce3e38928e1fdcb73389b2ba10d69",
+      "bytes": 6547
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/guide-29-research-candidate-v1/candidate-manifest.json": {
+      "sha256": "37d0a207b3c604078d729fc421ad3b2e18e13c0c9c169e575e001d44f9070412",
+      "bytes": 9001
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/guide-29-research-candidate-v1/preservation-validation.json": {
+      "sha256": "3650d97e70cf9ba05a7b22a60d71f4d507f74d5efb4dceae7d4a7ad65c2249af",
+      "bytes": 6112
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/automatic-mcp-edge-v8-reviewed-evidence-v1/step-3-at-review.partial.log": {
+      "sha256": "3f4ca5ea99e7a3ad457de84ad7e31a95c4f19136026766ce0d871680074b5576",
+      "bytes": 23715
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/automatic-mcp-edge-v8-reviewed-evidence-v1/0-error-context.md": {
+      "sha256": "58c68c8e9f02981a98ea63ddb5063a0f867fd8461a5c0ef229f29382bed644b0",
+      "bytes": 6870
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/automatic-mcp-edge-v8-reviewed-evidence-v1/1-trace.zip": {
+      "sha256": "3e993a1905ba48f57a0364ecab55c327fe56532df53f635ed1224e1497b0f8db",
+      "bytes": 452010
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/automatic-mcp-edge-v8-reviewed-evidence-v1/2-error-context.md": {
+      "sha256": "7e9a610f8d0cf2cc9bfa788c7abe6220ce2d0170e21bb0741164af92c63dfe3d",
+      "bytes": 6854
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/automatic-mcp-edge-v8-reviewed-evidence-v1/3-trace.zip": {
+      "sha256": "7c498e2638b599e5abbc84b576e9a036f742d382ddd9fc5998fab4b7fc63e696",
+      "bytes": 467761
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/automatic-mcp-edge-v8-locator-overlay-v1/evidence/automatic-error-context.md": {
+      "sha256": "58c68c8e9f02981a98ea63ddb5063a0f867fd8461a5c0ef229f29382bed644b0",
+      "bytes": 6870
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/automatic-mcp-edge-v8-locator-overlay-v1/evidence/manual-error-context.md": {
+      "sha256": "7e9a610f8d0cf2cc9bfa788c7abe6220ce2d0170e21bb0741164af92c63dfe3d",
+      "bytes": 6854
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/automatic-mcp-edge-v8-locator-overlay-v1/overlay/tests/e2e/automatic-mcp-real-edge.spec.ts": {
+      "sha256": "c0a548a05bd00e96404a7f6eb5cb4ce2d19ac082b589d34b1f27d4238824e267",
+      "bytes": 15971
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/guide-29-research-candidate-v1/文档/使用指南/公开功能补齐操作-20261016.candidate.md": {
+      "sha256": "634b36ac396266427f836ac8c6fa4470f678c1f43aeb9058fbc9913f69f76cbe",
+      "bytes": 45415
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/guide-29-research-candidate-v1/文档/使用指南/公开功能补齐操作-20261016.candidate.html": {
+      "sha256": "6d5d57edc60d3780d3159dfce79a91c29b4b57d36f85d3b7062574cec904d711",
+      "bytes": 56645
+    }
+  },
+  "edgeFailure": "two MCP specs expect raw client name, existing server normalizes unknown to MCP 客户端; actual group present. Test locator-only candidate prepared, no source/runtime mutation or rerun; downstream flow not verified",
+  "partialLog": {
+    "exactReviewedPrefixRecovered": true,
+    "bytes": 23715,
+    "sha256": "3f4ca5ea99e7a3ad457de84ad7e31a95c4f19136026766ce0d871680074b5576",
+    "notFinalLog": true
+  },
+  "guide": "formal25 numbered+unnumbered amount unchanged; research candidate1-29 numbered, original text/amount46links/CSS preserved; actual newEdge screenshots pending",
+  "fullGates": "API130 and Edge104 continue; no terminal pass claim",
+  "statusChanges": "none; no model, resource, deployment, or product display changes"
+}

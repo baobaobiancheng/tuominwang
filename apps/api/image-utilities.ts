@@ -8,12 +8,47 @@ import {projectScope,denied} from './access.ts';
 import {rows,sql} from '../../packages/adapters/db.ts';
 import {runProcessing,type ProcessingInput} from '../../packages/adapters/processing.ts';
 import {seal,unseal,hash} from '../../packages/adapters/storage.ts';
+import {verifiedDocumentSource} from '../../packages/adapters/document-source.ts';
+import {selectableOcrLines,type SelectableOcrPage} from '../../packages/core/selectable-ocr.ts';
+import {loadPdfOcrCheckpointPages} from '../../packages/adapters/pdf-ocr-checkpoints.ts';
+import {readPageRotationState} from '../../packages/adapters/page-rotation-state.ts';
 import {exportImageAnnotations,exportImageLabels,buildImageReviewLabels} from '../../packages/core/image-utilities.ts';
 const rectangle=z.object({x:z.number().finite().nonnegative(),y:z.number().finite().nonnegative(),width:z.number().finite().positive(),height:z.number().finite().positive()}).strict();
-const params=z.object({id,page:z.coerce.number().int().min(0).max(299)}),revision=z.object({revision:z.number().int().nonnegative()}).strict();
+const params=z.object({id,page:z.coerce.number().int().nonnegative()}),revision=z.object({revision:z.number().int().nonnegative()}).strict();
 export function registerImageUtilityRoutes(app:FastifyInstance){
  const cache=new Map<string,{expires:number;fingerprint:string;encrypted:string}>();
- const timer=setInterval(()=>{for(const [key,value]of cache)if(value.expires<Date.now())cache.delete(key);},60000);timer.unref();app.addHook('onClose',async()=>{clearInterval(timer);cache.clear();});
+ const selectableCache=new Map<string,{expires:number;fingerprint:string;encrypted:string}>(),selectableFlight=new Map<string,Promise<SelectableOcrPage>>(),clearGenerations=new Map<string,number>();
+ const timer=setInterval(()=>{for(const [key,value]of cache)if(value.expires<Date.now())cache.delete(key);for(const [key,value]of selectableCache)if(value.expires<Date.now())selectableCache.delete(key);},60000);timer.unref();app.addHook('onClose',async()=>{clearInterval(timer);cache.clear();selectableCache.clear();selectableFlight.clear();});
+ app.get('/api/documents/:id/pages/:page/ocr-selectable',async(req,reply)=>{
+  const {id:doc,page}=params.parse(req.params),{revision:requested}=z.object({revision:z.coerce.number().int().nonnegative()}).strict().parse(req.query);
+  return projectScope(req,{document:doc},['view_original'],async db=>{
+   const [d]=await rows(db,sql`SELECT * FROM documents WHERE id=${doc}`);if(!d)denied('NOT_FOUND',404);if(d.revision!==requested)denied('VERSION_CONFLICT',409);if(d.source_format!=='pdf')denied('INVALID_PDF',400);
+   const key=`${req.user.tenant_id}:${req.user.id}:${doc}:${page}`,aad=`${key}:selectable-ocr`,fingerprint=hash(JSON.stringify([d.revision,d.source_hash,d.page_rotation_state]));
+   const source=await verifiedDocumentSource(d).catch(e=>denied((e as Error).message,409)),frames=await loadPdfOcrCheckpointPages(db,d,hash(source)),frame=frames.find(item=>item.page.index===page);
+   const cached=selectableCache.get(key);let result:SelectableOcrPage;
+   if(cached&&cached.expires>Date.now()&&cached.fingerprint===fingerprint){result=JSON.parse(unseal(cached.encrypted,aad)) as SelectableOcrPage;}
+   else if(frame){
+    const p=frame.page;result={revision:d.revision,page,pageWidth:p.width,pageHeight:p.height,rotation:p.rotation,previewHash:p.previewHash,selectionOnly:true,lines:selectableOcrLines({text:frame.text,glyphs:frame.glyphs,confidence:p.confidence},p.width,p.height)};
+    if(selectableCache.size>=64)selectableCache.delete(selectableCache.keys().next().value!);selectableCache.set(key,{expires:Date.now()+300000,fingerprint,encrypted:seal(JSON.stringify(result),aad)});
+   }
+   else{
+    const [active]=await rows(db,sql`SELECT id FROM jobs WHERE document_id=${doc} AND revision=${d.revision} AND kind='detect' AND status IN ('queued','running') ORDER BY created_at DESC,id DESC LIMIT 1`);
+    if(active)return reply.code(202).header('Cache-Control','no-store').send({pending:true,revision:d.revision,page});
+    const flightKey=`${key}:${fingerprint}`,generation=clearGenerations.get(key)??0;
+    let pending=selectableFlight.get(flightKey);
+    if(!pending){pending=runProcessing<SelectableOcrPage>({kind:'image-utility',operation:'selectable-page',doc:d,page});selectableFlight.set(flightKey,pending);void pending.finally(()=>{if(selectableFlight.get(flightKey)===pending)selectableFlight.delete(flightKey);}).catch(()=>{});}
+    try{result=await pending;}catch(e){denied((e as Error).message,409);}
+    const [now]=await rows(db,sql`SELECT revision,source_hash,page_rotation_state,page_data FROM documents WHERE id=${doc}`);
+    if(!now||hash(JSON.stringify([now.revision,now.source_hash,now.page_rotation_state]))!==fingerprint)denied('VERSION_CONFLICT',409);
+    const target=now.page_data?.find((p:any)=>p.index===page);if(target&&(target.previewHash!==result.previewHash||target.width!==result.pageWidth||target.height!==result.pageHeight||target.rotation!==result.rotation))denied('SOURCE_MISMATCH',409);
+    if(generation===(clearGenerations.get(key)??0)){if(selectableCache.size>=64)selectableCache.delete(selectableCache.keys().next().value!);selectableCache.set(key,{expires:Date.now()+300000,fingerprint,encrypted:seal(JSON.stringify(result),aad)});}
+   }
+   const [current]=await rows(db,sql`SELECT revision,source_hash,page_rotation_state,page_data FROM documents WHERE id=${doc}`);
+   if(!current||hash(JSON.stringify([current.revision,current.source_hash,current.page_rotation_state]))!==fingerprint)denied('VERSION_CONFLICT',409);
+   const target=current.page_data?.find((p:any)=>p.index===page);if(target&&(target.previewHash!==result.previewHash||target.width!==result.pageWidth||target.height!==result.pageHeight||target.rotation!==result.rotation))denied('SOURCE_MISMATCH',409);
+   return reply.header('Cache-Control','no-store').send(result);
+  });
+ });
  for(const operation of ['region','rerun']as const)app.post(`/api/documents/:id/pages/:page/ocr-${operation}`,async req=>{
   const {id:doc,page}=params.parse(req.params),input=z.object({revision:z.number().int().nonnegative(),region:rectangle,canvas:z.object({width:z.number().finite().positive(),height:z.number().finite().positive()}).strict()}).strict().parse(req.body);
   return projectScope(req,{document:doc},['view_original'],async db=>{
@@ -23,7 +58,7 @@ export function registerImageUtilityRoutes(app:FastifyInstance){
    try{const result=await runProcessing<object>({kind:'image-utility',operation,doc:d,page,region:input.region,canvas:input.canvas} as ProcessingInput);if(operation==='region')cache.set(key,{expires:Date.now()+300000,fingerprint,encrypted:seal(JSON.stringify(result),aad)});return {...result,cached:false};}catch(e){denied((e as Error).message,409);}
   });
  });
- app.post('/api/documents/:id/ocr-cache/clear',async req=>{const doc=id.parse((req.params as any).id),input=revision.parse(req.body);return projectScope(req,{document:doc},['view_original'],async db=>{const[d]=await rows(db,sql`SELECT revision FROM documents WHERE id=${doc}`);if(!d)denied('NOT_FOUND',404);if(d.revision!==input.revision)denied('VERSION_CONFLICT',409);let cleared=0;const prefix=`${req.user.tenant_id}:${req.user.id}:${doc}:`;for(const key of cache.keys())if(key.startsWith(prefix)){cache.delete(key);cleared++;}return {success:true,cleared,revision:d.revision};});});
+ app.post('/api/documents/:id/ocr-cache/clear',async req=>{const doc=id.parse((req.params as any).id),input=revision.parse(req.body);return projectScope(req,{document:doc},['view_original'],async db=>{const[d]=await rows(db,sql`SELECT revision FROM documents WHERE id=${doc}`);if(!d)denied('NOT_FOUND',404);if(d.revision!==input.revision)denied('VERSION_CONFLICT',409);let cleared=0;const prefix=`${req.user.tenant_id}:${req.user.id}:${doc}:`;for(const key of cache.keys())if(key.startsWith(prefix)){cache.delete(key);cleared++;}for(const key of selectableCache.keys())if(key.startsWith(prefix)){selectableCache.delete(key);cleared++;}for(const flightKey of selectableFlight.keys())if(flightKey.startsWith(prefix)){const key=flightKey.slice(0,flightKey.lastIndexOf(':'));clearGenerations.set(key,(clearGenerations.get(key)??0)+1);selectableFlight.delete(flightKey);}return {success:true,cleared,revision:d.revision};});});
  for(const format of ['labels','annotations']as const)app.post(`/api/documents/:id/pages/:page/${format}`,{bodyLimit:REVIEW_BODY_BYTES},async(req,reply)=>{
   const {id:doc,page}=params.parse(req.params),input=z.object({revision:z.number().int().nonnegative(),bboxes:z.array(rectangle.extend({type:z.string().min(1).refine(v=>v.isWellFormed()&&!v.includes('\0')),confidence:z.number().finite().min(0).max(1).optional(),source:z.string().refine(v=>v.isWellFormed()&&!v.includes('\0')).optional(),meta:z.record(z.string(),z.json()).optional(),id:z.string().refine(v=>v.isWellFormed()&&!v.includes('\0')).optional(),text:z.string().refine(v=>v.isWellFormed()&&!v.includes('\0')).optional(),shape:z.enum(['rect','circle']).optional(),start:z.number().int().nonnegative().optional(),end:z.number().int().positive().optional()}).strict()).max(3000),marks:z.array(markSchema).max(MAX_MARKS).optional()}).strict().parse(req.body);
   return projectScope(req,{document:doc},['view_original','export'],async db=>{const[d]=await rows(db,sql`SELECT * FROM documents WHERE id=${doc}`);if(!d)denied('NOT_FOUND',404);if(d.revision!==input.revision)denied('VERSION_CONFLICT',409);if(d.state!=='review')denied('DETECTION_INCOMPLETE',409);const p=d.page_data.find((p:any)=>p.index===page);if(!p)denied('PAGE_NOT_READY',409);

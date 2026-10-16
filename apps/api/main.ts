@@ -18,6 +18,7 @@ import {registerReviewProvenanceRoutes} from './review-provenance.ts';
 import {registerDocumentNormalizationRoutes} from './document-normalization.ts';
 import {documentProcessingFormat,isLegacyWordFormat} from '../../packages/core/document-format.ts';
 import {registerFolderOutputRoutes} from './folder-output.ts';
+import {registerFolderMappingArchives} from './folder-mapping-archive.ts';
 import {registerReleaseStateRoutes} from './release-state.ts';
 import {registerMappingLibraryRoutes} from './mapping-library.ts';
 import {registerDocumentRouteRoutes} from "./document-route.ts";
@@ -26,6 +27,9 @@ import {registerDocxImageOcrRoutes} from "./docx-image-ocr.ts";
 import {registerMarkdownReviewRoutes} from "./markdown-review.ts";
 import {openPageReview} from "../../packages/adapters/page-review-storage.ts";
 import {registerProcessingEventRoutes} from "./processing-events.ts";
+import {registerPdfOcrControlRoutes} from "./pdf-ocr-control.ts";
+import {registerPdfSealRoutes,readPdfSealState} from "./pdf-seals.ts";
+import {registerPdfOcrDraftRoutes} from "./pdf-ocr-draft.ts";
 import {registerProcessingResourceRoutes} from "./processing-resources.ts";
 import {registerImageBatchSearchRoutes} from "./image-batch-search.ts";
 import {registerMarkdownManualDraftRoutes} from "./markdown-manual-draft.ts";
@@ -56,10 +60,12 @@ import { registerReplacementPolicies } from "./replacement-policies.ts";
 import { registerDocxLayoutRoutes } from "./docx-layout.ts";
 import { registerDocxPreviewRoutes } from './docx-preview.ts';
 import { registerMappingExports } from './mapping-export.ts';
+import {registerExportMappingArchives} from './export-mapping-archive.ts';
 import { registerOcrRoutes } from "./ocr.ts";
 import { registerVisualRoutes } from "./visual.ts";
 import Fastify from "fastify";
 import cookie from "@fastify/cookie";
+import multipart from "@fastify/multipart";
 import rateLimit from "@fastify/rate-limit";
 import { randomBytes, randomUUID, timingSafeEqual } from "node:crypto";
 import { pathToFileURL } from "node:url";
@@ -149,6 +155,7 @@ export async function buildApp() {
     routerOptions: { maxParamLength: 1024 },
   });
   await app.register(cookie);
+  await app.register(multipart);
   await app.register(rateLimit, { max: 120, timeWindow: "1 minute", hook: "preHandler",
     keyGenerator: req => req.user?.id ? `user:${req.user.id}` : `ip:${req.ip}`,
     errorResponseBuilder: () => Object.assign(new Error("RATE_LIMITED"), { statusCode: 429 }),
@@ -242,6 +249,9 @@ export async function buildApp() {
   registerMarkdownReviewRoutes(app);
   registerImageBatchSearchRoutes(app);
   registerProcessingEventRoutes(app);
+  registerPdfOcrControlRoutes(app);
+  registerPdfSealRoutes(app);
+  registerPdfOcrDraftRoutes(app);
   registerProcessingResourceRoutes(app);
   registerNetworkPolicyRoutes(app);
   registerProcessingObservability(app);
@@ -256,6 +266,7 @@ export async function buildApp() {
   registerMappingLibraryRoutes(app);
   registerReleaseStateRoutes(app);
   registerFolderOutputRoutes(app);
+  registerFolderMappingArchives(app);
   registerDocumentNormalizationRoutes(app);
   registerReviewProvenanceRoutes(app);
   registerUnifiedAliasRoutes(app);
@@ -267,6 +278,7 @@ export async function buildApp() {
   registerEntityCorrectionRoutes(app);
   registerDocumentRouteRoutes(app);
   registerMappingExports(app);
+  registerExportMappingArchives(app);
   registerOcrRoutes(app);
   registerRecognitionRoutes(app, nerReady);
   registerReviewTools(app);
@@ -382,18 +394,28 @@ export async function buildApp() {
       if (page.revision !== undefined && d.revision !== page.revision) fail("VERSION_CONFLICT", 409);
       const [job] = await rows(
         db,
-        sql`SELECT id,kind,status,error_code,required_permissions,user_id FROM jobs WHERE document_id=${doc} ORDER BY created_at DESC,id DESC LIMIT 1`,
+        sql`SELECT j.id,j.kind,j.status,j.error_code,j.required_permissions,j.user_id,j.revision,j.collab_task_id,
+          (j.kind='detect' AND j.status='queued' AND j.pdf_ocr_priority_request_id IS NULL AND j.pdf_ocr_parent_job_id IS NOT NULL AND EXISTS(
+            SELECT 1 FROM jobs p WHERE p.id=j.pdf_ocr_parent_job_id AND p.tenant_id=j.tenant_id AND p.project_id=j.project_id
+              AND p.user_id=j.user_id AND p.document_id=j.document_id AND p.revision=j.revision
+              AND p.status='cancelled' AND p.error_code='PDF_OCR_PRIORITY_PREEMPTED'
+              AND j.pdf_ocr_root_job_id=COALESCE(p.pdf_ocr_root_job_id,p.id))) AS pdf_ocr_priority_waiting
+        FROM jobs j WHERE j.document_id=${doc} ORDER BY j.created_at DESC,j.id DESC LIMIT 1`,
       );
       const [detectJob] = await rows(
         db,
         sql`SELECT status FROM jobs WHERE document_id=${doc} AND kind='detect' AND revision=${d.revision} ORDER BY created_at DESC,id DESC LIMIT 1`,
       );
+      const [originSnapshot]=await rows(db,sql`SELECT review_mode FROM review_snapshots WHERE document_id=${doc} AND revision=${d.revision} AND content_hash=${d.content_hash}`);
+      const reviewOrigin=['automatic','human_review','legacy'].includes(originSnapshot?.review_mode)?originSnapshot.review_mode:undefined;
+      const sealState=d.state==='review'?await readPdfSealState(db,d):null;
       return {
         id: d.id,
         permissions: await capabilities(db, d.project_id),
         project_id: d.project_id,
         ...await runProcessing<object>({ kind: "view", doc: d, offset: page.offset }),
         revision: d.revision,
+        reviewOrigin,
         marks: await(async()=>{const frame=await readReviewProvenance(db,d);return addReviewEntityHints(frame,withReviewEntityBirths(frame,d.marks));})(),
         state: d.state,
         name: d.source_name ? unseal(d.source_name, `${d.tenant_id}:${d.project_id}:${d.id}:name`) : undefined,
@@ -407,11 +429,12 @@ export async function buildApp() {
         pageReview: openPageReview(d),
         pageRotationState: d.source_format==='pdf'?readPageRotationState(d):undefined,
         pages: (d.page_data ?? []).map(({ index, width, height, rotation, confidence, part }: any) => ({ index, width, height, rotation, confidence, part })),
-        job:job?{id:job.id,kind:job.kind,status:job.status,error_code:job.error_code,required_permissions:job.required_permissions,canObserveEvents:job.user_id===req.user.id}:undefined,
+        job:job?{id:job.id,kind:job.kind,status:job.status,error_code:job.error_code,required_permissions:job.required_permissions,canObserveEvents:job.user_id===req.user.id,ordinaryPdfDetection:job.user_id===req.user.id&&job.kind==='detect'&&!job.collab_task_id&&d.source_format==='pdf'&&job.revision===d.revision,pdfOcrPriorityWaiting:job.user_id===req.user.id&&job.pdf_ocr_priority_waiting===true}:undefined,
         canRunNer: nerReady,
         nerEnabled: d.ner_enabled,
         visualCandidates: d.visual_candidates,
-        visualDiagnostics:d.recognition?.visual??null,
+        visualDiagnostics:d.recognition?.visual?{...d.recognition.visual,...sealState?{sealProgress:sealState.sealProgress,sealPaused:sealState.paused}:{}}:null,
+        sealDetectJobId:sealState?.ownerId===req.user.id?sealState.detectJobId:null,
         layers: {
           rules: d.state === "review" ? "completed" : d.state === "outdated" ? "outdated" : d.state === "queued" && ["failed", "cancelled"].includes(detectJob?.status) ? detectJob.status : "pending",
           ner: d.ner_enabled ? (d.state === "review" ? "completed" : "pending") : (nerReady ? "not_requested" : "not_configured"),
@@ -421,7 +444,7 @@ export async function buildApp() {
     });
   });
   app.get("/api/documents/:id/pages/:page", async (req, reply) => {
-    const doc = id.parse((req.params as any).id), page = z.coerce.number().int().min(0).max(299).parse((req.params as any).page);
+    const doc = id.parse((req.params as any).id), page = z.coerce.number().int().nonnegative().parse((req.params as any).page);
     const { revision } = z.object({ revision: z.coerce.number().int().nonnegative() }).parse(req.query);
     const image = await projectScope(req, { document: doc }, ["view_original"], async db => {
       const [d] = await rows(db, sql`SELECT * FROM documents WHERE id=${doc}`);
@@ -433,7 +456,7 @@ export async function buildApp() {
     return reply.type("image/png").send(Buffer.from(image));
   });
   app.post("/api/documents/:id/pages/:page/preview", { bodyLimit: REVIEW_BODY_BYTES }, async (req, reply) => {
-    const doc = id.parse((req.params as any).id), page = z.coerce.number().int().min(0).max(299).parse((req.params as any).page), input = reviewSchema.parse(req.body);
+    const doc = id.parse((req.params as any).id), page = z.coerce.number().int().nonnegative().parse((req.params as any).page), input = reviewSchema.parse(req.body);
     const image = await projectScope(req, { document: doc }, ["view_original"], async db => {
       const [d] = await rows(db, sql`SELECT * FROM documents WHERE id=${doc}`);
       if (!d) fail("NOT_FOUND", 404);
@@ -459,10 +482,10 @@ export async function buildApp() {
     });
   });
   app.post("/api/documents/:id/export", async (req) => {
-    const doc=id.parse((req.params as any).id),{revision}=revisionSchema.parse(req.body);
+    const doc=id.parse((req.params as any).id),{revision,pseudonymTableName,manualSealChecked}=revisionSchema.extend({pseudonymTableName:z.string().trim().min(1).max(80).refine(v=>v.isWellFormed()&&v!=='.'&&v!=='..'&&!/[<>:"/\\|?*\x00-\x1f\x7f]/u.test(v)).optional(),manualSealChecked:z.literal(true).optional()}).parse(req.body);
     const unified=await preflightUnifiedAliasExport(req,doc,revision);
     if(unified&&Object.keys(unified.changedDocuments).length)fail("UNIFIED_ALIAS_REVIEW_REQUIRED",409);
-    return projectScope(req,{document:doc},["export"],db=>queueExport(db,req,doc,revision,unified));
+    return projectScope(req,{document:doc},["export"],db=>queueExport(db,req,doc,revision,unified,null,pseudonymTableName,false,manualSealChecked===true));
   });
   app.post("/api/jobs/:id/cancel", async (req) => {
     const job = id.parse((req.params as any).id);
@@ -514,7 +537,13 @@ export async function buildApp() {
       const [presetProject] = await rows(db, sql`SELECT id,tenant_id,preset_policy,preset_revision FROM projects WHERE id=${d.project_id}`);
       Object.assign(d,resolveDocumentPolicy(d,readProjectPresets(presetProject)));
       const [snapshot] = await rows(db, sql`SELECT * FROM review_snapshots WHERE document_id=${doc} AND revision=${revision}`);
-      try { await runProcessing({ kind: "gate", doc: d, snapshot }); } catch (e) { fail((e as Error).message, 409); }
+      // The legacy and human review gate precedes artifact lookup, preserving
+      // policy errors even before a worker has produced an output.
+      if(snapshot?.review_mode!=='automatic') {
+        try { await runProcessing({ kind: "gate", doc: d, snapshot }); } catch (e) { fail((e as Error).message, 409); }
+      }
+      // Explicit task selectors remain private to the task owner. The normal
+      // document download has no selector and keeps project export access.
       if(jobId||artifactId){const[owned]=await rows(db,sql`SELECT j.id FROM jobs j LEFT JOIN ai_collab_tasks t ON t.id=j.collab_task_id LEFT JOIN artifacts a ON a.job_id=j.id WHERE (j.collab_task_id IS NULL OR t.owner_id=${req.user.id}) AND j.document_id=${doc} AND (${jobId??null}::uuid IS NULL OR j.id=${jobId??null}) AND (${artifactId??null}::uuid IS NULL OR a.id=${artifactId??null}) LIMIT 1`);if(!owned)fail("NOT_FOUND",404);}
       const[a]=jobId
         ?await rows(db,sql`SELECT a.* FROM artifacts a JOIN jobs j ON j.id=a.job_id WHERE a.document_id=${doc} AND a.revision=${d.revision} AND a.output_role=${role} AND j.id=${jobId} AND j.status='succeeded' ORDER BY j.created_at DESC LIMIT 1`)
@@ -522,8 +551,21 @@ export async function buildApp() {
         ?await rows(db,sql`SELECT a.* FROM artifacts a JOIN jobs j ON j.id=a.job_id WHERE a.document_id=${doc} AND a.revision=${d.revision} AND a.output_role=${role} AND a.id=${artifactId} AND j.status='succeeded' LIMIT 1`)
         :await rows(db,sql`SELECT a.* FROM artifacts a JOIN jobs j ON j.id=a.job_id WHERE a.document_id=${doc} AND a.revision=${d.revision} AND a.output_role=${role} AND j.status='succeeded' ORDER BY j.created_at DESC LIMIT 1`);
       if (!a) fail("EXPORT_NOT_READY", 409);
+      // Bind the gate to the job of the exact artifact chosen by the existing
+      // selector/default-role ordering. The normal UI omits jobId.
+      const [selectedJob]=await rows(db,sql`SELECT id,collab_task_id,user_id FROM jobs WHERE id=${a.job_id} AND document_id=${doc} AND tenant_id=${d.tenant_id} AND project_id=${d.project_id} AND revision=${revision} AND status='succeeded'`);
+      if(!selectedJob)fail('ARTIFACT_VERIFICATION_FAILED',409);
+      if(snapshot?.review_mode==='automatic'){
+        const[witness]=await rows(db,sql`SELECT automatic_job_owner_witness(${selectedJob.id}::uuid) AS valid`);
+        if(!witness?.valid)fail('AUTOMATIC_ORIGIN_MISMATCH',409);
+      }
+      const automaticBinding=snapshot?.review_mode==='automatic'
+        ?{taskId:snapshot.automatic_task_id,actorId:snapshot.automatic_actor_id}:undefined;
+      if(snapshot?.review_mode==='automatic') {
+        try { await runProcessing({ kind: "gate", doc: d, snapshot, automaticBinding }); } catch (e) { fail((e as Error).message, 409); }
+      }
       try {
-        await runProcessing({ kind: "verify", doc: d, snapshot, artifact: a });
+        await runProcessing({ kind: "verify", doc: d, snapshot, artifact: a, automaticBinding });
       } catch (e) {
         if ((e as Error).message === "PROCESSING_BUSY") fail("PROCESSING_BUSY", 409);
         fail("ARTIFACT_VERIFICATION_FAILED", 409);

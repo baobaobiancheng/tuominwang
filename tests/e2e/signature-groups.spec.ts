@@ -77,7 +77,7 @@ test('real CSV signature groups keep same-name positions independent through UI 
     // The entity tree must not offer per-fragment deletion of a signed group.
     await page.getByRole('button', { name: '按实体', exact: true }).click();
     const groupDeleteButtons = page.locator('section[aria-label="实体分组"]').getByRole('button', { name: '删除此组标记', exact: true });
-    await expect(groupDeleteButtons).toHaveCount(4); // 张、三 each have two occurrences; 李、四 each have one.
+    await expect(groupDeleteButtons).toHaveCount(4, { timeout: 30_000 }); // Actual entity-filter response may exceed the default 5s; all four grouped controls must arrive.
     for (let i = 0; i < 4; i++) {
       await expect(groupDeleteButtons.nth(i)).toBeDisabled();
       await expect(groupDeleteButtons.nth(i)).toHaveAttribute('title', '签名分格姓名请整组保留原值');

@@ -78,11 +78,11 @@ test('ai_process owner grants restoration in the UI, then MCP restores a downloa
   await pendingPanel.screenshot({ path: pendingScreenshot });
   await info.attach('mcp-pending-claude-authorization', { path: pendingScreenshot, contentType: 'image/png' });
   await newConsent.getByRole('checkbox', { name: '允许读取本项目选定材料并脱敏' }).check();
-  await newConsent.getByRole('checkbox', { name: '允许将已复核的脱敏稿交给当前客户端' }).check();
+  await newConsent.getByRole('checkbox', { name: '允许将经系统审定或人工复核的脱敏稿交给当前客户端' }).check();
   await newConsent.getByRole('checkbox', { name: '创建受保护的协作文件' }).check();
-  await newConsent.getByRole('checkbox', { name: '授权后打开材料复核' }).uncheck();
+  await newConsent.getByRole('checkbox', { name: '授权后打开材料页' }).uncheck();
   const authorized = page.waitForResponse(r => new URL(r.url()).pathname === `/api/ai-collab/tasks/${job}/authorize` && r.request().method() === 'POST');
-  await newConsent.getByRole('button', { name: '确认授权并识别材料' }).click();
+  await newConsent.getByRole('button', { name: '确认授权并自动处理' }).click();
   expect((await authorized).status()).toBe(200);
   activeHeaders = claudeHeaders;
   const oldCaller = await callWith(originalHeaders, 'check_document_delivery', { job_id: job, wait_seconds: 0 });
@@ -135,7 +135,7 @@ test('ai_process owner grants restoration in the UI, then MCP restores a downloa
   } finally { await admin.end(); }
   await page.goto(`/?collab=${job}`);
   const interruptedPanel = page.locator('section.panel').filter({ has: page.getByRole('heading', { name: 'AI 协作', exact: true }) });
-  await expect(interruptedPanel.getByRole('status')).toContainText('返回稿待继续校验');
+  await expect(interruptedPanel.getByRole('status').filter({ hasText: '返回稿待继续校验' })).toBeVisible();
   await expect(interruptedPanel.getByRole('alert')).toContainText('在原 MCP 客户端重新提交本轮同一返回稿');
   await expect(interruptedPanel.getByRole('alert')).toContainText('先接续任务并在此重新授权');
   const legacyScreenshot = info.outputPath('mcp-legacy-return-awaiting-retry.png');
@@ -147,9 +147,9 @@ test('ai_process owner grants restoration in the UI, then MCP restores a downloa
 
   await page.goto(`/?collab=${job}`);
   const panel = page.locator('section.panel').filter({ has: page.getByRole('heading', { name: 'AI 协作', exact: true }) });
-  await expect(panel.getByRole('status')).toContainText('等待复核返回稿');
+  await expect(panel.getByRole('status').filter({ hasText: '等待复核返回稿' })).toBeVisible();
   await panel.getByRole('button', { name: '我已复核返回稿，确认内容', exact: true }).click();
-  await expect(panel.getByRole('status')).toContainText('本轮已完成');
+  await expect(panel.getByRole('status').filter({ hasText: '本轮已完成' })).toBeVisible();
   await expect(panel.getByRole('button', { name: '取消协作任务' })).toHaveCount(0);
   const grant = panel.getByRole('button', { name: '允许使用本项目假名表还原此次返回稿', exact: true });
   await expect(grant).toBeVisible();

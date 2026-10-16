@@ -1,7 +1,8 @@
 import React, { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 
-type Request = { message: string; resolve: (accepted: boolean) => void; trigger: HTMLElement | null; signal?: AbortSignal; abort: () => void };
+type ConfirmLabels = { title?: string; confirmText?: string; cancelText?: string };
+type Request = { message: string; labels?: ConfirmLabels; resolve: (accepted: boolean) => void; trigger: HTMLElement | null; signal?: AbortSignal; abort: () => void };
 let pending: Request | null = null;
 let present: ((request: Request | null) => void) | null = null;
 let closeDialog: (() => void) | null = null;
@@ -17,11 +18,11 @@ function finish(accepted: boolean, restoreFocus = true) {
   request.resolve(accepted);
 }
 
-export function confirmAction(message: string, signal?: AbortSignal): Promise<boolean> {
+export function confirmAction(message: string, signal?: AbortSignal, labels?: ConfirmLabels): Promise<boolean> {
   // A second caller must never receive the first caller's approval or queue a duplicate write.
   if (pending || !present || signal?.aborted) return Promise.resolve(false);
   return new Promise(resolve => {
-    const request: Request = { message, resolve, trigger: document.activeElement instanceof HTMLElement ? document.activeElement : null, signal, abort: () => { if (pending === request) finish(false); } };
+    const request: Request = { message, labels, resolve, trigger: document.activeElement instanceof HTMLElement ? document.activeElement : null, signal, abort: () => { if (pending === request) finish(false); } };
     pending = request;
     signal?.addEventListener("abort", request.abort, { once: true });
     present!(request);
@@ -35,7 +36,7 @@ export function useConfirmAction() {
     lifetime.current = controller;
     return () => controller.abort();
   }, []);
-  return useCallback((message: string) => lifetime.current ? confirmAction(message, lifetime.current.signal) : Promise.resolve(false), []);
+  return useCallback((message: string, labels?: ConfirmLabels) => lifetime.current ? confirmAction(message, lifetime.current.signal, labels) : Promise.resolve(false), []);
 }
 
 export function ConfirmationDialog() {
@@ -56,10 +57,10 @@ export function ConfirmationDialog() {
     try { dialog.current?.showModal(); cancel.current?.focus(); }
     catch { finish(false); }
   }, [request]);
-  return createPortal(<dialog ref={dialog} className="action-confirm-dialog" role="alertdialog" aria-label="操作确认" aria-describedby="action-confirm-message" onCancel={event => { event.preventDefault(); event.stopPropagation(); finish(false); }} onClose={() => { if (pending === request && !dialog.current?.open) finish(false); }}>
-    <h2>操作确认</h2>
+  return createPortal(<dialog ref={dialog} className="action-confirm-dialog" role="alertdialog" aria-label={request?.labels?.title ?? "操作确认"} aria-describedby="action-confirm-message" onCancel={event => { event.preventDefault(); event.stopPropagation(); finish(false); }} onClose={() => { if (pending === request && !dialog.current?.open) finish(false); }}>
+    <h2>{request?.labels?.title ?? "操作确认"}</h2>
     <p id="action-confirm-message">{request?.message}</p>
-    <div className="actions"><button ref={cancel} type="button" className="secondary" onClick={() => finish(false)}>取消</button><button type="button" onClick={() => finish(true)}>确认执行</button></div>
+    <div className="actions"><button ref={cancel} type="button" className="secondary" onClick={() => finish(false)}>{request?.labels?.cancelText ?? "取消"}</button><button type="button" onClick={() => finish(true)}>{request?.labels?.confirmText ?? "确认执行"}</button></div>
   </dialog>, document.body);
 }
 

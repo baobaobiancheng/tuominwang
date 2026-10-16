@@ -1,5 +1,3 @@
-// Intended destination: tests/document-policy-portable.integration.ts
-// Candidate only. Run with scripts/run-isolated.ts integration and a tmw_test_ DB.
 import {test,after} from 'node:test';
 import assert from 'node:assert/strict';
 import {randomUUID} from 'node:crypto';
@@ -86,6 +84,9 @@ test('deleted personal profile snapshot remains editable after native portable i
  const beforeRow=(await admin.query('SELECT tenant_id,revision,document_policy_revision,document_policy FROM documents WHERE id=$1',[newRow.id])).rows[0];
  const beforePolicy=JSON.parse(unseal(beforeRow.document_policy,`${beforeRow.tenant_id}:${newProject}:${newRow.id}:document-policy`));
  assert.equal(beforePolicy.ruleset.id,rulesetId);
+ assert.ok(beforePolicy.baseProfile);
+ assert.equal(beforePolicy.baseProfile.id,personalId);
+ assert.deepEqual(beforePolicy.baseProfile.enabledEntityTypeIds,['phone']);
  const unknownProfile=await req('POST',`/api/documents/${newRow.id}/configuration`,{revision:reopened.revision,configuration:{...settings.json().configuration,profileId:randomUUID()}});
  assert.equal(unknownProfile.statusCode,404,unknownProfile.body);
  const unknownRuleset=await req('POST',`/api/documents/${newRow.id}/configuration`,{revision:reopened.revision,configuration:{...settings.json().configuration,rulesetId:randomUUID()}});
@@ -102,13 +103,23 @@ test('deleted personal profile snapshot remains editable after native portable i
  const memberLogin=await app.inject({method:'POST',url:'/api/login',headers:{origin},payload:{username:memberName,password}});
  assert.equal(memberLogin.statusCode,200,memberLogin.body);
  const memberCookie=String(memberLogin.headers['set-cookie']).split(';')[0];
- const memberApply=await app.inject({method:'POST',url:`/api/documents/${newRow.id}/configuration`,headers:{origin,cookie:memberCookie},payload:{revision:reopened.revision,configuration:settings.json().configuration}});
- assert.equal(memberApply.statusCode,403,memberApply.body);
- assert.equal((await admin.query('SELECT document_policy FROM documents WHERE id=$1',[newRow.id])).rows[0].document_policy,beforeRow.document_policy);
+ // A reviewer may edit an unrelated field while preserving both deleted, sealed snapshots.
+ const memberApply=await app.inject({method:'POST',url:`/api/documents/${newRow.id}/configuration`,headers:{origin,cookie:memberCookie},payload:{revision:reopened.revision,configuration:{...settings.json().configuration,documentType:'general'}}});
+ assert.equal(memberApply.statusCode,200,memberApply.body);
+ const afterMember=(await admin.query('SELECT tenant_id,revision,document_policy_revision,document_policy FROM documents WHERE id=$1',[newRow.id])).rows[0];
+ const memberPolicy=JSON.parse(unseal(afterMember.document_policy,`${afterMember.tenant_id}:${newProject}:${newRow.id}:document-policy`));
+ assert.deepEqual(memberPolicy.ruleset,beforePolicy.ruleset);
+ assert.deepEqual(memberPolicy.baseProfile,beforePolicy.baseProfile);
+ assert.equal(afterMember.revision,beforeRow.revision+1);
+ const memberRebind=await app.inject({method:'POST',url:`/api/documents/${newRow.id}/configuration`,headers:{origin,cookie:memberCookie},payload:{revision:afterMember.revision,configuration:settings.json().configuration,rebindRuleset:true}});
+ assert.equal(memberRebind.statusCode,403,memberRebind.body);
+ const memberNewRuleset=await app.inject({method:'POST',url:`/api/documents/${newRow.id}/configuration`,headers:{origin,cookie:memberCookie},payload:{revision:afterMember.revision,configuration:{...settings.json().configuration,rulesetId:null}}});
+ assert.equal(memberNewRuleset.statusCode,403,memberNewRuleset.body);
+ const afterMemberReject=(await admin.query('SELECT revision,document_policy_revision,document_policy FROM documents WHERE id=$1',[newRow.id])).rows[0];
+ assert.deepEqual(afterMemberReject,{revision:afterMember.revision,document_policy_revision:afterMember.document_policy_revision,document_policy:afterMember.document_policy});
 
- // UI action: 本材料识别与脱敏设置 → change 材料类型 → 保存设置并重新识别.
- // Current HEAD returns 404 NOT_FOUND here despite the valid sealed snapshot.
- const changed=await req('POST',`/api/documents/${newRow.id}/configuration`,{revision:reopened.revision,configuration:{...settings.json().configuration,documentType:'general'}});
+ // The owner can continue editing this material without resolving deleted personal entries.
+ const changed=await req('POST',`/api/documents/${newRow.id}/configuration`,{revision:afterMember.revision,configuration:{...settings.json().configuration,documentType:'general'}});
  assert.equal(changed.statusCode,200,changed.body);
  const changedRow=(await admin.query('SELECT tenant_id,document_policy FROM documents WHERE id=$1',[newRow.id])).rows[0];
  const changedPolicy=JSON.parse(unseal(changedRow.document_policy,`${changedRow.tenant_id}:${newProject}:${newRow.id}:document-policy`));
@@ -121,6 +132,7 @@ test('deleted personal profile snapshot remains editable after native portable i
  const changedProfileSettings={...changedPolicy.profile,id:'<material-snapshot-id>'};
  assert.deepEqual(changedProfileSettings,beforeProfileSettings,'material type change must retain every other sealed profile setting');
  assert.deepEqual(changedPolicy.ruleset,beforePolicy.ruleset);
+ assert.deepEqual(changedPolicy.baseProfile,beforePolicy.baseProfile,'portable base profile must survive strict native roundtrip and ordinary edits');
  const retry=await req('POST',`/api/documents/${newRow.id}/recognize`,{revision:changed.json().revision,ner:false});
  assert.equal(retry.statusCode,200,retry.body);
  assert.equal(await tick(),true);

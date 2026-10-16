@@ -2,5 +2,6 @@
 declare const policy: {
   eligible(ready: boolean, version: boolean, covered: boolean, reviewed: boolean, snapshot: boolean): boolean;
   restoreAllowed(authorized: boolean, current: boolean, known: boolean, unambiguous: boolean): boolean;
+  automaticEligible(ready: boolean, version: boolean, covered: boolean, decided: boolean, snapshot: boolean, origin: boolean): boolean;
 };
 export default policy;

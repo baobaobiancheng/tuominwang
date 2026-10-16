@@ -19,7 +19,8 @@ import { requirePermission } from "./access.ts";
 import { isDeepStrictEqual } from "node:util";
 
 // Caller holds the document row lock. Both single-document and project review use the same validation/snapshot path.
-export async function saveReview(db: DB, user: string, d: any, incoming: Mark[], timeoutMs?: number, trustedSnapshot = false, pageReview?: PageReview) {
+export type AutomaticReviewOrigin = {mode:'automatic';taskId:string;actorId:string;sourceRevision:number;sourceHash:string;policyVersion:string;suppressed:unknown[]};
+export async function saveReview(db: DB, user: string, d: any, incoming: Mark[], timeoutMs?: number, trustedSnapshot = false, pageReview?: PageReview, automaticOrigin?:AutomaticReviewOrigin) {
   if (d.state !== "review") throw Object.assign(new Error(d.state === "outdated" ? "POLICY_CHANGED" : "DETECTION_INCOMPLETE"), { statusCode: 409 });
   const [project]=await rows(db,sql`SELECT id,tenant_id,preset_policy,preset_revision FROM projects WHERE id=${d.project_id}`);
   Object.assign(d,resolveDocumentPolicy(d,readProjectPresets(project)));
@@ -37,11 +38,11 @@ export async function saveReview(db: DB, user: string, d: any, incoming: Mark[],
   catch (e) { throw Object.assign(e as Error, { statusCode: 400 }); }
   const geometryChanges=await entityGeometryChanges(db,d,oldPagePolicy,pagePolicy,marks,matched.links,user),entityMetadata=await sealNextReviewProvenance(db,d,marks,user,matched.links,frame=>appendGeometryProvenance(frame,geometryChanges));
   await rows(db, sql`UPDATE documents SET marks=${JSON.stringify(marks)}::jsonb,page_review=${JSON.stringify(storedPagePolicy)}::jsonb,entity_corrections=${rebound.stored},revision=revision+1,state='review' WHERE id=${d.id}`);
-  await rows(db, sql`INSERT INTO review_snapshots(document_id,revision,tenant_id,project_id,content_hash,parse_version,marks,rule_version,recognition,page_review,page_data,entity_metadata)
-    VALUES(${d.id},${d.revision + 1},${d.tenant_id},${d.project_id},${d.content_hash},${d.parse_version},${JSON.stringify(marks)}::jsonb,${d.recognition?.rules ?? "rules-v1"},${JSON.stringify(d.recognition ?? {})}::jsonb,${JSON.stringify(storedPagePolicy)}::jsonb,${JSON.stringify(d.page_data ?? [])}::jsonb,${entityMetadata})`);
+  await rows(db, sql`INSERT INTO review_snapshots(document_id,revision,tenant_id,project_id,content_hash,parse_version,marks,rule_version,recognition,page_review,page_data,entity_metadata,review_mode,automatic_task_id,automatic_actor_id,automatic_source_revision,automatic_source_hash,automatic_policy_version,automatic_suppressed)
+    VALUES(${d.id},${d.revision + 1},${d.tenant_id},${d.project_id},${d.content_hash},${d.parse_version},${JSON.stringify(marks)}::jsonb,${d.recognition?.rules ?? "rules-v1"},${JSON.stringify(d.recognition ?? {})}::jsonb,${JSON.stringify(storedPagePolicy)}::jsonb,${JSON.stringify(d.page_data ?? [])}::jsonb,${entityMetadata},${automaticOrigin?'automatic':'human_review'},${automaticOrigin?.taskId??null},${automaticOrigin?.actorId??null},${automaticOrigin?.sourceRevision??null},${automaticOrigin?.sourceHash??null},${automaticOrigin?.policyVersion??null},${automaticOrigin?JSON.stringify(automaticOrigin.suppressed):null}::jsonb)`);
   await rows(db,sql`DELETE FROM workspace_recoveries WHERE document_id=${d.id} AND user_id=${user}`);
   await rows(db, sql`UPDATE attempts SET finished_at=now(),outcome='review_changed' WHERE finished_at IS NULL AND job_id IN (SELECT id FROM jobs WHERE document_id=${d.id} AND status IN ('queued','running'))`);
   await rows(db, sql`UPDATE jobs SET status='cancelled',lease_until=NULL WHERE document_id=${d.id} AND status IN ('queued','running')`);
-  await rows(db, sql`INSERT INTO audit(tenant_id,project_id,user_id,event,object_id) VALUES(${d.tenant_id},${d.project_id},${user},'review_saved',${d.id})`);
+  await rows(db, sql`INSERT INTO audit(tenant_id,project_id,user_id,event,object_id) VALUES(${d.tenant_id},${d.project_id},${user},${automaticOrigin?'automatic_review_committed':'review_saved'},${d.id})`);
   return { id: d.id, revision: d.revision + 1 };
 }

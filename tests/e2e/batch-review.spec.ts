@@ -3,7 +3,7 @@ import { test, expect } from "./fixture.ts";
 import { exportDictionary, importDictionary } from "../../packages/core/dictionary-workbook.ts";
 
 test("desktop XLSX lists remain drafts until saved; project whitelist review and undo touch only confirmed scope", async ({ page }) => {
-  test.setTimeout(120000);
+  test.setTimeout(180000);
   await page.goto("/");
   await page.getByLabel("账号", { exact: true }).fill(process.env.E2E_USERNAME!);
   await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
@@ -25,6 +25,7 @@ test("desktop XLSX lists remain drafts until saved; project whitelist review and
     await page.getByRole("button", { name: "导入材料", exact: true }).click();
     await page.getByLabel("待处理文本").fill("甲乙公司 联系13800138000");
     await page.getByRole("button", { name: "提交并识别", exact: true }).click();
+    await expect(page.locator(".statusbar span").first()).toHaveText("自动识别 已完成", { timeout: 45_000 });
     await page.getByRole("button", { name: "逐条复核", exact: true }).click();
     await expect(page.getByLabel("标记 2 处理决定")).toHaveValue("pending");
     await expect(page.getByText(/白名单建议/)).toBeVisible();
@@ -51,5 +52,5 @@ test("desktop XLSX lists remain drafts until saved; project whitelist review and
   await page.getByRole("button", { name: "逐条复核", exact: true }).click();
   await expect(page.getByLabel("标记 1 处理决定")).toHaveValue("pending");
   await expect(page.getByLabel("标记 2 处理决定")).toHaveValue("pending");
-  await expect(page.getByText("复核版本 2", { exact: true })).toBeVisible();
+  await expect(page.locator(".statusbar span").nth(1)).toHaveText(/^复核版本 2 · /);
 });

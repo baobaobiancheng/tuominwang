@@ -1,0 +1,70 @@
+import {test,after} from 'node:test';
+import assert from 'node:assert/strict';
+import {randomUUID} from 'node:crypto';
+import pg from 'pg';
+import {buildApp} from '../apps/api/main.ts';
+import {tick} from '../apps/worker/main.ts';
+import {pool} from '../packages/adapters/db.ts';
+import {passwordHash,hash} from '../packages/adapters/storage.ts';
+import {readZip} from '../packages/core/office-zip.ts';
+
+assert.ok(new URL(process.env.DATABASE_URL!).pathname.startsWith('/tmw_test_'));
+assert.ok(new URL(process.env.MIGRATION_DATABASE_URL!).pathname.startsWith('/tmw_test_'));
+assert.ok(process.env.DATA_DIR?.includes('/.data/test-runs/'));
+const admin=new pg.Pool({connectionString:process.env.MIGRATION_DATABASE_URL}),app=await buildApp();
+after(async()=>{await app.close();await pool.end();await admin.end();});
+test('single and batch temporary pseudonym table names affect only their export response',async()=>{
+ const tenant=randomUUID(),user=randomUUID(),username='temporary-table-'+user,password='synthetic-table-password',origin=process.env.APP_ORIGIN!;
+ await admin.query('INSERT INTO users VALUES($1,$2,$3,$4)',[user,tenant,username,passwordHash(password)]);
+ const login=await app.inject({method:'POST',url:'/api/login',headers:{origin},payload:{username,password}});
+ assert.equal(login.statusCode,200,login.body);
+ const cookie=String(login.headers['set-cookie']).split(';')[0];
+ const req=(method:'GET'|'POST'|'PUT',url:string,payload?:any)=>app.inject({method,url,payload,headers:{origin,cookie}});
+ const project=(await req('POST','/api/projects',{name:'临时表名合成项目'})).json().id as string;
+ const beforeProject=(await admin.query('SELECT preset_revision,preset_policy FROM projects WHERE id=$1',[project])).rows[0];
+ const documents:string[]=[];
+ for(const text of ['张三张三李四','王五王五李四']){
+  const response=await req('POST',`/api/projects/${project}/documents`,{requestId:randomUUID(),text});
+  assert.equal(response.statusCode,200,response.body);
+  const document=response.json().id as string;documents.push(document);assert.equal(await tick(),true);
+  const plan=await req('POST',`/api/documents/${document}/replacement-policies`,{revision:0,marks:[{start:0,end:2,kind:'姓名',decision:'redact'},{start:2,end:4,kind:'姓名',decision:'redact'}],policies:{overall:{mode:'alias'},types:[],values:[],keepExplicit:true}});
+  assert.equal(plan.statusCode,200,plan.body);
+  const saved=await req('PUT',`/api/documents/${document}/review`,{revision:0,marks:plan.json().marks});
+  assert.equal(saved.statusCode,200,saved.body);
+ }
+ const before=await admin.query('SELECT id,revision,source_id,source_hash,document_policy FROM documents WHERE id=ANY($1::uuid[]) ORDER BY id',[documents]);
+ const beforeArtifacts=(await admin.query('SELECT count(*)::int n FROM artifacts WHERE project_id=$1',[project])).rows[0].n;
+ const one={documents:[{id:documents[0],revision:1}],mode:'singleDocument',format:'lpm'};
+ const first=await req('POST',`/api/projects/${project}/mapping-export`,{...one,tableName:'本次甲'});
+ assert.equal(first.statusCode,200,first.body);
+ assert.ok(decodeURIComponent(String(first.headers['content-disposition'])).includes('本次甲.lpm'));
+ assert.equal(first.json()._meta.tableName,'本次甲');
+ assert.equal(first.json()._meta.scope,'single');
+ const second=await req('POST',`/api/projects/${project}/mapping-export`,{...one,tableName:'本次乙'});
+ assert.equal(second.statusCode,200,second.body);
+ assert.ok(decodeURIComponent(String(second.headers['content-disposition'])).includes('本次乙.lpm'));
+ assert.equal(second.json()._meta.tableName,'本次乙');
+ assert.notEqual(hash(first.rawPayload),hash(second.rawPayload));
+ const literal=await req('POST',`/api/projects/${project}/mapping-export`,{...one,tableName:'{fileName}'});assert.equal(literal.statusCode,200,literal.body);assert.ok(decodeURIComponent(String(literal.headers['content-disposition'])).includes('{fileName}.lpm'));assert.equal(literal.json()._meta.tableName,'{fileName}');
+ const eighty='表'.repeat(80),validBoundary=await req('POST',`/api/projects/${project}/mapping-export`,{...one,tableName:eighty});assert.equal(validBoundary.statusCode,200,validBoundary.body);assert.equal(validBoundary.json()._meta.tableName,eighty);
+ const tooLong=await req('POST',`/api/projects/${project}/mapping-export`,{...one,tableName:'表'.repeat(81)});assert.equal(tooLong.statusCode,400,tooLong.body);
+ const batch={documents:documents.map(id=>({id,revision:1})),mode:'independentBatch',format:'lpm',tableName:'批量共同',documentTableNames:{[documents[0]]:'逐项名',[documents[1]]:'逐项名'}};
+ const zipped=await req('POST',`/api/projects/${project}/mapping-export`,batch);
+ assert.equal(zipped.statusCode,200,zipped.body);
+ const parts=await readZip(zipped.rawPayload);
+ assert.deepEqual([...parts.keys()].sort(),['逐项名.lpm','逐项名_2.lpm']);
+ assert.equal(JSON.parse(parts.get('逐项名.lpm')!.toString())._meta.tableName,'逐项名');
+ assert.equal(JSON.parse(parts.get('逐项名_2.lpm')!.toString())._meta.tableName,'逐项名_2');
+ const unified=await req('POST',`/api/projects/${project}/mapping-export`,{...batch,mode:'unifiedBatch',documentTableNames:undefined,tableName:'本次合并'});
+ assert.equal(unified.statusCode,200,unified.body);
+ assert.ok(decodeURIComponent(String(unified.headers['content-disposition'])).includes('本次合并.lpm'));
+ assert.equal(unified.json()._meta.scope,'project');
+ for(const bad of ['../逃逸','/root/secret','\\other','.', 'bad\u0000name']){
+  const rejected=await req('POST',`/api/projects/${project}/mapping-export`,{...one,tableName:bad});
+  assert.equal(rejected.statusCode,400,JSON.stringify({bad,body:rejected.body}));
+ }
+ const after=await admin.query('SELECT id,revision,source_id,source_hash,document_policy FROM documents WHERE id=ANY($1::uuid[]) ORDER BY id',[documents]);
+ assert.deepEqual(after.rows,before.rows);
+ assert.deepEqual((await admin.query('SELECT preset_revision,preset_policy FROM projects WHERE id=$1',[project])).rows[0],beforeProject);
+ assert.equal((await admin.query('SELECT count(*)::int n FROM artifacts WHERE project_id=$1',[project])).rows[0].n,beforeArtifacts);
+});

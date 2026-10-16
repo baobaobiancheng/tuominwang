@@ -1,0 +1,97 @@
+import {test,after} from 'node:test';
+import assert from 'node:assert/strict';
+import {randomUUID} from 'node:crypto';
+import pg from 'pg';
+import {buildApp} from '../apps/api/main.ts';
+import {tick} from '../apps/worker/main.ts';
+import {pool} from '../packages/adapters/db.ts';
+import {passwordHash} from '../packages/adapters/storage.ts';
+import {MCP_PROTOCOL,taskUUID} from '../packages/core/mcp-tools.ts';
+
+assert.ok(new URL(process.env.DATABASE_URL!).pathname.startsWith('/tmw_test_'));
+const admin=new pg.Pool({connectionString:process.env.MIGRATION_DATABASE_URL}),app=await buildApp(),origin=process.env.APP_ORIGIN!;
+after(async()=>{await app.close();await pool.end();await admin.end();});
+const consent={allowRedactionPath:true,allowRestorePath:false,allowSanitizedDelivery:true,autoEnterReview:false,createExchangeFolder:true,autoRestoreAfterValidation:false};
+
+test('generic retry retains exact MCP detect and export task ownership without reviving cancelled tasks',async()=>{
+ const tenant=randomUUID(),user=randomUUID(),username=`owned-retry-${randomUUID()}`,password='synthetic-owned-retry-password';
+ await admin.query('INSERT INTO users VALUES($1,$2,$3,$4)',[user,tenant,username,passwordHash(password)]);
+ const login=await app.inject({method:'POST',url:'/api/login',headers:{origin},payload:{username,password}});assert.equal(login.statusCode,200,login.body);
+ const cookie=String(login.headers['set-cookie']).split(';')[0];
+ const req=(method:any,url:string,payload?:any,extra:Record<string,string>={})=>app.inject({method,url,payload,headers:{origin,cookie,...extra}});
+ const init=await req('POST','/api/mcp',{jsonrpc:'2.0',id:1,method:'initialize',params:{protocolVersion:MCP_PROTOCOL,clientInfo:{name:'retry-probe',version:'1'}}});assert.equal(init.statusCode,200,init.body);
+ const headers={'mcp-session-id':String(init.headers['mcp-session-id']),'mcp-protocol-version':MCP_PROTOCOL};
+ assert.equal((await req('POST','/api/mcp',{jsonrpc:'2.0',method:'notifications/initialized'},headers)).statusCode,202);
+ const tool=async(name:string,args:any)=>{const r=await req('POST','/api/mcp',{jsonrpc:'2.0',id:randomUUID(),method:'tools/call',params:{name,arguments:args}},headers);assert.equal(r.statusCode,200,r.body);assert.equal(r.json().result.isError,false,r.body);return r.json().result.structuredContent;};
+ const project=(await req('POST','/api/projects',{name:'合成任务续接'})).json().id as string;
+ const create=async(text:string)=>{const r=await req('POST',`/api/projects/${project}/documents`,{text,requestId:randomUUID()});assert.equal(r.statusCode,200,r.body);const doc=r.json().id as string;for(let i=0;i<15;i++){const [j]=(await admin.query("SELECT status FROM jobs WHERE document_id=$1 AND kind='detect' AND collab_task_id IS NULL ORDER BY created_at DESC LIMIT 1",[doc])).rows;if(j?.status==='succeeded')return doc;await tick();}throw new Error('INITIAL_DETECTION_INCOMPLETE');};
+ const start=async(doc:string)=>{const s=await tool('start_lawbot_redaction',{project_id:project,document_ids:[doc],task_mode:'redact_only',masking_mode:'default_mask',output_formats:['original','md'],request_id:randomUUID()});const job=s.jobId as string;const t=(await req('GET',`/api/ai-collab/tasks/${job}`)).json();const a=await req('POST',`/api/ai-collab/tasks/${job}/authorize`,{revision:t.revision,authorization:consent});assert.equal(a.statusCode,200,a.body);return job;};
+ const doc=await create('电话 13800138000'),job=await start(doc),taskId=taskUUID(job);
+ const [detect]=(await admin.query("SELECT id,revision FROM jobs WHERE document_id=$1 AND collab_task_id=$2 AND kind='detect'",[doc,taskId])).rows;assert.ok(detect);
+ await admin.query("UPDATE jobs SET status='failed' WHERE id=$1",[detect.id]);
+ await tool('check_document_delivery',{job_id:job,wait_seconds:0});
+ assert.equal((await req('GET',`/api/ai-collab/tasks/${job}`)).json().failureCode,'RECOGNITION_INCOMPLETE');
+ const stale=await req('POST',`/api/jobs/${detect.id}/retry`,{revision:detect.revision+1});assert.equal(stale.statusCode,409,stale.body);
+ const oldHash=(await admin.query('SELECT source_hash FROM documents WHERE id=$1',[doc])).rows[0].source_hash;
+ await admin.query('UPDATE documents SET source_hash=$2 WHERE id=$1',[doc,'f'.repeat(64)]);
+ try{const wrong=await req('POST',`/api/jobs/${detect.id}/retry`,{revision:detect.revision});assert.equal(wrong.statusCode,409,wrong.body);assert.equal(wrong.json().error,'SOURCE_MISMATCH');}
+ finally{await admin.query('UPDATE documents SET source_hash=$2 WHERE id=$1',[doc,oldHash]);}
+ const attempts=await Promise.all([req('POST',`/api/jobs/${detect.id}/retry`,{revision:detect.revision}),req('POST',`/api/jobs/${detect.id}/retry`,{revision:detect.revision})]);
+ assert.deepEqual(attempts.map(r=>r.statusCode).sort(),[200,409]);
+ const child=attempts.find(r=>r.statusCode===200)!.json().id as string;
+ const [owned]=(await admin.query('SELECT collab_task_id,status FROM jobs WHERE id=$1',[child])).rows;assert.equal(owned.collab_task_id,taskId);assert.equal(owned.status,'queued');
+ const [audit]=(await admin.query("SELECT details FROM audit WHERE event='job_retried' AND object_id=$1",[child])).rows;assert.equal(audit.details.parentJobId,detect.id);
+ let task=(await req('GET',`/api/ai-collab/tasks/${job}`)).json();assert.equal(task.recognitionJobIds[0],child);
+ await tick();await tool('check_document_delivery',{job_id:job,wait_seconds:0});
+ task=(await req('GET',`/api/ai-collab/tasks/${job}`)).json();assert.equal(task.state,'building_sanitized_artifact');
+ const [exportJob]=(await admin.query("SELECT id,revision FROM jobs WHERE document_id=$1 AND collab_task_id=$2 AND kind='export' ORDER BY created_at DESC LIMIT 1",[doc,taskId])).rows;assert.ok(exportJob);
+ await admin.query("UPDATE jobs SET status='failed' WHERE id=$1",[exportJob.id]);
+ await tool('check_document_delivery',{job_id:job,wait_seconds:0});
+ assert.equal((await req('GET',`/api/ai-collab/tasks/${job}`)).json().failureCode,'SANITIZED_EXPORT_INCOMPLETE');
+ const staleExport=await req('POST',`/api/jobs/${exportJob.id}/retry`,{revision:exportJob.revision+1});assert.equal(staleExport.statusCode,409,staleExport.body);
+ const exportRetry=await req('POST',`/api/jobs/${exportJob.id}/retry`,{revision:exportJob.revision});assert.equal(exportRetry.statusCode,200,exportRetry.body);
+ const nextExport=exportRetry.json().id as string;
+ const [newExport]=(await admin.query('SELECT collab_task_id,mapping_name_hash,mapping_name_ciphertext FROM jobs WHERE id=$1',[nextExport])).rows;assert.equal(newExport.collab_task_id,taskId);assert.ok(newExport.mapping_name_hash&&newExport.mapping_name_ciphertext);
+ const [oldExport]=(await admin.query('SELECT mapping_name_hash,mapping_name_ciphertext FROM jobs WHERE id=$1',[exportJob.id])).rows;assert.equal(newExport.mapping_name_hash,oldExport.mapping_name_hash);assert.notEqual(newExport.mapping_name_ciphertext,oldExport.mapping_name_ciphertext);
+ task=(await req('GET',`/api/ai-collab/tasks/${job}`)).json();assert.equal(task.exportJobIds[0],nextExport);assert.equal(task.state,'building_sanitized_artifact');assert.equal(task.failureCode,undefined);
+ assert.equal((await req('POST',`/api/jobs/${exportJob.id}/retry`,{revision:exportJob.revision})).statusCode,409);
+ await tick();await tool('check_document_delivery',{job_id:job,wait_seconds:0});
+ task=(await req('GET',`/api/ai-collab/tasks/${job}`)).json();assert.equal(task.state,'sanitized_artifact_ready');assert.ok(task.deliveries.length>0);
+ const cancelledDoc=await create('电话 13900139000'),cancelledJob=await start(cancelledDoc),cancelledId=taskUUID(cancelledJob);
+ const [cancelDetect]=(await admin.query("SELECT id,revision FROM jobs WHERE document_id=$1 AND collab_task_id=$2 AND kind='detect'",[cancelledDoc,cancelledId])).rows;
+ await admin.query("UPDATE jobs SET status='failed' WHERE id=$1",[cancelDetect.id]);
+ await admin.query('UPDATE jobs SET collab_task_id=$2 WHERE id=$1',[cancelDetect.id,taskId]);
+ const foreign=await req('POST',`/api/jobs/${cancelDetect.id}/retry`,{revision:cancelDetect.revision});assert.equal(foreign.statusCode,409,foreign.body);
+ await admin.query('UPDATE jobs SET collab_task_id=$2 WHERE id=$1',[cancelDetect.id,cancelledId]);
+ const beforeCancel=(await req('GET',`/api/ai-collab/tasks/${cancelledJob}`)).json();
+ const cancelled=await req('POST',`/api/ai-collab/tasks/${cancelledJob}/action`,{revision:beforeCancel.revision,method:'cancel'});assert.equal(cancelled.statusCode,200,cancelled.body);
+ const afterCancelRetry=await req('POST',`/api/jobs/${cancelDetect.id}/retry`,{revision:cancelDetect.revision});assert.equal(afterCancelRetry.statusCode,409,afterCancelRetry.body);
+ assert.equal((await admin.query('SELECT count(*)::int n FROM audit WHERE event=$1 AND details->>\'parentJobId\'=$2',['job_retried',cancelDetect.id])).rows[0].n,0);
+ // A project member first authorizes the task with the existing capabilities.
+ // Revoking the detect job's required review permission blocks ordinary retry;
+ // restoring it permits the same source-bound retry without a new permission rule.
+ const memberDoc=await create('电话 13700137000');
+ const memberName=`retry-member-${randomUUID()}`,memberPassword='synthetic-member-password';
+ const invited=await req('POST','/api/organization/members',{username:memberName,password:memberPassword});assert.equal(invited.statusCode,200,invited.body);
+ const memberId=invited.json().id as string;
+ const granted=await req('PUT',`/api/projects/${project}/members/${memberId}`,{revision:null,permissions:['view_original','review','export']});assert.equal(granted.statusCode,200,granted.body);
+ const memberLogin=await app.inject({method:'POST',url:'/api/login',headers:{origin},payload:{username:memberName,password:memberPassword}});assert.equal(memberLogin.statusCode,200,memberLogin.body);
+ const memberCookie=String(memberLogin.headers['set-cookie']).split(';')[0];
+ const memberReq=(method:any,url:string,payload?:any,extra:Record<string,string>={})=>app.inject({method,url,payload,headers:{origin,cookie:memberCookie,...extra}});
+ const memberInit=await memberReq('POST','/api/mcp',{jsonrpc:'2.0',id:1,method:'initialize',params:{protocolVersion:MCP_PROTOCOL,clientInfo:{name:'retry-member',version:'1'}}});assert.equal(memberInit.statusCode,200,memberInit.body);
+ const memberHeaders={'mcp-session-id':String(memberInit.headers['mcp-session-id']),'mcp-protocol-version':MCP_PROTOCOL};
+ assert.equal((await memberReq('POST','/api/mcp',{jsonrpc:'2.0',method:'notifications/initialized'},memberHeaders)).statusCode,202);
+ const memberTool=async(name:string,args:any)=>{const r=await memberReq('POST','/api/mcp',{jsonrpc:'2.0',id:randomUUID(),method:'tools/call',params:{name,arguments:args}},memberHeaders);assert.equal(r.statusCode,200,r.body);assert.equal(r.json().result.isError,false,r.body);return r.json().result.structuredContent;};
+ const memberStart=await memberTool('start_lawbot_redaction',{project_id:project,document_ids:[memberDoc],task_mode:'redact_only',masking_mode:'default_mask',output_formats:['original','md'],request_id:randomUUID()});
+ const memberJob=memberStart.jobId as string,memberTask=(await memberReq('GET',`/api/ai-collab/tasks/${memberJob}`)).json();
+ const memberAuthorized=await memberReq('POST',`/api/ai-collab/tasks/${memberJob}/authorize`,{revision:memberTask.revision,authorization:consent});assert.equal(memberAuthorized.statusCode,200,memberAuthorized.body);
+ const [memberDetect]=(await admin.query("SELECT id,revision FROM jobs WHERE document_id=$1 AND collab_task_id=$2 AND kind='detect'",[memberDoc,taskUUID(memberJob)])).rows;assert.ok(memberDetect);
+ await admin.query("UPDATE jobs SET status='failed' WHERE id=$1",[memberDetect.id]);
+ const revoked=await req('PUT',`/api/projects/${project}/members/${memberId}`,{revision:granted.json().revision,permissions:['view_original','export']});assert.equal(revoked.statusCode,200,revoked.body);
+ const denied=await memberReq('POST',`/api/jobs/${memberDetect.id}/retry`,{revision:memberDetect.revision});assert.equal(denied.statusCode,403,denied.body);
+ assert.equal((await admin.query("SELECT count(*)::int n FROM audit WHERE event='job_retried' AND details->>'parentJobId'=$1",[memberDetect.id])).rows[0].n,0);
+ const restored=await req('PUT',`/api/projects/${project}/members/${memberId}`,{revision:revoked.json().revision,permissions:['view_original','review','export']});assert.equal(restored.statusCode,200,restored.body);
+ const permitted=await memberReq('POST',`/api/jobs/${memberDetect.id}/retry`,{revision:memberDetect.revision});assert.equal(permitted.statusCode,200,permitted.body);
+ assert.equal((await admin.query('SELECT collab_task_id FROM jobs WHERE id=$1',[permitted.json().id])).rows[0].collab_task_id,taskUUID(memberJob));
+
+});

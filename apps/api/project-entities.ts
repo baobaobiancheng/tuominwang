@@ -57,7 +57,7 @@ export function auditOccurrences(seeds:KnownEntitySeed[],text:string,marks:Mark[
 /** Source Tf2 matching on our authenticated page maps. No caller-provided boxes
  * participate. The project correction adapter verifies original, preview and
  * OCR map hashes before supplying glyph boxes and semantic entity values. */
-async function auditVisualOccurrences(d:any,seeds:KnownEntitySeed[],deadline:number){
+export async function auditVisualOccurrences(d:any,seeds:KnownEntitySeed[],deadline:number){
  const format=documentProcessingFormat(d);
  if(!['docx','md','pdf','png','jpg','jpeg'].includes(format))return{rows:[] as ProjectAuditOccurrence[],skipped:[] as string[]};
  const rows:ProjectAuditOccurrence[]=[],skipped=new Set<string>();
@@ -67,7 +67,7 @@ async function auditVisualOccurrences(d:any,seeds:KnownEntitySeed[],deadline:num
  // adapter validates original, preview and glyph maps once for this request.
  let factsBySeed:CorrectionDocument[];
  try{factsBySeed=await correctionDocumentFactsMany(d,seeds.map(seed=>({recognizedText:seed.value,correctedText:seed.value,targetType:seed.rawEntityType??seed.kind,source:'highlight-context-menu'})));}
- catch(error){skipped.add(`SOURCE_GEOMETRY_UNAVAILABLE:${(error as Error).message}`);return{rows,skipped:[...skipped]};}
+ catch(error){if((error as Error).message==='SOURCE_MISMATCH')throw error;skipped.add(`SOURCE_GEOMETRY_UNAVAILABLE:${(error as Error).message}`);return{rows,skipped:[...skipped]};}
  for(const [seedIndex,seed] of seeds.entries()){
   if(Date.now()>deadline)fail('PROCESSING_TIMEOUT',400);
   const facts=factsBySeed[seedIndex];

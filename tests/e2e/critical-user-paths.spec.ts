@@ -81,7 +81,19 @@ test('directory output UI generates one reviewed copy and a truthful skipped ent
     const decisions = page.getByLabel(/^标记 \d+ 处理决定$/);
     await expect(decisions.first()).toBeVisible({ timeout: 45_000 });
     for (const decision of await decisions.all()) await decision.selectOption('redact');
+    const reviewRevision = selected.revision + 1;
+    expect(Number.isSafeInteger(reviewRevision)).toBe(true);
+    const saved = page.waitForResponse(r => r.request().method() === 'PUT' && new URL(r.url()).pathname === `/api/documents/${selected.id}/review`, { timeout: 30_000 });
+    const readback = page.waitForResponse(async r => r.request().method() === 'GET' && new URL(r.url()).pathname === `/api/documents/${selected.id}` && r.status() === 200 && (await r.json()).revision === reviewRevision, { timeout: 30_000 });
     await page.getByRole('button', { name: '保存复核', exact: true }).click();
+    const savedResponse = await saved;
+    expect(savedResponse.status(), await savedResponse.text()).toBe(200);
+    expect((await savedResponse.json()).revision).toBe(reviewRevision);
+    const savedDocument = await (await readback).json();
+    expect(savedDocument.id).toBe(selected.id);
+    expect(savedDocument.revision).toBe(reviewRevision);
+    expect(savedDocument.marks).toHaveLength(1);
+    expect(savedDocument.marks[0].decision).toBe('redact');
     await expect(page.getByText('复核已保存', { exact: true })).toBeVisible();
     await page.getByRole('button', { name: '导出已选标记的处理副本', exact: true }).click();
     await expect(page.getByRole('button', { name: '核验并下载 TXT', exact: true })).toBeEnabled({ timeout: 45_000 });
@@ -98,8 +110,12 @@ test('directory output UI generates one reviewed copy and a truthful skipped ent
     await panel.getByRole('button', { name: '生成结果 ZIP 与处理清单', exact: true }).click();
     expect((await manifestResponse).status()).toBe(200);
     await expect(panel.getByRole('status')).toContainText('成功 1，失败 0，跳过 1，取消 0');
-    const downloadEvent = page.waitForEvent('download');
+    const downloadEvent = page.waitForEvent('download', { timeout: 45_000 });
+    const zipResponse = page.waitForResponse(r => r.request().method() === 'GET'
+      && /\/folder-exports\/[^/]+\/download$/.test(new URL(r.url()).pathname), { timeout: 45_000 });
     await panel.getByRole('button', { name: '下载结果 ZIP', exact: true }).click();
+    const response = await zipResponse;
+    expect(response.status()).toBe(200);
     const zipPath = info.outputPath('directory-results.zip');
     await (await downloadEvent).saveAs(zipPath);
     const parts = await readZip(await readFile(zipPath));

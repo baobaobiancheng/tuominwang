@@ -135,6 +135,10 @@ function $restoreAllowed$(_authorized_0, _current_0, _known_0, _unambiguous_0) {
   return run_jump($Bool$and$, [_authorized_0, run_loop($Bool$and$(_current_0, run_loop($Bool$and$(_known_0, _unambiguous_0))))]);
 }
 
+function $automaticEligible$(_ready_0, _version_0, _covered_0, _decided_0, _snapshot_0, _origin_0) {
+  return run_jump($Bool$and$, [_ready_0, run_loop($Bool$and$(_version_0, run_loop($Bool$and$(_covered_0, run_loop($Bool$and$(_decided_0, run_loop($Bool$and$(_snapshot_0, _origin_0))))))))]);
+}
+
 function $Bool$and$(_a_0, _b_0) {
   if (!_a_0) {
     return false;
@@ -145,4 +149,5 @@ function $Bool$and$(_a_0, _b_0) {
 export default {
   "eligible": run_lib($eligible$, 5),
   "restoreAllowed": run_lib($restoreAllowed$, 4),
+  "automaticEligible": run_lib($automaticEligible$, 6),
 };

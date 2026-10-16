@@ -1,0 +1,205 @@
+{
+  "at": "2026-10-16T15:13:36.825686+00:00",
+  "status": "formal_917_check_passed_full_api_edge_running",
+  "sourceManifest": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v11.json",
+  "sourceManifestSha256": "e9450aa71244e614fe1bfe248f84a065bec64b68b4e269b346462bf7413d11b8",
+  "sourceInputCount": 917,
+  "mergeReceipt": ".data/research/lawbot-2026-10-16/iteration056/root-three-edge-boundaries-formal-merge-v1-receipt.json",
+  "mergeReceiptSha256": "4b626133ccd3052b4233eea068d11a94ebd79b7d481f2d3041092c55cd370946",
+  "testOnlyChanges": [
+    {
+      "path": "tests/e2e/automatic-mcp-real-edge.spec.ts",
+      "beforeSha256": "c0a548a05bd00e96404a7f6eb5cb4ce2d19ac082b589d34b1f27d4238824e267",
+      "beforeArchive": ".data/research/lawbot-2026-10-16/iteration056/before-three-edge-boundaries-formal-merge-v1/tests/e2e/automatic-mcp-real-edge.spec.ts",
+      "afterSha256": "1296ef7e0d602c5e94c7c8bb01fa0c93077e4dad96f267e04cafefb9b9c6e05b"
+    },
+    {
+      "path": "tests/e2e/pdf-ocr-runtime-page-flow.spec.ts",
+      "beforeSha256": "638eb12f8ba55b471a1d8336a4d6eadd9d89cd37fd05dc009277958380c2c148",
+      "beforeArchive": ".data/research/lawbot-2026-10-16/iteration056/before-three-edge-boundaries-formal-merge-v1/tests/e2e/pdf-ocr-runtime-page-flow.spec.ts",
+      "afterSha256": "93c6dc222842462522e49746d13bab16a27a1695386fbb488a3253237f51689d"
+    },
+    {
+      "path": "tests/e2e/pdf-seal-runtime-flow.spec.ts",
+      "beforeSha256": "883912532f0067998ce1921e2215895e2e23d224e9577c3d05cbd02222fadfcd",
+      "beforeArchive": ".data/research/lawbot-2026-10-16/iteration056/before-three-edge-boundaries-formal-merge-v1/tests/e2e/pdf-seal-runtime-flow.spec.ts",
+      "afterSha256": "b7a236d6e9109997bf48e1fae79f908db6ed76950d820e63f2a8eccf7dbfc8d7"
+    }
+  ],
+  "productionBytesSameAsV10": true,
+  "check": {
+    "receipt": ".data/research/lawbot-2026-10-16/iteration056/final-check-v14-receipt.json",
+    "sha256": "aa95f15bb51c9fef5084ae53fe457015600793264edfaae834fe8363f95b2953",
+    "exitCode": 0,
+    "unitFiles": 146,
+    "unitPassed": 824,
+    "historicalRestored": 477
+  },
+  "historicalTargetedEdge916": {
+    "receipt": ".data/research/lawbot-2026-10-16/iteration056/frontend/targeted-edge-formal916-v1/terminal-receipt.json",
+    "sha256": "6a16938e576bb2149f6fc07b0650f9f674ded1a6ceddf4ad0657e5138b74f4d2",
+    "passed": 7,
+    "failed": 3,
+    "ran": 10,
+    "notEquivalentToV11": true,
+    "evidenceArchive": ".data/research/lawbot-2026-10-16/iteration056/frontend/targeted-edge-formal916-v1/evidence-archive-manifest.json",
+    "evidenceArchiveSha256": "d421b9f930bbb1a7a3296ff3f0dbe0a36c0af80407de7c2426ba04352227c400",
+    "peerReview": ".data/research/lawbot-2026-10-16/iteration056/frontend/targeted916-three-test-candidates-review-v1.json",
+    "peerReviewSha256": "310b55df8c5cdcdb656fb2343bdfdd1da6aeb6578d4f985d6a1d4adeb96536d3",
+    "screenshotsLimit": "Ahead first screenshot shows page 20; second shows read-only selection checked and add-region disabled, but no Phone highlight is visible."
+  },
+  "runningObservation": {
+    "snapshot": ".data/research/lawbot-2026-10-16/iteration056/rules/iteration056-v11-full-gates-running-snapshot-v1.json",
+    "sha256": "df1a3d6ace671eee382a60569a2bf0b8b458952bda500b69909ffb1be6afa772",
+    "apiPlannedFiles": 133,
+    "edgePlannedCases": 105,
+    "apiCopiedManifestSha256": "2452a6415643a156a80f379589843ae9d04a4a3e9b47e4a3692ba3489ace1967",
+    "apiControlReviewSha256": "6b4a3e8dd457068f07dd21a77ba7af1c3aba4aba8a274a01fa2377cac7b0c35d",
+    "edgePreparationSha256": "29645dee0d9ca0f715c7f8e2433b8e1168992e75055625ad4492e80424621701",
+    "old913Remaining82ObservedFiles": 40,
+    "terminal": false
+  },
+  "interfaceCorrections": {
+    "IPC-e4cf3e6c3c0a": {
+      "before": {
+        "current_porting_reason": "现有单页review暂停可用；原码Ne/Qt2运行期多页暂停和补检链未完整移植。",
+        "implementation_note": "desensitization:pause-seals 的云端对应合同已逐项定位并有既有定向证据；Active visual request pause works; source same-sender detect engine Ne.pause and PDF seal-loop completed-page preservation are not the same task/event model. 保留现 I1，源许可运行 R0，当前全量 API 仍需独立结果。 ITER056逐ID复审：PDF运行期印章暂停/完成页保留/仅补未完成且未删页仍缺失，已确认P1；现review态单页pause不能替代，修复与实际验收待完成。 056完整Edge新增证据：普通PDF运行控件/检查点缺类型门控，可能挂载于MCP PDF或TXT；后端拒绝正确，独立候选补前端，不放宽接口，正式913未改。",
+        "next_actions": [
+          "源运行仍为R0：需合法授权后按此ID补实际运行，不能由我方测试替代。",
+          "P1：按原码补PDF detect运行期seal-only暂停、完成页持久化和补检，保留人工审查与coverage/export门禁；完成两页真实RED/GREEN和浏览器验证。",
+          "补普通PDF运行控件类型/状态门控并核TXT/MCP PDF无无效404、普通PDF仍可用；保留受保护API。"
+        ]
+      },
+      "after": {
+        "current_porting_reason": "运行期PDF印章暂停、已完成页保留及仅补未完成页的052实现已合入；隔离API两例真实通过。916关键Edge印章例未走完补检后人工草稿与导出全链，v11完整门禁及竞品合法运行仍待。保持confirmed_gap/I1/R0。",
+        "implementation_note": "原码Ne/Qt2的运行期印章暂停与补检语义已作Web/worker/队列适配，052正式源码及定向API证据可核。旧备注所称“完全未移植”已过时；916关键Edge7/10中的印章失败发生在完整后半链验收前，不以隔离通过推全量。签名组、人工复核、coverage/export门禁仍须在v11同源API与Edge终态核验；竞品R0。",
+        "next_actions": [
+          "核v11同源完整API133与Edge105实际终态，重点印章暂停→仅补未完成页→人工草稿→导出链；修真实失败后复验。",
+          "源运行仍为R0：合法授权后按此ID补竞品实跑，不以我方测试替代。"
+        ]
+      }
+    },
+    "IPC-ba07bb14e3df": {
+      "before": {
+        "current_porting_reason": "原版cache miss强制整页OCR与透明可选文字层尚缺；不能以已有canonical读取或区域rerun充当等价。",
+        "implementation_note": "已逐项核 image-review:get-ocr-page：竞品短期 OCR 缓存缺页时可用 PDF buffer 在同一请求强制识别并共用进行中任务；本品检测阶段先完成全页 OCR，保存规范文本锚点、页图与 glyph 坐标图，复核页按版本读取并可直接选字。未发现已完成材料的 OCR 选取业务反例。多页 PDF 部分页可提前复核是可观察的流式就绪时序差异；是否要求先行复核待验收，不能据缺少同名 IPC 判定最终功能未实现。保留现 I1 和竞品 R0，OCR 引擎质量/流式部分页不由既有测试证明。 ITER056第二阶段复核：原版缺少OCR缓存时按需整页识别并生成透明可选文字层，当前仅已有canonical map GET及区域临时rerun，属P2缺页差异；私树补齐中，未合并、未通过完整门禁。",
+        "next_actions": [
+          "源运行仍为R0：需合法授权后按此ID补实际运行，不能由我方测试替代。",
+          "补齐同源当前版本的按需整页OCR及透明选择层；验证单飞缓存、旋转/权限/版本隔离、人工稿与canonical字节不变。"
+        ]
+      },
+      "after": {
+        "current_porting_reason": "按需只读OCR选择层、0帧ahead原页预览、页缓存顺序复用及旋转/源页绑定已合入；旧“缺少透明选择层”描述过时。临时selectionOnly不等于canonical标记偏移；竞品原生缓存细节、真实OCR质量及v11全量仍待验证。保持confirmed_gap/I1/R0。",
+        "implementation_note": "原版Uu2透明选字与cache miss路径已用现PDF页源/worker/OCR作必要Web适配，临时选择层只用于复制，不写canonical mark或已批准人工稿。隔离ahead Edge1/1及916关键Edge ahead流程已有实际证据，但不能据此宣称竞品native缓存等价或业务准确率；当前v11全量运行中。",
+        "next_actions": [
+          "核v11同源完整API133与Edge105实际终态，保留0帧预览、缺页OCR、旋转、只读选字与人工标记隔离的判别断言。",
+          "竞品R0及真实业务OCR准确率另取合法运行/金标证据，不从本品测试推断。"
+        ]
+      }
+    },
+    "MCP-dc810d5ca01a": {
+      "before": {
+        "current_porting_reason": "公开视觉fallback/附件/格式槽分支已合入，PDF等7例与PNG/JPEG补充1例实际通过；913源工程824绿，完整130API/104Edge及上线读回待。",
+        "implementation_note": "没有竞品MCP协议或本地AI交换任务实现。 049交叉审查确认外部未知标签或MCP轮次/真还原缺口；隔离候选验证中，主树尚未合入，详见后续可靠性报告。 049已合入，最新隔离候选MCP1/矩阵3、主树Edge2通过；完整048 Edge69过2失败，最终收尾仍待，不借用基线宣称049全量。 ITER-056交叉复核确认视觉附件/derived_report可见缺分支，旧已调用不代表此分支等价；私树补齐中，I1不提升。 ITER-056当前：视觉fallback等已正式合入913源，私树7/7含真实还原下载；PNG/JPEG独立实测及913源完整门禁仍待，不提升I1。 913源pnpm check824通过，PNG/JPEG补充1case实际通过并完成PNG还原下载；130文件API和104Edge仍运行。 056完整Edge新增证据：普通PDF运行控件/检查点缺类型门控，可能挂载于MCP PDF或TXT；后端拒绝正确，独立候选补前端，不放宽接口，正式913未改。",
+        "next_actions": [
+          "源运行仍为R0：需合法授权后按此ID补实际运行，不能由我方测试替代。",
+          "保持受管还原授权及最新轮边界。",
+          "等待913源130文件API及104case Edge实际终态，修复真实失败后完成指南与上线读回；保留源R0。",
+          "补普通PDF运行控件类型/状态门控并核TXT/MCP PDF无无效404、普通PDF仍可用；保留受保护API。"
+        ]
+      },
+      "after": {
+        "current_porting_reason": "视觉fallback、受保护附件/derived_report与格式槽分支已合入917，check-v14工程门禁退出0；v11完整133文件API和105条Edge已启动但未终态，旧913失败是历史。保持confirmed_gap/I1/R0直至同源交付和竞品运行证据。",
+        "implementation_note": "MCP接收已按原公开tools/gateway合同实现正常文本与视觉附件路径，并保留受管还原、来源/授权和历史签发链接。917含三项test-only Edge边界调整，生产运行字节同v10；check-v14并非完整API/Edge验收，v11结果待真实terminal。",
+        "next_actions": [
+          "读取v11同源API133和Edge105实际终态，按失败逐项修复并复验接收、附件、还原与签发；不得拼旧913/916结果。",
+          "竞品源运行R0仍需合法授权后验证；服务器054部署与线上读回另证。"
+        ]
+      }
+    }
+  },
+  "documentChanges": [
+    {
+      "path": "文档/待办与完成状态-20261015.md",
+      "beforeSha256": "673bc7b7a7c9a1c463cc0363667577323cc1043d81775ed8b27ee4f05a09ed2e",
+      "afterSha256": "63c7bf3e4cf63c761bba8600d2b196d2e69060d518e07f29397c7e1a7c281695"
+    },
+    {
+      "path": "文档/脱敏规则完整技术交接-迭代023.md",
+      "beforeSha256": "133998516150a4bec822233aa0dc1c44c92db32ab0e6d24a8af6e99d3128e662",
+      "afterSha256": "d77de53a979b678e0bb02b4709ea6ef16508f99bb35ae9c4a1eb606a0b6ce0cb"
+    }
+  ],
+  "preEditArchiveManifest": ".data/research/lawbot-2026-10-16/iteration056/before-three-edge-boundaries-ledger-update-v1/manifest.json",
+  "preEditArchiveManifestSha256": "f736360862ea84c5d14e6fc09096881e33a21355e95624b3067949341b01012e",
+  "server": "054; no v11 deployment",
+  "classificationChange": false,
+  "sourceRuntimeStatus": "R0",
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v11.json",
+      "sha256": "e9450aa71244e614fe1bfe248f84a065bec64b68b4e269b346462bf7413d11b8",
+      "bytes": 155046
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root-three-edge-boundaries-formal-merge-v1-receipt.json",
+      "sha256": "4b626133ccd3052b4233eea068d11a94ebd79b7d481f2d3041092c55cd370946",
+      "bytes": 688
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/final-check-v14-receipt.json",
+      "sha256": "aa95f15bb51c9fef5084ae53fe457015600793264edfaae834fe8363f95b2953",
+      "bytes": 2790
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/targeted-edge-formal916-v1/terminal-receipt.json",
+      "sha256": "6a16938e576bb2149f6fc07b0650f9f674ded1a6ceddf4ad0657e5138b74f4d2",
+      "bytes": 18366
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/targeted-edge-formal916-v1/evidence-archive-manifest.json",
+      "sha256": "d421b9f930bbb1a7a3296ff3f0dbe0a36c0af80407de7c2426ba04352227c400",
+      "bytes": 8143
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/targeted916-three-test-candidates-review-v1.json",
+      "sha256": "310b55df8c5cdcdb656fb2343bdfdd1da6aeb6578d4f985d6a1d4adeb96536d3",
+      "bytes": 4562
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/full-api-final-v11-copy/copied-validation-manifest.json",
+      "sha256": "2452a6415643a156a80f379589843ae9d04a4a3e9b47e4a3692ba3489ace1967",
+      "bytes": 18238
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/full-api-final-v11-control-review.json",
+      "sha256": "6b4a3e8dd457068f07dd21a77ba7af1c3aba4aba8a274a01fa2377cac7b0c35d",
+      "bytes": 7250
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-final-v10/preparation-manifest.json",
+      "sha256": "29645dee0d9ca0f715c7f8e2433b8e1168992e75055625ad4492e80424621701",
+      "bytes": 982
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/rules/iteration056-v11-full-gates-running-snapshot-v1.json",
+      "sha256": "df1a3d6ace671eee382a60569a2bf0b8b458952bda500b69909ffb1be6afa772",
+      "bytes": 8154
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/pdf-seal-pause-v15/green-v1-receipt.json",
+      "sha256": "a575fd47cb6dc722492aa65a472c26cdfe07f589103382900ebe8deb465f9905",
+      "bytes": 2932
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/rules/get-ocr-page-v11-control/terminal-receipt.json",
+      "sha256": "4ccfa9b4d6c235d1aaa13fb9b32391a2ea4af3216b6d033d81151f0f03b0dd2e",
+      "bytes": 1492
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/before-three-edge-boundaries-ledger-update-v1/manifest.json",
+      "sha256": "f736360862ea84c5d14e6fc09096881e33a21355e95624b3067949341b01012e",
+      "bytes": 1625
+    }
+  ]
+}

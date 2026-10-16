@@ -29,12 +29,12 @@ async function fixture(t:TestContext){
  const project=(await req('POST','/api/projects',{name:'synthetic queue atomicity'})).json().id;
  const create=async(text:string)=>{const r=await req('POST',`/api/projects/${project}/documents`,{text,requestId:randomUUID()});assert.equal(r.statusCode,200,r.body);await tick();return r.json().id as string;};
  const consent={allowRedactionPath:true,allowRestorePath:false,allowSanitizedDelivery:true,autoEnterReview:false,createExchangeFolder:true,autoRestoreAfterValidation:false};
- const start=async(docs:string[])=>{const r=await call('start_lawbot_redaction',{project_id:project,document_ids:docs,output_formats:['original'],masking_mode:'default_mask',task_mode:'redact_only',request_id:randomUUID()});return r.jobId as string;};
+ const start=async(docs:string[],mode:'automatic'|'manual'='automatic')=>{const r=await call(mode==='manual'?'start_lawbot_redaction_for_user_manual_review':'start_lawbot_redaction',{project_id:project,document_ids:docs,output_formats:['original'],masking_mode:'default_mask',task_mode:'redact_only',request_id:randomUUID()});return r.jobId as string;};
  const task=async(job:string)=>(await req('GET',`/api/ai-collab/tasks/${job}`)).json();
  return {admin,req,call,create,start,task,consent,project,tenant,uid};
 }
 
-// Current code commits export job 1, then rejects source 2 before recording any IDs in the task.
+// A later source rejection must leave no previously queued export job.
 test('batch prepare rollback leaves no orphan export job',async ctx=>{
  const f=await fixture(ctx),first=await f.create('公开甲材料。'),second=await f.create('公开乙材料。'),job=await f.start([first,second]);
  let t=await f.task(job);const authorized=await f.req('POST',`/api/ai-collab/tasks/${job}/authorize`,{revision:t.revision,authorization:f.consent});assert.equal(authorized.statusCode,200,authorized.body);
@@ -43,10 +43,28 @@ test('batch prepare rollback leaves no orphan export job',async ctx=>{
  // Deliberately make the second source fail the export gate after the first is valid.
  await admin.query("UPDATE documents SET state='outdated' WHERE id=$1",[second]);
  const before=(await admin.query("SELECT id FROM jobs WHERE document_id=$1 AND kind='export'",[first])).rows.map(r=>r.id);
- t=await f.task(job);const rejected=await f.req('POST',`/api/ai-collab/tasks/${job}/prepare-export`,{revision:t.revision});assert.equal(rejected.statusCode,409,rejected.body);
+ const [taskRow]=(await admin.query('SELECT revision,payload FROM ai_collab_tasks WHERE id=$1',[taskUUID(job)])).rows;assert.ok(taskRow);
+ const rejected=await f.req('POST',`/api/ai-collab/tasks/${job}/prepare-export`,{revision:taskRow.revision});assert.equal(rejected.statusCode,409,rejected.body);
  const after=(await admin.query("SELECT id FROM jobs WHERE document_id=$1 AND kind='export'",[first])).rows.map(r=>r.id);
  assert.deepEqual(after,before,'a later source rejection must roll back earlier queued exports');
- assert.equal((await f.task(job)).exportJobIds,undefined);
+ const [afterTask]=(await admin.query('SELECT payload FROM ai_collab_tasks WHERE id=$1',[taskUUID(job)])).rows;assert.ok(afterTask);
+ const parent=JSON.parse(unseal(afterTask.payload,`${f.tenant}:${f.uid}:ai-collab:${taskUUID(job)}`));assert.equal(parent.exportJobIds,undefined);
+});
+
+test('GET partial automatic progress binds the eligible child and does not masquerade as parent prepare rollback',async ctx=>{
+ const f=await fixture(ctx),first=await f.create('公开甲材料。'),second=await f.create('公开乙材料。'),job=await f.start([first,second]);
+ let t=await f.task(job);const authorized=await f.req('POST',`/api/ai-collab/tasks/${job}/authorize`,{revision:t.revision,authorization:f.consent});assert.equal(authorized.statusCode,200,authorized.body);
+ await tick();await tick();
+ for(const doc of [first,second]){const d=(await f.req('GET',`/api/documents/${doc}`)).json();assert.equal(d.state,'review');const review=await f.req('PUT',`/api/documents/${doc}/review`,{revision:d.revision,marks:d.marks.map((m:any)=>({...m,decision:'redact'}))});assert.equal(review.statusCode,200,review.body);}
+ await admin.query("UPDATE documents SET state='outdated' WHERE id=$1",[second]);
+ const beforeGet=(await admin.query("SELECT id FROM jobs WHERE document_id=$1 AND kind='export'",[first])).rows;assert.equal(beforeGet.length,0);
+ const unavailable=await f.req('GET',`/api/ai-collab/tasks/${job}`);assert.equal(unavailable.statusCode,409,unavailable.body);
+ const priorJobs=(await admin.query("SELECT j.id,j.collab_task_id,t.payload FROM jobs j JOIN ai_collab_tasks t ON t.id=j.collab_task_id WHERE j.document_id=$1 AND j.kind='export'",[first])).rows;assert.equal(priorJobs.length,1);
+ for(const prior of priorJobs){const child=JSON.parse(unseal(prior.payload,`${f.tenant}:${f.uid}:ai-collab:${prior.collab_task_id}`));assert.equal(child.parentJobId,job);assert.ok(child.exportJobIds?.includes(prior.id));}
+ const [taskRow]=(await admin.query('SELECT revision,payload FROM ai_collab_tasks WHERE id=$1',[taskUUID(job)])).rows;assert.ok(taskRow);
+ const rejected=await f.req('POST',`/api/ai-collab/tasks/${job}/prepare-export`,{revision:taskRow.revision});assert.equal(rejected.statusCode,409,rejected.body);
+ const after=(await admin.query("SELECT id FROM jobs WHERE document_id=$1 AND kind='export'",[first])).rows.map(r=>r.id);assert.deepEqual(after,priorJobs.map(r=>r.id));
+ const [afterTask]=(await admin.query('SELECT payload FROM ai_collab_tasks WHERE id=$1',[taskUUID(job)])).rows;assert.ok(afterTask);const parent=JSON.parse(unseal(afterTask.payload,`${f.tenant}:${f.uid}:ai-collab:${taskUUID(job)}`));assert.equal(parent.exportJobIds,undefined);
 });
 
 // Hold a DB barrier at the detect INSERT. The task cancel races at the exact
@@ -84,7 +102,7 @@ test('cancel cannot leave a later detect job or queued document',async ctx=>{
 // A direct export and a second task on the same document/revision must not
 // borrow this task's job. Release must read only its own successful artifacts.
 test('task cancel and release preserve independent export provenance',async ctx=>{
- const f=await fixture(ctx),doc=await f.create('公开共享来源。'),first=await f.start([doc]),second=await f.start([doc]);
+ const f=await fixture(ctx),doc=await f.create('公开共享来源。'),first=await f.start([doc],'manual'),second=await f.start([doc],'manual');
  assert.notEqual(first,second);
  for(const taskId of [first,second]){const t=await f.task(taskId),r=await f.req('POST',`/api/ai-collab/tasks/${taskId}/authorize`,{revision:t.revision,authorization:f.consent});assert.equal(r.statusCode,200,r.body);await tick();}
  const d=(await f.req('GET',`/api/documents/${doc}`)).json();assert.equal(d.state,'review');const reviewed=await f.req('PUT',`/api/documents/${doc}/review`,{revision:d.revision,marks:d.marks.map((m:any)=>({...m,decision:'redact'}))});assert.equal(reviewed.statusCode,200,reviewed.body);
@@ -158,7 +176,7 @@ test('document downloads preserve project export access and restrict explicit ta
 // A project reviewer may explicitly cancel a child detect job. The document
 // must leave queued, while the parent collaboration task remains resumable.
 test('ordinary reviewer cancel of task-owned detect is recoverable without canceling parent',async ctx=>{
- const f=await fixture(ctx),doc=await f.create('邮箱：child-cancel@example.com'),taskId=await f.start([doc]);
+ const f=await fixture(ctx),doc=await f.create('邮箱：child-cancel@example.com'),taskId=await f.start([doc],'manual');
  let task=await f.task(taskId);const authorized=await f.req('POST',`/api/ai-collab/tasks/${taskId}/authorize`,{revision:task.revision,authorization:f.consent});assert.equal(authorized.statusCode,200,authorized.body);
  const pending=(await f.req('GET',`/api/documents/${doc}`)).json();assert.equal(pending.state,'queued');
  const child=(await admin.query("SELECT id,revision,status FROM jobs WHERE collab_task_id=$1 AND document_id=$2 AND kind='detect' ORDER BY created_at DESC LIMIT 1",[taskUUID(taskId),doc])).rows[0];assert.ok(child);assert.equal(child.status,'queued');assert.equal(child.revision,pending.revision);

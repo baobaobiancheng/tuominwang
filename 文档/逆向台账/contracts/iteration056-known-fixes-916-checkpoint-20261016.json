@@ -1,0 +1,334 @@
+{
+  "at": "2026-10-16T14:51:30.488232+00:00",
+  "status": "formal_916_engineering_check_passed_full_acceptance_pending",
+  "sourceManifestSha256": "6de5b692f1bfd6243e0b2584153e1cc9bd56aead500cd74fc75391833f6d9389",
+  "sourceInputCount": 916,
+  "mergeReceiptSha256": "e5afffb9c46bc32d3b3f57e63de39553503bf07ff2745cae578986935ea62b47",
+  "mergePlanSha256": "8a48ccff7ba3cbc93f3e42e85a71c3acdfbf6a96a1a4bf24988c393d1d9ca366",
+  "mergePaths": [
+    {
+      "path": "apps/api/main.ts",
+      "wasNew": false,
+      "oldSha256": "e6523ada3135e7c210423aa57c1889fa2eb183fc7f3bf8704c91300a3cc67453",
+      "currentSha256": "d48bfa573fdfd6ad83196744d63a7dbc4b0bfe7092c8bf9fb022a3a1573d4fbf",
+      "oldPinned": true,
+      "oldArchive": ".data/research/lawbot-2026-10-16/iteration056/before-known-fixes-formal-merge-v1/apps/api/main.ts"
+    },
+    {
+      "path": "apps/web/main.tsx",
+      "wasNew": false,
+      "oldSha256": "f4be9a56bfc8b66ffbeb77b7634a6035b67af6bf3ef55896950fbf56d699d9d4",
+      "currentSha256": "911858bc1cced358e85dac793591fb2355dcc5511f70e822ac53dacef751949c",
+      "oldPinned": true,
+      "oldArchive": ".data/research/lawbot-2026-10-16/iteration056/before-known-fixes-formal-merge-v1/apps/web/main.tsx"
+    },
+    {
+      "path": "apps/web/processing-progress.tsx",
+      "wasNew": false,
+      "oldSha256": "02eefa347d397663ecb73b6a3d56d4325ee52a6b31ea396e35911da292bb1281",
+      "currentSha256": "ff1feece742f93df287e18289f86b177280672c3ec04d75b25264c37cbfb814d",
+      "oldPinned": true,
+      "oldArchive": ".data/research/lawbot-2026-10-16/iteration056/before-known-fixes-formal-merge-v1/apps/web/processing-progress.tsx"
+    },
+    {
+      "path": "packages/contracts/index.ts",
+      "wasNew": false,
+      "oldSha256": "4c00966a1d23f97a9cdde824e413fee3e9f463322e5fc49b5f280fac8cc80709",
+      "currentSha256": "6a4b560b154320905480ff8028779eefc36b309b170c3660e7d14341a6806c14",
+      "oldPinned": true,
+      "oldArchive": ".data/research/lawbot-2026-10-16/iteration056/before-known-fixes-formal-merge-v1/packages/contracts/index.ts"
+    },
+    {
+      "path": "tests/ordinary-pdf-ui-boundary.integration.ts",
+      "wasNew": true,
+      "oldSha256": null,
+      "currentSha256": "8ac0af3bf7a5c5682569e1aa4c109f1b2d0e4ad162c06d3f60d09dab0e8e1fc9",
+      "oldPinned": false,
+      "oldArchive": null
+    },
+    {
+      "path": "tests/e2e/ordinary-pdf-ui-boundary.spec.ts",
+      "wasNew": true,
+      "oldSha256": null,
+      "currentSha256": "aa4b64b303fe91bf1852dc6de811d38e0f63f7ce7fbbd9305bd3ea809645787f",
+      "oldPinned": false,
+      "oldArchive": null
+    },
+    {
+      "path": "tests/e2e/automatic-mcp-real-edge.spec.ts",
+      "wasNew": false,
+      "oldSha256": "92eda2cf848ee2320722f7b394f40a254b085297be835bbb51d9178d2e091cc8",
+      "currentSha256": "c0a548a05bd00e96404a7f6eb5cb4ce2d19ac082b589d34b1f27d4238824e267",
+      "oldPinned": false,
+      "oldArchive": ".data/research/lawbot-2026-10-16/iteration056/before-known-fixes-formal-merge-v1/tests/e2e/automatic-mcp-real-edge.spec.ts"
+    },
+    {
+      "path": "tests/e2e/batch-review.spec.ts",
+      "wasNew": false,
+      "oldSha256": "e92af469118720dd5e36349ec1af65220cdaf443d130423e275b6d9f2e34e3c2",
+      "currentSha256": "e52c4425fa0b15d3552688e49c2468eb5c78ea930f3bc248a9a2e6832cd6b718",
+      "oldPinned": true,
+      "oldArchive": ".data/research/lawbot-2026-10-16/iteration056/before-known-fixes-formal-merge-v1/tests/e2e/batch-review.spec.ts"
+    },
+    {
+      "path": "tests/e2e/cancel-recovery.spec.ts",
+      "wasNew": false,
+      "oldSha256": "01cdfe86e297d30334ee16296f19cce0247c6776c2d62c9aa47ab1630ee6dbce",
+      "currentSha256": "8e045725f2bd7eecb728ca0063f1b215d3aa43116ae51da55c51822d2f83ceec",
+      "oldPinned": true,
+      "oldArchive": ".data/research/lawbot-2026-10-16/iteration056/before-known-fixes-formal-merge-v1/tests/e2e/cancel-recovery.spec.ts"
+    },
+    {
+      "path": "tests/e2e/cancel-response-loss.spec.ts",
+      "wasNew": false,
+      "oldSha256": "551026450587c47cbc480dde5493c8414ee85acbefdad13d202d1c10fc74a8e6",
+      "currentSha256": "c85579d4d5c14d9888e468dac67353e26e459326b48e849cbe58ab877d01a9f4",
+      "oldPinned": true,
+      "oldArchive": ".data/research/lawbot-2026-10-16/iteration056/before-known-fixes-formal-merge-v1/tests/e2e/cancel-response-loss.spec.ts"
+    },
+    {
+      "path": "tests/e2e/docx-layout.spec.ts",
+      "wasNew": false,
+      "oldSha256": "5b17787bbbc6e22db838772f36753abde3c64480dc9a9b9c262d9d5a88e798d9",
+      "currentSha256": "f6587bfc4432fe37edd7c6b2e5d579e2478bd02b2ec9ed2bd69318c4bf053495",
+      "oldPinned": true,
+      "oldArchive": ".data/research/lawbot-2026-10-16/iteration056/before-known-fixes-formal-merge-v1/tests/e2e/docx-layout.spec.ts"
+    },
+    {
+      "path": "tests/e2e/review-regressions.spec.ts",
+      "wasNew": false,
+      "oldSha256": "0fc275dce0f94d4ef7d22e46a664fa0d87746b35dbed8a6a5d632cc0a84b3c6f",
+      "currentSha256": "2eb1ef478357b6fb37a6a0c2c3484c789157b083a555264298cf33e7b612db63",
+      "oldPinned": true,
+      "oldArchive": ".data/research/lawbot-2026-10-16/iteration056/before-known-fixes-formal-merge-v1/tests/e2e/review-regressions.spec.ts"
+    },
+    {
+      "path": "tests/e2e/recognition.spec.ts",
+      "wasNew": false,
+      "oldSha256": "5cede0bd819428f89acc236cac62f05903d6dee875256695400f340d9c9960bf",
+      "currentSha256": "2e31b13a25d697897b1e6004145f94e3bc163da9f533728567447a94315cd8d8",
+      "oldPinned": true,
+      "oldArchive": ".data/research/lawbot-2026-10-16/iteration056/before-known-fixes-formal-merge-v1/tests/e2e/recognition.spec.ts"
+    },
+    {
+      "path": "tests/e2e/private-mapping-archive.spec.ts",
+      "wasNew": false,
+      "oldSha256": "801749f253a618e05238d6230340a3a2fa788f97377381a84958268db33b326b",
+      "currentSha256": "a660791267afccbdde9356bcbb2ee6c43311c187f896d36f01d307fbcda11cd6",
+      "oldPinned": false,
+      "oldArchive": ".data/research/lawbot-2026-10-16/iteration056/before-known-fixes-formal-merge-v1/tests/e2e/private-mapping-archive.spec.ts"
+    },
+    {
+      "path": "tests/e2e/mcp-ai-process-restore.spec.ts",
+      "wasNew": false,
+      "oldSha256": "46b867e35c7b5409d7073b897f6bfa4dd2885cc78441bdc03e7f5de76dc2fe07",
+      "currentSha256": "af137ee17d23d3175e4d6dfb107730c162d866017b8ff6d66060df4d65a0e1ef",
+      "oldPinned": true,
+      "oldArchive": ".data/research/lawbot-2026-10-16/iteration056/before-known-fixes-formal-merge-v1/tests/e2e/mcp-ai-process-restore.spec.ts"
+    },
+    {
+      "path": "tests/e2e/ocr-correction.spec.ts",
+      "wasNew": false,
+      "oldSha256": "cd55f41d25872eb12fdeb671464945900af2c03d5e6d095d35598fd4be1704a6",
+      "currentSha256": "e7f2e0ab0e83c99190cf820408ebdf5c7522399cfd35a79961a24247c48b596f",
+      "oldPinned": true,
+      "oldArchive": ".data/research/lawbot-2026-10-16/iteration056/before-known-fixes-formal-merge-v1/tests/e2e/ocr-correction.spec.ts"
+    },
+    {
+      "path": "tests/e2e/pdf-cross-chain.spec.ts",
+      "wasNew": false,
+      "oldSha256": "300a89510ddfffc90fcfbf9900ac6d5e2fe4489d16184e1a71a5d8d06fcff660",
+      "currentSha256": "05724bc82032fe61762bc6715e66942ebb0c7cc1f1346939401be9510bc8e07b",
+      "oldPinned": true,
+      "oldArchive": ".data/research/lawbot-2026-10-16/iteration056/before-known-fixes-formal-merge-v1/tests/e2e/pdf-cross-chain.spec.ts"
+    },
+    {
+      "path": "apps/web/pdf-ocr-live-draft.tsx",
+      "wasNew": false,
+      "oldSha256": "fce66861baf924354cf54a880b663ac9795937978ffecb614d052044f87306bb",
+      "currentSha256": "4dc23b8b5c491ec879e9a595c0a0dc4229743526d58bd0875b3e119648fe2d1a",
+      "oldPinned": true,
+      "oldArchive": ".data/research/lawbot-2026-10-16/iteration056/before-known-fixes-formal-merge-v1/apps/web/pdf-ocr-live-draft.tsx"
+    },
+    {
+      "path": "tests/e2e/pdf-seal-runtime-flow.spec.ts",
+      "wasNew": false,
+      "oldSha256": "d27da86ce4762774e7f3ac663783e62d90283d707648f726ff2606eeaeb6c344",
+      "currentSha256": "883912532f0067998ce1921e2215895e2e23d224e9577c3d05cbd02222fadfcd",
+      "oldPinned": true,
+      "oldArchive": ".data/research/lawbot-2026-10-16/iteration056/before-known-fixes-formal-merge-v1/tests/e2e/pdf-seal-runtime-flow.spec.ts"
+    },
+    {
+      "path": "apps/api/automatic-review.ts",
+      "wasNew": false,
+      "oldSha256": "94e9340fbf73bb3c6c693f4ad13b98fa935dd0aafce5ddbfbc20d47506ef6498",
+      "currentSha256": "e02ae92d72efea663a082176aa6272ed3fa5df3eb36cce29cb3a6d9d7ddcd620",
+      "oldPinned": false,
+      "oldArchive": ".data/research/lawbot-2026-10-16/iteration056/before-known-fixes-formal-merge-v1/apps/api/automatic-review.ts"
+    },
+    {
+      "path": "tests/mcp-irreversible-mask.integration.ts",
+      "wasNew": false,
+      "oldSha256": "a36a58ec7b619dd6dfc869948055999559e8711ccd1c71d6e13f30550f899191",
+      "currentSha256": "51706c284721d22f2c004c4d9017888f1d89b1366081f22bdb58d714be734ef6",
+      "oldPinned": true,
+      "oldArchive": ".data/research/lawbot-2026-10-16/iteration056/before-known-fixes-formal-merge-v1/tests/mcp-irreversible-mask.integration.ts"
+    },
+    {
+      "path": "apps/api/mcp.ts",
+      "wasNew": false,
+      "oldSha256": "dbf8ce56cd79470ccb650e8c7378c543b33f71fb337ac99e2a5a031ea3d1606f",
+      "currentSha256": "1ad866523e33459ddc2d751567b4e2d523d80fb4c6f1afa9bd6860dcc79214d3",
+      "oldPinned": true,
+      "oldArchive": ".data/research/lawbot-2026-10-16/iteration056/before-known-fixes-formal-merge-v1/apps/api/mcp.ts"
+    },
+    {
+      "path": "tests/mcp-quarantine-human-chain.integration.ts",
+      "wasNew": true,
+      "oldSha256": null,
+      "currentSha256": "33ef5d03737c27b0345dc7c9f14737f67e3c5500d41fcc0fd6901f89cc0e4371",
+      "oldPinned": false,
+      "oldArchive": null
+    },
+    {
+      "path": "apps/web/pdf-ocr-live-page.tsx",
+      "wasNew": false,
+      "oldSha256": "3c1a57324e0987d816e83602aa363ed3a71f909888d6119d2f10f39ee1f56640",
+      "currentSha256": "8d66a73db6c7d4ea3181fb77238c3857bdfd55b20e4fe7c1e1c76c450471fc98",
+      "oldPinned": true,
+      "oldArchive": ".data/research/lawbot-2026-10-16/iteration056/before-known-fixes-formal-merge-v1/apps/web/pdf-ocr-live-page.tsx"
+    },
+    {
+      "path": "tests/e2e/type-hide-persistence.spec.ts",
+      "wasNew": false,
+      "oldSha256": "9da971b507c443291d34dd64de0f4a38aa6fee768157e8be5ffcc65cc0c4d6e0",
+      "currentSha256": "a116c949a526dd9c06610e3f5a07db0fbaa813843b7bc4dda775a2f78cc7cce6",
+      "oldPinned": true,
+      "oldArchive": ".data/research/lawbot-2026-10-16/iteration056/before-known-fixes-formal-merge-v1/tests/e2e/type-hide-persistence.spec.ts"
+    },
+    {
+      "path": "tests/e2e/selectable-ocr-ahead.spec.ts",
+      "wasNew": false,
+      "oldSha256": "3ac48537ccb5eedfe2e35394dca242d218dc3a84a160cd9cc5440f162ba00c61",
+      "currentSha256": "7e4278bbcee8b9c3cac6e8845eeb266552d98386172a7902dd11e5338b9c3f81",
+      "oldPinned": true,
+      "oldArchive": ".data/research/lawbot-2026-10-16/iteration056/before-known-fixes-formal-merge-v1/tests/e2e/selectable-ocr-ahead.spec.ts"
+    }
+  ],
+  "old23ArchivedAndVerified": true,
+  "check": {
+    "receiptSha256": "37641d67ba2856c9bbf3529f2440f6375cfd886fe4cd4553fb467ab3fe2ac712",
+    "exitCode": 0,
+    "unitFiles": 146,
+    "unitPass": 824,
+    "bendLaws": 18,
+    "bendMutations": 21,
+    "protectedHistoricalPaths": 477,
+    "inputDrift": []
+  },
+  "old913Api": {
+    "receiptSha256": "fde38171ecacb7c97a0146ff9b896d9afd77a25715111a90773ed32a44d877d2",
+    "plannedFiles": 130,
+    "completedFiles": 48,
+    "pass": 90,
+    "fail": 1,
+    "notRunFiles": 82
+  },
+  "old913Edge": {
+    "receiptSha256": "651ec0cb733d58612fa40c9d813a58f82c355491e93a3771a63a3ab1ae8d09ec",
+    "plannedCases": 104,
+    "pass": 86,
+    "fail": 18,
+    "skipped": 0
+  },
+  "remaining82Diagnostic": {
+    "snapshotSha256": "9e2ae8ad7ebedd170d0e78c19edce2d5f1dbdfb0d348e1c8ad1d077ac5bbfb58",
+    "completedAtSnapshot": 12,
+    "notRunAtSnapshot": 70,
+    "baselineInputCount": 913,
+    "terminalAtSnapshot": false,
+    "notFinalGate": true
+  },
+  "remoteReadOnly": {
+    "countsReceiptSha256": "a24287231e3ee239a8805ef2d447f66e4ace4c165c60622f33156d17c7e6f91c",
+    "backupCapabilitiesReceiptSha256": "54a08238b34c43df723f33020291f7d4568cee63ceac29f1530dd46b20e03fa8",
+    "counts": {
+      "tasks": 0,
+      "collaboration_jobs": 0,
+      "generic_job_retry_audits": 0,
+      "unrecovered_quarantines": 0,
+      "unexpired_artifacts": 0
+    },
+    "serverVersion": "054",
+    "deployed056": false,
+    "backupPerformed": false
+  },
+  "localHealth": {
+    "http://127.0.0.1:4318/api/health": {
+      "exitCode": 0,
+      "httpStatus": "200"
+    },
+    "http://127.0.0.1:5178/": {
+      "exitCode": 0,
+      "httpStatus": "200"
+    }
+  },
+  "rulesJsonBlocks": {
+    "count": 10,
+    "unchanged": true,
+    "sha256": "c8029aa486ed12850c4e0d368da49b933821bb09c8c2f4aea7c6cd4b709782d8"
+  },
+  "documentBeforeAfter": [
+    {
+      "path": "文档/待办与完成状态-20261015.md",
+      "beforeSha256": "64244c1832c56bc22a316405a4a893df47ec20bb6176e24feb1599b63274d14a",
+      "afterSha256": "c0221f2ed81ab5b0a38ab783eca281005e2ec6ca421449d14b7b36e0eea6057a"
+    },
+    {
+      "path": "文档/脱敏规则完整技术交接-迭代023.md",
+      "beforeSha256": "cb6fdce259faa5a2a8786cf4679e1503f1d7bddf7e1cafd0dc5ca001958775b1",
+      "afterSha256": "0ae9c20dc6e941c35f39f96fdc2bc1e2717848b16f5c139fff1807138be90f47"
+    }
+  ],
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v9.json",
+      "sha256": "6de5b692f1bfd6243e0b2584153e1cc9bd56aead500cd74fc75391833f6d9389"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root-known-fixes-formal-merge-v1-receipt.json",
+      "sha256": "e5afffb9c46bc32d3b3f57e63de39553503bf07ff2745cae578986935ea62b47"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/prepared-merge-v10-candidate-v1/root-cas-merge-plan-v2.json",
+      "sha256": "8a48ccff7ba3cbc93f3e42e85a71c3acdfbf6a96a1a4bf24988c393d1d9ca366"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/final-check-v12-receipt.json",
+      "sha256": "37641d67ba2856c9bbf3529f2440f6375cfd886fe4cd4553fb467ab3fe2ac712"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/full-api-final-v8-receipt.json",
+      "sha256": "fde38171ecacb7c97a0146ff9b896d9afd77a25715111a90773ed32a44d877d2"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-final-v8/terminal-receipt.json",
+      "sha256": "651ec0cb733d58612fa40c9d813a58f82c355491e93a3771a63a3ab1ae8d09ec"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/rules/api-v8-remaining82-progress-ledger-snapshot-v1.json",
+      "sha256": "9e2ae8ad7ebedd170d0e78c19edce2d5f1dbdfb0d348e1c8ad1d077ac5bbfb58"
+    },
+    {
+      "path": ".data/deploy/aliyun-20261016/iteration056/read-only-retry-compat-counts-v1.json",
+      "sha256": "a24287231e3ee239a8805ef2d447f66e4ace4c165c60622f33156d17c7e6f91c"
+    },
+    {
+      "path": ".data/deploy/aliyun-20261016/iteration056/read-only-backup-capabilities-v2.json",
+      "sha256": "54a08238b34c43df723f33020291f7d4568cee63ceac29f1530dd46b20e03fa8"
+    }
+  ],
+  "retryV4Merged": false,
+  "overallAcceptancePassed": false,
+  "staticRuntimeImplementationStatusesChanged": false
+}

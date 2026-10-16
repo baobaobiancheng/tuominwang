@@ -1,0 +1,37 @@
+{
+  "iteration": "056",
+  "date": "2026-10-16",
+  "user_direction": "可复用的原代码、规则、样式和操作流程直接采用；仅作现有技术栈必要适配。",
+  "status": "研究候选定向验证；正式源码尚未集成，未上线",
+  "vendor_runtime": "R0；无许可证处理链未运行",
+  "formal_source_manifest": "final-inputs-v4.json",
+  "original_source": {
+    "renderer_sha256": "4517cb61dcb7c5bc4771ccbe6655f3cf6303fb44c282e0d06f73bd859fd32cdc",
+    "entity_audit": "renderer.js:34774-34827,35036-35146,35331-35430,37517-37530; frontend.css:3209-3224,3398-3444",
+    "pdf": "renderer.js:33038-33221,34030-34070"
+  },
+  "verified": [
+    {
+      "scope": "实体审计、替换、分组删除，原版分组及审计DOM/CSS候选",
+      "evidence": ".data/research/lawbot-2026-10-16/iteration056/frontend/unified-entity-actions-candidate/edge-target-control-v8/terminal-receipt.json",
+      "result": "Edge1/1 actual0，873正式/876私树/28资产无漂移；弹窗截图及来源显示新断言仍待最终Edge"
+    },
+    {
+      "scope": "PDF048/049/050旧联合候选v4",
+      "evidence": ".data/research/lawbot-2026-10-16/iteration056/arch/pdf-ocr-priority-v1/combined-api-worker-v4-terminal-receipt.json",
+      "result": "隔离API/worker10/10，含真实A→B→A续跑；不是最新tombstone及UI修订通过证据"
+    }
+  ],
+  "pending": [
+    "最新人工删除tombstone保留、续接lineage和UI异步编辑保护联合验证",
+    "PDF完整浏览器暂停、人工增删、继续、复核导出下载",
+    "原版运行期PDF预览/页操作可达性继续核验；仅文字草稿不视为原版视觉审查等价",
+    "最终全量pnpm check、API、Edge和真实语料评估",
+    "更新指南及规则交接、私有Git同步和服务器版本读回"
+  ],
+  "evidence": [
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/unified-entity-actions-candidate/edge-target-control-v8/terminal-receipt.json",
+    ".data/research/lawbot-2026-10-16/iteration056/arch/pdf-ocr-priority-v1/combined-api-worker-v4-terminal-receipt.json",
+    ".data/research/lawbot-2026-10-16/iteration056/root-original-reuse-review-v2.json"
+  ]
+}

@@ -16,14 +16,16 @@ import {resolveDocumentPolicy} from '../../packages/adapters/document-policy.ts'
 import {validateMappingMarks} from '../../packages/core/mappings.ts';
 export function registerMappingExports(app:FastifyInstance){
  app.post('/api/projects/:id/mapping-export',async(req,reply)=>{
-  const project=id.parse((req.params as any).id),input=z.object({documents:z.array(z.object({id,revision:z.number().int().nonnegative()})).min(1).max(10000),mode:z.enum(['singleDocument','unifiedBatch','independentBatch']),format:z.enum(['lpm','xlsx']),password:z.string().min(4).max(1024).optional()}).strict().parse(req.body);
-  if(new Set(input.documents.map(d=>d.id)).size!==input.documents.length||input.mode==='singleDocument'&&input.documents.length!==1||input.format==='xlsx'&&input.password)denied('INVALID_EXPORT_REQUEST',400);
+  const temporaryName=z.string().trim().min(1).max(80).refine(v=>v.isWellFormed()&&v!=='.'&&v!=='..'&&!/[<>:"/\\|?*\x00-\x1f\x7f]/u.test(v));
+  const project=id.parse((req.params as any).id),input=z.object({documents:z.array(z.object({id,revision:z.number().int().nonnegative()})).min(1).max(10000),mode:z.enum(['singleDocument','unifiedBatch','independentBatch']),format:z.enum(['lpm','xlsx']),password:z.string().min(4).max(1024).optional(),tableName:temporaryName.optional(),documentTableNames:z.record(id,temporaryName).optional()}).strict().parse(req.body);
+  const documentIds=new Set(input.documents.map(d=>d.id));
+  if(documentIds.size!==input.documents.length||input.mode==='singleDocument'&&input.documents.length!==1||input.format==='xlsx'&&input.password||input.documentTableNames&& (input.mode!=='independentBatch'||Object.keys(input.documentTableNames).some(key=>!documentIds.has(key))))denied('INVALID_EXPORT_REQUEST',400);
   return projectScope(req,{project},['view_original','view_mapping','export'],async db=>{
    const [projectRow]=await rows(db,sql`SELECT * FROM projects WHERE id=${project} FOR SHARE`);
    const documents=[];
    for(const wanted of input.documents){const [d]=await rows(db,sql`SELECT id,tenant_id,project_id,revision,source_name,source_format,document_policy,document_policy_revision,is_batch FROM documents WHERE id=${wanted.id} AND project_id=${project} FOR SHARE`);if(!d)denied('NOT_FOUND',404);if(d.revision!==wanted.revision)denied('VERSION_CONFLICT',409);documents.push(d);}
    const policy=readProjectPresets(projectRow),resolved=resolveDocumentPolicy(documents[0],policy),profile=resolved.presetPolicy?.profile?.settings??defaultProfile();
-   const names=pseudonymTableNames(profile,documents.map(d=>d.source_name?unseal(d.source_name,`${d.tenant_id}:${project}:${d.id}:name`):`材料-${d.id}.txt`),input.mode,`.${input.format}`);
+   const names=pseudonymTableNames(profile,documents.map(d=>d.source_name?unseal(d.source_name,`${d.tenant_id}:${project}:${d.id}:name`):`材料-${d.id}.txt`),input.mode,`.${input.format}`,input.mode==='independentBatch'?documents.map(d=>input.documentTableNames?.[d.id]??input.tableName):[input.tableName]);
    const groups=input.mode==='unifiedBatch'?[documents]:documents.map(d=>[d]),outputs=new Map<string,Buffer>();
    for(let i=0;i<groups.length;i++){
     const all=new Map(),occurrences=[];
@@ -33,7 +35,7 @@ export function registerMappingExports(app:FastifyInstance){
      for(const m of mappings)all.set(m.id,m);
      for(const m of marks){const replacement=m.replacement!;if(replacement.mode!=='alias')continue;occurrences.push({token:replacement.token,original:text.slice(m.start,m.end),entityType:entityLabel(m),documentId:d.id,start:m.start,end:m.end});}
     }
-    const mappings=[...all.values()],data=mappingExportData(mappings,occurrences);
+    const mappings=[...all.values()],base=mappingExportData(mappings,occurrences),data={...base,_meta:{...base._meta,tableName:names[i].slice(0,-(`.${input.format}`).length),scope:input.mode==='unifiedBatch'?'project':'single'}};
     const bytes=input.format==='xlsx'?await exportMappingWorkbook(mappings):input.password?await writeProtectedPortable(Buffer.from(JSON.stringify(data)), 'pseudonym-mapping',project,{password:input.password}):Buffer.from(JSON.stringify(data,null,2));
     outputs.set(names[i],bytes);
    }

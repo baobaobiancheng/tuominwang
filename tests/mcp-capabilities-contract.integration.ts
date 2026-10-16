@@ -39,8 +39,8 @@ test('MCP capabilities retain public keys with truthful web file semantics and c
   assert.equal(response.statusCode,200,response.body);const result=response.json().result;
   assert.equal(result.isError,false,JSON.stringify(result));const c=result.structuredContent;
   assert.deepEqual(c.interfaces,['review','file','restore','configuration']);
-  assert.deepEqual(c.reviewModes,['human_review']);
-  assert.equal(c.reviewModes.includes('automatic'),false,'automatic delivery is not implemented in the Web adaptation');
+  assert.deepEqual(c.reviewModes,['automatic','human_review']);
+  assert.equal(c.reviewModes.includes('automatic'),true,'ordinary MCP start supports the approved automatic mode');
   assert.deepEqual(c.inputFormats,['docx','doc','wps','md','markdown','pdf','jpg','jpeg','png']);
   assert.deepEqual(c.taskModes,['redact_only','ai_process','ai_process_restore']);
   assert.deepEqual(c.documentTypes,['auto','general','contract','disclosure','judgment','pleading','official_letter','screenshot']);

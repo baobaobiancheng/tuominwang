@@ -21,7 +21,9 @@ import {DocumentRoutePreview} from './document-route.tsx';
 import {DocxImageOcr} from './docx-image-ocr.tsx';
 import {MappingLibrary} from './mapping-library.tsx';
 import {MarkdownBlockers} from "./markdown-blockers.tsx";
-import {ProcessingProgress} from "./processing-progress.tsx";
+import {ProcessingProgress,type SharedProgressEvents} from "./processing-progress.tsx";
+import {PdfSealRuntime} from "./pdf-seal-runtime.tsx";
+import {PdfOcrLiveDraft,type PdfOcrLiveDraftHandle} from './pdf-ocr-live-draft.tsx';
 import { MarkdownManualDraft } from "./markdown-manual-draft.tsx";
 import {entityIdentity,entityLabel,entitySpanKey} from '../../packages/core/entity-identity.ts';
 import { OcrDiagnostics } from "./image-utilities.tsx";
@@ -65,6 +67,13 @@ import { BatchReview } from "./batch-review.tsx";
 import { PageEditor, emptyPageReview } from "./page-review.tsx";
 import { OrganizationDialog, ProjectMembers, AuditPanel } from "./members.tsx";
 import { HamburgerMenuIcon, PlusIcon, FileTextIcon, ExitIcon, PersonIcon, ChevronRightIcon } from "@radix-ui/react-icons";
+function savedReviewOrigin(doc: DocumentView, dirty: boolean) {
+  const pending = doc.marks.some(mark => mark.decision === 'pending');
+  const saved = doc.reviewOrigin === 'automatic' ? (pending ? '系统自动决定，未人工复核，仍有待确认' : '系统自动决定，未人工复核')
+    : doc.reviewOrigin === 'human_review' ? (pending ? '人工保存，仍有待确认' : '人工复核已保存')
+    : doc.reviewOrigin === 'legacy' ? '审定来源未记录' : '尚无已保存审定';
+  return dirty ? `当前修改未保存 · 上一版本：${saved}` : saved;
+}
 const messages: Record<string, string> = {
   ...businessErrors,
   PERMISSION_DENIED: "没有执行此操作的权限，请联系项目管理员",
@@ -135,7 +144,7 @@ const messages: Record<string, string> = {
   DOCUMENT_UNLOCK_UNSUPPORTED: "此文件加密方式暂不支持。",
   DOCUMENT_LEGACY_CONVERSION_REQUIRED: "旧版 Word／Excel 文件需要先转换为 docx／xlsx。",
   ENCRYPTED_PDF: "PDF 已加密，请先使用有权访问的解密副本",
-  PAGE_LIMIT: "PDF 最多支持 300 页，请拆分文件",
+  PAGE_LIMIT: "材料页数无效或超出处理范围",
   INVALID_PDF_PAGE: "PDF 页面无法读取，已停止处理",
   INVALID_PDF_TEXT: "PDF 文字编码无法可靠定位，请检查原件",
   PDF_TEXT_LIMIT: "页面文字数量超过安全处理限制，请拆分文件",
@@ -289,6 +298,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
     [conflict, setConflict] = useState(false),
     [busy, setBusy] = useState(false);
   const [rotationActive,setRotationActive]=useState(false);
+  const [exportMappingName,setExportMappingName]=useState('');
   const [projects, setProjects] = useState<{ id: string; name: string; permissions: Permission[] }[]>([]),
     [project, setProject] = useState(""),
     [docs, setDocs] = useState<{ id: string; state: string; name?: string; job_state?: string; job_kind?: "detect" | "export"; detect_state?: string; revision?: number }[]>([]),
@@ -351,7 +361,10 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
   },[pendingAuditFocus,busy,doc?.id,doc?.project_id,doc?.revision,doc?.textOffset,doc?.text,docxView]);
   const highlightLayer = useRef<HTMLDivElement>(null);
   useEffect(() => { setReviewTool("marks"); }, [doc?.id, doc?.revision]);
-  const busyRef = useRef(false), dirtyRef = useRef(false);
+  const busyRef = useRef(false), dirtyRef = useRef(false), pdfDraftRef = useRef<PdfOcrLiveDraftHandle|null>(null);
+  const [pdfDraftPending,setPdfDraftPending]=useState(false);
+  const [pdfSharedEvents,setPdfSharedEvents]=useState<SharedProgressEvents|null>(null);
+  async function flushPdfDraft(){if(pdfDraftRef.current&&!await pdfDraftRef.current.flush())throw new Error("运行中 PDF 草稿尚未保存，操作未执行；请修正草稿错误后重试。");}
   const currentDoc = useRef(doc), currentProject = useRef(project);
   const visualRequests = useRef(new Map<string,string>());
   const allowed = (permission: Permission) => (projects.find(p => p.id === project)?.permissions ?? []).includes(permission);
@@ -419,13 +432,16 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
     setMoreDocs(next.length === 20);
   }
   async function openDoc(id: string, focus?: {start:number;end:number}, snapshot?: DocumentView, onlyIfCurrent = false) {
+    if(currentDoc.current?.id!==id)await flushPdfDraft();
     const d = snapshot ?? await api<DocumentView>("/documents/" + id + (focus?`?offset=${Math.max(0,focus.start-256)}`:""));
     if (d.id !== id) throw new Error("材料状态已变化，请重新打开。");
     if (onlyIfCurrent && (currentDoc.current?.id !== id || currentProject.current !== d.project_id || dirtyRef.current)) return;
+    const enteredDocument = currentDoc.current?.id !== id || currentProject.current !== d.project_id;
     const pageFocus=!!focus&&d.anchors?.some(a=>a.start<focus.end&&a.end>focus.start&&(a.kind==='page'||a.kind==='object'&&a.object==='image-text'));
     setPendingAuditFocus(focus&&!pageFocus?{documentId:id,projectId:d.project_id,revision:d.revision,textOffset:d.textOffset??0,...focus}:null);
     if(focus&&!pageFocus&&isWordFormat(d.format))setDocxView('text');
     setDoc(d);
+    setExportMappingName('');
     setDocxFocus(focus??null);
     setMarks(d.marks);
     setDirty(false);
@@ -435,7 +451,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
     setPageReview(d.pageReview ?? emptyPageReview());
     setUndoStack([]); setRedoStack([]); setPreview(null);
     setImporting(false);
-    void api(`/projects/${d.project_id}/workspace/recent`,"POST",{documentId:d.id}).catch(()=>{});
+    if (enteredDocument) void api(`/projects/${d.project_id}/workspace/recent`,"POST",{documentId:d.id}).catch(()=>{});
   }
   useEffect(() => {
     let active = true;
@@ -508,18 +524,23 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
             setError(messages.VERSION_CONFLICT);
             return;
           }
+          if (pdfDraftPending && d.job?.id !== doc.job?.id) {
+            setConflict(true);
+            setError('运行中 PDF 草稿尚未保存，材料任务已变化；当前编辑仍保留。');
+            return;
+          }
           setDoc(d);
           setMarks(d.marks);
           setPageReview(d.pageReview ?? emptyPageReview());
         })
         .catch((e) => { if (active) setError(e.message); })
         .finally(() => { inFlight = false; });
-    }, 800);
+    }, 3000);
     return () => {
       active = false;
       clearInterval(timer);
     };
-  }, [doc?.id, doc?.revision, doc?.textOffset, doc?.job?.status, dirty, busy, conflict]);
+  }, [doc?.id, doc?.revision, doc?.textOffset, doc?.job?.id, doc?.job?.status, dirty, busy, conflict, pdfDraftPending]);
   async function loadText(offset: number, mark?: { start: number; end: number }) {
     if (mark) setDocxFocus({start:mark.start,end:mark.end});
     const current = currentDoc.current;
@@ -571,6 +592,11 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
   const pageCount = Math.max(1, Math.ceil(individual.total / 50));
   const page = Math.min(markPage, pageCount - 1);
   const hasPages = !!doc?.pages?.length;
+  const pdfLiveDraftOwnsEvents = !!doc && canReview && docAllowed('view_original') && doc.job?.canObserveEvents === true && doc.job.ordinaryPdfDetection === true && doc.format === 'pdf' && doc.job.kind === 'detect' && doc.state === 'queued' && ['queued','running'].includes(doc.job.status);
+  const sealJobId = doc?.state === "review" ? doc.sealDetectJobId : doc?.job?.kind === "detect" ? doc.job.id : null;
+  const sealRuntimeActive = !!doc && !!sealJobId && canManageJob && doc.job?.canObserveEvents === true && doc.job?.ordinaryPdfDetection === true && doc.state === "queued" && doc.job?.status === "running";
+  const sealRuntimeReady = !!doc && !!sealJobId && canReview && doc.state === "review";
+  const sealDeferred = doc?.format === "pdf" && (doc.visualDiagnostics as {sealProgress?:{status:string}} | null | undefined)?.sealProgress?.status === "deferred";
   const isPaged = ["pdf", "png", "jpg", "jpeg"].includes(doc?.format ?? "txt");
   const outputFormat = isPaged && doc?.format !== "pdf" ? "png" : doc?.format ?? "txt";
   if (!ready) return <main>正在连接工作台…</main>;
@@ -663,14 +689,18 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
                 >
                   保存复核
                 </button>
+                {docAllowed("export") && <label>本次假名表名称（可选）<input aria-label="本次导出假名表名称" maxLength={80} value={exportMappingName} placeholder="留空使用方案默认名称" onChange={e=>setExportMappingName(e.target.value)}/></label>}
                 <button
                   disabled={
-                    !docAllowed("export") || dirty || pending > 0 || doc.state !== "review" || busy || conflict || hasPages && doc.pageReview?.mode !== "raster" || !!doc.coverage?.some(c => c.status === "blocked")
+                    !docAllowed("export") || dirty || pending > 0 || doc.state !== "review" || busy || conflict || (sealDeferred && doc.reviewOrigin !== "human_review") || hasPages && doc.pageReview?.mode !== "raster" || !!doc.coverage?.some(c => c.status === "blocked")
                   }
                   onClick={() =>
                     void run(async () => {
+                      if (sealDeferred && !await confirmAction("印章自动检查未完成。请先补检印章，或人工检查并标注遗漏印章后继续导出。", {title:"请确认已人工检查印章",confirmText:"已检查，继续导出",cancelText:"返回人工检查"})) return;
                       await api("/documents/" + doc.id + "/export", "POST", {
                         revision: doc.revision,
+                        ...(sealDeferred ? {manualSealChecked:true} : {}),
+                        ...(exportMappingName.trim()?{pseudonymTableName:exportMappingName.trim()}:{}),
                       });
                       await openDoc(doc.id);
                       setNotice("已提交副本生成任务");
@@ -710,7 +740,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
   ) : null;
   return (
     <fieldset className="workspace-controls" disabled={busy} aria-busy={busy}>
-      <header className="workspace-topbar"><div className="brand">脱敏汪 <small>文档脱敏工作台</small></div><span>{doc ? "人工复核" : importing ? "导入材料" : "项目空间"}</span></header>
+      <header className="workspace-topbar"><div className="brand">脱敏汪 <small>文档脱敏工作台</small></div><span>{doc ? savedReviewOrigin(doc, dirty) : importing ? "导入材料" : "项目空间"}</span></header>
       <div className={"shell" + (collapsed ? " sidebar-collapsed" : "") + (doc ? " review-shell" : "")}>
         <aside aria-label="项目导航">
       <header className="sidebar-brand">
@@ -793,6 +823,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
                 aria-current={project === p.id ? "page" : undefined}
                 onClick={() => void run(async () => {
                   if ((!dirty && !pendingUpload && !dictionaryDirty) || await confirmAction("存在未保存的内容或未上传文件，确定离开？")) {
+                    await flushPdfDraft();
                     setProject(p.id);
                     setDoc(null); setImporting(false); setDirty(false); setConflict(false);
                   }
@@ -829,6 +860,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
               }}>删除材料</button>}
               <button className="secondary" onClick={async () => {
                 if (dirty && !await confirmAction("放弃未保存的复核？")) return;
+                await flushPdfDraft();
                 setDoc(null); setDirty(false); setConflict(false); setImporting(false);
               }}>返回材料列表</button>
               <button
@@ -836,6 +868,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
                 disabled={!allowed("upload")}
                 onClick={async () => {
                   if (!dirty || await confirmAction("放弃未保存的复核？")) {
+                    await flushPdfDraft();
                     setDoc(null); setMarks([]); setDirty(false); setConflict(false); setSelection(null); setImporting(true);
                   }
                 }}
@@ -870,12 +903,12 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
             {project && allowed("view_original") && allowed("export") && <ProcessingObservability project={project} documents={docs.map((d,i)=>({id:d.id,revision:d.revision??0,name:d.name??`文本 ${i+1}`}))} loadDocuments={async()=>{const all:typeof docs=[];for(let offset=0;;offset+=100){const page=await api<typeof docs>(`/projects/${project}/documents?limit=100&offset=${offset}`);all.push(...page);if(page.length<100)break;}return all.map((d,i)=>({id:d.id,revision:d.revision??0,name:d.name??`文本 ${i+1}`}));}} api={api} run={run} onChanged={async()=>{await refreshDocs();}} />}
             {project && feedbackOpen && <ReferenceDictionaryFiles project={project} api={api} run={run} />}
             <details><summary>帮助与产品资料</summary><SupportPanel run={run} api={api}/><OcrDiagnostics run={async operation=>{if(operation==='health')return api('/ocr/health');const response=await fetch(appUrl('/api/ocr/diagnostic'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({reason:'用户请求 OCR 检查'})});if(!response.ok){await downloadResponse(response,'OCR诊断.json');return;}const result=await response.clone().json();await downloadResponse(response,'OCR诊断.json');return result;}} /></details>
-            <RecentWorkspaces api={api} disabled={busy||dirty} onOpen={async(projectId,documentId)=>{await run(async()=>{const p=await api<typeof projects[number]>(`/projects/${projectId}`);setProjects(v=>v.some(x=>x.id===p.id)?v:[...v,p]);setProject(projectId);if(documentId)await openDoc(documentId);else setDoc(null);});}} />
+            <RecentWorkspaces api={api} disabled={busy||dirty} onOpen={async(projectId,documentId)=>{await run(async()=>{await flushPdfDraft();const p=await api<typeof projects[number]>(`/projects/${projectId}`);setProjects(v=>v.some(x=>x.id===p.id)?v:[...v,p]);setProject(projectId);if(documentId)await openDoc(documentId);else setDoc(null);});}} />
             {project && <NetworkPolicy projectId={project} api={api} disabled={busy||!allowed("manage_models")} />}
             {project && allowed("view_original") && <AiCollaboration key={`collaboration:${project}`} project={project} focusJob={collaborationJob} documents={docs} api={api} run={run} onOpen={id => void run(() => openDoc(id))} />}
             {project && allowed("view_original") && allowed("review") && <ProjectEntities key={`entities:${project}`} project={project} api={api} run={run} changed={() => refreshDocs()} onOpen={(id,span)=>openDoc(id,span)} />}
             <WorkspacePortable key={`portable:${project}`} projectId={project || null} canExport={allowed("export") && allowed("view_original") && allowed("view_mapping")} canApply={allowed("manage_dictionary")&&allowed("review")&&!dirty} onApplied={async()=>{await refresh();setDoc(null);await refreshDocs();}} onImported={async id => { await refresh(); setProject(id); setDoc(null); }} />
-            {project && allowed("view_original") && allowed("export") && <FolderOutput key={`folder-output:${project}`} projectId={project} enabled={!dirty && !conflict} api={api} run={run} />}
+            {project && allowed("view_original") && allowed("export") && <FolderOutput key={`folder-output:${project}`} projectId={project} enabled={!dirty && !conflict} canViewMapping={allowed("view_mapping")} api={api} run={run} />}
             {project && <RestorationBatch key={`batch-restore:${project}`} projectId={project} enabled={allowed("restore")} />}
             {project && <RestorationFiles key={`restoration:${project}`} projectId={project} enabled={allowed("restore")} />}
             <PresetManager key={`presets:${project}`} project={project || undefined} permissions={projects.find(p => p.id === project)?.permissions} run={run} api={api} onPending={setDictionaryDirty} onApplied={async () => { await refreshDocs(); }} />
@@ -961,8 +994,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
                   自动识别 {({ completed: "已完成", outdated: "需重新识别", pending: "待处理", failed: "失败", cancelled: "已取消" } as Record<string, string>)[doc.layers.rules] ?? "待处理"}
                 </span>
                 <span>
-                  复核版本 {doc.revision}
-                  {dirty ? " · 未保存" : ""}
+                  复核版本 {doc.revision} · {savedReviewOrigin(doc, dirty)}
                 </span>
               </div>
               {doc.state === "outdated" && <p className="error" role="alert">材料的处理状态已变化，请重新识别后复核。原有复核记录仍保留。</p>}
@@ -979,7 +1011,19 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
               {canReview && doc.job?.status==="failed" && ["ENCRYPTED_PDF","ENCRYPTED_OFFICE"].includes(doc.job.error_code??"") && <DocumentUnlock id={doc.id} revision={doc.revision} api={api} disabled={dirty||conflict} onDone={()=>openDoc(doc.id)} />}
               <button className="secondary" disabled={busy} onClick={()=>setFeedbackOpen(v=>!v)}>反馈与个人规则</button>{feedbackOpen&&<FeedbackPanel key={`feedback-doc:${doc.id}`} project={doc.project_id} document={feedbackDocument} api={api} run={run}/>}
               {canReview && doc.state==="review" && <RecoveryDraft key={`recovery:${doc.id}:${doc.revision}`} doc={doc} marks={marks} pageReview={pageReview} dirty={dirty} disabled={busy||conflict} api={api} onRestore={(next,pages)=>{if(pages)setPageReview(pages);update(next,true);}} />}
-              {doc.job?.canObserveEvents === true && doc.state !== "outdated" && !conflict && docAllowed("view_original") && <ProcessingProgress key={`progress:${doc.job.id}`} job={doc.job} api={api} />}
+              {doc.job?.canObserveEvents === true && doc.state !== "outdated" && !conflict && docAllowed("view_original") && <ProcessingProgress key={`progress:${doc.job.id}`} job={doc.job} api={api} sharedEvents={pdfLiveDraftOwnsEvents?pdfSharedEvents:undefined} readPdfCheckpoints={doc.job.ordinaryPdfDetection === true && doc.state === "queued"} />}
+              {sealJobId && doc.format === "pdf" && doc.state !== "outdated" && docAllowed("view_original") && (sealRuntimeActive || sealRuntimeReady) && <PdfSealRuntime key={`seals:${sealJobId}:${doc.revision}`} jobId={sealJobId} revision={doc.revision} api={api} active={sealRuntimeActive} ready={sealRuntimeReady} busy={busy || conflict} onPause={() => void run(async () => {
+                await api(`/jobs/${sealJobId}/pdf-seals/pause`, "POST", {revision:doc.revision});
+                setNotice("已请求暂停印章检查；当前批次完成后保留结果，其他检测继续。");
+              })} onSupplement={() => void run(async () => {
+                const result=await api<{sealProgress:{status:'deferred'|'complete';completedPageNumbers:number[];sealWarning?:string}}>(`/jobs/${sealJobId}/pdf-seals/supplement`, "POST", {revision:doc.revision,requestId:crypto.randomUUID()});
+                const latest=await api<DocumentView>(`/documents/${doc.id}`);
+                if (latest.id!==doc.id || latest.project_id!==doc.project_id || latest.revision!==doc.revision) {setConflict(true);throw new Error(messages.VERSION_CONFLICT);}
+                if (currentDoc.current?.id!==doc.id || currentDoc.current.revision!==doc.revision) return;
+                setDoc(current=>current?.id===doc.id&&current.revision===doc.revision?{...current,visualCandidates:latest.visualCandidates,visualDiagnostics:latest.visualDiagnostics}:current);
+                setNotice(result.sealProgress.status==='complete'&&!result.sealProgress.sealWarning?'印章补检完成，已保留原有审查修改。':'印章已暂停，已完成页面和结果已保留；请核对未完成页面。');
+              })} />}
+              {canReview && docAllowed('view_original') && doc.job?.canObserveEvents===true && doc.job.ordinaryPdfDetection===true && doc.format==='pdf' && doc.job.kind==='detect' && (doc.state==='queued' && (['queued','running'].includes(doc.job.status)||doc.job.status==='cancelled'&&['PDF_OCR_PAUSED','PDF_OCR_PRIORITY_PREEMPTED'].includes(doc.job.error_code??'')) || pdfDraftPending && doc.state==='review' && doc.job.status==='succeeded') && <PdfOcrLiveDraft ref={pdfDraftRef} key={`pdf-draft:${doc.job.id}:${doc.revision}`} jobId={doc.job.id} documentId={doc.id} revision={doc.revision} jobStatus={doc.job.status} api={api} onPendingChange={setPdfDraftPending} onEvents={data=>{if(currentDoc.current?.id===doc.id&&currentDoc.current.job?.id===doc.job?.id)setPdfSharedEvents({jobId:doc.job!.id,generation:data.generation,items:data.items});}} onMerged={async()=>{if(currentDoc.current?.id===doc.id)await openDoc(doc.id);}} rotation={{state:doc.pageRotationState??emptyPageRotationState(),disabled:dirty||conflict,apply:async(input,signal)=>{await flushPdfDraft();if(busyRef.current)throw new Error('其他处理正在进行，请稍后重试。');busyRef.current=true;setRotationActive(true);setBusy(true);try{if(!await validateSession())throw new Error('登录已失效，请重新登录。');return await apiRequest(`/documents/${doc.id}/page-rotations`,'POST',{...input,revision:doc.revision},signal?AbortSignal.any([requests.signal,signal]):requests.signal);}finally{busyRef.current=false;setBusy(false);setRotationActive(false);}},onApplied:async()=>{if(currentDoc.current?.id!==doc.id)return;await openDoc(doc.id);await refreshDocs();setNotice('页面旋转已更新，请重新核对并保存复核。');}}}/>}
               {doc.job && (
                 <p className="muted" role="status">
                   任务：
@@ -995,7 +1039,31 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
                     )[doc.job.status]
                   }{" "}
                   {doc.job.error_code ? messages[doc.job.error_code] ?? "处理失败，请重试" : ""}
-                  {canManageJob && doc.state !== "outdated" && ["failed", "cancelled"].includes(doc.job.status) && <button disabled={dirty || conflict} className="secondary" onClick={() => void run(async () => {
+                  {canManageJob && doc.job.canObserveEvents && doc.job.ordinaryPdfDetection === true && doc.format === "pdf" && doc.job.kind === "detect" && doc.state === "queued" && ["queued", "running"].includes(doc.job.status) && <button disabled={busy || dirty || conflict} className="quiet" onClick={() => void run(async () => {
+                    if (!await confirmAction("暂停图片识别？已完成的页面会保留，稍后可继续识别剩余页面。")) return;
+                    await flushPdfDraft();
+                    const pausedJob = doc.job!.id;
+                    let pauseError: unknown;
+                    try { await api(`/jobs/${pausedJob}/pdf-ocr/pause`, "POST", { revision: doc.revision }); }
+                    catch (error) { pauseError = error; }
+                    const latest = await api<DocumentView>(`/documents/${doc.id}`);
+                    await openDoc(doc.id, undefined, latest, true);
+                    if (pauseError && !(latest.job?.id === pausedJob && latest.job.status === "cancelled" && latest.job.error_code === "PDF_OCR_PAUSED")) throw pauseError;
+                    setNotice("图片识别已暂停，可随时继续");
+                  })}>暂停图片识别</button>}
+                  {canManageJob && doc.job.canObserveEvents && doc.job.ordinaryPdfDetection === true && doc.format === "pdf" && doc.job.kind === "detect" && doc.state === "queued" && ((doc.job.status === "cancelled" && doc.job.error_code === "PDF_OCR_PAUSED") || (doc.job.status === "queued" && doc.job.pdfOcrPriorityWaiting === true)) && <button disabled={busy || dirty || conflict} className="secondary" onClick={() => void run(async () => {
+                    await flushPdfDraft();
+                    const pausedJob = doc.job!.id;
+                    const wasWaiting = doc.job!.pdfOcrPriorityWaiting === true;
+                    let resumeError: unknown;
+                    try { await api(`/jobs/${pausedJob}/pdf-ocr/prioritize`, "POST", { revision: doc.revision, requestId: crypto.randomUUID() }); }
+                    catch (error) { resumeError = error; }
+                    const latest = await api<DocumentView>(`/documents/${doc.id}`);
+                    await openDoc(doc.id, undefined, latest, true);
+                    if (resumeError && !(latest.job?.kind === "detect" && ["queued", "running", "succeeded"].includes(latest.job.status) && latest.revision === doc.revision && (wasWaiting ? latest.job.id === pausedJob && latest.job.pdfOcrPriorityWaiting !== true : latest.job.id !== pausedJob))) throw resumeError;
+                    setNotice("正在继续识别未完成页面");
+                  })}>继续图片识别</button>}
+                  {canManageJob && doc.state !== "outdated" && ["failed", "cancelled"].includes(doc.job.status) && doc.job.error_code !== "PDF_OCR_PAUSED" && <button disabled={dirty || conflict} className="secondary" onClick={() => void run(async () => {
                     await api("/jobs/" + doc.job!.id + "/retry", "POST", { revision: doc.revision });
                     await openDoc(doc.id);
                   })}>重试任务</button>}
@@ -1085,7 +1153,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
                     {isLegacyWordFormat(doc.format) && <DocumentNormalization documentId={doc.id} revision={doc.revision} originalFormat={doc.format} ready={doc.normalization?.ready??false} enabled={docAllowed("view_original") && canReview && !busy && !dirty && !conflict && !["queued","running"].includes(doc.job?.status ?? "")} api={api} onApplied={async () => { await openDoc(doc.id); await refreshDocs(); }} />}
                     {isWordFormat(doc.format) && <DocxImageOcr key={`docx-image-ocr:${doc.id}:${doc.revision}`} documentId={doc.id} revision={doc.revision} enabled={docAllowed("view_original") && canReview && !busy && !dirty && !conflict && doc.state === "review" && !["queued","running"].includes(doc.job?.status ?? "")} api={api} onApplied={async () => { await openDoc(doc.id); await refreshDocs(); setNotice("已应用新的 Word 图片识别版本，请重新逐项复核并保存。"); }} />}
                     <DocumentConfigurationEditor key={`configuration:${doc.id}:${doc.revision}`} doc={doc} api={api} run={run} onChanged={() => openDoc(doc.id)} disabled={!canReview || dirty || conflict || ["queued","running"].includes(doc.job?.status ?? "")} />
-                    <AutomaticVisual key={`automatic-visual:${doc.id}:${doc.revision}`} doc={doc} value={pageReview} disabled={!canReview || conflict || doc.state !== "review"} change={value => { setPageReview(value); setDirty(true); }} />
+                    <AutomaticVisual key={`automatic-visual:${doc.id}:${doc.revision}:${doc.visualCandidates?.length??0}`} doc={doc} value={pageReview} disabled={!canReview || conflict || doc.state !== "review"} change={value => { setPageReview(value); setDirty(true); }} />
                     <OfficeFaces key={`office-faces:${doc.id}:${doc.revision}`} doc={doc} value={pageReview} api={api} run={run} disabled={!canReview || conflict || doc.state !== "review"} change={value => { setPageReview(value); setDirty(true); }} />
                     <ImportedPortableDraft key={`portable-draft:${doc.id}:${doc.revision}`} documentId={doc.id} revision={doc.revision} enabled={doc.state === "review" && docAllowed("review") && docAllowed("view_original") && docAllowed("view_mapping") && !dirty && !conflict} onChanged={() => openDoc(doc.id)} />
                   </div>

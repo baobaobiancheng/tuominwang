@@ -4,6 +4,7 @@ import {isOfficeProtocolAttribute} from './office-protocol.ts';
 import { detect, mergeCandidates } from './redaction.ts';
 import { detectReferenceRules, filterReferenceNerCandidates, classifyReferenceDocumentDetail, REFERENCE_RULES_VERSION } from './reference-rules.ts';
 import {applyEvidenceScene,selectEvidenceScene} from './evidence-screenshot.ts';
+import {effectiveReferenceDocumentType} from './document-route.ts';
 export const recognitionVersion = `cn-rules-3+${REFERENCE_RULES_VERSION}`;
 // Parsed objects retain their offsets: fields cannot bridge cells, XML stories or image objects.
 export function detectComplete(text: string, anchors: Anchor[], dictionary: DictionaryEntry[] = [], context: {filename?: string; ocr?: boolean; screenshot?: boolean; sourceFormat?:SourceFormat; configuration?:DocumentConfiguration} = {}) {
@@ -12,7 +13,7 @@ export function detectComplete(text: string, anchors: Anchor[], dictionary: Dict
   const evidenceScene=selectEvidenceScene(text,context.sourceFormat,classification,context.configuration);
   const reference: Mark[] = [], original = detect(text, anchors, dictionary).filter(m => !anchors.length || anchors.some(a => a.start <= m.start && a.end >= m.end));
   const accountFields = original.filter(m => m.kind === "证券/资金账号" || m.kind === "证照/许可证号");
-  for (const span of spans) for (const c of detectReferenceRules(text.slice(span.start, span.end), { ...context,sceneMode:evidenceScene.controlled?'off':undefined, documentType: classification.type, windowOffset: span.start })) {
+  for (const span of spans) for (const c of detectReferenceRules(text.slice(span.start, span.end), { ...context,sceneMode:evidenceScene.controlled?'off':undefined, documentType: effectiveReferenceDocumentType(classification.type,context.configuration), windowOffset: span.start })) {
     if (c.kind === '网址' && isOfficeProtocolAttribute(text,span)) continue;
     const field = c.kind === '银行账号' ? accountFields.find(f => c.start >= f.start && c.end <= f.end) : undefined;
     reference.push({ start: field?.start ?? c.start, end: field?.end ?? c.end, kind: field?.kind ?? c.kind, decision: 'pending', sources: c.sources.map(source=>({...source,score:c.confidence})) });

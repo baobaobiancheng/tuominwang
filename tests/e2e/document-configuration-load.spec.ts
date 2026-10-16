@@ -87,10 +87,12 @@ test('catalogue failure and slow retry block configuration writes; loaded snapsh
   expect(configurationPosts).toBe(0);
   expect(await rawPolicy(documentId)).toEqual(before);
   releaseSlow();
-  await expect(details.getByRole('button', { name: '保存设置并重新识别', exact: true })).toBeEnabled();
   await expect(details.getByRole('combobox', { name: '使用方案', exact: true })).toHaveValue(profile.settings.id);
-  await expect(details.getByRole('option', { name: '已应用方案快照（原方案不在个人目录）' })).toBeAttached();
+  await expect(details.getByRole('option', { name: '本材料正在使用（个人列表中已移除）' })).toBeAttached();
+  const saveButton = details.getByRole('button', { name: '保存设置并重新识别', exact: true });
+  await expect(saveButton).toBeDisabled(); // A loaded, unchanged configuration cannot create an unnecessary revision.
   await details.getByRole('combobox', { name: '材料类型', exact: true }).selectOption('general');
+  await expect(saveButton).toBeEnabled();
   const saveResponse = page.waitForResponse(r => r.request().method() === 'POST' && new URL(r.url()).pathname === `/api/documents/${documentId}/configuration`);
   const recognizeResponse = page.waitForResponse(r => r.request().method() === 'POST' && new URL(r.url()).pathname === `/api/documents/${documentId}/recognize`);
   await details.getByRole('button', { name: '保存设置并重新识别', exact: true }).click();

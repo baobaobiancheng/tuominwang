@@ -1,0 +1,52 @@
+{
+  "schema": "iteration056-semantic-audit-checkpoint-v1",
+  "date": "2026-10-16",
+  "previousLedgerSha256": "6327b4b05d7ac17b94b68e3f9a4aa591fa12868c6605a2744fe1dfbfda3812a0",
+  "previousLedgerArchive": ".data/research/lawbot-2026-10-16/iteration056/before-semantic-audit-checkpoint-v1/ledger.json",
+  "sourceManifest": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v6.json",
+  "sourceManifestSha256": "eac5a6b2f486fd6aa6ee64a47e16311d55fb099cb090ccac8d3829474f4ace22",
+  "counts": {
+    "adapted": 62,
+    "missing": 1,
+    "unknown": 17
+  },
+  "scope": {
+    "reviewed": 80,
+    "earlierSealPauseGapOutsideThese80": true
+  },
+  "evidence": {
+    ".data/research/lawbot-2026-10-16/iteration056/rules/bounded-72-semantic-audit-v1.json": {
+      "sha256": "e834b2abb0a5f6947b26a503ee17690debcd6c89f412a0bffd5eaddf4e1290f8",
+      "bytes": 128093
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/rules/bounded-72-semantic-audit-v1.md": {
+      "sha256": "6f48b25f6d7605e1e0544252c6ace4d3722cb9c0253778b771c8d2e01f347436",
+      "bytes": 2327
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/root-pdf-seal-review-v1.json": {
+      "sha256": "f68a6094a77ecdc207f570528be4c337ec1cae3c945e9c8caadc295b9686dc2c",
+      "bytes": 2322
+    }
+  },
+  "rootIndependentConfirmation": {
+    "id": "IPC-ba07bb14e3df",
+    "original": [
+      "readable/main.js:18308-18340",
+      "readable/renderer.js:25624-25656"
+    ],
+    "current": [
+      "apps/api/ocr.ts:21-27",
+      "packages/adapters/ocr-correction.ts:18-32",
+      "apps/web/ocr-selection.tsx"
+    ],
+    "finding": "原版cache miss按需forced OCR及透明选择层；现GET仅读canonical map，区域rerun不回填全页。旧说明未覆盖流式缺页分支，保留为历史。",
+    "requiredAdaptation": "只读selectionOnly OCR视图、按源/当前版本/页旋转/权限绑定，不将非对齐OCR偏移写入canonical标记，不改模型或加载。"
+  },
+  "status": "research checkpoint; private implementation ongoing; no formal merge or deployment",
+  "boundaries": [
+    "62 adapted are visible business mappings, not complete native equivalence",
+    "17 unknown remain explicitly unclosed",
+    "no tests executed by this audit",
+    "all source R0 and all S/I levels unchanged"
+  ]
+}

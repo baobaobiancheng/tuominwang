@@ -1,6 +1,7 @@
 import { test, expect } from "./fixture.ts";
 
 test("desktop alias creation, explicit same-entity confirmation and independent restoration", async ({ page }) => {
+  test.setTimeout(120_000);
   await page.goto("/");
   await page.getByLabel("账号", { exact: true }).fill(process.env.E2E_USERNAME!);
   await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
@@ -12,19 +13,47 @@ test("desktop alias creation, explicit same-entity confirmation and independent 
   await page.getByLabel("待处理文本").fill("联系13800138000；备用13800138000");
   await page.getByRole("button", { name: "提交并识别", exact: true }).click();
   await page.getByRole("button", { name: "逐条复核", exact: true }).click();
-  await expect(page.getByLabel("标记 2 处理决定")).toBeVisible();
+  await expect(page.locator(".statusbar span").first()).toHaveText("自动识别 已完成", { timeout: 45_000 });
+  await expect(page.getByLabel("标记 2 处理决定")).toBeVisible({ timeout: 30_000 });
   await page.getByRole("button", { name: "批量复核", exact: true }).click();
   await page.getByRole("button", { name: "批量脱敏", exact: true }).click();
   await page.getByRole("button", { name: "选择项目假名", exact: true }).first().click();
   await page.getByRole("button", { name: "创建新假名", exact: true }).click();
+  const created = page.waitForResponse(response => response.request().method() === "POST"
+    && /^\/api\/documents\/[^/]+\/mappings$/u.test(new URL(response.url()).pathname), { timeout: 60_000 });
   await page.getByRole("alertdialog", { name: "操作确认" }).getByRole("button", { name: "确认执行", exact: true }).click();
-  await expect(page.getByLabel("标记 1 脱敏方式")).toHaveValue("alias");
+  const createdResponse = await created;
+  expect(createdResponse.status(), await createdResponse.text()).toBe(200);
+  const reference = await createdResponse.json();
+  expect(reference).toMatchObject({ mode: "alias", mappingId: expect.any(String), token: "【敏感项_000001】" });
+  const documentId = /^\/api\/documents\/([^/]+)\/mappings$/u.exec(new URL(createdResponse.url()).pathname)![1];
+  const documentResponse = await page.request.get(`/api/documents/${documentId}`);
+  expect(documentResponse.status(), await documentResponse.text()).toBe(200);
+  const document = await documentResponse.json();
+  expect(document.id).toBe(documentId);
+  const mappingsResponse = await page.request.get(`/api/projects/${document.project_id}/mappings?limit=20&offset=0`);
+  expect(mappingsResponse.status(), await mappingsResponse.text()).toBe(200);
+  expect(await mappingsResponse.json()).toEqual(expect.arrayContaining([expect.objectContaining({ id: reference.mappingId, token: reference.token })]));
+  await expect(page.getByLabel("标记 1 脱敏方式")).toHaveValue("alias", { timeout: 30_000 });
   await page.getByRole("button", { name: "选择项目假名", exact: true }).nth(1).click();
   await expect(page.getByText("同名不一定是同一实体，请核对后选择。", { exact: true })).toBeVisible();
   await expect(page.getByLabel("标记 2 脱敏方式")).toHaveValue("reference-mask");
   await page.getByRole("button", { name: "确认同一实体并使用 【敏感项_000001】", exact: true }).click();
+  const saved = page.waitForResponse(response => response.request().method() === "PUT"
+    && /^\/api\/documents\/[^/]+\/review$/u.test(new URL(response.url()).pathname)
+    && response.status() === 200, { timeout: 30_000 });
+  const versionOneReadback = page.waitForResponse(async response => {
+    if (response.request().method() !== "GET" || response.status() !== 200) return false;
+    const path = new URL(response.url()).pathname;
+    const match = /^\/api\/documents\/([^/]+)$/u.exec(path);
+    if (!match) return false;
+    const body = await response.json().catch(() => null);
+    return body?.id === match[1] && body?.revision === 1;
+  }, { timeout: 30_000 });
   await page.getByRole("button", { name: "保存复核", exact: true }).click();
-  await expect(page.getByText("复核已保存", { exact: true })).toBeVisible();
+  expect((await saved).status()).toBe(200);
+  await versionOneReadback;
+  await expect(page.getByText("复核已保存", { exact: true })).toBeVisible({ timeout: 30_000 });
   await page.getByRole("button", { name: "还原假名", exact: true }).click();
   await page.getByLabel("待还原文本", { exact: true }).fill("【敏感项_000002】");
   await page.getByRole("button", { name: "确认还原", exact: true }).click();

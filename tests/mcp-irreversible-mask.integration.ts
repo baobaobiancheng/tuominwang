@@ -8,8 +8,8 @@ import {registerMcpRoutes} from '../apps/api/mcp.ts';
 import {applyDocumentConfiguration} from '../apps/api/document-policy.ts';
 import {tick} from '../apps/worker/main.ts';
 import {pool} from '../packages/adapters/db.ts';
-import {passwordHash} from '../packages/adapters/storage.ts';
-import {MCP_PROTOCOL} from '../packages/core/mcp-tools.ts';
+import {passwordHash,seal,unseal} from '../packages/adapters/storage.ts';
+import {MCP_PROTOCOL,taskUUID} from '../packages/core/mcp-tools.ts';
 
 assert.ok(new URL(process.env.DATABASE_URL!).pathname.startsWith('/tmw_test_'));
 const admin=new pg.Pool({connectionString:process.env.MIGRATION_DATABASE_URL});
@@ -132,7 +132,25 @@ test('restore promise rejects a later manual non-alias review at prepare and rel
  const jobsBefore=(await admin.query('SELECT count(*)::int n FROM jobs WHERE document_id=$1 AND collab_task_id IS NOT NULL',[doc])).rows[0].n;
  const blockedPrepare=await request('POST',`/api/ai-collab/tasks/${job}/prepare-export`,{revision:task.revision});
  assert.equal(blockedPrepare.statusCode,409,blockedPrepare.body);assert.equal(blockedPrepare.json().error,'PARTIALLY_IRREVERSIBLE_MASK');
- assert.equal((await request('GET',`/api/ai-collab/tasks/${job}`)).json().revision,task.revision);
+ const afterBlockedPrepare=(await request('GET',`/api/ai-collab/tasks/${job}`)).json();
+ assert.equal(afterBlockedPrepare.revision,task.revision+1,'binding the actual human review receipt advances the automatic task');
+ assert.equal(afterBlockedPrepare.state,'waiting_for_human_review');
+ assert.equal(afterBlockedPrepare.executionMode,'automatic');
+ assert.equal(afterBlockedPrepare.sources[0].revision,mixed.json().revision);
+ assert.equal(afterBlockedPrepare.reviewResolutions.length,1);
+ assert.deepEqual(afterBlockedPrepare.reviewResolutions[0],{
+  documentId:doc,fromRevision:task.sources[0].revision,toRevision:mixed.json().revision,
+  snapshotRevision:mixed.json().revision,sourceHash:task.sources[0].hash,
+  policyVersion:'human-review',decisionOrigin:'human_review'
+ });
+ task=afterBlockedPrepare;
+ assert.equal((await admin.query('SELECT count(*)::int n FROM jobs WHERE document_id=$1 AND collab_task_id IS NOT NULL',[doc])).rows[0].n,jobsBefore);
+ const blockedAgain=await request('POST',`/api/ai-collab/tasks/${job}/prepare-export`,{revision:task.revision});
+ assert.equal(blockedAgain.statusCode,409,blockedAgain.body);assert.equal(blockedAgain.json().error,'PARTIALLY_IRREVERSIBLE_MASK');
+ const afterBlockedAgain=(await request('GET',`/api/ai-collab/tasks/${job}`)).json();
+ assert.equal(afterBlockedAgain.revision,task.revision);
+ assert.deepEqual(afterBlockedAgain.reviewResolutions,task.reviewResolutions);
+ assert.equal(afterBlockedAgain.state,'waiting_for_human_review');
  assert.equal((await admin.query('SELECT count(*)::int n FROM jobs WHERE document_id=$1 AND collab_task_id IS NOT NULL',[doc])).rows[0].n,jobsBefore);
  current=(await request('GET',`/api/documents/${doc}`)).json();
  const aliases=await request('PUT',`/api/documents/${doc}/review`,{revision:current.revision,marks:current.marks.map((m:any,i:number)=>({...m,decision:'redact',replacement:i===0?originalAlias:m.replacement}))});
@@ -140,6 +158,35 @@ test('restore promise rejects a later manual non-alias review at prepare and rel
  // Restore the first alias from the prior detector snapshot, not its manually masked state.
  const clean=(await request('GET',`/api/documents/${doc}`)).json();
  assert.ok(clean.marks.every((m:any)=>m.replacement?.mode==='alias'));
+ const taskId=taskUUID(job),aad=`${tenant}:${uid}:ai-collab:${taskId}`;
+ const originalPayload=(await admin.query('SELECT payload FROM ai_collab_tasks WHERE id=$1',[taskId])).rows[0].payload as string;
+ async function rejectedAlteredTask(alter:(value:any)=>void,code:string){
+  const value=JSON.parse(unseal(originalPayload,aad));alter(value);
+  await admin.query('UPDATE ai_collab_tasks SET payload=$2 WHERE id=$1',[taskId,seal(JSON.stringify(value),aad)]);
+  try{
+   const denied=await request('POST',`/api/ai-collab/tasks/${job}/prepare-export`,{revision:task.revision});
+   assert.equal(denied.statusCode,409,denied.body);assert.equal(denied.json().error,code);
+   assert.equal((await admin.query('SELECT count(*)::int n FROM jobs WHERE document_id=$1 AND collab_task_id IS NOT NULL',[doc])).rows[0].n,jobsBefore);
+  }finally{await admin.query('UPDATE ai_collab_tasks SET payload=$2 WHERE id=$1',[taskId,originalPayload]);}
+ }
+ await rejectedAlteredTask(value=>{value.reviewResolutions[0].fromRevision=0;},'HUMAN_INTERVENTION_SNAPSHOT_MISMATCH');
+ await rejectedAlteredTask(value=>{value.reviewResolutions[0].sourceHash='f'.repeat(64);},'RECOGNITION_INCOMPLETE');
+ const [foreignJob]=(await admin.query('SELECT id FROM jobs WHERE collab_task_id IS NOT NULL AND collab_task_id<>$1 AND kind=$2 LIMIT 1',[taskId,'detect'])).rows;
+ assert.ok(foreignJob,'another task detect job exists from the independent preceding case');
+ await rejectedAlteredTask(value=>{value.recognitionJobIds[0]=foreignJob.id;},'RECOGNITION_INCOMPLETE');
+ const originalSourceHash=(await admin.query('SELECT source_hash FROM documents WHERE id=$1',[doc])).rows[0].source_hash as string;
+ await admin.query('UPDATE documents SET source_hash=$2 WHERE id=$1',[doc,'f'.repeat(64)]);
+ try{
+  const changedSource=await request('POST',`/api/ai-collab/tasks/${job}/prepare-export`,{revision:task.revision});
+  assert.equal(changedSource.statusCode,409,changedSource.body);assert.equal(changedSource.json().error,'SOURCE_MISMATCH');
+ }finally{await admin.query('UPDATE documents SET source_hash=$2 WHERE id=$1',[doc,originalSourceHash]);}
+ await admin.query('UPDATE review_snapshots SET review_mode=$3 WHERE document_id=$1 AND revision=$2',[doc,clean.revision,'legacy']);
+ try{
+  const unreviewed=await request('POST',`/api/ai-collab/tasks/${job}/prepare-export`,{revision:task.revision});
+  assert.equal(unreviewed.statusCode,409,unreviewed.body);assert.equal(unreviewed.json().error,'HUMAN_INTERVENTION_SNAPSHOT_MISMATCH');
+ }finally{await admin.query('UPDATE review_snapshots SET review_mode=$3 WHERE document_id=$1 AND revision=$2',[doc,clean.revision,'human_review']);}
+ assert.equal((await request('GET',`/api/ai-collab/tasks/${job}`)).json().revision,task.revision);
+ assert.equal((await admin.query('SELECT count(*)::int n FROM jobs WHERE document_id=$1 AND collab_task_id IS NOT NULL',[doc])).rows[0].n,jobsBefore);
  const prepared=await request('POST',`/api/ai-collab/tasks/${job}/prepare-export`,{revision:task.revision});
  assert.equal(prepared.statusCode,200,prepared.body);await tick();
  task=(await request('GET',`/api/ai-collab/tasks/${job}`)).json();

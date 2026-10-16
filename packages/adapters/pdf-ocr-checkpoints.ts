@@ -8,12 +8,12 @@ import {rows,sql} from './db.ts';
 import {hash,readArtifact,readOriginal,seal,unseal} from './storage.ts';
 import {verifiedDocumentSource} from './document-source.ts';
 import {readPageRotationState} from './page-rotation-state.ts';
-import type {ParsedPage} from '../contracts/index.ts';
+import {markSchema,MAX_MARKS,type Mark,type ParsedPage} from '../contracts/index.ts';
 import type {Glyph} from '../core/ocr.ts';
 
 export type PdfOcrPage = ParsedPage & {nativeTextLength:number;textSource:'native'|'ocr'|'hybrid'};
 export type PdfOcrCheckpointIdentity = {processingHash:string;rotationPlanHash:string;parserFingerprint:string};
-export type PdfOcrCheckpoint = PdfOcrCheckpointIdentity & {page:PdfOcrPage;text:string;glyphs:Glyph[];totalPages:number};
+export type PdfOcrCheckpoint = PdfOcrCheckpointIdentity & {page:PdfOcrPage;text:string;glyphs:Glyph[];totalPages:number;provisionalMatches?:Mark[]};
 export const PDF_OCR_PARSER_VERSION=1;
 let fingerprintPromise:Promise<string>|undefined;
 export function pdfOcrParserFingerprint(){
@@ -51,7 +51,7 @@ const aad=(b:Pick<PdfOcrBinding,'tenantId'|'projectId'|'documentId'|'revision'|'
 const hex=/^[a-f0-9]{64}$/u, uuid=/^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/u;
 export function validPdfOcrCheckpointFrame(frame:PdfOcrCheckpoint,index:number){
  const p=frame?.page;
- return !!p&&p.index===index&&Number.isInteger(index)&&index>=0&&index<300&&Number.isInteger(frame.totalPages)&&frame.totalPages>index&&frame.totalPages<=300&&Number.isFinite(p.width)&&p.width>0&&p.width<=20000&&Number.isFinite(p.height)&&p.height>0&&p.height<=20000&&[0,90,180,270].includes(p.rotation)&&Number.isFinite(p.confidence)&&p.confidence>=0&&p.confidence<=100&&Number.isInteger(p.nativeTextLength)&&p.nativeTextLength>=0&&typeof frame.text==='string'&&p.nativeTextLength<=frame.text.length&&['native','ocr','hybrid'].includes(p.textSource)&&hex.test(frame.processingHash)&&hex.test(frame.rotationPlanHash)&&hex.test(frame.parserFingerprint)&&uuid.test(p.previewId)&&uuid.test(p.mapId)&&hex.test(p.previewHash)&&hex.test(p.mapHash)&&typeof frame.text==='string'&&frame.text.length<=200000&&Array.isArray(frame.glyphs)&&frame.glyphs.length<=1000000&&frame.glyphs.every(g=>Array.isArray(g)&&g.length===6&&g.every(Number.isFinite)&&Number.isInteger(g[0])&&Number.isInteger(g[1])&&g[0]>=0&&g[1]<=frame.text.length&&g[0]<g[1]&&g[4]>=0&&g[5]>=0);
+ return !!p&&p.index===index&&Number.isSafeInteger(index)&&index>=0&&Number.isSafeInteger(frame.totalPages)&&frame.totalPages>index&&Number.isFinite(p.width)&&p.width>0&&p.width<=20000&&Number.isFinite(p.height)&&p.height>0&&p.height<=20000&&[0,90,180,270].includes(p.rotation)&&Number.isFinite(p.confidence)&&p.confidence>=0&&p.confidence<=100&&Number.isInteger(p.nativeTextLength)&&p.nativeTextLength>=0&&typeof frame.text==='string'&&p.nativeTextLength<=frame.text.length&&['native','ocr','hybrid'].includes(p.textSource)&&hex.test(frame.processingHash)&&hex.test(frame.rotationPlanHash)&&hex.test(frame.parserFingerprint)&&uuid.test(p.previewId)&&uuid.test(p.mapId)&&hex.test(p.previewHash)&&hex.test(p.mapHash)&&typeof frame.text==='string'&&frame.text.length<=200000&&Array.isArray(frame.glyphs)&&frame.glyphs.length<=1000000&&frame.glyphs.every(g=>Array.isArray(g)&&g.length===6&&g.every(Number.isFinite)&&Number.isInteger(g[0])&&Number.isInteger(g[1])&&g[0]>=0&&g[1]<=frame.text.length&&g[0]<g[1]&&g[4]>=0&&g[5]>=0)&&(frame.provisionalMatches===undefined||Array.isArray(frame.provisionalMatches)&&frame.provisionalMatches.length<=MAX_MARKS&&frame.provisionalMatches.every(m=>markSchema.safeParse(m).success&&m.start>=0&&m.end<=frame.text.length&&m.start<m.end&&m.decision==='pending'));
 }
 async function exactOwned(id:string,owner:string){
  const root=resolve(process.env.DATA_DIR??'.data/files');
@@ -71,6 +71,18 @@ export async function savePdfOcrCheckpoint(db:DB,b:PdfOcrBinding,frame:PdfOcrChe
  const plaintext=JSON.stringify(frame),payload=seal(plaintext,aad(b,frame.page.index));
  const [saved]=await rows(db,sql`SELECT save_owned_pdf_ocr_checkpoint(${JSON.stringify({...b,pageIndex:frame.page.index,totalPages:frame.totalPages,previewId:frame.page.previewId,previewHash:frame.page.previewHash,mapId:frame.page.mapId,mapHash:frame.page.mapHash,payload,payloadHash:hash(plaintext)})}::jsonb) AS outcome`);
  if(saved?.outcome!=='inserted')throw Error('PDF_OCR_CHECKPOINT_STALE');
+}
+// A rotation starts a new detect revision. Re-encrypt only pages whose old
+// checkpoint and new preview/map bytes were both verified by this process.
+export async function rebasePdfOcrCheckpointForRotation(db:DB,oldDoc:any,newDoc:any,oldJobId:string,newJobId:string,oldFrame:PdfOcrCheckpoint,newFrame:PdfOcrCheckpoint){
+ const index=oldFrame.page.index,oldPlan=pdfOcrRotationPlanHash(oldDoc),newPlan=pdfOcrRotationPlanHash(newDoc);
+ const processingHash=hash(await verifiedDocumentSource(oldDoc)),fingerprint=await pdfOcrParserFingerprint();
+ if(newDoc.revision!==oldDoc.revision+1||oldDoc.id!==newDoc.id||oldDoc.tenant_id!==newDoc.tenant_id||oldDoc.project_id!==newDoc.project_id||oldDoc.source_hash!==newDoc.source_hash||oldDoc.content_hash!==newDoc.content_hash||oldDoc.parse_version!==newDoc.parse_version||oldFrame.processingHash!==processingHash||oldFrame.rotationPlanHash!==oldPlan||oldFrame.parserFingerprint!==fingerprint||newFrame.processingHash!==processingHash||newFrame.rotationPlanHash!==newPlan||newFrame.parserFingerprint!==fingerprint||oldFrame.totalPages!==newFrame.totalPages||index!==newFrame.page.index||!validPdfOcrCheckpointFrame(newFrame,index))throw Error('PDF_OCR_ROTATION_REBASE_INVALID');
+ await verifyObjects(oldFrame,oldDoc.id);await verifyObjects(newFrame,newDoc.id);
+ const binding={tenantId:newDoc.tenant_id,projectId:newDoc.project_id,documentId:newDoc.id,revision:newDoc.revision,sourceHash:newDoc.source_hash,contentHash:newDoc.content_hash,processingHash,rotationPlanHash:newPlan,parserFingerprint:fingerprint,parseVersion:newDoc.parse_version};
+ const raw=JSON.stringify(newFrame),payload=seal(raw,aad(binding,index));
+ const [saved]=await rows(db,sql`SELECT rebase_owned_pdf_ocr_checkpoint(${oldJobId}::uuid,${newJobId}::uuid,${JSON.stringify({pageIndex:index,sourceHash:newDoc.source_hash,contentHash:newDoc.content_hash,parseVersion:newDoc.parse_version,processingHash,oldRotationPlanHash:oldPlan,rotationPlanHash:newPlan,parserFingerprint:fingerprint,totalPages:newFrame.totalPages,oldPreviewId:oldFrame.page.previewId,oldPreviewHash:oldFrame.page.previewHash,oldMapId:oldFrame.page.mapId,oldMapHash:oldFrame.page.mapHash,previewId:newFrame.page.previewId,previewHash:newFrame.page.previewHash,mapId:newFrame.page.mapId,mapHash:newFrame.page.mapHash,payload,payloadHash:hash(raw)})}::jsonb) AS outcome`);
+ if(saved?.outcome!=='inserted')throw Error('PDF_OCR_ROTATION_REBASE_STALE');
 }
 export async function loadPdfOcrCheckpointPages(db:DB,d:any,processingHash:string,rotationPlanHash=pdfOcrRotationPlanHash(d),job?:Pick<PdfOcrBinding,'jobId'|'generation'>):Promise<PdfOcrCheckpoint[]>{
  if(d.source_format!=='pdf'||!hex.test(processingHash))return [];

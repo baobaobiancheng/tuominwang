@@ -12,7 +12,7 @@ type Page = Pick<ParsedPage, "index" | "width" | "height">;
 export type Box = { x: number; y: number; width: number; height: number; shape?:"rect"|"circle" };
 export function validatePageReview(value: unknown, pages: Page[], final = false): PageReview {
   const parsed = pageReviewSchema.safeParse(value);
-  if (!parsed.success || !pages.length || pages.length > 300 || pages.some((p, i) => p.index !== i || !Number.isFinite(p.width) || !Number.isFinite(p.height) || p.width <= 0 || p.height <= 0)) throw new Error("INVALID_PAGE_REVIEW");
+  if (!parsed.success || !pages.length || pages.some((p, i) => p.index !== i || !Number.isFinite(p.width) || !Number.isFinite(p.height) || p.width <= 0 || p.height <= 0)) throw new Error("INVALID_PAGE_REVIEW");
   const policy = parsed.data, deleted = new Set(policy.deletedPages);
   if (deleted.size !== policy.deletedPages.length || deleted.size >= pages.length || [...deleted].some(i => !pages[i]) || new Set(policy.regions.map(r => r.id)).size !== policy.regions.length) throw new Error("INVALID_PAGE_REVIEW");
   for (const r of policy.regions) {
@@ -97,7 +97,7 @@ export class RasterPdf {
   private size = 0;
   add(page: Page, rgb: Buffer, width: number, height: number) {
     checkPixels(width, height);
-    if (rgb.length !== width * height * 3 || this.kids.length >= 300) throw new Error("PIXEL_VERIFICATION_FAILED");
+    if (rgb.length !== width * height * 3) throw new Error("PIXEL_VERIFICATION_FAILED");
     const number = this.objects.length + 1, content = Buffer.from(`q ${page.width} 0 0 ${page.height} 0 0 cm /Im0 Do Q`), compressed = deflateSync(rgb);
     this.kids.push(number);
     const stream = (dict: string, data: Buffer) => Buffer.concat([Buffer.from(`<< ${dict} /Length ${data.length} >>\nstream\n`), data, Buffer.from("\nendstream")]);

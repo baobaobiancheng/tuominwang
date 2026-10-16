@@ -1,0 +1,82 @@
+{
+  "at": "2026-10-16T18:24:07.542282+00:00",
+  "formalSource": "v13/944 unchanged",
+  "scope": "research-only existing storage envelope for large TMM save/download receipt; no new storage format",
+  "sourceBudgetDefault": 4294967296,
+  "explicitContainerBudget": 34360033296,
+  "budgetDerivation": "original32GiB secure plaintext+65552 header+28*8192 chunk overhead",
+  "containerRequiredOptions": [
+    "purpose=tmm-container",
+    "explicit maxBytes <=34360033296",
+    "expectedBytes",
+    "expectedHash"
+  ],
+  "ordinaryUploadOrOfficeZipChanged": false,
+  "candidateProof": {
+    "node": "v24.19.0",
+    "typecheckActualExitCode": 0,
+    "unitFiles": 2,
+    "unitTests": 7,
+    "unitActualExitCode": 0,
+    "independentBudgetReview": "no new concrete blocker; source crypto/inode code unchanged from reviewedv4",
+    "maximumContainerActuallyAllocated": false
+  },
+  "remaining": "TMM per-document/state/segment metadata refs, source integrity, save receipt pointer lifecycle, all import/export/migrate/download UI/API, full acceptance; all original R0",
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-storage-stream-v6/candidate-manifest.json",
+      "sha256": "c441e8314c5eaa61eef5f32b2143ce7752022c56fa5bc0197cbbcccd6fdb58da",
+      "bytes": 1465
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-storage-stream-v6/typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-storage-stream-v6/unit.log",
+      "sha256": "12fdd8e8ef9cec5d811a94ebc29a6ad0acf04e04c0e78f35ece1fa7436993a63",
+      "bytes": 227
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-storage-stream-v5/candidate-manifest.json",
+      "sha256": "1f1320c3e8f3031eca466f09a60cf07df677e3b21268fbe451c4974512b8d1da",
+      "bytes": 1471
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/workspace-storage-stream-v6-budget-readonly-peer-v1.json",
+      "sha256": "81b991caf9c1e529e411be9cfc1229f5817a71165ae4dbc0acbffc0277d72e8a",
+      "bytes": 2439
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-storage-stream-v6/overlay/tests/workspace-original-stream.test.ts",
+      "sha256": "573843a80e316ce0565a1d6afbd4620fe8af9265e0af77df2a9e147b0c9a5079",
+      "bytes": 7868
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-storage-stream-v6/overlay/tests/workspace-storage-ownership-race.test.ts",
+      "sha256": "3ebb8e6c3776c29a5a3847d3e584ab396407df7af50e9b519b6ec61349616bc1",
+      "bytes": 2558
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-storage-stream-v6/overlay/packages/adapters/workspace-original-stream.ts",
+      "sha256": "4f203b6c5923344b7f19e98d0d46f1734a7ffc0e22c9b41cadeefc3b32e43052",
+      "bytes": 8561
+    }
+  ],
+  "updatedPin": {
+    "path": "文档/待办与完成状态-20261015.md",
+    "previous": {
+      "sha256": "80ceb8021a6d320d04e2269c05a5699e29e96ba9940d4a33cc2168b3ea2dc463",
+      "bytes": 55064
+    },
+    "current": {
+      "sha256": "9edbb8e615d234955944c8fe26b2db2472239508443cb1e3ae4fabe10538666d",
+      "bytes": 56200
+    }
+  },
+  "oldArchive": {
+    "path": ".data/research/lawbot-2026-10-16/iteration056/before-container-budget-ledger124-v1/manifest.json",
+    "sha256": "443b52810b2b7e4b75b7ed3bad480beef9551b862637e885554423d0e116a702"
+  }
+}

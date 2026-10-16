@@ -1,0 +1,217 @@
+{
+  "schema": "iteration056-formal-v7-merge",
+  "previousLedgerSha256": "b6b62e213d1fd5b595dbad4fcdad6960742f022db9caf66f5713f828ff3a3fa5",
+  "previousLedgerArchive": ".data/research/lawbot-2026-10-16/iteration056/before-formal-v7-pin-refresh/ledger.json",
+  "evidence": {
+    ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v7.json": {
+      "sha256": "8f87216c196c8d6de56598d2572ae7a3fcf35cced3a7fde59f9024f1f14ad026",
+      "bytes": 155102
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/root-final-integration-plan-v8.json": {
+      "sha256": "ae9b21e754b957aa7a5ee57d02d7499e5fa810f3d74f48dbbfb27e246af83cfe",
+      "bytes": 11869
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/root-final-integration-v8-merge-receipt.json": {
+      "sha256": "0b3aedc41c38f330d54941755214ccc3a85674056af9bd29acdb73a4343f4d94",
+      "bytes": 765
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/normal-dev-service-after-formal-v7/readiness-receipt.json": {
+      "sha256": "3db5e2eed5643f8f68d29f68d58efa1aa0f08ba8a63ee04a4eb57cc102c848bb",
+      "bytes": 1015
+    }
+  },
+  "pinTransitions": [
+    {
+      "path": "apps/api/image-utilities.ts",
+      "previous": {
+        "sha256": "fb17a9fca25328649e1154d212230c2f8dd5fd4a6172c45265a124f1843b2f98",
+        "bytes": 7297
+      },
+      "archive": ".data/research/lawbot-2026-10-16/iteration056/before-final-integration-v9-prepared/apps/api/image-utilities.ts",
+      "current": {
+        "sha256": "ee9d73274d47cde93e824c868ac256698985ea5cda2b3c721ea832f76044183d",
+        "bytes": 12139
+      }
+    },
+    {
+      "path": "apps/api/job-queue.ts",
+      "previous": {
+        "sha256": "d2f41465fc85850053c60854a84a985de794cd4a21e1967c66234e8d534fcfc9",
+        "bytes": 5456
+      },
+      "archive": ".data/research/lawbot-2026-10-16/iteration056/before-final-integration-v9-prepared/apps/api/job-queue.ts",
+      "current": {
+        "sha256": "6f48a1849f40d318a02b0efd64c08f1870fc5ca3ad9e5ac8ae1bfcb9719335d7",
+        "bytes": 6895
+      }
+    },
+    {
+      "path": "apps/api/main.ts",
+      "previous": {
+        "sha256": "98bdb99c638992329e997f52dde9a9b4645100054649e2f48ce7d6f2fd52d29d",
+        "bytes": 34540
+      },
+      "archive": ".data/research/lawbot-2026-10-16/iteration056/before-final-integration-v9-prepared/apps/api/main.ts",
+      "current": {
+        "sha256": "e6523ada3135e7c210423aa57c1889fa2eb183fc7f3bf8704c91300a3cc67453",
+        "bytes": 35003
+      }
+    },
+    {
+      "path": "apps/web/confirm-action.tsx",
+      "previous": {
+        "sha256": "49d25c74b34eca402554c705295c4ae4a47f6931f2ef10698ef21bd92217b1a6",
+        "bytes": 3455
+      },
+      "archive": ".data/research/lawbot-2026-10-16/iteration056/before-final-integration-v9-prepared/apps/web/confirm-action.tsx",
+      "current": {
+        "sha256": "2515f51095467183ab6512a2e504b4814b0cc4224dc66ccc4b8a4e05b5c7ef71",
+        "bytes": 3756
+      }
+    },
+    {
+      "path": "apps/web/main.tsx",
+      "previous": {
+        "sha256": "7ce2c6f8e3111d19cd44fe23236c636721076a14ad9d1b062f632df38df26ca0",
+        "bytes": 105647
+      },
+      "archive": ".data/research/lawbot-2026-10-16/iteration056/before-final-integration-v9-prepared/apps/web/main.tsx",
+      "current": {
+        "sha256": "f4be9a56bfc8b66ffbeb77b7634a6035b67af6bf3ef55896950fbf56d699d9d4",
+        "bytes": 109020
+      }
+    },
+    {
+      "path": "apps/web/processing-progress.tsx",
+      "previous": {
+        "sha256": "238018b2e4975a54fed5022540d025191bf079316cbce35edecd365e31ccfdf8",
+        "bytes": 3325
+      },
+      "archive": ".data/research/lawbot-2026-10-16/iteration056/before-final-integration-v9-prepared/apps/web/processing-progress.tsx",
+      "current": {
+        "sha256": "02eefa347d397663ecb73b6a3d56d4325ee52a6b31ea396e35911da292bb1281",
+        "bytes": 4192
+      }
+    },
+    {
+      "path": "apps/worker/main.ts",
+      "previous": {
+        "sha256": "ef9d1c4ff984625fd296e0661a8ee1e512cc59e76cf781df80a97103d28efc7b",
+        "bytes": 18308
+      },
+      "archive": ".data/research/lawbot-2026-10-16/iteration056/before-final-integration-v9-prepared/apps/worker/main.ts",
+      "current": {
+        "sha256": "f26c8cdd618abfde736e625ea44b820e4b4c2dfe948029d3c482d5843b49ea64",
+        "bytes": 20368
+      }
+    },
+    {
+      "path": "deploy/aliyun/web-nginx.conf",
+      "previous": {
+        "sha256": "75a50af9aa8d26b58810f50c260bdfd3fc98619ced18207e5ca6f5b321a0c322",
+        "bytes": 1504
+      },
+      "archive": ".data/research/lawbot-2026-10-16/iteration056/before-final-integration-v9-prepared/deploy/aliyun/web-nginx.conf",
+      "current": {
+        "sha256": "79453f4412a54bc2f8b9e029ed8a4ab6309dc5020e15746e2b12f8c92c0f7f42",
+        "bytes": 1523
+      }
+    },
+    {
+      "path": "packages/adapters/image-utilities.ts",
+      "previous": {
+        "sha256": "90937330ca1e39d5138be6e784903ed1dd8e4d0be33df51b63a6565e1cffcc7c",
+        "bytes": 4805
+      },
+      "archive": ".data/research/lawbot-2026-10-16/iteration056/before-final-integration-v9-prepared/packages/adapters/image-utilities.ts",
+      "current": {
+        "sha256": "f5d4e4efa391160f9792558c0b744bfb1b656438fe11f0cedc8edc29ff7c977f",
+        "bytes": 6411
+      }
+    },
+    {
+      "path": "packages/adapters/processing-worker.ts",
+      "previous": {
+        "sha256": "6287df9dd94920039c45c51f0dde95e5d432a38df516a7b93532074f290110b5",
+        "bytes": 29402
+      },
+      "archive": ".data/research/lawbot-2026-10-16/iteration056/before-final-integration-v9-prepared/packages/adapters/processing-worker.ts",
+      "current": {
+        "sha256": "fa07eb34dee335bbc07682612cd0950cff012d2c8bb2352802ab0fcce5b88282",
+        "bytes": 29792
+      }
+    },
+    {
+      "path": "packages/adapters/processing.ts",
+      "previous": {
+        "sha256": "6d41b09f7a8fa8dbc1209a4a7f05185819d1fce33ec40ce84bd7d78ce2bc491d",
+        "bytes": 9153
+      },
+      "archive": ".data/research/lawbot-2026-10-16/iteration056/before-final-integration-v9-prepared/packages/adapters/processing.ts",
+      "current": {
+        "sha256": "43a1f254018c57d5186481c9a4eeb1a500a957cb0d188d5bade3cf71dfaf87fa",
+        "bytes": 9792
+      }
+    },
+    {
+      "path": "packages/adapters/visual-scan.ts",
+      "previous": {
+        "sha256": "5cf4f92e4962c79c31d4d9dc406ce06829c0ff1b7c27c9e46b5cbeb915e22e7d",
+        "bytes": 2000
+      },
+      "archive": ".data/research/lawbot-2026-10-16/iteration056/before-final-integration-v9-prepared/packages/adapters/visual-scan.ts",
+      "current": {
+        "sha256": "67a018fb71f3f02680ab4d2dbdfb66e99fcd0356ef92ff0e272d97ebb098ee24",
+        "bytes": 4202
+      }
+    },
+    {
+      "path": "packages/contracts/index.ts",
+      "previous": {
+        "sha256": "8e2c1e282c718c3149505f4c494e23ca2bc853c9dbe153ab7861252313b6da8e",
+        "bytes": 8939
+      },
+      "archive": ".data/research/lawbot-2026-10-16/iteration056/before-final-integration-v9-prepared/packages/contracts/index.ts",
+      "current": {
+        "sha256": "4c00966a1d23f97a9cdde824e413fee3e9f463322e5fc49b5f280fac8cc80709",
+        "bytes": 8974
+      }
+    },
+    {
+      "path": "packages/core/processing-events.ts",
+      "previous": {
+        "sha256": "a0a7501e4cdaf937e0fadc02c202698cf2003828862177092f2f836b6aebddd3",
+        "bytes": 7225
+      },
+      "archive": ".data/research/lawbot-2026-10-16/iteration056/before-final-integration-v9-prepared/packages/core/processing-events.ts",
+      "current": {
+        "sha256": "4b75e1ebf83c927d97743448c4572efe931dfc9e04284f5429795311447b7178",
+        "bytes": 7710
+      }
+    },
+    {
+      "path": "scripts/migrate.ts",
+      "previous": {
+        "sha256": "e323d20b3909f9281f1c3ccf917b56665f4448d6c6a421d76d557b166c6cd047",
+        "bytes": 1654
+      },
+      "archive": ".data/research/lawbot-2026-10-16/iteration056/before-final-integration-v9-prepared/scripts/migrate.ts",
+      "current": {
+        "sha256": "c3c6bca329d55d4ed421c0a3ee724cfb76e400e0f03dd19121d0ac1f0f04b45e",
+        "bytes": 1661
+      }
+    }
+  ],
+  "mergedPaths": 35,
+  "formalInputs": 912,
+  "previousInputs": 895,
+  "oldPathsRetained": true,
+  "excludedCandidateConfig": "playwright.config.ts in OCR test tree restricted testMatch to1spec; formal fullsuite config retained exactly",
+  "localDatabase": "backup600 then052 successful; rules/NERready API200/web200",
+  "gates": "fresh pnpmcheckv10 running; fullAPI/fullEdge preparation only",
+  "boundaries": [
+    "not deployed",
+    "source R0 and S/I unchanged",
+    "targeted v11 does not prove full final source"
+  ]
+}

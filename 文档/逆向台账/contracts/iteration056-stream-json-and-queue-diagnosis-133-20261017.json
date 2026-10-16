@@ -1,0 +1,35 @@
+{
+  "at": "2026-10-16T19:58:13.257820+00:00",
+  "status": "research snapshots; formal944 unchanged; not deployed",
+  "streamJson": {
+    "actualExitCode": 0,
+    "cases": 6,
+    "result": "preassembler reject split dangerouskeys, reject1e400/depth65, accept valid splitJSON exact value",
+    "source": "Root immutable248package snapshot of original mechanical parser adapter; snapshot hashes archived",
+    "limits": "Does not prove full V3archive/API gate or16GiB physical payload."
+  },
+  "mcpQueue": {
+    "observedRed": "Full6 test-onlyv1 actual1,5pass/1fail; export job appears between beforeGET and afterPOST",
+    "diagnosis": "Three-point isolated diagnostic: beforeGET none, GET409 creates first bound child job through automatic advance, POST409 adds nojob/audit; parentprepare v3 atomicity not contradicted by that comparison",
+    "correction": "Do not weaken original atomic assertion or alter automatic workflow. Test-onlyv3 separates directDBrevision/noGET parent rollback case from added GET-progress bound-job case. Full7 in progress, not claimed green.",
+    "rawRedRetained": true
+  },
+  "next": "Freeze final arch streamed formats and dedicated migration, wait final7 and baseline140 terminal, then unified source exact-hash assembly and complete gates",
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/stream-json-adversarial-v1/terminal-receipt.json",
+      "sha256": "c1324449c41d6837d32d8bb2abc9b1a39a2359e132aabf8a3c1720a6e792c017",
+      "bytes": 1319
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/mcp-queue-atomicity-test-only-v1/full-file.log",
+      "sha256": "aa22f00f44b260530a9ec3b7a539424a91f3a9717573f3de6ccea62c96a3bac4",
+      "bytes": 1817
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/mcp-queue-atomicity-test-only-v1/get-diagnostic-v2.log",
+      "sha256": "2ab9724e939ef06fc955b82d32653028457d3200f7fafc1b333e64cb0c2ddeca",
+      "bytes": 2180
+    }
+  ]
+}

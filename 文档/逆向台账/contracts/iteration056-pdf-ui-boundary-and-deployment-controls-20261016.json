@@ -1,0 +1,96 @@
+{
+  "schema": "iteration056-pdf-ui-boundary-deployment-controls",
+  "previousLedgerSha256": "1f1a4f9ecc81f02f1eac50aa50bbc8ac7d2320fec5f2f4d2546eb3e12e561d6a",
+  "previousLedgerArchive": ".data/research/lawbot-2026-10-16/iteration056/before-pdf-ui-boundary-deploy-controls-v1/ledger.json",
+  "evidence": {
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/pdf-only-control-ui-boundary-review-v1.json": {
+      "sha256": "862cc7a0e1cc8d2448f80cd971c4707e8a60f3d29b55ec24f99e4e89066e4ea4",
+      "bytes": 3601
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/arch/predeploy-schema052-readonly-review-v1.json": {
+      "sha256": "3b1e27ef82c563cf49a5e00625e02b1a8a10ad685681022bd6b933e6d27e72f0",
+      "bytes": 6518
+    },
+    ".data/deploy/aliyun-20261016/iteration056/read-only-preflight-v3.json": {
+      "sha256": "b088ebaff36d57756401917cc2f75a6ccf6a99197d17387f27f3bda0109ad665",
+      "bytes": 5526
+    },
+    ".data/deploy/aliyun-20261016/iteration056/read-only-health-schema-v4.json": {
+      "sha256": "c45ca4c2cfaea46e0bb6bcc8443003ff629d96f7ec9639e0c05d943b16c98f43",
+      "bytes": 441
+    },
+    ".data/deploy/aliyun-20261016/iteration056/research-template-schema052/deploy-server.candidate.sh": {
+      "sha256": "063295fedc71be89a6c1c457c5671f5c9a82fdbcf18324a8a82a5430f6433134",
+      "bytes": 10551
+    },
+    ".data/deploy/aliyun-20261016/iteration056/research-template-schema052/deploy-server.candidate.diff": {
+      "sha256": "e0416addd0fc19e632a9eb54c175c9c5045bcbe7bd9ae66789f691558ff36e67",
+      "bytes": 10800
+    },
+    ".data/deploy/aliyun-20261016/iteration056/research-template-schema052/review-and-handoff.json": {
+      "sha256": "f2de2fac9f60edec3150d9de05daac813c4cccab0e7823f19d9176f35fec616f",
+      "bytes": 3026
+    },
+    ".data/deploy/aliyun-20261016/iteration056/research-template-schema052/deploy-server.candidate-v2.sh": {
+      "sha256": "25bcfbe61611b65ec91767ebdfc978fd427ff290392faa4d898e1b217320d2bf",
+      "bytes": 10939
+    },
+    ".data/deploy/aliyun-20261016/iteration056/research-template-schema052/deploy-server.candidate-v2.diff": {
+      "sha256": "138f5fb4ba19b01ef64c86ca50829226ae21a2e318ce764941c5cb4fc6b9a673",
+      "bytes": 11198
+    },
+    ".data/deploy/aliyun-20261016/iteration056/research-template-schema052/review-and-handoff-v2.json": {
+      "sha256": "cdf76db6ad32accb7cfc62baebad1d9e0f56e18ecd8dff4f4decbdd1fbcf67f9",
+      "bytes": 2997
+    },
+    ".data/deploy/aliyun-20261016/iteration056/research-template-schema052/fake-branches-receipt-v2.json": {
+      "sha256": "1c37337df7eff3f56b3d25f0237ee4b9a4e021bae2bd8bdf653f814daa8b7468",
+      "bytes": 3297
+    },
+    ".data/deploy/aliyun-20261016/iteration056/research-template-schema052/test-deploy-branches-local.py": {
+      "sha256": "416030e65b92892dfb03ac4147c1661bf437868c5dbac5128c03bf4ca549935c",
+      "bytes": 9343
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/edge-pdf-ui-errors-observed-v1.partial.log": {
+      "sha256": "9f84e503a73d7c8fc541e32fb24aee2e59a8ae4fea47af1a3d0c12b4f31fa735",
+      "bytes": 46662
+    }
+  },
+  "documentTransitions": [
+    {
+      "path": "文档/脱敏规则完整技术交接-迭代023.md",
+      "beforeSha256": "6386f498e1aa1ff433a26b834c74656401e1815e1a9f7055663e6d2d8847e9b2",
+      "archive": ".data/research/lawbot-2026-10-16/iteration056/before-pdf-ui-boundary-deploy-controls-v1/脱敏规则完整技术交接-迭代023.md",
+      "afterSha256": "4502345c5f68771aaafa1b95dc99e5801f6d3f344fe06382f839863879ea53c6"
+    },
+    {
+      "path": "文档/待办与完成状态-20261015.md",
+      "beforeSha256": "cdafd7fdfffde9f6d71ea7e7e07e15f185febc447341d7388257384a48b74937",
+      "archive": ".data/research/lawbot-2026-10-16/iteration056/before-pdf-ui-boundary-deploy-controls-v1/待办与完成状态-20261015.md",
+      "afterSha256": "c98bcf8503a792ece62f35293ea13b242c7c46fcd7ff42692f9720552e9919ad"
+    }
+  ],
+  "newConfirmedUiGap": "ordinary PDF-only progress/draft/pause/seal paths can mount for TXT, completedPDF or collaborationPDF; current endpoints correctly reject these contexts. New bool/hint candidate must gate invalid UI without broadening APIs; not merged or tested yet",
+  "deploymentReview": "old runtime rollback over new052 automatic snapshots unsafe; old dump taken before write quiescence and no paired materials. v2 research candidate quiesces own writers, DB+material backup, compatible044-only rollback else forward repair, including unquiesced migration writer case",
+  "deploymentValidation": {
+    "bashSyntax": 0,
+    "fakeBranches": 7,
+    "allPassed": true,
+    "actualRemoteDeployment": false,
+    "simulationLimits": "fake commands, temp paths, synthetic material; unchanged post-start readback truncated; not a live recovery drill"
+  },
+  "serverReadOnly": {
+    "sshExit": 0,
+    "composeUnchanged": true,
+    "health": 200,
+    "rulesNer": "ready",
+    "schema": "44|044",
+    "ownContainers": 5,
+    "neighbors": 7,
+    "wrongV3Port": "18080 refusal was invalid probe; corrected5189 health200, not an outage",
+    "serverChanges": false
+  },
+  "runtimeObservation": "Edge partial log is an immutable snapshot only; not terminal. Full130API/104Edge remain running. Formal913 source unchanged.",
+  "jsonBlocksUnchanged": 10,
+  "statusChanges": "no S/I/R promotion, models/resources/deployment unchanged"
+}

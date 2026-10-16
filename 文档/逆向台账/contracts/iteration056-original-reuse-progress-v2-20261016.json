@@ -1,0 +1,65 @@
+{
+  "at": "2026-10-16T11:26:20.718608+00:00",
+  "scope": "Research candidate only; formal source v4 unchanged; no deployment",
+  "userDirection": "Reuse available original code, CSS and interaction; only necessary stack adaptations; no extra product design",
+  "actualResults": {
+    "apiMatrix": "16/16 passed, 5 files exit0 on candidate v7; later delta only UI/specs",
+    "edgeV6": "NOT ACCEPTED: entity pass dot followed by interrupted teardown, exit1/no reporter; PDF 2 executed/2 failed at page and text selection controls",
+    "corpus": "UNER Chinese500 three-class exact-span F1 .7080581241743725; CrossNER English2506 F1 .0007561436672967864; business gold0; not product accuracy acceptance",
+    "normalDev": "API4318/web5178 HTTP200; rules/NER ready; AI not configured"
+  },
+  "candidateFixes": [
+    "old-root late save after priority continuation: same owner/root/revision/latest-success binding",
+    "two undo buttons disabled while saving/rotating",
+    "plain text source label corrected from image OCR"
+  ],
+  "remaining": [
+    "natural Edge teardown exit",
+    "PDF test interaction diagnosis",
+    "mandatory full check/API/Edge and guide",
+    "formal merge, docs, private Git and deployment"
+  ],
+  "competitorRuntime": "all R0; no activation bypass",
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/final-candidate-target-v1-terminal-receipt.json",
+      "sha256": "9cbf616f396aab52200f58bf45e19755bd52f9ea55cb7a872fb42b2c97b108f0",
+      "bytes": 203292
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/final-candidate-target-v2-terminal-receipt.json",
+      "sha256": "680aa16aa81e1fe8d2df422aae2c1115fed4ea7b96eccc262bc18d0a0c09e45a",
+      "bytes": 201453
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/final-candidate-target-v3-terminal-receipt.json",
+      "sha256": "28795f8428bf6ac8aa2317b6d0cc5f89b3fc4e4345064e1bc4baa2c8bf0fe07b",
+      "bytes": 203836
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/final-candidate-edge-v6-terminal-receipt.json",
+      "sha256": "ec6e0733dd6a67239bddef7fdf639e8acdeec31607760340f6c447dc23f55fc6",
+      "bytes": 4965
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/rules/real-corpus-live-v1/terminal-receipt.json",
+      "sha256": "15a8f53ba7d9065d157d5941296513cbd02885bdf4aee1acbc41d8f0caffbacb",
+      "bytes": 3793
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/readonly-luna-late-root-v13-review-supplement-v1.json",
+      "sha256": "04665363a6165a21999c80f8dbe3e537b6af9aae6c53c1d0f85f5e61fb8e2ecf",
+      "bytes": 3154
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/final-candidate-inputs-v5.json",
+      "sha256": "523e4b7e6d53b808b9b903081e77ba0a36ccade11fef279cbd2dc7c803204197",
+      "bytes": 153281
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/normal-dev-restore-after-final-candidate-edge-v3-readiness.json",
+      "sha256": "ef88d3396e9b580a06abf08f594ba46bf824848de227541f7f392549aa7f1089",
+      "bytes": 1005
+    }
+  ]
+}

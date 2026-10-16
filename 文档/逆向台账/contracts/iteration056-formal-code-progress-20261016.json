@@ -1,0 +1,332 @@
+{
+  "at": "2026-10-16T11:52:25.736817+00:00",
+  "formalSource": {
+    "manifest": "final-inputs-v6.json",
+    "sha256": "eac5a6b2f486fd6aa6ee64a47e16311d55fb099cb090ccac8d3829474f4ace22",
+    "inputs": 895,
+    "localSchema": "051",
+    "deployedVersion": "unchanged iteration054"
+  },
+  "actualGates": {
+    "pnpmCheckV8": "exit1: 140 files807tests pass; three new Node:test suites unregistered in Vitest",
+    "targetedVitestFix": "only three import lines changed; 3 files13tests pass; assertions unchanged",
+    "pnpmCheckV9": "actual exit0; 143 files820tests; Bend18laws21mutations; tsc/build pass;895 source unchanged;477 historical files protected",
+    "browser": "entity separate natural exit0; completion-race second case passed in mixed1pass1fail run; final full PDF first case natural exit0, downloaded19 image-only pages and verified black pixels. Different candidate source scopes remain explicit; not a whole101-case gate",
+    "fullApi127AndEdge101": "prepared but not run; held pending newly found seal-pause gap"
+  },
+  "knownGap": {
+    "id": "IPC-e4cf3e6c3c0a",
+    "priority": "P1",
+    "status": "static independently confirmed; isolated RED/implementation pending",
+    "source": "main.js Ne198-209, seal-only10137-10156; renderer Qt2 31236-31285/ready34344/manual check37199-37208",
+    "current": "worker scanVisualCandidates loops all pages; existing visual pause covers review single-page request only",
+    "required": "pause only seals; OCR/text/other detection continue; preserve completed page results; supplement skips completed and deleted pages; retain manual review; existing coverage/export gates remain",
+    "competitorRuntime": "R0"
+  },
+  "pinUpdates": [
+    {
+      "path": "apps/api/main.ts",
+      "previous": {
+        "sha256": "5e1b51769e8d53b83ba2dee69ca8b1e285fe565757522581559f04f53d59feca",
+        "bytes": 33671
+      },
+      "current": {
+        "sha256": "98bdb99c638992329e997f52dde9a9b4645100054649e2f48ce7d6f2fd52d29d",
+        "bytes": 34540
+      },
+      "previousBytesArchive": ".data/research/lawbot-2026-10-16/iteration056/before-final-integration-v6-prepared/apps/api/main.ts"
+    },
+    {
+      "path": "apps/web/main.tsx",
+      "previous": {
+        "sha256": "6bcdff0c38ae239e05cbc5593e82681dbccc0187a338ea342c31f48de41ccac7",
+        "bytes": 100617
+      },
+      "current": {
+        "sha256": "7ce2c6f8e3111d19cd44fe23236c636721076a14ad9d1b062f632df38df26ca0",
+        "bytes": 105647
+      },
+      "previousBytesArchive": ".data/research/lawbot-2026-10-16/iteration056/before-final-integration-v6-prepared/apps/web/main.tsx"
+    },
+    {
+      "path": "apps/worker/main.ts",
+      "previous": {
+        "sha256": "dad7ad5cdf01c21854f2b19a3bd1b97237e56efbfe79684a01465a77cb0d1bd1",
+        "bytes": 17267
+      },
+      "current": {
+        "sha256": "ef9d1c4ff984625fd296e0661a8ee1e512cc59e76cf781df80a97103d28efc7b",
+        "bytes": 18308
+      },
+      "previousBytesArchive": ".data/research/lawbot-2026-10-16/iteration056/before-final-integration-v6-prepared/apps/worker/main.ts"
+    },
+    {
+      "path": "packages/adapters/processing-worker.ts",
+      "previous": {
+        "sha256": "ae89df211fb87f471d1be03f8facf5ee2745c197db195ea3747fc883ac61cbf9",
+        "bytes": 27268
+      },
+      "current": {
+        "sha256": "6287df9dd94920039c45c51f0dde95e5d432a38df516a7b93532074f290110b5",
+        "bytes": 29402
+      },
+      "previousBytesArchive": ".data/research/lawbot-2026-10-16/iteration056/before-final-integration-v6-prepared/packages/adapters/processing-worker.ts"
+    },
+    {
+      "path": "apps/web/style.css",
+      "previous": {
+        "sha256": "8e214ab9d66d296abc055d7d7e7e6623be458bf643f96dfd0dab230a9928a495",
+        "bytes": 39118
+      },
+      "current": {
+        "sha256": "ec70700a81c13175964a3ef3c26a48d7810e3caa6eb82377bcc104febac0c319",
+        "bytes": 45473
+      },
+      "previousBytesArchive": ".data/research/lawbot-2026-10-16/iteration056/before-final-integration-v6-prepared/apps/web/style.css"
+    },
+    {
+      "path": "scripts/migrate.ts",
+      "previous": {
+        "sha256": "204f5fb4e7cf8f2f5183bdfe1c5738f7ca25ce51ea6a1977b445b94366fd28e9",
+        "bytes": 1626
+      },
+      "current": {
+        "sha256": "e323d20b3909f9281f1c3ccf917b56665f4448d6c6a421d76d557b166c6cd047",
+        "bytes": 1654
+      },
+      "previousBytesArchive": ".data/research/lawbot-2026-10-16/iteration056/before-final-integration-v6-prepared/scripts/migrate.ts"
+    },
+    {
+      "path": "apps/api/project-entities.ts",
+      "previous": {
+        "sha256": "1942da021581ab05c5d565d9077e6cf59cb45039557f954df00b159243754a23",
+        "bytes": 20483
+      },
+      "current": {
+        "sha256": "988607ba7290aadf1392327527aeac8eddb8ac3959a3c9b8b9e7073ff6963ec0",
+        "bytes": 20550
+      },
+      "previousBytesArchive": ".data/research/lawbot-2026-10-16/iteration056/before-final-integration-v6-prepared/apps/api/project-entities.ts"
+    },
+    {
+      "path": "tests/workspace-compat.test.ts",
+      "previous": {
+        "sha256": "70ea4dea9ed557adbf552bd47a7d9f0c473352bf931939e9f267d7cbc0b1c643",
+        "bytes": 7992
+      },
+      "current": {
+        "sha256": "e3355c68760e82e3aa7b353d580bbe62bf4cd6ddd2808a81d914e02c2faff099",
+        "bytes": 7999
+      },
+      "previousBytesArchive": ".data/research/lawbot-2026-10-16/iteration056/before-final-integration-v6-prepared/tests/workspace-compat.test.ts"
+    },
+    {
+      "path": "packages/contracts/index.ts",
+      "previous": {
+        "sha256": "dbc655a6d9f636ce097ecf5f9b7cb180c54b8d68f44a4875b8492054dd0933a8",
+        "bytes": 8902
+      },
+      "current": {
+        "sha256": "8e2c1e282c718c3149505f4c494e23ca2bc853c9dbe153ab7861252313b6da8e",
+        "bytes": 8939
+      },
+      "previousBytesArchive": ".data/research/lawbot-2026-10-16/iteration056/before-final-integration-v6-prepared/packages/contracts/index.ts"
+    },
+    {
+      "path": "apps/web/processing-progress.tsx",
+      "previous": {
+        "sha256": "6171585e5db846da05be3624448e2528aa93afbf2f9f5ec8200ddce7507e33e8",
+        "bytes": 2640
+      },
+      "current": {
+        "sha256": "238018b2e4975a54fed5022540d025191bf079316cbce35edecd365e31ccfdf8",
+        "bytes": 3325
+      },
+      "previousBytesArchive": ".data/research/lawbot-2026-10-16/iteration056/before-final-integration-v6-prepared/apps/web/processing-progress.tsx"
+    },
+    {
+      "path": "apps/api/files.ts",
+      "previous": {
+        "sha256": "8db0c77f0ebaded19b05b0a079c7d6f97ad702406746235bf2114cd6db35b27c",
+        "bytes": 10905
+      },
+      "current": {
+        "sha256": "eb1754b2e6d16541c155b481b69b13df1a4817b3490ef7dbe02f9ec170d126ef",
+        "bytes": 11022
+      },
+      "previousBytesArchive": ".data/research/lawbot-2026-10-16/iteration056/before-final-integration-v6-prepared/apps/api/files.ts"
+    },
+    {
+      "path": "packages/core/processing-events.ts",
+      "previous": {
+        "sha256": "70f9958d48e07a1800a4d042732a105c7ceca7a228ac7a4609ed70120c84f51b",
+        "bytes": 7002
+      },
+      "current": {
+        "sha256": "a0a7501e4cdaf937e0fadc02c202698cf2003828862177092f2f836b6aebddd3",
+        "bytes": 7225
+      },
+      "previousBytesArchive": ".data/research/lawbot-2026-10-16/iteration056/before-final-integration-v6-prepared/packages/core/processing-events.ts"
+    },
+    {
+      "path": "apps/api/page-rotation.ts",
+      "previous": {
+        "sha256": "e065a82282a1a96ebc04220f1058a9ab9d7ea093e71bb301769f3251bca59de9",
+        "bytes": 8065
+      },
+      "current": {
+        "sha256": "a8f805280e1cae63755df8a0d8b629e42d5679f7f207fe196d393ad7f0acac19",
+        "bytes": 8417
+      },
+      "previousBytesArchive": ".data/research/lawbot-2026-10-16/iteration056/before-final-integration-v6-prepared/apps/api/page-rotation.ts"
+    },
+    {
+      "path": "apps/api/unified-aliases.ts",
+      "previous": {
+        "sha256": "f673b1f9437698a23576907acd290e1102af49277b7f2822b0428684441c81ff",
+        "bytes": 6738
+      },
+      "current": {
+        "sha256": "769d4c6291342000302a3a17e521582d288a5be0f179cf81314c326bd67d9710",
+        "bytes": 9026
+      },
+      "previousBytesArchive": ".data/research/lawbot-2026-10-16/iteration056/before-final-integration-v6-prepared/apps/api/unified-aliases.ts"
+    },
+    {
+      "path": "apps/web/unified-aliases.tsx",
+      "previous": {
+        "sha256": "3c5cf311480e1edff64b15fa6e6ad4b6d5037c1e9555a79e31d618e9abc21975",
+        "bytes": 5875
+      },
+      "current": {
+        "sha256": "fb7b370d4414c79e446694b6ba8891f14039f36ef3ec9b27cb15e8941dab366a",
+        "bytes": 16314
+      },
+      "previousBytesArchive": ".data/research/lawbot-2026-10-16/iteration056/before-final-integration-v6-prepared/apps/web/unified-aliases.tsx"
+    },
+    {
+      "path": "packages/adapters/pdf-ocr-checkpoints.ts",
+      "previous": {
+        "sha256": "17475e3224dc427ee3ac738513706d11e097ca0269baeae882fc725612ef655d",
+        "bytes": 11694
+      },
+      "current": {
+        "sha256": "992a3f0886009bc47d2aca6a6a85d7ea2312fae5acba8410b3ca3ae0f9b86e86",
+        "bytes": 14451
+      },
+      "previousBytesArchive": ".data/research/lawbot-2026-10-16/iteration056/before-final-integration-v6-prepared/packages/adapters/pdf-ocr-checkpoints.ts"
+    }
+  ],
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v6.json",
+      "sha256": "eac5a6b2f486fd6aa6ee64a47e16311d55fb099cb090ccac8d3829474f4ace22",
+      "bytes": 158226
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root-final-integration-plan-v7.json",
+      "sha256": "9177a5f373b9e64ee87faab61714f7c4c55918c911a0ec54524460e249b464e7",
+      "bytes": 189101
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root-final-integration-v6-merge-receipt.json",
+      "sha256": "a573266f34849ec98978a34b281c959a7594b34fdca2e0c3bfccaf6db97da5af",
+      "bytes": 2468
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root-final-integration-v7-merge-receipt.json",
+      "sha256": "c0f54b2caef6c18a31dfa9ebf7d1d66958835d99daec52a0e5adcf816d0382d5",
+      "bytes": 913
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/final-check-v8-receipt.json",
+      "sha256": "4ea21f990241beda61ca48c1e45982b8f59670fd1e0d6589e7bbff25d17a64c1",
+      "bytes": 2783
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/final-check-v9-receipt.json",
+      "sha256": "04e9e627667e2233331b9c0ec34c6d56aebf58148e6dd02b1bf6bbce3b8e84d3",
+      "bytes": 2783
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/final-check-v9.log",
+      "sha256": "bbd4275f36a42d0854d37236006a5c59c4be4ac4f01769c85c2cb4f64416cfcf",
+      "bytes": 1657
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/local-db-before051-receipt.json",
+      "sha256": "65e1aa82b41b544d2172a7c3169fcb563fb2c9e33d9b68f84d3d3c6a00e9e282",
+      "bytes": 420
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/local-db051-migration-receipt.json",
+      "sha256": "5bd50afbeb50716ae061d6372da43276fa8f90b30c721c0a6f3cf2519db6a37d",
+      "bytes": 536
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/local-db051-readback.json",
+      "sha256": "c3ef3f49ee20175aea95c8c25efbf2ce4ee9049265f6dbcd167c724cc5273769",
+      "bytes": 429
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/vitest-import-fix-v1/targeted-vitest-receipt.json",
+      "sha256": "26cab3909335c2e897e52b916f354e54cbfe80b8d6b4dbb5ed19d39749eff1d0",
+      "bytes": 604
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/final-candidate-edge-v7-entity-control-terminal-receipt.json",
+      "sha256": "75a4f30ba8b5847ff01aea7ce450dab28546ab596629ea743d4b01b2ae56b454",
+      "bytes": 3242
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/final-candidate-edge-v8-pdf-control-terminal-receipt.json",
+      "sha256": "14f63edee77d8e7808f41fb8e3fa77a41896bb61aa12877bb7cca2b1b0ce755a",
+      "bytes": 3085
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/final-candidate-edge-v10-pdf-first-terminal-receipt.json",
+      "sha256": "9447be96131653dd79521ca280e6a334efbafe1af0c8daf54299114a73db2638",
+      "bytes": 3253
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/pdf-runtime-accepted-evidence-v1/manifest.json",
+      "sha256": "5366774e05177e744bc0fd656437a2badb98936f6291058475aac3108e79c3be",
+      "bytes": 2802
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/rules/i1-audit-first-half-v1.json",
+      "sha256": "a7229cf891bcfbf88575146d56b80cec80ebefd1865539fba43654087e236f49",
+      "bytes": 138213
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/pdf-runtime-accepted-evidence-v1/pdf-ocr-downloaded.png",
+      "sha256": "6f63d72907a6635ff6f608cd4bd2acc6c8b7adcb325bebc99b90497a3ef1ed34",
+      "bytes": 215640
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/pdf-runtime-accepted-evidence-v1/pdf-ocr-final-human-review.png",
+      "sha256": "b58b918883aaace92d07c4ecc10614cb35b55bb7c655ca94028b981b14459484",
+      "bytes": 214143
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/pdf-runtime-accepted-evidence-v1/pdf-ocr-live-page-region.png",
+      "sha256": "88293ac9dc1d0b18d5590079ccbdfe34abfed89a8f5722d4dff4681f8b5d08a1",
+      "bytes": 157851
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/pdf-runtime-accepted-evidence-v1/pdf-ocr-live-rotation-pending.png",
+      "sha256": "a5f771b7ced7fb5aa1c7683c9896b8af14f485d6817ce617276027175da0d7b9",
+      "bytes": 169832
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/pdf-runtime-accepted-evidence-v1/pdf-ocr-paused-human-draft.png",
+      "sha256": "f3575e8458857548b320eff0b1dc4f7e61e055324eef38a380c241e02f256c32",
+      "bytes": 152824
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/pdf-runtime-accepted-evidence-v1/pdf-ocr-reviewed-output.pdf",
+      "sha256": "9557455b6d742306a70354c9c3f175450f315bf9993b284b4d6a197f57165761",
+      "bytes": 322520
+    }
+  ]
+}

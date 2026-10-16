@@ -1,0 +1,170 @@
+import { test, expect } from './fixture.ts';
+import { randomUUID, createHash } from 'node:crypto';
+import pg from 'pg';
+import { MCP_PROTOCOL } from '../../packages/core/mcp-tools.ts';
+
+test('automatic MCP consent waits for initial detection, produces real source-labelled review and downloadable bytes, then records human intervention', async ({ page }, info) => {
+  // One source detect, one task detect and one export each retain the service's
+  // 120 s text-processing bound; the browser also needs room for UI navigation.
+  test.setTimeout(3 * 120_000 + 120_000);
+  const dbUrl = new URL(process.env.MIGRATION_DATABASE_URL!);
+  if (!dbUrl.pathname.startsWith('/tmw_test_')) throw new Error('ISOLATED_DATABASE_REQUIRED');
+  const gate = new pg.Client({ connectionString: dbUrl.href });
+  await gate.connect();
+  await gate.query('SELECT pg_advisory_lock(7843,2)');
+  let held = true;
+  const release = async () => { if (held) { await gate.query('SELECT pg_advisory_unlock(7843,2)'); held = false; } };
+  const origin = 'http://127.0.0.1:5178';
+  const post = (path: string, data: unknown, headers: Record<string,string> = {}) => page.request.post(path, { data, headers: { origin, ...headers } });
+  const ok = async (response: {status:()=>number;text:()=>Promise<string>;json:()=>Promise<any>}) => { expect(response.status(), await response.text()).toBe(200); return response.json(); };
+  let rpc = 1;
+  try {
+    await page.goto('/');
+    await page.getByLabel('账号', { exact: true }).fill(process.env.E2E_USERNAME!);
+    await page.getByLabel('密码', { exact: true }).fill(process.env.E2E_PASSWORD!);
+    await page.getByRole('button', { name: '登录工作台' }).click();
+    await page.locator('.create-project summary').click();
+    await page.getByLabel('项目名称', { exact: true }).fill(`自动来源验收-${randomUUID().slice(0,8)}`);
+    const created = page.waitForResponse(r => new URL(r.url()).pathname === '/api/projects' && r.request().method() === 'POST');
+    await page.getByRole('button', { name: '新建项目', exact: true }).click();
+    const project = (await ok(await created)).id as string;
+    const sourceText = '合同联系人张三，电话13800138000。';
+    const document = await ok(await post(`/api/projects/${project}/documents`, { text: sourceText, requestId: randomUUID() }));
+    // The MCP session id is in the HTTP header, not in JSON-RPC content.
+    const initResponse = await post('/api/mcp', { jsonrpc:'2.0', id:rpc++, method:'initialize', params:{protocolVersion:MCP_PROTOCOL,clientInfo:{name:'automatic-edge-client',version:'1'}} });
+    expect(initResponse.status()).toBe(200);
+    const headers = { 'mcp-session-id':initResponse.headers()['mcp-session-id'], 'mcp-protocol-version':MCP_PROTOCOL };
+    expect(headers['mcp-session-id']).toMatch(/^[a-f0-9]{64}$/);
+    expect((await post('/api/mcp',{jsonrpc:'2.0',method:'notifications/initialized'},headers)).status()).toBe(202);
+    const tool = async (name:string,args:Record<string,unknown>) => {
+      const body = await ok(await post('/api/mcp',{jsonrpc:'2.0',id:rpc++,method:'tools/call',params:{name,arguments:args}},headers));
+      expect(body.result?.isError,JSON.stringify(body.result)).toBe(false);
+      return body.result.structuredContent as any;
+    };
+    const started = await tool('start_lawbot_redaction',{project_id:project,document_ids:[document.id],task_mode:'redact_only',masking_mode:'default_mask',output_formats:['original','md'],request_id:randomUUID()});
+    expect(started.executionMode).toBe('automatic');
+    const job = started.jobId as string;
+    await page.goto(`/?collab=${job}`);
+    const panel = page.locator('section.panel').filter({has:page.getByRole('heading',{name:'AI 协作',exact:true})});
+    const consent = panel.getByRole('group',{name:'授权给 MCP 客户端'});
+    await expect(consent).toBeVisible();
+    await consent.getByRole('checkbox',{name:'允许读取本项目选定材料并脱敏'}).check();
+    await consent.getByRole('checkbox',{name:'允许将经系统审定或人工复核的脱敏稿交给当前客户端'}).check();
+    await consent.getByRole('checkbox',{name:'创建受保护的协作文件'}).check();
+    await consent.getByRole('checkbox',{name:'授权后打开材料页'}).uncheck();
+    const authorize = page.waitForResponse(r=>new URL(r.url()).pathname===`/api/ai-collab/tasks/${job}/authorize`&&r.request().method()==='POST');
+    await consent.getByRole('button',{name:'确认授权并自动处理'}).click();
+    expect((await authorize).status()).toBe(200);
+    const pending = await ok(await page.request.get(`/api/ai-collab/tasks/${job}`));
+    expect(pending.executionMode).toBe('automatic');
+    expect(pending.pendingInitialDetection).toBe(true);
+    expect(pending.reviewResolutions ?? []).toHaveLength(0);
+    await expect(panel.getByRole('status').first()).toContainText('等待材料初次识别');
+    await expect(panel.getByRole('button',{name:'复核已保存，生成脱敏稿'})).toHaveCount(0);
+    const pendingShot=info.outputPath('automatic-awaiting-initial-detection.png');
+    await panel.screenshot({path:pendingShot});
+    await info.attach('automatic-awaiting-initial-detection',{path:pendingShot,contentType:'image/png'});
+    await release();
+    await expect.poll(async()=>{
+      const value=await tool('check_document_delivery',{job_id:job,wait_seconds:0});
+      return value.status;
+    },{timeout:3*120_000+30_000,intervals:[1000,2000,5000]}).toBe('sanitized_artifact_ready');
+    const ready=await ok(await page.request.get(`/api/ai-collab/tasks/${job}`));
+    expect(ready.executionMode).toBe('automatic');
+    expect(ready.pendingInitialDetection ?? false).toBe(false);
+    expect(ready.taskDetectionStatus).toBe('succeeded');
+    expect(ready.awaitingTaskDetection).toBe(false);
+    expect(ready.reviewResolutions).toEqual([expect.objectContaining({documentId:document.id,decisionOrigin:'automatic'})]);
+    await panel.getByRole('button',{name:'刷新任务'}).click();
+    await expect(panel.getByRole('status').first()).toContainText('脱敏稿可交付');
+    await expect(panel.getByRole('region',{name:'审定来源记录'})).toContainText('材料 1：系统自动');
+    const readyShot=info.outputPath('automatic-ready-source.png');
+    await panel.screenshot({path:readyShot});
+    await info.attach('automatic-ready-source',{path:readyShot,contentType:'image/png'});
+    const received=await tool('receive_sanitized_document',{job_id:job,output_format:'md'});
+    const mcpBytes=Buffer.from(received.bytesBase64,'base64');
+    expect(received.format).toBe('md');
+    expect(mcpBytes.length).toBeGreaterThan(0);
+    expect(createHash('sha256').update(mcpBytes).digest('hex')).toBe(received.sha256);
+    expect(mcpBytes.toString('utf8')).toContain('合同');
+    expect(mcpBytes.toString('utf8')).toContain('电话');
+    expect(mcpBytes.toString('utf8')).not.toContain('13800138000');
+    const exported=await ok(await page.request.get(`/api/documents/${document.id}`));
+    expect(exported.reviewOrigin).toBe('automatic');
+    const link=await ok(await post(`/api/documents/${document.id}/download-link`,{revision:exported.revision,role:'markdown'}));
+    const downloaded=await page.request.get(link.url);
+    expect(downloaded.status(),await downloaded.text()).toBe(200);
+    const actual=await downloaded.body();
+    expect(actual.length).toBeGreaterThan(0);
+    expect(actual.toString('utf8')).toContain('合同');
+    expect(actual.toString('utf8')).toContain('电话');
+    expect(actual.toString('utf8')).not.toContain('13800138000');
+    // This is the same document revision and markdown role, with no intervening export.
+    // The MCP contract returns the artifact's raw bytes, so both delivery paths must match.
+    expect(actual.equals(mcpBytes)).toBe(true);
+    expect(createHash('sha256').update(actual).digest('hex')).toBe(received.sha256);
+    const opened=page.waitForResponse(r=>r.request().method()==='GET'&&new URL(r.url()).pathname===`/api/documents/${document.id}`&&r.status()===200,{timeout:30000});
+    await panel.getByRole('button',{name:'查看材料 1'}).click();
+    await opened;
+    await expect(page.getByRole('region',{name:'实体分组'})).toBeVisible({timeout:30000});
+    await expect(page.locator('.workspace-topbar')).toContainText('系统自动决定，未人工复核');
+    await page.getByRole('button',{name:'逐条复核',exact:true}).click();
+    const first=page.getByLabel('标记 1 处理决定');
+    await expect(first).toBeVisible();
+    const prior=await first.inputValue();
+    await first.selectOption(prior==='redact'?'ignore':'redact');
+    await expect(page.locator('.workspace-topbar')).toContainText('当前修改未保存 · 上一版本：系统自动决定');
+    await page.getByRole('button',{name:'保存复核',exact:true}).click();
+    await expect(page.locator('.workspace-topbar')).toContainText('人工复核已保存');
+    const human=await ok(await page.request.get(`/api/documents/${document.id}`));
+    expect(human.reviewOrigin).toBe('human_review');
+    const revisions=await ok(await page.request.get(`/api/documents/${document.id}/revisions`));
+    expect(revisions.map((r:any)=>r.review_mode)).toEqual(expect.arrayContaining(['automatic','human_review']));
+    await page.getByRole('button',{name:'查看复核记录'}).click();
+    await expect(page.getByRole('region',{name:'已保存复核记录'})).toContainText('系统自动决定，未人工复核');
+    await expect(page.getByRole('region',{name:'已保存复核记录'})).toContainText('人工复核已保存');
+    const humanShot=info.outputPath('automatic-then-human-history.png');
+    await page.screenshot({path:humanShot,fullPage:true});
+    await info.attach('automatic-then-human-history',{path:humanShot,contentType:'image/png'});
+  } finally {
+    await release();
+    await gate.end();
+  }
+});
+
+test('dedicated manual MCP entry waits for initial detection and remains human-reviewed after it', async ({page},info) => {
+  test.setTimeout(2*120_000+90_000);
+  const dbUrl=new URL(process.env.MIGRATION_DATABASE_URL!);
+  if(!dbUrl.pathname.startsWith('/tmw_test_'))throw Error('ISOLATED_DATABASE_REQUIRED');
+  const gate=new pg.Client({connectionString:dbUrl.href});await gate.connect();await gate.query('SELECT pg_advisory_lock(7843,2)');let held=true;
+  const release=async()=>{if(held){await gate.query('SELECT pg_advisory_unlock(7843,2)');held=false;}};
+  const origin='http://127.0.0.1:5178',post=(path:string,data:unknown,headers:Record<string,string>={})=>page.request.post(path,{data,headers:{origin,...headers}});
+  const ok=async(response:{status:()=>number;text:()=>Promise<string>;json:()=>Promise<any>})=>{expect(response.status(),await response.text()).toBe(200);return response.json();};
+  try{
+    await page.goto('/');await page.getByLabel('账号',{exact:true}).fill(process.env.E2E_USERNAME!);await page.getByLabel('密码',{exact:true}).fill(process.env.E2E_PASSWORD!);await page.getByRole('button',{name:'登录工作台'}).click();
+    await page.locator('.create-project summary').click();await page.getByLabel('项目名称',{exact:true}).fill(`专用人工入口-${randomUUID().slice(0,8)}`);
+    const created=page.waitForResponse(r=>new URL(r.url()).pathname==='/api/projects'&&r.request().method()==='POST');await page.getByRole('button',{name:'新建项目',exact:true}).click();const project=(await ok(await created)).id as string;
+    const document=await ok(await post(`/api/projects/${project}/documents`,{text:'合同电话13900139000。',requestId:randomUUID()}));
+    const init=await post('/api/mcp',{jsonrpc:'2.0',id:1,method:'initialize',params:{protocolVersion:MCP_PROTOCOL,clientInfo:{name:'manual-edge-client',version:'1'}}});expect(init.status()).toBe(200);
+    const headers={'mcp-session-id':init.headers()['mcp-session-id'],'mcp-protocol-version':MCP_PROTOCOL};expect(headers['mcp-session-id']).toMatch(/^[a-f0-9]{64}$/);
+    expect((await post('/api/mcp',{jsonrpc:'2.0',method:'notifications/initialized'},headers)).status()).toBe(202);
+    let rpc=2;const tool=async(name:string,args:Record<string,unknown>)=>{const body=await ok(await post('/api/mcp',{jsonrpc:'2.0',id:rpc++,method:'tools/call',params:{name,arguments:args}},headers));expect(body.result?.isError,JSON.stringify(body.result)).toBe(false);return body.result.structuredContent as any;};
+    const started=await tool('start_lawbot_redaction_for_user_manual_review',{project_id:project,document_ids:[document.id],task_mode:'redact_only',masking_mode:'default_mask',output_formats:['original'],request_id:randomUUID()});
+    expect(started.executionMode).toBe('human_review');const job=started.jobId as string;
+    await page.goto(`/?collab=${job}`);const panel=page.locator('section.panel').filter({has:page.getByRole('heading',{name:'AI 协作',exact:true})});
+    const consent=panel.getByRole('group',{name:'授权给 MCP 客户端'});await expect(consent).toBeVisible();await consent.getByRole('checkbox',{name:'允许读取本项目选定材料并脱敏'}).check();await consent.getByRole('checkbox',{name:'允许将经系统审定或人工复核的脱敏稿交给当前客户端'}).check();await consent.getByRole('checkbox',{name:'创建受保护的协作文件'}).check();await consent.getByRole('checkbox',{name:'授权后打开材料页'}).uncheck();
+    const authorize=page.waitForResponse(r=>new URL(r.url()).pathname===`/api/ai-collab/tasks/${job}/authorize`&&r.request().method()==='POST');await consent.getByRole('button',{name:'确认授权并识别材料'}).click();expect((await authorize).status()).toBe(200);
+    let task=await ok(await page.request.get(`/api/ai-collab/tasks/${job}`));expect(task.executionMode).toBe('human_review');expect(task.pendingInitialDetection).toBe(true);expect(task.awaitingTaskDetection).toBe(true);expect(task.reviewResolutions??[]).toHaveLength(0);
+    await expect(panel.getByRole('status').first()).toContainText('等待材料初次识别');await expect(panel.getByRole('button',{name:'复核已保存，生成脱敏稿'})).toHaveCount(0);
+    const waitingShot=info.outputPath('manual-awaiting-initial-detection.png');await panel.screenshot({path:waitingShot});await info.attach('manual-awaiting-initial-detection',{path:waitingShot,contentType:'image/png'});
+    await release();
+    await expect.poll(async()=>{await panel.getByRole('button',{name:'刷新任务'}).click();const value=await ok(await page.request.get(`/api/ai-collab/tasks/${job}`));return {status:value.state,pendingInitial:value.pendingInitialDetection??false,taskDetectionStatus:value.taskDetectionStatus};},{timeout:2*120_000+30_000,intervals:[1000,2000,5000]}).toEqual({status:'waiting_for_human_review',pendingInitial:false,taskDetectionStatus:'succeeded'});
+    task=await ok(await page.request.get(`/api/ai-collab/tasks/${job}`));expect(task.awaitingTaskDetection).toBe(false);expect(task.reviewResolutions??[]).toHaveLength(0);
+    await panel.getByRole('button',{name:'刷新任务'}).click();await expect(panel.getByRole('status').first()).toContainText('等待人工复核');await expect(panel.getByRole('button',{name:'复核已保存，生成脱敏稿'})).toBeVisible();
+    const readyShot=info.outputPath('manual-awaiting-human-review.png');await panel.screenshot({path:readyShot});await info.attach('manual-awaiting-human-review',{path:readyShot,contentType:'image/png'});
+    const cancelled=page.waitForResponse(r=>new URL(r.url()).pathname===`/api/ai-collab/tasks/${job}/action`&&r.request().method()==='POST');await panel.getByRole('button',{name:'取消协作任务'}).click();expect((await cancelled).status()).toBe(200);
+    const terminal=await ok(await page.request.get(`/api/ai-collab/tasks/${job}`));expect(terminal.state).toBe('cancelled_by_user');
+    await panel.getByRole('button',{name:'刷新任务'}).click();await expect(panel.getByRole('status').first()).toContainText('已取消');await expect(panel.getByRole('status').first()).not.toContainText('等待任务材料识别');
+    await expect(panel.getByLabel('协作任务')).toContainText('已取消');
+  }finally{await release();await gate.end();}
+});

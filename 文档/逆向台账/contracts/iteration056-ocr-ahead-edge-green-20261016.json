@@ -1,0 +1,73 @@
+{
+  "schema": "iteration056-ocr-ahead-edge-green-v1",
+  "date": "2026-10-16",
+  "previousLedgerSha256": "33f15c46ddca2368fdd13a7ecb9fae21306ec85bb21c3f99f03d861d9e80ed4b",
+  "previousLedgerArchive": ".data/research/lawbot-2026-10-16/iteration056/before-ocr-ahead-edge-green-v1/ledger.json",
+  "evidence": {
+    ".data/research/lawbot-2026-10-16/iteration056/rules/get-ocr-page-v9-control/terminal-receipt.json": {
+      "sha256": "f5cbda9720666084ba7195fa44553671e21113bf8f80a0232463800bdcef623d",
+      "bytes": 1494
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/rules/get-ocr-page-v10-control/terminal-receipt.json": {
+      "sha256": "abe69e6d5df58a7a788fb2a2472673f76e10e7a48e9e16286877faea55e3d956",
+      "bytes": 1494
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/rules/get-ocr-page-v10-control/visible-canvas-diagnostic.json": {
+      "sha256": "8f570fcaab4ccf0dc3248d0b74fce56b586d009c59e3a775b524d0f2b3ac4fd3",
+      "bytes": 1062
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/rules/get-ocr-page-v11-control/terminal-receipt.json": {
+      "sha256": "4ccfa9b4d6c235d1aaa13fb9b32391a2ea4af3216b6d033d81151f0f03b0dd2e",
+      "bytes": 1492
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/rules/get-ocr-page-v11-control/edge.log": {
+      "sha256": "6f5dd98228c3317e0e9b8398c20cd6b51a9ba976454d8f2c52c69b018fb8d39c",
+      "bytes": 1811
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/rules/get-ocr-page-v11-control/preparation-manifest.json": {
+      "sha256": "558639f02c92ff7d123cf8c4705ae473b6d42cb1468cc2363ed23971be77eb21",
+      "bytes": 8268
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/pdf-seal-runtime-edge-v2/overlay-manifest.json": {
+      "sha256": "4ce2c8fe748ee2c806df6b23fdfa9876dc6cd707ade30c6c4ba3dc285f9f301d",
+      "bytes": 1940
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/pdf-seal-runtime-edge-v2/tests/e2e/pdf-seal-runtime-flow.spec.ts": {
+      "sha256": "d27da86ce4762774e7f3ac663783e62d90283d707648f726ff2606eeaeb6c344",
+      "bytes": 12623
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/frontend/normal-dev-service-after-ahead-edge-v8/readiness-receipt.json": {
+      "sha256": "32136928f384608f0fe5aa3e95061a92719571557dd63ac304bc2e34d7732e54",
+      "bytes": 990
+    }
+  },
+  "actualResult": {
+    "edgeExit": 0,
+    "cases": 1,
+    "source": "formal895 + archv15 + frontendv3/v1 + OCRstaticworkerURL",
+    "proven": [
+      "zero OCR checkpoints with20pagechoices and page20 originalcanvas",
+      "65second waiting withzero429 andstillzero OCRframes",
+      "real worker handover and preserved saved-page progress",
+      "visible-area draw then readonly text selection clearsdraw anddisablesadd",
+      "selectedtext nonempty; noreview PUT; nopageerror"
+    ],
+    "notIncluded": [
+      "archv16 geometry dedup",
+      "production CSP update",
+      "full same-source API/Edge"
+    ],
+    "priorFailures": {
+      "v9": "initial PDF loading selector5s race,20choices present in failure snapshot",
+      "v10": "test mouse coordinates y1015.6/1151.8 outside1000px viewport; actual trace diagnosis retained"
+    },
+    "productionChange": "worker ?url import static; reuse original preview behavior; no new business design"
+  },
+  "normalDevelopment": "restored verified health200/web200, formal895/DB051",
+  "sealEdge": "two real embedded-image cases prepared only, not run",
+  "boundaries": [
+    "private targeted pass only",
+    "no formal source merge or deployment",
+    "source R0; S/I unchanged"
+  ]
+}

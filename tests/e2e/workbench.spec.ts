@@ -1,16 +1,40 @@
 import { test, expect } from "./fixture.ts";
+import { saveReviewWithReadback } from "./review-save-readback.ts";
 import { randomUUID } from "node:crypto";
-import { readFile } from "node:fs/promises";
+import { mkdir, mkdtemp, readFile, realpath, rm, writeFile } from "node:fs/promises";
+import { join } from "node:path";
 test("browser submission, review, durable reload and verified TXT download", async ({
   page,
 }) => {
+  test.setTimeout(180000);
   const credentials = { username: process.env.E2E_USERNAME!, password: process.env.E2E_PASSWORD! };
   const errors: string[] = [];
   page.on("pageerror", (e) => errors.push(e.message));
-  const protectedFile = await page.request.get(
-    "/@fs" + process.cwd() + "/.data/开发登录.json",
-  );
-  expect([403, 404]).toContain(protectedFile.status());
+  // Both private paths must exist: outside Vite's allow root and inside it
+  // but denied by the **/.data/** rule. Vite can return its SPA HTML for /@fs.
+  const home = await page.request.get("/");
+  expect(home.status()).toBe(200);
+  const homeHtml = await home.text();
+  for (const privateRoot of [join(process.cwd(), ".data"), join(process.cwd(), "apps/web/.data")]) {
+    await mkdir(privateRoot, { recursive: true });
+    const canaryDir = await mkdtemp(join(privateRoot, "e2e-fs-deny-"));
+    try {
+      const canaryPath = join(canaryDir, "protected.json");
+      const canary = `private-canary-${randomUUID()}`;
+      await writeFile(canaryPath, JSON.stringify({ canary }), { flag: "wx" });
+      const protectedFile = await page.request.get("/@fs" + await realpath(canaryPath));
+      const body = await protectedFile.text();
+      expect(body).not.toContain(canary);
+      if (protectedFile.status() === 200) {
+        expect(protectedFile.headers()["content-type"]).toMatch(/^text\/html(?:;|$)/);
+        expect(body).toBe(homeHtml);
+      } else {
+        expect([403, 404]).toContain(protectedFile.status());
+      }
+    } finally {
+      await rm(canaryDir, { recursive: true, force: true });
+    }
+  }
   await page.goto("/");
   await page
     .getByLabel("账号", { exact: true })
@@ -30,6 +54,7 @@ test("browser submission, review, durable reload and verified TXT download", asy
     .fill("😀张三电话13800138000；邮箱demo@example.com");
   await page.getByRole("button", { name: "提交并识别" }).click();
   await page.getByRole("button", { name: "逐条复核", exact: true }).click();
+  await expect(page.locator(".statusbar span").first()).toHaveText("自动识别 已完成",{timeout:45_000});
   await expect(page.getByLabel("标记 1 处理决定")).toBeVisible();
   await page.getByLabel("标记 1 处理决定").selectOption("redact");
   await page.getByLabel("标记 2 处理决定").selectOption("redact");
@@ -46,8 +71,8 @@ test("browser submission, review, durable reload and verified TXT download", asy
     .getByRole("button", { name: "将选中文字加入标记", exact: true })
     .click();
   await page.getByLabel("标记 3 处理决定").selectOption("redact");
-  await page.getByRole("button", { name: "保存复核", exact: true }).click();
-  await expect(page.getByText("复核已保存", { exact: true })).toBeVisible();
+  await saveReviewWithReadback(page);
+  await expect(page.getByText("复核已保存", { exact: true })).toBeVisible({ timeout: 30_000 });
   await page
     .getByRole("button", { name: "导出已选标记的处理副本", exact: true })
     .click();

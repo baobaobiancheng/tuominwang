@@ -6,7 +6,6 @@ export type Permission = z.infer<typeof permissionSchema>;
 export const permissionLabels: Record<Permission, string> = { view_original: "查看原件", review: "人工复核", export: "导出副本", view_mapping: "查看与创建映射", restore: "假名还原", manage_models: "模型管理", manage_members: "项目成员管理", upload: "导入材料", manage_dictionary: "词表管理", delete_material: "删除材料" };
 export const TEXT_MAX_BYTES = 102400;
 export const FILE_MAX_BYTES = 50 * 1024 * 1024;
-export const BATCH_MAX_FILES = 20;
 export const TEXT_PAGE_CHARS = 32768;
 export const textPageSchema = z.object({ offset: z.coerce.number().int().min(0).max(FILE_MAX_BYTES).default(0), revision: z.coerce.number().int().nonnegative().optional() });
 export const sourceFormatSchema = z.enum(["txt", "md", "csv", "doc", "wps", "docx", "pdf", "png", "jpg", "jpeg", "xlsx"]);
@@ -17,16 +16,19 @@ export type ParsedPage = { index: number; width: number; height: number; rotatio
 export const pageReviewSchema = z.object({
   mode: z.enum(["unselected", "raster"]),
   maskStyle: z.enum(["black", "white", "purple", "lightGray"]).optional(),
-  regions: z.array(z.object({ id, page: z.number().int().min(0).max(299), x: z.number().finite().nonnegative(), y: z.number().finite().nonnegative(), width: z.number().finite().positive(), height: z.number().finite().positive(), shape:z.enum(["rect","circle"]).optional(), entityType:z.string().min(1).refine(v=>v.isWellFormed()&&!v.includes("\0")).optional(),text:z.string().refine(v=>v.isWellFormed()&&!v.includes("\0")).optional(),meta:z.record(z.string(),z.json()).optional(), reason: z.enum(["敏感区域", "印章", "签名", "人脸"]) }).strict()).max(3000),
-  deletedPages: z.array(z.number().int().min(0).max(299)).max(299),
+  regions: z.array(z.object({ id, page: z.number().int().nonnegative(), x: z.number().finite().nonnegative(), y: z.number().finite().nonnegative(), width: z.number().finite().positive(), height: z.number().finite().positive(), shape:z.enum(["rect","circle"]).optional(), entityType:z.string().min(1).refine(v=>v.isWellFormed()&&!v.includes("\0")).optional(),text:z.string().refine(v=>v.isWellFormed()&&!v.includes("\0")).optional(),meta:z.record(z.string(),z.json()).optional(), reason: z.enum(["敏感区域", "印章", "签名", "人脸"]) }).strict()).max(3000),
+  deletedPages: z.array(z.number().int().nonnegative()),
 }).strict();
 export type PageReview = z.infer<typeof pageReviewSchema>;
 export const batchSchema = z.object({
   id,
-  files: z.array(z.object({ requestId: id, path: z.string().min(1).max(1024), size: z.number().int().positive().max(FILE_MAX_BYTES), sha256: z.string().regex(/^[a-f0-9]{64}$/).optional() })).min(1).max(BATCH_MAX_FILES),
+  files: z.array(z.object({ requestId: id, path: z.string().min(1).max(1024), size: z.number().int().positive().max(FILE_MAX_BYTES), sha256: z.string().regex(/^[a-f0-9]{64}$/).optional(), documentType: z.enum(['auto','general','contract','disclosure','judgment','pleading','official_letter','screenshot']).optional() })).min(1),
+  sourceRootName: z.string().min(1).optional(),
+  skippedEntries: z.array(z.object({ sourceRelativePath: z.string().min(1).max(1024), extension: z.string().optional(), reasonCode: z.string().min(1), reason: z.string().min(1) }).strict()).optional(),
+  emptyDirectories: z.array(z.string().min(1).max(1024)).optional(),
 });
 export type UploadEntry = z.infer<typeof batchSchema>["files"][number];
-export type UploadBatchView = { id: string; createdAt: string; files: (UploadEntry & { documentId: string | null })[] };
+export type UploadBatchView = { id: string; createdAt: string; files: (UploadEntry & { documentId: string | null })[]; sourceRootName?: string; skippedEntries?: {sourceRelativePath:string;extension?:string;reasonCode:string;reason:string}[]; emptyDirectories?:string[] };
 export const paginationSchema = z.object({
   offset: z.coerce.number().int().min(0).max(1000000).default(0),
   limit: z.coerce.number().int().min(1).max(100).default(100),
@@ -88,6 +90,7 @@ export type DocumentView = {
   nextTextOffset?: number | null;
   markTexts?: Record<string, string>;
   revision: number;
+  reviewOrigin?: 'automatic' | 'human_review' | 'legacy';
   marks: ReviewMark[];
   state: string;
   name?: string;
@@ -109,10 +112,13 @@ export type DocumentView = {
     error_code: string | null;
     required_permissions?: Permission[];
     canObserveEvents?: boolean;
+    ordinaryPdfDetection?: boolean;
+    pdfOcrPriorityWaiting?: boolean;
   };
   canRunNer?: boolean;
   nerEnabled?: boolean;
   visualDiagnostics?:{complete:boolean;pages:{page:number;detectors:string[];warnings:string[]}[]}|null;
+  sealDetectJobId?: string | null;
   visualCandidates?: {page:number;x:number;y:number;width:number;height:number;reason:"人脸"|"印章"|"签名";score:number;detector:string}[];
   layers: { rules: string; ner: "not_configured" | "not_requested" | "pending" | "completed"; ai: "not_configured" };
 };

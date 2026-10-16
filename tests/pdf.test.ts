@@ -17,7 +17,8 @@ test("PDFium reads and renders local PDFs; glyph coordinates follow page rotatio
       expect(image.width).toBe(page.width * 2); expect(image.height).toBe(page.height * 2);
     } finally { pdf.close(); }
   }
-  await expect(openPdf(pdfFixture({ pages: 301 }))).rejects.toThrow("PAGE_LIMIT");
+  const long = await openPdf(pdfFixture({ pages: 301 }));
+  try { expect(long.count).toBe(301); expect((await long.page(300, 0.05)).text).toContain("13800138000"); await expect(long.page(301, 0.05)).rejects.toThrow("INVALID_PDF_PAGE"); } finally { long.close(); }
   await expect(openPdf(Buffer.from("bad PDF"))).rejects.toThrow("INVALID_PDF");
   expect(() => checkPixels(5001, 5000)).toThrow("PIXEL_LIMIT");
 });

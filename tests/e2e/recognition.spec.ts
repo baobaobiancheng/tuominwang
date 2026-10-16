@@ -1,7 +1,7 @@
 import { test, expect } from "./fixture.ts";
 
 test("desktop project dictionary changes invalidate review and drive a new candidate run", async ({ page }) => {
-  test.setTimeout(90000);
+  test.setTimeout(180000);
   await page.goto("/");
   await page.getByLabel("账号", { exact: true }).fill(process.env.E2E_USERNAME!);
   await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
@@ -12,6 +12,7 @@ test("desktop project dictionary changes invalidate review and drive a new candi
   await page.getByRole("button", { name: "导入材料", exact: true }).click();
   await page.getByLabel("待处理文本").fill("北京甲乙科技有限公司与上海丙丁贸易有限公司签订合同。联系13800138000");
   await page.getByRole("button", { name: "提交并识别", exact: true }).click();
+  await expect(page.locator(".statusbar span").first()).toHaveText("自动识别 已完成", { timeout: 45_000 });
   await page.getByRole("button", { name: "逐条复核", exact: true }).click();
   await expect(page.getByLabel("标记 1 处理决定")).toBeVisible();
   await page.getByRole("button", { name: "返回材料列表", exact: true }).click();
@@ -30,6 +31,8 @@ test("desktop project dictionary changes invalidate review and drive a new candi
   await expect(page.getByRole("button", { name: "导出已选标记的处理副本", exact: true })).toBeDisabled();
   await page.getByRole("button", { name: "重新识别", exact: true }).click();
   await page.getByRole("alertdialog", { name: "操作确认" }).getByRole("button", { name: "确认执行", exact: true }).click();
+  await expect(page.locator(".statusbar span").nth(1)).toHaveText(/^复核版本 2 · /, { timeout: 45_000 });
+  await expect(page.locator(".statusbar span").first()).toHaveText("自动识别 已完成", { timeout: 45_000 });
   await page.getByRole("button", { name: "逐条复核", exact: true }).click();
   await expect(page.getByLabel("标记 2 处理决定")).toBeVisible();
   await expect(page.getByRole("button", { name: "北京甲乙科技有限公司", exact: true })).toBeVisible();

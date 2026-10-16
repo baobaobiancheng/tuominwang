@@ -47,8 +47,21 @@ test("desktop page regions, repeat across pages, deletion undo, pixel preview an
   await page.getByRole("button", { name: "查看本页处理预览", exact: true }).click();
   await expect(page.getByRole("img", { name: "处理预览第 1 页" })).toBeVisible();
   await page.screenshot({ path: "test-results/page-regions-desktop.png", fullPage: true });
+  const saved = page.waitForResponse(response => response.request().method() === "PUT"
+    && /^\/api\/documents\/[^/]+\/review$/u.test(new URL(response.url()).pathname)
+    && response.status() === 200, { timeout: 30_000 });
+  const versionOneReadback = page.waitForResponse(async response => {
+    if (response.request().method() !== "GET" || response.status() !== 200) return false;
+    const path = new URL(response.url()).pathname;
+    const match = /^\/api\/documents\/([^/]+)$/u.exec(path);
+    if (!match) return false;
+    const body = await response.json().catch(() => null);
+    return body?.id === match[1] && body?.revision === 1;
+  }, { timeout: 30_000 });
   await page.getByRole("button", { name: "保存复核", exact: true }).click();
-  await expect(page.getByText("复核已保存", { exact: true })).toBeVisible();
+  expect((await saved).status()).toBe(200);
+  await versionOneReadback;
+  await expect(page.getByText("复核已保存", { exact: true })).toBeVisible({ timeout: 30_000 });
   await page.getByRole("button", { name: "导出已选标记的处理副本", exact: true }).click();
   const button = page.getByRole("button", { name: "核验并下载 PDF", exact: true });
   await expect(button).toBeEnabled({ timeout: 30000 });

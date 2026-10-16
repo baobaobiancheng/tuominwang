@@ -1,0 +1,113 @@
+{
+  "at": "2026-10-16T18:18:25.040394+00:00",
+  "stage": "research-only TMM storage adapter; complete TMM port not achieved",
+  "formalSource": "v13/944 remains byte unchanged",
+  "candidate": {
+    "manifestSha256": "1e9f2f2e2f1af6a607164135b287f589db5c65fc0b18f94cf86f9ae7a330e3f4",
+    "node": "v24.19.0",
+    "typecheckActualExitCode": 0,
+    "unitFiles": 2,
+    "unitTests": 6,
+    "unitActualExitCode": 0,
+    "legacyEnvelopeUnchanged": true,
+    "newStorageFormat": false,
+    "ordinaryUploadBudgetChanged": false
+  },
+  "adversarial": {
+    "oldV3ActualExitCode": 1,
+    "newV4ActualExitCode": 0,
+    "case": "old-owner stream pauses, release via real removeOwnedArtifact, new owner writes same object ID, old producer fails: new owner object must survive and original producer error retained",
+    "fix": "initial FileHandle bigint dev/ino guard for flat/registry/spool; direct FileHandle read/write owns descriptor close",
+    "independentPeer": "no new concrete blocker; same existing lstat/unlink concurrency trust boundary explicitly retained"
+  },
+  "originalScope": "4GiB/source is TMM container budget only; no arbitrary model parsing claim",
+  "remaining": "Full TMM V1/V2/V3 streaming/metadata/manifest/API/Web integration and adversarial acceptance; full API140 and Edge106 still running; no cloud release yet",
+  "originalRuntime": "all R0, no activation bypass",
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-storage-stream-v4/candidate-manifest.json",
+      "sha256": "1e9f2f2e2f1af6a607164135b287f589db5c65fc0b18f94cf86f9ae7a330e3f4",
+      "bytes": 1361
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-storage-stream-v4/typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-storage-stream-v4/unit.log",
+      "sha256": "1ec249274e663866e22aa5e6203bf6c3d81438c1586af4559c609106b0a903be",
+      "bytes": 228
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-storage-stream-v4/ownership-old-red-v2-terminal-receipt.json",
+      "sha256": "6c0ab016c7cf9a031e8910c99402b459d16b13ff6d32842842a22c41de48eb63",
+      "bytes": 483
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-storage-stream-v4/ownership-old-red-v2.log",
+      "sha256": "1f8ff23c3db15444e1b3b3d363d5e6f37381763fd6a7fb6f81c196c693f33bcc",
+      "bytes": 1326
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/workspace-storage-stream-v3-readonly-peer-v1.json",
+      "sha256": "dcffcfb07849358f058f0eca0374899cbef111ca711228192cd8a5401c4ff16a",
+      "bytes": 4260
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/workspace-storage-stream-v4-readonly-peer-v1.json",
+      "sha256": "513dfba13311d7e2ea4faa64ef8e0bb787501df6bda8a252510776feb3578b6d",
+      "bytes": 3089
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-storage-stream-v3/candidate-manifest.json",
+      "sha256": "9be7e9864c8f8f748d8af5c7d88d444dd3fce4b19c160ae4aa41ee2c01b21903",
+      "bytes": 1403
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-storage-stream-v1/preliminary-v1-control-failure.json",
+      "sha256": "b3b2028980bd72d2fb4b915f61d715e18e503133aa08b97753e029bc9fb94d2d",
+      "bytes": 297
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-storage-stream-v1/preliminary-fixture-cleanup.json",
+      "sha256": "62119be27b9d01cfa1be8cedb624093ac0bd0692a563114aa48dc3b545be741f",
+      "bytes": 507
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/original-standalone-image-format-readonly-v1.json",
+      "sha256": "70e3519b2713aed8b492a51e9c248af0d946bea073d5de897f0adaf0906cce48",
+      "bytes": 1530
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-storage-stream-v4/overlay/tests/workspace-original-stream.test.ts",
+      "sha256": "51ef74465851b05e1f691fc2ed2665f31615a34450b016a7db447b299cd8c5d5",
+      "bytes": 6069
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-storage-stream-v4/overlay/tests/workspace-storage-ownership-race.test.ts",
+      "sha256": "3ebb8e6c3776c29a5a3847d3e584ab396407df7af50e9b519b6ec61349616bc1",
+      "bytes": 2558
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-storage-stream-v4/overlay/packages/adapters/workspace-original-stream.ts",
+      "sha256": "1a954f4980ffc5c8998736350f5497f3ebdd36b7e30b46c0c1bfdc8feacfcd3e",
+      "bytes": 8043
+    }
+  ],
+  "updatedPin": {
+    "path": "文档/待办与完成状态-20261015.md",
+    "previous": {
+      "sha256": "3934079d8aedcd87776adb1894ed1619f56b9f97175c5219be1e622a015b903d",
+      "bytes": 53472
+    },
+    "current": {
+      "sha256": "80ceb8021a6d320d04e2269c05a5699e29e96ba9940d4a33cc2168b3ea2dc463",
+      "bytes": 55064
+    }
+  },
+  "oldArchive": {
+    "path": ".data/research/lawbot-2026-10-16/iteration056/before-storage-stream-ledger123-v1/manifest.json",
+    "sha256": "b43892f882ac44e4a6e40aa6aa43251603d57da0e3a4742b059aa6e43ac82623"
+  }
+}

@@ -19,6 +19,7 @@ import {profileReplacementPolicies,finalizeProfileReplacements} from '../../pack
 import {entitySpanKey} from '../../packages/core/entity-identity.ts';
 import {mappingsForMarks,resolvePolicyMappings} from './mappings.ts';
 import {projectScope,denied,requirePermission} from './access.ts';
+import {rotateQueuedPdf} from './pdf-ocr-rotation.ts';
 /** Page angles belong to the immutable original's domain. The transaction binds
  * a new canonical review to authenticated raster/glyph resources, never edits a PDF. */
 export function registerPageRotationRoutes(app:FastifyInstance){
@@ -26,8 +27,10 @@ export function registerPageRotationRoutes(app:FastifyInstance){
   const doc=id.parse((req.params as any).id),input=pageRotationRequestSchema.parse(req.body),controller=new AbortController();
   const closed=()=>{if(!reply.raw.writableEnded)controller.abort();},aborted=()=>controller.abort();reply.raw.on('close',closed);req.raw.on('aborted',aborted);
   try{return await projectScope(req,{document:doc},['view_original','review'],async db=>{
+   const [initial]=await rows(db,sql`SELECT state FROM documents WHERE id=${doc}`);
+   if(initial?.state==='queued')await rows(db,sql`SELECT pg_advisory_xact_lock(7843,1)`);
    const[d]=await rows(db,sql`SELECT d.*,p.dictionary,p.dictionary_revision,p.preset_policy,p.preset_revision FROM documents d JOIN projects p ON p.id=d.project_id WHERE d.id=${doc} FOR UPDATE OF d`);
-   if(!d)denied('NOT_FOUND',404);if(d.revision!==input.revision)denied('VERSION_CONFLICT',409);if(d.source_format!=='pdf')denied('UNSUPPORTED_FORMAT',400);if(d.state!=='review')denied('DETECTION_INCOMPLETE',409);
+   if(!d)denied('NOT_FOUND',404);if(d.revision!==input.revision)denied('VERSION_CONFLICT',409);if(d.source_format!=='pdf')denied('UNSUPPORTED_FORMAT',400);if(d.state==='queued'){if(initial?.state!=='queued')denied('VERSION_CONFLICT',409);return rotateQueuedPdf(db,req,d,input);}if(d.state!=='review')denied('DETECTION_INCOMPLETE',409);
    Object.assign(d,resolveDocumentPolicy(d,readProjectPresets({id:d.project_id,tenant_id:d.tenant_id,preset_revision:d.preset_revision,preset_policy:d.preset_policy})));d.runtimeWhitelists=await getRuntimeWhitelists(db,d.tenant_id,d.project_id,req.user.id,d.id);
    const provenance=await readReviewProvenance(db,d);d.rotationManualKeys=provenance.entries.filter(e=>e.active&&e.meta.operationSource==='user').map(e=>e.key);
    const verifySource=async()=>{try{await verifiedDocumentSource(d);if(hash(unseal(d.content,`${d.tenant_id}:${d.project_id}:${d.id}`))!==d.content_hash)throw Error();}catch{denied('SOURCE_MISMATCH',409);}};

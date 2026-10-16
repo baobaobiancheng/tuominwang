@@ -23,6 +23,7 @@ test("desktop organization accounts, independent project grants and read-only re
   await page.getByRole("button", { name: "导入材料", exact: true }).click();
   await page.getByLabel("待处理文本").fill("公开测试 电话13800138000");
   await page.getByRole("button", { name: "提交并识别" }).click();
+  await expect(page.locator(".statusbar span").first()).toHaveText("自动识别 已完成", { timeout: 45_000 });
   await page.getByRole("button", { name: "逐条复核", exact: true }).click();
   await expect(page.getByLabel("标记 1 处理决定")).toBeVisible();
   await page.getByRole("button", { name: "返回材料列表", exact: true }).click();

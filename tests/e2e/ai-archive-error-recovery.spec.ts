@@ -26,6 +26,14 @@ test('archive loading separates a late prior-task failure and recovers by a real
  expect((await post('/api/mcp',{jsonrpc:'2.0',method:'notifications/initialized'},session)).status()).toBe(202);
  async function start(id:number){const response=await post('/api/mcp',{jsonrpc:'2.0',id,method:'tools/call',params:{name:'start_lawbot_redaction',arguments:{project_id:project,task_mode:'redact_only',request_id:randomUUID()}}},session);expect(response.status()).toBe(200);const result=(await response.json()).result;expect(result.isError).toBe(false);return result.structuredContent.jobId as string;}
  const a=await start(2),b=await start(3);
+ // Source-less tasks must be genuinely authorized before the archive panel is visible.
+ for(const job of [a,b]){
+  const taskResponse=await page.request.get(`/api/ai-collab/tasks/${job}`);expect(taskResponse.status()).toBe(200);
+  const task=await taskResponse.json();expect(task.state).toBe('waiting_for_session_authorization');
+  const authorized=await post(`/api/ai-collab/tasks/${job}/authorize`,{revision:task.revision,authorization:{allowRedactionPath:true,allowRestorePath:false,allowSanitizedDelivery:true,autoEnterReview:false,createExchangeFolder:true,autoRestoreAfterValidation:false}});
+  expect(authorized.status(),await authorized.text()).toBe(200);
+  expect((await authorized.json()).state).toBe('waiting_for_user_file_selection');
+ }
  let releaseA!:()=>void;const heldA=new Promise<void>(resolve=>{releaseA=resolve;});let aIntercepted!:()=>void;const sawA=new Promise<void>(resolve=>{aIntercepted=resolve;});
  let failB=false,failedB=0;
  await page.route('**/api/ai-collab/tasks/*/archives',async route=>{

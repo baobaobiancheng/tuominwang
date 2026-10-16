@@ -124,7 +124,13 @@ export function registerMappingRoutes(app: FastifyInstance) {
       const marks = (d.marks as Mark[]).filter(m => m.decision === "redact");
       const mappings = await mappingsForMarks(db, d, marks, req.user.id);
       let text: string;
-      try { await runProcessing({ kind: "gate", doc: d, snapshot }); text = restoreDocumentAliases(input.text,unseal(d.content,`${d.tenant_id}:${d.project_id}:${d.id}`),d.marks,mappings,true,true,{semanticValue:(m,index)=>semanticEntityValue(hydrateEntityCorrections(d),m,unseal(d.content,`${d.tenant_id}:${d.project_id}:${d.id}`),index)}); }
+      let automaticBinding:{taskId:string|null;actorId:string}|undefined;
+      if(snapshot?.review_mode==='automatic'){
+        const[witness]=await rows(db,sql`SELECT automatic_review_origin_witness(${doc}::uuid,${d.revision}::integer,'restore') AS valid`);
+        if(!witness?.valid)fail('AUTOMATIC_ORIGIN_MISMATCH');
+        automaticBinding={taskId:snapshot.automatic_task_id,actorId:snapshot.automatic_actor_id};
+      }
+      try { await runProcessing({ kind: "gate", doc: d, snapshot, automaticBinding }); text = restoreDocumentAliases(input.text,unseal(d.content,`${d.tenant_id}:${d.project_id}:${d.id}`),d.marks,mappings,true,true,{semanticValue:(m,index)=>semanticEntityValue(hydrateEntityCorrections(d),m,unseal(d.content,`${d.tenant_id}:${d.project_id}:${d.id}`),index)}); }
       catch (e) { fail((e as Error).message, 400); }
       await rows(db, sql`INSERT INTO audit(tenant_id,project_id,user_id,event,object_id) VALUES(${d.tenant_id},${d.project_id},${req.user.id},'text_restored',${doc})`);
       return { revision: d.revision, text };

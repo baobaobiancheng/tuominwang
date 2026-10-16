@@ -1,6 +1,7 @@
 import type { FastifyInstance } from "fastify";
 import { z } from "zod";
-import { id, revisionSchema, type UploadEntry } from "../../packages/contracts/index.ts";
+import { id, revisionSchema } from "../../packages/contracts/index.ts";
+import { readUploadBatchManifest, writeUploadBatchManifest } from "../../packages/core/upload-batch-manifest.ts";
 import { rows, scoped, sql } from "../../packages/adapters/db.ts";
 import { hash, seal, unseal } from "../../packages/adapters/storage.ts";
 import { denied, projectScope } from "./access.ts";
@@ -34,9 +35,9 @@ export function registerLifecycleRoutes(app: FastifyInstance) {
       for (;;) {
         const batches = await rows(db, sql`SELECT id,manifest FROM upload_batches WHERE project_id=${project} AND id>${cursor}::uuid ORDER BY id LIMIT 100`);
         for (const batch of batches) {
-          const aad = `${req.user.tenant_id}:${project}:${batch.id}:manifest`, entries: UploadEntry[] = JSON.parse(unseal(batch.manifest, aad));
-          const remaining = entries.filter(e => e.requestId !== doc.request_id);
-          if (remaining.length !== entries.length) { const plain = JSON.stringify(remaining); changes.push({ id: batch.id, manifest: remaining.length ? seal(plain, aad) : null, hash: hash(plain) }); }
+          const aad = `${req.user.tenant_id}:${project}:${batch.id}:manifest`, { manifest, legacy } = readUploadBatchManifest(unseal(batch.manifest, aad));
+          const remaining = manifest.files.filter(e => e.requestId !== doc.request_id);
+          if (remaining.length !== manifest.files.length) { const plain = remaining.length ? writeUploadBatchManifest({ ...manifest, files: remaining }, legacy) : '[]'; changes.push({ id: batch.id, manifest: remaining.length ? seal(plain, aad) : null, hash: hash(plain) }); }
         }
         if (batches.length < 100) break;
         cursor = batches.at(-1)!.id;

@@ -1,0 +1,109 @@
+{
+  "schema": "iteration056-targeted-green-progress-v1",
+  "date": "2026-10-16",
+  "previousLedgerSha256": "7526b636bea4383c74ab622e6666ef256f350e3d088c2d1c6023ade9cecc3224",
+  "previousLedgerArchive": ".data/research/lawbot-2026-10-16/iteration056/before-targeted-green-progress-v1/ledger.json",
+  "sourceManifest": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v6.json",
+  "sourceManifestSha256": "eac5a6b2f486fd6aa6ee64a47e16311d55fb099cb090ccac8d3829474f4ace22",
+  "formalSourceCount": 895,
+  "evidence": {
+    ".data/research/lawbot-2026-10-16/iteration056/rules/get-ocr-page-v2/terminal-receipt-v2.json": {
+      "sha256": "4a8bdb3e0181902fc109540b25d6fe4ce14d5fbef4827ab74c4f15202c97a7ab",
+      "bytes": 2037
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/rules/get-ocr-page-v2/integration-v2.log": {
+      "sha256": "a933b811318704e17edcb3da88eea7619f77c1dbd38bdfdcc99e4e5d2589f5d8",
+      "bytes": 1101
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/rules/get-ocr-page-v3/terminal-receipt-v3.json": {
+      "sha256": "2c7e5145546690f99f0c8163d500c0136f5920780c17e654bd9206e971fe388b",
+      "bytes": 2037
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/rules/get-ocr-page-v3/integration-v3.log": {
+      "sha256": "afb428d0641804a993b08e84d2b0ffe92f27a09d28840a21711a80e8064950d2",
+      "bytes": 257
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/rules/get-ocr-page-v4/terminal-receipt-v4.json": {
+      "sha256": "ab8797f2af82fcaaa00067a46b5f77858be882be7e57655bc6c48d5bbd706eb3",
+      "bytes": 2037
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/rules/get-ocr-page-v4/integration-v4.log": {
+      "sha256": "79af6cbec32d99581218a6f680467bb26a2a73cada4475b1ae3dfd5ed3f4a4ff",
+      "bytes": 260
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/arch/pdf-seal-pause-v10/green-v1-receipt.json": {
+      "sha256": "9050c04c19b47894aba0c3d065394934de7a6ab5fc3a89ec1a9938ba20c7fb92",
+      "bytes": 2932
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/arch/pdf-seal-pause-v10/green-v1.log": {
+      "sha256": "7a3360f0fdec8ebf1d3c23a273b9d4c38108c08bb50b5722a52505ab6b60a81a",
+      "bytes": 1390
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/arch/pdf-seal-pause-v11/green-v1-receipt.json": {
+      "sha256": "1487e82ee46ef0081f64690519f4c4b9d7ff920988ecc200aba6f24fe05446ff",
+      "bytes": 2932
+    },
+    ".data/research/lawbot-2026-10-16/iteration056/arch/pdf-seal-pause-v11/green-v1.log": {
+      "sha256": "01710b3ba1faf16de03aec991fb597ef50f65a3d562de412cf6f46170c48de41",
+      "bytes": 233
+    }
+  },
+  "actualResults": {
+    "ocrV2": {
+      "exit": 1,
+      "scope": "live and idle/rotation positive branches reached; altered original wrongly500; retained failure"
+    },
+    "ocrV3": {
+      "exit": 0,
+      "cases": 1,
+      "permissions": "owner200 and same-tenant review-only403; not full membership matrix"
+    },
+    "ocrV4": {
+      "exit": 0,
+      "cases": 1,
+      "scope": "8-page true worker, live frame before full completion, idle single-page90 OCR, canonical/review unchanged during detect, cache clear, version/source/preview binding",
+      "permissions": [
+        "owner200",
+        "review-only403",
+        "view_original member200",
+        "cross-tenant404"
+      ],
+      "ui": "static peer review only; Edge copying/rotation not run"
+    },
+    "sealV10": {
+      "exit": 1,
+      "scope": "HTTP poll observed completed20 at60s; no partial assertion passed; old HTTP errors were not logged"
+    },
+    "sealV11": {
+      "exit": 0,
+      "cases": 1,
+      "scope": "20-page embedded-image PDF; wait first committed seal-page event in isolated DB, real GET200 and POST pause, remaining OCR/text recognition reachesreview, completed pages 1..19, visual.completefalse, phone marks preserved",
+      "notProven": [
+        "supplement after human save",
+        "member manualACK/export witness",
+        "failure partial preservation",
+        "full same-source API/Edge"
+      ]
+    }
+  },
+  "sourceFidelityCorrection": {
+    "original": [
+      "renderer25635 passes pt2 page list",
+      "main18319-18325 starts forcedOCR over that list",
+      "main9755-9760 dedup and ascending sort",
+      "main10644 passes selected list to processScannedPdf"
+    ],
+    "correction": "Original does not prioritize clicked page20. Earlier root suggestion of a new priority/request queue is withdrawn; no such mechanism is implemented. Remaining OCR delta is ahead-render preview and cache-miss processing order, not a fabricated page priority feature."
+  },
+  "newSealErrorBranches": {
+    "original": "main10137-10160 retains completed pages/matches and sealWarning on recoverable supplement failure; main10957-11023 seal error defers while other detection continues",
+    "status": "private v11 fix present, dedicated error/continuation regression still pending"
+  },
+  "boundaries": [
+    "private candidates only; no formal code merge",
+    "no new server release",
+    "source R0 and all S/I unchanged",
+    "global rate-limit cause of old 60-second test is a strong hypothesis, not retrospectively logged proof",
+    "full pnpm check/API/Edge must be rerun after final merge"
+  ]
+}

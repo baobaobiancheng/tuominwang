@@ -1,0 +1,122 @@
+{
+  "at": "2026-10-16T19:09:18.508155+00:00",
+  "directive": "优先直接使用已提取原代码，只做平台必需适配，不超出原设计",
+  "formalSource": "v13/944 frozen; no deployment",
+  "coreV4Independent": {
+    "sameOriginalParityTests": 3,
+    "sameCancellationTests": 2,
+    "actualExitCode": 0,
+    "sourceDrift": []
+  },
+  "saveProducerV1WithRootSaveV6": {
+    "tsc": 0,
+    "receiptFile": 1,
+    "normalizedFile": 1,
+    "backgroundFailure": 0,
+    "gaps": [
+      "new native ext2 Buffer compatibility",
+      "nonempty producer SOURCE_MISMATCH requires root cause"
+    ]
+  },
+  "matrixFixtureOnlyReplay": {
+    "actualExitCode": 1,
+    "casesPassed": 2,
+    "casesFailed": 1,
+    "newFirstFailure": "restart-preparation on empty source fixture SOURCE_NOT_FOUND404; source-bound contract unchanged"
+  },
+  "batchAtomicityIndependent": {
+    "actualExitCode": 1,
+    "coreAssertion": "later source rejected409 but earlier child export job persisted; minimal transaction fix pending"
+  },
+  "targetedEdge10": {
+    "executed": 10,
+    "pass": 5,
+    "fail": 5,
+    "skip": 0,
+    "sourceAndAssetsDrift": [],
+    "remaining": "critical ZIP/mappings/OCR/filter/provenance request completion; trace diagnosis and followup pending"
+  },
+  "remaining": [
+    "full API140 natural terminal",
+    "four-format complete save/import/export/download and Web",
+    "five Edge failures and new-source full gates",
+    "private Git and own Aliyun release verification"
+  ],
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-core-v4-independent-v1/terminal-receipt.json",
+      "sha256": "2d1994d4ede19ec917c650717b6e1e2a7abc14dc07d8a6735e5e4130aac27dff",
+      "bytes": 805
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-core-v4-independent-v1/run.log",
+      "sha256": "7565a4a0452ef67ab9f74e5a9db29d7a6e5639929bdb1ae89f5725cfd357e31e",
+      "bytes": 646
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-save-stream-v6/preparation-manifest.json",
+      "sha256": "030e69caebffe2cdc546ffc2047093b48b4acff76e9cf770e2fac5b087c3d3d9",
+      "bytes": 5841
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-save-stream-v6/execution-terminal-receipt.json",
+      "sha256": "1893c13546ae994f328b40369a211b4e00f23c9153f22fda6bae06bb3a08cdcf",
+      "bytes": 1794
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-save-stream-v6/receipts.log",
+      "sha256": "d36f84e971625653e9064dd01a37aae0ba1845ead5642782deda20a97b516e1d",
+      "bytes": 2740
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-save-stream-v6/normalized.log",
+      "sha256": "dc11ed54309d41ac745a0a8ac8b9d35d3b715a1eefbc1ce159e4fabc1f62e1d1",
+      "bytes": 1465
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/workspace-save-stream-v6/background.log",
+      "sha256": "1d4cb6576ee893ce5f90ef533e653eb3face53a4adc7843e433db076d4091d03",
+      "bytes": 408
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/mcp-complete-matrix-fixture-replay-v1/terminal-receipt.json",
+      "sha256": "5b5e0b1313d71f5ac14df18eca3164bfa1dd834815a9d1c39f9c1c9b27bf8957",
+      "bytes": 642
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/mcp-complete-matrix-fixture-replay-v1/run.log",
+      "sha256": "57773e5e86bd79b4b9313e4173d4f37e209e8ee8434a2e57d84584b9ed4e88be",
+      "bytes": 5503
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/targeted10-v13-full106-failures-v1/terminal-receipt.json",
+      "sha256": "765988731061d5fc6be28a92fe80488cb85d4b608900b7d3fa926908685e40b5",
+      "bytes": 15646
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-final-v13/failure-original-evidence-v1/evidence-manifest.json",
+      "sha256": "ed7137a2cf0d509ee7ea8878f4bc33570ba6324db3480e23f2d68d705f875df1",
+      "bytes": 6644
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/normal-dev-service-after-targeted10-v13-v1/restore-receipt.json",
+      "sha256": "ab51cbc0b3782b55cec6777c5a26c7bf1370f08e4133f295449ca7f86ec14b02",
+      "bytes": 765
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/mcp-queue-v13-diagnostic-run4.log",
+      "sha256": "38df1090cf9a1f2ba38a6ab977dbcf4992435805982cac25b486f41d79fde969",
+      "bytes": 1439
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/workspace-tmm-capacity-v1/candidate-core-v4/manifest.json",
+      "sha256": "c250d66b3b87fb4c89bf0f3075a373ab442a9677d51a4bfce1593e40849e63d3",
+      "bytes": 2886
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/workspace-tmm-capacity-v1/candidate-producer-v1/manifest.json",
+      "sha256": "dc9a9683b68429b6c996eac74d69e3f7c19017e7c5618c6db4b55b53b76793a3",
+      "bytes": 3292
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "at": "2026-10-16T18:04:39.249287+00:00",
+  "formalSource": "v13/944 runtime unchanged",
+  "requiredCheck": {
+    "actualExitCode": 0,
+    "unitFiles": 152,
+    "unitTests": 838,
+    "bendLaws": 18,
+    "rejectedMutations": 21,
+    "allSourceAssetDrift": []
+  },
+  "confirmedTmmGap": {
+    "originalV1": {
+      "entries": 2000,
+      "entryBytes": 268435456,
+      "expandedBytes": 1073741824
+    },
+    "originalV2": {
+      "sourceBytes": 4294967296,
+      "sourceTotalBytes": 34359738368,
+      "jsonBytes": 67108864
+    },
+    "ours": "unrelated general50MiB applied to whole TMM JSON/secure plaintext/ZIP/base64 HTTP payload",
+    "status": "real functional narrowing; research original-code reuse and dedicated streaming correction not yet implemented"
+  },
+  "rulesHandoff": {
+    "currentEntryAndWorkflowUpdated": true,
+    "jsonBlocks": 10,
+    "allJsonBlocksByteIdentical": true,
+    "jsonBlockSha256": [
+      "df159e3101de69daa1fa568049e5d0e5b4f6c11007cc85377376d747032cde4b",
+      "b3507ca333acca04b2b6476b55274eba8e3700210bef8e57d455050d89e31b5c",
+      "52d3af726fc6c04e477647e5f0ca9121ce042fb36b3cf13756d0f9ddf23fadd5",
+      "2916b196afc763dc5e957f627706e1c7515bafa6bf74ee6a308b6e12f05dac10",
+      "2c3ed2082f5acc4254c4efc57ec58aa014cebd16f617c92be80b1ca6ea552153",
+      "28357662c45a95a8a8e7682792a88125e6fd1005e794785ee4d17f88b57218bf",
+      "5ce5757f833f8053e631cfd07dba3f0def504ade50f6a4c4623e20d67669756d",
+      "46e9de6da18b6d89221ee5a05120db5cf8dcbdfcc6badab31bbc7185b8a4603b",
+      "181594386e90265fbf53b95a52ef2ac19ae094231f34223a4563dc874d7235be",
+      "27e50f0cb7103a6aaae416bd3e31ec3760eb5c6dc681e26650d1effd58332bfa"
+    ],
+    "independentV1Review": "no findings; v2 only adds authoritative check terminal and capacity gap"
+  },
+  "fullGates": "API140 and Edge106 still running, two Edge failures observed; no green result claimed",
+  "mjsEvidence": "same-v13 Node24 connector9+stdio3 actual0, explicitly posthoc tool transcript not launch-time rawlog",
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/final-v13-required-check-v1/terminal-receipt.json",
+      "sha256": "fdb6815d36543693267a0f6361512d6a9ef0864c05a1d8ba5656f690d128feaa",
+      "bytes": 1017
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/final-v13-required-check-v1/check.log",
+      "sha256": "ee58e0135ad1c37d10c978409e7bb0bf29010e2e4dbd9cab6c9c8d849bae2280",
+      "bytes": 1923
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/ledger121-validation-v1/terminal-receipt.json",
+      "sha256": "de360e2aca8f1baed78493c4d986eee61b762ed6486e9b97391eb52e018e59f4",
+      "bytes": 367
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/workspace-tmm-capacity-original-vs-v13-readonly-review-v1.json",
+      "sha256": "fae9903ab3bcbd29ffc69ada78f50b04683d8d34c56cf7629b557670219dd10f",
+      "bytes": 4233
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/i1-148-pending-native-v13-readonly-review-v1.json",
+      "sha256": "1ab522b95db8b03adec8551a39f316e5cb1a1e3b75ff04678e3601b02ef1a0ee",
+      "bytes": 15836
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/rules-handoff-v13-candidate-readonly-review-v1.json",
+      "sha256": "74eabca470b29605fd7dea4943ec877b5bcc75ff76b810fdbd483ca1ecd242df",
+      "bytes": 2910
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/formal-v13-reused-modules-mjs-posthoc-terminal-receipt.json",
+      "sha256": "6bc161232508867cb53e1226bb0b257bc7db95c3c40932505c85173d32575489",
+      "bytes": 2964
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/ai-archive-v13-first-failure-readonly-review.json",
+      "sha256": "83f2987713dc1777c2ab0ec6112425b35e505cee86e7fdca0027636ba9918fad",
+      "bytes": 3297
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/ai-archive-authorization-test-overlay-v1/candidate-manifest.json",
+      "sha256": "afcc7d14318bcc145d292ca73d566db44d76e00df6aee3c7c049a5e043f2c071",
+      "bytes": 813
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/rules-handoff-current-v13-candidate-v2/candidate-manifest.json",
+      "sha256": "ec085b7b4609b85174839cbce988cc7d29bf18f6563b86f14813a3aff8eaeff5",
+      "bytes": 1056
+    }
+  ],
+  "updatedPins": [
+    {
+      "path": "文档/脱敏规则完整技术交接-迭代023.md",
+      "previous": {
+        "sha256": "32fdc47af0a49cdd84af0165ba19dc33a3a1fa4e0a4e4d772c6eeb33e9407d77",
+        "bytes": 408699
+      },
+      "current": {
+        "sha256": "c27090ca0096daf541a77835ba20bf2da99e20e08c869996bf149cd7edfeac4d",
+        "bytes": 411756
+      }
+    },
+    {
+      "path": "文档/待办与完成状态-20261015.md",
+      "previous": {
+        "sha256": "ccfe777ee63c2c01d27c8e694762f50b949a78820145f59032f7e38f2e4ea457",
+        "bytes": 51893
+      },
+      "current": {
+        "sha256": "3934079d8aedcd87776adb1894ed1619f56b9f97175c5219be1e622a015b903d",
+        "bytes": 53472
+      }
+    }
+  ],
+  "oldArchive": {
+    "path": ".data/research/lawbot-2026-10-16/iteration056/before-docs-capacity-ledger122-v1/manifest.json",
+    "sha256": "0c32e8c0c07870723d6c8dbb483bdfd36c4e8034ae70f8cdd5a926b0060bce23"
+  },
+  "remaining": "TMM original capacity and conversion user flow, final full API/Edge failure resolution, final docs/git/deploy; original licensed runtime all R0"
+}

@@ -6,13 +6,17 @@ import {resolveDocumentPolicy} from '../../packages/adapters/document-policy.ts'
 import {readProjectPresets} from '../../packages/adapters/project-presets.ts';
 import {requirePermission,textArray,denied} from './access.ts';
 import {assertUnifiedAliasExportEpoch,preflightUnifiedAliasExport} from './unified-alias-export.ts';
+import {pseudonymTableNames} from '../../packages/adapters/profile-export.ts';
+import {defaultProfile} from '../../packages/core/presets.ts';
+import {hash,seal,unseal} from '../../packages/adapters/storage.ts';
+import {readPdfSealState} from './pdf-seals.ts';
 
 type AliasEpoch=Awaited<ReturnType<typeof preflightUnifiedAliasExport>>;
 
 // The caller already owns the project FOR UPDATE lock and its scoped transaction.
 // A null owner is a normal document job. A task-owned job is never borrowed by
 // a normal export or another task.
-export async function queueExport(db:DB,req:FastifyRequest,doc:string,revision:number,epoch:AliasEpoch,collabTaskId:string|null=null){
+export async function queueExport(db:DB,req:FastifyRequest,doc:string,revision:number,epoch:AliasEpoch,collabTaskId:string|null=null,temporaryTableName?:string,forceNew=false,manualSealChecked=false){
  const[d]=await rows(db,sql`SELECT * FROM documents WHERE id=${doc} FOR UPDATE`);if(!d)denied('NOT_FOUND',404);
  await requirePermission(db,d.project_id,['export']);
  if(d.revision!==revision)denied('VERSION_CONFLICT',409);
@@ -20,13 +24,36 @@ export async function queueExport(db:DB,req:FastifyRequest,doc:string,revision:n
  const[p]=await rows(db,sql`SELECT id,tenant_id,preset_policy,preset_revision FROM projects WHERE id=${d.project_id}`);
  Object.assign(d,resolveDocumentPolicy(d,readProjectPresets(p)));
  const[snapshot]=await rows(db,sql`SELECT * FROM review_snapshots WHERE document_id=${doc} AND revision=${revision}`);
- try{await runProcessing({kind:'gate',doc:d,snapshot});}
+ const rawSeal=d.source_format==='pdf'?d.recognition?.visual?.sealProgress:null;
+ const effectiveSeal=rawSeal?.status==='deferred'&&snapshot?.review_mode!=='automatic'?await readPdfSealState(db,d):null;
+ if(rawSeal?.status==='deferred'&&snapshot?.review_mode!=='automatic'&&!effectiveSeal)denied('SEAL_SOURCE_CHANGED',409);
+ const deferredSeal=rawSeal?.status==='deferred'&&snapshot?.review_mode==='automatic'||effectiveSeal?.sealProgress.status==='deferred';
+ if(deferredSeal){
+  if(snapshot?.review_mode!=='human_review'||collabTaskId||!manualSealChecked||!d.source_hash)denied('MANUAL_SEAL_REVIEW_REQUIRED',409);
+  await requirePermission(db,d.project_id,['review','view_original']);
+ } else if(manualSealChecked)denied('MANUAL_SEAL_REVIEW_NOT_APPLICABLE',409);
+ let automaticBinding={taskId:collabTaskId,actorId:req.user.id};
+ if(snapshot?.review_mode==='automatic'&&!collabTaskId){
+  const[witness]=await rows(db,sql`SELECT automatic_review_origin_witness(${doc}::uuid,${revision}::integer,'export') AS valid`);
+  if(!witness?.valid)denied('AUTOMATIC_ORIGIN_MISMATCH',409);
+  automaticBinding={taskId:snapshot.automatic_task_id,actorId:snapshot.automatic_actor_id};
+ }
+ try{await runProcessing({kind:'gate',doc:d,snapshot,automaticBinding});}
  catch(e){const code=(e as Error).message;denied(code,['INVALID_MARKS','OVERLAPPING_MARKS','CROSS_CELL_MARK','SIGNATURE_GROUP_INVALID'].includes(code)?400:409);}
+ const sourceName=d.source_name?unseal(d.source_name,`${d.tenant_id}:${d.project_id}:${d.id}:name`):`材料-${d.id}.txt`;
+ const resolvedName=pseudonymTableNames(d.presetPolicy?.profile?.settings??defaultProfile(),[sourceName],'singleDocument','.lpm',[temporaryTableName])[0];
+ const nameHash=hash(resolvedName);
  const[existing]=collabTaskId
-  ?await rows(db,sql`SELECT id FROM jobs WHERE document_id=${doc} AND kind='export' AND revision=${revision} AND collab_task_id=${collabTaskId} AND status IN ('queued','running','succeeded') ORDER BY created_at DESC LIMIT 1`)
-  :await rows(db,sql`SELECT id FROM jobs WHERE document_id=${doc} AND kind='export' AND revision=${revision} AND collab_task_id IS NULL AND status IN ('queued','running','succeeded') ORDER BY created_at DESC LIMIT 1`);
- if(existing)return{id:existing.id as string};
- const job=randomUUID();await rows(db,sql`INSERT INTO jobs(id,tenant_id,project_id,document_id,user_id,kind,revision,required_permissions,collab_task_id) VALUES(${job},${req.user.tenant_id},${d.project_id},${doc},${req.user.id},'export',${revision},ARRAY['export']::text[],${collabTaskId})`);
+  ?await rows(db,sql`SELECT id,status,mapping_name_hash,pdf_seal_manual_checked,pdf_seal_manual_source_hash FROM jobs WHERE document_id=${doc} AND kind='export' AND revision=${revision} AND collab_task_id=${collabTaskId} AND status IN ('queued','running','succeeded') ORDER BY created_at DESC LIMIT 1`)
+  :await rows(db,sql`SELECT id,status,mapping_name_hash,pdf_seal_manual_checked,pdf_seal_manual_source_hash FROM jobs WHERE document_id=${doc} AND kind='export' AND revision=${revision} AND collab_task_id IS NULL AND status IN ('queued','running','succeeded') ORDER BY created_at DESC LIMIT 1`);
+ if(existing){
+  if(deferredSeal&&(!existing.pdf_seal_manual_checked||existing.pdf_seal_manual_source_hash!==d.source_hash))denied('MANUAL_SEAL_REVIEW_REQUIRED',409);
+  if(!forceNew&&(existing.mapping_name_hash===nameHash||existing.mapping_name_hash===null&&temporaryTableName===undefined))return{id:existing.id as string};
+  if(existing.status!=='succeeded')denied('EXPORT_NAME_CONFLICT',409);
+ }
+ const job=randomUUID(),nameCiphertext=seal(resolvedName,`${req.user.tenant_id}:${d.project_id}:${job}:mapping-name`);
+ await rows(db,sql`INSERT INTO jobs(id,tenant_id,project_id,document_id,user_id,kind,revision,required_permissions,collab_task_id,mapping_name_ciphertext,mapping_name_hash,pdf_seal_manual_checked,pdf_seal_manual_source_hash) VALUES(${job},${req.user.tenant_id},${d.project_id},${doc},${req.user.id},'export',${revision},${textArray(deferredSeal?['export','review','view_original']:['export'])},${collabTaskId},${nameCiphertext},${nameHash},${deferredSeal},${deferredSeal?d.source_hash:null})`);
+ if(deferredSeal)await rows(db,sql`INSERT INTO audit(tenant_id,project_id,user_id,event,object_id) VALUES(${d.tenant_id},${d.project_id},${req.user.id},'pdf_seals_manually_checked',${doc})`);
  await rows(db,sql`INSERT INTO audit(tenant_id,project_id,user_id,event,object_id) VALUES(${req.user.tenant_id},${d.project_id},${req.user.id},'export_requested',${doc})`);
  return{id:job};
 }

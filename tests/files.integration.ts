@@ -72,7 +72,9 @@ test("file batch, immutable originals/snapshots, CSV export, blocked objects, re
   assert.equal((await request("GET", "/api/projects?offset=-1")).statusCode, 400);
   const traversal = { id: randomUUID(), files: [{ path: "../secret.txt", requestId: randomUUID(), size: 1 }] };
   assert.equal((await request("POST", `/api/projects/${project}/upload-batches`, traversal)).json().error, "INVALID_PATH");
-  assert.equal((await request("POST", `/api/projects/${project}/upload-batches`, { id: randomUUID(), files: Array.from({ length: 21 }, (_, i) => ({ path: `${i}.txt`, requestId: randomUUID(), size: 1 })) })).statusCode, 400);
+  const moreThanTwenty={ id: randomUUID(), files: Array.from({ length: 21 }, (_, i) => ({ path: `${i}.txt`, requestId: randomUUID(), size: 1 })) };
+  assert.equal((await request("POST", `/api/projects/${project}/upload-batches`, moreThanTwenty)).statusCode, 200);
+  assert.equal((await request("GET", `/api/projects/${project}/upload-batches/${moreThanTwenty.id}`)).json().files.length,21);
   const other = (await request("POST", "/api/projects", { name: "另一个项目" })).json().id;
   assert.equal((await request("POST", csv.url.replace(project, other), source, true)).statusCode, 404);
   const retry = await upload("重试.txt", Buffer.from("13900139000"));

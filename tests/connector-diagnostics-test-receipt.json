@@ -1,0 +1,68 @@
+{
+  "scope": "actual candidate stdio HTTP client only, synthetic server; not production API idempotence proof",
+  "node": "v24.19.0",
+  "results": [
+    {
+      "scenario": "lost-response",
+      "passed": true,
+      "requests": 2,
+      "events": 3,
+      "zipCount": 0
+    },
+    {
+      "scenario": "http-denied",
+      "passed": true,
+      "requests": 1,
+      "events": 2,
+      "zipCount": 1
+    },
+    {
+      "scenario": "twice-disconnected",
+      "passed": true,
+      "requests": 2,
+      "events": 3,
+      "zipCount": 1
+    },
+    {
+      "scenario": "invalid-response",
+      "passed": true,
+      "requests": 2,
+      "events": 3,
+      "zipCount": 0
+    },
+    {
+      "scenario": "jsonrpc-error",
+      "passed": true,
+      "requests": 1,
+      "events": 2,
+      "zipCount": 1
+    },
+    {
+      "scenario": "before-task-credentials-missing",
+      "passed": true,
+      "exit": 1,
+      "zipCount": 1
+    },
+    {
+      "scenario": "diagnostics-root-is-file",
+      "passed": true,
+      "exit": 0,
+      "calls": 1,
+      "diagnosticsDisabled": true
+    },
+    {
+      "scenario": "diagnostics-root-readonly",
+      "passed": true,
+      "exit": 0,
+      "calls": 1,
+      "diagnosticsDisabled": true
+    },
+    {
+      "scenario": "diagnostics-root-symlink",
+      "passed": true,
+      "exit": 0,
+      "calls": 1,
+      "diagnosticsDisabled": true
+    }
+  ]
+}

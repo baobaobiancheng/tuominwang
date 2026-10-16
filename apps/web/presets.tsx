@@ -5,7 +5,7 @@ import { appUrl } from "./urls.ts";
 import { useConfirmAction } from "./confirm-action.tsx";
 
 type Calls = { run: (action: () => Promise<void>) => Promise<void>; api: <T>(path: string, method?: string, body?: unknown) => Promise<T> };
-const entityLabels: Record<string, string> = { name_cn: "姓名", org_name: "机构", id_card: "身份证", phone: "电话", bank_card: "银行账号", address: "地址", email: "邮箱", website_url: "网址", uscc: "信用代码", wechat_id: "微信号", plate_cn: "车牌", securities_account: "证券/资金账号", case_number: "案号", cert_no: "证照号", patent_no: "专利号", filing_no: "备案号", contract_amount: "金额", seal: "印章", face: "人脸", signature: "签名", passport_no: "护照号", tax_no: "税号", ein: "雇主识别号", international_id: "国际身份证号", ssn: "社保号", official_no: "公文编号" };
+export const entityLabels: Record<string, string> = { name_cn: "姓名", org_name: "机构", id_card: "身份证", phone: "电话", bank_card: "银行账号", address: "地址", email: "邮箱", website_url: "网址", uscc: "信用代码", wechat_id: "微信号", plate_cn: "车牌", securities_account: "证券/资金账号", case_number: "案号", cert_no: "证照号", patent_no: "专利号", filing_no: "备案号", contract_amount: "金额", seal: "印章", face: "人脸", signature: "签名", passport_no: "护照号", tax_no: "税号", ein: "雇主识别号", international_id: "国际身份证号", ssn: "社保号", official_no: "公文编号" };
 const modes = { default_star: "部分遮盖", full_star: "全部遮盖", custom_pseudonym: "假名", selective_pseudonym: "按类型设置假名", default_pseudonym: "旧版假名" };
 const colours = { black: "黑色", white: "白色", purple: "紫色", lightGray: "浅灰色" };
 const fields: { path: string; label: string; type: "boolean" | "text" | "mode" | "visualMode" | "colour" | "comment" }[] = [
