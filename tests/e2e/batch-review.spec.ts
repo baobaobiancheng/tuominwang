@@ -72,6 +72,9 @@ test("batch export modes preserve original format scope, cancellation and same-m
     await page.getByRole("button", { name: "上传文件", exact: true }).click();
     await expect(page.getByText("已保存", { exact: true })).toBeVisible();
     await page.getByRole("button", { name: "返回材料列表", exact: true }).click();
+    await page.getByRole("region", { name: "材料列表", exact: true }).getByRole("button").filter({ hasText: name }).click();
+    await expect(page.locator(".statusbar span").first()).toHaveText("自动识别 已完成", { timeout: 60000 });
+    await page.getByRole("button", { name: "返回材料列表", exact: true }).click();
   }
   await page.getByRole("button", { name: "项目批量复核", exact: true }).click();
   for (const name of names) {
