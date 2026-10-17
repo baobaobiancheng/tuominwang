@@ -139997,6 +139997,145 @@
           }
         }
       ]
+    },
+    {
+      "id": "ITER-066-ARTIFACT-GREEN-AND-RECOVERY-NAVIGATION-197",
+      "date": "2026-10-17",
+      "action": "记录原草稿真实下载还原及工作区恢复定向边界",
+      "summary": "066真实API2/2；069旧API1/1，新导航修正待验；070原批量重建继续。",
+      "verification": "9文档归档、10JSON原块不变；只记实际终态，I/S/R不提升，未部署。",
+      "affected_ids": [
+        "IPC-8ed0acbb4144",
+        "IPC-9be2a0784913",
+        "IPC-be30d4526c26",
+        "IPC-f53f8972c1a5",
+        "UI-ad41d13c4a2d",
+        "UI-339d8e53408d"
+      ],
+      "evidence": [
+        {
+          "path": "文档/逆向台账/contracts/iteration066-artifact-green-and-recovery-navigation-197-20261017.json"
+        }
+      ],
+      "new_evidence_baseline": {
+        "path": "文档/逆向台账/contracts/iteration066-artifact-green-and-recovery-navigation-197-20261017.json",
+        "current": {
+          "sha256": "9a84dd6557d794ca11be55216ffd03a5abbf8b143b127c4f17a317d1bb8b3b44",
+          "bytes": 4161
+        }
+      },
+      "document_hash_transitions": [
+        {
+          "path": "文档/待办与完成状态-20261015.md",
+          "previous": {
+            "sha256": "a304e36dedab04369ee7e66b028cfc1411dab59241d2e94a7c3e677e28e3b298",
+            "bytes": 133198
+          },
+          "current": {
+            "sha256": "a5dc48fed30fa844fbfaa0ee4b61db62e419667c191bee28c599d2dd4b44584f",
+            "bytes": 133220
+          }
+        },
+        {
+          "path": "文档/脱敏规则完整技术交接-迭代023.md",
+          "previous": {
+            "sha256": "70cb9fe537b5357d25eb28b0c8828b9198a46a3820a736e90fa5e1f6b76590a2",
+            "bytes": 427286
+          },
+          "current": {
+            "sha256": "e5bb82bd88d2c9bc3545873520a26a0bc451233985e0338e3f0ecb4f7331cc03",
+            "bytes": 427333
+          }
+        }
+      ],
+      "evidence_snapshot_updates": [
+        {
+          "path": "文档/待办与完成状态-20261015.md",
+          "previous": {
+            "sha256": "a304e36dedab04369ee7e66b028cfc1411dab59241d2e94a7c3e677e28e3b298",
+            "bytes": 133198
+          },
+          "current": {
+            "sha256": "a5dc48fed30fa844fbfaa0ee4b61db62e419667c191bee28c599d2dd4b44584f",
+            "bytes": 133220
+          }
+        },
+        {
+          "path": "文档/脱敏规则完整技术交接-迭代023.md",
+          "previous": {
+            "sha256": "70cb9fe537b5357d25eb28b0c8828b9198a46a3820a736e90fa5e1f6b76590a2",
+            "bytes": 427286
+          },
+          "current": {
+            "sha256": "e5bb82bd88d2c9bc3545873520a26a0bc451233985e0338e3f0ecb4f7331cc03",
+            "bytes": 427333
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/iteration066-artifact-green-and-recovery-navigation-197-20261017.json",
+          "previous": null,
+          "current": {
+            "sha256": "9a84dd6557d794ca11be55216ffd03a5abbf8b143b127c4f17a317d1bb8b3b44",
+            "bytes": 4161
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/arch-066-original-draft-v1/candidate-manifest-v3-final.json",
+          "previous": null,
+          "current": {
+            "sha256": "e0bbea8d76bfb3326ac0c87e9f3e79ff3bbc25d3e89595698f2608f4529df386",
+            "bytes": 5385
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/arch-066-original-draft-v1/focused-api-v3-terminal-receipt.json",
+          "previous": null,
+          "current": {
+            "sha256": "45e9e8f69d4d47303e21ddd5330c1cebef9519686fc430e0dca63b8403d2f3fa",
+            "bytes": 1256
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/arch-066-original-draft-v1/focused-api-v3.log",
+          "previous": null,
+          "current": {
+            "sha256": "eb00d7995228a574cf912a285f4d5fd9f71f84dfd619a8e427d3314df55886a5",
+            "bytes": 691
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-whole-recovery-candidate-v6.json",
+          "previous": null,
+          "current": {
+            "sha256": "bd46fd9658fafaa53365ab669caf39ad49dcb3e5950a63f61e2f9a33c8f905a4",
+            "bytes": 2350
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-069-targeted-terminal-v1.json",
+          "previous": null,
+          "current": {
+            "sha256": "a43e50f893ad1c433dc6151175b946dfd3ca9ebeb739ff71852a0e5afe3b4218",
+            "bytes": 2592
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-whole-recovery-candidate-v7.json",
+          "previous": null,
+          "current": {
+            "sha256": "d42ebcc2e6383a7fe42b903cc56c1de0a35dd7d706f3ed2123979c346d72b4da",
+            "bytes": 3493
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/full-api-controller-v4.mjs",
+          "previous": null,
+          "current": {
+            "sha256": "52298deb0c59b9cc67f4e922b064f5c007576ee9570718363486fca2ae91868e",
+            "bytes": 13543
+          }
+        }
+      ]
     }
   ],
   "evidence_snapshot": {
@@ -142412,8 +142551,8 @@
         "bytes": 423
       },
       "文档/脱敏规则完整技术交接-迭代023.md": {
-        "sha256": "70cb9fe537b5357d25eb28b0c8828b9198a46a3820a736e90fa5e1f6b76590a2",
-        "bytes": 427286
+        "sha256": "e5bb82bd88d2c9bc3545873520a26a0bc451233985e0338e3f0ecb4f7331cc03",
+        "bytes": 427333
       },
       "文档/逆向台账/contracts/build-complete-rule-handoff-20261014.py": {
         "sha256": "c5d6db581eb6019ba761fe2adb9ba66b41c4a611162c32e54729baf3fa9810e6",
@@ -145988,8 +146127,8 @@
         "bytes": 4676926
       },
       "文档/待办与完成状态-20261015.md": {
-        "sha256": "a304e36dedab04369ee7e66b028cfc1411dab59241d2e94a7c3e677e28e3b298",
-        "bytes": 133198
+        "sha256": "a5dc48fed30fa844fbfaa0ee4b61db62e419667c191bee28c599d2dd4b44584f",
+        "bytes": 133220
       },
       ".data/research/lawbot-2026-10-15/iteration036/checkpoint-history/current/apps/api/main.ts": {
         "sha256": "4c36dad476012af090cb8649de2b991235d41e4c5d946a4a411404680935b011",
@@ -165298,6 +165437,38 @@
       ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-whole-recovery-candidate-v3.json": {
         "sha256": "c3a39342bed4464b47342b5cc6dd15f30c3b08e484a450c9c42db34fc9622098",
         "bytes": 2521
+      },
+      "文档/逆向台账/contracts/iteration066-artifact-green-and-recovery-navigation-197-20261017.json": {
+        "sha256": "9a84dd6557d794ca11be55216ffd03a5abbf8b143b127c4f17a317d1bb8b3b44",
+        "bytes": 4161
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/arch-066-original-draft-v1/candidate-manifest-v3-final.json": {
+        "sha256": "e0bbea8d76bfb3326ac0c87e9f3e79ff3bbc25d3e89595698f2608f4529df386",
+        "bytes": 5385
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/arch-066-original-draft-v1/focused-api-v3-terminal-receipt.json": {
+        "sha256": "45e9e8f69d4d47303e21ddd5330c1cebef9519686fc430e0dca63b8403d2f3fa",
+        "bytes": 1256
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/arch-066-original-draft-v1/focused-api-v3.log": {
+        "sha256": "eb00d7995228a574cf912a285f4d5fd9f71f84dfd619a8e427d3314df55886a5",
+        "bytes": 691
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-whole-recovery-candidate-v6.json": {
+        "sha256": "bd46fd9658fafaa53365ab669caf39ad49dcb3e5950a63f61e2f9a33c8f905a4",
+        "bytes": 2350
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-069-targeted-terminal-v1.json": {
+        "sha256": "a43e50f893ad1c433dc6151175b946dfd3ca9ebeb739ff71852a0e5afe3b4218",
+        "bytes": 2592
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-whole-recovery-candidate-v7.json": {
+        "sha256": "d42ebcc2e6383a7fe42b903cc56c1de0a35dd7d706f3ed2123979c346d72b4da",
+        "bytes": 3493
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/full-api-controller-v4.mjs": {
+        "sha256": "52298deb0c59b9cc67f4e922b064f5c007576ee9570718363486fca2ae91868e",
+        "bytes": 13543
       }
     },
     "unavailable_historical_screenshots": [
