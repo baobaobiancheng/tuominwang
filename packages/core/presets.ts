@@ -1,7 +1,8 @@
 import{isWordFormat}from'./document-format.ts';
 import {encodeXlsxString} from "./ooxml-string.ts";
 import {kindByEntityType} from "../contracts/entity-types.ts";
-import {sourceEntityMark,entityIdentity} from './entity-identity.ts';
+import {sourceEntityMark,entityIdentity,canonicalRuleEntityType} from './entity-identity.ts';
+export {canonicalRuleEntityType} from './entity-identity.ts';
 import { randomUUID } from "node:crypto";
 import { profileSchema, rulesetSchema, ruleEntrySchema, type Profile, type RuleEntry, type RuleSet, type PresetPreferences, entityTypeIds } from "../contracts/presets.ts";
 import { type DictionaryEntry, type Mark, markSchema } from "../contracts/index.ts";
@@ -54,7 +55,6 @@ export function defaultProfile(): Profile {
 }
 export function defaultPreferences(): PresetPreferences { return { schemaVersion: 1, defaultProfileId: SYSTEM_PROFILE_ID, activeRuleSetId: null, lastSuccessfulExportByKind: {}, updatedAt: epoch }; }
 export function normalizePattern(value: string) { return value.trim().replace(/\s+/gu, " "); }
-export function canonicalRuleEntityType(value: string) { const kind = Object.hasOwn(kindByEntityType,value)?kindByEntityType[value]:value; return Object.keys(kindByEntityType).find(k => kindByEntityType[k] === kind) ?? value; }
 export function presetNameWithSuffix(base: string, suffix: string) { return base + suffix; }
 export function ruleKey(entry: Pick<RuleEntry, "entityType" | "pattern">) { return `${entityIdentity(sourceEntityMark(entry.entityType,entry.pattern))}\0${normalizePattern(entry.pattern)}\0exact`; }
 /** Source Bd.validateRuleSet normalizes these retired fields before Rd/Cd.
