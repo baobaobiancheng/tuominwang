@@ -1,0 +1,99 @@
+{
+  "event": 204,
+  "at": "2026-10-17T13:16:26.944326+00:00",
+  "head": "f7a38989756fadbef3901f8692e6e485d3718095",
+  "edge": {
+    "status": "PREPARED_NOT_LAUNCHED",
+    "naturalCLI": 115,
+    "specFiles": 70,
+    "manifestSha256": "bce0b09ddfd7a32c766860bff14e856030a667fa8c895e06f31791e12751b1e8",
+    "peerReview": "v1 P1 unsafe dev restart and P2 missing terminal receipt fixed; v2 static limited No Findings; original findings retained"
+  },
+  "api": {
+    "status": "RUNNING_NOT_TERMINAL",
+    "controllerPid": 99504,
+    "liveVerified": true,
+    "completedFiles": 24,
+    "validPassedFiles": 24,
+    "plannedFiles": 159
+  },
+  "releasePreparation": "Ignored template only; no images built and no server writes. Input validator refuses missing terminal evidence; deployment script exits before server commands.",
+  "sourceUnchanged": true,
+  "formalProductPromoted": false,
+  "deployed": false,
+  "beforeDocuments": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/before-ledger204-v1/manifest.json",
+  "rawRules": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/rule-json-before-ledger204-v1.json",
+  "competitorRuntime": "258 R0 unchanged",
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-final-edge115-prepared-v1/list-plan.mjs",
+      "sha256": "b9285fb28bfcb38141f963d4d4c397b9fa42f3560ad7c9e654ab82459b413158",
+      "bytes": 1699
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-final-edge115-prepared-v1/list-raw.json",
+      "sha256": "9fcf4fa38c1777e1a3e44c3f01f595fd4dea6d59bc73f1f3ecb11ff8489c1a84",
+      "bytes": 85112
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-final-edge115-prepared-v1/planned-ids.json",
+      "sha256": "3133ae5c0356d9584408689b07e1ccb1ccfd39fec7fb6c20a00e3f6025d7768f",
+      "bytes": 25878
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-final-edge115-prepared-v1/playwright.config.ts",
+      "sha256": "7d4224db0274ee34182e3179fe3fac08c6c76a1dc0190a58fdb07811fc91bc16",
+      "bytes": 919
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-final-edge115-prepared-v1/run-final-edge.mjs",
+      "sha256": "d00838e82fec4a0b2eec8ae2cdb9ee61a243e7baf80acda7b8a5ed975acd3890",
+      "bytes": 10239
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-final-edge115-prepared-v1/run-with-owned-dev.py",
+      "sha256": "335174aed930dff6e37a83d2c102a14463051544673ac410006cff067d0db48d",
+      "bytes": 5614
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-final-edge115-prepared-v1/prepared-manifest.json",
+      "sha256": "bce0b09ddfd7a32c766860bff14e856030a667fa8c895e06f31791e12751b1e8",
+      "bytes": 2405
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-final-edge115-prepared-v1/api-live-snapshot.jsonl",
+      "sha256": "7a69951f5fb7279763e6de7f43627f731c0176a362b6cbb0f184661ac8e4c5af",
+      "bytes": 54927
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-full-edge115-controller-peer-v1.json",
+      "sha256": "1729f60bc1449d4937d97bca3cbca161dd16b962900a452cbd9f2015c0e2482c",
+      "bytes": 4209
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-full-edge115-controller-peer-v1.md",
+      "sha256": "a635a5c71e5655be496b26e2b566dcd2e6ff7f4a137d6308291373ed69f2cf6e",
+      "bytes": 1314
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-full-edge115-controller-peer-v2.json",
+      "sha256": "f5e4b7d83d7cb5e628dfbdedc72558f4f9d60b7c940f543fd5c8d6dd1d877231",
+      "bytes": 2778
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-full-edge115-controller-peer-v2.md",
+      "sha256": "e1ba5ed85c44a195b6b071f62bac244c6f0a3facc78eebf8c340bdfe894009c7",
+      "bytes": 776
+    },
+    {
+      "path": ".data/deploy/aliyun-20261017/iteration070/research-template-v1/candidate-manifest.json",
+      "sha256": "7d46f84dba2213bcce9bdfa79305507bd164d46056178adab011266a5c54dfc6",
+      "bytes": 2263
+    },
+    {
+      "path": ".data/deploy/aliyun-20261017/iteration070/research-template-v1/preparation-receipt.json",
+      "sha256": "eb80c4977717e742b64e87fc703b5d5aa983ff6bc235cd6e0cae502b5b2d5e63",
+      "bytes": 385
+    }
+  ]
+}

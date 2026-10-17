@@ -141260,6 +141260,197 @@
           }
         }
       ]
+    },
+    {
+      "id": "ITER-070-EDGE115-PREPARED-PEER-REVIEWED-204",
+      "date": "2026-10-17",
+      "action": "完成115完整Edge准备及控制器对抗复审，保留API真实运行快照",
+      "summary": "完整Edge自然115/70，停止失败重复dev和异常缺终态回执两缺陷已修复，独立v2有限静态无新发现；API159真实进程存活，快照24文件均过，仍未终态。",
+      "verification": "无产品源码改动；未启动Edge/构建/部署。保留失败审查和修复后报告；9文档/10规则JSON已先存档。",
+      "affected_ids": [
+        "UI-ad41d13c4a2d",
+        "UI-339d8e53408d"
+      ],
+      "evidence": [
+        {
+          "path": "文档/逆向台账/contracts/iteration070-edge115-prepared-peer-reviewed-204-20261017.json"
+        }
+      ],
+      "new_evidence_baseline": {
+        "path": "文档/逆向台账/contracts/iteration070-edge115-prepared-peer-reviewed-204-20261017.json",
+        "current": {
+          "sha256": "b86fb3974c6a6ff5191befdc2465195fd9e02d317111179f740551150e654cb3",
+          "bytes": 4635
+        }
+      },
+      "document_hash_transitions": [
+        {
+          "path": "文档/待办与完成状态-20261015.md",
+          "previous": {
+            "sha256": "1130799437a7aeb16b4476e7df829155e76f44917d76a042065c8e98768fee49",
+            "bytes": 133292
+          },
+          "current": {
+            "sha256": "08727a96c145e65564a6ac985b7091ac53ecc8dbb2cd5957bfc2abbdb1f658ea",
+            "bytes": 133271
+          }
+        },
+        {
+          "path": "文档/脱敏规则完整技术交接-迭代023.md",
+          "previous": {
+            "sha256": "4b5a4f38813d3adc50f5cc3ecb9632abf4f475025b1a1edf912c006960f88aa9",
+            "bytes": 428101
+          },
+          "current": {
+            "sha256": "bf0e8fba17c952abff67c0c1f60be870f1f80e35df1fcff3237be61c039648db",
+            "bytes": 428161
+          }
+        }
+      ],
+      "evidence_snapshot_updates": [
+        {
+          "path": "文档/待办与完成状态-20261015.md",
+          "previous": {
+            "sha256": "1130799437a7aeb16b4476e7df829155e76f44917d76a042065c8e98768fee49",
+            "bytes": 133292
+          },
+          "current": {
+            "sha256": "08727a96c145e65564a6ac985b7091ac53ecc8dbb2cd5957bfc2abbdb1f658ea",
+            "bytes": 133271
+          }
+        },
+        {
+          "path": "文档/脱敏规则完整技术交接-迭代023.md",
+          "previous": {
+            "sha256": "4b5a4f38813d3adc50f5cc3ecb9632abf4f475025b1a1edf912c006960f88aa9",
+            "bytes": 428101
+          },
+          "current": {
+            "sha256": "bf0e8fba17c952abff67c0c1f60be870f1f80e35df1fcff3237be61c039648db",
+            "bytes": 428161
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/iteration070-edge115-prepared-peer-reviewed-204-20261017.json",
+          "previous": null,
+          "current": {
+            "sha256": "b86fb3974c6a6ff5191befdc2465195fd9e02d317111179f740551150e654cb3",
+            "bytes": 4635
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-final-edge115-prepared-v1/list-plan.mjs",
+          "previous": null,
+          "current": {
+            "sha256": "b9285fb28bfcb38141f963d4d4c397b9fa42f3560ad7c9e654ab82459b413158",
+            "bytes": 1699
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-final-edge115-prepared-v1/list-raw.json",
+          "previous": null,
+          "current": {
+            "sha256": "9fcf4fa38c1777e1a3e44c3f01f595fd4dea6d59bc73f1f3ecb11ff8489c1a84",
+            "bytes": 85112
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-final-edge115-prepared-v1/planned-ids.json",
+          "previous": null,
+          "current": {
+            "sha256": "3133ae5c0356d9584408689b07e1ccb1ccfd39fec7fb6c20a00e3f6025d7768f",
+            "bytes": 25878
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-final-edge115-prepared-v1/playwright.config.ts",
+          "previous": null,
+          "current": {
+            "sha256": "7d4224db0274ee34182e3179fe3fac08c6c76a1dc0190a58fdb07811fc91bc16",
+            "bytes": 919
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-final-edge115-prepared-v1/run-final-edge.mjs",
+          "previous": null,
+          "current": {
+            "sha256": "d00838e82fec4a0b2eec8ae2cdb9ee61a243e7baf80acda7b8a5ed975acd3890",
+            "bytes": 10239
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-final-edge115-prepared-v1/run-with-owned-dev.py",
+          "previous": null,
+          "current": {
+            "sha256": "335174aed930dff6e37a83d2c102a14463051544673ac410006cff067d0db48d",
+            "bytes": 5614
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-final-edge115-prepared-v1/prepared-manifest.json",
+          "previous": null,
+          "current": {
+            "sha256": "bce0b09ddfd7a32c766860bff14e856030a667fa8c895e06f31791e12751b1e8",
+            "bytes": 2405
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-final-edge115-prepared-v1/api-live-snapshot.jsonl",
+          "previous": null,
+          "current": {
+            "sha256": "7a69951f5fb7279763e6de7f43627f731c0176a362b6cbb0f184661ac8e4c5af",
+            "bytes": 54927
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-full-edge115-controller-peer-v1.json",
+          "previous": null,
+          "current": {
+            "sha256": "1729f60bc1449d4937d97bca3cbca161dd16b962900a452cbd9f2015c0e2482c",
+            "bytes": 4209
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-full-edge115-controller-peer-v1.md",
+          "previous": null,
+          "current": {
+            "sha256": "a635a5c71e5655be496b26e2b566dcd2e6ff7f4a137d6308291373ed69f2cf6e",
+            "bytes": 1314
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-full-edge115-controller-peer-v2.json",
+          "previous": null,
+          "current": {
+            "sha256": "f5e4b7d83d7cb5e628dfbdedc72558f4f9d60b7c940f543fd5c8d6dd1d877231",
+            "bytes": 2778
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-full-edge115-controller-peer-v2.md",
+          "previous": null,
+          "current": {
+            "sha256": "e1ba5ed85c44a195b6b071f62bac244c6f0a3facc78eebf8c340bdfe894009c7",
+            "bytes": 776
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/research-template-v1/candidate-manifest.json",
+          "previous": null,
+          "current": {
+            "sha256": "7d46f84dba2213bcce9bdfa79305507bd164d46056178adab011266a5c54dfc6",
+            "bytes": 2263
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/research-template-v1/preparation-receipt.json",
+          "previous": null,
+          "current": {
+            "sha256": "eb80c4977717e742b64e87fc703b5d5aa983ff6bc235cd6e0cae502b5b2d5e63",
+            "bytes": 385
+          }
+        }
+      ]
     }
   ],
   "evidence_snapshot": {
@@ -143675,8 +143866,8 @@
         "bytes": 423
       },
       "文档/脱敏规则完整技术交接-迭代023.md": {
-        "sha256": "4b5a4f38813d3adc50f5cc3ecb9632abf4f475025b1a1edf912c006960f88aa9",
-        "bytes": 428101
+        "sha256": "bf0e8fba17c952abff67c0c1f60be870f1f80e35df1fcff3237be61c039648db",
+        "bytes": 428161
       },
       "文档/逆向台账/contracts/build-complete-rule-handoff-20261014.py": {
         "sha256": "c5d6db581eb6019ba761fe2adb9ba66b41c4a611162c32e54729baf3fa9810e6",
@@ -147251,8 +147442,8 @@
         "bytes": 4676926
       },
       "文档/待办与完成状态-20261015.md": {
-        "sha256": "1130799437a7aeb16b4476e7df829155e76f44917d76a042065c8e98768fee49",
-        "bytes": 133292
+        "sha256": "08727a96c145e65564a6ac985b7091ac53ecc8dbb2cd5957bfc2abbdb1f658ea",
+        "bytes": 133271
       },
       ".data/research/lawbot-2026-10-15/iteration036/checkpoint-history/current/apps/api/main.ts": {
         "sha256": "4c36dad476012af090cb8649de2b991235d41e4c5d946a4a411404680935b011",
@@ -166921,6 +167112,66 @@
       ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-rule-handoff-current-readback-v1.md": {
         "sha256": "67e4601b237988c06034484700ae82c28d7b4ae5fc0f5561fe47c519515a04b8",
         "bytes": 1572
+      },
+      "文档/逆向台账/contracts/iteration070-edge115-prepared-peer-reviewed-204-20261017.json": {
+        "sha256": "b86fb3974c6a6ff5191befdc2465195fd9e02d317111179f740551150e654cb3",
+        "bytes": 4635
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-final-edge115-prepared-v1/list-plan.mjs": {
+        "sha256": "b9285fb28bfcb38141f963d4d4c397b9fa42f3560ad7c9e654ab82459b413158",
+        "bytes": 1699
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-final-edge115-prepared-v1/list-raw.json": {
+        "sha256": "9fcf4fa38c1777e1a3e44c3f01f595fd4dea6d59bc73f1f3ecb11ff8489c1a84",
+        "bytes": 85112
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-final-edge115-prepared-v1/planned-ids.json": {
+        "sha256": "3133ae5c0356d9584408689b07e1ccb1ccfd39fec7fb6c20a00e3f6025d7768f",
+        "bytes": 25878
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-final-edge115-prepared-v1/playwright.config.ts": {
+        "sha256": "7d4224db0274ee34182e3179fe3fac08c6c76a1dc0190a58fdb07811fc91bc16",
+        "bytes": 919
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-final-edge115-prepared-v1/run-final-edge.mjs": {
+        "sha256": "d00838e82fec4a0b2eec8ae2cdb9ee61a243e7baf80acda7b8a5ed975acd3890",
+        "bytes": 10239
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-final-edge115-prepared-v1/run-with-owned-dev.py": {
+        "sha256": "335174aed930dff6e37a83d2c102a14463051544673ac410006cff067d0db48d",
+        "bytes": 5614
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-final-edge115-prepared-v1/prepared-manifest.json": {
+        "sha256": "bce0b09ddfd7a32c766860bff14e856030a667fa8c895e06f31791e12751b1e8",
+        "bytes": 2405
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-final-edge115-prepared-v1/api-live-snapshot.jsonl": {
+        "sha256": "7a69951f5fb7279763e6de7f43627f731c0176a362b6cbb0f184661ac8e4c5af",
+        "bytes": 54927
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-full-edge115-controller-peer-v1.json": {
+        "sha256": "1729f60bc1449d4937d97bca3cbca161dd16b962900a452cbd9f2015c0e2482c",
+        "bytes": 4209
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-full-edge115-controller-peer-v1.md": {
+        "sha256": "a635a5c71e5655be496b26e2b566dcd2e6ff7f4a137d6308291373ed69f2cf6e",
+        "bytes": 1314
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-full-edge115-controller-peer-v2.json": {
+        "sha256": "f5e4b7d83d7cb5e628dfbdedc72558f4f9d60b7c940f543fd5c8d6dd1d877231",
+        "bytes": 2778
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-full-edge115-controller-peer-v2.md": {
+        "sha256": "e1ba5ed85c44a195b6b071f62bac244c6f0a3facc78eebf8c340bdfe894009c7",
+        "bytes": 776
+      },
+      ".data/deploy/aliyun-20261017/iteration070/research-template-v1/candidate-manifest.json": {
+        "sha256": "7d46f84dba2213bcce9bdfa79305507bd164d46056178adab011266a5c54dfc6",
+        "bytes": 2263
+      },
+      ".data/deploy/aliyun-20261017/iteration070/research-template-v1/preparation-receipt.json": {
+        "sha256": "eb80c4977717e742b64e87fc703b5d5aa983ff6bc235cd6e0cae502b5b2d5e63",
+        "bytes": 385
       }
     },
     "unavailable_historical_screenshots": [
