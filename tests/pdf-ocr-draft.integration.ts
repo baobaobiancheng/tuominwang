@@ -49,7 +49,7 @@ test('partial root draft survives a competing priority preemption, automatic con
   const maskedX=Math.floor(15*processedPixels.info.width/first.width),maskedY=Math.floor(15*processedPixels.info.height/first.height),maskedOffset=(maskedY*processedPixels.info.width+maskedX)*3;
   assert.deepEqual([...processedPixels.data.subarray(maskedOffset,maskedOffset+3)],[0,0,0]);
   assert.equal((await owner.req('POST',`/api/jobs/${partial.j.id}/pdf-ocr/draft/pages/${first.pageIndex}/preview`,{...previewInput,mapHash:'0'.repeat(64)})).statusCode,409);
-  assert.equal((await owner.req('POST',`/api/jobs/${partial.j.id}/pdf-ocr/draft/pages/19/preview`,{...previewInput,pageIndex:19})).statusCode,409);
+  assert.equal((await owner.req('POST',`/api/jobs/${partial.j.id}/pdf-ocr/draft/pages/20/preview`,{...previewInput,pageIndex:20})).statusCode,409);
   assert.equal((await admin.query('SELECT count(*)::int n FROM pdf_ocr_review_drafts WHERE document_id=$1',[doc])).rows[0].n,0);
   assert.equal((await admin.query('SELECT state FROM documents WHERE id=$1',[doc])).rows[0].state,'queued');
   const preview=await owner.req('GET',`/api/jobs/${partial.j.id}/pdf-ocr/draft/pages/${first.pageIndex}`);assert.equal(preview.statusCode,200,preview.body);assert.equal(preview.headers['cache-control'],'no-store');assert.equal((await sharp(preview.rawPayload).metadata()).format,'png');
