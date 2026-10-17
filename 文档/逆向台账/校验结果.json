@@ -1,5 +1,5 @@
 {
-  "ledger_sha256": "b5831ff396d3610a7c26712f7d0142ddeafbbbf36b617b5befa15cde47df176c",
+  "ledger_sha256": "04bb2413558cf3a2aa7ecc0d28c7f31fbcdf1868a6c7e50028c888af360d418f",
   "reference_version": "0.5.9",
   "interface_count": 258,
   "flow_count": 37,
@@ -8,7 +8,7 @@
   "unmapped_interfaces": [],
   "empty_evidence_interfaces": [],
   "evidence_reference_count": 5106,
-  "evidence_file_count": 6310,
+  "evidence_file_count": 6314,
   "evidence_baseline_at": "2026-10-15T23:43:46.294394+00:00",
   "evidence_baseline_note": "这些哈希是2026-10-13本轮从当前现存文件建立的内容基线，只用于此后漂移检测；不能反向证明基线建立前的文件内容、原始发布完整性或过去运行结论。专有源码未修改。 ITER-012/013追加人工契约、交叉审查、新版指南及明确列举的子路径源码；旧文件哈希继续保留。已批准源码和主分析文档的哈希变更逐项记录previous/current，不扫描部署凭据。 ITER-014仅显式更新最终应用Compose及新增部署结果文件，保留真实OOM与未验证边界，未纳入密钥或环境凭据。 ITER-015仅补115项UI入口、两处动态桥调用集合、交叉审查/核验脚本及新增OpenJPEG发布证据；保留此前应用和部署文件的哈希，正在进行的前端修复漂移由后续迭代单独复核。 ITER-016：仅将本轮明确修改的前端/测试/部署/文档及验收回执更新基线，事件保存旧新哈希；无业务材料或凭据入账。 ITER-017新增分组/增补契约、交叉审查及npm原生签名差异证据；仅maintain新增71解释及维护规则旧动态数量文案的历史hash显式更新。未纳入凭据、未改竞品文件或应用。下载tarball及原生比较的逐项SHA保存在专项报告，不自动扩大成算法可信声明。 ITER-020：补我方Word结构预览、页内OCR改字、视觉候选的实现/验收与规则交接；显式更新5项应用pin，previous/current与原ledger备份保留；早期UI/26例与旧交接独审仅为历史阶段，不代表最终功能或最终文档全部被独审。竞品S2/R0、全部I级别不变，未据本地验证声明公网发布。 ITER-022显式更新进度检查点应用pin；main87基线原字节和旧新hash逐项保留，新能力未一律提级，未发布服务。 ITER-023仅显式进度检查点，28项原pin旧字节归档；有失败日志和新阶段未完成事项，未整体升格。 ITER-030显式逐ID更新，所有漂移旧字节保留并精确验hash；竞品运行R0保持不变。 ITER-031发布及真实OOM影响补证；README和指南文本旧字节精确保留；7张历史截图原字节缺失明确列出，旧hash保留且不声称历史图全部可验证。 ITER038静态语义逐ID合并；旧漂移逐一有精确字节归档，未覆盖掉历史证据。 ITER039握手故障独立复现；变更旧字节逐一验hash并归档，未以定向通过推全量或发布。 ITER040保留全部旧pin字节；逐ID/流程说明CAS更正，等级不变；实际门禁与服务器发布分别记录。 ITER040补5个已存在的新引用当前哈希；不反推其建立基线前内容。新增Edge截图调用保留此前精确字节，尚未运行。 ITER041逐文件真实variant与前后testSHA/logSHA固定；历史结果不冒称当前单次全量。两项测试修正保留旧字节及独立源裁定。 ITER042：首轮真实Edge失败原样保留；18项新旧字节逐一固定，4项产品修复待重新运行，等级不变。 ITER043最终本地：所有旧pin精确字节均找到并归档；API/Edge逐variant保留，无单次全量虚称；13条备注校准不改等级，图文实际核对；部署另证。 ITER044上线：首次真实OOM/回滚与恢复、二次发布、TXT/PNG实产物、指南补丁分别保留；无新增资源限制或模型读取改动；证据变更先核旧字节，S/I/R不变。 ITER-050首次检查点新增审查和实际反例，不变更已有pin及S/I/R，修复与发布尚待。 ITER-050终版：明确更新14路径及文档pin，旧字节按SHA归档；保留失败/跳过/反驳与最终同源层次。258R0及S/I不升级；未把本地验收写为已发布。 ITER-050发布：4文档旧字节先归档，追加最小部署与公网只读证据，保留历史状态而不升级S/I/R。 ITER-051反例检查点：状态文件旧字节先归档；固定已结束实测而不固定仍运行日志；不升级S/I/R。 ITER-051第一批：旧源码Git7ef93d6精确字节归档后显式转移pin；772单元及Edge2为第一批实测，签名/进度/MCP后续未验，竞品R0/线上050记录保持。 051第二批本地checkpoint：显式pin转换及事前旧字节归档；777完整单元、定向API/Edge与跨组反驳；95文件API仍执行、活动日志不pin、未部署。 051第三批本地checkpoint：显式旧pin归档转换，851完整check、分层API/Edge、27图；104全API仍执行，未部署，S/I/R不升。 051第四批前停点：104文件执行35，61过1测试期望失败；无条件安全断言重验1/1，假名与模型导航补齐，未部署。 051第四批checkpoint：SQL044及Edge1/1、854 check134/783、28节30图；105完整API仍运行，未部署，旧pin精确字节归档。 051e终态：105文件209项分段通过、854输入不变、044上线/397运行文件和web资源/5邻居/公网Edge/28节30图，源R0及I级保持。 052显式归档9处旧pin后更新；完整83失败/分层87成功、793单元及规则和质量边界分别保留，208条过期门禁等待清理不提升状态。 ITER-056进展：46项已冻结v4开发源码pin的旧字节逐项从HEAD恢复并精确验旧hash归档后更新；非完成或部署声明。7项缺失runtime-mount证据从原DMG只读挂载提取，逐项匹配原hash，未改竞品源码。明细iteration056-development-pin-refresh-20261016.json。 ITER056正式代码检查点：16项代码pin逐项有旧字节archive，895输入/820测试/Bend通过；真实seal暂停P1仍开放，完整API/Edge/发布未完成。 ITER056第二阶段语义审计：80项有界核查，新增缺页按需OCR P2；不改源码pin或S/I/R，私树与研究稿不是完成。 ITER-056定向完整印章链及真实预览失败追加：仅新增稳定证据pin，保留独审撤回记录；正式895源码与S/I/R不变，未部署。 ITER-056提前预览Edge实际1/1追加：失败与定位保留，新增证据pin；正常dev恢复，私树通过不等于正式全量，不升S/I/R。 ITER-056正式v7合入：35路径旧pin逐一以真实旧字节归档，912输入manifest固定；052本地迁移健康已验，完整门禁待验，未发布服务器且S/I/R不变。 ITER-056正式v7完整工程检查实际通过：824单测+Bend18/21+类型构建；API129真实启动及Edge104准备单独声明，不冒称动态全量完成。新增稳定证据pin且S/I/R不变。 ITER-056规则来源手册同步：原391085字节与10JSON保留；新增17ID只读复核及当前图表，明确移植与我方扩展、准确率未验，不改S/I/R。 ITER-056限定静态补证：26项S2→S3仅包内接口链，8项未知远端保S2；独审发现MCP视觉附件真实缺分支，保留I1与全部R0，不以测试替代补齐。手册旧字节及10JSON保留。 ITER-056视觉映射原码复核：公开LPM控制语义与0可见命中分开，方向修正留证；正式912和S/I/R不变。 ITER-056金额真实Edge1/1与截图指南：原指南旧字节归档、29节链接核验，下载断言和保存服务端产物来源分开；MCP私树P1待修，正式912未变，不升S/I/R。 ITER-056 916正式检查点：26路径逐项旧/新SHA与23份旧源归档核实后更新，工程check通过且477历史恢复；913旧API/Edge失败与82独立运行中诊断保持不同源。旧台账/生成视图/两主文档原字节归档，10规则JSON不变；只读远端计数与备份能力不等于备份/发布，不升S/I/R。 ITER-056 917本任务重试检查点：3路径中2旧源码字节精确归档、新增1测试；917工程check终态通过且477历史复原。定向1+2仅测试DB置failed后真实poll/worker，不代表真实模型故障。旧913完整API/Edge失败和正在执行的913余82、916关键Edge均单列不可拼绿；未发布服务器，不升S/I/R。旧台账视图与两主文档先归档，规则10JSON不变，live日志/进程未pin。 ITER-056-105：v11三项Edge测试旧字节归档；check-v14终态0，API133/Edge105仅启动未终态。三项当前待办陈述校正，不提升S/I/R，不把913余82与旧前缀拼成一次全绿。 ITER-056-106：完整Edge首三项失败、纯测试候选与独审合并记录；完整API/Edge和旧913诊断均只固定前缀非终态，v11正式源码与S/I/R不变。 ITER-056-107：指南v2研究态静态渲染与独审、三项未运行纯测试候选一次记录；三组完整运行仅15:27:54 UTC不可变前缀，正式v11/917与S/I/R不变。 ITER-056-108：MCP七文件REA静态与逐函数有界对照，四差异和原请求去重边界；候选未完成全量验证，三组仅不可变前缀，S/I/R与R0不变。 ITER-056-109：原MCP backend service 86方法有界索引不等于闭合，父子接续/失败重准备仍有差异；transport v3局部API0、v5仅启动，诊断v1迁移/时序问题，旧913余82诊断1fail；S/I/R与R0不变。 ITER-056-110：通知v6单件隔离API0、诊断v4研究、传输v5私树5案0；正式917完整105Edge 85预期20失败，133API运行中固定前缀；S/I/R及R0不变。 ITER-056-111：原模块字节复用研究、本地诊断I/O与combined父完成查询缺口，空resources研究纯测；新层未合、S/I/R不升。 ITER-056-112：合并父真实完整还原单案通过与3案2/1、connector9/9、Edge7为6/1及wrapper故障独立保留；resume安全缺口及协议API仍待，S/I/R不升。 ITER-056-113：视觉定向3/3、协议私树API/类型0、批量v7 5案3/2与独审缺口按稳定SHA补证；旧7视图字节归档。正式917/线上054未更新，S/I/R与竞品全R0不变，v8未验。 ITER-056-114：batch v8五案0、13Edge9/4与fresh4未验；新接续alias/断开状态链缺口、053发布研究非就绪分开，I/S/R不升。 ITER115：原模块优先复用；整合v1/v2及Edge fresh4/fresh2实际终态分开记录，保留失败和源码提示漏项，最终整合全量/部署尚未完成，等级不变。 ITER116：原模块复用独审、v3批量8过/传输撤权真实失败及v4最小修复分别记录，最终合并全量验收与发布尚未完成。 ITER-056-117：v5私树check终态0与先前缺件/安装拒绝并列保留；定向API/Edge按真实源和终态分层，full API/106未完成，不升S/I/R。旧7视图精确归档。 ITER118：旧基线API133/274实际全过不冒作整合全量；新resume并发失败与CAS候选分开；README/状态文档旧字节归档，规则交接未改，S/I/R不变。 ITER119：正式937源合并42路径，旧新pin与精确旧字节保留；逐ID目录实际差距公开保留，未提I/S/R，最终全量与部署仍待。 ITER120：公开PDF全页链与我方300总限制差异补证；本地053数据库/健康实际读回不冒作发布，旧字节与源R0保留。 ITER056-136：8份旧台账及状态字节先完整归档；显式更新状态pin并新增冻结v14检查和REA稳定复核证据，未提升竞品运行或发布结论。 ITER056-137：先保留8份旧字节，更新当前状态pin；新增v7与985中间基线、全操作余项报告，未提升R/I或发布。 ITER056-138：旧8字节先归档；实际v15失败、两处逐字节等价测试修复与peer精确固定，不变产品或提升全量结论。；139：正式v17合入后34历史源码证据指向原字节归档，现行哈希与映射另存；不追认旧测试对新代码有效。 ITER060-188仅增加原码优先审计规划、REA复查、真实预览失败与独立修正红绿；更新两份文档hash，旧字节已归档。规划及候选不等于接口闭合，R0与正式源码不升。",
   "evidence_files": {
@@ -21807,6 +21807,11 @@
       "bytes": 2305,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/frontend-067-preflight-v2/freeze-report.json": {
+      "sha256": "e885cb6cd37f5d6dddbda6bc39bc5d088caa2a6e7c32067d217a08db5fca634f",
+      "bytes": 1042,
+      "matches_baseline": true
+    },
     ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/full-api-fixture-inventory-067-v1.json": {
       "sha256": "b72f71c340f183126076c0e03a0d4ff6637c0705f86f8f008dc961ec8f807958",
       "bytes": 14427,
@@ -21922,6 +21927,11 @@
       "bytes": 4033,
       "matches_baseline": true
     },
+    ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-peer-066-original-draft-v1.json": {
+      "sha256": "e31a94b8ce5e9c2d1662292ffe00606dfa0e09922cacd5f58edc79c2499cc818",
+      "bytes": 4332,
+      "matches_baseline": true
+    },
     ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-peer-pipeline-final-v1.json": {
       "sha256": "002ba355f4b2c1434a8f17d3f8a31e3888071c8cbb4615c07c9a3d4145230f76",
       "bytes": 8842,
@@ -21930,6 +21940,11 @@
     ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/rea-stable-live-recheck-v1.json": {
       "sha256": "4f51979dc6143045bc1dc2714b41b0319356af17da3d3f19263cb11091537744",
       "bytes": 391,
+      "matches_baseline": true
+    },
+    ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-067-busy-update-finding-v1.json": {
+      "sha256": "a489dc36e10ba9e082a8e028533c01a074157619c841d42a5cac73403ba5c0b7",
+      "bytes": 1704,
       "matches_baseline": true
     },
     ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-api155-terminal-independent-cleanup-v1.json": {
@@ -28368,8 +28383,8 @@
       "matches_baseline": true
     },
     "文档/待办与完成状态-20261015.md": {
-      "sha256": "4cd88c9751356e5b27ae263ac510667348865348dfac005f7a130225151401dc",
-      "bytes": 133145,
+      "sha256": "6d189db60338ae5d813215887a8187077c3ccb85c87182bdf4f5629dc3969e2b",
+      "bytes": 132938,
       "matches_baseline": true
     },
     "文档/按钮确认交互修复与验收.md": {
@@ -28393,8 +28408,8 @@
       "matches_baseline": true
     },
     "文档/脱敏规则完整技术交接-迭代023.md": {
-      "sha256": "cef28df1e51481fe3a2a4633233def3b61df9f30b70e0de338ab9b0efd14cd53",
-      "bytes": 427358,
+      "sha256": "98dc626e6f69eaf50219093e1caafbabb190e58fd371a8e93e0aca3c217e9bf1",
+      "bytes": 427285,
       "matches_baseline": true
     },
     "文档/脱敏规则技术交接-20261014.md": {
@@ -29685,6 +29700,11 @@
     "文档/逆向台账/contracts/iteration067-direct-original-combined-candidate-194-20261017.json": {
       "sha256": "4a506246c921a363e91058d328b808858f6212b11e34fe9601bc503788d9ce24",
       "bytes": 3884,
+      "matches_baseline": true
+    },
+    "文档/逆向台账/contracts/iteration068-adversarial-busy-and-draft-findings-195-20261017.json": {
+      "sha256": "0ecb2c8bc07ff0fd7438bdebc95962853ecea9f647c0e589893c401731e68a1f",
+      "bytes": 2467,
       "matches_baseline": true
     },
     "文档/逆向台账/contracts/ledger-recommendations.json": {

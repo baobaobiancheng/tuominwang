@@ -1,0 +1,43 @@
+{
+  "event": 195,
+  "at": "2026-10-17T11:16:42.603375+00:00",
+  "constraint": "直接复用原代码、原字段、原流程；修现有桥接错误，不另起业务设计。",
+  "rootP1": {
+    "frozenSource": "067/7e7029c",
+    "finding": "实体组新动作在run内调用普通update，被busyRef拒绝；API200但本地marks/dirty不变。API/unit未覆盖该前端桥。",
+    "status": "源码链确认，068已准备同真实UI反例；实际RED/GREEN尚待运行。",
+    "minimalFix": "仅成功且id/revision/marks快照一致的服务端结果沿既有fromServer更新入口，普通编辑和全局busy保护保留。",
+    "decision": "067预检v1/v2保留但不执行check/API；修后新身份重绑，不回填旧hash。"
+  },
+  "peer066": {
+    "scope": "初读7路径/HEAD24c5579，候选正变化，非最终批准。",
+    "findings": [
+      "中文kind与原cc归other，和现canonicalRuleEntityType导出键不同。",
+      "native SaveAs草稿存入snapshot.project.importedPortable，重映射newId后未按oldId读取。"
+    ],
+    "reportedFixes": "arch已报告最小类型映射及native旧新ID/sourceHash重绑修正；尚无真实DB/native/artifact验收，不把修正报告当通过。"
+  },
+  "remaining": "068真实UI红绿及最终组合完整check/API；066原vendor草稿UI/当前单件映射归档/实际还原仍待闭环。",
+  "formalProductPromoted": false,
+  "deployed": false,
+  "competitorRuntime": "258 R0，未绕许可证。",
+  "beforeDocuments": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/before-ledger195-v1/manifest.json",
+  "rawRules": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/rule-json-before-ledger195-v1.json",
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-067-busy-update-finding-v1.json",
+      "sha256": "a489dc36e10ba9e082a8e028533c01a074157619c841d42a5cac73403ba5c0b7",
+      "bytes": 1704
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/frontend-067-preflight-v2/freeze-report.json",
+      "sha256": "e885cb6cd37f5d6dddbda6bc39bc5d088caa2a6e7c32067d217a08db5fca634f",
+      "bytes": 1042
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-peer-066-original-draft-v1.json",
+      "sha256": "e31a94b8ce5e9c2d1662292ffe00606dfa0e09922cacd5f58edc79c2499cc818",
+      "bytes": 4332
+    }
+  ]
+}
