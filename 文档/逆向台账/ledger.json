@@ -141187,6 +141187,79 @@
           }
         }
       ]
+    },
+    {
+      "id": "ITER-070-RULE-HANDOFF-CLARIFICATIONS-203",
+      "date": "2026-10-17",
+      "action": "按原代码澄清两处当前规则交接语义",
+      "summary": "整文件full_star输出与保留手工草稿区分；未保存统一预览按index保护manual/ignore，同key automatic仍改变。",
+      "verification": "独立只读审查逐行对照冻结f7源码；十块JSON原文不变。API159仍运行、完整Edge115未开始，未提升正式产品或部署。",
+      "affected_ids": [
+        "UI-ad41d13c4a2d",
+        "UI-339d8e53408d"
+      ],
+      "evidence": [
+        {
+          "path": "文档/逆向台账/contracts/iteration070-rule-handoff-clarifications-203-20261017.json"
+        }
+      ],
+      "new_evidence_baseline": {
+        "path": "文档/逆向台账/contracts/iteration070-rule-handoff-clarifications-203-20261017.json",
+        "current": {
+          "sha256": "763f020076e2392d63c848f617124f00ba1ca26dcb47283d17f181976ca3b2a8",
+          "bytes": 1311
+        }
+      },
+      "document_hash_transitions": [
+        {
+          "path": "文档/脱敏规则完整技术交接-迭代023.md",
+          "previous": {
+            "sha256": "78b1125fbc10835985977c6d517deb6e8a57b991488dec3049456e00fe5c0aa1",
+            "bytes": 427454
+          },
+          "current": {
+            "sha256": "4b5a4f38813d3adc50f5cc3ecb9632abf4f475025b1a1edf912c006960f88aa9",
+            "bytes": 428101
+          }
+        }
+      ],
+      "evidence_snapshot_updates": [
+        {
+          "path": "文档/脱敏规则完整技术交接-迭代023.md",
+          "previous": {
+            "sha256": "78b1125fbc10835985977c6d517deb6e8a57b991488dec3049456e00fe5c0aa1",
+            "bytes": 427454
+          },
+          "current": {
+            "sha256": "4b5a4f38813d3adc50f5cc3ecb9632abf4f475025b1a1edf912c006960f88aa9",
+            "bytes": 428101
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/iteration070-rule-handoff-clarifications-203-20261017.json",
+          "previous": null,
+          "current": {
+            "sha256": "763f020076e2392d63c848f617124f00ba1ca26dcb47283d17f181976ca3b2a8",
+            "bytes": 1311
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-rule-handoff-current-readback-v1.json",
+          "previous": null,
+          "current": {
+            "sha256": "638f3ce6f5695f06a9db0fcd93dae55e87402c163ce00f0ebdaadc45d10df67f",
+            "bytes": 4726
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-rule-handoff-current-readback-v1.md",
+          "previous": null,
+          "current": {
+            "sha256": "67e4601b237988c06034484700ae82c28d7b4ae5fc0f5561fe47c519515a04b8",
+            "bytes": 1572
+          }
+        }
+      ]
     }
   ],
   "evidence_snapshot": {
@@ -143602,8 +143675,8 @@
         "bytes": 423
       },
       "文档/脱敏规则完整技术交接-迭代023.md": {
-        "sha256": "78b1125fbc10835985977c6d517deb6e8a57b991488dec3049456e00fe5c0aa1",
-        "bytes": 427454
+        "sha256": "4b5a4f38813d3adc50f5cc3ecb9632abf4f475025b1a1edf912c006960f88aa9",
+        "bytes": 428101
       },
       "文档/逆向台账/contracts/build-complete-rule-handoff-20261014.py": {
         "sha256": "c5d6db581eb6019ba761fe2adb9ba66b41c4a611162c32e54729baf3fa9810e6",
@@ -166836,6 +166909,18 @@
       ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/final-070-combined-gates-v1/api-validate.log": {
         "sha256": "9afa218ac48e90255dfd00f6ee0798c21c88a84ff53d80734fd75bf2302caf80",
         "bytes": 7575
+      },
+      "文档/逆向台账/contracts/iteration070-rule-handoff-clarifications-203-20261017.json": {
+        "sha256": "763f020076e2392d63c848f617124f00ba1ca26dcb47283d17f181976ca3b2a8",
+        "bytes": 1311
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-rule-handoff-current-readback-v1.json": {
+        "sha256": "638f3ce6f5695f06a9db0fcd93dae55e87402c163ce00f0ebdaadc45d10df67f",
+        "bytes": 4726
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-rule-handoff-current-readback-v1.md": {
+        "sha256": "67e4601b237988c06034484700ae82c28d7b4ae5fc0f5561fe47c519515a04b8",
+        "bytes": 1572
       }
     },
     "unavailable_historical_screenshots": [
