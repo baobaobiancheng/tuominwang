@@ -11,6 +11,7 @@ type Prompt={kind:'pdf_ocr_interrupted'|'editor_unconfirmed';stage?:'ocr_incompl
 export type RecoveryDraftHandle={flush:()=>Promise<void>};
 export const RecoveryDraft=forwardRef<RecoveryDraftHandle,{doc:DocumentView;marks:Mark[];pageReview:PageReview;manualDraft?:ManualRecoveryDraft|null;dirty:boolean;disabled:boolean;api:<T>(path:string,method?:string,payload?:unknown)=>Promise<T>;onRestore:(marks:Mark[],pages?:PageReview,manual?:ManualRecoveryDraft|null)=>void}>(function RecoveryDraft({doc,marks,pageReview,manualDraft,dirty,disabled,api,onRestore},ref){
  const[receipt,setReceipt]=useState<Receipt|null>(null),[loaded,setLoaded]=useState(false),[write,setWrite]=useState(false),[notice,setNotice]=useState(''),[confirmDiscard,setConfirmDiscard]=useState(false);
+ const loadedRef=useRef(loaded);loadedRef.current=loaded;
  const unconfirmed=dirty||!!manualDraft;
  const epoch=useRef(0),savedVersion=useRef(0),writer=useRef<Writer|null>(null),busy=useRef(false),claiming=useRef(false),autoClaimAttempted=useRef(false),saveSequence=useRef(0),ackedUiSequence=useRef(0),renderedChange=useRef(unconfirmed?1:0),ackedChange=useRef(0),renderedDraft=useRef({marks,pageReview,manualDraft,revision:doc.revision}),pending=useRef<{draft:{revision:number;marks:Mark[];pageReview?:PageReview;manualDraft?:ManualRecoveryDraft|null};sequence:number;change:number}|null>(null);
  if(renderedDraft.current.marks!==marks||renderedDraft.current.pageReview!==pageReview||renderedDraft.current.manualDraft!==manualDraft||renderedDraft.current.revision!==doc.revision){renderedDraft.current={marks,pageReview,manualDraft,revision:doc.revision};renderedChange.current++;}
@@ -21,8 +22,8 @@ export const RecoveryDraft=forwardRef<RecoveryDraftHandle,{doc:DocumentView;mark
   leaving.current=true;
   try{
    const deadline=Date.now()+15000;
-   while((claiming.current||busy.current)&&Date.now()<deadline)await new Promise(resolve=>setTimeout(resolve,25));
-   if(claiming.current||busy.current)throw Error('RECOVERY_SAVE_PENDING');
+   while((!loadedRef.current||claiming.current||busy.current)&&Date.now()<deadline)await new Promise(resolve=>setTimeout(resolve,25));
+   if(!loadedRef.current||claiming.current||busy.current)throw Error('RECOVERY_SAVE_PENDING');
    if(renderedChange.current===ackedChange.current)return;
    if(!writer.current){if(receipt)throw Error('RECOVERY_WRITER_CONFLICT');await claim(savedVersion.current,epoch.current);}
    const active=writer.current;if(!active)throw Error('RECOVERY_WRITER_CONFLICT');
