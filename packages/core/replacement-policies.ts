@@ -10,8 +10,8 @@ export function applyReplacementPolicies(text: string, marks: Mark[], input: Rep
   validateMarks(text, marks.map(m => ({ ...m, decision: "pending" })));
   const types = new Map(policies.types.map(t => [entityIdentity(t), t.rule])), values = new Map<string, PolicyDirective>();
   for (const value of policies.values) {
-    const slots=marks.flatMap((m,index)=>m.start===value.start&&m.end===value.end&&sameEntity(m,value)?[index]:[]);if(!slots.length)throw new Error("POLICY_TARGET_NOT_FOUND");const semanticValues=new Set(slots.map(index=>options.semanticValue?.(marks[index],index)??text.slice(value.start,value.end)));if(semanticValues.size!==1)throw Error('POLICY_VALUE_CONFLICT');
-    const id = key(value,[...semanticValues][0]), previous = values.get(id);
+    const slots=marks.flatMap((m,index)=>m.start===value.start&&m.end===value.end&&sameEntity(m,value)?[index]:[]);if(!slots.length)throw new Error("POLICY_TARGET_NOT_FOUND");const semanticValues=new Set(slots.map(index=>options.semanticValue?.(marks[index],index)??text.slice(value.start,value.end)));if(value.semanticValue!==undefined&&!semanticValues.has(value.semanticValue))throw new Error('POLICY_TARGET_NOT_FOUND');if(value.semanticValue===undefined&&semanticValues.size!==1)throw Error('POLICY_VALUE_CONFLICT');
+    const id = key(value,value.semanticValue??[...semanticValues][0]), previous = values.get(id);
     if (previous && JSON.stringify(previous) !== JSON.stringify(value.rule)) throw new Error("POLICY_VALUE_CONFLICT");
     values.set(id, value.rule);
   }

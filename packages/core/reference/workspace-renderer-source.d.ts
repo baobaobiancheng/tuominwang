@@ -13,3 +13,4 @@ export function sourceWorkspaceDecisions(workspaceId:string,document:any,existin
 export function sourceWorkspaceCorrections(snapshot:any,now?:string):any[];
 
 export function sourceSelectiveEntityType(type:string):string;
+export function sourcePseudonymActionResult(action:'mask'|'pseudonym'|'partial_star'|'full_star',type:string,value:string,currentValue?:string):string|null;

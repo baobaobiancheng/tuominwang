@@ -4,7 +4,11 @@ import type{ReviewFeedbackCause}from'../../packages/core/review-feedback.ts';
 import {entityIdentity,entityLabel,sameEntity} from '../../packages/core/entity-identity.ts';
 import {correctionForMark} from '../../packages/core/entity-corrections.ts';
 import {filterReviewMarkItems,type ReviewMarkFilter} from '../../packages/core/review-mark-filter.ts';
+import {canonicalRuleEntityType} from '../../packages/core/presets.ts';
+import {sourcePseudonymActionResult} from '../../packages/core/reference/workspace-renderer-source.js';
+import type {ReplacementPolicies} from '../../packages/contracts/policies.ts';
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import {useConfirmAction} from './confirm-action.tsx';
 import { typeColor } from "./text-highlights.tsx";
 import type { DocumentView, Mark, ReviewMark } from "../../packages/contracts/index.ts";
 
@@ -68,18 +72,37 @@ export function buildEntityGroups(doc: Pick<DocumentView, "text" | "textOffset" 
 
 const PAGE_SIZE = 50;
 
-export function EntityGroups({ doc, marks, update, locate, run, disabled, canReview, onEdit, onCheck, filterEntities }: {
+type GroupAction='mask'|'pseudonym'|'partial_star'|'full_star';
+/** Use the existing value-scoped policy endpoint, so the server resolves the
+ * same semantic identity and checks mapping rights/CAS before any draft edit. */
+export function groupActionRequest(group:EntityGroup,marks:Mark[],action:GroupAction,visual:boolean):ReplacementPolicies {
+  if(!group.exact||!group.value)throw new Error('POLICY_EXACT_VALUE_REQUIRED');
+  if(action==='mask'&&!visual)throw new Error('POLICY_ACTION_UNAVAILABLE');
+  const first=marks[group.indices[0]];
+  if(!first)throw new Error('POLICY_TARGET_NOT_FOUND');
+  const rule=action==='mask'?{mode:'clear' as const}:action==='pseudonym'?{mode:'alias' as const}:action==='full_star'?{mode:'full' as const}:{mode:'custom' as const,value:sourcePseudonymActionResult('partial_star',first.rawEntityType??canonicalRuleEntityType(first.kind),group.value)??''};
+  return{types:[],values:[{start:first.start,end:first.end,kind:first.kind,...first.rawEntityType!==undefined?{rawEntityType:first.rawEntityType}:{},semanticValue:group.value,rule}],keepExplicit:false};
+}
+
+export function EntityGroups({ doc, marks, update, locate, run, api, disabled, canReview, canUseAliases, onEdit, onCheck, filterEntities }: {
   doc: DocumentView;
   marks: ReviewMark[];
   update: (marks: ReviewMark[], cause?: ReviewFeedbackCause) => void;
   locate: (span: { start: number; end: number }) => Promise<void>;
   run: (action: () => Promise<void>) => Promise<void>;
+  api:<T>(path:string,method?:string,body?:unknown)=>Promise<T>;
   disabled: boolean;
   canReview: boolean;
+  canUseAliases:boolean;
   onEdit: (index: number) => void;
   onCheck: () => void;
   filterEntities?: (filter: ReviewMarkFilter) => Promise<number[]>;
 }) {
+  const confirm=useConfirmAction();
+  const [selective,setSelective]=useState(false);
+  const apiRef=useRef(api);apiRef.current=api;
+  const draft=useRef({id:doc.id,revision:doc.revision,marks});draft.current={id:doc.id,revision:doc.revision,marks};
+  useEffect(()=>{let current=true;setSelective(false);void apiRef.current<{revision:number;configuration:{exportMode?:string};effective:{profile:{mode:string}}}>(`/documents/${doc.id}/configuration`).then(result=>{if(current&&result.revision===doc.revision)setSelective((result.configuration.exportMode??result.effective.profile.mode)==='selective_pseudonym');},()=>{});return()=>{current=false;};},[doc.id,doc.revision]);
   const groups = useMemo(() => buildEntityGroups(doc, marks), [doc.text, doc.textOffset, doc.markTexts, marks]);
   const [kind, setKind] = useState("all");
   const [query, setQuery] = useState("");
@@ -149,6 +172,18 @@ export function EntityGroups({ doc, marks, update, locate, run, disabled, canRev
     update(applySignatureDecision(marks,indices,decision));
     setSelected(new Set());
   }
+  function applyGroupAction(group:EntityGroup,action:GroupAction,visual:boolean){
+    if(locked||!selective||!group.exact||action==='pseudonym'&&!canUseAliases)return;
+    const snapshot=draft.current;
+    void run(async()=>{
+      if(action==='pseudonym'&&!await confirm('为同一原值的全部位置使用项目假名？如尚无映射，将加密创建并保留还原关系。'))return;
+      if(draft.current.id!==snapshot.id||draft.current.revision!==snapshot.revision||draft.current.marks!==snapshot.marks)return;
+      const policies=groupActionRequest(group,snapshot.marks,action,visual);
+      const result=await api<{revision:number;marks:ReviewMark[]}>(`/documents/${snapshot.id}/replacement-policies`,'POST',{revision:snapshot.revision,marks:snapshot.marks,policies});
+      if(draft.current.id!==snapshot.id||draft.current.revision!==snapshot.revision||draft.current.marks!==snapshot.marks||result.revision!==snapshot.revision)return;
+      update(result.marks);
+    });
+  }
   function deleteGroups(targets: EntityGroup[]) {
     if(locked||!targets.length||targets.some(group=>group.indices.some(index=>!!marks[index].signatureGroup)))return;
     const indices=new Set(targets.flatMap(group=>group.indices));
@@ -197,6 +232,7 @@ export function EntityGroups({ doc, marks, update, locate, run, disabled, canRev
       const mark = marks[markIndex];
       const preview = Array.from(group.value).slice(0, 120).join("");
       const label = group.value ? `${preview}${preview.length < group.value.length || !group.exact ? "…" : ""}` : "定位查看原值";
+      const visual=['pdf','png','jpg','jpeg'].includes(doc.format??'')||group.indices.every(index=>doc.anchors?.some(anchor=>anchor.kind==='object'&&anchor.object==='image-text'&&anchor.start<=marks[index].start&&anchor.end>=marks[index].end));
       return <React.Fragment key={group.id}>
         {(index === 0 || !sameEntity(pageGroups[index - 1],group)) && <h3 className="entity-type-heading"><button type="button" className="quiet" aria-label={`${collapsedTypes.has(entityIdentity(group)) ? "展开" : "收起"}${entityLabel(group)}实体`} aria-expanded={!collapsedTypes.has(entityIdentity(group))} style={{ "--entity-color": typeColor(group.kind) } as React.CSSProperties} onClick={() => setCollapsedTypes(previous => { const next = new Set(previous); if (next.has(entityIdentity(group))) next.delete(entityIdentity(group)); else next.add(entityIdentity(group)); return next; })}><span aria-hidden="true">{collapsedTypes.has(entityIdentity(group)) ? "▸" : "▾"}</span><span className="entity-type-dot" aria-hidden="true" />{entityLabel(group)}<small>{filtered.filter(item => sameEntity(item,group)).reduce((total, item) => total + item.indices.length, 0)} 处</small></button><button className="quiet" disabled={locked} onClick={()=>hideType(group)}>隐藏此类型</button></h3>}
         <article className="entity-group-card" hidden={collapsedTypes.has(entityIdentity(group))} style={{ "--entity-color": typeColor(group.kind) } as React.CSSProperties}>
@@ -204,6 +240,12 @@ export function EntityGroups({ doc, marks, update, locate, run, disabled, canRev
           {!group.exact && <small className="muted">原值片段 · 独立位置 {mark.start + 1}–{mark.end}</small>}
           <div className="entity-group-counts"><span>待确认 {group.counts.pending}</span><span>脱敏 {group.counts.redact}</span><span>保留 {group.counts.ignore}</span></div>
           {(group.mixedDecisions || group.mixedReplacements) && <p className="entity-group-warning">{group.mixedDecisions ? "处理决定不一致" : ""}{group.mixedDecisions && group.mixedReplacements ? " · " : ""}{group.mixedReplacements ? "脱敏方式不一致" : ""}，请逐处核对。</p>}
+          {selective&&group.exact&&<div className="entity-group-actions" role="group" aria-label={`${entityLabel(group)} ${label} 的脱敏方式`}>
+            {visual&&<button className="quiet" disabled={locked} onClick={()=>applyGroupAction(group,'mask',visual)}>仅遮盖</button>}
+            <button className="quiet" disabled={locked||!canUseAliases} onClick={()=>applyGroupAction(group,'pseudonym',visual)}>假名化</button>
+            <button className="quiet" disabled={locked} onClick={()=>applyGroupAction(group,'partial_star',visual)}>半 * 号</button>
+            <button className="quiet" disabled={locked} onClick={()=>applyGroupAction(group,'full_star',visual)}>全 * 号</button>
+          </div>}
           <div className="entity-occurrence-nav" aria-label={`${entityLabel(group)}出现位置`}><button className="quiet" disabled={occurrence === 0} onClick={() => show(group, occurrence - 1)}>上一处</button><span>第 {occurrence + 1} / {group.indices.length} 处 · 位置 {mark.start + 1}</span><button className="quiet" disabled={occurrence + 1 >= group.indices.length} onClick={() => show(group, occurrence + 1)}>下一处</button><button className="quiet" onClick={() => { show(group, occurrence); onEdit(markIndex); }}>{canReview ? "编辑此处" : "查看此处"}</button></div>
         </article>
       </React.Fragment>;
