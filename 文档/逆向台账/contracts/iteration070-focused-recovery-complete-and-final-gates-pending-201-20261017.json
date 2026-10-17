@@ -1,0 +1,163 @@
+{
+  "event": 201,
+  "at": "2026-10-17T12:53:28.419547+00:00",
+  "candidateHead": "deeca57b0d5e9bafcd9da6e0d8d5f4a8975b0d5e",
+  "browserTargetEvidence": [
+    {
+      "head": "d275326",
+      "cases": [
+        "group half/full-star actual preview and saved marks",
+        "zero-occurrence reset",
+        "PDF unsaved decisions merged at natural completion"
+      ],
+      "passed": 3,
+      "receipt": "root-070-focused-edge-terminal-v1"
+    },
+    {
+      "head": "f4839b3",
+      "cases": [
+        "PDF pause/edit/processed preview/late PNG invalidation/resume/review/download",
+        "two ready members unified preview"
+      ],
+      "passed": 2,
+      "receipt": "root-070-four-failures-retest-terminal-v1"
+    },
+    {
+      "head": "4e5b438",
+      "cases": [
+        "delayed real GET cannot silently claim ordinary old receipt"
+      ],
+      "passed": 1,
+      "receipt": "root-070-md-validation-and-recovery-v1"
+    },
+    {
+      "head": "deeca57b0d5e9bafcd9da6e0d8d5f4a8975b0d5e",
+      "cases": [
+        "two materials interrupted and reopened with true unsaved textarea/filename, review choice, writer claim race, final manual save and explicit recovery discard"
+      ],
+      "passed": 1,
+      "receipt": "root-070-final-recovery-green-v1"
+    }
+  ],
+  "browserBoundary": "Seven target scenarios have actual pass evidence on separately bound sources; this is not one new-source 7/7 suite and not a new full browser suite. Original failed rounds remain.",
+  "realDefectFixed": {
+    "commit": "07307d3df3cc94b8aa642671167ef0d18a72d406",
+    "red": "Actual invalid Markdown filename POST returned500 at browser line143",
+    "cause": "Core known validation Error lacked HTTP status in the existing POST bridge",
+    "fix": "Catch only MARKDOWN_DRAFT_FILENAME/EMPTY and use existing fail400; original core validation, permissions, persistence and unknown exception behavior retained. Two existing Chinese message keys added.",
+    "api": "Existing Markdown API file actual2/2 pass0skip; illegal name/whitespace body400 and zero draft writes, immutable versions/CAS/permission/download checks retained.",
+    "finalBrowser": "Actual invalid name400/Chinese message, valid manual file save, real downloaded bytes, explicit DELETE recovery200, both original docs200 and old link SHA retained all passed."
+  },
+  "testCorrections": "Four explicit existing custom confirmation clicks; stable project-row discard locator after button replacement. No global auto-confirm, product bypass or weakened content/permission/CAS/old-link assertions.",
+  "cleanup": "Root independently queried each exact owned run database as documented: remaining0 and own data directories absent. Final ordinary dev API4318/Vite5178 both200 at snapshot. Unknown old DBs untouched.",
+  "guide": "Three inspected real images added to existing guide. Partial PDF screenshot proves only lower manual black region, top phone still visible and explicitly not a fully redacted page. Unified alias visible. Recovery screenshot shows unsaved text and unfinished invalid filename requiring correction before final save.",
+  "repository": "Private status reverified with gh; exact07307d3 pushed to origin/codex/070-unified-preview-v2 before final test-only locator commit. Formal product source not promoted.",
+  "finalGateStatus": "Prepared only: merge current pure docs into clean candidate, derive final source/fixtures/assets/AST inventory, one pnpm check then dynamically enumerated full API through v5 strict zero-skip TAP controller. No final full gate execution yet.",
+  "beforeDocuments": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/before-ledger201-v1/manifest.json",
+  "rawRules": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/rule-json-before-ledger201-v1.json",
+  "formalProductPromoted": false,
+  "deployed": false,
+  "competitorRuntime": "All258 R0 unchanged; public-source and local validation do not prove licensed competitor processing.",
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-observed-070-repaired-images-v1/observation.json",
+      "sha256": "a2bbfdd3ffb531789dc468b3490bc0001799e35698cf23db0535c4645a455494",
+      "bytes": 1034
+    },
+    {
+      "path": "文档/使用指南/README.md",
+      "sha256": "f2a09cb2026d2be897f266ec274fa2626d6b99fccccad2be2d1e26996fb25dbf",
+      "bytes": 2487
+    },
+    {
+      "path": "文档/使用指南/批量脱敏方式补充操作-20261017.md",
+      "sha256": "b602d0e4f3efec0a19e84341c201f5fd362fe85d9e9cbca44a070bf382cbb34e",
+      "bytes": 7033
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-070-four-failures-retest-terminal-v1/playwright.log",
+      "sha256": "55ff4425cba181b5b78e4334f77767da6809b38260e5f7abc01a92a23049a7eb",
+      "bytes": 7974
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-070-four-failures-retest-terminal-v1/results.json",
+      "sha256": "6ccbe8ff643342d46d4f97849c066b5ce544a3d678513d0603152226e8d38a1c",
+      "bytes": 11441
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-070-four-failures-retest-terminal-v1/root-receipt.json",
+      "sha256": "e0dfa80147e298ff5613db76f98680ae305deb724c9368a3e264e0e832ab89df",
+      "bytes": 1591
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-070-four-failures-retest-terminal-v1/terminal-receipt.json",
+      "sha256": "312385762ce8d6f6e0e6fb0e6ad08041a45d446edbe5aae0860148a845550d35",
+      "bytes": 1376
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-070-md-validation-and-recovery-v1/attempt-4-playwright.log",
+      "sha256": "ce1f488013b6a32c788f613d6ebaf85fe53745f3bf96cb5f4a50987bff841d6f",
+      "bytes": 5367
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-070-md-validation-and-recovery-v1/attempt-4-results.json",
+      "sha256": "c86edd0b62a924866b6405022fb344ff726fa2cbb91bab4369daa8def57be35b",
+      "bytes": 8918
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-070-md-validation-and-recovery-v1/attempt-4-terminal-receipt.json",
+      "sha256": "224f46272c4493fd47ef7d171c50b4964fbe0f9da97256ded23950d1029705c6",
+      "bytes": 810
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-070-md-validation-and-recovery-v1/attempt-md-api-terminal-receipt.json",
+      "sha256": "85eb669e2c40d8cae052a8643164ef529144772a8dc99dafcf3b09567c86c293",
+      "bytes": 1463
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-070-md-validation-and-recovery-v1/attempt-md-api-test.log",
+      "sha256": "44377b75c990e20ce490e33d8da26109ea09724c719f8f7f5124dced95020fff",
+      "bytes": 428
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-070-md-validation-and-recovery-v1/root-receipt.json",
+      "sha256": "09901e750a0ba4fa93a9ef05e4b4974a808015cf4307f98b904dc3456e58638b",
+      "bytes": 2112
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-070-final-recovery-green-v1/playwright.log",
+      "sha256": "99414e475d2c7702024fe8d63ee42d9d32fb9d5438578c04cc146373a867d74e",
+      "bytes": 1923
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-070-final-recovery-green-v1/results.json",
+      "sha256": "7172d1321a25d904bd6e276f3cc41b193dc86923c90ede6189a9ff10b45f3530",
+      "bytes": 3040
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-070-final-recovery-green-v1/root-receipt.json",
+      "sha256": "cd31af2bf342e6821e534d35733be2812b3df4b4bd4d191631aa8684cca6dc6a",
+      "bytes": 1810
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-070-final-recovery-green-v1/terminal-receipt.json",
+      "sha256": "d2fc3872401ba8948f0d9076c8469784a1399e90671916e76452dbf1187ea8f7",
+      "bytes": 1566
+    },
+    {
+      "path": "文档/使用指南/截图/pdf-ocr-partial-region-preview-20261017.png",
+      "sha256": "981863ed6645525861761e19d5074499e3045c4a43b34b7b96163922e02075e5",
+      "bytes": 5360
+    },
+    {
+      "path": "文档/使用指南/截图/unified-two-material-preview-20261017.png",
+      "sha256": "ad3b5be7117e43761bf05914f192bb0044e38c4984194c6d0117dd38d3a74367",
+      "bytes": 139896
+    },
+    {
+      "path": "文档/使用指南/截图/whole-recovery-manual-20261017.png",
+      "sha256": "cde1392e4e69f2c253b7fbe4fdc4c807d629266de5aabe00a3ff3697b92cd010",
+      "bytes": 224530
+    }
+  ]
+}
