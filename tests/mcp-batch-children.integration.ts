@@ -10,6 +10,7 @@ import {pool} from '../packages/adapters/db.ts';
 import {passwordHash,unseal} from '../packages/adapters/storage.ts';
 import {MCP_PROTOCOL,taskUUID} from '../packages/core/mcp-tools.ts';
 import {parseReferenceMarkdown} from '../packages/core/reference-markdown.ts';
+import {officeFixture} from './office-fixtures.ts';
 
 assert.match(new URL(process.env.DATABASE_URL!).pathname,/^\/tmw_test_/u);
 const admin=new pg.Pool({connectionString:process.env.MIGRATION_DATABASE_URL}),app=await buildApp();
@@ -274,4 +275,44 @@ test('batch resume denies quarantined source and changed combined bytes before m
  assert.equal((await f.req('GET',`/api/ai-collab/tasks/${requestId}`)).json().state,'waiting_for_session_authorization');
  assert.equal((await admin.query('SELECT revision FROM ai_collab_tasks WHERE id=$1',[taskUUID(parentId)])).rows[0].revision,parentRow.revision);
  for(const childId of childIds)assert.notEqual((await f.req('GET',`/api/ai-collab/tasks/${childId}`)).json().caller.sessionId,request.caller.sessionId);
+});
+
+
+test('combined batch adds original Markdown for two real DOCX inputs when only original is requested',async()=>{
+ const f=await fixture(),docs:string[]=[];
+ for(const [index,phone] of ['13800138000','13900139000'].entries()){
+  const xml=`<w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main"><w:body><w:p><w:r><w:t>合成材料 ${index+1} 电话 ${phone}</w:t></w:r></w:p></w:body></w:document>`;
+  const bytes=await officeFixture('docx',{'word/document.xml':xml}),batchId=randomUUID(),requestId=randomUUID();
+  const registered=await f.req('POST',`/api/projects/${f.project}/upload-batches`,{id:batchId,files:[{requestId,path:`batch-${index+1}.docx`,size:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex')}]});
+  assert.equal(registered.statusCode,200,registered.body);
+  const uploaded=await f.req('POST',`/api/projects/${f.project}/files?batchId=${batchId}&requestId=${requestId}`,bytes,{'content-type':'application/octet-stream'});
+  assert.equal(uploaded.statusCode,200,uploaded.body);
+  const doc=uploaded.json().id as string;docs.push(doc);
+  for(let attempt=0;attempt<40;attempt++){
+   const [owned]=(await admin.query("SELECT status,error_code FROM jobs WHERE document_id=$1 AND kind='detect' AND collab_task_id IS NULL ORDER BY created_at DESC LIMIT 1",[doc])).rows;
+   if(owned?.status==='succeeded')break;assert.notEqual(owned?.status,'failed',JSON.stringify(owned));
+   assert.ok(attempt<39,'initial DOCX recognition must complete');await tick();
+  }
+ }
+ const started=await f.tool('start_lawbot_redaction',{project_id:f.project,document_ids:docs,masking_mode:'default_mask',task_mode:'redact_only',batch_result_mode:'combined',output_formats:['original'],request_id:randomUUID()});
+ assert.equal(started.isError,false,JSON.stringify(started));
+ const parentId=started.structuredContent.jobId as string,parent=(await f.req('GET',`/api/ai-collab/tasks/${parentId}`)).json();
+ const authorized=await f.req('POST',`/api/ai-collab/tasks/${parentId}/authorize`,{revision:parent.revision,authorization:consent});
+ assert.equal(authorized.statusCode,200,authorized.body);
+ let ready:any;
+ for(let attempt=0;attempt<80;attempt++){
+  await tick();const response=await f.tool('check_document_delivery',{job_id:parentId,wait_seconds:0});
+  assert.equal(response.isError,false,JSON.stringify(response));
+  ready=response.structuredContent;
+  if(ready.status==='sanitized_artifact_ready')break;
+  assert.ok(attempt<79,JSON.stringify(ready.documents));
+ }
+ assert.deepEqual(ready.documents.map((d:any)=>d.status),['sanitized_artifact_ready','sanitized_artifact_ready']);
+ assert.match(ready.sanitizedArtifact?.artifactId??'',/^lba_[a-f0-9]{32}$/u);
+ const received=await f.tool('receive_sanitized_document',{job_id:parentId,artifact_id:ready.sanitizedArtifact.artifactId,output_format:'md',result_kind:'derived_report'});
+ assert.equal(received.isError,false,JSON.stringify(received));
+ const body=Buffer.from(received.structuredContent.bytesBase64,'base64');
+ assert.equal(createHash('sha256').update(body).digest('hex'),received.structuredContent.sha256);
+ assert.ok(body.toString('utf8').includes('材料 1'));assert.ok(body.toString('utf8').includes('材料 2'));
+ assert.equal(body.includes(Buffer.from('13800138000')),false);assert.equal(body.includes(Buffer.from('13900139000')),false);
 });

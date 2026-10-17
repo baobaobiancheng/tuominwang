@@ -1,0 +1,316 @@
+{
+  "id": "ITER-058-WORKSPACE-SNAPSHOT-AND-RESUME-183",
+  "date": "2026-10-17",
+  "status": "LOCAL_FOCUSED_AND_REQUIRED_CHECK_PASSED_NOT_FULL_RELEASE",
+  "source": {
+    "manifest": ".data/research/lawbot-2026-10-17/iteration058/inputs-v1.json",
+    "manifestSha256": "18b06117b18a43b9d9b48973934522c7076766a368f485849573adbe7ca674bc",
+    "files": 1003,
+    "gitHeadBefore": "c6b233eb4ef723f2355e6acabe2572cf80cb0195"
+  },
+  "scope": [
+    {
+      "name": "workspace createdAt and activeDocumentId",
+      "result": "Original snapshot createdAt remains stable; current selected document or mapped imported ID survives save/reopen; cross-project ID is rejected. No old approval is granted."
+    },
+    {
+      "name": "workspace save receipt reopening",
+      "result": "One opaque request ID per project and format, resumed under existing session/permission/expiry/fingerprint checks; no password stored or history UI added."
+    },
+    {
+      "name": "MCP implicit completed batch, amount matching, folder output",
+      "result": "Only the original-design branches and focused RED/GREEN evidence in the pinned files below; no model/server/rules data change."
+    }
+  ],
+  "validation": {
+    "requiredCheck": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/required-check-v1/terminal-receipt.json",
+      "sha256": "68e7185f861c612e19799e40ad788ff47ded4573374d9cde841bf4591b7b6c20",
+      "exitCode": 0,
+      "testFiles": 166,
+      "tests": 904,
+      "bendLaws": 18,
+      "bendMutants": 21,
+      "typecheck": true,
+      "build": true
+    },
+    "focusedEdge": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/edge-focused-v1/terminal-receipt.json",
+      "sha256": "b8d4ef6ed9814cf431ac35bda377321862b1c2f00bbd025b80c4a3bff73854ae",
+      "exitCode": 0,
+      "cases": 5,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0
+    }
+  },
+  "boundary": "No complete API150 or Edge107 same-source rerun claimed from focused results; no deployment, no model change. Original licensed app remains R0; I/S/R unchanged. Native OS acceptance remains separate. Reuse extracted original code and make only necessary Web/cloud adaptations.",
+  "evidence": {
+    ".data/research/lawbot-2026-10-17/iteration058/before-ledger183-v1/manifest.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/before-ledger183-v1/manifest.json",
+      "current": {
+        "sha256": "08a43e85e7f6824fca38d159b2046ca6d05686d9aa35b8f20f919b3d43639d93",
+        "bytes": 1660
+      }
+    },
+    ".data/research/lawbot-2026-10-17/iteration058/before-source-ledger183-v2/manifest.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/before-source-ledger183-v2/manifest.json",
+      "current": {
+        "sha256": "edd0d7a7003ee5f31e77cb381d43eefe119314b2c7d85a075194387dfcec8a4b",
+        "bytes": 5247
+      }
+    },
+    ".data/research/lawbot-2026-10-17/iteration058/arch/rule-json-before-ledger183-v1.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/arch/rule-json-before-ledger183-v1.json",
+      "current": {
+        "sha256": "29390349e8842df8eba11ac06e3f3cf3c8e3e56c62a69748fa3cea29d792e236",
+        "bytes": 1455
+      }
+    },
+    ".data/research/lawbot-2026-10-17/iteration058/arch/workspace-metadata-candidate-v1.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/arch/workspace-metadata-candidate-v1.json",
+      "current": {
+        "sha256": "3bae5be97c76444ad7d142d33217916c5b57c88c83d5ea8ea1b691800039286e",
+        "bytes": 4639
+      }
+    },
+    ".data/research/lawbot-2026-10-17/iteration058/arch/workspace-metadata-red.log": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/arch/workspace-metadata-red.log",
+      "current": {
+        "sha256": "f133c5ec6237878b0ad0050fcaa3137ab3c7d9830969e42f75c4073aa27448ac",
+        "bytes": 1346
+      }
+    },
+    ".data/research/lawbot-2026-10-17/iteration058/arch/workspace-metadata-green-pure.log": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/arch/workspace-metadata-green-pure.log",
+      "current": {
+        "sha256": "bf5d7e6a72b51fe284545885a63caf61dc7f74c18eb6d25240b81f675b3f848b",
+        "bytes": 236
+      }
+    },
+    ".data/research/lawbot-2026-10-17/iteration058/arch/workspace-metadata-api-green-v4.log": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/arch/workspace-metadata-api-green-v4.log",
+      "current": {
+        "sha256": "1eda5730b7faaa30ff8fcf72dd627ee5af2dfaa025c23032c30e36fed3e92053",
+        "bytes": 793
+      }
+    },
+    ".data/research/lawbot-2026-10-17/iteration058/protocol/workspace-snapshot-metadata-readonly-peer-v1.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/protocol/workspace-snapshot-metadata-readonly-peer-v1.json",
+      "current": {
+        "sha256": "ca828abea1df79a5e8d4fc441d0023b7cea4d1e9eedc3b3decc82e1aff36ae42",
+        "bytes": 3999
+      }
+    },
+    ".data/research/lawbot-2026-10-17/iteration058/arch/workspace-save-cache-readonly-peer-v1.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/arch/workspace-save-cache-readonly-peer-v1.json",
+      "current": {
+        "sha256": "a9f43d8be10233df104fd6c087c91fd75640cebed6359a9bc481c47dbda006bf",
+        "bytes": 1167
+      }
+    },
+    ".data/research/lawbot-2026-10-17/iteration058/arch/workspace-save-cache-readonly-peer-v2.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/arch/workspace-save-cache-readonly-peer-v2.json",
+      "current": {
+        "sha256": "6b8d3683785c23e0542a7c2a127b62fab69eee03f64012bd3b2370446bb9ad9e",
+        "bytes": 1103
+      }
+    },
+    ".data/research/lawbot-2026-10-17/iteration058/root/amount-adversarial-red-v1.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/root/amount-adversarial-red-v1.json",
+      "current": {
+        "sha256": "caa30b256d4b3ca515da4efac4bb499d15a7a9e0f9a1f35ca1b0a6deda97aadc",
+        "bytes": 624
+      }
+    },
+    ".data/research/lawbot-2026-10-17/iteration058/root/amount-adversarial-green-v1.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/root/amount-adversarial-green-v1.json",
+      "current": {
+        "sha256": "901b461c1f1ac2b97b71f7858ea5ebed478b467e19172ab4d22e1d263d88f834",
+        "bytes": 1178
+      }
+    },
+    ".data/research/lawbot-2026-10-17/iteration058/root/amount-differential-v2.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/root/amount-differential-v2.json",
+      "current": {
+        "sha256": "ac65fce9cf32845d08e6c852e1a1f4fb4b1dbb21498220be6f11ad5778283649",
+        "bytes": 219
+      }
+    },
+    ".data/research/lawbot-2026-10-17/iteration058/protocol/implicit-completed-resume-red.log": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/protocol/implicit-completed-resume-red.log",
+      "current": {
+        "sha256": "87381b469e0d82b75773e5413f2a5e2f5b92102fdb9589308dd36ae9e9caa6ee",
+        "bytes": 1152
+      }
+    },
+    ".data/research/lawbot-2026-10-17/iteration058/protocol/implicit-completed-resume-green.log": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/protocol/implicit-completed-resume-green.log",
+      "current": {
+        "sha256": "05860d7af22c16bcdb7410bc668db0f606d064e942e26670e19dc8c2c3de9e01",
+        "bytes": 1058
+      }
+    },
+    ".data/research/lawbot-2026-10-17/iteration058/protocol/implicit-completed-resume-order-red.log": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/protocol/implicit-completed-resume-order-red.log",
+      "current": {
+        "sha256": "a1da4d964f19578ff1711a6326e080f696432744e139b2062b9ddf70504167a6",
+        "bytes": 1154
+      }
+    },
+    ".data/research/lawbot-2026-10-17/iteration058/protocol/implicit-completed-resume-order-green.log": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/protocol/implicit-completed-resume-order-green.log",
+      "current": {
+        "sha256": "0c821de6517f137dfcbaf9df70c995ad7043f84b6c4d22c740d022c82b9ad34e",
+        "bytes": 251
+      }
+    },
+    ".data/research/lawbot-2026-10-17/iteration058/protocol/combined-original-only-red.log": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/protocol/combined-original-only-red.log",
+      "current": {
+        "sha256": "a35c5445b543efdc3f35a0188234ef08e013f6ab0be31c6b89fc8d72f95fdab1",
+        "bytes": 2048
+      }
+    },
+    ".data/research/lawbot-2026-10-17/iteration058/protocol/combined-original-only-green.log": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/protocol/combined-original-only-green.log",
+      "current": {
+        "sha256": "53a56fd3a1b15534ae55bba2e2d48e5a80ae1438e691d98e9a87d6a6ed76b9ae",
+        "bytes": 1141
+      }
+    },
+    ".data/research/lawbot-2026-10-17/iteration058/protocol/mcp-combined-resume-evidence-v1.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/protocol/mcp-combined-resume-evidence-v1.json",
+      "current": {
+        "sha256": "1eda61f3f470f39af64541e5ddb235f296acce385639596576369252a0d2eaf4",
+        "bytes": 3969
+      }
+    },
+    ".data/research/lawbot-2026-10-17/iteration058/frontend/folder-resume-red-v1/test-results/critical-user-paths-direct-c1313-uthful-skipped-entry-in-ZIP/error-context.md": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/frontend/folder-resume-red-v1/test-results/critical-user-paths-direct-c1313-uthful-skipped-entry-in-ZIP/error-context.md",
+      "current": {
+        "sha256": "f8fce8f8f1aca94d1fcaf08018a0bf794fe886aece6ad21d39d3f663bddf3ced",
+        "bytes": 6614
+      }
+    },
+    ".data/research/lawbot-2026-10-17/iteration058/frontend/folder-resume-green-v4.log": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/frontend/folder-resume-green-v4.log",
+      "current": {
+        "sha256": "8b3dfea20c7db227926c6d3dc18fd6f7dbda2004b067b1c66211945b12f3075b",
+        "bytes": 1804
+      }
+    },
+    ".data/research/lawbot-2026-10-17/iteration058/frontend/folder-resume-candidate-v2/candidate-manifest.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/frontend/folder-resume-candidate-v2/candidate-manifest.json",
+      "current": {
+        "sha256": "5c9acd916d2487f6d6d0f4bec16e26bbe74fd3d2d8af253b623fd0a44118f1a3",
+        "bytes": 1116
+      }
+    },
+    ".data/research/lawbot-2026-10-17/iteration058/frontend/workspace-reopen-red-v1.log": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/frontend/workspace-reopen-red-v1.log",
+      "current": {
+        "sha256": "1aa0a31220ef36dae10bd652ab74158d5b13e9b6fe5afc40d134cba5b5100218",
+        "bytes": 6314
+      }
+    },
+    ".data/research/lawbot-2026-10-17/iteration058/frontend/workspace-reopen-green-v1.log": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/frontend/workspace-reopen-green-v1.log",
+      "current": {
+        "sha256": "695ad85d680d3e8383ad349aab39e7bb0469f0461588d57de0ffcfbb960109fb",
+        "bytes": 4366
+      }
+    },
+    ".data/research/lawbot-2026-10-17/iteration058/inputs-v1.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/inputs-v1.json",
+      "current": {
+        "sha256": "18b06117b18a43b9d9b48973934522c7076766a368f485849573adbe7ca674bc",
+        "bytes": 170644
+      }
+    },
+    ".data/research/lawbot-2026-10-17/iteration058/required-check-v1/terminal-receipt.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/required-check-v1/terminal-receipt.json",
+      "current": {
+        "sha256": "68e7185f861c612e19799e40ad788ff47ded4573374d9cde841bf4591b7b6c20",
+        "bytes": 1265
+      }
+    },
+    ".data/research/lawbot-2026-10-17/iteration058/required-check-v1/check.log": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/required-check-v1/check.log",
+      "current": {
+        "sha256": "40b66a66e2ca27038b2c5acb994cfa158a28027c2da03f3d695f72771f443e6c",
+        "bytes": 1916
+      }
+    },
+    ".data/research/lawbot-2026-10-17/iteration058/frontend/combined5-final-v2/terminal-receipt.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/frontend/combined5-final-v2/terminal-receipt.json",
+      "current": {
+        "sha256": "bfc1d2905166e95f184a21387ad5db104cf8de332da06d91ddc2b19b9d166f28",
+        "bytes": 5719
+      }
+    },
+    ".data/research/lawbot-2026-10-17/iteration058/frontend/combined5-final-v2/service-restore-receipt.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/frontend/combined5-final-v2/service-restore-receipt.json",
+      "current": {
+        "sha256": "ddfaa52145ffa1af1555f71be58c3801b43c89859d93ba846dd51c74ce07a2a6",
+        "bytes": 607
+      }
+    },
+    ".data/research/lawbot-2026-10-17/iteration058/edge-focused-v1/terminal-receipt.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/edge-focused-v1/terminal-receipt.json",
+      "current": {
+        "sha256": "b8d4ef6ed9814cf431ac35bda377321862b1c2f00bbd025b80c4a3bff73854ae",
+        "bytes": 1244
+      }
+    },
+    ".data/research/lawbot-2026-10-17/iteration058/edge-focused-v1/results.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/edge-focused-v1/results.json",
+      "current": {
+        "sha256": "434a83bd0cb982c96e09a1deb6f60ad26054cdc6dafe3954487ee878be859a93",
+        "bytes": 7692
+      }
+    },
+    ".data/research/lawbot-2026-10-17/iteration058/edge-focused-v1/run.log": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/edge-focused-v1/run.log",
+      "current": {
+        "sha256": "768755ed14c1e4772d2d3867bf549efd6a366607a8456c2f7319447148620eac",
+        "bytes": 4135
+      }
+    },
+    "inputs": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/inputs-v1.json",
+      "current": {
+        "sha256": "18b06117b18a43b9d9b48973934522c7076766a368f485849573adbe7ca674bc",
+        "bytes": 170644
+      }
+    },
+    "requiredCheck": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/required-check-v1/terminal-receipt.json",
+      "current": {
+        "sha256": "68e7185f861c612e19799e40ad788ff47ded4573374d9cde841bf4591b7b6c20",
+        "bytes": 1265
+      }
+    },
+    "edge": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/edge-focused-v1/terminal-receipt.json",
+      "current": {
+        "sha256": "b8d4ef6ed9814cf431ac35bda377321862b1c2f00bbd025b80c4a3bff73854ae",
+        "bytes": 1244
+      }
+    },
+    "edgeResults": {
+      "path": ".data/research/lawbot-2026-10-17/iteration058/edge-focused-v1/results.json",
+      "current": {
+        "sha256": "434a83bd0cb982c96e09a1deb6f60ad26054cdc6dafe3954487ee878be859a93",
+        "bytes": 7692
+      }
+    }
+  },
+  "notes": [
+    "金额源规则数据字节不改；差分结果限定所列样本。",
+    "缓存P2已在2xx后记住新回执：旧1报告保留发现，v2报告核修复。单槽新保存成功接受后替换旧入口，最终失败不恢复旧入口是既定边界。",
+    "目录迟到守卫保留已选本次真实来源，不把其他较新批次误绑；folder GREEN v4为同一Case多断言，不能称多Case。",
+    "完整API150/Edge107未在当前输入同源重跑；required-check和Edge5最终终态另待，不能用此清单单独证明通过。",
+    "Edge原始单轮5/5 wrapper与四子命令exit0，隔离DB DROP后独立读回0、dataDirGone；标准化回执仅映射原始字段并pin两原始回执SHA，不是二次运行。"
+  ]
+}

@@ -12,6 +12,7 @@ import {validatePortableMappingHistory} from '../../packages/core/portable-mappi
 import{readNormalizationMetadata,attestNormalization,verifyNormalizationAttestation,normalizationRecord}from'../../packages/adapters/document-normalization.ts';
 import{rememberWorkspaceRecent}from'../../packages/adapters/workspace-recents.ts';
 import {registerWorkspaceSaveRoutes,workspaceSaveFingerprint} from './workspace-saves.ts';
+import {workspaceSnapshotMetadata} from '../../packages/core/workspace-snapshot-metadata.ts';
 import {projectLibraryBackup,restoreProjectLibrary} from '../../packages/adapters/mapping-library.ts';
 import {MAX_MAPPING_ENTRIES} from "../../packages/contracts/mapping-limits.ts";
 import {entityIdentity} from "../../packages/core/entity-identity.ts";
@@ -111,9 +112,10 @@ const nativeDocument = z.object({ id, name: z.string().min(1).max(1000), format:
 export function registerWorkspacePortableRoutes(app: FastifyInstance) {
   registerWorkspaceSaveRoutes(app);
   app.post("/api/projects/:id/portable/export", async (req, reply) => {
-    const project = id.parse((req.params as any).id), input = z.object({ password,format:z.enum(["native","legacy-zip","secure-v2","secure-v3"]).default("native"),expectedSnapshot:z.string().regex(/^[a-f0-9]{64}$/).optional() }).strict().parse(req.body);
+    const project = id.parse((req.params as any).id), input = z.object({ password,format:z.enum(["native","legacy-zip","secure-v2","secure-v3"]).default("native"),expectedSnapshot:z.string().regex(/^[a-f0-9]{64}$/).optional(),activeDocumentId:id.optional() }).strict().parse(req.body);
     return projectScope(req, { project }, ["export", "view_original", "view_mapping"], async db => {
       if(input.expectedSnapshot&&await workspaceSaveFingerprint(db,project)!==input.expectedSnapshot)fail("VERSION_CONFLICT",409);
+      if(input.activeDocumentId){const[selected]=await rows(db,sql`SELECT id FROM documents WHERE project_id=${project} AND id=${input.activeDocumentId}`);if(!selected)fail('PORTABLE_ACTIVE_DOCUMENT_INVALID',400);}
       const [p] = await rows(db, sql`SELECT * FROM projects WHERE id=${project}`), sources = new Map<string, Buffer>(), documents: any[] = [], snapshots: any[] = [],provenanceHistory:any[]=[];
       let cursor = "00000000-0000-0000-0000-000000000000";
       for (;;) {
@@ -142,7 +144,7 @@ export function registerWorkspacePortableRoutes(app: FastifyInstance) {
         const previewEntry = `retained/${item.documentId}/pages/${page.index}.png`, mapEntry = `retained/${item.documentId}/pages/${page.index}.json`; sources.set(previewEntry, preview); sources.set(mapEntry, Buffer.from(map)); delete page.previewId; delete page.mapId; Object.assign(page, { previewEntry, mapEntry });
       }
       for(const [index,item]of(importedPortable?.retainedNormalizedSources??[]).entries()){const bytes=await readOriginal(item.sourceId);if(hash(bytes)!==item.hash)fail('SOURCE_MISMATCH',409);const entry=`retained/${item.documentId}/normalized-${index}.docx`;sources.set(entry,bytes);delete item.sourceId;item.entry=entry;}
-      const snapshot: NativePortable = { format: "tuominwang-workspace", schemaVersion: 1, project: { name: p.name, dictionary: p.dictionary ? JSON.parse(unseal(p.dictionary, `${req.user.tenant_id}:${project}:dictionary`)) : [], dictionaryRevision: p.dictionary_revision, presetPolicy: p.preset_policy ? JSON.parse(unseal(p.preset_policy, `${req.user.tenant_id}:${project}:presets`)) : null, presetRevision: p.preset_revision, mappingLibrary:await projectLibraryBackup(db,req.user,project), unifiedAliasState:(await readUnifiedAliasState(db,req.user.tenant_id,project)).frame, ...(importedPortable ? { importedPortable } : {}) }, mappings, documents, snapshots,provenanceHistory };
+      const snapshot: NativePortable = { format: "tuominwang-workspace", schemaVersion: 1, project: { name: p.name,...workspaceSnapshotMetadata(new Date(p.created_at).toISOString(),documents.map(d=>d.id),importedPortable,input.activeDocumentId), dictionary: p.dictionary ? JSON.parse(unseal(p.dictionary, `${req.user.tenant_id}:${project}:dictionary`)) : [], dictionaryRevision: p.dictionary_revision, presetPolicy: p.preset_policy ? JSON.parse(unseal(p.preset_policy, `${req.user.tenant_id}:${project}:presets`)) : null, presetRevision: p.preset_revision, mappingLibrary:await projectLibraryBackup(db,req.user,project), unifiedAliasState:(await readUnifiedAliasState(db,req.user.tenant_id,project)).frame, ...(importedPortable ? { importedPortable } : {}) }, mappings, documents, snapshots,provenanceHistory };
       snapshot.folderBatch=await workspaceFolderBatch(db,req.user.tenant_id,project,importedPortable);
       const bytes = await checked(() => input.format==="native"?writeNativePortable(snapshot, sources, { password: input.password }):writeCompatibleWorkspace(snapshot,sources,project,input.format,input.password)); await rows(db, sql`INSERT INTO audit(tenant_id,project_id,user_id,event,object_id) VALUES(${req.user.tenant_id},${project},${req.user.id},'workspace_backup_exported',${project})`);await rememberWorkspaceRecent(db,req.user,project,{snapshot,sources,saved:true});
       return reply.type("application/octet-stream").header("Content-Disposition", `attachment; filename="tuominwang-workspace.${input.format==="native"?"tmw":"tmm"}"`).header("Cache-Control", "no-store").send(bytes);

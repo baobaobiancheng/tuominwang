@@ -1,12 +1,18 @@
+import {rememberedWorkspaceSave,rememberWorkspaceSave,forgetWorkspaceSave,resumeWorkspaceSave} from './workspace-save-cache.ts';
 import React,{useState,useRef,useEffect}from'react';
 import{appUrl}from'./urls.ts';
 import{writeVerifiedClipboard}from'./clipboard.ts';
-export function TmmCompatibility({projectId,canExport,canApply=false,onApplied,onImported,migrationCandidate}:{projectId:string|null;canExport:boolean;canApply?:boolean;onApplied?:()=>Promise<void>;onImported?:(projectId:string)=>Promise<void>;migrationCandidate?:File|null}){
- const copyEpoch=useRef(0),passwordRef=useRef(''),allowed=useRef({projectId,canExport}),saveRequest=useRef<{project:string;password:string;format:string;requestId:string}|null>(null);
+export function TmmCompatibility({projectId,activeDocumentId,canExport,canApply=false,onApplied,onImported,migrationCandidate}:{projectId:string|null;activeDocumentId?:string;canExport:boolean;canApply?:boolean;onApplied?:()=>Promise<void>;onImported?:(projectId:string)=>Promise<void>;migrationCandidate?:File|null}){
+ const copyEpoch=useRef(0),passwordRef=useRef(''),allowed=useRef({projectId,canExport}),saveRequest=useRef<{project:string;password:string;format:string;activeDocumentId?:string;requestId:string}|null>(null);
  allowed.current={projectId,canExport};
  const [choices,setChoices]=useState<Record<string,string>>({});
  const epoch=useRef(0),fileChoice=useRef(0),[format,setFormat]=useState('secure-v3'),[password,setPassword]=useState(''),[oldPassword,setOldPassword]=useState(''),[file,setFile]=useState<File|null>(null),[busy,setBusy]=useState(false),[message,setMessage]=useState(''),[profile,setProfile]=useState<any>(null),[offerV1Migration,setOfferV1Migration]=useState(false),[isV1Zip,setIsV1Zip]=useState(false),[downloadPath,setDownloadPath]=useState<string|null>(null);
  useEffect(()=>{epoch.current++;setProfile(null);setMessage('');setDownloadPath(null);saveRequest.current=null;setOfferV1Migration(false);return()=>{epoch.current++;};},[projectId,canExport]);
+ useEffect(()=>{const generation=++epoch.current;setDownloadPath(null);setBusy(false);if(!projectId||!canExport)return;
+  const project=projectId,request=rememberedWorkspaceSave(project,format),active=()=>generation===epoch.current&&allowed.current.projectId===project&&allowed.current.canExport;
+  if(request){setBusy(true);void resumeWorkspaceSave(project,format,request,active).then(result=>{if(!active()||!result)return;if(result.state==='completed')setDownloadPath(`/api/projects/${project}/portable/saves/${result.receiptId}/download`);else if(result.state==='failed')setMessage(result.error??'工程保存失败，请重新保存。');}).catch(error=>{if(active())setMessage(error.message);}).finally(()=>{if(active())setBusy(false);});}
+  return()=>{epoch.current++;};
+ },[projectId,canExport,format]);
  useEffect(()=>{if(migrationCandidate)void selectFile(migrationCandidate);},[migrationCandidate]);
  async function selectFile(selected:File|null){const choice=++fileChoice.current;setFile(selected);setProfile(null);setOfferV1Migration(false);setIsV1Zip(false);if(!selected)return;const header=new Uint8Array(await selected.slice(0,4).arrayBuffer());if(choice!==fileChoice.current)return;const legacy=header[0]===80&&header[1]===75&&header[2]===3&&header[3]===4;setIsV1Zip(legacy);setOfferV1Migration(legacy&&(selected.size>50*1024*1024||selected===migrationCandidate));}
  function changePassword(value:string){copyEpoch.current++;passwordRef.current=value;setPassword(value);setDownloadPath(null);setMessage('');}
@@ -35,13 +41,14 @@ export function TmmCompatibility({projectId,canExport,canApply=false,onApplied,o
  async function exportProject(generation:number){
   if(!projectId||!canExport)return;
   const project=projectId,active=()=>generation===epoch.current&&allowed.current.projectId===project&&allowed.current.canExport;
-  if(saveRequest.current?.project!==project||saveRequest.current.password!==password||saveRequest.current.format!==format)saveRequest.current={project,password,format,requestId:crypto.randomUUID()};
+  if(saveRequest.current?.project!==project||saveRequest.current.password!==password||saveRequest.current.format!==format||saveRequest.current.activeDocumentId!==activeDocumentId)saveRequest.current={project,password,format,activeDocumentId,requestId:crypto.randomUUID()};
   const current=saveRequest.current;
   const send=async(path:string,body:unknown)=>{const response=await request(path,body);return response.json();};
-  let result=await send(`/projects/${project}/portable/save`,{requestId:current.requestId,password:current.password,format:current.format});
+  let result=await send(`/projects/${project}/portable/save`,{requestId:current.requestId,password:current.password,format:current.format,activeDocumentId:current.activeDocumentId});
+  rememberWorkspaceSave(project,current.format,current.requestId);
   while(active()&&result.state==='running'){await new Promise(resolve=>setTimeout(resolve,2000));if(!active())return;result=await send(`/projects/${project}/portable/save-result`,{requestId:current.requestId});}
   if(!active())return;
-  if(result.state!=='completed'){saveRequest.current=null;throw Error(result.error??'工程保存回执已失效，请重新保存。');}
+  if(result.state!=='completed'){forgetWorkspaceSave(project,current.format,current.requestId);saveRequest.current=null;throw Error(result.error??'工程保存回执已失效，请重新保存。');}
   setDownloadPath(`/api/projects/${project}/portable/saves/${result.receiptId}/download`);saveRequest.current=null;setMessage('工程传输副本已保存，请点击下载链接并核对浏览器下载结果，妥善保存文件密码。');
  }
  async function migrateV1AndOpen(generation:number){

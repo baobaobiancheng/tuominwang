@@ -138130,6 +138130,226 @@
           }
         }
       ]
+    },
+    {
+      "id": "ITER-058-WORKSPACE-SNAPSHOT-AND-RESUME-183",
+      "date": "2026-10-17",
+      "action": "记录原快照元数据与本地可靠性最小闭合及实际定向终态",
+      "summary": "原createdAt/activeDocumentId沿ID映射保存与重开；不透明保存回执同会话恢复；金额、MCP与目录原设计分支补齐。本地必需检查及关键Edge定向通过，完整API/Edge未同源重跑且未部署。",
+      "verification": "九文档与旧源码事前归档；真实终态、聚焦RED/GREEN、十规则JSON逐字节不变；不提升I/S/R/R0。",
+      "affected_ids": [],
+      "evidence": [
+        {
+          "path": "文档/逆向台账/contracts/iteration058-workspace-and-resume-183-20261017.json"
+        }
+      ],
+      "new_evidence_baseline": {
+        "path": "文档/逆向台账/contracts/iteration058-workspace-and-resume-183-20261017.json",
+        "current": {
+          "sha256": "1eef85d42b00841729a25916bf7d3c047d5425a670845df8ab668fa566569660",
+          "bytes": 15396
+        }
+      },
+      "document_hash_transitions": [
+        {
+          "path": "apps/api/mcp.ts",
+          "previous": {
+            "sha256": "d05f767241e5b3a80f5117517743e2d8fa4827e3f5287b5bca092c6335c165b2",
+            "bytes": 171251
+          },
+          "current": {
+            "sha256": "045917898872dbbac0f56f74b5da03d8908a7b344064093806df139c3ba7beec",
+            "bytes": 171434
+          }
+        },
+        {
+          "path": "apps/api/workspace-export-stream.ts",
+          "previous": {
+            "sha256": "2bbaf20105c73993b5e60982ee0dec697dd63ecf25c1437bc0562ad484658717",
+            "bytes": 14471
+          },
+          "current": {
+            "sha256": "a7eae2cd357309d3e93266b026874835a4ba78ef0590463efe6956d5e51db205",
+            "bytes": 14749
+          }
+        },
+        {
+          "path": "apps/api/workspace-portable.ts",
+          "previous": {
+            "sha256": "54f4d395f178f8fbe328ccdcf0de32c6c632964ecc8d217ca837e31b3f25080b",
+            "bytes": 62132
+          },
+          "current": {
+            "sha256": "5d3cece764149b53c1c25715b1685300319dd8b47c8e186274d161f789eceaeb",
+            "bytes": 62602
+          }
+        },
+        {
+          "path": "apps/api/workspace-saves.ts",
+          "previous": {
+            "sha256": "9b128bcd4579d4b71956344453363e928fb4a5b5ffb356e12ab54f456661b5a0",
+            "bytes": 13394
+          },
+          "current": {
+            "sha256": "b8d8a1c2dff87262eb5c019f46d83c8062cc4b8d7b567b47d26a9cb7543343ce",
+            "bytes": 13702
+          }
+        },
+        {
+          "path": "apps/web/folder-output.tsx",
+          "previous": {
+            "sha256": "d5c22206cc0d1b035da1ef539ea5e62f03e4490376409b4b89acb82ae5d80aca",
+            "bytes": 7953
+          },
+          "current": {
+            "sha256": "b896516bb3792c7392feb57bda2746279d846e8d112ac5fd6dd32bb2390c821a",
+            "bytes": 9840
+          }
+        },
+        {
+          "path": "apps/web/main.tsx",
+          "previous": {
+            "sha256": "06e49b292198e760f5da865086093b53fe1b9a4b879a52591ab0ab80e64f7e31",
+            "bytes": 109905
+          },
+          "current": {
+            "sha256": "3eb98c23398711fba82df4c3547e6202874fc2812d6cb5fc41cb901f87a05c3e",
+            "bytes": 110417
+          }
+        },
+        {
+          "path": "apps/web/tmm-compatibility.tsx",
+          "previous": {
+            "sha256": "b3f363c530e16786bc4336926144460eb9473a8d6c3e4981c97df5a74e3667ad",
+            "bytes": 14369
+          },
+          "current": {
+            "sha256": "d7946bb603da449d2d22c26a6d57c3e972d3c215ea2b531c1637501ed6d0eec0",
+            "bytes": 15621
+          }
+        },
+        {
+          "path": "apps/web/workspace-portable.tsx",
+          "previous": {
+            "sha256": "1610fca6beed30a38f1abf673587576e736f61abf8804ee71c6960e4025991a5",
+            "bytes": 7092
+          },
+          "current": {
+            "sha256": "67cf797cda9cde2ab829756dab3c60a308d57db1df03f42882b7347f7a3912b9",
+            "bytes": 8290
+          }
+        },
+        {
+          "path": "packages/core/native-portable.ts",
+          "previous": {
+            "sha256": "8aa1c7a706cac55800b32051a1f745882ccfab2251052313129528fa88000c51",
+            "bytes": 5880
+          },
+          "current": {
+            "sha256": "24163d44f1707a35c56583ddc9d850e9dd9e81a899d94b8a6e4c73595f19e3e6",
+            "bytes": 5930
+          }
+        },
+        {
+          "path": "packages/core/reference-rules.ts",
+          "previous": {
+            "sha256": "9d5a75c142c139a4a38bc8441806debe1ffbd56a2012a7d15fd47fcfe3d58dc0",
+            "bytes": 76271
+          },
+          "current": {
+            "sha256": "30559e8bea253fa37d8cfd4332c56d739149af931441d6759f321571c50257f4",
+            "bytes": 76563
+          }
+        },
+        {
+          "path": "packages/core/workspace-compat.ts",
+          "previous": {
+            "sha256": "3b70b3547d96eb274828215d875742a4b543a97ed8709f177d1c189ab55990a7",
+            "bytes": 24556
+          },
+          "current": {
+            "sha256": "b3f5fd05fcc129a7c3923dd173a27a7189a107113248d1acdad631727d7acbde",
+            "bytes": 24664
+          }
+        },
+        {
+          "path": "tests/e2e/critical-user-paths.spec.ts",
+          "previous": {
+            "sha256": "a1c68c5feea16ade99133188f0eb377089cc2f459b79e0b58de29fe481c4c793",
+            "bytes": 21824
+          },
+          "current": {
+            "sha256": "81efb55c37bb16245b79832ab28eda03b619b1bafe68c77821f1ed1c37cb4a5d",
+            "bytes": 24705
+          }
+        },
+        {
+          "path": "tests/mcp-batch-children.integration.ts",
+          "previous": {
+            "sha256": "2b16e373855ef5d6cbd3f9363de320f269d01f1635114d9bcdc5f8268c762587",
+            "bytes": 41570
+          },
+          "current": {
+            "sha256": "9c74954b8b77fa08d281dd36e0d4f824c898fe9095661a189a5ea52e8d617e14",
+            "bytes": 44969
+          }
+        },
+        {
+          "path": "tests/reference-rules.test.ts",
+          "previous": {
+            "sha256": "605dcddc87c61551a09b0c4a34488a67a4f0dda5dceedbe65d83a8e6c69c7d05",
+            "bytes": 15585
+          },
+          "current": {
+            "sha256": "d0bf757ee9f1e45ebe5fe722e6c02336b5d954be86ac27b517923ec5cf587448",
+            "bytes": 16113
+          }
+        },
+        {
+          "path": "tests/workspace-compat.test.ts",
+          "previous": {
+            "sha256": "e3355c68760e82e3aa7b353d580bbe62bf4cd6ddd2808a81d914e02c2faff099",
+            "bytes": 7999
+          },
+          "current": {
+            "sha256": "c8a810a5cef87c26ca26b0a82f2a3489e6204d7a3072959a4a3c4e95f0700226",
+            "bytes": 8975
+          }
+        },
+        {
+          "path": "tests/workspace-save-receipts.integration.ts",
+          "previous": {
+            "sha256": "b3ca51bd027284b3fb08f4f8f1f1c1727a22533bd32395fb1b4f0ebbf41df9ac",
+            "bytes": 13665
+          },
+          "current": {
+            "sha256": "75536aa3411e093cf394c7b1c082f1c58032cf5b394af269f9d53085d490feea",
+            "bytes": 17931
+          }
+        },
+        {
+          "path": "文档/待办与完成状态-20261015.md",
+          "previous": {
+            "sha256": "4f09d7452320881393a62238515dbb8a849ef7fb85d165f0734eac49b3d49e74",
+            "bytes": 118650
+          },
+          "current": {
+            "sha256": "e8e4892232219312fd5d054219e2a6ed4c7fee213d32af8293302c84dae22fb6",
+            "bytes": 119714
+          }
+        },
+        {
+          "path": "文档/脱敏规则完整技术交接-迭代023.md",
+          "previous": {
+            "sha256": "e74362332722432e2b606c3f53ddc8fd8db7139953d672afc8bc54638fdded94",
+            "bytes": 421773
+          },
+          "current": {
+            "sha256": "48f4a2dc08cbd9c53b2e4a2f02e15b9fbf6a20c25879a9cad4cb75a9333222fe",
+            "bytes": 422291
+          }
+        }
+      ]
     }
   ],
   "evidence_snapshot": {
@@ -138193,8 +138413,8 @@
         "bytes": 18335
       },
       "apps/web/main.tsx": {
-        "sha256": "06e49b292198e760f5da865086093b53fe1b9a4b879a52591ab0ab80e64f7e31",
-        "bytes": 109905
+        "sha256": "3eb98c23398711fba82df4c3547e6202874fc2812d6cb5fc41cb901f87a05c3e",
+        "bytes": 110417
       },
       "apps/web/review-tools.tsx": {
         "sha256": "134ca906de43bfd5f89202962be1bf4f7406a7747cd6278d4c3692f44a5c98fe",
@@ -140545,8 +140765,8 @@
         "bytes": 423
       },
       "文档/脱敏规则完整技术交接-迭代023.md": {
-        "sha256": "e74362332722432e2b606c3f53ddc8fd8db7139953d672afc8bc54638fdded94",
-        "bytes": 421773
+        "sha256": "48f4a2dc08cbd9c53b2e4a2f02e15b9fbf6a20c25879a9cad4cb75a9333222fe",
+        "bytes": 422291
       },
       "文档/逆向台账/contracts/build-complete-rule-handoff-20261014.py": {
         "sha256": "c5d6db581eb6019ba761fe2adb9ba66b41c4a611162c32e54729baf3fa9810e6",
@@ -141121,8 +141341,8 @@
         "bytes": 12241
       },
       "packages/core/native-portable.ts": {
-        "sha256": "8aa1c7a706cac55800b32051a1f745882ccfab2251052313129528fa88000c51",
-        "bytes": 5880
+        "sha256": "24163d44f1707a35c56583ddc9d850e9dd9e81a899d94b8a6e4c73595f19e3e6",
+        "bytes": 5930
       },
       "tests/office.test.ts": {
         "sha256": "ef4fed0a64afbffd00e307b85c4e549a61b5092eb65790db42e544f53522d9ae",
@@ -141529,8 +141749,8 @@
         "bytes": 2269
       },
       "tests/reference-rules.test.ts": {
-        "sha256": "605dcddc87c61551a09b0c4a34488a67a4f0dda5dceedbe65d83a8e6c69c7d05",
-        "bytes": 15585
+        "sha256": "d0bf757ee9f1e45ebe5fe722e6c02336b5d954be86ac27b517923ec5cf587448",
+        "bytes": 16113
       },
       "文档/逆向台账/contracts/current-interface-handoff-20261014.json": {
         "sha256": "60290e06ba185d4a5b1754d5d0af697e435ccd90b45299bfb7518cb78359097d",
@@ -141645,8 +141865,8 @@
         "bytes": 6458
       },
       "apps/web/tmm-compatibility.tsx": {
-        "sha256": "b3f363c530e16786bc4336926144460eb9473a8d6c3e4981c97df5a74e3667ad",
-        "bytes": 14369
+        "sha256": "d7946bb603da449d2d22c26a6d57c3e972d3c215ea2b531c1637501ed6d0eec0",
+        "bytes": 15621
       },
       "tests/reference-visual-table.test.ts": {
         "sha256": "7bf7674cb42f31ef10244cb0286f9114508ce52323a9b81e0b2e342da907f2ae",
@@ -142009,8 +142229,8 @@
         "bytes": 753
       },
       "tests/workspace-compat.test.ts": {
-        "sha256": "e3355c68760e82e3aa7b353d580bbe62bf4cd6ddd2808a81d914e02c2faff099",
-        "bytes": 7999
+        "sha256": "c8a810a5cef87c26ca26b0a82f2a3489e6204d7a3072959a4a3c4e95f0700226",
+        "bytes": 8975
       },
       "文档/逆向台账/contracts/raster-source-mode-matrix-20261014.md": {
         "sha256": "f07084af4a43acd92960636c860b8f0e05d3cc1b30781987ae23806da3a1904e",
@@ -142121,8 +142341,8 @@
         "bytes": 2282
       },
       "apps/api/workspace-portable.ts": {
-        "sha256": "54f4d395f178f8fbe328ccdcf0de32c6c632964ecc8d217ca837e31b3f25080b",
-        "bytes": 62132
+        "sha256": "5d3cece764149b53c1c25715b1685300319dd8b47c8e186274d161f789eceaeb",
+        "bytes": 62602
       },
       "tests/reference-mask.test.ts": {
         "sha256": "a4aa039c6a9c9355c285eab6a42a3016e57e1ef42b4cc403b660f93856448d55",
@@ -142357,8 +142577,8 @@
         "bytes": 2092
       },
       "apps/web/workspace-portable.tsx": {
-        "sha256": "1610fca6beed30a38f1abf673587576e736f61abf8804ee71c6960e4025991a5",
-        "bytes": 7092
+        "sha256": "67cf797cda9cde2ab829756dab3c60a308d57db1df03f42882b7347f7a3912b9",
+        "bytes": 8290
       },
       "文档/逆向台账/contracts/build-markdown-porting-20261014.py": {
         "sha256": "cba6258cae5986bb61975d654a1cefc60d033a7e303b2eecc5ff7f1c56fec8ff",
@@ -143293,8 +143513,8 @@
         "bytes": 2188
       },
       "packages/core/reference-rules.ts": {
-        "sha256": "9d5a75c142c139a4a38bc8441806debe1ffbd56a2012a7d15fd47fcfe3d58dc0",
-        "bytes": 76271
+        "sha256": "30559e8bea253fa37d8cfd4332c56d739149af931441d6759f321571c50257f4",
+        "bytes": 76563
       },
       "scripts/opencv-lock.json": {
         "sha256": "019659065d13c54ecb143f9892d1c7bbeae8f026f3eb3f6d98f93a699d103909",
@@ -143317,8 +143537,8 @@
         "bytes": 4926
       },
       "packages/core/workspace-compat.ts": {
-        "sha256": "3b70b3547d96eb274828215d875742a4b543a97ed8709f177d1c189ab55990a7",
-        "bytes": 24556
+        "sha256": "b3f5fd05fcc129a7c3923dd173a27a7189a107113248d1acdad631727d7acbde",
+        "bytes": 24664
       },
       "scripts/download-openimages-face.py": {
         "sha256": "43b9b9813e8f84c93e601286ceb9841169b9e76aadf4273d01b8128714210805",
@@ -143429,8 +143649,8 @@
         "bytes": 1089
       },
       "apps/api/mcp.ts": {
-        "sha256": "d05f767241e5b3a80f5117517743e2d8fa4827e3f5287b5bca092c6335c165b2",
-        "bytes": 171251
+        "sha256": "045917898872dbbac0f56f74b5da03d8908a7b344064093806df139c3ba7beec",
+        "bytes": 171434
       },
       "packages/contracts/feedback.ts": {
         "sha256": "e9f79b4d028bcac80afcedb7b2f10bfc219508de5d8de26b6802ad43015cccf9",
@@ -144121,8 +144341,8 @@
         "bytes": 4676926
       },
       "文档/待办与完成状态-20261015.md": {
-        "sha256": "4f09d7452320881393a62238515dbb8a849ef7fb85d165f0734eac49b3d49e74",
-        "bytes": 118650
+        "sha256": "e8e4892232219312fd5d054219e2a6ed4c7fee213d32af8293302c84dae22fb6",
+        "bytes": 119714
       },
       ".data/research/lawbot-2026-10-15/iteration036/checkpoint-history/current/apps/api/main.ts": {
         "sha256": "4c36dad476012af090cb8649de2b991235d41e4c5d946a4a411404680935b011",
@@ -144697,8 +144917,8 @@
         "bytes": 8504
       },
       "apps/api/workspace-saves.ts": {
-        "sha256": "9b128bcd4579d4b71956344453363e928fb4a5b5ffb356e12ab54f456661b5a0",
-        "bytes": 13394
+        "sha256": "b8d8a1c2dff87262eb5c019f46d83c8062cc4b8d7b567b47d26a9cb7543343ce",
+        "bytes": 13702
       },
       ".data/research/lawbot-2026-10-15/iteration036/checkpoint-history/current/apps/web/ai-collab.tsx": {
         "sha256": "43461f6691239b47e9111b14a21d8313440c3d6731eeac2c1f0e7e33b942cb27",
@@ -144785,8 +145005,8 @@
         "bytes": 4719
       },
       "apps/web/folder-output.tsx": {
-        "sha256": "d5c22206cc0d1b035da1ef539ea5e62f03e4490376409b4b89acb82ae5d80aca",
-        "bytes": 7953
+        "sha256": "b896516bb3792c7392feb57bda2746279d846e8d112ac5fd6dd32bb2390c821a",
+        "bytes": 9840
       },
       ".data/research/lawbot-2026-10-15/iteration036/checkpoint-history/current/apps/web/manual-occurrences.tsx": {
         "sha256": "b2ac05e00519fce6a07259aad51ea544c98bc3fbeeba3faaf5a2dadaf33345da",
@@ -146349,8 +146569,8 @@
         "bytes": 12230
       },
       "tests/workspace-save-receipts.integration.ts": {
-        "sha256": "b3ca51bd027284b3fb08f4f8f1f1c1727a22533bd32395fb1b4f0ebbf41df9ac",
-        "bytes": 13665
+        "sha256": "75536aa3411e093cf394c7b1c082f1c58032cf5b394af269f9d53085d490feea",
+        "bytes": 17931
       },
       ".data/research/lawbot-2026-10-15/iteration036/checkpoint-history/current/tests/workspace-source-profile.test.ts": {
         "sha256": "7ed863a9919a47d517674b177935e58cee1f978bce2a08bf19acaebbfd35dcc4",
@@ -153317,8 +153537,8 @@
         "bytes": 1434
       },
       "tests/e2e/critical-user-paths.spec.ts": {
-        "sha256": "a1c68c5feea16ade99133188f0eb377089cc2f459b79e0b58de29fe481c4c793",
-        "bytes": 21824
+        "sha256": "81efb55c37bb16245b79832ab28eda03b619b1bafe68c77821f1ed1c37cb4a5d",
+        "bytes": 24705
       },
       ".data/research/lawbot-2026-10-16/iteration052/arch/layered-edge-aggregation-method.md": {
         "sha256": "320791d85a9490cbe21870317c3f2d7541a97d46a2753e140d268813e1fdbda1",
@@ -160933,8 +161153,8 @@
         "bytes": 8158
       },
       "tests/mcp-batch-children.integration.ts": {
-        "sha256": "2b16e373855ef5d6cbd3f9363de320f269d01f1635114d9bcdc5f8268c762587",
-        "bytes": 41570
+        "sha256": "9c74954b8b77fa08d281dd36e0d4f824c898fe9095661a189a5ea52e8d617e14",
+        "bytes": 44969
       },
       "tests/mcp-batch-resolver.test.ts": {
         "sha256": "f79fe0096108de1091acf5303b1107859fc9a4dade0babcf63855c6cea392df7",
@@ -162993,8 +163213,8 @@
         "bytes": 7128
       },
       "apps/api/workspace-export-stream.ts": {
-        "sha256": "2bbaf20105c73993b5e60982ee0dec697dd63ecf25c1437bc0562ad484658717",
-        "bytes": 14471
+        "sha256": "a7eae2cd357309d3e93266b026874835a4ba78ef0590463efe6956d5e51db205",
+        "bytes": 14749
       },
       "apps/api/workspace-folder-batch.ts": {
         "sha256": "4499aae090d1a8836da78cc1efc1877a61a0bf819c873e5a36ca218797de26db",
@@ -163015,6 +163235,34 @@
       "文档/逆向台账/contracts/iteration057-local-reliability-fixes-182-20261017.json": {
         "sha256": "b254d4ee0e09c6174d386cf6ff535960e3453e88d308e2206ccea2323473d576",
         "bytes": 7655
+      },
+      "apps/web/workspace-save-cache.ts": {
+        "sha256": "6a402acbbd179684682ec517106aa43b6d07df8354502441c134923468c5ead9",
+        "bytes": 1892
+      },
+      "packages/core/workspace-snapshot-metadata.ts": {
+        "sha256": "123ff756984449098fae5e51c25ffe7938a5683187d6dd4e5333b6d673643aee",
+        "bytes": 1247
+      },
+      "tests/e2e/workspace-save-reopen.spec.ts": {
+        "sha256": "41f2420f6c03f3f49ec8e756392deb179e44e9cd66a228923e080111d7910ebc",
+        "bytes": 4083
+      },
+      "tests/mcp-implicit-completed-batch.integration.ts": {
+        "sha256": "912385e249c68d11210d209cbf8717f49c5f542560f78ccde8a3dc420167a613",
+        "bytes": 7669
+      },
+      "tests/workspace-save-cache.test.ts": {
+        "sha256": "806a7d79def8f671260a1a5aae1053a4f8c529cba238e02cd3d18c4d8f831f59",
+        "bytes": 3842
+      },
+      "tests/workspace-snapshot-metadata.test.ts": {
+        "sha256": "75bac900002331e10f233ce31306e7ae36ca02e3e737db9ba57e296d7d78a406",
+        "bytes": 1585
+      },
+      "文档/逆向台账/contracts/iteration058-workspace-and-resume-183-20261017.json": {
+        "sha256": "1eef85d42b00841729a25916bf7d3c047d5425a670845df8ab668fa566569660",
+        "bytes": 15396
       }
     },
     "unavailable_historical_screenshots": [

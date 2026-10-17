@@ -27,6 +27,7 @@ import { documentPolicySchema } from "../../packages/contracts/document-policy.t
 import { FILE_MAX_BYTES } from "../../packages/contracts/index.ts";
 import type { NativePortable } from "../../packages/core/native-portable.ts";
 import { workspaceFolderBatch } from './workspace-folder-batch.ts';
+import { workspaceSnapshotMetadata } from '../../packages/core/workspace-snapshot-metadata.ts';
 
 type Actor = { id: string; tenant_id: string };
 type Asset = Buffer | TmmFileRef;
@@ -51,7 +52,7 @@ async function smallMarkdownSource(ref: TmmFileRef) {
 // route. Only the original-source read changes to a verified private stream.
 export async function produceWorkspaceArchive(db: DB, actor: Actor, project: string,
   password: string, outputPath: string, signal?: AbortSignal,
-  format: "native" | "legacy-zip" | "secure-v2" | "secure-v3" = "native") {
+  format: "native" | "legacy-zip" | "secure-v2" | "secure-v3" = "native",selectedDocumentId?:string) {
   const directory = await mkdtemp(join(tmpdir(), "tmw-workspace-export-"));
   const assets = new Map<string, Asset>();
   try {
@@ -149,9 +150,10 @@ export async function produceWorkspaceArchive(db: DB, actor: Actor, project: str
       assets.set(entry, bytes); delete item.sourceId; item.entry = entry;
     }
     const folderBatch=await workspaceFolderBatch(db,actor.tenant_id,project,importedPortable);
+    const metadata=workspaceSnapshotMetadata(new Date(p.created_at).toISOString(),documents.map(d=>d.id),importedPortable,selectedDocumentId);
     const snapshot: NativePortable = { format: "tuominwang-workspace", schemaVersion: 1,
       ...(folderBatch?{folderBatch}:{}),
-      project: { name: p.name,
+      project: { name: p.name,...metadata,
         dictionary: p.dictionary ? JSON.parse(unseal(p.dictionary, `${actor.tenant_id}:${project}:dictionary`)) : [],
         dictionaryRevision: p.dictionary_revision,
         presetPolicy: p.preset_policy ? JSON.parse(unseal(p.preset_policy, `${actor.tenant_id}:${project}:presets`)) : null,

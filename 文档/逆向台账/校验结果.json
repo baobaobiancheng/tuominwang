@@ -1,5 +1,5 @@
 {
-  "ledger_sha256": "b71f224efbb1252fb49123db0dfec9ed1050724a5229d3fe92e2ec133e260503",
+  "ledger_sha256": "9c167447cc0939eab87534302e33851b6cf2b3b5d901192e068f2d055973a319",
   "reference_version": "0.5.9",
   "interface_count": 258,
   "flow_count": 37,
@@ -8,7 +8,7 @@
   "unmapped_interfaces": [],
   "empty_evidence_interfaces": [],
   "evidence_reference_count": 5091,
-  "evidence_file_count": 6220,
+  "evidence_file_count": 6227,
   "evidence_baseline_at": "2026-10-15T23:43:46.294394+00:00",
   "evidence_baseline_note": "这些哈希是2026-10-13本轮从当前现存文件建立的内容基线，只用于此后漂移检测；不能反向证明基线建立前的文件内容、原始发布完整性或过去运行结论。专有源码未修改。 ITER-012/013追加人工契约、交叉审查、新版指南及明确列举的子路径源码；旧文件哈希继续保留。已批准源码和主分析文档的哈希变更逐项记录previous/current，不扫描部署凭据。 ITER-014仅显式更新最终应用Compose及新增部署结果文件，保留真实OOM与未验证边界，未纳入密钥或环境凭据。 ITER-015仅补115项UI入口、两处动态桥调用集合、交叉审查/核验脚本及新增OpenJPEG发布证据；保留此前应用和部署文件的哈希，正在进行的前端修复漂移由后续迭代单独复核。 ITER-016：仅将本轮明确修改的前端/测试/部署/文档及验收回执更新基线，事件保存旧新哈希；无业务材料或凭据入账。 ITER-017新增分组/增补契约、交叉审查及npm原生签名差异证据；仅maintain新增71解释及维护规则旧动态数量文案的历史hash显式更新。未纳入凭据、未改竞品文件或应用。下载tarball及原生比较的逐项SHA保存在专项报告，不自动扩大成算法可信声明。 ITER-020：补我方Word结构预览、页内OCR改字、视觉候选的实现/验收与规则交接；显式更新5项应用pin，previous/current与原ledger备份保留；早期UI/26例与旧交接独审仅为历史阶段，不代表最终功能或最终文档全部被独审。竞品S2/R0、全部I级别不变，未据本地验证声明公网发布。 ITER-022显式更新进度检查点应用pin；main87基线原字节和旧新hash逐项保留，新能力未一律提级，未发布服务。 ITER-023仅显式进度检查点，28项原pin旧字节归档；有失败日志和新阶段未完成事项，未整体升格。 ITER-030显式逐ID更新，所有漂移旧字节保留并精确验hash；竞品运行R0保持不变。 ITER-031发布及真实OOM影响补证；README和指南文本旧字节精确保留；7张历史截图原字节缺失明确列出，旧hash保留且不声称历史图全部可验证。 ITER038静态语义逐ID合并；旧漂移逐一有精确字节归档，未覆盖掉历史证据。 ITER039握手故障独立复现；变更旧字节逐一验hash并归档，未以定向通过推全量或发布。 ITER040保留全部旧pin字节；逐ID/流程说明CAS更正，等级不变；实际门禁与服务器发布分别记录。 ITER040补5个已存在的新引用当前哈希；不反推其建立基线前内容。新增Edge截图调用保留此前精确字节，尚未运行。 ITER041逐文件真实variant与前后testSHA/logSHA固定；历史结果不冒称当前单次全量。两项测试修正保留旧字节及独立源裁定。 ITER042：首轮真实Edge失败原样保留；18项新旧字节逐一固定，4项产品修复待重新运行，等级不变。 ITER043最终本地：所有旧pin精确字节均找到并归档；API/Edge逐variant保留，无单次全量虚称；13条备注校准不改等级，图文实际核对；部署另证。 ITER044上线：首次真实OOM/回滚与恢复、二次发布、TXT/PNG实产物、指南补丁分别保留；无新增资源限制或模型读取改动；证据变更先核旧字节，S/I/R不变。 ITER-050首次检查点新增审查和实际反例，不变更已有pin及S/I/R，修复与发布尚待。 ITER-050终版：明确更新14路径及文档pin，旧字节按SHA归档；保留失败/跳过/反驳与最终同源层次。258R0及S/I不升级；未把本地验收写为已发布。 ITER-050发布：4文档旧字节先归档，追加最小部署与公网只读证据，保留历史状态而不升级S/I/R。 ITER-051反例检查点：状态文件旧字节先归档；固定已结束实测而不固定仍运行日志；不升级S/I/R。 ITER-051第一批：旧源码Git7ef93d6精确字节归档后显式转移pin；772单元及Edge2为第一批实测，签名/进度/MCP后续未验，竞品R0/线上050记录保持。 051第二批本地checkpoint：显式pin转换及事前旧字节归档；777完整单元、定向API/Edge与跨组反驳；95文件API仍执行、活动日志不pin、未部署。 051第三批本地checkpoint：显式旧pin归档转换，851完整check、分层API/Edge、27图；104全API仍执行，未部署，S/I/R不升。 051第四批前停点：104文件执行35，61过1测试期望失败；无条件安全断言重验1/1，假名与模型导航补齐，未部署。 051第四批checkpoint：SQL044及Edge1/1、854 check134/783、28节30图；105完整API仍运行，未部署，旧pin精确字节归档。 051e终态：105文件209项分段通过、854输入不变、044上线/397运行文件和web资源/5邻居/公网Edge/28节30图，源R0及I级保持。 052显式归档9处旧pin后更新；完整83失败/分层87成功、793单元及规则和质量边界分别保留，208条过期门禁等待清理不提升状态。 ITER-056进展：46项已冻结v4开发源码pin的旧字节逐项从HEAD恢复并精确验旧hash归档后更新；非完成或部署声明。7项缺失runtime-mount证据从原DMG只读挂载提取，逐项匹配原hash，未改竞品源码。明细iteration056-development-pin-refresh-20261016.json。 ITER056正式代码检查点：16项代码pin逐项有旧字节archive，895输入/820测试/Bend通过；真实seal暂停P1仍开放，完整API/Edge/发布未完成。 ITER056第二阶段语义审计：80项有界核查，新增缺页按需OCR P2；不改源码pin或S/I/R，私树与研究稿不是完成。 ITER-056定向完整印章链及真实预览失败追加：仅新增稳定证据pin，保留独审撤回记录；正式895源码与S/I/R不变，未部署。 ITER-056提前预览Edge实际1/1追加：失败与定位保留，新增证据pin；正常dev恢复，私树通过不等于正式全量，不升S/I/R。 ITER-056正式v7合入：35路径旧pin逐一以真实旧字节归档，912输入manifest固定；052本地迁移健康已验，完整门禁待验，未发布服务器且S/I/R不变。 ITER-056正式v7完整工程检查实际通过：824单测+Bend18/21+类型构建；API129真实启动及Edge104准备单独声明，不冒称动态全量完成。新增稳定证据pin且S/I/R不变。 ITER-056规则来源手册同步：原391085字节与10JSON保留；新增17ID只读复核及当前图表，明确移植与我方扩展、准确率未验，不改S/I/R。 ITER-056限定静态补证：26项S2→S3仅包内接口链，8项未知远端保S2；独审发现MCP视觉附件真实缺分支，保留I1与全部R0，不以测试替代补齐。手册旧字节及10JSON保留。 ITER-056视觉映射原码复核：公开LPM控制语义与0可见命中分开，方向修正留证；正式912和S/I/R不变。 ITER-056金额真实Edge1/1与截图指南：原指南旧字节归档、29节链接核验，下载断言和保存服务端产物来源分开；MCP私树P1待修，正式912未变，不升S/I/R。 ITER-056 916正式检查点：26路径逐项旧/新SHA与23份旧源归档核实后更新，工程check通过且477历史恢复；913旧API/Edge失败与82独立运行中诊断保持不同源。旧台账/生成视图/两主文档原字节归档，10规则JSON不变；只读远端计数与备份能力不等于备份/发布，不升S/I/R。 ITER-056 917本任务重试检查点：3路径中2旧源码字节精确归档、新增1测试；917工程check终态通过且477历史复原。定向1+2仅测试DB置failed后真实poll/worker，不代表真实模型故障。旧913完整API/Edge失败和正在执行的913余82、916关键Edge均单列不可拼绿；未发布服务器，不升S/I/R。旧台账视图与两主文档先归档，规则10JSON不变，live日志/进程未pin。 ITER-056-105：v11三项Edge测试旧字节归档；check-v14终态0，API133/Edge105仅启动未终态。三项当前待办陈述校正，不提升S/I/R，不把913余82与旧前缀拼成一次全绿。 ITER-056-106：完整Edge首三项失败、纯测试候选与独审合并记录；完整API/Edge和旧913诊断均只固定前缀非终态，v11正式源码与S/I/R不变。 ITER-056-107：指南v2研究态静态渲染与独审、三项未运行纯测试候选一次记录；三组完整运行仅15:27:54 UTC不可变前缀，正式v11/917与S/I/R不变。 ITER-056-108：MCP七文件REA静态与逐函数有界对照，四差异和原请求去重边界；候选未完成全量验证，三组仅不可变前缀，S/I/R与R0不变。 ITER-056-109：原MCP backend service 86方法有界索引不等于闭合，父子接续/失败重准备仍有差异；transport v3局部API0、v5仅启动，诊断v1迁移/时序问题，旧913余82诊断1fail；S/I/R与R0不变。 ITER-056-110：通知v6单件隔离API0、诊断v4研究、传输v5私树5案0；正式917完整105Edge 85预期20失败，133API运行中固定前缀；S/I/R及R0不变。 ITER-056-111：原模块字节复用研究、本地诊断I/O与combined父完成查询缺口，空resources研究纯测；新层未合、S/I/R不升。 ITER-056-112：合并父真实完整还原单案通过与3案2/1、connector9/9、Edge7为6/1及wrapper故障独立保留；resume安全缺口及协议API仍待，S/I/R不升。 ITER-056-113：视觉定向3/3、协议私树API/类型0、批量v7 5案3/2与独审缺口按稳定SHA补证；旧7视图字节归档。正式917/线上054未更新，S/I/R与竞品全R0不变，v8未验。 ITER-056-114：batch v8五案0、13Edge9/4与fresh4未验；新接续alias/断开状态链缺口、053发布研究非就绪分开，I/S/R不升。 ITER115：原模块优先复用；整合v1/v2及Edge fresh4/fresh2实际终态分开记录，保留失败和源码提示漏项，最终整合全量/部署尚未完成，等级不变。 ITER116：原模块复用独审、v3批量8过/传输撤权真实失败及v4最小修复分别记录，最终合并全量验收与发布尚未完成。 ITER-056-117：v5私树check终态0与先前缺件/安装拒绝并列保留；定向API/Edge按真实源和终态分层，full API/106未完成，不升S/I/R。旧7视图精确归档。 ITER118：旧基线API133/274实际全过不冒作整合全量；新resume并发失败与CAS候选分开；README/状态文档旧字节归档，规则交接未改，S/I/R不变。 ITER119：正式937源合并42路径，旧新pin与精确旧字节保留；逐ID目录实际差距公开保留，未提I/S/R，最终全量与部署仍待。 ITER120：公开PDF全页链与我方300总限制差异补证；本地053数据库/健康实际读回不冒作发布，旧字节与源R0保留。 ITER056-136：8份旧台账及状态字节先完整归档；显式更新状态pin并新增冻结v14检查和REA稳定复核证据，未提升竞品运行或发布结论。 ITER056-137：先保留8份旧字节，更新当前状态pin；新增v7与985中间基线、全操作余项报告，未提升R/I或发布。 ITER056-138：旧8字节先归档；实际v15失败、两处逐字节等价测试修复与peer精确固定，不变产品或提升全量结论。；139：正式v17合入后34历史源码证据指向原字节归档，现行哈希与映射另存；不追认旧测试对新代码有效。",
   "evidence_files": {
@@ -21868,8 +21868,8 @@
       "matches_baseline": true
     },
     "apps/api/mcp.ts": {
-      "sha256": "d05f767241e5b3a80f5117517743e2d8fa4827e3f5287b5bca092c6335c165b2",
-      "bytes": 171251,
+      "sha256": "045917898872dbbac0f56f74b5da03d8908a7b344064093806df139c3ba7beec",
+      "bytes": 171434,
       "matches_baseline": true
     },
     "apps/api/members.ts": {
@@ -22028,8 +22028,8 @@
       "matches_baseline": true
     },
     "apps/api/workspace-export-stream.ts": {
-      "sha256": "2bbaf20105c73993b5e60982ee0dec697dd63ecf25c1437bc0562ad484658717",
-      "bytes": 14471,
+      "sha256": "a7eae2cd357309d3e93266b026874835a4ba78ef0590463efe6956d5e51db205",
+      "bytes": 14749,
       "matches_baseline": true
     },
     "apps/api/workspace-folder-batch.ts": {
@@ -22038,8 +22038,8 @@
       "matches_baseline": true
     },
     "apps/api/workspace-portable.ts": {
-      "sha256": "54f4d395f178f8fbe328ccdcf0de32c6c632964ecc8d217ca837e31b3f25080b",
-      "bytes": 62132,
+      "sha256": "5d3cece764149b53c1c25715b1685300319dd8b47c8e186274d161f789eceaeb",
+      "bytes": 62602,
       "matches_baseline": true
     },
     "apps/api/workspace-recovery.ts": {
@@ -22048,8 +22048,8 @@
       "matches_baseline": true
     },
     "apps/api/workspace-saves.ts": {
-      "sha256": "9b128bcd4579d4b71956344453363e928fb4a5b5ffb356e12ab54f456661b5a0",
-      "bytes": 13394,
+      "sha256": "b8d8a1c2dff87262eb5c019f46d83c8062cc4b8d7b567b47d26a9cb7543343ce",
+      "bytes": 13702,
       "matches_baseline": true
     },
     "apps/web/ai-collab.tsx": {
@@ -22173,8 +22173,8 @@
       "matches_baseline": true
     },
     "apps/web/folder-output.tsx": {
-      "sha256": "d5c22206cc0d1b035da1ef539ea5e62f03e4490376409b4b89acb82ae5d80aca",
-      "bytes": 7953,
+      "sha256": "b896516bb3792c7392feb57bda2746279d846e8d112ac5fd6dd32bb2390c821a",
+      "bytes": 9840,
       "matches_baseline": true
     },
     "apps/web/http-client.ts": {
@@ -22198,8 +22198,8 @@
       "matches_baseline": true
     },
     "apps/web/main.tsx": {
-      "sha256": "06e49b292198e760f5da865086093b53fe1b9a4b879a52591ab0ab80e64f7e31",
-      "bytes": 109905,
+      "sha256": "3eb98c23398711fba82df4c3547e6202874fc2812d6cb5fc41cb901f87a05c3e",
+      "bytes": 110417,
       "matches_baseline": true
     },
     "apps/web/manual-occurrences.tsx": {
@@ -22438,8 +22438,8 @@
       "matches_baseline": true
     },
     "apps/web/tmm-compatibility.tsx": {
-      "sha256": "b3f363c530e16786bc4336926144460eb9473a8d6c3e4981c97df5a74e3667ad",
-      "bytes": 14369,
+      "sha256": "d7946bb603da449d2d22c26a6d57c3e972d3c215ea2b531c1637501ed6d0eec0",
+      "bytes": 15621,
       "matches_baseline": true
     },
     "apps/web/unified-aliases.tsx": {
@@ -22468,13 +22468,18 @@
       "matches_baseline": true
     },
     "apps/web/workspace-portable.tsx": {
-      "sha256": "1610fca6beed30a38f1abf673587576e736f61abf8804ee71c6960e4025991a5",
-      "bytes": 7092,
+      "sha256": "67cf797cda9cde2ab829756dab3c60a308d57db1df03f42882b7347f7a3912b9",
+      "bytes": 8290,
       "matches_baseline": true
     },
     "apps/web/workspace-recovery.tsx": {
       "sha256": "499926ec2020c1cec853b8eadb40f77fef118f98a5caf5f24a0ade7ebe857544",
       "bytes": 14466,
+      "matches_baseline": true
+    },
+    "apps/web/workspace-save-cache.ts": {
+      "sha256": "6a402acbbd179684682ec517106aa43b6d07df8354502441c134923468c5ead9",
+      "bytes": 1892,
       "matches_baseline": true
     },
     "apps/worker/main.ts": {
@@ -23233,8 +23238,8 @@
       "matches_baseline": true
     },
     "packages/core/native-portable.ts": {
-      "sha256": "8aa1c7a706cac55800b32051a1f745882ccfab2251052313129528fa88000c51",
-      "bytes": 5880,
+      "sha256": "24163d44f1707a35c56583ddc9d850e9dd9e81a899d94b8a6e4c73595f19e3e6",
+      "bytes": 5930,
       "matches_baseline": true
     },
     "packages/core/ner.ts": {
@@ -23458,8 +23463,8 @@
       "matches_baseline": true
     },
     "packages/core/reference-rules.ts": {
-      "sha256": "9d5a75c142c139a4a38bc8441806debe1ffbd56a2012a7d15fd47fcfe3d58dc0",
-      "bytes": 76271,
+      "sha256": "30559e8bea253fa37d8cfd4332c56d739149af931441d6759f321571c50257f4",
+      "bytes": 76563,
       "matches_baseline": true
     },
     "packages/core/reference-runtime-rule-producer.ts": {
@@ -23733,8 +23738,8 @@
       "matches_baseline": true
     },
     "packages/core/workspace-compat.ts": {
-      "sha256": "3b70b3547d96eb274828215d875742a4b543a97ed8709f177d1c189ab55990a7",
-      "bytes": 24556,
+      "sha256": "b3f5fd05fcc129a7c3923dd173a27a7189a107113248d1acdad631727d7acbde",
+      "bytes": 24664,
       "matches_baseline": true
     },
     "packages/core/workspace-portable.ts": {
@@ -23745,6 +23750,11 @@
     "packages/core/workspace-renderer.ts": {
       "sha256": "74dd64d5ec357e7ca24728003db398568d05794b23889c99b4a3581ec476e619",
       "bytes": 15109,
+      "matches_baseline": true
+    },
+    "packages/core/workspace-snapshot-metadata.ts": {
+      "sha256": "123ff756984449098fae5e51c25ffe7938a5683187d6dd4e5333b6d673643aee",
+      "bytes": 1247,
       "matches_baseline": true
     },
     "packages/core/workspace-source-profile.ts": {
@@ -24483,8 +24493,8 @@
       "matches_baseline": true
     },
     "tests/e2e/critical-user-paths.spec.ts": {
-      "sha256": "a1c68c5feea16ade99133188f0eb377089cc2f459b79e0b58de29fe481c4c793",
-      "bytes": 21824,
+      "sha256": "81efb55c37bb16245b79832ab28eda03b619b1bafe68c77821f1ed1c37cb4a5d",
+      "bytes": 24705,
       "matches_baseline": true
     },
     "tests/e2e/crlf-selection.spec.ts": {
@@ -24760,6 +24770,11 @@
     "tests/e2e/workspace-recovery-writer.spec.ts": {
       "sha256": "622af4a7c4ccc4b63c59a004b18646a00c6382f80fbbc5b97bd369aae6672eff",
       "bytes": 6868,
+      "matches_baseline": true
+    },
+    "tests/e2e/workspace-save-reopen.spec.ts": {
+      "sha256": "41f2420f6c03f3f49ec8e756392deb179e44e9cd66a228923e080111d7910ebc",
+      "bytes": 4083,
       "matches_baseline": true
     },
     "tests/e2e/workspace-v1-large-migration.spec.ts": {
@@ -25373,8 +25388,8 @@
       "matches_baseline": true
     },
     "tests/mcp-batch-children.integration.ts": {
-      "sha256": "2b16e373855ef5d6cbd3f9363de320f269d01f1635114d9bcdc5f8268c762587",
-      "bytes": 41570,
+      "sha256": "9c74954b8b77fa08d281dd36e0d4f824c898fe9095661a189a5ea52e8d617e14",
+      "bytes": 44969,
       "matches_baseline": true
     },
     "tests/mcp-batch-resolver.test.ts": {
@@ -25395,6 +25410,11 @@
     "tests/mcp-empty-resources.test.ts": {
       "sha256": "0a77962054bcf478e699cf10fbac3ac52c7e7dae6aa902e7f441b24cf3c9313c",
       "bytes": 976,
+      "matches_baseline": true
+    },
+    "tests/mcp-implicit-completed-batch.integration.ts": {
+      "sha256": "912385e249c68d11210d209cbf8717f49c5f542560f78ccde8a3dc420167a613",
+      "bytes": 7669,
       "matches_baseline": true
     },
     "tests/mcp-internal-rate-limit.integration.ts": {
@@ -25948,8 +25968,8 @@
       "matches_baseline": true
     },
     "tests/reference-rules.test.ts": {
-      "sha256": "605dcddc87c61551a09b0c4a34488a67a4f0dda5dceedbe65d83a8e6c69c7d05",
-      "bytes": 15585,
+      "sha256": "d0bf757ee9f1e45ebe5fe722e6c02336b5d954be86ac27b517923ec5cf587448",
+      "bytes": 16113,
       "matches_baseline": true
     },
     "tests/reference-runtime-rule-producer.test.ts": {
@@ -26353,8 +26373,8 @@
       "matches_baseline": true
     },
     "tests/workspace-compat.test.ts": {
-      "sha256": "e3355c68760e82e3aa7b353d580bbe62bf4cd6ddd2808a81d914e02c2faff099",
-      "bytes": 7999,
+      "sha256": "c8a810a5cef87c26ca26b0a82f2a3489e6204d7a3072959a4a3c4e95f0700226",
+      "bytes": 8975,
       "matches_baseline": true
     },
     "tests/workspace-folder-batch.integration.ts": {
@@ -26407,14 +26427,24 @@
       "bytes": 8826,
       "matches_baseline": true
     },
+    "tests/workspace-save-cache.test.ts": {
+      "sha256": "806a7d79def8f671260a1a5aae1053a4f8c529cba238e02cd3d18c4d8f831f59",
+      "bytes": 3842,
+      "matches_baseline": true
+    },
     "tests/workspace-save-normalized-integrity.integration.ts": {
       "sha256": "35ea7bbf41ae97c166be72f1e3b0a9655ba3ae952f3158d690bcc508e461c5ca",
       "bytes": 4607,
       "matches_baseline": true
     },
     "tests/workspace-save-receipts.integration.ts": {
-      "sha256": "b3ca51bd027284b3fb08f4f8f1f1c1727a22533bd32395fb1b4f0ebbf41df9ac",
-      "bytes": 13665,
+      "sha256": "75536aa3411e093cf394c7b1c082f1c58032cf5b394af269f9d53085d490feea",
+      "bytes": 17931,
+      "matches_baseline": true
+    },
+    "tests/workspace-snapshot-metadata.test.ts": {
+      "sha256": "75bac900002331e10f233ce31306e7ae36ca02e3e737db9ba57e296d7d78a406",
+      "bytes": 1585,
       "matches_baseline": true
     },
     "tests/workspace-source-profile.test.ts": {
@@ -27978,8 +28008,8 @@
       "matches_baseline": true
     },
     "文档/待办与完成状态-20261015.md": {
-      "sha256": "4f09d7452320881393a62238515dbb8a849ef7fb85d165f0734eac49b3d49e74",
-      "bytes": 118650,
+      "sha256": "e8e4892232219312fd5d054219e2a6ed4c7fee213d32af8293302c84dae22fb6",
+      "bytes": 119714,
       "matches_baseline": true
     },
     "文档/按钮确认交互修复与验收.md": {
@@ -28003,8 +28033,8 @@
       "matches_baseline": true
     },
     "文档/脱敏规则完整技术交接-迭代023.md": {
-      "sha256": "e74362332722432e2b606c3f53ddc8fd8db7139953d672afc8bc54638fdded94",
-      "bytes": 421773,
+      "sha256": "48f4a2dc08cbd9c53b2e4a2f02e15b9fbf6a20c25879a9cad4cb75a9333222fe",
+      "bytes": 422291,
       "matches_baseline": true
     },
     "文档/脱敏规则技术交接-20261014.md": {
@@ -29235,6 +29265,11 @@
     "文档/逆向台账/contracts/iteration057-local-reliability-fixes-182-20261017.json": {
       "sha256": "b254d4ee0e09c6174d386cf6ff535960e3453e88d308e2206ccea2323473d576",
       "bytes": 7655,
+      "matches_baseline": true
+    },
+    "文档/逆向台账/contracts/iteration058-workspace-and-resume-183-20261017.json": {
+      "sha256": "1eef85d42b00841729a25916bf7d3c047d5425a670845df8ab668fa566569660",
+      "bytes": 15396,
       "matches_baseline": true
     },
     "文档/逆向台账/contracts/ledger-recommendations.json": {

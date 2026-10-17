@@ -18,7 +18,7 @@ import {workspaceFolderBatch} from './workspace-folder-batch.ts';
 import {projectScope,denied} from './access.ts';
 import {rememberWorkspaceRecent} from '../../packages/adapters/workspace-recents.ts';
 const requestId=z.string().min(1).refine(v=>v.isWellFormed()&&!v.includes('\0'));
-const saveInput=z.object({requestId,password:z.string().min(4).max(1024).refine(v=>!!v.trim()),format:z.enum(['native','legacy-zip','secure-v2','secure-v3']).default('native')}).strict();
+const saveInput=z.object({requestId,password:z.string().min(4).max(1024).refine(v=>!!v.trim()),format:z.enum(['native','legacy-zip','secure-v2','secure-v3']).default('native'),activeDocumentId:id.optional()}).strict();
 const digest=(value:string)=>createHmac('sha256',Buffer.from(process.env.DATA_KEY!,'hex')).update('workspace-save\0'+value).digest('hex');
 const session=(req:FastifyRequest)=>digest(req.cookies[(process.env.APP_BASE_PATH??'/')==='/'?'session':'tuominwang_session']??'');
 const aad=(r:any)=>`${r.tenant_id}:${r.owner_id}:${r.project_id}:${r.id}:${r.session_hash}:${r.snapshot_hash}:workspace-save`;
@@ -32,9 +32,10 @@ function state(r:any){return{state:r.state,receiptId:r.id,expiresAt:new Date(r.e
 export function registerWorkspaceSaveRoutes(app:FastifyInstance){
  const instance=randomUUID(),pending=new Set<Promise<void>>();app.addHook('onClose',async()=>{await Promise.allSettled([...pending]);});
  app.post('/api/projects/:id/portable/save',async req=>{
-  const project=id.parse((req.params as any).id),input=saveInput.parse(req.body),sessionHash=session(req),requestHash=digest(input.requestId),inputHash=digest(JSON.stringify({project,password:input.password,format:input.format}));
+  const project=id.parse((req.params as any).id),input=saveInput.parse(req.body),sessionHash=session(req),requestHash=digest(input.requestId),inputHash=digest(JSON.stringify({project,password:input.password,format:input.format,activeDocumentId:input.activeDocumentId}));
   const garbage:any[]=[];
   const result=await projectScope(req,{project},['view_original','view_mapping','export'],async db=>{
+   if(input.activeDocumentId){const[selected]=await rows(db,sql`SELECT id FROM documents WHERE project_id=${project} AND id=${input.activeDocumentId}`);if(!selected)denied('PORTABLE_ACTIVE_DOCUMENT_INVALID',400);}
    garbage.push(...await rows(db,sql`DELETE FROM workspace_save_receipts WHERE expires_at<=now() RETURNING *`));
    const existing=(await rows(db,sql`SELECT * FROM workspace_save_receipts WHERE request_hash=${requestHash} FOR UPDATE`))[0];
    if(existing){if(existing.session_hash!==sessionHash||existing.input_hash!==inputHash||existing.project_id!==project)denied('WORKSPACE_SAVE_REQUEST_CONFLICT',409);if(existing.state==='running'&&existing.run_instance!==instance){await rows(db,sql`UPDATE workspace_save_receipts SET state='failed',error_code='WORKSPACE_SAVE_INTERRUPTED' WHERE id=${existing.id} AND state='running'`);existing.state='failed';existing.error_code='WORKSPACE_SAVE_INTERRUPTED';}return{row:existing,fresh:false};}
@@ -61,7 +62,7 @@ export function registerWorkspaceSaveRoutes(app:FastifyInstance){
       const [live]=await rows(db,sql`SELECT id FROM workspace_save_receipts WHERE id=${row.id} AND state='running' AND expires_at>now() FOR UPDATE`);
       if(!live)throw Error('WORKSPACE_SAVE_INTERRUPTED');
       if(await workspaceSaveFingerprint(db,project)!==row.snapshot_hash)denied('VERSION_CONFLICT',409);
-      const generated=await produceWorkspaceArchive(db,actor,project,input.password,archivePath,undefined,input.format);
+      const generated=await produceWorkspaceArchive(db,actor,project,input.password,archivePath,undefined,input.format,input.activeDocumentId);
       if(await workspaceSaveFingerprint(db,project)!==row.snapshot_hash)denied('VERSION_CONFLICT',409);
       stored=await persistWorkspaceSaveFile(archivePath,row.id,aad(row));
       const [currentActor]=await rows(db,sql`SELECT * FROM auth_session(${hash(req.cookies[cookieName]??'')}) WHERE EXISTS(SELECT 1 FROM sessions WHERE token_hash=${hash(req.cookies[cookieName]??'')} AND expires_at>clock_timestamp())`);

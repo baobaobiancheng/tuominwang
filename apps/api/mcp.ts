@@ -41,7 +41,7 @@ function validResumeState(value:unknown){return typeof value==='string'&&resumab
 // and initial takeover semantics; implicit resume first prefers a delivered task.
 const deliveredResumeStates=new Set<string>(['sanitized_artifact_ready','analyzing_by_ai','ai_result_rejected','round_completed','restore_failed','waiting_for_restore_approval']);
 function implicitResumeTask(tasks:PrivateTask[]){
- return tasks.find(t=>!terminal.has(t.state)&&(t.deliveries.length>0||!!t.combined)&&deliveredResumeStates.has((t.pendingResume||t.state==='client_disconnected'?t.resumeState:t.state)??''))
+ return tasks.find(t=>!terminal.has(t.state)&&(t.deliveries.length>0||!!t.combined)&&deliveredResumeStates.has((t.pendingResume||t.state==='client_disconnected'?t.resumeState:t.state)??'')||t.state==='completed'&&canResumeBatchDelivery(t))
   ?? tasks.find(t=>!terminal.has(t.state));
 }
 function canResumeBatchDelivery(t:PrivateTask){const phase=t.state==='client_disconnected'?t.resumeState:t.state;return !!t.childJobIds?.length&&(deliveredResumeStates.has(phase??'')||phase==='completed'&&t.options.task_mode==='ai_process');}
@@ -443,6 +443,7 @@ export function registerMcpRoutes(app:FastifyInstance,applyConfiguration?:Collab
   if(input.source_path!==undefined&&input.source_paths!==undefined)fail('SOURCE_DECLARATION_CONFLICT',400);
   const docs=cloudDocumentIds(input);if(input.sanitized_output_dir||input.restored_output_dir)fail('CLOUD_DIRECTORY_OVERRIDE_UNSUPPORTED',400);
   if((input.batch_result_mode??'individual')==='combined'&&input.unified_pseudonyms===false)fail('COMBINED_REQUIRES_UNIFIED_PSEUDONYMS',400);
+  if(input.batch_result_mode==='combined'&&!input.output_formats.includes('md'))input.output_formats=[...input.output_formats,'md'];
   if(new Set((input.file_settings??[]).map((f:any)=>f.source_path)).size!==(input.file_settings??[]).length)fail('FILE_SETTINGS_DUPLICATE',400);
   for(const f of input.file_settings??[])if(!docs.includes(cloudDocumentIds({source_path:f.source_path})[0]!))fail('FILE_SETTINGS_SOURCE_MISMATCH',400);
   function checkedAdvanced(options:Record<string,any>){const a=options.advanced??{},rules=a.pseudonymRules??[];if(a.entityTypes!==undefined&&!a.entityTypes.length)fail('ENTITY_TYPES_EMPTY',400);if(new Set(rules.map((r:any)=>r.entityType)).size!==rules.length||rules.some((r:any)=>r.prefix!==undefined&&!/^[\p{L}_-]{1,20}$/u.test(r.prefix))||new Set(rules.filter((r:any)=>r.prefix).map((r:any)=>r.prefix)).size!==rules.filter((r:any)=>r.prefix).length)fail('PSEUDONYM_RULES_INVALID',400);if(rules.length&&a.exportMode&&a.exportMode!==(rules.some((r:any)=>r.action==='mask')?'selective_pseudonym':'custom_pseudonym'))fail('CONFLICTING_PSEUDONYM_RULES',400);}

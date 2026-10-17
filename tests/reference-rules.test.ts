@@ -96,6 +96,11 @@ it('finishes long rejected numeric runs without retrying the amount suffix at ea
   for(const run of ['1'.repeat(100000),'1,'.repeat(50000)]){
    if(detectReferenceAmounts('说明：'+run+'X').length)throw new Error('unexpected amount');
   }
+  for(const rejected of ['壹'.repeat(100000)+'X','大写：'+'壹'.repeat(100000)+'X',...'股|年|2次方程'.split('|').map(t=>'1 '.repeat(20000)+'元'+(t==='股'?'/股':t))]){
+   const found=detectReferenceAmounts('说明：'+rejected);
+   if(found.some(m=>m.ruleId==='AMOUNT-standalone_yuan'||m.ruleId==='AMOUNT-standalone_uppercase'))throw new Error('excluded amount changed');
+   if(rejected.endsWith('/股')&&(found.length!==1||found[0].ruleId!=='AMOUNT-per_share_price'))throw new Error('per-share amount changed');
+  }
   const valid='1'.repeat(100000)+'万元';
   const marks=detectReferenceAmounts('说明：'+valid);
   if(marks.length!==1||marks[0].start!==3||marks[0].end!==valid.length+3)throw new Error('amount span changed');

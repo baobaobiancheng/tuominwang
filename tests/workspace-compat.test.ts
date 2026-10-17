@@ -9,3 +9,16 @@ it('source snapshot policy applies all profile fields, source legacy migrations 
 });
 
 it('Markdown and MARKDOWN extension state exactly matches source sidecar in all three codecs',async()=>{for(const name of ['source.markdown','source.MARKDOWN']){const{snapshot,sources}=fixture();snapshot.documents[0].name=name;snapshot.documents[0].format='md';snapshot.documents[0].content='合成客户甲 13800138000';for(const format of ['legacy-zip','secure-v2','secure-v3']as const){const projected=nativeToReference(snapshot,sources,'markdown-extension');expect(projected.snapshot.documents[0].sourceEntry.endsWith('/source.markdown')).toBe(true);expect(projected.snapshot.documents[0].exportState.sourceExtension).toBe('.markdown');expect(projected.snapshot.documents[0].exportState.sourceExtension).toBe(projected.snapshot.documents[0].detection.markdownSourceSidecar.originalExtension);const output=await writeCompatibleWorkspace(snapshot,sources,'markdown-extension',format,'synthetic-extension-password'),opened=await readPortableWorkspace(output,{password:'synthetic-extension-password'});expect(opened.snapshot.documents[0].exportState.sourceExtension).toBe(opened.snapshot.documents[0].detection.markdownSourceSidecar.originalExtension);}}},30_000);
+
+it('source-compatible projection retains selected document and stable workspace creation time',async()=>{
+ const {snapshot,sources}=fixture(),first=snapshot.documents[0],secondId=randomUUID(),second={...first,id:secondId,name:'第二份.txt',sourceEntry:`sources/${secondId}/original.txt`};
+ snapshot.documents.push(second);sources.set(second.sourceEntry,sources.get(first.sourceEntry)!);
+ snapshot.project.createdAt='2020-01-01T00:00:00Z';snapshot.project.activeDocumentId=secondId;
+ const projected=nativeToReference(snapshot,sources,'synthetic-project');
+ expect(projected.snapshot.createdAt).toBe('2020-01-01T00:00:00Z');
+ expect(projected.snapshot.activeDocumentId).toBe(secondId);
+ const bytes=await writeCompatibleWorkspace(snapshot,sources,'synthetic-project','legacy-zip','unused');
+ const reopened=await readPortableWorkspace(bytes);
+ expect(reopened.snapshot.createdAt).toBe('2020-01-01T00:00:00Z');
+ expect(reopened.snapshot.activeDocumentId).toBe(secondId);
+});

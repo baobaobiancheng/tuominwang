@@ -64,6 +64,8 @@ test('directory output UI generates one reviewed copy and a truthful skipped ent
     await page.getByRole('button', { name: '导入材料', exact: true }).click();
     const beforeSelection = Date.now();
     await page.getByLabel('选择目录', { exact: true }).setInputFiles(directory);
+    await expect(page.getByRole('list', { name: '本次上传文件' }).locator('li')).toHaveCount(2);
+    await expect(page.getByRole('button', { name: '上传文件', exact: true })).toBeEnabled();
     const afterSelection = Date.now();
     const batchCreated = page.waitForResponse(r => r.request().method() === 'POST'
       && new URL(r.url()).pathname === `/api/projects/${project.id}/upload-batches`);
@@ -121,8 +123,22 @@ test('directory output UI generates one reviewed copy and a truthful skipped ent
     await page.getByRole('button', { name: '文件夹结果与处理清单', exact: true }).click();
     await expect(page.getByRole('combobox', { name: '导入批次', exact: true })).toContainText('2 份材料');
     await page.getByLabel('结果文件夹名称', { exact: true }).fill('合成目录结果');
+    const preparedSession = page.waitForResponse(r => r.request().method() === 'POST' && new URL(r.url()).pathname === `/api/projects/${project.id}/folder-exports`);
     await page.getByRole('button', { name: '整理结果', exact: true }).click();
+    const preparedResponse = await preparedSession;
+    expect(preparedResponse.status()).toBe(200);
+    const preparedId = (await preparedResponse.json()).exportSessionId as string;
+    const knownSession = await page.request.get(`/api/projects/${project.id}/folder-exports/${preparedId}`);
+    expect(knownSession.status()).toBe(200);
+    const originalOutputRoot = (await knownSession.json()).outputRoot;
+    await page.reload();
+    const projectButton = page.getByRole('navigation', { name: '项目列表' }).getByRole('button', { name: project.name, exact: true });
+    await expect(projectButton).toBeVisible();
+    if (await projectButton.getAttribute('aria-current') !== 'page') await projectButton.click();
+    await page.getByRole('button', { name: '文件夹结果与处理清单', exact: true }).click();
     const panel = page.locator('section').filter({ has: page.getByRole('heading', { name: '文件夹结果', exact: true }) }).last();
+    await expect(panel).toContainText(`输出目录：${originalOutputRoot}`);
+    await expect(panel.getByRole('button', { name: '生成结果 ZIP 与处理清单', exact: true })).toBeVisible();
     await expect(panel).toContainText('待处理.txt：已生成副本');
     await expect(panel).toContainText('未生成副本.txt：尚未生成副本');
     const manifestResponse = page.waitForResponse(r => r.request().method() === 'POST' && /\/folder-exports\/[^/]+\/manifest$/.test(new URL(r.url()).pathname));
@@ -150,6 +166,22 @@ test('directory output UI generates one reviewed copy and a truthful skipped ent
     expect(parts.get(copyName!)!.toString('utf8')).not.toContain('13800138000');
     expect(await sourceIdentity(selected.id, reviewed)).toEqual(sources.get(selected.id));
     expect(await sourceIdentity(other.id, waiting)).toEqual(sources.get(other.id));
+    await page.reload();
+    const reopenedProject = page.getByRole('navigation', { name: '项目列表' }).getByRole('button', { name: project.name, exact: true });
+    await expect(reopenedProject).toBeVisible();
+    if (await reopenedProject.getAttribute('aria-current') !== 'page') await reopenedProject.click();
+    await page.getByRole('button', { name: '文件夹结果与处理清单', exact: true }).click();
+    const reopenedPanel = page.locator('section').filter({ has: page.getByRole('heading', { name: '文件夹结果', exact: true }) }).last();
+    await expect(reopenedPanel).toContainText(`输出目录：${originalOutputRoot}`);
+    await expect(reopenedPanel.getByRole('button', { name: '下载结果 ZIP', exact: true })).toBeVisible();
+    const repeatDownload = page.waitForEvent('download', { timeout: 45_000 });
+    const repeatResponse = page.waitForResponse(r => r.request().method() === 'GET'
+      && new URL(r.url()).pathname === `/api/projects/${project.id}/folder-exports/${preparedId}/download`, { timeout: 45_000 });
+    await reopenedPanel.getByRole('button', { name: '下载结果 ZIP', exact: true }).click();
+    expect((await repeatResponse).status()).toBe(200);
+    const repeatedZipPath = info.outputPath('directory-results-reopened.zip');
+    await (await repeatDownload).saveAs(repeatedZipPath);
+    expect(createHash('sha256').update(await readFile(repeatedZipPath)).digest('hex')).toBe(createHash('sha256').update(await readFile(zipPath)).digest('hex'));
     await page.screenshot({ path: info.outputPath('directory-results.png'), fullPage: true });
   } finally { await rm(directory, { recursive: true, force: true }); }
 });

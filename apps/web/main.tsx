@@ -368,6 +368,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
   const [pdfSharedEvents,setPdfSharedEvents]=useState<SharedProgressEvents|null>(null);
   async function flushPdfDraft(){if(pdfDraftRef.current&&!await pdfDraftRef.current.flush())throw new Error("运行中 PDF 草稿尚未保存，操作未执行；请修正草稿错误后重试。");}
   const currentDoc = useRef(doc), currentProject = useRef(project);
+  const lastWorkspaceDocument = useRef<{project:string;id:string}|null>(null);
   const visualRequests = useRef(new Map<string,string>());
   const allowed = (permission: Permission) => (projects.find(p => p.id === project)?.permissions ?? []).includes(permission);
   const docAllowed = (permission: Permission) => (doc?.permissions ?? []).includes(permission);
@@ -382,6 +383,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
   useEffect(() => {
     const expire = () => {
       rememberSession(null);
+      lastWorkspaceDocument.current=null;
       setUser(null);
       setDoc(null);
       setProjects([]);
@@ -438,6 +440,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
     const d = snapshot ?? await api<DocumentView>("/documents/" + id + (focus?`?offset=${Math.max(0,focus.start-256)}`:""));
     if (d.id !== id) throw new Error("材料状态已变化，请重新打开。");
     if (onlyIfCurrent && (currentDoc.current?.id !== id || currentProject.current !== d.project_id || dirtyRef.current)) return;
+    lastWorkspaceDocument.current={project:d.project_id,id:d.id};
     const enteredDocument = currentDoc.current?.id !== id || currentProject.current !== d.project_id;
     const pageFocus=!!focus&&d.anchors?.some(a=>a.start<focus.end&&a.end>focus.start&&(a.kind==='page'||a.kind==='object'&&a.object==='image-text'));
     setPendingAuditFocus(focus&&!pageFocus?{documentId:id,projectId:d.project_id,revision:d.revision,textOffset:d.textOffset??0,...focus}:null);
@@ -765,6 +768,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
               void run(async () => {
                 await api("/logout", "POST");
                 rememberSession(null);
+                lastWorkspaceDocument.current=null;
                 setUser(null);
                 setDoc(null);
                 setProject("");
@@ -861,7 +865,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
               <div className="detail-actions">
               {docAllowed("delete_material") && <button className="quiet" onClick={async () => {
                 if (!await confirmAction("永久删除这份材料、全部复核版本和副本？原件不能恢复；项目共享词表和假名映射仍保留。已签发链接到期前仍可用，对应加密文件会在到期后清除。")) return;
-                void run(async () => { await api(`/documents/${doc.id}/delete`, "POST", { revision: doc.revision }); setDoc(null); setMarks([]); setDirty(false); setConflict(false); await refreshDocs(); setNotice("材料已删除，不能恢复。已签发链接到期后清除对应文件。"); });
+                void run(async () => { await api(`/documents/${doc.id}/delete`, "POST", { revision: doc.revision }); if(lastWorkspaceDocument.current?.id===doc.id)lastWorkspaceDocument.current=null; setDoc(null); setMarks([]); setDirty(false); setConflict(false); await refreshDocs(); setNotice("材料已删除，不能恢复。已签发链接到期后清除对应文件。"); });
               }}>删除材料</button>}
               <button className="secondary" onClick={async () => {
                 if (dirty && !await confirmAction("放弃未保存的复核？")) return;
@@ -912,7 +916,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
             {project && <NetworkPolicy projectId={project} api={api} disabled={busy||!allowed("manage_models")} />}
             {project && allowed("view_original") && <AiCollaboration key={`collaboration:${project}`} project={project} focusJob={collaborationJob} documents={docs} api={api} run={run} onOpen={id => void run(() => openDoc(id))} />}
             {project && allowed("view_original") && allowed("review") && <ProjectEntities key={`entities:${project}`} project={project} api={api} run={run} changed={() => refreshDocs()} onOpen={(id,span)=>openDoc(id,span)} />}
-            <WorkspacePortable key={`portable:${project}`} projectId={project || null} canExport={allowed("export") && allowed("view_original") && allowed("view_mapping")} canApply={allowed("manage_dictionary")&&allowed("review")&&!dirty} onApplied={async()=>{await refresh();setDoc(null);await refreshDocs();}} onImported={async id => { await refresh(); setProject(id); setDoc(null); }} />
+            <WorkspacePortable key={`portable:${project}`} projectId={project || null} activeDocumentId={lastWorkspaceDocument.current?.project===project?lastWorkspaceDocument.current.id:undefined} canExport={allowed("export") && allowed("view_original") && allowed("view_mapping")} canApply={allowed("manage_dictionary")&&allowed("review")&&!dirty} onApplied={async()=>{await refresh();setDoc(null);await refreshDocs();}} onImported={async id => { await refresh(); setProject(id); setDoc(null); }} />
             {project && allowed("view_original") && allowed("export") && <FolderOutput key={`folder-output:${project}`} projectId={project} enabled={!dirty && !conflict} canViewMapping={allowed("view_mapping")} api={api} run={run} />}
             {project && <RestorationBatch key={`batch-restore:${project}`} projectId={project} enabled={allowed("restore")} />}
             {project && <RestorationFiles key={`restoration:${project}`} projectId={project} enabled={allowed("restore")} />}
@@ -937,7 +941,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
                 </button> : <div className="material-row limited-material" key={d.id}><span className="material-name"><FileTextIcon />材料 {docs.length - i}</span><span className="material-status">{d.state === "outdated" ? "需重新识别" : d.state === "queued" && d.detect_state === "failed" ? "识别失败" : d.state === "queued" && d.detect_state === "cancelled" ? "识别已取消" : d.state === "queued" && ["running", "queued"].includes(d.detect_state ?? "") ? "处理中" : d.state === "review" && d.job_kind === "export" && d.job_state === "failed" ? "已识别 · 副本失败" : d.state === "review" && d.job_kind === "export" && d.job_state === "cancelled" ? "已识别 · 副本已取消" : d.state === "review" && d.job_kind === "export" && ["queued", "running"].includes(d.job_state ?? "") ? "已识别 · 副本处理中" : d.state === "review" ? "已识别" : "待处理"}</span><div className="actions">
                   {allowed("export") && <><button className="secondary" disabled={d.state !== "review" || ["queued", "running"].includes(d.job_state ?? "")} onClick={() => void run(async () => { await api(`/documents/${d.id}/export`, "POST", { revision: d.revision }); await refreshDocs(); })}>生成副本</button><button className="quiet" onClick={() => void run(async () => { const result = await api<{ url: string }>(`/documents/${d.id}/download-link`, "POST", { revision: d.revision }); const a = document.createElement("a"); a.href = appUrl(result.url); a.click(); })}>下载副本</button></>}
                   {allowed("restore") && <RestoreDialog doc={{ id: d.id, revision: d.revision ?? 0 }} disabled={d.state !== "review"} run={run} api={api} />}
-                  {allowed("delete_material") && <button className="quiet" onClick={async () => { if (await confirmAction("永久删除此材料的原件、复核和副本？不能恢复。项目共享词表、假名映射仍保留；已签发链接到期后清除文件。")) void run(async () => { await api(`/documents/${d.id}/delete`, "POST", { revision: d.revision }); await refreshDocs(); }); }}>删除材料</button>}
+                  {allowed("delete_material") && <button className="quiet" onClick={async () => { if (await confirmAction("永久删除此材料的原件、复核和副本？不能恢复。项目共享词表、假名映射仍保留；已签发链接到期后清除文件。")) void run(async () => { await api(`/documents/${d.id}/delete`, "POST", { revision: d.revision }); if(lastWorkspaceDocument.current?.id===d.id)lastWorkspaceDocument.current=null; await refreshDocs(); }); }}>删除材料</button>}
                 </div></div>)}
                 <button className="quiet" onClick={() => void run(async () => { await refresh(); await refreshDocs(); })}>刷新材料</button>
                 {moreDocs && <button className="quiet" onClick={() => void run(() => refreshDocs(true))}>更多文件</button>}

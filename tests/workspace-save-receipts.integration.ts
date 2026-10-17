@@ -1,5 +1,5 @@
 import{test,after}from'node:test';import assert from'node:assert/strict';import{randomUUID}from'node:crypto';import pg from'pg';
-import{buildApp}from'../apps/api/main.ts';import{tick}from'../apps/worker/main.ts';import{pool}from'../packages/adapters/db.ts';import{passwordHash,hash}from'../packages/adapters/storage.ts';import{readNativeOrReferencePortable}from'../packages/core/native-portable.ts';import{nativeToReference,workspaceReviewProfile}from'../packages/core/workspace-compat.ts';
+import{buildApp}from'../apps/api/main.ts';import{tick}from'../apps/worker/main.ts';import{pool}from'../packages/adapters/db.ts';import{passwordHash,hash,unseal}from'../packages/adapters/storage.ts';import{readNativeOrReferencePortable,writeNativePortable}from'../packages/core/native-portable.ts';import{readPortableWorkspace}from'../packages/core/workspace-portable.ts';import{nativeToReference,workspaceReviewProfile}from'../packages/core/workspace-compat.ts';
 assert.ok(new URL(process.env.DATABASE_URL!).pathname.startsWith('/tmw_test_'));
 const app=await buildApp(),admin=new pg.Pool({connectionString:process.env.MIGRATION_DATABASE_URL}),origin=process.env.APP_ORIGIN!,password='synthetic-receipts-only';
 after(async()=>{await app.close();await pool.end();await admin.end();});
@@ -44,4 +44,26 @@ test('new API instance terminates orphan running receipt; MRU carries independen
  const response=await second.inject({method:'POST',url:`/api/projects/${project}/portable/save-result`,headers:{origin,cookie:a.cookie},payload:{requestId}});assert.equal(response.statusCode,200,response.body);assert.equal(response.json().state,'failed');assert.equal(response.json().error,'WORKSPACE_SAVE_INTERRUPTED');
  }finally{await second.close();}
  for(let i=0;i<21;i++){const p=(await a.req('POST','/api/projects',{name:'MRU index '+i})).json().id;assert.equal((await a.req('POST',`/api/projects/${p}/workspace/recent`,{})).statusCode,200);}const recent=(await a.req('GET','/api/workspace/recent')).json();assert.equal(recent.length,20);assert.equal(recent[0].name,'MRU index 20');assert.ok(!recent.some((r:any)=>r.projectId===project));assert.equal((await a.req('GET',`/api/projects/${project}`)).statusCode,200);
+});
+test('workspace save retains creation time and current document through imported id mapping',async()=>{
+ const a=await account(),project=(await a.req('POST','/api/projects',{name:'元数据原项目'})).json().id;
+ const first=(await a.req('POST',`/api/projects/${project}/documents`,{text:'第一份合成材料',requestId:randomUUID()})).json().id;
+ const second=(await a.req('POST',`/api/projects/${project}/documents`,{text:'第二份合成材料',requestId:randomUUID()})).json().id;
+ const createdAt=new Date((await admin.query('SELECT created_at FROM projects WHERE id=$1',[project])).rows[0].created_at).toISOString();
+ const archive=async(pid:string,activeDocumentId?:string)=>{const requestId=randomUUID(),body={requestId,password:'synthetic-metadata-password',format:'secure-v2',...activeDocumentId?{activeDocumentId}:{}};const start=await a.req('POST',`/api/projects/${pid}/portable/save`,body);assert.equal(start.statusCode,200,start.body);const ready=await completed(a.req,pid,requestId);assert.equal(ready.state,'completed',JSON.stringify(ready));const download=await a.req('GET',ready.downloadPath);assert.equal(download.statusCode,200,download.body.slice(0,100));return readPortableWorkspace(download.rawPayload,{password:body.password});};
+ const selected=await archive(project,second);assert.equal(selected.snapshot.createdAt,createdAt);assert.equal(selected.snapshot.activeDocumentId,second);
+ const direct=await a.req('POST',`/api/projects/${project}/portable/export`,{password:'synthetic-metadata-password',format:'secure-v2',activeDocumentId:first});assert.equal(direct.statusCode,200,direct.body.slice(0,100));assert.equal((await readPortableWorkspace(direct.rawPayload,{password:'synthetic-metadata-password'})).snapshot.activeDocumentId,first);
+ const unrelated=(await a.req('POST','/api/projects',{name:'元数据其他项目'})).json().id;
+ assert.equal((await a.req('POST',`/api/projects/${unrelated}/portable/save`,{requestId:randomUUID(),password:'synthetic-metadata-password',activeDocumentId:second})).statusCode,400);
+ assert.equal((await a.req('POST',`/api/projects/${unrelated}/portable/export`,{password:'synthetic-metadata-password',activeDocumentId:second})).statusCode,400);
+ const native=await a.req('POST',`/api/projects/${project}/portable/export`,{password:'synthetic-metadata-password',format:'native'});assert.equal(native.statusCode,200,native.body.slice(0,100));
+ const openedNative=await readNativeOrReferencePortable(native.rawPayload,{password:'synthetic-metadata-password'});assert.equal(openedNative.kind,'native');if(openedNative.kind!=='native')throw Error('EXPECTED_NATIVE');
+ const oldCreatedAt='2020-02-03T04:05:06.000Z',sources=new Map([...openedNative.sources].filter(([entry])=>!['workspace.json','manifest.json'].includes(entry))),source=await writeNativePortable({...openedNative.snapshot,project:{...openedNative.snapshot.project,createdAt:oldCreatedAt,activeDocumentId:second}},sources,{password:'synthetic-metadata-password'});
+ const imported=await a.req('POST','/api/portable/import',{name:'元数据导入项目',password:'synthetic-metadata-password',bytesBase64:source.toString('base64')});assert.equal(imported.statusCode,200,imported.body);
+ const importedProject=imported.json().id,state=JSON.parse(unseal((await admin.query('SELECT portable_state FROM projects WHERE id=$1',[importedProject])).rows[0].portable_state,`${a.tenant}:${importedProject}:portable-state`));
+ const mappedFirst=state.documentIdMap[first],mappedSecond=state.documentIdMap[second];assert.ok(mappedFirst&&mappedSecond&&mappedFirst!==mappedSecond);
+ await tick();await tick();
+ const reopened=await archive(importedProject);assert.equal(reopened.snapshot.createdAt,oldCreatedAt);assert.equal(reopened.snapshot.activeDocumentId,mappedSecond);
+ const newlySelected=await archive(importedProject,mappedFirst);assert.equal(newlySelected.snapshot.createdAt,oldCreatedAt);assert.equal(newlySelected.snapshot.activeDocumentId,mappedFirst);
+ assert.deepEqual((await admin.query('SELECT id FROM documents WHERE project_id=$1 ORDER BY id',[importedProject])).rows.map(row=>row.id).sort(),[mappedFirst,mappedSecond].sort());
 });
