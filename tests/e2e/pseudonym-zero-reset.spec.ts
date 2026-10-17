@@ -65,7 +65,6 @@ test('zero occurrence pseudonym reset updates the mounted editor without restori
   if(await panel.getAttribute('open')===null)await panel.locator('summary').click();
   const edit = panel.getByRole('textbox',{name:`编辑${phone}假名`,exact:true});
   const action = panel.getByRole('combobox',{name:`${phone}脱敏方式`,exact:true});
-  const lock = panel.getByRole('checkbox',{name:`锁定${phone}假名`,exact:true});
   const beforeDraftResponse = await page.request.get(`/api/documents/${id}/pseudonym-draft`);
   expect(beforeDraftResponse.status(),await beforeDraftResponse.text()).toBe(200);
   const beforeDraft = await beforeDraftResponse.json();
