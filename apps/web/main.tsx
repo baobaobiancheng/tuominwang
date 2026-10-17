@@ -369,8 +369,9 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
   async function flushPdfDraft(){if(pdfDraftRef.current&&!await pdfDraftRef.current.flush())throw new Error("运行中 PDF 草稿尚未保存，操作未执行；请修正草稿错误后重试。");}
   const currentDoc = useRef(doc), currentProject = useRef(project);
   const lastWorkspaceDocument = useRef<{project:string;id:string}|null>(null);
-  const restoredWorkspaceDrafts=useRef(new Map<string,{revision:number;marks:Mark[];pageReview?:PageReview;manualDraft?:ManualRecoveryDraft|null}>());
+  const restoredWorkspaceDrafts=useRef(new Map<string,{recoveryRevision:number;draft:{revision:number;marks:Mark[];pageReview?:PageReview;manualDraft?:ManualRecoveryDraft|null}}>());
   const recoveryDraftRef=useRef<RecoveryDraftHandle|null>(null);
+  const[projectRecovered,setProjectRecovered]=useState<{documentId:string;recoveryRevision:number}|null>(null);
   const[manualRecovery,setManualRecovery]=useState<ManualRecoveryDraft|null>(null),[manualRestoreEpoch,setManualRestoreEpoch]=useState(0);
   const manualRecoveryRef=useRef(manualRecovery);manualRecoveryRef.current=manualRecovery;
   const visualRequests = useRef(new Map<string,string>());
@@ -445,24 +446,25 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
     if (d.id !== id) throw new Error("材料状态已变化，请重新打开。");
     if (onlyIfCurrent && (currentDoc.current?.id !== id || currentProject.current !== d.project_id || dirtyRef.current||manualRecoveryRef.current)) return;
     const recovered=restoredWorkspaceDrafts.current.get(id);
-    if(recovered&&recovered.revision!==d.revision){restoredWorkspaceDrafts.current.clear();throw new Error('RECOVERY_OUTDATED');}
+    if(recovered&&recovered.draft.revision!==d.revision){restoredWorkspaceDrafts.current.clear();throw new Error('RECOVERY_OUTDATED');}
     lastWorkspaceDocument.current={project:d.project_id,id:d.id};
     const enteredDocument = currentDoc.current?.id !== id || currentProject.current !== d.project_id;
     const pageFocus=!!focus&&d.anchors?.some(a=>a.start<focus.end&&a.end>focus.start&&(a.kind==='page'||a.kind==='object'&&a.object==='image-text'));
     setPendingAuditFocus(focus&&!pageFocus?{documentId:id,projectId:d.project_id,revision:d.revision,textOffset:d.textOffset??0,...focus}:null);
     if(focus&&!pageFocus&&isWordFormat(d.format))setDocxView('text');
     setDoc(d);
+    setProjectRecovered(recovered?{documentId:id,recoveryRevision:recovered.recoveryRevision}:null);
     setExportMappingName('');
     setDocxFocus(focus??null);
     if(recovered)restoredWorkspaceDrafts.current.delete(id);
-    setManualRecovery(recovered?.manualDraft??(enteredDocument||d.revision!==currentDoc.current?.revision?null:manualRecoveryRef.current));
-    if(recovered?.manualDraft)setManualRestoreEpoch(value=>value+1);
-    setMarks(recovered?.marks??d.marks);
+    setManualRecovery(recovered?.draft.manualDraft??(enteredDocument||d.revision!==currentDoc.current?.revision?null:manualRecoveryRef.current));
+    if(recovered?.draft.manualDraft)setManualRestoreEpoch(value=>value+1);
+    setMarks(recovered?.draft.marks??d.marks);
     setDirty(!!recovered);
     setSelection(null);
     setConflict(false);
     setMarkPage(0);
-    setPageReview(recovered?.pageReview??d.pageReview??emptyPageReview());
+    setPageReview(recovered?.draft.pageReview??d.pageReview??emptyPageReview());
     setUndoStack([]); setRedoStack([]); setPreview(null);
     setImporting(false);
     if (enteredDocument) void api(`/projects/${d.project_id}/workspace/recent`,"POST",{documentId:d.id}).catch(()=>{});
@@ -495,6 +497,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
       const task=await api<{projectId:string}>(`/ai-collab/tasks/${collaborationJob}`);
       const target=await api<{id:string;name:string;permissions:Permission[]}>(`/projects/${task.projectId}`);
       if(!active)return;
+      if(currentProject.current!==target.id)await recoveryDraftRef.current?.flush();
       setProjects(previous=>previous.some(p=>p.id===target.id)?previous:[target,...previous]);setProject(target.id);
     })().catch(e=>{if(active)setError((e as Error).message);});
     return()=>{active=false;};
@@ -804,6 +807,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
               const name = new FormData(form).get("name");
               if ((dirty || pendingUpload || dictionaryDirty) && !await confirmAction("存在未保存的内容或未上传文件，确定离开？")) return;
               void run(async () => {
+                await flushPdfDraft();await recoveryDraftRef.current?.flush();
                 const p = await api<{ id: string }>("/projects", "POST", {
                   name,
                   applyDefaultPresets:true,
@@ -842,6 +846,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
                 onClick={() => void run(async () => {
                   if ((!dirty && !pendingUpload && !dictionaryDirty) || await confirmAction("存在未保存的内容或未上传文件，确定离开？")) {
                     await flushPdfDraft();
+                    await recoveryDraftRef.current?.flush();
                     setProject(p.id);
                     setDoc(null); setImporting(false); setDirty(false); setConflict(false);
                   }
@@ -878,16 +883,14 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
               }}>删除材料</button>}
               <button className="secondary" onClick={async () => {
                 if (dirty && !await confirmAction("放弃未保存的复核？")) return;
-                await flushPdfDraft();
-                setDoc(null); setDirty(false); setConflict(false); setImporting(false);
+                void run(async()=>{await flushPdfDraft();await recoveryDraftRef.current?.flush();setDoc(null); setDirty(false); setConflict(false); setImporting(false);});
               }}>返回材料列表</button>
               <button
                 className="secondary"
                 disabled={!allowed("upload")}
                 onClick={async () => {
                   if (!dirty || await confirmAction("放弃未保存的复核？")) {
-                    await flushPdfDraft();
-                    setDoc(null); setMarks([]); setDirty(false); setConflict(false); setSelection(null); setImporting(true);
+                    void run(async()=>{await flushPdfDraft();await recoveryDraftRef.current?.flush();setDoc(null); setMarks([]); setDirty(false); setConflict(false); setSelection(null); setImporting(true);});
                   }
                 }}
               >
@@ -921,7 +924,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
             {project && allowed("view_original") && allowed("export") && <ProcessingObservability project={project} documents={docs.map((d,i)=>({id:d.id,revision:d.revision??0,name:d.name??`文本 ${i+1}`}))} loadDocuments={async()=>{const all:typeof docs=[];for(let offset=0;;offset+=100){const page=await api<typeof docs>(`/projects/${project}/documents?limit=100&offset=${offset}`);all.push(...page);if(page.length<100)break;}return all.map((d,i)=>({id:d.id,revision:d.revision??0,name:d.name??`文本 ${i+1}`}));}} api={api} run={run} onChanged={async()=>{await refreshDocs();}} />}
             {project && feedbackOpen && <ReferenceDictionaryFiles project={project} api={api} run={run} />}
             <details><summary>帮助与产品资料</summary><SupportPanel run={run} api={api}/><OcrDiagnostics run={async operation=>{if(operation==='health')return api('/ocr/health');const response=await fetch(appUrl('/api/ocr/diagnostic'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({reason:'用户请求 OCR 检查'})});if(!response.ok){await downloadResponse(response,'OCR诊断.json');return;}const result=await response.clone().json();await downloadResponse(response,'OCR诊断.json');return result;}} /></details>
-            <RecentWorkspaces api={api} disabled={busy||dirty} onPrepare={async()=>{await flushPdfDraft();await recoveryDraftRef.current?.flush();}} onOpen={async(projectId,documentId)=>{await run(async()=>{await flushPdfDraft();await recoveryDraftRef.current?.flush();const p=await api<typeof projects[number]>(`/projects/${projectId}`);setProjects(v=>v.some(x=>x.id===p.id)?v:[...v,p]);setProject(projectId);if(documentId)await openDoc(documentId);else setDoc(null);});}} onRecover={async(projectId,entries,activeDocumentId)=>{let completed=false;await run(async()=>{const p=await api<typeof projects[number]>(`/projects/${projectId}`);restoredWorkspaceDrafts.current.clear();for(const entry of entries)if(entry.draft)restoredWorkspaceDrafts.current.set(entry.documentId,entry.draft);setProjects(v=>v.some(x=>x.id===p.id)?v:[...v,p]);setProject(projectId);const selected=activeDocumentId??entries[0]?.documentId;if(selected)await openDoc(selected);else setDoc(null);completed=true;});if(!completed)throw Error('RECOVERY_OPEN_UNCONFIRMED');}} />
+            <RecentWorkspaces api={api} disabled={busy||dirty} onPrepare={async()=>{await flushPdfDraft();await recoveryDraftRef.current?.flush();}} onOpen={async(projectId,documentId)=>{await run(async()=>{await flushPdfDraft();await recoveryDraftRef.current?.flush();const p=await api<typeof projects[number]>(`/projects/${projectId}`);setProjects(v=>v.some(x=>x.id===p.id)?v:[...v,p]);setProject(projectId);if(documentId)await openDoc(documentId);else setDoc(null);});}} onRecover={async(projectId,entries,activeDocumentId)=>{let completed=false;await run(async()=>{const p=await api<typeof projects[number]>(`/projects/${projectId}`);restoredWorkspaceDrafts.current.clear();for(const entry of entries)if(entry.draft)restoredWorkspaceDrafts.current.set(entry.documentId,{recoveryRevision:entry.revision,draft:entry.draft});setProjects(v=>v.some(x=>x.id===p.id)?v:[...v,p]);setProject(projectId);const selected=activeDocumentId??entries[0]?.documentId;if(selected)await openDoc(selected);else setDoc(null);completed=true;});if(!completed)throw Error('RECOVERY_OPEN_UNCONFIRMED');}} />
             {project && <NetworkPolicy projectId={project} api={api} disabled={busy||!allowed("manage_models")} />}
             {project && allowed("view_original") && <AiCollaboration key={`collaboration:${project}`} project={project} focusJob={collaborationJob} documents={docs} api={api} run={run} onOpen={id => void run(() => openDoc(id))} />}
             {project && allowed("view_original") && allowed("review") && <ProjectEntities key={`entities:${project}`} project={project} api={api} run={run} changed={() => refreshDocs()} onOpen={(id,span)=>openDoc(id,span)} />}
@@ -1028,7 +1031,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
               </div>
               {canReview && doc.job?.status==="failed" && ["ENCRYPTED_PDF","ENCRYPTED_OFFICE"].includes(doc.job.error_code??"") && <DocumentUnlock id={doc.id} revision={doc.revision} api={api} disabled={dirty||conflict} onDone={()=>openDoc(doc.id)} />}
               <button className="secondary" disabled={busy} onClick={()=>setFeedbackOpen(v=>!v)}>反馈与个人规则</button>{feedbackOpen&&<FeedbackPanel key={`feedback-doc:${doc.id}`} project={doc.project_id} document={feedbackDocument} api={api} run={run}/>}
-              {canReview && doc.state==="review" && <RecoveryDraft ref={recoveryDraftRef} key={`recovery:${doc.id}:${doc.revision}`} doc={doc} marks={marks} pageReview={pageReview} manualDraft={manualRecovery} dirty={dirty} disabled={busy||conflict} api={api} onRestore={(next,pages,manual)=>{if(pages)setPageReview(pages);setManualRecovery(manual??null);if(manual)setManualRestoreEpoch(value=>value+1);update(next,true);}} />}
+              {canReview && doc.state==="review" && <RecoveryDraft ref={recoveryDraftRef} key={`recovery:${doc.id}:${doc.revision}`} doc={doc} marks={marks} pageReview={pageReview} manualDraft={manualRecovery} projectRecoveryRevision={projectRecovered?.documentId===doc.id?projectRecovered.recoveryRevision:undefined} dirty={dirty} disabled={busy||conflict} api={api} onRestore={(next,pages,manual)=>{if(pages)setPageReview(pages);setManualRecovery(manual??null);if(manual)setManualRestoreEpoch(value=>value+1);update(next,true);}} />}
               {doc.job?.canObserveEvents === true && doc.state !== "outdated" && !conflict && docAllowed("view_original") && <ProcessingProgress key={`progress:${doc.job.id}`} job={doc.job} api={api} sharedEvents={pdfLiveDraftOwnsEvents?pdfSharedEvents:undefined} readPdfCheckpoints={doc.job.ordinaryPdfDetection === true && doc.state === "queued"} />}
               {sealJobId && doc.format === "pdf" && doc.state !== "outdated" && docAllowed("view_original") && (sealRuntimeActive || sealRuntimeReady) && <PdfSealRuntime key={`seals:${sealJobId}:${doc.revision}`} jobId={sealJobId} revision={doc.revision} api={api} active={sealRuntimeActive} ready={sealRuntimeReady} busy={busy || conflict} onPause={() => void run(async () => {
                 await api(`/jobs/${sealJobId}/pdf-seals/pause`, "POST", {revision:doc.revision});
