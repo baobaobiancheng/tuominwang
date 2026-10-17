@@ -18,7 +18,7 @@ test('whole workspace opens two saved drafts and an unsubmitted Markdown edit, w
  const login=await app.inject({method:'POST',url:'/api/login',headers:{origin},payload:{username,password}});
  assert.equal(login.statusCode,200,login.body);
  const cookie=String(login.headers['set-cookie']).split(';')[0];
- const req=(method:string,url:string,payload?:unknown)=>app.inject({method,url,headers:{origin,cookie},payload});
+ const req=(method:any,url:string,payload?:any)=>app.inject({method,url,headers:{origin,cookie},payload});
  const project=(await req('POST','/api/projects',{name:'合成双材料恢复'})).json().id;
  const one=(await req('POST',`/api/projects/${project}/documents`,{text:'甲材料电话 13800138000',requestId:randomUUID()})).json().id;
  const two=(await req('POST',`/api/projects/${project}/documents`,{text:'乙材料电话 13900139000',requestId:randomUUID()})).json().id;
@@ -45,7 +45,7 @@ test('whole workspace opens two saved drafts and an unsubmitted Markdown edit, w
  assert.ok(!stored.payload.includes('人工未提交稿'),'unsubmitted text stays sealed');
  const resumedLogin=await app.inject({method:'POST',url:'/api/login',headers:{origin},payload:{username,password}});assert.equal(resumedLogin.statusCode,200,resumedLogin.body);
  const resumedCookie=String(resumedLogin.headers['set-cookie']).split(';')[0];
- const resumedReq=(method:string,url:string,payload?:unknown)=>app.inject({method,url,headers:{origin,cookie:resumedCookie},payload});
+ const resumedReq=(method:any,url:string,payload?:any)=>app.inject({method,url,headers:{origin,cookie:resumedCookie},payload});
  const listing=await resumedReq('GET',`/api/projects/${project}/workspace/recovery`);assert.equal(listing.statusCode,200,listing.body);
  const summary=listing.json();assert.equal(summary.documentCount,2);assert.equal(summary.activeDocumentId,two);assert.equal(summary.entries.length,2);
  const versions={snapshotHash:summary.snapshotHash,entries:summary.entries.map((entry:any)=>({documentId:entry.documentId,recoveryRevision:entry.revision}))};
