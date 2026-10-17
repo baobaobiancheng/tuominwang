@@ -1,0 +1,158 @@
+{
+  "iteration": 60,
+  "event": 188,
+  "scope": "direct original code reuse; whole258 audit started, not declared complete",
+  "at": "2026-10-17T09:45:38.378893+00:00",
+  "designConstraint": "直接使用能复用的原代码、数据和流程；仅必要Web适配，不新建对标产品没有的设计",
+  "planningCoverage": 258,
+  "planningIsVerification": false,
+  "team": "3 gpt-6-sol main plans; architecture phase currently runs max2 gpt-6-luna children with third queued; 4 global slots",
+  "auditStatus": "architecture partial reports rejected where wrong ID assignment or navigation-only claims; corrected reports in progress; pipeline/protocol still planned",
+  "sourceCandidateCommit": "bcfb94e56613a0cb81928659dc071e9f43732d59",
+  "sourceCandidateManifestSha256": "fbb86868fbff3c6fc7d9fd015aaac46ac435e6eaf86211ff533e97ad1bf54dd4",
+  "sourceCandidateGitMatchedFiles": 1009,
+  "rea": "live GitHub stable/npm/local CLI all6.5.0; already latest; no reinstall",
+  "rootRepair": "Word preview remount busy retry: previous server read 5412ms outlives2500ms retry budget; changed existing delay list only; isolated oldRED1/6,newGREEN6/6; full pnpmcheck pending; real browser retest pending",
+  "baseline151": "natural exit1 at89 files,88passed1failed; failed helper records succeeded PNG export after loop deadline; not candidate155 proof; cleanup independently0 DB and no dataDir",
+  "currentGates": {
+    "at": "2026-10-17T09:45:38.378893+00:00",
+    "api": [
+      {
+        "label": "baseline151",
+        "completedFiles": 89,
+        "failedFiles": 1,
+        "lastEvent": {
+          "at": "2026-10-17T09:42:38.162Z",
+          "phase": "data-removed",
+          "dataDir": "/private/tmp/tmw058-reliability-v1/.data/test-runs/run-CCG992"
+        }
+      },
+      {
+        "label": "candidate155",
+        "completedFiles": 24,
+        "failedFiles": 0,
+        "lastEvent": {
+          "at": "2026-10-17T09:41:33.963Z",
+          "phase": "command-start",
+          "args": [
+            "--import",
+            "tsx",
+            "--test",
+            "tests/folder-batch-complete.integration.ts"
+          ]
+        }
+      }
+    ],
+    "edge109": {
+      "status": "running",
+      "announcedIndex": 39,
+      "knownFailure": "docx-layout preview busy after toggling; downloaded DOCX checked before failure"
+    },
+    "previewRepairFullCheck": "running exec2169"
+  },
+  "formalProductSourcePromoted": false,
+  "deployed": false,
+  "modelChanged": false,
+  "runtime": "all competitor258 remainR0; license/private/native OS boundaries unchanged",
+  "beforeDocuments": {
+    "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/before-ledger188-v1/manifest.json",
+    "count": 9
+  },
+  "rawRuleJSON": {
+    "count": 10,
+    "blocks": [
+      {
+        "sha256": "ff063341d7bd2733ca9f5814993d18ad6698e127e4469d32d5e49e9147a64866",
+        "bytes": 215
+      },
+      {
+        "sha256": "1f11c5d39de1fb78bebd68316809cc5b77ef9ee104930a28cab473bff76646b4",
+        "bytes": 134934
+      },
+      {
+        "sha256": "369a14ee5c3f11f0a16a62228bc30b9c55d88a6d035450672011a6d60ab6ef0a",
+        "bytes": 64858
+      },
+      {
+        "sha256": "de5bc4255716fe4a2c3ce3ddd5e7bacab9b870503baaeaf05526f3ef1b7850c6",
+        "bytes": 3304
+      },
+      {
+        "sha256": "30bb8b9f7f3e4c8462e82d4edb60c1c7a2b42e3d4c1076f1b0a5a1ea3a246b42",
+        "bytes": 21229
+      },
+      {
+        "sha256": "3ba1a06438e07d2affc7f4368e0effdf83bdf340d36acdbf07f8757d6f3cb614",
+        "bytes": 10590
+      },
+      {
+        "sha256": "fede746e6e3ebc7736f98ddca810b7ade03ed067586e3f4fba2a1ccf603e60de",
+        "bytes": 3207
+      },
+      {
+        "sha256": "b38349d13b2b1caf95bf79ab60d8fbba4f28c9e63ac941a45948e15d27e498b5",
+        "bytes": 6801
+      },
+      {
+        "sha256": "1c9306fe9fd05f97854e2e0d12cee5b49655c8c66683fff8ae16aacab401c33d",
+        "bytes": 505
+      },
+      {
+        "sha256": "8e489e5a7dbd5e751c8bf0d905ed528336c3652d07cb7327ef212a2cee7a90e2",
+        "bytes": 554
+      }
+    ]
+  },
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-plan-coverage-validation-v1.json",
+      "sha256": "438d3ca071375f21a5723e3a80a0ee39b599d8828cf92b6d97406689a291add3",
+      "bytes": 531
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/rea-stable-live-recheck-v1.json",
+      "sha256": "4f51979dc6143045bc1dc2714b41b0319356af17da3d3f19263cb11091537744",
+      "bytes": 391
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/arch-main-plan.json",
+      "sha256": "7910d88ae2d54920014208a749c757bfb378b17b2f71eb0c162b321dd104990e",
+      "bytes": 146322
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/pipeline-main-plan.json",
+      "sha256": "b70da6a297c8f91a5446cc1c99e06d00c98e12054140a4c7e0dbe2e1ffd3364f",
+      "bytes": 251576
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-main-plan.json",
+      "sha256": "ba0fc60fd434ff5883e8a1ec84f35a59c278123354e921d1feb3c7ea140af2b1",
+      "bytes": 180942
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-word-preview-busy-v1/finding.json",
+      "sha256": "3111970907a7dcec072d68df75534c8d7500035747a91ac3f5835ccc8dcfea8c",
+      "bytes": 3687
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-word-preview-busy-v1/unit-red-green-receipt.json",
+      "sha256": "969ab1200fb3dfb58c91c726d59ea8298c9dd684fe3324a47fe886635562b8d8",
+      "bytes": 669
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-word-preview-busy-v1/candidate-inputs-v1.json",
+      "sha256": "f59b1960799c421b590172de475a1357727b183d489d52991d90256209ff16f1",
+      "bytes": 172093
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-baseline-terminal-poll-v1/finding.json",
+      "sha256": "d93ecad24ba92adeedb5bf64f98d4cc6e579d5a5eeaf6e1b0f8e97b55db83063",
+      "bytes": 707
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/gates-ledger188-v1.json",
+      "sha256": "f1704487cc7f5a965ca0e020a57b1e2af362400b2f7a927292acb59d495ec4bd",
+      "bytes": 908
+    }
+  ]
+}

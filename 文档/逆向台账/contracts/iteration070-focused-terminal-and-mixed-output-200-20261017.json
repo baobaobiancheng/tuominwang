@@ -1,0 +1,162 @@
+{
+  "event": 200,
+  "at": "2026-10-17T12:34:41.197570+00:00",
+  "browserOldTerminal": {
+    "head": "d275326a6d464abdd0e428c59e0f81d8da9593b1",
+    "exitCode": 1,
+    "pass": 3,
+    "fail": 4,
+    "skip": 0,
+    "durationMinutes": 19.4,
+    "failed": [
+      "PDF CDP binary body returned zero bytes",
+      "unified test omitted existing load-all UI action",
+      "workspace open POST has entries but no documentCount",
+      "navigation used custom confirmation while test only handled native dialogs"
+    ],
+    "boundary": "Fixes to test observation/prerequisites do not prove subsequent browser steps; rerun four original failed IDs required."
+  },
+  "partialMinimalFix": {
+    "head": "f4839b3cdd6ca4dc721e46ec5bd41a2468687321",
+    "changes": [
+      "Current selected page actual checkpoint/draftRevision refresh advances existing editRef even if PNG not yet created",
+      "Direct binary 401 dispatch uses existing session-expired and messages; epoch guard runs first to reject old unmounted requests"
+    ],
+    "adversarial": "f9 review found old request could clear new account session. 5eb one-line epoch guard added; f483 follows SessionWorkspace generation remount through component cleanup, static No Findings. Original finding retained.",
+    "dynamicBoundary": "New real delayed-PNG cross-window test written; four browser cases still require actual rerun. Static review does not prove browser 401 flow."
+  },
+  "mixedApi": {
+    "redHead": "f9d63f8bf297dd52d271d8625edb5ed6ac2d1397",
+    "redExit": 1,
+    "redCause": "Ignored fixture inherited deliberately invalid old alias token; actual validation rejected it. Product mapping checks unchanged.",
+    "greenHead": "f4839b3cdd6ca4dc721e46ec5bd41a2468687321",
+    "typecheckExit": 0,
+    "api": {
+      "tests": 1,
+      "pass": 1,
+      "fail": 0,
+      "skip": 0,
+      "todo": 0,
+      "cancelled": 0,
+      "exitCode": 0
+    },
+    "actualScope": [
+      "mixed same-key automatic and manual actual text preview",
+      "ignored actual preview preserves original phone twice using valid saved alias references",
+      "no review/source change during previews",
+      "secure portable hasVisitedPreview/style/typeActions",
+      "explicit review save followed by export worker and actual signed downloaded bytes contain both different replacement values"
+    ],
+    "cleanup": "Root independent exact-name queries for Edge failed, f9 API failed, and f483 API passed all found zero own remaining databases; f483 data directory absent. Unknown old databases untouched."
+  },
+  "ordinaryDev": "After old Edge terminal ordinary API/Vite independently returned 200 at recorded snapshot; next isolated browser run may temporarily pause only this project.",
+  "guideCorrection": "Existing guide corrected overly broad manual-value claim: entire-file full-star outputs all redact spans as stars and keeps original manual draft for switching back; ignore remains original. No product behavior changed.",
+  "beforeDocuments": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/before-ledger200-v1/manifest.json",
+  "rawRules": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/rule-json-before-ledger200-v1.json",
+  "remaining": [
+    "Four failed browser IDs on fixed source, including actual late PNG rejection",
+    "Merge current pure documentation before final source freeze",
+    "One final complete pnpm check and dynamically enumerated full API with strict zero-skip TAP gate",
+    "Update guide from actual final browser results, private sync and deploy/readback"
+  ],
+  "formalProductPromoted": false,
+  "deployed": false,
+  "competitorRuntime": "All 258 remain R0. Local functional verification is not licensed competitor processing verification.",
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-normal-dev-restored-200-v1.json",
+      "sha256": "f701914b47301f6539b273b7ed979bd68d8c6435443b54eea56005622ad45016",
+      "bytes": 407
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-guide-fullstar-correction-v1.json",
+      "sha256": "b1e14b460f3c1b314ce47e324c52eade0da98f04172ca8322c23f02c87e61897",
+      "bytes": 1010
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/arch-peer-070-f9d63f8-v1.json",
+      "sha256": "766c1b2bebda98d47ec0358aee5a0fea4007ccd8cf045878cf14568654e82616",
+      "bytes": 2758
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/arch-peer-070-5eb613d-401-followup-v1.json",
+      "sha256": "0923a8b552b7de2e4e4927880b346405e36223429e260ae1536ca853d64bc217",
+      "bytes": 1394
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/arch-peer-070-f4839b3-session-remount-v1.json",
+      "sha256": "0e93c066f1bfbaafcf052f51c5321854a370140326476c19851192778cd6e04a",
+      "bytes": 2028
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-peer-070-mixed-key-v1.json",
+      "sha256": "167528358cdd22ebecf60b1a162ac675d5b36f64e6cfa5abba45418f638d9c7b",
+      "bytes": 4310
+    },
+    {
+      "path": "文档/使用指南/批量脱敏方式补充操作-20261017.md",
+      "sha256": "588c9f3d87cdeda85df2b0849e47414b21b37f6c1d5c1c31f95d7f26e9b2ff50",
+      "bytes": 4068
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-070-focused-edge-terminal-v1/playwright.log",
+      "sha256": "3f7a92da329e51d21747cb752731f38726e10f715471f27c84456b671b70e2ac",
+      "bytes": 14157
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-070-focused-edge-terminal-v1/results.json",
+      "sha256": "f5bf2f5bcc5ceb4d52204c04b896f56cd5dea8a785928bc4804b65a45f550118",
+      "bytes": 23919
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-070-focused-edge-terminal-v1/root-receipt.json",
+      "sha256": "aa03d8e4d83bada298ce8bab326dde66913d0aec56aeeba6ec2ce0c90b77302a",
+      "bytes": 1382
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-070-focused-edge-terminal-v1/terminal-receipt.json",
+      "sha256": "e5f9ad22042118c6c88d1781f22d6c79e9cba6c3b5f6d25b31cbaa5864117563",
+      "bytes": 1939
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-070-mixed-api-f9-terminal-v1/api.log",
+      "sha256": "0d0c467762ae5796245855d0776f83d46528632d74d79cb400b0b6585065f8cf",
+      "bytes": 1019
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-070-mixed-api-f9-terminal-v1/root-receipt.json",
+      "sha256": "f6cc5203ca1fad58474f710903ecd08d5950ad36648f5babe5168a5d7eab926f",
+      "bytes": 844
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-070-mixed-api-f9-terminal-v1/terminal-receipt.json",
+      "sha256": "d3418d9724a9e0a65ede8345e61d194c12965bb80e4d22f90e4acc5fd4afd4a2",
+      "bytes": 1238
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-070-f483-targeted-green-v1/attempt-api-2-api.log",
+      "sha256": "1915371c0742d7ce299f47854f15cbb991a12f96039d8b9e6614b6b3e93b4466",
+      "bytes": 242
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-070-f483-targeted-green-v1/attempt-api-2-terminal-receipt.json",
+      "sha256": "54014031b9e41a5cdf91674c5189118dfa756963b5a5ee945549f7082a240044",
+      "bytes": 1238
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-070-f483-targeted-green-v1/root-receipt.json",
+      "sha256": "79e69494e899afe2317b05de3df02b519394896ae4ec60f98f49a493ffad0b67",
+      "bytes": 1726
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-070-f483-targeted-green-v1/typecheck-f483-receipt.json",
+      "sha256": "44b67fda104b15d1583c5d29627892cfe6ef2360f4e70c06b3c4300f7c16b3ae",
+      "bytes": 173
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-070-f483-targeted-green-v1/typecheck-f483-typecheck.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    }
+  ]
+}
