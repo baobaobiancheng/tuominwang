@@ -107,6 +107,7 @@ test('two material browser interruption restores the active document, review cho
   expect((await claimed).status()).toBe(200);
   const changedAfterClaim=reopened.waitForResponse(writerSave(second.id),{timeout:15000});
   await reopened.getByRole('button',{name:'返回材料列表',exact:true}).click();
+  await reopened.getByRole('alertdialog',{name:'操作确认'}).getByRole('button',{name:'确认执行'}).click();
   const changedReceipt=await changedAfterClaim;expect(changedReceipt.status(),await changedReceipt.text()).toBe(200);
   const thirdStorage=await fresh.storageState();
   await reopened.screenshot({path:info.outputPath('whole-recovery-active-second.png'),fullPage:true});
@@ -124,6 +125,7 @@ test('two material browser interruption restores the active document, review cho
   await expect(resumed.getByLabel('标记 1 处理决定')).toHaveValue('redact');
   await expect(resumed.getByRole('textbox',{name:'Markdown 待人工处理稿内容'})).toHaveValue(secondContent);
   await resumed.getByRole('button',{name:'返回材料列表',exact:true}).click();
+  await resumed.getByRole('alertdialog',{name:'操作确认'}).getByRole('button',{name:'确认执行'}).click();
   await resumed.getByRole('region',{name:'材料列表'}).getByRole('button',{name:new RegExp(`^${first.name.replace('.', '\\.')}`)}).click();
   await expect(resumed.getByRole('heading',{name:first.name,exact:true})).toBeVisible();
   const restoredContent=resumed.getByRole('textbox',{name:'Markdown 待人工处理稿内容'});
@@ -150,6 +152,7 @@ test('two material browser interruption restores the active document, review cho
   const originalHash=createHash('sha256').update(await before.body()).digest('hex');
 
   await resumed.getByRole('button',{name:'返回材料列表',exact:true}).click();
+  await resumed.getByRole('alertdialog',{name:'操作确认'}).getByRole('button',{name:'确认执行'}).click();
   await resumed.locator('summary').filter({hasText:'最近打开与待恢复草稿'}).click();
   const discardRow=resumed.locator('.actions').filter({hasText:projectName}).filter({has:resumed.getByRole('button',{name:'丢弃恢复记录'})});
   await discardRow.getByRole('button',{name:'丢弃恢复记录'}).click();
@@ -197,6 +200,7 @@ test('delayed real recovery GET cannot silently take over an ordinary old receip
  await page.getByRole('button',{name:'结束自动保存会话'}).click();
  expect((await closed).status()).toBe(200);
  await page.getByRole('button',{name:'返回材料列表',exact:true}).click();
+ await page.getByRole('alertdialog',{name:'操作确认'}).getByRole('button',{name:'确认执行'}).click();
 
  let releaseReceipt:(()=>void)|undefined,receiptFetched!:()=>void;
  const gate=new Promise<void>(resolve=>{releaseReceipt=resolve;});
