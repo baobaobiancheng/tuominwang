@@ -127,6 +127,11 @@ test('unified preview rebuilds ready children and projects the active local draf
   assert.equal(mixed.json().previewMarks[0].replacement.value,changedToken);
   assert.deepEqual(mixed.json().previewMarks[1].replacement,{mode:'custom',value:'【手工保留】'});
   assert.equal(mixed.json().previewMarks[1].replacementOrigin,'manual');
+  const mixedPreview = await req('POST',`/api/documents/${active.id}/preview`,{
+    revision:active.revision,marks:mixed.json().previewMarks,offset:0,
+  });
+  assert.equal(mixedPreview.statusCode,200,mixedPreview.body);
+  assert.equal(mixedPreview.json().text,`电话：${changedToken}；再次联系【手工保留】`);
   const ignored = await req('POST',`/api/projects/${project}/unified-aliases/prepare-preview`,{
     revision:body.revision,documents:body.documents,active:{id:active.id,revision:active.revision,
       contentHash:active.contentHash,localReviewDirty:true,
@@ -134,4 +139,26 @@ test('unified preview rebuilds ready children and projects the active local draf
   });
   assert.equal(ignored.statusCode,200,ignored.body);
   assert.ok(ignored.json().previewMarks.every((mark:any)=>mark.decision==='ignore'));
+  const ignoredPreview = await req('POST',`/api/documents/${active.id}/preview`,{
+    revision:active.revision,marks:ignored.json().previewMarks,offset:0,
+  });
+  assert.equal(ignoredPreview.statusCode,200,ignoredPreview.body);
+  assert.equal(ignoredPreview.json().text,'电话：13800138000；再次联系13800138000');
+  assert.deepEqual((await admin.query('SELECT id,revision,marks,content_hash,source_hash FROM documents WHERE project_id=$1 ORDER BY id',[project])).rows,before);
+
+  const saved = await req('PUT',`/api/documents/${active.id}/review`,{
+    revision:active.revision,marks:mixed.json().previewMarks,
+  });
+  assert.equal(saved.statusCode,200,saved.body);
+  const queued = await req('POST',`/api/documents/${active.id}/export`,{revision:saved.json().revision});
+  assert.equal(queued.statusCode,200,queued.body);
+  await tick();
+  const issued = await req('GET',`/api/documents/${active.id}`);
+  assert.equal(issued.statusCode,200,issued.body);
+  assert.equal(issued.json().job.status,'succeeded',issued.body);
+  const link = await req('POST',`/api/documents/${active.id}/download-link`,{revision:issued.json().revision});
+  assert.equal(link.statusCode,200,link.body);
+  const bytes = await app.inject({url:link.json().url});
+  assert.equal(bytes.statusCode,200,bytes.body);
+  assert.equal(bytes.rawPayload.toString('utf8'),`电话：${changedToken}；再次联系【手工保留】`);
 });
