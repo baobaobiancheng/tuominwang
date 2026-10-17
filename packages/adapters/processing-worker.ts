@@ -142,7 +142,8 @@ async function execute(input: ProcessingInput): Promise<any> {
     validateFileMarks(text, input.marks!.map(m => ({ ...m, decision: "pending" })), d.source_format, d.anchors);
     return applyReplacementPolicies(text, input.marks!, input.replacementPolicies!, input.mappings,{semanticValue:(mark,index)=>semanticEntityValue(d,mark,text,index)});
   }
-  if (input.kind === "page-preview") {
+  if (input.kind === "page-preview" || input.kind === "partial-page-preview") {
+    if(input.kind==='partial-page-preview'&&(d.source_format!=='pdf'||input.page!==0||d.page_data?.length!==1||d.page_data[0]?.index!==0||d.anchors?.length!==1||d.anchors[0]?.kind!=='page'||d.anchors[0]?.page!==0))throw new Error('PDF_OCR_DRAFT_INVALID');
     const policy = validatePageReview(d.page_review, d.page_data), page = (d.page_data as ParsedPage[]).find(p => p.index === input.page);
     if ((!paged && !embedded) || !page || policy.deletedPages.includes(page.index)) throw new Error("PAGE_NOT_READY");
     const source = await readOriginal(page.previewId), map = await readArtifact(page.mapId);
