@@ -1,6 +1,7 @@
 /** Retry only a transient occupied processing slot, preserving the exact read. */
 export async function processingRead<T>(read: () => Promise<T>, signal: AbortSignal): Promise<T> {
-  const delays = [100, 200, 400, 800, 1000];
+  // A prior preview can keep its server slot after the view is unmounted.
+  const delays = [100, 200, 400, 800, 1000, 2000, 4000, 8000];
   for (let attempt = 0; ; attempt++) {
     signal.throwIfAborted();
     try { const value = await read(); signal.throwIfAborted(); return value; }
