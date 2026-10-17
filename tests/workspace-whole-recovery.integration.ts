@@ -27,7 +27,7 @@ test('whole workspace opens two saved drafts and an unsubmitted Markdown edit, w
  assert.equal(docOne.state,'review');assert.equal(docTwo.state,'review');
  const sourceResponse=await req('GET',`/api/documents/${one}/markdown-draft-source?revision=${docOne.revision}&kind=converted-text`);
  assert.equal(sourceResponse.statusCode,200,sourceResponse.body);
- const source=sourceResponse.json(),manual={basis:source.basis,draftRevision:source.draftRevision,sourceHash:source.sourceHash,contentHash:source.contentHash,content:`${source.content}\n人工未提交稿：甲`,fileName:'甲材料-待人工处理.md'};
+ const source=sourceResponse.json(),manual={basis:source.basis,draftRevision:source.draftRevision,sourceHash:source.sourceHash,contentHash:source.contentHash,content:`${source.content}\n人工未提交稿：甲`,fileName:'甲/尚未提交.md'};
  const firstDraft={revision:docOne.revision,marks:docOne.marks.map((mark:any)=>({...mark,decision:'ignore'})),manualDraft:manual};
  const secondDraft={revision:docTwo.revision,marks:docTwo.marks.map((mark:any)=>({...mark,decision:'redact'}))};
  const writerOneResponse=await req('POST',`/api/documents/${one}/recovery/writer`,{recoveryRevision:0});assert.equal(writerOneResponse.statusCode,200,writerOneResponse.body);
