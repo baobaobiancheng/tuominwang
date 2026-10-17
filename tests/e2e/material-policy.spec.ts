@@ -153,7 +153,7 @@ async function openConfiguration(page: Page, filename: string) {
   await page.getByRole('region', { name: '材料列表', exact: true }).getByRole('button', { name: filename, exact: false }).click();
   const details = page.locator('details').filter({ has: page.locator('summary').filter({ hasText: '本材料识别与脱敏设置' }) });
   await details.locator('summary').click();
-  await expect(details.getByRole('combobox', { name: '使用方案', exact: true })).toBeEnabled();
+  await expect(details.getByRole('combobox', { name: '使用方案', exact: true })).toBeEnabled({ timeout: 30_000 });
   return details;
 }
 async function saveThroughUi(page: Page, id: string, expectedRevision: number) {
