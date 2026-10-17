@@ -139020,6 +139020,162 @@
           }
         }
       ]
+    },
+    {
+      "id": "ITER-064-BROWSER-TERMINAL-AND-ORIGINAL-GAPS-190",
+      "date": "2026-10-17",
+      "action": "记录完整109终态及六案复验、保留原字段与输出差异",
+      "summary": "全量Edge104过5败并清理恢复；六案已启动但首案初始预览失败。061/062/063原逻辑与草稿字段候选继续，未正式提升或部署。",
+      "verification": "9文档归档，10规则JSON不变；第五案trace有真实回执，064仅测试等待真实项目选中；保留全部失败不宣称全绿。",
+      "affected_ids": [],
+      "evidence": [
+        {
+          "path": "文档/逆向台账/contracts/iteration064-browser-terminal-and-original-gaps-190-20261017.json"
+        }
+      ],
+      "new_evidence_baseline": {
+        "path": "文档/逆向台账/contracts/iteration064-browser-terminal-and-original-gaps-190-20261017.json",
+        "current": {
+          "sha256": "236c579d2a70ab7d9d42cb2f39f4810a727e3bb224f02be6fcda9d6859cd8a3e",
+          "bytes": 5561
+        }
+      },
+      "document_hash_transitions": [
+        {
+          "path": "文档/待办与完成状态-20261015.md",
+          "previous": {
+            "sha256": "44cba3dca27da46c71c2cc065313c400e4efb08d9675c8af5d2c3cf83252dbb4",
+            "bytes": 127735
+          },
+          "current": {
+            "sha256": "cdf0b4734331c8d6d53749f568b9599c7a530e5bd5bbc6ba153ce349d08e27d4",
+            "bytes": 129073
+          }
+        },
+        {
+          "path": "文档/脱敏规则完整技术交接-迭代023.md",
+          "previous": {
+            "sha256": "5ece0d113f022e718d2f5439b2b27a69bf361dec7b5a89a065065d0892facb8f",
+            "bytes": 425368
+          },
+          "current": {
+            "sha256": "99e85259dc8e165ce16c33784b1df77ac831f4d28ba47311d29921f8d15bdd32",
+            "bytes": 425872
+          }
+        }
+      ],
+      "evidence_snapshot_updates": [
+        {
+          "path": "文档/待办与完成状态-20261015.md",
+          "previous": {
+            "sha256": "44cba3dca27da46c71c2cc065313c400e4efb08d9675c8af5d2c3cf83252dbb4",
+            "bytes": 127735
+          },
+          "current": {
+            "sha256": "cdf0b4734331c8d6d53749f568b9599c7a530e5bd5bbc6ba153ce349d08e27d4",
+            "bytes": 129073
+          }
+        },
+        {
+          "path": "文档/脱敏规则完整技术交接-迭代023.md",
+          "previous": {
+            "sha256": "5ece0d113f022e718d2f5439b2b27a69bf361dec7b5a89a065065d0892facb8f",
+            "bytes": 425368
+          },
+          "current": {
+            "sha256": "99e85259dc8e165ce16c33784b1df77ac831f4d28ba47311d29921f8d15bdd32",
+            "bytes": 425872
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/iteration064-browser-terminal-and-original-gaps-190-20261017.json",
+          "previous": null,
+          "current": {
+            "sha256": "236c579d2a70ab7d9d42cb2f39f4810a727e3bb224f02be6fcda9d6859cd8a3e",
+            "bytes": 5561
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration059/edge-full-v3/terminal-receipt.json",
+          "previous": null,
+          "current": {
+            "sha256": "d559aff84a6a9201bffabd20a80df6addd7ce1928f8bd66db7f09af6f6798fa5",
+            "bytes": 38450
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/pipeline-two-ui-next-candidate-plan-v1.json",
+          "previous": null,
+          "current": {
+            "sha256": "7f994e05b6f12e8f785a8ea3a45470b02ffb4d653191d263d6f72c3b4fdde1be",
+            "bytes": 11019
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/arch-ui-policy-final-gap-v1.json",
+          "previous": null,
+          "current": {
+            "sha256": "63a88ad57188ab58c60e20124cdbd848ce37edd88b603daecb4d05a1a7a52acb",
+            "bytes": 10850
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-workspace-reopen-trace-v1/finding.json",
+          "previous": null,
+          "current": {
+            "sha256": "e2138bb1e887105f3b025a92650e0de5e1dbf9c56f6612df73c8cf254a801191",
+            "bytes": 1000
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-workspace-reopen-trace-v1/selected-snapshots.json",
+          "previous": null,
+          "current": {
+            "sha256": "90a416e71ab936cea150cff788b4fcf88703c61e3bf3fa17a5bfe98783e98595",
+            "bytes": 71405
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-combined-inputs-v5.json",
+          "previous": null,
+          "current": {
+            "sha256": "1b2e69625b9f5af52fa1b4b56f72d1674613101c9cfdfa8e8518ea0643f72382",
+            "bytes": 172369
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-v2-v5-execution-scope-binding.json",
+          "previous": null,
+          "current": {
+            "sha256": "506b20c1e909c872f78eb0f77ed7efeabe13f4ec543fe55b996b5cbf80dba54c",
+            "bytes": 1029
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/edge-repair-plan-v5-final.json",
+          "previous": null,
+          "current": {
+            "sha256": "4bf1dda424f21a62218af0dd290bf1b3552dffb244bc7f10719b6490c678138f",
+            "bytes": 6460
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-e2e-v5-typecheck.log",
+          "previous": null,
+          "current": {
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "bytes": 0
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-checkpoint190-v1/running-snapshot.json",
+          "previous": null,
+          "current": {
+            "sha256": "01a445d0aa4e4a3fb2afb581e33be21b76829a02d97aac4b505fdb6bad7a5243",
+            "bytes": 864
+          }
+        }
+      ]
     }
   ],
   "evidence_snapshot": {
@@ -141435,8 +141591,8 @@
         "bytes": 423
       },
       "文档/脱敏规则完整技术交接-迭代023.md": {
-        "sha256": "5ece0d113f022e718d2f5439b2b27a69bf361dec7b5a89a065065d0892facb8f",
-        "bytes": 425368
+        "sha256": "99e85259dc8e165ce16c33784b1df77ac831f4d28ba47311d29921f8d15bdd32",
+        "bytes": 425872
       },
       "文档/逆向台账/contracts/build-complete-rule-handoff-20261014.py": {
         "sha256": "c5d6db581eb6019ba761fe2adb9ba66b41c4a611162c32e54729baf3fa9810e6",
@@ -145011,8 +145167,8 @@
         "bytes": 4676926
       },
       "文档/待办与完成状态-20261015.md": {
-        "sha256": "44cba3dca27da46c71c2cc065313c400e4efb08d9675c8af5d2c3cf83252dbb4",
-        "bytes": 127735
+        "sha256": "cdf0b4734331c8d6d53749f568b9599c7a530e5bd5bbc6ba153ce349d08e27d4",
+        "bytes": 129073
       },
       ".data/research/lawbot-2026-10-15/iteration036/checkpoint-history/current/apps/api/main.ts": {
         "sha256": "4c36dad476012af090cb8649de2b991235d41e4c5d946a4a411404680935b011",
@@ -164069,6 +164225,50 @@
       ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/edge-repair-plan-v4.json": {
         "sha256": "165f8364cb27cb5399fa84a2c8752f0b842eba0c59954747649ca3c279a5c050",
         "bytes": 5682
+      },
+      "文档/逆向台账/contracts/iteration064-browser-terminal-and-original-gaps-190-20261017.json": {
+        "sha256": "236c579d2a70ab7d9d42cb2f39f4810a727e3bb224f02be6fcda9d6859cd8a3e",
+        "bytes": 5561
+      },
+      ".data/research/lawbot-2026-10-17/iteration059/edge-full-v3/terminal-receipt.json": {
+        "sha256": "d559aff84a6a9201bffabd20a80df6addd7ce1928f8bd66db7f09af6f6798fa5",
+        "bytes": 38450
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/pipeline-two-ui-next-candidate-plan-v1.json": {
+        "sha256": "7f994e05b6f12e8f785a8ea3a45470b02ffb4d653191d263d6f72c3b4fdde1be",
+        "bytes": 11019
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/arch-ui-policy-final-gap-v1.json": {
+        "sha256": "63a88ad57188ab58c60e20124cdbd848ce37edd88b603daecb4d05a1a7a52acb",
+        "bytes": 10850
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-workspace-reopen-trace-v1/finding.json": {
+        "sha256": "e2138bb1e887105f3b025a92650e0de5e1dbf9c56f6612df73c8cf254a801191",
+        "bytes": 1000
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-workspace-reopen-trace-v1/selected-snapshots.json": {
+        "sha256": "90a416e71ab936cea150cff788b4fcf88703c61e3bf3fa17a5bfe98783e98595",
+        "bytes": 71405
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-combined-inputs-v5.json": {
+        "sha256": "1b2e69625b9f5af52fa1b4b56f72d1674613101c9cfdfa8e8518ea0643f72382",
+        "bytes": 172369
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-v2-v5-execution-scope-binding.json": {
+        "sha256": "506b20c1e909c872f78eb0f77ed7efeabe13f4ec543fe55b996b5cbf80dba54c",
+        "bytes": 1029
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/edge-repair-plan-v5-final.json": {
+        "sha256": "4bf1dda424f21a62218af0dd290bf1b3552dffb244bc7f10719b6490c678138f",
+        "bytes": 6460
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-e2e-v5-typecheck.log": {
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-checkpoint190-v1/running-snapshot.json": {
+        "sha256": "01a445d0aa4e4a3fb2afb581e33be21b76829a02d97aac4b505fdb6bad7a5243",
+        "bytes": 864
       }
     },
     "unavailable_historical_screenshots": [
