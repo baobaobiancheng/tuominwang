@@ -138511,6 +138511,50 @@
           }
         }
       ]
+    },
+    {
+      "id": "ITER-059-COMBINED-CANDIDATE-AND-HISTORY-GAP-186",
+      "date": "2026-10-17",
+      "action": "冻结三候选1009份并开始合层检查，保留历史假名键待修",
+      "summary": "原模式/cc函数与UI命名复用，批量真实产物2/2及合法导入1/1；原零次数历史键差异继续修，工程/155接口/浏览器仍待验。",
+      "verification": "9文档旧字节归档、10规则JSON不变；候选及审查SHA固定，旧151与新1009分列，未部署。",
+      "affected_ids": [],
+      "evidence": [
+        {
+          "path": "文档/逆向台账/contracts/iteration059-combined-candidate-and-history-gap-186-20261017.json"
+        }
+      ],
+      "new_evidence_baseline": {
+        "path": "文档/逆向台账/contracts/iteration059-combined-candidate-and-history-gap-186-20261017.json",
+        "current": {
+          "sha256": "b69f3daf54f22b6ef4e43c1f906e47752816613873f81131c2c787859d263721",
+          "bytes": 4954
+        }
+      },
+      "document_hash_transitions": [
+        {
+          "path": "文档/待办与完成状态-20261015.md",
+          "previous": {
+            "sha256": "f30f2cc7b6b2a6ecf17e9ffcf1819752f3d04425eb8a444334172e6af4bfc268",
+            "bytes": 122223
+          },
+          "current": {
+            "sha256": "a8f8136e4d331f4624b56172890b8dfad1dfed423fc289e9151a826fecce67e6",
+            "bytes": 123452
+          }
+        },
+        {
+          "path": "文档/脱敏规则完整技术交接-迭代023.md",
+          "previous": {
+            "sha256": "1c445f9b8f1ee428f9981ffe6ec48085287aad5f6a4ba89b2b740004ba6242cf",
+            "bytes": 423307
+          },
+          "current": {
+            "sha256": "139c58ccfe6da4a607ccc12ef384f0d0e8305ce65260ccc26874210586f891b4",
+            "bytes": 423817
+          }
+        }
+      ]
     }
   ],
   "evidence_snapshot": {
@@ -140926,8 +140970,8 @@
         "bytes": 423
       },
       "文档/脱敏规则完整技术交接-迭代023.md": {
-        "sha256": "1c445f9b8f1ee428f9981ffe6ec48085287aad5f6a4ba89b2b740004ba6242cf",
-        "bytes": 423307
+        "sha256": "139c58ccfe6da4a607ccc12ef384f0d0e8305ce65260ccc26874210586f891b4",
+        "bytes": 423817
       },
       "文档/逆向台账/contracts/build-complete-rule-handoff-20261014.py": {
         "sha256": "c5d6db581eb6019ba761fe2adb9ba66b41c4a611162c32e54729baf3fa9810e6",
@@ -144502,8 +144546,8 @@
         "bytes": 4676926
       },
       "文档/待办与完成状态-20261015.md": {
-        "sha256": "f30f2cc7b6b2a6ecf17e9ffcf1819752f3d04425eb8a444334172e6af4bfc268",
-        "bytes": 122223
+        "sha256": "a8f8136e4d331f4624b56172890b8dfad1dfed423fc289e9151a826fecce67e6",
+        "bytes": 123452
       },
       ".data/research/lawbot-2026-10-15/iteration036/checkpoint-history/current/apps/api/main.ts": {
         "sha256": "4c36dad476012af090cb8649de2b991235d41e4c5d946a4a411404680935b011",
@@ -163432,6 +163476,10 @@
       "文档/逆向台账/contracts/iteration059-original-code-candidate-peer-185-20261017.json": {
         "sha256": "c1328b9c1d68ab68d23421a20dfaae2c8c0ccc1d4441e0a5a0899ec04cf733f9",
         "bytes": 4692
+      },
+      "文档/逆向台账/contracts/iteration059-combined-candidate-and-history-gap-186-20261017.json": {
+        "sha256": "b69f3daf54f22b6ef4e43c1f906e47752816613873f81131c2c787859d263721",
+        "bytes": 4954
       }
     },
     "unavailable_historical_screenshots": [
