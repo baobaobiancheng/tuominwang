@@ -141451,6 +141451,655 @@
           }
         }
       ]
+    },
+    {
+      "id": "ITER-070-GUIDE72-STATIC-PUBLICATION-PREPARATION-205",
+      "date": "2026-10-17",
+      "action": "复用旧指南样式生成原码行为补充HTML并闭合72个本地资源",
+      "summary": "六张真实操作图与当前Markdown整篇转换为补充HTML；旧主指南只加一个链接，原64资源逐SHA一致；独立暂存72文件实际本地链接零缺失。",
+      "verification": "仅文档发布准备，未浏览器渲染、未提升产品、未部署；历史截图/新源码/完整门禁边界保留。原9文档/10JSON先归档。",
+      "affected_ids": [
+        "UI-ad41d13c4a2d",
+        "UI-339d8e53408d"
+      ],
+      "evidence": [
+        {
+          "path": "文档/逆向台账/contracts/iteration070-guide72-static-publication-preparation-205-20261017.json"
+        }
+      ],
+      "new_evidence_baseline": {
+        "path": "文档/逆向台账/contracts/iteration070-guide72-static-publication-preparation-205-20261017.json",
+        "current": {
+          "sha256": "1282516a4f5429ecbc97cbda2e021a831c4628047efd6bcb3e5397677d42197e",
+          "bytes": 19930
+        }
+      },
+      "evidence_snapshot_updates": [
+        {
+          "path": "文档/逆向台账/contracts/iteration070-guide72-static-publication-preparation-205-20261017.json",
+          "previous": null,
+          "current": {
+            "sha256": "1282516a4f5429ecbc97cbda2e021a831c4628047efd6bcb3e5397677d42197e",
+            "bytes": 19930
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/preparation-receipt.json",
+          "previous": null,
+          "current": {
+            "sha256": "ecded1bdfa163771d27894eaf49954ffe658d3c266ff1a3001a15b836caf80df",
+            "bytes": 13729
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-preparation-v1/preparation-report.json",
+          "previous": null,
+          "current": {
+            "sha256": "dd3b14049ebadf1b5b1962cd68fe9e45a45c8beec457b987d41a3a109d98b3ac",
+            "bytes": 8567
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-preparation-v1/build-guide.mjs",
+          "previous": null,
+          "current": {
+            "sha256": "290d45feaf4c3b5e24297397d49420cb01f25ce5612c6e9f87b573a67b2bcb1b",
+            "bytes": 2806
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-preparation-v1/main-guide-link.patch",
+          "previous": null,
+          "current": {
+            "sha256": "ea23610da4390c667326ef922c0908a14167b6a1db56fef5965441a3cce464d4",
+            "bytes": 7832
+          }
+        },
+        {
+          "path": ".data/control/prepare-guide070-closed-v1.py",
+          "previous": null,
+          "current": {
+            "sha256": "90e8891be4791e8c291f3693b31951e26f39695a6129b2ee910c83c945a56737",
+            "bytes": 2583
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/batch-modes-20261017.html",
+          "previous": null,
+          "current": {
+            "sha256": "7bba1b1742e5c2cb98a44ff35ed901ef14c1db0229fb5c5453033616a2a3e79a",
+            "bytes": 9181
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/images/batch-export-modes-20261017.png",
+          "previous": null,
+          "current": {
+            "sha256": "7c0c27e290090d1a86a9a3eb9dfbccbffa56c6e60785a7cb2dcb366d2a89f17d",
+            "bytes": 83285
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/images/entity-group-full-star-preview-20261017.png",
+          "previous": null,
+          "current": {
+            "sha256": "6b2c111ea8d6155c892620232aa5cd350c874551d03d72e37391a883b90ff493",
+            "bytes": 142010
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/images/entity-group-full-star-saved-20261017.png",
+          "previous": null,
+          "current": {
+            "sha256": "dd35ee6adbd811a9b6215f1c0629cefddac204e376960f10cc0fd8ac759cf53a",
+            "bytes": 148548
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/images/pdf-ocr-partial-region-preview-20261017.png",
+          "previous": null,
+          "current": {
+            "sha256": "981863ed6645525861761e19d5074499e3045c4a43b34b7b96163922e02075e5",
+            "bytes": 5360
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/images/unified-two-material-preview-20261017.png",
+          "previous": null,
+          "current": {
+            "sha256": "ad3b5be7117e43761bf05914f192bb0044e38c4984194c6d0117dd38d3a74367",
+            "bytes": 139896
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/images/whole-recovery-manual-20261017.png",
+          "previous": null,
+          "current": {
+            "sha256": "cde1392e4e69f2c253b7fbe4fdc4c807d629266de5aabe00a3ff3697b92cd010",
+            "bytes": 224530
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/index.html",
+          "previous": null,
+          "current": {
+            "sha256": "33b34d7e46061da5b29bcb9bdd64b0f6673b8005fa6afab425103696859b3fb7",
+            "bytes": 65967
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/公开功能补齐操作-20261015.md",
+          "previous": null,
+          "current": {
+            "sha256": "59dadc804a1b1b1f4634121ccc2a852b98469169da0b266ef84c486302d1f557",
+            "bytes": 51898
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/AI任务同版本恢复-051.png",
+          "previous": null,
+          "current": {
+            "sha256": "2460450a7af33c067734fbd1a38f3a333275788152570b3091ed90d8c02c9796",
+            "bytes": 93496
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/AI任务坏记录提示-051.png",
+          "previous": null,
+          "current": {
+            "sha256": "c9fdff71cb1a02285bd7e736865cfbd016ca3611d8a5bcc9f629f26183110b6c",
+            "bytes": 91517
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/AI任务隔离回执-051.png",
+          "previous": null,
+          "current": {
+            "sha256": "205ea2967f8b1f393fd0a9779d3f2e74d304f615f1b4edf9fa861ccca20e6024",
+            "bytes": 87777
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/AI返回稿归档-051.png",
+          "previous": null,
+          "current": {
+            "sha256": "3e9317975387475f2393e249fcbff1c62a420934056a918f2e970242fd95b3d9",
+            "bytes": 35412
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/MCP接续确认客户端-050.png",
+          "previous": null,
+          "current": {
+            "sha256": "e3caa382dae59cb77a0b8e7f8724b0a846f9d088a9fa065ad4d6a315e8ed7020",
+            "bytes": 71062
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/MCP返回稿待继续校验-050.png",
+          "previous": null,
+          "current": {
+            "sha256": "ff0a89558605e48482b546a0fde55a1eac93cf293efbbc3582be717d7e53f8a5",
+            "bytes": 54104
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/MCP还原稿下载.png",
+          "previous": null,
+          "current": {
+            "sha256": "7a9d09239e7d05d442fd62f4b55180a449dff0db8d36f073d5d05ba56d24cc72",
+            "bytes": 104235
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/OCR未处理原因.png",
+          "previous": null,
+          "current": {
+            "sha256": "9e700c442cd0314227d97184b55a53f11bdc0e39d097aeaa1da3714255df6cea",
+            "bytes": 161236
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/OCR清除旧纠错后.png",
+          "previous": null,
+          "current": {
+            "sha256": "39bd7a2b9703902e7e63ce099f97fe0ef848be546bb43317fd30d4fca90acbae",
+            "bytes": 191640
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/PDF工程重开双区域预览.png",
+          "previous": null,
+          "current": {
+            "sha256": "539207f874c94d4ca0656d4f721e8e988cab6865ca379e74fb6d3a39b9486cfa",
+            "bytes": 188781
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/PDF查漏定位第2页.png",
+          "previous": null,
+          "current": {
+            "sha256": "4bc05450c3a3bbcd0fba3762fbe43df86fb452d95da481ea7cfbb3e557829ef3",
+            "bytes": 171221
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/PDF核验下载就绪.png",
+          "previous": null,
+          "current": {
+            "sha256": "cc00832f4088cd86fa842173d4f851895115c10d7178b2da7827f541d45779be",
+            "bytes": 192928
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/Word选择两处同文.png",
+          "previous": null,
+          "current": {
+            "sha256": "b88448cc783e9b9f17a5f5548f7ac876b5b30cbd3b05bf703bdafcd0e83e8a29",
+            "bytes": 46774
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/分格姓名-051.png",
+          "previous": null,
+          "current": {
+            "sha256": "0b81b7018c8f9e9b6ed569bed620c5ef52bb359332033a32a5a72430c0a2e1ff",
+            "bytes": 154474
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/分格姓名下载-051.png",
+          "previous": null,
+          "current": {
+            "sha256": "4609bfd51e888044994a9e20dbb6d1893256d397e64eec3d50cf144f29b9c60e",
+            "bytes": 152306
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/取消未确认-051.png",
+          "previous": null,
+          "current": {
+            "sha256": "531b03894f6bde385269dacd23cab8f00bd41441d05c62f0b03e7f4709519068",
+            "bytes": 151263
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/取消重载-051.png",
+          "previous": null,
+          "current": {
+            "sha256": "4bb55901456f1d0e62edf54ba969238c7cfa72436ac938c7250e2182ab76fb12",
+            "bytes": 164308
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/复核草稿自动保存-051.png",
+          "previous": null,
+          "current": {
+            "sha256": "e3aaaf9aab641b3360192cfa1ac783463ee5e76139122f30ee1bb5ac95a1f36e",
+            "bytes": 175624
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/外部未匹配标签提示.png",
+          "previous": null,
+          "current": {
+            "sha256": "d8d3792a94f9874444ac7ed1e3c79b5a1726ec00408b0724c105719089b8430e",
+            "bytes": 86176
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/实体位置调整中.png",
+          "previous": null,
+          "current": {
+            "sha256": "8b3bfe3e12f69f00d107e55571c6c2cf7f11dbf6d0c49cd862e2d08033dfcc39",
+            "bytes": 24965
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/实体位置调整控件.png",
+          "previous": null,
+          "current": {
+            "sha256": "e2fae40c991c7b77f8e80b555d7f6fdf2d76cce0c885df9503f306fa366db36f",
+            "bytes": 32279
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/批量还原结果-050.png",
+          "previous": null,
+          "current": {
+            "sha256": "e332fbf780657522bef1f7d09559055b31533ca683d9c730be4b136ce07f4e3c",
+            "bytes": 93558
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/撤销后草稿关闭确认-051.png",
+          "previous": null,
+          "current": {
+            "sha256": "e964956798cb1fa7c0a316b4f3de5bcbdf2bf8cddafa526d4f99001e674c187b",
+            "bytes": 184228
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/方案损坏提示.png",
+          "previous": null,
+          "current": {
+            "sha256": "3399065ad8e708184bc676898196faf067e368d1d306d9ee9df6f02914bcb7df",
+            "bytes": 100526
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/类型恢复待确认.png",
+          "previous": null,
+          "current": {
+            "sha256": "7ee1d5cb7ac858b88840cca7199d235e4b9d9d2e9972dd6220c024679df4022a",
+            "bytes": 41845
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/类型隐藏后.png",
+          "previous": null,
+          "current": {
+            "sha256": "27465d4ca6b4b0acc247ca95172df53b8310f6bed700cbdc1d2194f1c6598bb1",
+            "bytes": 37400
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/继承审查记录.png",
+          "previous": null,
+          "current": {
+            "sha256": "746392049d85054183b0478f8303f19af0e4428493e60cee15c907a940635933",
+            "bytes": 28267
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/页面文字选取与区域调整.png",
+          "previous": null,
+          "current": {
+            "sha256": "c595f75e21fa5b150d728dbbc86526e65e103b5a7ebc8e0b00c6b41f5e8aaddf",
+            "bytes": 198620
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/页面旋转与复核.png",
+          "previous": null,
+          "current": {
+            "sha256": "01ace3b94c23c8d14a5fd214bae9149c4cfbf6b70721fb7a5a448170c5f2c702",
+            "bytes": 206940
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/项目查漏逐处结果.png",
+          "previous": null,
+          "current": {
+            "sha256": "97a3ba68b7f2a1b081f4754fc1e9a502695ea64a2351c2212b52e297b2792c7d",
+            "bytes": 88608
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/056-MCP人工-等待人工复核.png",
+          "previous": null,
+          "current": {
+            "sha256": "abaffe6e943ea2b4c880b2ca3bb5be1ea7f51133da7007aa756fc5d3efdc6825",
+            "bytes": 53446
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/056-MCP人工-等待初次识别.png",
+          "previous": null,
+          "current": {
+            "sha256": "52d3376a4c95512233b0c285fe31470dc31f995b56b82f7c91506e9ceb76c8e3",
+            "bytes": 51960
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/056-MCP批次接续原子任务.png",
+          "previous": null,
+          "current": {
+            "sha256": "dbf06505405fd6b69f7b4c85a579500454a0a711c5b108c5adf34a076b2071c7",
+            "bytes": 88712
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/056-MCP批次接续申请待授权.png",
+          "previous": null,
+          "current": {
+            "sha256": "24a40264e0270c9b3a769a914e9ad518c875ffa0b3c2e9d98e97c42d7192fd34",
+            "bytes": 80124
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/056-MCP自动-审定来源.png",
+          "previous": null,
+          "current": {
+            "sha256": "9733e9272a8d1e893a4efa447b1e7187e954cc03ca9333215a30d4bea16f315b",
+            "bytes": 82031
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/056-MCP自动-等待初次识别.png",
+          "previous": null,
+          "current": {
+            "sha256": "0baacad836b111cbf5b1fbcd88f4670c022c3fb56f5754e10ede62f87466d5be",
+            "bytes": 53002
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/056-MCP自动后人工-复核历史.png",
+          "previous": null,
+          "current": {
+            "sha256": "18b3d06c36400da0031dfd4f80c0e9f59cb7fa215c007fe3fd6243e0608afa09",
+            "bytes": 154776
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/056-PDF临时只读选字模式.png",
+          "previous": null,
+          "current": {
+            "sha256": "4be39e6b52982e01b6a514ed6e56484dc523514f2e1cba9b9e41ace0cacc41e2",
+            "bytes": 101563
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/056-PDF提前预览第20页.png",
+          "previous": null,
+          "current": {
+            "sha256": "dff4951048fec7a2c7aabe0258fac531337dd5c916814e32094835bb9ccf29cc",
+            "bytes": 123402
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/056-金额生成副本.png",
+          "previous": null,
+          "current": {
+            "sha256": "93c7329fb440219bb590265db0d29417e0e9349edfb5d8e3aa2818bf9b1d218c",
+            "bytes": 143293
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/056-金额规则复核.png",
+          "previous": null,
+          "current": {
+            "sha256": "9eff22cf3add660942ea248a3b282f0bfb3d61d8331f88119edda0529e2ace7a",
+            "bytes": 150060
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/单件私有假名归档-056.png",
+          "previous": null,
+          "current": {
+            "sha256": "f7e5a9b180a969c08dbdf73f0902665c9b29eeeddb52698793932dbaae80806f",
+            "bytes": 85058
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/材料设置-PDF下载-056.png",
+          "previous": null,
+          "current": {
+            "sha256": "3e5a880bec7992c9c6c8b0d0b55a60e35c29b4a24d1aaef74b1628f4baf4c801",
+            "bytes": 151535
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/材料设置-PDF颜色-056.png",
+          "previous": null,
+          "current": {
+            "sha256": "f816c2d6b820e6fa4ff988314aa3ec64c279e90a60492ca77b0803d778b4770e",
+            "bytes": 166162
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/材料设置-Word复核下载-056.png",
+          "previous": null,
+          "current": {
+            "sha256": "2ab8229f1ada26b46d0f4b2234ccc2db3f2e408bdb18d20a69099fed6f5f676f",
+            "bytes": 166222
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/材料设置-Word清理-056.png",
+          "previous": null,
+          "current": {
+            "sha256": "0da2f6c8f7629df5e920b851a9e0c341d21cd38efb90f8fabbf296e1be23b9c3",
+            "bytes": 164956
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/材料设置-上部-056.png",
+          "previous": null,
+          "current": {
+            "sha256": "6cae94c929ab1a296d51ce282f49fe3a2158abd0eb4752a8abf4c38011e58b57",
+            "bytes": 149779
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/材料设置-方案重新应用-056.png",
+          "previous": null,
+          "current": {
+            "sha256": "89a9fb8b2581baac5b082577364acad85f0c6bf5bcb0df4fd81caf08b1b01761",
+            "bytes": 175748
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/统一批次-两成功一跳过-056.png",
+          "previous": null,
+          "current": {
+            "sha256": "36304ee11f4aa706ce0c220b7865762a5966cdd49f74d6141a34d519ae13c697",
+            "bytes": 87186
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/统一批次-选择两份-056.png",
+          "previous": null,
+          "current": {
+            "sha256": "00da18d2cc2da48ef05f9079dbaa7346b76f11ef3341f5a6d3736e2eb2b072c7",
+            "bytes": 78085
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/逐文件类型-上传前-056.png",
+          "previous": null,
+          "current": {
+            "sha256": "0d4c82dd3d9cf9468b0ff689d2aee6b1dd83f584f20cbc08442d4d7ec4d61663",
+            "bytes": 79013
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261017/056-PDF第301页原件.png",
+          "previous": null,
+          "current": {
+            "sha256": "c7c8d0b59bf180cde3106d43672bc521ed07006d8f95e3f37fdcb1092b079af8",
+            "bytes": 29453
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261017/056-PDF第301页识别文字.png",
+          "previous": null,
+          "current": {
+            "sha256": "62112d5f64fef61b8ff6e12aae903d50e7c185d7307cd87d36c3ad3035239043",
+            "bytes": 160064
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261017/056-个人Excel确认.png",
+          "previous": null,
+          "current": {
+            "sha256": "1c4fc6f1b4a0eae0bde447c8aa121c0d4fe615410fb32d883ff8f7d8906e2e35",
+            "bytes": 116303
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261017/056-个人Excel错误行.png",
+          "previous": null,
+          "current": {
+            "sha256": "3ffa3b6233abf07938147160d34fbe078aa141ab76713a9a0873f465ee0d790d",
+            "bytes": 124948
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261017/056-个人Excel预览.png",
+          "previous": null,
+          "current": {
+            "sha256": "9dbc54cede622817e4d385621e699270d44b5be10a2760946148695395f1810d",
+            "bytes": 126974
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261017/056-印章补检完成.png",
+          "previous": null,
+          "current": {
+            "sha256": "5b640a2da22996616c4b67c285fd4c7813472ab40cdd1ad60c42e065601ccc1b",
+            "bytes": 218996
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261017/MCP外部客户端-PDF附件渲染.png",
+          "previous": null,
+          "current": {
+            "sha256": "f98686d942e2c2450fe0754bbaaca617501e5c12396834dc2e8d0d93578c00b4",
+            "bytes": 18043
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261017/MCP外部客户端-人工确认完成.png",
+          "previous": null,
+          "current": {
+            "sha256": "b6c8cece25abe3f9333da6ce9a957d90cc1c3248cdc11b485cc85da161ed1459",
+            "bytes": 103913
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261017/MCP外部客户端-授权.png",
+          "previous": null,
+          "current": {
+            "sha256": "64644844b2482856944cbd7cd62defca3d862da6c43f3b7a31347bdf09cb6929",
+            "bytes": 62441
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261017/MCP外部客户端-返回稿待复核.png",
+          "previous": null,
+          "current": {
+            "sha256": "ca8633a10b0728c2ba04f2b2fd7c92fca807ffe5415231e1b99b01c18bf9d0c2",
+            "bytes": 105134
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/批量脱敏方式补充操作-20261017.md",
+          "previous": null,
+          "current": {
+            "sha256": "b602d0e4f3efec0a19e84341c201f5fd362fe85d9e9cbca44a070bf382cbb34e",
+            "bytes": 7033
+          }
+        },
+        {
+          "path": ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/示例产物-20261016/056-金额规则-服务端导出.txt",
+          "previous": null,
+          "current": {
+            "sha256": "40bc5096f25764e2574ed7e822282b6c1384e45617274963cbb9318732890bda",
+            "bytes": 158
+          }
+        }
+      ]
     }
   ],
   "evidence_snapshot": {
@@ -167172,6 +167821,318 @@
       ".data/deploy/aliyun-20261017/iteration070/research-template-v1/preparation-receipt.json": {
         "sha256": "eb80c4977717e742b64e87fc703b5d5aa983ff6bc235cd6e0cae502b5b2d5e63",
         "bytes": 385
+      },
+      "文档/逆向台账/contracts/iteration070-guide72-static-publication-preparation-205-20261017.json": {
+        "sha256": "1282516a4f5429ecbc97cbda2e021a831c4628047efd6bcb3e5397677d42197e",
+        "bytes": 19930
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/preparation-receipt.json": {
+        "sha256": "ecded1bdfa163771d27894eaf49954ffe658d3c266ff1a3001a15b836caf80df",
+        "bytes": 13729
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-preparation-v1/preparation-report.json": {
+        "sha256": "dd3b14049ebadf1b5b1962cd68fe9e45a45c8beec457b987d41a3a109d98b3ac",
+        "bytes": 8567
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-preparation-v1/build-guide.mjs": {
+        "sha256": "290d45feaf4c3b5e24297397d49420cb01f25ce5612c6e9f87b573a67b2bcb1b",
+        "bytes": 2806
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-preparation-v1/main-guide-link.patch": {
+        "sha256": "ea23610da4390c667326ef922c0908a14167b6a1db56fef5965441a3cce464d4",
+        "bytes": 7832
+      },
+      ".data/control/prepare-guide070-closed-v1.py": {
+        "sha256": "90e8891be4791e8c291f3693b31951e26f39695a6129b2ee910c83c945a56737",
+        "bytes": 2583
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/batch-modes-20261017.html": {
+        "sha256": "7bba1b1742e5c2cb98a44ff35ed901ef14c1db0229fb5c5453033616a2a3e79a",
+        "bytes": 9181
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/images/batch-export-modes-20261017.png": {
+        "sha256": "7c0c27e290090d1a86a9a3eb9dfbccbffa56c6e60785a7cb2dcb366d2a89f17d",
+        "bytes": 83285
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/images/entity-group-full-star-preview-20261017.png": {
+        "sha256": "6b2c111ea8d6155c892620232aa5cd350c874551d03d72e37391a883b90ff493",
+        "bytes": 142010
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/images/entity-group-full-star-saved-20261017.png": {
+        "sha256": "dd35ee6adbd811a9b6215f1c0629cefddac204e376960f10cc0fd8ac759cf53a",
+        "bytes": 148548
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/images/pdf-ocr-partial-region-preview-20261017.png": {
+        "sha256": "981863ed6645525861761e19d5074499e3045c4a43b34b7b96163922e02075e5",
+        "bytes": 5360
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/images/unified-two-material-preview-20261017.png": {
+        "sha256": "ad3b5be7117e43761bf05914f192bb0044e38c4984194c6d0117dd38d3a74367",
+        "bytes": 139896
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/images/whole-recovery-manual-20261017.png": {
+        "sha256": "cde1392e4e69f2c253b7fbe4fdc4c807d629266de5aabe00a3ff3697b92cd010",
+        "bytes": 224530
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/index.html": {
+        "sha256": "33b34d7e46061da5b29bcb9bdd64b0f6673b8005fa6afab425103696859b3fb7",
+        "bytes": 65967
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/公开功能补齐操作-20261015.md": {
+        "sha256": "59dadc804a1b1b1f4634121ccc2a852b98469169da0b266ef84c486302d1f557",
+        "bytes": 51898
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/AI任务同版本恢复-051.png": {
+        "sha256": "2460450a7af33c067734fbd1a38f3a333275788152570b3091ed90d8c02c9796",
+        "bytes": 93496
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/AI任务坏记录提示-051.png": {
+        "sha256": "c9fdff71cb1a02285bd7e736865cfbd016ca3611d8a5bcc9f629f26183110b6c",
+        "bytes": 91517
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/AI任务隔离回执-051.png": {
+        "sha256": "205ea2967f8b1f393fd0a9779d3f2e74d304f615f1b4edf9fa861ccca20e6024",
+        "bytes": 87777
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/AI返回稿归档-051.png": {
+        "sha256": "3e9317975387475f2393e249fcbff1c62a420934056a918f2e970242fd95b3d9",
+        "bytes": 35412
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/MCP接续确认客户端-050.png": {
+        "sha256": "e3caa382dae59cb77a0b8e7f8724b0a846f9d088a9fa065ad4d6a315e8ed7020",
+        "bytes": 71062
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/MCP返回稿待继续校验-050.png": {
+        "sha256": "ff0a89558605e48482b546a0fde55a1eac93cf293efbbc3582be717d7e53f8a5",
+        "bytes": 54104
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/MCP还原稿下载.png": {
+        "sha256": "7a9d09239e7d05d442fd62f4b55180a449dff0db8d36f073d5d05ba56d24cc72",
+        "bytes": 104235
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/OCR未处理原因.png": {
+        "sha256": "9e700c442cd0314227d97184b55a53f11bdc0e39d097aeaa1da3714255df6cea",
+        "bytes": 161236
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/OCR清除旧纠错后.png": {
+        "sha256": "39bd7a2b9703902e7e63ce099f97fe0ef848be546bb43317fd30d4fca90acbae",
+        "bytes": 191640
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/PDF工程重开双区域预览.png": {
+        "sha256": "539207f874c94d4ca0656d4f721e8e988cab6865ca379e74fb6d3a39b9486cfa",
+        "bytes": 188781
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/PDF查漏定位第2页.png": {
+        "sha256": "4bc05450c3a3bbcd0fba3762fbe43df86fb452d95da481ea7cfbb3e557829ef3",
+        "bytes": 171221
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/PDF核验下载就绪.png": {
+        "sha256": "cc00832f4088cd86fa842173d4f851895115c10d7178b2da7827f541d45779be",
+        "bytes": 192928
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/Word选择两处同文.png": {
+        "sha256": "b88448cc783e9b9f17a5f5548f7ac876b5b30cbd3b05bf703bdafcd0e83e8a29",
+        "bytes": 46774
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/分格姓名-051.png": {
+        "sha256": "0b81b7018c8f9e9b6ed569bed620c5ef52bb359332033a32a5a72430c0a2e1ff",
+        "bytes": 154474
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/分格姓名下载-051.png": {
+        "sha256": "4609bfd51e888044994a9e20dbb6d1893256d397e64eec3d50cf144f29b9c60e",
+        "bytes": 152306
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/取消未确认-051.png": {
+        "sha256": "531b03894f6bde385269dacd23cab8f00bd41441d05c62f0b03e7f4709519068",
+        "bytes": 151263
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/取消重载-051.png": {
+        "sha256": "4bb55901456f1d0e62edf54ba969238c7cfa72436ac938c7250e2182ab76fb12",
+        "bytes": 164308
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/复核草稿自动保存-051.png": {
+        "sha256": "e3aaaf9aab641b3360192cfa1ac783463ee5e76139122f30ee1bb5ac95a1f36e",
+        "bytes": 175624
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/外部未匹配标签提示.png": {
+        "sha256": "d8d3792a94f9874444ac7ed1e3c79b5a1726ec00408b0724c105719089b8430e",
+        "bytes": 86176
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/实体位置调整中.png": {
+        "sha256": "8b3bfe3e12f69f00d107e55571c6c2cf7f11dbf6d0c49cd862e2d08033dfcc39",
+        "bytes": 24965
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/实体位置调整控件.png": {
+        "sha256": "e2fae40c991c7b77f8e80b555d7f6fdf2d76cce0c885df9503f306fa366db36f",
+        "bytes": 32279
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/批量还原结果-050.png": {
+        "sha256": "e332fbf780657522bef1f7d09559055b31533ca683d9c730be4b136ce07f4e3c",
+        "bytes": 93558
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/撤销后草稿关闭确认-051.png": {
+        "sha256": "e964956798cb1fa7c0a316b4f3de5bcbdf2bf8cddafa526d4f99001e674c187b",
+        "bytes": 184228
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/方案损坏提示.png": {
+        "sha256": "3399065ad8e708184bc676898196faf067e368d1d306d9ee9df6f02914bcb7df",
+        "bytes": 100526
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/类型恢复待确认.png": {
+        "sha256": "7ee1d5cb7ac858b88840cca7199d235e4b9d9d2e9972dd6220c024679df4022a",
+        "bytes": 41845
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/类型隐藏后.png": {
+        "sha256": "27465d4ca6b4b0acc247ca95172df53b8310f6bed700cbdc1d2194f1c6598bb1",
+        "bytes": 37400
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/继承审查记录.png": {
+        "sha256": "746392049d85054183b0478f8303f19af0e4428493e60cee15c907a940635933",
+        "bytes": 28267
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/页面文字选取与区域调整.png": {
+        "sha256": "c595f75e21fa5b150d728dbbc86526e65e103b5a7ebc8e0b00c6b41f5e8aaddf",
+        "bytes": 198620
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/页面旋转与复核.png": {
+        "sha256": "01ace3b94c23c8d14a5fd214bae9149c4cfbf6b70721fb7a5a448170c5f2c702",
+        "bytes": 206940
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261015/项目查漏逐处结果.png": {
+        "sha256": "97a3ba68b7f2a1b081f4754fc1e9a502695ea64a2351c2212b52e297b2792c7d",
+        "bytes": 88608
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/056-MCP人工-等待人工复核.png": {
+        "sha256": "abaffe6e943ea2b4c880b2ca3bb5be1ea7f51133da7007aa756fc5d3efdc6825",
+        "bytes": 53446
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/056-MCP人工-等待初次识别.png": {
+        "sha256": "52d3376a4c95512233b0c285fe31470dc31f995b56b82f7c91506e9ceb76c8e3",
+        "bytes": 51960
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/056-MCP批次接续原子任务.png": {
+        "sha256": "dbf06505405fd6b69f7b4c85a579500454a0a711c5b108c5adf34a076b2071c7",
+        "bytes": 88712
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/056-MCP批次接续申请待授权.png": {
+        "sha256": "24a40264e0270c9b3a769a914e9ad518c875ffa0b3c2e9d98e97c42d7192fd34",
+        "bytes": 80124
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/056-MCP自动-审定来源.png": {
+        "sha256": "9733e9272a8d1e893a4efa447b1e7187e954cc03ca9333215a30d4bea16f315b",
+        "bytes": 82031
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/056-MCP自动-等待初次识别.png": {
+        "sha256": "0baacad836b111cbf5b1fbcd88f4670c022c3fb56f5754e10ede62f87466d5be",
+        "bytes": 53002
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/056-MCP自动后人工-复核历史.png": {
+        "sha256": "18b3d06c36400da0031dfd4f80c0e9f59cb7fa215c007fe3fd6243e0608afa09",
+        "bytes": 154776
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/056-PDF临时只读选字模式.png": {
+        "sha256": "4be39e6b52982e01b6a514ed6e56484dc523514f2e1cba9b9e41ace0cacc41e2",
+        "bytes": 101563
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/056-PDF提前预览第20页.png": {
+        "sha256": "dff4951048fec7a2c7aabe0258fac531337dd5c916814e32094835bb9ccf29cc",
+        "bytes": 123402
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/056-金额生成副本.png": {
+        "sha256": "93c7329fb440219bb590265db0d29417e0e9349edfb5d8e3aa2818bf9b1d218c",
+        "bytes": 143293
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/056-金额规则复核.png": {
+        "sha256": "9eff22cf3add660942ea248a3b282f0bfb3d61d8331f88119edda0529e2ace7a",
+        "bytes": 150060
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/单件私有假名归档-056.png": {
+        "sha256": "f7e5a9b180a969c08dbdf73f0902665c9b29eeeddb52698793932dbaae80806f",
+        "bytes": 85058
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/材料设置-PDF下载-056.png": {
+        "sha256": "3e5a880bec7992c9c6c8b0d0b55a60e35c29b4a24d1aaef74b1628f4baf4c801",
+        "bytes": 151535
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/材料设置-PDF颜色-056.png": {
+        "sha256": "f816c2d6b820e6fa4ff988314aa3ec64c279e90a60492ca77b0803d778b4770e",
+        "bytes": 166162
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/材料设置-Word复核下载-056.png": {
+        "sha256": "2ab8229f1ada26b46d0f4b2234ccc2db3f2e408bdb18d20a69099fed6f5f676f",
+        "bytes": 166222
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/材料设置-Word清理-056.png": {
+        "sha256": "0da2f6c8f7629df5e920b851a9e0c341d21cd38efb90f8fabbf296e1be23b9c3",
+        "bytes": 164956
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/材料设置-上部-056.png": {
+        "sha256": "6cae94c929ab1a296d51ce282f49fe3a2158abd0eb4752a8abf4c38011e58b57",
+        "bytes": 149779
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/材料设置-方案重新应用-056.png": {
+        "sha256": "89a9fb8b2581baac5b082577364acad85f0c6bf5bcb0df4fd81caf08b1b01761",
+        "bytes": 175748
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/统一批次-两成功一跳过-056.png": {
+        "sha256": "36304ee11f4aa706ce0c220b7865762a5966cdd49f74d6141a34d519ae13c697",
+        "bytes": 87186
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/统一批次-选择两份-056.png": {
+        "sha256": "00da18d2cc2da48ef05f9079dbaa7346b76f11ef3341f5a6d3736e2eb2b072c7",
+        "bytes": 78085
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261016/逐文件类型-上传前-056.png": {
+        "sha256": "0d4c82dd3d9cf9468b0ff689d2aee6b1dd83f584f20cbc08442d4d7ec4d61663",
+        "bytes": 79013
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261017/056-PDF第301页原件.png": {
+        "sha256": "c7c8d0b59bf180cde3106d43672bc521ed07006d8f95e3f37fdcb1092b079af8",
+        "bytes": 29453
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261017/056-PDF第301页识别文字.png": {
+        "sha256": "62112d5f64fef61b8ff6e12aae903d50e7c185d7307cd87d36c3ad3035239043",
+        "bytes": 160064
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261017/056-个人Excel确认.png": {
+        "sha256": "1c4fc6f1b4a0eae0bde447c8aa121c0d4fe615410fb32d883ff8f7d8906e2e35",
+        "bytes": 116303
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261017/056-个人Excel错误行.png": {
+        "sha256": "3ffa3b6233abf07938147160d34fbe078aa141ab76713a9a0873f465ee0d790d",
+        "bytes": 124948
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261017/056-个人Excel预览.png": {
+        "sha256": "9dbc54cede622817e4d385621e699270d44b5be10a2760946148695395f1810d",
+        "bytes": 126974
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261017/056-印章补检完成.png": {
+        "sha256": "5b640a2da22996616c4b67c285fd4c7813472ab40cdd1ad60c42e065601ccc1b",
+        "bytes": 218996
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261017/MCP外部客户端-PDF附件渲染.png": {
+        "sha256": "f98686d942e2c2450fe0754bbaaca617501e5c12396834dc2e8d0d93578c00b4",
+        "bytes": 18043
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261017/MCP外部客户端-人工确认完成.png": {
+        "sha256": "b6c8cece25abe3f9333da6ce9a957d90cc1c3248cdc11b485cc85da161ed1459",
+        "bytes": 103913
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261017/MCP外部客户端-授权.png": {
+        "sha256": "64644844b2482856944cbd7cd62defca3d862da6c43f3b7a31347bdf09cb6929",
+        "bytes": 62441
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/截图-20261017/MCP外部客户端-返回稿待复核.png": {
+        "sha256": "ca8633a10b0728c2ba04f2b2fd7c92fca807ffe5415231e1b99b01c18bf9d0c2",
+        "bytes": 105134
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/批量脱敏方式补充操作-20261017.md": {
+        "sha256": "b602d0e4f3efec0a19e84341c201f5fd362fe85d9e9cbca44a070bf382cbb34e",
+        "bytes": 7033
+      },
+      ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/示例产物-20261016/056-金额规则-服务端导出.txt": {
+        "sha256": "40bc5096f25764e2574ed7e822282b6c1384e45617274963cbb9318732890bda",
+        "bytes": 158
       }
     },
     "unavailable_historical_screenshots": [
