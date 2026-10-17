@@ -1,0 +1,86 @@
+{
+  "event": 206,
+  "at": "2026-10-17T13:26:56.923167+00:00",
+  "reviewedHead": "f7a38989756fadbef3901f8692e6e485d3718095",
+  "findings": [
+    {
+      "priority": "P2",
+      "scope": "current-document pseudonym draft",
+      "finding": "Original PseudonymPolicyList update:type-action/Bi2 per-type current-draft operation missing; configuration update/outdated is not equivalent."
+    },
+    {
+      "priority": "P3",
+      "scope": "non-pseudonym action input",
+      "finding": "Input still editable and shows currentValue rather than original qp/h2 derived display and disabled state."
+    },
+    {
+      "priority": "P2",
+      "scope": "portable draft typeActions",
+      "finding": "Fresh/edit and reference-import fallback can persist empty typeActions instead of effective document/profile rules; compatible review projection then overrides current rules with empty object."
+    }
+  ],
+  "correction": "Acceptance v1 incorrectly applied automatic unified-preview manual protection to explicit Bi2 user action. v2 corrects: explicit type-action updates action on all same-type entries including manual/locked/zero-occurrence; retains currentValue/lock for switching back; ignore current marks remain original. v1 retained as erroneous historical draft.",
+  "repairWorktree": "/private/tmp/tmw071-original-type-actions-v1",
+  "repairBranch": "candidate/071-original-type-actions-v1",
+  "status": "IMPLEMENTATION_IN_PROGRESS_NOT_VERIFIED",
+  "api159": "Still running frozen f7; not restarted or mutated. Its results do not prove upcoming071 fixes.",
+  "edge115": "Prepared for f7 only; not run; must rebind final implementation before final release.",
+  "beforeDocuments": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/before-ledger206-v1/manifest.json",
+  "rawRules": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/rule-json-before-ledger206-v1.json",
+  "tenRuleJsonBlocksUnchanged": true,
+  "formalProductPromoted": false,
+  "deployed": false,
+  "competitorRuntime": "258 R0 unchanged",
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/arch-final-f7-combined-adversarial-v1.json",
+      "sha256": "ac22318beb027ef8b77d9851d5b88123018d4f3a9c6a1d6a9f511f6e0b84b1d9",
+      "bytes": 2080
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/arch-final-f7-combined-adversarial-v1.md",
+      "sha256": "fc3080020c164f582273d8ce564ed847117e8fe21826cf7e2c6c0b3fc990393d",
+      "bytes": 1948
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/frontend-final-f7-combined-adversarial-v1.json",
+      "sha256": "5325d60f497236d6da3d7013656bb0781fac97e8aa2d6f486a9d6bbcf60a3482",
+      "bytes": 4690
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/frontend-final-f7-combined-adversarial-v1.md",
+      "sha256": "8c30bd5658dd54b112ca84475d11e8021c106f5e2afc4250e47b9f25e92ff7f9",
+      "bytes": 2993
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-final-f7-combined-adversarial-v1.json",
+      "sha256": "1380e17b4376ca49309637527cff796d06ac7bcc1d6ad807868665944742b0df",
+      "bytes": 4865
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-final-f7-combined-adversarial-v1.md",
+      "sha256": "ad2743f4a6ad4084f5c0dd57221aa25b4dcc5015817d161f961847446223c2af",
+      "bytes": 1061
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-071-type-action-acceptance-v1.json",
+      "sha256": "f517a4085af68d4c0e77e77446bdbce808692ca7faeb101ce4a7c84ee5246b66",
+      "bytes": 3724
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-071-type-action-acceptance-v1.md",
+      "sha256": "5eeb418e895be20e1b73c539706bdecc1a64b7eef63c9eafd3fd7f2cbab93816",
+      "bytes": 992
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-071-type-action-acceptance-v2.json",
+      "sha256": "4b8727152cdea35fa18c09b2c3af2fee32a66cf68731cbb9ad6ca97f90d69137",
+      "bytes": 4468
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-071-type-action-acceptance-v2.md",
+      "sha256": "e615b0b2a2578c873a4779fb6032a783b42a43c2f19ff5f883dd21fbc95dda45",
+      "bytes": 1145
+    }
+  ]
+}

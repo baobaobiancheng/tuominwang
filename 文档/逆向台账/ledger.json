@@ -107114,7 +107114,8 @@
         }
       ],
       "next_actions": [
-        "源运行仍为R0：需合法授权后按此ID补实际运行，不能由我方测试替代。"
+        "源运行仍为R0：需合法授权后按此ID补实际运行，不能由我方测试替代。",
+        "206新发现待闭合：按原Bi2补当前材料类型动作、按qp显示并禁用非假名输入、保留有效typeActions归档；071尚在开发，需实际预览/导出/双格式归档回读及CAS/权限验收，不能沿用f7全绿宣称闭合。"
       ],
       "deep_analysis": {
         "iteration": "ITER-017",
@@ -108078,7 +108079,8 @@
         }
       ],
       "next_actions": [
-        "源运行仍为R0：需合法授权后按此ID补实际运行，不能由我方测试替代。"
+        "源运行仍为R0：需合法授权后按此ID补实际运行，不能由我方测试替代。",
+        "206新发现待闭合：按原Bi2补当前材料类型动作、按qp显示并禁用非假名输入、保留有效typeActions归档；071尚在开发，需实际预览/导出/双格式归档回读及CAS/权限验收，不能沿用f7全绿宣称闭合。"
       ],
       "deep_analysis": {
         "iteration": "ITER-017",
@@ -142100,6 +142102,165 @@
           }
         }
       ]
+    },
+    {
+      "id": "ITER-071-FINAL-COMBINATION-FINDINGS-ORIGINAL-TYPE-ACTIONS-206",
+      "date": "2026-10-17",
+      "action": "最终三路组合对抗审查发现并登记原类型动作链三处待补",
+      "summary": "按类型草稿动作入口遗漏、非假名输入显示/禁用不符原UI、typeActions有效规则归档投影遗漏；071独立候选补齐中，保留f7 API159原运行。",
+      "verification": "三路静态复审绑定f7源码SHA；原Bi2/qp证实动作语义，更正错误验收v1为v2并保留历史。未跑新增测试或提升等级；9文档10JSON先归档。",
+      "affected_ids": [
+        "UI-ad41d13c4a2d",
+        "UI-2c1712d35460"
+      ],
+      "evidence": [
+        {
+          "path": "文档/逆向台账/contracts/iteration071-final-combination-findings-and-original-type-actions-206-20261017.json"
+        }
+      ],
+      "new_evidence_baseline": {
+        "path": "文档/逆向台账/contracts/iteration071-final-combination-findings-and-original-type-actions-206-20261017.json",
+        "current": {
+          "sha256": "3433edc37289f244fa5c98f385fcdefd8b9a7f648a3a5026d14c70648506d8bd",
+          "bytes": 4497
+        }
+      },
+      "document_hash_transitions": [
+        {
+          "path": "文档/待办与完成状态-20261015.md",
+          "previous": {
+            "sha256": "08727a96c145e65564a6ac985b7091ac53ecc8dbb2cd5957bfc2abbdb1f658ea",
+            "bytes": 133271
+          },
+          "current": {
+            "sha256": "01564bb4ad97e086409d3a8f14f6caa9fc69b762a78deb4134c9cca6568c3311",
+            "bytes": 133489
+          }
+        },
+        {
+          "path": "文档/脱敏规则完整技术交接-迭代023.md",
+          "previous": {
+            "sha256": "bf0e8fba17c952abff67c0c1f60be870f1f80e35df1fcff3237be61c039648db",
+            "bytes": 428161
+          },
+          "current": {
+            "sha256": "6633e0301f8eae4cee296539f25ee9c9ba07035b8ab6a7878a97de2c65ab3b2a",
+            "bytes": 428302
+          }
+        }
+      ],
+      "evidence_snapshot_updates": [
+        {
+          "path": "文档/待办与完成状态-20261015.md",
+          "previous": {
+            "sha256": "08727a96c145e65564a6ac985b7091ac53ecc8dbb2cd5957bfc2abbdb1f658ea",
+            "bytes": 133271
+          },
+          "current": {
+            "sha256": "01564bb4ad97e086409d3a8f14f6caa9fc69b762a78deb4134c9cca6568c3311",
+            "bytes": 133489
+          }
+        },
+        {
+          "path": "文档/脱敏规则完整技术交接-迭代023.md",
+          "previous": {
+            "sha256": "bf0e8fba17c952abff67c0c1f60be870f1f80e35df1fcff3237be61c039648db",
+            "bytes": 428161
+          },
+          "current": {
+            "sha256": "6633e0301f8eae4cee296539f25ee9c9ba07035b8ab6a7878a97de2c65ab3b2a",
+            "bytes": 428302
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/iteration071-final-combination-findings-and-original-type-actions-206-20261017.json",
+          "previous": null,
+          "current": {
+            "sha256": "3433edc37289f244fa5c98f385fcdefd8b9a7f648a3a5026d14c70648506d8bd",
+            "bytes": 4497
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/arch-final-f7-combined-adversarial-v1.json",
+          "previous": null,
+          "current": {
+            "sha256": "ac22318beb027ef8b77d9851d5b88123018d4f3a9c6a1d6a9f511f6e0b84b1d9",
+            "bytes": 2080
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/arch-final-f7-combined-adversarial-v1.md",
+          "previous": null,
+          "current": {
+            "sha256": "fc3080020c164f582273d8ce564ed847117e8fe21826cf7e2c6c0b3fc990393d",
+            "bytes": 1948
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/frontend-final-f7-combined-adversarial-v1.json",
+          "previous": null,
+          "current": {
+            "sha256": "5325d60f497236d6da3d7013656bb0781fac97e8aa2d6f486a9d6bbcf60a3482",
+            "bytes": 4690
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/frontend-final-f7-combined-adversarial-v1.md",
+          "previous": null,
+          "current": {
+            "sha256": "8c30bd5658dd54b112ca84475d11e8021c106f5e2afc4250e47b9f25e92ff7f9",
+            "bytes": 2993
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-final-f7-combined-adversarial-v1.json",
+          "previous": null,
+          "current": {
+            "sha256": "1380e17b4376ca49309637527cff796d06ac7bcc1d6ad807868665944742b0df",
+            "bytes": 4865
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-final-f7-combined-adversarial-v1.md",
+          "previous": null,
+          "current": {
+            "sha256": "ad2743f4a6ad4084f5c0dd57221aa25b4dcc5015817d161f961847446223c2af",
+            "bytes": 1061
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-071-type-action-acceptance-v1.json",
+          "previous": null,
+          "current": {
+            "sha256": "f517a4085af68d4c0e77e77446bdbce808692ca7faeb101ce4a7c84ee5246b66",
+            "bytes": 3724
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-071-type-action-acceptance-v1.md",
+          "previous": null,
+          "current": {
+            "sha256": "5eeb418e895be20e1b73c539706bdecc1a64b7eef63c9eafd3fd7f2cbab93816",
+            "bytes": 992
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-071-type-action-acceptance-v2.json",
+          "previous": null,
+          "current": {
+            "sha256": "4b8727152cdea35fa18c09b2c3af2fee32a66cf68731cbb9ad6ca97f90d69137",
+            "bytes": 4468
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-071-type-action-acceptance-v2.md",
+          "previous": null,
+          "current": {
+            "sha256": "e615b0b2a2578c873a4779fb6032a783b42a43c2f19ff5f883dd21fbc95dda45",
+            "bytes": 1145
+          }
+        }
+      ]
     }
   ],
   "evidence_snapshot": {
@@ -144515,8 +144676,8 @@
         "bytes": 423
       },
       "文档/脱敏规则完整技术交接-迭代023.md": {
-        "sha256": "bf0e8fba17c952abff67c0c1f60be870f1f80e35df1fcff3237be61c039648db",
-        "bytes": 428161
+        "sha256": "6633e0301f8eae4cee296539f25ee9c9ba07035b8ab6a7878a97de2c65ab3b2a",
+        "bytes": 428302
       },
       "文档/逆向台账/contracts/build-complete-rule-handoff-20261014.py": {
         "sha256": "c5d6db581eb6019ba761fe2adb9ba66b41c4a611162c32e54729baf3fa9810e6",
@@ -148091,8 +148252,8 @@
         "bytes": 4676926
       },
       "文档/待办与完成状态-20261015.md": {
-        "sha256": "08727a96c145e65564a6ac985b7091ac53ecc8dbb2cd5957bfc2abbdb1f658ea",
-        "bytes": 133271
+        "sha256": "01564bb4ad97e086409d3a8f14f6caa9fc69b762a78deb4134c9cca6568c3311",
+        "bytes": 133489
       },
       ".data/research/lawbot-2026-10-15/iteration036/checkpoint-history/current/apps/api/main.ts": {
         "sha256": "4c36dad476012af090cb8649de2b991235d41e4c5d946a4a411404680935b011",
@@ -168133,6 +168294,50 @@
       ".data/deploy/aliyun-20261017/iteration070/guide-closed-preview-v1/示例产物-20261016/056-金额规则-服务端导出.txt": {
         "sha256": "40bc5096f25764e2574ed7e822282b6c1384e45617274963cbb9318732890bda",
         "bytes": 158
+      },
+      "文档/逆向台账/contracts/iteration071-final-combination-findings-and-original-type-actions-206-20261017.json": {
+        "sha256": "3433edc37289f244fa5c98f385fcdefd8b9a7f648a3a5026d14c70648506d8bd",
+        "bytes": 4497
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/arch-final-f7-combined-adversarial-v1.json": {
+        "sha256": "ac22318beb027ef8b77d9851d5b88123018d4f3a9c6a1d6a9f511f6e0b84b1d9",
+        "bytes": 2080
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/arch-final-f7-combined-adversarial-v1.md": {
+        "sha256": "fc3080020c164f582273d8ce564ed847117e8fe21826cf7e2c6c0b3fc990393d",
+        "bytes": 1948
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/frontend-final-f7-combined-adversarial-v1.json": {
+        "sha256": "5325d60f497236d6da3d7013656bb0781fac97e8aa2d6f486a9d6bbcf60a3482",
+        "bytes": 4690
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/frontend-final-f7-combined-adversarial-v1.md": {
+        "sha256": "8c30bd5658dd54b112ca84475d11e8021c106f5e2afc4250e47b9f25e92ff7f9",
+        "bytes": 2993
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-final-f7-combined-adversarial-v1.json": {
+        "sha256": "1380e17b4376ca49309637527cff796d06ac7bcc1d6ad807868665944742b0df",
+        "bytes": 4865
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-final-f7-combined-adversarial-v1.md": {
+        "sha256": "ad2743f4a6ad4084f5c0dd57221aa25b4dcc5015817d161f961847446223c2af",
+        "bytes": 1061
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-071-type-action-acceptance-v1.json": {
+        "sha256": "f517a4085af68d4c0e77e77446bdbce808692ca7faeb101ce4a7c84ee5246b66",
+        "bytes": 3724
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-071-type-action-acceptance-v1.md": {
+        "sha256": "5eeb418e895be20e1b73c539706bdecc1a64b7eef63c9eafd3fd7f2cbab93816",
+        "bytes": 992
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-071-type-action-acceptance-v2.json": {
+        "sha256": "4b8727152cdea35fa18c09b2c3af2fee32a66cf68731cbb9ad6ca97f90d69137",
+        "bytes": 4468
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-071-type-action-acceptance-v2.md": {
+        "sha256": "e615b0b2a2578c873a4779fb6032a783b42a43c2f19ff5f883dd21fbc95dda45",
+        "bytes": 1145
       }
     },
     "unavailable_historical_screenshots": [
