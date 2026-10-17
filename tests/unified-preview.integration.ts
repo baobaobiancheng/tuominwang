@@ -18,7 +18,7 @@ test('unified preview rebuilds ready children and projects the active local draf
   const login = await app.inject({ method:'POST',url:'/api/login',headers:{origin},payload:{username,password} });
   assert.equal(login.statusCode,200,login.body);
   const cookie = String(login.headers['set-cookie']).split(';')[0];
-  const req = (method:string,url:string,payload?:unknown) => app.inject({ method,url,headers:{origin,cookie},payload });
+  const req = (method:any,url:string,payload?:any) => app.inject({ method,url,headers:{origin,cookie},payload });
   const projectResponse = await req('POST','/api/projects',{name:'预览草稿合成项目'});
   assert.equal(projectResponse.statusCode,200,projectResponse.body);
   const project = projectResponse.json().id as string;

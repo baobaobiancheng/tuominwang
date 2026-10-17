@@ -127,11 +127,16 @@ export function registerUnifiedPreviewRoutes(app: FastifyInstance) {
         const entities = input.active.localReviewDirty
           ? localReviewEntities(active, input.active.marks, activeContext.text)
           : documentAliasEntities(active, activeContext.text);
-        const targetKeys = new Set(entities.flatMap((entity, index) => {
+        const previewEntities = entities.map(entity => {
+          if (typeof entity.text !== 'string' || !entity.text ||
+              !Number.isInteger(entity.startOffset) || !Number.isInteger(entity.endOffset)) aliasFail('SOURCE_MISMATCH');
+          return { ...entity, text: entity.text, startOffset: entity.startOffset as number, endOffset: entity.endOffset as number };
+        });
+        const targetKeys = new Set(previewEntities.flatMap((entity, index) => {
           const mark = input.active.marks[index];
           return mark.decision === 'ignore' || mark.replacementOrigin === 'manual' ? [] : [originalDraftEntityKey(entity.type, entity.text)];
         }));
-        previewMarks = projectDraftEditToMarks({ draft: activeDraft, entities, marks: input.active.marks, targetKeys });
+        previewMarks = projectDraftEditToMarks({ draft: activeDraft, entities: previewEntities, marks: input.active.marks, targetKeys });
       }
       if (changed) await rows(db, sql`UPDATE projects SET portable_state=${seal(JSON.stringify(portable), `${p.tenant_id}:${project}:portable-state`)} WHERE id=${project}`);
       const aliasRevision = !isDeepStrictEqual(before.frame.state, state.toSnapshot())
