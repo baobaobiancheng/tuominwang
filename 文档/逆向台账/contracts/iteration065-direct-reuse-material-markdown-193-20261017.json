@@ -1,0 +1,81 @@
+{
+  "event": 193,
+  "at": "2026-10-17T11:04:39.504227+00:00",
+  "designConstraint": "Directly reuse available original code, fields, rules and interactions. Only necessary web adaptation. Preserve original local scope; do not add global merge behavior.",
+  "materialBrowser": {
+    "actualExit": 0,
+    "expected": 1,
+    "unexpected": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "guardsDrift": [],
+    "independentDatabaseRemaining": 0,
+    "dataDirExists": false,
+    "devRestoredPid": 79183,
+    "devHealthAtTerminal": {
+      "4318": 200,
+      "5178": 200
+    },
+    "scope": "Catalogue failure retry, three ruleset states, reviewer permission, explicit version rebind, unchanged original."
+  },
+  "markdown": {
+    "firstActualExit": 1,
+    "firstFailure": "Raw Markdown contains escaped underscore in SYNTHETIC_ALIAS; retain failure receipt.",
+    "testOnlyCorrection": "4f1d74f parses Markdown before the strict alias assertion. All three production files unchanged since119accf.",
+    "secondActualExit": 0,
+    "pass": 1,
+    "skipped": 0,
+    "scope": "Real preview and downloaded Markdown parsed for heading, 11 stars, absence of original/alias; draft and mode switchback, old signed artifact bytes and original unchanged.",
+    "sourceDrift": {},
+    "independentDatabaseRemaining": 0,
+    "candidate": "4f1d74f9f2196c68a9dec7620459693b6cc74b55 / candidate-manifest-v4"
+  },
+  "peer062": {
+    "reviewedGit": "0859723",
+    "productionFindings": [],
+    "boundary": "Three production files identical in new candidate; old test failure retained, no retroactive manifest update. Static no-findings is not full runtime acceptance."
+  },
+  "remaining": "061 stable Node24 full check GO;062/063 queued.066 original draft zero-occurrence keys, local duplicate confirmation, canonical mapping and actual restoration still pending.",
+  "formalProductPromoted": false,
+  "deployed": false,
+  "competitorRuntime": "258 R0, no license bypass",
+  "beforeDocuments": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/before-ledger193-v1/manifest.json",
+  "rawRules": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/rule-json-before-ledger193-v1.json",
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/edge-repair-v7/terminal-receipt.json",
+      "sha256": "65b13ed7575c95afc8071ab3826d596f87a1566280fb88e22b203afded2a04ae",
+      "bytes": 2305
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-material-inputs-v2.json",
+      "sha256": "bcd9f25daf4034400be27fa2a633e8567225746355fd3d0a074294b70c2d87a7",
+      "bytes": 172378
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/pipeline-062-full-star-v1/candidate-manifest-v4.json",
+      "sha256": "4485d68c63ede110368922e6ae38d7f88817e7521cc00477d312dc976016451e",
+      "bytes": 4358
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/pipeline-062-full-star-v1/markdown-green-immutable-single-receipt.json",
+      "sha256": "1d06c42cb827634ae96b9e5065b4b68b12fffddee883fcc1fca33e73a882cf4c",
+      "bytes": 1927
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/pipeline-062-full-star-v1/markdown-green-immutable-single-v2-receipt.json",
+      "sha256": "afd4881b1faaec1f8da1031035d68b40121d780aab61c1d31a00f94b27f8dffc",
+      "bytes": 1929
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-markdown-v2-cleanup-independent.json",
+      "sha256": "27c862db7cbdd056c4cfdef99072ee4b1eb0a92ee501c074222192faf228c4ec",
+      "bytes": 189
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-peer-062-full-star-v1.json",
+      "sha256": "d94298ef9b0b88afbd866c41220c7b69831ed902a9f4c24472785c0b1ba2dd3f",
+      "bytes": 3647
+    }
+  ]
+}

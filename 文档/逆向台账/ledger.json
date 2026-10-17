@@ -139531,6 +139531,87 @@
           }
         }
       ]
+    },
+    {
+      "id": "ITER-065-DIRECT-REUSE-MATERIAL-MARKDOWN-193",
+      "date": "2026-10-17",
+      "action": "Record direct reuse constraint and real material UI / Markdown output acceptance",
+      "summary": "Material UI 1 pass; Markdown actual output 1 pass, old escaped-alias assertion failure retained. Full checks and original draft chain pending.",
+      "verification": "Nine documents archived; ten rule JSON blocks unchanged. Actual exit0 and independent DB0; no implementation grade promotion or deployment.",
+      "affected_ids": [
+        "UI-ad41d13c4a2d",
+        "UI-339d8e53408d"
+      ],
+      "evidence": [
+        {
+          "path": "文档/逆向台账/contracts/iteration065-direct-reuse-material-markdown-193-20261017.json"
+        }
+      ],
+      "new_evidence_baseline": {
+        "path": "文档/逆向台账/contracts/iteration065-direct-reuse-material-markdown-193-20261017.json",
+        "current": {
+          "sha256": "c16bce39f6a0a2238d288abcee145a6af91f34495af061d3d3fdedcc748cdc0d",
+          "bytes": 3949
+        }
+      },
+      "evidence_snapshot_updates": [
+        {
+          "path": "文档/逆向台账/contracts/iteration065-direct-reuse-material-markdown-193-20261017.json",
+          "previous": null,
+          "current": {
+            "sha256": "c16bce39f6a0a2238d288abcee145a6af91f34495af061d3d3fdedcc748cdc0d",
+            "bytes": 3949
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/edge-repair-v7/terminal-receipt.json",
+          "previous": null,
+          "current": {
+            "sha256": "65b13ed7575c95afc8071ab3826d596f87a1566280fb88e22b203afded2a04ae",
+            "bytes": 2305
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/pipeline-062-full-star-v1/candidate-manifest-v4.json",
+          "previous": null,
+          "current": {
+            "sha256": "4485d68c63ede110368922e6ae38d7f88817e7521cc00477d312dc976016451e",
+            "bytes": 4358
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/pipeline-062-full-star-v1/markdown-green-immutable-single-receipt.json",
+          "previous": null,
+          "current": {
+            "sha256": "1d06c42cb827634ae96b9e5065b4b68b12fffddee883fcc1fca33e73a882cf4c",
+            "bytes": 1927
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/pipeline-062-full-star-v1/markdown-green-immutable-single-v2-receipt.json",
+          "previous": null,
+          "current": {
+            "sha256": "afd4881b1faaec1f8da1031035d68b40121d780aab61c1d31a00f94b27f8dffc",
+            "bytes": 1929
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-markdown-v2-cleanup-independent.json",
+          "previous": null,
+          "current": {
+            "sha256": "27c862db7cbdd056c4cfdef99072ee4b1eb0a92ee501c074222192faf228c4ec",
+            "bytes": 189
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-peer-062-full-star-v1.json",
+          "previous": null,
+          "current": {
+            "sha256": "d94298ef9b0b88afbd866c41220c7b69831ed902a9f4c24472785c0b1ba2dd3f",
+            "bytes": 3647
+          }
+        }
+      ]
     }
   ],
   "evidence_snapshot": {
@@ -164732,6 +164813,34 @@
       ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/pipeline-062-full-star-v1/visual-pdf-green-immutable-focused-receipt.json": {
         "sha256": "3c978c8669d1b2e3d592d4b7932c14861fc7154e58ef556029ba2d79be33816f",
         "bytes": 2141
+      },
+      "文档/逆向台账/contracts/iteration065-direct-reuse-material-markdown-193-20261017.json": {
+        "sha256": "c16bce39f6a0a2238d288abcee145a6af91f34495af061d3d3fdedcc748cdc0d",
+        "bytes": 3949
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/edge-repair-v7/terminal-receipt.json": {
+        "sha256": "65b13ed7575c95afc8071ab3826d596f87a1566280fb88e22b203afded2a04ae",
+        "bytes": 2305
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/pipeline-062-full-star-v1/candidate-manifest-v4.json": {
+        "sha256": "4485d68c63ede110368922e6ae38d7f88817e7521cc00477d312dc976016451e",
+        "bytes": 4358
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/pipeline-062-full-star-v1/markdown-green-immutable-single-receipt.json": {
+        "sha256": "1d06c42cb827634ae96b9e5065b4b68b12fffddee883fcc1fca33e73a882cf4c",
+        "bytes": 1927
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/pipeline-062-full-star-v1/markdown-green-immutable-single-v2-receipt.json": {
+        "sha256": "afd4881b1faaec1f8da1031035d68b40121d780aab61c1d31a00f94b27f8dffc",
+        "bytes": 1929
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-markdown-v2-cleanup-independent.json": {
+        "sha256": "27c862db7cbdd056c4cfdef99072ee4b1eb0a92ee501c074222192faf228c4ec",
+        "bytes": 189
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-peer-062-full-star-v1.json": {
+        "sha256": "d94298ef9b0b88afbd866c41220c7b69831ed902a9f4c24472785c0b1ba2dd3f",
+        "bytes": 3647
       }
     },
     "unavailable_historical_screenshots": [
