@@ -63,7 +63,18 @@ export function registerReviewTools(app: FastifyInstance) {
           const sourceBound=oldId&&imported?.referenceSourceHashes?.[oldId]===d.source_hash;
           const restored=sourceBound&&(await rows(db,sql`SELECT id FROM audit WHERE project_id=${project} AND object_id=${d.id} AND event='portable_draft_restored' LIMIT 1`)).length>0;
           const importedKey=restored&&old?.review?.pseudonymStyle==='selective'&&Array.isArray(old.review.pseudonymEntries)&&old.review.pseudonymEntries.some((entry:any)=>typeof entry?.key==='string'&&entry.key.length>0);
-          if(before!=='selective_pseudonym'||!currentKey&&!registered&&!importedKey)status='selective-skipped';
+          let retainedKey=false;
+          if(before==='selective_pseudonym'&&!currentKey&&!registered&&!importedKey){
+            // Ei2 retains previously generated keys after their occurrence count becomes zero.
+            // Limit history to this document's latest successful detect job and matching sealed source/recognition policy.
+            const [detect]=await rows(db,sql`SELECT revision FROM jobs WHERE document_id=${d.id} AND kind='detect' AND status='succeeded' ORDER BY revision DESC,created_at DESC,id DESC LIMIT 1`);
+            if(detect){
+              const snapshots=await rows(db,sql`SELECT marks,recognition FROM review_snapshots WHERE document_id=${d.id} AND content_hash=${d.content_hash} AND parse_version=${d.parse_version} AND revision>=${detect.revision} ORDER BY revision DESC`);
+              const stable=['rules','dictionaryRevision','presetRevision','documentPolicyRevision','documentType','ner'] as const;
+              retainedKey=snapshots.some(snapshot=>stable.every(key=>snapshot.recognition?.[key]===d.recognition?.[key])&&(snapshot.marks as Mark[]).some(mark=>mark.decision!=='ignore'&&sourceSelectiveEntityType(mark.rawEntityType??canonicalRuleEntityType(mark.kind))!=='other'&&currentText.slice(mark.start,mark.end).trim().length>0));
+            }
+          }
+          if(before!=='selective_pseudonym'||!currentKey&&!registered&&!importedKey&&!retainedKey)status='selective-skipped';
         }
         if(status==='apply'&&before===normalized)status='unchanged';
         result.push({id:d.id,revision:d.revision,previousMode:before,mode:normalized,status});

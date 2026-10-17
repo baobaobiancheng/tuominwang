@@ -206,5 +206,10 @@ test('Markdown, PDF and image scopes preserve reviewed marks; visual full star n
   const freshSelective=await req('POST',`/api/projects/${project}/review-mode-batch/preview`,{documents:[{id:ids[1],revision:partial.json().revision}],scope:'markdown',mode:'selective_pseudonym'});
   assert.equal(freshSelective.statusCode,200,freshSelective.body);
   assert.equal(freshSelective.json().documents[0].status,'unchanged','partial-star entity still creates an original at2 key');
+  const ignored=await req('PUT',`/api/documents/${ids[1]}/review`,{revision:partial.json().revision,marks:partialMarks.map((mark:any)=>({...mark,decision:'ignore'}))});
+  assert.equal(ignored.statusCode,200,ignored.body);
+  const retained=await req('POST',`/api/projects/${project}/review-mode-batch/preview`,{documents:[{id:ids[1],revision:ignored.json().revision}],scope:'markdown',mode:'selective_pseudonym'});
+  assert.equal(retained.statusCode,200,retained.body);
+  assert.equal(retained.json().documents[0].status,'unchanged','original Ei2 retains a keyed entry after its entity is ignored');
   console.log('BATCH_MODE_FOUR_FORMAT_OBSERVATION '+JSON.stringify({selective:ids.map(id=>selectiveById.get(id)),after:after.map(x=>({state:x.state,revision:x.revision,mode:x.mode,markCount:x.marks.length})),sourceUnchanged:true,staleStatus:stale.statusCode}));
 });
