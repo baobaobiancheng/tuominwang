@@ -1,5 +1,6 @@
 import {withReviewEntityBirths}from'../../packages/core/review-entity-birth.ts';
 import {registerReviewFeedbackRoutes} from './review-feedback.ts';
+import {registerPseudonymDraftRoutes} from './pseudonym-draft.ts';
 import {registerAutomaticRuntimeRuleRoutes} from './automatic-runtime-rules.ts';
 import {registerEntityFilterRoutes} from './entity-filter.ts';
 import {registerManualOccurrenceRoutes} from './manual-occurrences.ts';
@@ -289,6 +290,7 @@ export async function buildApp() {
   registerPresetRoutes(app);
   registerProjectEntities(app);
   registerWorkspacePortableRoutes(app);
+  registerPseudonymDraftRoutes(app);
   registerRestorationFileRoutes(app);
   registerRestorationBatchRoutes(app);
   registerFeedbackRoutes(app);
