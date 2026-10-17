@@ -9,7 +9,7 @@ import {mergePdfOcrDraft,replacePdfOcrDraftAtReview,validatePdfOcrDraftPage,type
 import {runProcessing} from '../../packages/adapters/processing.ts';
 import {openPageReview} from '../../packages/adapters/page-review-storage.ts';
 import {resolveDocumentPolicy} from '../../packages/adapters/document-policy.ts';
-import {defaultProfile,profileForFormat} from '../../packages/core/presets.ts';
+import {defaultProfile} from '../../packages/core/presets.ts';
 import {projectScope,requirePermission,textArray} from './access.ts';
 import {getProjectPresetPolicy} from './presets.ts';
 import {saveReview} from './reviews.ts';
@@ -111,7 +111,7 @@ export function registerPdfOcrDraftRoutes(app:FastifyInstance){
    if(!projectRow)fail('NOT_FOUND',404);
    const resolved=resolveDocumentPolicy(j,getProjectPresetPolicy(projectRow));
    const profile=resolved.presetPolicy.profile?.settings??defaultProfile();
-   const maskStyle=resolved.documentPolicy?.configuration.maskStyle??openPageReview(j)?.maskStyle??profileForFormat(profile,'pdf',resolved.batchMode).maskStyle;
+   const maskStyle=resolved.documentPolicy?.configuration.maskStyle??openPageReview(j)?.maskStyle??profile.pdf.maskStyle;
    const review={mode:'unselected' as const,maskStyle,regions:(draft.regions??[]).map(region=>({...region,page:0})),deletedPages:[]};
    const doc={...j,content:seal(frame.text,`${j.tenant_id}:${project}:${j.id}`),content_hash:hash(frame.text),anchors,page_data:[page],page_review:review,entity_corrections:null};
    return runProcessing<Uint8Array>({kind:'partial-page-preview',doc,page:0,marks});
