@@ -1,0 +1,184 @@
+{
+  "id": "ITER-059-HISTORY-KEY-FIX-AND-BROWSER-187",
+  "date": "2026-10-17",
+  "status": "CANDIDATE_CHECK_AND_TARGETED_EDGE_PASSED_FULL_GATES_RUNNING",
+  "candidate": {
+    "commit": "9f26583899e7a4150765f75c3e53c0a0c258139b",
+    "privateGitHubBranch": "candidate/original-alignment-059",
+    "repositoryPrivateVerified": true,
+    "files": 1009,
+    "formalSourcePromoted": false
+  },
+  "requiredCheck": {
+    "v1ExitCode": 0,
+    "v2ExitCode": 0,
+    "files": 166,
+    "tests": 904,
+    "bendLaws": 18,
+    "bendMutations": 21,
+    "typecheckAndBuild": true,
+    "sourceAssetFixtureDrift": []
+  },
+  "historicalSelective": {
+    "actualOldRedExitCode": 1,
+    "actualNewApiExitCode": 0,
+    "actualApiPassed": 2,
+    "actualImportedV2Passed": 1,
+    "sourceAndReview": "Existing source-bound snapshots recover same-detection historical keys; frozen v2 peer findings empty; no schema or UI addition.",
+    "limit": "Not a claim all original desktop sessions or manual active pseudonym values are identical."
+  },
+  "edge": {
+    "v2": {
+      "exitCode": 1,
+      "passed": 1,
+      "failed": 1,
+      "failure": "New test waited for material-list checkbox before opening uploaded documents and awaiting recognition.",
+      "cleanupAndNormalDevRestorationVerified": true
+    },
+    "v3": {
+      "exitCode": 0,
+      "passed": 2,
+      "failed": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "databaseRemaining": 0,
+      "dataDirExists": false,
+      "normalDevHealthAfterTargeted": {
+        "4318": 200,
+        "5178": 200
+      }
+    },
+    "v2ToV3Difference": "Only 3 lines in the E2E setup; opens each uploaded material, awaits recognition, returns list. No production, unit, integration-test or driver bytes changed; v3 Node24 typecheck0. No full v3 pnpm-check rerun claimed."
+  },
+  "runningGates": {
+    "baseline151": {
+      "execSession": 86581,
+      "planned": 151,
+      "completedFiles": 82,
+      "failedFiles": 0,
+      "lastCommand": {
+        "at": "2026-10-17T09:31:39.409Z",
+        "phase": "command-start",
+        "args": [
+          "--import",
+          "tsx",
+          "--test",
+          "tests/pdf-seal-pause.integration.ts"
+        ]
+      },
+      "wholeRunComplete": false
+    },
+    "combined155": {
+      "execSession": 57226,
+      "planned": 155,
+      "completedFiles": 14,
+      "failedFiles": 0,
+      "lastCommand": {
+        "at": "2026-10-17T09:32:56.493Z",
+        "phase": "command-start",
+        "args": [
+          "--import",
+          "tsx",
+          "--test",
+          "tests/document-unlock.integration.ts"
+        ]
+      },
+      "wholeRunComplete": false
+    },
+    "edge109": {
+      "execSession": 9997,
+      "planned": 109,
+      "controller": {
+        "startedAt": "2026-10-17T09:29:15.524761+00:00",
+        "candidateManifestSha256": "fbb86868fbff3c6fc7d9fd015aaac46ac435e6eaf86211ff533e97ad1bf54dd4",
+        "candidateFiles": 1009,
+        "testFile": null,
+        "stoppedOwnDevPid": 89588,
+        "exitCode": null,
+        "controllerPid": 90428,
+        "childPid": 90479
+      },
+      "wholeRunComplete": false,
+      "normalDev": "temporarily paused while isolated browser suite owns ports; controller restores own ordinary dev in finally"
+    }
+  },
+  "newUserGuide": {
+    "path": "文档/使用指南/批量脱敏方式补充操作-20261017.md",
+    "screenshot": "文档/使用指南/截图/batch-export-modes-20261017.png",
+    "screenshotSha256": "7c0c27e290090d1a86a9a3eb9dfbccbffa56c6e60785a7cb2dcb366d2a89f17d",
+    "existingReadyGuidePackageUnchanged": true
+  },
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration059/combined-inputs-v2.json",
+      "sha256": "59020b3656ce5e00ac88497bb48cb40dfae40a9cf4c829a4258d6cf50fb7d714",
+      "bytes": 171942
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration059/combined-inputs-v3.json",
+      "sha256": "fbb86868fbff3c6fc7d9fd015aaac46ac435e6eaf86211ff533e97ad1bf54dd4",
+      "bytes": 172007
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration059/combined-required-check-v1/terminal-receipt.json",
+      "sha256": "d836df6cf249aeed6f65727d1a11229a60530a436236eb576305b220fbc0a49f",
+      "bytes": 1280
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration059/combined-required-check-v2/terminal-receipt.json",
+      "sha256": "3bc7c02909150d8b52882d078e347394cc6a39af0b042e06b595cf351d9f888f",
+      "bytes": 1280
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration059/frontend/batch-mode-final-v2/candidate-manifest.json",
+      "sha256": "c5469db67b809e80e999eeb1c93c1b86448a33f0f68a5ebe4c02b8379d91ebae",
+      "bytes": 6809
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration059/protocol/batch-mode-frozen-v2-peer.json",
+      "sha256": "e5f431c86667b0e9c179bbc8bdf91a5a7f60c2dc6fbc3d3a155ef14e5192ef78",
+      "bytes": 2694
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration059/edge-batch-v2/terminal-receipt.json",
+      "sha256": "1994cee28ee1cf2c4b141045433f963bc9f7ddabec4dd64d073248cf72807d1a",
+      "bytes": 1871
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration059/edge-batch-v3/terminal-receipt.json",
+      "sha256": "de9ac0d1adb3a1c78af752b5a394de0fedaf455d5eec80e59f61b7b056461694",
+      "bytes": 1606
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration059/root/v2-v3-execution-scope-binding-v1.json",
+      "sha256": "c049777179c635b93ffa245a693a39f1fc6f7e7f866fa977974cd6a5bb82eabe",
+      "bytes": 477
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration059/root/v3-browser-setup-typecheck-receipt.json",
+      "sha256": "4cf7401c180253465994c00ca1ac3378bf86e5e078453d67e57a243ed330eb22",
+      "bytes": 246
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration059/root/combined-git-source-binding-v3.json",
+      "sha256": "4973a0baa68112d1470bcebe9e7ba85fc50ee0ea5d22582683fc80c36037712a",
+      "bytes": 395
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration059/root/running-gates-ledger187-v1.json",
+      "sha256": "8c18bb58aeffecefa8da1b0745aeaf63a07123f346b03ca6363fb482628cba6f",
+      "bytes": 1317
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration059/root/edge-full-plan-counts-v3.json",
+      "sha256": "188e18d7617fced9505f95def953bf5b46700dfdc9efb4a20d0264dc3548e2f4",
+      "bytes": 74
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration059/before-ledger187-v1/manifest.json",
+      "sha256": "e6e5362981f7a79c7c6d52168884680273b4c4f5326f7585979651d6261e52f6",
+      "bytes": 1640
+    }
+  ],
+  "boundary": "Full151,155 and109 remain running; no formal source promotion/server deployment/model-loading change. R0 and interface grades unchanged. Candidate code is reviewable on private branch; tested bytes bind to Git blobs."
+}
