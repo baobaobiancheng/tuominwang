@@ -31,7 +31,23 @@ test('unified preview rebuilds ready children and projects the active local draf
     assert.equal(viewed.json().state,'review');
     return viewed.json();
   };
-  const first = await add('电话：13800138000'), second = await add('电话：13900139000');
+  const configure = async (text:string) => {
+    const created = await add(text);
+    const changed = await req('POST',`/api/documents/${created.id}/configuration`,{
+      revision:created.revision,configuration:{exportMode:'custom_pseudonym'},
+    });
+    assert.equal(changed.statusCode,200,changed.body);
+    const recognized = await req('POST',`/api/documents/${created.id}/recognize`,{
+      revision:changed.json().revision,ner:false,
+    });
+    assert.equal(recognized.statusCode,200,recognized.body);
+    await tick();
+    const viewed = await req('GET',`/api/documents/${created.id}`);
+    assert.equal(viewed.statusCode,200,viewed.body);
+    assert.equal(viewed.json().state,'review');
+    return viewed.json();
+  };
+  const first = await configure('电话：13800138000'), second = await configure('电话：13900139000');
   const state = async () => { const r=await req('GET',`/api/projects/${project}/unified-aliases`);assert.equal(r.statusCode,200,r.body);return r.json(); };
   let frame = await state();
   const enabled = await req('POST',`/api/projects/${project}/unified-aliases`,{revision:frame.revision,documents:frame.documents,command:{action:'enable'}});
