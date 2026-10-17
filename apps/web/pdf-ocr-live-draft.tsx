@@ -31,6 +31,7 @@ export const PdfOcrLiveDraft=React.forwardRef<PdfOcrLiveDraftHandle,{jobId:strin
    if(token!==epoch.current||edit!==editRef.current||selectedRef.current!==pageIndex)return;
    const payload={revision,draftRevision:current.draftRevision,pageIndex,previewHash:current.previewHash,mapHash:current.mapHash,textHash:current.textHash,marks,removed,regions,pageDeleted};
    const response=await fetch(appUrl(`/api/jobs/${jobId}/pdf-ocr/draft/pages/${pageIndex}/preview`),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+   if(token!==epoch.current)return;
    if(response.status===401)window.dispatchEvent(new Event('session-expired'));
    if(!response.ok){let code='PDF_OCR_PREVIEW_FAILED';try{code=(await response.json()).error??code;}catch{}throw new Error(errorText(code));}
    if(!response.headers.get('content-type')?.startsWith('image/png'))throw new Error(errorText('PDF_OCR_PREVIEW_INVALID'));
