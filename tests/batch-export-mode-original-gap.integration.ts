@@ -207,7 +207,9 @@ test('Markdown full-star preview and downloaded output override a manual draft w
   assert.equal(beforeLink.statusCode,200,beforeLink.body);
   const beforeBytes=await app.inject({url:beforeLink.json().url});
   assert.equal(beforeBytes.statusCode,200,beforeBytes.body);
-  assert.ok(beforeBytes.body.includes('SYNTHETIC_ALIAS'));
+  const markdownText=(node:any):string=>node.type==='text'?String(node.value):(node.children??[]).map(markdownText).join('');
+  console.log('MARKDOWN_ORIGINAL_OUTPUT_OBSERVATION '+JSON.stringify({raw:beforeBytes.body,parsed:markdownText(fromMarkdown(beforeBytes.body))}));
+  assert.ok(markdownText(fromMarkdown(beforeBytes.body)).includes('SYNTHETIC_ALIAS'),'Markdown parser sees the manual alias through source escaping');
   const applied=await req('POST',`/api/projects/${project}/review-mode-batch/apply`,{documents:[{id,revision:beforeRevision}],scope:'markdown',mode:'full_star',confirmOverride:true});
   assert.equal(applied.statusCode,200,applied.body);
   const fullResponse=await req('GET',`/api/documents/${id}`);
@@ -232,7 +234,6 @@ test('Markdown full-star preview and downloaded output override a manual draft w
   assert.equal(fullLink.statusCode,200,fullLink.body);
   const fullBytes=await app.inject({url:fullLink.json().url});
   assert.equal(fullBytes.statusCode,200,fullBytes.body);
-  const markdownText=(node:any):string=>node.type==='text'?String(node.value):(node.children??[]).map(markdownText).join('');
   const parsed=fromMarkdown(fullBytes.body),heading=parsed.children.find(node=>node.type==='heading');
   assert.equal(heading?.type,'heading','downloaded Markdown retains its heading structure');
   assert.equal(markdownText(heading),'合成公开标题');
