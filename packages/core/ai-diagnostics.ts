@@ -1,4 +1,5 @@
 import {writeZip} from './office-zip.ts';
+import {diagnosticDetails} from '../../scripts/vendor/aiDiagnostics.js';
 
 // The value allowlists and the three-file package below are adapted from the
 // extracted original lawbot-mcp/aiDiagnostics.js. Server records cannot claim
@@ -20,14 +21,15 @@ const choices=<T extends string>(value:unknown,values:readonly T[]):T[]=>Array.i
 const count=(value:unknown)=>typeof value==='number'&&Number.isFinite(value)&&value>=0?Math.min(Math.round(value),1_000_000_000):undefined;
 const opaqueJob=(value:unknown)=>typeof value==='string'&&/^lbj_[a-f0-9]{32}$/u.test(value)?value:undefined;
 export const safeAiDiagnosticCode=(value:unknown)=>typeof value==='string'&&ERROR_CODES.has(value)?value:'INTERNAL_ERROR';
-export type AiDiagnosticEvent={schemaVersion:1;at:string;side:'lawbot';stage:string;outcome:string;adapter:string;jobId:string;method?:string;tool?:string;state?:string;durationMs?:number;code?:string};
-export function cleanAiDiagnosticEvent(input:{at?:unknown;adapter?:unknown;jobId?:unknown;method?:unknown;tool?:unknown;state?:unknown;stage?:unknown;outcome?:unknown;durationMs?:unknown;code?:unknown}):AiDiagnosticEvent|undefined{
+export type AiDiagnosticEvent={schemaVersion:1;at:string;side:'lawbot';stage:string;outcome:string;adapter:string;jobId:string;method?:string;tool?:string;state?:string;durationMs?:number;code?:string;details?:Record<string,unknown>};
+export function cleanAiDiagnosticEvent(input:{at?:unknown;adapter?:unknown;jobId?:unknown;method?:unknown;tool?:unknown;state?:unknown;stage?:unknown;outcome?:unknown;durationMs?:unknown;code?:unknown;details?:unknown}):AiDiagnosticEvent|undefined{
  const jobId=opaqueJob(input.jobId);if(!jobId)return undefined;
  const at=typeof input.at==='string'&&Number.isFinite(Date.parse(input.at))?new Date(input.at).toISOString():new Date().toISOString();
  const event:AiDiagnosticEvent={schemaVersion:1,at,side:'lawbot',stage:choice(input.stage,STAGES)??'tool',outcome:choice(input.outcome,OUTCOMES)??'failed',adapter:choice(input.adapter,ADAPTERS)??'unknown',jobId};
  const method=choice(input.method,METHODS),tool=choice(input.tool,TOOLS),state=choice(input.state,STATES),durationMs=count(input.durationMs);
  if(method)event.method=method;if(tool)event.tool=tool;if(state)event.state=state;if(durationMs!==undefined)event.durationMs=durationMs;
  if(input.code!==undefined)event.code=safeAiDiagnosticCode(input.code);
+ if(input.details&&typeof input.details==='object'&&!Array.isArray(input.details))event.details=diagnosticDetails(input.details as Record<string,unknown>);
  return event;
 }
 // Original gatewayClient records a polling result as waiting when its wait
