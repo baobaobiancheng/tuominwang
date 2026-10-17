@@ -30,7 +30,7 @@ export const PdfOcrLiveDraft=React.forwardRef<PdfOcrLiveDraftHandle,{jobId:strin
    await onPreparePreview(pageIndex);
    if(token!==epoch.current||edit!==editRef.current||selectedRef.current!==pageIndex)return;
    const payload={revision,draftRevision:current.draftRevision,pageIndex,previewHash:current.previewHash,mapHash:current.mapHash,textHash:current.textHash,marks,removed,regions,pageDeleted};
-   const response=await fetch(appUrl(`/api/jobs/${jobId}/pdf-ocr/draft/pages/${pageIndex}/preview`),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),signal:AbortSignal.timeout(30000)});
+   const response=await fetch(appUrl(`/api/jobs/${jobId}/pdf-ocr/draft/pages/${pageIndex}/preview`),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
    if(!response.ok){let code='PDF_OCR_PREVIEW_FAILED';try{code=(await response.json()).error??code;}catch{}throw new Error(code);}
    if(!response.headers.get('content-type')?.startsWith('image/png'))throw new Error('PDF_OCR_PREVIEW_INVALID');
    const blob=await response.blob();if(token!==epoch.current||edit!==editRef.current||selectedRef.current!==pageIndex)return;
