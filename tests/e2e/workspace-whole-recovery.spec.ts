@@ -158,7 +158,7 @@ test('two material browser interruption restores the active document, review cho
   const discardRow=resumed.locator('.actions').filter({hasText:projectName}).filter({has:resumed.getByRole('button',{name:'丢弃恢复记录'})});
   await discardRow.getByRole('button',{name:'丢弃恢复记录'}).click();
   const discarded=resumed.waitForResponse(r=>r.request().method()==='DELETE'&&pathname(r)===`/api/projects/${projectId}/workspace/recovery`);
-  await discardRow.getByRole('button',{name:'确定丢弃'}).click();
+  await resumed.getByRole('button',{name:'确定丢弃',exact:true}).click();
   expect((await discarded).status()).toBe(200);
   expect((await resumed.request.get(`/api/documents/${first.id}`)).status()).toBe(200);
   expect((await resumed.request.get(`/api/documents/${second.id}`)).status()).toBe(200);
