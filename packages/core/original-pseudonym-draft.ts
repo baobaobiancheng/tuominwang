@@ -9,6 +9,7 @@ export type ActivePseudonymDraft = {
   schemaVersion: 1;
   sourceHash: string;
   revision: number;
+  hasVisitedPreview?: boolean;
   style: 'custom' | 'selective';
   typeActions: Record<string, string>;
   entries: OriginalDraftEntry[];
@@ -145,5 +146,7 @@ export async function updateOriginalDraft(input: {
   }
   if (input.reset) runtime.reset();
   const entries = [...runtime.entries().entries()].filter(([key, entry]) => key === entry.key).map(([, entry]) => ({ ...entry }));
-  return { draft: { schemaVersion: 1, sourceHash: input.sourceHash, revision: input.revision, style: input.style, typeActions: ui2.value, entries }, duplicateRejected };
+  return { draft: { schemaVersion: 1, sourceHash: input.sourceHash, revision: input.revision,
+    ...prior?.hasVisitedPreview === true ? { hasVisitedPreview: true } : {},
+    style: input.style, typeActions: ui2.value, entries }, duplicateRejected };
 }

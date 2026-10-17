@@ -51,6 +51,14 @@ async function context(db:DB,jobId:string,userId:string,tenantId:string,projectI
  return{j,ids,pages};
 }
 
+/** Reuse the existing owner, lineage, source and checkpoint verification when
+ * an in-progress page participates in a unified batch preview. */
+export async function verifiedPdfOcrPartialPreview(db:DB,jobId:string,userId:string,tenantId:string,projectId:string,pageIndex:number){
+ const {j,pages}=await context(db,jobId,userId,tenantId,projectId,false);
+ findPage(pages,pageIndex);
+ return {documentId:j.id,revision:j.revision,contentHash:j.content_hash};
+}
+
 function findPage(pages:PdfOcrCheckpoint[],index:number){const frame=pages.find(p=>p.page.index===index);if(!frame)fail('PDF_OCR_PAGE_NOT_READY');return frame!;}
 function readDraft(row:any,frame:PdfOcrCheckpoint):PdfOcrDraftPage{
  if(row.text_hash!==hash(frame.text)||row.preview_hash!==frame.page.previewHash||row.map_hash!==frame.page.mapHash)fail('PDF_OCR_DRAFT_PAGE_CHANGED');

@@ -15,6 +15,7 @@ import {registerPageRotationRoutes} from './page-rotation.ts';
 import {readPageRotationState} from '../../packages/adapters/page-rotation-state.ts';
 import {registerSourceReviewRoutes} from './source-review.ts';
 import {registerUnifiedAliasRoutes} from './unified-aliases.ts';
+import {registerUnifiedPreviewRoutes} from './unified-preview.ts';
 import {registerReviewProvenanceRoutes} from './review-provenance.ts';
 import {registerDocumentNormalizationRoutes} from './document-normalization.ts';
 import {documentProcessingFormat,isLegacyWordFormat} from '../../packages/core/document-format.ts';
@@ -274,6 +275,7 @@ export async function buildApp() {
   registerDocumentNormalizationRoutes(app);
   registerReviewProvenanceRoutes(app);
   registerUnifiedAliasRoutes(app);
+  registerUnifiedPreviewRoutes(app);
   registerPageRotationRoutes(app);
   registerSourceReviewRoutes(app);
   registerEntityFilterRoutes(app);
@@ -420,6 +422,7 @@ export async function buildApp() {
         project_id: d.project_id,
         ...await runProcessing<object>({ kind: "view", doc: d, offset: page.offset }),
         revision: d.revision,
+        contentHash: d.content_hash,
         reviewOrigin,
         marks: await(async()=>{const frame=await readReviewProvenance(db,d);return addReviewEntityHints(frame,withReviewEntityBirths(frame,d.marks));})(),
         state: d.state,
