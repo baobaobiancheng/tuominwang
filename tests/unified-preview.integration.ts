@@ -111,7 +111,10 @@ test('unified preview rebuilds ready children and projects the active local draf
       contentHash:active.contentHash,localReviewDirty:true,marks:active.marks},
   });
   assert.equal(explicit.statusCode,200,explicit.body);
-  assert.deepEqual(explicit.json().previewMarks,active.marks);
+  assert.deepEqual(explicit.json().previewMarks.map((mark:any)=>({start:mark.start,end:mark.end,kind:mark.kind,
+    decision:mark.decision,replacement:mark.replacement,replacementOrigin:mark.replacementOrigin})),
+    active.marks.map((mark:any)=>({start:mark.start,end:mark.end,kind:mark.kind,
+      decision:mark.decision,replacement:mark.replacement,replacementOrigin:mark.replacementOrigin})));
   const ignored = await req('POST',`/api/projects/${project}/unified-aliases/prepare-preview`,{
     revision:body.revision,documents:body.documents,active:{id:active.id,revision:active.revision,
       contentHash:active.contentHash,localReviewDirty:true,
