@@ -63,6 +63,13 @@ test('one document keeps original key actions and requires a selected uniform or
  assert.throws(()=>restoreMarkdown(Buffer.from('共同别名'),unselected),/RESTORE_AMBIGUOUS_MAPPING/);
  const selected=parseRestorationMapping(raw,{choices:{共同别名:'张四'}});
  assert.equal(restoreMarkdown(Buffer.from('共同别名'),selected).output.toString(),'张四');
+ const oldLink=await req('POST',`/api/documents/${doc}/download-link`,{revision:current.revision});assert.equal(oldLink.statusCode,200,oldLink.body);
+ const oldBytes=await app.inject({url:oldLink.json().url});assert.equal(oldBytes.statusCode,200,oldBytes.body);
+ const latest=await draft(req,doc);
+ const reset=await req('POST',`/api/documents/${doc}/pseudonym-draft/reset`,{revision:latest.revision,sourceHash:latest.sourceHash,draftHash:latest.draftHash,style:'custom'});
+ assert.equal(reset.statusCode,200,reset.body);
+ const oldReadback=await app.inject({url:oldLink.json().url});assert.equal(oldReadback.statusCode,200,oldReadback.body);
+ assert.deepEqual(oldReadback.rawPayload,oldBytes.rawPayload,'a later draft reset must not rewrite an already issued artifact');
 });
 
 test('zero-occurrence key survives native Save As, project import and document ID rebinding',{timeout:120000},async()=>{
