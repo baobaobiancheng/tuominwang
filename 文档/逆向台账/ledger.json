@@ -137878,6 +137878,50 @@
           }
         }
       ]
+    },
+    {
+      "id": "ITER-056-DEPLOYMENT-FORWARD-REPAIR-NEIGHBOR-OOM-181",
+      "date": "2026-10-17",
+      "action": "记录远端部署失败后的schema55与forward repair保护状态",
+      "summary": "预建v2在schema55迁移及自家服务就绪后因邻居重启变化／全局OOM退出1；自家Web/API/worker已停，数据库、材料、成对备份保留。首次缺包与预建v1探针失败均保留，邻居历史受影响。产品v32源码未变，指南/原生验收与I/S/R/R0未升级。",
+      "verification": "九文档事前归档；postfailure只读核验；maintain generate/check待执行；十规则JSON逐字节不变。",
+      "affected_ids": [],
+      "evidence": [
+        {
+          "path": "文档/逆向台账/contracts/iteration056-deployment-forward-repair-neighbor-oom-181-20261017.json"
+        }
+      ],
+      "new_evidence_baseline": {
+        "path": "文档/逆向台账/contracts/iteration056-deployment-forward-repair-neighbor-oom-181-20261017.json",
+        "current": {
+          "sha256": "a511014e1f4f8c3874e509d2024f0940cd62d584a1c399d38c29be3547b348f8",
+          "bytes": 7128
+        }
+      },
+      "document_hash_transitions": [
+        {
+          "path": "文档/待办与完成状态-20261015.md",
+          "previous": {
+            "sha256": "e68b86e04c89ebaf45dba071ea200ca2a0eb46f98e2fa9bf08db69f42a38893a",
+            "bytes": 115221
+          },
+          "current": {
+            "sha256": "4a472a4f8aa066283806fd846e5eb822eae6c39e1cc5d04e8d47c2883c65b1e4",
+            "bytes": 116871
+          }
+        },
+        {
+          "path": "文档/脱敏规则完整技术交接-迭代023.md",
+          "previous": {
+            "sha256": "b351aff6628a085a1e89bad062f5b49a1519e67fd900743ead2aa234137f0810",
+            "bytes": 420032
+          },
+          "current": {
+            "sha256": "170ab3def7ab709ae003934dd6289fed1daae2e2b8dcb0447461e54a4d29ac54",
+            "bytes": 421010
+          }
+        }
+      ]
     }
   ],
   "evidence_snapshot": {
@@ -140293,8 +140337,8 @@
         "bytes": 423
       },
       "文档/脱敏规则完整技术交接-迭代023.md": {
-        "sha256": "b351aff6628a085a1e89bad062f5b49a1519e67fd900743ead2aa234137f0810",
-        "bytes": 420032
+        "sha256": "170ab3def7ab709ae003934dd6289fed1daae2e2b8dcb0447461e54a4d29ac54",
+        "bytes": 421010
       },
       "文档/逆向台账/contracts/build-complete-rule-handoff-20261014.py": {
         "sha256": "c5d6db581eb6019ba761fe2adb9ba66b41c4a611162c32e54729baf3fa9810e6",
@@ -143869,8 +143913,8 @@
         "bytes": 4676926
       },
       "文档/待办与完成状态-20261015.md": {
-        "sha256": "e68b86e04c89ebaf45dba071ea200ca2a0eb46f98e2fa9bf08db69f42a38893a",
-        "bytes": 115221
+        "sha256": "4a472a4f8aa066283806fd846e5eb822eae6c39e1cc5d04e8d47c2883c65b1e4",
+        "bytes": 116871
       },
       ".data/research/lawbot-2026-10-15/iteration036/checkpoint-history/current/apps/api/main.ts": {
         "sha256": "4c36dad476012af090cb8649de2b991235d41e4c5d946a4a411404680935b011",
@@ -162735,6 +162779,10 @@
       "文档/使用指南/guide-final-review.json": {
         "sha256": "b7ba86f2b99a508e12c6e89413d25cf70650bb80f497ddf9e4c3191d4cb5371c",
         "bytes": 967
+      },
+      "文档/逆向台账/contracts/iteration056-deployment-forward-repair-neighbor-oom-181-20261017.json": {
+        "sha256": "a511014e1f4f8c3874e509d2024f0940cd62d584a1c399d38c29be3547b348f8",
+        "bytes": 7128
       }
     },
     "unavailable_historical_screenshots": [

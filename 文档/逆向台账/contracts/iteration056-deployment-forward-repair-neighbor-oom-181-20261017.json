@@ -1,0 +1,179 @@
+{
+  "id": "ITER-056-DEPLOYMENT-FORWARD-REPAIR-NEIGHBOR-OOM-181",
+  "date": "2026-10-17",
+  "status": "DEPLOYMENT_FAILED_FORWARD_REPAIR_OWN_WEB_API_WORKER_STOPPED",
+  "source": {
+    "gitHead": "743d62f82885928cfa3b68840b97153176911dbe",
+    "files": 993,
+    "manifest": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v32.json",
+    "productSourceChangedDuringReleaseAttempts": false
+  },
+  "attempts": [
+    {
+      "name": "first-v3",
+      "result": "failed before migration: vendor/licenses absent from Docker COPY context; old own runtime restored under schema44; global host OOM and neighbor impact observed"
+    },
+    {
+      "name": "prebuilt-v1",
+      "result": "failed before migration: read-only tsx CLI probe EROFS; old own runtime restored under schema44; host global OOM/neighbor restart observed"
+    },
+    {
+      "name": "prebuilt-v2",
+      "result": "exit1 after TSX_READY, runtime imports, migration55 and own API/worker/Web health; neighbor restart change triggered forward repair; own Web/API/worker stopped, old schema44 runtime not restarted"
+    }
+  ],
+  "currentReadOnly": {
+    "schemaVersion": 55,
+    "ownRunning": [
+      "db",
+      "legacy-office"
+    ],
+    "ownStopped": [
+      "web",
+      "api",
+      "worker"
+    ],
+    "materialsAndDatabaseBackup": "/opt/tuominwang/releases/backups/iteration056-20261017T072755Z-275532",
+    "stageManifestVerified": true,
+    "backupSixHashesVerified": true,
+    "issuedSample": {
+      "before": 0,
+      "after": 0,
+      "note": "0/0 sample cannot prove historical issued-link coverage"
+    },
+    "neighbors": {
+      "dailyStockAnalysis": {
+        "beforeRestart": 6,
+        "currentRestart": 8,
+        "currentHealthy": true
+      },
+      "semantica": {
+        "previousRestart": 5,
+        "currentRestart": 5,
+        "currentHealthy": true
+      }
+    },
+    "hostGlobalOomObserved": true
+  },
+  "priorValidation": {
+    "checkV31": "163 files, 889 tests, Bend 18 laws/21 mutants, type/build passed on v31",
+    "edgeV31": "107/107 original IDs passed on v31",
+    "apiV30": "149 files/310 cases: 304 pass, 6 fail in one same-IP login fixture; 148 other files pass",
+    "focusedTestIP": "corrected file 14/14 passed separately; not same-run full149 green"
+  },
+  "boundary": "Stable deployment is not complete; current own Web/API/worker are stopped. Preserve schema55, paired backup and materials. Do not automatically restore old schema44 runtime, overwrite new data, stop neighbors, tune memory/resource caps, or change models. Directly reuse usable original code; only necessary Web/cloud adaptation, no product flow beyond original design. Guide document READY only; native Mac Save As and picker remain pending. Original-license R0 and I/S/R states unchanged.",
+  "evidence": {
+    "beforeNineDocuments": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/before-deploy-terminal-ledger181-v1/manifest.json",
+      "current": {
+        "sha256": "e45ef9ce1ac4ba7db1969f2d111a01f95d4b08ea830cea3d5f9bf391eb52d5b9",
+        "bytes": 1630
+      }
+    },
+    "firstBuildFailureLog": {
+      "path": ".data/deploy/aliyun-20261016/iteration056/deploy.log",
+      "current": {
+        "sha256": "b6862b08fa5660215a0816cf82110b5e074b0da801092a6c128d0c43128d4a1d",
+        "bytes": 3498
+      }
+    },
+    "firstHostOom": {
+      "path": ".data/deploy/aliyun-20261016/iteration056/first-deploy-v3-failure/host-state-and-oom-readonly-v1.json",
+      "current": {
+        "sha256": "ccd59038d5cc1cee11f92d409a8c14c801fe3629119316f2ab8d6fea0c5386d3",
+        "bytes": 9370
+      }
+    },
+    "prebuiltV1Receipt": {
+      "path": ".data/deploy/aliyun-20261016/iteration056/attempt-prebuilt-v1/deploy-receipt.json",
+      "current": {
+        "sha256": "36139d78a8ad43499c5f4c9d9c46c2d18ce9c2e63282f5719ed6fdc8806750d1",
+        "bytes": 607
+      }
+    },
+    "prebuiltV1HostOom": {
+      "path": ".data/deploy/aliyun-20261016/iteration056/attempt-prebuilt-v1/post-rollback-host-oom-v1.json",
+      "current": {
+        "sha256": "c0b7e9c54b89e41fcba0d5045eaa05d22c27a79517477755455243ef89fe5de4",
+        "bytes": 18528
+      }
+    },
+    "prebuiltV2Manifest": {
+      "path": ".data/deploy/aliyun-20261016/iteration056/release-prebuilt-probe-v2/manifest.json",
+      "current": {
+        "sha256": "f8f458dcf57c76d7a93917633e2264fda2428f05d04beb54b74659b447fa6c3a",
+        "bytes": 99089
+      }
+    },
+    "prebuiltV2Receipt": {
+      "path": ".data/deploy/aliyun-20261016/iteration056/attempt-prebuilt-v2/deploy-receipt.json",
+      "current": {
+        "sha256": "0fd46b219ec16fa30976d703cdcc0e3ff9e2ab11d9fac3112612ccf5297b793d",
+        "bytes": 607
+      }
+    },
+    "prebuiltV2Log": {
+      "path": ".data/deploy/aliyun-20261016/iteration056/attempt-prebuilt-v2/deploy.log",
+      "current": {
+        "sha256": "f600c4a70163f8ff149663fb773ee185a88eca9e75a05f8e57aaaedde1bb52d5",
+        "bytes": 2655
+      }
+    },
+    "prebuiltV2NeighborState": {
+      "path": ".data/deploy/aliyun-20261016/iteration056/attempt-prebuilt-v2/neighbor-forward-repair-state-v1.json",
+      "current": {
+        "sha256": "ec4fc01ef8506e41ac63090c6094bfc1ce57f73a300a222dd5f62b2b354b3ee1",
+        "bytes": 5620
+      }
+    },
+    "postfailureReadOnly": {
+      "path": ".data/deploy/aliyun-20261016/iteration056/attempt-prebuilt-v2/postfailure-readonly-receipt-v1.json",
+      "current": {
+        "sha256": "1acff03cccc9209312eaf294888be71f97d3b776b2e0fce6ff0925a8cf116286",
+        "bytes": 3502
+      }
+    },
+    "sourceV32": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v32.json",
+      "current": {
+        "sha256": "39eb0b9d680ab4829f2f0a109303feb66b87eb595e336bfca248d1ffa332b0e5",
+        "bytes": 169780
+      }
+    },
+    "checkV31": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/final-v31-required-check-v1/terminal-receipt.json",
+      "current": {
+        "sha256": "f02645b174c49348212524adc6932fa4526551360f6bf3959e360284115a588c",
+        "bytes": 1271
+      }
+    },
+    "edgeV31": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/full107-final-v31-dual/terminal-receipt.json",
+      "current": {
+        "sha256": "973e201ba457f62ef317563703f672bfc2f50812f4dca2d6efeba752807803c9",
+        "bytes": 115351
+      }
+    },
+    "apiFullV30": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/full-api-v30/run-v1/terminal-receipt.json",
+      "current": {
+        "sha256": "f880d4db6461a009b781cf0f1093acc08f0557bdd8e2c2520f4c33dabc3aabd9",
+        "bytes": 36047
+      }
+    },
+    "apiFocused14": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/mcp-automatic-test-ip-v1/focused-run-v1/terminal-receipt.json",
+      "current": {
+        "sha256": "aa9d7faaf213718bd447b6192fbe2f6a4b1b83f6ff1c549cddd715fbc7ec6467",
+        "bytes": 853
+      }
+    },
+    "guideReady": {
+      "path": "文档/使用指南/guide-publish-manifest.json",
+      "current": {
+        "sha256": "d2784e877d7494812090b6d8d5ca0a786b6d0149bc63c40afdad57f1aaa455f0",
+        "bytes": 13841
+      }
+    }
+  }
+}
