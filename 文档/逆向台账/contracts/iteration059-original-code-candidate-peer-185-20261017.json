@@ -1,0 +1,100 @@
+{
+  "id": "ITER-059-ORIGINAL-CODE-CANDIDATE-PEER-185",
+  "date": "2026-10-17",
+  "status": "TWO_PRIVATE_CANDIDATES_FROZEN_BATCH_REPAIR_RUNNING",
+  "userConstraint": "Directly reuse usable extracted original functions, preserve original design, and only adapt required desktop Web/cloud boundaries.",
+  "formalSourceHead": "99ab0d0c95accdc5064852227beb21aa13ad1a9c",
+  "formalSourceChanged": false,
+  "privateCombinedWorktree": "/private/tmp/tmw059-combined-20261017-v1",
+  "candidates": [
+    {
+      "scope": "workspace reference import fields",
+      "frozen": "arch/workspace-reference-fields-candidate-v2/candidate-manifest.json",
+      "actualFailuresBefore": [
+        "DOCX exportMarkdown true yielded no Markdown artifact",
+        "PDF source purple yielded black pageReview"
+      ],
+      "targetedNode24Api": {
+        "tests": 1,
+        "pass": 1,
+        "exitCode": 0,
+        "assertions": "Actual import, recognition, manual review, DOCX export artifact role, PDF purple pageReview and original visual full_star normalization; native roundtrip and per-field current edits."
+      },
+      "review": "protocol peer v3 findings empty; source/runtime test limits retained"
+    },
+    {
+      "scope": "single ai_process report completion and resume",
+      "frozen": "protocol/single-ai-process-completed-resume-candidate-v1/candidate-manifest.json",
+      "actualNode24RedExit": 1,
+      "actualNode24GreenExit": 0,
+      "implementation": "Public completed projection and premature continue guard; existing persisted state, authorization, restoration and legal post-restore continuation retained.",
+      "review": "arch peer v1 findings empty; no original licensed runtime or full API equivalence claim"
+    }
+  ],
+  "batchPending": [
+    "Actual downloadable replacement content must change with selected mode, not only metadata",
+    "Exact source scope: Markdown only, not XLSX fallback",
+    "Original ly2 confirms only changed modes but applies iy2 to all eligible materials including same mode"
+  ],
+  "fullApiProgressSnapshot": {
+    "observedAt": "2026-10-17T08:59:05.412774+00:00",
+    "plannedFiles": 151,
+    "completedFiles": 36,
+    "failedCompletedFiles": 0,
+    "lastCommandRecord": {
+      "at": "2026-10-17T08:58:17.089Z",
+      "phase": "command-start",
+      "args": [
+        "--import",
+        "tsx",
+        "--test",
+        "tests/manual-occurrences.integration.ts"
+      ]
+    },
+    "wholeRunComplete": false,
+    "baseHead": "99ab0d0c95accdc5064852227beb21aa13ad1a9c"
+  },
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration059/arch/workspace-reference-fields-candidate-v2/candidate-manifest.json",
+      "sha256": "d82ac9016aac35c4519b327d14e47b57cb5d9db41094e8a2393b3afb5d3f5b0e",
+      "bytes": 6526
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration059/protocol/single-ai-process-completed-resume-candidate-v1/candidate-manifest.json",
+      "sha256": "a678abd2186047f15b083ef9c1afb5f9556811154014f0db064cd03fae703a2e",
+      "bytes": 7985
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration059/protocol/single-ai-process-completed-resume-candidate-v1/node24-red-green-sidecar-v1.json",
+      "sha256": "84b9f1829fb9afa22a803a6999eff960d762257171fb00f9e7e765eb0adeb270",
+      "bytes": 1572
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration059/protocol/workspace-reference-fields-peer-v3.json",
+      "sha256": "ce52230dc04ca14d2bbedb6417fa0e79b885b27b24c7d1bfd1996d1effe306a1",
+      "bytes": 2872
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration059/arch/single-ai-process-completed-resume-peer-v1.json",
+      "sha256": "815a035fd55fa3c4554bb53e0aff83e4e137446e9289f0f175b5c8a6a5997987",
+      "bytes": 2599
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration059/root/batch-mode-peer-pre-freeze-v1/report.json",
+      "sha256": "c847d9d3932d831059498a516d59c88ccd6ae491bd65b09822533bb566c75227",
+      "bytes": 1631
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration059/root/api-full-live-snapshot-ledger185-v1.json",
+      "sha256": "a35cfd383039df63bf6c6e7d2b773e8567af9bdc8670716ccb8b7740d58c3efb",
+      "bytes": 431
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration059/before-ledger185-v1/manifest.json",
+      "sha256": "cecead8b56078d6dc4e4a91586057d346290816881ce8b3778ba3ed9b0e08602",
+      "bytes": 1640
+    }
+  ],
+  "boundary": "No combined pnpm check or new browser final acceptance yet. No formal candidate source merge, server deploy or model change. Original runtime R0 and interface grades unchanged. Baseline full151 cannot validate candidate bytes."
+}
