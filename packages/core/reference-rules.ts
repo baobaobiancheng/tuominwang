@@ -153,6 +153,20 @@ const amountSpecs = [
  [2028,'label',1,.93],[2037,'label',1,.93],[2044,'currency',0,.92],[2049,'currency',0,.92],[2054,'currency',0,.92],[2059,'uppercase',0,.91],[2066,'standalone',1,.82],[2071,'uppercase',1,.91],[2078,'currency',1,.9],[2083,'table_summary',1,.84],[2089,'labeled_bare_number',1,.88],[2096,'post_yuan_bare_number',1,.89],[2103,'conversation_payment',1,.89],[2111,'standalone_yuan',1,.8],[2118,'per_share_price',1,.92],[2124,'thousand_sep',1,.85],[2129,'standalone_uppercase',1,.82],
 ] as const;
 const chineseAmountUnits=/[百千万亿佰仟萬億拾]/u;
+function* standaloneAmountMatches(text:string,pattern:RegExp){
+ // The source suffix can fail after a long number. Try it once per numeric run,
+ // preserving the original pattern instead of retrying at every interior digit.
+ const runs=/\d(?:[\d,，.]|\s+(?=[\d,，.]))*/g;
+ const anchored=new RegExp(pattern.source,pattern.flags.replace('g','y'));
+ for(let run; (run=runs.exec(text));){
+  let start=run.index;
+  if(/[零一二三四五六七八九十百千万亿壹贰叁肆伍陆柒捌玖]/u.test(text[start-1]??'')){
+   const next=run[0].slice(1).search(/\d/u);if(next<0)continue;start+=next+1;
+  }
+  anchored.lastIndex=start;const match=anchored.exec(text);
+  if(match){runs.lastIndex=Math.max(runs.lastIndex,anchored.lastIndex);yield match;}
+ }
+}
 function amountExcluded(text:string,value:string,start:number,end:number,branch:string){const compact=value.replace(/\s/gu,''),before=text.slice(Math.max(0,start-20),start),after=text.slice(end,end+20),b=before.replace(/[ \t\u00a0\u3000]/gu,''),a=after.replace(/[ \t\u00a0\u3000]/gu,''),currency=/[¥￥]|人民币|RMB|CNY|元|圆/u.test(compact),unit=currency||/[万萬亿億]/u.test(compact),moneyContext=/(?:合同(?:价款|金额)|价款|金额|总价|单价|售价|交易对价|补偿款|赔偿款|租金|费用|余额|本金|借款)[：:为]?$/u.test(b)||/^(?:元|圆|人民币|RMB|CNY|[¥￥])/u.test(a);
  if(!currency&&(/(?:百分之|千分之|万分之|十分之)$/u.test(b)||/^(?:[%％‰‱]|(?:个)?(?:百分点|千分点|万分点|基点)|(?:bp|bps)\b|成(?:半|[零一二三四五六七八九十\d])?|折|倍)/iu.test(a)||/^(?:[：:／/]|比)\d/u.test(a)||/\d(?:[：:／/]|比)$/u.test(b)))return true;
  if(!unit&&/^\d+(?:\.\d+){2,}$/u.test(compact))return true;
@@ -166,7 +180,7 @@ export function detectReferenceAmounts(text:string):ReferenceCandidate[]{const o
   let end=start+value.length;if(!/(?:元|圆|万|亿|角|分)(?:整|正)?$/u.test(value)){const next=text.slice(end,end+12);if(/^\s*(?:(?:千|万|亿)\s*)?股(?:份|票)?|^\s*份/u.test(next)||/^\s*(?:(?:万|亿)\s*)?(?:平方米|平方公尺|平方英尺|平方呎|平米|㎡|亩|公顷|m(?:²|2)?|ft(?:²|2)?|sq\.?(?:m|ft))/iu.test(next))return;const extend=next.match(/^\s*(?:亿元|万元|亿|万|元(?:整|正)?)/u)?.[0];if(extend){value+=extend;end+=extend.length;}}
   if(amountExcluded(text,value,start,end,branch)||out.some(c=>start<c.end&&end>c.start))return;addCandidate(out,text,start,end,'金额','AMOUNT-'+branch,confidence,'contract_amount');
  };
- for(const [line,branch,group,confidence]of amountSpecs)for(const m of text.matchAll(migratedPattern(line))){const value=m[group];if(!value)continue;const start=m.index+(group?m[0].lastIndexOf(value):0),compact=value.replace(/\s/gu,'');if([2028,2044,2049].includes(line)&&digits(value).length<2||[2037,2071,2129].includes(line)&&/[一二三四五六七八九十]/u.test(value)&&!chineseAmountUnits.test(value)||line===2037&&!chineseAmountUnits.test(value)||line===2078&&digits(value).length<3||line===2103&&!/[¥￥]|万|千|百|元|块/u.test(compact)&&digits(compact).length<3||line===2124&&digits(value).length<4)continue;
+ for(const [line,branch,group,confidence]of amountSpecs)for(const m of line===2066?standaloneAmountMatches(text,migratedPattern(line)):text.matchAll(migratedPattern(line))){const value=m[group];if(!value)continue;const start=m.index+(group?m[0].lastIndexOf(value):0),compact=value.replace(/\s/gu,'');if([2028,2044,2049].includes(line)&&digits(value).length<2||[2037,2071,2129].includes(line)&&/[一二三四五六七八九十]/u.test(value)&&!chineseAmountUnits.test(value)||line===2037&&!chineseAmountUnits.test(value)||line===2078&&digits(value).length<3||line===2103&&!/[¥￥]|万|千|百|元|块/u.test(compact)&&digits(compact).length<3||line===2124&&digits(value).length<4)continue;
   if(line===2059&&!/[¥￥]|RMB|CNY|人民币|合同(?:价款|金额)|工程(?:造价|价款)|结算金额/u.test(text.slice(Math.max(0,start-100),start)))continue;
   if([2089,2096].includes(line)&&/税率/u.test(text.slice(Math.max(0,start-18),start)))continue;
   if(line===2028&&/\r?\n/u.test(m[0].slice(0,m[0].length-value.length))&&/(?:利息|逾期利息|罚息|本金|欠款|货款|损失)(?:金额)?[：: \t]*(?:\r?\n[ \t]*){1,3}$/u.test(m[0].slice(0,m[0].length-value.length))&&!/金额|人民币|RMB|CNY|[¥￥]|元|圆|万|萬|亿|億/iu.test(m[0]))continue;

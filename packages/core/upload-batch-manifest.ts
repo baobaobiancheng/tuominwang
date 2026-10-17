@@ -8,7 +8,7 @@ const path = z.string().min(1).max(1024).refine(value => {
 const skipped = z.object({ sourceRelativePath: path, extension: z.string().optional(), reasonCode: z.string().min(1), reason: z.string().min(1) }).strict();
 const folder = z.object({ files: batchSchema.shape.files, sourceRootName: z.string().min(1).refine(value => {
   try { return value.isWellFormed() && value === value.normalize('NFC') && !value.includes('/') && folderRelativePath(value) === value; } catch { return false; }
-}), skippedEntries: z.array(skipped).default([]), emptyDirectories: z.array(path).default([]) }).strict();
+}), scannedAt: z.string().datetime({ offset: true }).optional(), skippedEntries: z.array(skipped).default([]), emptyDirectories: z.array(path).default([]) }).strict();
 export type UploadBatchManifest = z.infer<typeof folder>;
 
 /** Old sealed manifests are arrays; folder scans retain their skipped entries in the same sealed value. */

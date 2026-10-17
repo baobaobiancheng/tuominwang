@@ -62,8 +62,27 @@ test('directory output UI generates one reviewed copy and a truthful skipped ent
     await writeFile(join(directory, '未生成副本.txt'), waiting);
     const project = await signInAndCreateProject(page, '目录结果');
     await page.getByRole('button', { name: '导入材料', exact: true }).click();
+    const beforeSelection = Date.now();
     await page.getByLabel('选择目录', { exact: true }).setInputFiles(directory);
+    const afterSelection = Date.now();
+    const batchCreated = page.waitForResponse(r => r.request().method() === 'POST'
+      && new URL(r.url()).pathname === `/api/projects/${project.id}/upload-batches`);
     await page.getByRole('button', { name: '上传文件', exact: true }).click();
+    const batchResponse = await batchCreated;
+    expect(batchResponse.status()).toBe(200);
+    const postedBatch = batchResponse.request().postDataJSON() as { id: string; sourceRootName: string; scannedAt: string; files: unknown[] };
+    const scannedAt = Date.parse(postedBatch.scannedAt);
+    expect(postedBatch.sourceRootName).toBe(basename(directory));
+    expect(postedBatch.files).toHaveLength(2);
+    expect(Number.isFinite(scannedAt)).toBe(true);
+    expect(postedBatch.scannedAt).toBe(new Date(scannedAt).toISOString());
+    expect(scannedAt).toBeGreaterThanOrEqual(beforeSelection);
+    expect(scannedAt).toBeLessThanOrEqual(afterSelection);
+    const createdBatch = await batchResponse.json() as { id: string };
+    expect(createdBatch.id).toBe(postedBatch.id);
+    const batchReadback = await page.request.get(`/api/projects/${project.id}/upload-batches/${createdBatch.id}`);
+    expect(batchReadback.status()).toBe(200);
+    expect((await batchReadback.json()).scannedAt).toBe(postedBatch.scannedAt);
     await expect(page.getByText('已保存', { exact: true })).toHaveCount(2);
     await page.getByRole('button', { name: '返回材料列表', exact: true }).click();
     const docsResponse = await page.request.get(`/api/projects/${project.id}/documents`);

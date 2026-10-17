@@ -17,7 +17,7 @@ async function batchViews(db: DB, tenant: string, project: string, batches: any[
   const manifests = batches.map(batch => {
     const { manifest, legacy } = readUploadBatchManifest(unseal(batch.manifest, `${tenant}:${project}:${batch.id}:manifest`));
     return { id: batch.id as string, createdAt: new Date(batch.created_at).toISOString(), files: manifest.files,
-      ...legacy ? {} : { sourceRootName: manifest.sourceRootName, skippedEntries: manifest.skippedEntries, emptyDirectories: manifest.emptyDirectories } };
+      ...legacy ? {} : { sourceRootName: manifest.sourceRootName, scannedAt: manifest.scannedAt, skippedEntries: manifest.skippedEntries, emptyDirectories: manifest.emptyDirectories } };
   });
   if (!manifests.length) return [];
   const requests = manifests.flatMap(batch => batch.files.map(file => file.requestId));
@@ -56,8 +56,9 @@ export function registerFileRoutes(app: FastifyInstance) {
       if (paths.has(entry.path) || requests.has(entry.requestId)) fail("DUPLICATE_FILE");
       paths.add(entry.path); requests.add(entry.requestId);
     }
-    const folder = { files: input.files, sourceRootName: input.sourceRootName ?? '文件夹', skippedEntries: input.skippedEntries ?? [], emptyDirectories: input.emptyDirectories ?? [] };
-    const legacy = !input.sourceRootName && !input.skippedEntries?.length && !input.emptyDirectories?.length;
+    const folder = { files: input.files, sourceRootName: input.sourceRootName ?? '文件夹', scannedAt: input.scannedAt, skippedEntries: input.skippedEntries ?? [], emptyDirectories: input.emptyDirectories ?? [] };
+    if (input.scannedAt && !input.sourceRootName) fail('FOLDER_PATH_INVALID');
+    const legacy = !input.sourceRootName && !input.scannedAt && !input.skippedEntries?.length && !input.emptyDirectories?.length;
     if (!legacy) validateFolderBatchPaths(folder);
     const manifest = writeUploadBatchManifest(folder, legacy);
     return projectScope(req, { project }, ["upload"], async db => {

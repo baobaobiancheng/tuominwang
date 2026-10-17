@@ -47,7 +47,7 @@ export function Uploads({ project, signal, run, refresh, onPending }: { project:
   };
   const [batch, setBatch] = useState<string>(() => crypto.randomUUID());
   const [files, setFiles] = useState<LocalEntry[]>([]);
-  const [folderScan, setFolderScan] = useState<{sourceRootName:string;skippedEntries:SkippedFolderEntry[];emptyDirectories:string[]}|null>(null);
+  const [folderScan, setFolderScan] = useState<{sourceRootName:string;scannedAt?:string;skippedEntries:SkippedFolderEntry[];emptyDirectories:string[]}|null>(null);
   const [resuming, setResuming] = useState(false), [manifestLocked, setManifestLocked] = useState(false), [error, setError] = useState("");
   const [history, setHistory] = useState<UploadBatchView[]>([]), [more, setMore] = useState(false);
   const [historyError, setHistoryError] = useState(""), [loading, setLoading] = useState(true);
@@ -76,7 +76,7 @@ export function Uploads({ project, signal, run, refresh, onPending }: { project:
     } catch { if (request === historyRequest.current) setHistoryError("无法读取上传记录，请重试。"); }
     finally { if (request === historyRequest.current) setLoading(false); }
   }
-  async function select(list: SelectedFile[], resume: boolean, directory = false, emptyDirectories: string[] = [], skippedDirectories:SkippedFolderEntry[] = []) {
+  async function select(list: SelectedFile[], resume: boolean, directory = false, emptyDirectories: string[] = [], skippedDirectories:SkippedFolderEntry[] = [], scannedAt = directory ? new Date().toISOString() : undefined) {
     if (!project || (!list.length && !directory)) return;
     if (!resume && pending && !await confirmAction("当前仍有文件未上传。重新选择后，已建立的批次可从上传记录继续。确定继续？")) return;
     setError("");
@@ -100,12 +100,12 @@ export function Uploads({ project, signal, run, refresh, onPending }: { project:
     const observed=[...paths,...skippedDirectories.map(item=>item.sourceRelativePath.normalize('NFC')),...normalizedEmptyDirectories];
     if(new Set(observed).size!==observed.length){setError(messages.DUPLICATE_FILE);return;}
     if(!selected.length){
-      if(directory&&!resume){setFiles([]);setFolderScan({sourceRootName:(list[0]?.path.split('/')[0]??normalizedEmptyDirectories[0]?.split('/')[0]??skippedEntries[0]?.sourceRelativePath.split('/')[0]??'文件夹').normalize('NFC'),skippedEntries,emptyDirectories:normalizedEmptyDirectories});}
+      if(directory&&!resume){setFiles([]);setFolderScan({sourceRootName:(list[0]?.path.split('/')[0]??normalizedEmptyDirectories[0]?.split('/')[0]??skippedEntries[0]?.sourceRelativePath.split('/')[0]??'文件夹').normalize('NFC'),scannedAt,skippedEntries,emptyDirectories:normalizedEmptyDirectories});}
       setError("这个目录及其子目录中没有可处理的文档。已跳过的条目不会建立上传批次。");return;
     }
     if(resume&&folderScan&&selected.length!==files.length){setError("原目录中的可处理文件与上传记录不一致，请选择原目录。");return;}
     if (resume) setFiles(current => current.map(entry => selected.find(file => file.requestId === entry.requestId) ?? entry));
-    else { setBatch(crypto.randomUUID()); setResuming(false); setManifestLocked(false); setFiles(selected);setFolderScan(directory?{sourceRootName:(selected[0].path.split('/')[0]??'文件夹').normalize('NFC'),skippedEntries,emptyDirectories:normalizedEmptyDirectories}:null); }
+    else { setBatch(crypto.randomUUID()); setResuming(false); setManifestLocked(false); setFiles(selected);setFolderScan(directory?{sourceRootName:(selected[0].path.split('/')[0]??'文件夹').normalize('NFC'),scannedAt,skippedEntries,emptyDirectories:normalizedEmptyDirectories}:null); }
   }
   const status = (requestId: string, value: string) => setFiles(current => current.map(f => f.requestId === requestId ? { ...f, status: value } : f));
   async function resume(id: string) {
@@ -113,7 +113,7 @@ export function Uploads({ project, signal, run, refresh, onPending }: { project:
     setError("");
     const saved: UploadBatchView = await checked(await fetch(`${base}/${id}`, { signal: AbortSignal.timeout(20000) }));
     setBatch(saved.id); setResuming(true); setManifestLocked(true);
-    setFolderScan(saved.sourceRootName?{sourceRootName:saved.sourceRootName,skippedEntries:saved.skippedEntries??[],emptyDirectories:saved.emptyDirectories??[]}:null);
+    setFolderScan(saved.sourceRootName?{sourceRootName:saved.sourceRootName,scannedAt:saved.scannedAt,skippedEntries:saved.skippedEntries??[],emptyDirectories:saved.emptyDirectories??[]}:null);
     setFiles(saved.files.map(entry => ({ ...entry, status: entry.documentId ? "已保存" : "请重新选择文件" })));
   }
   async function upload() {
@@ -166,7 +166,7 @@ export function Uploads({ project, signal, run, refresh, onPending }: { project:
       if(!count)emptyDirectories.push(path);
     }
     await visit(handle,handle.name);
-    await select(list,resume,true,emptyDirectories,skipped);
+    await select(list,resume,true,emptyDirectories,skipped,new Date().toISOString());
   }
   function picker(directory: boolean, resume: boolean) {
     const name = resume ? (directory ? "补选原目录" : "补选原文件") : (directory ? "选择目录" : "选择文件");

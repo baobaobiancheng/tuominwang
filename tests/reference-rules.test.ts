@@ -80,3 +80,25 @@ describe('five independently effective source amount branches',()=>{
   expect(Object.hasOwn(found[0],'replacement')).toBe(false);
  });
 });
+
+it('retains standalone amount source boundaries and consumes numeric parentheses once',()=>{
+ const spans=(s:string)=>detectReferenceAmounts(s).map(m=>s.slice(m.start,m.end));
+ expect(spans('壹123万元')).toEqual(['23万元']);
+ expect(spans('说明：1, 234.50万元；2亿元正')).toEqual(['1, 234.50万元','2亿元正']);
+ expect(spans('说明：12万元（包含34万元）后付56万元')).toEqual(['12万元（包含34万元）','56万元']);
+ expect(spans('说明：1万2万元')).toEqual([]);
+});
+
+it('finishes long rejected numeric runs without retrying the amount suffix at each digit',async()=>{
+ const {spawnSync}=await import('node:child_process');
+ const child=spawnSync(process.execPath,['--import','tsx','--input-type=module','-e',`
+  import {detectReferenceAmounts} from './packages/core/reference-rules.ts';
+  for(const run of ['1'.repeat(100000),'1,'.repeat(50000)]){
+   if(detectReferenceAmounts('说明：'+run+'X').length)throw new Error('unexpected amount');
+  }
+  const valid='1'.repeat(100000)+'万元';
+  const marks=detectReferenceAmounts('说明：'+valid);
+  if(marks.length!==1||marks[0].start!==3||marks[0].end!==valid.length+3)throw new Error('amount span changed');
+ `],{encoding:'utf8',timeout:5000});
+ expect(child.error?.message??child.stderr).toBe('');expect(child.status).toBe(0);
+},10000);

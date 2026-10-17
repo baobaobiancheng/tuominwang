@@ -26,6 +26,7 @@ import { attestPortableSource } from "../../packages/adapters/portable-source.ts
 import { documentPolicySchema } from "../../packages/contracts/document-policy.ts";
 import { FILE_MAX_BYTES } from "../../packages/contracts/index.ts";
 import type { NativePortable } from "../../packages/core/native-portable.ts";
+import { workspaceFolderBatch } from './workspace-folder-batch.ts';
 
 type Actor = { id: string; tenant_id: string };
 type Asset = Buffer | TmmFileRef;
@@ -147,7 +148,9 @@ export async function produceWorkspaceArchive(db: DB, actor: Actor, project: str
       const entry = `retained/${item.documentId}/normalized-${index}.docx`;
       assets.set(entry, bytes); delete item.sourceId; item.entry = entry;
     }
+    const folderBatch=await workspaceFolderBatch(db,actor.tenant_id,project,importedPortable);
     const snapshot: NativePortable = { format: "tuominwang-workspace", schemaVersion: 1,
+      ...(folderBatch?{folderBatch}:{}),
       project: { name: p.name,
         dictionary: p.dictionary ? JSON.parse(unseal(p.dictionary, `${actor.tenant_id}:${project}:dictionary`)) : [],
         dictionaryRevision: p.dictionary_revision,

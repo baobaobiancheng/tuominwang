@@ -87,6 +87,14 @@ const lines=createInterface({input:process.stdin,crlfDelay:Infinity});
 // Process requests sequentially to preserve MCP initialization ordering and task CAS. stdout is protocol only.
 for await(const line of lines){let message:any;try{message=JSON.parse(line);if(message.method==='notifications/initialized'){initialized=true;await request('api/mcp',message);continue;}if(message.method!=='initialize'&&!initialized)throw new Error('INITIALIZATION_REQUIRED');const response=await request('api/mcp',message);if(response)process.stdout.write(JSON.stringify(response)+'\n');}catch(e){if(!message)await report({stage:'request',outcome:'failed',traceId:randomUUID(),error:{code:safeErrorCode(e)}});process.stdout.write(JSON.stringify({jsonrpc:'2.0',id:message?.id??null,error:{code:message?-32603:-32700,message:message?(e as Error).message:'Parse error'}})+'\n');}}
 
-if(session){try{await fetch(api('api/mcp'),{method:'DELETE',redirect:'error',headers:{origin:process.env.TUOMIN_MCP_ORIGIN??service.origin,cookie,'mcp-session-id':session,'mcp-protocol-version':protocol}});await request('api/logout',{});}catch{process.stderr.write('MCP_DISCONNECT_FAILED\n');}}
+async function disconnect(endpoint:'mcp'|'logout',path:string,init:RequestInit){
+ let status:number|'network'='network';
+ try{const response=await fetch(api(path),{...init,signal:AbortSignal.timeout(15_000)});if(response.ok)return;status=response.status;}catch{}
+ process.stderr.write(`MCP_DISCONNECT_FAILED endpoint=${endpoint} status=${status}\n`);
+ try{await report({stage:'connector',outcome:'failed',error:{code:'INTERNAL_ERROR'}});}catch{}
+}
+const closeHeaders={origin:process.env.TUOMIN_MCP_ORIGIN??service.origin,cookie,...session?{'mcp-session-id':session,'mcp-protocol-version':protocol}:{}};
+if(session)await disconnect('mcp','api/mcp',{method:'DELETE',redirect:'error',headers:closeHeaders});
+if(cookie)await disconnect('logout','api/logout',{method:'POST',redirect:'error',headers:{...closeHeaders,'content-type':'application/json'},body:'{}'});
 
 await diagnostics?.flush();

@@ -24,11 +24,12 @@ export const batchSchema = z.object({
   id,
   files: z.array(z.object({ requestId: id, path: z.string().min(1).max(1024), size: z.number().int().positive().max(FILE_MAX_BYTES), sha256: z.string().regex(/^[a-f0-9]{64}$/).optional(), documentType: z.enum(['auto','general','contract','disclosure','judgment','pleading','official_letter','screenshot']).optional() })).min(1),
   sourceRootName: z.string().min(1).optional(),
+  scannedAt: z.string().datetime({ offset: true }).optional(),
   skippedEntries: z.array(z.object({ sourceRelativePath: z.string().min(1).max(1024), extension: z.string().optional(), reasonCode: z.string().min(1), reason: z.string().min(1) }).strict()).optional(),
   emptyDirectories: z.array(z.string().min(1).max(1024)).optional(),
 });
 export type UploadEntry = z.infer<typeof batchSchema>["files"][number];
-export type UploadBatchView = { id: string; createdAt: string; files: (UploadEntry & { documentId: string | null })[]; sourceRootName?: string; skippedEntries?: {sourceRelativePath:string;extension?:string;reasonCode:string;reason:string}[]; emptyDirectories?:string[] };
+export type UploadBatchView = { id: string; createdAt: string; files: (UploadEntry & { documentId: string | null })[]; sourceRootName?: string; scannedAt?: string; skippedEntries?: {sourceRelativePath:string;extension?:string;reasonCode:string;reason:string}[]; emptyDirectories?:string[] };
 export const paginationSchema = z.object({
   offset: z.coerce.number().int().min(0).max(1000000).default(0),
   limit: z.coerce.number().int().min(1).max(100).default(100),

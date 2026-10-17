@@ -14,6 +14,7 @@ import {persistWorkspaceSaveFile,decodeWorkspaceSavePayload,openWorkspaceSaveFil
 import {isLegacyWordFormat,originalDocumentFormat} from '../../packages/core/document-format.ts';
 import {readNormalizationMetadata} from '../../packages/adapters/document-normalization.ts';
 import {produceWorkspaceArchive} from './workspace-export-stream.ts';
+import {workspaceFolderBatch} from './workspace-folder-batch.ts';
 import {projectScope,denied} from './access.ts';
 import {rememberWorkspaceRecent} from '../../packages/adapters/workspace-recents.ts';
 const requestId=z.string().min(1).refine(v=>v.isWellFormed()&&!v.includes('\0'));
@@ -23,7 +24,9 @@ const session=(req:FastifyRequest)=>digest(req.cookies[(process.env.APP_BASE_PAT
 const aad=(r:any)=>`${r.tenant_id}:${r.owner_id}:${r.project_id}:${r.id}:${r.session_hash}:${r.snapshot_hash}:workspace-save`;
 export async function workspaceSaveFingerprint(db:DB,project:string){
  const [p]=await rows(db,sql`SELECT to_jsonb(p) data FROM projects p WHERE id=${project}`),docs=await rows(db,sql`SELECT to_jsonb(d) data FROM documents d WHERE project_id=${project} ORDER BY id`),mappings=await getProjectMappingRows(db,project,{historical:true}),catalog=await rows(db,sql`SELECT to_jsonb(m) data FROM mapping_library m WHERE project_id=${project} ORDER BY id`),unifiedAliases=await rows(db,sql`SELECT revision,payload FROM unified_alias_state WHERE project_id=${project}`);
- return hash(JSON.stringify({project:p.data,documents:docs.map(r=>r.data),mappings:mappings.sort((a,b)=>a.id.localeCompare(b.id)),catalog,unifiedAliases}));
+ const imported=p.data.portable_state?JSON.parse(unseal(p.data.portable_state,`${p.data.tenant_id}:${project}:portable-state`)):null;
+ const folderBatch=await workspaceFolderBatch(db,p.data.tenant_id,project,imported);
+ return hash(JSON.stringify({project:p.data,documents:docs.map(r=>r.data),mappings:mappings.sort((a,b)=>a.id.localeCompare(b.id)),catalog,unifiedAliases,folderBatch}));
 }
 function state(r:any){return{state:r.state,receiptId:r.id,expiresAt:new Date(r.expires_at).toISOString(),...(r.state==='completed'?{receipt:{projectId:r.project_id,savedAt:new Date(r.completed_at??r.created_at).toISOString(),snapshotHash:r.snapshot_hash,format:r.format,sha256:r.output_hash},sha256:r.output_hash,downloadPath:`/api/projects/${r.project_id}/portable/saves/${r.id}/download`}:{}),...(r.state==='failed'?{error:r.error_code}: {})};}
 export function registerWorkspaceSaveRoutes(app:FastifyInstance){

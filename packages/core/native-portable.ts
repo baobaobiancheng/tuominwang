@@ -6,7 +6,8 @@ import {recoverNativeExtension} from "./workspace-compat.ts";
 import { readZip, writeZip } from "./office-zip.ts";
 import { parsePortableJson, readPortableWorkspace, readProtectedPortable, writeProtectedPortable, type PortableCredentials } from "./workspace-portable.ts";
 import { hash } from "../adapters/storage.ts";
-export type NativePortable = { format: "tuominwang-workspace"; schemaVersion: 1; project: { name: string; dictionary: any[]; dictionaryRevision: number; presetPolicy: any; presetRevision: number; mappingLibrary?: unknown; unifiedAliasState?: unknown; importedPortable?: any }; mappings: any[]; documents: any[]; snapshots: any[];provenanceHistory?:any[] };
+export type OriginalFolderBatch = {schemaVersion:1;sourceRootName:string;scannedAt:string;skippedItems:unknown[]};
+export type NativePortable = { format: "tuominwang-workspace"; schemaVersion: 1; folderBatch?:OriginalFolderBatch; project: { name: string; dictionary: any[]; dictionaryRevision: number; presetPolicy: any; presetRevision: number; mappingLibrary?: unknown; unifiedAliasState?: unknown; importedPortable?: any }; mappings: any[]; documents: any[]; snapshots: any[];provenanceHistory?:any[] };
 export async function writeNativePortable(snapshot: NativePortable, sources: Map<string, Buffer>, options: PortableCredentials) {
   const parts = new Map(sources); if (parts.has("workspace.json") || parts.has("manifest.json")) throw new Error("NATIVE_PORTABLE_SOURCE_INVALID");
   parts.set("workspace.json", Buffer.from(JSON.stringify(snapshot))); parts.set("manifest.json", Buffer.from(JSON.stringify({ format: "tuominwang-workspace", schemaVersion: 1, documentCount: snapshot.documents.length, checksums: Object.fromEntries([...parts].map(([name, bytes]) => [name, hash(bytes)])) })));

@@ -1,0 +1,171 @@
+{
+  "id": "ITER-057-LOCAL-RELIABILITY-THREE-FIXES-182",
+  "date": "2026-10-17",
+  "status": "LOCAL_CANDIDATE_CHECK_AND_EDGE4_PASSED_NOT_FULL_RELEASE",
+  "source": {
+    "gitHeadBefore": "b67fa5ea0f426946f7347f17701c2fbe62182574",
+    "manifest": ".data/research/lawbot-2026-10-17/iteration057/inputs-v1.json",
+    "manifestSha256": "218f19948eeb823f455a69db02771cb37c86013d93fcd8af0815054cb7dd7417",
+    "files": 997,
+    "note": "996 repository source/test paths plus one fixed historical connector diagnostics receipt in manifest; not a new product input"
+  },
+  "repairs": [
+    {
+      "name": "folderBatch original metadata preservation",
+      "scope": "11 related paths, original sourceRootName/scannedAt/skippedItems shape and batch source binding",
+      "oldRed": "one isolated integration case RED; V2 folderBatch omitted",
+      "newGreen": "one isolated integration case GREEN with V2/V3/native/import/re-export/empty-string/opaque skippedItems/undated-batch subassertions",
+      "boundary": "one test case, not eight separate cases; no database migration; OS native directory picker still pending"
+    },
+    {
+      "name": "amount long numeric run",
+      "scope": "reference-rules.ts and its unit test; preserve original literal matching rule and output while changing numeric scan strategy",
+      "oldRed": "100006-character amount label exceeded 5 seconds",
+      "newGreen": "100006-character amount label 0.3806 seconds wall / 80.3 ms measured matching loop; 3000-case old/new amount output mismatches 0",
+      "boundary": "only specified synthetic long-run and differential scope"
+    },
+    {
+      "name": "MCP stdio cleanup diagnostics",
+      "scope": "scripts/mcp-stdio.ts and one new test; DELETE and logout independently attempted with 15-second timeout each and safe status diagnostics",
+      "oldRed": "DELETE HTTP500 then logout200 yielded child exit0 and empty stderr",
+      "newGreen": "Node24 six focused scenarios passed; no retry or public rate-limit change",
+      "boundary": "historic external EOF logout code cannot be recovered; no full API rerun"
+    }
+  ],
+  "validation": {
+    "requiredCheck": {
+      "path": ".data/research/lawbot-2026-10-17/iteration057/required-check-v1/terminal-receipt.json",
+      "sha256": "c1b89cbb941dadec2aca10bf2b3e1b52b3bf8b6c42ac65258d57b20f8b8e58a2",
+      "exitCode": 0,
+      "testFiles": 164,
+      "tests": 897,
+      "bendLaws": 18,
+      "bendMutants": 21,
+      "typecheck": true,
+      "build": true,
+      "drift": []
+    },
+    "edgeCritical": {
+      "path": ".data/research/lawbot-2026-10-17/iteration057/edge-critical-v1/terminal-receipt.json",
+      "sha256": "3d566a376d7f7fd016eac6ea6abdd6d64eceb61869a1dddb79b95aa917271d5f",
+      "exitCode": 0,
+      "cases": 4,
+      "skipped": 0,
+      "unexpected": 0,
+      "flaky": 0,
+      "directoryScannedAtRealUi": true,
+      "restoredDevHealth": {
+        "4318": 200,
+        "5178": 200
+      }
+    }
+  },
+  "boundary": "Local validation passed; deployment not completed. No full 150-file API or 107-case Edge rerun on this candidate, no deployment, no model change. Original licensed application remains R0; I/S/R and native picker/Save As acceptance unchanged. Server state from event181 remains the last verified remote state. Use available extracted original code directly and only necessary Web/cloud adaptation; do not extend original design.",
+  "evidence": {
+    "inputs-v1.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration057/inputs-v1.json",
+      "current": {
+        "sha256": "218f19948eeb823f455a69db02771cb37c86013d93fcd8af0815054cb7dd7417",
+        "bytes": 169317
+      }
+    },
+    "before-ledger182-v1/manifest.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration057/before-ledger182-v1/manifest.json",
+      "current": {
+        "sha256": "9803803c42a03b9157bac717100ea581b34f2b21a30d8d41f70e1c2040fe1a54",
+        "bytes": 1622
+      }
+    },
+    "before-source-ledger182-v1/manifest.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration057/before-source-ledger182-v1/manifest.json",
+      "current": {
+        "sha256": "64ad2f563b39178288a436a4bd1b7e10e1614d2f47728b92e65aeb33d0f00520",
+        "bytes": 2895
+      }
+    },
+    "arch/folder-batch-red-v2.log": {
+      "path": ".data/research/lawbot-2026-10-17/iteration057/arch/folder-batch-red-v2.log",
+      "current": {
+        "sha256": "0c6efa3169ee02ec20fb5f3ae807925463bb1a492ca7ae1d0c45e89d3d4099d3",
+        "bytes": 1708
+      }
+    },
+    "arch/folder-batch-green-v4.log": {
+      "path": ".data/research/lawbot-2026-10-17/iteration057/arch/folder-batch-green-v4.log",
+      "current": {
+        "sha256": "e57d9c4774d23c4df70b2cf51457a8a3f90797e5fc2e0ffd0071c17024b74268",
+        "bytes": 289
+      }
+    },
+    "arch/folder-batch-candidate-manifest-v2.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration057/arch/folder-batch-candidate-manifest-v2.json",
+      "current": {
+        "sha256": "9c5de6eecb764e3fa2879cf29c3e093891d8343806ca76dd1a1067776968338f",
+        "bytes": 4554
+      }
+    },
+    "rule-adversarial-length-probe-v1.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration057/rule-adversarial-length-probe-v1.json",
+      "current": {
+        "sha256": "64e7d1e802bee906704608c70ca2bac67610af18031b5f1485a77267bcf93ee1",
+        "bytes": 1459
+      }
+    },
+    "amount-long-run-green-v1.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration057/amount-long-run-green-v1.json",
+      "current": {
+        "sha256": "0bcd975f679c5c571b7bb6d54f785b9ac9247364c1d3563508f4a4a4c253ec00",
+        "bytes": 513
+      }
+    },
+    "amount-differential-v1.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration057/amount-differential-v1.json",
+      "current": {
+        "sha256": "a7fc6b467b35cb835c74df1634d5f44c3278b2d063e331bc09ae447edd10179b",
+        "bytes": 218
+      }
+    },
+    "protocol/mcp-stdio-disconnect-fix-receipt-v2.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration057/protocol/mcp-stdio-disconnect-fix-receipt-v2.json",
+      "current": {
+        "sha256": "8b67ae0af9332f4513ebdffcdc3c271023dc09f59986cc0341fd8e5e3bf5ac1e",
+        "bytes": 2880
+      }
+    },
+    "required-check-v1/terminal-receipt.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration057/required-check-v1/terminal-receipt.json",
+      "current": {
+        "sha256": "c1b89cbb941dadec2aca10bf2b3e1b52b3bf8b6c42ac65258d57b20f8b8e58a2",
+        "bytes": 1264
+      }
+    },
+    "edge-critical-v1/terminal-receipt.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration057/edge-critical-v1/terminal-receipt.json",
+      "current": {
+        "sha256": "3d566a376d7f7fd016eac6ea6abdd6d64eceb61869a1dddb79b95aa917271d5f",
+        "bytes": 591
+      }
+    },
+    "edge-critical-v1/results.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration057/edge-critical-v1/results.json",
+      "current": {
+        "sha256": "b59762712953287e1920dfeeaed8806e538c4c896b23a7e2c05f4864d7ae7e48",
+        "bytes": 6133
+      }
+    },
+    "rootFinalReadback": {
+      "path": ".data/research/lawbot-2026-10-17/iteration057/root/final-acceptance-readback-v1.json",
+      "current": {
+        "sha256": "27673265e0921e157c7b40f33788a705854bb29722c1148df41eb4cc73d7b4cd",
+        "bytes": 480
+      }
+    },
+    "edgeArchiveManifest": {
+      "path": ".data/research/lawbot-2026-10-17/iteration057/edge-critical-v1/evidence-archive-v1-manifest.json",
+      "current": {
+        "sha256": "4c99d6786c8ae47ef2ed5cc5aae43e4fef30ee1aaae43d519110cd85d9e15cbf",
+        "bytes": 1378
+      }
+    }
+  }
+}

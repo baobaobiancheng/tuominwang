@@ -46,6 +46,7 @@ import {reviewEntityWasUserAdded} from '../../packages/core/review-type-hide.ts'
 import {reviewEntityBirth} from '../../packages/core/review-entity-birth.ts';
 import { projectPresetSchema } from "../../packages/contracts/presets.ts";
 import { readNativeOrReferencePortable, writeNativePortable, type NativePortable } from "../../packages/core/native-portable.ts";
+import { workspaceFolderBatch } from './workspace-folder-batch.ts';
 import { fileFormat } from "../../packages/core/files.ts";
 import { hash, readArtifact, readOriginal, removeOwnedArtifact, seal, unseal, writeArtifact, writeOriginal } from "../../packages/adapters/storage.ts";
 import { writeOriginalStream, TMM_V3_SOURCE_MAX_BYTES } from "../../packages/adapters/workspace-original-stream.ts";
@@ -142,6 +143,7 @@ export function registerWorkspacePortableRoutes(app: FastifyInstance) {
       }
       for(const [index,item]of(importedPortable?.retainedNormalizedSources??[]).entries()){const bytes=await readOriginal(item.sourceId);if(hash(bytes)!==item.hash)fail('SOURCE_MISMATCH',409);const entry=`retained/${item.documentId}/normalized-${index}.docx`;sources.set(entry,bytes);delete item.sourceId;item.entry=entry;}
       const snapshot: NativePortable = { format: "tuominwang-workspace", schemaVersion: 1, project: { name: p.name, dictionary: p.dictionary ? JSON.parse(unseal(p.dictionary, `${req.user.tenant_id}:${project}:dictionary`)) : [], dictionaryRevision: p.dictionary_revision, presetPolicy: p.preset_policy ? JSON.parse(unseal(p.preset_policy, `${req.user.tenant_id}:${project}:presets`)) : null, presetRevision: p.preset_revision, mappingLibrary:await projectLibraryBackup(db,req.user,project), unifiedAliasState:(await readUnifiedAliasState(db,req.user.tenant_id,project)).frame, ...(importedPortable ? { importedPortable } : {}) }, mappings, documents, snapshots,provenanceHistory };
+      snapshot.folderBatch=await workspaceFolderBatch(db,req.user.tenant_id,project,importedPortable);
       const bytes = await checked(() => input.format==="native"?writeNativePortable(snapshot, sources, { password: input.password }):writeCompatibleWorkspace(snapshot,sources,project,input.format,input.password)); await rows(db, sql`INSERT INTO audit(tenant_id,project_id,user_id,event,object_id) VALUES(${req.user.tenant_id},${project},${req.user.id},'workspace_backup_exported',${project})`);await rememberWorkspaceRecent(db,req.user,project,{snapshot,sources,saved:true});
       return reply.type("application/octet-stream").header("Content-Disposition", `attachment; filename="tuominwang-workspace.${input.format==="native"?"tmw":"tmm"}"`).header("Cache-Control", "no-store").send(bytes);
     });
