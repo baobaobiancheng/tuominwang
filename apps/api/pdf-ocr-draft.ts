@@ -8,7 +8,10 @@ import {loadPdfOcrCheckpointPages,pdfOcrParserFingerprint,pdfOcrRotationPlanHash
 import {mergePdfOcrDraft,replacePdfOcrDraftAtReview,validatePdfOcrDraftPage,type PdfOcrDraftPage} from '../../packages/core/pdf-ocr-draft.ts';
 import {runProcessing} from '../../packages/adapters/processing.ts';
 import {openPageReview} from '../../packages/adapters/page-review-storage.ts';
+import {resolveDocumentPolicy} from '../../packages/adapters/document-policy.ts';
+import {defaultProfile,profileForFormat} from '../../packages/core/presets.ts';
 import {projectScope,requirePermission,textArray} from './access.ts';
+import {getProjectPresetPolicy} from './presets.ts';
 import {saveReview} from './reviews.ts';
 
 const fail=(name:string,statusCode=409):never=>{throw Object.assign(new Error(name),{statusCode});};
@@ -104,7 +107,12 @@ export function registerPdfOcrDraftRoutes(app:FastifyInstance){
    // verified checkpoint remains immutable; only this in-memory view is local.
    const page={...frame.page,index:0},anchors:Anchor[]=[{kind:'page',page:0,start:0,end:frame.text.length}];
    const marks=mergePdfOcrDraft(frame.text,anchors,[page],(frame.provisionalMatches??[]).map(mark=>({...mark})),[{...draft,pageIndex:0}]);
-   const review={mode:'unselected' as const,regions:(draft.regions??[]).map(region=>({...region,page:0})),deletedPages:[]};
+   const [projectRow]=await rows(db,sql`SELECT * FROM projects WHERE id=${project}`);
+   if(!projectRow)fail('NOT_FOUND',404);
+   const resolved=resolveDocumentPolicy(j,getProjectPresetPolicy(projectRow));
+   const profile=resolved.presetPolicy.profile?.settings??defaultProfile();
+   const maskStyle=resolved.documentPolicy?.configuration.maskStyle??openPageReview(j)?.maskStyle??profileForFormat(profile,'pdf',resolved.batchMode).maskStyle;
+   const review={mode:'unselected' as const,maskStyle,regions:(draft.regions??[]).map(region=>({...region,page:0})),deletedPages:[]};
    const doc={...j,content:seal(frame.text,`${j.tenant_id}:${project}:${j.id}`),content_hash:hash(frame.text),anchors,page_data:[page],page_review:review,entity_corrections:null};
    return runProcessing<Uint8Array>({kind:'partial-page-preview',doc,page:0,marks});
   });

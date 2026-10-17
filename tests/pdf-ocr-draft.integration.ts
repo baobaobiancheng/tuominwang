@@ -32,7 +32,12 @@ test('zero-page draft cannot invent a reviewed page; resume carries root detect 
 });
 
 test('partial root draft survives a competing priority preemption, automatic continuation, review and export',{timeout:270000},async()=>{
- const owner=await user(),project=(await owner.req('POST','/api/projects',{name:'PDF draft merged'})).json().id,doc=await upload(owner.req,project,20),background=worker();
+ const owner=await user(),project=(await owner.req('POST','/api/projects',{name:'PDF draft merged'})).json().id;
+ const preset=await owner.req('POST','/api/presets/profiles',{name:'PDF partial purple '+randomUUID()});assert.equal(preset.statusCode,200,preset.body);
+ const settings={...preset.json().settings,pdf:{...preset.json().settings.pdf,maskStyle:'purple'}};
+ const updated=await owner.req('PUT',`/api/presets/profiles/${settings.id}`,{revision:1,settings});assert.equal(updated.statusCode,200,updated.body);
+ const selected=await owner.req('PUT',`/api/projects/${project}/presets`,{revision:0,profileId:settings.id,profileRevision:2,rulesetId:null});assert.equal(selected.statusCode,200,selected.body);
+ const doc=await upload(owner.req,project,20),background=worker();
  try{
   const partial=await until(async()=>{const [j]=(await admin.query('SELECT id,revision,status FROM jobs WHERE document_id=$1',[doc])).rows;const count=(await admin.query('SELECT count(*)::int n FROM pdf_ocr_checkpoints WHERE document_id=$1',[doc])).rows[0].n;return{j,count};},v=>v.j?.status==='running'&&v.count>=2&&v.count<20,90000);
   const competing=await upload(owner.req,project,20),[competingRoot]=(await admin.query('SELECT id,revision FROM jobs WHERE document_id=$1',[competing])).rows;
@@ -59,7 +64,7 @@ test('partial root draft survives a competing priority preemption, automatic con
   assert.equal(processed.headers['cache-control'],'no-store');
   const processedPixels=await sharp(processed.rawPayload).removeAlpha().raw().toBuffer({resolveWithObject:true});
   const maskedX=Math.floor(15*processedPixels.info.width/first.width),maskedY=Math.floor(15*processedPixels.info.height/first.height),maskedOffset=(maskedY*processedPixels.info.width+maskedX)*3;
-  assert.deepEqual([...processedPixels.data.subarray(maskedOffset,maskedOffset+3)],[0,0,0]);
+  assert.deepEqual([...processedPixels.data.subarray(maskedOffset,maskedOffset+3)],[52,10,94]);
   assert.equal((await owner.req('POST',`/api/jobs/${partial.j.id}/pdf-ocr/draft/pages/${first.pageIndex}/preview`,{...previewInput,mapHash:'0'.repeat(64)})).statusCode,409);
   assert.equal((await owner.req('POST',`/api/jobs/${partial.j.id}/pdf-ocr/draft/pages/20/preview`,{...previewInput,pageIndex:20})).statusCode,409);
   assert.equal((await admin.query('SELECT count(*)::int n FROM pdf_ocr_review_drafts WHERE document_id=$1',[doc])).rows[0].n,0);
@@ -67,7 +72,7 @@ test('partial root draft survives a competing priority preemption, automatic con
   const preview=await owner.req('GET',`/api/jobs/${partial.j.id}/pdf-ocr/draft/pages/${first.pageIndex}`);assert.equal(preview.statusCode,200,preview.body);assert.equal(preview.headers['cache-control'],'no-store');assert.equal((await sharp(preview.rawPayload).metadata()).format,'png');
   const originalPixels=await sharp(preview.rawPayload).removeAlpha().raw().toBuffer({resolveWithObject:true});
   const originalX=Math.floor(15*originalPixels.info.width/first.width),originalY=Math.floor(15*originalPixels.info.height/first.height),originalOffset=(originalY*originalPixels.info.width+originalX)*3;
-  assert.notDeepEqual([...originalPixels.data.subarray(originalOffset,originalOffset+3)],[0,0,0]);
+  assert.notDeepEqual([...originalPixels.data.subarray(originalOffset,originalOffset+3)],[52,10,94]);
   assert.equal(processedPixels.info.width,originalPixels.info.width);assert.equal(processedPixels.info.height,originalPixels.info.height);
   const [bound]=(await admin.query('SELECT d.*,c.processing_hash,c.rotation_plan_hash FROM documents d JOIN pdf_ocr_checkpoints c ON c.document_id=d.id AND c.revision=d.revision WHERE d.id=$1 AND c.page_index=$2',[doc,first.pageIndex])).rows;
   const frame=(await scoped(owner.uid,owner.tenant,db=>loadPdfOcrCheckpointPages(db,bound,bound.processing_hash,bound.rotation_plan_hash))).find(value=>value.page.index===first.pageIndex);
@@ -84,7 +89,8 @@ test('partial root draft survives a competing priority preemption, automatic con
    if(phonePixel>=0)break;
   }
   assert.ok(phonePixel>=0,'the original phone glyph has a real nonwhite pixel outside the hand-drawn region');
-  assert.deepEqual([...processedPixels.data.subarray(phonePixel,phonePixel+3)],[0,0,0],'the exact phone glyph pixel is removed in the processed preview');
+  assert.notDeepEqual([...originalPixels.data.subarray(phonePixel,phonePixel+3)],[52,10,94]);
+  assert.deepEqual([...processedPixels.data.subarray(phonePixel,phonePixel+3)],[52,10,94],'the exact phone glyph changes from source ink to the configured redaction colour');
   const add=await owner.req('PUT',`/api/jobs/${partial.j.id}/pdf-ocr/draft`,{revision:partial.j.revision,draftRevision:0,pageIndex:first.pageIndex,marks:[{start:a,end:a+phone.length,kind:'手机号',decision:'redact'}],removed:[],regions:[region],pageDeleted:false});assert.equal(add.statusCode,200,add.body);
   assert.equal((await owner.req('PUT',`/api/jobs/${partial.j.id}/pdf-ocr/draft`,{revision:partial.j.revision,draftRevision:1,pageIndex:first.pageIndex,marks:[],removed:[],regions:[{...region,x:first.width}],pageDeleted:false})).statusCode,400);
   const remove=await owner.req('PUT',`/api/jobs/${partial.j.id}/pdf-ocr/draft`,{revision:partial.j.revision,draftRevision:0,pageIndex:second.pageIndex,marks:[],removed:[{start:b,end:b+phone.length,kind:'手机号'}],regions:[],pageDeleted:true});assert.equal(remove.statusCode,200,remove.body);
