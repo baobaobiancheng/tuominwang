@@ -135,7 +135,7 @@ test('unified preview rebuilds ready children and projects the active local draf
   const ignored = await req('POST',`/api/projects/${project}/unified-aliases/prepare-preview`,{
     revision:body.revision,documents:body.documents,active:{id:active.id,revision:active.revision,
       contentHash:active.contentHash,localReviewDirty:true,
-      marks:localMarks.map((mark:any)=>({...mark,decision:'ignore'}))},
+      marks:active.marks.map((mark:any)=>({...mark,decision:'ignore'}))},
   });
   assert.equal(ignored.statusCode,200,ignored.body);
   assert.ok(ignored.json().previewMarks.every((mark:any)=>mark.decision==='ignore'));
