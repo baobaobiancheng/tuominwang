@@ -86,11 +86,14 @@ test('server group mode result updates the live review, preview and saved marks'
   const fullMark=full.body.marks.find(mark=>mark.decision==='redact'&&mark.end-mark.start===phone.length);
   expect(fullMark?.replacement?.mode).toBe('full');
   expect(full.text).toContain('*'.repeat(phone.length));
+  await page.getByRole('textbox',{name:'处理预览',exact:true}).scrollIntoViewIfNeeded();
+  await page.screenshot({path:info.outputPath('entity-group-full-star-preview.png'),fullPage:true});
   const saved=page.waitForResponse(r=>r.request().method()==='PUT'&&pathOf(r)===`/api/documents/${id}/review`);
   await page.getByRole('button',{name:'保存复核',exact:true}).click();
   const savedResponse=await saved;
   expect(savedResponse.status(),await savedResponse.text()).toBe(200);
   const after=await documentView(page,id);
   expect(after.marks.find(mark=>mark.decision==='redact'&&mark.end-mark.start===phone.length)?.replacement?.mode).toBe('full');
+  await page.getByText('复核已保存',{exact:true}).scrollIntoViewIfNeeded();
   await page.screenshot({path:info.outputPath('entity-group-full-star-saved.png'),fullPage:true});
 });
