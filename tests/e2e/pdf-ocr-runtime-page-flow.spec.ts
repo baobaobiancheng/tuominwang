@@ -82,6 +82,17 @@ test('Edge PDF completed pages can be paused, human drafted, resumed, reviewed a
  await expect(draft.getByText('区域 1 · 敏感区域 · 矩形')).toBeVisible();
  await firstRegionSaved;
  await expect(draft.getByRole('status')).toContainText('本页人工增删已保存',{timeout:30000});
+ const processed=page.waitForResponse(r=>r.request().method()==='POST'&&new URL(r.url()).pathname===`/api/jobs/${rootJob}/pdf-ocr/draft/pages/0/preview`);
+ await draft.getByRole('button',{name:'预览本页处理结果',exact:true}).click();
+ const processedResponse=await processed;expect(processedResponse.status(),await processedResponse.text()).toBe(200);
+ expect(processedResponse.headers()['content-type']).toContain('image/png');
+ const processedBytes=await processedResponse.body();expect(processedBytes.length).toBeGreaterThan(1000);
+ const processedImage=draft.getByRole('img',{name:'第 1 页处理预览'});
+ await expect(processedImage).toBeVisible();
+ await expect.poll(()=>processedImage.evaluate((image:HTMLImageElement)=>image.complete&&image.naturalWidth>0)).toBe(true);
+ await processedImage.screenshot({path:info.outputPath('pdf-ocr-partial-processed-preview.png')});
+ await draft.getByRole('button',{name:'返回审查',exact:true}).click();
+ await expect(firstImage).toBeVisible();
  await expect(draft.locator('fieldset.region-editor')).not.toHaveAttribute('disabled','');
  await draft.getByLabel('区域形状').selectOption('circle');
  await dragRegion(.40,.40,.50,.50);

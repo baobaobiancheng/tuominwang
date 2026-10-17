@@ -127,7 +127,12 @@ const messages: Record<string, string> = {
   RECOVERY_OUTDATED: "草稿所属材料版本已变化，请使用当前材料重新复核。",
   RECOVERY_CONFLICT: "自动草稿已被其他窗口更新，请重新打开材料。",
   RECOVERY_WRITER_CONFLICT: "这份草稿已由另一个窗口接管，请重新打开最新记录。",
+  RECOVERY_SAVE_PENDING: "自动草稿尚未完成读取或保存，请稍后再试。",
+  RECOVERY_OPEN_UNCONFIRMED: "自动草稿尚未确认打开，请重新选择工作区。",
   RECOVERY_CLOSE_UNCONFIRMED: "自动保存会话尚未确认结束，请重新打开最新草稿。",
+  DRAFT_UNIFIED_MODE_USE_PROJECT_ALIASES: "项目已启用统一假名，请在项目统一假名中编辑。",
+  DRAFT_SOURCE_MISMATCH: "材料原文已变化，请重新打开后编辑假名。",
+  DRAFT_ACTION_UNAVAILABLE: "当前材料不支持此脱敏方式。",
   PDF_OCR_CHECKPOINT_STALE: "材料或识别任务已变化，请重新载入后继续。",
   PDF_OCR_CHECKPOINT_WRITE_FAILED: "识别进度保存失败，请重新载入查看可恢复的页面。",
   IRREVERSIBLE_MASK: "当前星号或遮盖无法还原，请使用假名模式，或选择不还原的任务。",
@@ -421,7 +426,8 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
       await fn();
     } catch (e) {
       if((e as any).code==='UNIFIED_ALIAS_REVIEW_REQUIRED'){await refreshDocs();if(currentDoc.current)await openDoc(currentDoc.current.id);}
-      setError((e as Error).message);
+      const code=(e as Error).message;
+      setError(messages[code as keyof typeof messages]??code);
       if ((e as Error).message === messages.VERSION_CONFLICT) setConflict(true);
     } finally {
       busyRef.current = false;

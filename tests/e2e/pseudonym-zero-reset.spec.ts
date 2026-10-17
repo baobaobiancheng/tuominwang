@@ -102,11 +102,13 @@ test('zero occurrence pseudonym reset updates the mounted editor without restori
   const zeroEntry = zeroDraft.draft.entries.find((item:any)=>item.normalized===phone);
   expect(zeroEntry).toMatchObject({occurrences:0,currentValue:oldManual,locked:true,action:'full_star'});
 
-  // Same React component key (doc id + revision) must survive the reset because
-  // this historical key has no current mark. Observe DOM identity; do not mock.
+  // The old key remains in the sealed draft but is absent from the current
+  // occurrence editor, matching the source UI's current-entity projection.
   const zeroPanel = page.locator('details[aria-label="当前材料假名草稿"]');
   await expect(zeroPanel).toBeVisible();
   if(await zeroPanel.getAttribute('open')===null)await zeroPanel.locator('summary').click();
+  await expect(zeroPanel.locator('summary')).toContainText('0 项');
+  await expect(zeroPanel.getByRole('textbox',{name:`编辑${phone}假名`,exact:true})).toHaveCount(0);
   const sameNode = await zeroPanel.elementHandle();
   expect(sameNode).not.toBeNull();
   const resetResponse = page.waitForResponse(r=>r.request().method()==='POST' && new URL(r.url()).pathname===`/api/documents/${id}/pseudonym-draft/reset`);
@@ -121,25 +123,11 @@ test('zero occurrence pseudonym reset updates the mounted editor without restori
   expect(resetEntry.currentValue).toBe(resetEntry.autoValue);
   expect(resetEntry.currentValue).not.toBe(oldManual);
   expect(await sameNode!.evaluate(node=>node.isConnected)).toBe(true);
-  await expect(zeroPanel.getByRole('textbox',{name:`编辑${phone}假名`,exact:true})).toHaveValue(resetEntry.autoValue);
-  await expect(zeroPanel.getByRole('combobox',{name:`${phone}脱敏方式`,exact:true})).toHaveValue('pseudonym');
-  await expect(zeroPanel.getByRole('checkbox',{name:`锁定${phone}假名`,exact:true})).not.toBeChecked();
-
-  // Save another real UI edit without touching the value. A stale form would
-  // send oldManual again; its absence and server readback prove no resurrection.
-  await zeroPanel.getByRole('combobox',{name:`${phone}脱敏方式`,exact:true}).selectOption('full_star');
-  const savedAgainResponse = page.waitForResponse(r=>r.request().method()==='POST' && new URL(r.url()).pathname===`/api/documents/${id}/pseudonym-draft/edit`);
-  await zeroPanel.getByRole('button',{name:'保存此项',exact:true}).click();
-  const savedAgain = await savedAgainResponse;
-  expect(savedAgain.status(),await savedAgain.text()).toBe(200);
-  expect(savedAgain.request().postDataJSON().currentValue).toBeUndefined();
+  await expect(zeroPanel.getByRole('textbox',{name:`编辑${phone}假名`,exact:true})).toHaveCount(0);
   const persistedResponse = await page.request.get(`/api/documents/${id}/pseudonym-draft`);
   expect(persistedResponse.status(),await persistedResponse.text()).toBe(200);
   const persisted = await persistedResponse.json();
   expect(persisted.revision).toBe(zeroRevision);
-  const persistedEntry = persisted.draft.entries.find((item:any)=>item.normalized===phone);
-  expect(persistedEntry).toMatchObject({occurrences:0,currentValue:resetEntry.autoValue,locked:false,action:'full_star'});
-  expect(persistedEntry.currentValue).not.toBe(oldManual);
-
+  expect(persisted.draft.entries.find((item:any)=>item.normalized===phone)).toMatchObject({occurrences:0,currentValue:resetEntry.autoValue,locked:false,action:'pseudonym'});
 
 });
