@@ -40,3 +40,25 @@ test('Edge transfer clipboard success requires actual readback and denied permis
  await portable.getByRole('button',{name:'复制传输密码',exact:true}).click();await expect(portable.getByRole('status')).toContainText('无法写入并核验剪贴板');
  await cdp.detach();
 });
+test('Edge acknowledges the deployed release through its button and keeps it read after reload',async({page},testInfo)=>{
+ await page.goto('/');
+ await page.getByLabel('账号',{exact:true}).fill(process.env.E2E_USERNAME!);
+ await page.getByLabel('密码',{exact:true}).fill(process.env.E2E_PASSWORD!);
+ await page.getByRole('button',{name:'登录工作台'}).click();
+ const help=page.locator('details').filter({has:page.locator('summary').filter({hasText:/^帮助与产品资料$/})});
+ const release=help.locator('details').filter({has:page.locator('summary').filter({hasText:/^版本更新提示$/})});
+ await help.locator('summary').first().click();await release.locator('summary').click();
+ const initial=await(await page.request.get('/api/software-update/state')).json();
+ expect(initial.whatsNewRelease.version).toBe(initial.currentVersion);
+ await release.screenshot({path:testInfo.outputPath('release-before-read.png')});
+ const saved=page.waitForResponse(r=>r.url().endsWith('/api/software-update/acknowledge-whats-new')&&r.request().method()==='POST');
+ await release.getByRole('button',{name:'此版本已读',exact:true}).click();
+ const response=await saved;expect(response.status()).toBe(200);
+ const acknowledged=await response.json();expect(acknowledged.success).toBe(true);expect(acknowledged.state.whatsNewRelease).toBeUndefined();
+ await expect(release.getByRole('button',{name:'此版本已读',exact:true})).toHaveCount(0);
+ await page.reload();await help.locator('summary').first().click();await release.locator('summary').click();
+ const readback=await(await page.request.get('/api/software-update/state')).json();
+ expect(readback.whatsNewRelease).toBeUndefined();expect(readback.preferences).toEqual(initial.preferences);
+ await release.screenshot({path:testInfo.outputPath('release-read-after-reload.png')});
+ await expect(release.getByRole('button',{name:'此版本已读',exact:true})).toHaveCount(0);
+});
