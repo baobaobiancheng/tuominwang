@@ -55,7 +55,8 @@ test('unified preview rebuilds ready children and projects the active local draf
   });
   assert.equal(prepared.statusCode,200,prepared.body);
   const body = prepared.json();
-  assert.ok(body.previewMarks.some((mark:any)=>mark.replacement?.mode==='custom'&&mark.replacement.value===changedToken));
+  assert.ok(body.previewMarks.some((mark:any)=>mark.replacement?.mode==='custom'&&mark.replacement.value===changedToken),
+    JSON.stringify({ marks:body.previewMarks, changedToken }));
   const rendered = await req('POST',`/api/documents/${active.id}/preview`,{revision:active.revision,marks:body.previewMarks,offset:0});
   assert.equal(rendered.statusCode,200,rendered.body);
   assert.ok(rendered.json().text.includes(changedToken));
