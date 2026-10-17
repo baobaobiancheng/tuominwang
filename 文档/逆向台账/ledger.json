@@ -140339,6 +140339,203 @@
           }
         }
       ]
+    },
+    {
+      "id": "ITER-070-ORIGINAL-UI-GUIDE-AND-GATE-AUDIT-199",
+      "date": "2026-10-17",
+      "action": "补原界面真实操作截图与严谨终态校验",
+      "summary": "三案Edge通过、两案测试失败保留、恢复两案继续；原界面实体组实际结果和保存截图入指南。",
+      "verification": "Node24 TAP合成反例确认skip/todo退出0仍拒，独立审查无新增发现；最终产品全量未运行，未部署。",
+      "affected_ids": [
+        "UI-ad41d13c4a2d",
+        "UI-339d8e53408d"
+      ],
+      "evidence": [
+        {
+          "path": "文档/逆向台账/contracts/iteration070-original-ui-guide-and-gate-audit-199-20261017.json"
+        }
+      ],
+      "new_evidence_baseline": {
+        "path": "文档/逆向台账/contracts/iteration070-original-ui-guide-and-gate-audit-199-20261017.json",
+        "current": {
+          "sha256": "200a4cbb97a5e1cbc304753c5b450b9af13d45814646af9f451cb4c30fa7cba1",
+          "bytes": 6200
+        }
+      },
+      "document_hash_transitions": [
+        {
+          "path": "文档/待办与完成状态-20261015.md",
+          "previous": {
+            "sha256": "00a60eb3172304926a49ddced1eb58c309634c9c2b7e4a5ef6939a91a49b76a0",
+            "bytes": 133334
+          },
+          "current": {
+            "sha256": "7ed27c4aa94d96f1033af540b65586bc188911821f2a92e8c08e1f992b55395d",
+            "bytes": 133342
+          }
+        },
+        {
+          "path": "文档/脱敏规则完整技术交接-迭代023.md",
+          "previous": {
+            "sha256": "e75a37a615d149ac4122a81fe311d93cb02849d290685924b23480d1a2b45ec0",
+            "bytes": 427380
+          },
+          "current": {
+            "sha256": "9373412acbc341327e789002d41b3cd81d60301d851126af306da474c3b48543",
+            "bytes": 427443
+          }
+        }
+      ],
+      "evidence_snapshot_updates": [
+        {
+          "path": "文档/待办与完成状态-20261015.md",
+          "previous": {
+            "sha256": "00a60eb3172304926a49ddced1eb58c309634c9c2b7e4a5ef6939a91a49b76a0",
+            "bytes": 133334
+          },
+          "current": {
+            "sha256": "7ed27c4aa94d96f1033af540b65586bc188911821f2a92e8c08e1f992b55395d",
+            "bytes": 133342
+          }
+        },
+        {
+          "path": "文档/脱敏规则完整技术交接-迭代023.md",
+          "previous": {
+            "sha256": "e75a37a615d149ac4122a81fe311d93cb02849d290685924b23480d1a2b45ec0",
+            "bytes": 427380
+          },
+          "current": {
+            "sha256": "9373412acbc341327e789002d41b3cd81d60301d851126af306da474c3b48543",
+            "bytes": 427443
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/iteration070-original-ui-guide-and-gate-audit-199-20261017.json",
+          "previous": null,
+          "current": {
+            "sha256": "200a4cbb97a5e1cbc304753c5b450b9af13d45814646af9f451cb4c30fa7cba1",
+            "bytes": 6200
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/full-api-controller-v5.mjs",
+          "previous": null,
+          "current": {
+            "sha256": "bf4606bb9f4cdd6846874a17929bc295f7f4d80193e61f40947fa5d3d4d89175",
+            "bytes": 14633
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/full-api-controller-v5-selfcheck.mjs",
+          "previous": null,
+          "current": {
+            "sha256": "7d24e3d4e69a09071121eb883f75136816747aba9780083c408faf173dba93f0",
+            "bytes": 1936
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/full-api-controller-v5-selfcheck/receipt.json",
+          "previous": null,
+          "current": {
+            "sha256": "3599ba5de1dc87f1aefc7a9a316b53954fa945452ce27e2af5b043c86389f527",
+            "bytes": 1266
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/arch-final-gate-executors-v5-peer.json",
+          "previous": null,
+          "current": {
+            "sha256": "18ac1cdef7dedabcf5e1077787904f0d356b5e0847a585c72b8c741c3bccedd4",
+            "bytes": 1430
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-edge-progress199-v1/progress.json",
+          "previous": null,
+          "current": {
+            "sha256": "c3f9114ec9ee371594156732e5b7e44ac70b54263f4b445cfabbe78e205b3d8e",
+            "bytes": 1663
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-observed-070-group-images-v1/observation.json",
+          "previous": null,
+          "current": {
+            "sha256": "82307ebd3a6e5714552414792ea4d87eafba7c97ae11ff7fc78695440e522a5e",
+            "bytes": 947
+          }
+        },
+        {
+          "path": ".data/control/prepare-final-original-gates-v2.py",
+          "previous": null,
+          "current": {
+            "sha256": "69e60399e27d2bf9182bd3b37506646e24d51af1868f511e949e4d3ac29a72de",
+            "bytes": 3516
+          }
+        },
+        {
+          "path": "文档/使用指南/README.md",
+          "previous": {
+            "sha256": "a8550f18c3849d478f5665a6222de12c427f13c382f7cb76cdeb6c65efb4e255",
+            "bytes": 2292
+          },
+          "current": {
+            "sha256": "7dca50e6fe1c390bbf769a7480235ced3539cd8190958ba41d6e702bff904659",
+            "bytes": 2469
+          }
+        },
+        {
+          "path": "文档/使用指南/批量脱敏方式补充操作-20261017.md",
+          "previous": {
+            "sha256": "785d178916642cd08144bc32a7f89957acb47da693c08578848967b320142222",
+            "bytes": 2589
+          },
+          "current": {
+            "sha256": "01b96da762ffecc2d939ce4619c67d2316f6bdd7ee1b71ba5c99cc7bb27662da",
+            "bytes": 3948
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-edge-progress199-v1/0-playwright.log",
+          "previous": null,
+          "current": {
+            "sha256": "fbb69ee30d7dfe4c006a0f9df7965dfc98a59cb9c3f8ef59c7a14146574eb595",
+            "bytes": 3744
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-edge-progress199-v1/1-error-context.md",
+          "previous": null,
+          "current": {
+            "sha256": "1296e48ba6135ce5b4f3b32b0fe820278e47bb2ad389162acf7c993076c63a93",
+            "bytes": 5572
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-edge-progress199-v1/2-error-context.md",
+          "previous": null,
+          "current": {
+            "sha256": "7dd99da2f3a8b07e6d9d2a6c182766c39c4ad1344a094a97b249cd1411dc320c",
+            "bytes": 13594
+          }
+        },
+        {
+          "path": "文档/使用指南/截图/entity-group-full-star-preview-20261017.png",
+          "previous": null,
+          "current": {
+            "sha256": "6b2c111ea8d6155c892620232aa5cd350c874551d03d72e37391a883b90ff493",
+            "bytes": 142010
+          }
+        },
+        {
+          "path": "文档/使用指南/截图/entity-group-full-star-saved-20261017.png",
+          "previous": null,
+          "current": {
+            "sha256": "dd35ee6adbd811a9b6215f1c0629cefddac204e376960f10cc0fd8ac759cf53a",
+            "bytes": 148548
+          }
+        }
+      ]
     }
   ],
   "evidence_snapshot": {
@@ -142754,8 +142951,8 @@
         "bytes": 423
       },
       "文档/脱敏规则完整技术交接-迭代023.md": {
-        "sha256": "e75a37a615d149ac4122a81fe311d93cb02849d290685924b23480d1a2b45ec0",
-        "bytes": 427380
+        "sha256": "9373412acbc341327e789002d41b3cd81d60301d851126af306da474c3b48543",
+        "bytes": 427443
       },
       "文档/逆向台账/contracts/build-complete-rule-handoff-20261014.py": {
         "sha256": "c5d6db581eb6019ba761fe2adb9ba66b41c4a611162c32e54729baf3fa9810e6",
@@ -146330,8 +146527,8 @@
         "bytes": 4676926
       },
       "文档/待办与完成状态-20261015.md": {
-        "sha256": "00a60eb3172304926a49ddced1eb58c309634c9c2b7e4a5ef6939a91a49b76a0",
-        "bytes": 133334
+        "sha256": "7ed27c4aa94d96f1033af540b65586bc188911821f2a92e8c08e1f992b55395d",
+        "bytes": 133342
       },
       ".data/research/lawbot-2026-10-15/iteration036/checkpoint-history/current/apps/api/main.ts": {
         "sha256": "4c36dad476012af090cb8649de2b991235d41e4c5d946a4a411404680935b011",
@@ -151282,8 +151479,8 @@
         "bytes": 2121
       },
       "文档/使用指南/README.md": {
-        "sha256": "a8550f18c3849d478f5665a6222de12c427f13c382f7cb76cdeb6c65efb4e255",
-        "bytes": 2292
+        "sha256": "7dca50e6fe1c390bbf769a7480235ced3539cd8190958ba41d6e702bff904659",
+        "bytes": 2469
       },
       "文档/使用指南/截图-20261015/方案损坏提示.png": {
         "sha256": "3399065ad8e708184bc676898196faf067e368d1d306d9ee9df6f02914bcb7df",
@@ -165270,8 +165467,8 @@
         "bytes": 6875
       },
       "文档/使用指南/批量脱敏方式补充操作-20261017.md": {
-        "sha256": "785d178916642cd08144bc32a7f89957acb47da693c08578848967b320142222",
-        "bytes": 2589
+        "sha256": "01b96da762ffecc2d939ce4619c67d2316f6bdd7ee1b71ba5c99cc7bb27662da",
+        "bytes": 3948
       },
       "文档/使用指南/截图/batch-export-modes-20261017.png": {
         "sha256": "7c0c27e290090d1a86a9a3eb9dfbccbffa56c6e60785a7cb2dcb366d2a89f17d",
@@ -165736,6 +165933,58 @@
       ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-070-final-assets-prepared-v1.json": {
         "sha256": "d869ce16b0d25c242e543d881e763b94e963c3b323bb3f1e493837d55eb3cab1",
         "bytes": 46884
+      },
+      "文档/逆向台账/contracts/iteration070-original-ui-guide-and-gate-audit-199-20261017.json": {
+        "sha256": "200a4cbb97a5e1cbc304753c5b450b9af13d45814646af9f451cb4c30fa7cba1",
+        "bytes": 6200
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/full-api-controller-v5.mjs": {
+        "sha256": "bf4606bb9f4cdd6846874a17929bc295f7f4d80193e61f40947fa5d3d4d89175",
+        "bytes": 14633
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/full-api-controller-v5-selfcheck.mjs": {
+        "sha256": "7d24e3d4e69a09071121eb883f75136816747aba9780083c408faf173dba93f0",
+        "bytes": 1936
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/full-api-controller-v5-selfcheck/receipt.json": {
+        "sha256": "3599ba5de1dc87f1aefc7a9a316b53954fa945452ce27e2af5b043c86389f527",
+        "bytes": 1266
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/arch-final-gate-executors-v5-peer.json": {
+        "sha256": "18ac1cdef7dedabcf5e1077787904f0d356b5e0847a585c72b8c741c3bccedd4",
+        "bytes": 1430
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-edge-progress199-v1/progress.json": {
+        "sha256": "c3f9114ec9ee371594156732e5b7e44ac70b54263f4b445cfabbe78e205b3d8e",
+        "bytes": 1663
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-observed-070-group-images-v1/observation.json": {
+        "sha256": "82307ebd3a6e5714552414792ea4d87eafba7c97ae11ff7fc78695440e522a5e",
+        "bytes": 947
+      },
+      ".data/control/prepare-final-original-gates-v2.py": {
+        "sha256": "69e60399e27d2bf9182bd3b37506646e24d51af1868f511e949e4d3ac29a72de",
+        "bytes": 3516
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-edge-progress199-v1/0-playwright.log": {
+        "sha256": "fbb69ee30d7dfe4c006a0f9df7965dfc98a59cb9c3f8ef59c7a14146574eb595",
+        "bytes": 3744
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-edge-progress199-v1/1-error-context.md": {
+        "sha256": "1296e48ba6135ce5b4f3b32b0fe820278e47bb2ad389162acf7c993076c63a93",
+        "bytes": 5572
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-edge-progress199-v1/2-error-context.md": {
+        "sha256": "7dd99da2f3a8b07e6d9d2a6c182766c39c4ad1344a094a97b249cd1411dc320c",
+        "bytes": 13594
+      },
+      "文档/使用指南/截图/entity-group-full-star-preview-20261017.png": {
+        "sha256": "6b2c111ea8d6155c892620232aa5cd350c874551d03d72e37391a883b90ff493",
+        "bytes": 142010
+      },
+      "文档/使用指南/截图/entity-group-full-star-saved-20261017.png": {
+        "sha256": "dd35ee6adbd811a9b6215f1c0629cefddac204e376960f10cc0fd8ac759cf53a",
+        "bytes": 148548
       }
     },
     "unavailable_historical_screenshots": [
