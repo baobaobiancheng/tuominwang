@@ -105,6 +105,8 @@ test('Edge PDF completed pages can be paused, human drafted, resumed, reviewed a
   const live=await observedGet(page,`/api/jobs/${rootJob}/pdf-ocr/draft`);
   return live.pages.find((item:any)=>item.pageIndex===0)?.draft?.regions?.length;
  },{timeout:30000}).toBe(1);
+ await draft.getByRole('button',{name:'预览本页处理结果',exact:true}).click();
+ await expect(processedImage).toBeVisible();
  await expect(draft.getByRole('button',{name:'刷新已完成页面'})).toBeEnabled();
  let releaseStaleGet!:()=>void,staleGetFetched=false,staleGetFulfilled=false,staleDraftRevision=-1;
  const staleGate=new Promise<void>(resolve=>{releaseStaleGet=resolve;});
@@ -121,6 +123,8 @@ test('Edge PDF completed pages can be paused, human drafted, resumed, reviewed a
  await expect.poll(()=>staleGetFetched).toBe(true);
  const firstSave=page.waitForResponse(r=>r.request().method()==='PUT'&&new URL(r.url()).pathname===`/api/jobs/${rootJob}/pdf-ocr/draft`);
  await draft.getByRole('button',{name:'清除',exact:true}).first().click();
+ await expect(processedImage).toHaveCount(0);
+ await expect(firstImage).toBeVisible();
  const firstSaved=await firstSave;expect(firstSaved.status(),await firstSaved.text()).toBe(200);
  const firstDraftRevision=(await firstSaved.json()).draftRevision as number;expect(firstDraftRevision).toBeGreaterThan(staleDraftRevision);
  releaseStaleGet();
