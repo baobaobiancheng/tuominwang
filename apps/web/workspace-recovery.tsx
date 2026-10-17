@@ -25,7 +25,7 @@ export const RecoveryDraft=forwardRef<RecoveryDraftHandle,{doc:DocumentView;mark
    while((!loadedRef.current||claiming.current||busy.current)&&Date.now()<deadline)await new Promise(resolve=>setTimeout(resolve,25));
    if(!loadedRef.current||claiming.current||busy.current)throw Error('RECOVERY_SAVE_PENDING');
    if(renderedChange.current===ackedChange.current)return;
-   if(!writer.current){if(projectRecoveryRevision!==undefined&&receipt?.revision!==projectRecoveryRevision)throw Error('RECOVERY_CONFLICT');if(receipt&&receipt.revision!==projectRecoveryRevision)throw Error('RECOVERY_WRITER_CONFLICT');await claim(savedVersion.current,epoch.current,!!receipt);}
+   if(!writer.current){if(projectRecoveryRevision!==undefined&&receipt?.revision!==projectRecoveryRevision)throw Error('RECOVERY_CONFLICT');if(receipt&&receipt.revision!==projectRecoveryRevision)throw Error('RECOVERY_WRITER_CONFLICT');await claim(savedVersion.current,epoch.current);}
    if(renderedChange.current===ackedChange.current)return;
    const active=writer.current;if(!active)throw Error('RECOVERY_WRITER_CONFLICT');
    const snapshot=renderedDraft.current,change=renderedChange.current;
@@ -34,7 +34,7 @@ export const RecoveryDraft=forwardRef<RecoveryDraftHandle,{doc:DocumentView;mark
    savedVersion.current=saved.revision;active.sequence=sequence;active.recoveryRevision=saved.revision;ackedChange.current=change;ackedUiSequence.current=saveSequence.current;setReceipt(saved);
   }finally{leaving.current=false;}
  }}),[doc.id,doc.revision,receipt,projectRecoveryRevision,unconfirmed,api]);
- async function claim(recoveryRevision:number,n:number,acknowledgeCurrent=false){if(claiming.current)return;claiming.current=true;const initialChange=renderedChange.current;try{const claimed=await api<Writer>(writerPath,'POST',{recoveryRevision});if(n!==epoch.current)return;writer.current=claimed;if(acknowledgeCurrent&&renderedChange.current===initialChange){ackedChange.current=initialChange;ackedUiSequence.current=saveSequence.current;}setWrite(true);setNotice('自动保存已开启。');}finally{claiming.current=false;}}
+ async function claim(recoveryRevision:number,n:number){if(claiming.current)return;claiming.current=true;try{const claimed=await api<Writer>(writerPath,'POST',{recoveryRevision});if(n!==epoch.current)return;writer.current=claimed;setWrite(true);setNotice('自动保存已开启。');}finally{claiming.current=false;}}
  function closeIfAcked(){const current=writer.current;if(!current||busy.current||pending.current||ackedUiSequence.current!==saveSequence.current||ackedChange.current!==renderedChange.current||current.recoveryRevision!==savedVersion.current)return;
   // A queued pagehide request is not an acknowledgement. Only the server's
   // matched writer/epoch/sequence/revision transaction can mark this clean.
@@ -45,7 +45,7 @@ export const RecoveryDraft=forwardRef<RecoveryDraftHandle,{doc:DocumentView;mark
   return()=>{epoch.current++;};
  },[doc.id,doc.revision]);
  useEffect(()=>{const onPageHide=()=>closeIfAcked();window.addEventListener('pagehide',onPageHide);return()=>{window.removeEventListener('pagehide',onPageHide);closeIfAcked();};},[doc.id,doc.revision]);
- useEffect(()=>{if(!loaded||write||!unconfirmed||disabled||autoClaimAttempted.current)return;if(projectRecoveryRevision!==undefined&&receipt?.revision!==projectRecoveryRevision){setNotice('RECOVERY_CONFLICT');return;}if(receipt&&projectRecoveryRevision===undefined)return;autoClaimAttempted.current=true;const n=epoch.current;void claim(receipt?.revision??0,n,!!receipt).catch(e=>{if(n===epoch.current)setNotice(`自动保存尚未开启：${(e as Error).message}`);});},[loaded,receipt,write,unconfirmed,disabled,projectRecoveryRevision,doc.id,doc.revision]);
+ useEffect(()=>{if(!loaded||write||!unconfirmed||disabled||autoClaimAttempted.current)return;if(projectRecoveryRevision!==undefined&&receipt?.revision!==projectRecoveryRevision){setNotice('RECOVERY_CONFLICT');return;}if(receipt&&projectRecoveryRevision===undefined)return;autoClaimAttempted.current=true;const n=epoch.current;void claim(receipt?.revision??0,n).catch(e=>{if(n===epoch.current)setNotice(`自动保存尚未开启：${(e as Error).message}`);});},[loaded,receipt,write,unconfirmed,disabled,projectRecoveryRevision,doc.id,doc.revision]);
  useEffect(()=>{if(!write||!writer.current)return;const timer=window.setInterval(()=>{if(busy.current||pending.current)return;const current=writer.current;if(!current)return;void api<{ok:boolean}>(`${writerPath}/heartbeat`,'POST',{writer:wireWriter(current),recoveryRevision:current.recoveryRevision}).catch(e=>{if((e as {status?:number}).status===409){setWrite(false);setNotice('另一个窗口已接管这份草稿；请重新打开最新记录。');}});},15000);return()=>window.clearInterval(timer);},[write,doc.id,doc.revision]);
  useEffect(()=>{
   // Undo can restore the saved review (dirty=false) while the writer still
