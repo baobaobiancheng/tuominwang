@@ -6,6 +6,7 @@ import { buildApp } from '../apps/api/main.ts';
 import { tick } from '../apps/worker/main.ts';
 import { pool } from '../packages/adapters/db.ts';
 import { passwordHash, unseal } from '../packages/adapters/storage.ts';
+import { readPortableWorkspace } from '../packages/core/workspace-portable.ts';
 
 assert.ok(new URL(process.env.DATABASE_URL!).pathname.startsWith('/tmw_test_'));
 const app = await buildApp(), admin = new pg.Pool({ connectionString: process.env.MIGRATION_DATABASE_URL });
@@ -67,4 +68,39 @@ test('unified preview rebuilds ready children and projects the active local draf
   const portable = JSON.parse(unseal(projectRow.portable_state,`${projectRow.tenant_id}:${project}:portable-state`));
   assert.equal(portable.activePseudonymDrafts[active.id].hasVisitedPreview,true);
   assert.equal(portable.activePseudonymDrafts[sibling.id].hasVisitedPreview,true);
+  const exported = await req('POST',`/api/projects/${project}/portable/export`,{format:'secure-v2',password:'synthetic-preview-export'});
+  assert.equal(exported.statusCode,200,exported.body.slice(0,200));
+  const opened = await readPortableWorkspace(exported.rawPayload,{password:'synthetic-preview-export'});
+  for (const document of opened.snapshot.documents) {
+    const draft = portable.activePseudonymDrafts[document.id];
+    assert.equal(document.review.hasVisitedPreview,true);
+    assert.equal(document.review.pseudonymStyle,draft.style);
+    assert.deepEqual(document.review.pseudonymTypeActions,draft.typeActions);
+  }
+  const storedBeforeNoop = projectRow.portable_state;
+  const noop = await req('POST',`/api/projects/${project}/unified-aliases/prepare-preview`,{
+    revision:body.revision,documents:body.documents,active:{id:active.id,revision:active.revision,
+      contentHash:active.contentHash,localReviewDirty:true,marks:localMarks},
+  });
+  assert.equal(noop.statusCode,200,noop.body);
+  assert.equal(noop.json().revision,body.revision);
+  assert.equal((await admin.query('SELECT portable_state FROM projects WHERE id=$1',[project])).rows[0].portable_state,storedBeforeNoop);
+  const missingReady = await req('POST',`/api/projects/${project}/unified-aliases/prepare-preview`,{
+    revision:body.revision,documents:body.documents.filter((item:any)=>item.id!==sibling.id),
+    active:{id:active.id,revision:active.revision,contentHash:active.contentHash,localReviewDirty:true,marks:localMarks},
+  });
+  assert.equal(missingReady.statusCode,409,missingReady.body);
+  const explicit = await req('POST',`/api/projects/${project}/unified-aliases/prepare-preview`,{
+    revision:body.revision,documents:body.documents,active:{id:active.id,revision:active.revision,
+      contentHash:active.contentHash,localReviewDirty:true,marks:active.marks},
+  });
+  assert.equal(explicit.statusCode,200,explicit.body);
+  assert.deepEqual(explicit.json().previewMarks,active.marks);
+  const ignored = await req('POST',`/api/projects/${project}/unified-aliases/prepare-preview`,{
+    revision:body.revision,documents:body.documents,active:{id:active.id,revision:active.revision,
+      contentHash:active.contentHash,localReviewDirty:true,
+      marks:localMarks.map((mark:any)=>({...mark,decision:'ignore'}))},
+  });
+  assert.equal(ignored.statusCode,200,ignored.body);
+  assert.ok(ignored.json().previewMarks.every((mark:any)=>mark.decision==='ignore'));
 });
