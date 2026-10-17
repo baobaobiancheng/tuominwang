@@ -11,3 +11,5 @@ export function sourceApplyMarkdownExport(input:any,exportState:any):boolean;
 
 export function sourceWorkspaceDecisions(workspaceId:string,document:any,existing:any[],now?:string):any[];
 export function sourceWorkspaceCorrections(snapshot:any,now?:string):any[];
+
+export function sourceSelectiveEntityType(type:string):string;

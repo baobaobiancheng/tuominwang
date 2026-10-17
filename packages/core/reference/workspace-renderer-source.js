@@ -466,3 +466,5 @@ function EV(e2) {
   return [t2.length, a2, i2, n2.primary >>> 0, n2.secondary >>> 0].join(":");
 }
 export {WU as sourceDocxReview,YU as sourceDocxWorkspace,oV as sourcePdfReview,uV as sourceImageReview,dV as sourceVisualWorkspace,wV as sourceMarkdownReview,xV as sourceMarkdownDocument,EV as sourceOcrCacheSignature,vV as sourceMarkdownConsistent,gV as sourceApplyMarkdownExport,Bc as sourceWorkspaceDecisions,$c as sourceWorkspaceCorrections};
+
+export {cc as sourceSelectiveEntityType};

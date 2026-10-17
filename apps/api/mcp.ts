@@ -12,7 +12,7 @@ import {scoped,rows,sql,type DB} from '../../packages/adapters/db.ts';
 import {hash,seal,unseal,readOriginal,readArtifact,writeOriginal} from '../../packages/adapters/storage.ts';
 import {projectScope,requirePermission,denied} from './access.ts';
 import {aiDiagnosticZip,cleanAiDiagnosticEvent,safeAiDiagnosticCode,aiDiagnosticToolOutcome} from '../../packages/core/ai-diagnostics.ts';
-import {MCP_PROTOCOL,negotiateMcpProtocol,taskStates,mcpDispatch,externalTask,recognitionNotice,reviewDeliveryProjection,cloudDocumentIds,newOpaqueId,taskUUID,gatewayMethods,collaborationMethods,connectorMethods, type CollabTask,type Caller,type ProtocolSession,type Authorization,type Delivery} from '../../packages/core/mcp-tools.ts';
+import {MCP_PROTOCOL,negotiateMcpProtocol,taskStates,mcpDispatch,externalTask,reportOnlyAiCompletion,recognitionNotice,reviewDeliveryProjection,cloudDocumentIds,newOpaqueId,taskUUID,gatewayMethods,collaborationMethods,connectorMethods, type CollabTask,type Caller,type ProtocolSession,type Authorization,type Delivery} from '../../packages/core/mcp-tools.ts';
 import {parseOffice} from '../../packages/core/office.ts';
 import {parseRestorationMapping,restoreDocx,restoreMarkdown,inspectRestorationTokens,emittedRestorationTokens,type RestorationPlan} from '../../packages/core/restoration-files.ts';
 import {getPreset,getProfileCatalogue,getProjectPresetPolicy} from './presets.ts';
@@ -1088,7 +1088,7 @@ export function registerMcpRoutes(app:FastifyInstance,applyConfiguration?:Collab
   }
   if(name==='submit_reviewed_document')return submit(req,a.job_id,a,caller);
   if(name==='open_lawbot_restore'){const t=await load(req,a.job_id,caller),restored=await restore(req,t.jobId,t.revision,a.round_id,caller);return {...externalTask(restored),restorationStarted:true,nextAction:'check_restore_completion',reviewUrl:`?collab=${t.jobId}`};}
-  if(name==='continue_current_document_review'){const t=await load(req,a.job_id,caller);const updated=await change(req,t.jobId,t.revision,caller,task=>{state(task,['round_completed','sanitized_artifact_ready']);if(!task.deliveries.length&&!task.combined)fail('ARTIFACT_NOT_AVAILABLE',409);if(task.state==='sanitized_artifact_ready')return UNCHANGED;task.state='sanitized_artifact_ready';return null;});return externalTask(updated.task);}
+  if(name==='continue_current_document_review'){const t=await load(req,a.job_id,caller);const updated=await change(req,t.jobId,t.revision,caller,task=>{state(task,['round_completed','sanitized_artifact_ready']);if(reportOnlyAiCompletion(task))fail('INVALID_STATE',409);if(!task.deliveries.length&&!task.combined)fail('ARTIFACT_NOT_AVAILABLE',409);if(task.state==='sanitized_artifact_ready')return UNCHANGED;task.state='sanitized_artifact_ready';return null;});return externalTask(updated.task);}
   if(name==='check_restore_completion')return wait(req,a.job_id,a,caller,true);
   fail('MCP_UNKNOWN_TOOL',400);
  }

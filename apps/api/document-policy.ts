@@ -9,7 +9,7 @@ import {seal} from '../../packages/adapters/storage.ts';
 import {documentConfigurationSchema,documentPolicySchema,type DocumentConfiguration} from '../../packages/contracts/document-policy.ts';
 import type {Profile,RuleSet} from '../../packages/contracts/presets.ts';
 import {getPreset,getProjectPresetPolicy,invalidatePresetProject} from './presets.ts';
-import {defaultProfile,profileForFormat} from '../../packages/core/presets.ts';
+import {defaultProfile,profileForFormat,applyConfigurationProfileFields} from '../../packages/core/presets.ts';
 import {requirePermission,projectScope} from './access.ts';
 import {resolveDocumentPolicy} from '../../packages/adapters/document-policy.ts';
 function fail(message:string,statusCode=409):never{throw Object.assign(new Error(message),{statusCode});}
@@ -58,33 +58,7 @@ export async function applyDocumentConfiguration(db:DB,req:FastifyRequest,docume
     const allowed=d.source_format==='doc'?['doc','docx','md']:d.source_format==='wps'?['docx','md']:d.source_format==='docx'?['docx','md']:d.source_format==='pdf'?['pdf','docx','md']:fileKind==='image'?['png','md']:d.source_format==='txt'?['txt','md']:[d.source_format];
     if(config.outputFormats.some(f=>!allowed.includes(f)))fail('UNSUPPORTED_OUTPUT_FORMAT',400);
   }
-  if(!legacyEffective){
-  if(config.entityTypes)profile.enabledEntityTypeIds=config.entityTypes;
-  if(config.pseudonymRules){
-    const expected=Object.values(config.pseudonymRules).some(v=>v!=="pseudonym")?"selective_pseudonym":"custom_pseudonym";
-    config.exportMode??=expected;
-    profile.pseudonymTypeActions=config.pseudonymRules;
-  }
-  if(config.exportMode){
-    if(fileKind==='pdf'||fileKind==='image'){
-      profile[fileKind].defaultMode=config.exportMode==='full_star'?'default_star':config.exportMode;
-      if(config.exportMode==='full_star')profile.pseudonymTypeActions=Object.fromEntries(profile.enabledEntityTypeIds.map(k=>[k,'full_star']));
-    }else profile[fileKind].defaultMode=config.exportMode;
-    if(fileKind==='pdf')profile.batch.pdfDefaultMode=profile.pdf.defaultMode;
-    else if(fileKind==='image')profile.batch.imageDefaultMode=profile.image.defaultMode;
-    else if(fileKind==='docx')profile.batch.docxDefaultMode=profile.docx.defaultMode;
-    else profile.batch.markdownDefaultMode=profile.markdown.defaultMode;
-  }
-  if(config.maskStyle){profile.pdf.maskStyle=config.maskStyle;profile.image.maskStyle=config.maskStyle;}
-  if(config.removeImages!==undefined)profile.docx.removeImages=config.removeImages;
-  if(config.removeHeaderFooter!==undefined)profile.docx.removeHeaderFooter=config.removeHeaderFooter;
-  if(config.commentHandlingMode)profile.docx.commentHandlingMode=config.commentHandlingMode;
-  if(config.outputFormats){
-    const markdown=config.outputFormats.includes('md');profile.docx.exportMarkdown=markdown;profile.pdf.exportMarkdown=markdown;profile.image.exportMarkdown=markdown;
-    profile.pdf.exportPdfAsDocx=d.source_format==='pdf'&&config.outputFormats.includes('docx');
-    profile.batch.exportMarkdownByKind={docx:markdown,pdf:markdown,image:markdown};
-  }
-  }
+  if(!legacyEffective)applyConfigurationProfileFields(profile,config,d.source_format);
   // The file owns a complete immutable copy. No personal template or other material is modified.
   profile.id=randomUUID();profile.source='user';profile.readonly=false;
   const revision=d.document_policy_revision+1,policy=documentPolicySchema.parse({revision,profile,...baseProfile?{baseProfile}: {},ruleset,configuration:config,batch});

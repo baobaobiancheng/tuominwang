@@ -131,6 +131,13 @@ test('validated AI return archives immutable project receipt and verified privat
   t=(await req('GET',`/api/ai-collab/tasks/${job}`)).json();
   const reviewed=await req('POST',`/api/ai-collab/tasks/${job}/review-result`,{revision:t.revision,roundId:received.roundId,approved:true});
   assert.equal(reviewed.statusCode,200,reviewed.body);
+  assert.equal((await tool('continue_current_document_review',{job_id:job})).error,'INVALID_STATE');
+  t=(await req('GET',`/api/ai-collab/tasks/${job}`)).json();
+  const restorationAuthorization=await req('POST',`/api/ai-collab/tasks/${job}/authorize-restoration`,{revision:t.revision,allowRestorePath:true});
+  assert.equal(restorationAuthorization.statusCode,200,restorationAuthorization.body);
+  const restoredRound=await tool('open_lawbot_restore',{job_id:job,round_id:received.roundId});
+  assert.equal(restoredRound.status,'round_completed',JSON.stringify(restoredRound));
+  assert.ok((await req('GET',`/api/ai-collab/tasks/${job}`)).json().rounds[0].restoredArtifactId);
   assert.equal((await tool('continue_current_document_review',{job_id:job})).status,'sanitized_artifact_ready');
   const next=await tool('receive_sanitized_document',{job_id:job,output_format:'md'});
   assert.notEqual(next.roundId,received.roundId);

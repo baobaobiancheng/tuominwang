@@ -6,16 +6,105 @@ import { z } from "zod";
 import { id, reviewSchema, REVIEW_BODY_BYTES, MAX_MARKS, markSchema, type Mark } from "../../packages/contracts/index.ts";
 import { scoped, rows, sql } from "../../packages/adapters/db.ts";
 import { runProcessing } from "../../packages/adapters/processing.ts";
-import { mappingsForMarks } from "./mappings.ts";
+import { mappingsForMarks,resolvePolicyMappings } from "./mappings.ts";
 import { saveReview } from "./reviews.ts";
 import { isDeepStrictEqual } from "node:util";
 import { projectScope } from "./access.ts";
+import {isWordFormat} from '../../packages/core/document-format.ts';
+import {defaultProfile,profileForFormat} from '../../packages/core/presets.ts';
+import {sourceModeFlags,sourceNormalizeMode,type SourceMode} from '../../packages/core/reference/batch-mode-source.js';
+import {documentPolicySchema} from '../../packages/contracts/document-policy.ts';
+import {resolveDocumentPolicy} from '../../packages/adapters/document-policy.ts';
+import {readUnifiedAliasState} from '../../packages/adapters/unified-aliases.ts';
+import {seal,unseal,hash} from '../../packages/adapters/storage.ts';
+import {hydrateEntityCorrections} from '../../packages/adapters/entity-corrections.ts';
+import {semanticEntityValue} from '../../packages/core/entity-corrections.ts';
+import {canonicalRuleEntityType} from '../../packages/core/presets.ts';
+import {sourceSelectiveEntityType} from '../../packages/core/reference/workspace-renderer-source.js';
+import {applyReplacementPolicies} from '../../packages/core/replacement-policies.ts';
+import {profileReplacementPolicies,finalizeProfileReplacements} from '../../packages/core/profile-recognition.ts';
+import {requirePermission} from './access.ts';
+import {getProjectPresetPolicy} from './presets.ts';
 import { reviewMarks } from "../../packages/core/redaction.ts";
 import {validateEntityGeometryPolicy}from'../../packages/adapters/entity-geometry.ts';
 import{readReviewProvenance,readReviewProvenanceArchive}from'../../packages/adapters/review-provenance.ts';import{addReviewEntityHints,type ReviewEntityHint}from'../../packages/core/review-entity-slots.ts';
 
 function fail(message: string, statusCode = 409): never { throw Object.assign(new Error(message), { statusCode }); }
 export function registerReviewTools(app: FastifyInstance) {
+  const modeBatchSchema=z.object({documents:z.array(z.object({id,revision:z.number().int().nonnegative()}).strict()).min(1),scope:z.enum(['docx','markdown','visual']),mode:z.enum(['default_star','full_star','default_pseudonym','custom_pseudonym','selective_pseudonym']),confirmOverride:z.boolean().default(false)}).strict();
+  for(const action of ['preview','apply'] as const)app.post(`/api/projects/:id/review-mode-batch/${action}`,async req=>{
+    const project=id.parse((req.params as any).id),input=modeBatchSchema.parse(req.body),ids=input.documents.map(item=>item.id);
+    if(new Set(ids).size!==ids.length)fail('INVALID_INPUT',400);
+    return projectScope(req,{project},['view_original','review'],async db=>{
+      const [p]=await rows(db,sql`SELECT * FROM projects WHERE id=${project} FOR UPDATE`);
+      if(!p)fail('NOT_FOUND',404);
+      const imported=p.portable_state?JSON.parse(unseal(p.portable_state,`${req.user.tenant_id}:${project}:portable-state`)):null;
+      const docs=await rows(db,sql`SELECT * FROM documents WHERE project_id=${project} AND id IN (${sql.join(ids.map(value=>sql`${value}`),sql`,`)}) ORDER BY id FOR UPDATE`);
+      if(docs.length!==ids.length)fail('NOT_FOUND',404);
+      const versions=new Map(input.documents.map(item=>[item.id,item.revision]));
+      if(docs.some(d=>d.revision!==versions.get(d.id)))fail('VERSION_CONFLICT');
+      const aliasState=await readUnifiedAliasState(db,req.user.tenant_id,project),projectPolicy=getProjectPresetPolicy(p);
+      const result:{id:string;revision:number;previousMode:SourceMode;mode:SourceMode;status:'apply'|'unchanged'|'scope-skipped'|'selective-skipped'}[]=[];
+      const selected:{doc:any;prior:ReturnType<typeof resolveDocumentPolicy>;mode:SourceMode}[]=[];
+      for(const d of docs){
+        const format=String(d.source_format),kind=isWordFormat(format)?'docx':format==='pdf'||['png','jpg','jpeg'].includes(format)?'visual':['md','markdown'].includes(format)?'markdown':'other',prior=resolveDocumentPolicy(d,projectPolicy);
+        const before=(prior.documentPolicy?.configuration.exportMode??profileForFormat(prior.presetPolicy.profile?.settings??defaultProfile(),format,prior.batchMode).defaultMode) as SourceMode;
+        const normalized=sourceNormalizeMode(input.mode,{visual:kind==='visual'});
+        let status:typeof result[number]['status']='apply';
+        if(kind!==input.scope)status='scope-skipped';
+        else if(sourceModeFlags(input.mode).selective){
+          // at2 creates a keyed entry for an admitted entity even when its action is partial_star/mask.
+          const currentText=unseal(d.content,`${d.tenant_id}:${d.project_id}:${d.id}`);
+          if(hash(currentText)!==d.content_hash)fail('SOURCE_MISMATCH');
+          const currentKey=(d.marks as Mark[]).some(mark=>mark.decision!=='ignore'&&sourceSelectiveEntityType(mark.rawEntityType??canonicalRuleEntityType(mark.kind))!=='other'&&currentText.slice(mark.start,mark.end).trim().length>0);
+          const registered=(aliasState.frame?.state.customConsumers??[]).some(entry=>entry.documentIds.includes(d.id));
+          const oldId=Object.entries(imported?.documentIdMap??{}).find(([,current])=>current===d.id)?.[0];
+          const old=oldId&&imported?.importedSnapshot?.documents?.find((entry:any)=>entry.id===oldId);
+          const sourceBound=oldId&&imported?.referenceSourceHashes?.[oldId]===d.source_hash;
+          const restored=sourceBound&&(await rows(db,sql`SELECT id FROM audit WHERE project_id=${project} AND object_id=${d.id} AND event='portable_draft_restored' LIMIT 1`)).length>0;
+          const importedKey=restored&&old?.review?.pseudonymStyle==='selective'&&Array.isArray(old.review.pseudonymEntries)&&old.review.pseudonymEntries.some((entry:any)=>typeof entry?.key==='string'&&entry.key.length>0);
+          if(before!=='selective_pseudonym'||!currentKey&&!registered&&!importedKey)status='selective-skipped';
+        }
+        if(status==='apply'&&before===normalized)status='unchanged';
+        result.push({id:d.id,revision:d.revision,previousMode:before,mode:normalized,status});
+        if(status==='apply'||status==='unchanged')selected.push({doc:d,prior,mode:normalized});
+      }
+      if(action==='preview')return {documents:result};
+      if(result.some(item=>item.status==='apply')&&!input.confirmOverride)fail('MODE_OVERRIDE_CONFIRMATION_REQUIRED');
+      for(const item of selected){
+        const d=item.doc;
+        if(d.state!=='review')fail(d.state==='outdated'?'POLICY_CHANGED':'DETECTION_INCOMPLETE');
+        const old=item.prior.documentPolicy,profile=structuredClone(old?.profile??item.prior.presetPolicy.profile?.settings??defaultProfile()),config={...(old?.configuration??{}),exportMode:item.mode};
+        const key=isWordFormat(d.source_format)?'docx':d.source_format==='pdf'?'pdf':['png','jpg','jpeg'].includes(d.source_format)?'image':'markdown';
+        if(key==='pdf'||key==='image'){
+          profile[key].defaultMode=item.mode as Exclude<SourceMode,'full_star'>;
+          profile.batch[`${key}DefaultMode`]=item.mode as Exclude<SourceMode,'full_star'>;
+        }else{
+          profile[key].defaultMode=item.mode;
+          profile.batch[`${key}DefaultMode`]=item.mode;
+        }
+        const nextRevision=d.document_policy_revision+1;
+        const policy=documentPolicySchema.parse({revision:nextRevision,profile,...old?.baseProfile?{baseProfile:old.baseProfile}:{},ruleset:item.prior.presetPolicy.ruleset?.settings??null,configuration:config,batch:item.prior.batchMode});
+        const sealed=seal(JSON.stringify(policy),`${d.tenant_id}:${d.project_id}:${d.id}:document-policy`);
+        const text=unseal(d.content,`${d.tenant_id}:${d.project_id}:${d.id}`);
+        if(hash(text)!==d.content_hash)fail('SOURCE_MISMATCH');
+        const semanticDoc=hydrateEntityCorrections(d),policies=profileReplacementPolicies(profile,d.source_format,item.prior.batchMode,item.mode);
+        const semanticValue=(mark:Mark,index:number)=>semanticEntityValue(semanticDoc,mark,text,index);
+        let replacements=applyReplacementPolicies(text,d.marks,policies,[],{semanticValue});
+        if(replacements.aliasRequests.length){
+          await requirePermission(db,project,['view_mapping']);
+          const mappings=await resolvePolicyMappings(db,{...d,document_policy:sealed,document_policy_revision:nextRevision},req.user.id,replacements.aliasRequests);
+          replacements=applyReplacementPolicies(text,d.marks,policies,mappings,{semanticValue});
+          if(replacements.aliasRequests.length)fail('MAPPING_MISMATCH',400);
+        }
+        const nextMarks=finalizeProfileReplacements(replacements.marks,d.anchors,profile,d.source_format,item.prior.batchMode,item.mode);
+        await rows(db,sql`UPDATE documents SET document_policy=${sealed},document_policy_revision=${nextRevision} WHERE id=${d.id}`);
+        const saved=await saveReview(db,req.user.id,{...d,document_policy:sealed,document_policy_revision:nextRevision},nextMarks,15000);
+        result.find(row=>row.id===d.id)!.revision=saved.revision;
+      }
+      return {documents:result};
+    });
+  });
   const batchSchema = z.object({ documents: z.array(z.object({ id, revision: z.number().int().nonnegative() })).min(1).max(20), kind: markSchema.shape.kind.optional(), rawEntityType:markSchema.shape.rawEntityType, whitelist: z.boolean().default(false), decision: z.enum(["redact", "ignore"]).default("redact") });
   for (const mode of ["preview", "apply", "undo"] as const) app.post(`/api/projects/:id/review-batch/${mode}`, async req => {
     const project = id.parse((req.params as any).id), input = batchSchema.parse(req.body), ids = input.documents.map(d => d.id);

@@ -79,7 +79,7 @@ export function pseudonymTableNames(profile: Profile, filenames: string[], batch
   const tableName=(value:string|undefined,filename:string)=>{
     if(value===undefined)return safeExportName(profile.batch.pseudonymTableNameTemplates[batchMode],filename,extension);
     // A one-off name is literal. Only saved profile templates expand {fileName}.
-    if(!value.isWellFormed()||!value.trim()||value.length>80||/[<>:"/\\|?*\x00-\x1f\x7f]/u.test(value)||value==='.'||value==='..')throw new Error('INVALID_EXPORT_NAME');
+    if(!validLiteralTableName(value))throw new Error('INVALID_EXPORT_NAME');
     return (/^(CON|PRN|AUX|NUL|COM[1-9]|LPT[1-9])(?:\.|$)/iu.test(value)?'_':'')+value+extension;
   };
   const wanted = batchMode === "unifiedBatch"
@@ -89,3 +89,6 @@ export function pseudonymTableNames(profile: Profile, filenames: string[], batch
   const used = new Set<string>();
   return wanted.map(original => { let result = original, suffix = 2; while (used.has(result.toLocaleLowerCase("zh-CN"))) result = original.slice(0, -extension.length) + `_${suffix++}` + extension; used.add(result.toLocaleLowerCase("zh-CN")); return result; });
 }
+// Source workspace metadata can contain an arbitrary string; only filesystem-safe
+// names are used for an actual download. The archived source string stays intact.
+export function validLiteralTableName(value:unknown):value is string{return typeof value==='string'&&value.isWellFormed()&&!!value.trim()&&value.length<=80&&!/[<>:"/\\|?*\x00-\x1f\x7f]/u.test(value)&&value!=='.'&&value!=='..';}

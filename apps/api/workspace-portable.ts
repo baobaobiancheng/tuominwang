@@ -27,7 +27,9 @@ import { verifiedDocumentSource } from "../../packages/adapters/document-source.
 import { attestPortableSource,verifyPortableSource } from "../../packages/adapters/portable-source.ts";
 import type { FastifyInstance, FastifyRequest } from "fastify";
 import { resolveDocumentPolicy } from "../../packages/adapters/document-policy.ts";
-import { documentPolicySchema } from "../../packages/contracts/document-policy.ts";
+import { documentPolicySchema, documentConfigurationSchema, documentTypeSchema } from "../../packages/contracts/document-policy.ts";
+import { defaultProfile, applyConfigurationProfileFields } from "../../packages/core/presets.ts";
+import {sourceNormalizeMode,type SourceMode} from '../../packages/core/reference/batch-mode-source.js';
 import { readProjectPresets } from "../../packages/adapters/project-presets.ts";
 import { restorePortableDraft } from "../../packages/adapters/portable-draft.ts";
 import { applyReplacementPolicies } from "../../packages/core/replacement-policies.ts";
@@ -93,6 +95,24 @@ function decode(value: string) { const b = Buffer.from(value, "base64"); if (b.l
 type WorkspaceAsset = Buffer | TmmFileRef;
 const assetHash = (asset: WorkspaceAsset) => Buffer.isBuffer(asset) ? hash(asset) : asset.sha256;
 const assetBytes = (asset: WorkspaceAsset) => Buffer.isBuffer(asset) ? asset.length : asset.bytes;
+function importedReferenceConfiguration(document:any){
+  const selected=String(document.route?.selectedKey??'');
+  const documentType=documentTypeSchema.safeParse(selected).success?selected:['complaint','reply','complaint_reply'].includes(selected)?'pleading':'auto';
+  const primary=document.fileKind==='docx'?'docx':document.fileKind==='pdf'?'pdf':document.fileKind==='image'?'png':'md';
+  return documentConfigurationSchema.parse({
+    documentType,
+    ...document.exportState?.mode?{exportMode:sourceNormalizeMode(document.exportState.mode as SourceMode,{visual:['pdf','image'].includes(document.fileKind)})}:{},
+    ...document.fileKind!=='markdown'?{outputFormats:[primary,...document.exportState?.exportMarkdown?['md']:[],...document.fileKind==='pdf'&&document.exportState?.exportDocx?['docx']:[]]}:{},
+    ...['pdf','image'].includes(document.fileKind)&&document.exportState?.maskStyle?{maskStyle:document.exportState.maskStyle}:{},
+    ...typeof document.exportState?.pseudonymTableName==='string'&&document.exportState.pseudonymTableName.isWellFormed()?{pseudonymTableName:document.exportState.pseudonymTableName}:{},
+  });
+}
+function importedReferencePolicy(document:any,presetPolicy:any){
+  const baseProfile=presetPolicy.profile?.settings??defaultProfile(),configuration=importedReferenceConfiguration(document);
+  const profile=applyConfigurationProfileFields(structuredClone(baseProfile),configuration,fileFormat(document.fileName));
+  profile.id=randomUUID();profile.source='user';profile.readonly=false;
+  return documentPolicySchema.parse({revision:1,profile,baseProfile,ruleset:presetPolicy.ruleset?.settings??null,configuration,batch:false});
+}
 async function smallAsset(asset: WorkspaceAsset, expectedHash: string, limit = FILE_MAX_BYTES) {
   if (Buffer.isBuffer(asset)) { if (asset.length > limit || hash(asset) !== expectedHash) fail("PORTABLE_SOURCE_MISMATCH", 400); return asset; }
   if (asset.bytes > limit || asset.sha256 !== expectedHash) fail("PORTABLE_SOURCE_MISMATCH", 400);
@@ -363,12 +383,16 @@ async function importOpenedWorkspace(req: any, input: {name:string;choices:Recor
     if (opened.kind === "native") {
       const snapshot = opened.snapshot; unifiedAliasState=snapshot.project.unifiedAliasState??null;mappingLibraryBackup=snapshot.project.mappingLibrary; dictionary = dictionarySchema.parse({ revision: 0, entries: snapshot.project.dictionary }).entries; presetPolicy = snapshot.project.presetPolicy == null ? null : projectPresetSchema.parse(snapshot.project.presetPolicy); documents = snapshot.documents.map((d: any) => nativeDocument.parse(d)); mappings = z.array(z.object({ id, token: z.string().refine(validAliasToken), value: z.string().min(1).refine(v=>v.isWellFormed()), kind: markSchema.shape.kind,rawEntityType:markSchema.shape.rawEntityType, identities:z.array(z.object({kind:markSchema.shape.kind,rawEntityType:markSchema.shape.rawEntityType}).strict().refine(v=>v.rawEntityType===undefined||v.kind==="自定义")).optional(),inherited:z.boolean().optional(),forms:z.array(z.string().min(1).refine(v=>v.isWellFormed())).optional(), ordinal: z.number().int().min(1).max(MAX_MAPPING_ENTRIES), version: z.number().int().positive(),groupId:id.optional(),active:z.boolean().optional(),adoptedLegacyMappingId:id.optional() }).passthrough().refine(m=>m.rawEntityType===undefined||m.kind==="自定义")).parse(snapshot.mappings); sources = opened.sources; retainedAssets = snapshot.project.importedPortable?.restoredDraftAssets ?? [];retainedNormalized=snapshot.project.importedPortable?.retainedNormalizedSources??[]; portableState = { format: snapshot.format, schemaVersion: snapshot.schemaVersion, importedSnapshot: snapshot, importedAt: new Date().toISOString(), acceptance: "re-recognition-and-review-required" };
     } else {
-      const snapshot = opened.workspace.snapshot;unifiedAliasState=snapshot.projectModeSnapshot?{version:1,enabled:true,state:snapshot.projectModeSnapshot,inheritance:snapshot.inheritedPseudonymProfile}:null; sources = opened.workspace.sources; documents = snapshot.documents.map((d: any) => ({ id: d.id, name: d.fileName, format: fileFormat(d.fileName), content: "", contentHash: hash(""), sourceEntry: d.sourceEntry, sourceHash: assetHash(sources.get(d.sourceEntry)!), marks: [], revision: 0, state: "queued", anchors: [], coverage: [], pages: [], pageReview: null, recognition: {}, nerEnabled: false,documentPolicy:d.nativeDocumentPolicy??null,entityCorrectionsArchive:d.entityCorrectionsArchive,referenceCanonicalHash:hash(d.detection.documentText??''),...d.fileKind==='pdf'?{pageRotationState:pageRotationStateSchema.parse({version:1,rotations:Object.fromEntries(Object.entries(d.review.pageRotations??{}).map(([page,angle])=>[Number(page)-1,angle])),manualOnlyPages:(d.review.manualOnlyRotationPages??[]).map((page:number)=>page-1)})}:{} })); const inherited=await checked(()=>reviewProfileMappings(opened.workspace,input.choices));mappings=inherited.mappings.map((m,i)=>({...m,id:randomUUID(),ordinal:i+1,version:1}));presetPolicy=await checked(()=>referenceWorkspacePolicy(opened.workspace,inherited));portableState = { format: opened.workspace.format, importedSnapshot: snapshot,reviewInheritance:inherited.profile,referenceSourceHashes:Object.fromEntries(documents.map(d=>[d.id,d.sourceHash])), importedAt: new Date().toISOString(), acceptance: "re-recognition-and-review-required" };
+    const snapshot = opened.workspace.snapshot;unifiedAliasState=snapshot.projectModeSnapshot?{version:1,enabled:true,state:snapshot.projectModeSnapshot,inheritance:snapshot.inheritedPseudonymProfile}:null; sources = opened.workspace.sources; const inherited=await checked(()=>reviewProfileMappings(opened.workspace,input.choices));mappings=inherited.mappings.map((m,i)=>({...m,id:randomUUID(),ordinal:i+1,version:1}));presetPolicy=await checked(()=>referenceWorkspacePolicy(opened.workspace,inherited));documents = snapshot.documents.map((d: any) => ({ id: d.id, name: d.fileName, format: fileFormat(d.fileName), content: "", contentHash: hash(""), sourceEntry: d.sourceEntry, sourceHash: assetHash(sources.get(d.sourceEntry)!), marks: [], revision: 0, state: "queued", anchors: [], coverage: [], pages: [], pageReview: null, recognition: {}, nerEnabled: false,documentPolicy:d.nativeDocumentPolicy??importedReferencePolicy(d,presetPolicy),entityCorrectionsArchive:d.entityCorrectionsArchive,referenceCanonicalHash:hash(d.detection.documentText??''),...d.fileKind==='pdf'?{pageRotationState:pageRotationStateSchema.parse({version:1,rotations:Object.fromEntries(Object.entries(d.review.pageRotations??{}).map(([page,angle])=>[Number(page)-1,angle])),manualOnlyPages:(d.review.manualOnlyRotationPages??[]).map((page:number)=>page-1)})}:{} }));portableState = { format: opened.workspace.format, importedSnapshot: snapshot,reviewInheritance:inherited.profile,referenceSourceHashes:Object.fromEntries(documents.map(d=>[d.id,d.sourceHash])), importedAt: new Date().toISOString(), acceptance: "re-recognition-and-review-required" };
     }
     if (documents.length > 10000 || new Set(documents.map(d => d.id)).size !== documents.length) fail("PORTABLE_DUPLICATE_DOCUMENT", 400);await checked(()=>validatePortableMappingHistory(mappings));
     let journal:WorkspaceImportJournal|undefined;
     try{return await scoped(req.user.id, req.user.tenant_id, async db => {
       const project = randomUUID(), docIds = Object.fromEntries(documents.map(d => [d.id, randomUUID()])), mappingIds = Object.fromEntries(mappings.map(m => [m.id, randomUUID()])); portableState.documentIdMap = docIds; portableState.restoredDraftAssets = [];portableState.unlockRequired=[];portableState.normalizationRequired=[];portableState.retainedNormalizedSources=[];
+      // The source metadata remains bound to the verified source and the remapped document ID.
+      portableState.referenceDocumentMetadata=opened.kind==='reference'
+        ?Object.fromEntries(opened.workspace.snapshot.documents.map((d:any)=>[docIds[d.id],{sourceHash:assetHash(sources.get(d.sourceEntry)!),relativePath:d.relativePath,route:d.route,exportState:d.exportState,initialConfiguration:importedReferenceConfiguration(d)}]))
+        :Object.fromEntries(documents.flatMap((d:any)=>{const original=opened.snapshot.project.importedPortable?.referenceDocumentMetadata?.[d.id];return original&&original.sourceHash===d.sourceHash?[[docIds[d.id],original]]:[];}));
       await rows(db, sql`INSERT INTO projects(id,tenant_id,owner_id,name,dictionary,dictionary_revision,preset_policy,preset_revision,portable_state) VALUES(${project},${req.user.tenant_id},${req.user.id},${input.name},${seal(JSON.stringify(dictionary), `${req.user.tenant_id}:${project}:dictionary`)},0,${presetPolicy ? seal(JSON.stringify({ ...presetPolicy, revision: 0 }), `${req.user.tenant_id}:${project}:presets`) : null},0,${seal(JSON.stringify(portableState), `${req.user.tenant_id}:${project}:portable-state`)})`);
       journal={version:1,id:randomUUID(),tenant:req.user.tenant_id,user:req.user.id,project,planned:Object.values(docIds),owners:[]};
       await beginWorkspaceImport(db,journal);
