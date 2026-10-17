@@ -32,7 +32,7 @@ import {ProcessingObservability} from "./processing-observability.tsx";
 import {ReferenceDictionaryFiles} from "./reference-dictionary.tsx";
 import {RestorationBatch} from "./restoration-batch.tsx";
 import {FeedbackPanel} from "./feedback.tsx";
-import {RecoveryDraft,RecentWorkspaces} from "./workspace-recovery.tsx";
+import {RecoveryDraft,RecentWorkspaces,type ManualRecoveryDraft,type RecoveryDraftHandle} from "./workspace-recovery.tsx";
 import {NetworkPolicy} from "./network-policy.tsx";
 import { AutomaticVisual } from "./automatic-visual.tsx";
 import { AiCollaboration } from "./ai-collab.tsx";
@@ -369,6 +369,10 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
   async function flushPdfDraft(){if(pdfDraftRef.current&&!await pdfDraftRef.current.flush())throw new Error("运行中 PDF 草稿尚未保存，操作未执行；请修正草稿错误后重试。");}
   const currentDoc = useRef(doc), currentProject = useRef(project);
   const lastWorkspaceDocument = useRef<{project:string;id:string}|null>(null);
+  const restoredWorkspaceDrafts=useRef(new Map<string,{revision:number;marks:Mark[];pageReview?:PageReview;manualDraft?:ManualRecoveryDraft|null}>());
+  const recoveryDraftRef=useRef<RecoveryDraftHandle|null>(null);
+  const[manualRecovery,setManualRecovery]=useState<ManualRecoveryDraft|null>(null),[manualRestoreEpoch,setManualRestoreEpoch]=useState(0);
+  const manualRecoveryRef=useRef(manualRecovery);manualRecoveryRef.current=manualRecovery;
   const visualRequests = useRef(new Map<string,string>());
   const allowed = (permission: Permission) => (projects.find(p => p.id === project)?.permissions ?? []).includes(permission);
   const docAllowed = (permission: Permission) => (doc?.permissions ?? []).includes(permission);
@@ -436,10 +440,12 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
     setMoreDocs(next.length === 20);
   }
   async function openDoc(id: string, focus?: {start:number;end:number}, snapshot?: DocumentView, onlyIfCurrent = false) {
-    if(currentDoc.current?.id!==id)await flushPdfDraft();
+    if(currentDoc.current?.id!==id){await flushPdfDraft();await recoveryDraftRef.current?.flush();}
     const d = snapshot ?? await api<DocumentView>("/documents/" + id + (focus?`?offset=${Math.max(0,focus.start-256)}`:""));
     if (d.id !== id) throw new Error("材料状态已变化，请重新打开。");
-    if (onlyIfCurrent && (currentDoc.current?.id !== id || currentProject.current !== d.project_id || dirtyRef.current)) return;
+    if (onlyIfCurrent && (currentDoc.current?.id !== id || currentProject.current !== d.project_id || dirtyRef.current||manualRecoveryRef.current)) return;
+    const recovered=restoredWorkspaceDrafts.current.get(id);
+    if(recovered&&recovered.revision!==d.revision){restoredWorkspaceDrafts.current.clear();throw new Error('RECOVERY_OUTDATED');}
     lastWorkspaceDocument.current={project:d.project_id,id:d.id};
     const enteredDocument = currentDoc.current?.id !== id || currentProject.current !== d.project_id;
     const pageFocus=!!focus&&d.anchors?.some(a=>a.start<focus.end&&a.end>focus.start&&(a.kind==='page'||a.kind==='object'&&a.object==='image-text'));
@@ -448,12 +454,15 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
     setDoc(d);
     setExportMappingName('');
     setDocxFocus(focus??null);
-    setMarks(d.marks);
-    setDirty(false);
+    if(recovered)restoredWorkspaceDrafts.current.delete(id);
+    setManualRecovery(recovered?.manualDraft??(enteredDocument||d.revision!==currentDoc.current?.revision?null:manualRecoveryRef.current));
+    if(recovered?.manualDraft)setManualRestoreEpoch(value=>value+1);
+    setMarks(recovered?.marks??d.marks);
+    setDirty(!!recovered);
     setSelection(null);
     setConflict(false);
     setMarkPage(0);
-    setPageReview(d.pageReview ?? emptyPageReview());
+    setPageReview(recovered?.pageReview??d.pageReview??emptyPageReview());
     setUndoStack([]); setRedoStack([]); setPreview(null);
     setImporting(false);
     if (enteredDocument) void api(`/projects/${d.project_id}/workspace/recent`,"POST",{documentId:d.id}).catch(()=>{});
@@ -912,7 +921,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
             {project && allowed("view_original") && allowed("export") && <ProcessingObservability project={project} documents={docs.map((d,i)=>({id:d.id,revision:d.revision??0,name:d.name??`文本 ${i+1}`}))} loadDocuments={async()=>{const all:typeof docs=[];for(let offset=0;;offset+=100){const page=await api<typeof docs>(`/projects/${project}/documents?limit=100&offset=${offset}`);all.push(...page);if(page.length<100)break;}return all.map((d,i)=>({id:d.id,revision:d.revision??0,name:d.name??`文本 ${i+1}`}));}} api={api} run={run} onChanged={async()=>{await refreshDocs();}} />}
             {project && feedbackOpen && <ReferenceDictionaryFiles project={project} api={api} run={run} />}
             <details><summary>帮助与产品资料</summary><SupportPanel run={run} api={api}/><OcrDiagnostics run={async operation=>{if(operation==='health')return api('/ocr/health');const response=await fetch(appUrl('/api/ocr/diagnostic'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({reason:'用户请求 OCR 检查'})});if(!response.ok){await downloadResponse(response,'OCR诊断.json');return;}const result=await response.clone().json();await downloadResponse(response,'OCR诊断.json');return result;}} /></details>
-            <RecentWorkspaces api={api} disabled={busy||dirty} onOpen={async(projectId,documentId)=>{await run(async()=>{await flushPdfDraft();const p=await api<typeof projects[number]>(`/projects/${projectId}`);setProjects(v=>v.some(x=>x.id===p.id)?v:[...v,p]);setProject(projectId);if(documentId)await openDoc(documentId);else setDoc(null);});}} />
+            <RecentWorkspaces api={api} disabled={busy||dirty} onPrepare={async()=>{await flushPdfDraft();await recoveryDraftRef.current?.flush();}} onOpen={async(projectId,documentId)=>{await run(async()=>{await flushPdfDraft();await recoveryDraftRef.current?.flush();const p=await api<typeof projects[number]>(`/projects/${projectId}`);setProjects(v=>v.some(x=>x.id===p.id)?v:[...v,p]);setProject(projectId);if(documentId)await openDoc(documentId);else setDoc(null);});}} onRecover={async(projectId,entries)=>{await run(async()=>{const p=await api<typeof projects[number]>(`/projects/${projectId}`);restoredWorkspaceDrafts.current.clear();for(const entry of entries)if(entry.draft)restoredWorkspaceDrafts.current.set(entry.documentId,entry.draft);setProjects(v=>v.some(x=>x.id===p.id)?v:[...v,p]);setProject(projectId);if(entries[0])await openDoc(entries[0].documentId);else setDoc(null);});}} />
             {project && <NetworkPolicy projectId={project} api={api} disabled={busy||!allowed("manage_models")} />}
             {project && allowed("view_original") && <AiCollaboration key={`collaboration:${project}`} project={project} focusJob={collaborationJob} documents={docs} api={api} run={run} onOpen={id => void run(() => openDoc(id))} />}
             {project && allowed("view_original") && allowed("review") && <ProjectEntities key={`entities:${project}`} project={project} api={api} run={run} changed={() => refreshDocs()} onOpen={(id,span)=>openDoc(id,span)} />}
@@ -1019,7 +1028,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
               </div>
               {canReview && doc.job?.status==="failed" && ["ENCRYPTED_PDF","ENCRYPTED_OFFICE"].includes(doc.job.error_code??"") && <DocumentUnlock id={doc.id} revision={doc.revision} api={api} disabled={dirty||conflict} onDone={()=>openDoc(doc.id)} />}
               <button className="secondary" disabled={busy} onClick={()=>setFeedbackOpen(v=>!v)}>反馈与个人规则</button>{feedbackOpen&&<FeedbackPanel key={`feedback-doc:${doc.id}`} project={doc.project_id} document={feedbackDocument} api={api} run={run}/>}
-              {canReview && doc.state==="review" && <RecoveryDraft key={`recovery:${doc.id}:${doc.revision}`} doc={doc} marks={marks} pageReview={pageReview} dirty={dirty} disabled={busy||conflict} api={api} onRestore={(next,pages)=>{if(pages)setPageReview(pages);update(next,true);}} />}
+              {canReview && doc.state==="review" && <RecoveryDraft ref={recoveryDraftRef} key={`recovery:${doc.id}:${doc.revision}`} doc={doc} marks={marks} pageReview={pageReview} manualDraft={manualRecovery} dirty={dirty} disabled={busy||conflict} api={api} onRestore={(next,pages,manual)=>{if(pages)setPageReview(pages);setManualRecovery(manual??null);if(manual)setManualRestoreEpoch(value=>value+1);update(next,true);}} />}
               {doc.job?.canObserveEvents === true && doc.state !== "outdated" && !conflict && docAllowed("view_original") && <ProcessingProgress key={`progress:${doc.job.id}`} job={doc.job} api={api} sharedEvents={pdfLiveDraftOwnsEvents?pdfSharedEvents:undefined} readPdfCheckpoints={doc.job.ordinaryPdfDetection === true && doc.state === "queued"} />}
               {sealJobId && doc.format === "pdf" && doc.state !== "outdated" && docAllowed("view_original") && (sealRuntimeActive || sealRuntimeReady) && <PdfSealRuntime key={`seals:${sealJobId}:${doc.revision}`} jobId={sealJobId} revision={doc.revision} api={api} active={sealRuntimeActive} ready={sealRuntimeReady} busy={busy || conflict} onPause={() => void run(async () => {
                 await api(`/jobs/${sealJobId}/pdf-seals/pause`, "POST", {revision:doc.revision});
@@ -1156,7 +1165,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
                   <div className="material-tools">
                     {project&&allowed("view_original")&&allowed("review")&&<ProjectEntityCorrections projectId={project} document={doc} selectedMark={editingIndex===null?undefined:marks[editingIndex]} selectedMarkIndex={editingIndex??undefined} enabled={!dirty&&!conflict} disabled={busy} api={api} run={run} onApplied={async()=>{await refreshDocs();if(currentDoc.current)await openDoc(currentDoc.current.id);}}/>}
                     {docAllowed("view_original")&&canReview&&<ManualOccurrences documentId={doc.id} revision={doc.revision} marks={marks} busy={busy} disabled={conflict||doc.state!=='review'} search={query=>{if(busyRef.current)throw Error('PROCESSING_BUSY');return api(`/documents/${doc.id}/manual-occurrences`,'POST',{revision:doc.revision,query});}} onMarksChange={(next,previews)=>{changeMarks(next,"one-click-add");if(previews)setDoc(current=>current?.id===doc.id&&current.revision===doc.revision?{...current,markTexts:{...current.markTexts,...previews}}:current);}} onCoveredSelection={selection=>{void automaticRuntimeRules.dispatch(doc.id,doc.revision,{producer:isWordFormat(doc.format)?'manual-add':'one-click-add',before:marks,after:marks},manualRuleScope,selection);}} locate={match=>{const span=match.segments[0];if(span)void run(async()=>{await loadText(Math.max(0,span.start-256),span);setDocxFocus({start:span.start,end:span.end});});}}/>}
-                    {docAllowed("view_original") && docAllowed("export") && <MarkdownManualDraft key={`${doc.id}:${doc.revision}`} document={doc} api={api} run={run} />}
+                    {docAllowed("view_original") && docAllowed("export") && <MarkdownManualDraft key={`${doc.id}:${doc.revision}`} document={doc} api={api} run={run} restored={manualRecovery} restoreEpoch={manualRestoreEpoch} onDraftChange={setManualRecovery} />}
                     {doc.format === "md" && doc.parseVersion === 2 && doc.state === "review" && docAllowed("view_original") && docAllowed("review") && !dirty && !conflict && <MarkdownBlockers key={`blockers:${doc.id}`} document={doc} api={api} run={run} onChanged={() => openDoc(doc.id)} />}
                     {docAllowed("view_original") && <DocumentRoutePreview key={`document-route:${doc.id}:${doc.revision}`} document={doc} api={api} run={run} />}
                     {isLegacyWordFormat(doc.format) && <DocumentNormalization documentId={doc.id} revision={doc.revision} originalFormat={doc.format} ready={doc.normalization?.ready??false} enabled={docAllowed("view_original") && canReview && !busy && !dirty && !conflict && !["queued","running"].includes(doc.job?.status ?? "")} api={api} onApplied={async () => { await openDoc(doc.id); await refreshDocs(); }} />}
