@@ -1,0 +1,80 @@
+{
+  "event": 194,
+  "at": "2026-10-17T11:11:41.026946+00:00",
+  "constraint": "直接使用可复用的原函数/原字段/原流程，不另起业务设计；仅必要Web定位/版本/权限适配。",
+  "combinedCandidate": {
+    "path": "/private/tmp/tmw067-combined-original-v1",
+    "head": "7e7029cdd3ae1fa3cda5953f0d0018d6823a47c9",
+    "base065": "310288236197d8532c2c2a016ac3a34e80351eb0",
+    "merged": [
+      "45ea859aba17880c622edda76f943c7090247cce",
+      "4f1d74f9f2196c68a9dec7620459693b6cc74b55",
+      "24c55796f5ad8b4858d6b04f3bf8d8d9632dfca9"
+    ],
+    "mergeConflict": false,
+    "statusCleanAtMerge": true,
+    "pushedPrivateBranch": "candidate/original-alignment-067",
+    "formalProductPromoted": false
+  },
+  "check061": {
+    "actualExit": 0,
+    "bendLaws": 18,
+    "rejectedMutations": 21,
+    "typecheck": 0,
+    "build": 0,
+    "testFilesPassed": 165,
+    "testFilesSkipped": 1,
+    "testsPassed": 902,
+    "testsSkipped": 4,
+    "sourceDrift": [],
+    "skipCause": "legacy-office-service与legacy-office-control四案缺原有LEGACY_OFFICE_TEST_IMAGE及LEGACY_OFFICE_CONTROL_TEST环境开关，不能称906全绿。",
+    "firstPreparationFailure": "私树相对Bend源码路径不存在，exit1已保留；后只修runner BEND_ROOT，未改产品。"
+  },
+  "finalValidation": "不再各候选重复完整检查；在最终067组合一次完整检查（含已验UNO环境），随后156 API逐文件隔离测试；现在尚未启动这些最终运行。",
+  "apiInventory": {
+    "entryCount": 156,
+    "explicitReadCount": 42,
+    "staticUniquePaths": 8,
+    "allEightExist": true,
+    "trackedContractBytes": 6116271,
+    "fixturePreparation": "481完整夹具和28资产/6锁由preflight固定后才允许跑。",
+    "dynamicBoundary": "14动态调用分类保留，间接读取边界不伪称穷尽。"
+  },
+  "draft066": "已撤销简化手写helper，原Ei2/zi2/Ui2机械抽取研究源；接线仍待实现，零键/局部重复/真实产物还原不能metadata-only声称完成。",
+  "deployed": false,
+  "competitorRuntime": "258 R0，不绕许可证",
+  "beforeDocuments": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/before-ledger194-v1/manifest.json",
+  "rawRules": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/rule-json-before-ledger194-v1.json",
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-061-implementation-v1/stable-pnpm-check-receipt.json",
+      "sha256": "835df3d6463d94d1acf11af748e0fd889c7e73c3300771fdeec3d05ac20e310c",
+      "bytes": 422
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-061-implementation-v1/stable-pnpm-check-prep-failure-receipt.json",
+      "sha256": "311544197c7da8268be5adde55021a9168cfb99e0a26452eebf061510effc6ea",
+      "bytes": 421
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/full-api-fixture-inventory-067-v1.json",
+      "sha256": "b72f71c340f183126076c0e03a0d4ff6637c0705f86f8f008dc961ec8f807958",
+      "bytes": 14427
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/pipeline-062-full-star-v1/candidate-manifest-v4.json",
+      "sha256": "4485d68c63ede110368922e6ae38d7f88817e7521cc00477d312dc976016451e",
+      "bytes": 4358
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/arch-063-policy-ui-v1/candidate-manifest-post-api-v2.json",
+      "sha256": "8fe147a721604c243e8cc174264611ff78019fdfc54ec37a9ac050b3be4b4961",
+      "bytes": 4444
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/edge-repair-v7/terminal-receipt.json",
+      "sha256": "65b13ed7575c95afc8071ab3826d596f87a1566280fb88e22b203afded2a04ae",
+      "bytes": 2305
+    }
+  ]
+}

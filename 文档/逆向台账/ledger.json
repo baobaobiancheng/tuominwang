@@ -139612,6 +139612,109 @@
           }
         }
       ]
+    },
+    {
+      "id": "ITER-067-DIRECT-ORIGINAL-COMBINED-CANDIDATE-194",
+      "date": "2026-10-17",
+      "action": "按直接复用原代码约束合层，记录061条件跳过与最终156 API准备",
+      "summary": "067三候选合并并推私有分支；061自然0但902过4跳，最终组合门禁/API未启动；066原草稿实际还原待补。",
+      "verification": "9文档归档、10规则JSON逐字不变；源/资产预检与自然终态证据分开，不提升等级或线上状态。",
+      "affected_ids": [
+        "UI-ad41d13c4a2d",
+        "UI-339d8e53408d"
+      ],
+      "evidence": [
+        {
+          "path": "文档/逆向台账/contracts/iteration067-direct-original-combined-candidate-194-20261017.json"
+        }
+      ],
+      "new_evidence_baseline": {
+        "path": "文档/逆向台账/contracts/iteration067-direct-original-combined-candidate-194-20261017.json",
+        "current": {
+          "sha256": "4a506246c921a363e91058d328b808858f6212b11e34fe9601bc503788d9ce24",
+          "bytes": 3884
+        }
+      },
+      "document_hash_transitions": [
+        {
+          "path": "文档/待办与完成状态-20261015.md",
+          "previous": {
+            "sha256": "6ea355fd15a3a26d64df69a5d0ec26fba4cdd2e1a4116af436b3c74b81e641e4",
+            "bytes": 132138
+          },
+          "current": {
+            "sha256": "4cd88c9751356e5b27ae263ac510667348865348dfac005f7a130225151401dc",
+            "bytes": 133145
+          }
+        },
+        {
+          "path": "文档/脱敏规则完整技术交接-迭代023.md",
+          "previous": {
+            "sha256": "efbd9913cb8ef7ccba779629e42420088d4c6aed3778f96926be8022d9414f87",
+            "bytes": 426878
+          },
+          "current": {
+            "sha256": "cef28df1e51481fe3a2a4633233def3b61df9f30b70e0de338ab9b0efd14cd53",
+            "bytes": 427358
+          }
+        }
+      ],
+      "evidence_snapshot_updates": [
+        {
+          "path": "文档/逆向台账/contracts/iteration067-direct-original-combined-candidate-194-20261017.json",
+          "previous": null,
+          "current": {
+            "sha256": "4a506246c921a363e91058d328b808858f6212b11e34fe9601bc503788d9ce24",
+            "bytes": 3884
+          }
+        },
+        {
+          "path": "文档/待办与完成状态-20261015.md",
+          "previous": {
+            "sha256": "6ea355fd15a3a26d64df69a5d0ec26fba4cdd2e1a4116af436b3c74b81e641e4",
+            "bytes": 132138
+          },
+          "current": {
+            "sha256": "4cd88c9751356e5b27ae263ac510667348865348dfac005f7a130225151401dc",
+            "bytes": 133145
+          }
+        },
+        {
+          "path": "文档/脱敏规则完整技术交接-迭代023.md",
+          "previous": {
+            "sha256": "efbd9913cb8ef7ccba779629e42420088d4c6aed3778f96926be8022d9414f87",
+            "bytes": 426878
+          },
+          "current": {
+            "sha256": "cef28df1e51481fe3a2a4633233def3b61df9f30b70e0de338ab9b0efd14cd53",
+            "bytes": 427358
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-061-implementation-v1/stable-pnpm-check-receipt.json",
+          "previous": null,
+          "current": {
+            "sha256": "835df3d6463d94d1acf11af748e0fd889c7e73c3300771fdeec3d05ac20e310c",
+            "bytes": 422
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-061-implementation-v1/stable-pnpm-check-prep-failure-receipt.json",
+          "previous": null,
+          "current": {
+            "sha256": "311544197c7da8268be5adde55021a9168cfb99e0a26452eebf061510effc6ea",
+            "bytes": 421
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/full-api-fixture-inventory-067-v1.json",
+          "previous": null,
+          "current": {
+            "sha256": "b72f71c340f183126076c0e03a0d4ff6637c0705f86f8f008dc961ec8f807958",
+            "bytes": 14427
+          }
+        }
+      ]
     }
   ],
   "evidence_snapshot": {
@@ -142027,8 +142130,8 @@
         "bytes": 423
       },
       "文档/脱敏规则完整技术交接-迭代023.md": {
-        "sha256": "efbd9913cb8ef7ccba779629e42420088d4c6aed3778f96926be8022d9414f87",
-        "bytes": 426878
+        "sha256": "cef28df1e51481fe3a2a4633233def3b61df9f30b70e0de338ab9b0efd14cd53",
+        "bytes": 427358
       },
       "文档/逆向台账/contracts/build-complete-rule-handoff-20261014.py": {
         "sha256": "c5d6db581eb6019ba761fe2adb9ba66b41c4a611162c32e54729baf3fa9810e6",
@@ -145603,8 +145706,8 @@
         "bytes": 4676926
       },
       "文档/待办与完成状态-20261015.md": {
-        "sha256": "6ea355fd15a3a26d64df69a5d0ec26fba4cdd2e1a4116af436b3c74b81e641e4",
-        "bytes": 132138
+        "sha256": "4cd88c9751356e5b27ae263ac510667348865348dfac005f7a130225151401dc",
+        "bytes": 133145
       },
       ".data/research/lawbot-2026-10-15/iteration036/checkpoint-history/current/apps/api/main.ts": {
         "sha256": "4c36dad476012af090cb8649de2b991235d41e4c5d946a4a411404680935b011",
@@ -164841,6 +164944,22 @@
       ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-peer-062-full-star-v1.json": {
         "sha256": "d94298ef9b0b88afbd866c41220c7b69831ed902a9f4c24472785c0b1ba2dd3f",
         "bytes": 3647
+      },
+      "文档/逆向台账/contracts/iteration067-direct-original-combined-candidate-194-20261017.json": {
+        "sha256": "4a506246c921a363e91058d328b808858f6212b11e34fe9601bc503788d9ce24",
+        "bytes": 3884
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-061-implementation-v1/stable-pnpm-check-receipt.json": {
+        "sha256": "835df3d6463d94d1acf11af748e0fd889c7e73c3300771fdeec3d05ac20e310c",
+        "bytes": 422
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-061-implementation-v1/stable-pnpm-check-prep-failure-receipt.json": {
+        "sha256": "311544197c7da8268be5adde55021a9168cfb99e0a26452eebf061510effc6ea",
+        "bytes": 421
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/full-api-fixture-inventory-067-v1.json": {
+        "sha256": "b72f71c340f183126076c0e03a0d4ff6637c0705f86f8f008dc961ec8f807958",
+        "bytes": 14427
       }
     },
     "unavailable_historical_screenshots": [
