@@ -136,7 +136,9 @@ export function registerUnifiedPreviewRoutes(app: FastifyInstance) {
           const mark = input.active.marks[index];
           return mark.decision === 'ignore' || mark.replacementOrigin === 'manual' ? [] : [originalDraftEntityKey(entity.type, entity.text)];
         }));
-        previewMarks = projectDraftEditToMarks({ draft: activeDraft, entities: previewEntities, marks: input.active.marks, targetKeys });
+        previewMarks = projectDraftEditToMarks({ draft: activeDraft, entities: previewEntities, marks: input.active.marks, targetKeys })
+          .map((mark, index) => input.active.marks[index].decision === 'ignore' ||
+            input.active.marks[index].replacementOrigin === 'manual' ? input.active.marks[index] : mark);
       }
       if (changed) await rows(db, sql`UPDATE projects SET portable_state=${seal(JSON.stringify(portable), `${p.tenant_id}:${project}:portable-state`)} WHERE id=${project}`);
       const aliasRevision = !isDeepStrictEqual(before.frame.state, state.toSnapshot())

@@ -47,7 +47,7 @@ test('unified preview rebuilds ready children and projects the active local draf
     assert.equal(viewed.json().state,'review');
     return viewed.json();
   };
-  const first = await configure('电话：13800138000'), second = await configure('电话：13900139000');
+  const first = await configure('电话：13800138000；再次联系13800138000'), second = await configure('电话：13900139000');
   const state = async () => { const r=await req('GET',`/api/projects/${project}/unified-aliases`);assert.equal(r.statusCode,200,r.body);return r.json(); };
   let frame = await state();
   const enabled = await req('POST',`/api/projects/${project}/unified-aliases`,{revision:frame.revision,documents:frame.documents,command:{action:'enable'}});
@@ -115,6 +115,18 @@ test('unified preview rebuilds ready children and projects the active local draf
     decision:mark.decision,replacement:mark.replacement,replacementOrigin:mark.replacementOrigin})),
     active.marks.map((mark:any)=>({start:mark.start,end:mark.end,kind:mark.kind,
       decision:mark.decision,replacement:mark.replacement,replacementOrigin:mark.replacementOrigin})));
+  assert.equal(localMarks.length,2,'fixture must contain two occurrences of one original key');
+  const mixedMarks = localMarks.map((mark:any,index:number)=>index===1?{
+    ...mark,replacementOrigin:'manual',replacement:{mode:'custom',value:'【手工保留】'},
+  }:mark);
+  const mixed = await req('POST',`/api/projects/${project}/unified-aliases/prepare-preview`,{
+    revision:body.revision,documents:body.documents,active:{id:active.id,revision:active.revision,
+      contentHash:active.contentHash,localReviewDirty:true,marks:mixedMarks},
+  });
+  assert.equal(mixed.statusCode,200,mixed.body);
+  assert.equal(mixed.json().previewMarks[0].replacement.value,changedToken);
+  assert.deepEqual(mixed.json().previewMarks[1].replacement,{mode:'custom',value:'【手工保留】'});
+  assert.equal(mixed.json().previewMarks[1].replacementOrigin,'manual');
   const ignored = await req('POST',`/api/projects/${project}/unified-aliases/prepare-preview`,{
     revision:body.revision,documents:body.documents,active:{id:active.id,revision:active.revision,
       contentHash:active.contentHash,localReviewDirty:true,
