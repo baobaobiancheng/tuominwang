@@ -96681,6 +96681,10 @@
         {
           "path": "文档/逆向台账/contracts/iteration059-discovery-and-confirmed-gaps-184-20261017.json",
           "note": "ITER184：真实原行为差异及独立候选待办；不提升I/S/R或原R0。"
+        },
+        {
+          "path": "文档/逆向台账/contracts/iteration059-original-code-candidate-peer-185-20261017.json",
+          "note": "ITER185：私树候选真实产物和跨组审查；正式源码/完整合层门禁待办未闭合，不升I/S/R。"
         }
       ],
       "next_actions": [
@@ -99198,6 +99202,10 @@
         {
           "path": "文档/逆向台账/contracts/iteration059-discovery-and-confirmed-gaps-184-20261017.json",
           "note": "ITER184：真实原行为差异及独立候选待办；不提升I/S/R或原R0。"
+        },
+        {
+          "path": "文档/逆向台账/contracts/iteration059-original-code-candidate-peer-185-20261017.json",
+          "note": "ITER185：私树候选真实产物和跨组审查；正式源码/完整合层门禁待办未闭合，不升I/S/R。"
         }
       ],
       "next_actions": [
@@ -99613,6 +99621,10 @@
         {
           "path": "文档/逆向台账/contracts/iteration059-discovery-and-confirmed-gaps-184-20261017.json",
           "note": "ITER184：真实原行为差异及独立候选待办；不提升I/S/R或原R0。"
+        },
+        {
+          "path": "文档/逆向台账/contracts/iteration059-original-code-candidate-peer-185-20261017.json",
+          "note": "ITER185：私树候选真实产物和跨组审查；正式源码/完整合层门禁待办未闭合，不升I/S/R。"
         }
       ],
       "next_actions": [
@@ -101498,6 +101510,10 @@
         {
           "path": "文档/逆向台账/contracts/iteration059-discovery-and-confirmed-gaps-184-20261017.json",
           "note": "ITER184：真实原行为差异及独立候选待办；不提升I/S/R或原R0。"
+        },
+        {
+          "path": "文档/逆向台账/contracts/iteration059-original-code-candidate-peer-185-20261017.json",
+          "note": "ITER185：私树候选真实产物和跨组审查；正式源码/完整合层门禁待办未闭合，不升I/S/R。"
         }
       ],
       "next_actions": [
@@ -105721,6 +105737,10 @@
         {
           "path": "文档/逆向台账/contracts/iteration059-discovery-and-confirmed-gaps-184-20261017.json",
           "note": "ITER184：真实原行为差异及独立候选待办；不提升I/S/R或原R0。"
+        },
+        {
+          "path": "文档/逆向台账/contracts/iteration059-original-code-candidate-peer-185-20261017.json",
+          "note": "ITER185：私树候选真实产物和跨组审查；正式源码/完整合层门禁待办未闭合，不升I/S/R。"
         }
       ],
       "next_actions": [
@@ -138441,6 +138461,56 @@
           }
         }
       ]
+    },
+    {
+      "id": "ITER-059-ORIGINAL-CODE-CANDIDATE-PEER-185",
+      "date": "2026-10-17",
+      "action": "直接复用原函数并记录两候选真实产物和相互审查，批量原行为继续修复",
+      "summary": "工程导入真实Markdown/PDF颜色及MCP同Node24反例修复通过；候选已合入独立工作区，批量scope与同模式原行为待补齐，未正式合并部署。",
+      "verification": "9文档旧字节归档、10规则JSON保持；所有候选与审查SHA固定。完整151仍运行，不将局部或旧基线视为新候选全部通过。",
+      "affected_ids": [
+        "IPC-feb24aa50a4f",
+        "IPC-c356082df625",
+        "IPC-ff1d1193dc22",
+        "MCP-104bba767f9b",
+        "MCP-8e8e605f0d93"
+      ],
+      "evidence": [
+        {
+          "path": "文档/逆向台账/contracts/iteration059-original-code-candidate-peer-185-20261017.json"
+        }
+      ],
+      "new_evidence_baseline": {
+        "path": "文档/逆向台账/contracts/iteration059-original-code-candidate-peer-185-20261017.json",
+        "current": {
+          "sha256": "c1328b9c1d68ab68d23421a20dfaae2c8c0ccc1d4441e0a5a0899ec04cf733f9",
+          "bytes": 4692
+        }
+      },
+      "document_hash_transitions": [
+        {
+          "path": "文档/待办与完成状态-20261015.md",
+          "previous": {
+            "sha256": "6e7bd85853bbf8c4a17cb215138baa1c3c0a29092cd9bc8267f0ca21fc1e3876",
+            "bytes": 121119
+          },
+          "current": {
+            "sha256": "f30f2cc7b6b2a6ecf17e9ffcf1819752f3d04425eb8a444334172e6af4bfc268",
+            "bytes": 122223
+          }
+        },
+        {
+          "path": "文档/脱敏规则完整技术交接-迭代023.md",
+          "previous": {
+            "sha256": "2419a36f8a6362a2c9d7a22b9b665879dcbc056ee987e4351e73bb5f90a9c731",
+            "bytes": 422793
+          },
+          "current": {
+            "sha256": "1c445f9b8f1ee428f9981ffe6ec48085287aad5f6a4ba89b2b740004ba6242cf",
+            "bytes": 423307
+          }
+        }
+      ]
     }
   ],
   "evidence_snapshot": {
@@ -140856,8 +140926,8 @@
         "bytes": 423
       },
       "文档/脱敏规则完整技术交接-迭代023.md": {
-        "sha256": "2419a36f8a6362a2c9d7a22b9b665879dcbc056ee987e4351e73bb5f90a9c731",
-        "bytes": 422793
+        "sha256": "1c445f9b8f1ee428f9981ffe6ec48085287aad5f6a4ba89b2b740004ba6242cf",
+        "bytes": 423307
       },
       "文档/逆向台账/contracts/build-complete-rule-handoff-20261014.py": {
         "sha256": "c5d6db581eb6019ba761fe2adb9ba66b41c4a611162c32e54729baf3fa9810e6",
@@ -144432,8 +144502,8 @@
         "bytes": 4676926
       },
       "文档/待办与完成状态-20261015.md": {
-        "sha256": "6e7bd85853bbf8c4a17cb215138baa1c3c0a29092cd9bc8267f0ca21fc1e3876",
-        "bytes": 121119
+        "sha256": "f30f2cc7b6b2a6ecf17e9ffcf1819752f3d04425eb8a444334172e6af4bfc268",
+        "bytes": 122223
       },
       ".data/research/lawbot-2026-10-15/iteration036/checkpoint-history/current/apps/api/main.ts": {
         "sha256": "4c36dad476012af090cb8649de2b991235d41e4c5d946a4a411404680935b011",
@@ -163358,6 +163428,10 @@
       "文档/逆向台账/contracts/iteration059-discovery-and-confirmed-gaps-184-20261017.json": {
         "sha256": "f83342c5f3840f5add833c7b3d9e50a94ba0ca987daa70803b06d8db18305b99",
         "bytes": 6227
+      },
+      "文档/逆向台账/contracts/iteration059-original-code-candidate-peer-185-20261017.json": {
+        "sha256": "c1328b9c1d68ab68d23421a20dfaae2c8c0ccc1d4441e0a5a0899ec04cf733f9",
+        "bytes": 4692
       }
     },
     "unavailable_historical_screenshots": [
