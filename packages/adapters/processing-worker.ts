@@ -1,5 +1,5 @@
 import{hydrateEntityCorrections,assertEntityCorrections,sealEntityCorrections,archiveEntityCorrections}from './entity-corrections.ts';
-import{applyEntityCorrections,materializeEntityCorrections}from '../core/entity-corrections.ts';
+import{applyEntityCorrections,materializeEntityCorrections,semanticEntityValue}from '../core/entity-corrections.ts';
 import{readPageRotationState,validateRotationPages}from"./page-rotation-state.ts";
 import{normalizeStoredDocument}from'./document-normalization.ts';
 import{isBinaryFormat,isLegacyWordFormat,originalDocumentFormat}from'../core/document-format.ts';
@@ -134,7 +134,7 @@ async function execute(input: ProcessingInput): Promise<any> {
   let text = unseal(d.content, aad);
   if (input.kind === "replacement-policies") {
     validateFileMarks(text, input.marks!.map(m => ({ ...m, decision: "pending" })), d.source_format, d.anchors);
-    return applyReplacementPolicies(text, input.marks!, input.replacementPolicies!, input.mappings);
+    return applyReplacementPolicies(text, input.marks!, input.replacementPolicies!, input.mappings,{semanticValue:(mark,index)=>semanticEntityValue(d,mark,text,index)});
   }
   if (input.kind === "page-preview") {
     const policy = validatePageReview(d.page_review, d.page_data), page = (d.page_data as ParsedPage[]).find(p => p.index === input.page);

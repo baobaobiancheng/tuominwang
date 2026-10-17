@@ -8,7 +8,7 @@ export type PolicyDirective = z.infer<typeof policyDirectiveSchema>;
 export const replacementPoliciesSchema = z.object({
   overall: policyDirectiveSchema.optional(),
   types: z.array(z.object({ kind: markSchema.shape.kind,rawEntityType:markSchema.shape.rawEntityType, rule: policyDirectiveSchema }).strict().refine(v=>v.rawEntityType===undefined||v.kind==='自定义')).max(MAX_MARKS).default([]),
-  values: z.array(markSchema.pick({ start: true, end: true, kind: true,rawEntityType:true }).extend({ rule: policyDirectiveSchema }).strict().refine(v=>v.rawEntityType===undefined||v.kind==='自定义')).max(1000).default([]),
+  values: z.array(markSchema.pick({ start: true, end: true, kind: true,rawEntityType:true }).extend({ rule: policyDirectiveSchema,semanticValue:z.string().min(1).refine(v=>v.isWellFormed()&&!v.includes('\0')).optional() }).strict().refine(v=>v.rawEntityType===undefined||v.kind==='自定义')).max(1000).default([]),
   keepExplicit: z.boolean().default(true),
 }).strict().refine(p => new Set(p.types.map(t => t.rawEntityType===undefined?t.kind:`raw:${JSON.stringify(t.rawEntityType)}`)).size === p.types.length, { message: "Duplicate type policies" });
 export type ReplacementPolicies = z.infer<typeof replacementPoliciesSchema>;
