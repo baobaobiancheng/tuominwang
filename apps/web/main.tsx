@@ -188,6 +188,8 @@ const messages: Record<string, string> = {
   MARKDOWN_ASSET_RESIDUE: "Markdown 仍含未处理嵌入内容，已阻止导出。",
   MARKDOWN_EXPORT_FAILED: "Markdown 无法安全回写，请检查复核范围后重试。",
   MARKDOWN_DRAFT_CONFLICT: "手工稿已被其他窗口更新，请重新打开。",
+  MARKDOWN_DRAFT_FILENAME: "文件名须以 .md 结尾，且不能包含路径或控制字符。",
+  MARKDOWN_DRAFT_EMPTY: "手工稿内容不能为空。",
   MARKDOWN_DRAFT_OUTDATED: "手工稿所属材料版本已变化，请重新载入当前材料。",
   SIGNATURE_MODEL_REQUIRED: "签名识别资源未配置，请联系管理员。",
   SIGNATURE_MODEL_MISMATCH: "签名识别资源校验失败，请联系管理员。",

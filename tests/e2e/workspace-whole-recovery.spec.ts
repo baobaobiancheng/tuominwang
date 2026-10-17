@@ -141,6 +141,7 @@ test('two material browser interruption restores the active document, review cho
   await resumed.getByRole('button',{name:'保存待人工处理稿'}).click();
   const invalid=await invalidSave;expect(invalid.ok()).toBe(false);
   expect(await invalid.text()).toContain('MARKDOWN_DRAFT_FILENAME');
+  await expect(resumed.getByRole('alert').filter({hasText:'文件名须以 .md 结尾'})).toBeVisible();
   await resumed.getByLabel('文件名',{exact:true}).fill('甲尚未提交.md');
   const validSave=resumed.waitForResponse(r=>r.request().method()==='POST'&&pathname(r)===`/api/documents/${first.id}/markdown-manual-drafts`);
   await resumed.getByRole('button',{name:'保存待人工处理稿'}).click();
