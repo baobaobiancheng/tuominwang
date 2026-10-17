@@ -138555,6 +138555,50 @@
           }
         }
       ]
+    },
+    {
+      "id": "ITER-059-HISTORY-KEY-FIX-AND-BROWSER-187",
+      "date": "2026-10-17",
+      "action": "历史键真实红绿修复、工程门禁及Edge定向通过，启动完整回归",
+      "summary": "候选1009份已提交私仓分支；工程166/904、Bend18/21、Edge定向2/2通过，完整155与109仍运行；真实使用补充文档及截图已保存。",
+      "verification": "9旧文档和10规则JSON固定；Edge首轮前置失败完整保留，修后原断言2/2、临时库及普通dev恢复核验。v3仅E2E前置变更，API执行源码/测试/驱动与v2同字节。",
+      "affected_ids": [],
+      "evidence": [
+        {
+          "path": "文档/逆向台账/contracts/iteration059-history-key-fix-and-browser-187-20261017.json"
+        }
+      ],
+      "new_evidence_baseline": {
+        "path": "文档/逆向台账/contracts/iteration059-history-key-fix-and-browser-187-20261017.json",
+        "current": {
+          "sha256": "83ed68ff642192989bc527911d0e63dfe52f9eb6bed7f837a9ba447bee363c35",
+          "bytes": 6875
+        }
+      },
+      "document_hash_transitions": [
+        {
+          "path": "文档/待办与完成状态-20261015.md",
+          "previous": {
+            "sha256": "a8f8136e4d331f4624b56172890b8dfad1dfed423fc289e9151a826fecce67e6",
+            "bytes": 123452
+          },
+          "current": {
+            "sha256": "c47a507dbbff03eb49a43601315a0c39507abe94582080ef636f2edbe4b046e4",
+            "bytes": 125116
+          }
+        },
+        {
+          "path": "文档/脱敏规则完整技术交接-迭代023.md",
+          "previous": {
+            "sha256": "139c58ccfe6da4a607ccc12ef384f0d0e8305ce65260ccc26874210586f891b4",
+            "bytes": 423817
+          },
+          "current": {
+            "sha256": "80e6cee6f9d4f189914aa6195a50992f247e8914b11bfffd98f8e20ca2a11516",
+            "bytes": 424327
+          }
+        }
+      ]
     }
   ],
   "evidence_snapshot": {
@@ -140970,8 +141014,8 @@
         "bytes": 423
       },
       "文档/脱敏规则完整技术交接-迭代023.md": {
-        "sha256": "139c58ccfe6da4a607ccc12ef384f0d0e8305ce65260ccc26874210586f891b4",
-        "bytes": 423817
+        "sha256": "80e6cee6f9d4f189914aa6195a50992f247e8914b11bfffd98f8e20ca2a11516",
+        "bytes": 424327
       },
       "文档/逆向台账/contracts/build-complete-rule-handoff-20261014.py": {
         "sha256": "c5d6db581eb6019ba761fe2adb9ba66b41c4a611162c32e54729baf3fa9810e6",
@@ -144546,8 +144590,8 @@
         "bytes": 4676926
       },
       "文档/待办与完成状态-20261015.md": {
-        "sha256": "a8f8136e4d331f4624b56172890b8dfad1dfed423fc289e9151a826fecce67e6",
-        "bytes": 123452
+        "sha256": "c47a507dbbff03eb49a43601315a0c39507abe94582080ef636f2edbe4b046e4",
+        "bytes": 125116
       },
       ".data/research/lawbot-2026-10-15/iteration036/checkpoint-history/current/apps/api/main.ts": {
         "sha256": "4c36dad476012af090cb8649de2b991235d41e4c5d946a4a411404680935b011",
@@ -163480,6 +163524,18 @@
       "文档/逆向台账/contracts/iteration059-combined-candidate-and-history-gap-186-20261017.json": {
         "sha256": "b69f3daf54f22b6ef4e43c1f906e47752816613873f81131c2c787859d263721",
         "bytes": 4954
+      },
+      "文档/逆向台账/contracts/iteration059-history-key-fix-and-browser-187-20261017.json": {
+        "sha256": "83ed68ff642192989bc527911d0e63dfe52f9eb6bed7f837a9ba447bee363c35",
+        "bytes": 6875
+      },
+      "文档/使用指南/批量脱敏方式补充操作-20261017.md": {
+        "sha256": "785d178916642cd08144bc32a7f89957acb47da693c08578848967b320142222",
+        "bytes": 2589
+      },
+      "文档/使用指南/截图/batch-export-modes-20261017.png": {
+        "sha256": "7c0c27e290090d1a86a9a3eb9dfbccbffa56c6e60785a7cb2dcb366d2a89f17d",
+        "bytes": 83285
       }
     },
     "unavailable_historical_screenshots": [
