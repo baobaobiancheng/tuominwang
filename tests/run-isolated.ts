@@ -8,7 +8,7 @@ process.loadEnvFile(".env");
 const mode = process.argv[2] ?? "integration";
 if (!["integration", "e2e"].includes(mode)) throw new Error("Expected integration or e2e");
 const testFilter = process.argv[3];
-if (testFilter && !(mode === "e2e" ? /^tests\/e2e\/[a-z-]+\.spec\.ts$/ : /^tests\/[a-z-]+\.integration\.ts$/).test(testFilter)) throw new Error("Expected one local isolated test file");
+if (testFilter && !(mode === "e2e" ? /^tests\/e2e\/[a-z0-9-]+\.spec\.ts$/ : /^tests\/[a-z0-9-]+\.integration\.ts$/).test(testFilter)) throw new Error("Expected one local isolated test file");
 const name = "tmw_test_" + randomUUID().replaceAll("-", "");
 const admin = new pg.Client({ connectionString: process.env.MIGRATION_DATABASE_URL });
 await admin.connect();
@@ -26,7 +26,7 @@ if (mode === "e2e") { env.CI = "1"; env.NER_ENABLED = "1"; }
 try {
   // Every checked-in integration suite participates; newly ported features
   // cannot silently fall outside the full release gate.
-  const integrationFiles=testFilter?[testFilter]:["tests/integration.ts",...(await readdir("tests")).filter(file=>/^[a-z-]+\.integration\.ts$/.test(file)).sort().map(file=>"tests/"+file)];
+  const integrationFiles=testFilter?[testFilter]:["tests/integration.ts",...(await readdir("tests")).filter(file=>file.endsWith(".integration.ts")).sort().map(file=>"tests/"+file)];
   const commands = mode==='e2e' ? [
     ["--import", "tsx", "scripts/migrate.ts"],
     ["--import", "tsx", "scripts/admin.ts"], ["node_modules/@playwright/test/cli.js", "test", ...testFilter ? [testFilter] : []],

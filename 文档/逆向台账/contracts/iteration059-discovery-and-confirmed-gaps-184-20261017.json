@@ -1,0 +1,143 @@
+{
+  "id": "ITER-059-TEST-DISCOVERY-AND-CONFIRMED-GAPS-184",
+  "date": "2026-10-17",
+  "status": "DISCOVERY_FIXED_THREE_GAPS_OPEN_API_FULL_RUNNING",
+  "source": {
+    "gitHeadBefore": "ff3eeb66fb91e00c206eadf158d5af6851c2d208",
+    "manifest": ".data/research/lawbot-2026-10-17/iteration059/api-inputs-v1.json",
+    "manifestSha256": "b27dff84ec14bd978b15b78a9fc88adc7c34f216d430f36c662e85f75476efc0",
+    "files": 1003,
+    "formalChanges": [
+      "tests/run-isolated.ts"
+    ]
+  },
+  "testDiscovery": {
+    "oldDefaultFiles": 149,
+    "newDefaultFiles": 151,
+    "omittedBefore": [
+      "tests/workspace-file3.integration.ts",
+      "tests/workspace-file3-core.integration.ts"
+    ],
+    "oldRejectedE2E": "tests/e2e/workspace-v1-large-migration.spec.ts",
+    "oldActualCliRedCases": 2,
+    "newNumericCoreCliTests": 3,
+    "newNumericCoreExitCode": 0
+  },
+  "requiredCheck": {
+    "exitCode": 0,
+    "testFiles": 166,
+    "tests": 904,
+    "bendLaws": 18,
+    "bendMutants": 21,
+    "typecheck": true,
+    "build": true,
+    "drift": []
+  },
+  "openOriginalDifferences": [
+    {
+      "id": "REFERENCE-WORKSPACE-IMPORT-FIELDS",
+      "finding": "Real reference DOCX import200/configuration200/export200 resets relativePath, route, export mode/Markdown/table-name. The original remains in historical importedSnapshot.",
+      "next": "Private candidate must map effective fields and preserve later user changes, source and old approvals."
+    },
+    {
+      "id": "REFERENCE-BATCH-EXPORT-MODE",
+      "finding": "Original ly2 applies modes by selected format scope with override confirmation and preserved drafts. Proposed batch contract returns404 for two reviewed DOCX. Single-document named-only/outdated behavior is a control, not an endpoint bug.",
+      "next": "Private candidate must cover docx/markdown/pdf/image, selective eligibility, aliases and original review/snapshot/permissions."
+    },
+    {
+      "id": "REFERENCE-SINGLE-AI-REPORT-COMPLETION",
+      "finding": "Current automatic valid report can continue before restoring; receive creates a new round and normal restore of the old one yields ROUND_NOT_CURRENT. Control without continue restores successfully; original completed report rejects continue. Old bytes remain archived.",
+      "next": "Private candidate preserves authorization, maps public completed semantics and rejects premature continue; retain multi-round archive coverage through a legal restore path."
+    }
+  ],
+  "fullApiProgressSnapshot": {
+    "at": "2026-10-17T08:42:59.498760+00:00",
+    "state": "running_verified_live",
+    "toolSessionId": 86581,
+    "controllerPid": 31398,
+    "childPid": 31495,
+    "liveProcess": "31495 S    12:32 node --import tsx .data/control/run-api-full.ts integration",
+    "plannedFiles": 151,
+    "completedFiles": 16,
+    "failedCompletedFiles": [],
+    "currentJournalEntry": {
+      "at": "2026-10-17T08:42:52.490Z",
+      "phase": "command-start",
+      "args": [
+        "--import",
+        "tsx",
+        "--test",
+        "tests/entity-corrections.integration.ts"
+      ]
+    },
+    "privateSourceDrift": [],
+    "sourceManifestSha256": "b27dff84ec14bd978b15b78a9fc88adc7c34f216d430f36c662e85f75476efc0",
+    "boundary": "not a terminal receipt; full151 pass not claimed; re-poll same live handle and never restart due observation timeout"
+  },
+  "evidence": {
+    "api-inputs-v1.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration059/api-inputs-v1.json",
+      "current": {
+        "sha256": "b27dff84ec14bd978b15b78a9fc88adc7c34f216d430f36c662e85f75476efc0",
+        "bytes": 169736
+      }
+    },
+    "root/api-full-plan-v1.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration059/root/api-full-plan-v1.json",
+      "current": {
+        "sha256": "5ff4ae6d816e3512172c9bb6f0343a32e1535b80f79626bad319b9eb5e2f7ff0",
+        "bytes": 23466
+      }
+    },
+    "root/api-full-plan-v2.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration059/root/api-full-plan-v2.json",
+      "current": {
+        "sha256": "ec899642734398f78d4e7e551e85e3f7d3d2b1f19ad8d279f39351a72af7dba2",
+        "bytes": 23799
+      }
+    },
+    "root/runner-numeric-filter-red-v1.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration059/root/runner-numeric-filter-red-v1.json",
+      "current": {
+        "sha256": "00892b8aca8006212bce98efb581c75c88e06e5eef32c06b88c4b2c531a5fc8d",
+        "bytes": 854
+      }
+    },
+    "required-check-v1/terminal-receipt.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration059/required-check-v1/terminal-receipt.json",
+      "current": {
+        "sha256": "70257829f56581dbee0d1dfa5a37d948453a5cfe1d9f7dee83944bc741e7a34c",
+        "bytes": 1269
+      }
+    },
+    "numeric-filter-core-v1/terminal-receipt.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration059/numeric-filter-core-v1/terminal-receipt.json",
+      "current": {
+        "sha256": "7c23c52bb5dd42e0fe20aa5d60cdcba0eeb2ea2e1214de63d9c9c7dc6f3affbd",
+        "bytes": 1121
+      }
+    },
+    "numeric-filter-core-v1/commands.jsonl": {
+      "path": ".data/research/lawbot-2026-10-17/iteration059/numeric-filter-core-v1/commands.jsonl",
+      "current": {
+        "sha256": "7c07483727469b0a54db1629418275f25adf520488b0cafa251b2cf0af026b01",
+        "bytes": 959
+      }
+    },
+    "root/api-full-live-snapshot-v1.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration059/root/api-full-live-snapshot-v1.json",
+      "current": {
+        "sha256": "1a32dfc675649b3f326019936cc5841430eac6093215da8d1e747b765c774262",
+        "bytes": 801
+      }
+    },
+    "root/confirmed-gaps-before-candidates-v1/manifest.json": {
+      "path": ".data/research/lawbot-2026-10-17/iteration059/root/confirmed-gaps-before-candidates-v1/manifest.json",
+      "current": {
+        "sha256": "963772704de45f669d922f408f22650af27fb2b123925d65a3361cb7e6da614c",
+        "bytes": 4122
+      }
+    }
+  },
+  "boundary": "Full151 API is still running, not green. No new full Edge rerun or deployment. Private candidate partial GREEN is not formal closure. Original licensed runtime R0 and I/S/R unchanged. Model identity deferred by user. Reuse original code and necessary Web/cloud adaptation only."
+}
