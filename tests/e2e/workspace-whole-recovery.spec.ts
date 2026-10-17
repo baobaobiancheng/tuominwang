@@ -92,7 +92,7 @@ test('two material browser interruption restores the active document, review cho
   await projectRow.getByRole('button',{name:'打开工作区恢复记录'}).click();
   const opened=await wholeOpen;expect(opened.status(),await opened.text()).toBe(200);
   const whole=await opened.json();
-  expect(whole.documentCount).toBe(2);
+  expect(whole.entries).toHaveLength(2);
   expect(whole.activeDocumentId).toBe(second.id);
   expect(whole.entries.map((entry:{documentId:string})=>entry.documentId).sort()).toEqual([first.id,second.id].sort());
   await expect(reopened.getByRole('heading',{name:second.name,exact:true})).toBeVisible();
@@ -215,9 +215,10 @@ test('delayed real recovery GET cannot silently take over an ordinary old receip
   await expect(page.getByLabel('标记 1 处理决定')).toHaveValue('pending');
   await page.getByLabel('标记 1 处理决定').selectOption('ignore');
   await page.getByRole('button',{name:'返回材料列表',exact:true}).click();
+  await page.getByRole('alertdialog',{name:'操作确认'}).getByRole('button',{name:'确认执行'}).click();
   releaseReceipt?.();
   await expect(page.getByRole('alert').filter({hasText:'这份草稿已由另一个窗口接管'})).toBeVisible();
   await expect(page.getByRole('button',{name:'返回材料列表',exact:true})).toBeVisible();
   expect(takeoverPosts).toBe(0);
- }finally{releaseReceipt?.();await page.unroute('**/api/documents/*/recovery');}
+ }finally{releaseReceipt?.();if(!page.isClosed())await page.unroute('**/api/documents/*/recovery');}
 });

@@ -84,14 +84,55 @@ test('Edge PDF completed pages can be paused, human drafted, resumed, reviewed a
  await expect(draft.getByRole('status')).toContainText('本页人工增删已保存',{timeout:30000});
  const processed=page.waitForResponse(r=>r.request().method()==='POST'&&new URL(r.url()).pathname===`/api/jobs/${rootJob}/pdf-ocr/draft/pages/0/preview`);
  await draft.getByRole('button',{name:'预览本页处理结果',exact:true}).click();
- const processedResponse=await processed;expect(processedResponse.status(),await processedResponse.text()).toBe(200);
+ const processedResponse=await processed;expect(processedResponse.status()).toBe(200);
  expect(processedResponse.headers()['content-type']).toContain('image/png');
- const processedBytes=await processedResponse.body();expect(processedBytes.length).toBeGreaterThan(1000);
  const processedImage=draft.getByRole('img',{name:'第 1 页处理预览'});
  await expect(processedImage).toBeVisible();
  await expect.poll(()=>processedImage.evaluate((image:HTMLImageElement)=>image.complete&&image.naturalWidth>0)).toBe(true);
+ const browserImage=await processedImage.evaluate(async(image:HTMLImageElement)=>{
+  const response=await fetch(image.src),bytes=new Uint8Array(await response.arrayBuffer());
+  return{size:bytes.length,signature:Array.from(bytes.slice(0,8)),width:image.naturalWidth,height:image.naturalHeight};
+ });
+ expect(browserImage.size).toBeGreaterThan(1000);
+ expect(browserImage.signature).toEqual([137,80,78,71,13,10,26,10]);
+ expect(browserImage.width).toBeGreaterThan(0);
+ expect(browserImage.height).toBeGreaterThan(0);
  await processedImage.screenshot({path:info.outputPath('pdf-ocr-partial-processed-preview.png')});
  await draft.getByRole('button',{name:'返回审查',exact:true}).click();
+ let releaseOldPng!:()=>void,oldPngFetched=false;
+ const oldPngGate=new Promise<void>(resolve=>{releaseOldPng=resolve;});
+ const previewPath=`/api/jobs/${rootJob}/pdf-ocr/draft/pages/0/preview`;
+ await page.route(`**${previewPath}`,async route=>{
+  const oldResponse=await route.fetch();
+  oldPngFetched=true;
+  await oldPngGate;
+  await route.fulfill({response:oldResponse});
+ });
+ const peer=await page.context().newPage();
+ try{
+  const latePng=page.waitForResponse(r=>r.request().method()==='POST'&&new URL(r.url()).pathname===previewPath);
+  await draft.getByRole('button',{name:'预览本页处理结果',exact:true}).click();
+  await expect.poll(()=>oldPngFetched).toBe(true);
+  await peer.goto('/');
+  const peerUpdate=await peer.evaluate(async({jobId,revision})=>{
+   const draftResponse=await fetch(`/api/jobs/${jobId}/pdf-ocr/draft`),data=await draftResponse.json();
+   if(!draftResponse.ok)throw Error(`draft GET ${draftResponse.status}`);
+   const page=data.pages.find((item:{pageIndex:number})=>item.pageIndex===0);
+   const update=await fetch(`/api/jobs/${jobId}/pdf-ocr/draft`,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({revision,draftRevision:page.draftRevision,pageIndex:0,marks:page.draft?.marks??[],removed:page.draft?.removed??[],regions:page.draft?.regions??[],pageDeleted:false})});
+   return{status:update.status,body:await update.json(),before:page.draftRevision};
+  },{jobId:rootJob,revision:initial.revision});
+  expect(peerUpdate.status).toBe(200);
+  expect(peerUpdate.body.draftRevision).toBe(peerUpdate.before+1);
+  const refreshed=page.waitForResponse(r=>r.request().method()==='GET'&&new URL(r.url()).pathname===`/api/jobs/${rootJob}/pdf-ocr/draft`);
+  await draft.getByRole('button',{name:'刷新已完成页面',exact:true}).click();
+  const refreshedResponse=await refreshed;expect(refreshedResponse.status()).toBe(200);
+  expect((await refreshedResponse.json()).pages.find((item:{pageIndex:number})=>item.pageIndex===0).draftRevision).toBe(peerUpdate.body.draftRevision);
+  await page.evaluate(()=>new Promise<void>(resolve=>requestAnimationFrame(()=>requestAnimationFrame(()=>resolve()))));
+  releaseOldPng();
+  expect((await latePng).status()).toBe(200);
+  await expect(draft.getByRole('button',{name:'预览本页处理结果',exact:true})).toBeEnabled();
+  await expect(processedImage).toHaveCount(0);
+ }finally{releaseOldPng();await page.unroute(`**${previewPath}`);await peer.close();}
  await expect(firstImage).toBeVisible();
  await expect(draft.locator('fieldset.region-editor')).not.toHaveAttribute('disabled','');
  await draft.getByLabel('区域形状').selectOption('circle');

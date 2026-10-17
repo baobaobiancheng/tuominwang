@@ -31,6 +31,9 @@ test('entering unified material preview rebuilds ready sibling drafts before ren
   await page.getByRole('navigation',{name:'项目列表'}).getByRole('button',{name,exact:true}).click();
   const panel=page.locator('details').filter({has:page.locator(':scope > summary').filter({hasText:'全项目假名核对'})}).first();
   await panel.locator(':scope > summary').click();
+  const listed=page.waitForResponse(r=>r.request().method()==='GET'&&new URL(r.url()).pathname===`/api/projects/${project}/unified-aliases`);
+  await panel.getByRole('button',{name:'查看全部材料',exact:true}).click();
+  expect((await listed).status()).toBe(200);
   const enabled=page.waitForResponse(r=>r.request().method()==='POST'&&new URL(r.url()).pathname===`/api/projects/${project}/unified-aliases`);
   await panel.getByRole('button',{name:'启用全项目统一假名',exact:true}).click();
   expect((await enabled).status()).toBe(200);
