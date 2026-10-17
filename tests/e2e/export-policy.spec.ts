@@ -18,8 +18,18 @@ test("desktop blocks export and fresh downloads when object coverage changes", a
     const created = page.waitForResponse(response => /\/api\/projects\/[^/]+\/documents$/.test(response.url()) && response.request().method() === "POST");
     await page.getByRole("button", { name: "提交并识别" }).click();
     const document = (await (await created).json()).id;
+    const recognitionDeadline = Date.now() + 45000;
+    for (;;) {
+      const readback = await page.request.get(`/api/documents/${document}`);
+      expect(readback.ok()).toBe(true);
+      const current = await readback.json();
+      if (current.job?.kind === "detect" && ["failed", "cancelled"].includes(current.job.status)) throw new Error(`Recognition ${current.job.status}`);
+      if (current.state === "review" && current.marks?.length === 1 && current.marks[0].kind === "手机号" && current.text.slice(current.marks[0].start, current.marks[0].end) === "13800138000") break;
+      if (Date.now() >= recognitionDeadline) throw new Error(`Recognition readback incomplete: ${current.state}, ${current.marks?.length ?? 0} marks`);
+      await new Promise(resolve => setTimeout(resolve, 500));
+    }
     await page.getByRole("button", { name: "逐条复核", exact: true }).click();
-    await expect(page.getByLabel("标记 1 处理决定")).toBeVisible();
+    await expect(page.getByLabel("标记 1 处理决定")).toBeVisible({ timeout: 30000 });
     await page.getByLabel("标记 1 处理决定").selectOption("redact");
     await page.getByRole("button", { name: "保存复核", exact: true }).click();
     const submitted = page.waitForResponse(response => response.request().method() === "POST" && response.url().endsWith(`/api/documents/${document}/export`));

@@ -2,6 +2,7 @@ import { test, expect } from "./fixture.ts";
 import { randomUUID } from "node:crypto";
 
 test("three-pane review keeps text highlights aligned and guards navigation at desktop widths", async ({ page }) => {
+  test.setTimeout(120_000);
   await page.goto("/");
   await page.getByLabel("账号", { exact: true }).fill(process.env.E2E_USERNAME!);
   await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
@@ -12,11 +13,13 @@ test("three-pane review keeps text highlights aligned and guards navigation at d
   const text = Array.from({ length: 65 }, (_, i) => `合成段落 ${i}：😀联系电话13800138000；仅用于界面验证。`).join("\n") + "\n";
   const created = await page.request.post(`/api/projects/${project.id}/documents`, { headers, data: { text, requestId: randomUUID() } });
   expect(created.ok()).toBeTruthy();
+  const sourceDocumentId=(await created.json()).id as string;
   const second = await page.request.post(`/api/projects/${project.id}/documents`, { headers, data: { text: "另一个合成文档", requestId: randomUUID() } });
   expect(second.ok()).toBeTruthy();
   await page.reload();
   await page.getByRole("button", { name: "合成布局检查", exact: true }).click();
   await page.getByRole("button", { name: /文本 1/ }).click();
+  await expect.poll(async()=>{const response=await page.request.get(`/api/documents/${sourceDocumentId}`);expect(response.status()).toBe(200);const document=await response.json();if(document.job?.status==='failed'||document.job?.status==='cancelled')throw new Error(`Detection ${document.job.status}: ${document.job.error_code??'UNKNOWN'}`);return {state:document.state,job:document.job?.status};},{timeout:60000}).toEqual({state:'review',job:'succeeded'});
   await page.getByRole("button", { name: "逐条复核", exact: true }).click();
   await expect(page.getByLabel("标记 1 处理决定")).toBeVisible();
   for (const width of [1024, 1440, 1920]) {
@@ -96,6 +99,7 @@ test("three-pane review keeps text highlights aligned and guards navigation at d
 });
 
 test("review-only members cannot add alias-linked missing marks into an unsavable draft", async ({ page, browser }) => {
+  test.setTimeout(120000);
   await page.goto("/");
   await page.getByLabel("账号", { exact: true }).fill(process.env.E2E_USERNAME!);
   await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
@@ -105,7 +109,7 @@ test("review-only members cannot add alias-linked missing marks into an unsavabl
   const project = await (await page.request.post("/api/projects", { headers, data: { name } })).json();
   const created = await (await page.request.post(`/api/projects/${project.id}/documents`, { headers, data: { text: "合成甲公司|合成甲公司", requestId: randomUUID() } })).json();
   const url = `/api/documents/${created.id}`;
-  await expect.poll(async () => (await (await page.request.get(url)).json()).state).toBe("review");
+  await expect.poll(async () => { const response = await page.request.get(url); expect(response.status()).toBe(200); const current = await response.json(); if (current.job?.status === "failed") throw new Error(`DETECTION_FAILED ${current.job.errorCode ?? ""}`); return current.state; }, { timeout: 60000 }).toBe("review");
   const aliasResponse = await page.request.post(url + "/mappings", { headers, data: { revision: 0, start: 0, end: 5, kind: "机构", requestId: randomUUID() } });
   expect(aliasResponse.ok()).toBeTruthy();
   const marks = [{ start: 0, end: 5, kind: "机构", decision: "redact", replacement: await aliasResponse.json() }];
@@ -122,13 +126,26 @@ test("review-only members cannot add alias-linked missing marks into an unsavabl
     await viewer.getByRole("button", { name, exact: true }).click();
     await viewer.locator(".material-row").click();
     await viewer.getByRole("button", { name: "漏标检查", exact: true }).click();
+    const knownCheck = viewer.waitForResponse(r => r.request().method() === "POST" && new URL(r.url()).pathname === url + "/known-entities", { timeout: 45000 });
     await viewer.getByRole("button", { name: "检查全文漏标", exact: true }).click();
+    const knownResponse = await knownCheck;
+    expect(knownResponse.status()).toBe(200);
+    expect((await knownResponse.json()).additions.some((mark: { replacement?: { mode?: string } }) => mark.replacement?.mode === "alias")).toBe(true);
     await expect(viewer.getByText(/你没有假名映射权限/)).toBeVisible();
     await expect(viewer.getByRole("button", { name: "补录全部漏标到草稿", exact: true })).toBeDisabled();
     await viewer.getByRole("dialog", { name: "漏标检查", exact: true }).getByRole("button", { name: "返回敏感标记", exact: true }).click();
     await viewer.getByRole("button", { name: "逐条复核", exact: true }).click();
     await viewer.getByLabel("标记 1 处理决定").selectOption("ignore");
+    const savedReview = viewer.waitForResponse(r => r.request().method() === "PUT" && new URL(r.url()).pathname === url + "/review", { timeout: 45000 });
+    const readBack = viewer.waitForResponse(r => r.request().method() === "GET" && new URL(r.url()).pathname === url, { timeout: 45000 });
     await viewer.getByRole("button", { name: "保存复核", exact: true }).click();
+    const savedResponse = await savedReview;
+    expect(savedResponse.status()).toBe(200);
+    const savedRevision = (await savedResponse.json()).revision;
+    expect(Number.isInteger(savedRevision) && savedRevision >= 0).toBe(true);
+    const readBackResponse = await readBack;
+    expect(readBackResponse.status()).toBe(200);
+    expect((await readBackResponse.json()).revision).toBe(savedRevision);
     await expect(viewer.getByText("复核已保存", { exact: true })).toBeVisible();
     await expect(viewer.getByLabel("标记 2 处理决定")).toHaveCount(0);
   } finally { await context.close(); }

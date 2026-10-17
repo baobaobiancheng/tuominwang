@@ -1,0 +1,210 @@
+{
+  "iteration": 151,
+  "kind": "current-open-item-notes-correction",
+  "productionBindingCount": 49,
+  "productionBindingDrift": [],
+  "changes": [
+    {
+      "id": "IPC-e4cf3e6c3c0a",
+      "name": "desensitization:pause-seals",
+      "previous": {
+        "current_porting_reason": "运行期PDF印章暂停、已完成页保留及仅补未完成页的052实现已合入；隔离API两例真实通过。916关键Edge印章例未走完补检后人工草稿与导出全链，v11完整门禁及竞品合法运行仍待。保持confirmed_gap/I1/R0。",
+        "next_actions": [
+          "核v11同源完整API133与Edge105实际终态，重点印章暂停→仅补未完成页→人工草稿→导出链；修真实失败后复验。",
+          "源运行仍为R0：合法授权后按此ID补竞品实跑，不以我方测试替代。"
+        ]
+      },
+      "current": {
+        "current_porting_reason": "ITER151：运行期印章暂停／保留已完成页／仅补未完成页已在正式v17实现；当前生产文件哈希与准备表一致。当前全量Edge印章用例已执行，但整轮尚未终态且其他用例有失败，最终统一源人工草稿→导出全链尚待；旧v11/916为历史，保持I1及原R0。",
+        "next_actions": [
+          "按最终统一源完整API／Edge逐项确认印章暂停→仅补未完成页→人工草稿→导出持久结果；不得以本轮进度代全绿。",
+          "原授权处理链仍R0，保持说明，不以我方结果替代。"
+        ]
+      }
+    },
+    {
+      "id": "IPC-e29b03465bc3",
+      "name": "desensitization:scan-dropped-folder",
+      "previous": {
+        "current_porting_reason": "ITER121：正式v13/944已合并容量修复并交叉审查；隔离定向实际通过，同源完整check/API140/Edge106进行中，原R0与云边界保留。",
+        "next_actions": [
+          "取得v13同源完整工程/API/Edge终态，失败按实际根因修复。",
+          "保留原R0、浏览器原生交互、零字节和HTTP预算边界，不声明私有链或任意规模等价。"
+        ]
+      },
+      "current": {
+        "current_porting_reason": "ITER151：该入口容量适配已合入正式v17，当前生产文件与逐ID验收准备表哈希匹配；最终统一源完整工程／API／Edge和原生浏览器操作仍待。旧v13/944与140/106仅历史轮次，保持待最终验收类别、I1与原R0。",
+        "next_actions": [
+          "按最终统一冻结源取得完整工程／API／Edge实际终态，逐项核原入口字段、失败分支和持久结果。",
+          "保留原R0及云／浏览器边界，不把本地通过称为原产品或线上验收。"
+        ]
+      }
+    },
+    {
+      "id": "IPC-7de3f60b8ed5",
+      "name": "dictionary:select-excel-import-file",
+      "previous": {
+        "current_porting_reason": "ITER147独立Node24同一6.36MB有效Excel差分：机械提取原完整纯解析函数成功返回合成甲/name_cn/whitelist，当前个人名单core/API受5MiB提前拒绝。确认原码级容量缺口；私树修复读取／确认／导出链，尚未合入验收。不是原Electron许可运行，R0保持。",
+        "next_actions": [
+          "直接复用原个人名单解析／写入路径，补当前5MiB及下游确认／再导出容量差异，保持raw-tag／字面值／权限／预览不写入及规则显式启用语义。",
+          "冻结私树最小候选，运行原7个既有纯测及大名单同件差分、专用API与真实浏览器选择／取消；合入前继续等原147／107自然终态，再以新生产字节跑完整门禁，原R0保留。"
+        ]
+      },
+      "current": {
+        "current_porting_reason": "ITER151当前状态：正式v17仍有原码实证的个人Excel 5MiB容量差距。私有v2候选直接复用原sheet1解析与压缩写出，修正列覆盖与重复行丢失；原七例及root四例完整导入差分一致、旧六项纯测／类型通过。候选未合入，v2实际API及超过64MiB确认和最终完整门禁仍待，保留I1/S3/R0。",
+        "next_actions": [
+          "完成私有v2的实际预览无写→显式确认→JSON/XLSX再导出及超过64MiB确认；保持第四列raw标签、Unicode/XML字面值、权限、CAS和原操作流程。",
+          "当前完整147／107自然结束后合并统一冻结，重新执行完整门禁及真实个人Excel选择／取消演示；旧六例日志pin漂移已披露，使用七例唯一追加路径。"
+        ]
+      }
+    },
+    {
+      "id": "IPC-e6a8f1b41825",
+      "name": "workspace:create-transfer",
+      "previous": {
+        "current_porting_reason": "ITER122：TMM整体误套通用50MiB，与原V1/V2专用容量及转换链不同；小样本可用不代表完整移植。专用原码复用/流式适配待实现。",
+        "next_actions": [
+          "复用原TMM读写/分段/容量/校验与V1→V2转换链，专用云接口解除不对应原规则的整体50MiB限制；保留权限/原件/审查/已签发链接及普通文件门禁。",
+          "实际验证超过50MiB工程的读写/转换/重开及界限错误；原许可运行R0与模型身份暂缓边界保持。"
+        ]
+      },
+      "current": {
+        "current_porting_reason": "ITER151当前状态纠正：TMM专用原码读写／分段／容量／校验与V1→V2链已在正式v17实现，49生产文件绑定独立复核零漂移；超过50MiB的定向Edge实际通过迁移、三格式转换与当前项目三格式保存及原件SHA核验。此前“待实现”仅为旧122阶段；最终统一源完整门禁与真实OS另存仍未完成，因此保留未闭合类别、I1与原R0。",
+        "next_actions": [
+          "取得最终统一源的完整工程／API／Edge终态，并完成真实OS另存；保留定向通过和完整回归各自源身份，失败按实际根因修复。",
+          "原竞品授权运行保持R0；不把云API／浏览器OPFS证明说成原Electron或真实OS另存。"
+        ]
+      }
+    },
+    {
+      "id": "IPC-f417c3628886",
+      "name": "workspace:migrate-v1-to-v2",
+      "previous": {
+        "current_porting_reason": "ITER122：TMM整体误套通用50MiB，与原V1/V2专用容量及转换链不同；小样本可用不代表完整移植。专用原码复用/流式适配待实现。",
+        "next_actions": [
+          "复用原TMM读写/分段/容量/校验与V1→V2转换链，专用云接口解除不对应原规则的整体50MiB限制；保留权限/原件/审查/已签发链接及普通文件门禁。",
+          "实际验证超过50MiB工程的读写/转换/重开及界限错误；原许可运行R0与模型身份暂缓边界保持。"
+        ]
+      },
+      "current": {
+        "current_porting_reason": "ITER151当前状态纠正：TMM专用原码读写／分段／容量／校验与V1→V2链已在正式v17实现，49生产文件绑定独立复核零漂移；超过50MiB的定向Edge实际通过迁移、三格式转换与当前项目三格式保存及原件SHA核验。此前“待实现”仅为旧122阶段；最终统一源完整门禁与真实OS另存仍未完成，因此保留未闭合类别、I1与原R0。",
+        "next_actions": [
+          "取得最终统一源的完整工程／API／Edge终态，并完成真实OS另存；保留定向通过和完整回归各自源身份，失败按实际根因修复。",
+          "原竞品授权运行保持R0；不把云API／浏览器OPFS证明说成原Electron或真实OS另存。"
+        ]
+      }
+    },
+    {
+      "id": "IPC-feb24aa50a4f",
+      "name": "workspace:open",
+      "previous": {
+        "current_porting_reason": "ITER122：TMM整体误套通用50MiB，与原V1/V2专用容量及转换链不同；小样本可用不代表完整移植。专用原码复用/流式适配待实现。",
+        "next_actions": [
+          "复用原TMM读写/分段/容量/校验与V1→V2转换链，专用云接口解除不对应原规则的整体50MiB限制；保留权限/原件/审查/已签发链接及普通文件门禁。",
+          "实际验证超过50MiB工程的读写/转换/重开及界限错误；原许可运行R0与模型身份暂缓边界保持。"
+        ]
+      },
+      "current": {
+        "current_porting_reason": "ITER151当前状态纠正：TMM专用原码读写／分段／容量／校验与V1→V2链已在正式v17实现，49生产文件绑定独立复核零漂移；超过50MiB的定向Edge实际通过迁移、三格式转换与当前项目三格式保存及原件SHA核验。此前“待实现”仅为旧122阶段；最终统一源完整门禁与真实OS另存仍未完成，因此保留未闭合类别、I1与原R0。",
+        "next_actions": [
+          "取得最终统一源的完整工程／API／Edge终态，并完成真实OS另存；保留定向通过和完整回归各自源身份，失败按实际根因修复。",
+          "原竞品授权运行保持R0；不把云API／浏览器OPFS证明说成原Electron或真实OS另存。"
+        ]
+      }
+    },
+    {
+      "id": "IPC-86a65aa5ca0e",
+      "name": "workspace:open-dialog",
+      "previous": {
+        "current_porting_reason": "ITER122：TMM整体误套通用50MiB，与原V1/V2专用容量及转换链不同；小样本可用不代表完整移植。专用原码复用/流式适配待实现。",
+        "next_actions": [
+          "复用原TMM读写/分段/容量/校验与V1→V2转换链，专用云接口解除不对应原规则的整体50MiB限制；保留权限/原件/审查/已签发链接及普通文件门禁。",
+          "实际验证超过50MiB工程的读写/转换/重开及界限错误；原许可运行R0与模型身份暂缓边界保持。"
+        ]
+      },
+      "current": {
+        "current_porting_reason": "ITER151当前状态纠正：TMM专用原码读写／分段／容量／校验与V1→V2链已在正式v17实现，49生产文件绑定独立复核零漂移；超过50MiB的定向Edge实际通过迁移、三格式转换与当前项目三格式保存及原件SHA核验。此前“待实现”仅为旧122阶段；最终统一源完整门禁与真实OS另存仍未完成，因此保留未闭合类别、I1与原R0。",
+        "next_actions": [
+          "取得最终统一源的完整工程／API／Edge终态，并完成真实OS另存；保留定向通过和完整回归各自源身份，失败按实际根因修复。",
+          "原竞品授权运行保持R0；不把云API／浏览器OPFS证明说成原Electron或真实OS另存。"
+        ]
+      }
+    },
+    {
+      "id": "IPC-c356082df625",
+      "name": "workspace:save",
+      "previous": {
+        "current_porting_reason": "ITER122：TMM整体误套通用50MiB，与原V1/V2专用容量及转换链不同；小样本可用不代表完整移植。专用原码复用/流式适配待实现。",
+        "next_actions": [
+          "复用原TMM读写/分段/容量/校验与V1→V2转换链，专用云接口解除不对应原规则的整体50MiB限制；保留权限/原件/审查/已签发链接及普通文件门禁。",
+          "实际验证超过50MiB工程的读写/转换/重开及界限错误；原许可运行R0与模型身份暂缓边界保持。"
+        ]
+      },
+      "current": {
+        "current_porting_reason": "ITER151当前状态纠正：TMM专用原码读写／分段／容量／校验与V1→V2链已在正式v17实现，49生产文件绑定独立复核零漂移；超过50MiB的定向Edge实际通过迁移、三格式转换与当前项目三格式保存及原件SHA核验。此前“待实现”仅为旧122阶段；最终统一源完整门禁与真实OS另存仍未完成，因此保留未闭合类别、I1与原R0。",
+        "next_actions": [
+          "取得最终统一源的完整工程／API／Edge终态，并完成真实OS另存；保留定向通过和完整回归各自源身份，失败按实际根因修复。",
+          "原竞品授权运行保持R0；不把云API／浏览器OPFS证明说成原Electron或真实OS另存。"
+        ]
+      }
+    },
+    {
+      "id": "IPC-ff1d1193dc22",
+      "name": "workspace:save-as",
+      "previous": {
+        "current_porting_reason": "ITER122：TMM整体误套通用50MiB，与原V1/V2专用容量及转换链不同；小样本可用不代表完整移植。专用原码复用/流式适配待实现。",
+        "next_actions": [
+          "复用原TMM读写/分段/容量/校验与V1→V2转换链，专用云接口解除不对应原规则的整体50MiB限制；保留权限/原件/审查/已签发链接及普通文件门禁。",
+          "实际验证超过50MiB工程的读写/转换/重开及界限错误；原许可运行R0与模型身份暂缓边界保持。"
+        ]
+      },
+      "current": {
+        "current_porting_reason": "ITER151当前状态纠正：TMM专用原码读写／分段／容量／校验与V1→V2链已在正式v17实现，49生产文件绑定独立复核零漂移；超过50MiB的定向Edge实际通过迁移、三格式转换与当前项目三格式保存及原件SHA核验。此前“待实现”仅为旧122阶段；最终统一源完整门禁与真实OS另存仍未完成，因此保留未闭合类别、I1与原R0。",
+        "next_actions": [
+          "取得最终统一源的完整工程／API／Edge终态，并完成真实OS另存；保留定向通过和完整回归各自源身份，失败按实际根因修复。",
+          "原竞品授权运行保持R0；不把云API／浏览器OPFS证明说成原Electron或真实OS另存。"
+        ]
+      }
+    },
+    {
+      "id": "MCP-dc810d5ca01a",
+      "name": "receive_sanitized_document",
+      "previous": {
+        "current_porting_reason": "视觉fallback、受保护附件/derived_report与格式槽分支已合入917，check-v14工程门禁退出0；v11完整133文件API和105条Edge已启动但未终态，旧913失败是历史。保持confirmed_gap/I1/R0直至同源交付和竞品运行证据。",
+        "next_actions": [
+          "读取v11同源API133和Edge105实际终态，按失败逐项修复并复验接收、附件、还原与签发；不得拼旧913/916结果。",
+          "竞品源运行R0仍需合法授权后验证；服务器054部署与线上读回另证。"
+        ]
+      },
+      "current": {
+        "current_porting_reason": "ITER151：视觉fallback／受保护附件／derived_report及格式槽分支已在正式v17实现，当前生产文件49绑定复核零漂移；v17完整工程检查通过，最终统一源完整API／Edge／交付与还原仍待。旧v11/917门禁号保留在历史证据，不作为当前任务入口；保持I1与原R0。",
+        "next_actions": [
+          "取得最终统一源完整API／Edge并核该工具逐名接收、附件、格式槽、还原与签发结果；旧轮不得覆盖未来名单生产改动。",
+          "部署后分别验证线上版本、健康、树／资产哈希、旧签发链接和真实浏览器流程；原R0保持。"
+        ]
+      }
+    },
+    {
+      "id": "IPC-ba07bb14e3df",
+      "name": "image-review:get-ocr-page",
+      "previous": {
+        "current_porting_reason": "ITER121：正式v13/944已合并容量修复并交叉审查；隔离定向实际通过，同源完整check/API140/Edge106进行中，原R0与云边界保留。",
+        "next_actions": [
+          "取得v13同源完整工程/API/Edge终态，失败按实际根因修复。",
+          "保留原R0、浏览器原生交互、零字节和HTTP预算边界，不声明私有链或任意规模等价。"
+        ]
+      },
+      "current": {
+        "current_porting_reason": "ITER151：该入口容量适配已合入正式v17，当前生产文件与逐ID验收准备表哈希匹配；最终统一源完整工程／API／Edge和原生浏览器操作仍待。旧v13/944与140/106仅历史轮次，保持待最终验收类别、I1与原R0。",
+        "next_actions": [
+          "按最终统一冻结源取得完整工程／API／Edge实际终态，逐项核原入口字段、失败分支和持久结果。",
+          "保留原R0及云／浏览器边界，不把本地通过称为原产品或线上验收。"
+        ]
+      }
+    }
+  ],
+  "statusPromoted": false,
+  "sourceModified": false,
+  "serverModified": false,
+  "note": "Remove stale implementation-pending statements and obsolete run numbers from current actions, preserve archived former notes and all unclosed categories/I1/R0. Targeted TMM proof and current original-code candidate are not whole final-source acceptance."
+}

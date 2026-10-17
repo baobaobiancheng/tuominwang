@@ -1,0 +1,38 @@
+{
+  "id": "ITER-056-MCP-AUTOMATIC-TEST-IP-FOCUSED-177",
+  "date": "2026-10-17",
+  "status": "focused test-only candidate 14/14 passed; full API149 v30 still running with prior file failure retained",
+  "evidence": {
+    "focusedRun": {
+      "path": "protocol/mcp-automatic-test-ip-v1/focused-run-v1/terminal-receipt.json",
+      "sha256": "aa9d7faaf213718bd447b6192fbe2f6a4b1b83f6ff1c549cddd715fbc7ec6467",
+      "bytes": 853
+    },
+    "candidate": {
+      "path": "protocol/mcp-automatic-test-ip-v1/candidate-manifest.json",
+      "sha256": "f27b6dd470625cd92605cfe615a31ac3d85d6bf0e5390f4042bac88c093d3e6c",
+      "bytes": 1967
+    },
+    "peer": {
+      "path": "arch/mcp-automatic-test-ip-v1-readonly-peer-v1.json",
+      "sha256": "aa5bdf180fd197dae331da75306fcb7a3ba0b669d502efeb0b8563dea827bf99",
+      "bytes": 2330
+    },
+    "oldFailure": {
+      "path": "protocol/mcp-automatic-v30-login-limit-readonly-v1/report.json",
+      "sha256": "a042b15d2a3050f6552814d0656d1435bb8d451277e9e9d25948fd3ef3d088e7",
+      "bytes": 3209
+    }
+  },
+  "result": {
+    "controllerExitCode": 0,
+    "file": "tests/mcp-automatic.integration.ts",
+    "cases": 14,
+    "passed": 14,
+    "skipped": 0,
+    "cancelled": 0,
+    "scope": "single focused file on candidate test SHA d3463d79; not the full 149-file run"
+  },
+  "change": "Synthetic per-session injected remoteAddress; owner/member and restarted request in each case share the same address. Production 10/min login and 120/min global limits, business assertions, and authorization paths unchanged; no retry or sleep.",
+  "boundary": "Original API149 v30 mcp-automatic exit1 remains; no full-run pass. v31 full Edge is active without terminal; formal v17 and online 054 unchanged. Do not raise I/S/R or original R0."
+}

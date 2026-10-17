@@ -1,0 +1,58 @@
+{
+  "id": "ITER-056-ORIGINAL-REUSE-REVIEW-STDIO-PREPARED-170",
+  "date": "2026-10-17",
+  "status": "read-only-review-no-new-findings-stdio-prepared-unrun",
+  "evidence": {
+    "candidate28": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v28.json",
+      "sha256": "546e20876ec24f18a9ec59b3f9c53d3a32abe56b8c91d4feb14ce9123b6b19aa",
+      "bytes": 169044
+    },
+    "reuseReview": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/v28-original-reuse-defect-first-readonly-review-v1.json",
+      "sha256": "ccc42c52827705703a611296dcae0f41b9bc409e5d9947690361a2b5fdb8389a",
+      "bytes": 5508
+    },
+    "mcpClientCorrection": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/remaining11-mcp-client-boundary-correction-prepared-v1.json",
+      "sha256": "ce498f4a974c748190ba9e6f58729b8265ce8e23949d2db6a356af67ab411b92",
+      "bytes": 3606
+    },
+    "stdioDemoPrepared": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/external-stdio-visual-derived-demo-v2/candidate-manifest.json",
+      "sha256": "99686d60bc7a126bc1ae40b335c117206d3ea4cf8187d992feadc3ba0c477fb8",
+      "bytes": 1162
+    },
+    "api24": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/full-api-v24/run-v1/terminal-receipt.json",
+      "sha256": "9b73650eb570770d8c75b0c124cb85c01516263e62955f87f3df2ee85b3fc8e9",
+      "bytes": 35692
+    },
+    "apiSlice": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/api24-to-final28-execution-slice-independent-audit-v1.json",
+      "sha256": "31ad023e69b544ed8b1a407498de419791c7c254783ca624f204367ecc97f021",
+      "bytes": 20330
+    }
+  },
+  "reviewScope": "Candidate v28 versus formal v17: 10 changed non-test production/dependency paths. No actionable finding in this read-only diff/call-path review; no new API, browser or original-runtime execution is inferred.",
+  "reuse": {
+    "dictionary": "Original U2/H2/K2/Y2/G2 and sheet1 row extraction reused; hidden fourth raw-type column and personal-list Web bodyLimit are necessary cloud adaptations.",
+    "pdf": "smallAsset-verified glyph-map bytes are reused only for recent-profile projection; original PDF remains a TmmFileRef. The initial old-tree P1 was withdrawn on v28 SHA recheck.",
+    "session": "Only read-only GET /session may retry one valid 429 Retry-After. Identity epoch prevents stale action completion; writes are not retried; global 120/min and login 10/min remain."
+  },
+  "mcpClientBoundary": "Original receive_sanitized_document is a stdio MCP tool consumed by an external client, with no prescribed Lawbot renderer UI. The v2 external visual-derived demo is prepared_unrun, not evidence of actual client attachment consumption or report submission.",
+  "remaining": "Full v28 Edge107 terminal not read at this evidence cutoff; original runtime R0, Mac native Save As locked, guide DRAFT, online server 054 and release pending. No I/S/R or nine-gap promotion.",
+  "archive": ".data/research/lawbot-2026-10-16/iteration056/before-original-reuse-review-ledger170-v1",
+  "rulesJsonBlocksSha256": [
+    "6e0ea225acb4e6e7e41a5b5a99a812e12243a4308f82171301142d5c8df20c46",
+    "27abf7c3d82e77ef4bcd16453d82e9e3990253e8a12bc64635915361d2876815",
+    "30b3a3337d6fd90e80b3449f5120d362694d3760e8ffcee059789dca8df6ce1e",
+    "943620d7d6cc863f7396226b9cdfd9b1a7ccbbaf3131228b0e8a2c6d97425bff",
+    "52708f9a15cb02a8b89786acf6d8a5250815851fa2d47f095eaaa721af4feb8d",
+    "05cb41cae0447743ef3584454a2c825bf588bc5ce70e922a3258080363d73508",
+    "871f257bf1452e5a2436ea062641358ae7927b9d32fb70c3bfc44654dd4c6c9d",
+    "6a2148a02a6271762804344eb7b3531d41749289c9f24601e3f8ab48e3a13345",
+    "fa326d1af4b2851e8f7a91adfa1cb64c652c8121657f30caa40749eb18c7c3c8",
+    "d49eaf84c70fbd63ce8236532ac458e49a624d86fe9c33a569c5b6bef38d7b89"
+  ]
+}

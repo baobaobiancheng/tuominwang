@@ -1,0 +1,58 @@
+{
+  "id": "ITER-056-API24-TERMINAL-EQUIVALENCE-165",
+  "date": "2026-10-17",
+  "status": "evidence-boundary-only",
+  "api24": {
+    "receipt": ".data/research/lawbot-2026-10-16/iteration056/protocol/full-api-v24/run-v1/terminal-receipt.json",
+    "sha256": "9b73650eb570770d8c75b0c124cb85c01516263e62955f87f3df2ee85b3fc8e9",
+    "logSha256": "e6a263d35fd44a8360091e1f82492d65bdbd2a9786818f4cf51b8ac1facd7c9e",
+    "independentAudit": ".data/research/lawbot-2026-10-16/iteration056/root/full-api-v24-independent-terminal-audit-v1.json",
+    "independentAuditSha256": "ce8655717b8d3d6cccb38384f3cf3129bd82e67daa641b430f7fd837d2a4ec1c",
+    "files": 148,
+    "tests": 309,
+    "allSixStatsZeroFailCancelSkipTodo": true,
+    "prePostGuardsEmpty": true,
+    "cleanupEmpty": true,
+    "scope": "Actual API execution on v24 source, not a same-manifest v26 API run."
+  },
+  "sourceEquivalence": {
+    "sidecar": ".data/research/lawbot-2026-10-16/iteration056/protocol/full-api-v24/run-v1/api24-to-final26-source-equivalence-v1.json",
+    "sidecarSha256": "71504b0f4f2650cf5550aa9fbc0c3f838098624d2454fa6372be12a2af85102e",
+    "independentPeer": ".data/research/lawbot-2026-10-16/iteration056/root/api24-to-runtime26-actual-bridge-independent-review-v1.json",
+    "independentPeerSha256": "02d68fd733a4e4f24889fa1b223271d22ffeec78a7e5acbe1bc44da0e38b7595",
+    "releaseResearchManifest": ".data/deploy/aliyun-20261016/iteration056/release-v26-api-equivalence-overlay-v6/candidate-manifest.json",
+    "releaseResearchManifestSha256": "d2cc9eda3bb5a5cec92ccbcb1db048088a38462f9e43f22bc3dd7df267097195",
+    "exactChangedPaths": [
+      "tests/e2e/export-policy.spec.ts",
+      "tests/e2e/frontend-alignment.spec.ts",
+      "tests/e2e/lifecycle.spec.ts",
+      "tests/e2e/page-selection-edit.spec.ts",
+      "tests/e2e/porting-closure.spec.ts"
+    ],
+    "unchangedRows": 987,
+    "scope": "Only unchanged API execution slice may use API24 evidence. No API26 same-manifest claim. Research release still failclosed."
+  },
+  "remaining": {
+    "fullEdge107v26": "running/no terminal at evidence cutoff",
+    "nativeSaveAs": "pending",
+    "guide": "pending",
+    "remoteCAS": "pending",
+    "formal": "v17",
+    "server": "054",
+    "deployed": false
+  },
+  "counts": "I/S/R and nine confirmed gaps unchanged",
+  "archive": ".data/research/lawbot-2026-10-16/iteration056/before-api24-terminal-ledger165-v1",
+  "rulesJsonBlocks": [
+    "6e0ea225acb4e6e7e41a5b5a99a812e12243a4308f82171301142d5c8df20c46",
+    "27abf7c3d82e77ef4bcd16453d82e9e3990253e8a12bc64635915361d2876815",
+    "30b3a3337d6fd90e80b3449f5120d362694d3760e8ffcee059789dca8df6ce1e",
+    "943620d7d6cc863f7396226b9cdfd9b1a7ccbbaf3131228b0e8a2c6d97425bff",
+    "52708f9a15cb02a8b89786acf6d8a5250815851fa2d47f095eaaa721af4feb8d",
+    "05cb41cae0447743ef3584454a2c825bf588bc5ce70e922a3258080363d73508",
+    "871f257bf1452e5a2436ea062641358ae7927b9d32fb70c3bfc44654dd4c6c9d",
+    "6a2148a02a6271762804344eb7b3531d41749289c9f24601e3f8ab48e3a13345",
+    "fa326d1af4b2851e8f7a91adfa1cb64c652c8121657f30caa40749eb18c7c3c8",
+    "d49eaf84c70fbd63ce8236532ac458e49a624d86fe9c33a569c5b6bef38d7b89"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "iteration": 150,
+  "status": "research_candidate_only_final_gates_pending",
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/dictionary-capacity-candidate-v2/candidate-manifest-v3-evidence-correction.json",
+      "sha256": "77dd43394393297cb2528b59a8b83948078e20e7f961ce9963e31f0d97ba9939"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/dictionary-candidate-v2-independent/terminal-receipt.json",
+      "sha256": "d39c00048b8784da246792b6ee0509ce9fdd0f6a963ef10ae8d7c0f6ca58f0d0"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/dictionary-capacity-v2-luna-review-v1.json",
+      "sha256": "2b164add89985bf5d90257a2ae5b9faa1dacb12135f30eb86a53a7569c1eaec7"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/dictionary-capacity-v2-luna-review-v2.json",
+      "sha256": "26f5d9ec6706f9b532a90e686168cd21c14526bf5be4b6b37a4a599594c94e35"
+    }
+  ],
+  "candidateCode": "8 frozen paths, exact A/B/C/D lookup and original XML row order including duplicate row IDs; original seven fixture entries/errors differential matches; root independently replayed four failures through complete importer with before/after guard0.",
+  "peerReview": "Independent gpt-6-luna review v1 wrongly claimed confirmation has no route bodyLimit; v2 withdrew this on exact candidate feedback.ts hash and actual Fastify option propagation source. Retain both; no runtime >64MiB claim.",
+  "evidenceIntegrity": "Appending seventh fixture overwrote six-case script/log pinned by old frozen manifest. Explicit drift disclosure retained; current7 script/log copied into unique validation-addendum-v3 paths with exact hashes. Original frozen manifest bytes unchanged; its old script/log pointers must not be accepted as currently matching. Production8 bytes unchanged.",
+  "pending": [
+    "v2 focused API",
+    "physical greater-than64MiB confirmation",
+    "full final unified-source required check/API/Edge/native",
+    "release and deployment"
+  ],
+  "implementationStatusPromoted": false,
+  "referenceRuntime": "R0",
+  "formalProductSourceModified": false,
+  "serverModified": false
+}

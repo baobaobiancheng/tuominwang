@@ -1,7 +1,8 @@
-<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>脱敏汪本轮操作指南</title><style>body{max-width:1060px;margin:auto;padding:32px;font:16px/1.8 system-ui,"PingFang SC",sans-serif;color:#23212b;background:#faf9fc}h1,h2,h3{color:#3b205c}h2{margin-top:48px;border-top:1px solid #ddd4e8;padding-top:24px}a{color:#614291}nav{padding:18px;background:white;border:1px solid #ded7e9}nav a{display:inline-block;margin:4px 20px 4px 0}table{border-collapse:collapse;width:100%;background:white;margin:20px 0}th,td{border:1px solid #ddd4e8;padding:12px;text-align:left;vertical-align:top}th{background:#f0edf6}img{display:block;max-width:100%;height:auto;border:1px solid #ddd;margin:20px auto}blockquote{border-left:4px solid #7958a1;padding:4px 18px;background:white;margin-left:0}code{overflow-wrap:anywhere}pre{white-space:pre-wrap;overflow:auto;background:#f0edf6;padding:16px}.workflow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;list-style-position:inside;padding:0}.workflow li{padding:16px;border:1px solid #bda8d4;background:white;border-radius:6px}li{margin:8px 0}@media print{body{padding:0}nav{display:none}h2{break-before:auto}img{max-height:900px;object-fit:contain}table{break-inside:avoid}}</style><nav><a href="#section-1">先走完一次完整流程</a><a href="#section-2">1. 找到正确页面或 Word 图片</a><a href="#section-3">2. 选取图片或 PDF 上已经识别的文字</a><a href="#section-4">3. 手动标注区域与调整识别实体的位置</a><a href="#section-5">4. 一次找到并标记全部同文位置</a><a href="#section-6">5. 按处理范围查找图像文字</a><a href="#section-7">6. 将同一清除位置应用到多页</a><a href="#section-8">7. 区域 OCR、Word 图片重识别与改字</a><a href="#section-9">8. 旋转 PDF 页面</a><a href="#section-10">9. 隐藏一类实体并恢复</a><a href="#section-11">10. Word 版式与兼容预览</a><a href="#section-12">11. 批量还原与找回副本</a><a href="#section-13">12. 来源记录、标注下载与最终检查</a><a href="#section-14">13. 项目实体查漏：逐份查看，再逐处决定</a><a href="#section-15">14. 反馈和个人规则的生效范围</a><a href="#section-16">与对标产品的入口差异和识别质量</a><a href="#section-17">常见提示怎么处理</a><a href="#section-18">15. 部分个人方案损坏时继续使用</a><a href="#section-19">16. 外部文件零次或部分还原</a><a href="#section-20">17. 工程重开后的PDF双实体复核</a><a href="#section-21">18. 查看项目OCR纠错中未处理的原因</a><a href="#section-22">19. AI返回稿复核后再允许还原</a><a href="#section-23">20. 截图或聊天材料选择识别方式</a><a href="#section-24">21. 表格拆格姓名：整组复核</a><a href="#section-25">22. 取消识别后继续处理</a><a href="#section-26">23. 自动保存、恢复和撤销复核草稿</a><a href="#section-27">24. AI返回稿归档与历史下载</a><a href="#section-28">25. AI 协作坏记录：确认隔离与同版本恢复</a><a href="#section-29">金额规则实操（056 本地验收）</a></nav><main><h1>页面标注、同文处理与审查操作</h1>
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>脱敏汪本轮操作指南</title><style>body{max-width:1060px;margin:auto;padding:32px;font:16px/1.8 system-ui,"PingFang SC",sans-serif;color:#23212b;background:#faf9fc}h1,h2,h3{color:#3b205c}h2{margin-top:48px;border-top:1px solid #ddd4e8;padding-top:24px}a{color:#614291}nav{padding:18px;background:white;border:1px solid #ded7e9}nav a{display:inline-block;margin:4px 20px 4px 0}table{border-collapse:collapse;width:100%;background:white;margin:20px 0}th,td{border:1px solid #ddd4e8;padding:12px;text-align:left;vertical-align:top}th{background:#f0edf6}img{display:block;max-width:100%;height:auto;border:1px solid #ddd;margin:20px auto}blockquote{border-left:4px solid #7958a1;padding:4px 18px;background:white;margin-left:0}code{overflow-wrap:anywhere}pre{white-space:pre-wrap;overflow:auto;background:#f0edf6;padding:16px}.workflow{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;list-style-position:inside;padding:0}.workflow li{padding:16px;border:1px solid #bda8d4;background:white;border-radius:6px}li{margin:8px 0}@media print{body{padding:0}nav{display:none}h2{break-before:auto}img{max-height:900px;object-fit:contain}table{break-inside:avoid}}</style><nav><a href="#section-1">先走完一次完整流程</a><a href="#section-2">1. 找到正确页面或 Word 图片</a><a href="#section-3">2. 选取图片或 PDF 上已经识别的文字</a><a href="#section-4">3. 手动标注区域与调整识别实体的位置</a><a href="#section-5">4. 一次找到并标记全部同文位置</a><a href="#section-6">5. 按处理范围查找图像文字</a><a href="#section-7">6. 将同一清除位置应用到多页</a><a href="#section-8">7. 区域 OCR、Word 图片重识别与改字</a><a href="#section-9">8. 旋转 PDF 页面</a><a href="#section-10">9. 隐藏一类实体并恢复</a><a href="#section-11">10. Word 版式与兼容预览</a><a href="#section-12">11. 批量还原与找回副本</a><a href="#section-13">12. 来源记录、标注下载与最终检查</a><a href="#section-14">13. 项目实体查漏：逐份查看，再逐处决定</a><a href="#section-15">14. 反馈和个人规则的生效范围</a><a href="#section-16">与对标产品的入口差异和识别质量</a><a href="#section-17">常见提示怎么处理</a><a href="#section-18">15. 部分个人方案损坏时继续使用</a><a href="#section-19">16. 外部文件零次或部分还原</a><a href="#section-20">17. 工程重开后的PDF双实体复核</a><a href="#section-21">18. 查看项目OCR纠错中未处理的原因</a><a href="#section-22">19. AI返回稿复核后再允许还原</a><a href="#section-23">20. 截图或聊天材料选择识别方式</a><a href="#section-24">21. 表格拆格姓名：整组复核</a><a href="#section-25">22. 取消识别后继续处理</a><a href="#section-26">23. 自动保存、恢复和撤销复核草稿</a><a href="#section-27">24. AI返回稿归档与历史下载</a><a href="#section-28">25. AI 协作坏记录：确认隔离与同版本恢复</a><a href="#section-29">26. 为单份材料设置识别、脱敏和副本</a><a href="#section-30">27. 逐文件选择材料类型与私有假名归档</a><a href="#section-31">28. AI 协作的默认自动处理与专用人工复核</a><a href="#section-32">29. 金额规则实操（056 本地验收）</a><a href="#section-33">30. 个人黑白名单 Excel</a><a href="#section-34">31. PDF 第 301 页</a></nav><main><h1>页面标注、同文处理与审查操作</h1>
 <blockquote>
 <p>2026-10-15 本轮操作指南。新增方案恢复、外部部分还原、PDF工程重开、OCR原因与AI还原操作；图示流程已用隔离账号和合成材料实际操作。整体门禁结果见当前完成状态。实际服务器版本与发布时间见发布记录。首次使用建议先完成第 1 节的小样例，再操作业务材料。</p>
 </blockquote>
+<blockquote><p><strong>验收范围：</strong>本轮工作区大文件操作已完成浏览器内 OPFS 写入和回读验证；OPFS 不是 macOS 原生“另存为”。Mac 仍处于锁屏状态，原生系统文件选择、另存为以及目录选择和取消操作尚待解锁后实测。这些待验项不作为已通过流程或截图。</p></blockquote>
 <h2 id="section-1">先走完一次完整流程</h2>
 <ol class="workflow"><li>导入材料</li><li>等待识别完成</li><li>查看原件与复核</li><li>补漏、改字和位置调整</li><li>保存复核</li><li>生成处理副本</li><li>核验并下载</li></ol><p>旋转或重新识别后，返回复核；全部待确认项处理完成后再保存和导出。</p>
 <p>先用一份不含真实敏感数据的短文件练习。完成逐条处理、保存、生成和下载后，打开下载文件核对。页面预览和“识别完成”均不能代替最终文件检查。</p>
@@ -64,6 +65,12 @@
 <p>有些坐标只能定位整词，界面会提示按完整字符块覆盖。未识别到文字、缺少可靠坐标的位置，请使用区域标注；不要把看到图片文字误当作已建立文字标记。</p>
 <p><img src="%E6%88%AA%E5%9B%BE-20261015/%E9%A1%B5%E9%9D%A2%E6%96%87%E5%AD%97%E9%80%89%E5%8F%96%E4%B8%8E%E5%8C%BA%E5%9F%9F%E8%B0%83%E6%95%B4.png" alt="真实选字、区域调整与查找结果"></p>
 <p>此图手机号被设为“保留原值”，因此可出现在“高亮外”结果中；它是功能操作示例，不是已经完成脱敏的文件。</p>
+<h3>识别尚未完成时的提前预览与临时选字</h3>
+<table><thead><tr><th>当前阶段</th><th>可以操作的内容</th><th>继续处理</th></tr></thead><tbody><tr><td>正在识别，原件已显示</td><td>提前查看后面的原件页面</td><td>原件显示不代表该页 OCR 已完成，等待识别进度更新。</td></tr><tr><td>已有临时 OCR 文字层</td><td>勾选“选取页面文字”复制文字</td><td>此时坐标尚未绑定正式文稿；退出选字后继续绘制清除区域。</td></tr><tr><td>全部识别完成</td><td>回到正式复核核对文字、位置和处理决定</td><td>保存复核，再生成并核验副本。</td></tr></tbody></table>
+<p><img src="%E6%88%AA%E5%9B%BE-20261016/056-PDF%E6%8F%90%E5%89%8D%E9%A2%84%E8%A7%88%E7%AC%AC20%E9%A1%B5.png" alt="识别仍在处理时已能查看第20页原件；能看到原件不代表该页文字识别已完成。"></p>
+<p>识别仍在处理时已能查看第20页原件；能看到原件不代表该页文字识别已完成。</p>
+<p><img src="%E6%88%AA%E5%9B%BE-20261016/056-PDF%E4%B8%B4%E6%97%B6%E5%8F%AA%E8%AF%BB%E9%80%89%E5%AD%97%E6%A8%A1%E5%BC%8F.png" alt="勾选临时选字模式后，提示文字层只供复制，添加区域不可用；图中未展示高亮选中的文字。"></p>
+<p>勾选临时选字模式后，提示文字层只供复制，添加区域不可用；图中未展示高亮选中的文字。</p>
 <h2 id="section-4">3. 手动标注区域与调整识别实体的位置</h2>
 <p>这两种操作作用不同：区域标注直接清除所选像素；实体位置调整修改某个已有文字实体的处理位置。</p>
 <h3>新建清除区域</h3>
@@ -115,6 +122,8 @@
 </ol>
 <p>“区域外”可用于查漏；它不能证明没有漏检。查找和定位本身不修改材料，因此没有其他改动时，保存按钮可能不可点击。</p>
 <p>人脸、印章和签名候选需要回到原件逐页确认。候选框应检查是否真正覆盖敏感内容；没有候选的页面也要人工查看。确认后再选择处理决定、保存复核，并检查下载副本中的实际像素。</p>
+<p>PDF 印章检查可在处理中暂停，再于人工复核后补检。下图为 20 页公开合成 PDF 移除 1 页后实际补检完成的同轮画面：顶部显示“已保留 19 页印章检查结果”，旧的印章待检页提示已消失，页面仍提示“仍须逐项人工复核”。</p>
+<figure><img src="截图-20261017/056-印章补检完成.png" alt="PDF 印章补检完成后保留 19 页检查结果，仍需人工逐项复核。"><figcaption>同轮真实 Edge 截图：补检完成后仍需人工逐项复核。</figcaption></figure>
 <h2 id="section-7">6. 将同一清除位置应用到多页</h2>
 <ol>
 <li>在本页画出并检查区域。</li>
@@ -357,7 +366,7 @@
 </tr>
 </tbody></table>
 <p>印章质量仍不足以宣称实用自动识别完成。后续研究模型的结果不等于已安装到生产；请以页面实际候选能力为准，并逐页检查印章、人脸、签名以及其他漏检内容。没有候选也不表示该页没有敏感图像。</p>
-<p>评估详情：<a href="../%E9%80%86%E5%90%91%E5%8F%B0%E8%B4%A6/contracts/public-face-validation-20261014.md">人脸全量验证</a>、<a href="../%E9%80%86%E5%90%91%E5%8F%B0%E8%B4%A6/contracts/signature-model-porting-20261014.md">签名模型评估</a>、<a href="../%E9%80%86%E5%90%91%E5%8F%B0%E8%B4%A6/contracts/public-stamp-validation-20261015.md">印章全量验证</a>。竞品未经授权的处理链尚未运行验证，不能将上述功能步骤称为全部等价。</p>
+<p>上述公开集评估仅说明模型测试范围，不代表业务材料识别质量；请以页面实际候选和人工逐页检查结果为准。</p>
 <h2 id="section-17">常见提示怎么处理</h2>
 <table>
 <thead>
@@ -524,10 +533,57 @@
 <img src="%E6%88%AA%E5%9B%BE-20261015/AI%E4%BB%BB%E5%8A%A1%E5%9D%8F%E8%AE%B0%E5%BD%95%E6%8F%90%E7%A4%BA-051.png" alt="坏记录出现且正常任务仍可查看">
 <img src="%E6%88%AA%E5%9B%BE-20261015/AI%E4%BB%BB%E5%8A%A1%E9%9A%94%E7%A6%BB%E5%9B%9E%E6%89%A7-051.png" alt="明确确认隔离后保留故障密文回执">
 <img src="%E6%88%AA%E5%9B%BE-20261015/AI%E4%BB%BB%E5%8A%A1%E5%90%8C%E7%89%88%E6%9C%AC%E6%81%A2%E5%A4%8D-051.png" alt="同版本快照恢复后任务与归档仍可查看">
-<p>三图来自本地051正式代码的真实Edge隔离验收：合成任务中仅在隔离测试库注入一条坏密文，页面完成两次明确确认，1项用例通过；正常任务、原件、已有归档和结果下载按数据库行及字节哈希核对。三图记录2026-10-16本地隔离验收时的051实现，不代表当前线上版本；实际部署版本以使用时对应的发布验收记录为准。</p><h2 id="section-29">金额规则实操（056 本地验收）</h2><p>本节来自正式056代码的独立测试账号和公开合成文本，真实 Edge 1项用例通过。线上054尚未同步本轮功能，实际可用版本以发布验收为准。</p><ol><li>新建项目，点击“导入材料”，在“待处理文本”中粘贴下方示例，再点“提交并识别”。</li><li>识别完成后点“逐条复核”。右侧标记面板中，10000元和12万元应各有一条“金额”候选；未显示的内容需在面板中滚动查看。</li><li>将第1条金额选择“脱敏处理”，脱敏方式选“自定义替换”，替换文字填“已隐藏金额”；第2条金额选择保留／忽略。截图展示第1条，测试实际处理了两条。</li><li>点击“保存复核”，确认显示人工复核已保存。再点击“导出已选标记的处理副本”；生成或刷新期间按钮可能暂时置灰，等待“核验并下载 TXT”可用后下载。</li><li>打开下载件：只有10000元变成“已隐藏金额”，12万元及百分比、面积、股数、利率样本保持原文。返回材料查看，原文本仍未改变。</li></ol><pre><code>公开合成合同
+<p>三图来自本地051正式代码的真实Edge隔离验收：合成任务中仅在隔离测试库注入一条坏密文，页面完成两次明确确认，1项用例通过；正常任务、原件、已有归档和结果下载按数据库行及字节哈希核对。三图记录2026-10-16本地隔离验收时的051实现，不代表当前线上版本；实际部署版本以使用时对应的发布验收记录为准。</p><h2 id="section-29">26. 为单份材料设置识别、脱敏和副本</h2>
+<ol><li>在项目材料列表打开目标材料，展开<strong>本材料识别与脱敏设置</strong>。读取完成后核对材料类型、识别策略、使用方案和本材料规则库。失败时点击<strong>重试加载材料设置</strong>，确认当前设置显示后再编辑。</li>
+<li>在<strong>材料方案覆盖设置</strong>中按需调整识别类型、处理方式、各类型假名策略和新假名前缀。<strong>恢复沿用方案类型</strong>可撤销材料类型覆盖。更新规则需要规则管理权限。</li>
+<li>普通保存保留当前已应用的方案和规则版本。需要新方案版本时明确勾选<strong>重新应用当前方案（保留本材料的单独设置）</strong>；有权限并需要新规则版本时，另勾选<strong>更新为当前规则版本</strong>。</li>
+<li>点击<strong>保存设置并重新识别</strong>。重新检查候选、保存复核、生成副本并打开下载件核验。提交结果不明确时先重新打开材料查版本，不重复提交。</li></ol>
+<img src="截图-20261016/材料设置-上部-056.png" alt="材料类型、识别策略和方案设置"><img src="截图-20261016/材料设置-方案重新应用-056.png" alt="明确重新应用方案">
+<h3>Word 清理与附加副本</h3><p>DOCX 可选择移除图片、页眉页脚以及批注处理方式；主结果为 DOCX，可另附带 Markdown。保存设置后重新复核正文、表格和内嵌图片。若要清除嵌图选区像素，在原件画布下方勾选<strong>清除内嵌图片选区像素，生成 DOCX 副本</strong>，再保存复核；移除 Word 图片不能代替这项确认。</p>
+<img src="截图-20261016/材料设置-Word清理-056.png" alt="Word 清理与附加格式"><img src="截图-20261016/材料设置-Word复核下载-056.png" alt="Word 图像副本复核与下载">
+<h3>PDF 遮盖颜色与附加格式</h3><p>PDF 可单独选本材料遮盖颜色。明确选色覆盖复核页颜色；沿用时复核页颜色优先于方案默认色。PDF 为主结果，可附加 DOCX 和 Markdown。保存、重新识别和复核后，勾选<strong>转换为不可选字的图片型 PDF 副本</strong>，保存复核再生成下载。</p>
+<img src="截图-20261016/材料设置-PDF颜色-056.png" alt="PDF 遮盖颜色与附加格式"><img src="截图-20261016/材料设置-PDF下载-056.png" alt="PDF 图像型副本及下载">
+<p>图片均为隔离账号操作的合成材料。下载后仍应打开成品核对；原件用于对照。</p>
+<h2 id="section-30">27. 逐文件选择材料类型与私有假名归档</h2>
+<h3>导入前逐文件选择材料类型</h3><ol><li>打开<strong>导入材料</strong>，每份文件的材料类型默认自动判断；知道类别时可逐份选择。</li><li>上传前核对文件名和类型，再点击<strong>上传文件</strong>。类型用于首次识别；后续可在材料设置保存并重新识别，原件字节保留。</li><li>识别完成后打开材料核对结果与来源，仍须逐条复核和检查成品。</li></ol>
+<img src="截图-20261016/逐文件类型-上传前-056.png" alt="导入前逐文件选择材料类型">
+<h3>单份材料的私有假名表</h3><ol><li>选择项目假名并保存复核，在导出区按需填写<strong>本次假名表名称（可选）</strong>，点击<strong>导出已选标记的处理副本</strong>。</li><li>任务完成后下载核验副本，回材料列表展开<strong>导出假名表</strong>，点击<strong>刷新自动归档</strong>，从<strong>自动归档的假名表</strong>下载本次记录。</li><li>私有假名表含原文，须有相应查看、假名映射和导出权限；与副本分开保管。普通副本链接不附带私有表。</li></ol>
+<img src="截图-20261016/单件私有假名归档-056.png" alt="单份材料私有假名表及下载入口">
+<h3>统一批次：先保存映射，再生成所选副本</h3><ol><li>打开<strong>文件夹结果与处理清单</strong>，选导入批次并勾选<strong>统一批次：先保存项目假名映射，再生成本批次副本</strong>。</li><li>在<strong>选择本批次导出材料</strong>中勾选交付文件，可填<strong>本次统一假名表名称</strong>，点击<strong>整理结果</strong>；此时副本尚未生成。未选文件不会混入本次结果。</li><li>点击<strong>生成本批次副本</strong>，处理后点<strong>刷新本批次状态</strong>。核对状态，再点<strong>生成结果 ZIP 与处理清单</strong>及<strong>下载结果 ZIP</strong>，打开 ZIP 核对副本和 HTML 清单。</li><li>在材料列表的<strong>导出假名表</strong>中刷新，从<strong>统一批次归档的假名表</strong>下载私有表。该含原文文件不进 ZIP，也不能由匿名链接取得。</li></ol>
+<img src="截图-20261016/统一批次-选择两份-056.png" alt="本次选两份，第三份不纳入"><img src="截图-20261016/统一批次-两成功一跳过-056.png" alt="两份副本完成，一份未选跳过"><p>图示为隔离环境合成文件；交付前按清单核对下载件。</p>
+<h2 id="section-31">28. AI 协作的默认自动处理与专用人工复核</h2>
+<p>普通 MCP 脱敏任务使用默认自动处理；需要由人逐项决定时，客户端选择独立的“用户人工复核”入口。两种入口都要先在“AI 协作”中核对客户端、选定材料与授权范围，再点击确认。授权后若页面显示“等待材料初次识别”或“等待任务材料识别”，点击“刷新任务”查看实际进度；此时材料尚未审定，不应下载或交付。默认自动任务须保持原 MCP 客户端连接，并由该客户端继续查询或等待任务状态，才能推进自动审定、生成和交付；网页“刷新任务”用于查看进度，不单独完成这些步骤。</p>
+<table><thead><tr><th>页面阶段</th><th>继续操作</th></tr></thead><tbody>
+<tr><td>默认自动任务显示“脱敏稿可交付”</td><td>由原 MCP 客户端继续查询或等待任务到此阶段；网页点击“刷新任务”查看结果，核对“审定来源记录”中每份材料的“系统自动”或“人工复核”，再下载脱敏稿并打开文件核验。任务设为自动，不代表其中每份材料都由机器决定。</td></tr>
+<tr><td>专用人工任务显示“等待人工复核”</td><td>点击“复核材料 N”，逐项决定并点击“保存复核”；回到任务后点击“复核已保存，生成脱敏稿”，生成完成后点击“核验并批准交付脱敏稿”，待可交付后实际下载核验。</td></tr>
+<tr><td>材料页显示“系统自动决定，未人工复核”</td><td>这是当前已保存版本的来源。若需人工介入，修改标记并点击“保存复核”；保存前的修改不算新的人工审定。</td></tr>
+<tr><td>材料页显示“人工复核已保存”</td><td>点击“查看复核记录”核对各版本来源。自动决定和后续人工保存可同时留在历史中；以当前版本与实际下载件为准。</td></tr>
+<tr><td>任务显示“已取消”</td><td>停止按等待识别或可交付步骤操作；需要处理材料时重新核对当前任务与材料状态。</td></tr>
+</tbody></table>
+<p>AI 返回稿仍按第 19、24 节的原有人工复核和还原授权步骤操作。这里的自动处理只针对授权后的材料审定与脱敏稿生成，不代替 AI 返回稿的人审门禁。</p>
+<h3>自动与人工入口的实际画面</h3>
+<p><img src="%E6%88%AA%E5%9B%BE-20261016/056-MCP%E8%87%AA%E5%8A%A8-%E7%AD%89%E5%BE%85%E5%88%9D%E6%AC%A1%E8%AF%86%E5%88%AB.png" alt="默认自动任务：授权后等待材料初次识别，尚未审定。"></p>
+<p>默认自动任务：授权后等待材料初次识别，尚未审定。</p>
+<p><img src="%E6%88%AA%E5%9B%BE-20261016/056-MCP%E8%87%AA%E5%8A%A8-%E5%AE%A1%E5%AE%9A%E6%9D%A5%E6%BA%90.png" alt="自动任务可交付时，核对每份材料的审定来源；图中记录为系统自动。"></p>
+<p>自动任务可交付时，核对每份材料的审定来源；图中记录为系统自动。</p>
+<p><img src="%E6%88%AA%E5%9B%BE-20261016/056-MCP%E8%87%AA%E5%8A%A8%E5%90%8E%E4%BA%BA%E5%B7%A5-%E5%A4%8D%E6%A0%B8%E5%8E%86%E5%8F%B2.png" alt="人工介入并保存后，查看复核记录：当前版本为人工复核，前一自动版本仍保留。"></p>
+<p>人工介入并保存后，查看复核记录：当前版本为人工复核，前一自动版本仍保留。</p>
+<p><img src="%E6%88%AA%E5%9B%BE-20261016/056-MCP%E4%BA%BA%E5%B7%A5-%E7%AD%89%E5%BE%85%E5%88%9D%E6%AC%A1%E8%AF%86%E5%88%AB.png" alt="专用人工入口：材料初次识别期间，任务仍标为人工复核。"></p>
+<p>专用人工入口：材料初次识别期间，任务仍标为人工复核。</p>
+<p><img src="%E6%88%AA%E5%9B%BE-20261016/056-MCP%E4%BA%BA%E5%B7%A5-%E7%AD%89%E5%BE%85%E4%BA%BA%E5%B7%A5%E5%A4%8D%E6%A0%B8.png" alt="识别后进入等待人工复核；按“复核材料”逐项决定，保存后再生成脱敏稿。"></p>
+<p>识别后进入等待人工复核；按“复核材料”逐项决定，保存后再生成脱敏稿。</p>
+<h3>已交付批次由新客户端接续</h3>
+<ol><li>已交付批次需要换客户端继续时，由新 MCP 客户端对原批次调用 <code>resume_lawbot_task</code>。在“AI 协作”中选择新出现的接续申请，核对待授权客户端与原任务，再勾选本次确需的材料读取、脱敏稿交付和受保护协作文件权限，点击“确认授权并接续任务”。未确认前，新客户端不能读取原交付。</li><li>授权成功后，协作任务回到原批次。用“逐份任务”里的“材料 1”“材料 2”查看原子任务，点“返回批次”回到整批；当前材料会在按钮上标明。逐份核对审定来源与已交付的脱敏稿，新会话沿用原批次的材料和子任务，不重新导入或重新识别原件。</li><li>若任务显示失败，可在任务页点击“下载此任务诊断包”。诊断包用于核对该任务的工具调用状态和错误码；按帮助流程提交，不把原材料或密码附在问题描述中。AI 返回稿的人工复核和还原授权仍按第 19、24 节执行。</li></ol>
+<p><img src="%E6%88%AA%E5%9B%BE-20261016/056-MCP%E6%89%B9%E6%AC%A1%E6%8E%A5%E7%BB%AD%E7%94%B3%E8%AF%B7%E5%BE%85%E6%8E%88%E6%9D%83.png" alt="新客户端的接续申请已到达网页；截图拍摄时授权项尚未勾选。"></p>
+<p>新客户端的接续申请已到达网页；截图拍摄时授权项尚未勾选。</p>
+<p><img src="%E6%88%AA%E5%9B%BE-20261016/056-MCP%E6%89%B9%E6%AC%A1%E6%8E%A5%E7%BB%AD%E5%8E%9F%E5%AD%90%E4%BB%BB%E5%8A%A1.png" alt="接续后选中原批次的材料 2；可返回批次并核对该材料审定来源。"></p>
+<p>接续后选中原批次的材料 2；可返回批次并核对该材料审定来源。</p>
+<h3>供 MCP 客户端集成者核对视觉附件</h3>
+<p>PDF、图片等视觉材料的已脱敏成果可作为视觉附件随 MCP 交付；客户端须读取每个附件并核对 SHA-256，不能只查看文本摘要。返回值的 <code>format</code> 是被交付输入成果的实际格式，<code>attachments</code> 列出附带的视觉成果；<code>output_format</code> 只选择 AI 返回稿上传槽的格式，由 <code>resultFormat</code> 表示。视觉材料的返回稿用途由 <code>resultKind: derived_report</code> 表示，默认槽格式为 DOCX，也可按支持的请求指定 Markdown。网页“AI 协作”仍负责授权、任务状态及返回稿人工复核，不展示这些 MCP 字段或附件内容。</p><p>以下四图来自同一次公开合成材料的实际外部客户端流程。先在网页核对客户端与两份材料并授权；客户端领取批次交换件中的 PDF 视觉附件后校验 SHA-256、落盘并渲染，可见合成号码已被像素遮盖。客户端提交派生 Markdown 返回稿后，网页提供下载与归档供人工复核；点击“我已复核返回稿，确认内容”后才显示“本轮已完成”。PDF 渲染图是客户端读取附件的结果，网页本身不提供附件预览入口。</p><img src="截图-20261017/MCP外部客户端-授权.png" alt="网页核对外部 MCP 客户端与材料后的授权状态。"><img src="截图-20261017/MCP外部客户端-PDF附件渲染.png" alt="外部客户端读取实际 PDF 视觉附件后的单页渲染；合成号码已由黑块遮盖。"><img src="截图-20261017/MCP外部客户端-返回稿待复核.png" alt="派生返回稿已校验，网页显示下载和人工复核入口。"><img src="截图-20261017/MCP外部客户端-人工确认完成.png" alt="人工确认后显示“本轮已完成”，同轮归档可下载。">
+<h2 id="section-32">29. 金额规则实操（056 本地验收）</h2><p>本节来自正式056代码的独立测试账号和公开合成文本，真实 Edge 1项用例通过。线上054尚未同步本轮功能，实际可用版本以发布验收为准。</p><ol><li>新建项目，点击“导入材料”，在“待处理文本”中粘贴下方示例，再点“提交并识别”。</li><li>识别完成后点“逐条复核”。右侧标记面板中，10000元和12万元应各有一条“金额”候选；未显示的内容需在面板中滚动查看。</li><li>将第1条金额选择“脱敏处理”，脱敏方式选“自定义替换”，替换文字填“已隐藏金额”；第2条金额选择保留／忽略。截图展示第1条，测试实际处理了两条。</li><li>点击“保存复核”，确认显示人工复核已保存。再点击“导出已选标记的处理副本”；生成或刷新期间按钮可能暂时置灰，等待“核验并下载 TXT”可用后下载。</li><li>打开下载件：只有10000元变成“已隐藏金额”，12万元及百分比、面积、股数、利率样本保持原文。返回材料查看，原文本仍未改变。</li></ol><pre><code>公开合成合同
 合同金额：10000元
 支付了 12万元
 合同金额：5%
 建筑面积：12,345平方米
 合同金额：10000股
-年利率：3.5%</code></pre><figure><img src="截图-20261016/056-金额规则复核.png" alt="截图一：逐条复核中的第1条金额；其他标记和部分输入位于面板滚动区域。"><figcaption>截图一：逐条复核中的第1条金额；其他标记和部分输入位于面板滚动区域。</figcaption></figure><figure><img src="截图-20261016/056-金额生成副本.png" alt="截图二：保存人工复核后生成副本的页面。图中按钮处于生成／刷新期间，真实测试随后等待下载按钮可用并核对了下载全文。"><figcaption>截图二：保存人工复核后生成副本的页面。图中按钮处于生成／刷新期间，真实测试随后等待下载按钮可用并核对了下载全文。</figcaption></figure><p><a href="示例产物-20261016/056-金额规则-服务端导出.txt">打开示例导出文本</a></p><p>验收范围：两条金额正例、四类排除样本、逐条决定、保存、真实TXT下载与原文本不变；不代表所有金额写法或真实业务准确率。附带TXT是同次运行的服务端导出产物，已与浏览器下载的全文断言一致；浏览器临时下载路径已被测试上下文清理。</p></main></html>
+年利率：3.5%</code></pre><figure><img src="截图-20261016/056-金额规则复核.png" alt="截图一：逐条复核中的第1条金额；其他标记和部分输入位于面板滚动区域。"><figcaption>截图一：逐条复核中的第1条金额；其他标记和部分输入位于面板滚动区域。</figcaption></figure><figure><img src="截图-20261016/056-金额生成副本.png" alt="截图二：保存人工复核后生成副本的页面。图中按钮处于生成／刷新期间，真实测试随后等待下载按钮可用并核对了下载全文。"><figcaption>截图二：保存人工复核后生成副本的页面。图中按钮处于生成／刷新期间，真实测试随后等待下载按钮可用并核对了下载全文。</figcaption></figure><p><a href="示例产物-20261016/056-金额规则-服务端导出.txt">打开示例导出文本</a></p><p>验收范围：两条金额正例、四类排除样本、逐条决定、保存、真实TXT下载与原文本不变；不代表所有金额写法或真实业务准确率。附带TXT是同次运行的服务端导出产物，已与浏览器下载的全文断言一致；浏览器临时下载路径已被测试上下文清理。</p><h2 id="section-33">30. 个人黑白名单 Excel：预览、取消与确认</h2><ol><li>进入项目，展开<strong>反馈与个人规则</strong>，在<strong>黑白名单导入与模板</strong>中点击<strong>导入 Excel 名单</strong>，选择个人名单文件。先核对预览的内容、属性、脱敏方式及错误行；预览本身不写入个人规则。</li><li>不采用时点击<strong>取消导入</strong>。需要采用时重新选择文件、核对预览，再点<strong>确认导入个人规则</strong>。显示已导入条数后，仍需将个人名单迁入规则库、在项目方案选用并重新识别，才能影响后续材料。</li><li>可分别点<strong>导出个人规则 JSON</strong>与<strong>导出个人名单 Excel</strong>，下载后逐条检查内容、属性和强制脱敏／强制跳过。错误行会显示行号并禁用确认，先修正 Excel 再导入。</li></ol><p>图示为隔离账号的合成名单，包含姓名、跳过词和自定义部门。</p><figure><img src="%E6%88%AA%E5%9B%BE-20261017/056-%E4%B8%AA%E4%BA%BAExcel%E9%A2%84%E8%A7%88.png" alt="个人名单预览三条及脱敏方式"><figcaption>个人名单预览三条及脱敏方式</figcaption></figure><figure><img src="%E6%88%AA%E5%9B%BE-20261017/056-%E4%B8%AA%E4%BA%BAExcel%E7%A1%AE%E8%AE%A4.png" alt="确认导入三条个人规则后的页面"><figcaption>确认导入三条个人规则后的页面</figcaption></figure><figure><img src="%E6%88%AA%E5%9B%BE-20261017/056-%E4%B8%AA%E4%BA%BAExcel%E9%94%99%E8%AF%AF%E8%A1%8C.png" alt="错误行提示与不可确认状态"><figcaption>错误行提示与不可确认状态</figcaption></figure><h2 id="section-34">31. 查看 PDF 第 301 页及其识别文字</h2><ol><li>导入 PDF 并等待处理完成。打开材料，选择第 301 页，先看原页是否完整。</li><li>点击<strong>纠正识别文字</strong>，在<strong>本页识别文字</strong>核对该页 OCR 内容；需要修改时按页面原有保存复核步骤操作。</li></ol><p>合成 PDF 末页的原页和识别文字均显示 <code>P301</code>。示例仅说明末页可访问及文字可读。</p><figure><img src="%E6%88%AA%E5%9B%BE-20261017/056-PDF%E7%AC%AC301%E9%A1%B5%E5%8E%9F%E4%BB%B6.png" alt="第301页原件局部显示P301"><figcaption>第301页原件局部显示P301</figcaption></figure><figure><img src="%E6%88%AA%E5%9B%BE-20261017/056-PDF%E7%AC%AC301%E9%A1%B5%E8%AF%86%E5%88%AB%E6%96%87%E5%AD%97.png" alt="第301页本页识别文字显示P301"><figcaption>第301页本页识别文字显示P301</figcaption></figure></main></html>

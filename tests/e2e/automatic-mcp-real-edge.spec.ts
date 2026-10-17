@@ -114,7 +114,12 @@ test('automatic MCP consent waits for initial detection, produces real source-la
     const prior=await first.inputValue();
     await first.selectOption(prior==='redact'?'ignore':'redact');
     await expect(page.locator('.workspace-topbar')).toContainText('当前修改未保存 · 上一版本：系统自动决定');
+    const priorRevision=(await ok(await page.request.get(`/api/documents/${document.id}`))).revision;
+    const saved=page.waitForResponse(r=>r.request().method()==='PUT'&&new URL(r.url()).pathname===`/api/documents/${document.id}/review`,{timeout:30000});
+    const readBack=page.waitForResponse(async r=>r.request().method()==='GET'&&new URL(r.url()).pathname===`/api/documents/${document.id}`&&r.status()===200&&(await r.json()).revision===priorRevision+1,{timeout:30000});
     await page.getByRole('button',{name:'保存复核',exact:true}).click();
+    const savedResponse=await saved;expect(savedResponse.status()).toBe(200);expect((await savedResponse.json()).revision).toBe(priorRevision+1);
+    await readBack;
     await expect(page.locator('.workspace-topbar')).toContainText('人工复核已保存');
     const human=await ok(await page.request.get(`/api/documents/${document.id}`));
     expect(human.reviewOrigin).toBe('human_review');

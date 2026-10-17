@@ -1,0 +1,133 @@
+{
+  "id": "ITER-056-V27-CHECK-WEB-EDGE26-BOUNDARY-166",
+  "date": "2026-10-17",
+  "status": "evidence-boundary-only-not-released",
+  "evidence": {
+    "v27Manifest": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v27.json",
+      "sha256": "948f586fe777ae0ecc324279c821b6f0f84543f6fde6c96ce583d356a799d006",
+      "bytes": 169142
+    },
+    "check27": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/final-v27-required-check-v1/terminal-receipt.json",
+      "sha256": "bbdc4eba176020c62a7dad234a85d0ad2aae6134e05ad8fb4348b21637c22b37",
+      "bytes": 1271
+    },
+    "check27Audit": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/final-v27-required-check-independent-audit-v1.json",
+      "sha256": "43f44a8afcf0120cde6bb09e4ef4968426beafde2f478499b063b91cde9f1f3c",
+      "bytes": 582
+    },
+    "web27": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/web-build-final-v27-v1/terminal-receipt.json",
+      "sha256": "37f00d182e7e9b878c70ee28b9ea52ef4beca1e8bf8e2751535e088e8f165452",
+      "bytes": 2016
+    },
+    "web27Audit": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/web-build-final-v27-independent-audit-v1.json",
+      "sha256": "4c8fa655a63908c8c7c72c1d49deda0d15a19485d5f98768106d5ff1d2afe958",
+      "bytes": 565
+    },
+    "edge26": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/full107-final-v26-dual/terminal-receipt.json",
+      "sha256": "0ddf51875bc6d425d711296404662ee9f7bf67f154a387eef5dab7399d1f44d1",
+      "bytes": 115910
+    },
+    "edge26Audit": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/full107-v26-independent-terminal-audit-v1.json",
+      "sha256": "8629ce1e3019e98cd0b0d9d6b69497f8a6883fde7370189eff847d7b48881b24",
+      "bytes": 2958
+    },
+    "accessDiagnosis": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/access-full107-v26-readonly-diagnostic-v1.json",
+      "sha256": "4c57304fc89e5e4b3e8ee489bb9bec45b18700f5cdd855a9cb3d655de08ebf75",
+      "bytes": 2816
+    },
+    "accessTestCandidate": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/access-readback-v26-candidate-v1/candidate-manifest.json",
+      "sha256": "0174329cfff7b3426dee63f4ca5e813e7d43a43429749261daf3eb2e6fc47951",
+      "bytes": 1142
+    },
+    "mcpDiagnosis": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/mcp-resume-batch-child-processing-busy-readonly-v1.json",
+      "sha256": "d3ff3ae030e5b287738581abf4b3f24aecc84ac802206317b1f599c0568a4619",
+      "bytes": 5197
+    },
+    "mcpTestCandidate": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/mcp-resume-batch-child-busy-poll-test-v1/candidate-manifest.json",
+      "sha256": "7b3592daa0e14b987e98fcc51ea88236e37132d29a17da15c9c18accaaee7cc2",
+      "bytes": 1038
+    },
+    "remaining11Peer": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/remaining11-api148-branch-scoped-peer-v1.json",
+      "sha256": "aff4a284934b48501f394accfe37442dde24e9c859ccd2d40473758aa59c570d",
+      "bytes": 27396
+    },
+    "pdf301Input": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/ocr301-ui-demo-input-v2/input-receipt.json",
+      "sha256": "44d03f3332f70e93a590bfeed6d9f38ce4df9c8044d627ed8dd6affc7f53462e",
+      "bytes": 2783
+    },
+    "native26": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/migration-native-os-v26-dual/terminal-receipt.json",
+      "sha256": "e73031b1e7257b018284538dadb1b6aeaba66f3c53e31a29737421327b813851",
+      "bytes": 5645
+    },
+    "native26Archive": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/migration-native-os-v26-dual/evidence-archive-v1-manifest.json",
+      "sha256": "b1729f9946311e21e028fa80fccea181e5afdfaf7c9c296ec6dbf55055b84e66",
+      "bytes": 2401
+    },
+    "api24To27Review": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/api24-to-runtime27-equivalence-readonly-v1.json",
+      "sha256": "241db2502686c0711de0e1da495d43d639bc6b61fffce3ccea9133a68d8c5915",
+      "bytes": 6182
+    },
+    "api24To27Sidecar": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/api24-to-final27-source-equivalence-v1.json",
+      "sha256": "7952f64f5c1a55562ac13d8976e7cd01c790093543d282701d41e0312cce8675",
+      "bytes": 1532
+    },
+    "releaseResearch": {
+      "path": ".data/deploy/aliyun-20261016/iteration056/release-v27-api-equivalence-web-bound-v1/candidate-manifest.json",
+      "sha256": "c9805f78770260062bcd15cdc16244b4e6546164af38ecfcf5c019019d3a2a24",
+      "bytes": 3638
+    },
+    "releaseResearchPeer": {
+      "path": ".data/deploy/aliyun-20261016/iteration056/root-v27-web-bound-v1-independent-review-v2.json",
+      "sha256": "5151b241eaa22da11d563c3abbcb3709645ecce7c48cd32a5d7bef6bddf659d5",
+      "bytes": 1540
+    }
+  },
+  "actual": {
+    "check27": "Exit 0; 163 unit files, 885 tests, Bend 18 laws/21 mutants, typecheck/build pass; source/assets/fixture guards empty.",
+    "web27": "Exit 0; eight output files and /tuomin/ prefix verified; guide remains separate and pending.",
+    "fullEdge26": "107 original IDs naturally executed; 105 pass, two fail (access and MCP child resume), zero skip/retry. Targeted or earlier runs cannot be added to this result.",
+    "native26": "One original native Save As case naturally exited 1 after a 180-second migration-response wait. macOS Save dialog was locked twice; no target file. This is an OS-environment-blocked failed run, not product acceptance or an agent cancellation."
+  },
+  "preparedOnly": {
+    "access": "Exact document GET 200 readback wait candidate; original permission and downstream assertions retained; browser not rerun in this candidate.",
+    "mcp": "Only PROCESSING_BUSY during in-progress child processing is retried by local E2E poll; persistent busy and all other errors still fail; not runtime proven.",
+    "remaining11": "Branch-scoped case/implementation mapping; no automatic I/S/R promotion from 148 API or 107 Edge counts.",
+    "pdf301": "301-page PDF parsed and last-page sentinel previewed; Web UI demonstration remains pending.",
+    "api24To27": "Read-only 992-row manifest comparison: exactly seven E2E specs differ, other 985 rows unchanged. Actual API24 terminal retained; sidecar only supports unchanged API execution slice, not an API27 same-source run."
+  },
+  "releaseResearch": "v7-web-bound-v1 pins actual check27/API24/limited sidecar/web27, but full Edge27, native27, guide READY, Git/remote CAS are null and fail closed. No stage or deployment.",
+  "formal": "v17",
+  "server": "054",
+  "deployed": false,
+  "counts": "Nine confirmed gaps and I/S/R classification unchanged; original source R0 unchanged.",
+  "archive": ".data/research/lawbot-2026-10-16/iteration056/before-v27-check-and-edge26-ledger166-v1",
+  "rulesJsonBlocks": [
+    "6e0ea225acb4e6e7e41a5b5a99a812e12243a4308f82171301142d5c8df20c46",
+    "27abf7c3d82e77ef4bcd16453d82e9e3990253e8a12bc64635915361d2876815",
+    "30b3a3337d6fd90e80b3449f5120d362694d3760e8ffcee059789dca8df6ce1e",
+    "943620d7d6cc863f7396226b9cdfd9b1a7ccbbaf3131228b0e8a2c6d97425bff",
+    "52708f9a15cb02a8b89786acf6d8a5250815851fa2d47f095eaaa721af4feb8d",
+    "05cb41cae0447743ef3584454a2c825bf588bc5ce70e922a3258080363d73508",
+    "871f257bf1452e5a2436ea062641358ae7927b9d32fb70c3bfc44654dd4c6c9d",
+    "6a2148a02a6271762804344eb7b3531d41749289c9f24601e3f8ab48e3a13345",
+    "fa326d1af4b2851e8f7a91adfa1cb64c652c8121657f30caa40749eb18c7c3c8",
+    "d49eaf84c70fbd63ce8236532ac458e49a624d86fe9c33a569c5b6bef38d7b89"
+  ]
+}

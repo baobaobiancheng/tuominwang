@@ -1,4 +1,4 @@
-import {createApiRequest} from './http-client.ts';
+import {createApiRequest,readSessionWithOneRateRetry,waitForRateWindow} from './http-client.ts';
 import {textareaCoordinateBridge} from './textarea-coordinates.ts';
 import {restoreHiddenReviewEntities}from'../../packages/core/review-type-hide.ts';
 import {createReviewFeedbackDispatcher} from './review-feedback.ts';
@@ -215,14 +215,6 @@ const messages: Record<string, string> = {
   CONFIG_MODE_CONFLICT: '当前替换模式与逐类规则不一致，请核对设置',
 };
 const apiRequest = createApiRequest(messages);
-function waitForRateWindow(ms: number, signal: AbortSignal): Promise<void> {
-  return new Promise((resolve, reject) => {
-    if (signal.aborted) { reject(signal.reason); return; }
-    const timer = window.setTimeout(() => { signal.removeEventListener("abort", abort); resolve(); }, ms);
-    const abort = () => { window.clearTimeout(timer); reject(signal.reason); };
-    signal.addEventListener("abort", abort, { once: true });
-  });
-}
 async function retryRateLimited<T>(request: () => Promise<T>, signal: AbortSignal): Promise<T> {
   for (let attempt = 0; ; attempt++) {
     signal.throwIfAborted();
@@ -237,11 +229,14 @@ async function retryRateLimited<T>(request: () => Promise<T>, signal: AbortSigna
 type SessionControls = { validateSession: () => Promise<boolean>; rememberSession: (username: string | null) => void; sessionNotice: string };
 function SessionWorkspace() {
   const identity = useRef<string | null | undefined>(undefined);
+  const identityEpoch = useRef(0);
   const checking = useRef<Promise<boolean> | null>(null);
+  const sessionCheckAbort = useRef(new AbortController());
   const channel = useRef<BroadcastChannel | null>(null);
   const [generation, setGeneration] = useState(0), [sessionNotice, setSessionNotice] = useState("");
   const rememberSession = useCallback((username: string | null) => {
     const changed = identity.current !== undefined && identity.current !== username;
+    if (changed) identityEpoch.current++;
     identity.current = username;
     if (changed) {
       setSessionNotice("");
@@ -251,16 +246,23 @@ function SessionWorkspace() {
   }, []);
   const validateSession = useCallback((): Promise<boolean> => {
     if (identity.current === undefined) return Promise.resolve(true);
-    if (!checking.current) checking.current = apiRequest<{ username: string | null }>("/session").then(next => {
-      if (next.username === identity.current) return true;
-      identity.current = next.username;
-      setSessionNotice(next.username ? "登录账号已切换，已刷新当前账号的项目列表。" : "登录状态已变化，请重新登录。");
-      // Remount every workspace component so no previous account's projects, dialogs or drafts remain.
-      setGeneration(value => value + 1);
-      return false;
-    }).finally(() => { checking.current = null; });
+    if (!checking.current) {
+      const expected = identity.current, expectedEpoch = identityEpoch.current;
+      checking.current = readSessionWithOneRateRetry(apiRequest, sessionCheckAbort.current.signal).then(next => {
+        // An A→B→A account switch still invalidates the old action.
+        if (identity.current !== expected || identityEpoch.current !== expectedEpoch) return false;
+        if (next.username === expected) return true;
+        identityEpoch.current++;
+        identity.current = next.username;
+        setSessionNotice(next.username ? "登录账号已切换，已刷新当前账号的项目列表。" : "登录状态已变化，请重新登录。");
+        // Remount every workspace component so no previous account's projects, dialogs or drafts remain.
+        setGeneration(value => value + 1);
+        return false;
+      }).finally(() => { checking.current = null; });
+    }
     return checking.current;
   }, []);
+  useEffect(() => () => sessionCheckAbort.current.abort(), []);
   useEffect(() => {
     const check = () => { if (document.visibilityState === "visible") void validateSession().catch(() => {}); };
     window.addEventListener("focus", check);
@@ -597,6 +599,9 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
   const sealRuntimeActive = !!doc && !!sealJobId && canManageJob && doc.job?.canObserveEvents === true && doc.job?.ordinaryPdfDetection === true && doc.state === "queued" && doc.job?.status === "running";
   const sealRuntimeReady = !!doc && !!sealJobId && canReview && doc.state === "review";
   const sealDeferred = doc?.format === "pdf" && (doc.visualDiagnostics as {sealProgress?:{status:string}} | null | undefined)?.sealProgress?.status === "deferred";
+  const sealProgress = (doc?.visualDiagnostics as {sealProgress?:{status:string;completedPageNumbers:number[]}} | null | undefined)?.sealProgress;
+  const resolvedSealPages = new Set([...(sealProgress?.completedPageNumbers ?? []), ...(doc?.pageReview?.deletedPages ?? []).map(page => page + 1)]);
+  const visualWarningPages = doc?.visualDiagnostics?.pages.filter(page => page.warnings.some(warning => warning !== "SEAL_DEFERRED" || !(sealProgress?.status === "complete" || resolvedSealPages.has(page.page + 1)))) ?? [];
   const isPaged = ["pdf", "png", "jpg", "jpeg"].includes(doc?.format ?? "txt");
   const outputFormat = isPaged && doc?.format !== "pdf" ? "png" : doc?.format ?? "txt";
   if (!ready) return <main>正在连接工作台…</main>;
@@ -1005,7 +1010,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
                 {doc.canRunNer && canReview && docAllowed("manage_models") && <button className="secondary" disabled={dirty || conflict || ["queued", "running"].includes(doc.job?.status ?? "")} onClick={async () => {
                   if (await confirmAction("识别人名、机构和地址候选，并创建新复核版本。原有处理决定不会自动沿用，确定继续？")) void run(async () => { await api(`/documents/${doc.id}/recognize`, "POST", { revision: doc.revision, ner: true }); await openDoc(doc.id); });
                 }}>识别实体候选</button>}
-                {doc.visualDiagnostics&&!doc.visualDiagnostics.complete&&<p role="alert" className="error">部分页面的自动视觉检测未完成，请人工核对人脸、印章和签名区域后再保存复核。受影响页：{doc.visualDiagnostics.pages.filter(p=>p.warnings.length).map(p=>p.page+1).join("、")}</p>}
+                {visualWarningPages.length>0&&<p role="alert" className="error">部分页面的自动视觉检测未完成，请人工核对人脸、印章和签名区域后再保存复核。受影响页：{visualWarningPages.map(page=>page.page+1).join("、")}</p>}
               {doc.layers.ner === "completed" && <span className="muted">实体候选已识别，请结合上下文复核。</span>}
               </div>
               {canReview && doc.job?.status==="failed" && ["ENCRYPTED_PDF","ENCRYPTED_OFFICE"].includes(doc.job.error_code??"") && <DocumentUnlock id={doc.id} revision={doc.revision} api={api} disabled={dirty||conflict} onDone={()=>openDoc(doc.id)} />}

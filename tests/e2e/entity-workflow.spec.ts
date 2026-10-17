@@ -1,6 +1,6 @@
 import { readFile } from "node:fs/promises";
 import { test, expect } from "./fixture.ts";
-import type { Page } from "@playwright/test";
+import type { Page, Response } from "@playwright/test";
 
 async function waitForEntityFilter(page: Page, click: () => Promise<unknown>, decisions: { pending: number; redact: number; ignore: number }) {
   const filtered = page.waitForResponse(response => {
@@ -234,11 +234,49 @@ test("same-value groups review every occurrence across mark pages and text windo
   const secondLoaded = page.waitForResponse(response => response.request().method() === "GET"
     && /^\/api\/documents\/[a-f0-9-]{36}$/.test(new URL(response.url()).pathname)
     && new URL(response.url()).pathname !== `/api/documents/${firstDocumentId}` && response.status() === 200, { timeout: 30000 });
-  await documentNavigation.getByRole("button", { name: "文本 2", exact: true }).click();
-  const secondResponse = await secondLoaded;
-  expect((await secondResponse.json()).id).not.toBe(firstDocumentId);
-  await expect(original).toHaveValue("同值第二份材料|" + phone);
-  await expect(group.getByText("待确认 1", { exact: true })).toBeVisible();
+  const secondFilterMatch = (response: Response) => response.request().method() === "POST"
+    && /^\/api\/documents\/[a-f0-9-]{36}\/entity-filter$/.test(new URL(response.url()).pathname)
+    && new URL(response.url()).pathname !== `/api/documents/${firstDocumentId}/entity-filter`
+    && response.request().postDataJSON().marks?.length === 1;
+  const secondDeadline = Date.now() + 90_000;
+  const secondResponses: Response[] = [];
+  const observeSecondFilter = (response: Response) => { if (secondFilterMatch(response)) secondResponses.push(response); };
+  page.on("response", observeSecondFilter);
+  try {
+    await documentNavigation.getByRole("button", { name: "文本 2", exact: true }).click();
+    const secondResponse = await secondLoaded;
+    const secondView = await secondResponse.json();
+    const secondDocumentId = secondView.id as string;
+    expect(secondDocumentId).not.toBe(firstDocumentId);
+    expect(secondView.marks).toEqual([expect.objectContaining({ start: 8, end: 8 + phone.length, kind: "手机号", decision: "pending" })]);
+    await expect(original).toHaveValue("同值第二份材料|" + phone);
+    let seen = 0, rateLimited = 0, filterReady = false;
+    const card = group.getByText("待确认 1", { exact: true });
+    while (Date.now() < secondDeadline) {
+      while (seen < secondResponses.length) {
+        const response = secondResponses[seen++]!;
+        expect(new URL(response.url()).pathname).toBe(`/api/documents/${secondDocumentId}/entity-filter`);
+        if (response.status() === 429) {
+          expect(await response.json()).toEqual({ error: "RATE_LIMITED" });
+          expect(rateLimited++).toBeLessThan(2);
+          expect(response.headers()["retry-after"]).toMatch(/^(?:0|[1-9]\d?)$/u);
+          expect(Number(response.headers()["retry-after"])).toBeLessThanOrEqual(60);
+          filterReady = false;
+          continue;
+        }
+        expect(response.status(), await response.text()).toBe(200);
+        const result = await response.json();
+        expect(result).toMatchObject({ revision: secondView.revision, total: 1, offset: 0, nextOffset: 1, hasMore: false });
+        expect(result.items).toEqual([expect.objectContaining({ index: 0 })]);
+        filterReady = true;
+      }
+      if (filterReady && await card.isVisible()) break;
+      await page.waitForTimeout(Math.min(100, Math.max(1, secondDeadline - Date.now())));
+    }
+    expect(filterReady).toBe(true);
+    expect(Date.now()).toBeLessThan(secondDeadline);
+    await expect(card).toBeVisible();
+  } finally { page.off("response", observeSecondFilter); }
   await expect(group.getByRole("checkbox")).not.toBeChecked();
   await expect(groups.getByRole("status")).toHaveText("已选 0 组 · 0 处");
   await expect(groups.getByRole("button", { name: "所选组脱敏", exact: true })).toBeDisabled();

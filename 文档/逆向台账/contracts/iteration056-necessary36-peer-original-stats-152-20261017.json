@@ -1,0 +1,144 @@
+{
+  "iteration": 152,
+  "status": "bounded_static_adversarial_review_not_runtime_acceptance",
+  "ids": [
+    "IPC-121d180be5d8",
+    "IPC-7f4cfe68e159",
+    "IPC-611ab311c5f6",
+    "IPC-5d7065a40d45",
+    "IPC-65f32fe31f76",
+    "IPC-fd1ca8c6cb27",
+    "IPC-a07c3fdcbe45",
+    "IPC-f071ce7c965b",
+    "IPC-8f1caa190dda",
+    "IPC-d9b14aa97589",
+    "IPC-f1f713df2b98",
+    "IPC-9577d3a9d6d0",
+    "IPC-95d4f752bfb1",
+    "IPC-523337153cab",
+    "IPC-96ccc7c0ce76",
+    "IPC-e84cabdffc27",
+    "IPC-9b9d5a0f489e",
+    "IPC-5457cc5660c4",
+    "IPC-cf6cc425333d",
+    "IPC-d70108ef71d7",
+    "IPC-13b1b9cd954f",
+    "IPC-7a1832cb9fe9",
+    "IPC-f8d8e4c7c379",
+    "IPC-539465a49a9b",
+    "IPC-978012face0b",
+    "IPC-f69ef883aa33",
+    "IPC-93ba5dca8357",
+    "IPC-ce03744a77ef",
+    "IPC-1e94f610b0e1",
+    "IPC-3c8789ad9a8f",
+    "IPC-7e55b9d273b1",
+    "IPC-be30d4526c26",
+    "IPC-a80eb991f683",
+    "IPC-8ed0acbb4144",
+    "IPC-70e09702200d",
+    "IPC-9be2a0784913"
+  ],
+  "uniqueCandidateFiles": 71,
+  "candidateFileDrift": [],
+  "verifiedCorrectedOriginalRegistrationBindings": [
+    {
+      "id": "IPC-523337153cab",
+      "name": "desensitization:select-folder",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "line": 16884,
+      "basis": "rg exact ipcMain.handle registration; originalSourceSlices in prepared input point to adjacent/call-chain code rather than this registration"
+    },
+    {
+      "id": "IPC-96ccc7c0ce76",
+      "name": "desensitization:validate-folder-source",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "line": 16912,
+      "basis": "rg exact ipcMain.handle registration; originalSourceSlices in prepared input point to adjacent/call-chain code rather than this registration"
+    },
+    {
+      "id": "IPC-e84cabdffc27",
+      "name": "desensitization:write-folder-manifest",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "line": 16935,
+      "basis": "rg exact ipcMain.handle registration; originalSourceSlices in prepared input point to adjacent/call-chain code rather than this registration"
+    },
+    {
+      "id": "IPC-5457cc5660c4",
+      "name": "learner:get-stats",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "line": 18179,
+      "basis": "exact ipcMain.handle registration"
+    },
+    {
+      "id": "IPC-3c8789ad9a8f",
+      "name": "workspace:forget-recent",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "line": 25728,
+      "basis": "rg exact ipcMain.handle registration; originalSourceSlices in prepared input point to adjacent/call-chain code rather than this registration"
+    },
+    {
+      "id": "IPC-7e55b9d273b1",
+      "name": "workspace:list-recent",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "line": 25630,
+      "basis": "rg exact ipcMain.handle registration; originalSourceSlices in prepared input point to adjacent/call-chain code rather than this registration"
+    },
+    {
+      "id": "IPC-be30d4526c26",
+      "name": "workspace:list-recoveries",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "line": 25636,
+      "basis": "rg exact ipcMain.handle registration; originalSourceSlices in prepared input point to adjacent/call-chain code rather than this registration"
+    },
+    {
+      "id": "IPC-a80eb991f683",
+      "name": "workspace:list-recovery-prompts",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "line": 25642,
+      "basis": "rg exact ipcMain.handle registration; originalSourceSlices in prepared input point to adjacent/call-chain code rather than this registration"
+    },
+    {
+      "id": "IPC-8ed0acbb4144",
+      "name": "workspace:open-recovery",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "line": 25663,
+      "basis": "rg exact ipcMain.handle registration; originalSourceSlices in prepared input point to adjacent/call-chain code rather than this registration"
+    },
+    {
+      "id": "IPC-70e09702200d",
+      "name": "workspace:receive-transfer",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "line": 25769,
+      "basis": "rg exact ipcMain.handle registration; originalSourceSlices in prepared input point to adjacent/call-chain code rather than this registration"
+    },
+    {
+      "id": "IPC-9be2a0784913",
+      "name": "workspace:save-recovery",
+      "path": ".data/research/lawbot-2026-10-13/readable/main.js",
+      "line": 25705,
+      "basis": "rg exact ipcMain.handle registration; originalSourceSlices in prepared input point to adjacent/call-chain code rather than this registration"
+    }
+  ],
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/necessary36-web-os-adversarial-review-v1.json",
+      "sha256": "c1d3c1d9753eeb20041fc087df6e96cd4f45e73de3cf1bd226dadf2c5a89ac10"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/necessary36-web-os-adversarial-review-v2.json",
+      "sha256": "527757ceafe6657d7eaf8ab614802f2e485a7d9eb499653fd8b40164cb589a61"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/learner-stats-original-differential-v1/terminal-receipt.json",
+      "sha256": "b2a3810054d8649f2159f886ec8f8bdab745b8a61ec53b08b1410f8dd7fea6da"
+    }
+  ],
+  "findingDisposition": "v1 learner:get-stats functional-gap claim withdrawn in v2: original sole public caller only initializes/reads learner; update and rollback handlers retired/stubbed. Actual independent Node24 fresh/history complete stats fields match current exact API response expression, no memory reads. Do not revive retired behavior.",
+  "evidencePointerCorrection": "10 prior prepared pointers were adjacent context rather than exact IPC handler; preserved old pointers, added exact registration references and independent literal-name check.",
+  "acceptanceBoundary": "Other 35 static web/OS adaptations plausible but not original licensed/runtime/API E2E proof; no new confirmed functionality omission or overdesign proven by this review.",
+  "implementationStatusPromoted": false,
+  "originalRuntime": "R0",
+  "sourceModified": false,
+  "serverModified": false
+}

@@ -1,0 +1,106 @@
+{
+  "id": "ITER-056-FULL107-V27-TERMINAL-AND-REUSE-168",
+  "date": "2026-10-17",
+  "status": "full-browser-run-failed-not-released",
+  "evidence": {
+    "terminal": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/full107-final-v27-dual/terminal-receipt.json",
+      "sha256": "a9f477046c3ddbec491e6aeec65a0e98aa21f0ce6dd601fe31908d2db3442f20",
+      "bytes": 116589
+    },
+    "archiveManifest": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/full107-final-v27-dual/evidence-archive-v1-manifest.json",
+      "sha256": "ea60e65b4c8f7666ebca96f5895dee9480b5fe5c1ed8e95faf3acd04dd998567",
+      "bytes": 40502
+    },
+    "independentAudit": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/full107-v27-independent-terminal-audit-v1.json",
+      "sha256": "e6104ed6c779af8b7cb9168fdb57ed18737f350cc7e8d4cf9347586a20a63f7e",
+      "bytes": 2042
+    },
+    "entityDiagnostic": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/entity-workflow-full107-v27-readonly-diagnostic-v1.json",
+      "sha256": "522e5eb9479db4942d1af2150868c9b1b51603361b675125752e4f6a15f0faed",
+      "bytes": 3955
+    },
+    "reuseReview": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/final27-vs-formal17-original-reuse-readonly-v1.json",
+      "sha256": "2a94bed67c5081ca74fae3c7c3c71345b31c354a87bb875245b8cdd1241ef91f",
+      "bytes": 7915
+    },
+    "sourceManifest": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v27.json",
+      "sha256": "948f586fe777ae0ecc324279c821b6f0f84543f6fde6c96ce583d356a799d006",
+      "bytes": 169142
+    }
+  },
+  "actual": {
+    "source": "formal v17 / private v27",
+    "originalIds": 107,
+    "specFiles": 65,
+    "passed": 104,
+    "failed": 3,
+    "skipped": 0,
+    "flaky": 0,
+    "retry": 0,
+    "archiveFilesVerified": 172,
+    "failedCases": [
+      {
+        "id": "58987d7e1e4bf5103fc5-af2b2f399facb31192a7",
+        "file": "entity-workflow.spec.ts",
+        "title": "same-value groups review every occurrence across mark pages and text windows, preserve exceptions and export the real result",
+        "expectedStatus": "passed",
+        "results": [
+          {
+            "status": "failed",
+            "duration": 62256,
+            "retry": 0
+          }
+        ]
+      },
+      {
+        "id": "b2388117baf8a52a4202-0550ac1ed55caa1f3429",
+        "file": "pdf-ocr-runtime-page-flow.spec.ts",
+        "title": "Edge PDF completed pages can be paused, human drafted, resumed, reviewed and downloaded",
+        "expectedStatus": "passed",
+        "results": [
+          {
+            "status": "failed",
+            "duration": 103518,
+            "retry": 0
+          }
+        ]
+      },
+      {
+        "id": "cc02cc633e802990d44e-40f8528d9ce342c35882",
+        "file": "selectable-ocr-ahead.spec.ts",
+        "title": "PDF viewer previews a later page before OCR and keeps its selectable layer read only",
+        "expectedStatus": "passed",
+        "results": [
+          {
+            "status": "failed",
+            "duration": 80142,
+            "retry": 0
+          }
+        ]
+      }
+    ],
+    "guardMeaning": "independent audit confirms evidence and pre/post source/assets/locks/OpenCV hashes, not full functional pass"
+  },
+  "entityFinding": "Second document GET200 state review revision0 marks1 and entity-filter POST200 total1/index0; subsequent same-document POST429 RATE_LIMITED Retry-After4; UI showed rate-window retry and no group card when original 5s locator expired. No proof of later successful retry or permanent mark loss.",
+  "reuseReview": "Read-only eight production/dependency path review found direct original dictionary parser helpers reused with narrow fourth-column/web adaptation; no unnecessary new abstraction/default-rule change identified in that scope. Original app R0 and whole I1 equivalence unclaimed.",
+  "remaining": "Other two failures are PDF OCR and selectable OCR ahead; no diagnosis asserted here. Remaining 11 checks, 9 gaps, native Save As, guide READY, remote CAS and deployment stay open.",
+  "archive": ".data/research/lawbot-2026-10-16/iteration056/before-full107-v27-ledger168-v1",
+  "rulesJsonBlocks": [
+    "6e0ea225acb4e6e7e41a5b5a99a812e12243a4308f82171301142d5c8df20c46",
+    "27abf7c3d82e77ef4bcd16453d82e9e3990253e8a12bc64635915361d2876815",
+    "30b3a3337d6fd90e80b3449f5120d362694d3760e8ffcee059789dca8df6ce1e",
+    "943620d7d6cc863f7396226b9cdfd9b1a7ccbbaf3131228b0e8a2c6d97425bff",
+    "52708f9a15cb02a8b89786acf6d8a5250815851fa2d47f095eaaa721af4feb8d",
+    "05cb41cae0447743ef3584454a2c825bf588bc5ce70e922a3258080363d73508",
+    "871f257bf1452e5a2436ea062641358ae7927b9d32fb70c3bfc44654dd4c6c9d",
+    "6a2148a02a6271762804344eb7b3531d41749289c9f24601e3f8ab48e3a13345",
+    "fa326d1af4b2851e8f7a91adfa1cb64c652c8121657f30caa40749eb18c7c3c8",
+    "d49eaf84c70fbd63ce8236532ac458e49a624d86fe9c33a569c5b6bef38d7b89"
+  ]
+}

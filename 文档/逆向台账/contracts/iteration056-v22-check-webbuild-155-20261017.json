@@ -1,0 +1,158 @@
+{
+  "iteration": "056",
+  "event": 155,
+  "date": "2026-10-17",
+  "kind": "candidate-check-and-web-build-status",
+  "scope": "documentation-and-evidence-only; no source, runtime, deployment or I/S/R changes",
+  "candidateManifest": {
+    "path": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v22.json",
+    "sha256": "fdca235965afc6bb0d62e5217ce739c10b14f4eb33179179e84665746992daa7",
+    "bytes": 168945
+  },
+  "candidateFileCount": 992,
+  "requiredCheck": {
+    "receipt": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/final-v22-required-check-v1/terminal-receipt.json",
+      "sha256": "f5569f0f6b306243107a149bcf59f917e93d7efead3002e41b88c4529408e8c3",
+      "bytes": 1271
+    },
+    "checkLog": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/final-v22-required-check-v1/check.log",
+      "sha256": "24ee071f1898ae861ff0682f820b7a1f330777c1fc6b805c3a474d5da6cc3fe8",
+      "bytes": 1800
+    },
+    "actualExitCode": 0,
+    "unitFiles": 163,
+    "unitTests": 885,
+    "bendLaws": 18,
+    "bendMutantsRejected": 21,
+    "typeAndBuild": "passed in actual pnpm check",
+    "restoredFixtures": [
+      ".data/research/lawbot-2026-10-15/iteration032/legacy-office/synthetic-encrypted.doc",
+      ".data/research/lawbot-2026-10-15/iteration032/legacy-office/actual-uno-result.json",
+      ".data/research/lawbot-2026-10-15/iteration033/legacy-parent-cancel-actual.json"
+    ],
+    "drift": {
+      "source": [],
+      "formalSource": [],
+      "formalAssets": [],
+      "privateAssets": [],
+      "fixturesAfterRestore": []
+    }
+  },
+  "webBuild": {
+    "receipt": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/web-build-final-v22-v1/terminal-receipt.json",
+      "sha256": "f69f3513ab299c04f6456029205038c7d4f72c41cf601f57891ccc742873ca68",
+      "bytes": 2016
+    },
+    "actualExitCode": 0,
+    "basePath": "/tuomin/",
+    "indexHasTuominAssetPrefix": true,
+    "sourceGitHeadAtBuild": "1e64fd62b359ce2417a9ebf2e5cfa7bb14c72635",
+    "sourceWasUncommitted": true,
+    "outputFiles": {
+      "assets/docx-preview-Dtca2A1x.js": {
+        "sha256": "a2bddecdead91830663b64213bfb8fb7954b784935e56da13d1605df9831edc2",
+        "bytes": 172379
+      },
+      "assets/index-CFSXqtiS.js": {
+        "sha256": "27200c16daa3306aa18e59ae1bab9084b96a5001316112ea214733ab4caca623",
+        "bytes": 734956
+      },
+      "assets/index-CenQsGc6.css": {
+        "sha256": "2a95610aed65c568f8895d5325344ef104dc9b7c5dc71a3559332bedb979ef0d",
+        "bytes": 42187
+      },
+      "assets/pdf-CPbOiMa_.js": {
+        "sha256": "fa75f2d6b363ee4a3386e4bf1d3f104c8dce5eef2be79159be1d253e1f4e323a",
+        "bytes": 376364
+      },
+      "assets/pdf.worker-BQQyum15.mjs": {
+        "sha256": "26c0b99111410388f0698d542b132a3f96b49c47e54b378c822cb10e0cd7f41a",
+        "bytes": 1892435
+      },
+      "index.html": {
+        "sha256": "59b38536908b1a25352530ad71db20ae760917f0d584f55000128697712732b4",
+        "bytes": 430
+      },
+      "pdfjs-wasm/openjpeg.wasm": {
+        "sha256": "cb031f36245b389e1f5bffc59d10eed35bb0f85d7368b46c3f0b462042ec8e9e",
+        "bytes": 257382
+      },
+      "pdfjs-wasm/qcms_bg.wasm": {
+        "sha256": "6017eca5939cde1836e88e6d8cd27ae039246f206515ea4487bdfd0e3fb16e26",
+        "bytes": 94519
+      }
+    },
+    "inputDrift": {
+      "formal": [],
+      "private": []
+    }
+  },
+  "historicalBoundaries": {
+    "v21CheckActualExitCode": 2,
+    "oldApi147": "passed on prior source only",
+    "oldEdge107": "97 pass, 10 fail, 0 skipped on prior source"
+  },
+  "pending": [
+    "v22 148-file API terminal",
+    "v22 107-case Edge terminal",
+    "native OS Save As terminal",
+    "final commit and deployment readback"
+  ],
+  "archiveBefore": {
+    "path": ".data/research/lawbot-2026-10-16/iteration056/before-v22-check-webbuild-ledger155-v1/manifest.json",
+    "sha256": "a4e68a07894351846ceb8b6d2b87e052484765a4a0731a4efa28168c872a8134",
+    "bytes": 2454
+  },
+  "updatedDocs": [
+    {
+      "path": "文档/待办与完成状态-20261015.md",
+      "sha256": "eb908347196a74bac9b484840b0b45cc7bb6e58b7187559284dba6e237256430",
+      "bytes": 81683
+    },
+    {
+      "path": "文档/脱敏规则完整技术交接-迭代023.md",
+      "sha256": "f104cf03842bf3a64a44cf4d82de22aa6cddcd93973c1e6ba3e6d420373830df",
+      "bytes": 414068
+    }
+  ],
+  "rulesJsonBlocks": {
+    "count": 10,
+    "oldSha256": [
+      "df159e3101de69daa1fa568049e5d0e5b4f6c11007cc85377376d747032cde4b",
+      "b3507ca333acca04b2b6476b55274eba8e3700210bef8e57d455050d89e31b5c",
+      "52d3af726fc6c04e477647e5f0ca9121ce042fb36b3cf13756d0f9ddf23fadd5",
+      "2916b196afc763dc5e957f627706e1c7515bafa6bf74ee6a308b6e12f05dac10",
+      "2c3ed2082f5acc4254c4efc57ec58aa014cebd16f617c92be80b1ca6ea552153",
+      "28357662c45a95a8a8e7682792a88125e6fd1005e794785ee4d17f88b57218bf",
+      "5ce5757f833f8053e631cfd07dba3f0def504ade50f6a4c4623e20d67669756d",
+      "46e9de6da18b6d89221ee5a05120db5cf8dcbdfcc6badab31bbc7185b8a4603b",
+      "181594386e90265fbf53b95a52ef2ac19ae094231f34223a4563dc874d7235be",
+      "27e50f0cb7103a6aaae416bd3e31ec3760eb5c6dc681e26650d1effd58332bfa"
+    ],
+    "newSha256": [
+      "df159e3101de69daa1fa568049e5d0e5b4f6c11007cc85377376d747032cde4b",
+      "b3507ca333acca04b2b6476b55274eba8e3700210bef8e57d455050d89e31b5c",
+      "52d3af726fc6c04e477647e5f0ca9121ce042fb36b3cf13756d0f9ddf23fadd5",
+      "2916b196afc763dc5e957f627706e1c7515bafa6bf74ee6a308b6e12f05dac10",
+      "2c3ed2082f5acc4254c4efc57ec58aa014cebd16f617c92be80b1ca6ea552153",
+      "28357662c45a95a8a8e7682792a88125e6fd1005e794785ee4d17f88b57218bf",
+      "5ce5757f833f8053e631cfd07dba3f0def504ade50f6a4c4623e20d67669756d",
+      "46e9de6da18b6d89221ee5a05120db5cf8dcbdfcc6badab31bbc7185b8a4603b",
+      "181594386e90265fbf53b95a52ef2ac19ae094231f34223a4563dc874d7235be",
+      "27e50f0cb7103a6aaae416bd3e31ec3760eb5c6dc681e26650d1effd58332bfa"
+    ],
+    "unchanged": true
+  },
+  "countsUnchanged": {
+    "S2": 8,
+    "S3": 250,
+    "R0": 258,
+    "I1": 148,
+    "I2": 12,
+    "I3": 60,
+    "I4": 38
+  }
+}

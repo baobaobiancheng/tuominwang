@@ -7,31 +7,30 @@ import { readLegacyWorkspaceFromFile } from '../../packages/core/workspace-legac
 import { readPortableWorkspaceV2FromFile, readPortableWorkspaceV3FromFile } from '../../packages/core/workspace-portable-stream.ts';
 import { openPdf } from '../../packages/core/pdf-reader.ts';
 import { pdfFixture } from '../pdf-fixtures.ts';
-import { mkdtemp, readFile, rm, stat, writeFile } from 'node:fs/promises';
-import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { copyFile, readFile, stat, writeFile } from 'node:fs/promises';
+import { createReadStream } from 'node:fs';
 
 const sha = (bytes: Buffer) => createHash('sha256').update(bytes).digest('hex');
 async function streamSha(stream: AsyncIterable<Uint8Array>) { const digest=createHash('sha256');for await(const part of stream)digest.update(part);return digest.digest('hex'); }
-async function verifyReferenceFile(path:string,format:'legacy-zip'|'secure-v2'|'secure-v3',originals:Buffer[]){
+async function verifyReferenceFile(path:string,format:'legacy-zip'|'secure-v2'|'secure-v3',originals:Buffer[],password='converted-synthetic-password'){
   const opened=format==='legacy-zip'?await readLegacyWorkspaceFromFile(path):format==='secure-v2'
-    ?await readPortableWorkspaceV2FromFile(path,'converted-synthetic-password')
-    :await readPortableWorkspaceV3FromFile(path,'converted-synthetic-password');
+    ?await readPortableWorkspaceV2FromFile(path,password)
+    :await readPortableWorkspaceV3FromFile(path,password);
   try{
     const snapshot=opened.snapshot;
     expect(snapshot.documents).toHaveLength(2);
-    for(const[n,document]of snapshot.documents.entries()){
+    const seen=new Set<number>();
+    for(const document of snapshot.documents){
+      const match=/^public-([01])\.pdf$/.exec(document.fileName);
+      expect(match).not.toBeNull();
+      const n=Number(match![1]);expect(seen.has(n)).toBe(false);seen.add(n);
       const ref=opened.sources.get(document.sourceEntry);expect(ref).toBeTruthy();
       const stream='archive'in opened?await opened.archive.openEntry(document.sourceEntry):await opened.sources.get(document.sourceEntry)!.openReadStream();
       expect(await streamSha(stream)).toBe(sha(originals[n]));
     }
+    expect([...seen].sort()).toEqual([0,1]);
     return snapshot;
   }finally{if('archive'in opened)await opened.archive.close();else await opened.close();}
-}
-async function verifyResponseFile(bytes:Buffer,format:'legacy-zip'|'secure-v2'|'secure-v3',originals:Buffer[]){
-  const directory=await mkdtemp(join(tmpdir(),'tmw-file3-edge-')),path=join(directory,'result.tmm');
-  try{await writeFile(path,bytes);return await verifyReferenceFile(path,format,originals);}
-  finally{await rm(directory,{recursive:true,force:true});}
 }
 function largePdf(text: string) {
   const base = pdfFixture({ text }), source = base.toString('latin1');
@@ -79,17 +78,66 @@ test('oversized original V1 save as V2 uses browser native file streaming then o
   smallParts.set('manifest.json', Buffer.from(JSON.stringify(smallManifest)));
   const smallSource = await zip(smallParts); expect(smallSource.length).toBeLessThan(50 * 1024 * 1024);
 
+  // Keep only small response receipts in Playwright. The original streaming
+  // response is returned untouched to the product; its clone is hashed here.
+  await page.addInitScript(() => {
+    type Receipt = { path: string; status: number; bytes?: number; sha256?: string; id?: string; error?: string };
+    const receipts: Receipt[] = [];
+    (window as any).__tmmNetworkReceipts = receipts;
+    const originalFetch = window.fetch.bind(window);
+    window.fetch = (input: RequestInfo | URL, init?: RequestInit) => originalFetch(input, init).then(response => {
+      const path = new URL(response.url).pathname;
+      if (!['/api/portable/migrate-v1-file', '/api/portable/migrate-file', '/api/portable/import-file'].includes(path)) return response;
+      const clone = response.clone();
+      void (async () => {
+        const bytes = await clone.arrayBuffer();
+        const digest = new Uint8Array(await crypto.subtle.digest('SHA-256', bytes));
+        const sha256 = Array.from(digest).map(n => n.toString(16).padStart(2, '0')).join('');
+        const id = path === '/api/portable/import-file' && response.status === 200
+          ? JSON.parse(new TextDecoder().decode(bytes)).id as string : undefined;
+        receipts.push({ path, status: response.status, bytes: bytes.byteLength, sha256, id });
+      })().catch(error => receipts.push({ path, status: response.status, error: String(error) }));
+      return response;
+    });
+  });
+  async function networkReceipt(path: string, status: number, index = 0) {
+    await expect.poll(() => page.evaluate(({ path, status }) =>
+      ((window as any).__tmmNetworkReceipts as { path: string; status: number }[]).filter(r => r.path === path && r.status === status).length,
+      { path, status }), { timeout: 180000 }).toBeGreaterThan(index);
+    const receipt = await page.evaluate(({ path, status, index }) =>
+      ((window as any).__tmmNetworkReceipts as { path: string; status: number; bytes: number; sha256: string; id?: string; error?: string }[])
+        .filter(r => r.path === path && r.status === status)[index], { path, status, index });
+    expect(receipt.error).toBeUndefined();
+    expect(receipt.sha256).toMatch(/^[0-9a-f]{64}$/);
+    return receipt;
+  }
+  async function browserFileToNode(opfsName: string, outputName: string) {
+    const download = page.waitForEvent('download', { timeout: 180000 });
+    await page.evaluate(async ({ opfsName, outputName }) => {
+      const file = await (await navigator.storage.getDirectory()).getFileHandle(opfsName).then(handle => handle.getFile());
+      const url = URL.createObjectURL(file), anchor = document.createElement('a');
+      anchor.href = url; anchor.download = outputName; document.body.append(anchor); anchor.click(); anchor.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 60000);
+    }, { opfsName, outputName });
+    const saved = await download, path = test.info().outputPath(outputName);
+    await copyFile((await saved.path())!, path);
+    return path;
+  }
+
   const nativeSavePath = process.env.TMM_NATIVE_SAVE_AS_PATH;
   // The default automated branch uses a real browser OPFS handle. The headed
   // branch leaves the OS picker intact for a human to choose nativeSavePath.
   if (!nativeSavePath) await page.addInitScript(() => {
-    let calls = 0;
     Object.defineProperty(window, 'showSaveFilePicker', { configurable: true, value: async (options: { suggestedName: string }) => {
-      const index = calls++;
-      if (index === 2) await new Promise<void>(resolve => { (window as any).__releaseTmmPicker = resolve; });
-      const first = index === 0;
-      const handle = await (await navigator.storage.getDirectory()).getFileHandle(first ? 'public-large-v1.tmm' : options.suggestedName, { create: true });
-      if (first) { const writable = await handle.createWritable(); await writable.write(new Uint8Array([80, 75, 3, 4, 1, 2, 3, 4])); await writable.close(); }
+      const sameName = (window as any).__sameNameTmmPickerOnce === true;
+      delete (window as any).__sameNameTmmPickerOnce;
+      if ((window as any).__pauseTmmPickerOnce === true) {
+        delete (window as any).__pauseTmmPickerOnce;
+        await new Promise<void>(resolve => { (window as any).__releaseTmmPicker = resolve; });
+        delete (window as any).__releaseTmmPicker;
+      }
+      const handle = await (await navigator.storage.getDirectory()).getFileHandle(sameName ? 'public-large-v1.tmm' : options.suggestedName, { create: true });
+      if (sameName) { const writable = await handle.createWritable(); await writable.write(new Uint8Array([80, 75, 3, 4, 1, 2, 3, 4])); await writable.close(); }
       return handle;
     } });
   });
@@ -103,6 +151,9 @@ test('oversized original V1 save as V2 uses browser native file streaming then o
   const created = page.waitForResponse(response => new URL(response.url()).pathname === '/api/projects' && response.request().method() === 'POST');
   await page.getByRole('button', { name: '新建项目', exact: true }).click();
   const createdProject = await created; expect(createdProject.status()).toBe(200);
+  await expect(page.getByRole('navigation', { name: '项目列表' }).getByRole('button', { name: originalProjectName, exact: true })).toHaveAttribute('aria-current', 'page', { timeout: 30000 });
+  await expect(page.locator('.materials')).toHaveAttribute('aria-busy', 'false', { timeout: 30000 });
+  await expect(page.locator('fieldset.workspace-controls')).toBeEnabled({ timeout: 30000 });
   const portable = page.locator('details').filter({ has: page.locator('summary').filter({ hasText: /^工程备份与导入$/ }) });
   await portable.locator('summary').click();
   await portable.getByLabel('导入工程文件', { exact: true }).setInputFiles({ name: 'public-small-v1.tmm', mimeType: 'application/octet-stream', buffer: smallSource });
@@ -112,11 +163,14 @@ test('oversized original V1 save as V2 uses browser native file streaming then o
   const capacityResponse = await capacity; expect(capacityResponse.status()).toBe(400);
   expect((await capacityResponse.json()).error).toBe('WORKSPACE_ENTRY_LIMIT');
   await expect(portable.getByText('旧版 TMM V1 工程超出普通打开范围。另存为 TMM V2 后会导入为新项目，原文件会保留。')).toBeVisible();
-  await portable.getByLabel('读取或转换 TMM', { exact: true }).setInputFiles({ name: 'public-large-v1.tmm', mimeType: 'application/octet-stream', buffer: source });
+  const sourcePath = test.info().outputPath('public-large-v1.tmm');
+  await writeFile(sourcePath, source);
+  await portable.getByLabel('读取或转换 TMM', { exact: true }).setInputFiles(sourcePath);
   await portable.getByLabel('新文件密码', { exact: true }).fill('synthetic-transfer-password');
   if (!nativeSavePath) {
     let migrationPosts = 0;
     page.on('request', request => { if (new URL(request.url()).pathname === '/api/portable/migrate-v1-file' && request.method() === 'POST') migrationPosts++; });
+    await page.evaluate(() => { (window as any).__sameNameTmmPickerOnce = true; });
     await portable.getByRole('button', { name: '另存为 TMM V2 并打开', exact: true }).click();
     await expect(portable.getByText('请选择不同的文件名另存，原工程文件会保留。')).toBeVisible();
     expect(migrationPosts).toBe(0);
@@ -131,12 +185,16 @@ test('oversized original V1 save as V2 uses browser native file streaming then o
   const imported = page.waitForResponse(response => new URL(response.url()).pathname === '/api/portable/import-file' && response.request().method() === 'POST', { timeout: 180000 });
   await portable.getByRole('button', { name: '另存为 TMM V2 并打开', exact: true }).click();
   const migratedResponse = await migrate; expect(migratedResponse.status()).toBe(200);
-  const result = await imported; expect(result.status(), await result.text()).toBe(200);
-  const project = (await result.json()).id as string;
-  const migratedHash = sha(await migratedResponse.body());
+  const result = await imported; expect(result.status()).toBe(200);
+  const importReceipt = await networkReceipt('/api/portable/import-file', 200);
+  const project = importReceipt.id as string; expect(project).toBeTruthy();
+  const migrationReceipt = await networkReceipt('/api/portable/migrate-v1-file', 200);
+  const migratedHash = migrationReceipt.sha256;
+  expect(Number(migratedResponse.headers()['content-length'])).toBe(migrationReceipt.bytes);
   if (nativeSavePath) {
     const saved = await readFile(nativeSavePath);
     expect(saved.length).toBeGreaterThan(50 * 1024 * 1024);
+    expect(saved.length).toBe(migrationReceipt.bytes);
     expect(saved.subarray(0, 8).toString('ascii')).toBe('LBTSC001');
     expect(sha(saved)).toBe(migratedHash);
     console.info('TMM_NATIVE_SAVE_AS_VERIFIED', nativeSavePath, saved.length, migratedHash);
@@ -149,20 +207,43 @@ test('oversized original V1 save as V2 uses browser native file streaming then o
         sha256: Array.from(digest).map(n => n.toString(16).padStart(2, '0')).join('') };
     });
     expect(saved.size).toBeGreaterThan(50 * 1024 * 1024);
+    expect(saved.size).toBe(migrationReceipt.bytes);
     expect(saved.magic).toBe('LBTSC001'); expect(saved.sha256).toBe(migratedHash);
     console.info('TMM_BROWSER_OPFS_VERIFIED', saved.size, saved.sha256);
   }
   const listing = await page.request.get(`/api/projects/${project}/documents`); expect(listing.status()).toBe(200);
   expect((await listing.json()).length).toBe(2);
   await expect(page.getByRole('button', { name: /public-0\.pdf/ })).toBeVisible();
+  if (nativeSavePath) {
+    const nativeReadback = page.locator('details').filter({ has: page.locator('summary').filter({ hasText: /^工程备份与导入$/ }) });
+    await nativeReadback.locator('summary').click();
+    const nativeInput = nativeReadback.getByLabel('读取或转换 TMM', { exact: true });
+    await nativeInput.setInputFiles(nativeSavePath);
+    const browserReadback = await nativeInput.evaluate(async input => {
+      const bytes = await (input as HTMLInputElement).files![0].arrayBuffer();
+      const digest = new Uint8Array(await crypto.subtle.digest('SHA-256', bytes));
+      return { bytes: bytes.byteLength, sha256: Array.from(digest).map(n => n.toString(16).padStart(2, '0')).join('') };
+    });
+    const nodeSaved = await readFile(nativeSavePath);
+    expect(browserReadback.bytes).toBe(nodeSaved.length);
+    expect(browserReadback.sha256).toBe(sha(nodeSaved));
+    expect(browserReadback.sha256).toBe(migratedHash);
+    console.info('TMM_NATIVE_BROWSER_READBACK_VERIFIED', browserReadback.bytes, browserReadback.sha256);
+  }
   if (!nativeSavePath) {
     // Reuse the same verified >50 MiB V2 File for the three existing TMM actions.
     await page.reload();
     await page.getByRole('navigation', { name: '项目列表' }).getByRole('button', { name: originalProjectName, exact: true }).click();
+    await expect(page.getByRole('navigation', { name: '项目列表' }).getByRole('button', { name: originalProjectName, exact: true })).toHaveAttribute('aria-current', 'page', { timeout: 30000 });
+    await expect(page.locator('.materials')).toHaveAttribute('aria-busy', 'false', { timeout: 30000 });
+    await expect(page.locator('fieldset.workspace-controls')).toBeEnabled({ timeout: 30000 });
     const compatibility = page.locator('details').filter({ has: page.locator('summary').filter({ hasText: /^工程备份与导入$/ }) });
     await compatibility.locator('summary').click();
-    const largeV2 = Buffer.from(await migratedResponse.body());
-    const selected = { name: 'public-large-v2.tmm', mimeType: 'application/octet-stream', buffer: largeV2 };
+    const selected = await browserFileToNode('public-large-v1_V2.tmm', 'public-large-v2.tmm');
+    expect((await stat(selected)).size).toBe(migrationReceipt.bytes);
+    expect(await streamSha(createReadStream(selected))).toBe(migratedHash);
+    const migratedWorkspace = await verifyReferenceFile(selected, 'secure-v2', originals, 'synthetic-transfer-password');
+    expect(migratedWorkspace.workspaceCorrections.some((c: any) => c.pattern === '13800138000')).toBe(true);
     await compatibility.getByLabel('读取或转换 TMM', { exact: true }).setInputFiles(selected);
     await compatibility.getByLabel('现有文件密码', { exact: true }).fill('synthetic-transfer-password');
     const preview = page.waitForResponse(r => new URL(r.url()).pathname === '/api/portable/review-profile-file' && r.request().method() === 'POST', { timeout: 180000 });
@@ -183,6 +264,7 @@ test('oversized original V1 save as V2 uses browser native file streaming then o
     await compatibility.getByLabel('新文件密码', { exact: true }).fill('converted-synthetic-password');
     let staleFilePosts = 0;
     page.on('request', request => { if (new URL(request.url()).pathname === '/api/portable/migrate-file' && request.method() === 'POST') staleFilePosts++; });
+    await page.evaluate(() => { (window as any).__pauseTmmPickerOnce = true; });
     await compatibility.getByRole('button', { name: '转换并下载', exact: true }).click();
     await expect.poll(() => page.evaluate(() => typeof (window as any).__releaseTmmPicker === 'function')).toBe(true);
     await compatibility.getByLabel('读取或转换 TMM', { exact: true }).setInputFiles({ name: 'changed-source.tmm', mimeType: 'application/octet-stream', buffer: Buffer.from('changed') });
@@ -190,20 +272,25 @@ test('oversized original V1 save as V2 uses browser native file streaming then o
     await expect(compatibility.getByRole('status').filter({ hasText: '正在处理工程文件…' })).toHaveCount(0);
     expect(staleFilePosts).toBe(0);
     await compatibility.getByLabel('读取或转换 TMM', { exact: true }).setInputFiles(selected);
-    for (const outputFormat of ['legacy-zip', 'secure-v2', 'secure-v3'] as const) {
+    for (const [conversionIndex, outputFormat] of (['legacy-zip', 'secure-v2', 'secure-v3'] as const).entries()) {
       await compatibility.getByLabel('导出或转换格式').selectOption(outputFormat);
       const converted = page.waitForResponse(r => new URL(r.url()).pathname === '/api/portable/migrate-file' && r.request().method() === 'POST', { timeout: 180000 });
       await compatibility.getByRole('button', { name: '转换并下载', exact: true }).click();
       const conversion = await converted; expect(conversion.status()).toBe(200);
-      const resultBytes = Buffer.from(await conversion.body()), opened = await verifyResponseFile(resultBytes,outputFormat,originals);
-      expect(opened.workspaceCorrections.some((c: any) => c.pattern === '13800138000')).toBe(true);
+      const conversionReceipt = await networkReceipt('/api/portable/migrate-file', 200, conversionIndex);
+      expect(Number(conversion.headers()['content-length'])).toBe(conversionReceipt.bytes);
       await expect(compatibility.getByText('已转换并核对全部原件及完整审查记录，请核对浏览器保存的文件。')).toBeVisible({ timeout: 180000 });
+      const convertedPath = await browserFileToNode('转换后审查.tmm', `converted-${conversionIndex}.tmm`);
+      expect((await stat(convertedPath)).size).toBe(conversionReceipt.bytes);
+      expect(await streamSha(createReadStream(convertedPath))).toBe(conversionReceipt.sha256);
+      const opened = await verifyReferenceFile(convertedPath, outputFormat, originals);
+      expect(opened.workspaceCorrections.some((c: any) => c.pattern === '13800138000')).toBe(true);
       const browserSaved = await page.evaluate(async () => {
         const handle = await (await navigator.storage.getDirectory()).getFileHandle('转换后审查.tmm');
         const bytes = await (await handle.getFile()).arrayBuffer(), digest = new Uint8Array(await crypto.subtle.digest('SHA-256', bytes));
         return { size: bytes.byteLength, sha256: Array.from(digest).map(n => n.toString(16).padStart(2, '0')).join('') };
       });
-      expect(browserSaved.size).toBe(resultBytes.length); expect(browserSaved.sha256).toBe(sha(resultBytes));
+      expect(browserSaved.size).toBe(conversionReceipt.bytes); expect(browserSaved.sha256).toBe(conversionReceipt.sha256);
     }
     const unchangedSource = await compatibility.getByLabel('读取或转换 TMM', { exact: true }).evaluate(async input => {
       const selected = (input as HTMLInputElement).files![0], bytes = await selected.arrayBuffer();
@@ -212,7 +299,11 @@ test('oversized original V1 save as V2 uses browser native file streaming then o
     });
     expect(unchangedSource).toBe(migratedHash);
     await page.reload();
-    await page.getByRole('navigation', { name: '项目列表' }).getByRole('button', { name: /public-large-v1_V2/ }).click();
+    const importedNav = page.getByRole('navigation', { name: '项目列表' }).getByRole('button', { name: /public-large-v1_V2/ });
+    await importedNav.click();
+    await expect(importedNav).toHaveAttribute('aria-current', 'page', { timeout: 30000 });
+    await expect(page.locator('.materials')).toHaveAttribute('aria-busy', 'false', { timeout: 30000 });
+    await expect(page.locator('fieldset.workspace-controls')).toBeEnabled({ timeout: 30000 });
     const importedCompatibility = page.locator('details').filter({ has: page.locator('summary').filter({ hasText: /^工程备份与导入$/ }) });
     await importedCompatibility.locator('summary').click();
     await importedCompatibility.getByLabel('新文件密码', { exact: true }).fill('converted-synthetic-password');
@@ -222,7 +313,7 @@ test('oversized original V1 save as V2 uses browser native file streaming then o
       await importedCompatibility.getByRole('button', { name: '下载当前项目 TMM', exact: true }).click();
       const receiptStart = await save; expect(receiptStart.status(), await receiptStart.text()).toBe(200);
       await expect(importedCompatibility.getByRole('link', { name: '下载已保存的审查传输副本' })).toBeVisible({ timeout: 180000 });
-      const downloadResponse = page.waitForResponse(r => /\/portable\/saves\/[^/]+\/download$/.test(new URL(r.url()).pathname), { timeout: 180000 });
+      const downloadResponse = page.context().waitForEvent('response', { predicate: r => /\/portable\/saves\/[^/]+\/download$/.test(new URL(r.url()).pathname), timeout: 180000 });
       const download = page.waitForEvent('download', { timeout: 180000 });
       await importedCompatibility.getByRole('link', { name: '下载已保存的审查传输副本' }).click();
       const delivered = await downloadResponse; expect(delivered.status()).toBe(200);

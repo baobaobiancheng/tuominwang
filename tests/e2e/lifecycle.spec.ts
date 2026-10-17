@@ -2,6 +2,7 @@ import { test, expect } from "./fixture.ts";
 import { randomUUID } from "node:crypto";
 
 test("desktop capacity controls and explicit deletion remove only the selected material", async ({ page }) => {
+  test.setTimeout(120000);
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/"); await page.getByLabel("账号", { exact: true }).fill(process.env.E2E_USERNAME!); await page.getByLabel("密码", { exact: true }).fill(process.env.E2E_PASSWORD!);
   await page.getByRole("button", { name: "登录工作台" }).click();
@@ -12,9 +13,22 @@ test("desktop capacity controls and explicit deletion remove only the selected m
   await expect(dialog.getByRole("button", { name: "保存材料配额" })).toBeDisabled();
   await dialog.getByRole("button", { name: "关闭组织管理" }).click();
   await page.locator(".create-project summary").click(); await page.getByLabel("项目名称", { exact: true }).fill("删除验证-" + randomUUID().slice(0, 8)); await page.getByRole("button", { name: "新建项目", exact: true }).click();
-  await page.getByRole("button", { name: "导入材料", exact: true }).click(); await page.getByLabel("待处理文本").fill("公开电话13800138000"); await page.getByRole("button", { name: "提交并识别" }).click();
+  await page.getByRole("button", { name: "导入材料", exact: true }).click(); await page.getByLabel("待处理文本").fill("公开电话13800138000");
+  const created = page.waitForResponse(response => /\/api\/projects\/[^/]+\/documents$/.test(response.url()) && response.request().method() === "POST");
+  await page.getByRole("button", { name: "提交并识别" }).click();
+  const document = (await (await created).json()).id;
+  const recognitionDeadline = Date.now() + 45000;
+  for (;;) {
+    const readback = await page.request.get(`/api/documents/${document}`);
+    expect(readback.ok()).toBe(true);
+    const current = await readback.json();
+    if (current.job?.kind === "detect" && ["failed", "cancelled"].includes(current.job.status)) throw new Error(`Recognition ${current.job.status}`);
+    if (current.state === "review" && current.marks?.length === 1 && current.marks[0].kind === "手机号" && current.text.slice(current.marks[0].start, current.marks[0].end) === "13800138000") break;
+    if (Date.now() >= recognitionDeadline) throw new Error(`Recognition readback incomplete: ${current.state}, ${current.marks?.length ?? 0} marks`);
+    await new Promise(resolve => setTimeout(resolve, 500));
+  }
   await page.getByRole("button", { name: "逐条复核", exact: true }).click();
-  await expect(page.getByLabel("标记 1 处理决定")).toBeVisible();
+  await expect(page.getByLabel("标记 1 处理决定")).toBeVisible({ timeout: 30000 });
    await page.getByRole("button", { name: "删除材料", exact: true }).click();
   await page.getByRole("alertdialog", { name: "操作确认" }).getByRole("button", { name: "取消", exact: true }).click();
   await expect(page.getByLabel("原文", { exact: true })).toBeVisible();

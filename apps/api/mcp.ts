@@ -189,7 +189,7 @@ async function checkedConfiguration(db:DB,req:FastifyRequest,t:PrivateTask,docum
  c.outputFormats=[...new Set(c.outputFormats.map((f:string)=>f==='original'?(['jpg','jpeg'].includes(d.source_format)?'png':isLegacyWordFormat(d.source_format)?'docx':d.source_format):f))];
  return Object.fromEntries(Object.entries(c).filter(([,v])=>v!==undefined));
 }
-export function registerMcpRoutes(app:FastifyInstance,applyConfiguration?:CollabConfigurationHook,nerReady=false){
+export function registerMcpRoutes(app:FastifyInstance,applyConfiguration?:CollabConfigurationHook,nerReady=false,runInternal:<T>(run:()=>Promise<T>)=>Promise<T>=run=>run()){
  const sessions=new Map<string,ProtocolSession&{user:string;tenant:string}>();
  const headers=(req:FastifyRequest)=>({origin:process.env.APP_ORIGIN??'http://127.0.0.1:5178',cookie:req.headers.cookie??''});
  // Record only the tool request received by this server. A connector's local
@@ -228,7 +228,7 @@ export function registerMcpRoutes(app:FastifyInstance,applyConfiguration?:Collab
   }
   if(failed)throw error;return value as T;
  }
- async function internal(req:FastifyRequest,method:any,url:string,payload?:any){const r=await app.inject({method,url,headers:headers(req),payload});if(r.statusCode>=400)fail(r.json().error??'COLLAB_ACTION_FAILED',r.statusCode);return r;}
+ async function internal(req:FastifyRequest,method:any,url:string,payload?:any){const r=await runInternal(async()=>await app.inject({method,url,headers:headers(req),payload}));if(r.statusCode>=400)fail(r.json().error??'COLLAB_ACTION_FAILED',r.statusCode);return r;}
  function humanTask(t:PrivateTask){const {mapping,mappingReferences,resolvedOutputs,combined,transportReceipts,...shown}=t;return {...shown,...combined?{combined:{sha256:combined.hash}}:{}};}
  async function taskDetectionView(db:DB,req:FastifyRequest,t:PrivateTask):Promise<{taskDetectionStatus:'not_started'|'pending'|'succeeded'|'failed';awaitingTaskDetection:boolean;taskDetectionFailureCode?:string}>{
   const result=(status:'not_started'|'pending'|'succeeded'|'failed')=>({taskDetectionStatus:status,awaitingTaskDetection:status==='pending'||status==='failed',...status==='failed'?{taskDetectionFailureCode:'RECOGNITION_INCOMPLETE'}:{}});

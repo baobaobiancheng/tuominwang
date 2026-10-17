@@ -1,0 +1,57 @@
+{
+  "id": "ITER-056-TARGET5-AND-API-EQUIVALENCE-162",
+  "date": "2026-10-17",
+  "status": "evidence-boundary-only",
+  "target5": {
+    "audit": ".data/research/lawbot-2026-10-16/iteration056/root/target5-v25-independent-terminal-audit-v1.json",
+    "sha256": "21aaeda01ce1b70c6e5a5cd2fdd029b3694c206b287cebad82403a8ff55e970b",
+    "archiveManifestSha256": "f86365dd23bf1af9fd28a37120e5ba368dcea56dde3c8d351ca1857e42382c41",
+    "planned": 5,
+    "passed": 3,
+    "failed": 2,
+    "skipped": 0,
+    "flaky": 0,
+    "passedChains": [
+      "export-policy",
+      "lifecycle",
+      "Word"
+    ],
+    "failedStops": [
+      "frontend-alignment.spec.ts:130 review-only missing permission hint",
+      "page-selection-edit.spec.ts:17 first image search still checking coordinates"
+    ],
+    "controlCaveat": "Original private terminal cleanupError null and runnerError null; subsequent research mirror write failed because directory missing, so no green claim."
+  },
+  "nextTestOnlyCandidate": {
+    "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/edge-v25-two-remaining-readbacks-v2/candidate-manifest.json",
+    "sha256": "e7c7c5dbedd1b79648d8c8dec5228a6bc839165db8a025ced012e23b80aee5e8",
+    "status": "prepared, not run",
+    "scope": "two E2E-only readback changes; no production/API-source fix claimed"
+  },
+  "release": {
+    "path": ".data/deploy/aliyun-20261016/iteration056/release-v25-api-equivalence-overlay-v4/candidate-manifest.json",
+    "sha256": "cbc38e8a3a686439b862c866b8e74dba13e7b04826193f3b69a69ffc532ed5c8",
+    "status": "research only, source equivalence bridge control null; no actual API reuse proof or staging",
+    "scope": "fixed five-E2E API24-to-runtime25 execution-slice comparison only; check/Edge/native/web final25 still required"
+  },
+  "api": {
+    "status": "API24 148-file run still active without terminal; no all-green claim"
+  },
+  "check": {
+    "status": "final25 required check active, no terminal claim"
+  },
+  "counts": "I/S/R and nine confirmed gaps unchanged",
+  "archive": ".data/research/lawbot-2026-10-16/iteration056/before-target5-ledger162-v1",
+  "rulesJsonBlocks": [
+    "6e0ea225acb4e6e7e41a5b5a99a812e12243a4308f82171301142d5c8df20c46",
+    "27abf7c3d82e77ef4bcd16453d82e9e3990253e8a12bc64635915361d2876815",
+    "30b3a3337d6fd90e80b3449f5120d362694d3760e8ffcee059789dca8df6ce1e",
+    "943620d7d6cc863f7396226b9cdfd9b1a7ccbbaf3131228b0e8a2c6d97425bff",
+    "52708f9a15cb02a8b89786acf6d8a5250815851fa2d47f095eaaa721af4feb8d",
+    "05cb41cae0447743ef3584454a2c825bf588bc5ce70e922a3258080363d73508",
+    "871f257bf1452e5a2436ea062641358ae7927b9d32fb70c3bfc44654dd4c6c9d",
+    "6a2148a02a6271762804344eb7b3531d41749289c9f24601e3f8ab48e3a13345",
+    "fa326d1af4b2851e8f7a91adfa1cb64c652c8121657f30caa40749eb18c7c3c8",
+    "d49eaf84c70fbd63ce8236532ac458e49a624d86fe9c33a569c5b6bef38d7b89"
+  ]
+}

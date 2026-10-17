@@ -44,7 +44,9 @@ test("desktop page regions, repeat across pages, deletion undo, pixel preview an
   await page.getByRole("button", { name: "从副本移除此页" }).click();
   await page.getByRole("button", { name: "上一页原件", exact: true }).click();
   await page.getByRole("checkbox", { name: "转换为不可选字的图片型 PDF 副本" }).check();
+  const previewResponse=page.waitForResponse(response=>response.request().method()==="POST"&&/^\/api\/documents\/[0-9a-f-]{36}\/pages\/0\/preview$/.test(new URL(response.url()).pathname),{timeout:30000});
   await page.getByRole("button", { name: "查看本页处理预览", exact: true }).click();
+  expect((await previewResponse).status()).toBe(200);
   await expect(page.getByRole("img", { name: "处理预览第 1 页" })).toBeVisible();
   await page.screenshot({ path: "test-results/page-regions-desktop.png", fullPage: true });
   const saved = page.waitForResponse(response => response.request().method() === "PUT"
@@ -96,7 +98,9 @@ test("DOCX embedded image review keeps document format and strips the original i
   for (const decision of await decisions.all()) await decision.selectOption("redact");
   await expect(page.getByRole("button", { name: "核验并下载 DOCX", exact: true })).toBeVisible();
   await page.getByRole("checkbox", { name: "清除内嵌图片选区像素，生成 DOCX 副本" }).check();
+  const embeddedPreviewResponse=page.waitForResponse(response=>response.request().method()==="POST"&&/^\/api\/documents\/[0-9a-f-]{36}\/pages\/0\/preview$/.test(new URL(response.url()).pathname),{timeout:30000});
   await page.getByRole("button", { name: "查看本页处理预览", exact: true }).click();
+  expect((await embeddedPreviewResponse).status()).toBe(200);
   await expect(page.getByRole("img", { name: "处理预览第 1 页" })).toBeVisible();
   await page.getByRole("button", { name: "保存复核", exact: true }).click();
   await expect(page.getByText("复核已保存", { exact: true })).toBeVisible();

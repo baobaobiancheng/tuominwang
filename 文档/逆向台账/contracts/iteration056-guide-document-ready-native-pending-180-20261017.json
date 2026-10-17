@@ -1,0 +1,44 @@
+{
+  "id": "ITER-056-GUIDE-DOCUMENT-READY-NATIVE-PENDING-180",
+  "date": "2026-10-17",
+  "status": "guide document package READY; native OS actions still pending; no new product source or deployment change",
+  "evidence": {
+    "publishManifest": {
+      "path": "文档/使用指南/guide-publish-manifest.json",
+      "sha256": "d2784e877d7494812090b6d8d5ca0a786b6d0149bc63c40afdad57f1aaa455f0",
+      "bytes": 13841
+    },
+    "finalReview": {
+      "path": "文档/使用指南/guide-final-review.json",
+      "sha256": "b7ba86f2b99a508e12c6e89413d25cf70650bb80f497ddf9e4c3191d4cb5371c",
+      "bytes": 967
+    },
+    "oldGuideArchive": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/guide-before-v32-publish-v1/archive-manifest.json",
+      "sha256": "ae907f9e48b1147a13b0d9872bffb00524a5693a895444e9e4b302b29cb841da",
+      "bytes": 500
+    }
+  },
+  "guide": {
+    "files": 64,
+    "imagesRendered": 61,
+    "sourceHtmlSha256": "362194a53121cc2469a311bf1a65a51f0ccab8fd3c061314d9b1d36e222e431f",
+    "renderWidths": [
+      1280,
+      1600
+    ],
+    "remainingAcceptance": [
+      {
+        "status": "PENDING_MAC_UNLOCK",
+        "item": "macOS native SaveAs and file picker actual operation"
+      },
+      {
+        "status": "PENDING_MAC_UNLOCK",
+        "item": "native directory picker and cancellation actual operation"
+      }
+    ],
+    "oldHtmlAndMarkdownArchived": true,
+    "scope": "document packaging only; OPFS is not native OS picker or Save As proof"
+  },
+  "boundary": "Formal v32 remains local; online 054 unchanged. Mac native Save As and directory picker/cancellation pending unlock. Guide READY is not entire product release readiness, and does not raise I/S/R or original R0."
+}

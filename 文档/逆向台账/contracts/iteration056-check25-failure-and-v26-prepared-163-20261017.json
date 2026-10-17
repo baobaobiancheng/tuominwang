@@ -1,0 +1,65 @@
+{
+  "id": "ITER-056-CHECK25-FAILURE-V26-PREPARED-163",
+  "date": "2026-10-17",
+  "status": "evidence-boundary-only",
+  "check25": {
+    "receipt": ".data/research/lawbot-2026-10-16/iteration056/root/final-v25-required-check-v1/terminal-receipt.json",
+    "sha256": "90c8c0dd6f18d5e575d9ba5dc68deaf616e433dd92c36c203561d04d1436d941",
+    "exitCode": 1,
+    "unitFiles": 163,
+    "unitFilePass": 162,
+    "unitFileFail": 1,
+    "unitTests": 885,
+    "unitTestPass": 884,
+    "unitTestTimeout": 1,
+    "failure": "manual-clear-override original 30s timeout",
+    "bend": "18 laws / 21 mutants passed",
+    "typecheck": "passed",
+    "build": "not executed",
+    "sourceAssetFixtureDrift": []
+  },
+  "sameSourceFocusedRepro": {
+    "receipt": ".data/research/lawbot-2026-10-16/iteration056/root/manual-clear-v25-unchanged-repro-v1/terminal-receipt.json",
+    "sha256": "8401b5f9e084bb238e32ee67c16e83d807c12e387b0899408e1cf5633340832e",
+    "actualExitCode": 0,
+    "fileTests": "5/5",
+    "durationSeconds": 9.5,
+    "originalDeadlineUnchanged": true,
+    "logSha256": "02c26dda3a1e167eaf128a8ea14f4806c2c8ba4fd068f7af69374f1bec3845d1",
+    "scope": "Does not replace full required check; neither proves resource cause nor excludes product timing risk."
+  },
+  "candidate26": {
+    "manifest": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v26.json",
+    "sha256": "0ac9e2c1ea87a56cbf5fd8eb0e1138c159af9386347f6c20903c47d25aac2daa",
+    "fileCount": 992,
+    "deltaFrom25": "exactly two FE E2E specs; frozen install exit0 and source drift empty",
+    "target2": "prepared, not terminal",
+    "fullCheck": "pending",
+    "fullEdge107": "pending",
+    "nativeSaveAs": "pending",
+    "guide": "pending"
+  },
+  "api": {
+    "status": "API24 148-file run remains without terminal; do not combine prefix"
+  },
+  "release": {
+    "formal": "v17",
+    "server": "054",
+    "v4Bridge": "fixed final25 only, remains null and invalid for final26",
+    "deployed": false
+  },
+  "counts": "I/S/R and nine confirmed gaps unchanged",
+  "archive": ".data/research/lawbot-2026-10-16/iteration056/before-check25-ledger163-v1",
+  "rulesJsonBlocks": [
+    "6e0ea225acb4e6e7e41a5b5a99a812e12243a4308f82171301142d5c8df20c46",
+    "27abf7c3d82e77ef4bcd16453d82e9e3990253e8a12bc64635915361d2876815",
+    "30b3a3337d6fd90e80b3449f5120d362694d3760e8ffcee059789dca8df6ce1e",
+    "943620d7d6cc863f7396226b9cdfd9b1a7ccbbaf3131228b0e8a2c6d97425bff",
+    "52708f9a15cb02a8b89786acf6d8a5250815851fa2d47f095eaaa721af4feb8d",
+    "05cb41cae0447743ef3584454a2c825bf588bc5ce70e922a3258080363d73508",
+    "871f257bf1452e5a2436ea062641358ae7927b9d32fb70c3bfc44654dd4c6c9d",
+    "6a2148a02a6271762804344eb7b3531d41749289c9f24601e3f8ab48e3a13345",
+    "fa326d1af4b2851e8f7a91adfa1cb64c652c8121657f30caa40749eb18c7c3c8",
+    "d49eaf84c70fbd63ce8236532ac458e49a624d86fe9c33a569c5b6bef38d7b89"
+  ]
+}

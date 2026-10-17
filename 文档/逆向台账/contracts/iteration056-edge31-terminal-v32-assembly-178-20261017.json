@@ -1,0 +1,60 @@
+{
+  "id": "ITER-056-EDGE31-TERMINAL-V32-ASSEMBLY-178",
+  "date": "2026-10-17",
+  "status": "v31 Edge107 completed pass; v32 single test file assembled and typechecked; full API149 v30 still active",
+  "evidence": {
+    "edge31Terminal": {
+      "path": "frontend/full107-final-v31-dual/terminal-receipt.json",
+      "sha256": "973e201ba457f62ef317563703f672bfc2f50812f4dca2d6efeba752807803c9",
+      "bytes": 115351
+    },
+    "edge31Audit": {
+      "path": "root/full107-v31-independent-terminal-audit-v1.json",
+      "sha256": "a93bd0e6c577d86e79c97489fab07b42ce63fa8a76f39b8ef5167ce3050dcb39",
+      "bytes": 635
+    },
+    "v31Manifest": {
+      "path": "final-inputs-v31.json",
+      "sha256": "a4d259cd850228f8ebb858ed0df9fe8bc2fd4f2e81632224bece05edd4e2b2d0",
+      "bytes": 169708
+    },
+    "v32Manifest": {
+      "path": "final-inputs-v32.json",
+      "sha256": "39eb0b9d680ab4829f2f0a109303feb66b87eb595e336bfca248d1ffa332b0e5",
+      "bytes": 169780
+    },
+    "v32Assembly": {
+      "path": "arch/final-v32-test-only-assembly-receipt.json",
+      "sha256": "31b65dfd6c122b465764220a7e7f1afd709717e356962bd8c3c250b6f173e7d7",
+      "bytes": 1014
+    },
+    "focused14": {
+      "path": "protocol/mcp-automatic-test-ip-v1/focused-run-v1/terminal-receipt.json",
+      "sha256": "aa9d7faaf213718bd447b6192fbe2f6a4b1b83f6ff1c549cddd715fbc7ec6467",
+      "bytes": 853
+    }
+  },
+  "edge31": {
+    "childExitCode": 0,
+    "cases": 107,
+    "specFiles": 65,
+    "singleAttemptPassed": 107,
+    "skipped": 0,
+    "flaky": 0,
+    "archiveFilesVerified": 171,
+    "archiveBytesVerified": 289241043,
+    "source": "formal v17/private v31",
+    "scope": "Full v31 browser run, including seal warning now absent in screenshot; no native OS Save As or original licensed competitor runtime proof"
+  },
+  "assembly32": {
+    "inputs": 993,
+    "delta31To32": [
+      "tests/mcp-automatic.integration.ts"
+    ],
+    "allOtherInputsByteIdentical": true,
+    "node24TscNoEmitExitCode": 0,
+    "focusedCandidateCasesPassed": 14,
+    "fullCheckOrFullApiOrFullEdgeOnV32": "not run"
+  },
+  "boundary": "v31 engineering/build/Edge and v30 API plus candidate focused test are separate source-scoped results. Do not claim a v32 combined full pass. Original API149 v30 test file exit1 and full runner still active. Formal v17, online 054, guide DRAFT, native OS blocked, original R0; I/S/R unchanged."
+}

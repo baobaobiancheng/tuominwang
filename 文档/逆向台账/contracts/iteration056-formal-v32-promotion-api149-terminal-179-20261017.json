@@ -1,0 +1,133 @@
+{
+  "id": "ITER-056-FORMAL-V32-PROMOTION-API149-TERMINAL-179",
+  "date": "2026-10-17",
+  "status": "formal v32 promoted locally and own dev restored; API149 v30 terminal failed one fixture file, focused corrected 14/14 separate; not deployed",
+  "evidence": {
+    "formalManifest": {
+      "path": "final-inputs-v32.json",
+      "sha256": "39eb0b9d680ab4829f2f0a109303feb66b87eb595e336bfca248d1ffa332b0e5",
+      "bytes": 169780
+    },
+    "promotion": {
+      "path": "root/formal-v32-promotion-v1.json",
+      "sha256": "982884cfa8aefc57b457105c9597855a983a6033d2cd54fa802e0333e68395a5",
+      "bytes": 1977
+    },
+    "prePromotionArchive": {
+      "path": "root/formal-v17-before-v32-v1/manifest.json",
+      "sha256": "a5b9870429eabacd953365d4703208c362763bdff2974e96746fbabaef3aa93a",
+      "bytes": 6850
+    },
+    "serviceRestore": {
+      "path": "root/formal-v32-service-restore-v1.json",
+      "sha256": "f59db9ab47dba24685eb90526337baa421483dfdb81454e5089e87519c0be705",
+      "bytes": 621
+    },
+    "api149Terminal": {
+      "path": "protocol/full-api-v30/run-v1/terminal-receipt.json",
+      "sha256": "f880d4db6461a009b781cf0f1093acc08f0557bdd8e2c2520f4c33dabc3aabd9",
+      "bytes": 36047
+    },
+    "apiFinalReadback": {
+      "path": "protocol/full-api-v30/final-terminal-and-v32-scope-readback-v1.json",
+      "sha256": "86a236d24f91f4e435566098d0bc65c92bc55f4a66da30639b352a072fe004e8",
+      "bytes": 4476
+    },
+    "focused14": {
+      "path": "protocol/mcp-automatic-test-ip-v1/focused-run-v1/terminal-receipt.json",
+      "sha256": "aa9d7faaf213718bd447b6192fbe2f6a4b1b83f6ff1c549cddd715fbc7ec6467",
+      "bytes": 853
+    },
+    "edge31": {
+      "path": "frontend/full107-final-v31-dual/terminal-receipt.json",
+      "sha256": "973e201ba457f62ef317563703f672bfc2f50812f4dca2d6efeba752807803c9",
+      "bytes": 115351
+    },
+    "guideDraftV4": {
+      "path": "frontend/guide-release-draft-v4/draft-manifest.json",
+      "sha256": "7c6120c99db3e77b24bc8f2c6d88d50755191bb6630c962ab663d030ac4cd74e",
+      "bytes": 13458
+    },
+    "guideRender": {
+      "path": "frontend/guide-release-draft-v4-render-readback-v1.json",
+      "sha256": "08b83593163cee0ff35605ba09af75e3e3d63f64aace3c28a06c662d127a9bed",
+      "bytes": 637
+    }
+  },
+  "formalPromotion": {
+    "targetManifestSha256": "39eb0b9d680ab4829f2f0a109303feb66b87eb595e336bfca248d1ffa332b0e5",
+    "inputs": 993,
+    "changedPaths": [
+      "apps/api/feedback.ts",
+      "apps/api/main.ts",
+      "apps/api/mcp.ts",
+      "apps/api/reference-dictionary.ts",
+      "apps/api/workspace-portable.ts",
+      "apps/web/http-client.ts",
+      "apps/web/main.tsx",
+      "package.json",
+      "packages/core/reference-dictionary-source-xlsx.d.mts",
+      "packages/core/reference-dictionary-source-xlsx.mjs",
+      "packages/core/reference-dictionary-workbook.ts",
+      "pnpm-lock.yaml",
+      "tests/api-request.test.ts",
+      "tests/e2e/access.spec.ts",
+      "tests/e2e/automatic-mcp-real-edge.spec.ts",
+      "tests/e2e/entity-corrections.spec.ts",
+      "tests/e2e/entity-workflow.spec.ts",
+      "tests/e2e/export-policy.spec.ts",
+      "tests/e2e/files.spec.ts",
+      "tests/e2e/frontend-alignment.spec.ts",
+      "tests/e2e/lifecycle.spec.ts",
+      "tests/e2e/manual-occurrences-geometry.spec.ts",
+      "tests/e2e/mcp-resume-batch-child.spec.ts",
+      "tests/e2e/page-redaction.spec.ts",
+      "tests/e2e/page-selection-edit.spec.ts",
+      "tests/e2e/pdf-cross-chain.spec.ts",
+      "tests/e2e/pdf-seal-runtime-flow.spec.ts",
+      "tests/e2e/porting-closure.spec.ts",
+      "tests/e2e/selectable-ocr-ahead.spec.ts",
+      "tests/e2e/workspace-v1-large-migration.spec.ts",
+      "tests/mcp-automatic.integration.ts",
+      "tests/mcp-internal-rate-limit.integration.ts",
+      "tests/reference-dictionary-capacity.integration.ts",
+      "tests/reference-dictionary-workbook.test.ts",
+      "tests/workspace-multipart-import.integration.ts"
+    ],
+    "oldArchivedFiles": 31,
+    "newFiles": 4,
+    "formalAllInputsMatchV32": true,
+    "frozenOfflineInstallExitCode": 0,
+    "ownDev": {
+      "apiHealth": 200,
+      "web": 200,
+      "rules": "ready",
+      "ner": "ready",
+      "ai": "not_configured"
+    },
+    "serverMutations": false
+  },
+  "api149v30": {
+    "plannedFiles": 149,
+    "completedFiles": 149,
+    "cases": 310,
+    "passed": 304,
+    "failed": 6,
+    "onlyFailedFile": "tests/mcp-automatic.integration.ts",
+    "controllerExitCode": 1,
+    "guardsAndCleanup": "all zero/empty; see readback"
+  },
+  "focusedCorrection": {
+    "testOnly": "synthetic remoteAddress per session, original production login/global limits unchanged",
+    "cases": 14,
+    "passed": 14,
+    "controllerExitCode": 0,
+    "scope": "independent focused file; not a v32 full API run"
+  },
+  "guide": {
+    "status": "DRAFT",
+    "renderedImages": 61,
+    "nativeOS": "not verified"
+  },
+  "boundary": "Formal v32 local merge is real; online remains 054, guide not READY, native Save As blocked, original licensed R0 unchanged. Different source-scope test results must not be merged into a v32 single-run green claim; I/S/R unchanged. Reuse extracted code where usable; necessary Web/cloud adaptation only."
+}

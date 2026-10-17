@@ -67,6 +67,7 @@ import Fastify from "fastify";
 import cookie from "@fastify/cookie";
 import multipart from "@fastify/multipart";
 import rateLimit from "@fastify/rate-limit";
+import { AsyncLocalStorage } from "node:async_hooks";
 import { randomBytes, randomUUID, timingSafeEqual } from "node:crypto";
 import { pathToFileURL } from "node:url";
 import { ZodError, z } from "zod";
@@ -154,10 +155,12 @@ export async function buildApp() {
     bodyLimit: 700000,
     routerOptions: { maxParamLength: 1024 },
   });
+  const internalRequest = new AsyncLocalStorage<boolean>();
   await app.register(cookie);
   await app.register(multipart);
   await app.register(rateLimit, { max: 120, timeWindow: "1 minute", hook: "preHandler",
     keyGenerator: req => req.user?.id ? `user:${req.user.id}` : `ip:${req.ip}`,
+    allowList: () => internalRequest.getStore() === true,
     errorResponseBuilder: () => Object.assign(new Error("RATE_LIMITED"), { statusCode: 429 }),
   });
   app.setErrorHandler((error, request, reply) => {
@@ -294,7 +297,7 @@ export async function buildApp() {
   registerSupportRoutes(app);
   registerDocumentPolicyRoutes(app);
   registerOfficeVisualRoutes(app);
-  registerMcpRoutes(app,applyDocumentConfiguration,nerReady);
+  registerMcpRoutes(app,applyDocumentConfiguration,nerReady,run => internalRequest.run(true,run));
   registerMappingRoutes(app);
   registerMemberRoutes(app);
   app.get("/api/projects", (req) => {

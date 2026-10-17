@@ -1,0 +1,32 @@
+{
+  "iteration": 149,
+  "status": "candidate_failed_peer_review_and_baseline_partial_api_only",
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/dictionary-candidate-v1-adversarial/terminal-receipt.json",
+      "sha256": "ac56d32415db40ad46e68870de0e5ecfeddd229a5bbad24153f3d33ef5798de4"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/dictionary-candidate-v1-and-settings49-independent-readback-v1.json",
+      "sha256": "d51585a40d87d109db01fc42486e4c73b4707d3cfb14fdb79a8fe8a3d7747b47"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/dictionary-capacity-candidate-v1/candidate-manifest.json",
+      "sha256": "099a0d6684ab201091b54462a309b70eb53999abd3ce887ce374a9a8536fbe44"
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/full-api-v17/run-v2/personal-settings-exact-runtime.json",
+      "sha256": "69b1e85446e0d74f1ef3d07286e641b754acfe031afe3f399d5c333a8d3e7290"
+    }
+  ],
+  "candidateFindings": [
+    "AB and missing cell references overwrite A in frozen candidate",
+    "duplicate row numbers merge and lose entries",
+    "workbook sorting differs from original XML processing order"
+  ],
+  "candidateDisposition": "Not merged; preserve frozen v1, correct with original per-row iteration in separate v2",
+  "actualBaselineApi": "49 unique named personal-settings outputs, status200, test file exit0; full147 still running. Not acceptance of future capacity production bytes.",
+  "implementationStatusPromoted": false,
+  "referenceRuntime": "R0",
+  "serverModified": false
+}

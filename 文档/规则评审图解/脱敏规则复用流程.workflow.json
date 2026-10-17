@@ -1,0 +1,147 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "脱敏规则怎样接入其他工具",
+    "locale": "zh-CN",
+    "quality_profile": "showcase"
+  },
+  "lanes": [
+    {
+      "id": "processing",
+      "label": "正常处理链"
+    },
+    {
+      "id": "exception",
+      "label": "检查未通过",
+      "variant": "exception"
+    }
+  ],
+  "mainPath": [
+    "source",
+    "scope",
+    "detect",
+    "decide",
+    "render",
+    "deliver"
+  ],
+  "nodes": [
+    {
+      "id": "source",
+      "lane": "processing",
+      "col": 0,
+      "type": "backend",
+      "label": "原件与处理策略",
+      "sublabel": "保留原件与来源哈希"
+    },
+    {
+      "id": "scope",
+      "lane": "processing",
+      "col": 1,
+      "type": "backend",
+      "label": "确定生效规则",
+      "sublabel": "方案、场景与个人名单"
+    },
+    {
+      "id": "detect",
+      "lane": "processing",
+      "col": 2,
+      "type": "backend",
+      "label": "生成识别候选",
+      "sublabel": "规则、OCR 与 NER"
+    },
+    {
+      "id": "decide",
+      "lane": "processing",
+      "col": 3,
+      "type": "security",
+      "label": "记录审定决定",
+      "sublabel": "人工工作台或 MCP 自动"
+    },
+    {
+      "id": "render",
+      "lane": "processing",
+      "col": 4,
+      "type": "backend",
+      "label": "生成派生副本",
+      "sublabel": "清空、遮罩、假名、自定义",
+      "width": 168
+    },
+    {
+      "id": "deliver",
+      "lane": "processing",
+      "col": 5,
+      "type": "security",
+      "label": "检查并交付",
+      "sublabel": "覆盖、残留、权限与版本"
+    },
+    {
+      "id": "blocked",
+      "lane": "exception",
+      "col": 5,
+      "type": "security",
+      "label": "阻止交付",
+      "sublabel": "修正问题后重新处理"
+    }
+  ],
+  "edges": [
+    {
+      "from": "source",
+      "to": "scope",
+      "role": "main"
+    },
+    {
+      "from": "scope",
+      "to": "detect",
+      "role": "main"
+    },
+    {
+      "from": "detect",
+      "to": "decide",
+      "role": "main"
+    },
+    {
+      "from": "decide",
+      "to": "render",
+      "role": "main"
+    },
+    {
+      "from": "render",
+      "to": "deliver",
+      "role": "main"
+    },
+    {
+      "from": "deliver",
+      "to": "blocked",
+      "label": "检查失败",
+      "role": "error",
+      "variant": "security"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "规则交接",
+      "items": [
+        "完整规则原值与激活条件：技术交接第 7—9 节",
+        "本图解释处理链；未新增规则或交互设计"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "自动与人工的边界",
+      "items": [
+        "MCP 默认自动；普通工作台保留人工入口",
+        "外部 AI 返回稿的人审、还原授权继续保留"
+      ]
+    },
+    {
+      "dot": "slate",
+      "title": "证据与质量边界",
+      "items": [
+        "竞品授权处理链未运行，不宣称完全等价",
+        "真实业务语料准确率仍需单独评估"
+      ]
+    }
+  ]
+}

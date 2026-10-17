@@ -1,0 +1,81 @@
+{
+  "id": "ITER-056-V29-CHECK-WEB-SEAL-TARGET-172",
+  "date": "2026-10-17",
+  "status": "bounded-v29-check-web-target-green-full-edge-unverified",
+  "evidence": {
+    "candidate29": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v29.json",
+      "sha256": "8f06e0d22bf1aaf1571cdf61406d702eaa738568152f6efc785901f8d9c7763a",
+      "bytes": 168987
+    },
+    "apiSlice": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/api24-to-final29-execution-slice-readonly-v1.json",
+      "sha256": "463d664119b7aec4e82dbd92855cf7c90c601f5f5c18c31435e4c366564570fa",
+      "bytes": 2746
+    },
+    "check29": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/final-v29-required-check-v1/terminal-receipt.json",
+      "sha256": "856aebdb1295af3ee7c95e63166aec246252405698810e8e1142f715129478a0",
+      "bytes": 1271
+    },
+    "web29": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/web-build-final-v29-v1/terminal-receipt.json",
+      "sha256": "fe31cee77afeed98ec69c4455d5d2d9927faf055d5bfbb18cb892e852a121966",
+      "bytes": 2016
+    },
+    "combinedAudit": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/final-v29-check-web-independent-audit-v1.json",
+      "sha256": "2550d27c18019f5cb919b064eab3e0078efe4af8ce40c7bd6b1a15b73afe2ef9",
+      "bytes": 962
+    },
+    "sealTarget": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/target2-final-v29-dual-v3/terminal-receipt.json",
+      "sha256": "6b99203f7a8d0c94006f94e2252b1500f63e7802864b1e2de5d4e4e8eb489eb6",
+      "bytes": 5746
+    },
+    "sealArchive": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/target2-final-v29-dual-v3/run-v1/evidence-manifest.json",
+      "sha256": "c1d9f23bb212a6d8c12e2f8ada0e03ac3863aed3e8559e69d138e414d30675ab",
+      "bytes": 3249
+    },
+    "sealIndependent": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/target2-v29-independent-terminal-audit-v1.json",
+      "sha256": "24bd001df0dcb32e3803fc21997b402b99b82a70c8995e4c749ba8109bb65e40",
+      "bytes": 1712
+    },
+    "externalV3": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/external-stdio-visual-v28-v3/terminal-receipt.json",
+      "sha256": "a13be25ad15a0db708125e998860b9ff2e5dcb3ffc858c2fdf78f11fd32452e3",
+      "bytes": 6586
+    },
+    "internalDiagnosis": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/external-stdio-v28-rate-window-internal-inject-readonly-v2.json",
+      "sha256": "2f5a107f869490d5820cccf578f7dbfb86bebb6551f64f889b82a90e81ae36b1",
+      "bytes": 6275
+    }
+  },
+  "sourceScope": "v28-to-v29 exactly one E2E PDF seal test changed, remaining 991 manifest rows identical; root/deploy/production/dependency/model unchanged. expectedUnitTestCount corrected from 885 to actual 889. API24-to29 report is bounded execution-slice evidence, not API29 same-manifest run.",
+  "actualResults": {
+    "requiredCheck": "exit0; 163 files, 889 unit tests, 18 laws, 21 mutants, typecheck/build passed",
+    "webBuild": "exit0; eight artifacts byte-identical to v28 web build",
+    "pdfSealTarget": "v29 target2-v3: 2/2 pass, zero observed 429 and retry, original business assertions retained; target-only result",
+    "fullEdge": "v28 full107 remains 106/1; v29 full107 not established at this cutoff",
+    "externalStdio": "v2 locator failure and v3 real HTTP 429 retained; no successful external attachment delivery demonstration"
+  },
+  "historicalFailedControls": "v29 target2-v2 child cases passed but wrapper failed ENOENT; earlier bootstrap plan failed. Retained unchanged, not counted as a full target pass.",
+  "internalInject": "Read-only diagnosis exactly attributes nine extra global-budget debits to MCP internal app.inject (two prepare, seven release). Production fix remains unverified research; no changed limiter or claimed resolution.",
+  "boundaries": "formal v17, online 054, guide DRAFT, Mac native Save As locked, original runtime R0 and I/S/R unchanged. No full107 or release promotion.",
+  "archive": ".data/research/lawbot-2026-10-16/iteration056/before-v29-targeted-evidence-ledger172-v1",
+  "rulesJsonBlocksSha256": [
+    "6e0ea225acb4e6e7e41a5b5a99a812e12243a4308f82171301142d5c8df20c46",
+    "27abf7c3d82e77ef4bcd16453d82e9e3990253e8a12bc64635915361d2876815",
+    "30b3a3337d6fd90e80b3449f5120d362694d3760e8ffcee059789dca8df6ce1e",
+    "943620d7d6cc863f7396226b9cdfd9b1a7ccbbaf3131228b0e8a2c6d97425bff",
+    "52708f9a15cb02a8b89786acf6d8a5250815851fa2d47f095eaaa721af4feb8d",
+    "05cb41cae0447743ef3584454a2c825bf588bc5ce70e922a3258080363d73508",
+    "871f257bf1452e5a2436ea062641358ae7927b9d32fb70c3bfc44654dd4c6c9d",
+    "6a2148a02a6271762804344eb7b3531d41749289c9f24601e3f8ab48e3a13345",
+    "fa326d1af4b2851e8f7a91adfa1cb64c652c8121657f30caa40749eb18c7c3c8",
+    "d49eaf84c70fbd63ce8236532ac458e49a624d86fe9c33a569c5b6bef38d7b89"
+  ]
+}

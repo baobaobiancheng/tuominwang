@@ -11,14 +11,15 @@ import {MCP_PROTOCOL} from '../packages/core/mcp-tools.ts';
 const admin=new pg.Pool({connectionString:process.env.MIGRATION_DATABASE_URL}),app=await buildApp();
 after(async()=>{await app.close();await pool.end();await admin.end();});
 const origin=process.env.APP_ORIGIN!;
+let sessionNumber=0;
 const consent={allowRedactionPath:true,allowRestorePath:false,allowSanitizedDelivery:true,autoEnterReview:false,createExchangeFolder:true,autoRestoreAfterValidation:false};
 
 async function session(){
- const tenant=randomUUID(),user=randomUUID(),username='mcp-auto-'+randomUUID(),password='synthetic-automatic-password';
+ const tenant=randomUUID(),user=randomUUID(),username='mcp-auto-'+randomUUID(),password='synthetic-automatic-password',remoteAddress=`198.18.0.${++sessionNumber}`;
  await admin.query('INSERT INTO users VALUES($1,$2,$3,$4)',[user,tenant,username,passwordHash(password)]);
- const login=await app.inject({method:'POST',url:'/api/login',headers:{origin},payload:{username,password}});assert.equal(login.statusCode,200,login.body);
+ const login=await app.inject({method:'POST',url:'/api/login',remoteAddress,headers:{origin},payload:{username,password}});assert.equal(login.statusCode,200,login.body);
  const cookie=String(login.headers['set-cookie']).split(';')[0];
- const req=(method:any,url:string,payload?:any,extra?:Record<string,string>)=>app.inject({method,url,headers:{origin,cookie,...extra},payload});
+ const req=(method:any,url:string,payload?:any,extra?:Record<string,string>)=>app.inject({method,url,remoteAddress,headers:{origin,cookie,...extra},payload});
  const initialized=await req('POST','/api/mcp',{jsonrpc:'2.0',id:1,method:'initialize',params:{protocolVersion:MCP_PROTOCOL,clientInfo:{name:'codex',version:'1'}}});assert.equal(initialized.statusCode,200,initialized.body);
  const headers={'mcp-session-id':String(initialized.headers['mcp-session-id']),'mcp-protocol-version':MCP_PROTOCOL};
  await req('POST','/api/mcp',{jsonrpc:'2.0',method:'notifications/initialized'},headers);
@@ -30,7 +31,7 @@ async function session(){
  const start=async(name:string,doc:string,advanced?:Record<string,unknown>)=>tool(name,{project_id:project,document_ids:[doc],masking_mode:'default_mask',task_mode:'redact_only',output_formats:['original','md'],request_id:randomUUID(),...advanced?{advanced}:{}});
  const authorize=async(job:string)=>{const t=await task(job),result=await req('POST',`/api/ai-collab/tasks/${job}/authorize`,{revision:t.revision,authorization:consent});assert.equal(result.statusCode,200,result.body);};
  const gateway=(method:string,params:Record<string,unknown>)=>req('POST','/api/ai-collab/gateway',{method,params},headers);
- return{tenant,user,project,cookie,req,tool,gateway,create,task,start,authorize};
+ return{tenant,user,project,cookie,remoteAddress,req,tool,gateway,create,task,start,authorize};
 }
 
 test('public gateway start contract maps execution mode and per-file camel settings without allowing mode spoofing',async()=>{
@@ -66,12 +67,12 @@ test('ordinary MCP start automatically commits a machine review and delivers act
  const memberName='automatic-export-member-'+randomUUID(),memberPassword='synthetic-export-password';
  const invited=await f.req('POST','/api/organization/members',{username:memberName,password:memberPassword});assert.equal(invited.statusCode,200,invited.body);
  const grant=await f.req('PUT',`/api/projects/${f.project}/members/${invited.json().id}`,{revision:null,permissions:['export']});assert.equal(grant.statusCode,200,grant.body);
- const memberLogin=await app.inject({method:'POST',url:'/api/login',headers:{origin},payload:{username:memberName,password:memberPassword}});assert.equal(memberLogin.statusCode,200,memberLogin.body);
- const memberCookie=String(memberLogin.headers['set-cookie']).split(';')[0],memberReq=(payload:any)=>app.inject({method:'POST',url:`/api/documents/${doc}/download-link`,headers:{origin,cookie:memberCookie},payload});
+ const memberLogin=await app.inject({method:'POST',url:'/api/login',remoteAddress:f.remoteAddress,headers:{origin},payload:{username:memberName,password:memberPassword}});assert.equal(memberLogin.statusCode,200,memberLogin.body);
+ const memberCookie=String(memberLogin.headers['set-cookie']).split(';')[0],memberReq=(payload:any)=>app.inject({method:'POST',url:`/api/documents/${doc}/download-link`,remoteAddress:f.remoteAddress,headers:{origin,cookie:memberCookie},payload});
  const memberArtifact=await memberReq({revision:ready.sources[0].revision,role:'markdown',artifactId:ready.deliveries.find((x:any)=>x.role==='markdown')?.artifactId});assert.equal(memberArtifact.statusCode,404,memberArtifact.body);assert.equal(memberArtifact.json().error,'NOT_FOUND');
  const memberJob=await memberReq({revision:ready.sources[0].revision,role:'markdown',jobId:ready.exportJobIds[0]});assert.equal(memberJob.statusCode,404,memberJob.body);assert.equal(memberJob.json().error,'NOT_FOUND');
  const memberDirect=await memberReq({revision:ready.sources[0].revision,role:'markdown'});assert.equal(memberDirect.statusCode,200,memberDirect.body);
- const memberRestore=await app.inject({method:'POST',url:`/api/documents/${doc}/restore`,headers:{origin,cookie:memberCookie},payload:{revision:ready.sources[0].revision,text:'公开文本'}});assert.equal(memberRestore.statusCode,403,memberRestore.body);
+ const memberRestore=await app.inject({method:'POST',url:`/api/documents/${doc}/restore`,remoteAddress:f.remoteAddress,headers:{origin,cookie:memberCookie},payload:{revision:ready.sources[0].revision,text:'公开文本'}});assert.equal(memberRestore.statusCode,403,memberRestore.body);
  const replay=await f.tool('check_document_delivery',{job_id:job,wait_seconds:0});assert.equal(replay.isError,false,JSON.stringify(replay));assert.equal(replay.structuredContent.status,'sanitized_artifact_ready');
  assert.equal((await admin.query("SELECT count(*)::int n FROM jobs WHERE document_id=$1 AND kind='export'",[doc])).rows[0].n,1,'poll replay must not create a second export job');
  const received=await f.tool('receive_sanitized_document',{job_id:job,output_format:'md'});assert.equal(received.isError,false,JSON.stringify(received));
@@ -163,8 +164,8 @@ test('revoked project export permission prevents automatic review and delivery',
  const owner=await session(),doc=await owner.create('联系 13800138000'),username='automatic-revoked-'+randomUUID(),password='synthetic-revoked-password';
  const invited=await owner.req('POST','/api/organization/members',{username,password});assert.equal(invited.statusCode,200,invited.body);
  const memberId=invited.json().id,grant=await owner.req('PUT',`/api/projects/${owner.project}/members/${memberId}`,{revision:null,permissions:['view_original','review','export']});assert.equal(grant.statusCode,200,grant.body);
- const login=await app.inject({method:'POST',url:'/api/login',headers:{origin},payload:{username,password}});assert.equal(login.statusCode,200,login.body);
- const cookie=String(login.headers['set-cookie']).split(';')[0],request=(method:any,url:string,payload?:any,extra?:Record<string,string>)=>app.inject({method,url,headers:{origin,cookie,...extra},payload});
+ const login=await app.inject({method:'POST',url:'/api/login',remoteAddress:owner.remoteAddress,headers:{origin},payload:{username,password}});assert.equal(login.statusCode,200,login.body);
+ const cookie=String(login.headers['set-cookie']).split(';')[0],request=(method:any,url:string,payload?:any,extra?:Record<string,string>)=>app.inject({method,url,remoteAddress:owner.remoteAddress,headers:{origin,cookie,...extra},payload});
  const init=await request('POST','/api/mcp',{jsonrpc:'2.0',id:1,method:'initialize',params:{protocolVersion:MCP_PROTOCOL,clientInfo:{name:'codex',version:'1'}}});assert.equal(init.statusCode,200,init.body);
  const headers={'mcp-session-id':String(init.headers['mcp-session-id']),'mcp-protocol-version':MCP_PROTOCOL};await request('POST','/api/mcp',{jsonrpc:'2.0',method:'notifications/initialized'},headers);
  const start=await request('POST','/api/mcp',{jsonrpc:'2.0',id:2,method:'tools/call',params:{name:'start_lawbot_redaction',arguments:{project_id:owner.project,document_ids:[doc],task_mode:'redact_only',masking_mode:'default_mask',output_formats:['original','md']}}},headers);assert.equal(start.statusCode,200,start.body);
@@ -237,7 +238,7 @@ test('HTTP-only manual refresh preserves existing human review while adding a pe
 test('new API instance resumes an authorized automatic task and continues durable delivery',async()=>{
  const f=await session(),doc=await f.create('联系 13800138000'),started=await f.start('start_lawbot_redaction',doc);assert.equal(started.isError,false,JSON.stringify(started));const job=started.structuredContent.jobId as string;await f.authorize(job);await tick();
  const restarted=await buildApp();try{
-  const request=(method:any,url:string,payload?:any,extra?:Record<string,string>)=>restarted.inject({method,url,payload,headers:{origin,cookie:f.cookie,...extra}});
+  const request=(method:any,url:string,payload?:any,extra?:Record<string,string>)=>restarted.inject({method,url,payload,remoteAddress:f.remoteAddress,headers:{origin,cookie:f.cookie,...extra}});
   const initialized=await request('POST','/api/mcp',{jsonrpc:'2.0',id:1,method:'initialize',params:{protocolVersion:MCP_PROTOCOL,clientInfo:{name:'codex',version:'1'}}});assert.equal(initialized.statusCode,200,initialized.body);
   const headers={'mcp-session-id':String(initialized.headers['mcp-session-id']),'mcp-protocol-version':MCP_PROTOCOL};await request('POST','/api/mcp',{jsonrpc:'2.0',method:'notifications/initialized'},headers);
   const resumed=await request('POST','/api/mcp',{jsonrpc:'2.0',id:2,method:'tools/call',params:{name:'resume_lawbot_task',arguments:{job_id:job}}},headers);assert.equal(resumed.statusCode,200,resumed.body);assert.equal(resumed.json().result.structuredContent.resumeRequested,true);

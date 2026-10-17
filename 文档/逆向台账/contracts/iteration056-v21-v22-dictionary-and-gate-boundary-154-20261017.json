@@ -1,0 +1,177 @@
+{
+  "iteration": 154,
+  "kind": "current-source-status-and-rule-handoff-evidence-boundary",
+  "atUtc": "2026-10-16T23:27:13.641037+00:00",
+  "scope": "documentation and ledger only; no product, model, deployment, server or live-run mutation",
+  "sourceStatus": {
+    "formal": "v17 / 989 inputs",
+    "candidateV21": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v21.json",
+      "sha256": "2693a12828c53ddeb472dd3d68142ec5724dc047d4d4f8d4ef7b279ee411b9c9",
+      "bytes": 168945
+    },
+    "candidateV22": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v22.json",
+      "sha256": "fdca235965afc6bb0d62e5217ce739c10b14f4eb33179179e84665746992daa7",
+      "bytes": 168945
+    },
+    "candidateInputCount": 992,
+    "v22RequiredCheck": "running; no terminal receipt at this contract observation",
+    "v21RequiredCheck": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/final-v21-required-check-v1/terminal-receipt.json",
+      "sha256": "12576048c8b84f4033a6ce0335c10654e37ed2e2f58a22640ec6438fceb2939d",
+      "bytes": 1003
+    },
+    "v21ActualExit": 2,
+    "v21Cause": "Bend 18/21 passed; TypeScript nullable getAttribute test expression failed; unit/build not reached",
+    "v22StandardFrozenInstall": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/final-v22-preparation-v1/preparation-manifest.json",
+      "sha256": "df4d847bd7701de52ab957a2e6544d49eaa37992e1b773f42dacaa96af1cf558",
+      "bytes": 276988
+    }
+  },
+  "priorGates": {
+    "v17Api": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/full-api-v17/run-v2/terminal-receipt.json",
+      "sha256": "80de9260862b11b4e3aac0f6c63ec2a1bc5820e8005c4bcda33903513e094a8d",
+      "bytes": 32144
+    },
+    "v17ApiFiles": 147,
+    "v17ApiFullPass": true,
+    "v19Edge": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/full-edge-final-v19-dual/terminal-receipt.json",
+      "sha256": "9d06d7bdfa235c3f96d67bc89d667da07919e2bfad5f41befc884cf2cef208e1",
+      "bytes": 121604
+    },
+    "v19EdgeExecuted": 107,
+    "v19EdgePassed": 97,
+    "v19EdgeFailed": 10,
+    "v19EdgeSkipped": 0,
+    "doNotBridgeOldResultsToNewProduct": true
+  },
+  "dictionary": {
+    "stableId": "IPC-7de3f60b8ed5",
+    "v4Candidate": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/dictionary-capacity-candidate-v4/candidate-manifest.json",
+      "sha256": "be4cbca2123a2a1271fce9509bb4abc50e44f81ae4db90831a5835e972f95c80",
+      "bytes": 9209
+    },
+    "v4LockOnlyDelta": "three added lines for existing esbuild:0.28.1 workspace override, other eight overlay paths byte-identical to v3",
+    "rootOver64MiB": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/dictionary-over-sixty-four-actual-v3/terminal-receipt.json",
+      "sha256": "6dd0b8353f6b45bd58a87379bf20971b3a4ef3410b5424a1a3c88d42de3cf48f",
+      "bytes": 822
+    },
+    "v3Targeted2": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/dictionary-capacity-candidate-v3/terminal-receipt.json",
+      "sha256": "db508be2ebb356f71e4c59cb97f2f9e9a776b9d8280fbb945542370b82262ee1",
+      "bytes": 1670
+    },
+    "v2OriginalSeven": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/dictionary-capacity-candidate-v2/candidate-manifest-v2-validated.json",
+      "sha256": "294e9f8ee04fa0edfbd20a309284b58819e727ce6242083b24a97cd292cad3cc",
+      "bytes": 6836
+    },
+    "scope": "original pure parser parity; >5MiB XLSX and >64MiB explicit confirmation, JSON full-character SHA, XLSX full-character SHA and stale CAS409 passed only targeted isolated tests"
+  },
+  "v20FailedDependencyPreparations": [
+    {
+      "phase": "v1",
+      "log": {
+        "path": ".data/research/lawbot-2026-10-16/iteration056/root/final-v20-preparation-v1/offline-frozen-install.log",
+        "sha256": "db103c7168325ddb0f6f19e25a5f9e7bca68fe64ae7223f39cf34dd348c0d477",
+        "bytes": 278
+      }
+    },
+    {
+      "phase": "v2",
+      "log": {
+        "path": ".data/research/lawbot-2026-10-16/iteration056/root/final-v20-preparation-v2/offline-frozen-install.log",
+        "sha256": "37076104e4de114e8f00b8b6f46b6e9087bf3e2e8c212c75804e8179f69335da",
+        "bytes": 346
+      }
+    },
+    {
+      "phase": "v3",
+      "log": {
+        "path": ".data/research/lawbot-2026-10-16/iteration056/root/final-v20-preparation-v3/frozen-install.log",
+        "sha256": "53cd619a2f3c51bd8d8644d91b5501d82224c5a6d9fcde7e5fe8fd1e97751a8d",
+        "bytes": 394
+      }
+    }
+  ],
+  "archivedPrevious": {
+    "manifest": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/before-current-status-rule-handoff-ledger154-v1/manifest.json",
+      "sha256": "91c76e06c2635e772a398e7ba36d883055511a46985c81018f1e57c4f86082ae",
+      "bytes": 2454
+    },
+    "statusOld": {
+      "path": "文档/待办与完成状态-20261015.md",
+      "sha256": "97df44b58373485c17af0dc26b1a73ca0e26e3fc3c4524423f79da2feafe578c",
+      "bytes": 78292
+    },
+    "rulesOld": {
+      "path": "文档/脱敏规则完整技术交接-迭代023.md",
+      "sha256": "6046f12c79d308add8ebb8e30cf96c77714b5e186c5d31fa3ee7c703e65edcf6",
+      "bytes": 413808
+    }
+  },
+  "updatedDocs": {
+    "status": {
+      "path": "文档/待办与完成状态-20261015.md",
+      "sha256": "4e6ca6f31a7fa370e968d913d94029be6d174402927a9d85f6d18cf523facdfd",
+      "bytes": 80414
+    },
+    "rules": {
+      "path": "文档/脱敏规则完整技术交接-迭代023.md",
+      "sha256": "63e702bdc0d227c37b25b2498fd83448c74d53add2ea8b9928689d159b4f7fd6",
+      "bytes": 413942
+    }
+  },
+  "rulesJsonBlocks": {
+    "count": 10,
+    "beforeSha256": [
+      "eba6d66ccc09936f87298f8f84f55ef622583365c376de5195f4d2891c311237",
+      "268cb51cbbbb92f8274c07355ca79017c85cbbaaa400fc8c4fb8a7523ccc678d",
+      "c2652f68e3df2095a76cd2167aaea01aa63997937d94e1090d081915f8814f5a",
+      "3a90e0ccb9f70a3b991c1264c541688b942f03a5d556efb69f93ba95b3152a2e",
+      "e7b4cda60cfd6641ed71f1263bd44bbf27238a58ec6ff350932b1fa878c9decf",
+      "9d78ad4771461f3e70c8c614eb422cec98c272b461d55c1e7ebec3a75e6283f9",
+      "08df52fffdf8a985333055107372c963cdcab992bd6c4b338ad1009793e6ac91",
+      "1fdcece95dbcad011908c2bc49bc327ac94084db0afcc6be28553eda55c50241",
+      "04f13b76af7ec6dd614ed743b83bd3247e0289dc3abc93a96aa429a20801f5c6",
+      "4107379dc65a2634ba63ed15935fc6512d5b2cbc614bec22f223daf18a9d0af8"
+    ],
+    "afterSha256": [
+      "eba6d66ccc09936f87298f8f84f55ef622583365c376de5195f4d2891c311237",
+      "268cb51cbbbb92f8274c07355ca79017c85cbbaaa400fc8c4fb8a7523ccc678d",
+      "c2652f68e3df2095a76cd2167aaea01aa63997937d94e1090d081915f8814f5a",
+      "3a90e0ccb9f70a3b991c1264c541688b942f03a5d556efb69f93ba95b3152a2e",
+      "e7b4cda60cfd6641ed71f1263bd44bbf27238a58ec6ff350932b1fa878c9decf",
+      "9d78ad4771461f3e70c8c614eb422cec98c272b461d55c1e7ebec3a75e6283f9",
+      "08df52fffdf8a985333055107372c963cdcab992bd6c4b338ad1009793e6ac91",
+      "1fdcece95dbcad011908c2bc49bc327ac94084db0afcc6be28553eda55c50241",
+      "04f13b76af7ec6dd614ed743b83bd3247e0289dc3abc93a96aa429a20801f5c6",
+      "4107379dc65a2634ba63ed15935fc6512d5b2cbc614bec22f223daf18a9d0af8"
+    ],
+    "allUnchanged": true
+  },
+  "statusCountsBeforeAfterClaim": "unchanged",
+  "currentCounts": {
+    "static_depth": {
+      "S3": 250,
+      "S2": 8
+    },
+    "runtime_status": {
+      "R0": 258
+    },
+    "implementation_status": {
+      "I4": 38,
+      "I3": 60,
+      "I1": 148,
+      "I2": 12
+    }
+  },
+  "remaining": "nine confirmed gaps not closed; final v22 check, 148 API, 107 Edge, native OS SaveAs and deployment all require their own terminal evidence; upstream original runtime remains R0"
+}

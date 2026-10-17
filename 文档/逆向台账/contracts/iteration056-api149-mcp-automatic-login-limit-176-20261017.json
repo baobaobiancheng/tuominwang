@@ -1,0 +1,81 @@
+{
+  "id": "ITER-056-API149-MCP-AUTOMATIC-LOGIN-LIMIT-176",
+  "date": "2026-10-17",
+  "status": "one completed v30 API149 file failed; full runner still active; root cause isolated to synthetic login setup limit",
+  "evidence": {
+    "api30Manifest": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v30.json",
+      "sha256": "54c113427ff7eb5da38675b8f0894b12473526085a26c2cd017d96ebd4d885ef",
+      "bytes": 169397
+    },
+    "api30Bundle": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/full-api-v30/input-bundle-v2.json",
+      "sha256": "f505244fb3f1a1c5dce1a39fd3d04ae3eae7c57ee566daa558144c7e8813e617",
+      "bytes": 1256
+    },
+    "api30Running": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/full-api-v30/run-v1/running.json",
+      "sha256": "4509399881b0afd82e7051fa1acc55bb1dd2946815aaf8cf809bd131b6287740",
+      "bytes": 924
+    },
+    "completedFileExcerpt": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/mcp-automatic-v30-login-limit-readonly-v1/completed-file-log-excerpt.txt",
+      "sha256": "ebf0c29e56ee2fc0cbd9cb2032b35fb103791af010de79e09a06353c471320f5",
+      "bytes": 6780
+    },
+    "readOnlyDiagnosis": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/mcp-automatic-v30-login-limit-readonly-v1/report.json",
+      "sha256": "a042b15d2a3050f6552814d0656d1435bb8d451277e9e9d25948fd3ef3d088e7",
+      "bytes": 3209
+    },
+    "api30To31PreparedSlice": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/api30-to-v31-execution-slice-prepared-v1.json",
+      "sha256": "dff35c3c44db540a34c7b453db932349ad55859cfdb0c8df39408a4eca68bb5b",
+      "bytes": 5496
+    },
+    "api30To31IndependentPrepared": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/api30-to-final31-execution-slice-independent-prepared-v1.json",
+      "sha256": "467971f6bd7fd7eaf45bdbb88a1d3f7ae1a0144183a1f93b693e10f979da32e3",
+      "bytes": 1711
+    },
+    "api31Manifest": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v31.json",
+      "sha256": "a4d259cd850228f8ebb858ed0df9fe8bc2fd4f2e81632224bece05edd4e2b2d0",
+      "bytes": 169708
+    },
+    "edge30Terminal": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/full107-final-v30-dual/terminal-receipt.json",
+      "sha256": "5d4f72bffc10630dabad30456ba586ca0274969c2925b148a5828982fd15e8ee",
+      "bytes": 115339
+    }
+  },
+  "completedFile": {
+    "path": "tests/mcp-automatic.integration.ts",
+    "exitCode": 1,
+    "totalCases": 14,
+    "passed": 8,
+    "failed": 6,
+    "cancelled": 0,
+    "skipped": 0,
+    "firstFailure": "case 9 line 166 member POST /api/login received 429 RATE_LIMITED before revoked-permission MCP assertion",
+    "followingFive": "session() login setup at source line 19 received 429 before each business assertion"
+  },
+  "sourceBoundReason": "First eight owner logins plus one member login in second case plus ninth owner login use ten requests from one injected IP; ninth member login is eleventh in the dedicated login 10/min window. v30 first eight cases duration about 57.669s, versus v24 about 99.622s. Counts and duration are source-derived; per-request absolute timestamps are not available.",
+  "businessBoundary": "Existing eight passed cases establish only their own assertions. Six failed cases did not execute their target business assertions. This is not evidence that MCP automatic processing itself failed or that public global 120/min business budget was exhausted. Do not change production login 10/min or global 120/min limit to pass this fixture.",
+  "next": "After the current 149-file run ends naturally, validate a test-only per-case synthetic remoteAddress approach while preserving all 14 assertions, production limits, no 429 retry/sleep, and isolated per-file DB. Full API149 currently has at least this exit1 and cannot become all-green by combining other runs.",
+  "executionSlice": "The v30→v31 sidecars are prepared read-only scope analyses only. They do not supply an API149 terminal, cannot turn this failed run green, and do not claim API31 same-manifest execution. v31 full Edge107 remains unrun at cutoff.",
+  "releaseBoundary": "Formal v17, online 054, guide DRAFT, native Save As and licensed competitor R0 still pending. EOF logout non-2xx exact HTTP status cannot be recovered from same-run archive; observe only on a future necessary run. I/S/R and original business rules unchanged.",
+  "archive": ".data/research/lawbot-2026-10-16/iteration056/before-api149-login-limit-ledger176-v1",
+  "rulesJsonBlocksSha256": [
+    "6e0ea225acb4e6e7e41a5b5a99a812e12243a4308f82171301142d5c8df20c46",
+    "27abf7c3d82e77ef4bcd16453d82e9e3990253e8a12bc64635915361d2876815",
+    "30b3a3337d6fd90e80b3449f5120d362694d3760e8ffcee059789dca8df6ce1e",
+    "943620d7d6cc863f7396226b9cdfd9b1a7ccbbaf3131228b0e8a2c6d97425bff",
+    "52708f9a15cb02a8b89786acf6d8a5250815851fa2d47f095eaaa721af4feb8d",
+    "05cb41cae0447743ef3584454a2c825bf588bc5ce70e922a3258080363d73508",
+    "871f257bf1452e5a2436ea062641358ae7927b9d32fb70c3bfc44654dd4c6c9d",
+    "6a2148a02a6271762804344eb7b3531d41749289c9f24601e3f8ab48e3a13345",
+    "fa326d1af4b2851e8f7a91adfa1cb64c652c8121657f30caa40749eb18c7c3c8",
+    "d49eaf84c70fbd63ce8236532ac458e49a624d86fe9c33a569c5b6bef38d7b89"
+  ]
+}

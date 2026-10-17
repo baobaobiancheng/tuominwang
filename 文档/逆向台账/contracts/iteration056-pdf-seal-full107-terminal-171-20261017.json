@@ -1,0 +1,55 @@
+{
+  "id": "ITER-056-PDF-SEAL-FULL107-TERMINAL-171",
+  "date": "2026-10-17",
+  "status": "full107-106pass-1fail-pdf-seal-aftereach-2-429",
+  "evidence": {
+    "edgeTerminal": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/full107-final-v28-dual/terminal-receipt.json",
+      "sha256": "db8313b4a89ba63aa934c60e0df60f05948ce0ba02fd77f12d53a011c65faeea",
+      "bytes": 116134
+    },
+    "edgeArchive": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/full107-final-v28-dual/evidence-archive-v1-manifest.json",
+      "sha256": "df82b95f17d6013101c946a599d932382e1c0f82d481fcd21ed04a244b225edb",
+      "bytes": 43197
+    },
+    "edgeIndependent": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/full107-v28-independent-terminal-audit-v1.json",
+      "sha256": "6551233bc1ba9e929cd1131f5929d11162d44dfdb3509b3a12473582c00e0a9f",
+      "bytes": 1667
+    },
+    "diagnostic": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/pdf-seal-v28-rate-window-readonly-v1/diagnostic.json",
+      "sha256": "771ff73591af94a1fbc6c2ed24b7e3edaebe55aeec4c46a3e98a8b3bfc24031a",
+      "bytes": 5059
+    },
+    "testCandidateV1": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/pdf-seal-v28-test-poll-reuse-v1/candidate-manifest.json",
+      "sha256": "7e2090c50b7c287784bb1094eb972bc9dc61ee73fdd7817aabf36f2ae973669e",
+      "bytes": 877
+    },
+    "testCandidateV2": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/pdf-seal-v28-test-poll-reuse-v2/candidate-manifest.json",
+      "sha256": "da588a9990a84956c1801a931404ce78a83ea44a1ebfef16d6b9fc06dee0a114",
+      "bytes": 1044
+    }
+  },
+  "outcome": "Full Edge107 v28: 107 executed, 106 passed, one failed, zero skipped/retried/flaky. The single original PDF-seal case completed its business assertions but afterEach recorded two real 429 responses: GET /api/session and GET /api/jobs/:id/pdf-seals/progress. This is not a full Edge pass.",
+  "diagnostic": "Read-only trace: in the observed 60-second window 110 browser/app API requests plus 13 direct test requests reached the shared 120/min account limit. This does not establish that browser traffic alone exceeds the budget. Global product limit remains unchanged.",
+  "candidate": "Test-only v1 replaced two direct polling sections using existing UI retained-page status and browser same-document GET response, preserving zero-429 and downstream assertions. Peer found its 300-second completion listener started before up to 180-second partial wait; v2 fixed listener timing. v2 is prepared_unrun; no product code changed or success claim.",
+  "boundary": "Native Mac Save As remains locked, guide remains DRAFT, online server remains 054, external stdio demonstration remains unrun, formal v17 and private v28 remain unchanged; no I/S/R/R0 or nine-gap promotion.",
+  "archive": ".data/research/lawbot-2026-10-16/iteration056/before-pdf-seal-edge-terminal-ledger171-v1",
+  "rulesJsonBlocksSha256": [
+    "6e0ea225acb4e6e7e41a5b5a99a812e12243a4308f82171301142d5c8df20c46",
+    "27abf7c3d82e77ef4bcd16453d82e9e3990253e8a12bc64635915361d2876815",
+    "30b3a3337d6fd90e80b3449f5120d362694d3760e8ffcee059789dca8df6ce1e",
+    "943620d7d6cc863f7396226b9cdfd9b1a7ccbbaf3131228b0e8a2c6d97425bff",
+    "52708f9a15cb02a8b89786acf6d8a5250815851fa2d47f095eaaa721af4feb8d",
+    "05cb41cae0447743ef3584454a2c825bf588bc5ce70e922a3258080363d73508",
+    "871f257bf1452e5a2436ea062641358ae7927b9d32fb70c3bfc44654dd4c6c9d",
+    "6a2148a02a6271762804344eb7b3531d41749289c9f24601e3f8ab48e3a13345",
+    "fa326d1af4b2851e8f7a91adfa1cb64c652c8121657f30caa40749eb18c7c3c8",
+    "d49eaf84c70fbd63ce8236532ac458e49a624d86fe9c33a569c5b6bef38d7b89"
+  ],
+  "affectedStableId": "IPC-e4cf3e6c3c0a"
+}

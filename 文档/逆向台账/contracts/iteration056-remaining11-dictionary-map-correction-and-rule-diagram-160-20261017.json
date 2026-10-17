@@ -1,0 +1,52 @@
+{
+  "event": "ITER-056-REMAINING11-DICTIONARY-MAP-CORRECTION-160",
+  "date": "2026-10-17",
+  "archive": {
+    "path": ".data/research/lawbot-2026-10-16/iteration056/before-remaining11-correction-ledger160-v1/manifest.json",
+    "sha256": "6cf2cee2d1d3a6d669c3247ab4deda6819230f98eda8bd7d0d7f57d13336ce34",
+    "bytes": 2454,
+    "files": 9
+  },
+  "evidence": {
+    "corrected11": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/remaining11-final-readback-corrected-v2.json",
+      "sha256": "be0d53f6f8d9ca9845087bc04791b19f65dde09941d9fd930db4809b6406d2a0",
+      "bytes": 19021
+    },
+    "exactCases": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/remaining11-final-exact-case-identities-v2.json",
+      "sha256": "efe6dabf40592030e2a9ad5af0a33bd1de523db21222373cfea74d47dc7261bb",
+      "bytes": 20974
+    },
+    "diagram": {
+      "path": "文档/规则评审图解/脱敏规则复用流程.html",
+      "sha256": "5b5fe322d18f936fea58205883a13bce0a3f88f4e1c8589c7c91a2db2ebba8aa",
+      "bytes": 706181
+    },
+    "diagramVisualReview": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/rule-diagram-manual-visual-review-v2.json",
+      "sha256": "976fb0470faada44b6e65d8d46d92595234615afb8761eddc77a9cba5815933e",
+      "bytes": 1798
+    },
+    "v24Manifest": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v24.json",
+      "sha256": "469ec76ec8aa45e35bcc522c1f0f98baf73434f673ba30b56bede526439d5758",
+      "bytes": 169175
+    }
+  },
+  "correction": {
+    "stableId": "IPC-7de3f60b8ed5",
+    "previousMisboundEdge": "batch-review.spec.ts project vocabulary/import list XLSX",
+    "correctSourceAlignedUi": "apps/web/reference-dictionary.tsx ReferenceDictionaryFiles",
+    "correctActualActions": [
+      "个人黑白名单Excel选择/预览",
+      "取消不持久化",
+      "显式确认个人规则",
+      "JSON/XLSX回读"
+    ],
+    "currentScope": "API case names and code paths statically prepared; no full107 case demonstrates personal-list UI; actual browser and native cancel demonstration pending",
+    "excludedMisboundCase": "ff9089360e018914f4c5-99a930bfc5cd46ba3be7"
+  },
+  "diagramBoundary": "Reviewed HTML diagram is a reading aid only. It does not replace ten unchanged source-rule JSON blocks or prove application runtime.",
+  "runtimeBoundary": "API148 and Edge107 still running without terminal; native Save As, guide and deployment pending. No change to nine confirmed gaps or I/S/R classification."
+}

@@ -1,0 +1,105 @@
+{
+  "id": "ITER-056-V30-INTERNAL-RATE-EXTERNAL-STDIO-173",
+  "date": "2026-10-17",
+  "status": "v30-check-web-green-api149-preflight-only-external-v4-failed",
+  "evidence": {
+    "candidate30": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v30.json",
+      "sha256": "54c113427ff7eb5da38675b8f0894b12473526085a26c2cd017d96ebd4d885ef",
+      "bytes": 169397
+    },
+    "internalCandidate": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/mcp-internal-rate-limit-v1/candidate-manifest.json",
+      "sha256": "84e16fb9e85ce0d16d2d7337abaf7d5fcddc61d51c827e86062e8e7a2e9ab438",
+      "bytes": 1893
+    },
+    "internalTerminal": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/mcp-internal-rate-limit-v1/evidence/terminal-receipt.json",
+      "sha256": "55c9d65e90b5d9a3f1aad7cc93a783f8d5c18fb43eb96e649a34a3fabb0f8325",
+      "bytes": 2352
+    },
+    "internalPeer": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/mcp-internal-rate-limit-v1-security-peer.json",
+      "sha256": "d6df2553b9267ebeffb7945fb904a8baa1bdf1237ec2faee91104140a0b90103",
+      "bytes": 2977
+    },
+    "check30": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/final-v30-required-check-v1/terminal-receipt.json",
+      "sha256": "e5acb522c82b72f3ad1c741b60429dca1058b6c1376c22a14fe1adf5c91a9422",
+      "bytes": 1271
+    },
+    "web30": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/web-build-final-v30-v1/terminal-receipt.json",
+      "sha256": "cc039591fc61387ef95579419c85929fafb3153ab2c768020bcb24796e3e3d11",
+      "bytes": 2016
+    },
+    "combinedAudit": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/final-v30-check-web-independent-audit-v1.json",
+      "sha256": "892aeef563d9a34cffa031ac9b2972034f5d6d1e074eb0690455211544a16b89",
+      "bytes": 970
+    },
+    "apiControl": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/full-api-v30/input-bundle-v2.json",
+      "sha256": "f505244fb3f1a1c5dce1a39fd3d04ae3eae7c57ee566daa558144c7e8813e617",
+      "bytes": 1256
+    },
+    "apiValidate": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/full-api-v30/validate-v1-receipt.json",
+      "sha256": "5bff4243a435759ca2080ce548de0b6da345ce4b12868a89f8696d33e89a432f",
+      "bytes": 2429
+    },
+    "apiControlPeer": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/full-api-v30-bundle-v2-readonly-peer.json",
+      "sha256": "bfe53392bbfca28cf8180fd14c3a637261ace4b33d1547ed7c201e9eedb57d77",
+      "bytes": 2403
+    },
+    "externalV3": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/external-stdio-visual-v30/terminal-receipt.json",
+      "sha256": "a808e4548d2ffc0341c6e198ca149f090c9a1150d93d1b69298562eb3bdf7e68",
+      "bytes": 6333
+    },
+    "externalV3Archive": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/external-stdio-visual-v30/run-v1/evidence-manifest.json",
+      "sha256": "cc2f8b4d61af728f1ad2ef5265d4bf830da8e13f88636919080eb375188ecb2f",
+      "bytes": 4280
+    },
+    "externalV4": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/external-stdio-visual-v30-v4/terminal-receipt.json",
+      "sha256": "20674dc6715d9c8933495ebc616d9718bcebe9172bdbe2060abb2b39d3325cbb",
+      "bytes": 7187
+    },
+    "externalV4Archive": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/external-stdio-visual-v30-v4/run-v1/evidence-manifest.json",
+      "sha256": "1d78093c8c592b65c70a686ef42a7aea9815cbb53b46803d8d58146b89027ec0",
+      "bytes": 5281
+    },
+    "externalRateDiagnosis": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/external-stdio-visual-v30-v4/rate-readonly-v1.json",
+      "sha256": "2ec7560ecb48ce0a45c958fe33dbc79419b4579be2c9475d8aa823dd73d3fe92",
+      "bytes": 8391
+    }
+  },
+  "candidateScope": "v30 993 source rows. Relative to v29, two production files and one API integration file change; 990 old rows are byte-identical. No general production/rule/model change.",
+  "internalRate": "Original v29 same isolated test RED 113 versus 115 remaining; candidate 1/1 actual exit0 and Node24 tsc0, with read-only safety peer no new finding. Every buildApp private ALS marks only server-owned authenticated app.inject; public 120/min/login10 remain. Full API and browser on this new source are not yet validated.",
+  "gates": {
+    "check": "actual exit0: 163 files, 889 tests, 18 Bend laws, 21 mutants, typecheck/build",
+    "web": "actual exit0: eight artifacts byte-identical to v29",
+    "api": "149-file v2 control --validate actual0 only; no 149-file test run",
+    "fullEdge": "v30 full107 not started at this cutoff"
+  },
+  "external": "Old v3 actual failure BATCH_CHILD_JOB_REQUIRED omitted parent artifact; research v4 reused original selector with artifact and exercised receive, PDF bytes/hash, PDFium render, derived submit and validity, but full case still 0/1 due UI 429. Read-only count: 118 visible requests = 101 page/app + 17 test direct (3 setup POST +14 pure state GET). The previous nine hidden self-injection charges are gone. v5 poll reduction only planned/unrun.",
+  "boundaries": "Formal v17, online 054, guide DRAFT, Mac native Save As locked, original runtime R0 and I/S/R unchanged. No release promotion.",
+  "archive": ".data/research/lawbot-2026-10-16/iteration056/before-v30-internal-rate-evidence-ledger173-v1",
+  "rulesJsonBlocksSha256": [
+    "6e0ea225acb4e6e7e41a5b5a99a812e12243a4308f82171301142d5c8df20c46",
+    "27abf7c3d82e77ef4bcd16453d82e9e3990253e8a12bc64635915361d2876815",
+    "30b3a3337d6fd90e80b3449f5120d362694d3760e8ffcee059789dca8df6ce1e",
+    "943620d7d6cc863f7396226b9cdfd9b1a7ccbbaf3131228b0e8a2c6d97425bff",
+    "52708f9a15cb02a8b89786acf6d8a5250815851fa2d47f095eaaa721af4feb8d",
+    "05cb41cae0447743ef3584454a2c825bf588bc5ce70e922a3258080363d73508",
+    "871f257bf1452e5a2436ea062641358ae7927b9d32fb70c3bfc44654dd4c6c9d",
+    "6a2148a02a6271762804344eb7b3531d41749289c9f24601e3f8ab48e3a13345",
+    "fa326d1af4b2851e8f7a91adfa1cb64c652c8121657f30caa40749eb18c7c3c8",
+    "d49eaf84c70fbd63ce8236532ac458e49a624d86fe9c33a569c5b6bef38d7b89"
+  ]
+}

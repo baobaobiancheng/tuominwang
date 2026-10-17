@@ -41,3 +41,28 @@ export function createApiRequest(messages:Record<string,string>){
   return data;
 }
 }
+
+// Only the read-only session check may retry after the server's rate window.
+export function waitForRateWindow(ms: number, signal: AbortSignal): Promise<void> {
+  return new Promise((resolve, reject) => {
+    if (signal.aborted) { reject(signal.reason); return; }
+    const timer = setTimeout(() => { signal.removeEventListener("abort", abort); resolve(); }, ms);
+    const abort = () => { clearTimeout(timer); reject(signal.reason); };
+    signal.addEventListener("abort", abort, { once: true });
+  });
+}
+
+export async function readSessionWithOneRateRetry(
+  request: ReturnType<typeof createApiRequest>, signal: AbortSignal,
+): Promise<{ username: string | null }> {
+  const read = () => request<{ username: string | null }>("/session", "GET", undefined, signal);
+  try { return await read(); }
+  catch (error) {
+    const failure = error as { code?: string; status?: number; retryAfterMs?: number };
+    if (failure.code !== "RATE_LIMITED" || failure.status !== 429 ||
+      typeof failure.retryAfterMs !== "number" || !Number.isFinite(failure.retryAfterMs) ||
+      failure.retryAfterMs < 0 || failure.retryAfterMs > 61000) throw error;
+    await waitForRateWindow(failure.retryAfterMs, signal);
+    return read();
+  }
+}

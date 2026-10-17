@@ -1,0 +1,60 @@
+{
+  "id": "ITER-056-CHECK26-TARGET2-TERMINAL-164",
+  "date": "2026-10-17",
+  "status": "evidence-boundary-only",
+  "check26": {
+    "receipt": ".data/research/lawbot-2026-10-16/iteration056/root/final-v26-required-check-v1/terminal-receipt.json",
+    "sha256": "731f6adf31c7cecd8965b85a43c94c9d7f00b106e7c1e77e6490ee279846b38a",
+    "candidateManifestSha256": "0ac9e2c1ea87a56cbf5fd8eb0e1138c159af9386347f6c20903c47d25aac2daa",
+    "exitCode": 0,
+    "passed": true,
+    "sourceAssetRestoredFixtureDrift": [],
+    "scope": "Full required check actual terminal; v25 timeout history remains."
+  },
+  "target2": {
+    "receipt": ".data/research/lawbot-2026-10-16/iteration056/frontend/target2-final-v26-dual/terminal-receipt.json",
+    "sha256": "136dfe02b59b75cb16bd8dd00969d2fa266efc6968c72ca73c7afba539a5eb19",
+    "independentAudit": ".data/research/lawbot-2026-10-16/iteration056/root/target2-v26-independent-terminal-audit-v1.json",
+    "auditSha256": "97ab09be7aa6efd6e5b88f43aea58f8e89d57a36f7fad9d4634eae0cf299b7c0",
+    "archiveManifestSha256": "2ed1bd3018cdd399cd98aa022b3365cab3b7276b6f8bce091954bb693e5e4481",
+    "passed": 2,
+    "failed": 0,
+    "skipped": 0,
+    "retry": 0,
+    "scope": "Two original previously failing IDs only, not full Edge107."
+  },
+  "remaining": {
+    "fullEdge107": "running, no terminal",
+    "api24": "148-file run still without terminal",
+    "nativeSaveAs": "pending",
+    "guide": "pending",
+    "release": "not staged or deployed",
+    "formal": "v17",
+    "server": "054"
+  },
+  "sourceEquivalence": "v25-fixed research v4 cannot be used for final26; new read-only review and overlay pending, actual API24 receipt absent",
+  "counts": "I/S/R and nine confirmed gaps unchanged",
+  "archive": ".data/research/lawbot-2026-10-16/iteration056/before-check26-ledger164-v1",
+  "rulesJsonBlocks": [
+    "6e0ea225acb4e6e7e41a5b5a99a812e12243a4308f82171301142d5c8df20c46",
+    "27abf7c3d82e77ef4bcd16453d82e9e3990253e8a12bc64635915361d2876815",
+    "30b3a3337d6fd90e80b3449f5120d362694d3760e8ffcee059789dca8df6ce1e",
+    "943620d7d6cc863f7396226b9cdfd9b1a7ccbbaf3131228b0e8a2c6d97425bff",
+    "52708f9a15cb02a8b89786acf6d8a5250815851fa2d47f095eaaa721af4feb8d",
+    "05cb41cae0447743ef3584454a2c825bf588bc5ce70e922a3258080363d73508",
+    "871f257bf1452e5a2436ea062641358ae7927b9d32fb70c3bfc44654dd4c6c9d",
+    "6a2148a02a6271762804344eb7b3531d41749289c9f24601e3f8ab48e3a13345",
+    "fa326d1af4b2851e8f7a91adfa1cb64c652c8121657f30caa40749eb18c7c3c8",
+    "d49eaf84c70fbd63ce8236532ac458e49a624d86fe9c33a569c5b6bef38d7b89"
+  ],
+  "web26": {
+    "receipt": ".data/research/lawbot-2026-10-16/iteration056/root/web-build-final-v26-v1/terminal-receipt.json",
+    "sha256": "e7632d4f63981c81e66a201c13636d5e420807f11104430661a1b4043079079c",
+    "exitCode": 0,
+    "sourceManifestSha256": "0ac9e2c1ea87a56cbf5fd8eb0e1138c159af9386347f6c20903c47d25aac2daa",
+    "files": 8,
+    "tuominAssetPrefix": true,
+    "formalPrivateDrift": [],
+    "guide": "separate GUIDE_PENDING"
+  }
+}

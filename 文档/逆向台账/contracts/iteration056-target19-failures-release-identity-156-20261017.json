@@ -1,0 +1,153 @@
+{
+  "iteration": "056",
+  "event": 156,
+  "date": "2026-10-17",
+  "kind": "actual-target19-edge-failures-and-release-gate-identity-review",
+  "scope": "documentation and evidence only; no source, gate, runner, server or I/S/R changes",
+  "candidateManifest": {
+    "path": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v22.json",
+    "sha256": "fdca235965afc6bb0d62e5217ce739c10b14f4eb33179179e84665746992daa7",
+    "bytes": 168945
+  },
+  "target19": {
+    "receipt": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/target19-final-v22-dual/terminal-receipt.json",
+      "sha256": "bf4184f3a53a345451ac2e98588b73dcf97d317932fa57697b9205b0d9660d82",
+      "bytes": 22972
+    },
+    "planned": 19,
+    "actual": 19,
+    "expected": 17,
+    "unexpected": 2,
+    "skipped": 0,
+    "flaky": 0,
+    "childExitCode": 1,
+    "cleanupError": null,
+    "planMismatch": false,
+    "failedCases": [
+      {
+        "id": "501f58364ec0253e34a5-bd43dded24aa5ca87092",
+        "file": "frontend-alignment.spec.ts",
+        "title": "review-only members cannot add alias-linked missing marks into an unsavable draft",
+        "status": "failed"
+      },
+      {
+        "id": "8baf241ee21b0aaf37e3-a33f230bad818f671d3a",
+        "file": "pdf-cross-chain.spec.ts",
+        "title": "Edge two-page PDF rotates page 2, locates repeated entity, edits geometry, restores portable pending and downloads verified pixels",
+        "status": "failed"
+      }
+    ],
+    "formalSourceCount": 989,
+    "privateSourceCount": 992,
+    "formalPrivateSourceDrift": {
+      "beforeFormal": [],
+      "afterFormal": [],
+      "beforePrivate": [],
+      "afterPrivate": []
+    },
+    "assetLockDrift": {
+      "beforeFormalAssets": [],
+      "afterFormalAssets": [],
+      "beforePrivateAssets": [],
+      "afterPrivateAssets": [],
+      "beforeFormalLocks": [],
+      "afterFormalLocks": [],
+      "beforePrivateLocks": []
+    },
+    "openCvDrift": {
+      "beforeFormalOpenCv": false,
+      "afterFormalOpenCv": false,
+      "beforePrivateOpenCv": false,
+      "afterPrivateOpenCv": false
+    }
+  },
+  "failureObservations": {
+    "reviewOnly": "5-second assertion encountered queued; cause still under investigation",
+    "pdfCrossChain": "UI observed /import-file while legacy listener awaited /import; error context also showed INTERNAL_ERROR / HTTP 500; cause still under investigation; changing route predicate alone is not accepted as closure"
+  },
+  "api148": "running without terminal receipt at this evidence point",
+  "releaseGateReview": {
+    "review": {
+      "path": ".data/deploy/aliyun-20261016/iteration056/release-v22-api-review-v2/review.json",
+      "sha256": "1cf5d97468ef8e54e694f2d07baaaffcb9989997d85851fa5feb0a2a07417517",
+      "bytes": 3744
+    },
+    "candidate": {
+      "path": ".data/deploy/aliyun-20261016/iteration056/release-v22-api-baseline-overlay-v2/overlay-manifest-v2.json",
+      "sha256": "f9c43ed2ce19413f0486c153dc6afc8dfcde0fe7c90de9fd2b1f9b1c27e0eab2",
+      "bytes": 4059
+    },
+    "finding": "no new static finding; prior P2 code path closed; actual API terminal audit pending"
+  },
+  "serverReadOnly": {
+    "observation": {
+      "path": ".data/deploy/aliyun-20261016/iteration056/root-online-readonly-20261017-v2/observation.json",
+      "sha256": "f3b215dcdbb96e09f52c36f3ebe26d6de2248a5bcaf85f4ba3bc2ef0a85b5970",
+      "bytes": 1043
+    },
+    "releaseVersion": "2026.10.16-054",
+    "serverMutations": false
+  },
+  "remaining": [
+    "two target19 failures investigated and retested",
+    "full 107 Edge final gate",
+    "148 API actual terminal and audit",
+    "native OS Save As",
+    "release commit, fresh CAS and deployment readback"
+  ],
+  "archiveBefore": {
+    "path": ".data/research/lawbot-2026-10-16/iteration056/before-target19-edge-ledger156-v1/manifest.json",
+    "sha256": "85fb19e5aa049933f29fffa4c89fcc8d6a72556ebdd008db471c801e8a6bbf22",
+    "bytes": 2454
+  },
+  "updatedDocs": [
+    {
+      "path": "文档/待办与完成状态-20261015.md",
+      "sha256": "796d5b9d8e15be8f42f0310c8707c91323a440145aff335f26f58ede337c642a",
+      "bytes": 83175
+    },
+    {
+      "path": "文档/脱敏规则完整技术交接-迭代023.md",
+      "sha256": "f68be559dd3295c296e45a5ca7cb8965f0f8c6afd8f8c200130de6a896853c9d",
+      "bytes": 414639
+    }
+  ],
+  "rulesJsonBlocks": {
+    "count": 10,
+    "unchanged": true,
+    "oldSha256": [
+      "df159e3101de69daa1fa568049e5d0e5b4f6c11007cc85377376d747032cde4b",
+      "b3507ca333acca04b2b6476b55274eba8e3700210bef8e57d455050d89e31b5c",
+      "52d3af726fc6c04e477647e5f0ca9121ce042fb36b3cf13756d0f9ddf23fadd5",
+      "2916b196afc763dc5e957f627706e1c7515bafa6bf74ee6a308b6e12f05dac10",
+      "2c3ed2082f5acc4254c4efc57ec58aa014cebd16f617c92be80b1ca6ea552153",
+      "28357662c45a95a8a8e7682792a88125e6fd1005e794785ee4d17f88b57218bf",
+      "5ce5757f833f8053e631cfd07dba3f0def504ade50f6a4c4623e20d67669756d",
+      "46e9de6da18b6d89221ee5a05120db5cf8dcbdfcc6badab31bbc7185b8a4603b",
+      "181594386e90265fbf53b95a52ef2ac19ae094231f34223a4563dc874d7235be",
+      "27e50f0cb7103a6aaae416bd3e31ec3760eb5c6dc681e26650d1effd58332bfa"
+    ],
+    "newSha256": [
+      "df159e3101de69daa1fa568049e5d0e5b4f6c11007cc85377376d747032cde4b",
+      "b3507ca333acca04b2b6476b55274eba8e3700210bef8e57d455050d89e31b5c",
+      "52d3af726fc6c04e477647e5f0ca9121ce042fb36b3cf13756d0f9ddf23fadd5",
+      "2916b196afc763dc5e957f627706e1c7515bafa6bf74ee6a308b6e12f05dac10",
+      "2c3ed2082f5acc4254c4efc57ec58aa014cebd16f617c92be80b1ca6ea552153",
+      "28357662c45a95a8a8e7682792a88125e6fd1005e794785ee4d17f88b57218bf",
+      "5ce5757f833f8053e631cfd07dba3f0def504ade50f6a4c4623e20d67669756d",
+      "46e9de6da18b6d89221ee5a05120db5cf8dcbdfcc6badab31bbc7185b8a4603b",
+      "181594386e90265fbf53b95a52ef2ac19ae094231f34223a4563dc874d7235be",
+      "27e50f0cb7103a6aaae416bd3e31ec3760eb5c6dc681e26650d1effd58332bfa"
+    ]
+  },
+  "countsUnchanged": {
+    "S2": 8,
+    "S3": 250,
+    "R0": 258,
+    "I1": 148,
+    "I2": 12,
+    "I3": 60,
+    "I4": 38
+  }
+}

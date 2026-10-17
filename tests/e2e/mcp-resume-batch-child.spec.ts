@@ -68,6 +68,7 @@ test('delivered batch resumes through a new approval request and retains its ori
     let ready:any;
     await expect.poll(async()=>{
       const response=await original('check_document_delivery',{job_id:parent,wait_seconds:0});
+      if(response.isError&&response.structuredContent?.error==='PROCESSING_BUSY')return ['PROCESSING_BUSY'];
       expect(response.isError,JSON.stringify(response.structuredContent)).toBe(false);
       ready=response.structuredContent;
       return ready.documents?.map((item:any)=>item.status);

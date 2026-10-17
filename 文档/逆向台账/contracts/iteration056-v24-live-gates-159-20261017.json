@@ -1,0 +1,75 @@
+{
+  "event": "ITER-056-V24-LIVE-GATES-159",
+  "date": "2026-10-17",
+  "archive": {
+    "path": ".data/research/lawbot-2026-10-16/iteration056/before-v24-live-ledger159-v1/manifest.json",
+    "sha256": "65168f50daae447b7b4c91c3a2653e48f1b92eb885d0bcec6696ca962cab6c11",
+    "files": 9
+  },
+  "evidence": {
+    "v24Manifest": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v24.json",
+      "sha256": "469ec76ec8aa45e35bcc522c1f0f98baf73434f673ba30b56bede526439d5758",
+      "bytes": 169175
+    },
+    "v24Check": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/final-v24-required-check-v1/terminal-receipt.json",
+      "sha256": "4736147a28f2f418e3b55a20c09f3be4845f13aa351ba12a3cad3aaa716ca107",
+      "bytes": 1271
+    },
+    "v24WebBuild": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/web-build-final-v24-v1/terminal-receipt.json",
+      "sha256": "e68c9470621f712373589ee2256d3180aff5853a1ed95504ab1f432e126e1c62",
+      "bytes": 2016
+    },
+    "v24ApiBundle": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/full-api-v24/input-bundle-v1.json",
+      "sha256": "f5c90711174de821a3e8a1dd47834c697abb76521b4465b290a5c599b699b24e",
+      "bytes": 1131
+    },
+    "apiLiveObservation": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/api-v24-live-observation-v1.json",
+      "sha256": "1b9870cb33dae78254091677163e09591a84fc8e9af3fbdaa3bedd7b7ede081f",
+      "bytes": 8727
+    },
+    "remaining11Prepared": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/remaining11-final-readback-v1.json",
+      "sha256": "bc3a96b692e52fa144753a42165aa5491e2ad018ba59d2c47e0072255f5f5ce2",
+      "bytes": 17970
+    },
+    "remaining11ExactCasesPrepared": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/remaining11-final-exact-case-identities-v1.json",
+      "sha256": "2293a1d4766d7042663b478c0291cd9e8cfa2e6c5c3da979229e9e23021ddae8",
+      "bytes": 20206
+    },
+    "releaseGateV24V2": {
+      "path": ".data/deploy/aliyun-20261016/iteration056/release-v24-api-identity-overlay-v2/candidate-manifest.json",
+      "sha256": "4717a7321d0eb82ff3f51fcfea3b23a75e9ac999ca11c839ea8fd8d9006913ad",
+      "bytes": 3535
+    },
+    "releasePeerTranscript": {
+      "path": ".data/deploy/aliyun-20261016/iteration056/root-v24-release-peer-review-transcript-v1.json",
+      "sha256": "8d4fbbbb8be7b244c92e8ad8da61f3342f45530e08d87629359d76e5ef9368c1",
+      "bytes": 1158
+    }
+  },
+  "confirmed": {
+    "webBuild": "v24 /tuomin/ build actual exit 0; formal/private drift empty and prefix verified",
+    "requiredCheck": "v24 actual exit 0 from event158; no new check run",
+    "api148": "PID47416/controller47469 running without terminal; live observation is not startup attestation or terminal result",
+    "edge107": "supervisor45763 running without terminal; not a pass claim",
+    "remaining11": "Static prepared case and source pointers only, not runtime acceptance",
+    "releaseGate": "Research v24-v2 has dual-source 989/992, fixed full107 plan, 28 assets/8 locks/OpenCV checks; no deployment",
+    "releasePeer": "Independent review transcript reports no substantive finding, but is collaborator message transcription rather than raw probe or terminal log"
+  },
+  "remaining": {
+    "nativeSaveAs": "pending actual OS receipt",
+    "api148": "pending terminal",
+    "edge107": "pending terminal",
+    "guide": "pending",
+    "deployment": "not started",
+    "confirmedGaps": 9,
+    "remaining11": "remain open"
+  },
+  "classification": "All 258 original entry runtime statuses R0; S3 250/S2 8, I4 38/I3 60/I2 12/I1 148 unchanged. No source or deployment changes."
+}

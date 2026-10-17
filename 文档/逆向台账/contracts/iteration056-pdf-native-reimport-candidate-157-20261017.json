@@ -1,0 +1,94 @@
+{
+  "event": "ITER-056-PDF-NATIVE-REIMPORT-REDBACK-157",
+  "date": "2026-10-17",
+  "scope": "Candidate v23, not yet full validation or deployment",
+  "archive": {
+    "path": ".data/research/lawbot-2026-10-16/iteration056/before-pdf-native-reimport-ledger157-v1/manifest.json",
+    "sha256": "ef784f5149abc3d57b36c22b3aa3506a4c587a2c9b1c808f529a419731aa18ab",
+    "count": 9
+  },
+  "evidence": {
+    "candidate": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v23.json",
+      "sha256": "8278f046d5a98fb4cce622d1f8cfd720da5120dc8abc092556acadc912b37987",
+      "bytes": 169175
+    },
+    "diagnosis": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/pdf-import-diagnostic-v22/diagnostic-evidence-manifest-v1.json",
+      "sha256": "41d8632594eae6bc35b398275da277eb2f2eae68984c8f4c1ea8d67eb8b0f9db",
+      "bytes": 1736
+    },
+    "fePatch": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/portable-import-readback-v22-v1/candidate-manifest.json",
+      "sha256": "61ee9c57efe863407ca9b6b80fa98cc6eca81e19e34c448eea7e0045719118c0",
+      "bytes": 1701
+    },
+    "redGreen": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/pdf-native-multipart-recent-regression-v2/validation-terminal-receipt.json",
+      "sha256": "6d7fe798fbf6c05313a1a21365b58ad62a3e9e389e721a61b2d4fbcbca6b6b41",
+      "bytes": 1805
+    },
+    "independentReadback": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/pdf-native-multipart-red-green-independent-v1.json",
+      "sha256": "b1ecfc233089d630029b1f853e9a0fc7f120110f5509949c0452e9ae1ab43c28",
+      "bytes": 1237
+    },
+    "edge3": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/target3-portable-import-v22/terminal-receipt.json",
+      "sha256": "7a1476fedd496b449d98df6ba9ae4587f5035c4479cd1cc685c66fa9f6b888be",
+      "bytes": 6832
+    },
+    "oldApiTerminal": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/full-api-v22/run-v1/terminal-receipt.json",
+      "sha256": "94a9c03d72d787327d435e78cf888b89bf2b4bfb6ca3771131b3895402e4bd62",
+      "bytes": 14397
+    },
+    "oldApiCancellation": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/full-api-v22/run-v1/cancellation-cleanup-v1.json",
+      "sha256": "f7162c84c9150596ba99ab26f151568f06ddc94f7e8af459e991b684d368c1ed",
+      "bytes": 3406
+    }
+  },
+  "finding": "Old v22 streamed native PDF reimport returned HTTP 500 because recent-record projection passed TmmFileRef mapEntry to nativeToReferenceStream, which required verified PDF page-map Buffer and threw PORTABLE_PAGE_GEOMETRY_REQUIRED.",
+  "minimalFix": "Reuse already-validated smallAsset(map,page.mapHash) bytes only in the recent-record projection Map. Keep original PDF as TmmFileRef and retain original source hash and page geometry checks.",
+  "targeted": {
+    "apiSameTestOld": {
+      "actualExit": 1,
+      "pass": 1,
+      "fail": 1,
+      "error": "INTERNAL_ERROR 500"
+    },
+    "apiSameTestWithPatch": {
+      "actualExit": 0,
+      "pass": 2,
+      "fail": 0,
+      "assertions": "actual PDF page/map, native archive, source hashes, multipart import and reusable recent record"
+    },
+    "edge3": {
+      "actualExit": 0,
+      "pass": 3,
+      "fail": 0,
+      "skipped": 0,
+      "flaky": 0,
+      "scope": "targeted only; not full 107"
+    }
+  },
+  "oldFullApi148": {
+    "actualControllerExit": -15,
+    "fullPass": false,
+    "observedFiles": 23,
+    "plannedFiles": 148,
+    "meaning": "explicitly cancelled after proven source bug; do not combine markers or call it green"
+  },
+  "currentCandidate": {
+    "manifestSha256": "8278f046d5a98fb4cce622d1f8cfd720da5120dc8abc092556acadc912b37987",
+    "sourceFiles": 992,
+    "frozenInstallExit": 0,
+    "requiredCheck": "pending",
+    "fullApi148": "pending",
+    "fullEdge107": "pending",
+    "nativeSaveAs": "pending",
+    "deployment": "not started"
+  },
+  "classification": "Original 258 R0, I/S/R counts and nine confirmed gaps unchanged; targeted regressions do not close full release gates."
+}

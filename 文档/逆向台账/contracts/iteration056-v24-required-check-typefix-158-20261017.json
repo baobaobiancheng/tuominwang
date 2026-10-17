@@ -1,0 +1,76 @@
+{
+  "event": "ITER-056-V24-REQUIRED-CHECK-158",
+  "date": "2026-10-17",
+  "archive": {
+    "path": ".data/research/lawbot-2026-10-16/iteration056/before-v24-check-ledger158-v1/manifest.json",
+    "sha256": "0d21d9848de3e7e5dce8569864597434a782bb48efa9f365386fee54dbf4ac6e",
+    "files": 9
+  },
+  "evidence": {
+    "v23Manifest": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v23.json",
+      "sha256": "8278f046d5a98fb4cce622d1f8cfd720da5120dc8abc092556acadc912b37987",
+      "bytes": 169175
+    },
+    "v23Check": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/final-v23-required-check-v1/terminal-receipt.json",
+      "sha256": "eea91e4490e1501934691375b79a6d101ad2b9507404642b97046f9dad509ff1",
+      "bytes": 1003
+    },
+    "v24Manifest": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v24.json",
+      "sha256": "469ec76ec8aa45e35bcc522c1f0f98baf73434f673ba30b56bede526439d5758",
+      "bytes": 169175
+    },
+    "v24Check": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/final-v24-required-check-v1/terminal-receipt.json",
+      "sha256": "4736147a28f2f418e3b55a20c09f3be4845f13aa351ba12a3cad3aaa716ca107",
+      "bytes": 1271
+    },
+    "typeFix": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/pdf-native-multipart-recent-regression-v3/typecheck-terminal-receipt.json",
+      "sha256": "7da66e1a82a3b664490e2c1ddc560181093d4074a93c8abe6b4a91e4f17b376c",
+      "bytes": 875
+    },
+    "v22Cancel": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/full-api-v22/run-v1/cancellation-cleanup-v1.json",
+      "sha256": "f7162c84c9150596ba99ab26f151568f06ddc94f7e8af459e991b684d368c1ed",
+      "bytes": 3406
+    }
+  },
+  "comparison": {
+    "files": 992,
+    "changedPaths": [
+      "tests/workspace-multipart-import.integration.ts"
+    ],
+    "change": "type-only InjectOptions payload typing; emitted JS exact byte equal to prior test",
+    "v23": {
+      "actualExitCode": 2,
+      "bendLaws": 18,
+      "bendMutants": 21,
+      "typecheck": "failed on new test payload?:unknown",
+      "unit": "not reached",
+      "build": "not reached"
+    },
+    "v24": {
+      "actualExitCode": 0,
+      "unitFiles": 163,
+      "unitTests": 885,
+      "bendLaws": 18,
+      "bendMutants": 21,
+      "typecheck": "passed",
+      "build": "passed",
+      "formalPrivateSourceAssetsAndRestoredFixturesDrift": []
+    }
+  },
+  "remaining": {
+    "api148": "not terminal on v24",
+    "edge107": "not terminal on v24",
+    "nativeSaveAs": "pending",
+    "webBuild24": "pending receipt at documentation time",
+    "guide": "pending",
+    "deployment": "not started"
+  },
+  "oldApi148": "v22 controlled cancellation -15/fullPass=false, post cleanup completed; signal-affected file markers are not independent product assertion failures",
+  "classification": "Nine confirmed gaps and all I/S/R counts unchanged. No mixed-source gate claim."
+}

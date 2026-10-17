@@ -9,6 +9,15 @@ import { readZip } from "../../packages/core/office-zip.ts";
 import { pdfFixture } from "../pdf-fixtures.ts";
 import { execFileSync } from "node:child_process";
 
+async function waitForRecognizedDocument(page:Page,id:string){
+ await expect.poll(async()=>{
+  const response=await page.request.get(`/api/documents/${id}`);expect(response.status()).toBe(200);
+  const document=await response.json();
+  if(document.job?.status==='failed'||document.job?.status==='cancelled')throw new Error(`Detection ${document.job.status}: ${document.job.error_code??'UNKNOWN'}`);
+  return {state:document.state,job:document.job?.status};
+ },{timeout:60000}).toEqual({state:'review',job:'succeeded'});
+}
+
 async function submitExportAndWait(page: Page, format: string, jobTimeout = 45_000) {
   const responsePromise = page.waitForResponse(response => response.request().method() === "POST" && /^\/api\/documents\/[^/]+\/export$/.test(new URL(response.url()).pathname), { timeout: 30_000 });
   await page.getByRole("button", { name: "导出已选标记的处理副本", exact: true }).click();
@@ -46,9 +55,12 @@ test("PDF and image imports expose authenticated page previews and extracted tex
   await page.getByRole("button", { name: "上传文件", exact: true }).click();
   await expect(page.getByText("已保存", { exact: true })).toHaveCount(2);
   await page.getByRole("button", { name: "返回材料列表", exact: true }).click();
+  const openedPdf=page.waitForResponse(r=>r.request().method()==="GET"&&/^\/api\/documents\/[0-9a-f-]{36}$/.test(new URL(r.url()).pathname)&&r.status()===200);
   await page.getByRole("button", { name: /合同.pdf/ }).click();
+  const pdfId=(await (await openedPdf).json()).id as string;
   await expect(page.getByRole("img", { name: "原件第 1 页" })).toBeVisible({timeout:30000});
   await expect.poll(() => page.getByRole("img", { name: "原件第 1 页" }).evaluate(el => (el as HTMLImageElement).naturalWidth),{timeout:30000}).toBeGreaterThan(0);
+  await waitForRecognizedDocument(page,pdfId);
   await expect(page.getByLabel("原文", { exact: true })).toHaveValue(/13800138000/);
   await page.getByRole("button", { name: "下一页原件", exact: true }).click();
   await expect(page.getByRole("img", { name: "原件第 2 页" })).toBeVisible({timeout:30000});
@@ -161,7 +173,10 @@ test("CSV upload, review, safe download and desktop file list", async ({ page })
   await page.getByRole("button", { name: "上传文件", exact: true }).click();
   await expect(page.getByText("已保存", { exact: true })).toBeVisible();
   await page.getByRole("button", { name: "返回材料列表", exact: true }).click();
+  const openedCsv=page.waitForResponse(r=>r.request().method()==="GET"&&/^\/api\/documents\/[0-9a-f-]{36}$/.test(new URL(r.url()).pathname)&&r.status()===200);
   await page.getByRole("button", { name: /通讯录.csv/ }).click();
+  const csvId=(await (await openedCsv).json()).id as string;
+  await waitForRecognizedDocument(page,csvId);
   await page.getByRole("button", { name: "逐条复核", exact: true }).click();
   await expect(page.getByLabel("标记 2 处理决定")).toBeVisible();
   await page.getByLabel("标记 1 处理决定").selectOption("redact");

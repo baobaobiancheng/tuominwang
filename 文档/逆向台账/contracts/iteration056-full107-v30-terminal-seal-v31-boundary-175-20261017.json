@@ -1,0 +1,99 @@
+{
+  "id": "ITER-056-FULL107-V30-TERMINAL-SEAL-V31-175",
+  "date": "2026-10-17",
+  "status": "v30 full Edge107 actual pass; v31 Web warning projection prepared and engineering gates passed; v31 browser and v30 API149 not terminal",
+  "evidence": {
+    "v30Manifest": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v30.json",
+      "sha256": "54c113427ff7eb5da38675b8f0894b12473526085a26c2cd017d96ebd4d885ef",
+      "bytes": 169397
+    },
+    "edgeTerminal": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/full107-final-v30-dual/terminal-receipt.json",
+      "sha256": "5d4f72bffc10630dabad30456ba586ca0274969c2925b148a5828982fd15e8ee",
+      "bytes": 115339
+    },
+    "edgeArchive": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/full107-final-v30-dual/evidence-archive-v1-manifest.json",
+      "sha256": "78a512591e69aa6db110049a4d39fdf1adbcf7ee9470d466138b03e2c894735a",
+      "bytes": 40372
+    },
+    "edgeIndependentAudit": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/full107-v30-independent-terminal-audit-v1.json",
+      "sha256": "7db62cbd54eab54f66bf442adbaf244d76b037b327ee54bac69d842ba71f41bb",
+      "bytes": 1620
+    },
+    "staleWarningPeer": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/pdf-seal-v30-stale-visual-warning-readonly-peer-v1.json",
+      "sha256": "c6a3fce8c337a4b231ecd0d3a92d457172996293a6dae332bd408158e9308996",
+      "bytes": 3364
+    },
+    "v2Candidate": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/arch/pdf-seal-visual-warning-v31-candidate-v2/candidate-manifest.json",
+      "sha256": "62978ebd846b3cc88dce5f986e0aaee7ca9ee231d3f551e3e6e0c9bb0d26338e",
+      "bytes": 1753
+    },
+    "v2IndependentPeer": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/pdf-seal-warning-v31-v2-independent-review.json",
+      "sha256": "d79d3dbdc7c542ddc17891032a6a6fa25d8b7a994a8ccd0d1493663a8b302bb2",
+      "bytes": 2714
+    },
+    "v31Manifest": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/final-inputs-v31.json",
+      "sha256": "a4d259cd850228f8ebb858ed0df9fe8bc2fd4f2e81632224bece05edd4e2b2d0",
+      "bytes": 169708
+    },
+    "v31RequiredCheck": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/final-v31-required-check-v1/terminal-receipt.json",
+      "sha256": "f02645b174c49348212524adc6932fa4526551360f6bf3959e360284115a588c",
+      "bytes": 1271
+    },
+    "v31WebBuild": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/web-build-final-v31-v1/terminal-receipt.json",
+      "sha256": "0427c8777f5194cd2ca95b570c592643305405f52c5a97e54bf4eb274dc10298",
+      "bytes": 2016
+    },
+    "v31IndependentAudit": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/root/final-v31-check-web-independent-audit-v1.json",
+      "sha256": "3fd4aea30bac155551510d9e9779eab6f73612866b509275c0dafbac0b5dfcaf",
+      "bytes": 2933
+    },
+    "api149RunningObservation": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/full-api-v30/run-v1/running.json",
+      "sha256": "4509399881b0afd82e7051fa1acc55bb1dd2946815aaf8cf809bd131b6287740",
+      "bytes": 924
+    },
+    "normalDevRestored": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/frontend/normal-dev-service-after-full107-v30-v1/restore-receipt.json",
+      "sha256": "95a8d098703a12b0e93478c05a8fb6160fe9e04deb9f0d842d541887df11c676",
+      "bytes": 510
+    },
+    "eofSameRunLimit": {
+      "path": ".data/research/lawbot-2026-10-16/iteration056/protocol/stdio-v30-eof-status-readback-v1.json",
+      "sha256": "38fda3477e8c1f76bb803d160279ec1b7ca9681f074679ae5a8dc749448ec4c8",
+      "bytes": 2414
+    }
+  },
+  "actualEdge": "Full dual-source Edge v30 naturally exited 0: 107/107 passed across 65 specs, zero skip/retry/flaky. Independent audit rehashed all 171 permanent archive files (289179363 bytes), verified exact 107 IDs and private v30/formal v17 plus assets/locks/OpenCV guards. This is own-product v30 evidence, not competitor R2 or v31 browser acceptance.",
+  "newFinding": "After seal supplement completed and 19 pages retained with one deleted, a real screenshot still displayed historical SEAL_DEFERRED warning for pages 4..20. The GET projected current sealProgress but left recognition.visual pages/complete historical. This is a v30 display defect even though its prior full Edge107 assertions passed.",
+  "candidate31": "v31 changes exactly apps/web/main.tsx and the existing pdf-seal-runtime-flow E2E. Web projection removes only literal SEAL_DEFERRED when current status is complete or the page is completed/deleted; other warnings and sealWarning remain. RLS witness can return complete with only initially published completedPageNumbers. Candidate v2 has independent read-only peer findings []; v31 required check exit0 (163 files/889 tests/18 laws/21 mutants/type/build) and Web build exit0 (8 artifacts). Its browser case/full107 have not run.",
+  "apiBoundary": "API149 on frozen v30 was running at event cutoff; no terminal receipt. Do not call API31 same-manifest pass or reuse unverified API30 outcome. Final source formal v17, normal development restored, online 054 unchanged.",
+  "eofBoundary": "Same-run EOF cleanup produced non-2xx POST /api/logout wrapped as INTERNAL_ERROR. Preserved evidence cannot recover the exact HTTP status; only a future necessary run can observe it. Do not repeatedly ask to infer 429/401/500 from this archive.",
+  "remaining": "The seal ID requires v31 display regression in real browser, API149 v30 terminal and bounded source reuse analysis, plus original licensed runtime R0. Native Save As/OS pickers, guide READY, business accuracy, license and deployment remain separate boundaries.",
+  "archive": ".data/research/lawbot-2026-10-16/iteration056/before-full107-v30-and-seal-v31-ledger175-v1",
+  "rulesJsonBlocksSha256": [
+    "6e0ea225acb4e6e7e41a5b5a99a812e12243a4308f82171301142d5c8df20c46",
+    "27abf7c3d82e77ef4bcd16453d82e9e3990253e8a12bc64635915361d2876815",
+    "30b3a3337d6fd90e80b3449f5120d362694d3760e8ffcee059789dca8df6ce1e",
+    "943620d7d6cc863f7396226b9cdfd9b1a7ccbbaf3131228b0e8a2c6d97425bff",
+    "52708f9a15cb02a8b89786acf6d8a5250815851fa2d47f095eaaa721af4feb8d",
+    "05cb41cae0447743ef3584454a2c825bf588bc5ce70e922a3258080363d73508",
+    "871f257bf1452e5a2436ea062641358ae7927b9d32fb70c3bfc44654dd4c6c9d",
+    "6a2148a02a6271762804344eb7b3531d41749289c9f24601e3f8ab48e3a13345",
+    "fa326d1af4b2851e8f7a91adfa1cb64c652c8121657f30caa40749eb18c7c3c8",
+    "d49eaf84c70fbd63ce8236532ac458e49a624d86fe9c33a569c5b6bef38d7b89"
+  ],
+  "affectedIds": [
+    "IPC-e4cf3e6c3c0a"
+  ]
+}
