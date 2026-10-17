@@ -1,10 +1,9 @@
 import {hideReviewEntityType,restoreHiddenReviewEntities} from '../../packages/core/review-type-hide.ts';
 import {applySignatureDecision} from '../../packages/core/review-group-ui.ts';
 import type{ReviewFeedbackCause}from'../../packages/core/review-feedback.ts';
-import {entityIdentity,entityLabel,sameEntity} from '../../packages/core/entity-identity.ts';
+import {entityIdentity,entityLabel,sameEntity,canonicalRuleEntityType} from '../../packages/core/entity-identity.ts';
 import {correctionForMark} from '../../packages/core/entity-corrections.ts';
 import {filterReviewMarkItems,type ReviewMarkFilter} from '../../packages/core/review-mark-filter.ts';
-import {canonicalRuleEntityType} from '../../packages/core/presets.ts';
 import {sourcePseudonymActionResult} from '../../packages/core/reference/workspace-renderer-source.js';
 import type {ReplacementPolicies} from '../../packages/contracts/policies.ts';
 import React, { useEffect, useMemo, useRef, useState } from "react";
@@ -87,7 +86,7 @@ export function groupActionRequest(group:EntityGroup,marks:Mark[],action:GroupAc
 export function EntityGroups({ doc, marks, update, locate, run, api, disabled, canReview, canUseAliases, onEdit, onCheck, filterEntities }: {
   doc: DocumentView;
   marks: ReviewMark[];
-  update: (marks: ReviewMark[], cause?: ReviewFeedbackCause) => void;
+  update: (marks: ReviewMark[], cause?: ReviewFeedbackCause, fromServer?: boolean) => void;
   locate: (span: { start: number; end: number }) => Promise<void>;
   run: (action: () => Promise<void>) => Promise<void>;
   api:<T>(path:string,method?:string,body?:unknown)=>Promise<T>;
@@ -181,7 +180,7 @@ export function EntityGroups({ doc, marks, update, locate, run, api, disabled, c
       const policies=groupActionRequest(group,snapshot.marks,action,visual);
       const result=await api<{revision:number;marks:ReviewMark[]}>(`/documents/${snapshot.id}/replacement-policies`,'POST',{revision:snapshot.revision,marks:snapshot.marks,policies});
       if(draft.current.id!==snapshot.id||draft.current.revision!==snapshot.revision||draft.current.marks!==snapshot.marks||result.revision!==snapshot.revision)return;
-      update(result.marks);
+      update(result.marks,undefined,true);
     });
   }
   function deleteGroups(targets: EntityGroup[]) {

@@ -1,5 +1,6 @@
 import {markSchema,type Mark} from '../contracts/index.ts';
 import {kindByEntityType} from '../contracts/entity-types.ts';
+export function canonicalRuleEntityType(value:string){const kind=Object.hasOwn(kindByEntityType,value)?kindByEntityType[value]:value;return Object.keys(kindByEntityType).find(k=>kindByEntityType[k]===kind)??value;}
 export type EntityIdentity={kind:Mark['kind'];rawEntityType?:string};
 export function validRawEntityType(value:string){return typeof value==='string'&&value.length>0&&value.isWellFormed()&&!value.includes('\0');}
 /** Legacy identities are unchanged. JSON quoting makes every unknown name unambiguous. */
