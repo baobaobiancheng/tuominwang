@@ -158,7 +158,7 @@ export function registerReviewTools(app: FastifyInstance) {
       if (d.revision !== input.revision) fail("VERSION_CONFLICT");
       if (d.state !== "review") fail(d.state === "outdated" ? "POLICY_CHANGED" : "DETECTION_INCOMPLETE");
       const mappings = await mappingsForMarks(db, d, input.marks, req.user.id);
-      try { const policy=await validateEntityGeometryPolicy(db,d,input.marks,input.pageReview??openPageReview(d));return { revision: d.revision, ...await runProcessing<object>({ kind: "preview", doc: {...d,page_review:policy}, marks: input.marks, mappings, offset: input.offset }) }; }
+      try { const policy=await validateEntityGeometryPolicy(db,d,input.marks,input.pageReview??openPageReview(d));const [project]=await rows(db,sql`SELECT id,tenant_id,preset_policy,preset_revision FROM projects WHERE id=${d.project_id}`);if(!project)fail('NOT_FOUND',404);return { revision: d.revision, ...await runProcessing<object>({ kind: "preview", doc: {...d,...resolveDocumentPolicy(d,getProjectPresetPolicy(project)),page_review:policy}, marks: input.marks, mappings, offset: input.offset }) }; }
       catch (e) { fail((e as Error).message, 400); }
     });
   });

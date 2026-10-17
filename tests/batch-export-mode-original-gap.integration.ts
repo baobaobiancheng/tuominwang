@@ -19,6 +19,7 @@ const app=await buildApp();
 after(async()=>{await app.close();await pool.end();await admin.end();});
 
 test('Word-scope batch export mode preserves both reviewed drafts atomically',{timeout:120000},async()=>{
+  const startedAt=Date.now();const milestone=(stage:string)=>console.log('FULL_STAR_STAGE '+JSON.stringify({stage,elapsedMs:Date.now()-startedAt}));
   const tenant=randomUUID(),user=randomUUID(),password='synthetic-batch-export-mode',username='batch-mode-'+user,origin=process.env.APP_ORIGIN!;
   await admin.query('INSERT INTO users VALUES($1,$2,$3,$4)',[user,tenant,username,passwordHash(password)]);
   const login=await app.inject({method:'POST',url:'/api/login',headers:{origin},payload:{username,password}});
@@ -82,6 +83,7 @@ test('Word-scope batch export mode preserves both reviewed drafts atomically',{t
     scope:'docx',mode:'full_star',confirmOverride:true,
   });
   assert.equal(changed.statusCode,200,changed.body);
+  milestone('batch-applied');
   const after=await Promise.all(ids.map(async id=>{
     const doc=await req('GET',`/api/documents/${id}`),mode=await req('GET',`/api/documents/${id}/configuration`);
     assert.equal(doc.statusCode,200,doc.body);assert.equal(mode.statusCode,200,mode.body);
@@ -94,19 +96,31 @@ test('Word-scope batch export mode preserves both reviewed drafts atomically',{t
   assert.deepEqual(after.map(x=>x.marks[0].replacement),[{mode:'custom',value:'SYNTHETIC_ALIAS'},{mode:'custom',value:'SYNTHETIC_ALIAS'}]);
   assert.deepEqual(after.map(x=>x.marks[1].replacement?.mode),['full','full'],'policy-origin marks must change to full masking');
   assert.deepEqual(after.map(x=>x.tableName),['保留的逐材料表名',undefined]);
+  const originalText=unseal((await admin.query('SELECT content FROM documents WHERE id=$1',[ids[0]])).rows[0].content,`${tenant}:${project}:${ids[0]}`);
+  const firstValue=originalText.slice(reviewed[0].marks[0].start,reviewed[0].marks[0].end),firstStars='*'.repeat([...firstValue].length);
+  assert.ok(firstValue&&originalText.split(firstValue).length===2,'the first reviewed source value is unique in the synthetic Word document');
+  const fullPreview=await req('POST',`/api/documents/${ids[0]}/preview`,{revision:after[0].revision,marks:after[0].marks,offset:after[0].marks[0].start});
+  milestone('full-preview-response');
+  assert.equal(fullPreview.statusCode,200,fullPreview.body);
+  assert.ok(fullPreview.json().text.includes(firstStars),'processing preview shows original rr2 stars for the first reviewed source');
+  assert.ok(!fullPreview.json().text.includes(firstValue)&&!fullPreview.json().text.includes('SYNTHETIC_ALIAS'),'processing preview hides the first source and stored manual draft');
   const oldSigned=await app.inject({url:beforeLink.json().url});
   assert.equal(oldSigned.statusCode,200,oldSigned.body);
   assert.deepEqual(oldSigned.rawPayload,beforeBytes.rawPayload,'previously issued artifact keeps its original bytes');
   const afterExport=await req('POST',`/api/documents/${ids[0]}/export`,{revision:after[0].revision});
+  milestone('full-export-queued');
   assert.equal(afterExport.statusCode,200,afterExport.body);
   assert.equal(await tick(),true);
   const afterLink=await req('POST',`/api/documents/${ids[0]}/download-link`,{revision:after[0].revision});
   assert.equal(afterLink.statusCode,200,afterLink.body);
   const afterBytes=await app.inject({url:afterLink.json().url});
   assert.equal(afterBytes.statusCode,200,afterBytes.body);
-  const originalText=unseal((await admin.query('SELECT content FROM documents WHERE id=$1',[ids[0]])).rows[0].content,`${tenant}:${project}:${ids[0]}`),secondOriginal=originalText.slice(reviewed[0].marks[1].start,reviewed[0].marks[1].end);
+  const secondOriginal=originalText.slice(reviewed[0].marks[1].start,reviewed[0].marks[1].end);
   const beforeText=(await parseOffice(beforeBytes.rawPayload,'docx')).text,afterText=(await parseOffice(afterBytes.rawPayload,'docx')).text;
-  assert.ok(beforeText.includes('SYNTHETIC_ALIAS')&&afterText.includes('SYNTHETIC_ALIAS'));
+  assert.ok(beforeText.includes('SYNTHETIC_ALIAS'),'prior effective output retains the manual draft');
+  assert.ok(!afterText.includes('SYNTHETIC_ALIAS'),'full-star effective output must override the stored manual draft');
+  assert.ok(!afterText.includes(firstValue),'new full-star output removes the unique first source value');
+  assert.ok(afterText.includes(firstStars),'full-star output follows original rr2 Unicode code-point length');
   assert.ok(!afterText.includes(secondOriginal),'new full-star export must remove the second source value');
   assert.notEqual(afterText,beforeText,'actual downloaded output must change with the batch mode');
   const stale=await req('POST',`/api/projects/${project}/review-mode-batch/apply`,{documents:ids.map((id,index)=>({id,revision:reviewed[index].revision})),scope:'docx',mode:'default_star',confirmOverride:true});
