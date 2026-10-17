@@ -1,0 +1,118 @@
+{
+  "event": 202,
+  "at": "2026-10-17T13:02:33.021744+00:00",
+  "frozenHead": "f7a38989756fadbef3901f8692e6e485d3718095",
+  "sourceRoot": "/private/tmp/tmw070-unified-preview-v2",
+  "check": {
+    "exitCode": 0,
+    "testFiles": 167,
+    "tests": 913,
+    "skip": 0,
+    "bendLaws": 18,
+    "rejectedMutations": 21,
+    "typeAndBuild": true
+  },
+  "checkActualTerminal": "exit0;167/167 files and913/913 tests, no skips; Bend18 laws/21 rejected mutations; type and production build complete",
+  "drift": {
+    "sourceDrift": [],
+    "trackedDrift": [],
+    "fixtureDriftAfterRestore": [],
+    "modelDrift": [],
+    "astDrift": [],
+    "gitStatus": []
+  },
+  "boundInputs": {
+    "sources": 1026,
+    "tracked": 2112,
+    "fixtures": 481,
+    "modelAndLockFiles": 35,
+    "ASTStaticUniquePins": 8,
+    "ASTReadCalls": 42,
+    "dynamicCallsReviewed": 14
+  },
+  "api": {
+    "state": "ACTUALLY_STARTED_NOT_TERMINAL",
+    "plannedFiles": 159,
+    "completedAtSnapshot": 1,
+    "lastEvent": "ISOLATED_TEST_START",
+    "firstTest": "tests/integration.ts",
+    "liveLog": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/final-070-combined-gates-v1/full-api-controller.log",
+    "liveEvents": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/final-070-combined-gates-v1/full-api-run/events.jsonl",
+    "terminalExpected": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/final-070-combined-gates-v1/full-api-run/terminal-receipt.json"
+  },
+  "apiValidation": "Actual Node24 --validate exited0;159 files exact membership,1026 sources/2112 tracked,1043 tracked documents,481 fixture files and model/lock inputs present and hashes match. v5 uses explicit TAP and rejects missing/duplicate/skip/todo/cancel/fail summaries.",
+  "readOnlyBacklogAudit": "All13 confirmed_gap plus2 pending IDs individually reread against f7 source and actual receipts. Old069 multi-document recovery and057 EOF cleanup todo wording is stale; no additional public-code omission demonstrated in these15. Native OS actions, licensed original runtime and final f7 API remain separate gates. No grades promoted by this readback.",
+  "repository": "Private status verified; formal documentation201 is11a785a and private candidate branch codex/070-unified-preview-v2 is actual f7a3898 after push0. Formal product implementation has not been promoted.",
+  "remaining": [
+    "159-file API natural terminal with own database cleanup and source/asset/fixture guards",
+    "Promote verified product source, update documents and release package",
+    "Deploy only own Aliyun application and verify version/health/current browser flow, preserve other projects"
+  ],
+  "beforeDocuments": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/before-ledger202-v1/manifest.json",
+  "rawRules": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/rule-json-before-ledger202-v1.json",
+  "formalProductPromoted": false,
+  "deployed": false,
+  "competitorRuntime": "All258 R0 unchanged. Local check is not licensed competitor runtime or model-identity verification.",
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-final-070-check-green-api-start-v1/receipt.json",
+      "sha256": "d33147810bfc7b9a42dcdca3bb9895e8b24a287d9f6b9a8ca1e8e4ac06b84c29",
+      "bytes": 3554
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-final-070-check-green-api-start-v1/api-start-snapshot.jsonl",
+      "sha256": "6a79e5f2d9778d17f55e5a606ee5f5174a1eab523f1ec981fe12904042910aef",
+      "bytes": 10569
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-ledger15-readback-v1.json",
+      "sha256": "ece42e971779c640d9005c83aac9ab0b1de373b0db5cb896de47a04cf2d6d24b",
+      "bytes": 16804
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-ledger15-readback-v1.md",
+      "sha256": "0300d7f3dc6bc73e32918be0292b0ab4d3be09fe67c2c92b15c7f052f6b992ac",
+      "bytes": 3063
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/final-070-combined-gates-v1/attempt-20261017T125501Z/terminal-receipt.json",
+      "sha256": "df12f9dc37cbcb1278840c5cf94200c8bac2caf252c861caaae8bab8bf3d5498",
+      "bytes": 1390
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/final-070-combined-gates-v1/attempt-20261017T125501Z/check.log",
+      "sha256": "1d8751f31c07ea208157dddb8c656552e25f0bfaad07854f1aeeb64238c08d30",
+      "bytes": 1927
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/final-070-combined-gates-v1/preflight-inputs.json",
+      "sha256": "1e424b8de975233df0ed13fe5ff6ee238e1b9693aa1ec0ce969ff24ae2d2a08f",
+      "bytes": 681202
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/final-070-combined-gates-v1/source-inputs.json",
+      "sha256": "0d66ae6e78f71995cc0def0fae58b765e7cba024de077082780ff0d7ccd72289",
+      "bytes": 173464
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/final-070-combined-gates-v1/api-config.json",
+      "sha256": "92c2cf176ac2a32810aad3cac5e9471e9c385936e74d95defc4932565d27595e",
+      "bytes": 1795
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/final-070-combined-gates-v1/api-explicit-reads.json",
+      "sha256": "2476a15581c064f9d3f2c447d461e05b680fc343347ab4e3137b703178017369",
+      "bytes": 11131
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/final-070-combined-gates-v1/api-validate.log",
+      "sha256": "9afa218ac48e90255dfd00f6ee0798c21c88a84ff53d80734fd75bf2302caf80",
+      "bytes": 7575
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/full-api-controller-v5.mjs",
+      "sha256": "bf4606bb9f4cdd6846874a17929bc295f7f4d80193e61f40947fa5d3d4d89175",
+      "bytes": 14633
+    }
+  ]
+}
