@@ -211,6 +211,8 @@ export function EntityGroups({ doc, marks, update, locate, run, api, refresh, di
         result=await api(`/documents/${doc.id}/pseudonym-draft/edit`,'POST',{...body,confirmDuplicate:true});}
       if(draft.current.id!==doc.id)return;
       setActiveDraft({revision:result.revision,sourceHash:snapshot.sourceHash,draftHash:result.draftHash,draft:result.draft});
+      setDraftValues(Object.fromEntries(result.draft.entries.map(value=>[value.key,value.currentValue])));
+      setDraftActions(Object.fromEntries(result.draft.entries.map(value=>[value.key,value.action??'pseudonym'])));
       setDraftLocks(Object.fromEntries(result.draft.entries.map(value=>[value.key,value.locked])));
       await refresh();
     });
@@ -220,6 +222,8 @@ export function EntityGroups({ doc, marks, update, locate, run, api, refresh, di
     const result=await api<{revision:number;draftHash:string;draft:ActivePseudonymDraft}>(`/documents/${doc.id}/pseudonym-draft/reset`,'POST',{revision:snapshot.revision,sourceHash:snapshot.sourceHash,draftHash:snapshot.draftHash,style:selective?'selective':'custom'});
     if(draft.current.id!==doc.id)return;
     setActiveDraft({revision:result.revision,sourceHash:snapshot.sourceHash,draftHash:result.draftHash,draft:result.draft});
+    setDraftValues(Object.fromEntries(result.draft.entries.map(value=>[value.key,value.currentValue])));
+    setDraftActions(Object.fromEntries(result.draft.entries.map(value=>[value.key,value.action??'pseudonym'])));
     setDraftLocks(Object.fromEntries(result.draft.entries.map(value=>[value.key,value.locked])));
     await refresh();
   });}
