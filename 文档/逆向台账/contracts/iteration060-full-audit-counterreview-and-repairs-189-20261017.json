@@ -1,0 +1,155 @@
+{
+  "iteration": 60,
+  "event": 189,
+  "at": "2026-10-17T10:20:51.907319+00:00",
+  "scope": "258项逐原函数静态审计及三方互相对抗审查，非竞品运行等价",
+  "designConstraint": "可复用原代码直接使用，沿用原控件、字段、规则和流程，仅必要Web适配",
+  "coverage": {
+    "scope": "original static contract to current source; not competitor runtime",
+    "reportCounts": [
+      71,
+      121,
+      66
+    ],
+    "uniqueIds": 258,
+    "missing": [],
+    "duplicate": [],
+    "reports": [
+      {
+        "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/arch-audit-final-v2.json",
+        "sha256": "bd3bd1d92159ad15af09ff159154394959834d50052847d8ab30d96f01eec02e",
+        "bytes": 383545
+      },
+      {
+        "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/pipeline-audit-final-v2.json",
+        "sha256": "e5ad923b67f3c5259d33964a5d8025832c900b8f67d652611e7a9d03d9a808d9",
+        "bytes": 2179551
+      },
+      {
+        "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-audit-final.json",
+        "sha256": "836780a5ea8bff5d295451897c35e03bd17582a1944de96f03c8e78e54c336fc",
+        "bytes": 124444
+      }
+    ]
+  },
+  "reopenedImplementationIds": {
+    "IPC-91a4aa41d44c": "原stage/outcome/code/details及任务绑定诊断未完整进入现诊断记录，待按原allowlist补齐。",
+    "IPC-412cb770febe": "原统计三状态、perDocument与appliedExportMode合同不完整；补齐时保留服务器真实统计和审定权威。",
+    "IPC-eceef0e6cff3": "未绑定来源的waiting_for_user_file_selection重新授权分支缺失；不得只清父授权而遗留授权子任务。",
+    "IPC-3b4c9f7c2b97": "set-review-intent缺原artifact与waiting_for_task_selection守卫，并缺原五字段输入兼容。"
+  },
+  "reopened": "I4 to I1; historical success preserved",
+  "candidate060": {
+    "commit": "12e09d219acc4f9ee92dfb9ab642fca2ea4561b0",
+    "branch": "candidate/original-alignment-060",
+    "privateRepository": true,
+    "manifestSha256": "4288a73f61907e54c4593d485d07a0d75f66f0113528773eceabef5c04045d1c",
+    "files": 1009
+  },
+  "requiredCheck": {
+    "sourceManifestSha256": "ccbb57da1d36bc9c7ff0fbfade127d86534f0f805e9ba845eba6ce630a75b28e",
+    "exitCode": 0,
+    "testFiles": 166,
+    "tests": 906,
+    "BendLaws": 18,
+    "mutationsRejected": 21,
+    "typeAndBuild": 0,
+    "v4Scope": "five E2E/config files only; 1004 unchanged execution files bound to v2; separate v4 tsc exit0, not full check rerun"
+  },
+  "targetedActual": {
+    "previewUnit": 6,
+    "dictionaryApi": 3,
+    "crossFormatApi": "one case CSV MD DOCX XLSX PNG PDF true artifacts all pass"
+  },
+  "browser": "full109 still running, latest101/109; four known failures retained. Preview fix and three test timing windows await five-case actual Edge replay",
+  "api155": "still running, no all-pass claim",
+  "next": "061 minimal four protocol repairs; two UI cross-format parent coordination items under analysis",
+  "formalProductPromoted": false,
+  "deployed": false,
+  "modelChanged": false,
+  "competitorRuntime": "R0=258; no license bypass/private vendor calls",
+  "beforeDocuments": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/before-ledger189-v1/manifest.json",
+  "rawRuleJsonBefore": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/rule-json-before-ledger189-v1.json",
+  "evidence": [
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/arch-audit-final-v2.json",
+      "sha256": "bd3bd1d92159ad15af09ff159154394959834d50052847d8ab30d96f01eec02e",
+      "bytes": 383545
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/pipeline-audit-final-v2.json",
+      "sha256": "e5ad923b67f3c5259d33964a5d8025832c900b8f67d652611e7a9d03d9a808d9",
+      "bytes": 2179551
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-audit-final.json",
+      "sha256": "836780a5ea8bff5d295451897c35e03bd17582a1944de96f03c8e78e54c336fc",
+      "bytes": 124444
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/pipeline-peer-arch-final-v1.json",
+      "sha256": "e6c270799ddc1fba59d4f7692b0ae63b5a2cf5e7133abc7d33d1454da7f91207",
+      "bytes": 6639
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-peer-pipeline-final-v1.json",
+      "sha256": "002ba355f4b2c1434a8f17d3f8a31e3888071c8cbb4615c07c9a3d4145230f76",
+      "bytes": 8842
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/arch-peer-protocol-final-v1.json",
+      "sha256": "0086397a1bcb1a28c8f3665873502d08fc3870a4e3ba5d4ef47ef96201404280",
+      "bytes": 12361
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-next-candidate-plan-v1.json",
+      "sha256": "267250bad40e0329fa76ad5f5405dfad8c43fd7e0e5803dd3cb118920ea4d573",
+      "bytes": 17610
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-final-audit-coverage-v1.json",
+      "sha256": "19901f6479f0d50031450701fbddbb4228d1105b3e8568c09d50ac59018b0444",
+      "bytes": 895
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-required-check-v2/terminal-receipt.json",
+      "sha256": "e8fc1d3c7b00c5465c18788ade79a819f151fb8ff7bdb7ac25fadae3bc028c96",
+      "bytes": 1301
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-v2-v4-execution-scope-binding.json",
+      "sha256": "36ad9fa2b43d9d5dee4a341c99c786dd4844168a2119def5d0a6013efa6f5d2c",
+      "bytes": 1170
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-candidate-git-source-binding-v4.json",
+      "sha256": "8da16ac081d289da79c5809147eb962fe3cd7aa90e44c87044e19e8112a03984",
+      "bytes": 255
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-combined-inputs-v4.json",
+      "sha256": "4288a73f61907e54c4593d485d07a0d75f66f0113528773eceabef5c04045d1c",
+      "bytes": 172261
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-dictionary-getter-followup-v1/red-green-api-receipt.json",
+      "sha256": "47ff212f1f665448817eaf983e94b8b01545dbac559ccfea7cd1b11d1ac09764",
+      "bytes": 940
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-baseline-terminal-poll-v1/fixed-api-v1-receipt.json",
+      "sha256": "fc07c5997b3df1be327c035c2ddf1037766ca9ab5edd406dd1a4da9c7d916519",
+      "bytes": 4935
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-edge-deadline-findings-v1/findings.json",
+      "sha256": "fb688ab972ad3f2b76f9d4df309d8341c5675ded27b89a137a254d018138ebae",
+      "bytes": 3292
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/edge-repair-plan-v4.json",
+      "sha256": "165f8364cb27cb5399fa84a2c8752f0b842eba0c59954747649ca3c279a5c050",
+      "bytes": 5682
+    }
+  ]
+}

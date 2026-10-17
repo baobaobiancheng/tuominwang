@@ -4249,8 +4249,8 @@
         "FLOW-ai-collab"
       ],
       "flow_mapping": "已追踪局部关系",
-      "implementation_status": "I4",
-      "implementation_note": "ai-collab:diagnostic-event 已在隔离云端适配中逐方法实际调用成功；fixed category diagnostic event persisted。保留现 I4，不声称 Electron 本地管道/私有协议或竞品许可运行等价。",
+      "implementation_status": "I1",
+      "implementation_note": "ITER-060对抗审查重新打开：原stage/outcome/code/details及任务绑定诊断未完整进入现诊断记录，待按原allowlist补齐。 历史确切方法成功仍保留，但不足以证明原字段及状态合同完整。",
       "implementation_evidence": [
         {
           "path": "文档/逆向台账/contracts/current-interface-handoff-20261014.json",
@@ -4267,10 +4267,16 @@
         {
           "path": ".data/research/lawbot-2026-10-16/iteration056/root/formal-v13-before-v17-v1/tests/mcp-complete-matrix.integration.ts",
           "note": "ITER-039 逐ID实现说明更正证据；不改变 I 状态/R0"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/arch-peer-protocol-final-v1.json",
+          "note": "ITER-060原函数反查字段/状态差异；非竞品运行。"
         }
       ],
       "next_actions": [
-        "源运行仍为R0：需合法授权后按此ID补实际运行，不能由我方测试替代。"
+        "原stage/outcome/code/details及任务绑定诊断未完整进入现诊断记录，待按原allowlist补齐。",
+        "061独立候选先保留隔离反例RED，再按原逻辑补齐并跑GREEN和工程门禁。",
+        "竞品许可运行仍R0。"
       ],
       "contract_ref": {
         "path": "文档/逆向台账/contracts/ipc-contract-index.json",
@@ -4709,7 +4715,15 @@
           "consumer": "Expanded local service graph: .data/research/lawbot-2026-10-13/readable/main.js#qw.recordRendererDiagnostic."
         },
         "runtime": "R0"
-      }
+      },
+      "implementation_status_history": [
+        {
+          "event": 189,
+          "previous": "I4",
+          "current": "I1",
+          "reason": "原stage/outcome/code/details及任务绑定诊断未完整进入现诊断记录，待按原allowlist补齐。"
+        }
+      ]
     },
     {
       "id": "IPC-3218ff56854c",
@@ -9958,8 +9972,8 @@
         "FLOW-ai-collab"
       ],
       "flow_mapping": "已追踪局部关系",
-      "implementation_status": "I4",
-      "implementation_note": "ai-collab:report-statistics 已在隔离云端适配中逐方法实际调用成功；integer statistic persisted。保留现 I4，不声称 Electron 本地管道/私有协议或竞品许可运行等价。",
+      "implementation_status": "I1",
+      "implementation_note": "ITER-060对抗审查重新打开：原统计三状态、perDocument与appliedExportMode合同不完整；补齐时保留服务器真实统计和审定权威。 历史确切方法成功仍保留，但不足以证明原字段及状态合同完整。",
       "implementation_evidence": [
         {
           "path": "文档/逆向台账/contracts/current-interface-handoff-20261014.json",
@@ -9976,10 +9990,16 @@
         {
           "path": ".data/research/lawbot-2026-10-16/iteration056/root/formal-v13-before-v17-v1/tests/mcp-complete-matrix.integration.ts",
           "note": "ITER-039 逐ID实现说明更正证据；不改变 I 状态/R0"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/arch-peer-protocol-final-v1.json",
+          "note": "ITER-060原函数反查字段/状态差异；非竞品运行。"
         }
       ],
       "next_actions": [
-        "源运行仍为R0：需合法授权后按此ID补实际运行，不能由我方测试替代。"
+        "原统计三状态、perDocument与appliedExportMode合同不完整；补齐时保留服务器真实统计和审定权威。",
+        "061独立候选先保留隔离反例RED，再按原逻辑补齐并跑GREEN和工程门禁。",
+        "竞品许可运行仍R0。"
       ],
       "contract_ref": {
         "path": "文档/逆向台账/contracts/ipc-contract-index.json",
@@ -10418,7 +10438,15 @@
           "consumer": "Expanded local service graph: .data/research/lawbot-2026-10-13/readable/main.js#qw.recordStatisticsFromRenderer."
         },
         "runtime": "R0"
-      }
+      },
+      "implementation_status_history": [
+        {
+          "event": 189,
+          "previous": "I4",
+          "current": "I1",
+          "reason": "原统计三状态、perDocument与appliedExportMode合同不完整；补齐时保留服务器真实统计和审定权威。"
+        }
+      ]
     },
     {
       "id": "IPC-fe44165e30fd",
@@ -13784,8 +13812,8 @@
         "FLOW-ai-collab"
       ],
       "flow_mapping": "本发布包无前端调用，局部服务关系已核",
-      "implementation_status": "I4",
-      "implementation_note": "ai-collab:retry-authorization 已在隔离云端适配中逐方法实际调用成功；failed task returns to fresh authorization。保留现 I4，不声称 Electron 本地管道/私有协议或竞品许可运行等价。",
+      "implementation_status": "I1",
+      "implementation_note": "ITER-060对抗审查重新打开：未绑定来源的waiting_for_user_file_selection重新授权分支缺失；不得只清父授权而遗留授权子任务。 历史确切方法成功仍保留，但不足以证明原字段及状态合同完整。",
       "implementation_evidence": [
         {
           "path": "文档/逆向台账/contracts/current-interface-handoff-20261014.json",
@@ -13802,10 +13830,16 @@
         {
           "path": ".data/research/lawbot-2026-10-16/iteration056/root/formal-v13-before-v17-v1/tests/mcp-complete-matrix.integration.ts",
           "note": "ITER-039 逐ID实现说明更正证据；不改变 I 状态/R0"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/arch-peer-protocol-final-v1.json",
+          "note": "ITER-060原函数反查字段/状态差异；非竞品运行。"
         }
       ],
       "next_actions": [
-        "源运行仍为R0：需合法授权后按此ID补实际运行，不能由我方测试替代。"
+        "未绑定来源的waiting_for_user_file_selection重新授权分支缺失；不得只清父授权而遗留授权子任务。",
+        "061独立候选先保留隔离反例RED，再按原逻辑补齐并跑GREEN和工程门禁。",
+        "竞品许可运行仍R0。"
       ],
       "contract_ref": {
         "path": "文档/逆向台账/contracts/ipc-contract-index.json",
@@ -14256,7 +14290,15 @@
           "consumer": "Expanded local service graph: .data/research/lawbot-2026-10-13/readable/main.js#qw.rollbackAuthorizationAfterImportFailure."
         },
         "runtime": "R0"
-      }
+      },
+      "implementation_status_history": [
+        {
+          "event": 189,
+          "previous": "I4",
+          "current": "I1",
+          "reason": "未绑定来源的waiting_for_user_file_selection重新授权分支缺失；不得只清父授权而遗留授权子任务。"
+        }
+      ]
     },
     {
       "id": "IPC-6c981281c999",
@@ -15706,8 +15748,8 @@
         "FLOW-ai-collab"
       ],
       "flow_mapping": "本发布包无前端调用，局部服务关系已核",
-      "implementation_status": "I4",
-      "implementation_note": "ai-collab:set-review-intent 已在隔离云端适配中逐方法实际调用成功；structured review intent persists。保留现 I4，不声称 Electron 本地管道/私有协议或竞品许可运行等价。",
+      "implementation_status": "I1",
+      "implementation_note": "ITER-060对抗审查重新打开：set-review-intent缺原artifact与waiting_for_task_selection守卫，并缺原五字段输入兼容。 历史确切方法成功仍保留，但不足以证明原字段及状态合同完整。",
       "implementation_evidence": [
         {
           "path": "文档/逆向台账/contracts/current-interface-handoff-20261014.json",
@@ -15724,10 +15766,16 @@
         {
           "path": ".data/research/lawbot-2026-10-16/iteration056/root/formal-v13-before-v17-v1/tests/mcp-complete-matrix.integration.ts",
           "note": "ITER-039 逐ID实现说明更正证据；不改变 I 状态/R0"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/arch-peer-protocol-final-v1.json",
+          "note": "ITER-060原函数反查字段/状态差异；非竞品运行。"
         }
       ],
       "next_actions": [
-        "源运行仍为R0：需合法授权后按此ID补实际运行，不能由我方测试替代。"
+        "set-review-intent缺原artifact与waiting_for_task_selection守卫，并缺原五字段输入兼容。",
+        "061独立候选先保留隔离反例RED，再按原逻辑补齐并跑GREEN和工程门禁。",
+        "竞品许可运行仍R0。"
       ],
       "contract_ref": {
         "path": "文档/逆向台账/contracts/ipc-contract-index.json",
@@ -16184,7 +16232,15 @@
           "consumer": "Expanded local service graph: .data/research/lawbot-2026-10-13/readable/main.js#qw.setReviewIntentFromRenderer."
         },
         "runtime": "R0"
-      }
+      },
+      "implementation_status_history": [
+        {
+          "event": 189,
+          "previous": "I4",
+          "current": "I1",
+          "reason": "set-review-intent缺原artifact与waiting_for_task_selection守卫，并缺原五字段输入兼容。"
+        }
+      ]
     },
     {
       "id": "IPC-a3eee81b75d4",
@@ -138755,6 +138811,215 @@
           }
         }
       ]
+    },
+    {
+      "id": "ITER-060-FULL-AUDIT-COUNTERREVIEW-AND-REPAIRS-189",
+      "date": "2026-10-17",
+      "action": "归档258项逐原码审计与互相反查，重开4处MCP合同差异",
+      "summary": "060工程166/906、Bend18/21及定向API通过；完整155/109仍运行，5案浏览器修后复验待执行；正式源码未提升。",
+      "verification": "9文档归档、10规则JSON保持；三修订主报告258唯一ID；四真实差异I4回I1，R0不变。",
+      "affected_ids": [
+        "IPC-91a4aa41d44c",
+        "IPC-412cb770febe",
+        "IPC-eceef0e6cff3",
+        "IPC-3b4c9f7c2b97"
+      ],
+      "evidence": [
+        {
+          "path": "文档/逆向台账/contracts/iteration060-full-audit-counterreview-and-repairs-189-20261017.json"
+        }
+      ],
+      "new_evidence_baseline": {
+        "path": "文档/逆向台账/contracts/iteration060-full-audit-counterreview-and-repairs-189-20261017.json",
+        "current": {
+          "sha256": "4d5382311f1e62b0544bbc563c067f5674a0337e06f8cf085d898760f804251a",
+          "bytes": 7291
+        }
+      },
+      "document_hash_transitions": [
+        {
+          "path": "文档/待办与完成状态-20261015.md",
+          "previous": {
+            "sha256": "f4562eb5c760aa1989682dc0c60553dc38e1b23a6fd90284aef4bbf9425b07a7",
+            "bytes": 126510
+          },
+          "current": {
+            "sha256": "44cba3dca27da46c71c2cc065313c400e4efb08d9675c8af5d2c3cf83252dbb4",
+            "bytes": 127735
+          }
+        },
+        {
+          "path": "文档/脱敏规则完整技术交接-迭代023.md",
+          "previous": {
+            "sha256": "1da975bd180a651c5440c1c4864813557d2d476ad4fc2dfcbea4a0249c32d38c",
+            "bytes": 424831
+          },
+          "current": {
+            "sha256": "5ece0d113f022e718d2f5439b2b27a69bf361dec7b5a89a065065d0892facb8f",
+            "bytes": 425368
+          }
+        }
+      ],
+      "evidence_snapshot_updates": [
+        {
+          "path": "文档/待办与完成状态-20261015.md",
+          "previous": {
+            "sha256": "f4562eb5c760aa1989682dc0c60553dc38e1b23a6fd90284aef4bbf9425b07a7",
+            "bytes": 126510
+          },
+          "current": {
+            "sha256": "44cba3dca27da46c71c2cc065313c400e4efb08d9675c8af5d2c3cf83252dbb4",
+            "bytes": 127735
+          }
+        },
+        {
+          "path": "文档/脱敏规则完整技术交接-迭代023.md",
+          "previous": {
+            "sha256": "1da975bd180a651c5440c1c4864813557d2d476ad4fc2dfcbea4a0249c32d38c",
+            "bytes": 424831
+          },
+          "current": {
+            "sha256": "5ece0d113f022e718d2f5439b2b27a69bf361dec7b5a89a065065d0892facb8f",
+            "bytes": 425368
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/iteration060-full-audit-counterreview-and-repairs-189-20261017.json",
+          "previous": null,
+          "current": {
+            "sha256": "4d5382311f1e62b0544bbc563c067f5674a0337e06f8cf085d898760f804251a",
+            "bytes": 7291
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/arch-audit-final-v2.json",
+          "previous": null,
+          "current": {
+            "sha256": "bd3bd1d92159ad15af09ff159154394959834d50052847d8ab30d96f01eec02e",
+            "bytes": 383545
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/pipeline-audit-final-v2.json",
+          "previous": null,
+          "current": {
+            "sha256": "e5ad923b67f3c5259d33964a5d8025832c900b8f67d652611e7a9d03d9a808d9",
+            "bytes": 2179551
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-audit-final.json",
+          "previous": null,
+          "current": {
+            "sha256": "836780a5ea8bff5d295451897c35e03bd17582a1944de96f03c8e78e54c336fc",
+            "bytes": 124444
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/pipeline-peer-arch-final-v1.json",
+          "previous": null,
+          "current": {
+            "sha256": "e6c270799ddc1fba59d4f7692b0ae63b5a2cf5e7133abc7d33d1454da7f91207",
+            "bytes": 6639
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-peer-pipeline-final-v1.json",
+          "previous": null,
+          "current": {
+            "sha256": "002ba355f4b2c1434a8f17d3f8a31e3888071c8cbb4615c07c9a3d4145230f76",
+            "bytes": 8842
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/arch-peer-protocol-final-v1.json",
+          "previous": null,
+          "current": {
+            "sha256": "0086397a1bcb1a28c8f3665873502d08fc3870a4e3ba5d4ef47ef96201404280",
+            "bytes": 12361
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-next-candidate-plan-v1.json",
+          "previous": null,
+          "current": {
+            "sha256": "267250bad40e0329fa76ad5f5405dfad8c43fd7e0e5803dd3cb118920ea4d573",
+            "bytes": 17610
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-final-audit-coverage-v1.json",
+          "previous": null,
+          "current": {
+            "sha256": "19901f6479f0d50031450701fbddbb4228d1105b3e8568c09d50ac59018b0444",
+            "bytes": 895
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-required-check-v2/terminal-receipt.json",
+          "previous": null,
+          "current": {
+            "sha256": "e8fc1d3c7b00c5465c18788ade79a819f151fb8ff7bdb7ac25fadae3bc028c96",
+            "bytes": 1301
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-v2-v4-execution-scope-binding.json",
+          "previous": null,
+          "current": {
+            "sha256": "36ad9fa2b43d9d5dee4a341c99c786dd4844168a2119def5d0a6013efa6f5d2c",
+            "bytes": 1170
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-candidate-git-source-binding-v4.json",
+          "previous": null,
+          "current": {
+            "sha256": "8da16ac081d289da79c5809147eb962fe3cd7aa90e44c87044e19e8112a03984",
+            "bytes": 255
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-combined-inputs-v4.json",
+          "previous": null,
+          "current": {
+            "sha256": "4288a73f61907e54c4593d485d07a0d75f66f0113528773eceabef5c04045d1c",
+            "bytes": 172261
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-dictionary-getter-followup-v1/red-green-api-receipt.json",
+          "previous": null,
+          "current": {
+            "sha256": "47ff212f1f665448817eaf983e94b8b01545dbac559ccfea7cd1b11d1ac09764",
+            "bytes": 940
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-baseline-terminal-poll-v1/fixed-api-v1-receipt.json",
+          "previous": null,
+          "current": {
+            "sha256": "fc07c5997b3df1be327c035c2ddf1037766ca9ab5edd406dd1a4da9c7d916519",
+            "bytes": 4935
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-edge-deadline-findings-v1/findings.json",
+          "previous": null,
+          "current": {
+            "sha256": "fb688ab972ad3f2b76f9d4df309d8341c5675ded27b89a137a254d018138ebae",
+            "bytes": 3292
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/edge-repair-plan-v4.json",
+          "previous": null,
+          "current": {
+            "sha256": "165f8364cb27cb5399fa84a2c8752f0b842eba0c59954747649ca3c279a5c050",
+            "bytes": 5682
+          }
+        }
+      ]
     }
   ],
   "evidence_snapshot": {
@@ -141170,8 +141435,8 @@
         "bytes": 423
       },
       "文档/脱敏规则完整技术交接-迭代023.md": {
-        "sha256": "1da975bd180a651c5440c1c4864813557d2d476ad4fc2dfcbea4a0249c32d38c",
-        "bytes": 424831
+        "sha256": "5ece0d113f022e718d2f5439b2b27a69bf361dec7b5a89a065065d0892facb8f",
+        "bytes": 425368
       },
       "文档/逆向台账/contracts/build-complete-rule-handoff-20261014.py": {
         "sha256": "c5d6db581eb6019ba761fe2adb9ba66b41c4a611162c32e54729baf3fa9810e6",
@@ -144746,8 +145011,8 @@
         "bytes": 4676926
       },
       "文档/待办与完成状态-20261015.md": {
-        "sha256": "f4562eb5c760aa1989682dc0c60553dc38e1b23a6fd90284aef4bbf9425b07a7",
-        "bytes": 126510
+        "sha256": "44cba3dca27da46c71c2cc065313c400e4efb08d9675c8af5d2c3cf83252dbb4",
+        "bytes": 127735
       },
       ".data/research/lawbot-2026-10-15/iteration036/checkpoint-history/current/apps/api/main.ts": {
         "sha256": "4c36dad476012af090cb8649de2b991235d41e4c5d946a4a411404680935b011",
@@ -163736,6 +164001,74 @@
       ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/gates-ledger188-v1.json": {
         "sha256": "f1704487cc7f5a965ca0e020a57b1e2af362400b2f7a927292acb59d495ec4bd",
         "bytes": 908
+      },
+      "文档/逆向台账/contracts/iteration060-full-audit-counterreview-and-repairs-189-20261017.json": {
+        "sha256": "4d5382311f1e62b0544bbc563c067f5674a0337e06f8cf085d898760f804251a",
+        "bytes": 7291
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/arch-audit-final-v2.json": {
+        "sha256": "bd3bd1d92159ad15af09ff159154394959834d50052847d8ab30d96f01eec02e",
+        "bytes": 383545
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/pipeline-audit-final-v2.json": {
+        "sha256": "e5ad923b67f3c5259d33964a5d8025832c900b8f67d652611e7a9d03d9a808d9",
+        "bytes": 2179551
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-audit-final.json": {
+        "sha256": "836780a5ea8bff5d295451897c35e03bd17582a1944de96f03c8e78e54c336fc",
+        "bytes": 124444
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/pipeline-peer-arch-final-v1.json": {
+        "sha256": "e6c270799ddc1fba59d4f7692b0ae63b5a2cf5e7133abc7d33d1454da7f91207",
+        "bytes": 6639
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-peer-pipeline-final-v1.json": {
+        "sha256": "002ba355f4b2c1434a8f17d3f8a31e3888071c8cbb4615c07c9a3d4145230f76",
+        "bytes": 8842
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/arch-peer-protocol-final-v1.json": {
+        "sha256": "0086397a1bcb1a28c8f3665873502d08fc3870a4e3ba5d4ef47ef96201404280",
+        "bytes": 12361
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/protocol-next-candidate-plan-v1.json": {
+        "sha256": "267250bad40e0329fa76ad5f5405dfad8c43fd7e0e5803dd3cb118920ea4d573",
+        "bytes": 17610
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-final-audit-coverage-v1.json": {
+        "sha256": "19901f6479f0d50031450701fbddbb4228d1105b3e8568c09d50ac59018b0444",
+        "bytes": 895
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-required-check-v2/terminal-receipt.json": {
+        "sha256": "e8fc1d3c7b00c5465c18788ade79a819f151fb8ff7bdb7ac25fadae3bc028c96",
+        "bytes": 1301
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-v2-v4-execution-scope-binding.json": {
+        "sha256": "36ad9fa2b43d9d5dee4a341c99c786dd4844168a2119def5d0a6013efa6f5d2c",
+        "bytes": 1170
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-candidate-git-source-binding-v4.json": {
+        "sha256": "8da16ac081d289da79c5809147eb962fe3cd7aa90e44c87044e19e8112a03984",
+        "bytes": 255
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-combined-inputs-v4.json": {
+        "sha256": "4288a73f61907e54c4593d485d07a0d75f66f0113528773eceabef5c04045d1c",
+        "bytes": 172261
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-dictionary-getter-followup-v1/red-green-api-receipt.json": {
+        "sha256": "47ff212f1f665448817eaf983e94b8b01545dbac559ccfea7cd1b11d1ac09764",
+        "bytes": 940
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-baseline-terminal-poll-v1/fixed-api-v1-receipt.json": {
+        "sha256": "fc07c5997b3df1be327c035c2ddf1037766ca9ab5edd406dd1a4da9c7d916519",
+        "bytes": 4935
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/root-edge-deadline-findings-v1/findings.json": {
+        "sha256": "fb688ab972ad3f2b76f9d4df309d8341c5675ded27b89a137a254d018138ebae",
+        "bytes": 3292
+      },
+      ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/edge-repair-plan-v4.json": {
+        "sha256": "165f8364cb27cb5399fa84a2c8752f0b842eba0c59954747649ca3c279a5c050",
+        "bytes": 5682
       }
     },
     "unavailable_historical_screenshots": [
