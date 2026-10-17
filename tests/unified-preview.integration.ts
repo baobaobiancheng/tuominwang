@@ -47,7 +47,7 @@ test('unified preview rebuilds ready children and projects the active local draf
   const active = (await req('GET',`/api/documents/${first.id}`)).json();
   const sibling = (await req('GET',`/api/documents/${second.id}`)).json();
   const before = (await admin.query('SELECT id,revision,marks,content_hash,source_hash FROM documents WHERE project_id=$1 ORDER BY id',[project])).rows;
-  const localMarks = active.marks.map((mark:any)=>({ ...mark, decision:'redact',
+  const localMarks = active.marks.map((mark:any)=>({ ...mark, decision:'redact', replacementOrigin:'value',
     replacement:mark.replacement?.mode==='alias'?{...mark.replacement,token:'【旧本地值】'}:mark.replacement }));
   const prepared = await req('POST',`/api/projects/${project}/unified-aliases/prepare-preview`,{
     revision:frame.revision,documents:frame.documents,active:{id:active.id,revision:active.revision,contentHash:active.contentHash,
