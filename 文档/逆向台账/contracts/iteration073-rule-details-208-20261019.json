@@ -1,11 +1,11 @@
 {
   "event": 208,
   "date": "2026-10-19",
-  "scope": "逐条规则、合成原文到遮盖结果、流程图及对抗审核",
+  "scope": "律师版业务规则、合成示例与11张PNG流程图；机器匹配细目和内部配置另存技术附件",
   "document": {
     "path": "文档/脱敏规则细则.md",
-    "sha256": "35a01b6f1559cc3206e77c7940dd983e7b5c25a00d02f71e2377849d724212c2",
-    "bytes": 398148
+    "sha256": "7e751ccfff927f17e517d555c81b533d6dd1db17b69760bec699f5606aa873d2",
+    "bytes": 275257
   },
   "counts": {
     "typeExamples": 26,
@@ -2097,8 +2097,8 @@
   "evidence": [
     {
       "path": "文档/脱敏规则细则.md",
-      "sha256": "35a01b6f1559cc3206e77c7940dd983e7b5c25a00d02f71e2377849d724212c2",
-      "bytes": 398148
+      "sha256": "7e751ccfff927f17e517d555c81b533d6dd1db17b69760bec699f5606aa873d2",
+      "bytes": 275257
     },
     {
       "path": "文档/脱敏规则给律师看的说明-20261019.md",
@@ -2137,8 +2137,8 @@
     },
     {
       "path": ".data/research/lawbot-2026-10-19/iteration073/rule-detail-completeness-receipt.json",
-      "sha256": "50ed5e4a728f9b4d4233d6b434ecd4f2f093a2802762bdf1ea15a2d071db3bbb",
-      "bytes": 1848
+      "sha256": "8b61eafdd48a293594d2418ce072ada264b071b2131205af8730958cb0b00b39",
+      "bytes": 4722
     },
     {
       "path": ".data/research/lawbot-2026-10-19/iteration073/rule-golden-test.log",
@@ -2174,6 +2174,16 @@
       "path": ".data/research/lawbot-2026-10-19/iteration073/rules-adversarial-v5.md",
       "sha256": "380399f2a3f362e84a6a4fa024f348aadf0e622e6c669fbb1459a919f1636873",
       "bytes": 3258
+    },
+    {
+      "path": "文档/技术附件/脱敏规则配置核验-20261019.md",
+      "sha256": "d0e2b31d7af79e483cbeb42e0975223a39de26321f3fcc43fb49da0e2a909d1f",
+      "bytes": 246407
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-19/iteration073/before-lawyer-code-removal/脱敏规则细则-v1.md",
+      "sha256": "35a01b6f1559cc3206e77c7940dd983e7b5c25a00d02f71e2377849d724212c2",
+      "bytes": 398148
     }
   ],
   "online": {
@@ -2186,5 +2196,78 @@
     "registeredEntries": 258,
     "runtimeR0": 258
   },
-  "claimBoundary": "合成样例输出和规则静态资料已核对；竞品授权处理链、真实语料准确率及每件材料导出分别验收"
+  "claimBoundary": "合成样例输出和规则静态资料已核对；竞品授权处理链、真实语料准确率及每件材料导出分别验收",
+  "technicalAppendix": {
+    "path": "文档/技术附件/脱敏规则配置核验-20261019.md",
+    "sha256": "d0e2b31d7af79e483cbeb42e0975223a39de26321f3fcc43fb49da0e2a909d1f",
+    "bytes": 246407
+  },
+  "beforeDocumentSnapshot": {
+    "path": ".data/research/lawbot-2026-10-19/iteration073/before-lawyer-code-removal/脱敏规则细则-v1.md",
+    "sha256": "35a01b6f1559cc3206e77c7940dd983e7b5c25a00d02f71e2377849d724212c2",
+    "bytes": 398148
+  },
+  "processFigures": [
+    {
+      "path": "文档/脱敏规则图/01-新建材料与识别.png",
+      "sha256": "3d51a4829690d7f7b5166f7bf1cbe1b9f1f2226b6f3208e14ab2bf61efe12bfd",
+      "bytes": 66909
+    },
+    {
+      "path": "文档/脱敏规则图/02-文字与表格.png",
+      "sha256": "11a17ca3035a0282b048645c9ee3df3f5dd79cc828ab410076eb59834178514a",
+      "bytes": 77490
+    },
+    {
+      "path": "文档/脱敏规则图/03-PDF扫描与图片.png",
+      "sha256": "f39d77533f2481ebc2a0dae39ed1821abb4ab9adf2ed4ec7c4eeea27e8c6e2f5",
+      "bytes": 73814
+    },
+    {
+      "path": "文档/脱敏规则图/04-人脸印章签名.png",
+      "sha256": "fd3e25574b32c373fbf564026bb2d13722dccebbb5e49ee09359b0a787691b2d",
+      "bytes": 76101
+    },
+    {
+      "path": "文档/脱敏规则图/05-名单与人工决定.png",
+      "sha256": "711c2ab5a6b6fcf454cca03005335c8abfb7a22471212cd226ebcd29e4783109",
+      "bytes": 75026
+    },
+    {
+      "path": "文档/脱敏规则图/06-假名与批量一致性.png",
+      "sha256": "ae0ca0f499180b5c78a29c03982fe74aefb1a0e6fdbaf2f4a59f953702497cfa",
+      "bytes": 69608
+    },
+    {
+      "path": "文档/脱敏规则图/07-自动与人工入口.png",
+      "sha256": "d5f2b57aee2c2cd0883972dd54e62571056431030dfa74530f8fdaf18fb4fded",
+      "bytes": 70115
+    },
+    {
+      "path": "文档/脱敏规则图/08-复核保存导出.png",
+      "sha256": "66fffb2ffc0358817d01bbccdf405c094b744c31d354c2d8b4d2fc13c6bf17ed",
+      "bytes": 73540
+    },
+    {
+      "path": "文档/脱敏规则图/09-OCR纠错草稿恢复.png",
+      "sha256": "71a29d631611eaa328509df3d37ff1eeea9827785265ebaa6650c39fc49df864",
+      "bytes": 77261
+    },
+    {
+      "path": "文档/脱敏规则图/10-项目名单导入.png",
+      "sha256": "89a2d1c44d533e078624a85c6ce25dd38fa8fce924cb264398bf1b5abc5fcf67",
+      "bytes": 72638
+    },
+    {
+      "path": "文档/脱敏规则图/11-批量材料处理.png",
+      "sha256": "1a8343707796937188c8b3755b872f0a491141a71245ee96030a5e1ef01e9771",
+      "bytes": 70176
+    }
+  ],
+  "businessCrosswalk": {
+    "primaryConditions": 57,
+    "auxiliaryEntries": 527,
+    "auxiliaryEntriesWithUnconfirmedBusinessContext": 191,
+    "rulesInMainDocument": true
+  }
 }
