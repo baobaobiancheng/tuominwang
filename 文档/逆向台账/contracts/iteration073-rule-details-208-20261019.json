@@ -4,8 +4,8 @@
   "scope": "律师版业务规则、合成示例与11张PNG流程图；机器匹配细目和内部配置另存技术附件",
   "document": {
     "path": "文档/脱敏规则细则.md",
-    "sha256": "3be48e47ebcb7d0598768d7c63c422e30710184a97fb702625d339a28387ee21",
-    "bytes": 256971
+    "sha256": "4c17227cd1556be355f4a3ea514877beab32cc8ec8ed2ed8907f448d53c3f8cd",
+    "bytes": 288455
   },
   "counts": {
     "typeExamples": 26,
@@ -2115,13 +2115,18 @@
       "path": ".data/research/lawbot-2026-10-19/iteration073/rules-final-independent-audit-v5.md",
       "sha256": "9d78f517f829f831b17a18bfbf1a71c648f318e769c0cac70f3ca1672be3e506",
       "bytes": 2319
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-19/iteration073/rules-adversarial-v7.md",
+      "sha256": "a1cb7b9dc87237a5dbc26451e798f8eefc5c0c1ed0749294c03ff64de05a4939",
+      "bytes": 3020
     }
   ],
   "evidence": [
     {
       "path": "文档/脱敏规则细则.md",
-      "sha256": "3be48e47ebcb7d0598768d7c63c422e30710184a97fb702625d339a28387ee21",
-      "bytes": 256971
+      "sha256": "4c17227cd1556be355f4a3ea514877beab32cc8ec8ed2ed8907f448d53c3f8cd",
+      "bytes": 288455
     },
     {
       "path": "文档/脱敏规则给律师看的说明-20261019.md",
@@ -2290,7 +2295,7 @@
   "businessCrosswalk": {
     "primaryConditions": 57,
     "auxiliaryEntries": 527,
-    "auxiliaryEntriesWithUnconfirmedBusinessContext": 191,
+    "auxiliaryEntriesWithoutIndependentRule": 191,
     "rulesInMainDocument": true,
     "typeActionDocumentation": "文档第四节明确列出当前材料按类型批量处理：假名化、部分星号、全部星号；PDF/PNG/JPG/JPEG允许清除；整文件全星号另列。"
   }

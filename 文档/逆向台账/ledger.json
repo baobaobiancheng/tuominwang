@@ -144137,6 +144137,121 @@
           "bytes": 256971
         }
       }
+    },
+    {
+      "id": "ITER-073-LAWYER-METHOD-TABLES-AND-EXCLUSIONS-216",
+      "date": "2026-10-19",
+      "action": "重写律师规则表的采用方式与前三类排除语义，并完成逐行对抗核验",
+      "summary": "《脱敏规则细则》删除内部核验列，26类遮盖、41项基础识别、12组金额识别和253条来源记录均增加具体脱敏方式，并保留脱敏前、脱敏后结果。姓名、模型、机构三类排除明确为撤销候选而非删除原文；108个分组改为完整编号标题，国际电话已知误报和截取错误在对应行直标。527条辅助条件明确为技术表达式，不独立触发脱敏。",
+      "verification": "26类遮盖与all-mask-examples的partial值26/26一致；253条来源结果与冻结golden 253/253一致且75个来源编号齐全；41/12/57/527行序号完整；108类排除资料按82/9/17组核验，3012项逐组计数无差异；120张表列数一致，11张图存在；无禁止列、代码围栏或内部源码标识。reference-rules与reference-detected-mask共89项测试通过；完整pnpm check为Bend18、反向变异21、单测922通过/4跳过、类型检查和构建通过。",
+      "affected_ids": [],
+      "evidence": [
+        {
+          "path": "文档/脱敏规则细则.md"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-19/iteration073/rule-detail-completeness-receipt.json"
+        },
+        {
+          "path": "文档/逆向台账/contracts/iteration073-rule-details-208-20261019.json"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-19/iteration073/rules-adversarial-v7.md"
+        }
+      ],
+      "new_evidence_baseline": {
+        "path": "文档/脱敏规则细则.md",
+        "current": {
+          "sha256": "4c17227cd1556be355f4a3ea514877beab32cc8ec8ed2ed8907f448d53c3f8cd",
+          "bytes": 288455
+        }
+      },
+      "document_hash_transitions": [
+        {
+          "path": "文档/脱敏规则细则.md",
+          "previous": {
+            "sha256": "3be48e47ebcb7d0598768d7c63c422e30710184a97fb702625d339a28387ee21",
+            "bytes": 256971
+          },
+          "current": {
+            "sha256": "4c17227cd1556be355f4a3ea514877beab32cc8ec8ed2ed8907f448d53c3f8cd",
+            "bytes": 288455
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-19/iteration073/rule-detail-completeness-receipt.json",
+          "previous": {
+            "sha256": "80f281f5af148ffcc133662cc753a13b7e240a3a6ae942459a07593e894358b1",
+            "bytes": 4722
+          },
+          "current": {
+            "sha256": "3bb8e818514146f9d92b98dbf0cc47913e97ab94149a654384509e921113c6b9",
+            "bytes": 4722
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/iteration073-rule-details-208-20261019.json",
+          "previous": {
+            "sha256": "557bf7e46e6e6caa4870a4ca842dc18a52388597e89de25a3a65acb81eb7bfd8",
+            "bytes": 79400
+          },
+          "current": {
+            "sha256": "37fde8e241670f5d1534947abc86ba355b0d68bb73c29dea42f9277e88cd8eb5",
+            "bytes": 79596
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-19/iteration073/rules-adversarial-v7.md",
+          "previous": null,
+          "current": {
+            "sha256": "a1cb7b9dc87237a5dbc26451e798f8eefc5c0c1ed0749294c03ff64de05a4939",
+            "bytes": 3020
+          }
+        }
+      ],
+      "evidence_snapshot_updates": [
+        {
+          "path": "文档/脱敏规则细则.md",
+          "previous": {
+            "sha256": "3be48e47ebcb7d0598768d7c63c422e30710184a97fb702625d339a28387ee21",
+            "bytes": 256971
+          },
+          "current": {
+            "sha256": "4c17227cd1556be355f4a3ea514877beab32cc8ec8ed2ed8907f448d53c3f8cd",
+            "bytes": 288455
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-19/iteration073/rule-detail-completeness-receipt.json",
+          "previous": {
+            "sha256": "80f281f5af148ffcc133662cc753a13b7e240a3a6ae942459a07593e894358b1",
+            "bytes": 4722
+          },
+          "current": {
+            "sha256": "3bb8e818514146f9d92b98dbf0cc47913e97ab94149a654384509e921113c6b9",
+            "bytes": 4722
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/iteration073-rule-details-208-20261019.json",
+          "previous": {
+            "sha256": "557bf7e46e6e6caa4870a4ca842dc18a52388597e89de25a3a65acb81eb7bfd8",
+            "bytes": 79400
+          },
+          "current": {
+            "sha256": "37fde8e241670f5d1534947abc86ba355b0d68bb73c29dea42f9277e88cd8eb5",
+            "bytes": 79596
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-19/iteration073/rules-adversarial-v7.md",
+          "previous": null,
+          "current": {
+            "sha256": "a1cb7b9dc87237a5dbc26451e798f8eefc5c0c1ed0749294c03ff64de05a4939",
+            "bytes": 3020
+          }
+        }
+      ]
     }
   ],
   "evidence_snapshot": {
@@ -170264,15 +170379,15 @@
         "bytes": 276984
       },
       "文档/脱敏规则细则.md": {
-        "sha256": "3be48e47ebcb7d0598768d7c63c422e30710184a97fb702625d339a28387ee21",
-        "bytes": 256971
+        "sha256": "4c17227cd1556be355f4a3ea514877beab32cc8ec8ed2ed8907f448d53c3f8cd",
+        "bytes": 288455
       },
       "文档/逆向台账/contracts/iteration073-rule-details-208-20261019.json": {
-        "sha256": "557bf7e46e6e6caa4870a4ca842dc18a52388597e89de25a3a65acb81eb7bfd8",
-        "bytes": 79400
+        "sha256": "37fde8e241670f5d1534947abc86ba355b0d68bb73c29dea42f9277e88cd8eb5",
+        "bytes": 79596
       },
       ".data/research/lawbot-2026-10-19/iteration073/rule-detail-completeness-receipt.json": {
-        "sha256": "80f281f5af148ffcc133662cc753a13b7e240a3a6ae942459a07593e894358b1",
+        "sha256": "3bb8e818514146f9d92b98dbf0cc47913e97ab94149a654384509e921113c6b9",
         "bytes": 4722
       },
       ".data/research/lawbot-2026-10-19/iteration073/rule-golden-test.log": {
@@ -170474,6 +170589,10 @@
       "tests/workspace-whole-recovery.integration.ts": {
         "sha256": "62e0e4295f50b2ff109a37910ef3631db856c3570e5ee8bd02aed79f6da4e507",
         "bytes": 7737
+      },
+      ".data/research/lawbot-2026-10-19/iteration073/rules-adversarial-v7.md": {
+        "sha256": "a1cb7b9dc87237a5dbc26451e798f8eefc5c0c1ed0749294c03ff64de05a4939",
+        "bytes": 3020
       }
     },
     "unavailable_historical_screenshots": [
