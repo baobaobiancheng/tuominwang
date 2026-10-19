@@ -7,6 +7,7 @@ import {tick} from '../apps/worker/main.ts';
 import {pool} from '../packages/adapters/db.ts';
 import {passwordHash} from '../packages/adapters/storage.ts';
 import {parseRestorationMapping,restoreMarkdown} from '../packages/core/restoration-files.ts';
+import {pdfFixture} from './pdf-fixtures.ts';
 
 assert.ok(new URL(process.env.DATABASE_URL!).pathname.startsWith('/tmw_test_'));
 const app=await buildApp(),admin=new pg.Pool({connectionString:process.env.MIGRATION_DATABASE_URL}),origin=process.env.APP_ORIGIN!;
@@ -18,7 +19,7 @@ async function account(tenant:string){
  const login=await app.inject({method:'POST',url:'/api/login',headers:{origin},payload:{username,password}});
  assert.equal(login.statusCode,200,login.body);
  const cookie=String(login.headers['set-cookie']).split(';')[0];
- return (method:string,url:string,payload?:unknown)=>app.inject({method:method as any,url,headers:{origin,cookie},payload:payload as any});
+ return (method:string,url:string,payload?:unknown,binary=false)=>app.inject({method:method as any,url,headers:{origin,cookie,...binary?{'content-type':'application/octet-stream'}:{}},payload:payload as any});
 }
 async function view(req:Awaited<ReturnType<typeof account>>,doc:string){
  const response=await req('GET',`/api/documents/${doc}`);assert.equal(response.statusCode,200,response.body);return response.json();
@@ -26,6 +27,61 @@ async function view(req:Awaited<ReturnType<typeof account>>,doc:string){
 async function draft(req:Awaited<ReturnType<typeof account>>,doc:string){
  const response=await req('GET',`/api/documents/${doc}/pseudonym-draft`);assert.equal(response.statusCode,200,response.body);return response.json();
 }
+
+test('draft API rejects custom-mode non-pseudonym actions and accepts selective type actions',{timeout:120000},async()=>{
+ const tenant=randomUUID(),req=await account(tenant),project=(await req('POST','/api/projects',{name:'草稿动作模式边界'})).json().id;
+ const doc=(await req('POST',`/api/projects/${project}/documents`,{text:'13800138000',requestId:randomUUID()})).json().id;
+ assert.equal(await tick(),true);
+ let current=await view(req,doc);
+ const seeded=await req('PUT',`/api/documents/${doc}/review`,{revision:current.revision,marks:[{start:0,end:11,kind:'手机号',decision:'redact'}]});assert.equal(seeded.statusCode,200,seeded.body);
+ const state=await draft(req,doc),base={revision:state.revision,sourceHash:state.sourceHash,draftHash:state.draftHash};
+ const typeBypass=await req('POST',`/api/documents/${doc}/pseudonym-draft/edit`,{...base,style:'custom',entityType:'phone',action:'full_star'});
+ assert.equal(typeBypass.statusCode,400,typeBypass.body);assert.match(typeBypass.body,/DRAFT_TYPE_ACTION_REQUIRES_SELECTIVE/);
+ const keyBypass=await req('POST',`/api/documents/${doc}/pseudonym-draft/edit`,{...base,style:'custom',key:'phone:13800138000',action:'full_star'});
+ assert.equal(keyBypass.statusCode,400,keyBypass.body);assert.match(keyBypass.body,/DRAFT_ACTION_REQUIRES_SELECTIVE/);
+ const accepted=await req('POST',`/api/documents/${doc}/pseudonym-draft/edit`,{...base,style:'selective',entityType:'phone',action:'full_star'});
+ assert.equal(accepted.statusCode,200,accepted.body);assert.equal(accepted.json().draft.typeActions.phone,'full_star');
+ current=await view(req,doc);assert.equal(current.marks[0].replacement.mode,'full');
+});
+
+test('type-level action projects every renderer-equivalent raw entity type mark',{timeout:120000},async()=>{
+ const tenant=randomUUID(),req=await account(tenant),project=(await req('POST','/api/projects',{name:'原类型动作归一'})).json().id;
+ const doc=(await req('POST',`/api/projects/${project}/documents`,{text:'张三乙四',requestId:randomUUID()})).json().id;
+ assert.equal(await tick(),true);
+ let current=await view(req,doc);
+ const seeded=await req('PUT',`/api/documents/${doc}/review`,{revision:current.revision,marks:[
+  {start:0,end:2,kind:'自定义',rawEntityType:'signature',decision:'redact'},
+  {start:2,end:4,kind:'自定义',rawEntityType:'handwriting',decision:'redact'},
+ ]});assert.equal(seeded.statusCode,200,seeded.body);
+ const state=await draft(req,doc);
+ assert.deepEqual(state.draft.entries.map((entry:any)=>entry.key),['other:张三','other:乙四']);
+ const changed=await req('POST',`/api/documents/${doc}/pseudonym-draft/edit`,{revision:state.revision,sourceHash:state.sourceHash,draftHash:state.draftHash,style:'selective',entityType:'signature',action:'full_star'});
+ assert.equal(changed.statusCode,200,changed.body);
+ assert.deepEqual(changed.json().draft.entries.map((entry:any)=>entry.action),['full_star','full_star']);
+ current=await view(req,doc);assert.deepEqual(current.marks.map((mark:any)=>mark.replacement?.mode),['full','full']);
+});
+
+test('selective per-entry mask survives API GET rebuild for a PDF mark',{timeout:120000},async()=>{
+ const tenant=randomUUID(),req=await account(tenant),project=(await req('POST','/api/projects',{name:'PDF 单项遮盖回读'})).json().id;
+ const source=pdfFixture({text:'13800138000'}),batchId=randomUUID(),requestId=randomUUID();
+ const manifest=await req('POST',`/api/projects/${project}/upload-batches`,{id:batchId,files:[{requestId,path:'phone.pdf',size:source.length}]});
+ assert.equal(manifest.statusCode,200,manifest.body);
+ const uploaded=await req('POST',`/api/projects/${project}/files?batchId=${batchId}&requestId=${requestId}`,source,true);
+ assert.equal(uploaded.statusCode,200,uploaded.body);const doc=uploaded.json().id;
+ assert.equal(await tick(),true);
+ const current=await view(req,doc),seeded=await req('PUT',`/api/documents/${doc}/review`,{revision:current.revision,marks:[{start:0,end:11,kind:'自定义',rawEntityType:'phone',decision:'redact'}]});
+ assert.equal(seeded.statusCode,200,seeded.body);
+ const state=await draft(req,doc),key=state.draft.entries.find((entry:any)=>entry.entityType==='phone')?.key;
+ assert.ok(key,JSON.stringify(state.draft.entries));
+ const masked=await req('POST',`/api/documents/${doc}/pseudonym-draft/edit`,{revision:state.revision,sourceHash:state.sourceHash,draftHash:state.draftHash,style:'selective',key,action:'mask'});
+ assert.equal(masked.statusCode,200,masked.body);assert.equal(masked.json().draft.entries.find((entry:any)=>entry.key===key).action,'mask');
+ const viewAfter=await view(req,doc);assert.equal(viewAfter.marks[0].replacement.mode,'clear');
+ const reopened=await draft(req,doc);assert.equal(reopened.draft.entries.find((entry:any)=>entry.key===key).action,'mask');
+ const bulk=await req('POST',`/api/documents/${doc}/pseudonym-draft/edit`,{revision:reopened.revision,sourceHash:reopened.sourceHash,draftHash:reopened.draftHash,style:'selective',entityType:'phone',action:'full_star'});
+ assert.equal(bulk.statusCode,200,bulk.body);assert.equal(bulk.json().draft.entries.find((entry:any)=>entry.key===key).action,'full_star');
+ const afterBulk=await draft(req,doc);assert.equal(afterBulk.draft.entries.find((entry:any)=>entry.key===key).action,'full_star');
+ const finalView=await view(req,doc);assert.equal(finalView.marks[0].replacement.mode,'full');
+});
 
 test('one document keeps original key actions and requires a selected uniform original for a shared pseudonym archive',{timeout:120000},async()=>{
  const tenant=randomUUID(),req=await account(tenant),outsider=await account(tenant),project=(await req('POST','/api/projects',{name:'局部同值假名'})).json().id;

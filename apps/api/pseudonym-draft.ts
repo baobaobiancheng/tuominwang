@@ -3,12 +3,13 @@ import { z } from 'zod';
 import { isDeepStrictEqual } from 'node:util';
 import { id } from '../../packages/contracts/index.ts';
 import { canonicalRuleEntityType } from '../../packages/core/presets.ts';
+import { sourceSelectiveEntityType } from '../../packages/core/reference/workspace-renderer-source.js';
 import { rows, sql } from '../../packages/adapters/db.ts';
 import { seal, unseal } from '../../packages/adapters/storage.ts';
 import { openEntityCorrections } from '../../packages/adapters/entity-corrections.ts';
 import { readUnifiedAliasState } from '../../packages/adapters/unified-aliases.ts';
 import { semanticEntityValue } from '../../packages/core/entity-corrections.ts';
-import { activeDraftHash, currentOrImportedDraft, draftSourceHash, projectDraftEditToMarks, updateOriginalDraft, withActiveDraft, type ActivePseudonymDraft } from '../../packages/core/original-pseudonym-draft.ts';
+import { activeDraftHash, canonicalizeOriginalTypeActions, currentOrImportedDraft, draftSourceHash, originalDraftFromReferenceReview, projectDraftEditToMarks, updateOriginalDraft, withActiveDraft, type ActivePseudonymDraft } from '../../packages/core/original-pseudonym-draft.ts';
 import { saveReview } from './reviews.ts';
 import { projectScope } from './access.ts';
 
@@ -17,12 +18,13 @@ const editSchema = z.object({
   sourceHash: z.string().regex(/^[a-f0-9]{64}$/),
   draftHash: z.string().regex(/^[a-f0-9]{64}$/),
   style: z.enum(['custom', 'selective']),
-  key: z.string().min(1),
+  key: z.string().min(1).optional(),
+  entityType: z.string().min(1).optional(),
   currentValue: z.string().refine(value => value.isWellFormed() && !value.includes('\0')).optional(),
   locked: z.boolean().optional(),
   action: z.enum(['pseudonym', 'mask', 'partial_star', 'full_star']).optional(),
   confirmDuplicate: z.boolean().default(false),
-}).strict();
+}).strict().refine(value => Boolean(value.key) !== Boolean(value.entityType), { message: 'DRAFT_EDIT_TARGET_REQUIRED' });
 const resetSchema = z.object({ revision: z.number().int().nonnegative(), sourceHash: z.string().regex(/^[a-f0-9]{64}$/), draftHash: z.string().regex(/^[a-f0-9]{64}$/), style: z.enum(['custom', 'selective']) }).strict();
 
 function fail(message: string, statusCode = 409): never { throw Object.assign(new Error(message), { statusCode }); }
@@ -31,23 +33,25 @@ function openState(p: any, project: string): Record<string, unknown> {
 }
 function originalImportedDraft(state: Record<string, unknown>, documentId: string, sourceHash: string, revision: number): ActivePseudonymDraft | undefined {
   const oldId = Object.entries((state.documentIdMap ?? {}) as Record<string, unknown>).find(([, id]) => id === documentId)?.[0];
-  const snapshot = state.importedSnapshot as { documents?: Array<{ id: string; detection?: { documentText?: string }; review?: { pseudonymEntries?: Array<Record<string, unknown>>; pseudonymStyle?: string } }> } | undefined;
+  const snapshot = state.importedSnapshot as { project?: { presetPolicy?: { profile?: { settings?: { pseudonymTypeActions?: Record<string,string> } } } }; documents?: Array<{ id: string; detection?: { documentText?: string }; review?: { pseudonymEntries?: Array<Record<string, unknown>>; pseudonymStyle?: string; pseudonymTypeActions?: Record<string,string> } }> } | undefined;
   const source = snapshot?.documents?.find(item => item.id === oldId);
   if (!source || source.detection?.documentText !== undefined && draftSourceHash(source.detection.documentText) !== sourceHash) return undefined;
   const review = source.review;
-  if (!Array.isArray(review?.pseudonymEntries)) return undefined;
-  const entries = review.pseudonymEntries.flatMap(entry => {
-    const key = entry.key;
-    if (typeof key !== 'string' || !key.includes(':')) return [];
-    const colon = key.indexOf(':');
-    return [{ key, canonicalKey: typeof entry.canonicalKey === 'string' ? entry.canonicalKey : undefined,
-      entityType: key.slice(0, colon), normalized: key.slice(colon + 1),
-      autoValue: typeof entry.autoValue === 'string' ? entry.autoValue : '',
-      currentValue: typeof entry.currentValue === 'string' ? entry.currentValue : '',
-      locked: entry.locked === true, occurrences: 0,
-      action: ['pseudonym','mask','partial_star','full_star'].includes(String(entry.action)) ? entry.action as 'pseudonym'|'mask'|'partial_star'|'full_star' : undefined }];
-  });
-  return { schemaVersion: 1, sourceHash, revision, style: review.pseudonymStyle === 'selective' ? 'selective' : 'custom', typeActions: {}, entries };
+  return review ? originalDraftFromReferenceReview(review, sourceHash, revision, snapshot?.project?.presetPolicy?.profile?.settings?.pseudonymTypeActions) : undefined;
+}
+function configuredTypeActions(d: any, project: string, projectTypeActions?: Record<string,string>): Record<string,string> {
+  const policy=d.document_policy ? JSON.parse(unseal(d.document_policy,`${d.tenant_id}:${project}:${d.id}:document-policy`)) : {};
+  const selected=policy.configuration?.pseudonymRules ?? policy.profile?.pseudonymTypeActions ?? projectTypeActions;
+  return canonicalizeOriginalTypeActions(selected);
+}
+function projectTypeActions(p: any, project: string): Record<string,string> | undefined {
+  if (!p.preset_policy) return undefined;
+  const policy=JSON.parse(unseal(p.preset_policy,`${p.tenant_id}:${project}:presets`));
+  return policy.profile?.settings?.pseudonymTypeActions;
+}
+function selectedDraftTypeActions(prior: ActivePseudonymDraft | undefined, configured: Record<string,string>): Record<string,string> {
+  if (prior?.typeActionsReset) return prior.typeActions;
+  return prior?.typeActions && Object.keys(prior.typeActions).length ? prior.typeActions : configured;
 }
 function currentEntities(d: any, text: string) {
   const semantic = { ...d, entityCorrections: openEntityCorrections(d) };
@@ -61,13 +65,14 @@ export function registerPseudonymDraftRoutes(app: FastifyInstance) {
     const documentId = id.parse((req.params as any).id);
     return projectScope(req, { document: documentId }, ['view_original', 'view_mapping'], async (db, project) => {
       const [d] = await rows(db, sql`SELECT * FROM documents WHERE id=${documentId}`);
-      const [p] = await rows(db, sql`SELECT id,tenant_id,portable_state FROM projects WHERE id=${project}`);
+      const [p] = await rows(db, sql`SELECT id,tenant_id,portable_state,preset_policy FROM projects WHERE id=${project}`);
       if (!d || !p) fail('NOT_FOUND', 404);
       if ((await readUnifiedAliasState(db, req.user.tenant_id, project)).frame?.enabled) return { available: false, reason: 'UNIFIED_MODE' };
       const text = unseal(d.content, `${d.tenant_id}:${project}:${documentId}`), sourceHash = draftSourceHash(text), state = openState(p, project);
       const prior = currentOrImportedDraft(state, documentId, sourceHash, d.revision) ?? originalImportedDraft(state, documentId, sourceHash, d.revision);
+      const configured = configuredTypeActions(d, project, projectTypeActions(p, project));
       const result = await updateOriginalDraft({ prior, text, sourceHash, revision: d.revision,
-        entities: currentEntities(d, text), style: prior?.style ?? 'custom' });
+        entities: currentEntities(d, text), style: prior?.style ?? 'custom', typeActions: selectedDraftTypeActions(prior, configured) });
       return { revision: d.revision, sourceHash, draftHash: activeDraftHash(prior), draft: result.draft };
     });
   });
@@ -84,15 +89,21 @@ export function registerPseudonymDraftRoutes(app: FastifyInstance) {
       const state = openState(p, project), prior = currentOrImportedDraft(state, documentId, sourceHash, d.revision) ?? originalImportedDraft(state, documentId, sourceHash, d.revision);
       if (input.draftHash !== activeDraftHash(prior)) fail('VERSION_CONFLICT');
       const edit = !reset ? input as z.infer<typeof editSchema> : undefined;
+      if (edit?.entityType && edit.style !== 'selective') fail('DRAFT_TYPE_ACTION_REQUIRES_SELECTIVE', 400);
+      if (edit?.style === 'custom' && edit.action !== undefined && edit.action !== 'pseudonym') fail('DRAFT_ACTION_REQUIRES_SELECTIVE', 400);
       if (edit?.action === 'mask' && !['pdf', 'png', 'jpg', 'jpeg'].includes(d.source_format)) fail('DRAFT_ACTION_UNAVAILABLE', 400);
       const entities = currentEntities(d, text);
+      const configured = configuredTypeActions(d, project, projectTypeActions(p, project));
       const result = await updateOriginalDraft({ prior, text, sourceHash, revision: d.revision,
-        entities, style: input.style, reset,
-        edit: edit ? { key: edit.key, patch: { ...edit.currentValue !== undefined ? { currentValue: edit.currentValue } : {},
+        entities, style: input.style, reset, typeActions: selectedDraftTypeActions(prior, configured),
+        ...edit?.entityType && edit.action ? { typeAction: { entityType: edit.entityType, action: edit.action } } : {},
+        edit: edit?.key ? { key: edit.key, patch: { ...edit.currentValue !== undefined ? { currentValue: edit.currentValue } : {},
           ...edit.locked !== undefined ? { locked: edit.locked } : {}, ...edit.action !== undefined ? { action: edit.action } : {} },
           confirmDuplicate: edit.confirmDuplicate } : undefined });
       if (result.duplicateRejected) return { revision: d.revision, draftHash: input.draftHash, duplicateConfirmationRequired: true, draft: result.draft };
-      const targets = reset ? new Set(result.draft.entries.map(entry => entry.key)) : new Set([edit!.key]);
+      const targets = reset ? new Set(result.draft.entries.map(entry => entry.key)) : edit?.entityType
+        ? new Set(result.draft.entries.filter(entry => sourceSelectiveEntityType(entry.entityType) === sourceSelectiveEntityType(edit.entityType!)).map(entry => entry.key))
+        : new Set([edit!.key!]);
       const marks = projectDraftEditToMarks({ draft: result.draft, entities, marks: d.marks, targetKeys: targets });
       if (!isDeepStrictEqual(marks, d.marks)) {
         const saved = await saveReview(db, req.user.id, d, marks);
