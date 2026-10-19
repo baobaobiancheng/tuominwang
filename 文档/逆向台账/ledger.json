@@ -144252,6 +144252,196 @@
           }
         }
       ]
+    },
+    {
+      "id": "ITER-073-FORMAL-RELEASE-AND-ONLINE-217",
+      "date": "2026-10-19",
+      "action": "发布首个正式版 v1.0.0，部署迭代073并修正运行镜像打包遗漏",
+      "summary": "线上 API、Web、Worker 已切换到迭代073；公网首页与健康接口返回200，API和Web健康、Worker运行，同机其他容器前后一致。正式版同步调整规则文档表述为面向律师和其他业务人员的规则说明。首次切换因运行镜像遗漏 scripts/vendor/aiDiagnostics.js 失败并自动回滚；补齐 scripts 打包规则后在服务器验证470个源文件哈希并重试成功。",
+      "verification": "完整 pnpm check 通过：Bend18、错误变体21、单测922通过/4跳过、类型与构建通过；规则与检测定向89项通过；部署源文件哈希470/470一致，公网index与health均200，API/Web健康且Worker运行；其他项目容器列表前后一致。",
+      "affected_ids": [],
+      "evidence": [
+        {
+          "path": "文档/脱敏规则细则.md"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-19/iteration073/rule-detail-completeness-receipt.json"
+        },
+        {
+          "path": "文档/逆向台账/contracts/iteration073-rule-details-208-20261019.json"
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-19/iteration073/rules-adversarial-v7.md"
+        },
+        {
+          "path": ".dockerignore"
+        },
+        {
+          "path": "文档/发布说明-v1.0.0.md"
+        },
+        {
+          "path": "文档/待办与完成状态-20261015.md"
+        }
+      ],
+      "new_evidence_baseline": {
+        "path": "文档/脱敏规则细则.md",
+        "current": {
+          "sha256": "e015062b343b220874f5f49a717704c1b3bf887b921b8cb565668d4f165eadbe",
+          "bytes": 288584
+        }
+      },
+      "document_hash_transitions": [
+        {
+          "path": "文档/脱敏规则细则.md",
+          "previous": {
+            "sha256": "4c17227cd1556be355f4a3ea514877beab32cc8ec8ed2ed8907f448d53c3f8cd",
+            "bytes": 288455
+          },
+          "current": {
+            "sha256": "e015062b343b220874f5f49a717704c1b3bf887b921b8cb565668d4f165eadbe",
+            "bytes": 288584
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-19/iteration073/rule-detail-completeness-receipt.json",
+          "previous": {
+            "sha256": "3bb8e818514146f9d92b98dbf0cc47913e97ab94149a654384509e921113c6b9",
+            "bytes": 4722
+          },
+          "current": {
+            "sha256": "e963a634147365875e0dd210b4b73b4a1f3c9647d259e4d9b2922490319bfc9c",
+            "bytes": 4722
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/iteration073-rule-details-208-20261019.json",
+          "previous": {
+            "sha256": "37fde8e241670f5d1534947abc86ba355b0d68bb73c29dea42f9277e88cd8eb5",
+            "bytes": 79596
+          },
+          "current": {
+            "sha256": "7954779af3435ae4ae5278bc803a1354de1c273097d63908ef2c3a264f34d1cc",
+            "bytes": 79831
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-19/iteration073/rules-adversarial-v7.md",
+          "previous": {
+            "sha256": "a1cb7b9dc87237a5dbc26451e798f8eefc5c0c1ed0749294c03ff64de05a4939",
+            "bytes": 3020
+          },
+          "current": {
+            "sha256": "a1cb7b9dc87237a5dbc26451e798f8eefc5c0c1ed0749294c03ff64de05a4939",
+            "bytes": 3020
+          }
+        },
+        {
+          "path": ".dockerignore",
+          "previous": {
+            "sha256": "59df9b03430248faa476958d45963401dd77fbe890db757e11a093ac4dde11a5",
+            "bytes": 466
+          },
+          "current": {
+            "sha256": "9bc01f2f1970dadaf78e6e21017199cbd05f4ae19202e2403603bd15ac908dc0",
+            "bytes": 342
+          }
+        },
+        {
+          "path": "文档/发布说明-v1.0.0.md",
+          "previous": null,
+          "current": {
+            "sha256": "69aa6903d45ba0da4c96494c1aeef9db39451cd5e4a8be36ecc9a6d346133e62",
+            "bytes": 2204
+          }
+        },
+        {
+          "path": "文档/待办与完成状态-20261015.md",
+          "previous": {
+            "sha256": "bb46be6e1eba4e34015a82dbe61012c92fdf914d92e2190cb5381d43a41674c8",
+            "bytes": 135627
+          },
+          "current": {
+            "sha256": "74e4fcd1362c95ec72f3e8f8d50724a8d32487ebb6f039f8bea505505c17a249",
+            "bytes": 136863
+          }
+        }
+      ],
+      "evidence_snapshot_updates": [
+        {
+          "path": "文档/脱敏规则细则.md",
+          "previous": {
+            "sha256": "4c17227cd1556be355f4a3ea514877beab32cc8ec8ed2ed8907f448d53c3f8cd",
+            "bytes": 288455
+          },
+          "current": {
+            "sha256": "e015062b343b220874f5f49a717704c1b3bf887b921b8cb565668d4f165eadbe",
+            "bytes": 288584
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-19/iteration073/rule-detail-completeness-receipt.json",
+          "previous": {
+            "sha256": "3bb8e818514146f9d92b98dbf0cc47913e97ab94149a654384509e921113c6b9",
+            "bytes": 4722
+          },
+          "current": {
+            "sha256": "e963a634147365875e0dd210b4b73b4a1f3c9647d259e4d9b2922490319bfc9c",
+            "bytes": 4722
+          }
+        },
+        {
+          "path": "文档/逆向台账/contracts/iteration073-rule-details-208-20261019.json",
+          "previous": {
+            "sha256": "37fde8e241670f5d1534947abc86ba355b0d68bb73c29dea42f9277e88cd8eb5",
+            "bytes": 79596
+          },
+          "current": {
+            "sha256": "7954779af3435ae4ae5278bc803a1354de1c273097d63908ef2c3a264f34d1cc",
+            "bytes": 79831
+          }
+        },
+        {
+          "path": ".data/research/lawbot-2026-10-19/iteration073/rules-adversarial-v7.md",
+          "previous": {
+            "sha256": "a1cb7b9dc87237a5dbc26451e798f8eefc5c0c1ed0749294c03ff64de05a4939",
+            "bytes": 3020
+          },
+          "current": {
+            "sha256": "a1cb7b9dc87237a5dbc26451e798f8eefc5c0c1ed0749294c03ff64de05a4939",
+            "bytes": 3020
+          }
+        },
+        {
+          "path": ".dockerignore",
+          "previous": {
+            "sha256": "59df9b03430248faa476958d45963401dd77fbe890db757e11a093ac4dde11a5",
+            "bytes": 466
+          },
+          "current": {
+            "sha256": "9bc01f2f1970dadaf78e6e21017199cbd05f4ae19202e2403603bd15ac908dc0",
+            "bytes": 342
+          }
+        },
+        {
+          "path": "文档/发布说明-v1.0.0.md",
+          "previous": null,
+          "current": {
+            "sha256": "69aa6903d45ba0da4c96494c1aeef9db39451cd5e4a8be36ecc9a6d346133e62",
+            "bytes": 2204
+          }
+        },
+        {
+          "path": "文档/待办与完成状态-20261015.md",
+          "previous": {
+            "sha256": "bb46be6e1eba4e34015a82dbe61012c92fdf914d92e2190cb5381d43a41674c8",
+            "bytes": 135627
+          },
+          "current": {
+            "sha256": "74e4fcd1362c95ec72f3e8f8d50724a8d32487ebb6f039f8bea505505c17a249",
+            "bytes": 136863
+          }
+        }
+      ]
     }
   ],
   "evidence_snapshot": {
@@ -144663,8 +144853,8 @@
         "bytes": 3001
       },
       ".dockerignore": {
-        "sha256": "59df9b03430248faa476958d45963401dd77fbe890db757e11a093ac4dde11a5",
-        "bytes": 466
+        "sha256": "9bc01f2f1970dadaf78e6e21017199cbd05f4ae19202e2403603bd15ac908dc0",
+        "bytes": 342
       },
       "Dockerfile": {
         "sha256": "aaca39505a36da0ec986dd8df17d40ddd0cef6b8f03396812130ef7055099c2f",
@@ -150243,8 +150433,8 @@
         "bytes": 4676926
       },
       "文档/待办与完成状态-20261015.md": {
-        "sha256": "bb46be6e1eba4e34015a82dbe61012c92fdf914d92e2190cb5381d43a41674c8",
-        "bytes": 135627
+        "sha256": "74e4fcd1362c95ec72f3e8f8d50724a8d32487ebb6f039f8bea505505c17a249",
+        "bytes": 136863
       },
       ".data/research/lawbot-2026-10-15/iteration036/checkpoint-history/current/apps/api/main.ts": {
         "sha256": "4c36dad476012af090cb8649de2b991235d41e4c5d946a4a411404680935b011",
@@ -170379,15 +170569,15 @@
         "bytes": 276984
       },
       "文档/脱敏规则细则.md": {
-        "sha256": "4c17227cd1556be355f4a3ea514877beab32cc8ec8ed2ed8907f448d53c3f8cd",
-        "bytes": 288455
+        "sha256": "e015062b343b220874f5f49a717704c1b3bf887b921b8cb565668d4f165eadbe",
+        "bytes": 288584
       },
       "文档/逆向台账/contracts/iteration073-rule-details-208-20261019.json": {
-        "sha256": "37fde8e241670f5d1534947abc86ba355b0d68bb73c29dea42f9277e88cd8eb5",
-        "bytes": 79596
+        "sha256": "7954779af3435ae4ae5278bc803a1354de1c273097d63908ef2c3a264f34d1cc",
+        "bytes": 79831
       },
       ".data/research/lawbot-2026-10-19/iteration073/rule-detail-completeness-receipt.json": {
-        "sha256": "3bb8e818514146f9d92b98dbf0cc47913e97ab94149a654384509e921113c6b9",
+        "sha256": "e963a634147365875e0dd210b4b73b4a1f3c9647d259e4d9b2922490319bfc9c",
         "bytes": 4722
       },
       ".data/research/lawbot-2026-10-19/iteration073/rule-golden-test.log": {
@@ -170593,6 +170783,10 @@
       ".data/research/lawbot-2026-10-19/iteration073/rules-adversarial-v7.md": {
         "sha256": "a1cb7b9dc87237a5dbc26451e798f8eefc5c0c1ed0749294c03ff64de05a4939",
         "bytes": 3020
+      },
+      "文档/发布说明-v1.0.0.md": {
+        "sha256": "69aa6903d45ba0da4c96494c1aeef9db39451cd5e4a8be36ecc9a6d346133e62",
+        "bytes": 2204
       }
     },
     "unavailable_historical_screenshots": [
