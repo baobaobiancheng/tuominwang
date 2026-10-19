@@ -1,0 +1,107 @@
+{
+  "event": 207,
+  "date": "2026-10-19",
+  "scope": "own online recovery, independent verification, lawyer-readable pure replacement examples and route diagrams",
+  "online": {
+    "url": "https://182.92.172.59/tuomin/",
+    "deployedImage": "aliyun-20261016-iteration056",
+    "restoredOwnContainers": [
+      "tuominwang-aliyun-api-1",
+      "tuominwang-aliyun-worker-1",
+      "tuominwang-aliyun-web-1"
+    ],
+    "publicEntry": 200,
+    "health": 200,
+    "edgeAuthenticatedProjectPage": true,
+    "observedApiStatuses": {
+      "session": 200,
+      "login": 200,
+      "projects": 200,
+      "software-update/state": 200,
+      "workspace/recovery-prompts": 200
+    },
+    "fileProcessingEndToEndRun": false,
+    "neighborOOMRisk": "global OOM observed until 10:30:56 Asia/Shanghai; at 10:42 both named neighbor containers healthy; 171MiB available, no further OOM in inspected period"
+  },
+  "independentVerification": {
+    "model": "gpt-6-luna",
+    "interfaceInventory": 258,
+    "competitorR0": 258,
+    "f7ApiPlanned": 159,
+    "f7ApiCompleted": 144,
+    "f7ApiFirstFailure": "test fixture fs.promises.writeFile path undefined at 145th file",
+    "f7ApiUnrun": 15,
+    "edge115Run": false,
+    "candidate071ThreeGapsOpen": true
+  },
+  "lawyerDocument": {
+    "path": "文档/脱敏规则给律师看的说明-20261019.md",
+    "generalExamples": 21,
+    "sourceSpecificExamples": 4,
+    "mermaidDiagrams": 11,
+    "receipt": ".data/research/lawbot-2026-10-19/iteration072/lawyer-rule-example-receipt.json",
+    "claimBoundary": "pure functions on synthetic values; no online redaction artifact or competitor licensed processing proven"
+  },
+  "formalProductPromoted": false,
+  "newCandidateDeployed": false,
+  "interfaceGradesChanged": false,
+  "nineDocumentsArchivedBeforeExistingDocEdit": ".data/research/lawbot-2026-10-19/iteration072/before-ledger207-v1/manifest.json",
+  "tenRawRuleJsonBlocksUnchanged": true,
+  "evidence": [
+    {
+      "path": "文档/脱敏规则给律师看的说明-20261019.md",
+      "sha256": "0313b82d8654f6baeb148087888ec24847a5ef8aef5f2c57c12db533ea2711e8",
+      "bytes": 15589
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-19/iteration072/lawyer-rule-example-receipt.json",
+      "sha256": "327f6ea50e6b1b784aea24bb78416e80ed1126a0e4e913efe6d9e5d0fa8f3e03",
+      "bytes": 4756
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-19/luna-independent-v1.md",
+      "sha256": "203bf07d57cb75e3dde8cca97efa449d500abfe09a66e9e56a92733240a3b762",
+      "bytes": 7159
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-19/luna-independent-v1.json",
+      "sha256": "2ea46c7ae9c0889c1fbf209bf5e859a0ae7d7b21fe1ebb153dbbaa57b1e8dffd",
+      "bytes": 2453
+    },
+    {
+      "path": ".data/deploy/aliyun-20261019-online-smoke.json",
+      "sha256": "6cd55f51ae61d4af7d8543105e20a530d607e6a8d91ac4534207c395a304aabf",
+      "bytes": 446
+    },
+    {
+      "path": ".data/deploy/aliyun-20261019-auth-trace.json",
+      "sha256": "50b2b3a4ca922aa21b6e5a5666ab5282d348f812d536c77626da4c062e7c3258",
+      "bytes": 2191
+    },
+    {
+      "path": ".data/deploy/aliyun-20261019-auth-trace.png",
+      "sha256": "5fde7ffdf7cd9ec127d6d0028efc6c063210a1402ea0bcfe013e27e025b182c0",
+      "bytes": 45214
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-19/iteration072/server-stability-snapshot.log",
+      "sha256": "1c3671a462253d5fa17ebddfdad7f4bf6649e7c1be93de51c315741aa1158a8a",
+      "bytes": 4315
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-17/iteration060/completion-audit-v1/final-070-combined-gates-v1/full-api-run/terminal-receipt.json",
+      "sha256": "e83ed24ea80d80345a6288b5782ed3fecb45d8716b2a4d618c8d1781a611b256",
+      "bytes": 30923
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-19/iteration072/before-ledger207-v1/manifest.json",
+      "sha256": "dbace50774cfca78335d29feb937c55a2fcf446be3210712a6bd9683eef1ef8c",
+      "bytes": 1640
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-19/iteration072/rule-json-before-ledger207-v1.json",
+      "sha256": "341c6aa70d11b97feb764700740694c4e17fcb325afc99e6f26b73d613e3a0ec",
+      "bytes": 276984
+    }
+  ]
+}

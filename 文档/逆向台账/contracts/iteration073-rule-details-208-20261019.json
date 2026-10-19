@@ -1,0 +1,2190 @@
+{
+  "event": 208,
+  "date": "2026-10-19",
+  "scope": "逐条规则、合成原文到遮盖结果、流程图及对抗审核",
+  "document": {
+    "path": "文档/脱敏规则细则.md",
+    "sha256": "35a01b6f1559cc3206e77c7940dd983e7b5c25a00d02f71e2377849d724212c2",
+    "bytes": 398148
+  },
+  "counts": {
+    "typeExamples": 26,
+    "sourceExamples": 253,
+    "sourceCodes": 75,
+    "basicRules": 41,
+    "amountFamilies": 12,
+    "primaryPatterns": 57,
+    "auxPatterns": 527,
+    "blacklistCategories": 108,
+    "blacklistItems": 3012,
+    "diagrams": 11
+  },
+  "sourceHashes": {
+    "packages/core/reference/rule-data.json": "1f11c5d39de1fb78bebd68316809cc5b77ef9ee104930a28cab473bff76646b4",
+    "packages/core/reference/blacklists.json": "369a14ee5c3f11f0a16a62228bc30b9c55d88a6d035450672011a6d60ab6ef0a",
+    "packages/core/reference/reference-mask-data.json": "de5bc4255716fe4a2c3ce3ddd5e7bacab9b870503baaeaf05526f3ef1b7850c6",
+    "packages/core/reference/table-rule-data.json": "30bb8b9f7f3e4c8462e82d4edb60c1c7a2b42e3d4c1076f1b0a5a1ea3a246b42",
+    "packages/core/reference/fragment-rule-data.json": "3ba1a06438e07d2affc7f4368e0effdf83bdf340d36acdbf07f8757d6f3cb614",
+    "packages/core/reference-alias-data.json": "fede746e6e3ebc7736f98ddca810b7ade03ed067586e3f4fba2a1ccf603e60de",
+    "packages/core/reference-rules.ts": "30559e8bea253fa37d8cfd4332c56d739149af931441d6759f321571c50257f4",
+    "packages/core/reference-mask.ts": "589d408f723e1fbf758e252d5f211ca5a10881a75c4ac3f6aceffde597a5ab41",
+    "packages/core/reference-detected-mask.ts": "48983100188ec3920215958c7baaea9c1e889e59f29cf3351fdbb89445d02540",
+    "packages/core/reference-scenario-mask.ts": "c6291bd9b12c4b4007b0dca2ff830cea2e7a06814deaa7aab61cb2a23e0d8048",
+    "tests/fixtures/reference-detected-mask-source-golden.json": "17c39fefa2aef46135e60ebb5a3892c50bd32c3c21c6edd0399ea53d90af399d",
+    "tests/reference-detected-mask.test.ts": "5d37693abe7f2cd847a4b7973a0843bf6fdd905c7b8a24f0eee10872a52d7f44"
+  },
+  "goldenRows": [
+    {
+      "row": 1,
+      "sourceId": "REF41-id_card",
+      "stage": "text-final",
+      "input": "身份证号：110101199001011234",
+      "selected": "110101199001011234",
+      "computedMask": "**************1234"
+    },
+    {
+      "row": 2,
+      "sourceId": "REF41-id_card",
+      "stage": "raster-final",
+      "input": "身份证号：110101199001011234",
+      "selected": "110101199001011234",
+      "computedMask": "**************1234"
+    },
+    {
+      "row": 3,
+      "sourceId": "REF41-mobile",
+      "stage": "text-final",
+      "input": "手机：138 1234 5678",
+      "selected": "138 1234 5678",
+      "computedMask": "138****5678"
+    },
+    {
+      "row": 4,
+      "sourceId": "REF41-mobile",
+      "stage": "raster-final",
+      "input": "手机：138 1234 5678",
+      "selected": "138 1234 5678",
+      "computedMask": "138****5678"
+    },
+    {
+      "row": 5,
+      "sourceId": "REF41-wechat_labeled",
+      "stage": "text-final",
+      "input": "微信号：_alice123",
+      "selected": "_alice123",
+      "computedMask": "_a*****23"
+    },
+    {
+      "row": 6,
+      "sourceId": "REF41-wechat_labeled",
+      "stage": "raster-final",
+      "input": "微信号：_alice123",
+      "selected": "_alice123",
+      "computedMask": "_a*****23"
+    },
+    {
+      "row": 7,
+      "sourceId": "REF41-wechat_wxid",
+      "stage": "text-final",
+      "input": "wxid_abc123",
+      "selected": "wxid_abc123",
+      "computedMask": "wx*******23"
+    },
+    {
+      "row": 8,
+      "sourceId": "REF41-wechat_wxid",
+      "stage": "raster-final",
+      "input": "wxid_abc123",
+      "selected": "wxid_abc123",
+      "computedMask": "wx*******23"
+    },
+    {
+      "row": 9,
+      "sourceId": "REF41-bank",
+      "stage": "text-final",
+      "input": "银行账号：1234567890123456",
+      "selected": "1234567890123456",
+      "computedMask": "1234********3456"
+    },
+    {
+      "row": 10,
+      "sourceId": "REF41-bank",
+      "stage": "raster-final",
+      "input": "银行账号：1234567890123456",
+      "selected": "1234567890123456",
+      "computedMask": "1234********3456"
+    },
+    {
+      "row": 11,
+      "sourceId": "REF41-bank_labeled",
+      "stage": "text-final",
+      "input": "银行账号：1234 5678 9O12 3456",
+      "selected": "1234 5678 9O12 3456",
+      "computedMask": "1234****3456"
+    },
+    {
+      "row": 12,
+      "sourceId": "REF41-bank_labeled",
+      "stage": "raster-final",
+      "input": "银行账号：1234 5678 9O12 3456",
+      "selected": "1234 5678 9O12 3456",
+      "computedMask": "1234****3456"
+    },
+    {
+      "row": 13,
+      "sourceId": "REF41-email",
+      "stage": "text-final",
+      "input": "alice@example.com",
+      "selected": "alice@example.com",
+      "computedMask": "al***@e***.com"
+    },
+    {
+      "row": 14,
+      "sourceId": "REF41-email",
+      "stage": "raster-final",
+      "input": "alice@example.com",
+      "selected": "alice@example.com",
+      "computedMask": "al***@e***.com"
+    },
+    {
+      "row": 15,
+      "sourceId": "REF41-email_ocr",
+      "stage": "text-final",
+      "input": "邮箱：alice @ example . com",
+      "selected": "alice @ example . com",
+      "computedMask": "al***@e***.com"
+    },
+    {
+      "row": 16,
+      "sourceId": "REF41-email_ocr",
+      "stage": "raster-final",
+      "input": "邮箱：alice @ example . com",
+      "selected": "alice @ example . com",
+      "computedMask": "al***@e***.com"
+    },
+    {
+      "row": 17,
+      "sourceId": "REF41-url-www",
+      "stage": "text-final",
+      "input": "官网：www.example.com/path",
+      "selected": "www.example.com/path",
+      "computedMask": "****"
+    },
+    {
+      "row": 18,
+      "sourceId": "REF41-url-www",
+      "stage": "raster-final",
+      "input": "官网：www.example.com/path",
+      "selected": "www.example.com/path",
+      "computedMask": "****"
+    },
+    {
+      "row": 19,
+      "sourceId": "INT-phone",
+      "stage": "text-final",
+      "input": "统一社会信用代码：91330100MA12345678",
+      "selected": "91330100",
+      "computedMask": "****"
+    },
+    {
+      "row": 20,
+      "sourceId": "INT-phone",
+      "stage": "raster-final",
+      "input": "统一社会信用代码：91330100MA12345678",
+      "selected": "91330100",
+      "computedMask": "****"
+    },
+    {
+      "row": 21,
+      "sourceId": "REF41-uscc",
+      "stage": "text-final",
+      "input": "统一社会信用代码：91330100MA12345678",
+      "selected": "91330100MA12345678",
+      "computedMask": "913301********5678"
+    },
+    {
+      "row": 22,
+      "sourceId": "REF41-uscc",
+      "stage": "raster-final",
+      "input": "统一社会信用代码：91330100MA12345678",
+      "selected": "91330100MA12345678",
+      "computedMask": "913301********5678"
+    },
+    {
+      "row": 23,
+      "sourceId": "REF41-tax_labeled",
+      "stage": "text-final",
+      "input": "税号：123456789012345",
+      "selected": "123456789012345",
+      "computedMask": "1234****2345"
+    },
+    {
+      "row": 24,
+      "sourceId": "REF41-tax_labeled",
+      "stage": "raster-final",
+      "input": "税号：123456789012345",
+      "selected": "123456789012345",
+      "computedMask": "1234****2345"
+    },
+    {
+      "row": 25,
+      "sourceId": "INT-phone",
+      "stage": "text-final",
+      "input": "010-12345678",
+      "selected": "010-12345678",
+      "computedMask": "010-****-5678"
+    },
+    {
+      "row": 26,
+      "sourceId": "INT-phone",
+      "stage": "raster-final",
+      "input": "010-12345678",
+      "selected": "010-12345678",
+      "computedMask": "010-****-5678"
+    },
+    {
+      "row": 27,
+      "sourceId": "REF41-landline",
+      "stage": "text-final",
+      "input": "010-12345678",
+      "selected": "010-12345678",
+      "computedMask": "010-****-5678"
+    },
+    {
+      "row": 28,
+      "sourceId": "REF41-landline",
+      "stage": "raster-final",
+      "input": "010-12345678",
+      "selected": "010-12345678",
+      "computedMask": "010-****-5678"
+    },
+    {
+      "row": 29,
+      "sourceId": "INT-phone",
+      "stage": "text-final",
+      "input": "联系电话：23456789",
+      "selected": "23456789",
+      "computedMask": "****"
+    },
+    {
+      "row": 30,
+      "sourceId": "INT-phone",
+      "stage": "raster-final",
+      "input": "联系电话：23456789",
+      "selected": "23456789",
+      "computedMask": "****"
+    },
+    {
+      "row": 31,
+      "sourceId": "REF41-local_phone",
+      "stage": "text-final",
+      "input": "联系电话：23456789",
+      "selected": "23456789",
+      "computedMask": "2345****"
+    },
+    {
+      "row": 32,
+      "sourceId": "REF41-local_phone",
+      "stage": "raster-final",
+      "input": "联系电话：23456789",
+      "selected": "23456789",
+      "computedMask": "2345****"
+    },
+    {
+      "row": 33,
+      "sourceId": "REF41-contact_name",
+      "stage": "text-final",
+      "input": "联系人：张三，",
+      "selected": "张三",
+      "computedMask": "张*"
+    },
+    {
+      "row": 34,
+      "sourceId": "REF41-contact_name",
+      "stage": "raster-final",
+      "input": "联系人：张三，",
+      "selected": "张三",
+      "computedMask": "张*"
+    },
+    {
+      "row": 35,
+      "sourceId": "SCENE-explicit-name",
+      "stage": "text-final",
+      "input": "联系人：张三，",
+      "selected": "张三",
+      "computedMask": "张*"
+    },
+    {
+      "row": 36,
+      "sourceId": "SCENE-explicit-name",
+      "stage": "raster-final",
+      "input": "联系人：张三，",
+      "selected": "张三",
+      "computedMask": "张*"
+    },
+    {
+      "row": 37,
+      "sourceId": "REF41-transcript_name",
+      "stage": "text-final",
+      "input": "被询问人：李四男",
+      "selected": "李四",
+      "computedMask": "李*"
+    },
+    {
+      "row": 38,
+      "sourceId": "REF41-transcript_name",
+      "stage": "raster-final",
+      "input": "被询问人：李四男",
+      "selected": "李四",
+      "computedMask": "李*"
+    },
+    {
+      "row": 39,
+      "sourceId": "REF41-officer_names",
+      "stage": "text-final",
+      "input": "询问人：张三、李四工作单位",
+      "selected": "张三",
+      "computedMask": "张*"
+    },
+    {
+      "row": 40,
+      "sourceId": "REF41-officer_names",
+      "stage": "raster-final",
+      "input": "询问人：张三、李四工作单位",
+      "selected": "张三",
+      "computedMask": "张*"
+    },
+    {
+      "row": 41,
+      "sourceId": "REF41-officer_names",
+      "stage": "text-final",
+      "input": "询问人：张三、李四工作单位",
+      "selected": "李四",
+      "computedMask": "李*"
+    },
+    {
+      "row": 42,
+      "sourceId": "REF41-officer_names",
+      "stage": "raster-final",
+      "input": "询问人：张三、李四工作单位",
+      "selected": "李四",
+      "computedMask": "李*"
+    },
+    {
+      "row": 43,
+      "sourceId": "REF41-self_name",
+      "stage": "text-final",
+      "input": "我叫王五，男",
+      "selected": "王五",
+      "computedMask": "王*"
+    },
+    {
+      "row": 44,
+      "sourceId": "REF41-self_name",
+      "stage": "raster-final",
+      "input": "我叫王五，男",
+      "selected": "王五",
+      "computedMask": "王*"
+    },
+    {
+      "row": 45,
+      "sourceId": "REF41-address_labeled_door",
+      "stage": "text-final",
+      "input": "联系地址：北京市朝阳区建国路88号101室",
+      "selected": "北京市朝阳区建国路88号101室",
+      "computedMask": "北京市****"
+    },
+    {
+      "row": 46,
+      "sourceId": "REF41-address_labeled_door",
+      "stage": "raster-final",
+      "input": "联系地址：北京市朝阳区建国路88号101室",
+      "selected": "北京市朝阳区建国路88号101室",
+      "computedMask": "北京市朝阳区****"
+    },
+    {
+      "row": 47,
+      "sourceId": "REF41-address_unlabeled",
+      "stage": "text-final",
+      "input": "联系地址：北京市朝阳区建国路88号101室",
+      "selected": "北京市朝阳区建国路88号101室",
+      "computedMask": "北京市****"
+    },
+    {
+      "row": 48,
+      "sourceId": "REF41-address_unlabeled",
+      "stage": "raster-final",
+      "input": "联系地址：北京市朝阳区建国路88号101室",
+      "selected": "北京市朝阳区建国路88号101室",
+      "computedMask": "北京市朝阳区****"
+    },
+    {
+      "row": 49,
+      "sourceId": "REF41-context_place",
+      "stage": "text-final",
+      "input": "联系地址：北京市朝阳区建国路88号101室",
+      "selected": "北京市朝阳区建国路88号101室",
+      "computedMask": "北京市****"
+    },
+    {
+      "row": 50,
+      "sourceId": "REF41-address_labeled_no_door",
+      "stage": "text-final",
+      "input": "住址：浙江省杭州市西湖区文三路",
+      "selected": "浙江省杭州市西湖区文三路",
+      "computedMask": "浙江省杭州市****"
+    },
+    {
+      "row": 51,
+      "sourceId": "REF41-address_labeled_no_door",
+      "stage": "raster-final",
+      "input": "住址：浙江省杭州市西湖区文三路",
+      "selected": "浙江省杭州市西湖区文三路",
+      "computedMask": "浙江省杭州市****"
+    },
+    {
+      "row": 52,
+      "sourceId": "REF41-context_place",
+      "stage": "text-final",
+      "input": "会议地点：北京市某某会议中心",
+      "selected": "北京市某某会议中心",
+      "computedMask": "北京市****"
+    },
+    {
+      "row": 53,
+      "sourceId": "REF41-venue_labeled",
+      "stage": "text-final",
+      "input": "会议地点：北京市某某会议中心",
+      "selected": "北京市某某会议中心",
+      "computedMask": "北京市****"
+    },
+    {
+      "row": 54,
+      "sourceId": "REF41-venue_labeled",
+      "stage": "raster-final",
+      "input": "会议地点：北京市某某会议中心",
+      "selected": "北京市某某会议中心",
+      "computedMask": "****"
+    },
+    {
+      "row": 55,
+      "sourceId": "REF41-address_unlabeled",
+      "stage": "text-final",
+      "input": "北京市朝阳区建国路88号101室",
+      "selected": "北京市朝阳区建国路88号101室",
+      "computedMask": "北京市****"
+    },
+    {
+      "row": 56,
+      "sourceId": "REF41-address_unlabeled",
+      "stage": "raster-final",
+      "input": "北京市朝阳区建国路88号101室",
+      "selected": "北京市朝阳区建国路88号101室",
+      "computedMask": "北京市朝阳区****"
+    },
+    {
+      "row": 57,
+      "sourceId": "REF41-address_unlabeled",
+      "stage": "text-final",
+      "input": "北京市朝阳区建国路88号地下车库12号",
+      "selected": "北京市朝阳区建国路88号",
+      "computedMask": "北京市****"
+    },
+    {
+      "row": 58,
+      "sourceId": "REF41-property_base",
+      "stage": "text-final",
+      "input": "北京市朝阳区建国路88号地下车库12号",
+      "selected": "北京市朝阳区建国路88号",
+      "computedMask": "北京市****"
+    },
+    {
+      "row": 59,
+      "sourceId": "REF41-garage",
+      "stage": "text-final",
+      "input": "北京市朝阳区建国路88号地下车库12号",
+      "selected": "北京市朝阳区建国路88号地下车库12号",
+      "computedMask": "北京市****"
+    },
+    {
+      "row": 60,
+      "sourceId": "REF41-garage",
+      "stage": "raster-final",
+      "input": "北京市朝阳区建国路88号地下车库12号",
+      "selected": "北京市朝阳区建国路88号地下车库12号",
+      "computedMask": "北京市朝阳区****"
+    },
+    {
+      "row": 61,
+      "sourceId": "REF41-property_base",
+      "stage": "text-final",
+      "input": "北京市朝阳区建国路88号负一层住宅",
+      "selected": "北京市朝阳区建国路88号",
+      "computedMask": "北京市****"
+    },
+    {
+      "row": 62,
+      "sourceId": "REF41-address_unlabeled",
+      "stage": "text-final",
+      "input": "北京市朝阳区建国路88号负一层住宅",
+      "selected": "北京市朝阳区建国路88号负一层",
+      "computedMask": "北京市****"
+    },
+    {
+      "row": 63,
+      "sourceId": "REF41-address_unlabeled",
+      "stage": "raster-final",
+      "input": "北京市朝阳区建国路88号负一层住宅",
+      "selected": "北京市朝阳区建国路88号负一层",
+      "computedMask": "北京市朝阳区****"
+    },
+    {
+      "row": 64,
+      "sourceId": "REF41-address_unlabeled",
+      "stage": "text-final",
+      "input": "北京市朝阳区建国路88号附1号",
+      "selected": "北京市朝阳区建国路88号",
+      "computedMask": "北京市****"
+    },
+    {
+      "row": 65,
+      "sourceId": "REF41-attached_door",
+      "stage": "text-final",
+      "input": "北京市朝阳区建国路88号附1号",
+      "selected": "北京市朝阳区建国路88号附1号",
+      "computedMask": "北京市****"
+    },
+    {
+      "row": 66,
+      "sourceId": "REF41-attached_door",
+      "stage": "raster-final",
+      "input": "北京市朝阳区建国路88号附1号",
+      "selected": "北京市朝阳区建国路88号附1号",
+      "computedMask": "北京市朝阳区****"
+    },
+    {
+      "row": 67,
+      "sourceId": "REF41-address_unlabeled",
+      "stage": "text-final",
+      "input": "位于北京市海淀区阳光花园",
+      "selected": "北京市海淀区阳光花园",
+      "computedMask": "北京市****"
+    },
+    {
+      "row": 68,
+      "sourceId": "REF41-address_unlabeled",
+      "stage": "raster-final",
+      "input": "位于北京市海淀区阳光花园",
+      "selected": "北京市海淀区阳光花园",
+      "computedMask": "北京市海淀区****"
+    },
+    {
+      "row": 69,
+      "sourceId": "REF41-context_place",
+      "stage": "text-final",
+      "input": "位于北京市海淀区阳光花园",
+      "selected": "北京市海淀区阳光花园",
+      "computedMask": "北京市****"
+    },
+    {
+      "row": 70,
+      "sourceId": "REF41-address_unlabeled",
+      "stage": "text-final",
+      "input": "北京市朝阳区阳光花园88号1单元至3单元",
+      "selected": "北京市朝阳区阳光花园88号1单元至3单元",
+      "computedMask": "北京市****"
+    },
+    {
+      "row": 71,
+      "sourceId": "REF41-address_unlabeled",
+      "stage": "raster-final",
+      "input": "北京市朝阳区阳光花园88号1单元至3单元",
+      "selected": "北京市朝阳区阳光花园88号1单元至3单元",
+      "computedMask": "北京市朝阳区****"
+    },
+    {
+      "row": 72,
+      "sourceId": "REF41-unit_range",
+      "stage": "text-final",
+      "input": "北京市朝阳区阳光花园88号1单元至3单元",
+      "selected": "北京市朝阳区阳光花园88号1单元至3单元",
+      "computedMask": "北京市****"
+    },
+    {
+      "row": 73,
+      "sourceId": "REF41-unit_range",
+      "stage": "raster-final",
+      "input": "北京市朝阳区阳光花园88号1单元至3单元",
+      "selected": "北京市朝阳区阳光花园88号1单元至3单元",
+      "computedMask": "北京市朝阳区****"
+    },
+    {
+      "row": 74,
+      "sourceId": "REF41-plate",
+      "stage": "text-final",
+      "input": "粤A123456",
+      "selected": "粤A123456",
+      "computedMask": "粤A*****"
+    },
+    {
+      "row": 75,
+      "sourceId": "REF41-plate",
+      "stage": "raster-final",
+      "input": "粤A123456",
+      "selected": "粤A123456",
+      "computedMask": "粤A*****"
+    },
+    {
+      "row": 76,
+      "sourceId": "REF41-securities_account",
+      "stage": "text-final",
+      "input": "资金账号：1234567890",
+      "selected": "资金账号：1234567890",
+      "computedMask": "资金账号：*****7890"
+    },
+    {
+      "row": 77,
+      "sourceId": "REF41-securities_account",
+      "stage": "raster-final",
+      "input": "资金账号：1234567890",
+      "selected": "资金账号：1234567890",
+      "computedMask": "资金账号：*****7890"
+    },
+    {
+      "row": 78,
+      "sourceId": "REF41-case_no",
+      "stage": "text-final",
+      "input": "（2026）京0101民初123号",
+      "selected": "（2026）京0101民初123号",
+      "computedMask": "（****）****号"
+    },
+    {
+      "row": 79,
+      "sourceId": "REF41-case_no",
+      "stage": "raster-final",
+      "input": "（2026）京0101民初123号",
+      "selected": "（2026）京0101民初123号",
+      "computedMask": "（****）****号"
+    },
+    {
+      "row": 80,
+      "sourceId": "REF41-admin_no",
+      "stage": "text-final",
+      "input": "京政发〔2026〕第123号",
+      "selected": "京政发〔2026〕第123号",
+      "computedMask": "〔****〕****号"
+    },
+    {
+      "row": 81,
+      "sourceId": "REF41-admin_no",
+      "stage": "raster-final",
+      "input": "京政发〔2026〕第123号",
+      "selected": "京政发〔2026〕第123号",
+      "computedMask": "〔****〕****号"
+    },
+    {
+      "row": 82,
+      "sourceId": "REF41-realty_cert",
+      "stage": "text-final",
+      "input": "京（2026）北京市不动产权第123456号",
+      "selected": "京（2026）北京市不动产权第123456号",
+      "computedMask": "（****）不动产权第****号"
+    },
+    {
+      "row": 83,
+      "sourceId": "REF41-realty_cert",
+      "stage": "raster-final",
+      "input": "京（2026）北京市不动产权第123456号",
+      "selected": "京（2026）北京市不动产权第123456号",
+      "computedMask": "（****）不动产权第****号"
+    },
+    {
+      "row": 84,
+      "sourceId": "REF41-case_no",
+      "stage": "text-final",
+      "input": "京（2026）北京市不动产权第123456号",
+      "selected": "（2026）北京市不动产权第123456号",
+      "computedMask": "（****）****号"
+    },
+    {
+      "row": 85,
+      "sourceId": "REF41-case_no",
+      "stage": "raster-final",
+      "input": "京（2026）北京市不动产权第123456号",
+      "selected": "（2026）北京市不动产权第123456号",
+      "computedMask": "（****）****号"
+    },
+    {
+      "row": 86,
+      "sourceId": "REF41-patent",
+      "stage": "text-final",
+      "input": "PCT/CN2026/123456",
+      "selected": "PCT/CN2026/123456",
+      "computedMask": "专利号：****"
+    },
+    {
+      "row": 87,
+      "sourceId": "REF41-patent",
+      "stage": "raster-final",
+      "input": "PCT/CN2026/123456",
+      "selected": "PCT/CN2026/123456",
+      "computedMask": "专利号：****"
+    },
+    {
+      "row": 88,
+      "sourceId": "REF41-patent_labeled",
+      "stage": "text-final",
+      "input": "专利号：202612345678",
+      "selected": "专利号：202612345678",
+      "computedMask": "专利号：****"
+    },
+    {
+      "row": 89,
+      "sourceId": "REF41-patent_labeled",
+      "stage": "raster-final",
+      "input": "专利号：202612345678",
+      "selected": "专利号：202612345678",
+      "computedMask": "专利号：****"
+    },
+    {
+      "row": 90,
+      "sourceId": "REF41-icp",
+      "stage": "text-final",
+      "input": "京ICP备12345678号",
+      "selected": "京ICP备12345678号",
+      "computedMask": "备案号：****"
+    },
+    {
+      "row": 91,
+      "sourceId": "REF41-icp",
+      "stage": "raster-final",
+      "input": "京ICP备12345678号",
+      "selected": "京ICP备12345678号",
+      "computedMask": "备案号：****"
+    },
+    {
+      "row": 92,
+      "sourceId": "INT-phone",
+      "stage": "text-final",
+      "input": "京ICP备12345678号",
+      "selected": "12345678",
+      "computedMask": "****"
+    },
+    {
+      "row": 93,
+      "sourceId": "INT-phone",
+      "stage": "raster-final",
+      "input": "京ICP备12345678号",
+      "selected": "12345678",
+      "computedMask": "****"
+    },
+    {
+      "row": 94,
+      "sourceId": "REF41-filing_beizi",
+      "stage": "text-final",
+      "input": "粤备字第123456号",
+      "selected": "粤备字第123456号",
+      "computedMask": "备案号：****"
+    },
+    {
+      "row": 95,
+      "sourceId": "REF41-filing_beizi",
+      "stage": "raster-final",
+      "input": "粤备字第123456号",
+      "selected": "粤备字第123456号",
+      "computedMask": "备案号：****"
+    },
+    {
+      "row": 96,
+      "sourceId": "REF41-filing_labeled",
+      "stage": "text-final",
+      "input": "备案号：AB123456",
+      "selected": "备案号：AB123456",
+      "computedMask": "备案号：****"
+    },
+    {
+      "row": 97,
+      "sourceId": "REF41-filing_labeled",
+      "stage": "raster-final",
+      "input": "备案号：AB123456",
+      "selected": "备案号：AB123456",
+      "computedMask": "备案号：****"
+    },
+    {
+      "row": 98,
+      "sourceId": "REF41-land_cert",
+      "stage": "text-final",
+      "input": "京国用（2026）字第123456号",
+      "selected": "京国用（2026）字第123456号",
+      "computedMask": "证号：****"
+    },
+    {
+      "row": 99,
+      "sourceId": "REF41-land_cert",
+      "stage": "raster-final",
+      "input": "京国用（2026）字第123456号",
+      "selected": "京国用（2026）字第123456号",
+      "computedMask": "证号：****"
+    },
+    {
+      "row": 100,
+      "sourceId": "REF41-housing_permit",
+      "stage": "text-final",
+      "input": "京房权证字第123456号",
+      "selected": "京房权证字第123456号",
+      "computedMask": "证号：****"
+    },
+    {
+      "row": 101,
+      "sourceId": "REF41-housing_permit",
+      "stage": "raster-final",
+      "input": "京房权证字第123456号",
+      "selected": "京房权证字第123456号",
+      "computedMask": "证号：****"
+    },
+    {
+      "row": 102,
+      "sourceId": "REF41-realty_unit",
+      "stage": "text-final",
+      "input": "123456789012GA12345F12345678",
+      "selected": "123456789012GA12345F12345678",
+      "computedMask": "证号：****"
+    },
+    {
+      "row": 103,
+      "sourceId": "REF41-realty_unit",
+      "stage": "raster-final",
+      "input": "123456789012GA12345F12345678",
+      "selected": "123456789012GA12345F12345678",
+      "computedMask": "证号：****"
+    },
+    {
+      "row": 104,
+      "sourceId": "REF41-certificate_labeled",
+      "stage": "text-final",
+      "input": "施工许可证号：AB123456",
+      "selected": "AB123456",
+      "computedMask": "施工许可证号：****"
+    },
+    {
+      "row": 105,
+      "sourceId": "REF41-certificate_labeled",
+      "stage": "raster-final",
+      "input": "施工许可证号：AB123456",
+      "selected": "AB123456",
+      "computedMask": "施工许可证号：****"
+    },
+    {
+      "row": 106,
+      "sourceId": "REF41-parcel",
+      "stage": "text-final",
+      "input": "（2026）第123号地块",
+      "selected": "（2026）第123号地块",
+      "computedMask": "****地块"
+    },
+    {
+      "row": 107,
+      "sourceId": "REF41-parcel",
+      "stage": "raster-final",
+      "input": "（2026）第123号地块",
+      "selected": "（2026）第123号地块",
+      "computedMask": "****地块"
+    },
+    {
+      "row": 108,
+      "sourceId": "REF41-id_card",
+      "stage": "text-final",
+      "input": "出生日期：1990-01-01\n身份证号：110101199001011234",
+      "selected": "110101199001011234",
+      "computedMask": "******************"
+    },
+    {
+      "row": 109,
+      "sourceId": "REF41-id_card",
+      "stage": "raster-final",
+      "input": "出生日期：1990-01-01\n身份证号：110101199001011234",
+      "selected": "110101199001011234",
+      "computedMask": "******************"
+    },
+    {
+      "row": 110,
+      "sourceId": "INT-phone",
+      "stage": "text-final",
+      "input": "手机：+86 138 1234 5678",
+      "selected": "+86 138 1234 5678",
+      "computedMask": "****"
+    },
+    {
+      "row": 111,
+      "sourceId": "INT-phone",
+      "stage": "raster-final",
+      "input": "手机：+86 138 1234 5678",
+      "selected": "+86 138 1234 5678",
+      "computedMask": "****"
+    },
+    {
+      "row": 112,
+      "sourceId": "REF41-mobile",
+      "stage": "text-final",
+      "input": "手机：+86 138 1234 5678",
+      "selected": "+86 138 1234 5678",
+      "computedMask": "138****5678"
+    },
+    {
+      "row": 113,
+      "sourceId": "REF41-mobile",
+      "stage": "raster-final",
+      "input": "手机：+86 138 1234 5678",
+      "selected": "+86 138 1234 5678",
+      "computedMask": "138****5678"
+    },
+    {
+      "row": 114,
+      "sourceId": "INT-phone",
+      "stage": "text-final",
+      "input": "010-12345678",
+      "selected": "010-12345678",
+      "computedMask": "010-****-5678"
+    },
+    {
+      "row": 115,
+      "sourceId": "INT-phone",
+      "stage": "raster-final",
+      "input": "010-12345678",
+      "selected": "010-12345678",
+      "computedMask": "010-****-5678"
+    },
+    {
+      "row": 116,
+      "sourceId": "REF41-landline",
+      "stage": "text-final",
+      "input": "010-12345678",
+      "selected": "010-12345678",
+      "computedMask": "010-****-5678"
+    },
+    {
+      "row": 117,
+      "sourceId": "REF41-landline",
+      "stage": "raster-final",
+      "input": "010-12345678",
+      "selected": "010-12345678",
+      "computedMask": "010-****-5678"
+    },
+    {
+      "row": 118,
+      "sourceId": "INT-phone",
+      "stage": "text-final",
+      "input": "+86-010-12345678",
+      "selected": "+86-010-12345678",
+      "computedMask": "****"
+    },
+    {
+      "row": 119,
+      "sourceId": "INT-phone",
+      "stage": "raster-final",
+      "input": "+86-010-12345678",
+      "selected": "+86-010-12345678",
+      "computedMask": "****"
+    },
+    {
+      "row": 120,
+      "sourceId": "REF41-landline",
+      "stage": "text-final",
+      "input": "+86-010-12345678",
+      "selected": "+86-010-12345678",
+      "computedMask": "86-010-****-5678"
+    },
+    {
+      "row": 121,
+      "sourceId": "REF41-landline",
+      "stage": "raster-final",
+      "input": "+86-010-12345678",
+      "selected": "+86-010-12345678",
+      "computedMask": "86-010-****-5678"
+    },
+    {
+      "row": 122,
+      "sourceId": "REF41-landline",
+      "stage": "text-final",
+      "input": "(8621)12345678",
+      "selected": "(8621)12345678",
+      "computedMask": "86-21-****-5678"
+    },
+    {
+      "row": 123,
+      "sourceId": "REF41-landline",
+      "stage": "raster-final",
+      "input": "(8621)12345678",
+      "selected": "(8621)12345678",
+      "computedMask": "86-21-****-5678"
+    },
+    {
+      "row": 124,
+      "sourceId": "INT-phone",
+      "stage": "text-final",
+      "input": "(8621)12345678",
+      "selected": "8621)12345678",
+      "computedMask": "8621-****-5678"
+    },
+    {
+      "row": 125,
+      "sourceId": "INT-phone",
+      "stage": "raster-final",
+      "input": "(8621)12345678",
+      "selected": "8621)12345678",
+      "computedMask": "8621-****-5678"
+    },
+    {
+      "row": 126,
+      "sourceId": "REF41-bank",
+      "stage": "text-final",
+      "input": "银行账号：1234567890123456789",
+      "selected": "1234567890123456789",
+      "computedMask": "1234********6789"
+    },
+    {
+      "row": 127,
+      "sourceId": "REF41-bank",
+      "stage": "raster-final",
+      "input": "银行账号：1234567890123456789",
+      "selected": "1234567890123456789",
+      "computedMask": "1234********6789"
+    },
+    {
+      "row": 128,
+      "sourceId": "REF41-wechat_labeled",
+      "stage": "text-final",
+      "input": "微信号：alice1",
+      "selected": "alice1",
+      "computedMask": "******"
+    },
+    {
+      "row": 129,
+      "sourceId": "REF41-wechat_labeled",
+      "stage": "raster-final",
+      "input": "微信号：alice1",
+      "selected": "alice1",
+      "computedMask": "******"
+    },
+    {
+      "row": 130,
+      "sourceId": "REF41-email_ocr",
+      "stage": "text-final",
+      "input": "邮箱：a @ e . com",
+      "selected": "a @ e . com",
+      "computedMask": "*@e***.com"
+    },
+    {
+      "row": 131,
+      "sourceId": "REF41-email_ocr",
+      "stage": "raster-final",
+      "input": "邮箱：a @ e . com",
+      "selected": "a @ e . com",
+      "computedMask": "*@e***.com"
+    },
+    {
+      "row": 132,
+      "sourceId": "REF41-filing_labeled",
+      "stage": "text-final",
+      "input": "登记备案号：AB123456",
+      "selected": "登记备案号：AB123456",
+      "computedMask": "登记备案号：****"
+    },
+    {
+      "row": 133,
+      "sourceId": "REF41-filing_labeled",
+      "stage": "raster-final",
+      "input": "登记备案号：AB123456",
+      "selected": "登记备案号：AB123456",
+      "computedMask": "登记备案号：****"
+    },
+    {
+      "row": 134,
+      "sourceId": "REF41-patent_labeled",
+      "stage": "text-final",
+      "input": "专利申请号：202612345678",
+      "selected": "专利申请号：202612345678",
+      "computedMask": "专利申请号：****"
+    },
+    {
+      "row": 135,
+      "sourceId": "REF41-patent_labeled",
+      "stage": "raster-final",
+      "input": "专利申请号：202612345678",
+      "selected": "专利申请号：202612345678",
+      "computedMask": "专利申请号：****"
+    },
+    {
+      "row": 136,
+      "sourceId": "AMOUNT-post_yuan_bare_number",
+      "stage": "text-final",
+      "input": "车辆价款说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明元人民币人民币人民币人民币人民币人民币人民币人民币人民币人民币10000",
+      "selected": "10000",
+      "computedMask": "***"
+    },
+    {
+      "row": 137,
+      "sourceId": "AMOUNT-post_yuan_bare_number",
+      "stage": "raster-final",
+      "input": "车辆价款说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明说明元人民币人民币人民币人民币人民币人民币人民币人民币人民币人民币10000",
+      "selected": "10000",
+      "computedMask": "***"
+    },
+    {
+      "row": 138,
+      "sourceId": "SCENE-explicit-name",
+      "stage": "text-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "张三",
+      "computedMask": "张*"
+    },
+    {
+      "row": 139,
+      "sourceId": "SCENE-explicit-name",
+      "stage": "raster-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "张三",
+      "computedMask": "张*"
+    },
+    {
+      "row": 140,
+      "sourceId": "SCENE-form-name_cn",
+      "stage": "text-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "张三",
+      "computedMask": "**"
+    },
+    {
+      "row": 141,
+      "sourceId": "SCENE-form-name_cn",
+      "stage": "raster-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "张三",
+      "computedMask": "**"
+    },
+    {
+      "row": 142,
+      "sourceId": "REF41-id_card",
+      "stage": "text-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "110101199001011234",
+      "computedMask": "******************"
+    },
+    {
+      "row": 143,
+      "sourceId": "REF41-id_card",
+      "stage": "raster-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "110101199001011234",
+      "computedMask": "******************"
+    },
+    {
+      "row": 144,
+      "sourceId": "SCENE-form-id_card",
+      "stage": "text-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "110101199001011234",
+      "computedMask": "****"
+    },
+    {
+      "row": 145,
+      "sourceId": "SCENE-form-id_card",
+      "stage": "raster-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "110101199001011234",
+      "computedMask": "****"
+    },
+    {
+      "row": 146,
+      "sourceId": "INT-phone",
+      "stage": "text-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "23456789",
+      "computedMask": "****"
+    },
+    {
+      "row": 147,
+      "sourceId": "INT-phone",
+      "stage": "raster-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "23456789",
+      "computedMask": "****"
+    },
+    {
+      "row": 148,
+      "sourceId": "REF41-local_phone",
+      "stage": "text-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "23456789",
+      "computedMask": "2345****"
+    },
+    {
+      "row": 149,
+      "sourceId": "REF41-local_phone",
+      "stage": "raster-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "23456789",
+      "computedMask": "2345****"
+    },
+    {
+      "row": 150,
+      "sourceId": "SCENE-form-phone",
+      "stage": "text-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "23456789",
+      "computedMask": "****"
+    },
+    {
+      "row": 151,
+      "sourceId": "SCENE-form-phone",
+      "stage": "raster-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "23456789",
+      "computedMask": "****"
+    },
+    {
+      "row": 152,
+      "sourceId": "SCENE-explicit-org",
+      "stage": "text-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "上海合成甲有限公司",
+      "computedMask": "上海**有限公司"
+    },
+    {
+      "row": 153,
+      "sourceId": "SCENE-explicit-org",
+      "stage": "raster-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "上海合成甲有限公司",
+      "computedMask": "上海**有限公司"
+    },
+    {
+      "row": 154,
+      "sourceId": "SCENE-form-org_name",
+      "stage": "text-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "上海合成甲有限公司",
+      "computedMask": "上海**有限公司"
+    },
+    {
+      "row": 155,
+      "sourceId": "SCENE-form-org_name",
+      "stage": "raster-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "上海合成甲有限公司",
+      "computedMask": "****"
+    },
+    {
+      "row": 156,
+      "sourceId": "REF41-address_labeled_door",
+      "stage": "text-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "北京市海淀区合成路88号",
+      "computedMask": "北京市****"
+    },
+    {
+      "row": 157,
+      "sourceId": "REF41-address_labeled_door",
+      "stage": "raster-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "北京市海淀区合成路88号",
+      "computedMask": "北京市海淀区****"
+    },
+    {
+      "row": 158,
+      "sourceId": "REF41-address_unlabeled",
+      "stage": "text-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "北京市海淀区合成路88号",
+      "computedMask": "北京市****"
+    },
+    {
+      "row": 159,
+      "sourceId": "REF41-address_unlabeled",
+      "stage": "raster-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "北京市海淀区合成路88号",
+      "computedMask": "北京市海淀区****"
+    },
+    {
+      "row": 160,
+      "sourceId": "SCENE-form-address",
+      "stage": "text-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "北京市海淀区合成路88号",
+      "computedMask": "北京市****"
+    },
+    {
+      "row": 161,
+      "sourceId": "SCENE-form-address",
+      "stage": "raster-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "北京市海淀区合成路88号",
+      "computedMask": "****"
+    },
+    {
+      "row": 162,
+      "sourceId": "REF41-bank",
+      "stage": "text-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "1234567890123456",
+      "computedMask": "1234********3456"
+    },
+    {
+      "row": 163,
+      "sourceId": "REF41-bank",
+      "stage": "raster-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "1234567890123456",
+      "computedMask": "1234********3456"
+    },
+    {
+      "row": 164,
+      "sourceId": "SCENE-form-bank_card",
+      "stage": "text-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "1234567890123456",
+      "computedMask": "****"
+    },
+    {
+      "row": 165,
+      "sourceId": "SCENE-form-bank_card",
+      "stage": "raster-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "1234567890123456",
+      "computedMask": "****"
+    },
+    {
+      "row": 166,
+      "sourceId": "INT-phone",
+      "stage": "text-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "91330100",
+      "computedMask": "****"
+    },
+    {
+      "row": 167,
+      "sourceId": "INT-phone",
+      "stage": "raster-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "91330100",
+      "computedMask": "****"
+    },
+    {
+      "row": 168,
+      "sourceId": "REF41-uscc",
+      "stage": "text-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "91330100MA12345678",
+      "computedMask": "913301********5678"
+    },
+    {
+      "row": 169,
+      "sourceId": "REF41-uscc",
+      "stage": "raster-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "91330100MA12345678",
+      "computedMask": "913301********5678"
+    },
+    {
+      "row": 170,
+      "sourceId": "SCENE-form-uscc",
+      "stage": "text-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "91330100MA12345678",
+      "computedMask": "****"
+    },
+    {
+      "row": 171,
+      "sourceId": "SCENE-form-uscc",
+      "stage": "raster-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "91330100MA12345678",
+      "computedMask": "****"
+    },
+    {
+      "row": 172,
+      "sourceId": "AMOUNT-labeled_bare_number",
+      "stage": "text-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "10000元",
+      "computedMask": "***元"
+    },
+    {
+      "row": 173,
+      "sourceId": "AMOUNT-labeled_bare_number",
+      "stage": "raster-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "10000元",
+      "computedMask": "***元"
+    },
+    {
+      "row": 174,
+      "sourceId": "SCENE-form-contract_amount",
+      "stage": "text-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "10000元",
+      "computedMask": "****"
+    },
+    {
+      "row": 175,
+      "sourceId": "SCENE-form-contract_amount",
+      "stage": "raster-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234\n联系电话：23456789\n工作单位：上海合成甲有限公司\n住址：北京市海淀区合成路88号\n银行账号：1234567890123456\n信用代码：91330100MA12345678\n金额：10000元",
+      "selected": "10000元",
+      "computedMask": "****"
+    },
+    {
+      "row": 176,
+      "sourceId": "SCENE-transaction-merchant",
+      "stage": "text-final",
+      "input": "微信支付 商户：合成超市有限公司\n付款给张三100元 社保电脑号：123456789",
+      "selected": "微信支付",
+      "computedMask": "**"
+    },
+    {
+      "row": 177,
+      "sourceId": "SCENE-transaction-merchant",
+      "stage": "raster-final",
+      "input": "微信支付 商户：合成超市有限公司\n付款给张三100元 社保电脑号：123456789",
+      "selected": "微信支付",
+      "computedMask": "****"
+    },
+    {
+      "row": 178,
+      "sourceId": "SCENE-transaction-merchant",
+      "stage": "text-final",
+      "input": "微信支付 商户：合成超市有限公司\n付款给张三100元 社保电脑号：123456789",
+      "selected": "合成超市有限公司",
+      "computedMask": "合成超市**有限公司"
+    },
+    {
+      "row": 179,
+      "sourceId": "SCENE-transaction-merchant",
+      "stage": "raster-final",
+      "input": "微信支付 商户：合成超市有限公司\n付款给张三100元 社保电脑号：123456789",
+      "selected": "合成超市有限公司",
+      "computedMask": "****"
+    },
+    {
+      "row": 180,
+      "sourceId": "AMOUNT-standalone_yuan",
+      "stage": "text-final",
+      "input": "微信支付 商户：合成超市有限公司\n付款给张三100元 社保电脑号：123456789",
+      "selected": "100元",
+      "computedMask": "***元"
+    },
+    {
+      "row": 181,
+      "sourceId": "AMOUNT-standalone_yuan",
+      "stage": "raster-final",
+      "input": "微信支付 商户：合成超市有限公司\n付款给张三100元 社保电脑号：123456789",
+      "selected": "100元",
+      "computedMask": "***元"
+    },
+    {
+      "row": 182,
+      "sourceId": "SCENE-social-insurance-number",
+      "stage": "text-final",
+      "input": "微信支付 商户：合成超市有限公司\n付款给张三100元 社保电脑号：123456789",
+      "selected": "123456789",
+      "computedMask": "123***789"
+    },
+    {
+      "row": 183,
+      "sourceId": "SCENE-social-insurance-number",
+      "stage": "raster-final",
+      "input": "微信支付 商户：合成超市有限公司\n付款给张三100元 社保电脑号：123456789",
+      "selected": "123456789",
+      "computedMask": "123***789"
+    },
+    {
+      "row": 184,
+      "sourceId": "INT-phone",
+      "stage": "text-final",
+      "input": "社会保险 12345678/上海合成甲有限公司",
+      "selected": "12345678",
+      "computedMask": "****"
+    },
+    {
+      "row": 185,
+      "sourceId": "INT-phone",
+      "stage": "raster-final",
+      "input": "社会保险 12345678/上海合成甲有限公司",
+      "selected": "12345678",
+      "computedMask": "****"
+    },
+    {
+      "row": 186,
+      "sourceId": "SCENE-social-insurance-company",
+      "stage": "text-final",
+      "input": "社会保险 12345678/上海合成甲有限公司",
+      "selected": "上海合成甲有限公司",
+      "computedMask": "上海**有限公司"
+    },
+    {
+      "row": 187,
+      "sourceId": "SCENE-social-insurance-company",
+      "stage": "raster-final",
+      "input": "社会保险 12345678/上海合成甲有限公司",
+      "selected": "上海合成甲有限公司",
+      "computedMask": "上海***公司"
+    },
+    {
+      "row": 188,
+      "sourceId": "SCENE-transaction-merchant",
+      "stage": "text-final",
+      "input": "社会保险 12345678/上海合成甲有限公司",
+      "selected": "上海合成甲有限公司",
+      "computedMask": "上海**有限公司"
+    },
+    {
+      "row": 189,
+      "sourceId": "SCENE-transaction-merchant",
+      "stage": "raster-final",
+      "input": "社会保险 12345678/上海合成甲有限公司",
+      "selected": "上海合成甲有限公司",
+      "computedMask": "****"
+    },
+    {
+      "row": 190,
+      "sourceId": "SCENE-receipt-wechat-pair",
+      "stage": "text-final",
+      "input": "微信号 转账申请人 收款方付款方\n付款方alice123张三收款方\n2026-10-14 12:00:00李四\n__masked_id__",
+      "selected": "alice123",
+      "computedMask": "al****23"
+    },
+    {
+      "row": 191,
+      "sourceId": "SCENE-receipt-wechat-pair",
+      "stage": "raster-final",
+      "input": "微信号 转账申请人 收款方付款方\n付款方alice123张三收款方\n2026-10-14 12:00:00李四\n__masked_id__",
+      "selected": "alice123",
+      "computedMask": "al****23"
+    },
+    {
+      "row": 192,
+      "sourceId": "SCENE-receipt-name-pair",
+      "stage": "text-final",
+      "input": "微信号 转账申请人 收款方付款方\n付款方alice123张三收款方\n2026-10-14 12:00:00李四\n__masked_id__",
+      "selected": "张三",
+      "computedMask": "张*"
+    },
+    {
+      "row": 193,
+      "sourceId": "SCENE-receipt-name-pair",
+      "stage": "raster-final",
+      "input": "微信号 转账申请人 收款方付款方\n付款方alice123张三收款方\n2026-10-14 12:00:00李四\n__masked_id__",
+      "selected": "张三",
+      "computedMask": "张*"
+    },
+    {
+      "row": 194,
+      "sourceId": "SCENE-receipt-timestamp-name",
+      "stage": "text-final",
+      "input": "微信号 转账申请人 收款方付款方\n付款方alice123张三收款方\n2026-10-14 12:00:00李四\n__masked_id__",
+      "selected": "李四",
+      "computedMask": "李*"
+    },
+    {
+      "row": 195,
+      "sourceId": "SCENE-receipt-timestamp-name",
+      "stage": "raster-final",
+      "input": "微信号 转账申请人 收款方付款方\n付款方alice123张三收款方\n2026-10-14 12:00:00李四\n__masked_id__",
+      "selected": "李四",
+      "computedMask": "李*"
+    },
+    {
+      "row": 196,
+      "sourceId": "SCENE-receipt-standalone-wechat",
+      "stage": "text-final",
+      "input": "微信号 转账申请人 收款方付款方\n付款方alice123张三收款方\n2026-10-14 12:00:00李四\n__masked_id__",
+      "selected": "__masked_id__",
+      "computedMask": "__*********__"
+    },
+    {
+      "row": 197,
+      "sourceId": "SCENE-receipt-standalone-wechat",
+      "stage": "raster-final",
+      "input": "微信号 转账申请人 收款方付款方\n付款方alice123张三收款方\n2026-10-14 12:00:00李四\n__masked_id__",
+      "selected": "__masked_id__",
+      "computedMask": "__*********__"
+    },
+    {
+      "row": 198,
+      "sourceId": "AMOUNT-label",
+      "stage": "text-final",
+      "input": "合同金额：10000元",
+      "selected": "10000元",
+      "computedMask": "***元"
+    },
+    {
+      "row": 199,
+      "sourceId": "AMOUNT-label",
+      "stage": "raster-final",
+      "input": "合同金额：10000元",
+      "selected": "10000元",
+      "computedMask": "***元"
+    },
+    {
+      "row": 200,
+      "sourceId": "AMOUNT-currency",
+      "stage": "text-final",
+      "input": "￥10000",
+      "selected": "￥10000",
+      "computedMask": "¥***元"
+    },
+    {
+      "row": 201,
+      "sourceId": "AMOUNT-currency",
+      "stage": "raster-final",
+      "input": "￥10000",
+      "selected": "￥10000",
+      "computedMask": "¥***元"
+    },
+    {
+      "row": 202,
+      "sourceId": "AMOUNT-currency",
+      "stage": "text-final",
+      "input": "￥10000元（壹万元整）",
+      "selected": "￥10000元",
+      "computedMask": "¥***元"
+    },
+    {
+      "row": 203,
+      "sourceId": "AMOUNT-currency",
+      "stage": "raster-final",
+      "input": "￥10000元（壹万元整）",
+      "selected": "￥10000元",
+      "computedMask": "¥***元"
+    },
+    {
+      "row": 204,
+      "sourceId": "AMOUNT-uppercase",
+      "stage": "text-final",
+      "input": "￥10000元（壹万元整）",
+      "selected": "壹万元整",
+      "computedMask": "***万元整"
+    },
+    {
+      "row": 205,
+      "sourceId": "AMOUNT-uppercase",
+      "stage": "raster-final",
+      "input": "￥10000元（壹万元整）",
+      "selected": "壹万元整",
+      "computedMask": "***万元整"
+    },
+    {
+      "row": 206,
+      "sourceId": "AMOUNT-currency",
+      "stage": "text-final",
+      "input": "RMB 10000元",
+      "selected": "RMB 10000元",
+      "computedMask": "RMB ***元"
+    },
+    {
+      "row": 207,
+      "sourceId": "AMOUNT-currency",
+      "stage": "raster-final",
+      "input": "RMB 10000元",
+      "selected": "RMB 10000元",
+      "computedMask": "RMB ***元"
+    },
+    {
+      "row": 208,
+      "sourceId": "AMOUNT-currency",
+      "stage": "text-final",
+      "input": "人民币10000元",
+      "selected": "人民币10000元",
+      "computedMask": "人民币[金额]"
+    },
+    {
+      "row": 209,
+      "sourceId": "AMOUNT-currency",
+      "stage": "raster-final",
+      "input": "人民币10000元",
+      "selected": "人民币10000元",
+      "computedMask": "人民币[金额]"
+    },
+    {
+      "row": 210,
+      "sourceId": "AMOUNT-uppercase",
+      "stage": "text-final",
+      "input": "大写：壹万元整",
+      "selected": "壹万元整",
+      "computedMask": "***万元整"
+    },
+    {
+      "row": 211,
+      "sourceId": "AMOUNT-uppercase",
+      "stage": "raster-final",
+      "input": "大写：壹万元整",
+      "selected": "壹万元整",
+      "computedMask": "***万元整"
+    },
+    {
+      "row": 212,
+      "sourceId": "AMOUNT-standalone",
+      "stage": "text-final",
+      "input": "支付了 12万元",
+      "selected": "12万元",
+      "computedMask": "***万元"
+    },
+    {
+      "row": 213,
+      "sourceId": "AMOUNT-standalone",
+      "stage": "raster-final",
+      "input": "支付了 12万元",
+      "selected": "12万元",
+      "computedMask": "***万元"
+    },
+    {
+      "row": 214,
+      "sourceId": "AMOUNT-table_summary",
+      "stage": "text-final",
+      "input": "合计：1000",
+      "selected": "1000",
+      "computedMask": "***"
+    },
+    {
+      "row": 215,
+      "sourceId": "AMOUNT-table_summary",
+      "stage": "raster-final",
+      "input": "合计：1000",
+      "selected": "1000",
+      "computedMask": "***"
+    },
+    {
+      "row": 216,
+      "sourceId": "AMOUNT-labeled_bare_number",
+      "stage": "text-final",
+      "input": "金额人民币：10000",
+      "selected": "10000",
+      "computedMask": "***"
+    },
+    {
+      "row": 217,
+      "sourceId": "AMOUNT-labeled_bare_number",
+      "stage": "raster-final",
+      "input": "金额人民币：10000",
+      "selected": "10000",
+      "computedMask": "***"
+    },
+    {
+      "row": 218,
+      "sourceId": "AMOUNT-conversation_payment",
+      "stage": "text-final",
+      "input": "还我500块钱",
+      "selected": "500块钱",
+      "computedMask": "***"
+    },
+    {
+      "row": 219,
+      "sourceId": "AMOUNT-conversation_payment",
+      "stage": "raster-final",
+      "input": "还我500块钱",
+      "selected": "500块钱",
+      "computedMask": "***"
+    },
+    {
+      "row": 220,
+      "sourceId": "AMOUNT-standalone_yuan",
+      "stage": "text-final",
+      "input": "需500元",
+      "selected": "500元",
+      "computedMask": "***元"
+    },
+    {
+      "row": 221,
+      "sourceId": "AMOUNT-standalone_yuan",
+      "stage": "raster-final",
+      "input": "需500元",
+      "selected": "500元",
+      "computedMask": "***元"
+    },
+    {
+      "row": 222,
+      "sourceId": "AMOUNT-per_share_price",
+      "stage": "text-final",
+      "input": "12.50港元/股",
+      "selected": "12.50港元/股",
+      "computedMask": "***"
+    },
+    {
+      "row": 223,
+      "sourceId": "AMOUNT-per_share_price",
+      "stage": "raster-final",
+      "input": "12.50港元/股",
+      "selected": "12.50港元/股",
+      "computedMask": "***"
+    },
+    {
+      "row": 224,
+      "sourceId": "AMOUNT-thousand_sep",
+      "stage": "text-final",
+      "input": "1,234,567",
+      "selected": "1,234,567",
+      "computedMask": "***"
+    },
+    {
+      "row": 225,
+      "sourceId": "AMOUNT-thousand_sep",
+      "stage": "raster-final",
+      "input": "1,234,567",
+      "selected": "1,234,567",
+      "computedMask": "***"
+    },
+    {
+      "row": 226,
+      "sourceId": "AMOUNT-standalone_uppercase",
+      "stage": "text-final",
+      "input": "壹万贰仟元整",
+      "selected": "壹万贰仟元整",
+      "computedMask": "***元整"
+    },
+    {
+      "row": 227,
+      "sourceId": "AMOUNT-standalone_uppercase",
+      "stage": "raster-final",
+      "input": "壹万贰仟元整",
+      "selected": "壹万贰仟元整",
+      "computedMask": "***元整"
+    },
+    {
+      "row": 228,
+      "sourceId": "SCENE-explicit-name",
+      "stage": "text-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234",
+      "selected": "张三",
+      "computedMask": "张*"
+    },
+    {
+      "row": 229,
+      "sourceId": "SCENE-explicit-name",
+      "stage": "raster-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234",
+      "selected": "张三",
+      "computedMask": "张*"
+    },
+    {
+      "row": 230,
+      "sourceId": "SCENE-form-name_cn",
+      "stage": "text-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234",
+      "selected": "张三",
+      "computedMask": "**"
+    },
+    {
+      "row": 231,
+      "sourceId": "SCENE-form-name_cn",
+      "stage": "raster-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234",
+      "selected": "张三",
+      "computedMask": "**"
+    },
+    {
+      "row": 232,
+      "sourceId": "REF41-id_card",
+      "stage": "text-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234",
+      "selected": "110101199001011234",
+      "computedMask": "**************1234"
+    },
+    {
+      "row": 233,
+      "sourceId": "REF41-id_card",
+      "stage": "raster-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234",
+      "selected": "110101199001011234",
+      "computedMask": "**************1234"
+    },
+    {
+      "row": 234,
+      "sourceId": "SCENE-form-id_card",
+      "stage": "text-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234",
+      "selected": "110101199001011234",
+      "computedMask": "****"
+    },
+    {
+      "row": 235,
+      "sourceId": "SCENE-form-id_card",
+      "stage": "raster-final",
+      "input": "姓名：张三\n性别：男\n身份证号：110101199001011234",
+      "selected": "110101199001011234",
+      "computedMask": "****"
+    },
+    {
+      "row": 236,
+      "sourceId": "SCENE-social-insurance-number",
+      "stage": "text-final",
+      "input": "社会保险 社保电脑号：123456789 参保人姓名：张三丰\n",
+      "selected": "123456789",
+      "computedMask": "123***789"
+    },
+    {
+      "row": 237,
+      "sourceId": "SCENE-social-insurance-number",
+      "stage": "raster-final",
+      "input": "社会保险 社保电脑号：123456789 参保人姓名：张三丰\n",
+      "selected": "123456789",
+      "computedMask": "123***789"
+    },
+    {
+      "row": 238,
+      "sourceId": "SCENE-explicit-name",
+      "stage": "text-final",
+      "input": "社会保险 社保电脑号：123456789 参保人姓名：张三丰\n",
+      "selected": "张三丰",
+      "computedMask": "张**"
+    },
+    {
+      "row": 239,
+      "sourceId": "SCENE-explicit-name",
+      "stage": "raster-final",
+      "input": "社会保险 社保电脑号：123456789 参保人姓名：张三丰\n",
+      "selected": "张三丰",
+      "computedMask": "张**"
+    },
+    {
+      "row": 240,
+      "sourceId": "SCENE-social-insurance-name",
+      "stage": "text-final",
+      "input": "社会保险 社保电脑号：123456789 参保人姓名：张三丰\n",
+      "selected": "张三丰",
+      "computedMask": "**"
+    },
+    {
+      "row": 241,
+      "sourceId": "SCENE-social-insurance-name",
+      "stage": "raster-final",
+      "input": "社会保险 社保电脑号：123456789 参保人姓名：张三丰\n",
+      "selected": "张三丰",
+      "computedMask": "**"
+    },
+    {
+      "row": 242,
+      "sourceId": "AMOUNT-labeled_bare_number",
+      "stage": "text-final",
+      "input": "付款方：张三\n交易 订单 金额：10000元",
+      "selected": "10000元",
+      "computedMask": "***元"
+    },
+    {
+      "row": 243,
+      "sourceId": "AMOUNT-labeled_bare_number",
+      "stage": "raster-final",
+      "input": "付款方：张三\n交易 订单 金额：10000元",
+      "selected": "10000元",
+      "computedMask": "***元"
+    },
+    {
+      "row": 244,
+      "sourceId": "INT-ein",
+      "stage": "text-final",
+      "input": "EIN: 12-3456789",
+      "selected": "12-3456789",
+      "computedMask": "****"
+    },
+    {
+      "row": 245,
+      "sourceId": "INT-ein",
+      "stage": "raster-final",
+      "input": "EIN: 12-3456789",
+      "selected": "12-3456789",
+      "computedMask": "****"
+    },
+    {
+      "row": 246,
+      "sourceId": "INT-passport",
+      "stage": "text-final",
+      "input": "Passport: AB1234567",
+      "selected": "AB1234567",
+      "computedMask": "*****4567"
+    },
+    {
+      "row": 247,
+      "sourceId": "INT-passport",
+      "stage": "raster-final",
+      "input": "Passport: AB1234567",
+      "selected": "AB1234567",
+      "computedMask": "*****4567"
+    },
+    {
+      "row": 248,
+      "sourceId": "INT-national-id",
+      "stage": "text-final",
+      "input": "National ID: 123456789012345678",
+      "selected": "123456789012345678",
+      "computedMask": "**************5678"
+    },
+    {
+      "row": 249,
+      "sourceId": "INT-national-id",
+      "stage": "raster-final",
+      "input": "National ID: 123456789012345678",
+      "selected": "123456789012345678",
+      "computedMask": "**************5678"
+    },
+    {
+      "row": 250,
+      "sourceId": "REF41-uscc",
+      "stage": "text-final",
+      "input": "National ID: 123456789012345678",
+      "selected": "123456789012345678",
+      "computedMask": "123456********5678"
+    },
+    {
+      "row": 251,
+      "sourceId": "REF41-uscc",
+      "stage": "raster-final",
+      "input": "National ID: 123456789012345678",
+      "selected": "123456789012345678",
+      "computedMask": "123456********5678"
+    },
+    {
+      "row": 252,
+      "sourceId": "INT-phone",
+      "stage": "text-final",
+      "input": "Phone: +1 212 555 1234",
+      "selected": "+1 212 555 1234",
+      "computedMask": "121****1234"
+    },
+    {
+      "row": 253,
+      "sourceId": "INT-phone",
+      "stage": "raster-final",
+      "input": "Phone: +1 212 555 1234",
+      "selected": "+1 212 555 1234",
+      "computedMask": "121****1234"
+    }
+  ],
+  "goldenTest": {
+    "result": "4 passed; exit 0",
+    "receipt": {
+      "path": ".data/research/lawbot-2026-10-19/iteration073/rule-golden-test.log",
+      "sha256": "e2f97f4e709e9c73e8e9a24c98e312dc1350fdd13ab735567ee01ab8b6c054c4",
+      "bytes": 222
+    }
+  },
+  "adversarialReviews": [
+    {
+      "path": ".data/research/lawbot-2026-10-19/iteration073/rules-adversarial.md",
+      "sha256": "a4e4e810385af3cd873e969a3f6e17173e2cc92371544d7a634ff97e6d71c0e6",
+      "bytes": 11384
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-19/iteration073/rules-adversarial-v2.md",
+      "sha256": "d9ae112e3ad692a277c70f2a214f2032799bea59bf0269c0596dfe7be08b7168",
+      "bytes": 9335
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-19/iteration073/rules-adversarial-v3.md",
+      "sha256": "8286425b750793284d0d35352cdb4211db2c8038302302939809eb5f0ac7b3af",
+      "bytes": 6084
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-19/iteration073/rules-adversarial-v4.md",
+      "sha256": "cb2ed00ba31a1704d99007fec66e4a74fd0bf4174bb3f831d88769707e7d6e07",
+      "bytes": 5187
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-19/iteration073/rules-adversarial-v5.md",
+      "sha256": "380399f2a3f362e84a6a4fa024f348aadf0e622e6c669fbb1459a919f1636873",
+      "bytes": 3258
+    }
+  ],
+  "evidence": [
+    {
+      "path": "文档/脱敏规则细则.md",
+      "sha256": "35a01b6f1559cc3206e77c7940dd983e7b5c25a00d02f71e2377849d724212c2",
+      "bytes": 398148
+    },
+    {
+      "path": "文档/脱敏规则给律师看的说明-20261019.md",
+      "sha256": "47bbdadb79e929ca6c202f25dec04db15cc9b032861624bc0db390d3c3ecb0e0",
+      "bytes": 195
+    },
+    {
+      "path": "tests/fixtures/reference-detected-mask-source-golden.json",
+      "sha256": "17c39fefa2aef46135e60ebb5a3892c50bd32c3c21c6edd0399ea53d90af399d",
+      "bytes": 58524
+    },
+    {
+      "path": "tests/reference-detected-mask.test.ts",
+      "sha256": "5d37693abe7f2cd847a4b7973a0843bf6fdd905c7b8a24f0eee10872a52d7f44",
+      "bytes": 4271
+    },
+    {
+      "path": "packages/core/reference-mask.ts",
+      "sha256": "589d408f723e1fbf758e252d5f211ca5a10881a75c4ac3f6aceffde597a5ab41",
+      "bytes": 4040
+    },
+    {
+      "path": "packages/core/reference-detected-mask.ts",
+      "sha256": "48983100188ec3920215958c7baaea9c1e889e59f29cf3351fdbb89445d02540",
+      "bytes": 10294
+    },
+    {
+      "path": "packages/core/reference-rules.ts",
+      "sha256": "30559e8bea253fa37d8cfd4332c56d739149af931441d6759f321571c50257f4",
+      "bytes": 76563
+    },
+    {
+      "path": "packages/core/reference-scenario-mask.ts",
+      "sha256": "c6291bd9b12c4b4007b0dca2ff830cea2e7a06814deaa7aab61cb2a23e0d8048",
+      "bytes": 1759
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-19/iteration073/rule-detail-completeness-receipt.json",
+      "sha256": "50ed5e4a728f9b4d4233d6b434ecd4f2f093a2802762bdf1ea15a2d071db3bbb",
+      "bytes": 1848
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-19/iteration073/rule-golden-test.log",
+      "sha256": "e2f97f4e709e9c73e8e9a24c98e312dc1350fdd13ab735567ee01ab8b6c054c4",
+      "bytes": 222
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-19/iteration073/rules-adversarial.md",
+      "sha256": "a4e4e810385af3cd873e969a3f6e17173e2cc92371544d7a634ff97e6d71c0e6",
+      "bytes": 11384
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-19/iteration073/rules-adversarial-v2.md",
+      "sha256": "d9ae112e3ad692a277c70f2a214f2032799bea59bf0269c0596dfe7be08b7168",
+      "bytes": 9335
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-19/iteration073/rules-adversarial-v3.md",
+      "sha256": "8286425b750793284d0d35352cdb4211db2c8038302302939809eb5f0ac7b3af",
+      "bytes": 6084
+    },
+    {
+      "path": ".data/deploy/aliyun-20261019-online-smoke.json",
+      "sha256": "6cd55f51ae61d4af7d8543105e20a530d607e6a8d91ac4534207c395a304aabf",
+      "bytes": 446
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-19/iteration073/rules-adversarial-v4.md",
+      "sha256": "cb2ed00ba31a1704d99007fec66e4a74fd0bf4174bb3f831d88769707e7d6e07",
+      "bytes": 5187
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-19/iteration073/rules-adversarial-v5.md",
+      "sha256": "380399f2a3f362e84a6a4fa024f348aadf0e622e6c669fbb1459a919f1636873",
+      "bytes": 3258
+    }
+  ],
+  "online": {
+    "observedAt": "2026-10-19",
+    "image": "aliyun-20261016-iteration056",
+    "newCandidateDeployed": false
+  },
+  "competitorLicensedProcessing": {
+    "licenseAvailable": false,
+    "registeredEntries": 258,
+    "runtimeR0": 258
+  },
+  "claimBoundary": "合成样例输出和规则静态资料已核对；竞品授权处理链、真实语料准确率及每件材料导出分别验收"
+}
