@@ -91,6 +91,7 @@ export type DocumentView = {
   nextTextOffset?: number | null;
   markTexts?: Record<string, string>;
   revision: number;
+  contentHash?: string;
   reviewOrigin?: 'automatic' | 'human_review' | 'legacy';
   marks: ReviewMark[];
   state: string;

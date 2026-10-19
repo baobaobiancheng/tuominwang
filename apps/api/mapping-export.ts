@@ -9,7 +9,7 @@ import {mappingsForMarks} from './mappings.ts';
 import {mappingExportData,exportMappingWorkbook} from '../../packages/core/mapping-export.ts';
 import {writeProtectedPortable} from '../../packages/core/workspace-portable.ts';
 import {writeZip} from '../../packages/core/office-zip.ts';
-import {pseudonymTableNames} from '../../packages/adapters/profile-export.ts';
+import {pseudonymTableNames,validLiteralTableName} from '../../packages/adapters/profile-export.ts';
 import {readProjectPresets} from '../../packages/adapters/project-presets.ts';
 import {defaultProfile} from '../../packages/core/presets.ts';
 import {resolveDocumentPolicy} from '../../packages/adapters/document-policy.ts';
@@ -25,7 +25,8 @@ export function registerMappingExports(app:FastifyInstance){
    const documents=[];
    for(const wanted of input.documents){const [d]=await rows(db,sql`SELECT id,tenant_id,project_id,revision,source_name,source_format,document_policy,document_policy_revision,is_batch FROM documents WHERE id=${wanted.id} AND project_id=${project} FOR SHARE`);if(!d)denied('NOT_FOUND',404);if(d.revision!==wanted.revision)denied('VERSION_CONFLICT',409);documents.push(d);}
    const policy=readProjectPresets(projectRow),resolved=resolveDocumentPolicy(documents[0],policy),profile=resolved.presetPolicy?.profile?.settings??defaultProfile();
-   const names=pseudonymTableNames(profile,documents.map(d=>d.source_name?unseal(d.source_name,`${d.tenant_id}:${project}:${d.id}:name`):`材料-${d.id}.txt`),input.mode,`.${input.format}`,input.mode==='independentBatch'?documents.map(d=>input.documentTableNames?.[d.id]??input.tableName):[input.tableName]);
+   const savedName=(d:any)=>{const name=resolveDocumentPolicy(d,policy).documentPolicy?.configuration.pseudonymTableName;return validLiteralTableName(name)?name:undefined;};
+   const names=pseudonymTableNames(profile,documents.map(d=>d.source_name?unseal(d.source_name,`${d.tenant_id}:${project}:${d.id}:name`):`材料-${d.id}.txt`),input.mode,`.${input.format}`,input.mode==='independentBatch'?documents.map(d=>input.documentTableNames?.[d.id]??input.tableName??savedName(d)): [input.tableName??(documents.length===1?savedName(documents[0]):undefined)]);
    const groups=input.mode==='unifiedBatch'?[documents]:documents.map(d=>[d]),outputs=new Map<string,Buffer>();
    for(let i=0;i<groups.length;i++){
     const all=new Map(),occurrences=[];

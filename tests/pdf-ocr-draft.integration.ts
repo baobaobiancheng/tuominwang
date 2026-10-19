@@ -4,8 +4,9 @@ import {randomUUID} from 'node:crypto';
 import {spawn} from 'node:child_process';
 import pg from 'pg';
 import {buildApp} from '../apps/api/main.ts';
-import {pool} from '../packages/adapters/db.ts';
+import {pool,scoped} from '../packages/adapters/db.ts';
 import {passwordHash} from '../packages/adapters/storage.ts';
+import {loadPdfOcrCheckpointPages} from '../packages/adapters/pdf-ocr-checkpoints.ts';
 import {pdfFixture} from './pdf-fixtures.ts';
 import {openPdf} from '../packages/core/pdf-reader.ts';
 import sharp from 'sharp';
@@ -31,7 +32,12 @@ test('zero-page draft cannot invent a reviewed page; resume carries root detect 
 });
 
 test('partial root draft survives a competing priority preemption, automatic continuation, review and export',{timeout:270000},async()=>{
- const owner=await user(),project=(await owner.req('POST','/api/projects',{name:'PDF draft merged'})).json().id,doc=await upload(owner.req,project,20),background=worker();
+ const owner=await user(),project=(await owner.req('POST','/api/projects',{name:'PDF draft merged'})).json().id;
+ const preset=await owner.req('POST','/api/presets/profiles',{name:'PDF partial purple '+randomUUID()});assert.equal(preset.statusCode,200,preset.body);
+ const settings={...preset.json().settings,pdf:{...preset.json().settings.pdf,maskStyle:'purple'}};
+ const updated=await owner.req('PUT',`/api/presets/profiles/${settings.id}`,{revision:1,settings});assert.equal(updated.statusCode,200,updated.body);
+ const selected=await owner.req('PUT',`/api/projects/${project}/presets`,{revision:0,profileId:settings.id,profileRevision:2,rulesetId:null});assert.equal(selected.statusCode,200,selected.body);
+ const doc=await upload(owner.req,project,20),background=worker();
  try{
   const partial=await until(async()=>{const [j]=(await admin.query('SELECT id,revision,status FROM jobs WHERE document_id=$1',[doc])).rows;const count=(await admin.query('SELECT count(*)::int n FROM pdf_ocr_checkpoints WHERE document_id=$1',[doc])).rows[0].n;return{j,count};},v=>v.j?.status==='running'&&v.count>=2&&v.count<20,90000);
   const competing=await upload(owner.req,project,20),[competingRoot]=(await admin.query('SELECT id,revision FROM jobs WHERE document_id=$1',[competing])).rows;
@@ -41,7 +47,50 @@ test('partial root draft survives a competing priority preemption, automatic con
   const phone='13800138000',a=first.text.indexOf(phone),b=second.text.indexOf(phone);assert.ok(a>=0&&b>=0);
   assert.ok(first.machineCandidates.some((candidate:any)=>candidate.start===a&&candidate.end===a+phone.length&&candidate.kind==='手机号'),JSON.stringify(first.machineCandidates));
   const region={id:randomUUID(),x:5,y:5,width:20,height:20,shape:'rect',reason:'敏感区域'};
+  const previewInput={revision:partial.j.revision,draftRevision:0,pageIndex:first.pageIndex,previewHash:first.previewHash,mapHash:first.mapHash,textHash:first.textHash,marks:[{start:a,end:a+phone.length,kind:'手机号',decision:'redact'}],removed:[],regions:[region],pageDeleted:false};
+  const partialSlot=new pg.Client({connectionString:process.env.DATABASE_URL});
+  await partialSlot.connect();
+  try{
+   assert.equal((await partialSlot.query('SELECT pg_try_advisory_lock(7843,3) AS owned')).rows[0].owned,true);
+   const busy=await owner.req('POST',`/api/jobs/${partial.j.id}/pdf-ocr/draft/pages/${first.pageIndex}/preview`,previewInput);
+   assert.equal(busy.statusCode,409,busy.body);
+   assert.equal(busy.json().error,'PROCESSING_BUSY');
+  }finally{
+   await partialSlot.query('SELECT pg_advisory_unlock(7843,3)');
+   await partialSlot.end();
+  }
+  const processed=await owner.req('POST',`/api/jobs/${partial.j.id}/pdf-ocr/draft/pages/${first.pageIndex}/preview`,previewInput);
+  assert.equal(processed.statusCode,200,processed.body);
+  assert.equal(processed.headers['cache-control'],'no-store');
+  const processedPixels=await sharp(processed.rawPayload).removeAlpha().raw().toBuffer({resolveWithObject:true});
+  const maskedX=Math.floor(15*processedPixels.info.width/first.width),maskedY=Math.floor(15*processedPixels.info.height/first.height),maskedOffset=(maskedY*processedPixels.info.width+maskedX)*3;
+  assert.deepEqual([...processedPixels.data.subarray(maskedOffset,maskedOffset+3)],[52,10,94]);
+  assert.equal((await owner.req('POST',`/api/jobs/${partial.j.id}/pdf-ocr/draft/pages/${first.pageIndex}/preview`,{...previewInput,mapHash:'0'.repeat(64)})).statusCode,409);
+  assert.equal((await owner.req('POST',`/api/jobs/${partial.j.id}/pdf-ocr/draft/pages/20/preview`,{...previewInput,pageIndex:20})).statusCode,409);
+  assert.equal((await admin.query('SELECT count(*)::int n FROM pdf_ocr_review_drafts WHERE document_id=$1',[doc])).rows[0].n,0);
+  assert.equal((await admin.query('SELECT state FROM documents WHERE id=$1',[doc])).rows[0].state,'queued');
   const preview=await owner.req('GET',`/api/jobs/${partial.j.id}/pdf-ocr/draft/pages/${first.pageIndex}`);assert.equal(preview.statusCode,200,preview.body);assert.equal(preview.headers['cache-control'],'no-store');assert.equal((await sharp(preview.rawPayload).metadata()).format,'png');
+  const originalPixels=await sharp(preview.rawPayload).removeAlpha().raw().toBuffer({resolveWithObject:true});
+  const originalX=Math.floor(15*originalPixels.info.width/first.width),originalY=Math.floor(15*originalPixels.info.height/first.height),originalOffset=(originalY*originalPixels.info.width+originalX)*3;
+  assert.notDeepEqual([...originalPixels.data.subarray(originalOffset,originalOffset+3)],[52,10,94]);
+  assert.equal(processedPixels.info.width,originalPixels.info.width);assert.equal(processedPixels.info.height,originalPixels.info.height);
+  const [bound]=(await admin.query('SELECT d.*,c.processing_hash,c.rotation_plan_hash FROM documents d JOIN pdf_ocr_checkpoints c ON c.document_id=d.id AND c.revision=d.revision WHERE d.id=$1 AND c.page_index=$2',[doc,first.pageIndex])).rows;
+  const frame=(await scoped(owner.uid,owner.tenant,db=>loadPdfOcrCheckpointPages(db,bound,bound.processing_hash,bound.rotation_plan_hash))).find(value=>value.page.index===first.pageIndex);
+  assert.ok(frame,'verified checkpoint page is required for the exact source glyph proof');
+  let phonePixel=-1;
+  for(const glyph of frame.glyphs.filter(g=>g[0]<a+phone.length&&g[1]>a&&g[4]>0&&g[5]>0)){
+   const left=Math.max(0,Math.floor(glyph[2]*originalPixels.info.width/first.width)),right=Math.min(originalPixels.info.width,Math.ceil((glyph[2]+glyph[4])*originalPixels.info.width/first.width));
+   const top=Math.max(0,Math.floor(glyph[3]*originalPixels.info.height/first.height)),bottom=Math.min(originalPixels.info.height,Math.ceil((glyph[3]+glyph[5])*originalPixels.info.height/first.height));
+   for(let y=top;y<bottom&&phonePixel<0;y++)for(let x=left;x<right;x++){
+    if(x*first.width/originalPixels.info.width<25&&y*first.height/originalPixels.info.height<25)continue;
+    const offset=(y*originalPixels.info.width+x)*3;
+    if([...originalPixels.data.subarray(offset,offset+3)].some(channel=>channel<180)){phonePixel=offset;break;}
+   }
+   if(phonePixel>=0)break;
+  }
+  assert.ok(phonePixel>=0,'the original phone glyph has a real nonwhite pixel outside the hand-drawn region');
+  assert.notDeepEqual([...originalPixels.data.subarray(phonePixel,phonePixel+3)],[52,10,94]);
+  assert.deepEqual([...processedPixels.data.subarray(phonePixel,phonePixel+3)],[52,10,94],'the exact phone glyph changes from source ink to the configured redaction colour');
   const add=await owner.req('PUT',`/api/jobs/${partial.j.id}/pdf-ocr/draft`,{revision:partial.j.revision,draftRevision:0,pageIndex:first.pageIndex,marks:[{start:a,end:a+phone.length,kind:'手机号',decision:'redact'}],removed:[],regions:[region],pageDeleted:false});assert.equal(add.statusCode,200,add.body);
   assert.equal((await owner.req('PUT',`/api/jobs/${partial.j.id}/pdf-ocr/draft`,{revision:partial.j.revision,draftRevision:1,pageIndex:first.pageIndex,marks:[],removed:[],regions:[{...region,x:first.width}],pageDeleted:false})).statusCode,400);
   const remove=await owner.req('PUT',`/api/jobs/${partial.j.id}/pdf-ocr/draft`,{revision:partial.j.revision,draftRevision:0,pageIndex:second.pageIndex,marks:[],removed:[{start:b,end:b+phone.length,kind:'手机号'}],regions:[],pageDeleted:true});assert.equal(remove.statusCode,200,remove.body);
@@ -73,6 +122,6 @@ test('partial root draft survives a competing priority preemption, automatic con
   const delivered=await until(async()=>{const[j]=(await admin.query('SELECT status,error_code FROM jobs WHERE id=$1',[exportJob])).rows;return j;},j=>j?.status==='succeeded'||j?.status==='failed',90000);assert.equal(delivered.status,'succeeded',JSON.stringify(delivered));
   const link=await owner.req('POST',`/api/documents/${doc}/download-link`,{revision:approved.revision});assert.equal(link.statusCode,200,link.body);
   const output=await app.inject({url:link.json().url});assert.equal(output.statusCode,200,output.body);
-  const exportedPdf=await openPdf(output.rawPayload);try{assert.equal(exportedPdf.count,19);const rendered=await exportedPdf.page(0),pixels=await sharp(rendered.png).removeAlpha().raw().toBuffer({resolveWithObject:true});const x=Math.floor((lateRegion.x+lateRegion.width/2)*pixels.info.width/first.width),y=Math.floor((lateRegion.y+lateRegion.height/2)*pixels.info.height/first.height);assert.deepEqual([...pixels.data.subarray((y*pixels.info.width+x)*3,(y*pixels.info.width+x)*3+3)],[0,0,0]);}finally{exportedPdf.close();}
+  const exportedPdf=await openPdf(output.rawPayload);try{assert.equal(exportedPdf.count,19);const rendered=await exportedPdf.page(0),pixels=await sharp(rendered.png).removeAlpha().raw().toBuffer({resolveWithObject:true});const x=Math.floor((lateRegion.x+lateRegion.width/2)*pixels.info.width/first.width),y=Math.floor((lateRegion.y+lateRegion.height/2)*pixels.info.height/first.height);assert.deepEqual([...pixels.data.subarray((y*pixels.info.width+x)*3,(y*pixels.info.width+x)*3+3)],[52,10,94]);}finally{exportedPdf.close();}
  }finally{await background.stop();}
 });

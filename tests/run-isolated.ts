@@ -21,6 +21,9 @@ for (const key of ["DATABASE_URL", "MIGRATION_DATABASE_URL"] as const) {
 }
 env.ADMIN_USERNAME = env.E2E_USERNAME = "isolated-test";
 env.ADMIN_PASSWORD = env.E2E_PASSWORD = randomBytes(24).toString("hex");
+// Keep this integration suite's machine-readable evidence after the isolated
+// database and scratch DATA_DIR are removed.
+env.B59_EVIDENCE_PATH ??= resolve(".data/test-runs", `B59-workspace-field-real-import-${name}.json`);
 // Forces Playwright to start its own services; refuses occupied business ports.
 if (mode === "e2e") { env.CI = "1"; env.NER_ENABLED = "1"; }
 try {

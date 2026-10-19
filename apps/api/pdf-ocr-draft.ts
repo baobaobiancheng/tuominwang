@@ -1,13 +1,17 @@
 import type {FastifyInstance} from 'fastify';
 import {z} from 'zod';
-import {id,markSchema,pageReviewSchema,MAX_MARKS} from '../../packages/contracts/index.ts';
+import {id,markSchema,pageReviewSchema,MAX_MARKS,REVIEW_BODY_BYTES,type Anchor} from '../../packages/contracts/index.ts';
 import {rows,sql,type DB} from '../../packages/adapters/db.ts';
 import {verifiedDocumentSource} from '../../packages/adapters/document-source.ts';
 import {hash,readOriginal,seal,unseal} from '../../packages/adapters/storage.ts';
 import {loadPdfOcrCheckpointPages,pdfOcrParserFingerprint,pdfOcrRotationPlanHash,type PdfOcrCheckpoint} from '../../packages/adapters/pdf-ocr-checkpoints.ts';
-import {replacePdfOcrDraftAtReview,validatePdfOcrDraftPage,type PdfOcrDraftPage} from '../../packages/core/pdf-ocr-draft.ts';
+import {mergePdfOcrDraft,replacePdfOcrDraftAtReview,validatePdfOcrDraftPage,type PdfOcrDraftPage} from '../../packages/core/pdf-ocr-draft.ts';
+import {runProcessing} from '../../packages/adapters/processing.ts';
 import {openPageReview} from '../../packages/adapters/page-review-storage.ts';
+import {resolveDocumentPolicy} from '../../packages/adapters/document-policy.ts';
+import {defaultProfile} from '../../packages/core/presets.ts';
 import {projectScope,requirePermission,textArray} from './access.ts';
+import {getProjectPresetPolicy} from './presets.ts';
 import {saveReview} from './reviews.ts';
 
 const fail=(name:string,statusCode=409):never=>{throw Object.assign(new Error(name),{statusCode});};
@@ -51,6 +55,14 @@ async function context(db:DB,jobId:string,userId:string,tenantId:string,projectI
  return{j,ids,pages};
 }
 
+/** Reuse the existing owner, lineage, source and checkpoint verification when
+ * an in-progress page participates in a unified batch preview. */
+export async function verifiedPdfOcrPartialPreview(db:DB,jobId:string,userId:string,tenantId:string,projectId:string,pageIndex:number){
+ const {j,pages}=await context(db,jobId,userId,tenantId,projectId,false);
+ findPage(pages,pageIndex);
+ return {documentId:j.id,revision:j.revision,contentHash:j.content_hash};
+}
+
 function findPage(pages:PdfOcrCheckpoint[],index:number){const frame=pages.find(p=>p.page.index===index);if(!frame)fail('PDF_OCR_PAGE_NOT_READY');return frame!;}
 function readDraft(row:any,frame:PdfOcrCheckpoint):PdfOcrDraftPage{
  if(row.text_hash!==hash(frame.text)||row.preview_hash!==frame.page.previewHash||row.map_hash!==frame.page.mapHash)fail('PDF_OCR_DRAFT_PAGE_CHANGED');
@@ -77,6 +89,35 @@ export function effectiveDeletedPages(carry:ReadonlySet<number>,drafts:readonly 
 function carriedDraft(frame:PdfOcrCheckpoint):PdfOcrDraftPage{return{pageIndex:frame.page.index,textHash:hash(frame.text),previewHash:frame.page.previewHash,mapHash:frame.page.mapHash,marks:[],removed:[],regions:[],pageDeleted:true};}
 
 export function registerPdfOcrDraftRoutes(app:FastifyInstance){
+ app.post('/api/jobs/:id/pdf-ocr/draft/pages/:page/preview',{bodyLimit:REVIEW_BODY_BYTES},async(req,reply)=>{
+  const jobId=id.parse((req.params as {id:string}).id),pageIndex=z.coerce.number().int().nonnegative().parse((req.params as {page:string}).page),input=completePut.parse(req.body);
+  if(input.pageIndex!==pageIndex)fail('PDF_OCR_DRAFT_PAGE_CHANGED');
+  const image=await projectScope(req,{job:jobId},['review','view_original'],async(db,project)=>{
+   const {j,ids,pages}=await context(db,jobId,req.user.id,req.user.tenant_id,project,false);
+   if(input.revision!==j.revision)fail('VERSION_CONFLICT');
+   const frame=findPage(pages,pageIndex);
+   if(input.previewHash!==frame.page.previewHash||input.mapHash!==frame.page.mapHash||input.textHash!==hash(frame.text))fail('PDF_OCR_DRAFT_PAGE_CHANGED');
+   const draft:PdfOcrDraftPage={pageIndex,textHash:input.textHash,previewHash:input.previewHash,mapHash:input.mapHash,marks:input.marks,removed:input.removed,regions:input.regions,pageDeleted:input.pageDeleted};
+   try{validatePdfOcrDraftPage(draft,frame.text,frame.page);}catch{fail('PDF_OCR_DRAFT_INVALID',400);}
+   if(draft.pageDeleted)fail('PAGE_NOT_READY');
+   for(const mark of [...draft.marks,...draft.removed])if(!frame.glyphs.some(g=>g[0]<mark.end&&g[1]>mark.start&&g[4]>0&&g[5]>0))fail('PDF_OCR_DRAFT_POSITION_INVALID');
+   const [saved]=await rows(db,sql`SELECT draft_revision FROM pdf_ocr_review_drafts WHERE document_id=${j.id} AND revision=${j.revision} AND page_index=${pageIndex} AND owner_id=${req.user.id} AND root_job_id=${root(j)} AND source_hash=${j.source_hash} AND content_hash=${j.content_hash} AND processing_hash=${ids.processingHash} AND rotation_plan_hash=${ids.rotationPlanHash} AND parser_fingerprint=${ids.parserFingerprint} AND parse_version=${j.parse_version}`);
+   if((saved?.draft_revision??0)!==input.draftRevision)fail('VERSION_CONFLICT');
+   // The established page-preview worker accepts a single zero-based page. The
+   // verified checkpoint remains immutable; only this in-memory view is local.
+   const page={...frame.page,index:0},anchors:Anchor[]=[{kind:'page',page:0,start:0,end:frame.text.length}];
+   const marks=mergePdfOcrDraft(frame.text,anchors,[page],(frame.provisionalMatches??[]).map(mark=>({...mark})),[{...draft,pageIndex:0}]);
+   const [projectRow]=await rows(db,sql`SELECT * FROM projects WHERE id=${project}`);
+   if(!projectRow)fail('NOT_FOUND',404);
+   const resolved=resolveDocumentPolicy(j,getProjectPresetPolicy(projectRow));
+   const profile=resolved.presetPolicy.profile?.settings??defaultProfile();
+   const maskStyle=resolved.documentPolicy?.configuration.maskStyle??openPageReview(j)?.maskStyle??profile.pdf.maskStyle;
+   const review={mode:'unselected' as const,maskStyle,regions:(draft.regions??[]).map(region=>({...region,page:0})),deletedPages:[]};
+   const doc={...j,content:seal(frame.text,`${j.tenant_id}:${project}:${j.id}`),content_hash:hash(frame.text),anchors,page_data:[page],page_review:review,entity_corrections:null};
+   return runProcessing<Uint8Array>({kind:'partial-page-preview',doc,page:0,marks});
+  });
+  return reply.header('Cache-Control','no-store').type('image/png').send(Buffer.from(image));
+ });
  app.get('/api/jobs/:id/pdf-ocr/draft/pages/:page',async(req,reply)=>{
   const jobId=id.parse((req.params as {id:string}).id),page=z.coerce.number().int().nonnegative().parse((req.params as {page:string}).page);
   const image=await projectScope(req,{job:jobId},['review','view_original'],async(db,project)=>{

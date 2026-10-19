@@ -10,6 +10,8 @@ import {officeFixture} from './office-fixtures.ts';
 import {readZip} from '../packages/core/office-zip.ts';
 import {readRestorationMapping,restoreMarkdown} from '../packages/core/restoration-files.ts';
 import {parseOffice} from '../packages/core/office.ts';
+import {buildEntityGroups,groupActionRequest} from '../apps/web/entity-groups.tsx';
+import {sealEntityCorrections} from '../packages/adapters/entity-corrections.ts';
 const admin=new pg.Pool({connectionString:process.env.MIGRATION_DATABASE_URL}),app=await buildApp();
 after(async()=>{await app.close();await pool.end();await admin.end();});
 test('layered policy draft reuses immutable mappings atomically and cannot save or cross project scope',async()=>{
@@ -21,6 +23,12 @@ test('layered policy draft reuses immutable mappings atomically and cannot save 
   const input={revision:0,marks,policies:{overall:{mode:'alias'},types:[],values:[],keepExplicit:true}};
   assert.equal((await other('POST',`/api/documents/${doc}/replacement-policies`,input)).statusCode,404);
   assert.equal((await req('POST',`/api/documents/${doc}/replacement-policies`,{...input,revision:9})).json().error,'VERSION_CONFLICT');
+  const group=buildEntityGroups({text:'张三张三李四',textOffset:0} as any,marks as any).find(g=>g.value==='张三');
+  assert.ok(group?.exact);
+  const perKey=await req('POST',`/api/documents/${doc}/replacement-policies`,{revision:0,marks,policies:groupActionRequest(group,marks as any,'pseudonym',false)});
+  assert.equal(perKey.statusCode,200,perKey.body);
+  assert.equal(perKey.json().marks[0].replacement.mappingId,perKey.json().marks[1].replacement.mappingId);
+  assert.equal(perKey.json().marks[2].replacement,undefined,'a different key and an ignored mark stay unchanged');
   const first=await req('POST',`/api/documents/${doc}/replacement-policies`,input);assert.equal(first.statusCode,200,first.body);
   const result=first.json();assert.deepEqual(result.marks.map((m:any)=>m.decision),['pending','redact','ignore']);assert.equal(result.marks[0].replacement.mappingId,result.marks[1].replacement.mappingId);assert.equal(result.marks[2].replacement,undefined);
   const repeat=(await req('POST',`/api/documents/${doc}/replacement-policies`,input)).json();assert.deepEqual(repeat,result);
@@ -40,6 +48,30 @@ test('layered policy draft reuses immutable mappings atomically and cannot save 
   const xlsx=await req('POST',`/api/projects/${project}/mapping-export`,{...exportInput,format:'xlsx'});assert.equal(xlsx.statusCode,200,xlsx.body);assert.ok((await parseOffice(xlsx.rawPayload,'xlsx')).text.includes('张三'));
   assert.equal((await req('POST',`/api/documents/${doc}/export`,{revision:1})).statusCode,200);await tick();
   const link=(await req('POST',`/api/documents/${doc}/download-link`,{revision:1})).json();const output=(await app.inject({url:link.url})).body;assert.equal(output,'【姓名_000001】【姓名_000001】李四');
+});
+test('one corrected key at a shared span changes only its own review slot through the real policy endpoint',async()=>{
+  const tenant=randomUUID(),origin=process.env.APP_ORIGIN!,password='synthetic-shared-span-password';
+  async function account(){const uid=randomUUID(),username='shared-span-'+randomUUID();await admin.query('INSERT INTO users VALUES($1,$2,$3,$4)',[uid,tenant,username,passwordHash(password)]);const login=await app.inject({method:'POST',url:'/api/login',headers:{origin},payload:{username,password}});assert.equal(login.statusCode,200,login.body);const cookie=String(login.headers['set-cookie']).split(';')[0];return{uid,req:(method:string,url:string,payload?:unknown)=>app.inject({method:method as any,url,headers:{origin,cookie},payload:payload as any})};}
+  const owner=await account(),other=await account(),project=(await owner.req('POST','/api/projects',{name:'同位置不同语义'})).json().id;
+  const doc=(await owner.req('POST',`/api/projects/${project}/documents`,{text:'张三',requestId:randomUUID()})).json().id;await tick();
+  const [row]=(await admin.query('SELECT * FROM documents WHERE id=$1',[doc])).rows;
+  const marks=[{start:0,end:2,kind:'姓名',decision:'pending'},{start:0,end:2,kind:'姓名',decision:'pending'}];
+  const frame={version:1 as const,sourceHash:row.source_hash,contentHash:row.content_hash,capturedRevision:row.revision,entries:[{id:randomUUID(),markIndex:0,start:0,end:2,kind:'姓名' as const,recognizedText:'张三',correctedText:'张四',originalType:'person',correctedType:'person',source:'highlight-context-menu' as const,correctedAt:'2026-10-17T00:00:00.000Z',actorId:owner.uid,page:0,lineIndex:0,occurrence:0,boxes:[{x:0,y:0,width:20,height:10}]}]};
+  await admin.query('UPDATE documents SET marks=$1::jsonb,entity_corrections=$2 WHERE id=$3',[JSON.stringify(marks),sealEntityCorrections({...row,marks},frame),doc]);
+  await admin.query('UPDATE review_snapshots SET marks=$1::jsonb,entity_metadata=NULL WHERE document_id=$2 AND revision=$3',[JSON.stringify(marks),doc,row.revision]);
+  await admin.query('DELETE FROM review_entity_history WHERE document_id=$1 AND revision=$2',[doc,row.revision]);
+  const viewResponse=await owner.req('GET',`/api/documents/${doc}`);assert.equal(viewResponse.statusCode,200,viewResponse.body);
+  const view=viewResponse.json(),groups=buildEntityGroups(view,view.marks),target=groups.find(group=>group.value==='张四');assert.ok(target?.exact);assert.equal(groups.find(group=>group.value==='张三')?.indices.length,1);
+  const request={revision:view.revision,marks:view.marks,policies:groupActionRequest(target,view.marks,'full_star',false)};
+  assert.equal((await other.req('POST',`/api/documents/${doc}/replacement-policies`,request)).statusCode,404);
+  assert.equal((await owner.req('POST',`/api/documents/${doc}/replacement-policies`,{...request,revision:view.revision+1})).statusCode,409);
+  const old={...request,policies:{...request.policies,values:request.policies.values.map(({semanticValue:_ignored,...value})=>value)}};
+  assert.equal((await owner.req('POST',`/api/documents/${doc}/replacement-policies`,old)).statusCode,400);
+  const forged={...request,policies:{...request.policies,values:request.policies.values.map(value=>({...value,semanticValue:'伪造值'}))}};
+  assert.equal((await owner.req('POST',`/api/documents/${doc}/replacement-policies`,forged)).statusCode,400);
+  const response=await owner.req('POST',`/api/documents/${doc}/replacement-policies`,request);assert.equal(response.statusCode,200,response.body);
+  const result=response.json();assert.deepEqual(result.marks[0].replacement,{mode:'custom',value:'**'});assert.equal(result.marks[1].replacement,undefined);
+  const stored=(await owner.req('GET',`/api/documents/${doc}`)).json();assert.equal(stored.revision,view.revision);assert.ok(stored.marks.every((mark:any)=>mark.replacement===undefined),'policy preview must not save or approve either slot');
 });
 test('project entity checks scan all current documents, preserve retained spans and add pending marks atomically',async()=>{
   const tenant=randomUUID(),uid=randomUUID(),origin=process.env.APP_ORIGIN!,password='synthetic-project-entities',username='entities-'+randomUUID();

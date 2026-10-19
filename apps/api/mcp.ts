@@ -12,7 +12,7 @@ import {scoped,rows,sql,type DB} from '../../packages/adapters/db.ts';
 import {hash,seal,unseal,readOriginal,readArtifact,writeOriginal} from '../../packages/adapters/storage.ts';
 import {projectScope,requirePermission,denied} from './access.ts';
 import {aiDiagnosticZip,cleanAiDiagnosticEvent,safeAiDiagnosticCode,aiDiagnosticToolOutcome} from '../../packages/core/ai-diagnostics.ts';
-import {MCP_PROTOCOL,negotiateMcpProtocol,taskStates,mcpDispatch,externalTask,recognitionNotice,reviewDeliveryProjection,cloudDocumentIds,newOpaqueId,taskUUID,gatewayMethods,collaborationMethods,connectorMethods, type CollabTask,type Caller,type ProtocolSession,type Authorization,type Delivery} from '../../packages/core/mcp-tools.ts';
+import {MCP_PROTOCOL,negotiateMcpProtocol,taskStates,mcpDispatch,externalTask,reportOnlyAiCompletion,recognitionNotice,reviewDeliveryProjection,cloudDocumentIds,newOpaqueId,taskUUID,gatewayMethods,collaborationMethods,connectorMethods, type CollabTask,type Caller,type ProtocolSession,type Authorization,type Delivery} from '../../packages/core/mcp-tools.ts';
 import {parseOffice} from '../../packages/core/office.ts';
 import {parseRestorationMapping,restoreDocx,restoreMarkdown,inspectRestorationTokens,emittedRestorationTokens,type RestorationPlan} from '../../packages/core/restoration-files.ts';
 import {getPreset,getProfileCatalogue,getProjectPresetPolicy} from './presets.ts';
@@ -58,7 +58,7 @@ const storedTaskShape=z.object({
  rounds:z.array(z.object({roundId:round,slotId:slot,format:z.enum(['docx','md']),resultKind:z.enum(['reviewed_document','derived_report']),artifactId:z.string(),objectId:id.optional(),sha256:sha.optional(),validated:z.boolean().optional(),reviewed:z.boolean().optional(),restoredArtifactId:id.optional()}).passthrough()),
  transportReceipts:z.object({completedDelivery:z.object({requestId:id,requestHash:sha}).strict().optional(),slotReplacement:z.object({requestId:id,requestHash:sha,previousSlotId:slot,currentSlotId:slot}).strict().optional()}).strict().optional(),
  combined:z.object({id:id,hash:sha}).passthrough().optional(),recognitionJobIds:z.array(id).optional(),exportJobIds:z.array(id).optional(),parentJobId:job.optional(),childJobIds:z.array(job).min(1).max(100).optional(),resumeSourceJobId:job.optional(),resumedJobId:job.optional(),resolvedOutputs:z.record(z.string(),z.array(z.string())).optional(),mappingReferences:z.array(z.object({id,token:z.string(),version:z.number().int().positive().optional()}).passthrough()).optional(),allowedTokens:z.array(z.string()).optional(),pendingInitialDetection:z.boolean().optional(),pendingAttachedSourceIds:z.array(id).optional(),reviewResolutions:z.array(z.object({documentId:id,fromRevision:z.number().int().nonnegative(),toRevision:z.number().int().nonnegative(),snapshotRevision:z.number().int().nonnegative(),sourceHash:sha,policyVersion:z.string().min(1),decisionOrigin:z.enum(['automatic','human_review'])}).passthrough()).optional(),
- mapping:z.record(z.string(),z.unknown()).optional(),authorization:authorization.passthrough().optional(),intent:z.record(z.string(),z.unknown()).optional(),statistics:z.record(z.string(),z.number()).optional(),eventLog:z.array(z.object({at:z.string(),event:z.string(),code:z.string().optional()}).passthrough()).optional(),
+ mapping:z.record(z.string(),z.unknown()).optional(),authorization:authorization.passthrough().optional(),intent:z.record(z.string(),z.unknown()).optional(),statistics:z.record(z.string(),z.unknown()).optional(),eventLog:z.array(z.object({at:z.string(),event:z.string(),code:z.string().optional()}).passthrough()).optional(),
  createdAt:z.string(),updatedAt:z.string(),failureCode:z.string().optional(),openRequested:z.boolean().optional(),
 }).passthrough();
 function privateRead(row:any,req:FastifyRequest):PrivateTask{
@@ -123,6 +123,14 @@ export async function withOwnedJobRetry<T extends {id:string;sourceHash:string}>
  return result;
 }
 function state(t:PrivateTask,states:string[]){if(!states.includes(t.state))fail('INVALID_STATE',409);}
+// Original Hw/Kw safe display-name normalization (main.js:22899-22912).
+function statisticsDisplayName(value:unknown){
+ const normalized=[...String(value||'').trim()].map(c=>c.charCodeAt(0)<32||/[<>:"/\\|?*]/u.test(c)?'_':c).join('').replace(/\.+$/u,'').slice(0,80);
+ if(!normalized)fail('UNSAFE_NAME',400);
+ if(/\.[a-z0-9]{1,8}$/iu.test(normalized)&&!/\.(docx|md)$/iu.test(normalized))fail('UNSUPPORTED_FORMAT',400);
+ return /\.(docx|md)$/iu.test(normalized)?normalized:`${normalized}.docx`;
+}
+const statisticCount=(value:unknown)=>Math.max(0,Math.floor(Number(value)||0));
 function canonical(value:any):string{return JSON.stringify(value&&typeof value==='object'?Array.isArray(value)?value.map(v=>JSON.parse(canonical(v))):Object.fromEntries(Object.keys(value).filter(k=>value[k]!==undefined).sort().map(k=>[k,JSON.parse(canonical(value[k]))])):value??null);}
 function normalizeToken(s:string){return s.replace(/[\s\u200b-\u200d\ufeff]/gu,'');}
 function config(t:PrivateTask,documentId:string){
@@ -1088,7 +1096,7 @@ export function registerMcpRoutes(app:FastifyInstance,applyConfiguration?:Collab
   }
   if(name==='submit_reviewed_document')return submit(req,a.job_id,a,caller);
   if(name==='open_lawbot_restore'){const t=await load(req,a.job_id,caller),restored=await restore(req,t.jobId,t.revision,a.round_id,caller);return {...externalTask(restored),restorationStarted:true,nextAction:'check_restore_completion',reviewUrl:`?collab=${t.jobId}`};}
-  if(name==='continue_current_document_review'){const t=await load(req,a.job_id,caller);const updated=await change(req,t.jobId,t.revision,caller,task=>{state(task,['round_completed','sanitized_artifact_ready']);if(!task.deliveries.length&&!task.combined)fail('ARTIFACT_NOT_AVAILABLE',409);if(task.state==='sanitized_artifact_ready')return UNCHANGED;task.state='sanitized_artifact_ready';return null;});return externalTask(updated.task);}
+  if(name==='continue_current_document_review'){const t=await load(req,a.job_id,caller);const updated=await change(req,t.jobId,t.revision,caller,task=>{state(task,['round_completed','sanitized_artifact_ready']);if(reportOnlyAiCompletion(task))fail('INVALID_STATE',409);if(!task.deliveries.length&&!task.combined)fail('ARTIFACT_NOT_AVAILABLE',409);if(task.state==='sanitized_artifact_ready')return UNCHANGED;task.state='sanitized_artifact_ready';return null;});return externalTask(updated.task);}
   if(name==='check_restore_completion')return wait(req,a.job_id,a,caller,true);
   fail('MCP_UNKNOWN_TOOL',400);
  }
@@ -1179,7 +1187,7 @@ export function registerMcpRoutes(app:FastifyInstance,applyConfiguration?:Collab
  app.post('/api/ai-collab/tasks/:job/authorize-restoration',async req=>{const a=z.object({revision:rev,allowRestorePath:z.literal(true)}).strict().parse(req.body),target=job.parse((req.params as any).job);const approved=(await change(req,target,a.revision,undefined,async(t,db)=>{state(t,['waiting_for_restore_approval','round_completed']);const latest=t.rounds.at(-1);if(t.state==='round_completed'&&(t.options.task_mode!=='ai_process'||!latest?.validated||!latest.reviewed||latest.restoredArtifactId))fail('INVALID_STATE',409);await requirePermission(db,t.projectId,['restore','view_mapping']);if(!t.mappingReferences?.length)fail('RESTORE_NO_TOKENS',409);const records=(await getProjectMappingRows(db,t.projectId,{historical:true})).filter(m=>t.mappingReferences!.some(r=>r.id===m.id&&r.token===m.token&&(r.version??1)===m.version));if(records.length!==t.mappingReferences.length)fail('DELIVERED_MAPPING_MISSING',409);t.mapping=snapshotMapping(records,t.projectId);if(!t.authorization)fail('AUTHORIZATION_REQUIRED',409);t.authorization.allowRestorePath=true;return externalTask(t);})).task;return humanTask(approved);});
  app.post('/api/ai-collab/tasks/:job/restore',async req=>{const a=z.object({revision:rev,roundId:round}).strict().parse(req.body);return humanTask(await restore(req,job.parse((req.params as any).job),a.revision,a.roundId));});
  app.post('/api/ai-collab/tasks/:job/action',async req=>{
-  const a=z.object({revision:rev,method:z.enum(collaborationMethods),roundId:round.optional(),documentIds:z.array(id).min(1).max(100).optional(),authorization:authorization.optional(),intent:z.record(z.string(),z.unknown()).optional(),failureCode:z.string().regex(/^[A-Z0-9_]{1,100}$/).optional(),statistics:z.record(z.string().regex(/^[a-zA-Z_]{1,40}$/),z.number().int().nonnegative()).optional(),event:z.enum(['started','succeeded','failed','waiting','cancelled','retry','fallback','recovered']).optional()}).strict().parse(req.body),target=job.parse((req.params as any).job);
+  const a=z.object({revision:rev,method:z.enum(collaborationMethods),roundId:round.optional(),documentIds:z.array(id).min(1).max(100).optional(),authorization:authorization.optional(),intent:z.record(z.string(),z.unknown()).nullable().optional(),failureCode:z.string().regex(/^[A-Z0-9_]{1,100}$/).optional(),statistics:z.record(z.string().regex(/^[a-zA-Z_]{1,40}$/),z.unknown()).optional(),event:z.enum(['started','succeeded','failed','waiting','cancelled','retry','fallback','recovered']).optional(),stage:z.string().optional(),outcome:z.string().optional(),code:z.string().optional(),details:z.record(z.string(),z.unknown()).optional()}).strict().parse(req.body),target=job.parse((req.params as any).job);
   if(a.method==='attach-source'||a.method==='attach-sources'){if(!a.documentIds)fail('SOURCE_REQUIRED',400);return humanTask(await attach(req,target,a.revision,a.documentIds));}
   if(a.method==='authorize'){if(!a.authorization)fail('AUTHORIZATION_REQUIRED',400);return humanTask(await authorize(req,target,a.revision,a.authorization));}
   if(a.method==='prepare-export')return humanTask(await prepare(req,target,a.revision));
@@ -1219,13 +1227,43 @@ export function registerMcpRoutes(app:FastifyInstance,applyConfiguration?:Collab
    else if(a.method==='fail'){if(!a.failureCode)fail('FAILURE_CODE_REQUIRED',400);if(t.state==='restoring')fail('RESTORATION_IN_PROGRESS',409);if(['completed','round_completed','cancelled_by_user'].includes(t.state))fail('INVALID_STATE',409);
     await cancelOwnedJobs(db,target);t.state='failed';delete t.pendingInitialDetection;delete t.pendingAttachedSourceIds;t.failureCode=a.failureCode;}
    else if(a.method==='restart-preparation'){state(t,['failed','building_sanitized_artifact','ai_result_rejected']);t.state='waiting_for_human_review';t.failureCode=undefined;t.deliveries=[];delete t.combined;}
-   else if(a.method==='retry-authorization'){state(t,['client_disconnected','failed','waiting_for_session_authorization']);t.state='waiting_for_session_authorization';t.authorization=undefined;}
+   else if(a.method==='retry-authorization'){state(t,['client_disconnected','failed','waiting_for_session_authorization','waiting_for_user_file_selection']);if(t.state==='waiting_for_user_file_selection'&&(t.sources.length||t.childJobIds?.length))fail('INVALID_STATE',409);t.state='waiting_for_session_authorization';t.authorization=undefined;delete t.pendingAttachedSourceIds;}
    else if(a.method==='retry-confirmation'){state(t,['waiting_for_restore_approval','restore_failed','round_completed']);const r=t.rounds.at(-1);if(!r||r.roundId!==a.roundId)fail('ROUND_NOT_CURRENT',409);if(!r.validated)fail('RESULT_NOT_VALIDATED',409);if(r.restoredArtifactId)fail('RESTORATION_ALREADY_COMPLETED',409);r.reviewed=false;t.state='waiting_for_restore_approval';}
-   else if(a.method==='set-review-intent'){if(!a.intent)fail('REVIEW_INTENT_REQUIRED',400);const checked=z.object({goals:z.array(z.enum(['contract_review','document_comparison','proofreading','summary','clause_revision','relation_extraction','timeline','redaction','restoration','other'])).max(10),perspective:z.enum(['party_a','party_b','neutral']).optional(),outputKinds:z.array(z.enum(['redline','comments','risk_report','negotiation_notes','structured_data','clean_copy','summary','comparison'])).max(8).optional(),outputFormat:z.enum(['docx','md']).optional(),restorationRequested:z.boolean().optional()}).strict().parse(a.intent);t.intent=checked;if(t.state==='waiting_for_task_selection')t.state='sanitized_artifact_ready';}
+   else if(a.method==='set-review-intent'){
+    if(a.intent===undefined)fail('REVIEW_INTENT_REQUIRED',400);
+    const original=z.object({taskType:z.enum(['contract_review','relation_extraction','timeline','document_comparison','custom']),depth:z.enum(['quick','standard','deep']),outputModes:z.array(z.enum(['redline','comments','risk_report','negotiation_notes','structured_data'])),focusAreas:z.array(z.string()).max(20),customInstruction:z.string().max(2000).optional()}).strict();
+    const cloud=z.object({goals:z.array(z.enum(['contract_review','document_comparison','proofreading','summary','clause_revision','relation_extraction','timeline','redaction','restoration','other'])).max(10),perspective:z.enum(['party_a','party_b','neutral']).optional(),outputKinds:z.array(z.enum(['redline','comments','risk_report','negotiation_notes','structured_data','clean_copy','summary','comparison'])).max(8).optional(),outputFormat:z.enum(['docx','md']).optional(),restorationRequested:z.boolean().optional()}).strict();
+    const checked=a.intent===null?undefined:z.union([original,cloud]).parse(a.intent);
+    state(t,checked&&'goals' in checked?['waiting_for_task_selection','sanitized_artifact_ready']:['waiting_for_task_selection']);if(!t.authorization?.allowSanitizedDelivery)fail('SANITIZED_DELIVERY_AUTHORIZATION_REQUIRED',403);
+    const artifact=t.combined?`lba_${t.combined.id.replaceAll('-','')}`:(t.deliveries.find(d=>d.role==='primary'&&d.format==='docx')??t.deliveries.find(markdownDelivery)??t.deliveries.find(visualDelivery));
+    if(!artifact)fail('INVALID_STATE',409);
+    await sourceForArchive(db,req,t,typeof artifact==='string'?artifact:deliveredArtifactId(artifact));
+    t.intent=checked;t.state='sanitized_artifact_ready';
+   }
    else if(a.method==='open-job'||a.method==='open-task'||a.method==='restore-saved-task'){t.openRequested=true;}
    else if(a.method==='consume-open-job'){const openRequested=t.openRequested===true;t.openRequested=false;return {openRequested,jobId:t.jobId,projectId:t.projectId,documentIds:t.sources.map(s=>s.documentId)};}
-   else if(a.method==='diagnostic-event'){if(!a.event)fail('EVENT_REQUIRED',400);note(t,'diagnostic_'+a.event,a.failureCode);}
-   else if(a.method==='report-statistics'){if(!a.statistics)fail('STATISTICS_REQUIRED',400);if(Object.hasOwn(a.statistics,'humanReviewed'))fail('HUMAN_REVIEW_STATISTIC_NOT_CLIENT_ASSERTABLE',400);t.statistics={...(t.statistics??{}),...a.statistics};}
+   else if(a.method==='diagnostic-event'){
+    if(!a.event&&!a.stage&&!a.outcome)fail('EVENT_REQUIRED',400);
+    const event=cleanAiDiagnosticEvent({jobId:t.jobId,adapter:t.caller.adapterId,stage:a.stage??'request',outcome:a.outcome??a.event??'failed',code:a.code??a.failureCode,details:a.details});
+    if(event)await rows(db,sql`INSERT INTO ai_collab_diagnostic_events(tenant_id,project_id,owner_id,task_id,payload) VALUES(${req.user.tenant_id},${t.projectId},${req.user.id},${taskUUID(t.jobId)},${JSON.stringify(event)}::jsonb)`);
+    if(a.event)note(t,'diagnostic_'+a.event,a.failureCode);
+   }
+   else if(a.method==='report-statistics'){
+    if(!a.statistics)fail('STATISTICS_REQUIRED',400);
+    state(t,['waiting_for_human_review','building_sanitized_artifact','sanitized_artifact_ready']);
+    const s=a.statistics,normal=z.record(z.string().regex(/^[a-zA-Z_]{1,40}$/u),z.number().int().nonnegative());
+    const extras=new Set(['perDocument','humanReviewed','appliedExportMode']);
+    const numeric=normal.parse(Object.fromEntries(Object.entries(s).filter(([key])=>!extras.has(key))));
+    const total=statisticCount(numeric.entityCount),low=Math.min(total,statisticCount(numeric.lowConfidenceCount));
+    const perDocument=s.perDocument===undefined?undefined:z.array(z.object({safeDisplayName:z.string(),entityCount:z.unknown(),lowConfidenceCount:z.unknown(),unknownConfidenceCount:z.unknown()}).strict()).max(100).parse(s.perDocument).map(item=>({safeDisplayName:statisticsDisplayName(item.safeDisplayName),entityCount:statisticCount(item.entityCount),lowConfidenceCount:statisticCount(item.lowConfidenceCount),unknownConfidenceCount:statisticCount(item.unknownConfidenceCount)}));
+    const appliedExportMode=s.appliedExportMode===undefined?undefined:z.enum(['default_star','full_star','default_pseudonym','custom_pseudonym','selective_pseudonym']).parse(s.appliedExportMode);
+    if(appliedExportMode){if(!t.sources.length)fail('INVALID_ARGUMENTS',400);for(const source of t.sources){const actual=await checkedConfiguration(db,req,t,source.documentId);if(actual.exportMode!==appliedExportMode)fail('ACTUAL_EXPORT_MODE_MISMATCH',409);}}
+    const humanReviewed=t.sources.length>0&&(await Promise.all(t.sources.map(async source=>{
+     const [review]=await rows(db,sql`SELECT s.review_mode FROM documents d LEFT JOIN review_snapshots s ON s.document_id=d.id AND s.revision=d.revision AND s.tenant_id=d.tenant_id AND s.project_id=d.project_id WHERE d.id=${source.documentId} AND d.project_id=${t.projectId} AND d.tenant_id=${req.user.tenant_id} AND (d.source_hash=${source.hash} OR d.content_hash=${source.hash})`);
+     return review?.review_mode==='human_review';
+    }))).every(Boolean);
+    t.statistics={...numeric,entityCount:total,lowConfidenceCount:low,unknownConfidenceCount:Math.min(total-low,statisticCount(numeric.unknownConfidenceCount)),documentCount:Math.max(1,statisticCount(numeric.documentCount)||1),humanReviewed,measuredAt:new Date().toISOString(),...perDocument?{perDocument}:{},...appliedExportMode?{appliedExportMode}:{}};
+   }
    else if(a.method==='restore-completed'||a.method==='standalone-restore-completed'){const r=t.rounds.find(r=>r.roundId===a.roundId);if(!r?.restoredArtifactId||t.state!=='round_completed')fail('SERVER_RESTORATION_NOT_COMPLETED',409);return externalTask(t);}
    else if(a.method==='restore-failed'){if(t.state==='restoring')fail('SERVER_RESTORATION_IN_PROGRESS',409);state(t,['restore_failed']);return externalTask(t);}
    else fail('COLLAB_METHOD_UNSUPPORTED',400);

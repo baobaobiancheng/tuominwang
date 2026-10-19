@@ -4,7 +4,11 @@ import {z} from 'zod';
 import {id,type Mark} from '../../packages/contracts/index.ts';
 import {rows,sql,type DB} from '../../packages/adapters/db.ts';
 import {hash,readArtifact,seal,unseal,writeArtifact} from '../../packages/adapters/storage.ts';
-import {mappingExportData} from '../../packages/core/mapping-export.ts';
+import {singleDocumentDraftMappingData} from '../../packages/core/mapping-export.ts';
+import {currentOrImportedDraft,originalDraftEntityKey} from '../../packages/core/original-pseudonym-draft.ts';
+import {canonicalRuleEntityType} from '../../packages/core/presets.ts';
+import {openEntityCorrections} from '../../packages/adapters/entity-corrections.ts';
+import {semanticEntityValue} from '../../packages/core/entity-corrections.ts';
 import {validateMappingMarks} from '../../packages/core/mappings.ts';
 import {entityLabel} from '../../packages/core/entity-identity.ts';
 import {mappingsForMarks} from './mappings.ts';
@@ -22,16 +26,26 @@ function decode(row:any):ArchivePayload {
 export async function publishExportMappingArchive(db:DB,job:any,d:any,snapshot:any,redacted:{id:string;hash:string},objectId:string){
  if(!job.mapping_name_ciphertext)return false; // pre-046 jobs are not backfilled.
  const marks=(d.marks as Mark[]).filter(m=>m.decision==='redact'&&m.replacement?.mode==='alias');
- if(!marks.length)return false;
  if(!snapshot||snapshot.document_id!==d.id||snapshot.revision!==d.revision||snapshot.content_hash!==d.content_hash||hash(JSON.stringify(snapshot.marks))!==hash(JSON.stringify(d.marks)))throw new Error('SNAPSHOT_MISMATCH');
  const text=unseal(d.content,`${d.tenant_id}:${d.project_id}:${d.id}`);
  if(hash(text)!==d.content_hash)throw new Error('SOURCE_MISMATCH');
+ const [project]=await rows(db,sql`SELECT portable_state FROM projects WHERE id=${d.project_id}`);
+ const state=project?.portable_state?JSON.parse(unseal(project.portable_state,`${d.tenant_id}:${d.project_id}:portable-state`)):null;
+ const draft=currentOrImportedDraft(state,d.id,hash(text),d.revision);
+ const byKey=new Map(draft?.entries.map(entry=>[entry.key,entry])??[]),corrections=draft?openEntityCorrections(d):null;
+ const local=(d.marks as Mark[]).flatMap((mark,index)=>{
+  if(mark.decision!=='redact'||mark.replacement?.mode!=='custom'||!draft)return[];
+  const value=semanticEntityValue({...d,entityCorrections:corrections},mark,text,index),key=originalDraftEntityKey(mark.rawEntityType??canonicalRuleEntityType(mark.kind),value),entry=byKey.get(key);
+  if(!entry||entry.currentValue!==mark.replacement.value||(entry.action??'pseudonym')!=='pseudonym')return[];
+  return[{token:entry.currentValue,original:text.slice(mark.start,mark.end),entityType:entityLabel(mark),documentId:d.id,start:mark.start,end:mark.end}];
+ });
+ if(!marks.length&&!local.length)return false;
  const mappings=await mappingsForMarks(db,d,marks,job.user_id);
  validateMappingMarks(text,marks,mappings);
- const occurrences=marks.map(m=>({token:(m.replacement as Extract<Mark['replacement'],{mode:'alias'}>).token,original:text.slice(m.start,m.end),entityType:entityLabel(m),documentId:d.id,start:m.start,end:m.end}));
+ const occurrences=[...marks.map(m=>({token:(m.replacement as Extract<Mark['replacement'],{mode:'alias'}>).token,original:text.slice(m.start,m.end),entityType:entityLabel(m),documentId:d.id,start:m.start,end:m.end})),...local];
  const tableName=unseal(job.mapping_name_ciphertext,`${job.tenant_id}:${job.project_id}:${job.id}:mapping-name`);
  if(hash(tableName)!==job.mapping_name_hash)throw new Error('MAPPING_ARCHIVE_INVALID');
- const base=mappingExportData(mappings,occurrences),data={...base,_meta:{...base._meta,tableName:tableName.slice(0,-4),scope:'single',sourceHash:d.source_hash,contentHash:d.content_hash,revision:d.revision,jobId:job.id}};
+ const base=singleDocumentDraftMappingData(mappings,local,occurrences),data={...base,_meta:{...base._meta,tableName:tableName.slice(0,-4),scope:'single',sourceHash:d.source_hash,contentHash:d.content_hash,revision:d.revision,jobId:job.id}};
  const json=JSON.stringify(data),mappingHash=hash(json);
  await writeArtifact(objectId,json,d.id);
  const receiptId=randomUUID(),payload:ArchivePayload={schemaVersion:1,jobId:job.id,documentId:d.id,revision:d.revision,sourceHash:d.source_hash,contentHash:d.content_hash,reviewHash:hash(JSON.stringify(snapshot.marks)),redactedArtifactId:redacted.id,redactedArtifactHash:redacted.hash,mappingObjectId:objectId,mappingHash,tableName,createdBy:job.user_id};

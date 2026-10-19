@@ -1,12 +1,17 @@
 import {hideReviewEntityType,restoreHiddenReviewEntities} from '../../packages/core/review-type-hide.ts';
 import {applySignatureDecision} from '../../packages/core/review-group-ui.ts';
 import type{ReviewFeedbackCause}from'../../packages/core/review-feedback.ts';
-import {entityIdentity,entityLabel,sameEntity} from '../../packages/core/entity-identity.ts';
+import {entityIdentity,entityLabel,sameEntity,canonicalRuleEntityType} from '../../packages/core/entity-identity.ts';
 import {correctionForMark} from '../../packages/core/entity-corrections.ts';
 import {filterReviewMarkItems,type ReviewMarkFilter} from '../../packages/core/review-mark-filter.ts';
+import {sourcePseudonymActionResult} from '../../packages/core/reference/workspace-renderer-source.js';
+import type {ReplacementPolicies} from '../../packages/contracts/policies.ts';
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import {useConfirmAction} from './confirm-action.tsx';
 import { typeColor } from "./text-highlights.tsx";
 import type { DocumentView, Mark, ReviewMark } from "../../packages/contracts/index.ts";
+import { originalDraftTypeActionControls } from '../../packages/core/original-draft-controls.ts';
+import type { ActivePseudonymDraft } from '../../packages/core/original-pseudonym-draft.ts';
 
 export type EntityGroup = {
   id: string;
@@ -68,18 +73,48 @@ export function buildEntityGroups(doc: Pick<DocumentView, "text" | "textOffset" 
 
 const PAGE_SIZE = 50;
 
-export function EntityGroups({ doc, marks, update, locate, run, disabled, canReview, onEdit, onCheck, filterEntities }: {
+type GroupAction='mask'|'pseudonym'|'partial_star'|'full_star';
+/** Use the existing value-scoped policy endpoint, so the server resolves the
+ * same semantic identity and checks mapping rights/CAS before any draft edit. */
+export function groupActionRequest(group:EntityGroup,marks:Mark[],action:GroupAction,visual:boolean):ReplacementPolicies {
+  if(!group.exact||!group.value)throw new Error('POLICY_EXACT_VALUE_REQUIRED');
+  if(action==='mask'&&!visual)throw new Error('POLICY_ACTION_UNAVAILABLE');
+  const first=marks[group.indices[0]];
+  if(!first)throw new Error('POLICY_TARGET_NOT_FOUND');
+  const rule=action==='mask'?{mode:'clear' as const}:action==='pseudonym'?{mode:'alias' as const}:action==='full_star'?{mode:'full' as const}:{mode:'custom' as const,value:sourcePseudonymActionResult('partial_star',first.rawEntityType??canonicalRuleEntityType(first.kind),group.value)??''};
+  return{types:[],values:[{start:first.start,end:first.end,kind:first.kind,...first.rawEntityType!==undefined?{rawEntityType:first.rawEntityType}:{},semanticValue:group.value,rule}],keepExplicit:false};
+}
+
+export function EntityGroups({ doc, marks, update, locate, run, api, refresh, disabled, draftDisabled, canReview, canUseAliases, onEdit, onCheck, filterEntities }: {
   doc: DocumentView;
   marks: ReviewMark[];
-  update: (marks: ReviewMark[], cause?: ReviewFeedbackCause) => void;
+  update: (marks: ReviewMark[], cause?: ReviewFeedbackCause, fromServer?: boolean) => void;
   locate: (span: { start: number; end: number }) => Promise<void>;
   run: (action: () => Promise<void>) => Promise<void>;
+  api:<T>(path:string,method?:string,body?:unknown)=>Promise<T>;
+  refresh:()=>Promise<void>;
   disabled: boolean;
+  draftDisabled:boolean;
   canReview: boolean;
+  canUseAliases:boolean;
   onEdit: (index: number) => void;
   onCheck: () => void;
   filterEntities?: (filter: ReviewMarkFilter) => Promise<number[]>;
 }) {
+  const confirm=useConfirmAction();
+  const [selective,setSelective]=useState(false);
+  const [activeDraft,setActiveDraft]=useState<{revision:number;sourceHash:string;draftHash:string;draft:ActivePseudonymDraft}|null>(null);
+  const [draftValues,setDraftValues]=useState<Record<string,string>>({});
+  const [draftActions,setDraftActions]=useState<Record<string,NonNullable<ActivePseudonymDraft['entries'][number]['action']>>>({});
+  const [draftLocks,setDraftLocks]=useState<Record<string,boolean>>({});
+  const [draftError,setDraftError]=useState('');
+  const [draftModeNotice,setDraftModeNotice]=useState('');
+  const apiRef=useRef(api);apiRef.current=api;
+  const draft=useRef({id:doc.id,revision:doc.revision,marks});draft.current={id:doc.id,revision:doc.revision,marks};
+  useEffect(()=>{let current=true;setSelective(false);void apiRef.current<{revision:number;configuration:{exportMode?:string};effective:{profile:{mode:string}}}>(`/documents/${doc.id}/configuration`).then(result=>{if(current&&result.revision===doc.revision)setSelective((result.configuration.exportMode??result.effective.profile.mode)==='selective_pseudonym');},()=>{});return()=>{current=false;};},[doc.id,doc.revision]);
+  useEffect(()=>{let current=true;setActiveDraft(null);setDraftError('');setDraftModeNotice('');if(!canUseAliases||doc.state!=='review')return()=>{current=false;};
+    void apiRef.current<{available?:boolean;reason?:string;revision:number;sourceHash:string;draftHash:string;draft:ActivePseudonymDraft}>(`/documents/${doc.id}/pseudonym-draft`).then(result=>{if(!current)return;if(result.available===false){setDraftModeNotice('项目已启用统一假名，请在项目统一假名中编辑。');return;}if(result.revision===doc.revision){setActiveDraft(result);setDraftValues(Object.fromEntries(result.draft.entries.map(entry=>[entry.key,entry.currentValue])));setDraftActions(Object.fromEntries(result.draft.entries.map(entry=>[entry.key,entry.action??'pseudonym'])));setDraftLocks(Object.fromEntries(result.draft.entries.map(entry=>[entry.key,entry.locked])));}},error=>{if(current)setDraftError((error as Error).message);});
+    return()=>{current=false;};},[doc.id,doc.revision,doc.state,canUseAliases]);
   const groups = useMemo(() => buildEntityGroups(doc, marks), [doc.text, doc.textOffset, doc.markTexts, marks]);
   const [kind, setKind] = useState("all");
   const [query, setQuery] = useState("");
@@ -149,6 +184,64 @@ export function EntityGroups({ doc, marks, update, locate, run, disabled, canRev
     update(applySignatureDecision(marks,indices,decision));
     setSelected(new Set());
   }
+  function applyGroupAction(group:EntityGroup,action:GroupAction,visual:boolean){
+    if(locked||!selective||!group.exact||action==='pseudonym'&&!canUseAliases)return;
+    const snapshot=draft.current;
+    void run(async()=>{
+      if(action==='pseudonym'&&!await confirm('为同一原值的全部位置使用项目假名？如尚无映射，将加密创建并保留还原关系。'))return;
+      if(draft.current.id!==snapshot.id||draft.current.revision!==snapshot.revision||draft.current.marks!==snapshot.marks)return;
+      const policies=groupActionRequest(group,snapshot.marks,action,visual);
+      const result=await api<{revision:number;marks:ReviewMark[]}>(`/documents/${snapshot.id}/replacement-policies`,'POST',{revision:snapshot.revision,marks:snapshot.marks,policies});
+      if(draft.current.id!==snapshot.id||draft.current.revision!==snapshot.revision||draft.current.marks!==snapshot.marks||result.revision!==snapshot.revision)return;
+      update(result.marks,undefined,true);
+    });
+  }
+  function editDraftEntry(key:string) {
+    if(draftDisabled||!activeDraft)return;
+    const snapshot=activeDraft, currentValue=draftValues[key],entry=snapshot.draft.entries.find(value=>value.key===key);
+    if(!entry)return;
+    if(currentValue===undefined||Array.from(currentValue).length>30)return;
+    const locked=draftLocks[key]??entry.locked,action=selective?draftActions[key]??entry.action??'pseudonym':'pseudonym';
+    const patch={...currentValue!==entry.currentValue?{currentValue}:{},...locked!==entry.locked?{locked}:{},...action!==(entry.action??'pseudonym')?{action}:{}};
+    if(!Object.keys(patch).length)return;
+    void run(async()=>{
+      if(draft.current.id!==doc.id||draft.current.revision!==snapshot.revision)return;
+      const body={revision:snapshot.revision,sourceHash:snapshot.sourceHash,draftHash:snapshot.draftHash,style:selective?'selective':'custom',key,...patch,confirmDuplicate:false};
+      let result=await api<{revision:number;draftHash:string;draft:ActivePseudonymDraft;duplicateConfirmationRequired?:boolean}>(`/documents/${doc.id}/pseudonym-draft/edit`,'POST',body);
+      if(result.duplicateConfirmationRequired){if(!await confirm('该假名已用于另一原值。继续共用后，还原时须选择统一还原内容。'))return;
+        result=await api(`/documents/${doc.id}/pseudonym-draft/edit`,'POST',{...body,confirmDuplicate:true});}
+      if(draft.current.id!==doc.id)return;
+      setActiveDraft({revision:result.revision,sourceHash:snapshot.sourceHash,draftHash:result.draftHash,draft:result.draft});
+      setDraftValues(Object.fromEntries(result.draft.entries.map(value=>[value.key,value.currentValue])));
+      setDraftActions(Object.fromEntries(result.draft.entries.map(value=>[value.key,value.action??'pseudonym'])));
+      setDraftLocks(Object.fromEntries(result.draft.entries.map(value=>[value.key,value.locked])));
+      await refresh();
+    });
+  }
+  function setDraftTypeAction(entityType:string,action:NonNullable<ActivePseudonymDraft['entries'][number]['action']>) {
+    if(draftDisabled||!activeDraft||!selective)return;
+    const snapshot=activeDraft;
+    void run(async()=>{
+      if(draft.current.id!==doc.id||draft.current.revision!==snapshot.revision)return;
+      const result=await api<{revision:number;draftHash:string;draft:ActivePseudonymDraft}>(`/documents/${doc.id}/pseudonym-draft/edit`,'POST',{revision:snapshot.revision,sourceHash:snapshot.sourceHash,draftHash:snapshot.draftHash,style:'selective',entityType,action});
+      if(draft.current.id!==doc.id)return;
+      setActiveDraft({revision:result.revision,sourceHash:snapshot.sourceHash,draftHash:result.draftHash,draft:result.draft});
+      setDraftValues(Object.fromEntries(result.draft.entries.map(value=>[value.key,value.currentValue])));
+      setDraftActions(Object.fromEntries(result.draft.entries.map(value=>[value.key,value.action??'pseudonym'])));
+      setDraftLocks(Object.fromEntries(result.draft.entries.map(value=>[value.key,value.locked])));
+      await refresh();
+    });
+  }
+  function resetActiveDraft(){if(draftDisabled||!activeDraft)return;const snapshot=activeDraft;void run(async()=>{
+    if(!await confirm('将当前材料的假名草稿恢复为自动值？'))return;
+    const result=await api<{revision:number;draftHash:string;draft:ActivePseudonymDraft}>(`/documents/${doc.id}/pseudonym-draft/reset`,'POST',{revision:snapshot.revision,sourceHash:snapshot.sourceHash,draftHash:snapshot.draftHash,style:selective?'selective':'custom'});
+    if(draft.current.id!==doc.id)return;
+    setActiveDraft({revision:result.revision,sourceHash:snapshot.sourceHash,draftHash:result.draftHash,draft:result.draft});
+    setDraftValues(Object.fromEntries(result.draft.entries.map(value=>[value.key,value.currentValue])));
+    setDraftActions(Object.fromEntries(result.draft.entries.map(value=>[value.key,value.action??'pseudonym'])));
+    setDraftLocks(Object.fromEntries(result.draft.entries.map(value=>[value.key,value.locked])));
+    await refresh();
+  });}
   function deleteGroups(targets: EntityGroup[]) {
     if(locked||!targets.length||targets.some(group=>group.indices.some(index=>!!marks[index].signatureGroup)))return;
     const indices=new Set(targets.flatMap(group=>group.indices));
@@ -188,6 +281,12 @@ export function EntityGroups({ doc, marks, update, locate, run, disabled, canRev
       <button className="quiet" disabled={locked || !chosen.length} onClick={() => apply("pending")}>恢复待确认</button><button className="quiet" disabled={locked||!chosen.length||chosen.some(group=>group.indices.some(index=>!!marks[index].signatureGroup))} onClick={()=>setDeleteScope(chosen)}>删除所选组标记</button>
     </div>
     {!!hiddenTypeCount&&<p role="status">已隐藏 {hiddenTypeCount} 个类型 · {hiddenMarks.length} 处，保存后保留原值。<button className="quiet" disabled={locked} onClick={restoreHiddenTypes}>恢复隐藏类型（需重新确认）</button></p>}
+    {canUseAliases&&activeDraft&&<details aria-label="当前材料假名草稿"><summary>当前材料假名草稿 · {activeDraft.draft.entries.filter(entry=>entry.occurrences>0).length} 项</summary>
+      <p className="muted">只修改当前材料；之前保存的假名即使暂时没有对应标记，也会保留。相同假名对应不同原值时，还原需选择统一原文。</p>
+      {selective&&originalDraftTypeActionControls(activeDraft.draft).map(({entityType,action:selectedAction})=><div key={entityType} className="entity-group-actions"><strong>{entityType} · 当前材料全部同类型项</strong>{(['pseudonym',...(['pdf','png','jpg','jpeg'].includes(doc.format??'')?['mask']:[]),'partial_star','full_star'] as NonNullable<ActivePseudonymDraft['entries'][number]['action']>[]).map(action=><button key={action} type="button" className="quiet" aria-pressed={selectedAction===action} disabled={draftDisabled} onClick={()=>setDraftTypeAction(entityType,action)}>{action==='pseudonym'?'假名化':action==='mask'?'遮盖':action==='partial_star'?'半 * 号':'全 * 号'}</button>)}</div>)}
+      {activeDraft.draft.entries.filter(entry=>entry.occurrences>0).map(entry=>{const action=selective?draftActions[entry.key]??entry.action??'pseudonym':'pseudonym',display=selective&&action!=='pseudonym'?sourcePseudonymActionResult(action,entry.entityType,entry.normalized,entry.currentValue)??'':draftValues[entry.key]??'';return <div key={entry.key} className="entity-group-actions"><label>{entry.normalized} · {entry.occurrences} 处<input aria-label={`编辑${entry.normalized}假名`} maxLength={30} value={display} disabled={draftDisabled||selective&&action!=='pseudonym'} onChange={event=>{setDraftValues(values=>({...values,[entry.key]:event.target.value}));setDraftLocks(locks=>({...locks,[entry.key]:true}));}}/></label>{selective&&<label>方式<select aria-label={`${entry.normalized}脱敏方式`} value={action} disabled={draftDisabled} onChange={event=>setDraftActions(actions=>({...actions,[entry.key]:event.target.value as NonNullable<ActivePseudonymDraft['entries'][number]['action']>}))}><option value="pseudonym">假名化</option>{['pdf','png','jpg','jpeg'].includes(doc.format??'')&&<option value="mask">遮盖</option>}<option value="partial_star">半 * 号</option><option value="full_star">全 * 号</option></select></label>}<button className="quiet" disabled={draftDisabled} onClick={()=>editDraftEntry(entry.key)}>保存此项</button></div>})}
+      <button className="quiet" disabled={draftDisabled} onClick={resetActiveDraft}>重置当前材料假名</button>
+    </details>}{canUseAliases&&draftModeNotice&&<p role="status">{draftModeNotice}</p>}{canUseAliases&&draftError&&<p role="alert">假名草稿读取失败：{draftError}</p>}
     {deleteScope&&<div role="dialog" aria-modal="true" aria-label="确认删除分组标记"><p>删除此组全部出现位置的标记？标记将从当前候选中移除，已有复核历史与原文件保留。</p><button onClick={()=>deleteGroups(deleteScope)} disabled={locked}>确认删除标记</button><button onClick={()=>setDeleteScope(null)}>取消删除</button></div>}
     <details className="entity-group-hint"><summary>分组与批量操作说明</summary><p className="muted">操作应用于所选组的全部出现位置，包含未通过当前置信度筛选的位置；仅修改复核草稿，保留各处脱敏方式，可撤销修改。同类型完整相同原值合组；长原值片段按位置独立展示。</p></details>
     {(!filterEntities||doc.state==="review"&&remoteIndices!==null)&&!filtered.length && <p className="empty">{!marks.length ? "尚无敏感标记，可在原文中补充。" : "没有符合筛选条件的实体。"}</p>}
@@ -197,6 +296,7 @@ export function EntityGroups({ doc, marks, update, locate, run, disabled, canRev
       const mark = marks[markIndex];
       const preview = Array.from(group.value).slice(0, 120).join("");
       const label = group.value ? `${preview}${preview.length < group.value.length || !group.exact ? "…" : ""}` : "定位查看原值";
+      const visual=['pdf','png','jpg','jpeg'].includes(doc.format??'')||group.indices.every(index=>doc.anchors?.some(anchor=>anchor.kind==='object'&&anchor.object==='image-text'&&anchor.start<=marks[index].start&&anchor.end>=marks[index].end));
       return <React.Fragment key={group.id}>
         {(index === 0 || !sameEntity(pageGroups[index - 1],group)) && <h3 className="entity-type-heading"><button type="button" className="quiet" aria-label={`${collapsedTypes.has(entityIdentity(group)) ? "展开" : "收起"}${entityLabel(group)}实体`} aria-expanded={!collapsedTypes.has(entityIdentity(group))} style={{ "--entity-color": typeColor(group.kind) } as React.CSSProperties} onClick={() => setCollapsedTypes(previous => { const next = new Set(previous); if (next.has(entityIdentity(group))) next.delete(entityIdentity(group)); else next.add(entityIdentity(group)); return next; })}><span aria-hidden="true">{collapsedTypes.has(entityIdentity(group)) ? "▸" : "▾"}</span><span className="entity-type-dot" aria-hidden="true" />{entityLabel(group)}<small>{filtered.filter(item => sameEntity(item,group)).reduce((total, item) => total + item.indices.length, 0)} 处</small></button><button className="quiet" disabled={locked} onClick={()=>hideType(group)}>隐藏此类型</button></h3>}
         <article className="entity-group-card" hidden={collapsedTypes.has(entityIdentity(group))} style={{ "--entity-color": typeColor(group.kind) } as React.CSSProperties}>
@@ -204,6 +304,12 @@ export function EntityGroups({ doc, marks, update, locate, run, disabled, canRev
           {!group.exact && <small className="muted">原值片段 · 独立位置 {mark.start + 1}–{mark.end}</small>}
           <div className="entity-group-counts"><span>待确认 {group.counts.pending}</span><span>脱敏 {group.counts.redact}</span><span>保留 {group.counts.ignore}</span></div>
           {(group.mixedDecisions || group.mixedReplacements) && <p className="entity-group-warning">{group.mixedDecisions ? "处理决定不一致" : ""}{group.mixedDecisions && group.mixedReplacements ? " · " : ""}{group.mixedReplacements ? "脱敏方式不一致" : ""}，请逐处核对。</p>}
+          {selective&&group.exact&&<div className="entity-group-actions" role="group" aria-label={`${entityLabel(group)} ${label} 的脱敏方式`}>
+            {visual&&<button className="quiet" disabled={locked} onClick={()=>applyGroupAction(group,'mask',visual)}>仅遮盖</button>}
+            <button className="quiet" disabled={locked||!canUseAliases} onClick={()=>applyGroupAction(group,'pseudonym',visual)}>假名化</button>
+            <button className="quiet" disabled={locked} onClick={()=>applyGroupAction(group,'partial_star',visual)}>半 * 号</button>
+            <button className="quiet" disabled={locked} onClick={()=>applyGroupAction(group,'full_star',visual)}>全 * 号</button>
+          </div>}
           <div className="entity-occurrence-nav" aria-label={`${entityLabel(group)}出现位置`}><button className="quiet" disabled={occurrence === 0} onClick={() => show(group, occurrence - 1)}>上一处</button><span>第 {occurrence + 1} / {group.indices.length} 处 · 位置 {mark.start + 1}</span><button className="quiet" disabled={occurrence + 1 >= group.indices.length} onClick={() => show(group, occurrence + 1)}>下一处</button><button className="quiet" onClick={() => { show(group, occurrence); onEdit(markIndex); }}>{canReview ? "编辑此处" : "查看此处"}</button></div>
         </article>
       </React.Fragment>;

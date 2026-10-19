@@ -4,6 +4,7 @@ import { writeZip } from './office-zip.ts';
 import { parseOffice } from './office.ts';
 import { parseRestorationMapping } from './restoration-files.ts';
 import type { Mapping } from './mappings.ts';
+import { validAliasToken } from '../contracts/alias-token.ts';
 
 export function mappingExportData(mappings:Mapping[],occurrences:{token:string;original:string;entityType:string;documentId:string;start:number;end:number}[]) {
  const tokens=new Map<string,string>();
@@ -11,6 +12,25 @@ export function mappingExportData(mappings:Mapping[],occurrences:{token:string;o
  if(!tokens.size)throw new Error('MAPPING_NOT_FOUND');
  const data={_meta:{version:'0.6',product:'脱敏汪'},mappings:Object.fromEntries(tokens),details:mappings.map(m=>({pseudonym:m.token,normalized:m.value,entityType:entityLabel(m),entityTypes:[...new Set([m,...m.identities??[]].map(entityLabel))],forms:[...new Set([m.value,...m.forms??[]])].map(original=>({original})),scope:m.scope??null})),occurrences};
  const plan=parseRestorationMapping(data,{choices:Object.fromEntries(mappings.map(m=>[m.token,m.value])),allowCanonicalSelection:true});if(plan.ambiguities.length||Object.keys(plan.mappings).length!==tokens.size)throw new Error('ARTIFACT_MISMATCH');
+ return data;
+}
+/** A single reviewed document may intentionally use one local pseudonym for
+ * two originals. Keep both forms and let the existing restoration flow ask
+ * for a single explicit choice. The project-wide ambiguity gate is unchanged. */
+export function singleDocumentDraftMappingData(
+ mappings:Mapping[],
+ local:{token:string;original:string;entityType:string;documentId:string;start:number;end:number}[],
+ occurrences:{token:string;original:string;entityType:string;documentId:string;start:number;end:number}[],
+){
+ const base=local.length?null:mappingExportData(mappings,occurrences);
+ if(base)return base;
+ const details=[...mappings.map(m=>({pseudonym:m.token,normalized:m.value,entityType:entityLabel(m),entityTypes:[...new Set([m,...m.identities??[]].map(entityLabel))],forms:[...new Set([m.value,...m.forms??[]])].map(original=>({original})),scope:m.scope??null})),...local.map(item=>({pseudonym:item.token,normalized:item.original,entityType:item.entityType,entityTypes:[item.entityType],forms:[{original:item.original}],scope:'document'}))];
+ const fallback=Object.create(null) as Record<string,string>;
+ for(const detail of details){if(!validAliasToken(detail.pseudonym)||!detail.normalized.trim())throw new Error('RESTORE_MAPPING_INVALID');fallback[detail.pseudonym]??=detail.normalized;}
+ if(!Object.keys(fallback).length)throw new Error('MAPPING_NOT_FOUND');
+ const data={_meta:{version:'0.6',product:'脱敏汪'},mappings:fallback,details,occurrences:occurrences.sort((a,b)=>a.start-b.start||a.end-b.end)};
+ const plan=parseRestorationMapping(data);
+ if(Object.keys(plan.mappings).length!==Object.keys(fallback).length)throw new Error('ARTIFACT_MISMATCH');
  return data;
 }
 export async function exportMappingWorkbook(mappings:Mapping[]) {

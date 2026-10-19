@@ -35,24 +35,27 @@ export async function scoped<T>(
 export const globalDb = drizzle(pool);
 // No waiting for an advisory lock while holding document rows or a pool slot: that can deadlock
 // the worker publishing its result. A dedicated short-lived connection tries once and fails busy.
-let localHeavy = false;
-export async function withHeavySlot<T>(fn: (signal: AbortSignal) => Promise<T>): Promise<T> {
-  if (localHeavy) throw new Error("PROCESSING_BUSY");
-  localHeavy = true;
+const localProcessingSlots: Record<2|3,boolean> = {2:false,3:false};
+async function withProcessingSlot<T>(slot:2|3,fn:(signal:AbortSignal)=>Promise<T>):Promise<T>{
+  if (localProcessingSlots[slot]) throw new Error("PROCESSING_BUSY");
+  localProcessingSlots[slot] = true;
   const client = new pg.Client({ connectionString: process.env.DATABASE_URL, connectionTimeoutMillis: 10000 });
   const lost = new AbortController();
   client.on("error", () => lost.abort());
   let owned = false;
   try {
     await client.connect();
-    owned = (await client.query("SELECT pg_try_advisory_lock(7843,2) AS owned")).rows[0].owned;
+    owned = (await client.query("SELECT pg_try_advisory_lock(7843,$1) AS owned",[slot])).rows[0].owned;
     if (!owned) throw new Error("PROCESSING_BUSY");
     return await fn(lost.signal);
   } finally {
-    try { if (owned) await client.query("SELECT pg_advisory_unlock(7843,2)"); }
-    finally { try { await client.end(); } finally { localHeavy = false; } }
+    try { if (owned) await client.query("SELECT pg_advisory_unlock(7843,$1)",[slot]); }
+    finally { try { await client.end(); } finally { localProcessingSlots[slot] = false; } }
   }
 }
+export function withHeavySlot<T>(fn:(signal:AbortSignal)=>Promise<T>){return withProcessingSlot(2,fn);}
+// Single verified partial page may preview while the detect worker holds slot 2.
+export function withPartialPagePreviewSlot<T>(fn:(signal:AbortSignal)=>Promise<T>){return withProcessingSlot(3,fn);}
 export async function verifyRuntimeRole() {
   const [role] = await rows(
     globalDb,

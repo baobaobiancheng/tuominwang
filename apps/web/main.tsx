@@ -32,7 +32,7 @@ import {ProcessingObservability} from "./processing-observability.tsx";
 import {ReferenceDictionaryFiles} from "./reference-dictionary.tsx";
 import {RestorationBatch} from "./restoration-batch.tsx";
 import {FeedbackPanel} from "./feedback.tsx";
-import {RecoveryDraft,RecentWorkspaces} from "./workspace-recovery.tsx";
+import {RecoveryDraft,RecentWorkspaces,type ManualRecoveryDraft,type RecoveryDraftHandle} from "./workspace-recovery.tsx";
 import {NetworkPolicy} from "./network-policy.tsx";
 import { AutomaticVisual } from "./automatic-visual.tsx";
 import { AiCollaboration } from "./ai-collab.tsx";
@@ -127,9 +127,16 @@ const messages: Record<string, string> = {
   RECOVERY_OUTDATED: "草稿所属材料版本已变化，请使用当前材料重新复核。",
   RECOVERY_CONFLICT: "自动草稿已被其他窗口更新，请重新打开材料。",
   RECOVERY_WRITER_CONFLICT: "这份草稿已由另一个窗口接管，请重新打开最新记录。",
+  RECOVERY_SAVE_PENDING: "自动草稿尚未完成读取或保存，请稍后再试。",
+  RECOVERY_OPEN_UNCONFIRMED: "自动草稿尚未确认打开，请重新选择工作区。",
   RECOVERY_CLOSE_UNCONFIRMED: "自动保存会话尚未确认结束，请重新打开最新草稿。",
+  DRAFT_UNIFIED_MODE_USE_PROJECT_ALIASES: "项目已启用统一假名，请在项目统一假名中编辑。",
+  DRAFT_SOURCE_MISMATCH: "材料原文已变化，请重新打开后编辑假名。",
+  DRAFT_ACTION_UNAVAILABLE: "当前材料不支持此脱敏方式。",
   PDF_OCR_CHECKPOINT_STALE: "材料或识别任务已变化，请重新载入后继续。",
   PDF_OCR_CHECKPOINT_WRITE_FAILED: "识别进度保存失败，请重新载入查看可恢复的页面。",
+  PDF_OCR_PREVIEW_FAILED: "本页处理预览失败，请检查草稿后重试。",
+  PDF_OCR_PREVIEW_INVALID: "本页处理预览响应无效，请重新打开材料后重试。",
   IRREVERSIBLE_MASK: "当前星号或遮盖无法还原，请使用假名模式，或选择不还原的任务。",
   PARTIALLY_IRREVERSIBLE_MASK: "部分标记使用了不可还原的替换，请全部改为假名，或选择不还原的任务。",
   CONFLICTING_PSEUDONYM_RULES: "假名规则与导出模式冲突，请调整后重试。",
@@ -181,6 +188,8 @@ const messages: Record<string, string> = {
   MARKDOWN_ASSET_RESIDUE: "Markdown 仍含未处理嵌入内容，已阻止导出。",
   MARKDOWN_EXPORT_FAILED: "Markdown 无法安全回写，请检查复核范围后重试。",
   MARKDOWN_DRAFT_CONFLICT: "手工稿已被其他窗口更新，请重新打开。",
+  MARKDOWN_DRAFT_FILENAME: "文件名须以 .md 结尾，且不能包含路径或控制字符。",
+  MARKDOWN_DRAFT_EMPTY: "手工稿内容不能为空。",
   MARKDOWN_DRAFT_OUTDATED: "手工稿所属材料版本已变化，请重新载入当前材料。",
   SIGNATURE_MODEL_REQUIRED: "签名识别资源未配置，请联系管理员。",
   SIGNATURE_MODEL_MISMATCH: "签名识别资源校验失败，请联系管理员。",
@@ -369,6 +378,11 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
   async function flushPdfDraft(){if(pdfDraftRef.current&&!await pdfDraftRef.current.flush())throw new Error("运行中 PDF 草稿尚未保存，操作未执行；请修正草稿错误后重试。");}
   const currentDoc = useRef(doc), currentProject = useRef(project);
   const lastWorkspaceDocument = useRef<{project:string;id:string}|null>(null);
+  const restoredWorkspaceDrafts=useRef(new Map<string,{recoveryRevision:number;draft:{revision:number;marks:Mark[];pageReview?:PageReview;manualDraft?:ManualRecoveryDraft|null}}>());
+  const recoveryDraftRef=useRef<RecoveryDraftHandle|null>(null);
+  const[projectRecovered,setProjectRecovered]=useState<{documentId:string;recoveryRevision:number}|null>(null);
+  const[manualRecovery,setManualRecovery]=useState<ManualRecoveryDraft|null>(null),[manualRestoreEpoch,setManualRestoreEpoch]=useState(0);
+  const manualRecoveryRef=useRef(manualRecovery);manualRecoveryRef.current=manualRecovery;
   const visualRequests = useRef(new Map<string,string>());
   const allowed = (permission: Permission) => (projects.find(p => p.id === project)?.permissions ?? []).includes(permission);
   const docAllowed = (permission: Permission) => (doc?.permissions ?? []).includes(permission);
@@ -416,7 +430,8 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
       await fn();
     } catch (e) {
       if((e as any).code==='UNIFIED_ALIAS_REVIEW_REQUIRED'){await refreshDocs();if(currentDoc.current)await openDoc(currentDoc.current.id);}
-      setError((e as Error).message);
+      const code=(e as Error).message;
+      setError(messages[code as keyof typeof messages]??code);
       if ((e as Error).message === messages.VERSION_CONFLICT) setConflict(true);
     } finally {
       busyRef.current = false;
@@ -436,27 +451,54 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
     setMoreDocs(next.length === 20);
   }
   async function openDoc(id: string, focus?: {start:number;end:number}, snapshot?: DocumentView, onlyIfCurrent = false) {
-    if(currentDoc.current?.id!==id)await flushPdfDraft();
+    if(currentDoc.current?.id!==id){await flushPdfDraft();await recoveryDraftRef.current?.flush();}
     const d = snapshot ?? await api<DocumentView>("/documents/" + id + (focus?`?offset=${Math.max(0,focus.start-256)}`:""));
     if (d.id !== id) throw new Error("材料状态已变化，请重新打开。");
-    if (onlyIfCurrent && (currentDoc.current?.id !== id || currentProject.current !== d.project_id || dirtyRef.current)) return;
+    if (onlyIfCurrent && (currentDoc.current?.id !== id || currentProject.current !== d.project_id || dirtyRef.current||manualRecoveryRef.current)) return;
+    const recovered=restoredWorkspaceDrafts.current.get(id);
+    if(recovered&&recovered.draft.revision!==d.revision){restoredWorkspaceDrafts.current.clear();throw new Error('RECOVERY_OUTDATED');}
     lastWorkspaceDocument.current={project:d.project_id,id:d.id};
     const enteredDocument = currentDoc.current?.id !== id || currentProject.current !== d.project_id;
     const pageFocus=!!focus&&d.anchors?.some(a=>a.start<focus.end&&a.end>focus.start&&(a.kind==='page'||a.kind==='object'&&a.object==='image-text'));
     setPendingAuditFocus(focus&&!pageFocus?{documentId:id,projectId:d.project_id,revision:d.revision,textOffset:d.textOffset??0,...focus}:null);
     if(focus&&!pageFocus&&isWordFormat(d.format))setDocxView('text');
     setDoc(d);
+    setProjectRecovered(recovered?{documentId:id,recoveryRevision:recovered.recoveryRevision}:null);
     setExportMappingName('');
     setDocxFocus(focus??null);
-    setMarks(d.marks);
-    setDirty(false);
+    if(recovered)restoredWorkspaceDrafts.current.delete(id);
+    setManualRecovery(recovered?.draft.manualDraft??(enteredDocument||d.revision!==currentDoc.current?.revision?null:manualRecoveryRef.current));
+    if(recovered?.draft.manualDraft)setManualRestoreEpoch(value=>value+1);
+    setMarks(recovered?.draft.marks??d.marks);
+    setDirty(!!recovered);
     setSelection(null);
     setConflict(false);
     setMarkPage(0);
-    setPageReview(d.pageReview ?? emptyPageReview());
+    setPageReview(recovered?.draft.pageReview??d.pageReview??emptyPageReview());
     setUndoStack([]); setRedoStack([]); setPreview(null);
     setImporting(false);
     if (enteredDocument) void api(`/projects/${d.project_id}/workspace/recent`,"POST",{documentId:d.id}).catch(()=>{});
+  }
+  async function prepareUnifiedPreview(current: DocumentView, pageIndex?: number): Promise<{ doc: DocumentView; previewMarks: Mark[] }> {
+    // Qo2 calls Um2 only when entering preview in unified batch mode. The
+    // project alias state is the cloud's explicit unified-mode switch; the
+    // BatchReview checkbox selects a different operation and is not mo2.
+    if (!docAllowed('view_mapping') || !canReview || !current.contentHash) return { doc: current, previewMarks: marks };
+    const frame = await api<{revision:number;enabled:boolean;documents:{id:string;revision:number;contentHash:string}[]}>(`/projects/${current.project_id}/unified-aliases`);
+    if (!frame.enabled) return { doc: current, previewMarks: marks };
+    const result = await api<{revision:number;changedDocuments:Record<string,number>;previewMarks:Mark[];documents:{id:string;revision:number;contentHash:string}[]}>(`/projects/${current.project_id}/unified-aliases/prepare-preview`,'POST',{
+      revision:frame.revision,documents:frame.documents,active:{id:current.id,revision:current.revision,contentHash:current.contentHash,
+        localReviewDirty:dirtyRef.current,marks,...current.state==='queued'?{jobId:current.job?.id,pageIndex}:{}},
+    });
+    if (currentDoc.current?.id !== current.id || currentProject.current !== current.project_id) throw new Error(messages.VERSION_CONFLICT);
+    const latest = await api<DocumentView>(`/documents/${current.id}`);
+    if (latest.revision !== current.revision || latest.contentHash !== current.contentHash || latest.id !== current.id || latest.project_id !== current.project_id) {
+      await openDoc(current.id, undefined, latest, true);
+      await refreshDocs();
+      throw new Error('统一假名已同步，请核对当前材料的新复核版本后再预览。');
+    }
+    if (Object.keys(result.changedDocuments).length) await refreshDocs();
+    return { doc: latest, previewMarks: result.previewMarks };
   }
   useEffect(() => {
     let active = true;
@@ -486,6 +528,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
       const task=await api<{projectId:string}>(`/ai-collab/tasks/${collaborationJob}`);
       const target=await api<{id:string;name:string;permissions:Permission[]}>(`/projects/${task.projectId}`);
       if(!active)return;
+      if(currentProject.current!==target.id)await recoveryDraftRef.current?.flush();
       setProjects(previous=>previous.some(p=>p.id===target.id)?previous:[target,...previous]);setProject(target.id);
     })().catch(e=>{if(active)setError((e as Error).message);});
     return()=>{active=false;};
@@ -795,6 +838,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
               const name = new FormData(form).get("name");
               if ((dirty || pendingUpload || dictionaryDirty) && !await confirmAction("存在未保存的内容或未上传文件，确定离开？")) return;
               void run(async () => {
+                await flushPdfDraft();await recoveryDraftRef.current?.flush();
                 const p = await api<{ id: string }>("/projects", "POST", {
                   name,
                   applyDefaultPresets:true,
@@ -833,6 +877,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
                 onClick={() => void run(async () => {
                   if ((!dirty && !pendingUpload && !dictionaryDirty) || await confirmAction("存在未保存的内容或未上传文件，确定离开？")) {
                     await flushPdfDraft();
+                    await recoveryDraftRef.current?.flush();
                     setProject(p.id);
                     setDoc(null); setImporting(false); setDirty(false); setConflict(false);
                   }
@@ -869,16 +914,14 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
               }}>删除材料</button>}
               <button className="secondary" onClick={async () => {
                 if (dirty && !await confirmAction("放弃未保存的复核？")) return;
-                await flushPdfDraft();
-                setDoc(null); setDirty(false); setConflict(false); setImporting(false);
+                void run(async()=>{await flushPdfDraft();await recoveryDraftRef.current?.flush();setDoc(null); setDirty(false); setConflict(false); setImporting(false);});
               }}>返回材料列表</button>
               <button
                 className="secondary"
                 disabled={!allowed("upload")}
                 onClick={async () => {
                   if (!dirty || await confirmAction("放弃未保存的复核？")) {
-                    await flushPdfDraft();
-                    setDoc(null); setMarks([]); setDirty(false); setConflict(false); setSelection(null); setImporting(true);
+                    void run(async()=>{await flushPdfDraft();await recoveryDraftRef.current?.flush();setDoc(null); setMarks([]); setDirty(false); setConflict(false); setSelection(null); setImporting(true);});
                   }
                 }}
               >
@@ -912,7 +955,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
             {project && allowed("view_original") && allowed("export") && <ProcessingObservability project={project} documents={docs.map((d,i)=>({id:d.id,revision:d.revision??0,name:d.name??`文本 ${i+1}`}))} loadDocuments={async()=>{const all:typeof docs=[];for(let offset=0;;offset+=100){const page=await api<typeof docs>(`/projects/${project}/documents?limit=100&offset=${offset}`);all.push(...page);if(page.length<100)break;}return all.map((d,i)=>({id:d.id,revision:d.revision??0,name:d.name??`文本 ${i+1}`}));}} api={api} run={run} onChanged={async()=>{await refreshDocs();}} />}
             {project && feedbackOpen && <ReferenceDictionaryFiles project={project} api={api} run={run} />}
             <details><summary>帮助与产品资料</summary><SupportPanel run={run} api={api}/><OcrDiagnostics run={async operation=>{if(operation==='health')return api('/ocr/health');const response=await fetch(appUrl('/api/ocr/diagnostic'),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({reason:'用户请求 OCR 检查'})});if(!response.ok){await downloadResponse(response,'OCR诊断.json');return;}const result=await response.clone().json();await downloadResponse(response,'OCR诊断.json');return result;}} /></details>
-            <RecentWorkspaces api={api} disabled={busy||dirty} onOpen={async(projectId,documentId)=>{await run(async()=>{await flushPdfDraft();const p=await api<typeof projects[number]>(`/projects/${projectId}`);setProjects(v=>v.some(x=>x.id===p.id)?v:[...v,p]);setProject(projectId);if(documentId)await openDoc(documentId);else setDoc(null);});}} />
+            <RecentWorkspaces api={api} disabled={busy||dirty} onPrepare={async()=>{await flushPdfDraft();await recoveryDraftRef.current?.flush();}} onOpen={async(projectId,documentId)=>{await run(async()=>{await flushPdfDraft();await recoveryDraftRef.current?.flush();const p=await api<typeof projects[number]>(`/projects/${projectId}`);setProjects(v=>v.some(x=>x.id===p.id)?v:[...v,p]);setProject(projectId);if(documentId)await openDoc(documentId);else setDoc(null);});}} onRecover={async(projectId,entries,activeDocumentId)=>{let completed=false;await run(async()=>{const p=await api<typeof projects[number]>(`/projects/${projectId}`);restoredWorkspaceDrafts.current.clear();for(const entry of entries)if(entry.draft)restoredWorkspaceDrafts.current.set(entry.documentId,{recoveryRevision:entry.revision,draft:entry.draft});setProjects(v=>v.some(x=>x.id===p.id)?v:[...v,p]);setProject(projectId);const selected=activeDocumentId??entries[0]?.documentId;if(selected)await openDoc(selected);else setDoc(null);completed=true;});if(!completed)throw Error('RECOVERY_OPEN_UNCONFIRMED');}} />
             {project && <NetworkPolicy projectId={project} api={api} disabled={busy||!allowed("manage_models")} />}
             {project && allowed("view_original") && <AiCollaboration key={`collaboration:${project}`} project={project} focusJob={collaborationJob} documents={docs} api={api} run={run} onOpen={id => void run(() => openDoc(id))} />}
             {project && allowed("view_original") && allowed("review") && <ProjectEntities key={`entities:${project}`} project={project} api={api} run={run} changed={() => refreshDocs()} onOpen={(id,span)=>openDoc(id,span)} />}
@@ -1019,7 +1062,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
               </div>
               {canReview && doc.job?.status==="failed" && ["ENCRYPTED_PDF","ENCRYPTED_OFFICE"].includes(doc.job.error_code??"") && <DocumentUnlock id={doc.id} revision={doc.revision} api={api} disabled={dirty||conflict} onDone={()=>openDoc(doc.id)} />}
               <button className="secondary" disabled={busy} onClick={()=>setFeedbackOpen(v=>!v)}>反馈与个人规则</button>{feedbackOpen&&<FeedbackPanel key={`feedback-doc:${doc.id}`} project={doc.project_id} document={feedbackDocument} api={api} run={run}/>}
-              {canReview && doc.state==="review" && <RecoveryDraft key={`recovery:${doc.id}:${doc.revision}`} doc={doc} marks={marks} pageReview={pageReview} dirty={dirty} disabled={busy||conflict} api={api} onRestore={(next,pages)=>{if(pages)setPageReview(pages);update(next,true);}} />}
+              {canReview && doc.state==="review" && <RecoveryDraft ref={recoveryDraftRef} key={`recovery:${doc.id}:${doc.revision}`} doc={doc} marks={marks} pageReview={pageReview} manualDraft={manualRecovery} projectRecoveryRevision={projectRecovered?.documentId===doc.id?projectRecovered.recoveryRevision:undefined} dirty={dirty} disabled={busy||conflict} api={api} onRestore={(next,pages,manual)=>{if(pages)setPageReview(pages);setManualRecovery(manual??null);if(manual)setManualRestoreEpoch(value=>value+1);update(next,true);}} />}
               {doc.job?.canObserveEvents === true && doc.state !== "outdated" && !conflict && docAllowed("view_original") && <ProcessingProgress key={`progress:${doc.job.id}`} job={doc.job} api={api} sharedEvents={pdfLiveDraftOwnsEvents?pdfSharedEvents:undefined} readPdfCheckpoints={doc.job.ordinaryPdfDetection === true && doc.state === "queued"} />}
               {sealJobId && doc.format === "pdf" && doc.state !== "outdated" && docAllowed("view_original") && (sealRuntimeActive || sealRuntimeReady) && <PdfSealRuntime key={`seals:${sealJobId}:${doc.revision}`} jobId={sealJobId} revision={doc.revision} api={api} active={sealRuntimeActive} ready={sealRuntimeReady} busy={busy || conflict} onPause={() => void run(async () => {
                 await api(`/jobs/${sealJobId}/pdf-seals/pause`, "POST", {revision:doc.revision});
@@ -1032,7 +1075,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
                 setDoc(current=>current?.id===doc.id&&current.revision===doc.revision?{...current,visualCandidates:latest.visualCandidates,visualDiagnostics:latest.visualDiagnostics}:current);
                 setNotice(result.sealProgress.status==='complete'&&!result.sealProgress.sealWarning?'印章补检完成，已保留原有审查修改。':'印章已暂停，已完成页面和结果已保留；请核对未完成页面。');
               })} />}
-              {canReview && docAllowed('view_original') && doc.job?.canObserveEvents===true && doc.job.ordinaryPdfDetection===true && doc.format==='pdf' && doc.job.kind==='detect' && (doc.state==='queued' && (['queued','running'].includes(doc.job.status)||doc.job.status==='cancelled'&&['PDF_OCR_PAUSED','PDF_OCR_PRIORITY_PREEMPTED'].includes(doc.job.error_code??'')) || pdfDraftPending && doc.state==='review' && doc.job.status==='succeeded') && <PdfOcrLiveDraft ref={pdfDraftRef} key={`pdf-draft:${doc.job.id}:${doc.revision}`} jobId={doc.job.id} documentId={doc.id} revision={doc.revision} jobStatus={doc.job.status} api={api} onPendingChange={setPdfDraftPending} onEvents={data=>{if(currentDoc.current?.id===doc.id&&currentDoc.current.job?.id===doc.job?.id)setPdfSharedEvents({jobId:doc.job!.id,generation:data.generation,items:data.items});}} onMerged={async()=>{if(currentDoc.current?.id===doc.id)await openDoc(doc.id);}} rotation={{state:doc.pageRotationState??emptyPageRotationState(),disabled:dirty||conflict,apply:async(input,signal)=>{await flushPdfDraft();if(busyRef.current)throw new Error('其他处理正在进行，请稍后重试。');busyRef.current=true;setRotationActive(true);setBusy(true);try{if(!await validateSession())throw new Error('登录已失效，请重新登录。');return await apiRequest(`/documents/${doc.id}/page-rotations`,'POST',{...input,revision:doc.revision},signal?AbortSignal.any([requests.signal,signal]):requests.signal);}finally{busyRef.current=false;setBusy(false);setRotationActive(false);}},onApplied:async()=>{if(currentDoc.current?.id!==doc.id)return;await openDoc(doc.id);await refreshDocs();setNotice('页面旋转已更新，请重新核对并保存复核。');}}}/>}
+              {canReview && docAllowed('view_original') && doc.job?.canObserveEvents===true && doc.job.ordinaryPdfDetection===true && doc.format==='pdf' && doc.job.kind==='detect' && (doc.state==='queued' && (['queued','running'].includes(doc.job.status)||doc.job.status==='cancelled'&&['PDF_OCR_PAUSED','PDF_OCR_PRIORITY_PREEMPTED'].includes(doc.job.error_code??'')) || pdfDraftPending && doc.state==='review' && doc.job.status==='succeeded') && <PdfOcrLiveDraft ref={pdfDraftRef} key={`pdf-draft:${doc.job.id}:${doc.revision}`} jobId={doc.job.id} documentId={doc.id} revision={doc.revision} jobStatus={doc.job.status} api={api} onPendingChange={setPdfDraftPending} onEvents={data=>{if(currentDoc.current?.id===doc.id&&currentDoc.current.job?.id===doc.job?.id)setPdfSharedEvents({jobId:doc.job!.id,generation:data.generation,items:data.items});}} onMerged={async()=>{if(currentDoc.current?.id===doc.id)await openDoc(doc.id);}} onPreparePreview={async pageIndex=>{await prepareUnifiedPreview(doc,pageIndex);}} errorText={code=>messages[code]??code} rotation={{state:doc.pageRotationState??emptyPageRotationState(),disabled:dirty||conflict,apply:async(input,signal)=>{await flushPdfDraft();if(busyRef.current)throw new Error('其他处理正在进行，请稍后重试。');busyRef.current=true;setRotationActive(true);setBusy(true);try{if(!await validateSession())throw new Error('登录已失效，请重新登录。');return await apiRequest(`/documents/${doc.id}/page-rotations`,'POST',{...input,revision:doc.revision},signal?AbortSignal.any([requests.signal,signal]):requests.signal);}finally{busyRef.current=false;setBusy(false);setRotationActive(false);}},onApplied:async()=>{if(currentDoc.current?.id!==doc.id)return;await openDoc(doc.id);await refreshDocs();setNotice('页面旋转已更新，请重新核对并保存复核。');}}}/>}
               {doc.job && (
                 <p className="muted" role="status">
                   任务：
@@ -1124,7 +1167,8 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
                 <section className="panel document-pane">
                   <div className="document-mode-bar"><h2>{previewMode && !hasPages ? "处理预览" : "原文"} <small>只读</small></h2>
                   {!hasPages && <div role="group" aria-label="文档视图"><button className={!previewMode ? "active" : "quiet"} aria-pressed={!previewMode} onClick={() => setPreviewMode(false)}>原文审查</button><button className={previewMode ? "active" : "secondary"} disabled={conflict || doc.state !== "review"} onClick={() => void run(async () => {
-                    const result = await api<{ text: string }>(`/documents/${doc.id}/preview`, "POST", { revision: doc.revision, marks, offset: doc.textOffset ?? 0 }); setPreview(result.text); setPreviewMode(true);
+                    const {doc:current,previewMarks} = await prepareUnifiedPreview(doc);
+                    const result = await api<{ text: string }>(`/documents/${current.id}/preview`, "POST", { revision: current.revision, marks:previewMarks, offset: current.textOffset ?? 0 }); setPreview(result.text); setPreviewMode(true);
                   })}>刷新处理预览</button></div>}
                   <div className="document-tool-actions" role="group" aria-label="复核视图">{([
                     ["marks", "敏感标记"], ["search", "全文查找"], ["bulk", "批量复核"], ["known", "漏标检查"],
@@ -1156,7 +1200,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
                   <div className="material-tools">
                     {project&&allowed("view_original")&&allowed("review")&&<ProjectEntityCorrections projectId={project} document={doc} selectedMark={editingIndex===null?undefined:marks[editingIndex]} selectedMarkIndex={editingIndex??undefined} enabled={!dirty&&!conflict} disabled={busy} api={api} run={run} onApplied={async()=>{await refreshDocs();if(currentDoc.current)await openDoc(currentDoc.current.id);}}/>}
                     {docAllowed("view_original")&&canReview&&<ManualOccurrences documentId={doc.id} revision={doc.revision} marks={marks} busy={busy} disabled={conflict||doc.state!=='review'} search={query=>{if(busyRef.current)throw Error('PROCESSING_BUSY');return api(`/documents/${doc.id}/manual-occurrences`,'POST',{revision:doc.revision,query});}} onMarksChange={(next,previews)=>{changeMarks(next,"one-click-add");if(previews)setDoc(current=>current?.id===doc.id&&current.revision===doc.revision?{...current,markTexts:{...current.markTexts,...previews}}:current);}} onCoveredSelection={selection=>{void automaticRuntimeRules.dispatch(doc.id,doc.revision,{producer:isWordFormat(doc.format)?'manual-add':'one-click-add',before:marks,after:marks},manualRuleScope,selection);}} locate={match=>{const span=match.segments[0];if(span)void run(async()=>{await loadText(Math.max(0,span.start-256),span);setDocxFocus({start:span.start,end:span.end});});}}/>}
-                    {docAllowed("view_original") && docAllowed("export") && <MarkdownManualDraft key={`${doc.id}:${doc.revision}`} document={doc} api={api} run={run} />}
+                    {docAllowed("view_original") && docAllowed("export") && <MarkdownManualDraft key={`${doc.id}:${doc.revision}`} document={doc} api={api} run={run} restored={manualRecovery} restoreEpoch={manualRestoreEpoch} onDraftChange={setManualRecovery} />}
                     {doc.format === "md" && doc.parseVersion === 2 && doc.state === "review" && docAllowed("view_original") && docAllowed("review") && !dirty && !conflict && <MarkdownBlockers key={`blockers:${doc.id}`} document={doc} api={api} run={run} onChanged={() => openDoc(doc.id)} />}
                     {docAllowed("view_original") && <DocumentRoutePreview key={`document-route:${doc.id}:${doc.revision}`} document={doc} api={api} run={run} />}
                     {isLegacyWordFormat(doc.format) && <DocumentNormalization documentId={doc.id} revision={doc.revision} originalFormat={doc.format} ready={doc.normalization?.ready??false} enabled={docAllowed("view_original") && canReview && !busy && !dirty && !conflict && !["queued","running"].includes(doc.job?.status ?? "")} api={api} onApplied={async () => { await openDoc(doc.id); await refreshDocs(); }} />}
@@ -1173,7 +1217,8 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
                   <div hidden={previewMode && !hasPages}>
                   <p className="muted">选中文字后，可补充自定义标记。</p>
                   {hasPages && <PageEditor focusRange={docxFocus} entityGeometry={page=>api(`/documents/${doc.id}/pages/${page}/entity-geometries`,'POST',{revision:doc.revision})} rotation={doc.format==='pdf'?{state:doc.pageRotationState??emptyPageRotationState(),disabled:dirty||conflict,apply:async(input,signal)=>{if(busyRef.current)throw new Error('其他处理正在进行，请稍后重试。');busyRef.current=true;setRotationActive(true);setBusy(true);try{if(!await validateSession())throw new Error('登录已失效，请重新登录。');return await apiRequest(`/documents/${doc.id}/page-rotations`,'POST',{...input,revision:doc.revision},signal?AbortSignal.any([requests.signal,signal]):requests.signal);}finally{busyRef.current=false;setBusy(false);setRotationActive(false);}},onApplied:async()=>{if(currentDoc.current?.id!==doc.id)return;await openDoc(doc.id);await refreshDocs();setNotice('页面旋转已更新，请重新核对并保存复核。');}}:undefined} imageSearch={(query,pageIndex)=>api(`/documents/${doc.id}/image-search`,"POST",{revision:doc.revision,query,...pageIndex!==undefined?{pageIndex}:{}})} key={`${doc.id}:${doc.revision}`} doc={doc} value={pageReview} marks={marks} run={run} onMarksChange={(next,previews)=>{changeMarks(next,"manual-add");if(previews)setDoc(current=>current?.id===doc.id&&current.revision===doc.revision?{...current,markTexts:{...current.markTexts,...previews}}:current);}} ocr={{ disabled: dirty, load: (page, revision) => api(`/documents/${doc.id}/pages/${page}/ocr-text?revision=${revision}`), save: (page, input) => api(`/documents/${doc.id}/pages/${page}/ocr-text`, "PUT", input), onSaved: async () => { if (currentDoc.current?.id !== doc.id) return; await openDoc(doc.id); setNotice("识别文字已更新，请重新确认敏感标记并保存复核。"); } }} imageUtility={async(page,operation,payload)=>{const route=operation==='clear-cache'?`/documents/${doc.id}/ocr-cache/clear`:`/documents/${doc.id}/pages/${page}/${({region:'ocr-region',rerun:'ocr-rerun',labels:'labels',annotations:'annotations'} as const)[operation]}`;if(operation==='labels'||operation==='annotations'){const response=await fetch(appUrl('/api'+route),{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});await downloadResponse(response,`${operation==='labels'?'训练标注':'图像标注'}-${page+1}.json`);return {};}return api(route,'POST',payload);}} pauseVisualSeals={async page=>{const requestId=visualRequests.current.get(`${doc.id}:${page}`);if(!requestId)throw new Error('VISUAL_REQUEST_NOT_ACTIVE');await api(`/documents/${doc.id}/visual-requests/${requestId}/pause-seals`,'POST',{});}} detectVisual={async(page, detectors)=>{const key=`${doc.id}:${page}`,requestId=crypto.randomUUID();visualRequests.current.set(key,requestId);try{return await api(`/documents/${doc.id}/pages/${page}/visual-candidates`,'POST',{revision:doc.revision,detectors,requestId});}finally{if(visualRequests.current.get(key)===requestId)visualRequests.current.delete(key);}}} previewPage={async index => {
-                    const response = await fetch(appUrl(`/api/documents/${doc.id}/pages/${index}/preview`), { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ revision: doc.revision, marks, pageReview }), signal: requests.signal });
+                    const {doc:current,previewMarks} = await prepareUnifiedPreview(doc);
+                    const response = await fetch(appUrl(`/api/documents/${current.id}/pages/${index}/preview`), { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ revision: current.revision, marks:previewMarks, pageReview }), signal: requests.signal });
                     requests.signal.throwIfAborted();
                     if (response.status === 401) window.dispatchEvent(new Event("session-expired"));
                     if (!response.ok) { const data = await response.json(); throw new Error(messages[data.error] ?? data.error); }
@@ -1232,7 +1277,7 @@ function App({ validateSession, rememberSession, sessionNotice }: SessionControl
                         : "规则无命中，不代表没有敏感信息。可在原文中补充标记。"}
                     </p>
                   )}
-                  {entityView === "groups" && <EntityGroups key={`${doc.id}:${doc.revision}`} doc={doc} marks={marks} filterEntities={async filter=>{const indices:number[]=[];for(let offset=0;;){const result=await api<any>(`/documents/${doc.id}/entity-filter`,'POST',{...filter,revision:doc.revision,marks,offset,limit:1000});indices.push(...result.items.map((item:any)=>item.index));if(!result.hasMore)break;offset=result.nextOffset;}return indices;}} update={(next,cause)=>{if(update(next)&&cause)void reviewFeedback.dispatch(doc.id,doc.revision,cause);}} locate={span => loadText(Math.max(0, span.start - 256), span)} run={run} disabled={busy || conflict || doc.state !== "review"} canReview={canReview} onEdit={index => { setDocxFocus({start:marks[index].start,end:marks[index].end}); individual.clear();setEntityView("individual"); setMarkPage(Math.floor(index / 50)); setEditingIndex(index); }} onCheck={() => setReviewTool("known")} />}
+                  {entityView === "groups" && <EntityGroups key={`${doc.id}:${doc.revision}`} doc={doc} marks={marks} api={api} refresh={()=>openDoc(doc.id,undefined,undefined,true)} canUseAliases={docAllowed("view_mapping")} filterEntities={async filter=>{const indices:number[]=[];for(let offset=0;;){const result=await api<any>(`/documents/${doc.id}/entity-filter`,'POST',{...filter,revision:doc.revision,marks,offset,limit:1000});indices.push(...result.items.map((item:any)=>item.index));if(!result.hasMore)break;offset=result.nextOffset;}return indices;}} update={(next,cause,fromServer)=>{if(update(next,fromServer)&&cause)void reviewFeedback.dispatch(doc.id,doc.revision,cause);}} locate={span => loadText(Math.max(0, span.start - 256), span)} run={run} disabled={busy || conflict || doc.state !== "review"} draftDisabled={busy || conflict || dirty || doc.state !== "review"} canReview={canReview} onEdit={index => { setDocxFocus({start:marks[index].start,end:marks[index].end}); individual.clear();setEntityView("individual"); setMarkPage(Math.floor(index / 50)); setEditingIndex(index); }} onCheck={() => setReviewTool("known")} />}
                   <div hidden={entityView !== "individual"}>
                   <ReviewMarkFilters marks={marks} value={individual.filter} change={individual.setFilter} disabled={busy||conflict||doc.state!=='review'}/>
                   {individual.loading&&<p role="status">正在查找完整原文中的标记…</p>}{individual.error&&<p role="alert">{individual.error}</p>}{individual.enabled&&!individual.loading&&!individual.error&&<p role="status">符合筛选条件 {individual.total} 项</p>}

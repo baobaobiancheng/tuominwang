@@ -81,6 +81,7 @@ async function finishJob(s:Awaited<ReturnType<typeof session>>,documentId:string
   if(!(await tick()))await new Promise(resolve=>setTimeout(resolve,300));
  }
  const [job]=(await admin.query('SELECT id,document_id,kind,status,error_code,revision,available_at FROM jobs WHERE id=$1',[jobId])).rows;
+ if(job?.status==='succeeded'){assert.equal(job.document_id,documentId);const view=await s.view(documentId);assert.equal(view.state,'review',JSON.stringify({format,phase,job}));return view;}
  assert.fail(JSON.stringify({format,phase,reason:'TARGET_JOB_NOT_COMPLETE',job}));
 }
 async function downloaded(s:Awaited<ReturnType<typeof session>>,id:string,revision:number){

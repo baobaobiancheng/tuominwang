@@ -6,7 +6,7 @@ import {resolveDocumentPolicy} from '../../packages/adapters/document-policy.ts'
 import {readProjectPresets} from '../../packages/adapters/project-presets.ts';
 import {requirePermission,textArray,denied} from './access.ts';
 import {assertUnifiedAliasExportEpoch,preflightUnifiedAliasExport} from './unified-alias-export.ts';
-import {pseudonymTableNames} from '../../packages/adapters/profile-export.ts';
+import {pseudonymTableNames,validLiteralTableName} from '../../packages/adapters/profile-export.ts';
 import {defaultProfile} from '../../packages/core/presets.ts';
 import {hash,seal,unseal} from '../../packages/adapters/storage.ts';
 import {readPdfSealState} from './pdf-seals.ts';
@@ -41,7 +41,8 @@ export async function queueExport(db:DB,req:FastifyRequest,doc:string,revision:n
  try{await runProcessing({kind:'gate',doc:d,snapshot,automaticBinding});}
  catch(e){const code=(e as Error).message;denied(code,['INVALID_MARKS','OVERLAPPING_MARKS','CROSS_CELL_MARK','SIGNATURE_GROUP_INVALID'].includes(code)?400:409);}
  const sourceName=d.source_name?unseal(d.source_name,`${d.tenant_id}:${d.project_id}:${d.id}:name`):`材料-${d.id}.txt`;
- const resolvedName=pseudonymTableNames(d.presetPolicy?.profile?.settings??defaultProfile(),[sourceName],'singleDocument','.lpm',[temporaryTableName])[0];
+ const savedName=d.documentPolicy?.configuration.pseudonymTableName;
+ const resolvedName=pseudonymTableNames(d.presetPolicy?.profile?.settings??defaultProfile(),[sourceName],'singleDocument','.lpm',[temporaryTableName??(validLiteralTableName(savedName)?savedName:undefined)])[0];
  const nameHash=hash(resolvedName);
  const[existing]=collabTaskId
   ?await rows(db,sql`SELECT id,status,mapping_name_hash,pdf_seal_manual_checked,pdf_seal_manual_source_hash FROM jobs WHERE document_id=${doc} AND kind='export' AND revision=${revision} AND collab_task_id=${collabTaskId} AND status IN ('queued','running','succeeded') ORDER BY created_at DESC LIMIT 1`)

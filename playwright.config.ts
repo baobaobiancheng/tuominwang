@@ -13,6 +13,7 @@ export default defineConfig({
   },
   webServer: {
     command: "pnpm dev",
+    env: { RELEASE_VERSION: "synthetic-e2e-release", RELEASE_ID: "synthetic-e2e-release-id" },
     url: "http://127.0.0.1:5178/api/health",
     reuseExistingServer: false,
     timeout: 30000,

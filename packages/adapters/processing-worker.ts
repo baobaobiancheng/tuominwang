@@ -1,8 +1,8 @@
 import{hydrateEntityCorrections,assertEntityCorrections,sealEntityCorrections,archiveEntityCorrections}from './entity-corrections.ts';
-import{applyEntityCorrections,materializeEntityCorrections}from '../core/entity-corrections.ts';
+import{applyEntityCorrections,materializeEntityCorrections,semanticEntityValue}from '../core/entity-corrections.ts';
 import{readPageRotationState,validateRotationPages}from"./page-rotation-state.ts";
 import{normalizeStoredDocument}from'./document-normalization.ts';
-import{isBinaryFormat,isLegacyWordFormat,originalDocumentFormat}from'../core/document-format.ts';
+import{isBinaryFormat,isLegacyWordFormat,isWordFormat,originalDocumentFormat}from'../core/document-format.ts';
 import{legacyOutputArtifacts,verifyLegacyDoc,wantsLegacyDoc}from'./legacy-office-output.ts';
 import {storeMarkdownSource,loadMarkdownSource,readMarkdownBlockerReview} from './markdown-source.ts';
 import {markdownSourceReady,createMarkdownMatchPublisher} from '../core/reference-markdown-progress.ts';
@@ -13,6 +13,7 @@ import {readLiveRuntimeRules} from './runtime-rules-control.ts';
 import {verifiedDocumentSource} from "./document-source.ts";
 import {contextualDocumentMarks,contextualDocumentType} from "./recognition-context.ts";
 import { profileForFormat } from "../core/presets.ts";
+import {fullStarEffectiveMarks} from '../core/full-star-effective.ts';
 import { documentSpatialMarks } from './reference-spatial.ts';
 import { applyDocumentRoute, rulesetMaterialRoute } from "../core/document-route.ts";
 import { renderDocumentVisualPage } from "./visual-replacement.ts";
@@ -45,6 +46,11 @@ let eventSequence=0,eventStage='initializing';
 const eventsEnabled=!!workerData.processingEventStream;
 function processingEvent(event:ProcessingEvent){if(!eventsEnabled)return;eventStage=event.stage;parentPort!.postMessage(eventEnvelope(event,++eventSequence));}
 function pageProcessed(page:ParsedPage,text:string,glyphs:import('../core/ocr.ts').Glyph[],totalPages:number,matches?:import('../contracts/index.ts').Mark[]){processingEvent({type:'page-processed',stage:'ocr',pageNumber:page.index+1,totalPages,ocrCompleted:true,ocrCachePage:{text,width:page.width,height:page.height,previewHash:page.previewHash,mapHash:page.mapHash,glyphs},...matches?{matches,provisional:true as const}:{},coordinateSpace:'canonical-raster'});processingEvent({type:'progress',stage:'ocr',percent:Math.round(50*(page.index+1)/totalPages),message:`已完成 ${page.index+1} / ${totalPages} 页图像文字读取`});}
+function effectiveFullStar(d:any){
+  if(!isWordFormat(d.source_format)&&d.source_format!=='md')return false;
+  const mode=d.documentPolicy?.configuration.exportMode??(d.presetPolicy?.profile?.settings?profileForFormat(d.presetPolicy.profile.settings,d.source_format,d.batchMode).defaultMode:undefined);
+  return mode==='full_star';
+}
 async function profileOutputs(d: any, text: string, bytes: Buffer, format: string, imageTexts?: Record<string,string>,convertLegacy=true) {
   if (!d.presetPolicy?.profile) {const outputs=[{role:"primary" as const,name:`redacted.${format}`,format,bytes}];return convertLegacy?legacyOutputArtifacts(d,text,outputs):outputs;}
   const {buildProfileArtifacts} = await import("./profile-export.ts");
@@ -134,9 +140,10 @@ async function execute(input: ProcessingInput): Promise<any> {
   let text = unseal(d.content, aad);
   if (input.kind === "replacement-policies") {
     validateFileMarks(text, input.marks!.map(m => ({ ...m, decision: "pending" })), d.source_format, d.anchors);
-    return applyReplacementPolicies(text, input.marks!, input.replacementPolicies!, input.mappings);
+    return applyReplacementPolicies(text, input.marks!, input.replacementPolicies!, input.mappings,{semanticValue:(mark,index)=>semanticEntityValue(d,mark,text,index)});
   }
-  if (input.kind === "page-preview") {
+  if (input.kind === "page-preview" || input.kind === "partial-page-preview") {
+    if(input.kind==='partial-page-preview'&&(d.source_format!=='pdf'||input.page!==0||d.page_data?.length!==1||d.page_data[0]?.index!==0||d.anchors?.length!==1||d.anchors[0]?.kind!=='page'||d.anchors[0]?.page!==0))throw new Error('PDF_OCR_DRAFT_INVALID');
     const policy = validatePageReview(d.page_review, d.page_data), page = (d.page_data as ParsedPage[]).find(p => p.index === input.page);
     if ((!paged && !embedded) || !page || policy.deletedPages.includes(page.index)) throw new Error("PAGE_NOT_READY");
     const source = await readOriginal(page.previewId), map = await readArtifact(page.mapId);
@@ -170,7 +177,7 @@ async function execute(input: ProcessingInput): Promise<any> {
   if (input.kind === "preview") {
     validateFileMarks(text, input.marks!, d.source_format, d.anchors);
     validateMappingMarks(text, input.marks!, input.mappings ?? []);
-    return previewText(text, input.marks!, input.offset ?? 0);
+    return previewText(text, effectiveFullStar(d)?fullStarEffectiveMarks(input.marks!):input.marks!, input.offset ?? 0);
   }
   if (input.kind === "view") return { ...textWindow(text, input.offset ?? 0), markTexts: Object.fromEntries(d.marks.map((m: any) => [`${m.start}:${m.end}`, text.slice(m.start, Math.min(m.end, m.start + 120)) + (m.end - m.start > 120 ? "…" : "")])) };
   if (input.kind === "review") {
@@ -254,6 +261,12 @@ async function execute(input: ProcessingInput): Promise<any> {
     "automaticBinding" in input?input.automaticBinding:undefined);
   if(input.kind!=="verify")await assertTrustedSignatureGroups(d);
   if (input.kind === "gate") { validateFileMarks(text, d.marks, d.source_format, d.anchors, true); if (paged) await validatePageExport(d, text); if (embedded) await officeImagePlan(d, text); return {}; }
+  // Source rr2/ur2 applies full stars to the effective export entities while
+  // iy2 keeps the review draft (including manual replacements) for later modes.
+  // Project only after the signed snapshot gate so stored marks and revision stay bound.
+  const outputDoc=effectiveFullStar(d)
+    ? {...d,marks:fullStarEffectiveMarks(d.marks)}
+    : d;
   if (paged) {
     const {output,format}=await exportPages(d,text);
     if(input.kind==="verify"){await verifyExpected(d,text,output,format,input.artifact!);return {};}
@@ -261,17 +274,17 @@ async function execute(input: ProcessingInput): Promise<any> {
   }
   if (office) {
     const original=await verifiedDocumentSource(d);
-    const images=embedded?await exportOfficeImages(d,text):undefined;
-    const output=await exportOffice(original,d.source_format,text,d.anchors,d.coverage,d.marks,images);
+    const images=embedded?await exportOfficeImages(outputDoc,text):undefined;
+    const output=await exportOffice(original,d.source_format,text,d.anchors,d.coverage,outputDoc.marks,images);
     const imageTexts=images ? Object.fromEntries(Object.keys(images).sort().map((part,i)=>[`word/media/redacted-${i+1}.png`,images[part].outputText])) : undefined;
-    if(input.kind==="verify"){await verifyExpected(d,text,output,d.source_format,input.artifact!,imageTexts);return {};}
-    return publishOutputs(d,text,output,d.source_format,digest,imageTexts);
+    if(input.kind==="verify"){await verifyExpected(outputDoc,text,output,d.source_format,input.artifact!,imageTexts);return {};}
+    return publishOutputs(outputDoc,text,output,d.source_format,digest,imageTexts);
   }
   const context={markdown,blockerReview:markdown?await readMarkdownBlockerReview(d):undefined};
-  const output=exportFile(text,d.marks,d.source_format,d.anchors,context);
-  verifyFile(text,d.marks,output,d.source_format,d.anchors,context);
-  if(input.kind==="verify"){await verifyExpected(d,text,Buffer.from(output),d.source_format,input.artifact!);return {};}
-  return publishOutputs(d,text,Buffer.from(output),d.source_format,digest);
+  const output=exportFile(text,outputDoc.marks,d.source_format,d.anchors,context);
+  verifyFile(text,outputDoc.marks,output,d.source_format,d.anchors,context);
+  if(input.kind==="verify"){await verifyExpected(outputDoc,text,Buffer.from(output),d.source_format,input.artifact!);return {};}
+  return publishOutputs(outputDoc,text,Buffer.from(output),d.source_format,digest);
 }
 
 const heartbeat=eventsEnabled?setInterval(()=>processingEvent({type:'heartbeat',stage:eventStage}),5000):undefined;

@@ -16,10 +16,10 @@ import type {RuntimeWhitelist} from '../core/runtime-rule-update.ts';
 import type { Mark, DictionaryEntry } from "../contracts/index.ts";
 import type { SearchScope, SearchSpan } from "../core/review-tools.ts";
 import type { Mapping } from "../core/mappings.ts";
-import { withHeavySlot } from "./db.ts";
+import { withHeavySlot, withPartialPagePreviewSlot } from "./db.ts";
 // Native getenv in a worker observes the process environment, not only the JS worker's copy.
 process.env.ORT_DISABLE_TELEMETRY = "1";
-export type ProcessingInput = { kind: "detect" | "export" | "view" | "review" | "verify" | "gate" | "page" | "page-preview" | "preview" | "search" | "known-entities" | "mapping-value" | "visual-detect" | "docx-layout" | "docx-preview" | "ocr-text" | "ocr-correct" | "replacement-policies" | "entity-seeds" | "office-faces"; entitySeeds?: KnownEntitySeed[]; replacementPolicies?: ReplacementPolicies; doc: any; snapshot?: any; automaticBinding?:{taskId:string|null;actorId:string}; offset?: number; query?: string; searchScope?: SearchScope; searchSpans?: SearchSpan[]; detectors?: ("face" | "seal" | "signature")[]; correction?: OcrCorrectionInput; page?: number; marks?: Mark[]; mappings?: Mapping[]; artifact?: { id: string; hash: string; output_role?: "primary"|"markdown"|"pdf-docx"|"word-docx" }; pdfOcrCheckpointPages?:PdfOcrCheckpoint[] }
+export type ProcessingInput = { kind: "detect" | "export" | "view" | "review" | "verify" | "gate" | "page" | "page-preview" | "partial-page-preview" | "preview" | "search" | "known-entities" | "mapping-value" | "visual-detect" | "docx-layout" | "docx-preview" | "ocr-text" | "ocr-correct" | "replacement-policies" | "entity-seeds" | "office-faces"; entitySeeds?: KnownEntitySeed[]; replacementPolicies?: ReplacementPolicies; doc: any; snapshot?: any; automaticBinding?:{taskId:string|null;actorId:string}; offset?: number; query?: string; searchScope?: SearchScope; searchSpans?: SearchSpan[]; detectors?: ("face" | "seal" | "signature")[]; correction?: OcrCorrectionInput; page?: number; marks?: Mark[]; mappings?: Mapping[]; artifact?: { id: string; hash: string; output_role?: "primary"|"markdown"|"pdf-docx"|"word-docx" }; pdfOcrCheckpointPages?:PdfOcrCheckpoint[] }
   | { kind: "download"; artifact: { id: string; hash: string; format?: string } }
   | {kind:"restoration-batch-file";file:RestorationBatchFile;plan:RestorationPlan}
   | {kind:"image-batch-search";doc:any;query:string;pageIndex?:number}
@@ -38,6 +38,9 @@ export type ProcessingInput = { kind: "detect" | "export" | "view" | "review" | 
 // A real worker thread keeps parser/crypto CPU work away from HTTP and lease heartbeats.
 type ProcessingOptions = { signal?: AbortSignal; timeoutMs?: number; heavySlotHeld?: boolean; onEvent?: (event: ProcessingEventEnvelope) => void | Promise<void>; onCheckpoint?: (frame:PdfOcrCheckpoint) => void | Promise<void>; readRuntimeRules?:()=>Promise<RuntimeWhitelist[]>; readPdfSealPause?:()=>Promise<boolean> };
 export function runProcessing<T>(input: ProcessingInput, options: ProcessingOptions = {}): Promise<T> {
+  // A verified in-progress page must coexist with its detect worker, which
+  // holds slot 2. Slot 3 admits one partial render across API processes.
+  if(input.kind==='partial-page-preview')return withPartialPagePreviewSlot(signal=>runThread<T>(input,{...options,signal:options.signal?AbortSignal.any([signal,options.signal]):signal}));
   if (!options.heavySlotHeld && ["manual-occurrences", "entity-filter", "page-rotation", "legacy-office-normalize", "folder-output", "folder-output-read", "document-route", "docx-image-ocr", "image-batch-search", "restoration-batch-file", "image-utility", "document-unlock", "office-faces", "docx-layout", "docx-preview", "ocr-correct", "visual-detect", "detect", "export", "verify", "page-preview", "search", "known-entities", "dictionary-import", "dictionary-export"].includes(input.kind)) return withHeavySlot(signal => runThread<T>(input, { ...options, signal: options.signal ? AbortSignal.any([signal, options.signal]) : signal }));
   return runThread<T>(input, options);
 }

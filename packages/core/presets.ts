@@ -1,12 +1,46 @@
 import{isWordFormat}from'./document-format.ts';
 import {encodeXlsxString} from "./ooxml-string.ts";
 import {kindByEntityType} from "../contracts/entity-types.ts";
-import {sourceEntityMark,entityIdentity} from './entity-identity.ts';
+import {sourceEntityMark,entityIdentity,canonicalRuleEntityType} from './entity-identity.ts';
+export {canonicalRuleEntityType} from './entity-identity.ts';
 import { randomUUID } from "node:crypto";
 import { profileSchema, rulesetSchema, ruleEntrySchema, type Profile, type RuleEntry, type RuleSet, type PresetPreferences, entityTypeIds } from "../contracts/presets.ts";
 import { type DictionaryEntry, type Mark, markSchema } from "../contracts/index.ts";
 import { parseOffice } from "./office.ts";
 import { writeZip } from "./office-zip.ts";
+import type {DocumentConfiguration} from '../contracts/document-policy.ts';
+
+// Both a user's configuration change and an imported source configuration
+// must produce the same effective processing profile.
+export function applyConfigurationProfileFields(profile:Profile,config:DocumentConfiguration,sourceFormat:string){
+  const fileKind=isWordFormat(sourceFormat)?'docx':sourceFormat==='pdf'?'pdf':['png','jpg','jpeg'].includes(sourceFormat)?'image':'markdown';
+  if(config.entityTypes)profile.enabledEntityTypeIds=config.entityTypes;
+  if(config.pseudonymRules){
+    const expected=Object.values(config.pseudonymRules).some(v=>v!=="pseudonym")?"selective_pseudonym":"custom_pseudonym";
+    config.exportMode??=expected;
+    profile.pseudonymTypeActions=config.pseudonymRules;
+  }
+  if(config.exportMode){
+    if(fileKind==='pdf'||fileKind==='image'){
+      profile[fileKind].defaultMode=config.exportMode==='full_star'?'default_star':config.exportMode;
+      if(config.exportMode==='full_star')profile.pseudonymTypeActions=Object.fromEntries(profile.enabledEntityTypeIds.map(k=>[k,'full_star']));
+    }else profile[fileKind].defaultMode=config.exportMode;
+    if(fileKind==='pdf')profile.batch.pdfDefaultMode=profile.pdf.defaultMode;
+    else if(fileKind==='image')profile.batch.imageDefaultMode=profile.image.defaultMode;
+    else if(fileKind==='docx')profile.batch.docxDefaultMode=profile.docx.defaultMode;
+    else profile.batch.markdownDefaultMode=profile.markdown.defaultMode;
+  }
+  if(config.maskStyle){profile.pdf.maskStyle=config.maskStyle;profile.image.maskStyle=config.maskStyle;}
+  if(config.removeImages!==undefined)profile.docx.removeImages=config.removeImages;
+  if(config.removeHeaderFooter!==undefined)profile.docx.removeHeaderFooter=config.removeHeaderFooter;
+  if(config.commentHandlingMode)profile.docx.commentHandlingMode=config.commentHandlingMode;
+  if(config.outputFormats){
+    const markdown=config.outputFormats.includes('md');profile.docx.exportMarkdown=markdown;profile.pdf.exportMarkdown=markdown;profile.image.exportMarkdown=markdown;
+    profile.pdf.exportPdfAsDocx=sourceFormat==='pdf'&&config.outputFormats.includes('docx');
+    profile.batch.exportMarkdownByKind={docx:markdown,pdf:markdown,image:markdown};
+  }
+  return profile;
+}
 
 export const SYSTEM_PROFILE_ID = "system_default";
 export const SOURCE_DEFAULT_ENTITY_TYPES = ["name_cn", "org_name", "id_card", "phone", "bank_card", "address", "email", "website_url", "uscc", "wechat_id", "plate_cn", "securities_account", "case_number", "cert_no", "patent_no", "filing_no", "contract_amount", "seal", "face"] as const;
@@ -21,7 +55,6 @@ export function defaultProfile(): Profile {
 }
 export function defaultPreferences(): PresetPreferences { return { schemaVersion: 1, defaultProfileId: SYSTEM_PROFILE_ID, activeRuleSetId: null, lastSuccessfulExportByKind: {}, updatedAt: epoch }; }
 export function normalizePattern(value: string) { return value.trim().replace(/\s+/gu, " "); }
-export function canonicalRuleEntityType(value: string) { const kind = Object.hasOwn(kindByEntityType,value)?kindByEntityType[value]:value; return Object.keys(kindByEntityType).find(k => kindByEntityType[k] === kind) ?? value; }
 export function presetNameWithSuffix(base: string, suffix: string) { return base + suffix; }
 export function ruleKey(entry: Pick<RuleEntry, "entityType" | "pattern">) { return `${entityIdentity(sourceEntityMark(entry.entityType,entry.pattern))}\0${normalizePattern(entry.pattern)}\0exact`; }
 /** Source Bd.validateRuleSet normalizes these retired fields before Rd/Cd.

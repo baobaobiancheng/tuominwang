@@ -10,6 +10,8 @@ export const documentConfigurationSchema=z.object({
   pseudonymPrefixes:z.partialRecord(presetEntityType,z.string().regex(/^[\p{L}_-]{1,20}$/u)).optional(),
   pseudonymRules:z.partialRecord(presetEntityType,z.enum(['mask','pseudonym','partial_star','full_star'])).optional(),
   maskStyle:z.enum(['black','white','purple','lightGray']).optional(),removeImages:z.boolean().optional(),removeHeaderFooter:z.boolean().optional(),
+  // Source workspace exportState carries a literal name. Profile names remain templates.
+  pseudonymTableName:z.string().refine(value=>value.isWellFormed()).optional(),
   commentHandlingMode:z.enum(['remove','anonymize','keep']).optional(),outputFormats:z.array(z.enum(['txt','md','csv','doc','docx','xlsx','pdf','png'])).min(1).max(8).refine(v=>new Set(v).size===v.length).optional(),
   unifiedPseudonyms:z.boolean().optional(),batchResultMode:z.enum(['individual','combined']).optional(),
 }).strict().refine(c => !c.pseudonymPrefixes || new Set(Object.values(c.pseudonymPrefixes)).size === Object.values(c.pseudonymPrefixes).length, {message:"Duplicate pseudonym prefixes"});
