@@ -1,5 +1,5 @@
 {
-  "ledger_sha256": "1471e1b74c6fabb38fe07a4517dae040f10f9ce44455593ac7377f1e24d45bfb",
+  "ledger_sha256": "1c9a91192ced2ab219121df7f1bbc94663726e4351335b8594a5c6d9f66c9fd6",
   "reference_version": "0.5.9",
   "interface_count": 258,
   "flow_count": 37,
@@ -7,8 +7,8 @@
   "historical_ipc_missing": [],
   "unmapped_interfaces": [],
   "empty_evidence_interfaces": [],
-  "evidence_reference_count": 5110,
-  "evidence_file_count": 6556,
+  "evidence_reference_count": 5120,
+  "evidence_file_count": 6583,
   "evidence_baseline_at": "2026-10-15T23:43:46.294394+00:00",
   "evidence_baseline_note": "这些哈希是2026-10-13本轮从当前现存文件建立的内容基线，只用于此后漂移检测；不能反向证明基线建立前的文件内容、原始发布完整性或过去运行结论。专有源码未修改。 ITER-012/013追加人工契约、交叉审查、新版指南及明确列举的子路径源码；旧文件哈希继续保留。已批准源码和主分析文档的哈希变更逐项记录previous/current，不扫描部署凭据。 ITER-014仅显式更新最终应用Compose及新增部署结果文件，保留真实OOM与未验证边界，未纳入密钥或环境凭据。 ITER-015仅补115项UI入口、两处动态桥调用集合、交叉审查/核验脚本及新增OpenJPEG发布证据；保留此前应用和部署文件的哈希，正在进行的前端修复漂移由后续迭代单独复核。 ITER-016：仅将本轮明确修改的前端/测试/部署/文档及验收回执更新基线，事件保存旧新哈希；无业务材料或凭据入账。 ITER-017新增分组/增补契约、交叉审查及npm原生签名差异证据；仅maintain新增71解释及维护规则旧动态数量文案的历史hash显式更新。未纳入凭据、未改竞品文件或应用。下载tarball及原生比较的逐项SHA保存在专项报告，不自动扩大成算法可信声明。 ITER-020：补我方Word结构预览、页内OCR改字、视觉候选的实现/验收与规则交接；显式更新5项应用pin，previous/current与原ledger备份保留；早期UI/26例与旧交接独审仅为历史阶段，不代表最终功能或最终文档全部被独审。竞品S2/R0、全部I级别不变，未据本地验证声明公网发布。 ITER-022显式更新进度检查点应用pin；main87基线原字节和旧新hash逐项保留，新能力未一律提级，未发布服务。 ITER-023仅显式进度检查点，28项原pin旧字节归档；有失败日志和新阶段未完成事项，未整体升格。 ITER-030显式逐ID更新，所有漂移旧字节保留并精确验hash；竞品运行R0保持不变。 ITER-031发布及真实OOM影响补证；README和指南文本旧字节精确保留；7张历史截图原字节缺失明确列出，旧hash保留且不声称历史图全部可验证。 ITER038静态语义逐ID合并；旧漂移逐一有精确字节归档，未覆盖掉历史证据。 ITER039握手故障独立复现；变更旧字节逐一验hash并归档，未以定向通过推全量或发布。 ITER040保留全部旧pin字节；逐ID/流程说明CAS更正，等级不变；实际门禁与服务器发布分别记录。 ITER040补5个已存在的新引用当前哈希；不反推其建立基线前内容。新增Edge截图调用保留此前精确字节，尚未运行。 ITER041逐文件真实variant与前后testSHA/logSHA固定；历史结果不冒称当前单次全量。两项测试修正保留旧字节及独立源裁定。 ITER042：首轮真实Edge失败原样保留；18项新旧字节逐一固定，4项产品修复待重新运行，等级不变。 ITER043最终本地：所有旧pin精确字节均找到并归档；API/Edge逐variant保留，无单次全量虚称；13条备注校准不改等级，图文实际核对；部署另证。 ITER044上线：首次真实OOM/回滚与恢复、二次发布、TXT/PNG实产物、指南补丁分别保留；无新增资源限制或模型读取改动；证据变更先核旧字节，S/I/R不变。 ITER-050首次检查点新增审查和实际反例，不变更已有pin及S/I/R，修复与发布尚待。 ITER-050终版：明确更新14路径及文档pin，旧字节按SHA归档；保留失败/跳过/反驳与最终同源层次。258R0及S/I不升级；未把本地验收写为已发布。 ITER-050发布：4文档旧字节先归档，追加最小部署与公网只读证据，保留历史状态而不升级S/I/R。 ITER-051反例检查点：状态文件旧字节先归档；固定已结束实测而不固定仍运行日志；不升级S/I/R。 ITER-051第一批：旧源码Git7ef93d6精确字节归档后显式转移pin；772单元及Edge2为第一批实测，签名/进度/MCP后续未验，竞品R0/线上050记录保持。 051第二批本地checkpoint：显式pin转换及事前旧字节归档；777完整单元、定向API/Edge与跨组反驳；95文件API仍执行、活动日志不pin、未部署。 051第三批本地checkpoint：显式旧pin归档转换，851完整check、分层API/Edge、27图；104全API仍执行，未部署，S/I/R不升。 051第四批前停点：104文件执行35，61过1测试期望失败；无条件安全断言重验1/1，假名与模型导航补齐，未部署。 051第四批checkpoint：SQL044及Edge1/1、854 check134/783、28节30图；105完整API仍运行，未部署，旧pin精确字节归档。 051e终态：105文件209项分段通过、854输入不变、044上线/397运行文件和web资源/5邻居/公网Edge/28节30图，源R0及I级保持。 052显式归档9处旧pin后更新；完整83失败/分层87成功、793单元及规则和质量边界分别保留，208条过期门禁等待清理不提升状态。 ITER-056进展：46项已冻结v4开发源码pin的旧字节逐项从HEAD恢复并精确验旧hash归档后更新；非完成或部署声明。7项缺失runtime-mount证据从原DMG只读挂载提取，逐项匹配原hash，未改竞品源码。明细iteration056-development-pin-refresh-20261016.json。 ITER056正式代码检查点：16项代码pin逐项有旧字节archive，895输入/820测试/Bend通过；真实seal暂停P1仍开放，完整API/Edge/发布未完成。 ITER056第二阶段语义审计：80项有界核查，新增缺页按需OCR P2；不改源码pin或S/I/R，私树与研究稿不是完成。 ITER-056定向完整印章链及真实预览失败追加：仅新增稳定证据pin，保留独审撤回记录；正式895源码与S/I/R不变，未部署。 ITER-056提前预览Edge实际1/1追加：失败与定位保留，新增证据pin；正常dev恢复，私树通过不等于正式全量，不升S/I/R。 ITER-056正式v7合入：35路径旧pin逐一以真实旧字节归档，912输入manifest固定；052本地迁移健康已验，完整门禁待验，未发布服务器且S/I/R不变。 ITER-056正式v7完整工程检查实际通过：824单测+Bend18/21+类型构建；API129真实启动及Edge104准备单独声明，不冒称动态全量完成。新增稳定证据pin且S/I/R不变。 ITER-056规则来源手册同步：原391085字节与10JSON保留；新增17ID只读复核及当前图表，明确移植与我方扩展、准确率未验，不改S/I/R。 ITER-056限定静态补证：26项S2→S3仅包内接口链，8项未知远端保S2；独审发现MCP视觉附件真实缺分支，保留I1与全部R0，不以测试替代补齐。手册旧字节及10JSON保留。 ITER-056视觉映射原码复核：公开LPM控制语义与0可见命中分开，方向修正留证；正式912和S/I/R不变。 ITER-056金额真实Edge1/1与截图指南：原指南旧字节归档、29节链接核验，下载断言和保存服务端产物来源分开；MCP私树P1待修，正式912未变，不升S/I/R。 ITER-056 916正式检查点：26路径逐项旧/新SHA与23份旧源归档核实后更新，工程check通过且477历史恢复；913旧API/Edge失败与82独立运行中诊断保持不同源。旧台账/生成视图/两主文档原字节归档，10规则JSON不变；只读远端计数与备份能力不等于备份/发布，不升S/I/R。 ITER-056 917本任务重试检查点：3路径中2旧源码字节精确归档、新增1测试；917工程check终态通过且477历史复原。定向1+2仅测试DB置failed后真实poll/worker，不代表真实模型故障。旧913完整API/Edge失败和正在执行的913余82、916关键Edge均单列不可拼绿；未发布服务器，不升S/I/R。旧台账视图与两主文档先归档，规则10JSON不变，live日志/进程未pin。 ITER-056-105：v11三项Edge测试旧字节归档；check-v14终态0，API133/Edge105仅启动未终态。三项当前待办陈述校正，不提升S/I/R，不把913余82与旧前缀拼成一次全绿。 ITER-056-106：完整Edge首三项失败、纯测试候选与独审合并记录；完整API/Edge和旧913诊断均只固定前缀非终态，v11正式源码与S/I/R不变。 ITER-056-107：指南v2研究态静态渲染与独审、三项未运行纯测试候选一次记录；三组完整运行仅15:27:54 UTC不可变前缀，正式v11/917与S/I/R不变。 ITER-056-108：MCP七文件REA静态与逐函数有界对照，四差异和原请求去重边界；候选未完成全量验证，三组仅不可变前缀，S/I/R与R0不变。 ITER-056-109：原MCP backend service 86方法有界索引不等于闭合，父子接续/失败重准备仍有差异；transport v3局部API0、v5仅启动，诊断v1迁移/时序问题，旧913余82诊断1fail；S/I/R与R0不变。 ITER-056-110：通知v6单件隔离API0、诊断v4研究、传输v5私树5案0；正式917完整105Edge 85预期20失败，133API运行中固定前缀；S/I/R及R0不变。 ITER-056-111：原模块字节复用研究、本地诊断I/O与combined父完成查询缺口，空resources研究纯测；新层未合、S/I/R不升。 ITER-056-112：合并父真实完整还原单案通过与3案2/1、connector9/9、Edge7为6/1及wrapper故障独立保留；resume安全缺口及协议API仍待，S/I/R不升。 ITER-056-113：视觉定向3/3、协议私树API/类型0、批量v7 5案3/2与独审缺口按稳定SHA补证；旧7视图字节归档。正式917/线上054未更新，S/I/R与竞品全R0不变，v8未验。 ITER-056-114：batch v8五案0、13Edge9/4与fresh4未验；新接续alias/断开状态链缺口、053发布研究非就绪分开，I/S/R不升。 ITER115：原模块优先复用；整合v1/v2及Edge fresh4/fresh2实际终态分开记录，保留失败和源码提示漏项，最终整合全量/部署尚未完成，等级不变。 ITER116：原模块复用独审、v3批量8过/传输撤权真实失败及v4最小修复分别记录，最终合并全量验收与发布尚未完成。 ITER-056-117：v5私树check终态0与先前缺件/安装拒绝并列保留；定向API/Edge按真实源和终态分层，full API/106未完成，不升S/I/R。旧7视图精确归档。 ITER118：旧基线API133/274实际全过不冒作整合全量；新resume并发失败与CAS候选分开；README/状态文档旧字节归档，规则交接未改，S/I/R不变。 ITER119：正式937源合并42路径，旧新pin与精确旧字节保留；逐ID目录实际差距公开保留，未提I/S/R，最终全量与部署仍待。 ITER120：公开PDF全页链与我方300总限制差异补证；本地053数据库/健康实际读回不冒作发布，旧字节与源R0保留。 ITER056-136：8份旧台账及状态字节先完整归档；显式更新状态pin并新增冻结v14检查和REA稳定复核证据，未提升竞品运行或发布结论。 ITER056-137：先保留8份旧字节，更新当前状态pin；新增v7与985中间基线、全操作余项报告，未提升R/I或发布。 ITER056-138：旧8字节先归档；实际v15失败、两处逐字节等价测试修复与peer精确固定，不变产品或提升全量结论。；139：正式v17合入后34历史源码证据指向原字节归档，现行哈希与映射另存；不追认旧测试对新代码有效。 ITER060-188仅增加原码优先审计规划、REA复查、真实预览失败与独立修正红绿；更新两份文档hash，旧字节已归档。规划及候选不等于接口闭合，R0与正式源码不升。 208：规则细则与六轮对抗审查、来源样例收据、旧律师说明重定向及当前状态已按新哈希固定；接口和竞品运行等级不变。 ITER-073-209：律师版主文档去除机器表达式和内部配置路径；完整旧版快照和技术核验附件保留。已更新细则、契约收据与隐藏收据哈希，数量与业务规则边界不变。",
   "evidence_files": {
@@ -23163,8 +23163,8 @@
       "matches_baseline": true
     },
     "apps/api/document-policy.ts": {
-      "sha256": "d2ec33f6748a38481fdfce736643e695f67e6d53b382149e5ecb85c3b34c5417",
-      "bytes": 11018,
+      "sha256": "ed2a5b049f98c57b8b16aa9de856dbb5281d17415c83db11c14d729c91e9755f",
+      "bytes": 9321,
       "matches_baseline": true
     },
     "apps/api/document-route.ts": {
@@ -23212,9 +23212,14 @@
       "bytes": 1004,
       "matches_baseline": true
     },
+    "apps/api/export-mapping-archive.ts": {
+      "sha256": "3f7af92e02a5917ff360768da68b482c266a5ba63616b0dbd88ad687a15991af",
+      "bytes": 7138,
+      "matches_baseline": true
+    },
     "apps/api/feedback.ts": {
-      "sha256": "4f7bc471712c3685ab5cce81a04f3d8ef2c22d760d670e27fbc44368dc0f1562",
-      "bytes": 15297,
+      "sha256": "33966382b698455f62802085907dd46c862fee8be3495679d1022bbc6e29d53d",
+      "bytes": 15448,
       "matches_baseline": true
     },
     "apps/api/files.ts": {
@@ -23238,8 +23243,8 @@
       "matches_baseline": true
     },
     "apps/api/job-queue.ts": {
-      "sha256": "6f48a1849f40d318a02b0efd64c08f1870fc5ca3ad9e5ac8ae1bfcb9719335d7",
-      "bytes": 6895,
+      "sha256": "9bf953017d46e94911a866f53a83c7062a09f4bfff5736e9304ce10b0a1a1cd7",
+      "bytes": 7042,
       "matches_baseline": true
     },
     "apps/api/lifecycle.ts": {
@@ -23248,8 +23253,8 @@
       "matches_baseline": true
     },
     "apps/api/main.ts": {
-      "sha256": "c01abccc7acd67a8c3ebda1dc9a1a7259f80e217fbae825a5e900f43c186c600",
-      "bytes": 35454,
+      "sha256": "844225ca846c35559e0590b985eda54478f04468f72ae7778d6136c6ab40ce1e",
+      "bytes": 35699,
       "matches_baseline": true
     },
     "apps/api/manual-occurrences.ts": {
@@ -23258,8 +23263,8 @@
       "matches_baseline": true
     },
     "apps/api/mapping-export.ts": {
-      "sha256": "fd115490e47626130dd38e7f6b590fedaaaea87687ac7bf55de2c56e5e2e0c48",
-      "bytes": 5478,
+      "sha256": "64a6aa1c693434a16ab42cc7e13c39d04b1f0f6e6e1e8259746b93252284180c",
+      "bytes": 5747,
       "matches_baseline": true
     },
     "apps/api/mapping-library.ts": {
@@ -23273,8 +23278,8 @@
       "matches_baseline": true
     },
     "apps/api/markdown-manual-draft.ts": {
-      "sha256": "69d7be955e633f49dbcf1f96534b98598d2a801a41dab63df218f4c163745f06",
-      "bytes": 10148,
+      "sha256": "03fb20c4800aaa26eb2f9d03fa2ca5721ec33222f4f8af4413c4f3d194b06db6",
+      "bytes": 10431,
       "matches_baseline": true
     },
     "apps/api/markdown-review.ts": {
@@ -23283,8 +23288,8 @@
       "matches_baseline": true
     },
     "apps/api/mcp.ts": {
-      "sha256": "045917898872dbbac0f56f74b5da03d8908a7b344064093806df139c3ba7beec",
-      "bytes": 171434,
+      "sha256": "bde4f8e94b1a69920a86a10cf54651471ca90a9a475dea913bde7b19042fde04",
+      "bytes": 176105,
       "matches_baseline": true
     },
     "apps/api/members.ts": {
@@ -23318,8 +23323,8 @@
       "matches_baseline": true
     },
     "apps/api/pdf-ocr-draft.ts": {
-      "sha256": "192a85bf668c5b120b58f4c8afd8dcc885f87d4b44076117c87dc0988d6b3874",
-      "bytes": 25892,
+      "sha256": "be21af5299049f433b07e61373cc4cc9c28331af6c55823404ffbaa7e08a92bf",
+      "bytes": 29867,
       "matches_baseline": true
     },
     "apps/api/pdf-seals.ts": {
@@ -23350,6 +23355,11 @@
     "apps/api/project-entities.ts": {
       "sha256": "988607ba7290aadf1392327527aeac8eddb8ac3959a3c9b8b9e7073ff6963ec0",
       "bytes": 20550,
+      "matches_baseline": true
+    },
+    "apps/api/pseudonym-draft.ts": {
+      "sha256": "cbbfd11b0f9e2646979a57b20e2dcc9d3c2639a7464f19917de69868b7dd6871",
+      "bytes": 10197,
       "matches_baseline": true
     },
     "apps/api/recognition.ts": {
@@ -23398,8 +23408,8 @@
       "matches_baseline": true
     },
     "apps/api/review-tools.ts": {
-      "sha256": "4fa4cf9734f3edb1fd3757c12801e46ad749bb01829376db0b7178b330da84f6",
-      "bytes": 8249,
+      "sha256": "f71882700bad6b54961da1aa612b07e96ef7e4870a726054eda4fc082c8737df",
+      "bytes": 18127,
       "matches_baseline": true
     },
     "apps/api/reviews.ts": {
@@ -23437,6 +23447,11 @@
       "bytes": 9026,
       "matches_baseline": true
     },
+    "apps/api/unified-preview.ts": {
+      "sha256": "e03f6a549e9773b974b14eb9db0817fbba68c0604f5d97f0412aa792553c1e3e",
+      "bytes": 11470,
+      "matches_baseline": true
+    },
     "apps/api/visual.ts": {
       "sha256": "7b3a07a52d2f5ca53ccce38da38d299e26698da1f2ade10b4f9461963a65e681",
       "bytes": 3347,
@@ -23453,13 +23468,13 @@
       "matches_baseline": true
     },
     "apps/api/workspace-portable.ts": {
-      "sha256": "5d3cece764149b53c1c25715b1685300319dd8b47c8e186274d161f789eceaeb",
-      "bytes": 62602,
+      "sha256": "c7a30b75e03c08e47b8069e147b72f350c368b8ec694e238888c482c95a147d8",
+      "bytes": 65221,
       "matches_baseline": true
     },
     "apps/api/workspace-recovery.ts": {
-      "sha256": "20a865d84445a1cc16da304b846040f9cd05ee0410706d5d8c46dcf70ef9e019",
-      "bytes": 14815,
+      "sha256": "0823bcca6679145e3278f2b6efbf103303b5e85baec85c838d20b68e8f4dc21b",
+      "bytes": 21587,
       "matches_baseline": true
     },
     "apps/api/workspace-saves.ts": {
@@ -23483,8 +23498,8 @@
       "matches_baseline": true
     },
     "apps/web/batch-review.tsx": {
-      "sha256": "9a13cee7b5578f22e0c2f9ff5432b817d0bf1b28a544d89543a7926be89d3639",
-      "bytes": 5353,
+      "sha256": "e2a478886d4215d96e935f082601ae10f3e3103147d7d7c20715dffb89ec0528",
+      "bytes": 8553,
       "matches_baseline": true
     },
     "apps/web/business-errors.ts": {
@@ -23568,8 +23583,8 @@
       "matches_baseline": true
     },
     "apps/web/entity-groups.tsx": {
-      "sha256": "c53f0bf09f218aadc03ab8b160622bae05730a44eec06685a19ad3bc742ee197",
-      "bytes": 18335,
+      "sha256": "2d0ec797f4012244633374def197b5d3806201320c12e6d216a6689cea307b4a",
+      "bytes": 31056,
       "matches_baseline": true
     },
     "apps/web/entity-labels.ts": {
@@ -23613,8 +23628,8 @@
       "matches_baseline": true
     },
     "apps/web/main.tsx": {
-      "sha256": "3eb98c23398711fba82df4c3547e6202874fc2812d6cb5fc41cb901f87a05c3e",
-      "bytes": 110417,
+      "sha256": "996a1b7242fe19c8e294f2259a464c6082d08071e30f6a2ff700c3b1a05d269c",
+      "bytes": 116491,
       "matches_baseline": true
     },
     "apps/web/manual-occurrences.tsx": {
@@ -23643,8 +23658,8 @@
       "matches_baseline": true
     },
     "apps/web/markdown-manual-draft.tsx": {
-      "sha256": "bfcf37b2f7fc03b6660ea7efed40290ffe7cfb1949c6143e1bc4dd7500b7337d",
-      "bytes": 4552,
+      "sha256": "25d152db8bbbd01d2ae248e44b58f73a9739c5ee881ab4a2b571e2512ea61452",
+      "bytes": 5990,
       "matches_baseline": true
     },
     "apps/web/members.tsx": {
@@ -23698,8 +23713,8 @@
       "matches_baseline": true
     },
     "apps/web/pdf-ocr-live-draft.tsx": {
-      "sha256": "4dc23b8b5c491ec879e9a595c0a0dc4229743526d58bd0875b3e119648fe2d1a",
-      "bytes": 13466,
+      "sha256": "a8d254187ed7d78c62305b637849713034c3d4949a9ee34fe0f065b2170fc1b5",
+      "bytes": 16267,
       "matches_baseline": true
     },
     "apps/web/pdf-ocr-live-page.tsx": {
@@ -23738,8 +23753,8 @@
       "matches_baseline": true
     },
     "apps/web/processing-read-retry.ts": {
-      "sha256": "70b279bb11c8b11644b2ae811a3b392b40012a9b29944673a59ce5dd5405e137",
-      "bytes": 953,
+      "sha256": "5c8d7a2fea7a590d53f30197bccfed5710f94ab10a62ae47f72c7b8ce92210d0",
+      "bytes": 1046,
       "matches_baseline": true
     },
     "apps/web/project-entities.tsx": {
@@ -23888,8 +23903,8 @@
       "matches_baseline": true
     },
     "apps/web/workspace-recovery.tsx": {
-      "sha256": "499926ec2020c1cec853b8eadb40f77fef118f98a5caf5f24a0ade7ebe857544",
-      "bytes": 14466,
+      "sha256": "af9c6ce6e81d70a82d076d793505ac54fd31ef2cffe4a106232559c7ebdbced1",
+      "bytes": 19787,
       "matches_baseline": true
     },
     "apps/web/workspace-save-cache.ts": {
@@ -24053,8 +24068,8 @@
       "matches_baseline": true
     },
     "packages/adapters/db.ts": {
-      "sha256": "d2640a95ef479f57e6c7894c8574395e404312f14a5676318f57efb97d7f7ec6",
-      "bytes": 2199,
+      "sha256": "67c3355f23604bb5bd157a435fc5c0b36ca1a0db968d704ad85a21553dc37a4c",
+      "bytes": 2612,
       "matches_baseline": true
     },
     "packages/adapters/deletions.ts": {
@@ -24263,18 +24278,18 @@
       "matches_baseline": true
     },
     "packages/adapters/processing-worker.ts": {
-      "sha256": "fa07eb34dee335bbc07682612cd0950cff012d2c8bb2352802ab0fcce5b88282",
-      "bytes": 29792,
+      "sha256": "4ba5f0a0670b4c078f50df2e02592bc73fc5f7ba0e433b05f2b1e84c5191ae80",
+      "bytes": 31066,
       "matches_baseline": true
     },
     "packages/adapters/processing.ts": {
-      "sha256": "43a1f254018c57d5186481c9a4eeb1a500a957cb0d188d5bade3cf71dfaf87fa",
-      "bytes": 9792,
+      "sha256": "508b2589f060b1b3b5888476bfd8d0275ad56391049df98adfc3b0f04e8fa954",
+      "bytes": 10183,
       "matches_baseline": true
     },
     "packages/adapters/profile-export.ts": {
-      "sha256": "1518a5c971acdf116cb9b139498562cf17e28050b5978c5822a3cb2217ac8dde",
-      "bytes": 7378,
+      "sha256": "0544ce5ffe370e537b37dc48c71a9a20063c3128d18975d6d5ca64a076b947ca",
+      "bytes": 7679,
       "matches_baseline": true
     },
     "packages/adapters/project-entity-corrections.ts": {
@@ -24393,8 +24408,8 @@
       "matches_baseline": true
     },
     "packages/contracts/document-policy.ts": {
-      "sha256": "9e5c8e3302575b34cccd21d6ff796df5455ef3620f7eb5b29008769c6efffb42",
-      "bytes": 2230,
+      "sha256": "811d8dfd6ea1c82644359a997c4b66d2194111bf5fb509b37defb0f88c5d50b1",
+      "bytes": 2400,
       "matches_baseline": true
     },
     "packages/contracts/docx-layout.ts": {
@@ -24433,8 +24448,8 @@
       "matches_baseline": true
     },
     "packages/contracts/index.ts": {
-      "sha256": "74651ef8e03b36d31ae0fc372a63db8581a7017721e08f4c704584fab41cde52",
-      "bytes": 9494,
+      "sha256": "cf4cfa37b4799e5eb0c56ea6e4dc6758fc5becd79843a802dfee6c1c92e3a01f",
+      "bytes": 9518,
       "matches_baseline": true
     },
     "packages/contracts/manual-occurrences.ts": {
@@ -24473,8 +24488,8 @@
       "matches_baseline": true
     },
     "packages/contracts/policies.ts": {
-      "sha256": "f9e16ccf7a2a08db7e5966af3476871a43f0516e99f6e60d2398069e66d69087",
-      "bytes": 1522,
+      "sha256": "0fa1839a2bda736a59f13891f6d2ffe164d7d2bdd3eb087978f58a6f54ed5bd9",
+      "bytes": 1612,
       "matches_baseline": true
     },
     "packages/contracts/presets.ts": {
@@ -24498,8 +24513,8 @@
       "matches_baseline": true
     },
     "packages/core/ai-diagnostics.ts": {
-      "sha256": "ed095a6eab658dcb8314ac284511d866a80f99ba3e2446aaee0bb7d26d34bc82",
-      "bytes": 9728,
+      "sha256": "b9b7a82cd63c59ed97ae667e31205ff85be63e69d7d66489f3985c89cd94dd0b",
+      "bytes": 10006,
       "matches_baseline": true
     },
     "packages/core/dictionary-workbook.ts": {
@@ -24553,8 +24568,8 @@
       "matches_baseline": true
     },
     "packages/core/entity-identity.ts": {
-      "sha256": "3f60a6b85405a0dfa3822d0d8b9a80b33a7eb7418cb775bb944dc1325df2ced2",
-      "bytes": 2283,
+      "sha256": "48cc75a1d9ab1159e09e72d6f6b9b0f3e924302db86b3af694a3f869fd6f3b2f",
+      "bytes": 2498,
       "matches_baseline": true
     },
     "packages/core/evidence-screenshot.ts": {
@@ -24597,6 +24612,11 @@
       "bytes": 1587,
       "matches_baseline": true
     },
+    "packages/core/full-star-effective.ts": {
+      "sha256": "a3c62734de28f8658f8bd06d9b4e5c392b2c465fcccf35911c61147f2fc7d0e1",
+      "bytes": 370,
+      "matches_baseline": true
+    },
     "packages/core/image-batch-search.ts": {
       "sha256": "39f69cd11e51c0b2148d3a38a18c7843ea5df13edb16614fbe4dc6381302de99",
       "bytes": 9196,
@@ -24618,8 +24638,8 @@
       "matches_baseline": true
     },
     "packages/core/mapping-export.ts": {
-      "sha256": "4c4866a85cab28a54c7de942696133ea9bda0f62af0cc8a9184a95592c734929",
-      "bytes": 3759,
+      "sha256": "65e0f45767d348b8b70eb3fd83b1e0c45dbb762776dbe55e2fca22e6096fd30d",
+      "bytes": 5508,
       "matches_baseline": true
     },
     "packages/core/mapping-library.ts": {
@@ -24648,8 +24668,8 @@
       "matches_baseline": true
     },
     "packages/core/mcp-tools.ts": {
-      "sha256": "006aca318d48bfdc12ba54c14c08491247298e78defa3df2ae2545346b984844",
-      "bytes": 16595,
+      "sha256": "d34c4a5dbd3aa30a5dc588ed955553a2484d484da7ea8e24ca40c0e26fc61e81",
+      "bytes": 16863,
       "matches_baseline": true
     },
     "packages/core/native-portable.ts": {
@@ -24702,6 +24722,16 @@
       "bytes": 1228,
       "matches_baseline": true
     },
+    "packages/core/original-draft-controls.ts": {
+      "sha256": "82692069f6b61566d0f3a4252712e452450b074a79c6ba8d4b4b99bcf2289e62",
+      "bytes": 1398,
+      "matches_baseline": true
+    },
+    "packages/core/original-pseudonym-draft.ts": {
+      "sha256": "ddee04547e7fc018d6d7d5a5af905bbb95a4c52650bd9faac600b5b3c40964cf",
+      "bytes": 13458,
+      "matches_baseline": true
+    },
     "packages/core/package.json": {
       "sha256": "2403fea91399e1b119e149076c33b08ec877b9659be4867f21d6564e26575924",
       "bytes": 65,
@@ -24738,8 +24768,8 @@
       "matches_baseline": true
     },
     "packages/core/presets.ts": {
-      "sha256": "ea28f23c0745e1cd58bcc6ea0c5a864272b82fc612016a882e3426f5c9095757",
-      "bytes": 16053,
+      "sha256": "226ca418ec8d1ab75bf55874a882c2fe594af50cc33f0477ebca24c415819402",
+      "bytes": 18180,
       "matches_baseline": true
     },
     "packages/core/processing-events.ts": {
@@ -24937,6 +24967,16 @@
       "bytes": 1841,
       "matches_baseline": true
     },
+    "packages/core/reference/batch-mode-source.d.ts": {
+      "sha256": "7e8f38238da2e7a7182352ac40957bff15d07d7d319377bc5f1a14c77e6cf81b",
+      "bytes": 326,
+      "matches_baseline": true
+    },
+    "packages/core/reference/batch-mode-source.js": {
+      "sha256": "bb16410cc7beecf8004d43e9870e65b8eea42adf55ca72a066af9ffdb7a02fb8",
+      "bytes": 621,
+      "matches_baseline": true
+    },
     "packages/core/reference/blacklists.json": {
       "sha256": "369a14ee5c3f11f0a16a62228bc30b9c55d88a6d035450672011a6d60ab6ef0a",
       "bytes": 64858,
@@ -24962,6 +25002,16 @@
       "bytes": 39775,
       "matches_baseline": true
     },
+    "packages/core/reference/original-pseudonym-draft-source.d.ts": {
+      "sha256": "9c8f307af7107caf13f13db23662a5b94d0e7f0b04d7ac89ea532039b559923b",
+      "bytes": 1290,
+      "matches_baseline": true
+    },
+    "packages/core/reference/original-pseudonym-draft-source.js": {
+      "sha256": "9ac45ff678308827fd878c879280ad70efafff6e19d5cc6e4699460a420aafd2",
+      "bytes": 18113,
+      "matches_baseline": true
+    },
     "packages/core/reference/reference-mask-data.json": {
       "sha256": "de5bc4255716fe4a2c3ce3ddd5e7bacab9b870503baaeaf05526f3ef1b7850c6",
       "bytes": 3304,
@@ -24982,19 +25032,29 @@
       "bytes": 21229,
       "matches_baseline": true
     },
+    "packages/core/reference/unified-preview-source.d.ts": {
+      "sha256": "c5cc43e8fe2ac1d0908bfef81ea04ea3f41cf647031be9c0f800c6bf791b35e0",
+      "bytes": 494,
+      "matches_baseline": true
+    },
+    "packages/core/reference/unified-preview-source.js": {
+      "sha256": "c9e53c97bc087319d361ec06c93b65a01c4100226348de82f4799ccdbe95c889",
+      "bytes": 1670,
+      "matches_baseline": true
+    },
     "packages/core/reference/workspace-renderer-source-manifest.json": {
       "sha256": "dd6f245b1c04253b660bb03dea2ac87b5efbc8fbdd5c19c0a81f0a0f9d0cad43",
       "bytes": 9539,
       "matches_baseline": true
     },
     "packages/core/reference/workspace-renderer-source.d.ts": {
-      "sha256": "4e537fad542505f400a419d2f61c484c19cf6642a155836674b72b1ca9b61102",
-      "bytes": 744,
+      "sha256": "25ae6eb35fa36fb700d2b24ba9c640095991e495995b6171b7d9a7e74929f6f7",
+      "bytes": 965,
       "matches_baseline": true
     },
     "packages/core/reference/workspace-renderer-source.js": {
-      "sha256": "66ceb98b66e62173a21ebe746f1edfd92a831bb9117cf3510a7bdc6649e3e8a5",
-      "bytes": 50776,
+      "sha256": "a31d272c649c7ddbed2abe1d1e186d75e16328767888e60160b2a8ddd2115fc1",
+      "bytes": 51121,
       "matches_baseline": true
     },
     "packages/core/reference/workspace-review-profile.d.ts": {
@@ -25023,8 +25083,8 @@
       "matches_baseline": true
     },
     "packages/core/replacement-policies.ts": {
-      "sha256": "92cb4925bb4c4e10868fa1913810e6475dbdf7f8240327d9577856fa889f5f1d",
-      "bytes": 3992,
+      "sha256": "5b9d8d3b4a91d6a2c29b46b1c7b4f5db113e4344167967ca1bc3ffcaf04eaffb",
+      "bytes": 4166,
       "matches_baseline": true
     },
     "packages/core/restoration-batch.ts": {
@@ -25153,8 +25213,8 @@
       "matches_baseline": true
     },
     "packages/core/workspace-compat.ts": {
-      "sha256": "b3f5fd05fcc129a7c3923dd173a27a7189a107113248d1acdad631727d7acbde",
-      "bytes": 24664,
+      "sha256": "8b5da458868365dc1b53231791271be58a522a55481922b695e0677449e4109e",
+      "bytes": 25894,
       "matches_baseline": true
     },
     "packages/core/workspace-portable.ts": {
@@ -25163,8 +25223,8 @@
       "matches_baseline": true
     },
     "packages/core/workspace-renderer.ts": {
-      "sha256": "74dd64d5ec357e7ca24728003db398568d05794b23889c99b4a3581ec476e619",
-      "bytes": 15109,
+      "sha256": "0633becead4fa45d3206d150bb85f1c380612c2f02dad425df431bc937fabf88",
+      "bytes": 17094,
       "matches_baseline": true
     },
     "packages/core/workspace-snapshot-metadata.ts": {
@@ -25183,8 +25243,8 @@
       "matches_baseline": true
     },
     "playwright.config.ts": {
-      "sha256": "add706fefe1252d8bef39f9abc1095bb329c41bddc354b21937ba05720fcf90d",
-      "bytes": 654,
+      "sha256": "b60d60c4e27050a5c73bb4df995e44b0464f0ce5240eca3ebfb89a7a184ec345",
+      "bytes": 749,
       "matches_baseline": true
     },
     "pnpm-lock.yaml": {
@@ -25688,8 +25748,8 @@
       "matches_baseline": true
     },
     "scripts/vendor/aiDiagnostics.d.ts": {
-      "sha256": "f27888abd8ac5385cccde136b7f606dd8577028df413056d90fc282187c5ecf7",
-      "bytes": 481,
+      "sha256": "d890dc397ead6e27adafc34d98645221b90bbdaa5322cbf84d711897e66773f3",
+      "bytes": 574,
       "matches_baseline": true
     },
     "scripts/vendor/aiDiagnostics.js": {
@@ -25760,6 +25820,11 @@
     "tests/automatic-runtime-worker.integration.ts": {
       "sha256": "784dea5f074f130b42d3921ce7a24d5d4a2dc1fc6079be20ec3664acf9af52e8",
       "bytes": 9823,
+      "matches_baseline": true
+    },
+    "tests/batch-export-mode-original-gap.integration.ts": {
+      "sha256": "4c46d03bf9c744c494bdf419319e3279f9ae976ab1a59a074d87ca21f80bac3f",
+      "bytes": 30348,
       "matches_baseline": true
     },
     "tests/circle-redaction.integration.ts": {
@@ -25888,8 +25953,8 @@
       "matches_baseline": true
     },
     "tests/e2e/batch-review.spec.ts": {
-      "sha256": "e52c4425fa0b15d3552688e49c2468eb5c78ea930f3bc248a9a2e6832cd6b718",
-      "bytes": 4678,
+      "sha256": "d5f169f0da13d970ef5962d4ab00d042525c89d74380d1270be1bc3e74753259",
+      "bytes": 9059,
       "matches_baseline": true
     },
     "tests/e2e/cancel-recovery.spec.ts": {
@@ -25947,6 +26012,11 @@
       "bytes": 10714,
       "matches_baseline": true
     },
+    "tests/e2e/entity-group-mode-actions.spec.ts": {
+      "sha256": "a9e507c65e272758573a0f619fcad8ffa901497e11f408b6bcdb0e2de9767e7d",
+      "bytes": 7137,
+      "matches_baseline": true
+    },
     "tests/e2e/entity-workflow.spec.ts": {
       "sha256": "a68c7d56dd7470ff35dc5095ffe9b3308c91afce891de876d818af7dc2ac25d7",
       "bytes": 23060,
@@ -25988,8 +26058,8 @@
       "matches_baseline": true
     },
     "tests/e2e/image-custom.spec.ts": {
-      "sha256": "8e50e3878da0836591ea37280b1f5b154f5c39b8a0ab799ff0a4cb7aa9413168",
-      "bytes": 5610,
+      "sha256": "95ff57243747055b8b03d2fef3365136804104b20fbede16e1c228693e405a2c",
+      "bytes": 5626,
       "matches_baseline": true
     },
     "tests/e2e/image-utilities.spec.ts": {
@@ -26003,8 +26073,8 @@
       "matches_baseline": true
     },
     "tests/e2e/manual-occurrences-geometry.spec.ts": {
-      "sha256": "ad4d73dccee72c5c19dca27435aade4dd933e497b04d5bcae6eb24999688c4ab",
-      "bytes": 11214,
+      "sha256": "1307de5212566a395a0831163b4b7cbad1211c8eec4a3a8cfbf60b2983d435ea",
+      "bytes": 11244,
       "matches_baseline": true
     },
     "tests/e2e/mappings.spec.ts": {
@@ -26015,6 +26085,11 @@
     "tests/e2e/markdown-source.spec.ts": {
       "sha256": "40f785a644a0b2d1ca1622c94990a61a22badd8049407520e8453b2d453c8872",
       "bytes": 4057,
+      "matches_baseline": true
+    },
+    "tests/e2e/material-policy.spec.ts": {
+      "sha256": "df99573587508930ccec9c57ecef237a73d2fe6dee6d953264702fa1dd5828b6",
+      "bytes": 39007,
       "matches_baseline": true
     },
     "tests/e2e/mcp-ai-process-restore.spec.ts": {
@@ -26058,8 +26133,8 @@
       "matches_baseline": true
     },
     "tests/e2e/pdf-ocr-runtime-page-flow.spec.ts": {
-      "sha256": "82a9682173a126a662fa6e5da42ad7917b38768d07196c703fab4efee7daa679",
-      "bytes": 24709,
+      "sha256": "42c8ba4ffaf016272911fd3ab6e7847d27cfc8c8273c95553cb9cd20eeb04cbc",
+      "bytes": 28774,
       "matches_baseline": true
     },
     "tests/e2e/pdf-seal-runtime-flow.spec.ts": {
@@ -26068,8 +26143,8 @@
       "matches_baseline": true
     },
     "tests/e2e/porting-closure.spec.ts": {
-      "sha256": "734009c5608aa752869501cd2c55042ad186a0b01b4eacb9c270186e994ace49",
-      "bytes": 11912,
+      "sha256": "424d628b28693490633dcb312fd6e0ccfd869075e2576a00568f4d140cb5b8f7",
+      "bytes": 13848,
       "matches_baseline": true
     },
     "tests/e2e/preset-recovery.spec.ts": {
@@ -26095,6 +26170,11 @@
     "tests/e2e/project-entities.spec.ts": {
       "sha256": "2842a3a7a866f5669d51cfb1279bea0db00ce448b17107fc5caa21c090d8d1ed",
       "bytes": 19979,
+      "matches_baseline": true
+    },
+    "tests/e2e/pseudonym-zero-reset.spec.ts": {
+      "sha256": "4e23a211a7e99bf89b7659386036fb47b55054d219bc6698983185347423e49d",
+      "bytes": 9710,
       "matches_baseline": true
     },
     "tests/e2e/recognition.spec.ts": {
@@ -26167,6 +26247,11 @@
       "bytes": 8168,
       "matches_baseline": true
     },
+    "tests/e2e/unified-preview-order.spec.ts": {
+      "sha256": "8b2ac37debe0287a53138a67557dd4b1201febb8b39021cb33624d83e27fda61",
+      "bytes": 5263,
+      "matches_baseline": true
+    },
     "tests/e2e/visual-detection.spec.ts": {
       "sha256": "d3fee27b6e6f48e1e43738366dd001892146b0498229ac73bd7c72dbd7fb1836",
       "bytes": 5699,
@@ -26188,13 +26273,18 @@
       "matches_baseline": true
     },
     "tests/e2e/workspace-save-reopen.spec.ts": {
-      "sha256": "41f2420f6c03f3f49ec8e756392deb179e44e9cd66a228923e080111d7910ebc",
-      "bytes": 4083,
+      "sha256": "827234fa418da7f9e810d7411b5167880c8f8d8ee6b1be66e08d1389931766f7",
+      "bytes": 4621,
       "matches_baseline": true
     },
     "tests/e2e/workspace-v1-large-migration.spec.ts": {
       "sha256": "063021e5724c978b0a053431c77c538ffd548dd0e22169a73c2eaef35a0a8306",
       "bytes": 26698,
+      "matches_baseline": true
+    },
+    "tests/e2e/workspace-whole-recovery.spec.ts": {
+      "sha256": "c355355402d60b5bc1a36bff649d1392377d70c1fa1ee5a072ea1d698dc3b544",
+      "bytes": 16624,
       "matches_baseline": true
     },
     "tests/entity-corrections-review.integration.ts": {
@@ -26223,8 +26313,8 @@
       "matches_baseline": true
     },
     "tests/entity-groups.test.ts": {
-      "sha256": "faa9a0aa12481760f68edf6e9abaffbad55fe9d394f0f680dc7f104004e575ac",
-      "bytes": 5696,
+      "sha256": "cd0213ff78cef2469756641690df01f580383a746ff003b6f11f573b5d1eb329",
+      "bytes": 8502,
       "matches_baseline": true
     },
     "tests/entity-identity.integration.ts": {
@@ -26268,8 +26358,8 @@
       "matches_baseline": true
     },
     "tests/feedback.integration.ts": {
-      "sha256": "abbb0805bcc89431e1dfdc2262404e502c9c699e87d650a7e8d8b4eee7a21c43",
-      "bytes": 16637,
+      "sha256": "5be40b6337c1f9b6f99c9fc7a191884350ae1b551a37f585f0ce34632967aab6",
+      "bytes": 17316,
       "matches_baseline": true
     },
     "tests/feedback.test.ts": {
@@ -26773,8 +26863,8 @@
       "matches_baseline": true
     },
     "tests/markdown-manual-draft.integration.ts": {
-      "sha256": "432bba34b1c96ac2eb021579c38c1bc64e383cb818f9898933d87b09681406ad",
-      "bytes": 12766,
+      "sha256": "3de81b8da1c76d61db318cf1921aabd2632d0cc172cf0f016fe93eb53f6482b5",
+      "bytes": 13579,
       "matches_baseline": true
     },
     "tests/markdown-manual-draft.test.ts": {
@@ -26842,6 +26932,11 @@
       "bytes": 20135,
       "matches_baseline": true
     },
+    "tests/mcp-original-action-contract.integration.ts": {
+      "sha256": "2028e6c2703aadb93bdb1245c52cf5ce252f069003352147a2d621c7528da869",
+      "bytes": 9555,
+      "matches_baseline": true
+    },
     "tests/mcp-owned-retry.integration.ts": {
       "sha256": "25f410dd703749fd01ee6e0ac93a3b0d89bf27abb551f0a296cfc6f96720bab6",
       "bytes": 12752,
@@ -26888,13 +26983,18 @@
       "matches_baseline": true
     },
     "tests/mcp-result-archive.integration.ts": {
-      "sha256": "ce33c595447c47b955d3ecfa226657097d31e4d343175824b9944b31b5679ae7",
-      "bytes": 21647,
+      "sha256": "be27e79628af11371dd672b03806395a61d67b3a90552727b12af41181628b02",
+      "bytes": 22325,
       "matches_baseline": true
     },
     "tests/mcp-resume-selection.integration.ts": {
       "sha256": "5cb5b512c6075e3b372c28fb0d2e0cf2f93b1ec4107d2e1385bfe453521fc3bb",
       "bytes": 13439,
+      "matches_baseline": true
+    },
+    "tests/mcp-single-report-resume-red.integration.ts": {
+      "sha256": "6095fba88cfc257925e676dcd54b4470e60e29d79c6e33ff56a5000976b407b0",
+      "bytes": 12422,
       "matches_baseline": true
     },
     "tests/mcp-standalone-mode.integration.ts": {
@@ -27017,6 +27117,16 @@
       "bytes": 5548,
       "matches_baseline": true
     },
+    "tests/original-pseudonym-draft.integration.ts": {
+      "sha256": "6a969542a8ff99d32fd5045a6cf017360b870298a75205c95acca355310fa0a1",
+      "bytes": 17181,
+      "matches_baseline": true
+    },
+    "tests/original-pseudonym-draft.test.ts": {
+      "sha256": "8c1fd86fed050c3504bc67ca7899046e60d15879ba20dbac6c6c4a2072b3c78e",
+      "bytes": 17601,
+      "matches_baseline": true
+    },
     "tests/page-redaction.test.ts": {
       "sha256": "3b5b93c1db76bd70e5cfd9e613ae21c0c89f31b392860dc52bb318c6e0af9b50",
       "bytes": 2892,
@@ -27065,6 +27175,11 @@
     "tests/pdf-ocr-checkpoint.integration.ts": {
       "sha256": "9350a47d3373879f234e96bb4a1373c18b844793ac10ad855361a45decec7c69",
       "bytes": 12865,
+      "matches_baseline": true
+    },
+    "tests/pdf-ocr-draft.integration.ts": {
+      "sha256": "c2b07f477d9e651eeeb0c159e71e602c5c15e50a994898e36730ee98c15ee717",
+      "bytes": 18947,
       "matches_baseline": true
     },
     "tests/pdf-ocr-resume.integration.ts": {
@@ -27138,8 +27253,8 @@
       "matches_baseline": true
     },
     "tests/portable-fresh-cross-format.integration.ts": {
-      "sha256": "8963a0881a8b8de6d47ca305486b8dbfe1273aff64dbe9740cf7cd4d5f13bf9c",
-      "bytes": 15236,
+      "sha256": "79cf3abf14448f999678cf81b81871ad368f2465b86afac8c81a7c19d61f9238",
+      "bytes": 15427,
       "matches_baseline": true
     },
     "tests/portable-fresh-replacement.integration.ts": {
@@ -27203,8 +27318,8 @@
       "matches_baseline": true
     },
     "tests/processing-read-retry.test.ts": {
-      "sha256": "66eb7c1922a1cdf444d56e1126dce047288dd48ba418cdee8ccdcd6a49a0a508",
-      "bytes": 2018,
+      "sha256": "e6da2b8b09a447886ac35e1cb37675ea432bccc524244e625ee0fcb36f74a9aa",
+      "bytes": 2959,
       "matches_baseline": true
     },
     "tests/processing-report.test.ts": {
@@ -27453,8 +27568,8 @@
       "matches_baseline": true
     },
     "tests/replacement-policies.integration.ts": {
-      "sha256": "d25f8ed4ff10165d2c5ef62d7a61b4475ce04ea2b2d118018e22c8714a3e08d1",
-      "bytes": 10873,
+      "sha256": "d02a12933dac24478a7fb28d40df0cdddb0466afc36de225e2e5987e56b9c335",
+      "bytes": 15568,
       "matches_baseline": true
     },
     "tests/replacement-policies.test.ts": {
@@ -27643,8 +27758,8 @@
       "matches_baseline": true
     },
     "tests/run-isolated.ts": {
-      "sha256": "9d110effc4959fa12acfd0ce05723396303ea4e7685f561ad1c3d88fade702f7",
-      "bytes": 2801,
+      "sha256": "cabb181bde916b1f438bf8e3db8a7a9d2d27c8def43d6b4fa266c5c8165577be",
+      "bytes": 3027,
       "matches_baseline": true
     },
     "tests/run-portable-isolated.ts": {
@@ -27675,6 +27790,11 @@
     "tests/selectable-ocr.test.ts": {
       "sha256": "e096ebdc331392f1774867c3901d676e9d91734d907fa05bf998e34dbd8d41fd",
       "bytes": 1030,
+      "matches_baseline": true
+    },
+    "tests/selective-source-eligibility.integration.ts": {
+      "sha256": "61e4ddf8ff6851c1f7d73d518c84a5797bae30dccff14f4d4420b0ed7bd67386",
+      "bytes": 5506,
       "matches_baseline": true
     },
     "tests/signature-groups.integration.ts": {
@@ -27730,6 +27850,11 @@
     "tests/unified-export-preflight.integration.ts": {
       "sha256": "0df120f77d82bcc7bc8e1ce9eb5577634eef21c34cd48f14da3e31ee7b225af8",
       "bytes": 4513,
+      "matches_baseline": true
+    },
+    "tests/unified-preview.integration.ts": {
+      "sha256": "6fd4881b4f2c7f4e1f4266253f32379ce4580a3752ac916ee0f29817b83df0e1",
+      "bytes": 11206,
       "matches_baseline": true
     },
     "tests/user-memory-rules.test.ts": {
@@ -27788,8 +27913,13 @@
       "matches_baseline": true
     },
     "tests/workspace-compat.test.ts": {
-      "sha256": "c8a810a5cef87c26ca26b0a82f2a3489e6204d7a3072959a4a3c4e95f0700226",
-      "bytes": 8975,
+      "sha256": "5a4f5c4a5a69053f3e82ef44d3f2cff71dfc793267246a3710f6dd49e2235ee1",
+      "bytes": 14996,
+      "matches_baseline": true
+    },
+    "tests/workspace-field-real-import.integration.ts": {
+      "sha256": "7ea41a903028532a670e412f737005015d4a5a6e4fcfb12b920e1a1edee15ddd",
+      "bytes": 14152,
       "matches_baseline": true
     },
     "tests/workspace-folder-batch.integration.ts": {
@@ -27865,6 +27995,11 @@
     "tests/workspace-source-profile.test.ts": {
       "sha256": "7ed863a9919a47d517674b177935e58cee1f978bce2a08bf19acaebbfd35dcc4",
       "bytes": 1035,
+      "matches_baseline": true
+    },
+    "tests/workspace-whole-recovery.integration.ts": {
+      "sha256": "62e0e4295f50b2ff109a37910ef3631db856c3570e5ee8bd02aed79f6da4e507",
+      "bytes": 7737,
       "matches_baseline": true
     },
     "vendor/opencv/opencv-4.10.0.cjs": {
@@ -29553,8 +29688,8 @@
       "matches_baseline": true
     },
     "文档/脱敏规则细则.md": {
-      "sha256": "31ccdb10634793f148bcd8a510a50cdfb8caed09db709d0c72fc7e5c7bb41de3",
-      "bytes": 275869,
+      "sha256": "3be48e47ebcb7d0598768d7c63c422e30710184a97fb702625d339a28387ee21",
+      "bytes": 256971,
       "matches_baseline": true
     },
     "文档/脱敏规则给律师看的说明-20261019.md": {
@@ -30913,8 +31048,8 @@
       "matches_baseline": true
     },
     "文档/逆向台账/contracts/iteration073-rule-details-208-20261019.json": {
-      "sha256": "823cc23dad02bc6925eb5c9046a7395431578f8798b2c7a8d0cd8eced7f979b5",
-      "bytes": 78070,
+      "sha256": "557bf7e46e6e6caa4870a4ca842dc18a52388597e89de25a3a65acb81eb7bfd8",
+      "bytes": 79400,
       "matches_baseline": true
     },
     "文档/逆向台账/contracts/ledger-recommendations.json": {

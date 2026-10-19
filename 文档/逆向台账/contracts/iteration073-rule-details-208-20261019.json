@@ -4,8 +4,8 @@
   "scope": "律师版业务规则、合成示例与11张PNG流程图；机器匹配细目和内部配置另存技术附件",
   "document": {
     "path": "文档/脱敏规则细则.md",
-    "sha256": "31ccdb10634793f148bcd8a510a50cdfb8caed09db709d0c72fc7e5c7bb41de3",
-    "bytes": 275869
+    "sha256": "3be48e47ebcb7d0598768d7c63c422e30710184a97fb702625d339a28387ee21",
+    "bytes": 256971
   },
   "counts": {
     "typeExamples": 26,
@@ -31,7 +31,15 @@
     "packages/core/reference-detected-mask.ts": "48983100188ec3920215958c7baaea9c1e889e59f29cf3351fdbb89445d02540",
     "packages/core/reference-scenario-mask.ts": "c6291bd9b12c4b4007b0dca2ff830cea2e7a06814deaa7aab61cb2a23e0d8048",
     "tests/fixtures/reference-detected-mask-source-golden.json": "17c39fefa2aef46135e60ebb5a3892c50bd32c3c21c6edd0399ea53d90af399d",
-    "tests/reference-detected-mask.test.ts": "5d37693abe7f2cd847a4b7973a0843bf6fdd905c7b8a24f0eee10872a52d7f44"
+    "tests/reference-detected-mask.test.ts": "5d37693abe7f2cd847a4b7973a0843bf6fdd905c7b8a24f0eee10872a52d7f44",
+    "packages/core/reference/original-pseudonym-draft-source.js": "9ac45ff678308827fd878c879280ad70efafff6e19d5cc6e4699460a420aafd2",
+    "packages/core/original-pseudonym-draft.ts": "ddee04547e7fc018d6d7d5a5af905bbb95a4c52650bd9faac600b5b3c40964cf",
+    "packages/core/original-draft-controls.ts": "82692069f6b61566d0f3a4252712e452450b074a79c6ba8d4b4b99bcf2289e62",
+    "apps/api/pseudonym-draft.ts": "cbbfd11b0f9e2646979a57b20e2dcc9d3c2639a7464f19917de69868b7dd6871",
+    "apps/web/entity-groups.tsx": "2d0ec797f4012244633374def197b5d3806201320c12e6d216a6689cea307b4a",
+    "packages/core/workspace-compat.ts": "8b5da458868365dc1b53231791271be58a522a55481922b695e0677449e4109e",
+    "tests/original-pseudonym-draft.test.ts": "8c1fd86fed050c3504bc67ca7899046e60d15879ba20dbac6c6c4a2072b3c78e",
+    "tests/original-pseudonym-draft.integration.ts": "6a969542a8ff99d32fd5045a6cf017360b870298a75205c95acca355310fa0a1"
   },
   "goldenRows": [
     {
@@ -2102,13 +2110,18 @@
       "path": ".data/research/lawbot-2026-10-19/iteration073/rules-adversarial-v5.md",
       "sha256": "380399f2a3f362e84a6a4fa024f348aadf0e622e6c669fbb1459a919f1636873",
       "bytes": 3258
+    },
+    {
+      "path": ".data/research/lawbot-2026-10-19/iteration073/rules-final-independent-audit-v5.md",
+      "sha256": "9d78f517f829f831b17a18bfbf1a71c648f318e769c0cac70f3ca1672be3e506",
+      "bytes": 2319
     }
   ],
   "evidence": [
     {
       "path": "文档/脱敏规则细则.md",
-      "sha256": "31ccdb10634793f148bcd8a510a50cdfb8caed09db709d0c72fc7e5c7bb41de3",
-      "bytes": 275869
+      "sha256": "3be48e47ebcb7d0598768d7c63c422e30710184a97fb702625d339a28387ee21",
+      "bytes": 256971
     },
     {
       "path": "文档/脱敏规则给律师看的说明-20261019.md",
@@ -2278,6 +2291,7 @@
     "primaryConditions": 57,
     "auxiliaryEntries": 527,
     "auxiliaryEntriesWithUnconfirmedBusinessContext": 191,
-    "rulesInMainDocument": true
+    "rulesInMainDocument": true,
+    "typeActionDocumentation": "文档第四节明确列出当前材料按类型批量处理：假名化、部分星号、全部星号；PDF/PNG/JPG/JPEG允许清除；整文件全星号另列。"
   }
 }
