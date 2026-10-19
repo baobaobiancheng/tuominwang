@@ -4,8 +4,8 @@
   "scope": "律师版业务规则、合成示例与11张PNG流程图；机器匹配细目和内部配置另存技术附件",
   "document": {
     "path": "文档/脱敏规则细则.md",
-    "sha256": "7e751ccfff927f17e517d555c81b533d6dd1db17b69760bec699f5606aa873d2",
-    "bytes": 275257
+    "sha256": "31ccdb10634793f148bcd8a510a50cdfb8caed09db709d0c72fc7e5c7bb41de3",
+    "bytes": 275869
   },
   "counts": {
     "typeExamples": 26,
@@ -1600,7 +1600,12 @@
       "stage": "text-final",
       "input": "微信号 转账申请人 收款方付款方\n付款方alice123张三收款方\n2026-10-14 12:00:00李四\n__masked_id__",
       "selected": "__masked_id__",
-      "computedMask": "__*********__"
+      "computedMask": "__*********__",
+      "lawyerDisplay": {
+        "inputAndSelected": "__masked_id__",
+        "computedMaskDisplay": "__*********__",
+        "note": "底稿原样展示合成占位文本，不是真实微信号；两个下划线在律师版以字符实体呈现。"
+      }
     },
     {
       "row": 197,
@@ -1608,7 +1613,12 @@
       "stage": "raster-final",
       "input": "微信号 转账申请人 收款方付款方\n付款方alice123张三收款方\n2026-10-14 12:00:00李四\n__masked_id__",
       "selected": "__masked_id__",
-      "computedMask": "__*********__"
+      "computedMask": "__*********__",
+      "lawyerDisplay": {
+        "inputAndSelected": "__masked_id__",
+        "computedMaskDisplay": "__*********__",
+        "note": "底稿原样展示合成占位文本，不是真实微信号；两个下划线在律师版以字符实体呈现。"
+      }
     },
     {
       "row": 198,
@@ -2097,8 +2107,8 @@
   "evidence": [
     {
       "path": "文档/脱敏规则细则.md",
-      "sha256": "7e751ccfff927f17e517d555c81b533d6dd1db17b69760bec699f5606aa873d2",
-      "bytes": 275257
+      "sha256": "31ccdb10634793f148bcd8a510a50cdfb8caed09db709d0c72fc7e5c7bb41de3",
+      "bytes": 275869
     },
     {
       "path": "文档/脱敏规则给律师看的说明-20261019.md",
@@ -2137,7 +2147,7 @@
     },
     {
       "path": ".data/research/lawbot-2026-10-19/iteration073/rule-detail-completeness-receipt.json",
-      "sha256": "8b61eafdd48a293594d2418ce072ada264b071b2131205af8730958cb0b00b39",
+      "sha256": "80f281f5af148ffcc133662cc753a13b7e240a3a6ae942459a07593e894358b1",
       "bytes": 4722
     },
     {
